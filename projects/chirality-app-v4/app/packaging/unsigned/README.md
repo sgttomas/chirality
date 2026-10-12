@@ -51,14 +51,15 @@ The product label is Chirality App v4 (development candidate), version 0.0.0,
 identifier dev.chirality.app-v4.skeleton. No microphone usage string is requested.
 The production identifier and minimum OS decisions remain with their owners.
 
-A physical P0–P4 candidate remains unsigned and unqualified. The source at this
-build basis has no qualified S3 distribution reference and no actual H3B runtime
-witness. Do not insert a synthetic anchor. FP-1(b), FP-2/W-4, FP-3/4/5, SIGN-1,
+A physical P0–P4 candidate remains unsigned and unqualified. The ordinary route
+does not package the compiled attested S3 closure; the separate attested-reference
+route below supplies its mapping. Installed custody and the actual H3B package
+runtime witness remain absent. Do not insert a synthetic anchor. FP-1(b), FP-2/W-4, FP-3/4/5, SIGN-1,
 M2/M3, quarantine/install/launch and account acts are not supplied by bundling.
 The cached 0.160.0 selection does not apply R23-22 qualification-pin selection.
 
-The default `tauri.conf.json` maps the same P2 and P3 trees (CI-31 in
-`../../CONTRACT_ISSUES.md`), so a bundle built without this overlay carries
+The default `tauri.conf.json` maps the same P2 and P3 trees (the governing
+PKG §4.1 P-2/P-3), so a bundle built without this overlay carries
 them too; the overlay repeats the mapping so this route reads whole. The test
 `bundle_resources_tests` fails if the default host reads a `resource_dir()`
 path the default configuration does not declare.
@@ -68,3 +69,7 @@ A separate [compiled synthetic-selection route](SYNTHETIC_SELECTION.md) is
 available only by explicit debug-feature opt-in. Its separate configuration and
 fixed development namespace do not change the ordinary command above or confer
 a qualified supplier reference. Do not add its resources to this ordinary route.
+
+The separate [attested-reference resource route](ATTESTED_REFERENCE.md) supplies
+the compiled S3 closure to the `distribution-successor` namespace by explicit
+opt-in. Its SDK mapping check is separate from an actual bundle/native witness.

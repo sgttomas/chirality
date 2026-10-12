@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
+<meta name="source-sha256" content="cb2d828ffcc9cd15537bcc6ecd14e5e9eb6395625052aa7cacfa9e5182ae98a6">
+<meta name="source-basis-date" content="2026-10-11">
+<meta name="source-basis-revision" content="26d04270617c405fc3ca131d2ea6c86120ecc5ed">
+<title>Course 01 — Professional Practice and Responsibility · Chirality</title>
+<style>
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --canvas: #eeeeee;
+  --ink: #111111;
+  --muted: #505050;
+  --line: #cccccc;
+  --accent: #111111;
+  --tint: #eeeeee;
+  font-family: "Liberation Serif", "Times New Roman", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 2rem; }
+body { margin: 0; color: var(--ink); background: var(--canvas); }
+a { color: var(--accent); text-underline-offset: .17em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #111111;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.skip-link {
+  position: fixed; top: .6rem; left: .6rem; z-index: 100;
+  padding: .6rem 1rem; background: var(--paper); border: 2px solid var(--accent);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+.masthead { border-bottom: 1px solid var(--ink); background: var(--paper); }
+.masthead-inner {
+  max-width: 70rem; margin: auto; padding: 1.05rem 2.5rem;
+  display: flex; flex-wrap: wrap; gap: .35rem 1.2rem;
+  align-items: baseline; justify-content: center; text-align: center;
+}
+.brand { font-size: .92rem; font-weight: 700; letter-spacing: .12em; }
+.masthead-label { color: var(--ink); font-size: .77rem; text-transform: uppercase; letter-spacing: .025em; }
+.layout {
+  max-width: 70rem; margin: auto; padding: 0 2.5rem;
+  display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2.5rem;
+}
+.sidebar {
+  position: sticky; top: 0; align-self: start; max-height: 100vh;
+  overflow-y: auto; padding: 2rem .8rem 2rem 0;
+  scrollbar-width: thin;
+}
+.nav-label, .eyebrow {
+  margin: 0 0 .85rem; color: var(--muted); font-size: .73rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+}
+.contents { list-style: none; padding: 0; margin: 0; }
+.contents li { margin: .15rem 0; }
+.contents a {
+  display: block; padding: .34rem .65rem; border-left: 2px solid transparent;
+  color: var(--muted); text-decoration: none; font-size: .86rem; line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.contents a:hover, .contents a:focus-visible {
+  color: var(--accent); background: var(--tint); border-left-color: var(--accent);
+}
+.nav-help { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.3rem; }
+.nav-help p, .nav-help a { font-size: .75rem; color: var(--muted); }
+.nav-help p { margin: .5rem 0; }
+kbd { font: inherit; padding: .05rem .25rem; border: 1px solid var(--line); border-radius: .2rem; }
+main { min-width: 0; max-width: 48.5rem; padding: 2rem 0 3rem; }
+.document-meta {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem 1.5rem; margin: 0 0 1.5rem;
+  font-size: .73rem; color: var(--muted);
+}
+.document-meta div { min-width: 0; }
+.document-meta dt { font-weight: 700; letter-spacing: .025em; }
+.document-meta dd { margin: .15rem 0 0; overflow-wrap: anywhere; }
+.document-meta code { font-size: .9em; background: none; padding: 0; }
+.fingerprint { grid-column: 1 / -1; }
+.paper {
+  min-width: 0; padding: 3.4rem 3rem 3rem;
+  background: var(--paper); border: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgb(0 0 0 / .04);
+}
+article { max-width: 68ch; margin: auto; overflow-wrap: anywhere; }
+article > :first-child { margin-top: 0; }
+h1, h2, h3, h4, h5, h6 { color: #000000; line-height: 1.22; text-wrap: balance; scroll-margin-top: 2rem; }
+h1 {
+  max-width: 19ch; margin: 0 auto 1.65rem; font-size: clamp(2.05rem, 3.8vw, 2.8rem);
+  text-align: center; text-transform: uppercase; letter-spacing: .015em;
+}
+article > h1 + p { margin-bottom: 2.4rem; text-align: center; font-size: .82rem; line-height: 1.45; }
+h2 { font-size: 1.5rem; margin: 3.4rem 0 1.1rem; }
+h3 { font-size: 1.13rem; margin: 2rem 0 .7rem; }
+h4, h5, h6 { font-size: 1.02rem; margin: 1.65rem 0 .6rem; }
+p { margin: 0 0 .78rem; }
+article p { text-align: justify; text-justify: inter-word; hyphens: auto; }
+ul, ol { padding-left: 1.5rem; }
+li { padding-left: .2rem; margin: .35rem 0; }
+li > p { margin: .6rem 0; }
+hr { max-width: 75%; border: 0; border-top: 1px solid var(--ink); margin: 2.5rem auto; }
+blockquote {
+  margin: 1.4rem 1.25rem; padding: 0; background: none; border: 0;
+}
+blockquote > :last-child { margin-bottom: 0; }
+code, pre { font-family: "Liberation Mono", "SFMono-Regular", Consolas, monospace; font-size: .83em; hyphens: none; }
+code { background: #f1f1f1; padding: .08em .2em; overflow-wrap: anywhere; }
+pre {
+  max-width: 100%; overflow-x: auto; padding: 1rem 1.15rem; margin: 1.4rem 0;
+  color: #111111; background: #f6f6f6; border: 1px solid var(--line);
+  line-height: 1.5; tab-size: 4;
+}
+pre code { background: none; padding: 0; border-radius: 0; font-size: 1em; overflow-wrap: normal; }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 1.5rem 0; }
+table { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: .87rem; line-height: 1.4; }
+th, td { padding: .65rem .75rem; text-align: left; vertical-align: top; border: 1px solid #b8b8b8; }
+th { color: #000000; background: #eeeeee; font-weight: 700; }
+tbody tr { background: #ffffff; }
+img, svg { max-width: 100%; height: auto; }
+a[id], a[name] { scroll-margin-top: 2rem; }
+p:has(> a[id]:only-child):empty { margin: 0; }
+p:has(> a[id]:only-child) { margin: 0; }
+h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-color: #777777; text-decoration-thickness: .08em; text-underline-offset: .2em; }
+.mobile-toc { display: none; }
+.document-footer { margin-top: 1.5rem; color: var(--muted); font-size: .73rem; }
+.document-footer p { margin: .4rem 0; }
+@media (max-width: 65rem) {
+  .layout { padding: 0 1.5rem; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 1.5rem; }
+  .masthead-inner { padding: 1rem 1.5rem; }
+  .paper { padding: 2.6rem 2rem; }
+}
+@media (max-width: 54rem) {
+  html { scroll-padding-top: 4.5rem; }
+  .layout { display: block; padding: 0 1rem; }
+  .sidebar { display: none; }
+  .masthead-inner { padding: .85rem 1rem; gap: .2rem 1rem; }
+  .mobile-toc {
+    display: block; position: sticky; top: 0; z-index: 10;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .mobile-toc summary { padding: .75rem 1rem; cursor: pointer; color: var(--accent); font-weight: 700; font-size: .85rem; }
+  .mobile-toc nav { max-height: 65vh; overflow-y: auto; padding: 0 .5rem 1rem; }
+  .mobile-toc .contents a { padding: .55rem; }
+  main { padding-top: 1.25rem; }
+  .paper { padding: 2.2rem 1.4rem; }
+  article p { text-align: left; }
+  article > h1 + p { text-align: center; }
+  h2, h3, h4, h5, h6, a[id], a[name] { scroll-margin-top: 4.5rem; }
+  h2 { margin-top: 2.7rem; font-size: 1.4rem; }
+  .document-meta { gap: .75rem 1rem; }
+}
+@media (max-width: 25rem) {
+  :root { font-size: 17px; }
+  .layout { padding: 0 .5rem; }
+  .paper { padding: 1.4rem 1rem; }
+  .document-meta { padding: 0 .5rem; }
+}
+@media print {
+  @page { size: 6.75in 9.25in; margin: .68in .65in .67in .72in; }
+  :root { font-size: 10.5pt; line-height: 1.2; color-scheme: light; }
+  body, .paper { color: #111; background: white; }
+  .masthead, .sidebar, .mobile-toc, .skip-link, .back-top { display: none; }
+  .layout { display: block; max-width: none; padding: 0; }
+  main { max-width: none; padding: 0; }
+  .paper { padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+  article { max-width: none; }
+  article p { margin-bottom: 4.6pt; text-align: justify; }
+  .document-meta { padding: 0 0 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #bbb; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 18pt; margin-top: 1.8rem; }
+  h3 { font-size: 12pt; }
+  h4, h5, h6 { font-size: 11pt; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  a { color: inherit; text-decoration: underline; }
+  .table-scroll { overflow: visible; border: 0; }
+  table { min-width: 0; table-layout: auto; font-size: 9pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  th, td { padding: .45rem; }
+  pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; border-color: #bbb; font-size: 8pt; line-height: 1.3; }
+  pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  blockquote { break-inside: avoid; background: white; }
+  .document-footer { border-top: 1px solid #bbb; padding-top: .75rem; }
+}
+</style>
+</head>
+<body id="manual-top">
+<a class="skip-link" href="#manual-content">Skip to manual</a>
+<header class="masthead">
+  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Human team courses · offline reading edition</span></div>
+</header>
+<details class="mobile-toc">
+  <summary>Contents · 11 sections</summary>
+  <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#prerequisites-and-outcomes">Prerequisites and outcomes</a></li>
+<li><a href="#lesson-1--understand-whom-the-work-serves">Lesson 1 — Understand whom the work serves</a></li>
+<li><a href="#lesson-2--match-responsibility-with-authority">Lesson 2 — Match responsibility with authority</a></li>
+<li><a href="#lesson-3--work-within-demonstrated-competence">Lesson 3 — Work within demonstrated competence</a></li>
+<li><a href="#lesson-4--communicate-concerns-and-preserve-responsibility">Lesson 4 — Communicate concerns and preserve responsibility</a></li>
+<li><a href="#northbank-worked-example--an-assignment-under-an-incomplete-basis">Northbank worked example — An assignment under an incomplete basis</a></li>
+<li><a href="#transfer-example--a-software-service-upgrade">Transfer example — A software service upgrade</a></li>
+<li><a href="#practice--prepare-a-responsibility-brief">Practice — Prepare a responsibility brief</a></li>
+<li><a href="#knowledge-check">Knowledge check</a></li>
+<li><a href="#assessed-assignment--establish-your-working-responsibility">Assessed assignment — Establish your working responsibility</a></li>
+<li><a href="#portfolio-continuation-and-references">Portfolio continuation and references</a></li></ol></nav>
+</details>
+<div class="layout">
+<aside class="sidebar">
+  <nav aria-label="Sections">
+    <p class="nav-label">In this manual</p>
+    <ol class="contents"><li><a href="#prerequisites-and-outcomes">Prerequisites and outcomes</a></li>
+<li><a href="#lesson-1--understand-whom-the-work-serves">Lesson 1 — Understand whom the work serves</a></li>
+<li><a href="#lesson-2--match-responsibility-with-authority">Lesson 2 — Match responsibility with authority</a></li>
+<li><a href="#lesson-3--work-within-demonstrated-competence">Lesson 3 — Work within demonstrated competence</a></li>
+<li><a href="#lesson-4--communicate-concerns-and-preserve-responsibility">Lesson 4 — Communicate concerns and preserve responsibility</a></li>
+<li><a href="#northbank-worked-example--an-assignment-under-an-incomplete-basis">Northbank worked example — An assignment under an incomplete basis</a></li>
+<li><a href="#transfer-example--a-software-service-upgrade">Transfer example — A software service upgrade</a></li>
+<li><a href="#practice--prepare-a-responsibility-brief">Practice — Prepare a responsibility brief</a></li>
+<li><a href="#knowledge-check">Knowledge check</a></li>
+<li><a href="#assessed-assignment--establish-your-working-responsibility">Assessed assignment — Establish your working responsibility</a></li>
+<li><a href="#portfolio-continuation-and-references">Portfolio continuation and references</a></li></ol>
+  </nav>
+  <div class="nav-help">
+    <p>Find a term with <kbd>⌘ F</kbd> or <kbd>Ctrl F</kbd>. Use your browser’s print command for a paper copy.</p>
+    <p><a href="01-professional-practice.md">Markdown source</a> · <a href="#manual-top">Back to start ↑</a></p>
+  </div>
+</aside>
+<main id="manual-content" tabindex="-1">
+  <div class="paper">
+    <article aria-labelledby="course-01--professional-practice-and-responsibility">
+<!-- BEGIN MARKDOWN CONTENT -->
+<h1 id="course-01--professional-practice-and-responsibility">Course 01 — Professional Practice and Responsibility</h1>
+<p><a href="../index.html">Series</a> · <a href="../case-study.html">Case</a> · <a href="../glossary.html">Glossary</a> · <a href="../references.html">References</a></p>
+<p>A project joins people who hold different knowledge and different responsibilities. Good practice helps them make a coherent result together. Each person must understand the assignment, its limits, and the consequences of their work.</p>
+<p>This course establishes those responsibilities before the team produces technical conclusions. It connects professional duties with project appointments, competence, authority, examination, and communication. It does not confer a licence, appointment, or authority to approve real engineering work.</p>
+<h2 id="prerequisites-and-outcomes">Prerequisites and outcomes</h2>
+<p>No earlier course is required. Read Packet A of the Northbank case. You need no pump-design knowledge for this course.</p>
+<p>By the end, you can:</p>
+<ul>
+<li>Identify the people affected by an assignment.</li>
+<li>Distinguish responsibility, authority, and accountability.</li>
+<li>Explain the different contributions of project management and project engineering.</li>
+<li>Recognize work that exceeds your competence or appointment.</li>
+<li>Prepare a clear request for assistance or a decision.</li>
+</ul>
+<h2 id="lesson-1--understand-whom-the-work-serves">Lesson 1 — Understand whom the work serves</h2>
+<p>An assignment usually names a client, sponsor, or manager. Its effects can reach many other people. Constructors must install the result. Operators must use it. Maintenance staff must service it. Other people can experience its environmental or social effects.</p>
+<p>Start with the intended benefit and the affected people. This establishes why the work matters and which consequences need attention. A narrow brief can omit an important condition. You must recognize that omission before treating the brief as complete.</p>
+<p>At Northbank, the sponsor wants an improved water-transfer arrangement. Operations must use the equipment and respond to failures. Maintenance staff need access and isolation arrangements. Procurement needs an authorized purchase package. These needs are connected, but each contribution requires a named owner.</p>
+<p>An engineer also carries professional obligations. Their content follows the actual jurisdiction, licence, and circumstances. A project appointment cannot supply permission that the applicable professional arrangement withholds. The Northbank appointment says this explicitly in A01.</p>
+<p>Professional ethics provides grounds for evaluating conduct as well as technical outcomes. The <a href="https://engineerscanada.ca/guidelines-and-papers/public-guideline-on-the-code-of-ethics">Engineers Canada ethics guideline</a> teaches priority for public safety, health, welfare, and environmental protection. It also addresses truthful statements, competence, confidentiality, and conflicts of interest. This is national guidance. Check the actual regulator's requirements for real work; Northbank's jurisdiction remains unresolved under A06.</p>
+<p>State facts, assumptions, and opinions accurately. Disclose an interest that could impair impartial judgment through the appropriate process. Protect confidential information under the applicable arrangements. When confidentiality and public protection appear to conflict, obtain suitable guidance on the actual obligations.</p>
+<p>Commercial pressure cannot supply grounds for a false technical statement. Explain the concern and consequences. Identify the decision and response required under the applicable professional arrangement. Record the response. Continue work that has a sound basis.</p>
+<p>Competent practice includes technical understanding. Document control, retrieval, interpretation, and communication support that understanding. They cannot establish that a physical design works. You need suitable technical analysis and examination before people rely on that design.</p>
+<p>Use this method when you receive an assignment:</p>
+<ol>
+<li>State the intended result in one sentence.</li>
+<li>Identify its direct users.</li>
+<li>Identify other people who can experience its effects.</li>
+<li>State the important benefits and possible harms.</li>
+<li>Identify the obligations that need confirmation.</li>
+<li>Name the person who will resolve each missing obligation.</li>
+</ol>
+<p>Use proportionate detail. A small drawing correction may need a short note. A new installation needs a broader account. The purpose is to reveal consequences that could otherwise escape the assignment.</p>
+<h2 id="lesson-2--match-responsibility-with-authority">Lesson 2 — Match responsibility with authority</h2>
+<p>Responsibility concerns the work or decision that a person must carry. Authority concerns the acts that person may perform. Accountability concerns their obligation to explain and answer for that responsibility.</p>
+<p>A job title does not define every decision right. One manager may approve expenditure but lack authority to accept a technical deviation. One engineer may establish a discipline conclusion but lack authority to change the project scope. Check the appointment and the specific decision.</p>
+<p>Project management organizes the undertaking's commitments, resources, execution, and delivery. Project engineering coordinates the technical basis, contributions, interfaces, and grounds for the combined result. Both need information from each other.</p>
+<p>At Northbank, the project manager can arrange work within the approved scope and budget. The project engineer coordinates the technical basis. Discipline engineers retain their technical responsibilities. The sponsor decides scope, budget, and target changes. Procurement places orders against authorized packages. These statements come from A01; they are case appointments.</p>
+<p>A team can combine several roles in one person. That person must still distinguish the capacities in which they act. A small team needs clear responsibilities as much as a large team.</p>
+<p>Prepare a decision map when authority is uncertain:</p>
+<ol>
+<li>Name the required act.</li>
+<li>State the content and scope of the decision.</li>
+<li>Identify the appointment that grants authority.</li>
+<li>Identify the required technical contribution.</li>
+<li>Identify the affected participants.</li>
+<li>State the decision that remains reserved.</li>
+</ol>
+<p>Avoid assigning a vague phrase such as “overall approval.” State whether the act concerns scope, expenditure, technical conformity, delivery, or operating readiness. A person may have authority for only one of these matters.</p>
+<h2 id="lesson-3--work-within-demonstrated-competence">Lesson 3 — Work within demonstrated competence</h2>
+<p>Competence combines knowledge, skill, experience, and judgment for the assigned work. It is specific to the task and its conditions. Experience with one equipment type does not establish competence for every installation.</p>
+<p>Check your competence before you accept responsibility. Consider the technical methods, relevant requirements, operating environment, available tools, and possible consequences. Identify what you can perform independently and what needs supervision or specialist input.</p>
+<p>Learning can occur within real work when the supervision and examination arrangements are suitable. Make those arrangements explicit. A learner should know who will examine the work and which acts remain outside the learner's authority.</p>
+<p>Time pressure can conceal a competence gap. Familiarity with a supplier brochure may feel like knowledge of the selected equipment. A confident colleague may make an unsupported conclusion seem settled. Check the actual grounds.</p>
+<p>Review adds scrutiny, but it does not transfer the producer's responsibility. A reviewer needs suitable competence, a defined purpose, and access to the relevant basis. The producer must correct defects and explain the result.</p>
+<p>The reviewer remains responsible for the assigned examination and its conclusions. Those duties coexist with the producer's responsibility.</p>
+<p>Use a competence check before beginning consequential work:</p>
+<ol>
+<li>List the judgments the assignment requires.</li>
+<li>Identify your relevant experience for each judgment.</li>
+<li>Identify unfamiliar methods or conditions.</li>
+<li>Name the assistance required.</li>
+<li>Agree the supervision and review arrangements.</li>
+<li>State the acts you cannot perform under the appointment.</li>
+</ol>
+<p>Do not claim competence merely because a checklist is complete. Use the check to reveal where evidence, experience, or assistance is insufficient.</p>
+<h2 id="lesson-4--communicate-concerns-and-preserve-responsibility">Lesson 4 — Communicate concerns and preserve responsibility</h2>
+<p>A concern becomes useful when another person can understand and act on it. State the observed condition, supporting evidence, affected work, and consequence. Then identify the required response.</p>
+<p>Distinguish observation from inference. “A04 records 600 V” is a source statement. “The offered equipment is compatible” would require further technical evidence. A schedule target cannot supply that evidence.</p>
+<p>Escalation means bringing a matter to someone who can resolve it or assign its treatment. It does not require abandoning every activity. Identify the dependent work that lacks a sound basis. Continue independent work within your authority.</p>
+<p>If a concern affects safety or a professional obligation, follow the actual response requirements for the situation. Obtain suitable assistance. This course does not define a universal stop-work or reporting procedure.</p>
+<p>Persuasion belongs in responsible practice. Explain the consequence in terms the recipient can assess. Listen for information that changes the issue. Keep uncertainty visible when agreement is difficult.</p>
+<p>Prepare a concern for decision:</p>
+<ol>
+<li>State the discrepancy or missing condition.</li>
+<li>Cite the relevant source and revision.</li>
+<li>Explain the work that depends on its resolution.</li>
+<li>State the foreseeable consequence of proceeding.</li>
+<li>Propose a bounded next action.</li>
+<li>Identify the person who must decide.</li>
+</ol>
+<p>After a decision, check its content and conditions. A request to investigate is permission for investigation. It does not approve the solution that the investigation may recommend.</p>
+<h2 id="northbank-worked-example--an-assignment-under-an-incomplete-basis">Northbank worked example — An assignment under an incomplete basis</h2>
+<p>The project manager asks the project engineer to prepare the equipment-selection work. Packet A is available. No supplier selection is available yet.</p>
+<p>The project engineer first identifies the assignment basis. A02 Rev 1 requires 18 litres per second and two pump units. It also leaves the hydraulic conditions unresolved. A05 requests 22 litres per second, but records no scope amendment.</p>
+<p>The project engineer separates the required contributions:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 1; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Matter</th>
+<th>Contribution and responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hydraulic conditions</td>
+<td>Mechanical engineering and operations establish the necessary inputs.</td>
+</tr>
+<tr>
+<td>Electrical conditions</td>
+<td>Electrical engineering examines capacity, protection, and compatibility after A04.</td>
+</tr>
+<tr>
+<td>External requirements</td>
+<td>Assigned competent participants resolve A06 before dependent decisions.</td>
+</tr>
+<tr>
+<td>Proposed flow increase</td>
+<td>The sponsor decides after an impact assessment.</td>
+</tr>
+<tr>
+<td>Combined equipment basis</td>
+<td>The project engineer coordinates the contributions.</td>
+</tr>
+<tr>
+<td>Work arrangement</td>
+<td>The project manager organizes the authorized work and resources.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The project engineer can organize input gathering and define the technical work. The available records do not support final equipment selection. A04 supports the observed connection characteristics. It does not establish the electrical design.</p>
+<p>A concise return could state: “Prepare the input investigations under A02 Rev 1. Keep the 22 litres per second proposal separate. Complete dependent selection after the basis is established.”</p>
+<p>This response gives the manager useful work to arrange. It also preserves the sponsor's decision and the discipline responsibilities.</p>
+<h2 id="transfer-example--a-software-service-upgrade">Transfer example — A software service upgrade</h2>
+<p>A service manager asks a developer to increase processing speed. A security specialist holds responsibility for the access design. The product owner decides which user functions change.</p>
+<p>The developer can examine performance under the current requirements. The developer cannot infer permission to remove access checks. A performance proposal must identify its effects on access, reliability, user behavior, and continuing support.</p>
+<p>The same decision map applies. Identify the act, its authority, technical contributions, affected people, and reserved decision. Technical details differ; the responsibilities still need clear homes.</p>
+<h2 id="practice--prepare-a-responsibility-brief">Practice — Prepare a responsibility brief</h2>
+<p>Use A01 to A07. Work in pairs. One participant prepares the brief. The other challenges its authority and evidence.</p>
+<p>The supplied task is: “Prepare the next two activities needed for Northbank equipment selection. Keep work moving within the approved project basis.”</p>
+<p>Use this invented practice event with Packet A: a manager requests the statement, “Electrical compatibility is confirmed.” The manager says that a qualified statement may weaken the funding request. No additional electrical evidence is available. Prepare a truthful alternative and a response to the pressure. Explain the possible consequences of the requested claim.</p>
+<p>Supply these outputs:</p>
+<ol>
+<li>A statement of the intended result and affected people.</li>
+<li>A map of four decisions and their appointed authorities.</li>
+<li>Two executable activities with owners and needed contributions.</li>
+<li>One competence limit with a suitable assistance request.</li>
+<li>A concern note about one unresolved condition, including your ethical-pressure response.</li>
+</ol>
+<p>Use Packet A only. Identify its records by revision. Do not invent a legal requirement or a completed technical check. During the challenge, explain which statement would change if new evidence arrived.</p>
+<h2 id="knowledge-check">Knowledge check</h2>
+<ol>
+<li>How do responsibility, authority, and accountability differ?</li>
+<li>What distinguishes project management from project engineering in A01?</li>
+<li>Why does A05 not establish the equipment-selection flow?</li>
+<li>What does A04 establish, and what remains for electrical engineering?</li>
+<li>How should you respond when commercial pressure requests an unsupported technical statement?</li>
+<li>How does independent review affect the producer's responsibility?</li>
+</ol>
+<h2 id="assessed-assignment--establish-your-working-responsibility">Assessed assignment — Establish your working responsibility</h2>
+<p>Prepare a two-page appointment response for the Northbank project engineer. Use Packet A and your practice outputs. Include an activity plan and one decision request.</p>
+<p>An instructor assesses five observable criteria:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 2; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Evidence required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Purpose and ethical conduct</td>
+<td>The response identifies affected people and gives a truthful, reasoned response to the supplied commercial pressure.</td>
+</tr>
+<tr>
+<td>Authority</td>
+<td>Decisions match A01, and reserved decisions remain identified.</td>
+</tr>
+<tr>
+<td>Source basis</td>
+<td>The response uses A02 Rev 1 and distinguishes proposals, observations, and open inquiries.</td>
+</tr>
+<tr>
+<td>Competence and examination</td>
+<td>Activities include necessary specialist input and a suitable review purpose.</td>
+</tr>
+<tr>
+<td>Useful continuation</td>
+<td>The plan advances independent work and states the conditions limiting dependent decisions.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Explain your response orally. Repair any unsupported claim found during examination. Training acceptance confirms the assignment's learning criteria; it grants no professional authorization.</p>
+<h2 id="portfolio-continuation-and-references">Portfolio continuation and references</h2>
+<p>Keep the appointment response as Portfolio 01. Identify its revision and source packet. Later courses will add document control, evidence, and interpretation to this responsibility basis.</p>
+<p>The <a href="../../alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v1.html">Field Book</a>, sections 2 and 3, supports precise assignments and an established basis. This course adapts those principles to human appointments.</p>
+<p>The <a href="https://engineerscanada.ca/guidelines-and-papers/public-guideline-on-admission-to-the-practice-of-engineering-in-canada">Engineers Canada competency guidance</a> offers further study on technical competence and professional maturity. It is national guidance; the actual regulator sets admission requirements.</p>
+<p>Use the <a href="../references.html">series references</a> to identify source roles and limits. External readings are optional for this assignment.</p>
+<!-- END MARKDOWN CONTENT -->
+    </article>
+  </div>
+  <footer class="document-footer">
+  <dl class="document-meta">
+    <div><dt>Source basis dated</dt><dd>11 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>26d04270617c405fc3ca131d2ea6c86120ecc5ed</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="01-professional-practice.md">01-professional-practice.md</a><br><code>cb2d828ffcc9cd15537bcc6ecd14e5e9eb6395625052aa7cacfa9e5182ae98a6</code></dd></div>
+  </dl>
+    <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
+    <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
+    <p class="back-top"><a href="#manual-top">Back to start ↑</a></p>
+  </footer>
+</main>
+</div>
+<script>
+const mobileContents = document.querySelector('.mobile-toc');
+mobileContents.addEventListener('click', (event) => {
+  if (event.target.closest('a[href^="#"]')) mobileContents.open = false;
+});
+</script>
+</body>
+</html>

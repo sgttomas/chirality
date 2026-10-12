@@ -19,11 +19,14 @@
 //!
 //! Runtime core adds §6 request custody and native answer/error paths, atomic
 //! cursor re-attachment snapshots and optional durable summary recording.
-//! Still outstanding: automatic restart rules (§4.4), native recovery reads,
-//! quit/relaunch integration and the per-home configuration link.
+//! Recovery reads after a restart are `hosting_recovery_reads.rs`. Still
+//! outstanding: automatic restart rules (§4.4), quit/relaunch integration and
+//! the per-home configuration link.
 
 #[path = "execution_custody.rs"]
 mod execution_custody;
+#[path = "hosting_recovery_reads.rs"]
+pub(crate) mod recovery_reads;
 #[path = "hosting_request_event_join.rs"]
 mod request_event_join;
 #[path = "hosting_call_custody.rs"]
@@ -848,6 +851,12 @@ impl Host {
         snapshot["distributionEvidence"] = evidence;
         json!({"snapshot":snapshot,"generation":current_generation,"position":position,"gap":gap,"frames":frames})
     }
+    /// DEL-01-02's custody events held in this process (`observation_lost`,
+    /// `observation_recovered`, `turn_outcome`), in order, for receivers that
+    /// map them (RECOVERY §8.2; EXEC AE-6). A read; it changes nothing.
+    pub fn custody_events(&self) -> Vec<Value> {
+        self.inner.0.lock().unwrap().execution_custody.events().to_vec()
+    }
     /// Read-only App metadata, never admission to native/act/dispatch authority.
     pub fn recovery_custody(&self) -> crate::recovery::RecoveryCustodyView {
         let i=self.inner.0.lock().unwrap();
@@ -1113,8 +1122,21 @@ impl Host {
             self.successor_prospective(&i, cfg).map(Some)
         } else { Ok(None) };
         let prospective = match prospective { Ok(g) => g, Err(e) => return self.refuse_successor(attempt, e) };
+        // The only reference source is the configured Store's compiled selection,
+        // so the comparison and the published observation share one closure.
+        let reference_store = self.distribution_store.lock().unwrap().clone();
+        let reference = match &reference_store {
+            Some(Ok(store)) => match (store.selected(), store.reference_limit()) {
+                (Some(selected), _) => successor::Reference::Selected(selected),
+                (None, Some(limit)) => successor::Reference::Unavailable(limit),
+                (None, None) => successor::Reference::None,
+            },
+            Some(Err(error)) if cfg.distribution.is_some() => return self.refuse_successor(attempt, error.clone()),
+            None if cfg.distribution.is_some() && cfg.require_distribution_artifacts => return self.refuse_successor(attempt, "native distribution store not configured".into()),
+            _ => successor::Reference::None,
+        };
         let prepared = if let Some(distribution) = &cfg.distribution {
-            match successor::prepare(distribution, cfg, prospective.as_ref().unwrap()) {
+            match successor::prepare(distribution, cfg, prospective.as_ref().unwrap(), reference) {
                 Ok(p) => Some(p), Err(e) => return self.refuse_successor(attempt, e),
             }
         } else { None };
@@ -1420,6 +1442,7 @@ impl Host {
         let cause=if i.stop_record.is_some() {if i.stop_record.as_ref().is_some_and(|s|s["reason"]=="App quit"||s["reason"]==crate::app_quit::QUIT_STOP_REASON) {"app-quit"} else {"supplier-stop"}} else {"supplier-exit"};
         i.execution_custody.close(&generation,cause,&i.server_requests.entries(),&now_rfc3339());
         Self::persist_execution(i);
+        Self::persist_recovery(i);
         Self::stop_requests_generation_closed(i,&generation);
         Self::oauth_lost(i,&generation);
         let ended = i.server_requests.close(&generation);
@@ -3285,9 +3308,11 @@ fn network_disclosure() -> Value {
     })
 }
 
+/// SHA-256 of the maintained 0.160.0 generated-output MANIFEST compiled into this App.
+pub(crate) const GENERATED_MANIFEST_SHA256: &str = "411ea5d47035908768562eecfed33f16e2cb3de944c84c96fd8e70ca7086b8be";
 fn generated_outputs_match() -> bool {
     [
-        (include_bytes!("../resources/supplier/0.160.0/MANIFEST.sha256").as_slice(), "411ea5d47035908768562eecfed33f16e2cb3de944c84c96fd8e70ca7086b8be"),
+        (include_bytes!("../resources/supplier/0.160.0/MANIFEST.sha256").as_slice(), GENERATED_MANIFEST_SHA256),
         (include_bytes!("../resources/supplier/0.160.0/codex_app_server_protocol.schemas.json").as_slice(), "7243ba241962af92ca60581f1a81808ebda4212a800f8b205f54703bcfd508c5"),
         (include_bytes!("../resources/supplier/0.160.0/codex_app_server_protocol.v2.schemas.json").as_slice(), "e77b7d1436a78f431a74b2cb263a862e92ae40d70411bc63835b47ab2168827c"),
     ].iter().all(|(bytes, expected)| sha256_hex(bytes) == *expected)

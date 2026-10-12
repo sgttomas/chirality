@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
+<meta name="source-sha256" content="769a2fed1e5b39af9b0fc0723153d451d5d4ef282e9b43d6130eeee8f83539a7">
+<meta name="source-basis-date" content="2026-10-11">
+<meta name="source-basis-revision" content="26d04270617c405fc3ca131d2ea6c86120ecc5ed">
+<title>Course 03 — Information Research and Evidence · Chirality</title>
+<style>
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --canvas: #eeeeee;
+  --ink: #111111;
+  --muted: #505050;
+  --line: #cccccc;
+  --accent: #111111;
+  --tint: #eeeeee;
+  font-family: "Liberation Serif", "Times New Roman", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 2rem; }
+body { margin: 0; color: var(--ink); background: var(--canvas); }
+a { color: var(--accent); text-underline-offset: .17em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #111111;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.skip-link {
+  position: fixed; top: .6rem; left: .6rem; z-index: 100;
+  padding: .6rem 1rem; background: var(--paper); border: 2px solid var(--accent);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+.masthead { border-bottom: 1px solid var(--ink); background: var(--paper); }
+.masthead-inner {
+  max-width: 70rem; margin: auto; padding: 1.05rem 2.5rem;
+  display: flex; flex-wrap: wrap; gap: .35rem 1.2rem;
+  align-items: baseline; justify-content: center; text-align: center;
+}
+.brand { font-size: .92rem; font-weight: 700; letter-spacing: .12em; }
+.masthead-label { color: var(--ink); font-size: .77rem; text-transform: uppercase; letter-spacing: .025em; }
+.layout {
+  max-width: 70rem; margin: auto; padding: 0 2.5rem;
+  display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2.5rem;
+}
+.sidebar {
+  position: sticky; top: 0; align-self: start; max-height: 100vh;
+  overflow-y: auto; padding: 2rem .8rem 2rem 0;
+  scrollbar-width: thin;
+}
+.nav-label, .eyebrow {
+  margin: 0 0 .85rem; color: var(--muted); font-size: .73rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+}
+.contents { list-style: none; padding: 0; margin: 0; }
+.contents li { margin: .15rem 0; }
+.contents a {
+  display: block; padding: .34rem .65rem; border-left: 2px solid transparent;
+  color: var(--muted); text-decoration: none; font-size: .86rem; line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.contents a:hover, .contents a:focus-visible {
+  color: var(--accent); background: var(--tint); border-left-color: var(--accent);
+}
+.nav-help { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.3rem; }
+.nav-help p, .nav-help a { font-size: .75rem; color: var(--muted); }
+.nav-help p { margin: .5rem 0; }
+kbd { font: inherit; padding: .05rem .25rem; border: 1px solid var(--line); border-radius: .2rem; }
+main { min-width: 0; max-width: 48.5rem; padding: 2rem 0 3rem; }
+.document-meta {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem 1.5rem; margin: 0 0 1.5rem;
+  font-size: .73rem; color: var(--muted);
+}
+.document-meta div { min-width: 0; }
+.document-meta dt { font-weight: 700; letter-spacing: .025em; }
+.document-meta dd { margin: .15rem 0 0; overflow-wrap: anywhere; }
+.document-meta code { font-size: .9em; background: none; padding: 0; }
+.fingerprint { grid-column: 1 / -1; }
+.paper {
+  min-width: 0; padding: 3.4rem 3rem 3rem;
+  background: var(--paper); border: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgb(0 0 0 / .04);
+}
+article { max-width: 68ch; margin: auto; overflow-wrap: anywhere; }
+article > :first-child { margin-top: 0; }
+h1, h2, h3, h4, h5, h6 { color: #000000; line-height: 1.22; text-wrap: balance; scroll-margin-top: 2rem; }
+h1 {
+  max-width: 19ch; margin: 0 auto 1.65rem; font-size: clamp(2.05rem, 3.8vw, 2.8rem);
+  text-align: center; text-transform: uppercase; letter-spacing: .015em;
+}
+article > h1 + p { margin-bottom: 2.4rem; text-align: center; font-size: .82rem; line-height: 1.45; }
+h2 { font-size: 1.5rem; margin: 3.4rem 0 1.1rem; }
+h3 { font-size: 1.13rem; margin: 2rem 0 .7rem; }
+h4, h5, h6 { font-size: 1.02rem; margin: 1.65rem 0 .6rem; }
+p { margin: 0 0 .78rem; }
+article p { text-align: justify; text-justify: inter-word; hyphens: auto; }
+ul, ol { padding-left: 1.5rem; }
+li { padding-left: .2rem; margin: .35rem 0; }
+li > p { margin: .6rem 0; }
+hr { max-width: 75%; border: 0; border-top: 1px solid var(--ink); margin: 2.5rem auto; }
+blockquote {
+  margin: 1.4rem 1.25rem; padding: 0; background: none; border: 0;
+}
+blockquote > :last-child { margin-bottom: 0; }
+code, pre { font-family: "Liberation Mono", "SFMono-Regular", Consolas, monospace; font-size: .83em; hyphens: none; }
+code { background: #f1f1f1; padding: .08em .2em; overflow-wrap: anywhere; }
+pre {
+  max-width: 100%; overflow-x: auto; padding: 1rem 1.15rem; margin: 1.4rem 0;
+  color: #111111; background: #f6f6f6; border: 1px solid var(--line);
+  line-height: 1.5; tab-size: 4;
+}
+pre code { background: none; padding: 0; border-radius: 0; font-size: 1em; overflow-wrap: normal; }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 1.5rem 0; }
+table { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: .87rem; line-height: 1.4; }
+th, td { padding: .65rem .75rem; text-align: left; vertical-align: top; border: 1px solid #b8b8b8; }
+th { color: #000000; background: #eeeeee; font-weight: 700; }
+tbody tr { background: #ffffff; }
+img, svg { max-width: 100%; height: auto; }
+a[id], a[name] { scroll-margin-top: 2rem; }
+p:has(> a[id]:only-child):empty { margin: 0; }
+p:has(> a[id]:only-child) { margin: 0; }
+h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-color: #777777; text-decoration-thickness: .08em; text-underline-offset: .2em; }
+.mobile-toc { display: none; }
+.document-footer { margin-top: 1.5rem; color: var(--muted); font-size: .73rem; }
+.document-footer p { margin: .4rem 0; }
+@media (max-width: 65rem) {
+  .layout { padding: 0 1.5rem; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 1.5rem; }
+  .masthead-inner { padding: 1rem 1.5rem; }
+  .paper { padding: 2.6rem 2rem; }
+}
+@media (max-width: 54rem) {
+  html { scroll-padding-top: 4.5rem; }
+  .layout { display: block; padding: 0 1rem; }
+  .sidebar { display: none; }
+  .masthead-inner { padding: .85rem 1rem; gap: .2rem 1rem; }
+  .mobile-toc {
+    display: block; position: sticky; top: 0; z-index: 10;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .mobile-toc summary { padding: .75rem 1rem; cursor: pointer; color: var(--accent); font-weight: 700; font-size: .85rem; }
+  .mobile-toc nav { max-height: 65vh; overflow-y: auto; padding: 0 .5rem 1rem; }
+  .mobile-toc .contents a { padding: .55rem; }
+  main { padding-top: 1.25rem; }
+  .paper { padding: 2.2rem 1.4rem; }
+  article p { text-align: left; }
+  article > h1 + p { text-align: center; }
+  h2, h3, h4, h5, h6, a[id], a[name] { scroll-margin-top: 4.5rem; }
+  h2 { margin-top: 2.7rem; font-size: 1.4rem; }
+  .document-meta { gap: .75rem 1rem; }
+}
+@media (max-width: 25rem) {
+  :root { font-size: 17px; }
+  .layout { padding: 0 .5rem; }
+  .paper { padding: 1.4rem 1rem; }
+  .document-meta { padding: 0 .5rem; }
+}
+@media print {
+  @page { size: 6.75in 9.25in; margin: .68in .65in .67in .72in; }
+  :root { font-size: 10.5pt; line-height: 1.2; color-scheme: light; }
+  body, .paper { color: #111; background: white; }
+  .masthead, .sidebar, .mobile-toc, .skip-link, .back-top { display: none; }
+  .layout { display: block; max-width: none; padding: 0; }
+  main { max-width: none; padding: 0; }
+  .paper { padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+  article { max-width: none; }
+  article p { margin-bottom: 4.6pt; text-align: justify; }
+  .document-meta { padding: 0 0 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #bbb; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 18pt; margin-top: 1.8rem; }
+  h3 { font-size: 12pt; }
+  h4, h5, h6 { font-size: 11pt; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  a { color: inherit; text-decoration: underline; }
+  .table-scroll { overflow: visible; border: 0; }
+  table { min-width: 0; table-layout: auto; font-size: 9pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  th, td { padding: .45rem; }
+  pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; border-color: #bbb; font-size: 8pt; line-height: 1.3; }
+  pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  blockquote { break-inside: avoid; background: white; }
+  .document-footer { border-top: 1px solid #bbb; padding-top: .75rem; }
+}
+</style>
+</head>
+<body id="manual-top">
+<a class="skip-link" href="#manual-content">Skip to manual</a>
+<header class="masthead">
+  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Human team courses · offline reading edition</span></div>
+</header>
+<details class="mobile-toc">
+  <summary>Contents · 11 sections</summary>
+  <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#prerequisites-and-outcomes">Prerequisites and outcomes</a></li>
+<li><a href="#lesson-1--frame-the-question-before-searching">Lesson 1 — Frame the question before searching</a></li>
+<li><a href="#lesson-2--build-a-library-that-answers-questions">Lesson 2 — Build a library that answers questions</a></li>
+<li><a href="#lesson-3--examine-the-evidential-role-of-a-source">Lesson 3 — Examine the evidential role of a source</a></li>
+<li><a href="#lesson-4--resolve-conflicts-and-report-limits">Lesson 4 — Resolve conflicts and report limits</a></li>
+<li><a href="#northbank-worked-example--the-electrical-enquiry">Northbank worked example — The electrical enquiry</a></li>
+<li><a href="#transfer-example--a-service-response-time-report">Transfer example — A service response-time report</a></li>
+<li><a href="#practice--build-two-evidence-packets">Practice — Build two evidence packets</a></li>
+<li><a href="#knowledge-check">Knowledge check</a></li>
+<li><a href="#assessed-assignment--prepare-information-for-reliance">Assessed assignment — Prepare information for reliance</a></li>
+<li><a href="#portfolio-continuation-and-references">Portfolio continuation and references</a></li></ol></nav>
+</details>
+<div class="layout">
+<aside class="sidebar">
+  <nav aria-label="Sections">
+    <p class="nav-label">In this manual</p>
+    <ol class="contents"><li><a href="#prerequisites-and-outcomes">Prerequisites and outcomes</a></li>
+<li><a href="#lesson-1--frame-the-question-before-searching">Lesson 1 — Frame the question before searching</a></li>
+<li><a href="#lesson-2--build-a-library-that-answers-questions">Lesson 2 — Build a library that answers questions</a></li>
+<li><a href="#lesson-3--examine-the-evidential-role-of-a-source">Lesson 3 — Examine the evidential role of a source</a></li>
+<li><a href="#lesson-4--resolve-conflicts-and-report-limits">Lesson 4 — Resolve conflicts and report limits</a></li>
+<li><a href="#northbank-worked-example--the-electrical-enquiry">Northbank worked example — The electrical enquiry</a></li>
+<li><a href="#transfer-example--a-service-response-time-report">Transfer example — A service response-time report</a></li>
+<li><a href="#practice--build-two-evidence-packets">Practice — Build two evidence packets</a></li>
+<li><a href="#knowledge-check">Knowledge check</a></li>
+<li><a href="#assessed-assignment--prepare-information-for-reliance">Assessed assignment — Prepare information for reliance</a></li>
+<li><a href="#portfolio-continuation-and-references">Portfolio continuation and references</a></li></ol>
+  </nav>
+  <div class="nav-help">
+    <p>Find a term with <kbd>⌘ F</kbd> or <kbd>Ctrl F</kbd>. Use your browser’s print command for a paper copy.</p>
+    <p><a href="03-information-evidence.md">Markdown source</a> · <a href="#manual-top">Back to start ↑</a></p>
+  </div>
+</aside>
+<main id="manual-content" tabindex="-1">
+  <div class="paper">
+    <article aria-labelledby="course-03--information-research-and-evidence">
+<!-- BEGIN MARKDOWN CONTENT -->
+<h1 id="course-03--information-research-and-evidence">Course 03 — Information Research and Evidence</h1>
+<p><a href="../index.html">Series</a> · <a href="../case-study.html">Case</a> · <a href="../glossary.html">Glossary</a> · <a href="../references.html">References</a></p>
+<p>A controlled library can still fail its users. Important information may be missing from the index. A useful source may be difficult to retrieve. A retrieved document may answer a different question.</p>
+<p>This course teaches research directed toward a project decision. You will frame the question, find relevant information, examine its evidential role, and prepare a usable evidence packet. The work begins with supplied sources and remains suitable for offline study.</p>
+<h2 id="prerequisites-and-outcomes">Prerequisites and outcomes</h2>
+<p>Complete Courses 01 and 02. Read Northbank Packet A. Use your controlled-basis package as a starting point.</p>
+<p>By the end, you can:</p>
+<ul>
+<li>Frame a bounded research question.</li>
+<li>Build an index that supports relevant retrieval.</li>
+<li>Explain a source's provenance, authority, and limits.</li>
+<li>Compare conflicting information without hiding the difference.</li>
+<li>Prepare an evidence packet with a scoped conclusion and unresolved matters.</li>
+</ul>
+<h2 id="lesson-1--frame-the-question-before-searching">Lesson 1 — Frame the question before searching</h2>
+<p>Research begins with a question that someone needs answered. A broad request such as “research the pumps” leaves the purpose unclear. It encourages a large collection with no definite use.</p>
+<p>State the decision or activity that the research must support. Identify the object, conditions, needed information, and boundary. “What does Packet A establish about the electrical connection?” is answerable. “Is the complete electrical design suitable?” needs much more evidence.</p>
+<p>Separate a factual question from an applicability question. A survey can establish what was observed. It may not establish what a law requires. An approved appointment can establish project authority. It may not establish professional authority outside that appointment.</p>
+<p>Identify the consumer. A designer may need an exact observed input. A sponsor may need the consequence of an unresolved input. A reviewer may need the source and method behind a conclusion. The same information can serve each consumer differently.</p>
+<p>Use a research brief:</p>
+<ol>
+<li>State the question.</li>
+<li>Identify the decision or activity it supports.</li>
+<li>Define the object and relevant conditions.</li>
+<li>Identify the permitted sources.</li>
+<li>State the expected form of the answer.</li>
+<li>State what falls outside the enquiry.</li>
+</ol>
+<p>For a short enquiry, these fields can fit in a paragraph. Revisit the brief when the available evidence reveals a different problem. Make a scope change explicit instead of quietly extending the search.</p>
+<h2 id="lesson-2--build-a-library-that-answers-questions">Lesson 2 — Build a library that answers questions</h2>
+<p>A library index gives people routes into information. Document identities support exact retrieval. Subject terms support discovery. Relationships show where one item qualifies, replaces, or supports another.</p>
+<p>Index the subjects that project participants use. At Northbank, useful terms include flow, electrical connection, operating conditions, scope proposal, appointment, and external requirements. A file named “survey_final” may not appear in a search for electrical capacity.</p>
+<p>Distinguish a source inventory from a complete evidence collection. A07 lists what the shared folder contains and identifies indexing defects. It does not establish that the project holds every necessary source.</p>
+<p>Preserve links between claims and sources. A design note that cites A03 without its planning-estimate note loses relevant context. Add that note to the index or claim entry. Avoid making the next reader rediscover a known limitation.</p>
+<p>Access is part of retrieval. Record a location that the intended user can reach. If a source is unavailable, state the missing access and its consequence. A broken link cannot support review merely because its title is visible.</p>
+<p>Apply this indexing method:</p>
+<ol>
+<li>List the exact controlled items.</li>
+<li>Assign useful subject terms.</li>
+<li>Record each item's origin and scope.</li>
+<li>Record relationships that affect its meaning.</li>
+<li>Identify known omissions.</li>
+<li>Test retrieval with a real project question.</li>
+</ol>
+<p>Ask another person to perform the retrieval test. Give them the question, not the expected filename. Observe whether the index leads them to the relevant revision and its qualifications.</p>
+<h2 id="lesson-3--examine-the-evidential-role-of-a-source">Lesson 3 — Examine the evidential role of a source</h2>
+<p>Evidence supports or challenges a claim. Its value depends on the claim and the proposed reliance. A document can be authoritative for one question and unsuitable for another.</p>
+<p>Provenance identifies the origin and history needed to understand information. A checked observation should identify what was observed, where, when, and by whom. A copied value should retain its original source and the transformations applied to it.</p>
+<p>Authority concerns a source's standing for the question. A02 establishes the approved project-development requirement. It does not establish a measured plant condition. A04 records a checked site observation. It does not decide the project scope.</p>
+<p>Consider relevance, conditions, method, and completeness. A supplier brochure describes a product family. Without a selected configuration, it cannot establish the suitability of the proposed equipment. An accurate document can therefore be insufficient for a decision.</p>
+<p>Use a claim-and-evidence table. Include the exact claim, source revision, supporting passage, conditions, limitations, and consequence for reliance. State what additional evidence is needed when the claim exceeds the source.</p>
+<p>Apply this examination method:</p>
+<ol>
+<li>Write the claim in a testable form.</li>
+<li>Identify the exact source.</li>
+<li>Locate the supporting statement or observation.</li>
+<li>Examine its origin and method.</li>
+<li>Match its conditions to the claim.</li>
+<li>State the supported conclusion and remaining gap.</li>
+</ol>
+<p>Do not treat an impressive title, approval stamp, or confident author as a substitute for this comparison. Examination asks what the source establishes for the actual question.</p>
+<h2 id="lesson-4--resolve-conflicts-and-report-limits">Lesson 4 — Resolve conflicts and report limits</h2>
+<p>Sources may disagree because they concern different revisions, locations, conditions, or purposes. They may also disagree because one contains an error. Identify the kind of difference before selecting a response.</p>
+<p>At Northbank, the 15 and 18 litres per second values occur in different revisions and source roles. The 22 litres per second value is a proposal. Their presence does not create three equally valid scope choices.</p>
+<p>The electrical values present another issue. A03 records 480 V from an earlier planning estimate. A04 records a checked observation of 600 V at the existing connection. Compare their provenance and scope. Preserve the older statement so the team can trace work that used it.</p>
+<p>An evidence packet should let another participant reconstruct the answer without repeating the whole search. Include the question, source index, claim table, conflict treatment, conclusion, and unresolved matters. Keep substantial source material in its controlled location when possible.</p>
+<p>State limits plainly. “A04 records the observed connection characteristics” is supported. “The site can supply the selected motor” needs capacity, protection, and compatibility examination. A missing result should remain a gap.</p>
+<p>Complete an evidence packet with this method:</p>
+<ol>
+<li>Compare apparently conflicting statements.</li>
+<li>Identify differences in revision, purpose, and conditions.</li>
+<li>Record the consequence for the question.</li>
+<li>State a conclusion at the supported scope.</li>
+<li>Assign the remaining enquiry to a suitable owner.</li>
+<li>Test whether another person can reconstruct your reasoning.</li>
+</ol>
+<p>The packet is useful when it supports a decision or next activity. Avoid adding documents that have no identified role. A large collection can conceal the absence of the one source the decision needs.</p>
+<h2 id="northbank-worked-example--the-electrical-enquiry">Northbank worked example — The electrical enquiry</h2>
+<p>The research question is: “What does Packet A establish about the existing electrical connection?” The consumer is the electrical engineer preparing further investigation.</p>
+<p>The researcher retrieves A03 Rev 0 and A04 Rev 1. A07 Rev 0 explains the indexing omission and the design note's incomplete citation.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 1; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Evidence</th>
+<th>Conclusion and limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The legacy schedule contains 480 V.</td>
+<td>A03 Rev 0.</td>
+<td>True as a source statement; its origin is an earlier planning estimate.</td>
+</tr>
+<tr>
+<td>The observed connection is 600 V, three phase, 60 Hz.</td>
+<td>A04 Rev 1.</td>
+<td>Supported as the checked observation at the surveyed connection.</td>
+</tr>
+<tr>
+<td>The electrical supply has adequate spare capacity.</td>
+<td>No supplied capacity result.</td>
+<td>Unresolved; the electrical engineer must examine it.</td>
+</tr>
+<tr>
+<td>The equipment is electrically compatible.</td>
+<td>No selected configuration or compatibility result in Packet A.</td>
+<td>Unresolved; dependent selection needs further evidence.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The researcher repairs the subject index by including A04 under electrical connection and site observation. The evidence packet includes A03's source note. It flags the design note for review because that note omitted the qualification.</p>
+<p>The conclusion supplies a sound observation to the next enquiry. It also prevents the observation from becoming an unsupported compatibility claim.</p>
+<h2 id="transfer-example--a-service-response-time-report">Transfer example — A service response-time report</h2>
+<p>A software team has a laboratory performance report and a customer complaint. The report measures response time under a small test load. The complaint concerns intermittent delays during peak use.</p>
+<p>The sources can both be accurate. They concern different conditions. The researcher states the measured laboratory result and the reported production symptom separately.</p>
+<p>The next enquiry needs evidence under the relevant production conditions. The report cannot establish that every customer's experience is satisfactory. The complaint alone cannot identify the technical cause.</p>
+<h2 id="practice--build-two-evidence-packets">Practice — Build two evidence packets</h2>
+<p>Use Packet A and Portfolio 02. No external search is required.</p>
+<p>The supplied questions are:</p>
+<ul>
+<li>Which transfer-flow value governs project development?</li>
+<li>What does the packet establish about the electrical connection?</li>
+</ul>
+<p>Supply these outputs:</p>
+<ol>
+<li>A brief for each question with its consumer and boundary.</li>
+<li>One subject index covering the relevant records.</li>
+<li>A claim-and-evidence table for each question.</li>
+<li>A treatment of every apparent conflicting value.</li>
+<li>A conclusion and remaining-enquiry list for each packet.</li>
+</ol>
+<p>Give a partner only the questions and your index. Ask the partner to retrieve the evidence and challenge one conclusion. Record any indexing defect or unsupported inference. Repair it before assessment.</p>
+<h2 id="knowledge-check">Knowledge check</h2>
+<ol>
+<li>Why should a research question name its intended decision or activity?</li>
+<li>What does a subject index add to a controlled document list?</li>
+<li>How can a source be authoritative for one claim and insufficient for another?</li>
+<li>What provenance limits apply to A03 Rev 0?</li>
+<li>Why do the three Northbank flow values not create three approved scope choices?</li>
+<li>What must an evidence packet contain to support another person's examination?</li>
+</ol>
+<h2 id="assessed-assignment--prepare-information-for-reliance">Assessed assignment — Prepare information for reliance</h2>
+<p>Prepare an evidence packet for the project engineer's equipment-basis discussion. Address both practice questions. Use Packet A only. State what the discussion can decide and what needs further input.</p>
+<p>An instructor assesses five observable criteria:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 2; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Evidence required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enquiry boundary</td>
+<td>Each question identifies its consumer, purpose, and permitted conclusion.</td>
+</tr>
+<tr>
+<td>Retrieval</td>
+<td>The index leads a reviewer to the relevant identity, revision, and source qualification.</td>
+</tr>
+<tr>
+<td>Evidential role</td>
+<td>Claim entries distinguish requirements, observations, proposals, and copied estimates.</td>
+</tr>
+<tr>
+<td>Conflict treatment</td>
+<td>Each discrepant value receives a source-grounded explanation without hidden deletion.</td>
+</tr>
+<tr>
+<td>Scoped reliance</td>
+<td>Conclusions preserve unresolved technical and external requirements and name useful next enquiries.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Explain one conclusion without reading it aloud. Show the passage that supports it. Repair any retrieval failure or unsupported inference. Training acceptance does not establish the complete equipment basis.</p>
+<h2 id="portfolio-continuation-and-references">Portfolio continuation and references</h2>
+<p>Keep the evidence packet as Portfolio 03. Link its source index to Portfolio 02. Course 04 will examine the interpretation and applicability of the requirements found here.</p>
+<p>The <a href="../../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v8.md">Consolidated manual</a>, section 7.4, supports records that preserve identity, provenance, and useful grounds. The <a href="../../alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v1.html">Field Book</a>, section 3, supports visible treatment of open matters.</p>
+<p>Use the <a href="../references.html">series references</a> for further reading. External readings are optional. No external source can fill a fictional case gap without an explicit new exercise input.</p>
+<!-- END MARKDOWN CONTENT -->
+    </article>
+  </div>
+  <footer class="document-footer">
+  <dl class="document-meta">
+    <div><dt>Source basis dated</dt><dd>11 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>26d04270617c405fc3ca131d2ea6c86120ecc5ed</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="03-information-evidence.md">03-information-evidence.md</a><br><code>769a2fed1e5b39af9b0fc0723153d451d5d4ef282e9b43d6130eeee8f83539a7</code></dd></div>
+  </dl>
+    <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
+    <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
+    <p class="back-top"><a href="#manual-top">Back to start ↑</a></p>
+  </footer>
+</main>
+</div>
+<script>
+const mobileContents = document.querySelector('.mobile-toc');
+mobileContents.addEventListener('click', (event) => {
+  if (event.target.closest('a[href^="#"]')) mobileContents.open = false;
+});
+</script>
+</body>
+</html>

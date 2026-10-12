@@ -867,6 +867,11 @@ impl PreparedRunPublication {
             body["how"] = json!("agent proposal confirmed by the person");
             body["proposal"] = proposal.clone();
         }
+        // SL-2 / §5.4: a selection that replaced another cites it; the replaced
+        // selection's own record, if one was written, is left as it is.
+        if let Some(replaced) = prepared.replaces() {
+            body["replaces"] = json!(replaced);
+        }
         // SL-7: a selection for a chained run records prior_run as a relation, from
         // the same owner end the chain line was composed from (CH-2).
         if let Some(chain) = prepared.record["chain"].as_object() {
@@ -943,7 +948,7 @@ fn publication_boundary() -> Result<(), String> {
 /// does not create a lifecycle event or a new sendable notice. After a relaunch
 /// the person's own end in this process is the lifecycle event, and
 /// `after_relaunch` composes its notice from the run's recorded identity facts
-/// (CI-20 (c); WR TX-5).
+/// (WR TX-5 / SQ-END; WR TX-5).
 #[derive(Debug)]
 pub struct PreparedEndPublication {
     text: String,
@@ -1011,7 +1016,7 @@ impl PreparedEndPublication {
             record,
         })
     }
-    /// CI-20 (c) / WR TX-5: the end notice for a run the person ended in this
+    /// WR TX-5 / SQ-END / WR TX-5: the end notice for a run the person ended in this
     /// process after a relaunch (`end_recorded_run`). The end is the person's live
     /// act here; the notice's identity facts (name, origin, revision, run) come
     /// only from the run's own recorded run-start `run_text` in this project,
@@ -1090,6 +1095,7 @@ impl PreparedEndPublication {
             text: text.clone(),
             record: record.clone(),
             proposal: None,
+            replaces: None,
         };
         let record = PendingRecord::new(
             project,

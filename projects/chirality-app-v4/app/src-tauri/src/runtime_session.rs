@@ -17,6 +17,8 @@ pub struct RuntimeSession {
     prior_views: Vec<Value>,
     closed_generations: Vec<Value>,
     history_pages: u64,
+    /// Of those, the pages the host's recovery reads returned (RECOVERY §5 R-4).
+    recovery_pages: u64,
 }
 impl RuntimeSession {
     pub fn cursor(&self) -> (&Value, u64) {
@@ -53,10 +55,11 @@ impl RuntimeSession {
             self.account_revision = self.account_revision.saturating_add(1);
             self.position = 0;
             self.history_pages = 0;
+            self.recovery_pages = 0;
             self.closed = self.closed_generations.contains(generation);
             self.limits = losses;
             if !self.prior_views.is_empty() {
-                self.limits.push("Observation lost across generation boundary; earlier activity returns only as the person reads Codex history pages".into());
+                self.limits.push("Observation lost across generation boundary; earlier activity returns only as Codex history pages are read: the host's recovery reads after a restart, and the pages the person reads".into());
             }
             if self.closed {
                 self.limits
@@ -159,7 +162,7 @@ impl RuntimeSession {
             "accountObservation":self.account.as_ref().map(AccountObservation::snapshot),
             "nativeViewLimits":self.limits,"observerCursor":{"generation":self.generation,"position":self.position},
             "observerGap":observation["gap"],"priorNativeViews":self.prior_views,"nativeViewObservationEnded":self.closed,
-            "observerRecovery":{"historyRebuilt":false,"historyPagesRead":self.history_pages,"historyRead":"pages the person reads in stored history are added to the native view as recovered-from-supplier rows; no automatic rebuild","standing":"App-observed receiving state plus explicitly read Codex history pages"}})
+            "observerRecovery":{"historyRebuilt":false,"historyPagesRead":self.history_pages,"recoveryPagesRead":self.recovery_pages,"historyRead":"after a Codex restart the host reads each conversation that lost observation (thread/read, then its latest turn summaries) and adds those pages to the native view as recovered-from-supplier rows; pages the person reads in stored history are added the same way; the full history is not rebuilt, and items are added only as their pages are read","standing":"App-observed receiving state plus Codex history pages read by the host's recovery reads or by the person"}})
     }
     /// A person-requested native history page of this open generation, read into
     /// the native view as `recovered-from-supplier` rows. Other generations,
@@ -186,6 +189,15 @@ impl RuntimeSession {
             if !self.limits.contains(&limit) {
                 self.limits.push(limit);
             }
+        }
+    }
+    /// A page the host's recovery reads returned (RECOVERY §5 R-4), read into
+    /// the native view as `receive_history` reads the person's pages.
+    pub fn receive_recovered_history(&mut self, generation: &Value, home: &str, method: &str, params: &Value, result: &Value) {
+        let before = self.history_pages;
+        self.receive_history(generation, home, method, params, result);
+        if self.history_pages > before {
+            self.recovery_pages += 1;
         }
     }
     /// Consume the current atomic Host observation before freezing attribution.
@@ -371,7 +383,12 @@ fn read_packaged_instruction(_root: &std::path::Path, _relative: &str) -> Result
 /// Create initial editable copies without overwriting any human edits.
 /// Failure has no alternate storage location and is shown by the entry surface.
 pub fn seed_instructions(root: &std::path::Path) -> Result<(), String> {
-    use std::io::Write;
+    seed_instructions_with(root, || {})
+}
+fn seed_instructions_with(root: &std::path::Path, after_directories: impl FnOnce()) -> Result<(), String> {
+    seed_instructions_with_admission(root, || {}, after_directories)
+}
+fn seed_instructions_with_admission(root: &std::path::Path, after_absence: impl FnOnce(), after_directories: impl FnOnce()) -> Result<(), String> {
     crate::role_supply::bundled_role_set()?;
     if COMMON_DEFAULT.is_empty() {
         return Err("reviewed v4 product instruction basis not supplied".into());
@@ -387,54 +404,31 @@ pub fn seed_instructions(root: &std::path::Path) -> Result<(), String> {
     if !initial {
         // First seed is distinct from repairing a known existing user store.
         // Missing, unreadable, non-UTF8 or linked copies are errors, never fallback.
-        crate::role_supply::Guidance::read_seeded(
-            root,
-            "AGENTS.md",
-            INSTRUCTION_RELEASE,
-            COMMON_DEFAULT,
-        )?;
-        for role in crate::role_supply::Role::ALL {
-            crate::role_supply::Guidance::read_seeded(
-                root,
-                &format!("agents/AGENT_{}.md", role.name()),
-                INSTRUCTION_RELEASE,
-                role_default(role),
-            )?;
-        }
-        return Ok(());
+        return validate_instruction_copies(root);
     }
-    for directory in [root.to_path_buf(), root.join("agents")] {
-        std::fs::create_dir_all(&directory).map_err(|e| e.to_string())?;
-        if std::fs::symlink_metadata(&directory)
-            .map_err(|e| e.to_string())?
-            .file_type()
-            .is_symlink()
-        {
-            return Err("instruction directory is a symbolic link".into());
-        }
-    }
+    after_absence();
     let defaults = std::iter::once(("AGENTS.md".into(), COMMON_DEFAULT)).chain(
         crate::role_supply::Role::ALL
             .into_iter()
             .map(|r| (format!("agents/AGENT_{}.md", r.name()), role_default(r))),
-    );
-    for (path, bytes) in defaults {
-        match std::fs::OpenOptions::new()
-            .write(true)
-            .create_new(true)
-            .open(root.join(path))
-        {
-            Ok(mut file) => {
-                file.write_all(bytes)
-                    .and_then(|_| file.sync_all())
-                    .map_err(|e| e.to_string())?;
-            }
-            Err(e) if e.kind() == std::io::ErrorKind::AlreadyExists => {}
-            Err(e) => return Err(e.to_string()),
-        }
+    ).collect::<Vec<_>>();
+    // A racing create is preserved, then checked as an existing user copy.
+    // A failed/partial first seed remains explicit; it is never repaired here.
+    crate::instruction_store::seed(root, &defaults, INSTRUCTION_RELEASE,
+        after_directories, || validate_instruction_copies(root))
+}
+fn validate_instruction_copies(root: &std::path::Path) -> Result<(), String> {
+    crate::role_supply::Guidance::read_seeded(root, "AGENTS.md", INSTRUCTION_RELEASE, COMMON_DEFAULT)?;
+    for role in crate::role_supply::Role::ALL {
+        crate::role_supply::Guidance::read_seeded(root, &format!("agents/AGENT_{}.md", role.name()),
+            INSTRUCTION_RELEASE, role_default(role))?;
     }
     Ok(())
 }
+
+#[cfg(all(test, unix))]
+#[path = "instruction_seed_tests.rs"]
+mod instruction_seed_tests;
 pub fn compose_role(
     root: &std::path::Path,
     role: Option<crate::role_supply::Role>,
@@ -4114,15 +4108,18 @@ struct WorkflowSelectionState {
     package: std::path::PathBuf,
     /// The person's original selection time (WR selection_record.selected_at).
     selected_at: String,
+    /// WR SL-2 / §5.4: the registered selection this one replaced, cited by
+    /// `replaces` in this selection's records.
+    replaces: Option<String>,
 }
 /// WR TT-1 (SETTLED) and TX-1: only registered (LS-1), bundled (LS-5), host-listed
 /// (LS-6) or shipped-held (LS-8) revisions are composed and run. The App holds no
 /// bundled/host/shipped capability yet, so only an actual hot registered revision
-/// runs here. Development evidence is never laundered into a selection (WP-6; CI-18).
+/// runs here. Development evidence is never laundered into a selection (WP-6; WR TT-1/TX-1).
 fn run_admission(selection: &crate::workflow_workspace::Selection) -> Result<(), String> {
     match selection.admission() {
         crate::workflow_workspace::SelectionAdmission::RegisteredRevision => Ok(()),
-        other => Err(format!("Selected workflow is not runnable ({}): WR TT-1/TX-1 compose and run only registered (LS-1), bundled (LS-5), host-listed (LS-6) or shipped-held (LS-8) revisions. Register a reviewed copy (draft, review, A15) and select that registered revision. Nothing prepared, recorded or sent (CONTRACT_ISSUES CI-18).", other.standing())),
+        other => Err(format!("Selected workflow is not runnable ({}): WR TT-1/TX-1 compose and run only registered (LS-1), bundled (LS-5), host-listed (LS-6) or shipped-held (LS-8) revisions. Register a reviewed copy (draft, review, A15) and select that registered revision. Nothing prepared, recorded or sent (WR TT-1/TX-1).", other.standing())),
     }
 }
 pub(crate) struct WorkflowRootSession {
@@ -4157,9 +4154,9 @@ pub(crate) struct WorkflowRootSession {
     /// WR §4.2 trial flows: pre-filled trials and bring-backs, sent trials'
     /// linking state (process memory; the records are `trials`).
     trial_desk: trial_flows::TrialDesk,
-    /// CI-20 (d): the startup writer's outcome for this session's REC restart facts.
+    /// EXEC §2.7 / RECOVERY §4.1: the startup writer's outcome for this session's REC restart facts.
     restart_limits: Value,
-    /// CI-20 (c): runs the person ended after a relaunch whose end notice waits,
+    /// WR TX-5 / SQ-END: runs the person ended after a relaunch whose end notice waits,
     /// in this process only, for the conversation's next ordinary turn (TX-5).
     reopened_ends: std::collections::HashMap<String, std::sync::Arc<std::sync::Mutex<ReopenedEnd>>>,
     /// (home, conversation) -> runs in `reopened_ends`, in order.
@@ -4212,7 +4209,7 @@ impl WorkflowRootSession {
             },
             Err(error) => json!({"standing":"candidate catalog unavailable","entries":[],"limit":error}),
         };
-        json!({"productionCatalog":production_catalog,"selection":self.selected.as_ref().map(|s|json!({"reference":s.reference,"identity":s.selection.identity(),"standing":s.selection.admission().standing(),"package":crate::attachments::native_path_identity(&s.package),"currentLimit":s.selection.verify_store(&s.package).err(),"selectedAt":s.selected_at,"runnable":run_admission(&s.selection).is_ok(),"runLimit":run_admission(&s.selection).err(),
+        json!({"productionCatalog":production_catalog,"selection":self.selected.as_ref().map(|s|json!({"reference":s.reference,"identity":s.selection.identity(),"standing":s.selection.admission().standing(),"package":crate::attachments::native_path_identity(&s.package),"currentLimit":s.selection.verify_store(&s.package).err(),"selectedAt":s.selected_at,"replaces":s.replaces,"newerRevision":self.newer_revision_view(s),"runnable":run_admission(&s.selection).is_ok(),"runLimit":run_admission(&s.selection).err(),
                 // NIR §9 PD-1 / AS §4 OV-1: the declared part, read from the selected revision's own bytes, for the run panel.
                 "declaration":s.selection.snapshot().declaration().map(|d|json!(d)).unwrap_or_else(|error|json!({"unavailable":error}))})),
             "libraries":self.libraries.values().map(|l|json!({"reference":l.reference,"root":crate::attachments::native_path_identity(&l.root),"origin":l.origin,"sourceRoot":l.source_root,"reconciliation":l.owner.try_lock().map(|o|json!(o.reconciliation())).unwrap_or(Value::Null),"registered":l.owner.try_lock().map(|o|o.registered_listing()).unwrap_or(Value::Null)})).collect::<Vec<_>>(),"activeLibrary":self.active_library,"activeReview":self.active_review,
@@ -4330,6 +4327,7 @@ impl WorkflowRootSession {
             selection: held.selection().clone(),
             package: path,
             selected_at: crate::util::now_rfc3339(),
+            replaces: self.replaced(),
         });
         Ok(self.snapshot())
     }
@@ -4344,6 +4342,7 @@ impl WorkflowRootSession {
             selection: resolved.selection().clone(),
             package: resolved.package_path().to_path_buf(),
             selected_at: crate::util::now_rfc3339(),
+            replaces: self.replaced(),
         });
         Ok(self.snapshot())
     }
@@ -4360,6 +4359,7 @@ impl WorkflowRootSession {
             selection: resolved.selection().clone(),
             package: resolved.package_path().to_path_buf(),
             selected_at: crate::util::now_rfc3339(),
+            replaces: self.replaced(),
         });
         drop(_owner);
         Ok(self.snapshot())
@@ -4442,9 +4442,137 @@ impl WorkflowRootSession {
             selection,
             package: path,
             selected_at: crate::util::now_rfc3339(),
+            replaces: self.replaced(),
         });
         drop(review);
         Ok(self.snapshot())
+    }
+    /// WR SL-2 / §5.4: the registered selection in force, which a new
+    /// selection by the person replaces and cites. A candidate selection that
+    /// can never run (TT-1) is not cited; the registered selection it replaced is.
+    fn replaced(&self) -> Option<String> {
+        self.selected.as_ref().and_then(|s| match run_admission(&s.selection) {
+            Ok(()) => Some(s.reference.clone()),
+            Err(_) => s.replaces.clone(),
+        })
+    }
+    /// The opened library holding a project or user revision (its origin and source root).
+    fn library_of(&self, identity: &crate::workflow_workspace::WorkflowIdentity) -> Option<std::sync::Arc<WorkflowLibraryContext>> {
+        self.libraries.values().find(|l| l.origin == identity.origin && l.source_root == identity.source_root).cloned()
+    }
+    /// WR §4.8 RC-2: the registration (G-4) or re-confirmation (G-4R) result this
+    /// process holds for `identity` in `library`, from the reviews that captured it.
+    fn held_registered(
+        &self,
+        library: &std::sync::Arc<WorkflowLibraryContext>,
+        identity: &crate::workflow_workspace::WorkflowIdentity,
+    ) -> Result<Option<crate::workflow_workspace::RegisteredRevision>, String> {
+        for review in self.reviews.values() {
+            let review = review.try_lock().map_err(|_| "A registration interaction is pending; selection pending, nothing selected")?;
+            if !std::sync::Arc::ptr_eq(&review.library, library) {
+                continue;
+            }
+            if let Some(found) = review.registered.get(&identity.revision).filter(|r| r.identity() == identity) {
+                return Ok(Some(found.clone()));
+            }
+        }
+        Ok(None)
+    }
+    /// WR SL-2: "newer revision ‹n› available" beside a registered selection, as
+    /// the slot's ledger reads now. Display only: it never changes the selection (SL-4).
+    fn newer_revision_view(&self, selected: &WorkflowSelectionState) -> Value {
+        if run_admission(&selected.selection).is_err() {
+            return Value::Null;
+        }
+        let identity = selected.selection.identity();
+        let Some(library) = self.library_of(identity) else {
+            return json!({"limit":"the selection's library is not open in this App session; newer revisions not read"});
+        };
+        let Ok(owner) = library.owner.try_lock() else {
+            return json!({"limit":"library busy; newer revisions not read now"});
+        };
+        match owner.newer_registered(identity) {
+            Ok(None) => Value::Null,
+            Ok(Some((sequence, newer, selectable))) => json!({"sequence":sequence,"revision":newer.revision,"identity":newer,
+                "notice":format!("newer revision {sequence} available"),"selectable":selectable == Ok(true),
+                "offered":match selectable {
+                    Ok(true) => format!("Select revision {sequence}"),
+                    Ok(false) => "registered — re-confirm to use in this App session: Review a draft with its bytes (DS-8), or Refine (RF-1) to make one".into(),
+                    Err(cause) => format!("registered in this App session — not selectable now: {cause} (LS-4)"),
+                },
+                "standing":"read from the registration ledger now; the selection stays on its revision until the person selects another (WR SL-2, SL-4)"}),
+            Err(cause) => json!({"limit":format!("newer revisions not read: {cause}")}),
+        }
+    }
+    /// WR LS-1 "Select (in such a process)", SL-1, SL-4: the person selects a
+    /// registered revision from the active library's list. Only a revision whose
+    /// registration or re-confirmation result this process holds (RC-2) is
+    /// selected, resolved from the revision store and verified there; anything
+    /// else keeps its standing and route (SL-5; §5.4).
+    /// `library_ref` is the library whose list the person pressed; a press that
+    /// arrives after the active library changed selects nothing.
+    pub fn select_listed_registered(&mut self, library_ref: &str, name: &str, revision: &str) -> Result<Value, String> {
+        if !crate::workflow_workspace::valid_name(name) {
+            return Err("Invalid workflow name".into());
+        }
+        let library = self.active_library()?;
+        if library.reference != library_ref {
+            return Err("The active library changed since the list was shown; nothing selected".into());
+        }
+        let owner = library.owner.try_lock().map_err(|_| "Original library owner busy/unavailable; selection pending")?;
+        let found = owner.registered_revision(name, revision).map_err(|cause| format!("{name}: registration ledger not readable ({cause}); nothing selected"))?;
+        let Some((_, identity)) = found else { return Err(owner.not_selectable(name, revision)) };
+        let store = owner.store_copy(&identity);
+        let refusal = owner.not_selectable(name, revision);
+        drop(owner);
+        let held = self.held_registered(&library, &identity)?.ok_or(refusal)?;
+        self.choose_registered(&held, store)
+    }
+    /// WR SL-2: following "newer revision ‹n› available". A new selection event
+    /// that cites the one it replaces; the earlier selection, and any record of
+    /// it, is left as it is. `selection_ref` and `revision` are what the notice
+    /// showed; a changed selection or slot refuses.
+    pub fn follow_newer_revision(&mut self, selection_ref: &str, revision: &str) -> Result<Value, String> {
+        let current = self.selected.as_ref().ok_or("No workflow selected; nothing to follow")?;
+        if current.reference != selection_ref {
+            return Err("The selection changed since the notice was shown; nothing selected".into());
+        }
+        let identity = current.selection.identity().clone();
+        let library = self.library_of(&identity).ok_or("The selection's library is not open in this App session; nothing selected")?;
+        let owner = library.owner.try_lock().map_err(|_| "Original library owner busy/unavailable; selection pending")?;
+        let (sequence, newer, _) = owner
+            .newer_registered(&identity)
+            .map_err(|cause| format!("newer revisions not read ({cause}); nothing selected"))?
+            .ok_or("No newer registered revision of the selected workflow; nothing selected")?;
+        if newer.revision != revision {
+            return Err(format!("The slot's newer revision changed since the notice was shown (now revision {sequence}); nothing selected"));
+        }
+        let store = owner.store_copy(&newer);
+        let refusal = owner.not_selectable(&newer.name, &newer.revision);
+        drop(owner);
+        let held = self.held_registered(&library, &newer)?.ok_or(refusal)?;
+        self.choose_registered(&held, store)
+    }
+    /// SL-1/SL-4: the person's selection of a held registered revision, resolved
+    /// from `store` and verified there; it replaces (and cites) the one in force.
+    fn choose_registered(&mut self, held: &crate::workflow_workspace::RegisteredRevision, store: std::path::PathBuf) -> Result<Value, String> {
+        self.selected = Some(self.resolve_registered(held, store)?);
+        Ok(self.snapshot())
+    }
+    /// SL-4: a held registered revision resolved from its revision `store` and
+    /// verified there; never the published copy, never a substitute. The new
+    /// selection cites the registered selection it would replace (SL-2 / §5.4).
+    fn resolve_registered(&self, held: &crate::workflow_workspace::RegisteredRevision, store: std::path::PathBuf) -> Result<WorkflowSelectionState, String> {
+        let selection = held.select();
+        crate::storage::check_path(&store)?;
+        selection.verify_store(&store)?;
+        Ok(WorkflowSelectionState {
+            reference: crate::util::opaque_id("workflow-selection:")?,
+            selection,
+            package: store,
+            selected_at: crate::util::now_rfc3339(),
+            replaces: self.replaced(),
+        })
     }
     pub fn create_selected_draft(&mut self, name: &str) -> Result<Value, String> {
         if !crate::workflow_workspace::valid_name(name) {
@@ -4617,7 +4745,7 @@ impl WorkflowRootSession {
             selection_ref: selected.reference.clone(),
             revision_store: selected.package.clone(),
         };
-        // WR §16.2 TX-7 (CI-32): the files line names the holding folder relative
+        // WR §16.2 TX-7 (WR §16.2 TX-7): the files line names the holding folder relative
         // to the project or the home folder, or a content-addressed supply copy
         // written into the project; the run does not start when that fails.
         let home_folder = std::env::var_os("HOME")
@@ -4640,6 +4768,11 @@ impl WorkflowRootSession {
         // WR PR-4: a start confirmed from an agent proposal says so in its records.
         let prepared = match proposal {
             Some(proposal) => prepared.confirmed_from_proposal(proposal)?,
+            None => prepared,
+        };
+        // WR SL-2 / §5.4: a selection that replaced another cites it.
+        let prepared = match &selected.replaces {
+            Some(replaced) => prepared.replacing(replaced),
             None => prepared,
         };
         let publication = crate::workflow_workspace::publication::PreparedRunPublication::new(
@@ -4780,7 +4913,7 @@ impl WorkflowRootSession {
                 return Ok(Some(PendingNotice::Run(self.conversation_run(reference)?)));
             }
         }
-        // CI-20 (c): an end the person made after a relaunch.
+        // WR TX-5 / SQ-END: an end the person made after a relaunch.
         for reference in self.reopened_conversations.get(&key).into_iter().flatten() {
             if pending(reference) {
                 let end = self.reopened_ends.get(reference).cloned().ok_or("reopened end index inconsistent")?;
@@ -4789,9 +4922,9 @@ impl WorkflowRootSession {
         }
         Ok(None)
     }
-    /// CI-20 (c): a pending end notice of a run ended after a relaunch holds back
+    /// WR TX-5 / SQ-END: a pending end notice of a run ended after a relaunch holds back
     /// a run start in its conversation. A later run cannot cite that run across
-    /// the relaunch (CI-20 (f)), so its chain line would not say it ended; the
+    /// the relaunch (EXEC CH-2 / RE-7), so its chain line would not say it ended; the
     /// notice goes first with an ordinary message.
     fn reopened_notice_blocks(&self, home: &str, thread: &str) -> Option<String> {
         self.reopened_conversations
@@ -4799,7 +4932,7 @@ impl WorkflowRootSession {
             .into_iter()
             .flatten()
             .find(|r| self.notice_flags.get(*r).is_some_and(|f| f.load(std::sync::atomic::Ordering::SeqCst)))
-            .map(|r| format!("Run {r}, ended after the relaunch, has its end notice pending in this conversation; a new run's chain line cannot say that run ended (CI-20 (f)), so send an ordinary message first: it carries the end notice (WR TX-5)"))
+            .map(|r| format!("Run {r}, ended after the relaunch, has its end notice pending in this conversation; a new run's chain line cannot say that run ended (EXEC CH-2 / RE-7), so send an ordinary message first: it carries the end notice (WR TX-5)"))
     }
     fn reopened_ends_view(&self) -> Value {
         json!(self.reopened_ends.values().map(|end| match end.try_lock() {
@@ -4807,7 +4940,7 @@ impl WorkflowRootSession {
             Err(_) => json!({"state":"operation pending"}),
         }).collect::<Vec<_>>())
     }
-    /// CI-20 (d): the startup writer's outcome (lib.rs setup; host-owned).
+    /// EXEC §2.7 / RECOVERY §4.1: the startup writer's outcome (lib.rs setup; host-owned).
     pub fn set_restart_limits(&mut self, outcome: Value) {
         self.restart_limits = outcome;
     }
@@ -4943,7 +5076,7 @@ impl WorkflowRootSession {
         }
     }
     /// After relaunch: the person's explicit end (DEF-4) of a run the project's
-    /// records show open and interrupted. Writes run_ended. CI-20 (c): the end is
+    /// records show open and interrupted. Writes run_ended. WR TX-5 / SQ-END: the end is
     /// the person's live act in this process, so its TX-5 end notice is composed
     /// from that end plus the run's own recorded identity facts (its recorded
     /// run-start run_text, checked against its run_opened) and is pending for the
@@ -4993,13 +5126,14 @@ impl WorkflowRootSession {
         let mut run_entries: Vec<Value> = own;
         run_entries.extend(recorded.into_iter().filter(|e| e["runId"] == run && e["recordId"].as_str().is_none_or(|id| !own_ids.contains(id))));
         let opened_workflow = run_entries.iter().find(|e| e["kind"] == "run_opened").map(|e| e["body"]["workflow"].clone()).unwrap_or(Value::Null);
-        // CE-5/CE-6/CE-8 from the run's own record (RC-10): acts recorded while the
-        // run was interrupted are counted before its waiting arrivals are listed. As
+        // CE-10 and CE-5/CE-6/CE-8 from the run's own record (RC-10): a lapse observed now,
+        // with its own time, and acts recorded while the run was interrupted are written
+        // before its waiting arrivals are listed. As
         // for a live end, unreadable act records give a limit, not a refusal (A-11).
         for (kind, body) in end_counting(&run_entries, project) {
             let mut entry = crate::records::supply::PendingRunEntry::new(kind, body.clone(), crate::util::now_rfc3339())?;
             crate::records::supply::append_run_entry_in(project, run, &mut entry, crate::records::RecordSet::ReadableBesideIncomplete)
-                .map_err(|e| format!("A counted act could not be recorded, so the run was not ended: {e}"))?;
+                .map_err(|e| format!("A checkpoint entry could not be recorded, so the run was not ended: {e}"))?;
             run_entries.push(json!({"kind":kind,"body":body}));
         }
         let waiting = crate::checkpoint_recorder::waiting_arrivals(&run_entries);
@@ -5013,14 +5147,14 @@ impl WorkflowRootSession {
             None => json!({"state":"not composed: no Codex home for this conversation in this process; no end notice is sent for this end"}),
             Some(home) => match self.hold_reopened_notice(&records, run, thread, &opened_workflow, home) {
                 Ok(view) => view,
-                Err(e) => json!({"state":format!("not composed: {e}; no end notice is sent for this end (CI-20 (c))")}),
+                Err(e) => json!({"state":format!("not composed: {e}; no end notice is sent for this end (WR TX-5 / SQ-END)")}),
             },
         };
         let view = json!({"run":run,"state":"ended by the person","cause":cause,"endNotice":notice});
         self.reopen(project, &[]).ok();
         Ok(view)
     }
-    /// CI-20 (c): compose and hold the end notice of a run the person just ended
+    /// WR TX-5 / SQ-END: compose and hold the end notice of a run the person just ended
     /// after a relaunch.
     fn hold_reopened_notice(
         &mut self,
@@ -5283,21 +5417,18 @@ impl WorkflowRootSession {
             (Some((reference, _)), None) => return Err(format!("A workflow run is in force in this conversation ({reference}); the proposal is offered only as \"End and start\" (RE-7, CH-1). Nothing selected or started")),
             (_, Some(_)) => return Err("That run is no longer the run in force in this conversation; nothing ended or started".into()),
         };
-        let package = found
+        // SL-4: resolved from the revision store, through the same verified path
+        // as a selection from the library list; an edited published copy is
+        // neither used nor needed, and a store that does not verify refuses.
+        let store = found
             .library
             .owner
             .try_lock()
             .map_err(|_| "Original library owner busy; nothing selected")?
-            .revision_copies(&found.identity)
-            .into_iter()
-            .find(|path| crate::storage::check_path(path).is_ok() && found.revision.select().verify_store(path).is_ok())
-            .ok_or("No copy of the proposed revision verifies against its revision; select it in the workflow panel instead. Nothing selected or started")?;
-        let chosen = WorkflowSelectionState {
-            reference: crate::util::opaque_id("workflow-selection:")?,
-            selection: found.revision.select(),
-            package,
-            selected_at: crate::util::now_rfc3339(),
-        };
+            .store_copy(&found.identity);
+        let chosen = self
+            .resolve_registered(&found.revision, store)
+            .map_err(|cause| format!("proposed workflow {}: {cause}; nothing selected or started", named.text()))?;
         let previous = self.selected.replace(chosen);
         let proposal = json!({"conversation":thread,"item":message.item,"proposed_name":named.text()});
         let prepared = match live {
@@ -5314,24 +5445,19 @@ impl WorkflowRootSession {
     pub fn reopen(&mut self, project: &std::path::Path, restart_events: &[Value]) -> Result<Value, String> {
         let records = crate::workflow_workspace::publication::ProjectRecords::open(project)?;
         let mut view = crate::records::supply::read_project_runs(&records, restart_events).view();
-        // CI-20 (d): what the host's startup writer did with this session's restart facts.
+        // EXEC §2.7 / RECOVERY §4.1: what the host's startup writer did with this session's restart facts.
         view["restartLimits"] = self.restart_limits.clone();
         view["endedAfterRelaunch"] = self.reopened_ends_view();
         self.reopened = Some(view.clone());
         Ok(view)
     }
 }
-/// CE-5/CE-6/CE-8 at an end after relaunch: the acts counted from the run's own
-/// record or, while an arrival waits and the act records cannot be read, the
-/// limit naming them (A-11: the end is not refused).
+/// CE-10 and CE-5/CE-6/CE-8 at an end after relaunch: lapses observed now and
+/// the acts counted, from the run's own record or, while an arrival waits and
+/// the act records cannot be read, the limit naming them (A-11: the end is not
+/// refused).
 fn end_counting(run_entries: &[Value], project: &std::path::Path) -> Vec<crate::checkpoint_recorder::Output> {
-    if crate::checkpoint_recorder::waiting_arrivals(run_entries).is_empty() {
-        return vec![];
-    }
-    match crate::checkpoint_recorder::project_act_records(project) {
-        Ok(acts) => crate::checkpoint_recorder::count_acts(run_entries, &acts, project),
-        Err(e) => vec![crate::checkpoint_recorder::acts_unread_limit(&e)],
-    }
+    crate::checkpoint_recorder::end_observations(run_entries, project)
 }
 /// Starts a prepared run (CH-1 rechecked at dispatch). The Root lock is not held
 /// across the native wait. A successor start supersedes the predecessor's pending
@@ -5578,8 +5704,8 @@ fn pending_notice_run(
     root.lock().unwrap().pending_notice_for(home, thread).transpose()
 }
 /// The owner of a pending end notice (TX-5): a run held by this process, or a
-/// run the person ended after a relaunch (CI-20 (c)). Both follow the same
-/// claim, carriage and settlement rules (TC-2, CI-20 (i)).
+/// run the person ended after a relaunch (WR TX-5 / SQ-END). Both follow the same
+/// claim, carriage and settlement rules (TC-2, WR TX-5 dispatch-once).
 #[derive(Clone)]
 pub(crate) enum PendingNotice {
     Run(std::sync::Arc<std::sync::Mutex<WorkflowRun>>),
@@ -5677,7 +5803,7 @@ fn settle_claimed_notice(
         }
     }
 }
-/// CI-20 (c), WR TX-5 / SQ-END: the person's end, made in this process after a
+/// WR TX-5 / SQ-END, WR TX-5 / SQ-END: the person's end, made in this process after a
 /// relaunch, of a run the record showed open and interrupted. The end is the
 /// person's live act here; the notice is composed from it plus the run's own
 /// recorded identity facts (its recorded run-start `run_text`, checked against
@@ -5990,7 +6116,7 @@ impl WorkflowCheckSlot {
     /// Never re-reads native history and never sends.
     /// `record_ready`: the lifecycle entry this R3 follows in the run log is
     /// written (run_opened for the start text, run_ended for the end notice).
-    /// CI-20 (j): returns the "record write failed" limit when the writer refuses
+    /// RS §14.1 Permanent refusals: returns the "record write failed" limit when the writer refuses
     /// this R3 permanently; the R3 is then settled as never written.
     fn advance(
         &mut self,
@@ -6028,7 +6154,7 @@ impl WorkflowCheckSlot {
                     let refusal = crate::records::supply::permanent_refusal_in(project.root(), pending.run(), "supplied_guidance", &id, &body, pending.observed_at(), set)
                         .and_then(|reason| crate::records::supply::never_written_limit("supplied_guidance", &id, &reason, pending.observed_at()).ok().map(|limit| (reason, limit)));
                     if let Some((reason, limit)) = refusal {
-                        self.r3 = WorkflowR3::Unavailable(format!("never written: {reason}; a \"record write failed\" limit names {id} (CI-20 (j))"));
+                        self.r3 = WorkflowR3::Unavailable(format!("never written: {reason}; a \"record write failed\" limit names {id} (RS §14.1 Permanent refusals)"));
                         return Some(limit);
                     }
                 }
@@ -6248,11 +6374,11 @@ impl WorkflowRun {
             .any(|e| e.kind == kind && e.written.is_some())
     }
     /// The lifecycle entry an R3 follows is settled: written, or permanently
-    /// refused with its "record write failed" limit (CI-20 (j)).
+    /// refused with its "record write failed" limit (RS §14.1 Permanent refusals).
     fn entry_settled(&self, kind: &str) -> bool {
         self.entries.iter().any(|e| e.kind == kind && !e.pending())
     }
-    /// CI-20 (j): the "record write failed" limit for a record the writer refuses
+    /// RS §14.1 Permanent refusals: the "record write failed" limit for a record the writer refuses
     /// permanently joins the ordered entries where the next pending entry stands.
     fn insert_never_written_limit(&mut self, limit: crate::records::supply::PendingRunEntry) {
         let at = self.entries.iter().position(|e| e.pending()).unwrap_or(self.entries.len());
@@ -6264,7 +6390,7 @@ impl WorkflowRun {
     /// it is marked held, so when it is written late its "record write failed"
     /// limit follows it. An R3 also waits for its lifecycle entry (run_opened for
     /// the start text, run_ended for the end notice).
-    /// CI-20 (j): strict order holds for failures that may succeed later. A record
+    /// RS §14.1 Permanent refusals: strict order holds for failures that may succeed later. A record
     /// the writer refuses permanently (nonconformant, or its reserved identity held
     /// by a different entry) is not held: a "record write failed" limit names it as
     /// never written, and later entries proceed in order.
@@ -6428,7 +6554,7 @@ impl WorkflowRun {
             view["occasionLabel"] = json!(slot.occasion);
             view["gate"] = json!("informs only; never gates a start (CC-3)");
             view["r14"] = json!(match &slot.result {
-                Ok(e) if e.published.is_ok() => "EXEC report published in memory only; the App has no allocated report store, so no R14 is written (CI-20)",
+                Ok(e) if e.published.is_ok() => "EXEC report published in memory only; the App has no allocated report store, so no R14 is written (EXEC §2.7 / WR §16.4 RN-4)",
                 _ => "no report published; no R14 written (run's R14 stays 'no report evaluated')",
             });
             view
@@ -6510,7 +6636,7 @@ impl WorkflowRun {
             Ok(source) => source,
             Err(error) => {
                 self.lifecycle = RunLifecycle::StartNotConfirmed;
-                self.status = json!({"state":"native workflow-text send not started; original records retained","records":records,"limit":error,"sent":"not observed","automaticRetry":false,"run":"not opened (EXEC A-3)","supplyCheck":"not recorded: no Host receipt of a turn/start refusal; outcome not established (CI-20)","r3":"unavailable: no source-bound native turn","adoption":"unknown"});
+                self.status = json!({"state":"native workflow-text send not started; original records retained","records":records,"limit":error,"sent":"not observed","automaticRetry":false,"run":"not opened (EXEC A-3)","supplyCheck":"not recorded: no Host receipt of a turn/start refusal; outcome not established (EXEC §2.7 / WR §16.4 RN-4)","r3":"unavailable: no source-bound native turn","adoption":"unknown"});
                 return Err(error);
             }
         };
@@ -6530,7 +6656,7 @@ impl WorkflowRun {
                 self.lifecycle = RunLifecycle::StartNotConfirmed;
                 // V9 F-1: only Codex's definite refusal of this exact turn/start
                 // grounds a supply_check *not found* (WR §16.4, RN-4). An unknown
-                // outcome mints nothing that claims not found (CI-20).
+                // outcome mints nothing that claims not found (EXEC §2.7 / WR §16.4 RN-4).
                 let refusal = self.home.host.prepared_turn_refusal(&source);
                 let definite = refusal.is_some();
                 let check = match refusal {
@@ -6539,7 +6665,7 @@ impl WorkflowRun {
                 };
                 self.status = json!({"state":if definite {"native workflow-text turn/start refused by Codex; original source retained"} else {"native workflow-text send outcome unknown; original source retained"},
                     "records":records,"limit":error,"automaticRetry":false,"run":"not opened (EXEC A-3): start not confirmed",
-                    "supplyCheck":if definite {"not found (RN-4): turn/start refused by Codex"} else {"not recorded: turn/start outcome unknown (CI-20)"},
+                    "supplyCheck":if definite {"not found (RN-4): turn/start refused by Codex"} else {"not recorded: turn/start outcome unknown (EXEC §2.7 / WR §16.4 RN-4)"},
                     "check":check,"r3":"unavailable: no source-bound native turn","adoption":"unknown"});
                 return Err("Original native workflow source outcome unavailable; inspect retained source, no resend".into());
             }
@@ -6617,7 +6743,7 @@ impl WorkflowRun {
         for (kind, body) in outputs {
             match crate::records::supply::PendingRunEntry::new(kind, body, observed_at.to_owned()) {
                 Ok(entry) => {
-                    // CC-R CI-3: a request whose requester identity is not observed
+                    // CC-R RS §13.6 requester identity: a request whose requester identity is not observed
                     // carries RS's separate limit, citing the request's record.
                     let limit = (kind == "act_request").then(|| json!({"label":"requester identity not established","subjectRef":entry.record_id,
                         "detail":"supplier request observed; the agent or MCP server that authored it is not identified"}));
@@ -6660,7 +6786,7 @@ impl WorkflowRun {
             *cache = fingerprint.map(|f| (f, read.clone()));
             Ok(read)
         };
-        let outputs = recorder.observe(view, &crate::checkpoint_recorder::RunScope { home: &scope.home, conversation: &scope.conversation, start, project_root: &self.project_root }, &entries, &mut acts);
+        let outputs = recorder.observe(view, &crate::checkpoint_recorder::RunScope { home: &scope.home, conversation: &scope.conversation, start, project_root: &self.project_root, start_spawn: scope.generation["spawnCounter"].as_u64().unwrap_or(0) }, &entries, &mut acts);
         self.checkpoints = Some(recorder);
         let held = self.entries.iter().any(|e| e.pending());
         let recorded = !outputs.is_empty();
@@ -6694,15 +6820,12 @@ impl WorkflowRun {
         if successor.is_some_and(|name| !crate::workflow_workspace::valid_name(name)) || cause == "invalid" {
             return Err("successor workflow name invalid; nothing ended".into());
         }
-        // CE-5/CE-6/CE-8 for acts recorded since the last observation, then CE-17:
-        // the arrivals whose recorded disposition is still *waiting*. The person's
-        // end is never refused for unreadable act records (A-11): a limit naming
-        // them and why is written before run_ended.
-        if !crate::checkpoint_recorder::waiting_arrivals(&self.recorded_bodies()).is_empty() {
-            let outputs = match crate::checkpoint_recorder::project_act_records(&self.project_root) {
-                Ok(acts) => crate::checkpoint_recorder::count_acts(&self.recorded_bodies(), &acts, &self.project_root),
-                Err(e) => vec![crate::checkpoint_recorder::acts_unread_limit(&e)],
-            };
+        // CE-10 for content changed and CE-5/CE-6/CE-8 for acts recorded since the
+        // last observation, then CE-17: the arrivals whose recorded disposition is
+        // still *waiting*. The person's end is never refused for unreadable act
+        // records (A-11): a limit naming them and why is written before run_ended.
+        let outputs = crate::checkpoint_recorder::end_observations(&self.recorded_bodies(), &self.project_root);
+        if !outputs.is_empty() {
             self.push_recorder_outputs(outputs, &crate::util::now_rfc3339());
         }
         let waiting = crate::checkpoint_recorder::waiting_arrivals(&self.recorded_bodies());
@@ -7204,7 +7327,7 @@ mod workflow_root_tests {
     struct Peer { fixture:Fixture,home:Arc<HomeSession>,generation:Value }
     impl Peer {
         fn new()->Self{Self::build(false)}
-        /// CI-20 (d): with the App's REC ledger configured and the conversation indexed
+        /// EXEC §2.7 / RECOVERY §4.1: with the App's REC ledger configured and the conversation indexed
         /// for a known App project (H-acct), so the run tag can be stored.
         fn with_recovery()->Self{Self::build(true)}
         fn build(recovery:bool)->Self {
@@ -7364,7 +7487,7 @@ for line in sys.stdin:
     }
     impl Drop for Peer{fn drop(&mut self){let _=self.home.host.stop("owned fixture cleanup","test ended");}}
     #[test]
-    // CI-18: moved from a development selection to the ordinary registered route; assertions unchanged.
+    // WR TT-1/TX-1: moved from a development selection to the ordinary registered route; assertions unchanged.
     fn workflow_root_closed_prepare_scoped_send_failed_turn_and_genuine_pages(){
         let peer=Peer::new();let mut root=peer.fixture.registered();let reference=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person exact\r\ntext".into(),peer.project()).unwrap();
         let run=root.runs[&reference].clone();let mut run=run.lock().unwrap();
@@ -7374,7 +7497,7 @@ for line in sys.stdin:
         peer.select_history();let supply=run.check_native_supply().unwrap();assert_eq!(supply["pageCount"],1);assert_eq!(supply["comparison"]["state"],"equal_claimed_text");assert_eq!(supply["adoption"],"unknown");assert_eq!(supply["sourceReceipts"].as_array().unwrap().len(),1);
     }
     #[test]
-    // CI-18: moved from a development selection to the ordinary registered route; assertions unchanged.
+    // WR TT-1/TX-1: moved from a development selection to the ordinary registered route; assertions unchanged.
     fn workflow_root_stale_prepared_scope_keeps_original_receipt_without_resend(){
         let peer=Peer::new();let mut root=peer.fixture.registered();let mut stale=peer.generation.clone();stale["spawnCounter"]=json!(999);
         assert!(root.prepare_run(peer.home.clone(),&stale,"thread","text".into(),peer.project()).is_err());
@@ -8527,14 +8650,14 @@ for line in sys.stdin:
         assert!(peer.fixture.rs_entries().iter().all(|e|e["kind"]!="supplied_guidance"));
     }
     // V9 F-1: a genuinely unknown outcome (transport loss before any response) mints nothing
-    // claiming *not found*; status stays "outcome unknown"; no resend (CI-20).
+    // claiming *not found*; status stays "outcome unknown"; no resend (EXEC §2.7 / WR §16.4 RN-4).
     #[test]
     fn workflow_root_unknown_send_outcome_mints_no_check_and_never_resends(){
         let peer=Peer::new();let mut root=peer.fixture.registered();peer.set_mode("turn-mode","exit");
         let reference=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         let run=root.runs[&reference].clone();let mut run=run.lock().unwrap();
         assert!(run.send().is_err());assert_eq!(peer.turn_starts(),1);assert!(run.turn_id.is_none());
-        assert_eq!(run.status["supplyCheck"],"not recorded: turn/start outcome unknown (CI-20)");
+        assert_eq!(run.status["supplyCheck"],"not recorded: turn/start outcome unknown (EXEC §2.7 / WR §16.4 RN-4)");
         assert_eq!(peer.fixture.wr_files().len(),2,"no supply_check claims not found for an unknown outcome");
         assert!(run.view(&reference)["checks"].as_array().unwrap().is_empty());
         assert!(run.send().is_err());assert_eq!(peer.turn_starts(),1);
@@ -8597,7 +8720,7 @@ for line in sys.stdin:
         assert!(limit["seq"].as_u64()>r3[0]["seq"].as_u64()&&limit["seq"].as_u64()<r3[1]["seq"].as_u64(),"W-2: late entries, then the limit, then later entries");
     }
     // V9 F-2 (a later R3 held behind an earlier R3 that can never be written) was superseded
-    // by CI-20 (j): see ci20j_permanently_refused_r3_gets_its_limit_and_later_records_proceed.
+    // by RS §14.1 Permanent refusals: see permanently_refused_r3_gets_its_limit_and_later_records_proceed.
     // V9 F-3: the pages used to mint a check must be the Host's custody pages of the sealed
     // traversal, byte for byte; count alone is not a binding.
     #[test]
@@ -8931,7 +9054,7 @@ for line in sys.stdin:
             }
         }
     }
-    // CI-32 / WR TX-7 on the real run start: the shipped coordinated-knowledge-work has
+    // WR §16.2 TX-7 / WR TX-7 on the real run start: the shipped coordinated-knowledge-work has
     // REVIEW-NOTES.md, so the files line names a folder. Held inside the project, it is the
     // project-relative holding folder (never the old placeholder label). Held outside the run's
     // project, a content-addressed supply copy is written into the project and named; when that
@@ -9083,7 +9206,7 @@ for line in sys.stdin:
         assert_eq!(records[5]["body"]["checkpoint"],"CP-check");assert_eq!(records[5]["written"],true);
         run.lock().unwrap().end_run(None,None).unwrap();
         let end=rs_for(&peer,&a).into_iter().find(|e|e["kind"]=="run_ended").unwrap();
-        assert_eq!(end["body"]["waitingArrivals"],json!([{"checkpoint":"CP-check","arrivalOrdinal":1}]),"CE-17 lists the arrival still waiting (CI-20 (h))");
+        assert_eq!(end["body"]["waitingArrivals"],json!([{"checkpoint":"CP-check","arrivalOrdinal":1}]),"CE-17 lists the arrival still waiting (AAC §6.3 / EXEC §2.4–2.5)");
         // After the end nothing more is recorded for the run.
         let more=[items.to_vec(),vec![json!({"id":"m2","type":"agentMessage","text":"Spacing report"})]].concat();
         run.lock().unwrap().observe_checkpoints(&recorder_view(&peer,&more));
@@ -9135,7 +9258,7 @@ for line in sys.stdin:
     fn summary_items()->[Value;2]{
         [json!({"id":"m1","type":"agentMessage","text":"Spacing report"}),json!({"id":"f1","type":"fileChange","status":"completed","changes":[{"path":"out/summary.md","kind":{"type":"add"},"diff":""}]})]
     }
-    // CE-5 through the actual run and RS writer (CI-20 (h)): the person's act on the file
+    // CE-5 through the actual run and RS writer (AAC §6.3 / EXEC §2.4–2.5): the person's act on the file
     // output is counted, so run_ended lists only the arrival whose act was not recorded.
     #[test]
     fn end_counts_recorded_acts_so_waiting_arrivals_exclude_performed_ones(){
@@ -9166,6 +9289,148 @@ for line in sys.stdin:
         assert_ne!(crate::checkpoint_recorder::act_records_fingerprint(&peer.fixture.root),unchanged,"a new record changes the fingerprint");
         run.lock().unwrap().observe_checkpoints(&view);
         assert!(rs_for(&peer,&a).iter().any(|e|e["kind"]=="act_counted"),"counted at the next observation");
+    }
+    // CE-10 through the actual run and RS writer (EXEC §2.4.3, RC-8, PH-8, A-10): a changed file
+    // lapses the counted act in the run's own log, with nothing sent, paused or re-held (RC-4);
+    // the act record is unchanged (L-8); the file-act view reads the recorded lapse as the act's
+    // lapse history, then the content back at c0; run_ended lists the arrival made waiting.
+    #[test]
+    fn checkpoint_lapse_is_recorded_in_the_run_log_and_read_by_the_file_act_view(){
+        let peer=Peer::new();let mut root=declared(&peer);let a=open_run(&peer,&mut root,"thread");let run=root.runs[&a].clone();
+        let file=peer.fixture.root.join("out/summary.md");std::fs::create_dir_all(file.parent().unwrap()).unwrap();std::fs::write(&file,b"v1").unwrap();
+        let view=recorder_view(&peer,&summary_items()[1..]);
+        run.lock().unwrap().observe_checkpoints(&view);
+        let act=record_file_act(&peer,"out/summary.md","A7",b"v1",&crate::util::now_rfc3339());
+        run.lock().unwrap().observe_checkpoints(&view);
+        assert!(rs_for(&peer,&a).iter().any(|e|e["kind"]=="act_counted"));
+        let acts_before=std::fs::read(peer.fixture.root.join(crate::recorder::LOG)).unwrap();
+        let (wire,requests)=(peer.wire().len(),peer.home.host.client_requests().len());
+        std::fs::write(&file,b"v2").unwrap();
+        run.lock().unwrap().observe_checkpoints(&view);
+        run.lock().unwrap().observe_checkpoints(&view);
+        let log=rs_for(&peer,&a);
+        let lapses:Vec<&Value>=log.iter().filter(|e|e["kind"]=="act_lapsed").collect();
+        assert_eq!(lapses.len(),1,"one observation, written once: {log:#?}");
+        let lapse=lapses[0];assert_eq!((lapse["body"]["act"]["recordId"].as_str(),lapse["body"]["state"].as_str(),lapse["body"]["when"].as_str()),(Some(act.as_str()),Some("lapsed"),Some("before resume")));
+        assert_eq!(lapse["recorder"],json!({"role":"App writer","identity":crate::records::APP_WRITER.identity}));assert_eq!(lapse["runId"],a.as_str());
+        let label=log.iter().filter(|e|e["kind"]=="disposition_change").last().unwrap();
+        assert_eq!((label["body"]["disposition"].as_str(),label["body"]["annotations"][0]["label"].as_str()),(Some("waiting"),Some("waiting — lapsed at")));
+        assert_eq!((peer.wire().len(),peer.home.host.client_requests().len()),(wire,requests),"a lapse sends nothing (RC-4)");
+        assert_eq!(run.lock().unwrap().lifecycle,RunLifecycle::Open,"a lapse pauses or ends nothing");
+        assert_eq!(std::fs::read(peer.fixture.root.join(crate::recorder::LOG)).unwrap(),acts_before,"the act record is not changed (L-8)");
+        let shown=crate::file_act_view::read(&peer.fixture.root);let row=shown["rows"].as_array().unwrap().iter().find(|r|r["recordId"]==act.as_str()).unwrap().clone();
+        assert_eq!(row["lapseHistoryClaims"].as_array().unwrap().len(),1,"{row:#}");assert_eq!(row["comparison"],"lapsed comparison: current content differs");
+        std::fs::write(&file,b"v1").unwrap();
+        run.lock().unwrap().observe_checkpoints(&view);
+        let back=rs_for(&peer,&a).into_iter().filter(|e|e["kind"]=="act_lapsed").last().unwrap();assert_eq!(back["body"]["state"],"matches c0 again after observed lapse");
+        let shown=crate::file_act_view::read(&peer.fixture.root);let row=shown["rows"].as_array().unwrap().iter().find(|r|r["recordId"]==act.as_str()).unwrap().clone();
+        assert_eq!(row["comparison"],"matches c0 again after recorded lapse claim","{row:#}");
+        run.lock().unwrap().end_run(None,None).unwrap();
+        let end=rs_for(&peer,&a).into_iter().find(|e|e["kind"]=="run_ended").unwrap();
+        assert_eq!(end["body"]["waitingArrivals"],json!([{"checkpoint":"CP-rely","arrivalOrdinal":1}]),"waiting after the lapse before the resume point");
+        assert!(crate::storage::read_all(&peer.fixture.root).1.is_empty(),"every entry is a conformant RS entry");
+    }
+    // B-1 through the person's End run: the end's own observation delivers the agent's first
+    // action after the act while the file has also changed. The resume point is written first,
+    // the lapse is *after resume* and the arrival stays performed, so run_ended lists nothing.
+    #[test]
+    fn checkpoint_lapse_and_resume_in_the_ending_observation_keep_the_resume_first(){
+        let peer=Peer::new();let mut root=declared(&peer);let a=open_run(&peer,&mut root,"thread");let run=root.runs[&a].clone();
+        let file=peer.fixture.root.join("out/summary.md");std::fs::create_dir_all(file.parent().unwrap()).unwrap();std::fs::write(&file,b"v1").unwrap();
+        run.lock().unwrap().observe_checkpoints(&recorder_view(&peer,&summary_items()[1..]));
+        record_file_act(&peer,"out/summary.md","A7",b"v1","2026-09-21T15:00:00.000Z");
+        run.lock().unwrap().observe_checkpoints(&recorder_view(&peer,&summary_items()[1..]));
+        assert!(rs_for(&peer,&a).iter().any(|e|e["kind"]=="act_counted"));
+        drop(run);
+        std::fs::write(&file,b"v2").unwrap();
+        let mut view=recorder_view(&peer,&[summary_items()[1].clone(),json!({"id":"c1","type":"commandExecution","source":"agent","command":"ls","status":"inProgress"})]);
+        view["items"][2]["sourceFrame"]=json!({"method":"item/started","params":{"startedAtMs":1_790_010_000_000i64}}); // 17:00, after the act
+        root.end_plain(&a,&view).unwrap();
+        let log=rs_for(&peer,&a);let kinds:Vec<&str>=log.iter().map(|e|e["kind"].as_str().unwrap()).collect();
+        assert_eq!(&kinds[kinds.len()-4..],["run_resumed","act_lapsed","disposition_change","run_ended"],"{kinds:?}");
+        assert!(!kinds.contains(&"continued_past"));
+        assert_eq!(log[kinds.len()-3]["body"]["when"],"after resume");assert_eq!(log[kinds.len()-2]["body"]["disposition"],"performed");
+        assert_eq!(log.last().unwrap()["body"]["waitingArrivals"],json!([]));
+    }
+    // N-1 through the person's End run: an arrival waiting after a lapse whose file changed again
+    // and was acted on before the end is counted on its new content, so run_ended lists nothing.
+    #[test]
+    fn checkpoint_lapse_then_new_content_and_act_before_the_end_is_counted(){
+        let peer=Peer::new();let mut root=declared(&peer);let a=open_run(&peer,&mut root,"thread");let run=root.runs[&a].clone();
+        let file=peer.fixture.root.join("out/summary.md");std::fs::create_dir_all(file.parent().unwrap()).unwrap();std::fs::write(&file,b"v1").unwrap();
+        let view=recorder_view(&peer,&summary_items()[1..]);
+        run.lock().unwrap().observe_checkpoints(&view);
+        record_file_act(&peer,"out/summary.md","A7",b"v1","2026-09-21T15:00:00.000Z");
+        run.lock().unwrap().observe_checkpoints(&view);
+        std::fs::write(&file,b"v2").unwrap();
+        run.lock().unwrap().observe_checkpoints(&view);
+        drop(run);
+        std::fs::write(&file,b"v3").unwrap();
+        let act=record_file_act(&peer,"out/summary.md","A7",b"v3","2026-09-21T16:00:00.000Z");
+        root.end_plain(&a,&view).unwrap();
+        let log=rs_for(&peer,&a);
+        assert!(!log.iter().any(|e|e["kind"]=="act_not_counted"),"{log:#?}");
+        let counted:Vec<&Value>=log.iter().filter(|e|e["kind"]=="act_counted").collect();
+        assert_eq!(counted.last().unwrap()["body"]["act"]["recordId"],act.as_str());
+        assert_eq!(log.last().unwrap()["kind"],"run_ended");assert_eq!(log.last().unwrap()["body"]["waitingArrivals"],json!([]));
+    }
+    // CE-13 / CE-14 through the actual run and RS writer (EXEC AE-6, A-4, A-12, RC-4): a custody
+    // loss naming the run's conversation is written to the run's own log once, also when the
+    // first write fails and is retried; then the recovery read; run_ended follows them, and a
+    // loss after the end is not written to the ended run. Nothing is sent because of either.
+    #[test]
+    fn checkpoint_custody_loss_and_recovery_reach_the_run_log_once_and_in_order(){
+        let peer=Peer::new();let mut root=declared(&peer);let a=open_run(&peer,&mut root,"thread");let run=root.runs[&a].clone();
+        let generation=crate::recovery::generation_ref(&peer.generation).unwrap();
+        let mut ready=peer.generation.clone();ready["spawnCounter"]=json!(peer.generation["spawnCounter"].as_u64().unwrap()+1);
+        let lost=|id:&str|json!({"kind":"observation_lost","eventId":id,"appSession":peer.generation["appSession"],"at":crate::util::now_rfc3339(),"standing":"App-observed","home":"H-acct",
+            "generation":generation,"cause":"supplier-exit","conversations":["thread"],"liveTurns":[{"threadId":"thread","turnId":"turn"}],
+            "inFlightItems":[{"threadId":"thread","turnId":"turn","itemId":"m9","itemType":"agentMessage","lastObservedStatus":"inProgress"}],"outstandingEntries":[]});
+        let recovered=json!({"kind":"observation_recovered","eventId":"cev:recovered:fixture","appSession":peer.generation["appSession"],"at":crate::util::now_rfc3339(),"standing":"App-observed",
+            "threadId":"thread","home":"H-acct","generation":crate::recovery::generation_ref(&ready).unwrap(),"via":"thread/read","priorEvents":"accessible","turns":[{"turnId":"turn","supplierStatus":"interrupted","appReading":"recovered from Codex: interrupted"}]});
+        let with=|events:Vec<Value>|{let mut v=recorder_view(&peer,&[]);v["custodyEvents"]=json!(events);v};
+        let (wire,requests)=(peer.wire().len(),peer.home.host.client_requests().len());
+        // A-12: the first write fails; the held entry is written late, once, with its limit.
+        let runs=peer.fixture.root.join(".chirality/records/runs");let aside=peer.fixture.root.join("runs-aside");
+        std::fs::rename(&runs,&aside).unwrap();std::fs::write(&runs,b"blocked").unwrap();
+        run.lock().unwrap().observe_checkpoints(&with(vec![lost("cev:lost:fixture")]));
+        std::fs::remove_file(&runs).unwrap();std::fs::rename(&aside,&runs).unwrap();
+        run.lock().unwrap().observe_checkpoints(&with(vec![lost("cev:lost:fixture"),recovered.clone()]));
+        run.lock().unwrap().observe_checkpoints(&with(vec![lost("cev:lost:fixture"),recovered.clone()]));
+        let log=rs_for(&peer,&a);let kinds:Vec<&str>=log.iter().map(|e|e["kind"].as_str().unwrap()).collect();
+        assert_eq!(kinds.iter().filter(|k|**k=="observation_lost").count(),1,"{kinds:?}");assert_eq!(kinds.iter().filter(|k|**k=="observation_recovered").count(),1,"{kinds:?}");
+        let at=|k:&str|kinds.iter().position(|x|*x==k).unwrap();
+        assert!(at("observation_lost")<at("observation_recovered"));
+        let loss=&log[at("observation_lost")];assert_eq!(loss["body"]["deciding"],true);assert_eq!(loss["runId"],a.as_str());
+        assert!(log.iter().any(|e|e["kind"]=="evidence_limit"&&e["body"]["label"]=="record write failed"&&e["body"]["subjectRef"]==loss["recordId"]),"written late with its limit");
+        assert_eq!((peer.wire().len(),peer.home.host.client_requests().len()),(wire,requests),"recording sends nothing (RC-4)");
+        assert_eq!(run.lock().unwrap().lifecycle,RunLifecycle::Open,"a loss ends nothing");
+        run.lock().unwrap().end_run(None,None).unwrap();
+        run.lock().unwrap().observe_checkpoints(&with(vec![lost("cev:lost:fixture"),recovered,lost("cev:lost:after-end")]));
+        let log=rs_for(&peer,&a);let kinds:Vec<&str>=log.iter().map(|e|e["kind"].as_str().unwrap()).collect();
+        assert_eq!(kinds.last(),Some(&"run_ended"),"the ended run gets nothing after its end: {kinds:?}");
+        assert!(at("observation_recovered")<kinds.iter().position(|k|*k=="run_ended").unwrap());
+        assert!(crate::storage::read_all(&peer.fixture.root).1.is_empty(),"every entry is a conformant RS entry");
+    }
+    // At the end after a relaunch, a lapse is observed from the run's own record with its own
+    // time, before run_ended; nothing is back-filled into the interrupted interval (RP-1).
+    #[test]
+    fn checkpoint_lapse_at_an_end_after_relaunch_is_written_before_run_ended(){
+        let peer=Peer::new();let mut root=declared(&peer);let a=open_run(&peer,&mut root,"thread");let run=root.runs[&a].clone();
+        let file=peer.fixture.root.join("out/summary.md");std::fs::create_dir_all(file.parent().unwrap()).unwrap();std::fs::write(&file,b"v1").unwrap();
+        let view=recorder_view(&peer,&summary_items()[1..]);
+        run.lock().unwrap().observe_checkpoints(&view);
+        record_file_act(&peer,"out/summary.md","A7",b"v1",&crate::util::now_rfc3339());
+        run.lock().unwrap().observe_checkpoints(&view);
+        drop(run);let mut fresh=WorkflowRootSession::default();drop(root);
+        std::fs::remove_file(&file).unwrap();
+        let before=crate::util::now_rfc3339();
+        fresh.end_recorded_run(&peer.fixture.root,&a,"thread",false,None).unwrap();
+        let log=rs_for(&peer,&a);let kinds:Vec<&str>=log.iter().map(|e|e["kind"].as_str().unwrap()).collect();
+        assert_eq!(&kinds[kinds.len()-3..],["act_lapsed","disposition_change","run_ended"],"{kinds:?}");
+        let lapse=&log[kinds.len()-3]["body"];assert_eq!((lapse["state"].as_str(),lapse["c1"].as_str()),(Some("lapsed (subject absent)"),Some("subject absent")));
+        assert!(lapse["time"].as_str().unwrap()>=before.as_str(),"observed at the end, not back-dated");
+        assert_eq!(log.last().unwrap()["body"]["waitingArrivals"],json!([{"checkpoint":"CP-rely","arrivalOrdinal":1}]));
     }
     /// Appends a partial line to the act log; returns the log and its bytes before.
     fn break_act_log(peer:&Peer)->(std::path::PathBuf,Vec<u8>){
@@ -9296,7 +9561,7 @@ for line in sys.stdin:
         assert_eq!(log.last().unwrap()["body"]["waitingArrivals"],json!([{"checkpoint":"CP-rely","arrivalOrdinal":1}]));
     }
     // CE-4 through the actual run and RS writer: a person-input request while an arrival waits
-    // is written with RS's separate "requester identity not established" limit (CC-R CI-3).
+    // is written with RS's separate "requester identity not established" limit (CC-R RS §13.6 requester identity).
     #[test]
     fn a_request_while_an_arrival_waits_is_recorded_with_its_requester_limit(){
         let peer=Peer::new();let mut root=declared(&peer);let a=open_run(&peer,&mut root,"thread");let run=root.runs[&a].clone();
@@ -9410,6 +9675,96 @@ for line in sys.stdin:
         let b=root.start_proposed(&view,peer.home.clone(),&peer.generation,&msgv("turn","m"),Some(&a),String::new(),peer.project()).unwrap();
         let root=Mutex::new(root);start_workflow_run(&root,&b).unwrap();
         assert_eq!(rs_for(&peer,&a).into_iter().find(|e|e["kind"]=="run_ended").unwrap()["body"]["cause"],"ended to start coordinated-knowledge-work");
+    }
+    /// The revision store copy of the fixture's selected revision.
+    fn store_of(peer:&Peer,root:&WorkflowRootSession)->std::path::PathBuf{
+        let id=root.selected.as_ref().unwrap().selection.identity().clone();
+        peer.fixture.root.join(".chirality/workflow-revisions").join(&id.name).join(crate::storage::key(&id.revision)).join(&id.name)
+    }
+    // WR SL-4: a confirmed proposal is resolved from the revision store, never the
+    // published copy, whether or not the published copy still verifies or was edited.
+    #[test]
+    fn workflow_reselection_proposal_resolves_the_revision_store(){
+        for edited in [false,true]{
+            let peer=Peer::new();let mut root=peer.fixture.registered();
+            let store=store_of(&peer,&root);let first=root.selected.as_ref().unwrap().reference.clone();
+            let original=std::fs::read_to_string(store.join("WORKFLOW.md")).unwrap();
+            if edited{
+                let published=peer.fixture.root.join(".chirality/workflows/coordinated-knowledge-work/WORKFLOW.md");
+                std::fs::write(&published,"---\nname: coordinated-knowledge-work\n---\nedited outside registration\n").unwrap();
+            }
+            let view=offer_view(&peer,&[("turn","p",1,PROPOSED,"live-observed")]);
+            let b=root.start_proposed(&view,peer.home.clone(),&peer.generation,&msgv("turn","p"),None,String::new(),peer.project()).unwrap();
+            assert_eq!(root.selected.as_ref().unwrap().package,store,"resolved from the revision store (published copy edited: {edited})");
+            assert_eq!(root.selected.as_ref().unwrap().replaces.as_deref(),Some(first.as_str()));
+            let root=Mutex::new(root);start_workflow_run(&root,&b).unwrap();
+            let text=last_turn_start(&peer)["params"]["input"][0]["text"].as_str().unwrap().to_owned();
+            let body=original.split_once("\n---\n").map_or(original.as_str(),|(_,b)|b);
+            assert!(text.contains(body)&&!text.contains("edited outside registration"),"the store's bytes were supplied (edited: {edited})");
+            let guard=root.lock().unwrap();let run=guard.runs[&b].lock().unwrap();
+            let project=crate::workflow_workspace::publication::ProjectRecords::open(&peer.fixture.root).unwrap();
+            let selection=project.resolve(run.view(&b)["publication"]["selection"].as_str().unwrap()).unwrap();
+            assert_eq!(selection.body()["how"],"agent proposal confirmed by the person");
+            assert_eq!(selection.body()["holding_library"],store.parent().unwrap().to_str().unwrap());
+        }
+    }
+    // WR SL-4: a store that does not recompute is refused, with no fallback to a
+    // published copy that still verifies; nothing is selected, prepared or sent.
+    #[test]
+    fn workflow_reselection_proposal_refuses_a_tampered_store(){
+        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let store=store_of(&peer,&root);let before=root.selected.as_ref().unwrap().reference.clone();
+        let file=store.join("WORKFLOW.md");let kept=std::fs::read(&file).unwrap();
+        std::fs::write(&file,b"tampered store").unwrap();
+        let view=offer_view(&peer,&[("turn","p",1,PROPOSED,"live-observed")]);
+        let refused=root.start_proposed(&view,peer.home.clone(),&peer.generation,&msgv("turn","p"),None,String::new(),peer.project()).unwrap_err();
+        assert!(refused.contains("revision not verified")&&refused.contains("nothing selected or started"),"{refused}");
+        assert_eq!(root.selected.as_ref().unwrap().reference,before,"the person's selection stays");
+        assert!(root.runs.is_empty());assert_eq!(peer.turn_starts(),0);
+        std::fs::write(&file,kept).unwrap();
+        root.start_proposed(&view,peer.home.clone(),&peer.generation,&msgv("turn","p"),None,String::new(),peer.project()).expect("restored store resolves");
+    }
+    // RC-2 / PR-3: a registered revision this process holds no result for is not
+    // offered and not started from a proposal.
+    #[test]
+    fn workflow_reselection_proposal_refuses_a_revision_not_held_here(){
+        let peer=Peer::new();let _registered=peer.fixture.registered();
+        let mut cold=WorkflowRootSession::default();
+        cold.open_library(peer.fixture.root.clone(),"project",Some(&peer.fixture.root),Arc::new(Mutex::new(Some(crate::act_control::ActControl::new(&peer.fixture.root))))).unwrap();
+        let view=offer_view(&peer,&[("turn","p",1,PROPOSED,"live-observed")]);
+        let notice=cold.offers(&view)[0]["proposal"]["resolution"]["notice"].as_str().unwrap().to_owned();
+        assert!(notice.contains("registered but not selectable in this App session: re-confirm"),"{notice}");
+        let refused=cold.start_proposed(&view,peer.home.clone(),&peer.generation,&msgv("turn","p"),None,String::new(),peer.project()).unwrap_err();
+        assert!(refused.contains("re-confirm"),"{refused}");
+        assert!(cold.selected.is_none()&&cold.runs.is_empty());
+    }
+    // SL-7 / PR-4 with SL-2: a chained run started from a proposal records how,
+    // proposal, prior_run and replaces as before; only the store resolution changed.
+    #[test]
+    fn workflow_reselection_proposal_chained_run_record_fields(){
+        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let first=root.selected.as_ref().unwrap().reference.clone();
+        let identity=root.selected.as_ref().unwrap().selection.identity().clone();
+        let both=format!("{FINISHED}\n{PROPOSED}");
+        let view=offer_view(&peer,&[("turn","m",1,&both,"live-observed")]);
+        let b=root.start_proposed(&view,peer.home.clone(),&peer.generation,&msgv("turn","m"),Some(&a),String::new(),peer.project()).unwrap();
+        let store=store_of(&peer,&root);
+        let root=Mutex::new(root);start_workflow_run(&root,&b).unwrap();
+        let guard=root.lock().unwrap();let run=guard.runs[&b].lock().unwrap();
+        let project=crate::workflow_workspace::publication::ProjectRecords::open(&peer.fixture.root).unwrap();
+        let selection=project.resolve(run.view(&b)["publication"]["selection"].as_str().unwrap()).unwrap();
+        let body=selection.body();
+        let mut keys:Vec<&str>=body.as_object().unwrap().keys().map(|k|k.as_str()).collect();keys.sort();
+        assert_eq!(keys,["conversation","holding_library","how","identity","prior_run","proposal","record_kind","replaces","selected_at","selected_by","selection_id","standing"]);
+        assert_eq!(body["how"],"agent proposal confirmed by the person");
+        assert_eq!(body["proposal"],json!({"conversation":"thread","item":"m","proposed_name":"project:coordinated-knowledge-work"}));
+        assert_eq!(body["prior_run"],json!({"run":a,"workflow":identity,"ended":"completed"}));
+        assert_eq!(body["replaces"],first.as_str());
+        assert_eq!(body["identity"],json!(identity));
+        assert_eq!((body["standing"].as_str(),body["selected_by"].as_str(),body["conversation"].as_str()),(Some("registered"),Some("the person (App interface)"),Some("thread")));
+        assert_eq!(body["holding_library"],store.parent().unwrap().to_str().unwrap());
+        assert_eq!(run.prepared().record()["origin_of_start"],"agent proposal confirmed by the person");
+        assert_eq!(run.prepared().record()["chain"]["prior_run"],a.as_str());
     }
     // V10 G-2 with FN-2: if B does not start, an end on the agent's finished report stays
     // *completed* (only "ended to start ‹B›" depends on B), and the end notice becomes pending.
@@ -9967,7 +10322,7 @@ for line in sys.stdin:
         started_rx.recv_timeout(Duration::from_secs(2)).unwrap();let outcome=done_rx.recv_timeout(Duration::from_millis(200));let observer_root_available=root.try_lock().is_ok();drop(held);worker.join().unwrap();
         assert_eq!(outcome.ok(),Some(true),"busy original review must return pending, not block workflow root");assert!(observer_root_available);
     }
-    // CI-20 (c), (d), (j): restart residuals.
+    // WR TX-5 / SQ-END, (d), (j): restart residuals.
     include!("run_restart_tests.rs");
 }
 #[cfg(test)] #[path = "workflow_journey_tests.rs"] mod workflow_journey_tests;

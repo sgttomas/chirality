@@ -500,7 +500,7 @@ fn j5_relaunch_reregisters_same_slot_from_persisted_app_kept_base() {
         identical.err()
     );
     // After a relaunch it is DS-8 re-confirmation, by the owner's CC-WR-RECONFIRM
-    // decision (was DS-4 here before J8; CI-21 (b) closed by adoption).
+    // decision (was DS-4 here before J8; WR §3 / RB-3 (b) closed by adoption).
     let relaunched = s
         .persistent_owner()
         .review_draft("sample", two.revision())
@@ -1578,7 +1578,7 @@ fn wr_vc_20_ledger_series_with_reconfirmation_lines() {
 fn rf_1_refine_from_the_store_without_a_selection_including_in_place() {
     let s = Scratch::new();
     // Two entries: a single in-place a15_descriptor is refused by the adopted
-    // AAC offer schema (pre-existing; CONTRACT_ISSUES CI-24 (e)).
+    // AAC offer schema (pre-existing; WR §4.8 / SQ-X (e)).
     let entry = s.put("sample", true, "In place");
     s.put("other", true, "Other in place");
     let session = s
@@ -1871,7 +1871,7 @@ fn v15_r1_p6_intended_attempt_ends_with_the_other_process_x2_line() {
 
 /// P5: after capture, registered line 1 is edited outside the App so it no
 /// longer reads as registered. WR G-1R says *not completed*, but no such line
-/// can satisfy RC-9 here (CI-25): the App appends nothing and the attempt stays
+/// can satisfy RC-9 here (WR G-1R / RC-9): the App appends nothing and the attempt stays
 /// pending with the exact cause; the ledger stays readable.
 #[test]
 fn v15_p5_g1r_line_no_longer_registered_appends_nothing() {
@@ -2212,4 +2212,105 @@ fn v15_f5_registered_listing_labels_rows() {
         rows[0]["label"],
         "registered — selectable in this App session"
     );
+}
+
+/// WR §4.6 LS-1 "Select (in such a process)", SL-2, SL-5: the listing offers
+/// Select only for a revision this process holds; a newer registered revision
+/// of the slot is read from the ledger, held or not, and changes nothing;
+/// content without registered standing keeps its standing and route.
+#[test]
+fn workflow_reselection_listing_offers_and_newer_revision_reading() {
+    let s = Scratch::new();
+    let one = s.put("sample", false, "One");
+    let owner = s.persistent_owner();
+    // SL-5: a draft only.
+    let draft = owner.not_selectable("sample", one.revision());
+    assert!(draft.contains("draft — not registered") && draft.contains("Review to register"), "{draft}");
+    let first = register(&owner, one.revision());
+    let rows = owner.registered_listing();
+    assert_eq!(rows[0]["selectable"], true, "{rows}");
+    assert_eq!(rows[0]["offered"], "Select; Refine (RF-1)");
+    assert_eq!(owner.newer_registered(first.identity()).unwrap(), None);
+    assert_eq!(owner.store_copy(first.identity()), store_path(&s.0, first.identity()));
+    assert_eq!(
+        owner.registered_revision("sample", one.revision()).unwrap().map(|(n, k)| (n, k.revision)),
+        Some((1, one.revision().to_owned()))
+    );
+    let two = s.put("sample", false, "Two");
+    let second = register(&owner, two.revision());
+    assert_eq!(
+        owner.newer_registered(first.identity()).unwrap(),
+        Some((2, second.identity().clone(), Ok(true))),
+        "revision 2 is newer and held by this process"
+    );
+    assert_eq!(owner.newer_registered(second.identity()).unwrap(), None);
+    // Another App process: the ledger still reads the newer revision, which
+    // that process does not hold (RC-2); the listing offers no Select.
+    let cold = s.persistent_owner();
+    assert_eq!(cold.newer_registered(first.identity()).unwrap(), Some((2, second.identity().clone(), Ok(false))));
+    let rows = cold.registered_listing();
+    assert!(
+        rows.as_array().unwrap().iter().all(|r| r["selectable"] == false
+            && r["offered"] == "Refine (RF-1); Review a draft with its bytes (DS-8)"),
+        "{rows}"
+    );
+    let refused = cold.not_selectable("sample", two.revision());
+    assert!(
+        refused.contains("revision 2: registered — re-confirm to use in this App session") && refused.contains("Refine (RF-1)"),
+        "{refused}"
+    );
+    // LS-2: content in the published-copy location with no registration.
+    let loose_copy = s.put("loose", true, "Loose");
+    let loose = cold.not_selectable("loose", loose_copy.revision());
+    assert!(loose.contains("present without registration record (LS-2)") && loose.contains("Review to register"), "{loose}");
+    let other_content = cold.not_selectable("loose", &"0".repeat(64));
+    assert!(other_content.contains("not registered in this slot") && !other_content.contains("LS-2"), "{other_content}");
+    // A revision of another library is not read here.
+    let mut other = first.identity().clone();
+    other.source_root = "another-root".into();
+    assert!(cold.newer_registered(&other).is_err());
+}
+
+/// Review finding 3: SL-5 calls requested content a draft only when it is the
+/// draft's content; another revision of the name is "not registered in this slot".
+#[test]
+fn workflow_reselection_refusal_names_the_draft_only_for_its_content() {
+    let s = Scratch::new();
+    let one = s.put("sample", false, "One");
+    let owner = s.persistent_owner();
+    let draft = owner.not_selectable("sample", one.revision());
+    assert!(draft.contains(&format!("sample at {} is a draft — not registered", one.revision())), "{draft}");
+    let other = owner.not_selectable("sample", &"f".repeat(64));
+    assert!(!other.contains("draft"), "{other}");
+    assert!(other.contains(&format!("sample revision {} is not registered in this slot", "f".repeat(64))), "{other}");
+}
+
+/// Review finding 2: a held revision whose store bytes no longer recompute is
+/// not offered Select (SL-4), in the list or as the newer revision; its row
+/// says why. Restoring the bytes restores the offer.
+#[test]
+fn workflow_reselection_select_offered_only_while_the_store_verifies() {
+    let s = Scratch::new();
+    let one = s.put("sample", false, "One");
+    let owner = s.persistent_owner();
+    let first = register(&owner, one.revision());
+    let two = s.put("sample", false, "Two");
+    let second = register(&owner, two.revision());
+    let file = store_path(&s.0, second.identity()).join("notes.txt");
+    let kept = fs::read(&file).unwrap();
+    fs::write(&file, b"tampered store").unwrap();
+    let rows = owner.registered_listing();
+    let row = rows.as_array().unwrap().iter().find(|r| r["revision"] == two.revision()).unwrap();
+    assert_eq!(row["selectable"], false, "{row}");
+    assert!(row["label"].as_str().unwrap().contains("not selectable now: revision not verified"), "{row}");
+    assert!(row["offered"].as_str().unwrap().contains("LS-4") && !row["offered"].as_str().unwrap().contains("Select"), "{row}");
+    let untouched = rows.as_array().unwrap().iter().find(|r| r["revision"] == one.revision()).unwrap();
+    assert_eq!(untouched["selectable"], true, "{untouched}");
+    let (sequence, newer, selectable) = owner.newer_registered(first.identity()).unwrap().unwrap();
+    assert_eq!((sequence, &newer), (2, second.identity()));
+    assert!(selectable.as_ref().is_err_and(|e| e.contains("revision not verified")), "{selectable:?}");
+    fs::write(&file, kept).unwrap();
+    let rows = owner.registered_listing();
+    assert!(rows.as_array().unwrap().iter().all(|r| r["selectable"] == true), "{rows}");
+    assert_eq!(owner.newer_registered(first.identity()).unwrap().unwrap().2, Ok(true));
 }

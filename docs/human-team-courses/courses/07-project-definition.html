@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
+<meta name="source-sha256" content="0c7240c891da218e62a899613eaa13ae985943f8fd9bbc23310c8177776e3a16">
+<meta name="source-basis-date" content="2026-10-11">
+<meta name="source-basis-revision" content="26d04270617c405fc3ca131d2ea6c86120ecc5ed">
+<title>Course 07 — Defining an Engineering Project · Chirality</title>
+<style>
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --canvas: #eeeeee;
+  --ink: #111111;
+  --muted: #505050;
+  --line: #cccccc;
+  --accent: #111111;
+  --tint: #eeeeee;
+  font-family: "Liberation Serif", "Times New Roman", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 2rem; }
+body { margin: 0; color: var(--ink); background: var(--canvas); }
+a { color: var(--accent); text-underline-offset: .17em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #111111;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.skip-link {
+  position: fixed; top: .6rem; left: .6rem; z-index: 100;
+  padding: .6rem 1rem; background: var(--paper); border: 2px solid var(--accent);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+.masthead { border-bottom: 1px solid var(--ink); background: var(--paper); }
+.masthead-inner {
+  max-width: 70rem; margin: auto; padding: 1.05rem 2.5rem;
+  display: flex; flex-wrap: wrap; gap: .35rem 1.2rem;
+  align-items: baseline; justify-content: center; text-align: center;
+}
+.brand { font-size: .92rem; font-weight: 700; letter-spacing: .12em; }
+.masthead-label { color: var(--ink); font-size: .77rem; text-transform: uppercase; letter-spacing: .025em; }
+.layout {
+  max-width: 70rem; margin: auto; padding: 0 2.5rem;
+  display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2.5rem;
+}
+.sidebar {
+  position: sticky; top: 0; align-self: start; max-height: 100vh;
+  overflow-y: auto; padding: 2rem .8rem 2rem 0;
+  scrollbar-width: thin;
+}
+.nav-label, .eyebrow {
+  margin: 0 0 .85rem; color: var(--muted); font-size: .73rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+}
+.contents { list-style: none; padding: 0; margin: 0; }
+.contents li { margin: .15rem 0; }
+.contents a {
+  display: block; padding: .34rem .65rem; border-left: 2px solid transparent;
+  color: var(--muted); text-decoration: none; font-size: .86rem; line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.contents a:hover, .contents a:focus-visible {
+  color: var(--accent); background: var(--tint); border-left-color: var(--accent);
+}
+.nav-help { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.3rem; }
+.nav-help p, .nav-help a { font-size: .75rem; color: var(--muted); }
+.nav-help p { margin: .5rem 0; }
+kbd { font: inherit; padding: .05rem .25rem; border: 1px solid var(--line); border-radius: .2rem; }
+main { min-width: 0; max-width: 48.5rem; padding: 2rem 0 3rem; }
+.document-meta {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem 1.5rem; margin: 0 0 1.5rem;
+  font-size: .73rem; color: var(--muted);
+}
+.document-meta div { min-width: 0; }
+.document-meta dt { font-weight: 700; letter-spacing: .025em; }
+.document-meta dd { margin: .15rem 0 0; overflow-wrap: anywhere; }
+.document-meta code { font-size: .9em; background: none; padding: 0; }
+.fingerprint { grid-column: 1 / -1; }
+.paper {
+  min-width: 0; padding: 3.4rem 3rem 3rem;
+  background: var(--paper); border: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgb(0 0 0 / .04);
+}
+article { max-width: 68ch; margin: auto; overflow-wrap: anywhere; }
+article > :first-child { margin-top: 0; }
+h1, h2, h3, h4, h5, h6 { color: #000000; line-height: 1.22; text-wrap: balance; scroll-margin-top: 2rem; }
+h1 {
+  max-width: 19ch; margin: 0 auto 1.65rem; font-size: clamp(2.05rem, 3.8vw, 2.8rem);
+  text-align: center; text-transform: uppercase; letter-spacing: .015em;
+}
+article > h1 + p { margin-bottom: 2.4rem; text-align: center; font-size: .82rem; line-height: 1.45; }
+h2 { font-size: 1.5rem; margin: 3.4rem 0 1.1rem; }
+h3 { font-size: 1.13rem; margin: 2rem 0 .7rem; }
+h4, h5, h6 { font-size: 1.02rem; margin: 1.65rem 0 .6rem; }
+p { margin: 0 0 .78rem; }
+article p { text-align: justify; text-justify: inter-word; hyphens: auto; }
+ul, ol { padding-left: 1.5rem; }
+li { padding-left: .2rem; margin: .35rem 0; }
+li > p { margin: .6rem 0; }
+hr { max-width: 75%; border: 0; border-top: 1px solid var(--ink); margin: 2.5rem auto; }
+blockquote {
+  margin: 1.4rem 1.25rem; padding: 0; background: none; border: 0;
+}
+blockquote > :last-child { margin-bottom: 0; }
+code, pre { font-family: "Liberation Mono", "SFMono-Regular", Consolas, monospace; font-size: .83em; hyphens: none; }
+code { background: #f1f1f1; padding: .08em .2em; overflow-wrap: anywhere; }
+pre {
+  max-width: 100%; overflow-x: auto; padding: 1rem 1.15rem; margin: 1.4rem 0;
+  color: #111111; background: #f6f6f6; border: 1px solid var(--line);
+  line-height: 1.5; tab-size: 4;
+}
+pre code { background: none; padding: 0; border-radius: 0; font-size: 1em; overflow-wrap: normal; }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 1.5rem 0; }
+table { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: .87rem; line-height: 1.4; }
+th, td { padding: .65rem .75rem; text-align: left; vertical-align: top; border: 1px solid #b8b8b8; }
+th { color: #000000; background: #eeeeee; font-weight: 700; }
+tbody tr { background: #ffffff; }
+img, svg { max-width: 100%; height: auto; }
+a[id], a[name] { scroll-margin-top: 2rem; }
+p:has(> a[id]:only-child):empty { margin: 0; }
+p:has(> a[id]:only-child) { margin: 0; }
+h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-color: #777777; text-decoration-thickness: .08em; text-underline-offset: .2em; }
+.mobile-toc { display: none; }
+.document-footer { margin-top: 1.5rem; color: var(--muted); font-size: .73rem; }
+.document-footer p { margin: .4rem 0; }
+@media (max-width: 65rem) {
+  .layout { padding: 0 1.5rem; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 1.5rem; }
+  .masthead-inner { padding: 1rem 1.5rem; }
+  .paper { padding: 2.6rem 2rem; }
+}
+@media (max-width: 54rem) {
+  html { scroll-padding-top: 4.5rem; }
+  .layout { display: block; padding: 0 1rem; }
+  .sidebar { display: none; }
+  .masthead-inner { padding: .85rem 1rem; gap: .2rem 1rem; }
+  .mobile-toc {
+    display: block; position: sticky; top: 0; z-index: 10;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .mobile-toc summary { padding: .75rem 1rem; cursor: pointer; color: var(--accent); font-weight: 700; font-size: .85rem; }
+  .mobile-toc nav { max-height: 65vh; overflow-y: auto; padding: 0 .5rem 1rem; }
+  .mobile-toc .contents a { padding: .55rem; }
+  main { padding-top: 1.25rem; }
+  .paper { padding: 2.2rem 1.4rem; }
+  article p { text-align: left; }
+  article > h1 + p { text-align: center; }
+  h2, h3, h4, h5, h6, a[id], a[name] { scroll-margin-top: 4.5rem; }
+  h2 { margin-top: 2.7rem; font-size: 1.4rem; }
+  .document-meta { gap: .75rem 1rem; }
+}
+@media (max-width: 25rem) {
+  :root { font-size: 17px; }
+  .layout { padding: 0 .5rem; }
+  .paper { padding: 1.4rem 1rem; }
+  .document-meta { padding: 0 .5rem; }
+}
+@media print {
+  @page { size: 6.75in 9.25in; margin: .68in .65in .67in .72in; }
+  :root { font-size: 10.5pt; line-height: 1.2; color-scheme: light; }
+  body, .paper { color: #111; background: white; }
+  .masthead, .sidebar, .mobile-toc, .skip-link, .back-top { display: none; }
+  .layout { display: block; max-width: none; padding: 0; }
+  main { max-width: none; padding: 0; }
+  .paper { padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+  article { max-width: none; }
+  article p { margin-bottom: 4.6pt; text-align: justify; }
+  .document-meta { padding: 0 0 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #bbb; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 18pt; margin-top: 1.8rem; }
+  h3 { font-size: 12pt; }
+  h4, h5, h6 { font-size: 11pt; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  a { color: inherit; text-decoration: underline; }
+  .table-scroll { overflow: visible; border: 0; }
+  table { min-width: 0; table-layout: auto; font-size: 9pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  th, td { padding: .45rem; }
+  pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; border-color: #bbb; font-size: 8pt; line-height: 1.3; }
+  pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  blockquote { break-inside: avoid; background: white; }
+  .document-footer { border-top: 1px solid #bbb; padding-top: .75rem; }
+}
+</style>
+</head>
+<body id="manual-top">
+<a class="skip-link" href="#manual-content">Skip to manual</a>
+<header class="masthead">
+  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Human team courses · offline reading edition</span></div>
+</header>
+<details class="mobile-toc">
+  <summary>Contents · 12 sections</summary>
+  <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#prerequisites-and-outcomes">Prerequisites and outcomes</a></li>
+<li><a href="#lesson-1--establish-purpose-before-selecting-the-solution">Lesson 1 — Establish purpose before selecting the solution</a></li>
+<li><a href="#lesson-2--assemble-the-project-basis">Lesson 2 — Assemble the project basis</a></li>
+<li><a href="#lesson-3--make-requirements-and-examination-usable">Lesson 3 — Make requirements and examination usable</a></li>
+<li><a href="#lesson-4--divide-work-without-dividing-away-responsibility">Lesson 4 — Divide work without dividing away responsibility</a></li>
+<li><a href="#lesson-5--establish-readiness-and-the-treatment-of-open-matters">Lesson 5 — Establish readiness and the treatment of open matters</a></li>
+<li><a href="#worked-example--define-northbanks-purchase-preparation">Worked example — Define Northbank&#x27;s purchase preparation</a></li>
+<li><a href="#transfer-example--a-data-acquisition-upgrade">Transfer example — A data acquisition upgrade</a></li>
+<li><a href="#practice--repair-a-weak-assignment">Practice — Repair a weak assignment</a></li>
+<li><a href="#knowledge-check">Knowledge check</a></li>
+<li><a href="#portfolio-continuation-and-references">Portfolio continuation and references</a></li>
+<li><a href="#assessed-assignment--prepare-a-coherent-project-definition">Assessed assignment — Prepare a coherent project definition</a></li></ol></nav>
+</details>
+<div class="layout">
+<aside class="sidebar">
+  <nav aria-label="Sections">
+    <p class="nav-label">In this manual</p>
+    <ol class="contents"><li><a href="#prerequisites-and-outcomes">Prerequisites and outcomes</a></li>
+<li><a href="#lesson-1--establish-purpose-before-selecting-the-solution">Lesson 1 — Establish purpose before selecting the solution</a></li>
+<li><a href="#lesson-2--assemble-the-project-basis">Lesson 2 — Assemble the project basis</a></li>
+<li><a href="#lesson-3--make-requirements-and-examination-usable">Lesson 3 — Make requirements and examination usable</a></li>
+<li><a href="#lesson-4--divide-work-without-dividing-away-responsibility">Lesson 4 — Divide work without dividing away responsibility</a></li>
+<li><a href="#lesson-5--establish-readiness-and-the-treatment-of-open-matters">Lesson 5 — Establish readiness and the treatment of open matters</a></li>
+<li><a href="#worked-example--define-northbanks-purchase-preparation">Worked example — Define Northbank&#x27;s purchase preparation</a></li>
+<li><a href="#transfer-example--a-data-acquisition-upgrade">Transfer example — A data acquisition upgrade</a></li>
+<li><a href="#practice--repair-a-weak-assignment">Practice — Repair a weak assignment</a></li>
+<li><a href="#knowledge-check">Knowledge check</a></li>
+<li><a href="#portfolio-continuation-and-references">Portfolio continuation and references</a></li>
+<li><a href="#assessed-assignment--prepare-a-coherent-project-definition">Assessed assignment — Prepare a coherent project definition</a></li></ol>
+  </nav>
+  <div class="nav-help">
+    <p>Find a term with <kbd>⌘ F</kbd> or <kbd>Ctrl F</kbd>. Use your browser’s print command for a paper copy.</p>
+    <p><a href="07-project-definition.md">Markdown source</a> · <a href="#manual-top">Back to start ↑</a></p>
+  </div>
+</aside>
+<main id="manual-content" tabindex="-1">
+  <div class="paper">
+    <article aria-labelledby="course-07--defining-an-engineering-project">
+<!-- BEGIN MARKDOWN CONTENT -->
+<h1 id="course-07--defining-an-engineering-project">Course 07 — Defining an Engineering Project</h1>
+<p>A project basis makes the undertaking understandable to people who were absent from its first discussions. It connects purpose, requirements, scope, constraints, and decisions.</p>
+<p>Good definition leaves room for design while making commitments and unresolved matters clear. It supports a division of work that can produce a coherent result.</p>
+<p>This course develops a project basis and an initial work allocation. Detailed planning and technical integration follow in Courses 08 and 09.</p>
+<p><a href="../index.html">Series</a> · <a href="../case-study.html">Northbank case</a> · <a href="../glossary.html">Glossary</a> · <a href="../references.html">References</a></p>
+<h2 id="prerequisites-and-outcomes">Prerequisites and outcomes</h2>
+<p>Complete Courses 01 to 06. Bring your source index, interpretation, decision memorandum, and meeting record.</p>
+<p>After this course, you can:</p>
+<ul>
+<li>Connect an intended result to its users and benefits.</li>
+<li>Distinguish outcomes, constraints, design choices, and proposals.</li>
+<li>Prepare a project basis with accountable unresolved matters.</li>
+<li>Define deliverables and their examination.</li>
+<li>Allocate scope while preserving interfaces and combined responsibility.</li>
+</ul>
+<p>Use Northbank Packets A and B. Identify any new classroom decision separately from the supplied records.</p>
+<h2 id="lesson-1--establish-purpose-before-selecting-the-solution">Lesson 1 — Establish purpose before selecting the solution</h2>
+<p>A requested component can conceal the need it serves. Ask what activity the intended result supports and who will use it.</p>
+<p>Distinguish the product from the project. The product may be an installation or design package. The project organizes its development and delivery.</p>
+<p>The product may remain in use after the project ends. Consider operating and maintenance responsibilities when defining the undertaking.</p>
+<p>Describe the intended benefit without inventing evidence. If a benefit remains a sponsor expectation, identify it as such.</p>
+<p>Ask these questions:</p>
+<ol>
+<li>What problem or opportunity motivates the work?</li>
+<li>Who uses or is affected by the result?</li>
+<li>Which outcome would address the need?</li>
+<li>Which conditions constrain an acceptable solution?</li>
+<li>What evidence will show that the outcome has been achieved?</li>
+</ol>
+<p>Investigate alternatives before locking in an unexamined means. Compare them against the same purpose, requirements, operating conditions, and resource constraints.</p>
+<p>Alternatives can include modification, replacement, staged work, or a different operating arrangement. Their technical and legal acceptability must be established.</p>
+<p>Where the sponsor has already adopted a solution boundary, preserve it. Propose a change through the applicable decision process if evidence justifies reconsideration.</p>
+<p>Record reasons for consequential choices. A later participant needs to understand why an attractive alternative was rejected under the original conditions.</p>
+<h2 id="lesson-2--assemble-the-project-basis">Lesson 2 — Assemble the project basis</h2>
+<p>The <strong>project basis</strong> identifies the purpose, requirements, scope, constraints, and decisions used to develop and execute the project.</p>
+<p>An organization may carry this information in several controlled documents. Their relationships must remain clear to the people who use them.</p>
+<p>Include enough information to govern the next work. Extra detail has little value when no decision or activity uses it.</p>
+<p>Organize the basis around these subjects:</p>
+<ul>
+<li>Intended result, users, and operating activity.</li>
+<li>Applicable requirements and identified governing sources.</li>
+<li>Included scope and assignment boundaries.</li>
+<li>Existing assets and interfaces to preserve or modify.</li>
+<li>Budget, delivery target, and other constraints.</li>
+<li>Acceptance responsibilities and proposed examination.</li>
+<li>Unresolved inputs and their treatment.</li>
+</ul>
+<p>Identify the revision and status of each governing source. Explain whether a newer record supplements, replaces, or merely proposes to change the basis.</p>
+<p>Distinguish existing obligations, proposed interpretations, and proposed new project constraints. A supported interpretation can explain an obligation that already governs. The obligation does not await sponsor adoption. A new project constraint requires the appropriate decision.</p>
+<p>Reconcile conflicting sources at the relevant subject. Do not solve a discrepancy by deleting the record that exposes it.</p>
+<p>Before requesting acceptance, read the basis as a whole. Check for incompatible assumptions, missing boundaries, unclear terms, and unsupported commitments.</p>
+<p>Identify exactly which document revision the decision concerns. Record any conditions on proceeding and the work they affect.</p>
+<h2 id="lesson-3--make-requirements-and-examination-usable">Lesson 3 — Make requirements and examination usable</h2>
+<p>A requirement states a needed result or constraint. It must preserve the conditions that give the statement meaning.</p>
+<p>Specify the subject, required result, relevant conditions, source, and status. Separate independently allocatable obligations where that improves responsibility.</p>
+<p>For example, one statement can define a transfer-flow outcome. Another can define standby behavior. Their shared operating conditions remain connected.</p>
+<p>Avoid turning an unresolved input into a convenient design value. Assign work to establish it before the dependent decision.</p>
+<p>Develop the examination alongside the requirement. Ask what observation, analysis, inspection, or test could establish its satisfaction.</p>
+<p>Use this relationship:</p>
+<p><strong>Requirement → contribution → examination → evidence → authorized decision</strong></p>
+<p>The examination must address the full claim. A normal-flow observation would leave required changeover behavior unexamined.</p>
+<p>A requirement can be approved while its detailed examination remains in development. Identify who will complete the method before its point of need.</p>
+<p>Use this compact requirement record:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 1; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identity and statement</td>
+<td>Establish the obligation and its conditions</td>
+</tr>
+<tr>
+<td>Source and status</td>
+<td>Establish its grounds and decision standing</td>
+</tr>
+<tr>
+<td>Contribution</td>
+<td>Identify the work expected to satisfy it</td>
+</tr>
+<tr>
+<td>Examination</td>
+<td>Explain how conformity or fitness will be established</td>
+</tr>
+<tr>
+<td>Open input</td>
+<td>Preserve the missing condition and resolution owner</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Do not fabricate test tolerances, code clauses, or acceptance thresholds. Missing definitions require competent development and the appropriate decision.</p>
+<h2 id="lesson-4--divide-work-without-dividing-away-responsibility">Lesson 4 — Divide work without dividing away responsibility</h2>
+<p>Decomposition divides the undertaking into manageable contributions. Its purpose is complete responsibility and usable exchanges between contributors.</p>
+<p>Choose boundaries around related work that someone can understand and carry through. Compare the cost of coordination across alternative boundaries.</p>
+<p>Preserve discipline responsibility where it applies. Identify the person who coordinates the combined technical result across those discipline contributions.</p>
+<p>Give each obligation one accountable home. Several people may contribute to it. Their inputs and interfaces must remain explicit.</p>
+<p>That home coordinates fulfillment. It does not erase the duties of contributors, reviewers, or other appointed authorities.</p>
+<p>Do not allocate the same whole obligation to two groups without explaining their distinct contributions. This can conceal both duplication and gaps.</p>
+<p>For each deliverable, state:</p>
+<ol>
+<li>Its purpose and required result.</li>
+<li>Its governing requirements and inputs.</li>
+<li>Its receiving participants and interfaces.</li>
+<li>Its producer and required review.</li>
+<li>Its examination and evidence.</li>
+</ol>
+<p>A deliverable title alone gives insufficient direction. “Electrical package” does not identify what it must establish for procurement or installation.</p>
+<p>Read the division in both directions. Follow each requirement to its contributions. Follow each contribution back to its source obligation or justified project need.</p>
+<p>Then examine the boundaries. Determine who supplies shared inputs, who resolves differences, and who assembles the whole.</p>
+<p>Separate work allocation from work satisfaction. An assigned deliverable remains to be produced and examined.</p>
+<h2 id="lesson-5--establish-readiness-and-the-treatment-of-open-matters">Lesson 5 — Establish readiness and the treatment of open matters</h2>
+<p>Projects often begin development with unresolved conditions. The basis must show which work can proceed and which work depends on resolution.</p>
+<p>Give each open matter an owner, required resolution, affected decision, and point of need. Record its current evidence and any authorized interim assumption.</p>
+<p>An assumed value can support a bounded study if its status and limits are explicit. It cannot silently become a procurement requirement.</p>
+<p>State readiness for a specific activity. “Ready for investigation” differs from “ready for equipment order release”.</p>
+<p>Check readiness with these questions:</p>
+<ol>
+<li>Which result or act is being authorized?</li>
+<li>Which conditions does it require?</li>
+<li>What evidence establishes those conditions?</li>
+<li>Which unresolved matters can remain under stated limits?</li>
+<li>Who has authority to decide?</li>
+</ol>
+<p>A pending external requirement may limit several technical choices. Other authorized information gathering can continue.</p>
+<p>An exclusion also needs careful treatment. If another party supplies a required act, identify that party and the interface the project still needs.</p>
+<p>Do not remove an obligation by placing it outside one contributor's scope. Determine where responsibility for it continues.</p>
+<p>After acceptance, communicate the basis to its users. Follow later changes through the requirements, assignments, interfaces, and examination they affect.</p>
+<h2 id="worked-example--define-northbanks-purchase-preparation">Worked example — Define Northbank's purchase preparation</h2>
+<p>A02 Rev 1 establishes 18 litres per second, two pump units, tank reuse, and associated work. It also identifies unresolved hydraulic conditions.</p>
+<p>A01 distinguishes sponsor scope authority from project and discipline engineering responsibilities. B02 shows that procurement still needs an authorized purchase package.</p>
+<p>The project engineer prepares a definition for purchase preparation. Its purpose is to establish a technically reviewed, identified equipment requirement before order release.</p>
+<p>The mechanical contribution must establish the operating envelope and selected equipment basis. It needs operating information and relevant electrical motor conditions.</p>
+<p>The electrical contribution must assess the existing supply and the selected motor arrangement. A04 supplies one checked observation while leaving important checks open.</p>
+<p>The controls contribution needs the changeover definition and alarm response. The civil contribution needs equipment loads, base dimensions, and access requirements.</p>
+<p>The project engineer gives coordination of these exchanges an explicit home. Each discipline retains responsibility for its contribution.</p>
+<p>The supplier submission requires correction and additional evidence before it can support technical acceptance. No corrected pump or motor is invented in the definition.</p>
+<p>A05 remains a proposed scope change. Its impact assessment receives a separate assignment and returns to the sponsor for the scope decision.</p>
+<p>The definition records A06's unresolved external requirements. It identifies dependent technical choices instead of asserting legal applicability.</p>
+<p>The proposed division allows source retrieval, operating clarification, commercial inquiry, and technical assessment to proceed. Order release remains dependent on its required conditions.</p>
+<h2 id="transfer-example--a-data-acquisition-upgrade">Transfer example — A data acquisition upgrade</h2>
+<p>A plant wants better fault diagnosis. A team proposes new sensors but has not defined the events operators need to recognize.</p>
+<p>The project basis must establish those intended uses and operating conditions. Sensor selection and acceptance then have a common purpose and examination basis.</p>
+<h2 id="practice--repair-a-weak-assignment">Practice — Repair a weak assignment</h2>
+<p>Treat this sentence as an exercise draft:</p>
+<blockquote>
+<p>Supply pumps quickly. Electrical will make them work. Operations can add the future flow requirement later.</p>
+</blockquote>
+<p>Use A01 to A06 and B01 to B03. Identify the missing purpose, requirements, conditions, responsibilities, interfaces, and examination.</p>
+<p>Replace the sentence with a bounded assignment for preparing the equipment requirement. Keep detailed technical inputs unresolved where the case leaves them unresolved.</p>
+<p>Prepare an interface table with suppliers, consumers, required contributions, owners, and points of need. Label proposed ownership assignments as proposals.</p>
+<h2 id="knowledge-check">Knowledge check</h2>
+<ol>
+<li>How do the product and project differ?</li>
+<li>Which subjects must a usable project basis establish?</li>
+<li>Why must a requirement retain its qualifying operating conditions?</li>
+<li>How can several contributors fulfill an obligation with one accountable home?</li>
+<li>What distinguishes work allocation from work satisfaction?</li>
+<li>What must be stated before unresolved information can remain open during dependent work?</li>
+</ol>
+<h2 id="portfolio-continuation-and-references">Portfolio continuation and references</h2>
+<p>Keep the repaired assignment, project basis, requirement table, and scope allocation. Link them to your earlier sources and decisions.</p>
+<p>Carry these records into Course 08 for planning. Use their interfaces and readiness conditions in Course 09.</p>
+<p>Source adaptation: Field Book §§3–4 and Consolidated v8 §§2.1–2.7 and 3.1–3.7. These sections address basis, scope, outputs, and examination.</p>
+<p>Use the shared <a href="../references.html">references</a> for systems engineering fundamentals and project governance. External readings are optional for the supplied assignment.</p>
+<h2 id="assessed-assignment--prepare-a-coherent-project-definition">Assessed assignment — Prepare a coherent project definition</h2>
+<p>Prepare a proposed Northbank project basis using Packets A and B. Preserve all approved A02 commitments and their identified limits.</p>
+<p>Include a requirement table, deliverable allocation, interface table, and open-matter treatment. Explain one alternative division of work and its coordination consequences.</p>
+<p>Include A05's impact assessment as proposed-change work. State the route for its scope decision without treating the proposal as adopted.</p>
+<p>Present the definition to a peer or mentor. Check coverage in both directions and repair identified gaps.</p>
+<p>The instructor assesses these five observable criteria:</p>
+<ol>
+<li>The basis preserves source identities, approved scope, constraints, and proposed-change status.</li>
+<li>Requirements retain their conditions and identify suitable examination or its missing definition.</li>
+<li>The work allocation gives each obligation an accountable home and covers the complete accepted scope.</li>
+<li>Interfaces identify contributions, proposed owners, points of need, and coordination responsibility.</li>
+<li>Open matters identify resolution, authority, and the specific work they limit without invented technical or legal conclusions.</li>
+</ol>
+<!-- END MARKDOWN CONTENT -->
+    </article>
+  </div>
+  <footer class="document-footer">
+  <dl class="document-meta">
+    <div><dt>Source basis dated</dt><dd>11 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>26d04270617c405fc3ca131d2ea6c86120ecc5ed</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="07-project-definition.md">07-project-definition.md</a><br><code>0c7240c891da218e62a899613eaa13ae985943f8fd9bbc23310c8177776e3a16</code></dd></div>
+  </dl>
+    <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
+    <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
+    <p class="back-top"><a href="#manual-top">Back to start ↑</a></p>
+  </footer>
+</main>
+</div>
+<script>
+const mobileContents = document.querySelector('.mobile-toc');
+mobileContents.addEventListener('click', (event) => {
+  if (event.target.closest('a[href^="#"]')) mobileContents.open = false;
+});
+</script>
+</body>
+</html>

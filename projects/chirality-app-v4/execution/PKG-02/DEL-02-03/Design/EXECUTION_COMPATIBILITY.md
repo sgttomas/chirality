@@ -1,6 +1,6 @@
 # Workflow execution compatibility, checkpoint hold and round trip
 - Contribution: DEL-02-03/EXEC-v0.7 (supersedes DEL-02-03/EXEC-v0.6, last changed at `153a7c533b`, file sha256 64e732d502d0b91da00e62069be1b77b61d1e84986b3744bc117b6e67524fa38; EXEC-v0.5, last changed at `c896a99d90`, file sha256 3711c55c36e4a5b637012512ee7baa856b094b3fdd48823b697feb9cb139405f; EXEC-v0.4, last changed at `f5ceef164`, file sha256 092f248682447df74e93915527930f4b90367fac46b867dad18daef3c5c608ff; EXEC-v0.3, last changed at `c6f81a4f2` and unchanged at `bcc25624d`, file sha256 03b2fd48e14dd21ee6f29bc8e5e19221a771f788aa6c1482810b8bc0671d61e2; EXEC-v0.2 at `cc58211c5`, sha256 7f7848c0de2fdb4dc21f5adafa97f92e179bb66c9f6b04f3434d8f2342317af0; EXEC-v0.1 at `e20a3ae8d`, sha256 e0ede76ebf08003511755afc666be2466a867fd3256837ee94300cd0dfe518e8)
-- **CC-R proposed change (APP-V4-GROUP-A-20261004):** D07 receiver-owned W14 mapping clarified; CI-3 requester provenance source and absent-identity fixture. No behavior, receiver choice or joined-witness claim changed. Review and propagation pending.
+- **CC-R source clarification:** D07 receiver-owned W14 mapping clarified; RS §13.6 requester provenance source and absent-identity fixture. No behavior, receiver choice or joined-witness claim changed. Bounded App receiving is implemented; qualification remains separate.
 - **CC-P-R allocation (APP-V4-GROUP-A-20261004):** owner-selected App-local RS/capture storage and native Rust capture/writer receiving allocation; bounded consumer rule in §2. No schema/ID or checkpoint phase change; implementation/independent review pending.
 - Status: DRAFT DEFINITION — proposed, unsupplied, not implemented, not accepted. Beside it: two PROPOSED schemas with valid and invalid example instances, and a design prototype in `prototype/` (not product code; R12-3). The schemas are `compatibility-report.schema.json` (v0.6, unchanged since) and `checkpoint-record-entries.schema.json`, which under R14-1 defines the **bodies** of the checkpoint entry kinds that RS format 0.1 carries, and no container. That schema is at 0.7 since pass 4 (R23-18, R23-24): CE-4 decision packages and A16, CE-10 `actRef` A16, and `$defs/decisionPackageFile` for the package file an agent writes, with their examples. This document's text is otherwise EXEC-v0.7 as before; this line was corrected in place under R23-23 item 2, without a new label
 - Serves: OUT-001 (required-tool check and checkpoint receiving behavior — definition only, no product code; a design prototype of the check and of the current-phase recorder ran locally, §7.4), OUT-002 (App/host transfer and adaptation contract), OUT-003 (missing-tool, checkpoint and round-trip fixture design — none run); REQ-001…REQ-007; AC-001…AC-007 through designed VER-001…VER-007
@@ -365,7 +365,7 @@ Unwritable owning targets refuse visibly with no silent relocation. Safe storage
 keys are not run/record identities. No body shape, schema `$id`, observed-at time,
 arrival association, checkpoint request or no-hold rule changes.
 
-AAC owns native confirmation/capture and CI-6 ordering; its Rust capture owner
+AAC owns native confirmation/capture and §5.2a ordering; its Rust capture owner
 supplies actual capture evidence to the Rust writer. Webview selection/presentation
 is never capture; only host-native confirmation of the immutable complete chosen
 statement/consequences captures. CAP-3 and RS evidence identity remain required;
@@ -594,6 +594,75 @@ tokens (`before_dispatch`, `output_produced`, `host_outcome`;
 `host_act_facility`, `app_act_control`, `grant_control`; V18-2 m-5). A
 human act is cited by its RS record identity (`rec:…`) with its kind,
 capture time (or "not supplied by host", R14-4) and capturing surface.
+
+**Open App recorder conditions.** The App counts corresponding current A4/A6/A7
+file acts and declines through each cited capture, with AAC §6.3 SEAL-C and RS
+correction relations; an unrelated file-naming record is an unresolvable limit,
+not an act. No App act binds an agent message, so an AW-6 arrival remains waiting.
+While the run is live, CE-10 is recorded for the App-file acts that answer an
+arrival's latest performance, with the before- and after-resume labels of
+§2.4.3. Later acts on decided arrivals (§4.6), including an act on lapsed
+referents after the resume point, and lapses and acts after run end (CE-10 *after
+run end*, CE-16) are not yet recorded: the App does not observe a run after its
+end. While the run is live, CE-13 is recorded for DEL-01-02's custody losses that
+name its conversation and CE-14 for a later readable recovery read; a deciding
+loss names no arrival and writes no *unknown* label, because which arrival a lost
+production would have been is not established. A loss or recovery of an App
+session that ended (a relaunch) is not recorded, and AW-12's "the named item never
+completes (`turn/completed` *interrupted* or *failed*)" without a process loss
+writes no CE-13. An output that declares a gating checkpoint shows, in its
+human-act facet, the act standing the record holds for that checkpoint's latest
+arrival, including *lapsed* (PH-8, RH-1; AS OV-5); with no `act_lapsed` it reads
+*not yet evaluated*, never *not lapsed*. An output with no gating checkpoint
+shows *unknown* acts once an act entry concerns an arrival bound to it, and an
+observation loss or recovery still makes every facet *unknown*. Host-operation
+and host-outcome arrivals stay not evaluable without mapping (ADAPTER NM-2),
+so no CE-7 arises; an empty waiting list establishes no wider completeness.
+
+**Disclosed App readings where EXEC is silent.** An App-file subject binding is
+taken to cover the referent (SP-5); prose scope is not parsed. The App's RFC 3339
+arrival/capture times distinguish earlier acts, with equal times treated as
+after-arrival; another time form is not counted. The latest decision of the
+required kind on current content governs by the owner's 2026-10-11 ruling in
+ACT §4.5; a decline counts only on current content. Other content methods are
+incomparable (SB-1), not "act on other content". Paths normalize `.` and repeated
+separators; `..` never matches, and linked directories resolve as the act control
+resolves them. AW-7 reads one non-blocking regular-file snapshot up to 256 MiB
+with that limit. CE-4 uses App observation time and a conversation-item reference,
+not structured act meaning from a person-input request. AW-3 uses agent
+`collabAgentToolCall` items, not `subAgentActivity`. Act records are reread only
+when log/capture path, size or modification time changes. For CE-10 the App reads
+the act's bound file at each live observation and when the person ends the run;
+a file is rehashed only when its device, inode, size or modification or change
+time changes, or within two seconds of its change time. The resume point is the
+recorded `run_resumed` after the latest performance; without one a lapse is *before
+resume*. For a *performed* arrival the file is read after every item an observation
+delivers, so a resume point in that observation precedes the lapse; for one waiting
+again after a lapse it is read before acts are counted, so an act on the newest
+content counts. An unknown state is written once and
+changes no label; content back at c₀ is written and changes no label (RS U-12). A
+lapse whose label was not written gets it at the next observation. For CE-13 and
+CE-14 the custody events reach the recorder with the native view of the record
+tick and of the End run paths; in this App session the run current in a named
+conversation is its open run (one at a time, RE-7), and a loss counts for it from
+the generation it opened in on. A loss is *deciding* when an item it left in flight
+in the run may be a listed checkpoint's named event: a message whose streamed text
+(the native view's untruncated preview) has no settled first line other than the
+designating line (AW-6), or a file change whose received changes do not exclude the
+declared path (AW-7); a call's start is an arrival already observed (AW-3). CE-14
+is written only for a recovery read *accessible* matched to a recorded loss of the
+run not yet recovered whose live turns are the turns the read reports, because the
+custody event names no lost generation; two losses with the same live turns, or
+none, are not told apart. The reads list turns and return no item, so they decide
+nothing and no label changes. A conversation with no App index (no custody home)
+gets no custody `observation_lost` (RECOVERY close keeps only a limit), so its run
+records no CE-13. Each entry names its custody event, by which a repeated
+observation is not written again. After a lapse,
+acts count against the content the latest determinate lapse read; an act already
+cited for the arrival, such as one recorded "act on other content", is not
+reconsidered when the content later becomes the content it was made on (§4.6, the
+first decides). These interpretations
+remain disclosed pending governing treatment; they add no acceptance rule.
 
 #### 2.4.3 Transition table (per arrival, current phase)
 
@@ -877,7 +946,7 @@ and its own run records (the run opened last with no `run_ended`), because
 DEL-01-02 stores tags without interpreting them and does not know which run
 is current (R17-10). If the tag could not be stored, the lookup returns nothing after a
 relaunch and RE-4's fallback applies. The recorder only reads what is
-delivered. **In the App (CI-20 (d)):** the run starter's tag owner token is
+delivered. **In the App (EXEC §2.7 run tags):** the run starter's tag owner token is
 `DEL-02-03`, and the value is the run reference. The tag is written when the
 App writer takes up `run_opened` for writing, before the write itself; a
 `run_opened` never written leaves a tag naming no recorded run, and the
@@ -901,6 +970,12 @@ Nothing in §2.4–§2.6 depends on the choice; a host's use of the same meaning
 (LOOP §2.4) is the part the choice would affect.
 
 ---
+
+**Open restart continuation conditions.** REC run tags and RS App-restart
+interruption limits are implemented. No automatic RE-4 run-owner end
+"interruption not recovered" is written. The interruption writer runs once at
+startup; failed writes retry only on next startup, and a home attached after
+startup is uncovered.
 
 ## 3. Required-tool compatibility report (REQ-001; AC-001; VER-001)
 
@@ -946,6 +1021,28 @@ occasion produces a new report (E-E).
 | CR-12 | **Limitations** | E.g. "exposure is a fixture assumption (FXA-1)"; "version compatibility: equality only"; "destination catalog not available"; "evaluated on a test double"; and, for a governed checkpoint in a host loop (governance phase), the residual after-observation limit for kinds (b) and (c) that LOOP §2.4.4 states as a limit, not as a separate value (F-27) |
 | CR-13 | **Evidence standing** | C's evidence-label mapping (illustrative / test-double / actual host) |
 | CR-14 | **Model destination** (App runs on X) | The destination selected **at report time**, local or cloud, shown as information only. That host content may flow to the selected model with no gate is SETTLED by DECISION-2 (D5). Recording and showing it is **SETTLED**: the DECISION-2 reading confirmed by the owner (SCA-V4-001 OWNER_ITEMS O-10, accepted at `APP-V4-BASIS-ALIGN-20260928` DECISION-7; R9-4; R10-11) (R5-4). Per-turn recording belongs to the run record (§6.1), not to the report. Never an outcome, a gate or a pass condition |
+
+**Open report representation conditions.** The current closed report schema
+cannot represent unrecognized required-tool `class`/`necessity` or checkpoint
+act, reached-when, subject, held-actions and `governed` fields. Publication
+refuses with the element instead of dropping or guessing it; advisory checks
+retain *not established*, while an unrepresentable checkpoint does not alter
+Phase-1 checking (PH-3). CR-2 has no `revision_method`; the App states it in
+limitations. Required host/catalog/channel facts have no selected meaning for
+an App-only run with no external host, so absent facts refuse publication.
+WD §3.4 treatment of an unrecognized optional element as *not established*
+remains in tension with PS-5 and the older compatibility check's optional
+handling. These choices remain open with the EXEC owner; no schema widening
+is adopted.
+
+**Open actual report wiring.** CK-1/CK-2 evaluate the prepared run's own selection,
+home/generation/conversation and display their result without gating a start.
+No actual environment collector or catalog edition is observed; origins remain
+caller-supplied *illustrative* or *test_double*, publication refuses, and CK-3
+is not evaluated. A role binding without generation supplies no invented one.
+Even a publishable report has no App report store, so RS R14 cannot be supplied;
+RS §13.3 retains that open receiving condition. An unobserved channel/catalog
+is not silently mapped to a permitted value.
 
 ### 3.4 Evaluation order per required tool reference
 
@@ -2278,3 +2375,15 @@ INPUT or HELD.
 Limit: passing these later would show local contract and fixture conformance
 only. It would establish no host implementation, round-trip execution,
 provider adoption or human act (SoW VER-007; AX-002).
+
+## Current implementation conditions
+
+**Open implementation conditions — run identity and continuation.** The App
+mints `run:workflow:<uuid>` until EXEC supplies or adopts the run identity WR
+§16.1–16.2 requires. Observed start writes `run_opened`, and the person's
+explicit end writes `run_ended`; any later EXEC identity must not relabel
+already recorded runs. Unknown start records no opening and is not live, even
+when its text may be in native history. A held sequential end exists only in
+process until the successor outcome; process loss reopens the predecessor as
+open/interrupted and requires a fresh end. WR §16 records the unresolved
+unknown-successor cause and relaunch-predecessor chaining treatment.

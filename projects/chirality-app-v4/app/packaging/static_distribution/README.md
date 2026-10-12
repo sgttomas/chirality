@@ -24,6 +24,15 @@ stdout: exit 0 for consistent or explicitly incomplete support reports, 1 for
 mismatch, 2 for refusal. Exit 0 is
 never qualification, release registration, or runtime verification.
 
+## Build-selection scanner compatibility
+
+The opt-in build-selection preflight adds the compiled S3 selection and
+mismatch explanation helper. The consumed `scan`/`equal` algorithms and
+`distribution-static` CLI remain the same. Static support checks the selected
+scanner executable's exact bytes and its actual operational inputs; unread
+Rust source and Design text are not reader inputs. The connected fixture suite
+uses the built scanner and preserves the canonical S1 comparison behavior.
+
 ## Exact input contract
 
 The request is a closed JSON object with `format: "static-distribution-input/1"`:
@@ -57,8 +66,11 @@ content is never opened or interpreted as another dependency.
 
 ## Claims and limits
 
-The new private `sources.json` selects the canonical S1 Design cohort and its
-actual legacy/schema/model dependencies. It does not repin the old producer.
+The private `sources.json` selects the canonical publication, model, schemas
+and actual imported/data dependencies. Unread Design prose, Rust preflight
+source and model test code are not operational inputs to this command. The
+selected scanner executable has its own exact byte identity. The frozen
+canonical publication and old producer are unchanged.
 Guarded source code and all selected inputs are copied to a private snapshot;
 the canonical model executes against those copies. Originals and scanner bytes
 are rechecked, and measured trees rescanned, before the report is returned.

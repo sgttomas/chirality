@@ -50,7 +50,7 @@ fn view(items: Vec<Value>) -> Value {
     json!({"home":"native-home","generation":g(1),"items":items})
 }
 fn scope<'a>(root: &'a std::path::Path) -> RunScope<'a> {
-    RunScope { home: "native-home", conversation: "thread", start: crate::run_offers::RunStart::At(1), project_root: root }
+    RunScope { home: "native-home", conversation: "thread", start: crate::run_offers::RunStart::At(1), project_root: root, start_spawn: 1 }
 }
 fn validator() -> jsonschema::Validator {
     let schema: Value = serde_json::from_str(include_str!("../schemas/checkpoint-record-entries.schema.json")).unwrap();
@@ -331,7 +331,7 @@ fn acts_after_the_arrival_are_counted_against_the_files_content() {
     assert_eq!(outputs[5].1["annotations"][0]["label"], "act on other content");
     assert_eq!(outputs[6].1, json!({"arrival":arrival,"act":{"recordId":rely,"actKind":"A7","capturedAt":LATER,"capturingSurface":"app_act_control"},"relation":"after arrival","referents":[RELY]}));
     assert_eq!(outputs[7].1, json!({"arrival":arrival,"disposition":"performed","performanceOrdinal":1,"answeredBy":[rely],"annotations":[]}));
-    assert!(waiting_arrivals(&all).is_empty(), "the performed arrival is not listed as waiting (CI-20 (h))");
+    assert!(waiting_arrivals(&all).is_empty(), "the performed arrival is not listed as waiting (AAC §6.3 / EXEC §2.4–2.5)");
     assert!(count_acts(&all, &read, &root).is_empty(), "rebuildable: acts already cited are not read again (RC-10)");
     // While the arrival still waits, an act already not counted is not cited again.
     let waiting: Vec<Value> = all.iter().take_while(|e| e["kind"] != "act_counted").cloned().collect();
@@ -362,7 +362,7 @@ fn earlier_acts_count_only_on_current_content() {
     std::fs::remove_dir_all(root).unwrap();
 }
 
-// m-3 (CI-20 (h) reading): before the arrival, the latest decision of the required kind on the
+// m-3 (AAC §6.3 / EXEC §2.4–2.5 reading): before the arrival, the latest decision of the required kind on the
 // current content governs; an earlier one on that content is superseded.
 #[test]
 fn the_latest_decision_before_the_arrival_governs() {
@@ -450,7 +450,7 @@ fn records_not_verified_against_their_capture_count_nothing() {
     std::fs::remove_dir_all(root).unwrap();
 }
 
-// CI-20 (h) R-1 (AAC §6.3 SEAL-C): a record and a capture written by anything but the
+// AAC §6.3 / EXEC §2.4–2.5 R-1 (AAC §6.3 SEAL-C): a record and a capture written by anything but the
 // App act control count nothing in checkpoint counting or the file-act view, each refused
 // with its stated limit: a forged record with a valid-looking capture carrying a seal that
 // does not verify, a legacy capture without a seal, and a capture sealed by another
@@ -700,8 +700,12 @@ fn unreadable_act_records_are_retried_and_counted_later() {
     assert!(recorder.view()["actsLimit"].is_null());
     all.extend(entries(&second));
     let mut reads = 0;
-    assert!(recorder.observe(&file_view(), &scope(&root), &all, &mut || { reads += 1; Ok(ActRead::default()) }).is_empty());
-    assert_eq!(reads, 0, "nothing waits, so nothing is read");
+    assert!(recorder.observe(&file_view(), &scope(&root), &all, &mut || { reads += 1; Ok(read.clone()) }).is_empty(), "the content is unchanged: no lapse");
+    assert_eq!(reads, 1, "nothing waits, but the performing act is read once to compare its content (CE-10)");
+    // A read that fails at a performed arrival claims no lapse and no currency (A-10).
+    std::fs::write(&file, "v2").unwrap();
+    assert!(recorder.observe(&file_view(), &scope(&root), &all, &mut || Err("incomplete".into())).is_empty());
+    assert!(recorder.view()["actsLimit"].as_str().unwrap().contains("no lapse observed"));
     std::fs::remove_dir_all(root).unwrap();
 }
 
@@ -814,4 +818,516 @@ fn harness_capability_calls_arrive_at_item_start() {
     assert_eq!(arrival["event"]["evidencedTime"]["source"], "supplier_item_time");
     assert_eq!(arrival["limits"][0], CALL_LIMIT);
     assert_eq!(arrival["referents"][0]["content"]["notObtainable"], true);
+}
+
+// ---- Lapses (CE-10; RC-8, PH-8, A-10; RS L-1…L-6, L-11, L-12) ----
+
+fn cp_rely() -> Value {
+    json!({"checkpoint":"CP-rely","arrivalOrdinal":1})
+}
+/// A run whose file arrival CP-rely is *performed* by an A7 on "v1" captured
+/// after the arrival: the recorder, the run's entries so far and the act.
+fn performed_run(root: &std::path::Path) -> (CheckpointRecorder, Vec<Value>, String) {
+    let rely = act(root, "A7", &root.join("out/summary.md"), "v1", AFTER);
+    let read = project_act_records(root).unwrap();
+    let (mut recorder, listed) = CheckpointRecorder::start(Ok(declaration()));
+    let outputs = recorder.observe(&file_view(), &scope(root), &entries(&listed), &mut || Ok(read.clone()));
+    assert_eq!(kinds(&outputs), ["checkpoint_arrival", "disposition_change", "act_counted", "disposition_change"]);
+    let mut all = entries(&listed);
+    all.extend(entries(&outputs));
+    (recorder, all, rely)
+}
+/// Observes `view` again with the project's act records as read now; every
+/// output is checked and appended to the run's entries.
+fn again(recorder: &mut CheckpointRecorder, root: &std::path::Path, view: &Value, all: &mut Vec<Value>) -> Vec<Output> {
+    let read = project_act_records(root).unwrap();
+    let outputs = recorder.observe(view, &scope(root), all, &mut || Ok(read.clone()));
+    conformant(&outputs);
+    all.extend(entries(&outputs));
+    outputs
+}
+/// The file view with an agent command started at 15:36:40, after the act at 15:00.
+fn resumed_view() -> Value {
+    let mut items = file_view()["items"].as_array().unwrap().clone();
+    let mut c = row("turn-1", command("c1", "agent"), 3, Some(30), None);
+    c["sourceFrame"] = json!({"method":"item/started","params":{"startedAtMs":1_790_005_000_000i64}});
+    items.push(c);
+    view(items)
+}
+fn file_str(root: &std::path::Path) -> String {
+    root.join("out/summary.md").to_str().unwrap().to_owned()
+}
+
+// Before the resume point a changed file lapses the performing act: *waiting*,
+// "waiting — lapsed at ‹t›" (RC-8, R2-19). A repeated observation writes nothing; an act
+// on the current content then performs the same arrival with the next ordinal (RS L-12).
+#[test]
+fn a_lapse_before_resume_makes_the_arrival_waiting_again() {
+    let root = project("v1");
+    let (mut recorder, mut all, rely) = performed_run(&root);
+    assert!(again(&mut recorder, &root, &file_view(), &mut all).is_empty(), "unchanged content: no lapse");
+    std::fs::write(root.join("out/summary.md"), "v2").unwrap();
+    let outputs = again(&mut recorder, &root, &file_view(), &mut all);
+    assert_eq!(kinds(&outputs), ["act_lapsed", "disposition_change"], "{outputs:#?}");
+    let lapse = &outputs[0].1;
+    let time = lapse["time"].as_str().unwrap();
+    assert!(comparable(time), "the observation's own time: {time}");
+    assert_eq!(lapse, &json!({"act":{"recordId":rely,"actKind":"A7","capturedAt":AFTER,"capturingSurface":"app_act_control"},"state":"lapsed",
+        "referents":[file_str(&root)],"c0":digest("v1"),"c1":digest("v2"),"time":time,"arrival":cp_rely(),"when":"before resume"}));
+    assert_eq!(outputs[1].1, json!({"arrival":cp_rely(),"disposition":"waiting","annotations":[{"label":"waiting — lapsed at","actRefs":[rely],"time":time,"referents":[RELY]}]}));
+    assert!(again(&mut recorder, &root, &file_view(), &mut all).is_empty(), "the same observation is not written again");
+    assert_eq!(waiting_arrivals(&all), vec![cp_rely()], "CE-17 would list it as waiting");
+    // The act on the old content is not counted again; an act on the current content is.
+    let next = act(&root, "A7", &root.join("out/summary.md"), "v2", LATER);
+    let outputs = again(&mut recorder, &root, &file_view(), &mut all);
+    assert_eq!(kinds(&outputs), ["act_counted", "disposition_change"], "{outputs:#?}");
+    assert_eq!(outputs[0].1["act"]["recordId"], next.as_str());
+    assert_eq!((outputs[1].1["performanceOrdinal"].as_u64(), &outputs[1].1["answeredBy"]), (Some(2), &json!([next])));
+    // A new resume point follows the new performance (HD-5).
+    let outputs = again(&mut recorder, &root, &{
+        let mut v = resumed_view();
+        v["items"][2]["sourceFrame"]["params"]["startedAtMs"] = json!(1_790_010_000_000i64); // 17:00, after the act at 16:00
+        v
+    }, &mut all);
+    assert_eq!(kinds(&outputs), ["run_resumed"], "{outputs:#?}");
+    std::fs::remove_dir_all(root).unwrap();
+}
+
+// After the resume point the lapse is recorded and nothing re-holds: the arrival stays
+// *performed* with "act lapsed at ‹t›", its ordinal and its act (RC-8, PH-8); a later
+// change is a new observation; a later act is not recorded against the performed arrival.
+#[test]
+fn a_lapse_after_resume_is_recorded_and_nothing_re_holds() {
+    let root = project("v1");
+    let (mut recorder, mut all, rely) = performed_run(&root);
+    assert_eq!(kinds(&again(&mut recorder, &root, &resumed_view(), &mut all)), ["run_resumed"]);
+    std::fs::write(root.join("out/summary.md"), "v2").unwrap();
+    let outputs = again(&mut recorder, &root, &resumed_view(), &mut all);
+    assert_eq!(kinds(&outputs), ["act_lapsed", "disposition_change"], "{outputs:#?}");
+    let time = outputs[0].1["time"].clone();
+    assert_eq!((outputs[0].1["when"].as_str(), outputs[0].1["state"].as_str()), (Some("after resume"), Some("lapsed")));
+    assert_eq!(outputs[1].1, json!({"arrival":cp_rely(),"disposition":"performed","performanceOrdinal":1,"answeredBy":[rely],
+        "annotations":[{"label":"act lapsed at","actRefs":[rely],"time":time,"referents":[RELY]}]}));
+    assert!(waiting_arrivals(&all).is_empty(), "nothing says waiting after the resume point");
+    assert!(again(&mut recorder, &root, &resumed_view(), &mut all).is_empty());
+    act(&root, "A7", &root.join("out/summary.md"), "v2", LATER);
+    assert!(again(&mut recorder, &root, &resumed_view(), &mut all).is_empty(), "later acts are not recorded against a performed arrival");
+    std::fs::write(root.join("out/summary.md"), "v3").unwrap();
+    let outputs = again(&mut recorder, &root, &resumed_view(), &mut all);
+    assert_eq!(kinds(&outputs), ["act_lapsed", "disposition_change"]);
+    assert_eq!((outputs[0].1["c1"].clone(), outputs[1].1["disposition"].as_str()), (digest("v3"), Some("performed")));
+    std::fs::remove_dir_all(root).unwrap();
+}
+
+// A waiting arrival whose counted act's referent changes again: the act lapses against the
+// new content (EXEC §2.4.3 "waiting | CE-10"), and an act counts only on the content now
+// current: one on the content of the first lapse is "act on other content".
+#[test]
+fn a_waiting_arrival_follows_its_referents_current_content() {
+    let root = project("v1");
+    let (mut recorder, mut all, _) = performed_run(&root);
+    std::fs::write(root.join("out/summary.md"), "v2").unwrap();
+    assert_eq!(kinds(&again(&mut recorder, &root, &file_view(), &mut all)), ["act_lapsed", "disposition_change"]);
+    std::fs::write(root.join("out/summary.md"), "v3").unwrap();
+    let outputs = again(&mut recorder, &root, &file_view(), &mut all);
+    assert_eq!(kinds(&outputs), ["act_lapsed", "disposition_change"], "{outputs:#?}");
+    assert_eq!((outputs[0].1["c0"].clone(), outputs[0].1["c1"].clone(), outputs[0].1["when"].as_str()), (digest("v1"), digest("v3"), Some("before resume")));
+    assert_eq!(outputs[1].1["disposition"], "waiting");
+    let stale = act(&root, "A7", &root.join("out/summary.md"), "v2", LATER);
+    let outputs = again(&mut recorder, &root, &file_view(), &mut all);
+    assert_eq!(kinds(&outputs), ["act_not_counted", "disposition_change"], "{outputs:#?}");
+    assert_eq!((outputs[0].1["act"]["recordId"].as_str(), outputs[0].1["reason"].as_str()), (Some(stale.as_str()), Some("act on other content")));
+    assert_eq!(waiting_arrivals(&all), vec![cp_rely()]);
+    std::fs::remove_dir_all(root).unwrap();
+}
+
+// RS L-4, §4.7: a missing file is "lapsed (subject absent)", waiting "subject absent", and no
+// act counts while it is absent; RS L-11: the content back at c0 after the observed lapse is
+// "matches c0 again after observed lapse", which changes no label (its effect is RS U-12).
+#[test]
+fn an_absent_subject_and_content_back_at_c0() {
+    let root = project("v1");
+    let (mut recorder, mut all, _) = performed_run(&root);
+    std::fs::remove_file(root.join("out/summary.md")).unwrap();
+    let outputs = again(&mut recorder, &root, &file_view(), &mut all);
+    assert_eq!(kinds(&outputs), ["act_lapsed", "disposition_change"], "{outputs:#?}");
+    assert_eq!((outputs[0].1["state"].as_str(), &outputs[0].1["c1"]), (Some("lapsed (subject absent)"), &json!("subject absent")));
+    let labels: Vec<&str> = outputs[1].1["annotations"].as_array().unwrap().iter().map(|a| a["label"].as_str().unwrap()).collect();
+    assert_eq!((outputs[1].1["disposition"].as_str(), labels), (Some("waiting"), vec!["waiting — lapsed at", "subject absent"]));
+    assert!(again(&mut recorder, &root, &file_view(), &mut all).is_empty());
+    std::fs::write(root.join("out/summary.md"), "v1").unwrap();
+    let outputs = again(&mut recorder, &root, &file_view(), &mut all);
+    assert_eq!(kinds(&outputs), ["act_lapsed"], "{outputs:#?}");
+    assert_eq!((outputs[0].1["state"].as_str(), outputs[0].1["c1"].clone()), (Some("matches c0 again after observed lapse"), digest("v1")));
+    assert!(again(&mut recorder, &root, &file_view(), &mut all).is_empty(), "repeated: nothing");
+    assert_eq!(waiting_arrivals(&all), vec![cp_rely()], "the label stays as the lapse left it");
+    std::fs::write(root.join("out/summary.md"), "v2").unwrap();
+    let outputs = again(&mut recorder, &root, &file_view(), &mut all);
+    assert_eq!(kinds(&outputs), ["act_lapsed", "disposition_change"], "a change after the match is a new lapse: {outputs:#?}");
+    assert_eq!(outputs[0].1["c1"], digest("v2"));
+    std::fs::remove_dir_all(root).unwrap();
+}
+
+// A-10 (RS L-2, L-3): a file that cannot be read, or an identity under another method, is
+// lapse state *unknown*: written once, with no label change, so neither lapse nor currency
+// is claimed; a known state afterwards that equals the last known one is not written again.
+#[test]
+fn unavailable_or_incomparable_content_claims_no_lapse() {
+    let root = project("v1");
+    let (mut recorder, mut all, _) = performed_run(&root);
+    let path = root.join("out/summary.md");
+    std::fs::remove_file(&path).unwrap();
+    std::fs::create_dir(&path).unwrap();
+    let outputs = again(&mut recorder, &root, &file_view(), &mut all);
+    assert_eq!(kinds(&outputs), ["act_lapsed"], "{outputs:#?}");
+    assert_eq!(outputs[0].1["state"], "unknown (unavailable)");
+    assert_eq!(outputs[0].1["c1"]["notObtainable"], true);
+    assert!(outputs[0].1["c1"]["reason"].as_str().unwrap().starts_with("not a regular file"));
+    assert!(again(&mut recorder, &root, &file_view(), &mut all).is_empty(), "written once");
+    assert!(waiting_arrivals(&all).is_empty(), "still performed");
+    std::fs::remove_dir(&path).unwrap();
+    std::fs::write(&path, "v1").unwrap();
+    assert!(again(&mut recorder, &root, &file_view(), &mut all).is_empty(), "back to the bound content: not lapsed, nothing written");
+    // Another method designation (SB-1), observed directly: unknown (incomparable).
+    let id = "rec:app:legacy-act";
+    let arrival = json!({"checkpoint":"CP-rely","arrivalOrdinal":1,"referents":[{"subject":RELY,"content":digest("v1")}]});
+    let legacy = json!({"method":crate::util::LEGACY_FILE_IDENTITY_METHOD,"value":crate::util::sha256_hex(b"v1")});
+    let run = vec![json!({"kind":"checkpoint_arrival","body":arrival}),
+        json!({"kind":"disposition_change","body":{"arrival":cp_rely(),"disposition":"performed","performanceOrdinal":1,"answeredBy":[id]}})];
+    let read = ActRead { acts: vec![json!({"record":{"kind":"human_act","recordId":id,"body":{"actKind":"A7","captureTime":AFTER,"boundSubject":[file_str(&root)],"boundContent":[legacy]}}})], unresolved: vec![] };
+    let mut reads = Vec::new();
+    let outputs = observe_lapses(&run, &read, AFTER, &mut |p| { reads.push(p.to_path_buf()); Current::Present(crate::util::sha256_hex(b"v2")) });
+    valid(&outputs);
+    assert_eq!(kinds(&outputs), ["act_lapsed"]);
+    assert_eq!((outputs[0].1["state"].as_str(), outputs[0].1["c0"].clone()), (Some("unknown (incomparable)"), legacy));
+    assert_eq!(reads, [path.clone()], "the act's bound subject is read, as the act record names it");
+    // An act that is no longer a current verified act is not compared at all.
+    assert!(observe_lapses(&run, &ActRead::default(), AFTER, &mut |_| unreachable!()).is_empty());
+    std::fs::remove_dir_all(root).unwrap();
+}
+
+// The bound file is hashed again only when its metadata stamp changes (a change of bytes
+// changes its size or change time), and always while its change time is this recent.
+#[test]
+fn bound_files_are_read_again_only_when_their_stamp_changes() {
+    let root = project("v1");
+    let path = root.join("out/summary.md");
+    let key = path.to_str().unwrap().to_owned();
+    let mut cache = std::collections::BTreeMap::new();
+    assert_eq!(cached_content(&mut cache, &root, &path), Current::Present(crate::util::sha256_hex(b"v1")));
+    cache.get_mut(&key).unwrap().value = "cached".into();
+    assert_eq!(cached_content(&mut cache, &root, &path), Current::Present(crate::util::sha256_hex(b"v1")), "read within the change time's second: read again");
+    let seen = cache.get_mut(&key).unwrap();
+    seen.value = "cached".into();
+    seen.read_at = seen.stamp.5 + 2;
+    assert_eq!(cached_content(&mut cache, &root, &path), Current::Present("cached".into()), "unchanged stamp, read well after the change: not read");
+    std::fs::write(&path, "v22").unwrap();
+    assert_eq!(cached_content(&mut cache, &root, &path), Current::Present(crate::util::sha256_hex(b"v22")));
+    std::fs::remove_file(&path).unwrap();
+    assert_eq!(cached_content(&mut cache, &root, &path), Current::Absent);
+    assert!(cache.is_empty());
+    assert!(matches!(current_content(&root, std::path::Path::new("/etc/hosts")), Current::Unavailable(_)), "outside the project is never absent or read");
+    std::fs::remove_dir_all(root).unwrap();
+}
+
+// At the person's end, a lapse since the last observation is written before the end with its
+// own time, and the arrival it made waiting is listed by run_ended (CE-17).
+#[test]
+fn the_end_observes_lapses_before_counting() {
+    let root = project("v1");
+    let (_, all, _) = performed_run(&root);
+    assert!(end_observations(&all, &root).is_empty(), "nothing changed, nothing waits");
+    std::fs::write(root.join("out/summary.md"), "v2").unwrap();
+    let rely = act(&root, "A7", &root.join("out/summary.md"), "v2", LATER);
+    let outputs = end_observations(&all, &root);
+    conformant(&outputs);
+    assert_eq!(kinds(&outputs), ["act_lapsed", "disposition_change", "act_counted", "disposition_change"], "lapsed, then counted on the current content: {outputs:#?}");
+    assert_eq!((outputs[2].1["act"]["recordId"].as_str(), outputs[3].1["performanceOrdinal"].as_u64()), (Some(rely.as_str()), Some(2)));
+    std::fs::write(root.join("out/summary.md"), "v3").unwrap();
+    let mut ended = all.clone();
+    ended.extend(entries(&outputs));
+    let outputs = end_observations(&ended, &root);
+    assert_eq!(kinds(&outputs), ["act_lapsed", "disposition_change"]);
+    ended.extend(entries(&outputs));
+    assert_eq!(waiting_arrivals(&ended), vec![cp_rely()]);
+    std::fs::remove_dir_all(root).unwrap();
+}
+
+// B-1 (RC-8, HD-5, PH-7): when one observation delivers the run's first action after the act
+// and the file has also changed, the resume point is recorded first and the lapse, read
+// after every delivered item, is *after resume*: performed "act lapsed at", no continued_past.
+#[test]
+fn a_resume_and_a_lapse_in_one_observation_record_the_resume_first() {
+    let root = project("v1");
+    let (mut recorder, mut all, rely) = performed_run(&root);
+    std::fs::write(root.join("out/summary.md"), "v2").unwrap();
+    let outputs = again(&mut recorder, &root, &resumed_view(), &mut all);
+    assert_eq!(kinds(&outputs), ["run_resumed", "act_lapsed", "disposition_change"], "{outputs:#?}");
+    assert_eq!(outputs[1].1["when"], "after resume");
+    assert_eq!((outputs[2].1["disposition"].as_str(), outputs[2].1["annotations"][0]["label"].as_str(), &outputs[2].1["answeredBy"]), (Some("performed"), Some("act lapsed at"), &json!([rely])));
+    assert!(waiting_arrivals(&all).is_empty());
+    // A lapse before any run action, then an act on the new content in the same observation:
+    // the lapse is read after the items and the act is counted against the content now current.
+    let root2 = project("v1");
+    let (mut recorder, mut all, _) = performed_run(&root2);
+    std::fs::write(root2.join("out/summary.md"), "v2").unwrap();
+    let next = act(&root2, "A7", &root2.join("out/summary.md"), "v2", LATER);
+    let outputs = again(&mut recorder, &root2, &file_view(), &mut all);
+    assert_eq!(kinds(&outputs), ["act_lapsed", "disposition_change", "act_counted", "disposition_change"], "{outputs:#?}");
+    assert_eq!((outputs[2].1["act"]["recordId"].as_str(), outputs[3].1["performanceOrdinal"].as_u64()), (Some(next.as_str()), Some(2)));
+    std::fs::remove_dir_all(root).unwrap();
+    std::fs::remove_dir_all(root2).unwrap();
+}
+
+// N-1 (EXEC §2.4.3, RH-2): an arrival waiting after a lapse whose file changes again and gets
+// an act on the new content within one observation: the new content is read before acts are
+// counted, so the act is counted (performed, ordinal 2), never "act on other content".
+#[test]
+fn a_waiting_arrivals_new_content_is_read_before_acts_are_counted() {
+    let root = project("v1");
+    let (mut recorder, mut all, _) = performed_run(&root);
+    std::fs::write(root.join("out/summary.md"), "v2").unwrap();
+    assert_eq!(kinds(&again(&mut recorder, &root, &file_view(), &mut all)), ["act_lapsed", "disposition_change"]);
+    std::fs::write(root.join("out/summary.md"), "v3").unwrap();
+    let next = act(&root, "A7", &root.join("out/summary.md"), "v3", LATER);
+    for view in [file_view(), resumed_view()] {
+        let (mut recorder, mut all) = (recorder.clone(), all.clone());
+        let outputs = again(&mut recorder, &root, &view, &mut all);
+        let shown: Vec<&str> = kinds(&outputs).into_iter().filter(|k| *k != "continued_past" && *k != "run_resumed").collect();
+        assert_eq!(shown, ["act_lapsed", "disposition_change", "act_counted", "disposition_change"], "{outputs:#?}");
+        assert_eq!((outputs[0].1["c1"].clone(), outputs[0].1["when"].as_str()), (digest("v3"), Some("before resume")));
+        let counted = outputs.iter().find(|(k, _)| *k == "act_counted").unwrap();
+        assert_eq!(counted.1["act"]["recordId"], next.as_str());
+        assert!(!kinds(&outputs).contains(&"act_not_counted"));
+        assert!(waiting_arrivals(&all).is_empty());
+        let after = again(&mut recorder, &root, &view, &mut all);
+        assert!(after.iter().all(|(k, _)| *k == "run_resumed"), "{after:#?}");
+    }
+    std::fs::remove_dir_all(root).unwrap();
+}
+
+// M-1 (RS W-2): an act_lapsed whose label was not written (an end after relaunch appends entry
+// by entry and stops at a failure) gets its label at the next observation, with the recorded
+// lapse's time; a labelled lapse gets none, so nothing is duplicated.
+#[test]
+fn a_recorded_lapse_without_its_label_is_labelled_once() {
+    let root = project("v1");
+    let (_, all, rely) = performed_run(&root);
+    std::fs::write(root.join("out/summary.md"), "v2").unwrap();
+    let outputs = end_observations(&all, &root);
+    assert_eq!(kinds(&outputs), ["act_lapsed", "disposition_change"]);
+    let mut partial = all.clone();
+    partial.extend(entries(&outputs[..1]));
+    let repaired = end_observations(&partial, &root);
+    conformant(&repaired);
+    assert_eq!(kinds(&repaired), ["disposition_change"], "{repaired:#?}");
+    assert_eq!(repaired[0].1, json!({"arrival":cp_rely(),"disposition":"waiting","annotations":[{"label":"waiting — lapsed at","actRefs":[rely],"time":outputs[0].1["time"],"referents":[RELY]}]}));
+    partial.extend(entries(&repaired));
+    assert_eq!(waiting_arrivals(&partial), vec![cp_rely()]);
+    assert!(end_observations(&partial, &root).is_empty(), "labelled: nothing more");
+    let mut whole = all.clone();
+    whole.extend(entries(&outputs));
+    assert!(end_observations(&whole, &root).is_empty());
+    std::fs::remove_dir_all(root).unwrap();
+}
+
+// ---- Observation lost and recovered (CE-13, CE-14; AE-6, AW-12, RP-1) ----
+
+fn gen_ref(counter: u64) -> String {
+    crate::recovery::generation_ref(&g(counter)).unwrap()
+}
+/// DEL-01-02's custody `observation_lost` for generation `counter`, naming `threads`.
+fn lost_event(id: &str, counter: u64, threads: &[&str], items: Vec<Value>) -> Value {
+    json!({"kind":"observation_lost","eventId":id,"appSession":"session","at":"2026-09-21T16:00:00.000Z","standing":"App-observed","home":"H-acct",
+        "generation":gen_ref(counter),"cause":"supplier-exit","conversations":threads,"liveTurns":[{"threadId":"thread","turnId":"turn-1"}],"inFlightItems":items,"outstandingEntries":[]})
+}
+fn in_flight(id: &str, kind: &str) -> Value {
+    json!({"threadId":"thread","turnId":"turn-1","itemId":id,"itemType":kind,"lastObservedStatus":"inProgress"})
+}
+/// DEL-01-02's custody `observation_recovered` read in generation `counter`.
+fn recovered_event(id: &str, counter: u64, prior: &str) -> Value {
+    let mut e = json!({"kind":"observation_recovered","eventId":id,"appSession":"session","at":"2026-09-21T16:05:00.000Z","standing":"App-observed","threadId":"thread","home":"H-acct",
+        "generation":gen_ref(counter),"via":"thread/read","priorEvents":prior,"turns":[{"turnId":"turn-1","supplierStatus":"interrupted","appReading":"recovered from Codex: interrupted"}]});
+    if prior == "unavailable" {
+        e["unavailableReason"] = json!("fixture: thread not found");
+    }
+    e
+}
+fn with_custody(mut v: Value, events: Vec<Value>) -> Value {
+    v["custodyEvents"] = json!(events);
+    v
+}
+
+// AE-6, AW-12: a loss naming the run's conversation is written once; it is deciding only
+// when an item it left in flight may be a listed checkpoint's named event. Nothing else is
+// written for it (no label, no arrival): which arrival it would be is not established.
+#[test]
+fn a_loss_is_written_once_and_deciding_only_for_a_possible_production() {
+    let root = std::path::PathBuf::from("/project/root");
+    // The native view's shape: the started text stays empty; streamed deltas are the preview.
+    let mut partial = row("turn-1", json!({"id":"m1","type":"agentMessage","text":""}), 2, Some(2), None);
+    partial["preview"] = json!("Spac");
+    let mut other = row("turn-1", json!({"id":"m2","type":"agentMessage","text":""}), 3, Some(3), None);
+    other["preview"] = json!("Working on it\nSpacing report");
+    let elsewhere = row("turn-1", json!({"id":"f2","type":"fileChange","status":"inProgress","changes":[{"path":"out/other.md","kind":{"type":"add"},"diff":""}]}), 4, Some(4), None);
+    let items = vec![start_row(), partial, other, elsewhere];
+    let cases = [
+        (vec![in_flight("c1", "commandExecution")], false),
+        (vec![in_flight("m2", "agentMessage")], false), // its first line is settled and is not the designating line
+        (vec![in_flight("f2", "fileChange")], false),   // its changes produce no declared path
+        (vec![in_flight("m1", "agentMessage")], true),  // "Spac" may still become "Spacing report"
+        (vec![in_flight("f9", "fileChange")], true),    // not in the view: its changes are not known
+    ];
+    for (n, (flight, deciding)) in cases.into_iter().enumerate() {
+        let (mut recorder, listed) = CheckpointRecorder::start(Ok(declaration()));
+        let id = format!("cev:lost:{n}");
+        let v = with_custody(view(items.clone()), vec![lost_event(&id, 1, &["thread"], flight)]);
+        let outputs = obs(&mut recorder, &v, &scope(&root), &entries(&listed));
+        conformant(&outputs);
+        assert_eq!(kinds(&outputs), ["observation_lost"], "case {n}: {outputs:#?}");
+        let body = &outputs[0].1;
+        assert_eq!(body["deciding"], deciding, "case {n}: {body}");
+        assert!(body["arrival"].is_null(), "no arrival is named");
+        assert!(body["scope"].as_str().unwrap().contains(&format!("(custody event {id})")));
+        assert!(body["cause"].as_str().unwrap().contains("supplier-exit"));
+        let mut all = entries(&listed);
+        all.extend(entries(&outputs));
+        assert!(obs(&mut recorder, &v, &scope(&root), &all).is_empty(), "case {n}: read once");
+        let (mut fresh, _) = CheckpointRecorder::start(Ok(declaration()));
+        assert!(obs(&mut fresh, &v, &scope(&root), &all).is_empty(), "case {n}: already in the record, not written again");
+        assert!(waiting_arrivals(&all).is_empty() && !kinds(&outputs).contains(&"disposition_change"));
+    }
+}
+
+// AE-6: a loss of another conversation, of a generation before the run opened, of another
+// App session or physical home is not this run's; a run with no listed checkpoint still
+// records its loss (RC-2).
+#[test]
+fn only_a_loss_of_the_runs_conversation_after_it_opened_is_its_own() {
+    let root = std::path::PathBuf::from("/project/root");
+    let items = vec![start_row()];
+    let mut foreign_session = lost_event("cev:s", 1, &["thread"], vec![]);
+    foreign_session["appSession"] = json!("earlier");
+    let mut foreign_home = lost_event("cev:h", 1, &["thread"], vec![]);
+    foreign_home["generation"] = json!(crate::recovery::generation_ref(&json!({"appSession":"session","home":"other-home","spawnCounter":1})).unwrap());
+    for (event, start_spawn) in [(lost_event("cev:o", 1, &["other-thread"], vec![]), 1), (lost_event("cev:1", 1, &["thread"], vec![]), 2), (foreign_session, 1), (foreign_home, 1)] {
+        let (mut recorder, listed) = CheckpointRecorder::start(Ok(declaration()));
+        let mut run = scope(&root);
+        run.start_spawn = start_spawn;
+        assert!(obs(&mut recorder, &with_custody(view(items.clone()), vec![event.clone()]), &run, &entries(&listed)).is_empty(), "{event}");
+    }
+    let (mut bare, none) = CheckpointRecorder::start(Err("bytes differ".into()));
+    assert!(none.is_empty());
+    let outputs = obs(&mut bare, &with_custody(view(items), vec![lost_event("cev:l", 2, &["thread", "other"], vec![])]), &scope(&root), &[]);
+    assert_eq!(kinds(&outputs), ["observation_lost"]);
+    assert_eq!(outputs[0].1["deciding"], false);
+}
+
+// CE-14 (RP-1): a recovery read of the run's conversation after its recorded loss is written
+// once with the read's own time; an unavailable read, or one with no loss recorded for the run
+// before it, writes nothing. It recovers no item, so no label changes and nothing is back-filled.
+#[test]
+fn a_recovery_is_written_once_after_a_recorded_loss() {
+    let root = std::path::PathBuf::from("/project/root");
+    let items = vec![start_row(), row("turn-1", message("m1", "Spacing report"), 2, Some(2), Some(3))];
+    let (mut recorder, listed) = CheckpointRecorder::start(Ok(declaration()));
+    let mut all = entries(&listed);
+    // A recovery with no loss of this run before it: nothing.
+    let early = with_custody(view(items.clone()), vec![recovered_event("cev:r0", 2, "accessible")]);
+    let outputs = obs(&mut recorder, &early, &scope(&root), &all);
+    assert_eq!(kinds(&outputs), ["checkpoint_arrival", "disposition_change"], "{outputs:#?}");
+    all.extend(entries(&outputs));
+    let events = vec![lost_event("cev:l1", 1, &["thread"], vec![in_flight("m9", "agentMessage")]), recovered_event("cev:r1", 2, "unavailable"), recovered_event("cev:r2", 2, "accessible"), recovered_event("cev:r3", 2, "accessible")];
+    let outputs = obs(&mut recorder, &with_custody(view(items.clone()), events.clone()), &scope(&root), &all);
+    conformant(&outputs);
+    assert_eq!(kinds(&outputs), ["observation_lost", "observation_recovered"], "{outputs:#?}");
+    assert_eq!(outputs[0].1["deciding"], true);
+    let scope_text = outputs[1].1["scope"].as_str().unwrap();
+    assert!(scope_text.contains("(custody event cev:r2)") && scope_text.contains("at 2026-09-21T16:05:00.000Z") && scope_text.contains("turn turn-1: Codex reports interrupted"), "{scope_text}");
+    assert!(outputs[1].1.get("arrival").is_none());
+    all.extend(entries(&outputs));
+    assert!(obs(&mut recorder, &with_custody(view(items.clone()), events.clone()), &scope(&root), &all).is_empty(), "read once");
+    let (mut fresh, _) = CheckpointRecorder::start(Ok(declaration()));
+    let again: Vec<Output> = obs(&mut fresh, &with_custody(view(items), events), &scope(&root), &all).into_iter().filter(|(k, _)| k.starts_with("observation")).collect();
+    assert!(again.is_empty(), "already recorded: {again:#?}");
+    assert_eq!(disposition(&all, &[], &json!({"checkpoint":"CP-check","arrivalOrdinal":1})).as_deref(), Some("waiting"), "no label changes");
+}
+
+// F-1: the in-flight message row as the native view itself builds it from item/started and
+// item/agentMessage/delta: the deltas decide, not the started text. A settled first line that
+// is not the designating line is not deciding; one still growing, or the designating line, is.
+#[test]
+fn a_loss_reads_the_native_views_streamed_message_text() {
+    let root = std::path::PathBuf::from("/project/root");
+    let decides = |deltas: &[&str]| {
+        let mut native = crate::native_items::NativeView::new("native-home".into()).unwrap();
+        native.ready(g(1), json!("codex 0.160.0"), json!("unverified-development")).unwrap();
+        let frames = [json!({"method":"turn/started","params":{"threadId":"thread","turn":{"id":"turn-1","status":"inProgress","items":[],"error":null,"itemsView":"summary"}}}),
+            json!({"method":"item/started","params":{"threadId":"thread","turnId":"turn-1","item":{"id":"m1","type":"agentMessage","text":""}}})];
+        let deltas = deltas.iter().map(|d| json!({"method":"item/agentMessage/delta","params":{"threadId":"thread","turnId":"turn-1","itemId":"m1","delta":d}}));
+        for (n, frame) in frames.into_iter().chain(deltas).enumerate() {
+            native.consume(&json!({"generation":g(1),"position":n + 1,"frame":frame})).unwrap();
+        }
+        let v = with_custody(native.snapshot(), vec![lost_event("cev:native", 1, &["thread"], vec![in_flight("m1", "agentMessage")])]);
+        let row = v["items"].as_array().unwrap().iter().find(|r| r["native"]["id"] == "m1").unwrap().clone();
+        assert_eq!(row["native"]["text"], "", "the started text stays as started: {row}");
+        let (mut recorder, listed) = CheckpointRecorder::start(Ok(declaration()));
+        let mut run = scope(&root);
+        run.start = crate::run_offers::RunStart::BeforeView; // the turn is in the run
+        let outputs: Vec<Output> = obs(&mut recorder, &v, &run, &entries(&listed)).into_iter().filter(|(k, _)| *k == "observation_lost").collect();
+        conformant(&outputs);
+        outputs[0].1["deciding"].as_bool().unwrap()
+    };
+    assert!(!decides(&["Working on it", "\nSp"]), "a settled first line other than the designating line");
+    assert!(decides(&["Spacing rep"]), "still growing");
+    assert!(decides(&["Spacing report\n", "The findings"]), "the designating line");
+    assert!(decides(&[]), "nothing received yet");
+    // A truncated preview has lost its start: its first line is not known.
+    let mut truncated = row("turn-1", json!({"id":"m1","type":"agentMessage","text":""}), 2, Some(2), None);
+    truncated["preview"] = json!("…tail\nmore");
+    truncated["previewTruncated"] = json!(true);
+    assert_eq!(received_text(&truncated), None);
+}
+
+// F-2: a recovery read is matched to a loss of this run by the turn it reports, the live turn
+// at that loss (the custody event names no lost generation): the recovery of a loss from
+// before the run, or one whose read was unavailable, is not this run's.
+#[test]
+fn a_recovery_matches_the_runs_loss_by_its_live_turn() {
+    let root = std::path::PathBuf::from("/project/root");
+    let mut run = scope(&root);
+    run.start_spawn = 2;
+    let mut before = lost_event("cev:g1", 1, &["thread"], vec![]);
+    before["liveTurns"] = json!([{"threadId":"thread","turnId":"turn-0"}]);
+    let mut of_before = recovered_event("cev:r-g1", 3, "accessible");
+    of_before["turns"][0]["turnId"] = json!("turn-0");
+    let mut events = vec![before, lost_event("cev:g2", 2, &["thread"], vec![]), of_before, recovered_event("cev:r-g2", 3, "unavailable")];
+    let (mut recorder, listed) = CheckpointRecorder::start(Ok(declaration()));
+    let mut all = entries(&listed);
+    let outputs = obs(&mut recorder, &with_custody(view(vec![start_row()]), events.clone()), &run, &all);
+    assert_eq!(kinds(&outputs), ["observation_lost"], "only g2's loss; g1's recovery is not this run's: {outputs:#?}");
+    all.extend(entries(&outputs));
+    events.push(recovered_event("cev:r-g2-retry", 3, "accessible"));
+    let outputs = obs(&mut recorder, &with_custody(view(vec![start_row()]), events), &run, &all);
+    conformant(&outputs);
+    assert_eq!(kinds(&outputs), ["observation_recovered"]);
+    assert!(outputs[0].1["scope"].as_str().unwrap().contains("(custody event cev:r-g2-retry)"));
+}
+
+// F-3: the loss names the stop or loss that ended the process (RECOVERY §2).
+#[test]
+fn a_loss_names_its_definition() {
+    for (cause, definition) in [("supplier-exit", "DEF-5 (b)"), ("supplier-stop", "DEF-5 (a)"), ("app-quit", "DEF-6"), ("system-termination", "DEF-5")] {
+        let mut event = lost_event("cev:c", 1, &["thread"], vec![]);
+        event["cause"] = json!(cause);
+        let body = lost_body(&event, "cev:c", "thread", &[]);
+        assert!(body["cause"].as_str().unwrap().contains(definition) && body["scope"].as_str().unwrap().contains(definition), "{cause}: {body}");
+    }
+}
+
+#[test]
+fn a_settled_first_line_needs_its_line_break() {
+    assert_eq!(settled_first_line("Spacing rep"), None);
+    assert_eq!(settled_first_line("\n  \n Spacing report \nrest"), Some("Spacing report"));
+    assert_eq!(settled_first_line("  \n"), None);
 }
