@@ -277,7 +277,7 @@
       "core/loads/stress_recovery/Cargo.toml": "56fc7d5c611c63a3d496e6000af9f19d8436937d40f2c2e82031a41980ddb33e",
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "6d185e6bc53e694aba1a53b9b21abaecba49e093bfeef043194de3b7c14f7e72",
-      "core/product_physics/Cargo.toml": "5c8bce2e590ca899c5e673efbe1e2263c845783bb2580ef53eb0b97fd992dda1",
+      "core/product_physics/Cargo.toml": "d8bce8b7add2d2e7b5229d737104f7306168a8a7780ca68170f52f107e58da5f",
       "core/reporting/audit_manifest/Cargo.toml": "7b941c18378533d99707ed00c6024df56d9e6ac09a85d4b22599aa3fab8754a5",
       "core/reporting/pdf_emitter/Cargo.toml": "24dc0377813b6895aa76a463d849179e35b5ab4e0330ddd0f9de343607def55c",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
