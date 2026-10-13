@@ -276,8 +276,8 @@
       "core/loads/self_weight_wasm/Cargo.toml": "9461ca9a1a2403d5ebcb29d710260f02d50c08528b5e1b20150bf9ba27a79cbe",
       "core/loads/stress_recovery/Cargo.toml": "56fc7d5c611c63a3d496e6000af9f19d8436937d40f2c2e82031a41980ddb33e",
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
-      "core/model_operations/operation_applier/Cargo.toml": "6d185e6bc53e694aba1a53b9b21abaecba49e093bfeef043194de3b7c14f7e72",
-      "core/product_physics/Cargo.toml": "cceb99a44480dfeb72aa7a9b2f6a2657d882bebe360c2377209ab476d76a1d82",
+      "core/model_operations/operation_applier/Cargo.toml": "e4ae56b557a9b3b0a90fbfe737a6ec6a8bdff8a332da85e5d24a26bab4d0336a",
+      "core/product_physics/Cargo.toml": "932497bd83cc17e6b83a30a1cb5889af492ec7bcc0e16db8dc9247ae13182a91",
       "core/reporting/audit_manifest/Cargo.toml": "7b941c18378533d99707ed00c6024df56d9e6ac09a85d4b22599aa3fab8754a5",
       "core/reporting/pdf_emitter/Cargo.toml": "24dc0377813b6895aa76a463d849179e35b5ab4e0330ddd0f9de343607def55c",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
@@ -285,7 +285,7 @@
       "core/reporting/report_package/Cargo.toml": "0d78c82a5360ece9a4122ec90dd31816c97f982dd528104aef0740b272a9e63d",
       "core/reporting/report_renderer/Cargo.toml": "fe19d0718b26f7d82c0ee8449eb5746561f7887b8eb7dd6e95de26dce192fde8",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
-      "core/reporting/result_export/Cargo.toml": "b9661bc5f1f2c418a3621d18c2d161bc45f809d56974bf2609a29369bb298fc7",
+      "core/reporting/result_export/Cargo.toml": "26db9466929e1c55c91bd519da18b9201857fda3d50fad399e85216959967d49",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "3784dc3caabb41d3ba781c2a3e19332fe50852713b66b0227fac95f75131eabb",
       "core/rules/rule_check_runner/Cargo.toml": "398d4ee217dd83a7b3eb260a633b9a0285e3a47def8838095f75e544c41c4b4c",
@@ -295,9 +295,9 @@
       "core/serialization/canonical_json/Cargo.toml": "15002a43f703afd12087c8c8ccff95739d9d385ef3a640cc64cd34b84ab0a5bc",
       "core/solver/curved_bend/Cargo.toml": "5d7cf1288eac698c209aa4fd7493fa669aa57494950e75374ac07248001502d8",
       "core/solver/diagnostics/Cargo.toml": "11db1409fcfd3b0312ef80085e36eac4d7a66eb0f4298832137119835b1c92e8",
-      "core/solver/frame_kernel/Cargo.toml": "5e45b3e44782fac2cceff2eb69ecfc57b309f0fedba1045b99a043adfc4b055e",
+      "core/solver/frame_kernel/Cargo.toml": "706dbde8129c13ac19b378fc519c68ff62ed12c2d83b237155e72f9a6dcf060c",
       "core/solver/linear_supports/Cargo.toml": "8d38681e7d09f9f1502d8986ccbea888bfb678b0ea8022885d3f67503ba4881d",
-      "core/solver/nonlinear_integration/Cargo.toml": "6dc66a9f5ebd6744595642914fdd38555bb4f990f09248eb6bf4f7e2e61d1d28",
+      "core/solver/nonlinear_integration/Cargo.toml": "5547a21186ad730b6a8cc35d15cf482795af40063193c493d9c656239f67a530",
       "core/solver/nonlinear_supports/Cargo.toml": "c34c7d2a46294e3c2ab57b4b15028c48664670dfe25278b8b6d22147743a10a6",
       "core/solver/performance_harness/Cargo.toml": "a0347356b693128fe8ec483c7f44d1e81d0bb455b4d743ff656c64cdb9151285",
       "core/solver/sparse_direct/Cargo.toml": "835d487a51f26b1c7db8184afbb911ec62cea51db674ec1113a10b2c425f9a12",
@@ -423,7 +423,7 @@
         ]
       },
       "core/product_physics/build.rs": {
-        "sha256": "26ce8d83d60b2a4f622bef9d581775823ad87301ea2c8096c35af66c00034307",
+        "sha256": "14b9c21b726a10fedba1ae3fc5700151ff0dbc92b534a2ec4f246800dd8b907d",
         "source_trees": ["core/product_physics/Cargo.toml"],
         "inputs": [
           {
@@ -436,119 +436,128 @@
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "dfa59e060a27ae26608b58c82ff128a869f0a57454ae59bfb148446146daa167"
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_load_reference_source_1.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_load_reference_source_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "dfa59e060a27ae26608b58c82ff128a869f0a57454ae59bfb148446146daa167"
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
           },
           {
             "anchor": "../../fixtures/results/retained_precision_prepared_combination_v1.json",
             "base": "manifest",
             "files": ["fixtures/results/retained_precision_prepared_combination_v1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "dfa59e060a27ae26608b58c82ff128a869f0a57454ae59bfb148446146daa167"
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_physics_retained_1.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_physics_retained_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "dfa59e060a27ae26608b58c82ff128a869f0a57454ae59bfb148446146daa167"
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_preview_physics_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "dfa59e060a27ae26608b58c82ff128a869f0a57454ae59bfb148446146daa167"
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
           },
           {
             "anchor": "../../fixtures/results/retained_precision_prepared_ordinary_v1.json",
             "base": "manifest",
             "files": ["fixtures/results/retained_precision_prepared_ordinary_v1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "dfa59e060a27ae26608b58c82ff128a869f0a57454ae59bfb148446146daa167"
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_load_reference_1.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_load_reference_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "dfa59e060a27ae26608b58c82ff128a869f0a57454ae59bfb148446146daa167"
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_physics_source_1.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_physics_source_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "dfa59e060a27ae26608b58c82ff128a869f0a57454ae59bfb148446146daa167"
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_source_blocks_1.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_source_blocks_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "dfa59e060a27ae26608b58c82ff128a869f0a57454ae59bfb148446146daa167"
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
           },
           {
             "anchor": "../../fixtures/results/retained_precision_prepared_exact_v1.json",
             "base": "manifest",
             "files": ["fixtures/results/retained_precision_prepared_exact_v1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "dfa59e060a27ae26608b58c82ff128a869f0a57454ae59bfb148446146daa167"
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_precision_1.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_precision_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "dfa59e060a27ae26608b58c82ff128a869f0a57454ae59bfb148446146daa167"
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_physics_1.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_physics_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "dfa59e060a27ae26608b58c82ff128a869f0a57454ae59bfb148446146daa167"
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_2.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_2.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "dfa59e060a27ae26608b58c82ff128a869f0a57454ae59bfb148446146daa167"
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
           },
           {
             "anchor": "../../schemas/retained_precision_mp_v2.schema.json",
             "base": "manifest",
             "files": ["schemas/retained_precision_mp_v2.schema.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "dfa59e060a27ae26608b58c82ff128a869f0a57454ae59bfb148446146daa167"
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
           },
           {
             "anchor": "../../schemas/physics_source_recovery.schema.json",
             "base": "manifest",
             "files": ["schemas/physics_source_recovery.schema.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "dfa59e060a27ae26608b58c82ff128a869f0a57454ae59bfb148446146daa167"
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
           },
           {
             "anchor": "../../schemas/source_block_recovery.schema.json",
             "base": "manifest",
             "files": ["schemas/source_block_recovery.schema.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "dfa59e060a27ae26608b58c82ff128a869f0a57454ae59bfb148446146daa167"
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
           },
           {
             "anchor": "Cargo.lock",
             "base": "manifest",
             "files": ["core/product_physics/Cargo.lock"],
             "source": "src/build_identity.rs",
-            "source_sha256": "dfa59e060a27ae26608b58c82ff128a869f0a57454ae59bfb148446146daa167"
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
+          },
+          {
+            "anchor": "../../schemas/results_pressure_1.v0.3.schema.json",
+            "base": "manifest",
+            "files": [
+              "schemas/results_pressure_1.v0.3.schema.json"
+            ],
+            "source": "src/build_identity.rs",
+            "source_sha256": "915dc0505155d0736366b75f13f07399587d06308f98feef33286e8da0d7e6e9"
           }
         ]
       },
@@ -579,6 +588,42 @@
         "external_reads": {
           "kind": "audited-external-inputs",
           "reason": "Example reads the user-supplied model argument; no default repository file."
+        }
+      },
+      "core/product_physics/src/joint_pressure_tests.rs": {
+        "sha256": "987c5d1bb563a566ca2538e473473b7d718e1db39e37f45c4d7f1755d6c1eb14",
+        "source_trees": [
+          "core/loads/self_weight_wasm/Cargo.toml",
+          "core/model_operations/operation_applier/Cargo.toml",
+          "core/product_physics/Cargo.toml",
+          "core/runner/headless/Cargo.toml",
+          "validation/benchmarks/numerical_integrity/Cargo.toml",
+          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+        ],
+        "inputs": [
+          {
+            "anchor": "../../fixtures/results/pressure_v3_joint_reader_control.json",
+            "base": "manifest",
+            "files": [
+              "fixtures/results/pressure_v3_joint_reader_control.json"
+            ]
+          }
+        ]
+      },
+      "core/product_physics/src/u4a_tests.rs": {
+        "sha256": "5cfdecb6464c3ae9dce114a488c1f47b87a264b381ff4577466fb13998460af9",
+        "source_trees": [
+          "core/loads/self_weight_wasm/Cargo.toml",
+          "core/model_operations/operation_applier/Cargo.toml",
+          "core/product_physics/Cargo.toml",
+          "core/runner/headless/Cargo.toml",
+          "validation/benchmarks/numerical_integrity/Cargo.toml",
+          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+        ],
+        "inputs": [],
+        "external_reads": {
+          "kind": "audited-external-inputs",
+          "reason": "The cfg(test) U4a reference control optionally reads the path supplied by U4A_PREVIEW_BASELINE solely to compare expected preview-envelope bytes and hashes; it has no repository default or product-input read. Its request and oracle inputs are literal include_str! reads."
         }
       },
       "core/product_physics/tests/load_reference_state_runtime.rs": {
@@ -1477,7 +1522,10 @@
               "validation/benchmarks/numerical_robustness/src/compare.rs", "validation/benchmarks/numerical_robustness/src/envelope.rs", "validation/benchmarks/numerical_robustness/src/exact.rs", "validation/benchmarks/numerical_robustness/src/floor.rs",
               "validation/benchmarks/numerical_robustness/src/invariance.rs", "validation/benchmarks/numerical_robustness/src/lane.rs", "validation/benchmarks/numerical_robustness/src/lib.rs", "validation/benchmarks/numerical_robustness/src/parity.rs",
               "validation/benchmarks/numerical_robustness/src/rcm.rs", "validation/benchmarks/numerical_robustness/src/records.rs", "validation/benchmarks/numerical_robustness/src/scale.rs", "validation/benchmarks/numerical_robustness/src/sha256.rs",
-              "validation/benchmarks/physics_audit_regression/src/lib.rs", "validation/benchmarks/stress/src/lib.rs"
+              "validation/benchmarks/physics_audit_regression/src/lib.rs", "validation/benchmarks/stress/src/lib.rs",
+              "core/model_operations/operation_applier/src/joint_pressure_authoring.rs",
+              "core/product_physics/src/joint_pressure_tests.rs",
+              "core/product_physics/src/u4a_tests.rs"
             ],
             "scan": {
               "suffix": ".rs",
@@ -2189,7 +2237,7 @@
         }
       },
       "core/solver/nonlinear_integration/src/s11k_tests.rs": {
-        "sha256": "12e53f959a15f1b681ff50965a98b29a206bbbe1e534f8fa4258c30df1f9e7e3",
+        "sha256": "f6ff6917a104e6616f4f60398fbca6d44701873b1929a9129107b89d64e33cd1",
         "source_trees": [
           "core/loads/self_weight_wasm/Cargo.toml", "core/model_operations/operation_applier/Cargo.toml", "core/product_physics/Cargo.toml", "core/runner/headless/Cargo.toml",
           "core/solver/nonlinear_integration/Cargo.toml", "core/solver/performance_harness/Cargo.toml", "validation/benchmarks/nonlinear/Cargo.toml", "validation/benchmarks/numerical_integrity/Cargo.toml",
@@ -2211,7 +2259,15 @@
               "core/product_physics/src/s11f_tests.rs", "core/product_physics/src/s11g_tests.rs", "core/product_physics/src/s11g_tests/short_bend.rs", "core/product_physics/src/self_weight.rs",
               "core/product_physics/src/source_budget_tests.rs", "core/product_physics/src/source_receipt.rs", "core/product_physics/src/source_receipt/composite.rs", "core/product_physics/src/source_receipt/endpoint_maximum.rs",
               "core/product_physics/src/source_receipt/load_state_fallback_tests.rs", "core/product_physics/src/source_receipt/load_state_join_tests.rs", "core/product_physics/src/source_receipt/load_state_tests.rs", "core/product_physics/src/source_receipt/rows.rs",
-              "core/product_physics/src/source_receipt/source.rs", "core/product_physics/src/source_receipt/tests.rs", "core/product_physics/src/source_recovery.rs", "core/product_physics/src/validation.rs"
+              "core/product_physics/src/source_receipt/source.rs", "core/product_physics/src/source_receipt/tests.rs", "core/product_physics/src/source_recovery.rs", "core/product_physics/src/validation.rs",
+              "core/product_physics/src/bend_pressure.rs",
+              "core/product_physics/src/certified_loads.rs",
+              "core/product_physics/src/certified_publication.rs",
+              "core/product_physics/src/joint_pressure_tests.rs",
+              "core/product_physics/src/kd5_nonlinear_tests.rs",
+              "core/product_physics/src/kd5_pressure_closure_tests.rs",
+              "core/product_physics/src/s11g_tests/arc_recovery.rs",
+              "core/product_physics/src/u4a_tests.rs"
             ]
           },
           {
@@ -2263,7 +2319,15 @@
               "core/product_physics/src/s11f_tests.rs", "core/product_physics/src/s11g_tests.rs", "core/product_physics/src/s11g_tests/short_bend.rs", "core/product_physics/src/self_weight.rs",
               "core/product_physics/src/source_budget_tests.rs", "core/product_physics/src/source_receipt.rs", "core/product_physics/src/source_receipt/composite.rs", "core/product_physics/src/source_receipt/endpoint_maximum.rs",
               "core/product_physics/src/source_receipt/load_state_fallback_tests.rs", "core/product_physics/src/source_receipt/load_state_join_tests.rs", "core/product_physics/src/source_receipt/load_state_tests.rs", "core/product_physics/src/source_receipt/rows.rs",
-              "core/product_physics/src/source_receipt/source.rs", "core/product_physics/src/source_receipt/tests.rs", "core/product_physics/src/source_recovery.rs", "core/product_physics/src/validation.rs"
+              "core/product_physics/src/source_receipt/source.rs", "core/product_physics/src/source_receipt/tests.rs", "core/product_physics/src/source_recovery.rs", "core/product_physics/src/validation.rs",
+              "core/product_physics/src/bend_pressure.rs",
+              "core/product_physics/src/certified_loads.rs",
+              "core/product_physics/src/certified_publication.rs",
+              "core/product_physics/src/joint_pressure_tests.rs",
+              "core/product_physics/src/kd5_nonlinear_tests.rs",
+              "core/product_physics/src/kd5_pressure_closure_tests.rs",
+              "core/product_physics/src/s11g_tests/arc_recovery.rs",
+              "core/product_physics/src/u4a_tests.rs"
             ]
           },
           {
