@@ -113,8 +113,8 @@ architecture is not a formal implementation of its symbols.
 | Inner ⊢ | A person takes a stance toward meaning; this can inform inquiry and action as well as review |
 | Outer ⊢ | A person affirms themselves as bound to that stance; no approval field or execution state performs this commitment |
 | G | Intentionally undefined; neither an evidence trail nor a successful project establishes it |
-| Premise 4 (facts cannot enact N) | A reminder that more information does not itself perform a person's commitment |
-| Premise 5 (¬G without S) | Without S there is no knowing by S, although information may remain available |
+| Premise 4 | Equates the conditionals (M ∧ N) → G and S → G. It does not, by itself, state a thesis about facts or information performing commitment. |
+| Premise 5 | From ¬G, the written conditional gives both ¬(M ∧ □M) and ¬S. Its antecedent is ¬G, not ¬S; G remains undefined and is not identified with knowing. |
 
 The accountability gap identified in Chapter 3 (§3.6.2) is not identical to
 the formal fork in premise 3. The connection is analogical: information can
@@ -200,7 +200,12 @@ rather than simply pre-sliced givens, and their stabilization requires work.
 M can be used to notice this theme of situated stabilization, but is not
 identified with Smith's technical account of registration.
 
-**N and normative answerability.** Registration, for Smith, is not neutral tracking: it involves commitment toward what lies beyond the subject's effective reach, answerable to the world rather than merely caused by it. N isolates that normative component — the affirmation that this registration is a genuine purchase on reality, not merely a causally convenient parsing.
+**N and normative answerability.** Smith's account treats registration as
+answerable to a world beyond the subject's effective reach. The comparison with
+N concerns the presence of commitment in such an account. N retains its defined
+meaning here: S's affirmation that M is necessary. It neither denotes Smith's
+registration nor certifies a registration's adequacy. The relation is a selective
+analogy, not a further definition of N.
 
 **The gap and separation-plus-connection.** Smith's treatment of
 intentionality as separation together with connection provides a resource for

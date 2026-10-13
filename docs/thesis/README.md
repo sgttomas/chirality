@@ -1,12 +1,27 @@
-# Chirality at the Root
+# Purpose, Participation, and Judgment
 
-**A generative environment for human–agent work**
+**The three Chirality theses — an iterative undertaking**
 
-Root develops the shared means through which people and agents turn capability
-into purposeful work. Roles, methods, tools and artifacts carry experience while
-remaining open to revision.
+The three theses examine how agent capability becomes purposeful work whose
+grounds and consequences remain open to understanding and correction. Root gives
+the argument its normative emphasis, the App its operative emphasis, and Piping
+its evaluative emphasis as an instance of domain software. Iteration connects
+them: experience can revise the work, its methods, and the understanding of its
+purpose. Each perspective also requires the others.
 
-## Research question
+Start with the [shared introduction](INTRODUCTION.md). Read the Root chapters
+below, then the [App thesis](../../projects/chirality-app-v4/docs/thesis/THESIS.md)
+and [Piping thesis](../../projects/chirality-piping/docs/thesis/THESIS.md). The
+[worked example](WORKED_EXAMPLE.md) follows an illustrative undertaking across
+all three. The [shared conclusion](CONCLUSION.md) brings their contributions and
+remaining questions together.
+
+Ontology, epistemology, praxeology, and axiology apply throughout this account.
+They ask what the work concerns, what supports understanding, how intent becomes
+usable action, and what makes its consequences worth pursuing. The
+[glossary](glossary.md) states the distinctions used across the collection.
+
+## Root's research question
 
 What makes agent capability into purposeful, accountable work, and why should
 its supporting environment develop through revisable roles, methods, tools and
@@ -19,7 +34,7 @@ nonbinding and does not establish regulatory endorsement, professional
 acceptance or a controlled productivity result. Development remains governed by
 the conversation, repository instructions and adopted product commitments.
 
-## Reading the thesis
+## Reading the Root thesis
 
 | Chapter | Subject |
 |---|---|
@@ -31,12 +46,13 @@ the conversation, repository instructions and adopted product commitments.
 | [5. Epistemic architecture](05_epistemic_architecture.md) | Evidence, uncertainty, interpretation and reliance |
 | [6. Professional practice](06_professional_practice.md) | The bounded professional-practice interpretation |
 | [7. Systems engineering analysis](07_se_design_analysis.md) | Design methods, contributions and limits |
-| [8. Implementation and validation](08_implementation.md) | Historical case and observed implementation |
+| [8. Evidence and evaluation](08_implementation.md) | Observed implementation and limits of the findings |
 | [9. Discussion](09_discussion.md) | Tensions, generalisation and evaluation |
 | [10. Conclusion](10_conclusion.md) | What the case supports and what remains open |
 | [Appendix A](appendix_a_invariant_catalog.md) | Historical controls and present interpretation |
 | [Appendix C](appendix_c_apega_mapping.md) | Regulatory mapping and limitations |
 | [Appendix D](appendix_d_framework_s.md) | Bounded philosophical conjecture |
+| [Appendix E](appendix_e_development_history.md) | Development history, retired arrangements and lessons |
 | [References](references.md) / [Glossary](glossary.md) | Sources and terms |
 
 [The Chirality Framework](CHIRALITY_FRAMEWORK.md) presents the conceptual account
@@ -48,9 +64,11 @@ instructions are indexed in [AGENTS.md](../../AGENTS.md).
 
 Product and implementation observations use repository revision
 `a602024416ace9652f61bb2043889c307fd4e09d`. Later development may change their
-standing. Older editions remain in Git; retired governance sources are recoverable
-through `archive/pre-docs-cleanup-1` or their cited revision. See
-[Frozen products](../../projects/FROZEN.md) for retired applications.
+standing. This revised manuscript does not advance the implementation evidence
+to its own publication revision. Regulatory discussion retains its identified
+July 2, 2026 basis and source editions. Older editions remain in Git; the
+[development history](appendix_e_development_history.md) identifies historical
+sources and distinguishes observations from the owner's account.
 
 App v4's [foundation copy](../../projects/chirality-app-v4/foundation/thesis/README.md)
 retains its historical source basis unchanged. January–April history comes from

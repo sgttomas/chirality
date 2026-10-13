@@ -108,6 +108,39 @@ fn subset(grant: &Value, requested: &Value) -> bool {
         _ => grant == requested,
     }
 }
+/// The longest `rejection` text a person may write on a legacy decline, in
+/// characters (NIR §4.3 DM-3).
+pub const REJECTION_LIMIT: usize = 2000;
+/// NIR §4.3 DM-3: a legacy decline is `denied` with the person's own
+/// `rejection` text, empty unless they write one. It is sent to Codex as
+/// written; the App only bounds it: the native object with exactly
+/// `rejection`, a string of at most [`REJECTION_LIMIT`] characters, with no
+/// control characters other than line feed and tab (the text box's own) and
+/// no bidirectional formatting characters ([`BIDI_FORMATTING`]), so pasted
+/// text cannot make the confirmation read other than as sent.
+fn legacy_rejection(denied: &Value) -> Result<(), String> {
+    let fields = denied.as_object().filter(|f| f.len() == 1).ok_or("invalid-answer: a legacy decline carries only its rejection text")?;
+    let text = fields.get("rejection").and_then(Value::as_str).ok_or("invalid-answer: the rejection text must be text")?;
+    if text.chars().count() > REJECTION_LIMIT {
+        return Err(format!("invalid-answer: the rejection text is longer than {REJECTION_LIMIT} characters"));
+    }
+    if text.chars().any(|c| c.is_control() && c != '\n' && c != '\t') {
+        return Err("invalid-answer: the rejection text has a control character other than a line break or tab".into());
+    }
+    if text.chars().any(|c| BIDI_FORMATTING.contains(&c)) {
+        return Err("invalid-answer: the rejection text has a bidirectional formatting character".into());
+    }
+    Ok(())
+}
+/// The bidirectional formatting characters refused in a rejection text:
+/// embeddings and overrides, isolates and the implicit marks. Other format
+/// characters (such as the zero-width joiner in emoji) are allowed. The card
+/// refuses the same set (RequestCards.tsx `rejectionProblem`).
+pub const BIDI_FORMATTING: &[char] = &[
+    '\u{202A}', '\u{202B}', '\u{202C}', '\u{202D}', '\u{202E}',
+    '\u{2066}', '\u{2067}', '\u{2068}', '\u{2069}',
+    '\u{200E}', '\u{200F}', '\u{061C}',
+];
 fn validate_answer(method: &str, params: &Value, answer: &Value) -> Result<(), String> {
     let validator = validators()?.get(method).ok_or("invalid-answer")?;
     validator
@@ -116,6 +149,11 @@ fn validate_answer(method: &str, params: &Value, answer: &Value) -> Result<(), S
     if let Some(decision) = answer.get("decision") {
         if decision == "timed_out" {
             return Err("invalid-answer".into());
+        }
+        if matches!(method, "execCommandApproval" | "applyPatchApproval") {
+            if let Some(denied) = decision.get("denied") {
+                legacy_rejection(denied)?;
+            }
         }
         if let Some(offered) = params.get("availableDecisions").and_then(Value::as_array) {
             if !offered.contains(decision) {
@@ -208,7 +246,7 @@ impl RequestRegister {
     pub fn records(&self) -> Vec<Value> {
         self.entries.iter().map(|e| {
             let method=e["method"].as_str().unwrap_or("");
-            let class=if e["classification"]!="known-answerable" {"none"}else if method=="currentTime/read" || (method=="item/tool/call" && e["cceOfferedProvenance"]==true) {"named-service"}else if matches!(method,"item/tool/requestUserInput"|"mcpServer/elicitation/request") {"person-input"}else{"a14"};
+            let class=if e["classification"]!="known-answerable" {"none"}else if method=="currentTime/read" || (method=="item/tool/call" && (e["cceOfferedProvenance"]==true || e["namedTool"].is_string())) {"named-service"}else if matches!(method,"item/tool/requestUserInput"|"mcpServer/elicitation/request") {"person-input"}else{"a14"};
             let mut record=json!({"recordKind":"server-request-entry","requestIdentity":e["requestId"],"generation":e["generation"],"method":method,
                 "classification":e["classification"],"originClass":class,"nativeParameters":e["nativeParameters"],"receiptPosition":e["receiptPosition"],
                 "state":if class=="none"&&e["state"]=="settling" {json!("received")}else{e["state"].clone()},"replyWriteResult":e["replyWriteResult"],
@@ -225,6 +263,9 @@ impl RequestRegister {
                 let kind=if settlement.get("error").is_some(){"error"}else if e["negative"]==true{"decline"}else{"answer"};
                 let mut result=json!({"kind":kind,"origin":origin});
                 if let Some(redaction)=settlement.get("contentRedacted") {result["secretValuesPresent"]=json!(true);result["redaction"]=json!({"marker":"secret-answer-values-removed","questionIds":redaction["questionIds"]});}
+                // A named tool's answer (RS §13.9): no nativeContent; the read log
+                // accounts for what was returned (joined by generation and request).
+                else if settlement.get("contentRef").is_some() {}
                 else {result["nativeContent"]=settlement.get("error").or_else(||settlement.get("content")).cloned().unwrap_or(Value::Null);}
                 record["settlement"]=result;
             }
@@ -243,6 +284,50 @@ impl RequestRegister {
     }
     pub(crate) fn receive_offered(&mut self,generation:&Value,position:u64,frame:&Value,capabilities:&Value,admission:Result<&crate::hosting::call_custody::Admission,crate::hosting::call_custody::Refusal>)->Result<Option<Value>,String>{
         self.receive_scoped(generation,position,frame,capabilities,Some(admission))
+    }
+    /// RS §13.9: a call of a tool the App offered on this thread, answered by
+    /// the named App rule `rule` (the records capability). Known-answerable and
+    /// outstanding until [`Self::prepare_named_tool`] settles it.
+    pub(crate) fn receive_named_tool(&mut self,generation:&Value,position:u64,frame:&Value,rule:&str)->Result<(),String>{
+        self.admissible(generation,frame)?;
+        if frame["method"]!="item/tool/call"||!rule.starts_with("app-rule:"){return Err("malformed-request".into());}
+        self.entries.push(json!({"generation":generation,"requestId":frame["id"],"method":"item/tool/call","classification":"known-answerable",
+            "nativeParameters":frame.get("params").cloned().unwrap_or(Value::Null),"receiptPosition":position,
+            "state":"outstanding","replyWriteResult":"not-attempted","acknowledgment":"not-observed","namedTool":rule}));
+        Ok(())
+    }
+    /// The named rule's answer to a call [`Self::receive_named_tool`] admitted.
+    /// The returned content is kept by reference only (`contentRef`), never in
+    /// this register: it may be large and is the read log's to account for.
+    pub(crate) fn prepare_named_tool(&mut self,generation:&Value,id:&Value,answer:&Value,rule:&str,content_ref:Value)->Result<Value,String>{
+        let idx=self.index(generation,id)?;
+        if self.closed.contains(generation){return Err("generation-closed".into());}
+        let e=&mut self.entries[idx];
+        if e["namedTool"]!=rule{return Err("origin-not-permitted".into());}
+        if e["state"]=="resolved-by-supplier"{return Err("already-resolved".into());}
+        if e["state"]!="outstanding"{return Err("already-settled".into());}
+        // A refusal is the rule's answer (success false), not a decline.
+        e["settlement"]=json!({"origin":rule,"contentRef":content_ref});
+        e["negative"]=json!(false);
+        e["state"]=json!("settling");
+        Ok(json!({"id":id,"result":answer}))
+    }
+    fn admissible(&self,generation:&Value,frame:&Value)->Result<(),String>{
+        if generation.as_object().map(|o| o.len() != 3).unwrap_or(true)
+            || generation["appSession"].as_str().map(str::is_empty).unwrap_or(true)
+            || generation["home"].as_str().map(str::is_empty).unwrap_or(true)
+            || generation["spawnCounter"].as_u64().unwrap_or(0) == 0
+            || !(frame["id"].is_string() || frame["id"].as_i64().is_some() || frame["id"].as_u64().is_some())
+        {
+            return Err("malformed-request-identity".into());
+        }
+        if self.closed.contains(generation) {
+            return Err("generation-closed".into());
+        }
+        if self.entries.iter().any(|e| e["generation"] == *generation && e["requestId"] == frame["id"]) {
+            return Err("duplicate-request-identity".into());
+        }
+        Ok(())
     }
     fn receive_scoped(&mut self,generation:&Value,position:u64,frame:&Value,capabilities:&Value,offered:Option<Result<&crate::hosting::call_custody::Admission,crate::hosting::call_custody::Refusal>>)->Result<Option<Value>,String>{
         if generation.as_object().map(|o| o.len() != 3).unwrap_or(true)
@@ -369,6 +454,15 @@ impl RequestRegister {
             return Err("origin-not-permitted".into());
         }
         validate_answer(method, &e["nativeParameters"], answer)?;
+        // DM-3: the rejection text is the person's own; a legacy decline from
+        // any other origin (an App rule) carries none.
+        if !person && matches!(method, "execCommandApproval" | "applyPatchApproval") {
+            if let Some(denied) = answer.get("decision").and_then(|d| d.get("denied")) {
+                if denied["rejection"] != "" {
+                    return Err("invalid-answer: an App rule's legacy decline carries no rejection text".into());
+                }
+            }
+        }
         let mut secret_ids = Vec::new();
         if method == "item/tool/requestUserInput" {
             if let Some(qs) = e["nativeParameters"]["questions"].as_array() {
@@ -841,6 +935,31 @@ mod review_repair_tests {
             assert_eq!(record["supplierResolution"]["cause"], "supplier-native");
         }
     }
+    /// RS §13.9: the records capability's calls, answered (success or refusal)
+    /// by its named rule, written or not, export as the adopted schema allows,
+    /// with no content and no field the schema lacks.
+    #[test]
+    fn records_capability_entries_match_adopted_hosting_schema() {
+        let schema: Value = serde_json::from_str(include_str!("../resources/runtime_core/hosting.server-request-entry.schema.json")).unwrap();
+        let validator = jsonschema::options().offline().build(&schema).unwrap();
+        let g = json!({"appSession":"s","home":"h","spawnCounter":1});
+        for (success, written) in [(true, true), (false, true), (true, false)] {
+            let mut r = RequestRegister::default();
+            let frame = json!({"id":7,"method":"item/tool/call","params":{"threadId":"t","turnId":"u","callId":"c","tool":"chirality_records_read_v1","namespace":null,"arguments":{"operation":"list_runs"}}});
+            r.receive_named_tool(&g, 1, &frame, "app-rule:records-read").unwrap();
+            for record in r.records() { validator.validate(&record).unwrap_or_else(|e| panic!("outstanding: {e}: {record}")); }
+            assert!(r.prepare_named_tool(&g, &json!(7), &json!({"success":success,"contentItems":[]}), "app-rule:other", json!({})).is_err(), "only its own rule");
+            r.prepare_named_tool(&g, &json!(7), &json!({"success":success,"contentItems":[{"type":"inputText","text":"RETURNED"}]}), "app-rule:records-read", json!({"readId":"rread:x"})).unwrap();
+            for record in r.records() { validator.validate(&record).unwrap_or_else(|e| panic!("settling: {e}: {record}")); }
+            r.written(&g, &json!(7), written);
+            let record = &r.records()[0];
+            validator.validate(record).unwrap_or_else(|e| panic!("{success} {written}: {e}: {record}"));
+            assert_eq!(record["originClass"], "named-service");
+            assert_eq!(record["state"], if written { "answered" } else { "settle-write-failed" });
+            assert_eq!(record["settlement"], json!({"kind":"answer","origin":{"class":"app-rule","ruleName":"records-read"}}));
+            assert!(!record.to_string().contains("RETURNED"));
+        }
+    }
     #[test]
     fn named_app_rules_may_decline_or_error_person_input_but_cannot_supply_content() {
         let schema: Value = serde_json::from_str(include_str!(
@@ -1052,5 +1171,123 @@ mod form_alias_validation_tests {
                 "origin-not-permitted"
             );
         }
+    }
+}
+
+#[cfg(test)]
+mod legacy_decline_text_tests {
+    //! NIR §4.3 DM-3: a legacy decline is `denied` with an empty `rejection`
+    //! text unless the person writes one; written text is sent as written,
+    //! within the App's bounds, and kept in the entry as person-written content.
+    use super::*;
+    const ACTOR: &str = "person:Invented/test/unknown (identity not verified)";
+    fn g() -> Value {
+        json!({"appSession":"s","home":"h","spawnCounter":1})
+    }
+    fn legacy(method: &str) -> RequestRegister {
+        let mut r = RequestRegister::default();
+        let params = json!({"conversationId":"t","callId":"c","command":["rm","x"],"cwd":"/work","parsedCmd":[],"fileChanges":{}});
+        r.receive(&g(), 1, &json!({"id":3,"method":method,"params":params}), &json!({})).unwrap();
+        r
+    }
+    fn denied(text: Value) -> Value {
+        json!({"decision":{"denied":{"rejection":text}}})
+    }
+    #[test]
+    fn empty_and_written_text_are_sent_as_given_and_the_entry_is_schema_valid() {
+        let schema: Value = serde_json::from_str(include_str!("../resources/runtime_core/hosting.server-request-entry.schema.json")).unwrap();
+        let validator = jsonschema::options().offline().build(&schema).unwrap();
+        // Other format characters stay allowed: the zero-width joiner in an
+        // emoji, and right-to-left script without explicit formatting.
+        let written = "Not this folder.\n\tUse the scratch copy instead: ünïcödé, \"quotes\", a \\ backslash, 👩\u{200D}💻 and עברית.";
+        let longest = "x".repeat(REJECTION_LIMIT);
+        for method in ["execCommandApproval", "applyPatchApproval"] {
+            for text in ["", written, longest.as_str()] {
+                let mut r = legacy(method);
+                let reply = r.prepare(&g(), &json!(3), &denied(json!(text)), "person-via-interaction", Some(ACTOR)).unwrap();
+                assert_eq!(reply, json!({"id":3,"result":{"decision":{"denied":{"rejection":text}}}}), "sent verbatim");
+                for record in r.records() {
+                    validator.validate(&record).unwrap_or_else(|e| panic!("settling: {e}: {record}"));
+                }
+                r.written(&g(), &json!(3), true);
+                let record = &r.records()[0];
+                validator.validate(record).unwrap_or_else(|e| panic!("{method}: {e}: {record}"));
+                assert_eq!(record["state"], "declined");
+                assert_eq!(record["settlement"]["kind"], "decline");
+                assert_eq!(record["settlement"]["origin"], json!({"class":"person-via-interaction","actorRef":ACTOR}));
+                assert_eq!(record["settlement"]["nativeContent"]["decision"]["denied"]["rejection"], text, "the person's text, unchanged");
+                assert!(record["settlement"].get("redaction").is_none(), "not a secret answer");
+            }
+        }
+        // An App rule's decline carries no text of its own.
+        assert_eq!(decline("execCommandApproval", &json!({})), Some(denied(json!(""))));
+    }
+    #[test]
+    fn invalid_text_is_refused_before_anything_is_sent() {
+        let too_long = "x".repeat(REJECTION_LIMIT + 1);
+        for (answer, reason) in [
+            (denied(json!(7)), "invalid-answer"),
+            (denied(json!(null)), "invalid-answer"),
+            (json!({"decision":{"denied":{}}}), "invalid-answer"),
+            (json!({"decision":{"denied":{"rejection":"","extra":true}}}), "only its rejection text"),
+            (denied(json!(too_long)), "longer than 2000 characters"),
+            (denied(json!("bell\u{7}")), "control character"),
+            (denied(json!("carriage\rreturn")), "control character"),
+            (denied(json!("nul\u{0}")), "control character"),
+            (denied(json!("delete\u{7f}")), "control character"),
+            (denied(json!("c1\u{85}")), "control character"),
+            (denied(json!("escape\u{1b}[31m")), "control character"),
+            (denied(json!("embed\u{202A}x")), "bidirectional"),
+            (denied(json!("embed\u{202B}x")), "bidirectional"),
+            (denied(json!("pop\u{202C}x")), "bidirectional"),
+            (denied(json!("override\u{202D}x")), "bidirectional"),
+            (denied(json!("name\u{202E}txt.exe")), "bidirectional"),
+            (denied(json!("isolate\u{2066}x")), "bidirectional"),
+            (denied(json!("isolate\u{2067}x")), "bidirectional"),
+            (denied(json!("isolate\u{2068}x")), "bidirectional"),
+            (denied(json!("pop\u{2069}x")), "bidirectional"),
+            (denied(json!("mark\u{200E}")), "bidirectional"),
+            (denied(json!("mark\u{200F}")), "bidirectional"),
+            (denied(json!("arabic mark\u{061C}")), "bidirectional"),
+        ] {
+            let mut r = legacy("execCommandApproval");
+            let before = r.records();
+            let refused = r.prepare(&g(), &json!(3), &answer, "person-via-interaction", Some(ACTOR)).unwrap_err();
+            assert!(refused.starts_with("invalid-answer") && refused.contains(reason), "{answer}: {refused}");
+            assert_eq!(r.records(), before, "still outstanding, nothing settled");
+        }
+        // Other format characters stay allowed (the card's test checks the same).
+        for allowed in ['\u{200D}', '\u{200B}', '\u{2060}', '\u{FEFF}', '\u{2029}'] {
+            let mut r = legacy("execCommandApproval");
+            r.prepare(&g(), &json!(3), &denied(json!(format!("x{allowed}y"))), "person-via-interaction", Some(ACTOR)).unwrap();
+        }
+        // DM-3 at the register: an App rule's legacy decline carries no text.
+        for method in ["execCommandApproval", "applyPatchApproval"] {
+            let mut r = legacy(method);
+            for text in ["written by a rule", " "] {
+                let refused = r.prepare(&g(), &json!(3), &denied(json!(text)), "app-rule:on-stop", None).unwrap_err();
+                assert!(refused.contains("App rule's legacy decline carries no rejection text"), "{refused}");
+                assert_eq!(r.records()[0]["state"], "outstanding");
+            }
+            r.prepare(&g(), &json!(3), &denied(json!("")), "app-rule:on-stop", None).unwrap();
+            r.written(&g(), &json!(3), true);
+            let record = &r.records()[0];
+            assert_eq!((record["state"].as_str(), &record["settlement"]["origin"]), (Some("declined"), &json!({"class":"app-rule","ruleName":"on-stop"})));
+        }
+        // `abort` stays the native value with no text.
+        let mut r = legacy("applyPatchApproval");
+        assert!(r.prepare(&g(), &json!(3), &json!({"decision":"abort"}), "person-via-interaction", Some(ACTOR)).is_ok());
+    }
+    /// The answer command checks the answer before its native confirmation is
+    /// shown (`answer_preview`), so invalid text never reaches the dialog or Codex.
+    #[test]
+    fn the_answer_preview_refuses_invalid_text_before_the_confirmation() {
+        let r = legacy("execCommandApproval");
+        let snapshot = json!({"generation":g(),"state":"ready","serverRequests":r.records()});
+        let preview = |answer: &Value| crate::runtime_session::answer_preview(&snapshot, &g(), &json!(3), answer, ACTOR);
+        let written = "Use the scratch copy.\nThanks";
+        assert_eq!(preview(&denied(json!(written))).unwrap()["answer"]["decision"]["denied"]["rejection"], written);
+        assert!(preview(&denied(json!("bell\u{7}"))).unwrap_err().contains("control character"));
+        assert!(preview(&denied(json!("x".repeat(REJECTION_LIMIT + 1)))).unwrap_err().contains("longer than"));
     }
 }

@@ -20,6 +20,11 @@ performed the relevant activity. Chapter 6 explains the interpretive limits.
 
 ---
 
+The evolution of this candidate practice arrangement is recorded in
+[Appendix E](appendix_e_development_history.md#e6-corrections-of-earlier-claims).
+The mapping below keeps the dated professional topics distinct from the proposed
+support and the evidence needed to assess it.
+
 ## C.1 Direct Supervision and Control (APEGA §3.1.1)
 
 The historical mapping used supervision and control to examine the
