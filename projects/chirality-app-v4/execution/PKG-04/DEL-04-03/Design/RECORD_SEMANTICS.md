@@ -1390,10 +1390,20 @@ coordinates or mismatched source/run/thread/purpose/text identities.
 
 ### 13.7 Selected Group A App allocation (CC-P-R)
 
-**Superseded in direction by §13.8 (PRD R-STORE).** The project paths below
-remain what the App writes until the records store is implemented. Afterwards
-they remain discoverable legacy sources, read in place and imported as §13.8
-describes; they are never rewritten or deleted.
+**Superseded by §13.8 (PRD R-STORE), implemented.** The App writes a project's
+run logs, outside-run act logs, captures and WR WP-1 records in the project's
+subtree of its records store (§13.8), keyed as below, and no longer at the
+project paths in the table. Those paths are now legacy sources: until the
+person imports them they are read in place and new recording is refused
+("import needed"); after an import the store copies govern and the originals
+are not read (§13.8 "Existing records"). They are never rewritten or deleted.
+The registered legacy log is §13.7 history like the rest: read in place
+before an import, imported with it, and not read after. The A15 library rows
+are unchanged: they stay where the table puts them, and the library's act log
+is read on its own as library evidence, never as part of the project's set
+(§13.8). Where this section, or R-1 (§14.2), says discovery follows §13.7, it
+now discovers the project's store subtree (§13.8), or before an import the
+§13.7 paths in place.
 
 The owner separately answered “Approve App-local storage (recommended)” and
 “Approve native-confirmation implementation (recommended)” in this run's
@@ -1456,7 +1466,10 @@ writer's log. Owning-target failures keep the hot end's records pending.
 Readable different-content collisions without a matching owning receipt are
 permanent refusals under §14.1. A matching owning receipt with a duplicate or
 conflicting identity, or an exact copy found only in another log, stays pending
-with its reason; it is not settled or called never written. Unread lines cannot
+with its reason; it is not settled or called never written. An imported copy
+and its original are not two logs here: after an import only the store copy is
+read (§13.8 "Existing records"), so an original never makes its entry "found
+only in another log". Unread lines cannot
 be checked and remain a limit, never evidence of completeness.
 The end after relaunch retains its own-log and confirmed-start guards.
 
@@ -1466,27 +1479,83 @@ The end after relaunch retains its own-log and confirmed-start guards.
 management, that's not what it's meant for." The owner approved the
 records-storage recommendations and accepted an App-managed records store
 outside the project working tree "as a new direction". The direction is
-settled. The mechanisms below are PROPOSED and not yet implemented; until
-they are, the App writes the §13.7 paths.
+settled. **Implemented** (App `records_store.rs`, `storage.rs`): Placement,
+Project identity, Existing records and Failures below, for a project's run
+logs, outside-run act logs, captures and WR WP-1 records. The other
+mechanisms are not built yet (proposed, or owner decisions awaiting their
+slice); the fleet coordination log and connector route accounts have not yet
+joined the store.
 
-- **Placement.** The App keeps its records in its own records store at
-  `<App-own-user-data>/records/`, outside every Codex home and every project
-  working tree, so the agent's writable workspace never holds them. Each
-  project has one subtree, `projects/<safe-project-key>/`, with
-  `runs/<safe-run-storage-key>/<safe-writer-storage-key>.jsonl`,
-  `acts/<safe-writer-storage-key>.jsonl`, `captures/` and `workflow/` (WR
-  §16.8 WP-1 records), keyed as in §13.7. A capture is written once; its one
-  add-once backlink (AAC §5.2a) is its only later change.
-  The person may place the store on another volume, for example a backed-up
-  one. The App reports which store it writes and never falls back silently
-  to another.
-- **Project identity.** The App mints a stable opaque project identity once
-  and writes it in the project at `.chirality/project.json`. The store keeps
-  each project's identity and the project roots it has seen. The project
+- **Placement** (implemented). The App keeps its records in its own records
+  store at `<App-own-user-data>/records/` (the Tauri App data folder),
+  outside every Codex home and every project working tree. Each project has
+  one subtree, `projects/<safe-project-key>/` (the SHA-256 of the project
+  identity), with `runs/<safe-run-storage-key>/<safe-writer-storage-key>.jsonl`,
+  `acts/<safe-writer-storage-key>.jsonl`, `captures/` (and
+  `captures/pending/`) and `workflow/` (WR §16.8 WP-1 records), keyed as in
+  §13.7, beside the store's own records: `store.json` (the store's identity,
+  written once), `roots.jsonl` (every project root the store has seen) and,
+  per project, `project.json` (its identity record) and `imports.jsonl` (each
+  import). Every file is a plain file written once or only appended; a
+  capture's one add-once backlink (AAC §5.2a) is its only later change, so a
+  subtree can be exported byte for byte. The person may choose another
+  location, for example a backed-up volume (host command
+  `records_store_choose`); the choice takes effect at the next start and
+  moves or copies nothing, so a store is moved by moving its folder. A chosen
+  location inside the project, a Codex home or a temporary folder is refused.
+  Tests and development name the store explicitly
+  (`CHIRALITY_RECORDS_STORE`); only a development or test build reads that
+  override (a release build ignores it, saying so), a development build
+  without it has no store and records nothing, and a test build without it
+  uses its own temporary store, never the App data folder. The placement
+  rules refuse in every build, the override included: a store inside the
+  project, the App-owned or configured Codex homes (account, key, probe) or
+  `~/.codex` is refused, and only the development or test override may name
+  a temporary folder, shown as a limit. A chosen location is checked against
+  the same homes when it is chosen. The host status (`recordsStore`)
+  reports the store it writes, how it was placed and the project's standing
+  in it. There is no fallback to another store, a project path or memory.
+  *Agent's writable roots, as the App configures Codex:* the App sets no
+  sandbox policy and no writable roots on `thread/start`; Codex runs with the
+  App-owned `CODEX_HOME`, so that home's configuration sets the sandbox (D3).
+  Under `workspace-write`, the writable roots are the conversation's working
+  directory (the project), `/tmp`, `$TMPDIR` and any `writable_roots` that
+  home's configuration names, so the default store (macOS:
+  `~/Library/Application Support/<App identifier>/records/`) is outside all
+  of them unless that configuration adds it, or runs with
+  `danger-full-access`. A test or development store in a temporary folder is
+  inside them; the host status shows that as a placement limit.
+- **Project identity** (implemented). The App mints a stable opaque project
+  identity (`chirality-project:<UUID>`) once, when it opens the project or
+  first records for it, and writes it in the project at
+  `.chirality/project.json` (a link naming the identity and the store), the
+  link first and then the store's records, so an interruption leaves a link
+  the store registers on the next attach. The store keeps each project's
+  identity and the project roots it has seen (`roots.jsonl`). The project
   file is a link, not an authority: a missing, changed or duplicated identity
   is shown as a limit and never silently attaches records to another project.
   The store's own identity record governs; an agent-edited or missing project
-  file can only produce a limit.
+  file can only produce a limit. Precisely: a folder is never attached on
+  its path alone. A folder the store records as project ‹P› whose link is
+  missing or unreadable is not attached: nothing is read or written for it
+  ("link missing; not attached", naming ‹P›) until the person restores the
+  link (one action) or gives the folder a new identity, since a new folder
+  can stand where a moved project was. A folder whose link names another
+  identity than the one the store records for it is attached to the store's
+  identity, which governs, with that limit shown (the link is there, but an
+  agent can edit it). Adopting a moved project releases every earlier root
+  of its identity, by append-only release lines in `roots.jsonl`, so a new
+  folder later made at an old path is minted its own identity. A link whose
+
+  identity the store records at another folder attaches nothing — if that
+  folder still holds the identity it is a duplicate, otherwise a moved
+  project — until the person confirms it is that project (adopt) or gives
+  the folder a new identity; a link kept from another store attaches
+  nothing until the person adopts the project into this store; an unreadable
+  link on a folder the store does not know mints nothing. Each resolution is
+  the person's explicit act through the host command
+  `records_store_identity` (adopt, new identity, restore the link). Reading
+  mints nothing, and a project folder named through a symlink is refused.
 - **Workflow libraries.** A15 library acts and their capture evidence stay
   with the library (§13.7 rows). Across installations (owner U-STORE-2,
   2026-10-12: "Evidence; re-register"), acts made by another installation are
@@ -1498,8 +1567,10 @@ they are, the App writes the §13.7 paths.
   store: the fleet coordination log (DEL-06-01 `coordination.fleet.jsonl`)
   and connector route accounts (DEL-07-02). Working files that the person and
   agents edit with ordinary tools stay in the project: fleet briefs and graphs
-  (DEL-06-01 FR-D1, FR-D3).
-- **Units written together.** Entries that must stand together, such as an
+  (DEL-06-01 FR-D1, FR-D3). *Not yet implemented:* the coordination log and
+  route accounts are still written in the project; the store's per-project
+  subtree is where they will join it.
+- **Units written together** (proposed). Entries that must stand together, such as an
   `act_counted` entry and its label, a lapse and its label, or a batch of request
   endings, are written as one line that holds the group. The reader accepts a
   group whole or reports it as a limit; it never reads half a group. The
@@ -1521,7 +1592,7 @@ they are, the App writes the §13.7 paths.
   the owner accepted SEAL-C's residual "until signing" on 2026-10-11, and the
   key moves to the OS keychain at signing (AAC §6.3; OI-011). Whether
   checkpoints share SEAL-C's key, and SEAL-2/U-32, are decided there.
-- **Derived index.** A SQLite database in the store, built only from the
+- **Derived index** (proposed). A SQLite database in the store, built only from the
   logs, answers cross-run queries. It is deletable and rebuildable and is
   never the authority for a record (REQ-001; V4-REC-06). Where it disagrees
   with the logs, the logs govern and the index is rebuilt.
@@ -1539,7 +1610,7 @@ they are, the App writes the §13.7 paths.
   signed. The package is readable and checkable without the App.
   Import verifies the package, never overwrites, keeps every record identity,
   and reports duplicates under R-5…R-8.
-- **Existing records.** The App discovers the §13.7 project logs and reads
+- **Existing records** (implemented). The App discovers the §13.7 project logs and reads
   them in place. It then imports them explicitly (§13.7 discovery makes no
   implicit copy) into the store as byte-identical copies verified against
   their content identity. After import the store copy is the owning log and
@@ -1550,6 +1621,66 @@ they are, the App writes the §13.7 paths.
   reported as a limit, and the store copy governs. The App never rewrites or
   deletes the originals, and a storage-path change is not a migration of their
   meaning.
+  *Implemented as follows.* The §13.7 project records are the run logs under
+  `.chirality/records/runs/`, the outside-run act logs under
+  `.chirality/records/acts/`, the WR records under
+  `.chirality/records/workflow/`, the capture evidence and pending
+  submissions under `.chirality/captures/` other than A15 captures, and the
+  explicitly registered legacy log `records/coordination.rs.jsonl` (copied
+  to `legacy/coordination.rs.jsonl`); the library's own act log and A15
+  captures stay with the library. While the store holds nothing for the
+  project and such records exist, they are read in place and every new
+  recording is refused with "import needed" (the act control's recovery
+  included), so no history is split across two homes. The import is the
+  person's explicit act (host command `records_store_import`, offered in the
+  host view), and its record in `imports.jsonl` is the commit point: under
+  the store and writer locks, a "started" line first names the whole census
+  (each file's path, copy, size and SHA-256); each file is then copied to the
+  same key in the store subtree, created once, synced, read back and verified
+  by its SHA-256; a "completed" line, last, lists each file with its SHA-256,
+  size and file stamp. Until a started import has its completed line —
+  interrupted, a full device, a copy that does not verify — folders it
+  created do not count, the history is still read in place and recording is
+  refused ("import incomplete"). Running the import again resumes it: a copy
+  already present with the same bytes is kept, never duplicated; a different
+  file already at the copy's place is a conflict, never overwritten; a file
+  that changed, appeared or went since the interrupted import named its
+  census is reported; an original already imported is not imported again.
+  From the first completed import (or, with no import ever started, the
+  first record the App writes there) the project is read from the store
+  only: an original whose bytes no longer match its import is a limit (the
+  store copy governs), and a §13.7 file that appears later is a limit "not
+  imported (not read)"; neither refuses recording. Such a late file is
+  imported by the same explicit act. Its "started" line records that the
+  store already held the project's records, so while that import is
+  incomplete the project is still read from the store, with the copies made
+  so far, and only writes wait for its completion. Those copies are
+  byte-identical to their originals (verified by SHA-256) and were checked
+  against the store's identities before they were made. Once it completes,
+  its copies join the store set at their keys (a run or act log under
+  `runs/` or `acts/`, the registered log at `legacy/coordination.rs.jsonl`);
+  a late log that holds record identities the store already holds is a
+  conflict and is not copied, so R-1 counts each identity once. The conflict
+  names every such identity (the first 20, then how many more) in the
+  import's result, its "completed" line and the note shown for the file. An imported copy carries
+  only the trust of the project folder it came from, which an agent could
+  write: the import proves the copy equals the file, not who wrote it (the
+  import result and the host view say so). A pending submission written
+  before the store names its log by the §13.7 spelling
+  (`.chirality/records/acts/…`); it names the same home-relative file, and
+  its capture's backlink is added to the store copy. A file placed in
+  `.chirality/captures/` before the first import (by an agent, say) is
+  imported like any other and recovery reports it as an unverified file.
+  *Library act log.* The act log of a workflow library that is also the
+  project, `.chirality/records/acts.jsonl`, stays with the library
+  (U-STORE-2), so it is in the project tree and an agent can write it. It is
+  therefore library evidence only, read as its own record set and never
+  part of the project's run/act set: its unreadable, duplicate or
+  conflicting lines are limits on library standing and on A15 readings (A15
+  recovery included), never a reason the project's set is incomplete or its
+  run and act recording is refused, and its entries never join R-1 for the
+  project. No reader of the project's set cross-checks it.
+
 - **Agent access** (owner, 2026-10-12: "I choose option B"). The store sits
   outside the agent's writable workspace. The App gives agents a read-only
   records capability scoped to the current project, which they use when the
@@ -1563,9 +1694,15 @@ they are, the App writes the §13.7 paths.
   the limit is stated. The capture-seal key leaving its readable file for the
   OS keychain (AAC §6.3; OI-011) is what closes the forgery path that
   readable keys open.
-- **Failures.** An unreadable store, or an unwritable owning log, refuses new
+- **Failures** (implemented). An unreadable store, or an unwritable owning log, refuses new
   recording visibly (W-0, W-2) and reports what is pending. There is no
-  fallback to a project path, another store or memory.
+  fallback to a project path, another store or memory. An unavailable store,
+  a project with no attachable identity, or records waiting for import is
+  each a refusal naming its cause; reads of a linked project whose store is
+  unavailable report incomplete discovery, and a folder with no link (a
+  workflow library, say) is read in place. A store log is checked against its
+  project's record set only when that project was attached in this process;
+  otherwise the append is refused.
 
 ### 13.9 Agents' records capability (§13.8 "Agent access"; owner U-STORE-4: "I choose option B")
 
@@ -1625,16 +1762,19 @@ It realizes §13.8's agent access and does not change what a record is.
   may be a cloud provider, so pages are small and nothing outside the
   records is added.
 - **Excluded.** The capability reads only this project's records through a
-  storage-independent source: today the §13.7 project logs under
-  `.chirality/records/` and the registered legacy log, read by the R-2
-  reader; when §13.8 is implemented, the project's store subtree, with no
-  change to the tool. It never reads or returns keys (the capture-seal folder
+  storage-independent source: the logs R-1 discovers (§13.8: the project's
+  records store subtree with the registered legacy log's imported copy, or
+  before an import the §13.7 project logs under `.chirality/records/` and the
+  registered legacy log in place), read by the R-2 reader; the move to the
+  store changed the source, not the tool. It never reads or returns keys (the capture-seal folder
+
   in App data), capture evidence files (act records cite them by reference),
   another project's records, workflow library acts (§13.8 keeps them with
   the library, U-STORE-2; the library's own acts log is left out even when
   the library is the project itself), a refused line's content, or a
-  validator's text about it. A log is named relative to the project, and an
-  entry's `source.line` is its line in that file. Only path-valued fields
+  validator's text about it. A log in the store is named
+  `records-store:<path in the project's subtree>`, one read in place relative
+  to the project, and an entry's `source.line` is its line in that file. Only path-valued fields
   are rewritten: a run's `workflow.sourceRoot` and an act's `boundSubject`
   (the fields this format defines as paths). Each absolute value becomes a
   typed marker that no record content can be mistaken for,
@@ -1679,12 +1819,16 @@ It realizes §13.8's agent access and does not change what a record is.
   the cause of its read log's last failed append (a torn final line, for
   example) and its latest 20 reads (metadata only). No RS entry kind is added: a read is the App's observation
   of what it gave the agent, not a run event, and it happens in and outside
-  runs; when §13.8 is implemented the read log moves into the project's store
-  subtree.
+  runs. The read log has not moved with the project's records (§13.8 first
+  step): it stays in `<App-own-user-data>/runtime/` until it joins the
+  project's store subtree with the App's other own logs (U-STORE-6).
 - **Limit (§13.8).** Codex 0.160.0's sandbox does not exclude paths from
   reading, so the agent can still read the record files directly; such reads
-  are not recorded. The capability is the way guidance points to; the
-  limit stands until records leave the agent's readable workspace.
+  are not recorded. The capability is the way guidance points to. The
+  records now sit outside the project working tree (§13.8), which takes them
+  out of the agent's writable roots, not out of what it can read, so the
+  limit stands; §13.7 originals left in the project after an import remain
+  readable there too.
 
 ## 14. Writer and reader sequences, with failure behaviour (RS 7; PROPOSED)
 

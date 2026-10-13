@@ -289,7 +289,7 @@ pub fn append_project(
     recorder: &Recorder,
     body: Value,
 ) -> Result<Value, String> {
-    let log = crate::storage::project_log(root, run, writer);
+    let log = crate::storage::project_log(root, run, writer)?;
     append_reserved(
         &log,
         kind,
@@ -335,7 +335,7 @@ pub(crate) fn append_project_reserved_in(
         return Err("run, reserved identity and original observation time required".into());
     }
     append_reserved(
-        &crate::storage::project_log(root, Some(run), writer),
+        &crate::storage::project_log(root, Some(run), writer)?,
         kind,
         recorder,
         body,
@@ -356,7 +356,7 @@ pub(crate) fn note_project_late_write(
     detail: &str,
     set: RecordSet,
 ) -> Result<(), String> {
-    let log = crate::storage::project_log(root, Some(run), writer);
+    let log = crate::storage::project_log(root, Some(run), writer)?;
     // The readable "record write failed" limits naming `subject`, across the
     // project (bounded index) and in the owning log.
     let (all, limits) = crate::records_index::with_index_writing(root, &log, |ix| (ix.late_limits_for(subject), ix.limits()));
@@ -425,10 +425,8 @@ pub(crate) fn prepare_capture_submission(
     log: &str,
 ) -> Result<Value, String> {
     crate::schema_validation::validate_capture(capture)?;
-    let id = capture["captureId"]
-        .as_str()
-        .ok_or("capture identity absent")?;
-    let path = crate::storage::capture_path(root, id);
+    // An A15 capture with its library; any other in the project's records store.
+    let path = crate::storage::capture_file_for(root, capture)?;
     let durable: Value = serde_json::from_slice(&std::fs::read(&path).map_err(|e| e.to_string())?)
         .map_err(|e| e.to_string())?;
     if &durable != capture || durable.get("recordId").is_some() {
@@ -440,10 +438,8 @@ pub(crate) fn prepare_capture_submission(
     )
 }
 pub(crate) fn persist_capture_submission(root: &Path, pending: &Value) -> Result<(), String> {
-    let id = pending["capture"]["captureId"]
-        .as_str()
-        .ok_or("submission capture absent")?;
-    let path = crate::storage::pending_path(root, id);
+    let path = crate::storage::pending_file_for(root, &pending["capture"])?;
+
     if path.exists() {
         let existing: Value =
             serde_json::from_slice(&std::fs::read(&path).map_err(|e| e.to_string())?)
@@ -493,7 +489,7 @@ pub(crate) fn append_capture_submission(
         .as_str()
         .ok_or("pending original observedAt absent")?;
     append_reserved(
-        &root.join(log),
+        &crate::storage::submission_log(root, &pending["capture"], log)?,
         capture_record_kind(&pending["capture"])?,
         &APP_INTERFACE,
         body,
@@ -523,7 +519,7 @@ pub(crate) fn finish_capture_delay(root: &Path, pending: &Value) -> Result<(), S
         return Ok(());
     }
     append(
-        &root.join(pending["log"].as_str().ok_or("pending log absent")?),
+        &crate::storage::submission_log(root, &pending["capture"], pending["log"].as_str().ok_or("pending log absent")?)?,
         "evidence_limit",
         &APP_WRITER,
         json!({"label":"record write failed","subjectRef":rid,"detail":pending["writeFailure"].as_str().unwrap_or("captured act was written after its original observation")}),
@@ -627,6 +623,31 @@ pub(crate) fn recovered_lines_hold(log: &Path, text: &str) -> bool {
 /// partial, not one of them; RS §14.2 R-2). A full read: its cost grows with
 /// the project's history; the act control makes it once per capture, recovery
 /// or offer, never on the record tick.
+/// A workflow library's own record set: its act log alone (U-STORE-2). Its
+/// unreadable, duplicate or conflicting lines are limits on library standing
+/// and on A15 readings; they are never part of a project's set. The log is in
+/// the project tree when the library is the project, so an agent can write it:
+/// what it holds is library evidence only.
+pub(crate) fn library_record_set(library: &Path) -> (Vec<Value>, Vec<String>) {
+    let log = crate::storage::library_log(library);
+    if let Err(e) = crate::storage::check_path(&log) {
+        return (vec![], vec![e]);
+    }
+    if !log.exists() {
+        return (vec![], vec![]);
+    }
+    let read = read_log_parts(&log);
+    let mut limits = read.limits;
+    let mut ids = std::collections::HashSet::new();
+    for entry in &read.entries {
+        if let Some(id) = entry["recordId"].as_str() {
+            if !ids.insert(id) {
+                limits.push(format!("duplicate record identity: {id}"));
+            }
+        }
+    }
+    (read.entries, limits)
+}
 pub(crate) fn writer_record_set(root: &Path) -> (Vec<Value>, Vec<String>) {
     let (entries, limits, _partials) = crate::storage::read_all_parts(root);
     (entries, limits)
@@ -673,7 +694,8 @@ fn append_reserved(
         .map(|r| r.join(".writer.lock"))
         .unwrap_or_else(|| log.with_extension("ownership.lock"));
     let _ownership = crate::storage::lock(&lock_path)?;
-    let project = records_root.as_ref().and_then(|r| r.parent()).and_then(|r| r.parent()).map(Path::to_path_buf);
+    let project = crate::storage::project_of_log(log)?;
+
     // The owning log and the project's record set, through the bounded index
     // (`records_index`): limits, identities and the next `seq` without
     // reading the history again. Another writer's torn tail is a partial,
