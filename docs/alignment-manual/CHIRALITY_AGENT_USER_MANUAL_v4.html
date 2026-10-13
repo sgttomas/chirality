@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
-<meta name="source-sha256" content="b3aee20bf4291286341c345865ea5cfc9935eec7c2f1b99ac75a0550a66d81ed">
-<meta name="source-basis-date" content="2026-10-10">
-<meta name="source-basis-revision" content="5d00723cd8dcd95e85716d1004c3a75d65a5d338">
+<meta name="source-sha256" content="11a436816a48fa3feea75037b847cf89d043fd25964f0143fa5d796c2fc9c58a">
+<meta name="source-basis-date" content="2026-10-13">
+<meta name="source-basis-revision" content="20a67b8005f5b4a5065da2b030cd532340f48e2f">
 <title>Chirality Agent User Manual · Chirality</title>
 <style>
 :root {
@@ -243,9 +243,11 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <h1 id="chirality-agent-user-manual">Chirality Agent User Manual</h1>
 <h2 id="working-in-the-current-repository">Working in the current repository</h2>
 <p>Edition 4</p>
-<p>This guide is for people directing agents and agents carrying out authorized development in <code>sgttomas/chirality</code>. It applies the general management method to current repository files and tools. It is not the user manual for the App product, a release authorization or an additional instruction layer.</p>
+<p>Use this guide as an agent carrying out authorized development with a person in <code>sgttomas/chirality</code>. The person can read it to understand and examine the same working arrangements. It applies the general management method to current repository files and tools. It is not the user manual for the App product, a release authorization or an additional instruction layer.</p>
 <p>Root <code>AGENTS.md</code>, the active project's <code>LOOP_INIT.md</code>, the conversation and applicable current product commitments govern the work. This guide explains their use. If it conflicts with them, identify the conflict and repair the guide; do not reinstate an obsolete procedure.</p>
-<p>The <a href="Project_Management_for_Human_Agent_Teams_Field_Book_v2.md">Field Book</a> is the short management reference. The <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v9.md">management manual</a> explains the method and its reasons. Use the stable <a href="README.md">manual index</a> to discover current editions. Record a specific edition when the exact source matters.</p>
+<p>Read the <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v9.md">management manual</a> for the method, reasoning and shared <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v9.md#vocabulary">working vocabulary</a>. Keep the <a href="Project_Management_for_Human_Agent_Teams_Field_Book_v2.md">Field Book</a> available during work. This guide explains their application to the repository. Use the stable <a href="README.md">manual index</a> to discover current editions. Record a specific edition when the exact source matters.</p>
+<p>Here, <strong>the person</strong> is the human directing the undertaking. Repository instructions also call that person the owner. A <strong>contribution owner</strong> carries assigned work through examination, repair and transfer; an <strong>integration owner</strong> is responsible for how contributions become a usable result. Either can be an agent. Identify the person authorized to make a reserved decision rather than inferring that right from ownership of execution.</p>
+<p>Keep the common distinctions in use: sources and records support understanding; evidence supports particular claims; authorization and host permissions have different grounds; and completion does not itself confer acceptance, release or responsibility for professional reliance.</p>
 <h2 id="1-select-the-active-work">1. Select the active work</h2>
 <p>The conversation supplies the intended result, scope and authorization. A new session does not cancel prior direction or prove that earlier work is complete. Recover the relevant unfinished work before replacing it.</p>
 <div class="table-scroll" role="region" tabindex="0" aria-label="Table 1; scroll horizontally if needed">
@@ -294,7 +296,7 @@ git rev-parse HEAD
 <p>Read Root <code>AGENTS.md</code>, the project entry and the active role when a role is selected. Then locate the affected deliverable or shared component. Read the PRD and companions for the requirements and interfaces involved, rather than reading the entire governance history.</p>
 <p>A useful first return identifies the work already available, the next authorized step and any specific missing input. Do not reconstruct a standing backlog from archived plans.</p>
 <h2 id="2-use-roles-as-contributions">2. Use roles as contributions</h2>
-<p>Agent 0's responsibilities stay with the agent working with the owner: purpose, continuity and reserved choices. Other roles are opportunities to contribute, not mandatory stops.</p>
+<p>Agent 0's responsibilities stay with the agent working directly with the person: purpose, alignment, continuity and reserved choices. Other roles are opportunities to contribute, not mandatory stops.</p>
 <div class="table-scroll" role="region" tabindex="0" aria-label="Table 2; scroll horizontally if needed">
 <table>
 <thead>
@@ -306,7 +308,7 @@ git rev-parse HEAD
 <tbody>
 <tr>
 <td>HELP_HUMAN</td>
-<td>Align the undertaking with the owner and maintain continuity.</td>
+<td>Align the undertaking with the person and maintain continuity.</td>
 </tr>
 <tr>
 <td>HELPS_HUMANS</td>
@@ -324,7 +326,7 @@ git rev-parse HEAD
 </table>
 </div>
 <p>One session may work directly across alignment, design and implementation. Delegate where independent contributions or a separation of concerns help. Give each contribution enough context and authority to continue through ordinary repairs.</p>
-<p>HELP_HUMAN is no longer inherently read-only. In Root's resolver, write targets come from an explicit normalized assignment and effective tool policy. Missing write authorization grants no targets. A read-only host still wins. A role never grants actual host permissions.</p>
+<p>HELP_HUMAN can perform authorized writes when the host and applicable instructions permit them. In Root's resolver, write targets come from an explicit normalized assignment and effective tool policy. Missing write authorization grants no targets. A read-only host still wins. A role never grants actual host permissions.</p>
 <p>TASK remains non-delegating even when a host offers delegation tools. It returns opportunities for further decomposition to its caller. Its assignment may be the conversation; a separate brief file is not inherently required.</p>
 <p>Take role and method instructions from the repository, not hidden host-side definitions or out-of-repository instruction files; give the complete assignment in the dispatch and refer only to repository files.</p>
 <p>Use the host's actual dispatch and return mechanism. Do not equate a prepared prompt, queued message or completed turn with delivered work. Return result locations, checks and unresolved matters without creating a separate record unless one is needed.</p>
@@ -362,9 +364,9 @@ git rev-parse HEAD
 </tbody>
 </table>
 </div>
-<p>There is no routine deliverable lifecycle file or Working/Issued split. Do not recreate <code>_STATUS.md</code>, MEMORY rows, dependency mirrors or progress registers. Existing historical files remain evidence of earlier arrangements, not templates for new work.</p>
-<p>Edit the current source when its meaning changes. A new commitment or changed acceptance criterion remains reserved for the owner unless already authorized. Apply an authorized decision without asking for the same approval again. A factual repair should not silently narrow a commitment.</p>
-<p>The deliverable is the unit of responsibility, not an exclusive code ownership boundary. Several deliverables can use the same code. State those relationships where useful without inventing exclusive ownership.</p>
+<p>Current ScopeOfWork, Design, declared needs, outputs and checks provide the working basis. Tools derive relationship views from those sources. Keep an additional record only for a concrete consumer, acceptance requirement or recovery need. Historical record formats remain evidence of earlier arrangements; use one in current work only where an applicable requirement or actual consumer needs it.</p>
+<p>Edit the current source when its meaning changes. A new commitment or changed acceptance criterion remains reserved for the person authorized to decide it unless already authorized. Apply an authorized decision without asking for the same approval again. A factual repair should not silently narrow a commitment.</p>
+<p>A deliverable is an intended work product with a defined contribution, conditions and assigned responsibility. Its repository folder holds the contract, design material and needs; the outputs can live elsewhere. Assign responsibility for carrying the deliverable through without treating its folder as an exclusive code boundary. Several deliverables can use the same code. State those relationships where useful without inventing exclusive ownership.</p>
 <h2 id="4-query-dependencies">4. Query dependencies</h2>
 <p>Run the deliverable CLI from the repository root. It requires Python 3 and PyYAML. The CLI reports JSON and does not maintain a generated register.</p>
 <pre><code class="language-sh">python3 -m tools.deliverables --project projects/chirality-app-v4 neighborhood DEL-07-02
@@ -403,10 +405,10 @@ python3 -m tools.deliverables --project projects/chirality-piping neighborhood D
 </table>
 </div>
 <p>A single Git revision supplied to <code>touches</code> means that commit's changes, not the difference between that revision and the working tree. A PR reference requires authenticated <code>gh</code> access. The <a href="../../tools/deliverables/README.md">CLI README</a> defines the supported forms and current limits.</p>
-<p>Each need identifies a supplier and a condition. Optional fields describe timing, gating and evidence. The consumer maintains its needs; reverse links are derived. Update unchanged rows only when their meaning actually changes.</p>
-<p>A present file proves presence, not suitability. A merge proves integration, not acceptance or fulfillment. The agent must inspect the relevant condition and evidence. The tool does not infer that a test passed or a deliverable is complete.</p>
+<p>Each need identifies a supplier and a condition. Optional fields describe timing, gating and evidence. The consumer maintains its needs; reverse links are derived. Update a row only when its meaning changes.</p>
+<p>A present file proves presence, not suitability. A confirmed Git merge establishes source integration into the selected revision. Establishing a usable integrated result also requires examination of the changed contribution and its affected relationships. The merge itself establishes neither acceptance nor fulfillment. The agent must inspect the relevant condition and evidence. The tool does not infer that a test passed or a deliverable is complete.</p>
 <p><code>check</code> rejects malformed metadata and escaping paths. It reports unresolved suppliers, planned paths and cycles without treating them as automatic failures. Missing edges do not prove independence. Examine shared interfaces, code and resources before dividing work.</p>
-<p>A baseline tag supports comparison and recovery. It does not approve every future dependency change. Ordinary changes do not require a new tag or a currency packet. Preserve actual owner holds and specific adopted acceptance requirements.</p>
+<p>A baseline tag supports comparison and recovery. It does not approve every future dependency change. Ordinary changes do not require a new tag or a currency packet. Preserve actual holds set by the person and specific adopted acceptance requirements.</p>
 <h2 id="5-carry-the-work-through">5. Carry the work through</h2>
 <p>The common working cycle is:</p>
 <ol>
@@ -418,9 +420,9 @@ python3 -m tools.deliverables --project projects/chirality-piping neighborhood D
 <li>Return the usable result and unresolved reserved choices.</li>
 </ol>
 <p>Use <a href="../../workflows/coordinated-knowledge-work/WORKFLOW.md">coordinated knowledge work</a> when related contributions must become one result. It supports direct work as well as delegation. It does not prescribe a fixed staffing diagram.</p>
-<p>Keep one integration responsibility for a shared result and disjoint concurrent writes. Independent work need not wait for an unrelated branch. Shared memory, tools, application state, review capacity and integration cost can still require sequencing.</p>
+<p>Identify one integration owner for a shared result. Keep concurrent writes disjoint. Independent work need not wait for an unrelated branch. Shared memory, tools, application state, review capacity and integration cost can still require sequencing.</p>
 <p>Prove a consequential interface through its consumer before expanding work that depends on it. Continue independent work while that premise is examined. Component agreement does not prove the common basis is correct.</p>
-<p>Resolve ordinary implementation refinements within authority. Escalate changes to commitments, consequential shared assumptions, interfaces outside the assignment or reserved choices. Identify the affected work and the consequence of each choice.</p>
+<p>Resolve ordinary implementation refinements within authority. Bring a consequential shared assumption to the integration owner for examination and coordination. Refer changes outside the assignment or to reserved commitments to the person authorized to decide them. Identify the affected work and the consequence of each choice.</p>
 <p>A final documentation stage is not compulsory. Keep documents current as their meaning changes. Before completion, establish coverage of commitments, relationships and applicable examination. Add work only where a required claim remains unsupported.</p>
 <h2 id="6-select-proportionate-verification">6. Select proportionate verification</h2>
 <p>Root's rule is consequence-based:</p>
@@ -452,7 +454,7 @@ python3 -m tools.deliverables --project projects/chirality-piping neighborhood D
 </tbody>
 </table>
 </div>
-<p>Do not alter a criterion merely to obtain a pass. Establish whether the source requirement, test or implementation is wrong. Preserve protected oracles and meaningful limits unless their owner authorizes a substantive change.</p>
+<p>Do not alter a criterion merely to obtain a pass. Establish whether the source requirement, test or implementation is wrong. Preserve protected oracles and meaningful limits unless the person with the applicable decision right authorizes a substantive change.</p>
 <p>The single required GitHub result is <code>harness</code>. It combines repository checks and selected App v4 and Piping jobs. App v3, Runtime and PEC have no verification jobs. See <a href="../CI_SELECTION.md">CI selection</a> for the maintained policy.</p>
 <p>The aggregate fails when selected work fails, is cancelled or does not run. Unselected work is reported as unselected. A reused result names its earlier run and candidate; it does not claim new tests ran.</p>
 <p>Do not repeat a passing hosted suite locally without a new change or unresolved concern. Check selection must cover actual consumers; an empty selection is not proof of safety.</p>
@@ -463,13 +465,13 @@ python3 tools/run_affected_tests.py
 <p>For Piping, the profile selector accepts project-relative paths:</p>
 <pre><code class="language-sh">python3 tools/software_workflow/select_affected_checks.py projects/chirality-piping/software-workflow.json core/model_transform/physical_to_analytical/_solver_boundary_adapter.py
 </code></pre>
-<p>This command selects checks; it does not execute them. Piping's <a href="../../projects/chirality-piping/docs/CI_STRATEGY.md">CI strategy</a> explains its current numerical, browser and Python coverage. DEC-025's blanket local sweep is not a merge requirement. The release sweep remains a separate optional release-preparation tool.</p>
+<p>This command selects checks; it does not execute them. Piping's <a href="../../projects/chirality-piping/docs/CI_STRATEGY.md">CI strategy</a> explains its current numerical, browser and Python coverage. Use the current affected-check policy for merges. The broader release sweep is a separate optional release-preparation tool.</p>
 <h2 id="7-integrate-under-the-standing-grant">7. Integrate under the standing grant</h2>
 <p>For <code>sgttomas/chirality</code>, Root's standing Git grant covers commit, push, PR creation/update and merge within authorized work. It requires proportionate verification and passing required checks on the exact head. Independent scrutiny applies where consequence requires it.</p>
 <p>The grant excludes protection bypasses, history rewrites, force pushes, permission changes and releases. Explicit holds remain effective. Use the <a href="../../.agents/skills/chirality-change/SKILL.md">chirality-change skill</a> for branch and PR conventions.</p>
-<p>The PR is the change record. State the problem, resulting behavior, checks and open matters. Quote the owner's words for a reserved decision without implying that the owner reviewed bytes they did not inspect.</p>
+<p>The PR is the change record. State the problem, resulting behavior, checks and open matters. Quote the person's words for a reserved decision without implying that they reviewed bytes they did not inspect.</p>
 <p>Reassess affected checks after candidate changes. A review of an earlier revision does not automatically cover later edits. A passing rerun does not establish that a known defect was repaired.</p>
-<p>Merge is a source-control operation. It does not issue a deliverable, approve engineering reliance or release a product. The actual integration must be confirmed before it is reported as complete.</p>
+<p>Merge is a source-control operation. Confirm the destination revision before reporting source integration. Examine affected relationships before claiming a usable integrated result. Acceptance identifies an authorized act concerning a subject, scope and purpose; release authorizes availability for a stated use or audience; delivery transfers the result and what its recipient needs. A merge performs none of those acts by itself and does not approve engineering reliance.</p>
 <h2 id="8-enter-app-v4-and-swbpipe-correctly">8. Enter App v4 and SWBPIPE correctly</h2>
 <h3 id="app-v4">App v4</h3>
 <p>Start at the <a href="../../projects/chirality-app-v4/loop/LOOP_INIT.md">App v4 loop</a>, then the affected deliverable. The App is a workflow-authoring exemplar and a basis for agent functions inside host applications.</p>
@@ -479,7 +481,7 @@ python3 tools/run_affected_tests.py
 <p>Start at the <a href="../../projects/chirality-piping/loop/LOOP_INIT.md">Piping loop</a>, then current ScopeOfWork, Design and needs. The product is an analysis-grade piping design engine and stress-model authoring environment.</p>
 <p>The loop carries F-PIP-1–4 and DEC-043. Those project boundaries remain authoritative. This guide does not restate or amend their held wording. In particular, the external corpus's extracted equation artifacts must not become authoritative physics references.</p>
 <p>Frozen numerical references live in <code>validation/references/t3_r1/</code>. Their generators and consumers remain maintained. Do not modify reference results to make an implementation pass.</p>
-<p>Product operations, professional acceptance and repository development are different activities. Removing development records does not remove a required product event, model history, stop/checkpoint record or user decision.</p>
+<p>Product operations, professional acceptance and repository development are different activities. Proportionate development records do not remove a required product event, model history, stop/checkpoint record or user decision.</p>
 <h2 id="9-preserve-continuity-without-rebuilding-history">9. Preserve continuity without rebuilding history</h2>
 <p>Use current artifacts, tool queries, the conversation and PRs first. Keep one replaceable recovery note only when they cannot support continuation.</p>
 <p>A useful recovery note distinguishes prepared work from executed changes, known results from pending checks, active operations from stopped ones, and local-only work from integrated work. It identifies the next useful action and material holds.</p>
@@ -498,12 +500,12 @@ python3 tools/validation/build_workflow_index.py --check
 <p>The manual index has stable anchors for the management manual, Field Book and this guide. Those links answer “where is the current edition?” They do not answer “which edition supported this earlier decision?”</p>
 <p>For ordinary discovery, use the stable index. When a requirement, comparison or accepted result depends on exact wording, identify the resolved edition and source revision. Existing Git provides the bytes; add a content hash only when a consumer requires one.</p>
 <p>A changed index does not automatically amend App v4's product requirements or historical test fixtures. Update affected current consumers deliberately. Preserve the earlier edition while a live consumer still requires its bytes.</p>
-<p>A source update can change language without changing meaning, or change the actual method. Compare the relevant sections and consequences. Do not substitute a new edition merely because its version number is higher.</p>
+<p>A source update can clarify language while preserving a distinction, or change the actual method. Iteration becomes learning when a finding changes the next relevant action and reaches the sources and consumers that need it. Compare the relevant sections and consequences. Do not substitute a new edition merely because its version number is higher.</p>
 <h2 id="12-three-practical-cases">12. Three practical cases</h2>
 <h3 id="a-small-reversible-correction">A small reversible correction</h3>
-<p>The owner asks for a clearer message in the App. The agent finds the actual interface and its requirement, changes the text and exercises the affected state. It checks whether wording could misrepresent a permission or data operation. If not, ordinary proportionate verification is sufficient. It does not create a graph, run record or new management assignment.</p>
+<p>The person asks for a clearer message in the App. The agent finds the actual interface and its requirement, changes the text and exercises the affected state. It checks whether wording could misrepresent a permission or data operation. If not, ordinary proportionate verification is sufficient. It does not create a graph, run record or new management assignment.</p>
 <h3 id="a-consequential-numerical-change">A consequential numerical change</h3>
-<p>The owner authorizes a bounded numerical repair. The owner of that work reads the current Design conditions and queries affected consumers. It checks the independent numerical reference and keeps parallel writers disjoint. An independent reviewer examines the substantive change. The agent runs affected checks, updates any changed condition in its current source, and integrates the reviewed candidate under the grant. A changed accepted tolerance goes to the owner instead of being silently adopted.</p>
+<p>The person authorizes a bounded numerical repair. The agent assigned as contribution owner reads the current Design conditions and queries affected consumers. That agent checks the independent numerical reference and keeps parallel writers disjoint. An independent reviewer examines the substantive change. The agent runs affected checks, updates any changed condition in its current source, and integrates the reviewed candidate under the grant. A proposed change to an accepted tolerance goes to the person authorized to decide it before adoption.</p>
 <h3 id="recovery-after-interruption">Recovery after interruption</h3>
 <p>A check was started, but its final response was lost. The next session inspects the actual process and result location before running it again. It checks the working tree and current PR head. Valid completed work remains usable. A short recovery note is replaced with the current situation if one is still needed; no new handoff chain is created.</p>
 <!-- END MARKDOWN CONTENT -->
@@ -511,9 +513,9 @@ python3 tools/validation/build_workflow_index.py --check
   </div>
   <footer class="document-footer">
   <dl class="document-meta">
-    <div><dt>Source basis dated</dt><dd>10 October 2026</dd></div>
-    <div><dt>Repository basis</dt><dd><code>5d00723cd8dcd95e85716d1004c3a75d65a5d338</code></dd></div>
-    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="CHIRALITY_AGENT_USER_MANUAL_v4.md">CHIRALITY_AGENT_USER_MANUAL_v4.md</a><br><code>b3aee20bf4291286341c345865ea5cfc9935eec7c2f1b99ac75a0550a66d81ed</code></dd></div>
+    <div><dt>Source basis dated</dt><dd>13 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>20a67b8005f5b4a5065da2b030cd532340f48e2f</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="CHIRALITY_AGENT_USER_MANUAL_v4.md">CHIRALITY_AGENT_USER_MANUAL_v4.md</a><br><code>11a436816a48fa3feea75037b847cf89d043fd25964f0143fa5d796c2fc9c58a</code></dd></div>
   </dl>
     <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
     <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>

@@ -1,12 +1,10 @@
 # Course 07 — Defining an Engineering Project
 
-A project basis makes the undertaking understandable to people who were absent from its first discussions. It connects purpose, requirements, scope, constraints, and decisions.
+[Series](../index.html) · [Northbank case](../case-study.html) · [Glossary](../glossary.html) · [References](../references.html)
 
-Good definition leaves room for design while making commitments and unresolved matters clear. It supports a division of work that can produce a coherent result.
+A project basis makes the undertaking understandable to people who were absent from its first discussions. It connects purpose, requirements, scope, constraints, and decisions. Good definition leaves room for design while making commitments and unresolved matters clear. It supports a division of work that can produce a coherent result.
 
 This course develops a project basis and an initial work allocation. Detailed planning and technical integration follow in Courses 08 and 09.
-
-[Series](../index.html) · [Northbank case](../case-study.html) · [Glossary](../glossary.html) · [References](../references.html)
 
 ## Prerequisites and outcomes
 
@@ -26,9 +24,7 @@ Use Northbank Packets A and B. Identify any new classroom decision separately fr
 
 A requested component can conceal the need it serves. Ask what activity the intended result supports and who will use it.
 
-Distinguish the product from the project. The product may be an installation or design package. The project organizes its development and delivery.
-
-The product may remain in use after the project ends. Consider operating and maintenance responsibilities when defining the undertaking.
+Distinguish the product from the project. The product may be an installation or design package. The project organizes its development and delivery. Because the product may remain in use after the project ends, consider operating and maintenance responsibilities when defining the undertaking.
 
 Describe the intended benefit without inventing evidence. If a benefit remains a sponsor expectation, identify it as such.
 
@@ -40,9 +36,7 @@ Ask these questions:
 4. Which conditions constrain an acceptable solution?
 5. What evidence will show that the outcome has been achieved?
 
-Investigate alternatives before locking in an unexamined means. Compare them against the same purpose, requirements, operating conditions, and resource constraints.
-
-Alternatives can include modification, replacement, staged work, or a different operating arrangement. Their technical and legal acceptability must be established.
+Investigate alternatives before locking in an unexamined means. Compare them against the same purpose, requirements, operating conditions, and resource constraints. Alternatives can include modification, replacement, staged work, or a different operating arrangement. Their technical and legal acceptability must be established.
 
 Where the sponsor has already adopted a solution boundary, preserve it. Propose a change through the applicable decision process if evidence justifies reconsideration.
 
@@ -50,9 +44,7 @@ Record reasons for consequential choices. A later participant needs to understan
 
 ## Lesson 2 — Assemble the project basis
 
-The **project basis** identifies the purpose, requirements, scope, constraints, and decisions used to develop and execute the project.
-
-An organization may carry this information in several controlled documents. Their relationships must remain clear to the people who use them.
+The **project basis** identifies the purpose, requirements, scope, constraints, and decisions used to develop and execute the project. An organization may carry this information in several controlled documents. Their relationships must remain clear to the people who use them.
 
 Include enough information to govern the next work. Extra detail has little value when no decision or activity uses it.
 
@@ -72,17 +64,13 @@ Distinguish existing obligations, proposed interpretations, and proposed new pro
 
 Reconcile conflicting sources at the relevant subject. Do not solve a discrepancy by deleting the record that exposes it.
 
-Before requesting acceptance, read the basis as a whole. Check for incompatible assumptions, missing boundaries, unclear terms, and unsupported commitments.
-
-Identify exactly which document revision the decision concerns. Record any conditions on proceeding and the work they affect.
+Before requesting acceptance, read the basis as a whole. Check for incompatible assumptions, missing boundaries, unclear terms, and unsupported commitments. Identify exactly which document revision the decision concerns. Record any conditions on proceeding and the work they affect.
 
 ## Lesson 3 — Make requirements and examination usable
 
 A requirement states a needed result or constraint. It must preserve the conditions that give the statement meaning.
 
-Specify the subject, required result, relevant conditions, source, and status. Separate independently allocatable obligations where that improves responsibility.
-
-For example, one statement can define a transfer-flow outcome. Another can define standby behavior. Their shared operating conditions remain connected.
+Specify the subject, required result, relevant conditions, source, and status. Separate independently allocatable obligations where that improves responsibility. For example, one statement can define a transfer-flow outcome and another can define standby behavior. Their shared operating conditions remain connected.
 
 Avoid turning an unresolved input into a convenient design value. Assign work to establish it before the dependent decision.
 
@@ -116,9 +104,7 @@ Choose boundaries around related work that someone can understand and carry thro
 
 Preserve discipline responsibility where it applies. Identify the person who coordinates the combined technical result across those discipline contributions.
 
-Give each obligation one accountable home. Several people may contribute to it. Their inputs and interfaces must remain explicit.
-
-That home coordinates fulfillment. It does not erase the duties of contributors, reviewers, or other appointed authorities.
+Give each obligation one accountable home. Several people may contribute to it. Their inputs and interfaces must remain explicit. That home coordinates fulfillment; it does not erase the duties of contributors, reviewers, or other appointed authorities.
 
 Do not allocate the same whole obligation to two groups without explaining their distinct contributions. This can conceal both duplication and gaps.
 
@@ -132,9 +118,7 @@ For each deliverable, state:
 
 A deliverable title alone gives insufficient direction. “Electrical package” does not identify what it must establish for procurement or installation.
 
-Read the division in both directions. Follow each requirement to its contributions. Follow each contribution back to its source obligation or justified project need.
-
-Then examine the boundaries. Determine who supplies shared inputs, who resolves differences, and who assembles the whole.
+Read the division in both directions. Follow each requirement to its contributions. Follow each contribution back to its source obligation or justified project need. Then examine the boundaries: determine who supplies shared inputs, who resolves differences, and who assembles the whole.
 
 Separate work allocation from work satisfaction. An assigned deliverable remains to be produced and examined.
 
@@ -158,13 +142,13 @@ Check readiness with these questions:
 
 A pending external requirement may limit several technical choices. Other authorized information gathering can continue.
 
-An exclusion also needs careful treatment. If another party supplies a required act, identify that party and the interface the project still needs.
-
-Do not remove an obligation by placing it outside one contributor's scope. Determine where responsibility for it continues.
+An exclusion also needs careful treatment. If another party supplies a required act, identify that party and the interface the project still needs. Placing an obligation outside one contributor's scope does not remove it; determine where responsibility for it continues.
 
 After acceptance, communicate the basis to its users. Follow later changes through the requirements, assignments, interfaces, and examination they affect.
 
 ## Worked example — Define Northbank's purchase preparation
+
+The supplier review and coordination meeting have identified work that remains open. This example turns those needs into a project definition with connected contributions and clear limits on order release.
 
 A02 Rev 1 establishes 18 litres per second, two pump units, tank reuse, and associated work. It also identifies unresolved hydraulic conditions.
 
@@ -215,16 +199,6 @@ Prepare an interface table with suppliers, consumers, required contributions, ow
 5. What distinguishes work allocation from work satisfaction?
 6. What must be stated before unresolved information can remain open during dependent work?
 
-## Portfolio continuation and references
-
-Keep the repaired assignment, project basis, requirement table, and scope allocation. Link them to your earlier sources and decisions.
-
-Carry these records into Course 08 for planning. Use their interfaces and readiness conditions in Course 09.
-
-Source adaptation: Field Book §§3–4 and Consolidated v8 §§2.1–2.7 and 3.1–3.7. These sections address basis, scope, outputs, and examination.
-
-Use the shared [references](../references.html) for systems engineering fundamentals and project governance. External readings are optional for the supplied assignment.
-
 ## Assessed assignment — Prepare a coherent project definition
 
 Prepare a proposed Northbank project basis using Packets A and B. Preserve all approved A02 commitments and their identified limits.
@@ -242,3 +216,13 @@ The instructor assesses these five observable criteria:
 3. The work allocation gives each obligation an accountable home and covers the complete accepted scope.
 4. Interfaces identify contributions, proposed owners, points of need, and coordination responsibility.
 5. Open matters identify resolution, authority, and the specific work they limit without invented technical or legal conclusions.
+
+## Portfolio continuation and references
+
+Keep the repaired assignment, project basis, requirement table, and scope allocation. Link them to your earlier sources and decisions.
+
+Carry these records into Course 08 for planning. Use their interfaces and readiness conditions in Course 09.
+
+Source adaptation: Field Book §§3–4 and Consolidated v8 §§2.1–2.7 and 3.1–3.7. These sections address basis, scope, outputs, and examination.
+
+Use the shared [references](../references.html) for systems engineering fundamentals and project governance. External readings are optional for the supplied assignment.

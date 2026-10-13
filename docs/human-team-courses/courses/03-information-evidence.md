@@ -110,6 +110,8 @@ The packet is useful when it supports a decision or next activity. Avoid adding 
 
 ## Northbank worked example — The electrical enquiry
 
+With the source identities and statuses established, the next question is what those sources can support. The electrical enquiry shows why retrieval must preserve each source's limits.
+
 The research question is: “What does Packet A establish about the existing electrical connection?” The consumer is the electrical engineer preparing further investigation.
 
 The researcher retrieves A03 Rev 0 and A04 Rev 1. A07 Rev 0 explains the indexing omission and the design note's incomplete citation.

@@ -4,6 +4,19 @@ This series teaches project management and project engineering for human teams. 
 
 Use the courses to prepare, perform, examine, and coordinate professional work. Develop the technical knowledge of your discipline alongside this series.
 
+These courses are written for you, the person learning project practice. The
+[Chirality manuals](../alignment-manual/README.md) are primarily for your own
+agent to read and use while working with you. Give the agent the management manual
+to establish the method and vocabulary, then use the Field Book as a reference
+during work. Describe the problem you want to solve or the
+thing you want to build, and provide the relevant work and circumstances.
+
+Bring what you learn here into that undertaking. Examine the agent's contributions,
+discuss consequential interpretations, and make the decisions that are yours.
+Ask the agent to carry the agreed work forward. You and your agent develop a shared
+way of working through producing, examining and improving the result. Return to
+the lessons and manuals when experience exposes a question you need to understand.
+
 ## Start the series
 
 Read the courses in the order below. Each course contains lessons, a worked example, practice, a knowledge check, and an assessed assignment.
@@ -42,6 +55,16 @@ The learning order does not prescribe a fixed project sequence. Real projects de
 Keep your course outputs in one learning portfolio. Identify each output and its revision. Link to supporting evidence instead of copying it repeatedly.
 
 Use a mentor for individual study. The mentor can challenge the evidence, interpretation, and proposed reliance. Course 12 requires a team or a facilitated role exercise.
+
+## Study with an agent instructor
+
+An agent can teach the lessons, discuss the case, challenge your reasoning, and assess your work against the course criteria. Give it access to the [teaching guide](instructor-guide.html), the current course and its linked instructor companion, and the [case records](case-study.html). The guide explains how to support your learning while keeping your own contribution visible.
+
+You can begin with:
+
+> Act as my instructor for this course series. Read the teaching guide and the relevant course, instructor companion, and case records before teaching. Start by establishing my purpose and experience, using what I have already told you. Work through manageable activities with me. Explain when I need help, let me attempt and defend the work, and assess my demonstrations against the stated criteria. Distinguish practice, worked examples, and assessment. Ask for any required material you cannot access.
+
+Bring your own questions and ask for a different explanation when needed. Keep the portfolio outputs you will use in later courses. The practicum's team or individual-study arrangement and independent examination requirements still apply; the teaching guide explains how the agent should handle them.
 
 ## Assessment
 
