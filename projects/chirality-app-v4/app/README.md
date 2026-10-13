@@ -590,8 +590,12 @@ implemented behavior and qualification limits.
 25. **Records capability** (RS §13.8 "Agent access", §13.9; owner U-STORE-4,
     "I choose option B"). Conversations the App starts in its current project
     (`CHIRALITY_WORKSPACE`) are offered one read-only tool,
-    `chirality_records_read_v1` (`dynamicTools` on `thread/start`; not on a
-    resume or fork). Its operations are `list_runs`, `read_run` and
+    `chirality_records_read_v1` (`dynamicTools` on `thread/start`). Stock
+    0.160.0 retains its declaration through hot and cold resume and fork in
+    the opt-in [records supplier check](supplier_checks/records_delivery.py).
+    That capture-only fixture uses the actual App definition, has no model
+    prediction or App handler, and observes only `namespaceTools: true`
+    routes (RS §13.9). Its operations are `list_runs`, `read_run` and
     `read_acts`. Pages hold at most 50 items and the final text stays within
     32 KiB (fewer items, or a refusal, when it would not); larger entries and
     summaries come back as stubs, and a cursor continues the next page. The
@@ -629,9 +633,11 @@ implemented behavior and qualification limits.
 | `catalog.rs`, `proposal.rs`, `external_adapter.rs`, `receiving.rs`, `external_observation.rs` | Reviewed receiving contracts and exact person-selected observation custody; no external host dispatch or origin verification implied |
 | `src-tauri/src/schema_validation.rs`, `schemas/` | W-1 plus complete package/offer/capture checks; declared-ID registry with external retrieval disabled; embedded resources checked by `schemas/sync.py` |
 | `src-tauri/src/records.rs` | Validated append, UUID identities, sequence/read completeness, serialization and ordered capture late-write accounting |
+| `src-tauri/src/records_index.rs`, `records_query.rs`, `records_index_tests.rs` | RS §13.8 derived SQLite query cache: disk-backed identities and positions, streamed rebuilding, authoritative line revalidation, and source-scan fallback; cache metadata is disposable |
 | `src-tauri/src/record_lines.rs`, `record_lines_tests.rs` | RS §13.8 lines: one entry or one group per line (read whole or not at all), each line's chain link to the one before, unchained (legacy) and broken-chain limits, and each log's chain head |
 | `src-tauri/src/records_access.rs`, `records_access_tests.rs`, `resources/runtime_core/records-read-log.entry.schema.json` | The agents' read-only records capability (RS §13.9): the offered tool, its storage-independent source (the logs R-1 discovers: the project's records store subtree, or §13.7 logs before an import), bounded quoted pages and the read log written before each answer; tests include a fake-peer journey in which the agent calls it |
 | `src-tauri/src/records_store.rs`, `records_store_tests.rs` | The App's records store (RS §13.8): placement and the explicit override, project identity and its limits, the explicit import of §13.7 records, and the host status `recordsStore` |
+| `src-tauri/src/records_export.rs`, `records_export_tests.rs`, `tools/verify_records_bag.py` | RS §13.8 BagIt export: native folder selection, byte-preserving payload, SHA-256 manifests and copied-log chain heads; package verification in the App and a standalone Python verifier |
 | `src-tauri/src/storage.rs` | Store, project/run/writer and library paths, R-1 discovery (store subtree, or §13.7 paths in place before an import), atomic capture persistence and locking |
 | `src-tauri/src/recorder.rs` | Package byte snapshot and request/provenance-limit mapping |
 | `src-tauri/src/act_control.rs`, `act_control_a15.rs`, `act_control_file.rs`, `file_act_native.rs`, `canonical.rs` | A16, hot A15 and App-file offer/native custody; capture versus publication uncertainty, ordered retry and original content binding |
@@ -690,6 +696,21 @@ layout. Include the package's `codex-path` directory in the child process's
 its required host and will fail closed. The approved 0.160.0 archive's complete layout was separately
 verified and probed; earlier flat-binary observations remain source-specific.
 This development setup does not establish qualified distribution identity.
+
+On macOS, the opt-in records supplier check uses that already prepared binary
+with fresh credential-free homes and a localhost-only OS sandbox. It captures
+declarations for started, resumed and forked threads, includes threads without
+the capability as negative controls, and returns HTTP400 without a model
+prediction. Decoded frames and requests stay in the reported private scratch
+directory. From `app/`:
+
+```sh
+records_probe_dir=$(mktemp -d)
+CHIRALITY_SKIP_CODEX=1 cargo run --offline --locked --manifest-path src-tauri/Cargo.toml \
+  --example records_tool_definition > "$records_probe_dir/definition.json"
+python3 supplier_checks/records_delivery.py --codex "$CHIRALITY_CODEX_BIN" \
+  --definition "$records_probe_dir/definition.json"
+```
 
 `npm test` validates actual Rust outputs against canonical Design schemas,
 without reference rewrites. Rust tests also check runtime refusal, capture
@@ -811,6 +832,17 @@ library evidence, never part of the project's record set. The override
 store inside the project or a Codex home is refused. The host status (`recordsStore`)
 
 shows the store, the project's identity and any import or identity limit.
+The records-store panel offers **Export project records**, choosing a parent
+folder natively and creating a new verified BagIt package. Its payload preserves
+project store files byte for byte, with SHA-256 manifests and each copied RS
+log's chain head. Store-wide query caches and the two known owning lock controls are omitted;
+imported connector publication evidence is preserved.
+**Verify an exported package** checks inventories, hashes and RS heads again.
+The included `verify.py` checks bytes and inventories with standard Python 3,
+without the App. Exports are unsigned until App signing; byte verification
+confers no source authenticity. Package import and recorded disposal remain
+unbuilt (RS §13.8).
+
 The fleet coordination log has no App writer yet (DEL-06-01). When it is
 built, the log stays one co-written file in the project,
 `.chirality/fleet/coordination.fleet.jsonl`, with every entry, and the App
@@ -848,6 +880,17 @@ detected. The host status
 (`recordChain`) shows bounded counts of chained, legacy and broken logs;
 each log's chain head comes on demand (`records_chain_heads`).
 Signed checkpoints wait for App signing (OI-011).
+
+The derived records index keeps identities, positions and membership counts in
+process-owned SQLite files under the store's `indexes/`; record bodies stay in
+their logs. Cold use rebuilds from authoritative sources, and returned entries
+are reread and revalidated, including their exact line hash. Changed or unusable
+caches rebuild or use source scans. A private temporary cache can serve a process
+when the store cannot host derived metadata; records themselves have no fallback.
+Index metadata for ordinary valid entries is per log and directory; diagnostics
+grow with reported limits. Full act projections retain their
+separate result-sized memory cost (RS §13.8, §14.3).
+
 
 Attachment metadata arrays and pointer-only client request records live under
 the App user-data `runtime/nir/attachment-supplies/` and
