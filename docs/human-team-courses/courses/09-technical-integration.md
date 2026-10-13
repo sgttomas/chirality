@@ -134,6 +134,8 @@ A disposition does not establish unexamined behavior. It cannot waive an obligat
 
 ## Worked Northbank example
 
+The execution plan depends on technical release conditions. Here, the familiar source discrepancies become specific contributions and interfaces that the project engineer must coordinate.
+
 The project engineer prepares a technical release account using A02 Rev 1, A04 Rev 1, B01 Rev 0, and B03 Rev 0.
 
 | Matter | Supported position | Next contribution |

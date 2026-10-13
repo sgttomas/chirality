@@ -136,9 +136,9 @@ An empty task list is not an answer. A separate closeout stage is unnecessary wh
 
 Maintain the authoritative artifacts when a commitment, design or dependency condition changes. The change record explains the reason and identifies unresolved consequences. Version control preserves earlier text.
 
-A record needs a concrete consumer, an acceptance requirement or a recovery need. A useful record can be a required test result, a decision with material conditions, or the identity of a candidate proposed for release. Its form follows its purpose.
+A record needs a concrete consumer, an acceptance requirement or a recovery need. A required test result, a decision with material conditions, or the identity of a candidate proposed for release can meet that need. Use existing information where it suffices; the record's form follows its purpose.
 
-Use existing information where it meets the need. Add a record when its consumer, acceptance requirement or recovery purpose justifies maintaining it. Product records required by the application or its users are a different matter; reducing development administration does not remove those requirements.
+Product records required by the application or its users are a different matter. Reducing development administration does not remove those requirements.
 
 At an interruption, keep one replaceable recovery note if current artifacts and the conversation are insufficient. Identify prepared versus executed work, pending checks, active operations, local-only work and the next useful action. Do not repeat an operation whose completion is uncertain until its actual state has been inspected.
 

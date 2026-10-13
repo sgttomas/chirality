@@ -30,15 +30,9 @@ After this course, you can:
 
 A large list of activities does not explain a complex project. The important question is how changes pass between activities and people.
 
-For example, a motor change can affect electrical protection, controls, equipment delivery, installation, commissioning, and operating information.
+For example, a motor change can affect electrical protection, controls, equipment delivery, installation, commissioning, and operating information. These effects can return to the original decision: a delayed selection can reduce the available supplier choices, which can require another design change. This return is feedback. Its effects can increase or reduce the original difficulty.
 
-These effects can return to the original decision. A delayed selection can reduce the available supplier choices, which can require another design change.
-
-This return is feedback. Its effects can increase or reduce the original difficulty.
-
-Consider schedule pressure. Pressure can reduce review time. Missed defects can then cause rework. Rework creates further schedule pressure.
-
-That account is a hypothesis until evidence supports the connections. Identify observations for each connection before treating it as the cause.
+Consider schedule pressure. Pressure can reduce review time. Missed defects can then cause rework. Rework creates further schedule pressure. That account is a hypothesis until evidence supports the connections. Identify observations for each connection before treating it as the cause.
 
 A corrective response could protect the necessary review and resolve the controlling interface earlier. Adding people without resolving that interface may increase coordination demands.
 
@@ -168,6 +162,8 @@ Identify a specific improvement, its owner, and the activity that will use it. F
 Check whether that change improves the next decision. Retain the original episode as evidence with its limits. One case cannot prove universal effectiveness.
 
 ## Worked Northbank example
+
+The forecast, technical gaps, and handover limits now inform a decision about the project's direction. The leadership group must consider them together while preserving their different evidence and decision requirements.
 
 The leadership group receives D01 after C03. It wants a continuation decision for the approved 18 litres per second scope.
 

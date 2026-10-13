@@ -140,6 +140,8 @@ Close the project account against the actual outcome. Preserve original and amen
 
 ## Worked Northbank example
 
+The earlier coordination work identified needed technical contributions. This later exercise asks what the supplied evidence actually establishes for acceptance and handover.
+
 The project engineer receives C04 Rev 0 and C05 Rev 0 in a later exercise. C04 records observed flow of 18 litres per second during one normal transfer condition.
 
 It does not record the full hydraulic conditions. It does not establish performance across A02's unresolved operating cases. It also leaves several interactions unexercised.

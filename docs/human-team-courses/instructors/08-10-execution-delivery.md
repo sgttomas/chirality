@@ -2,7 +2,7 @@
 
 [Series](../index.html) · [Northbank case](../case-study.html) · [Glossary](../glossary.html) · [References](../references.html)
 
-Use this guide after learners attempt the practice. It supplies answer guidance, discussion methods, and assessment examples. Accept different defensible solutions that meet the stated criteria.
+Read this guide before teaching. Follow the [agent instructor method](../instructor-guide.html) for pacing, assistance, assessment, and continuity. It supplies answer guidance, discussion methods, and assessment examples. Present the guidance to learners after their attempt as teaching or feedback. Accept different defensible solutions that meet the stated criteria.
 
 Use Packets A, B, and C. Keep Packet D for the later courses unless you declare an additional exercise. Preserve each source's identity, revision, and status.
 
@@ -22,6 +22,14 @@ Use Packets A, B, and C. Keep Packet D for the later courses unless you declare 
 10. Assess and repair the execution packages.
 
 A session can be divided around Steps 5 and 8. Preserve one project basis across the sessions. Avoid introducing unrecorded approvals to make the problem easier.
+
+### Teaching Course 08 with an agent
+
+Ask the learner to identify the cost basis and release prerequisite before calculating. Have them show the calculation and schedule dependencies. You may independently check the arithmetic with a tool, but your correct total does not establish that they understood which amounts or durations belonged in it.
+
+When a result differs, locate the first changed input, duplicated amount, or unsupported dependency together. Explain the relevant method if needed, then have the learner repair their workings and the affected briefing. Preserve the supplied figures and avoid invented savings.
+
+Before ending the exercise, ask what the corrected forecast authorizes. This connects the calculation to the decision and exposes a budget or readiness inference that correct arithmetic alone would miss.
 
 ### Six keyed knowledge-check answers
 
@@ -111,6 +119,14 @@ Ask the learner to show the affected equation or dependency. A rewritten conclus
 
 Require learners to read the consumer's needs before proposing the supplier's return. This reveals missing conditions that a discipline-only discussion can overlook.
 
+### Teaching Course 09 with an agent
+
+Represent a receiving role and ask the learner what contribution would let that role proceed. Then change to the proposed supplier and ask what inputs remain necessary. Give only the supplied case position; a simulated exchange does not create the missing engineering data.
+
+Use the learner's actual interface entry to examine meaning, timing, conditions, and responsibility. Ask how the consumer will determine suitability after receipt. If you provide a model entry as teaching, require the learner to develop and explain another entry rather than treating yours as their completed coordination work.
+
+For a proposed substitution, have the learner trace an affected relationship into connected outputs. Retain the course's construction, operation, and maintenance coverage instead of allowing one familiar discipline to stand for the whole examination.
+
 ### Six keyed knowledge-check answers
 
 1. **Pump selection.** The 18 litres per second value lacks the established suction conditions, pressure, water properties, and operating cases. A02 expressly leaves these unresolved. A selected configuration and competent technical assessment are also needed.
@@ -192,6 +208,14 @@ Ask learners to review one construction activity, one operating activity, and on
 10. Assess and repair the proposed handover package.
 
 Keep the exercise at planning and evidence-account level. It supplies no authority or procedure for physical equipment operation.
+
+### Teaching Course 10 with an agent
+
+Ask the learner to state the narrow observation supported by C04 before evaluating its cover-sheet claim. If they conclude that every untested function failed, explain the difference between missing examination and observed failure, then ask them to repair the finding while retaining valid evidence.
+
+In the receiving-role exercise, ask what the proposed package enables the recipient to understand or do and which obligations remain. Wait for the learner's explanation and inspect the actual handover account. Do not invent completed training, configuration checks, or an operating authorization to move the scenario forward.
+
+A bounded recommendation can meet the learning criteria while actual project acceptance remains unsupported. Assess that reasoning and the required coverage, rather than rewarding an unqualified “complete” status.
 
 ### Six keyed knowledge-check answers
 

@@ -96,7 +96,7 @@ python3 -m tools.deliverables --project projects/chirality-piping neighborhood D
 
 A single Git revision supplied to `touches` means that commit's changes, not the difference between that revision and the working tree. A PR reference requires authenticated `gh` access. The [CLI README](../../tools/deliverables/README.md) defines the supported forms and current limits.
 
-Each need identifies a supplier and a condition. Optional fields describe timing, gating and evidence. The consumer maintains its needs; reverse links are derived. Update unchanged rows only when their meaning actually changes.
+Each need identifies a supplier and a condition. Optional fields describe timing, gating and evidence. The consumer maintains its needs; reverse links are derived. Update a row only when its meaning changes.
 
 A present file proves presence, not suitability. A confirmed Git merge establishes source integration into the selected revision. Establishing a usable integrated result also requires examination of the changed contribution and its affected relationships. The merge itself establishes neither acceptance nor fulfillment. The agent must inspect the relevant condition and evidence. The tool does not infer that a test passed or a deliverable is complete.
 

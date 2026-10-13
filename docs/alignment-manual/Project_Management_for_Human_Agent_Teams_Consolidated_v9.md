@@ -45,7 +45,7 @@ The [working vocabulary](#vocabulary) gives concise definitions. Return to the e
 
 A project brings contributions together so that someone can use a result. The intended use gives those contributions their purpose. A list of completed tasks does not establish that purpose has been served.
 
-Suppose a person wants to review proposed edits to a document before applying them. “Build a review panel” names a possible implementation. It does not yet establish which changes must be visible, which decisions the person controls, or what happens to rejected changes. Those questions define the useful result.
+Suppose a person wants to review proposed edits to a document before applying them. “Build a review panel” names a possible implementation. It does not yet establish which changes must be visible, which decisions the person controls, or what happens to rejected changes. Those questions define the useful result. The [worked undertaking](#ch_10) follows this example through implementation and examination.
 
 Establish the intended activity with the person. What must they or the eventual user understand or do? What must remain protected? Which failure would make the result misleading, unusable or unsafe? These questions help separate a desired outcome from an early solution.
 
@@ -109,9 +109,9 @@ Alignment therefore depends on more than a complete instruction file. The person
 
 Establish a project basis that lets you and the other participants act toward the same result without inventing missing commitments. Identify intended users, outcomes, scope, constraints, interfaces, exclusions and acceptance responsibilities. Identify what remains unresolved. Use the person's direction and the governing sources to distinguish what is already established from what you need to propose or investigate.
 
-The document form follows the undertaking. A substantial engineering product may need a PRD, a design basis and specialist companions. A bounded improvement to an existing product may need only a clear assignment and the affected current requirements.
+Scale the form and detail of the basis to the decisions and coordination it must support. A substantial engineering product may need a PRD, a design basis and specialist companions. A bounded improvement to an existing product may need only a clear assignment and the affected current requirements.
 
-Do not create a new project definition merely because a new session begins. Do not treat an informal request as sufficient when the intended use or consequence requires a more explicit basis. Scale the representation to the decisions and coordination it must support.
+A new session alone is no reason to create a new project definition. Establish a more explicit basis when the intended use or consequence requires it; an informal request may then be insufficient.
 
 A basis should distinguish enduring commitments from proposed mechanisms. “The user can recover the accepted document after an interrupted save” is a behavioral commitment. A selected transaction mechanism may be a design choice, unless a governing source specifically requires it. Keeping that distinction allows implementation to improve without disguising a scope change.
 
@@ -305,9 +305,9 @@ Once a premise is established, reuse it. Revisit the part invalidated by a mater
 
 Use the host's actual completion mechanism. A prompt can be prepared but not dispatched. A message can be queued without starting another turn. A manager's turn can end before its contributors return.
 
-Account for dispatched work and inspect the actual result. Do not require a separate return file if the host message, artifact location and existing change record provide what the receiver needs.
+Account for dispatched work and inspect the actual result. A useful return identifies the output, completed scope, checks, limitations and unresolved choices. It distinguishes prepared work from executed changes and actual results from expected ones.
 
-A useful return identifies the output, completed scope, checks, limitations and unresolved choices. It distinguishes prepared work from executed changes and actual results from expected ones.
+The host message, artifact location and existing change record may provide this information. Require a separate return file only when those sources do not meet the receiver's needs.
 
 Before integration, compare the contribution with the receiving state. A shared interface may have changed while the contributor worked. Reuse unaffected evidence and examine the changed relationship.
 
@@ -413,15 +413,9 @@ Apply already-authorized decisions directly. Do not ask the person to approve th
 
 ## 6.3 Give records a concrete purpose
 
-A record is useful when someone needs it to decide, act, examine or recover. A test report, accepted qualification or operational instruction can meet that test. An activity narrative may not.
+Maintain a record when a concrete consumer needs it to decide, act, examine or recover, or when an acceptance requirement calls for it. Identify the consumer and the question the record answers. A test report, accepted qualification or operational instruction can serve these purposes. When a current source, query or change history already meets the need, prefer a link or query over another maintained copy.
 
-Identify the consumer and the question the record answers. If the information already exists in a current source, query or change history, prefer a link or query over another maintained copy.
-
-Maintain records for an identified use. Repeated activity logs, copied sources and parallel status lists can create more maintenance than the work they describe. Retain them when their consumer, acceptance requirement or recovery purpose justifies that cost.
-
-Some records are product requirements. A model history, signed operational decision, user checkpoint or regulated record may be part of the product itself. Reducing development administration does not remove those obligations.
-
-The method therefore does not ban a filename or record type universally. It requires a concrete consumer, an acceptance requirement or a demonstrated recovery need. The representation should be the smallest one that reliably serves that purpose.
+Some records are product requirements. A model history, signed operational decision, user checkpoint or regulated record may be part of the product itself. Reducing development administration does not remove those obligations. No filename or record type is universally excluded; use the smallest representation that reliably serves the identified purpose.
 
 ## 6.4 Recover only what continuation needs
 
@@ -451,7 +445,7 @@ That pointer is mutable. It cannot identify the exact content used in an earlier
 
 These uses can coexist. Human navigation can follow “current.” A reproducible comparison can use a particular edition at a commit. A later edition can be assessed for adoption without silently changing the earlier result.
 
-Do not create an elaborate receipt merely to record a document read. Record exact identity where a real consumer needs it: an accepted basis, a content-bound test or a consequential comparison. Ordinary discovery remains lightweight.
+Record exact identity where a real consumer needs it: an accepted basis, a content-bound test or a consequential comparison. Ordinary discovery does not require an elaborate receipt for each document read.
 
 <a id="ch_7"></a>
 
@@ -623,7 +617,7 @@ The consumer needs the document store to reject a stale base revision. It also n
 
 The implementation owner queries relevant consumers and inspects the interfaces. One session can perform the initial slice. A separate reviewer is arranged for persistence and permission behavior. An independent interface illustration can proceed concurrently because it does not write the shared store.
 
-No work graph is authored merely to record these assignments. The current contract, need declarations, candidate and conversation provide sufficient continuity. If the work later spans sessions, a short recovery note can identify the current candidate and pending check.
+The current contract, need declarations, candidate and conversation provide sufficient continuity without a separate work graph for these assignments. If the work later spans sessions, a short recovery note can identify the current candidate and pending check.
 
 ## 10.3 Prove the difficult path
 

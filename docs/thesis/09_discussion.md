@@ -191,7 +191,9 @@ A successful translation may change controls substantially while preserving
 the framework's questions. Such a change is evidence of adaptation rather
 than necessarily a failure of the framework.
 
-### 9.3.3 The Four-Pillar Framework as an Evaluation Lens
+<a id="933-the-four-pillar-framework-as-an-evaluation-lens"></a>
+
+### 9.3.3 The Four Perspectives as an Evaluation Lens
 
 The framework's value is discriminating attention. Ontology prevents a change in
 representation from passing unnoticed as a change in the work. Epistemology asks
@@ -217,8 +219,8 @@ These questions constrain one another. A failure of recovery may reveal a
 missing distinction between an attempted and a completed action. A newly
 identified consequence may change the appropriate examination. A
 burdensome control may consume the attention needed for substantive review.
-There is no linear derivation from one pillar to a uniquely correct
-architecture, and no pillar's importance permits neglect of the others.
+There is no linear derivation from one perspective to a uniquely correct
+architecture, and no perspective's importance permits neglect of the others.
 
 The lens is non-exhaustive. It guides inquiry; it does not supply a complete
 ontology of work or guarantee that a system answering each question is
