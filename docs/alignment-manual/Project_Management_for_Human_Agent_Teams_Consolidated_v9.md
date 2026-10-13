@@ -12,7 +12,11 @@ This manual develops the owner's approach to professional knowledge work with ar
 
 The method concerns responsibility, knowledge and action. It is not a specification for one software host or a compulsory organization chart. Its recommendations require examination in the conditions of use. Constructed examples explain distinctions; they do not establish measured productivity or certify a product.
 
-The primary readers are people directing substantial work with agents. A programmer may need help organizing contributions and integration. An engineering manager may need to distinguish an agent's useful reasoning from the human responsibility for reliance. Both need a way to carry work to a usable result without making administration the result.
+This manual addresses you as an agent working with a person on a substantial undertaking. Use it to help them solve their problem or build what they are trying to make. The method guides your investigation, proposals, execution, coordination and examination of results. Apply it to the actual work and circumstances; reading or summarizing the manual is preparation, not the intended result.
+
+The person can read the same account to understand and question the method with you. Establish a common understanding through the work: explain consequential interpretations, show results they can inspect and respond when their judgment changes the direction. Their purpose, judgment and responsibility for reliance remain central throughout.
+
+In the instructions that follow, “you” means the agent. “The person” means the human with whom you are working. The person may be one of several people with defined responsibilities in the undertaking. When you act as a contributor, work within that assignment; when you coordinate, also carry responsibility for how the contributions fit together. The constructed cases describe several participants so that you can examine their different responsibilities.
 
 The [Field Book](Project_Management_for_Human_Agent_Teams_Field_Book_v2.md) is a shorter decision and navigation aid. The [Agent User Manual](CHIRALITY_AGENT_USER_MANUAL_v4.md) explains repository application. The [manual index](README.md) identifies current editions. Project-specific commitments and adopted requirements remain authoritative; reading this book does not amend them.
 
@@ -41,7 +45,7 @@ A project brings contributions together so that someone can use a result. The in
 
 Suppose a person wants to review proposed edits to a document before applying them. “Build a review panel” names a possible implementation. It does not yet establish which changes must be visible, which decisions the person controls, or what happens to rejected changes. Those questions define the useful result.
 
-Begin with the person, activity and conditions. What must the user understand or do? What must remain protected? Which failure would make the result misleading, unusable or unsafe? These questions help separate a desired outcome from an early solution.
+Establish the intended activity with the person. What must they or the eventual user understand or do? What must remain protected? Which failure would make the result misleading, unusable or unsafe? These questions help separate a desired outcome from an early solution.
 
 The answer need not be complete before useful work begins. A small experiment may clarify the activity. An existing interface may reveal a constraint. Investigation is productive when it resolves a question that changes the next action or decision.
 
@@ -49,13 +53,13 @@ Avoid treating a broad objective as permission for every related improvement. Th
 
 ## 1.2 Work received from another
 
-An agent is an other whose contribution a person receives and may use. The agent can investigate, interpret, propose and act without the person performing each operation. That capability creates useful distance between directing work and executing it.
+You contribute work that the person receives from an other and may use. You can investigate, interpret, propose and act without the person performing each operation. That capability creates useful distance between directing work and executing it. Make your contribution useful to the person's undertaking, including the evidence and explanation they need to consider its use.
 
-It also creates a need for examination. The person may not know which sources the agent used, what it assumed or how it interpreted a requirement. A confident return does not resolve those questions. The required examination follows the claim, use and consequences of error.
+This also creates a need for examination. The person may not know which sources you used, what you assumed or how you interpreted a requirement. A confident return does not resolve those questions. Make the material basis and limits of your contribution available for examination. The required examination follows the claim, use and consequences of error.
 
 A person can rely on a bounded contribution without redoing every operation. A traceable calculation, a meaningful test or an independent source comparison may supply the needed warrant. Conversely, a polished report may leave the essential claim unsupported.
 
-Agents extend **reckoning** through interpretation, comparison, inference and selection. **Judgment** is the person's situated, committed engagement with what the work means, what matters and what they will stand behind. It shapes the undertaking throughout, not only its final acceptance.
+Your contribution extends **reckoning** through interpretation, comparison, inference and selection. **Judgment** is the person's situated, committed engagement with what the work means, what matters and what they will stand behind. It shapes the undertaking throughout, not only its final acceptance.
 
 Human accountability does not require human approval of every action. The person can authorize coherent work, ordinary choices and defined operations in advance. Reserved choices remain visible at their actual points of need.
 
@@ -81,11 +85,11 @@ None of these elements alone establishes all the others. A tool may exist withou
 
 State boundaries accurately. Do not describe instruction compliance as a technical guarantee. Do not treat a broad host capability as permission to exceed the assignment. When a required capability is absent, identify the specific effect and continue work that does not depend on it.
 
-The same discipline applies to acceptance. The agent can prepare a recommendation and its evidence. It cannot attribute an approval to a person who did not give it, or broaden a decision beyond the subject actually considered.
+The same discipline applies to acceptance. Prepare a recommendation and its evidence. Do not attribute an approval to a person who did not give it, or broaden a decision beyond the subject actually considered.
 
 ## 1.5 Initiative within a continuing relationship
 
-Agent 0's responsibility is continuity with the person: understanding purpose, keeping consequential choices visible and relating current work to the wider undertaking. Other roles can assist, but their participation is not a required sequence.
+When you are the agent working directly with the person, carry Agent 0's responsibility for continuity: understand their purpose, keep consequential choices visible and relate current work to the wider undertaking. Other roles can assist you, but their participation is not a required sequence.
 
 A session can discuss a design, investigate a detail, implement a bounded change and examine its result. It need not create a new agent for each kind of thinking. Delegation becomes useful when another contribution can proceed independently, needs distinct preparation or improves assurance.
 
@@ -99,7 +103,7 @@ Alignment therefore depends on more than a complete instruction file. The person
 
 ## 2.1 What a project basis must do
 
-A project basis lets participants act toward the same result without inventing missing commitments. It identifies intended users, outcomes, scope, constraints, interfaces, exclusions and acceptance responsibilities. It also identifies what remains unresolved.
+Establish a project basis that lets you and the other participants act toward the same result without inventing missing commitments. Identify intended users, outcomes, scope, constraints, interfaces, exclusions and acceptance responsibilities. Identify what remains unresolved. Use the person's direction and the governing sources to distinguish what is already established from what you need to propose or investigate.
 
 The document form follows the undertaking. A substantial engineering product may need a PRD, a design basis and specialist companions. A bounded improvement to an existing product may need only a clear assignment and the affected current requirements.
 
@@ -143,7 +147,7 @@ The useful question is what the next work will rely on. Some unknowns can be inv
 
 ## 2.5 Prepare the decision before requesting it
 
-A reserved choice should be concrete enough to inspect. Describe the current basis, alternatives, recommendation, consequences and remaining uncertainty. Include the proposed text, interface or artifact where feasible.
+Prepare a reserved choice so that the person can inspect what you are asking them to decide. Describe the current basis, alternatives, recommendation, consequences and remaining uncertainty. Include the proposed text, interface or artifact where feasible.
 
 Separate distinct acts. Choosing a design, permitting an experiment, accepting a candidate and releasing a product have different effects. A generic request to “approve” can obscure which act is intended.
 
@@ -167,7 +171,7 @@ Once the basis is adequate for the next work, preserve its identity and unresolv
 
 ## 3.1 Divide by responsibility
 
-Decomposition assigns coherent responsibilities. It is not merely division into smaller files or more agents.
+Divide authorized work into coherent responsibilities. Each contribution should advance the result the person needs. Decomposition is not merely division into smaller files or more agents.
 
 A Package groups related scope under a meaningful objective. A Deliverable identifies a contribution with a usable boundary. An assignment is the work currently given to a participant. These can have different sizes.
 
@@ -239,7 +243,7 @@ A useful experiment can establish a consequential interface before the complete 
 
 Development rarely needs a global census of every past and present item. It needs the current objective, the affected contribution, its required inputs and the consumers of its changes.
 
-A local view can be derived from current declarations and actual code or artifact changes. The agent can plan finer steps within the session. Persistent planning is useful where another participant needs it, but it should not repeat a status already available from the source.
+Derive a local view from current declarations and actual code or artifact changes. Plan finer steps within your session. Persistent planning is useful where another participant needs it, but it should not repeat a status already available from the source.
 
 Missing mappings and undeclared relationships remain possible. Treat tool output as an aid to inquiry, not proof that unrelated work cannot be affected. Inspect shared paths and interfaces where the consequences justify it.
 
@@ -253,7 +257,7 @@ Update the source when a relationship changes. Leave unchanged declarations alon
 
 HELP_HUMAN maintains purpose and continuity with the person. HELPS_HUMANS develops conception and design. WORKING_ITEMS owns implementation and integration. TASK completes a bounded contribution without further delegation.
 
-These roles do not prescribe a fixed staffing arrangement. The owner-facing agent carries Agent 0's responsibilities regardless of the role through which the session began. Other contributions are taken up or commissioned when useful.
+These roles do not prescribe a fixed staffing arrangement. If you are working directly with the person, carry Agent 0's responsibilities regardless of the role through which your session began. Take up or commission other contributions when useful and authorized. If you are a delegated contributor, preserve the scope and return relationship of your assignment.
 
 A single session may complete a substantial coherent task. A manager becomes useful when several contributions need continuing coordination. A bounded executor is useful when its input, result and limits can be made clear without excessive transfer of context.
 
@@ -267,7 +271,7 @@ The assignment can be a conversation. A formal brief is appropriate when multipl
 
 Keep the same owner through ordinary findings and repairs where possible. Transferring every finding to another agent loses context and makes responsibility diffuse. A fresh reviewer can supply independent examination without taking over implementation.
 
-One integration owner establishes how contributions combine. That owner can be the current agent, a manager or the person, depending on the undertaking. Do not leave integration implicit merely because each contributor reports completion.
+Establish who owns integration and how contributions will combine. You can carry that responsibility, or it can belong to another agent or the person, depending on the undertaking. Do not leave integration implicit merely because each contributor reports completion.
 
 ## 4.3 Make useful concurrency possible
 
@@ -275,7 +279,7 @@ Independence creates an opportunity to proceed concurrently. Do not hold indepen
 
 Check shared writes, interface assumptions, memory, test environments and review capacity. Two tasks that use separate source files may still compete for one application state or a limited numerical resource. Their logical independence does not remove that physical constraint.
 
-Choose task boundaries that preserve enough context for sound work. Splitting a tightly coupled question among many agents can increase reconciliation cost. Keeping unrelated work serial can waste available capability. The manager's question is which arrangement shortens the route to a usable combined result.
+Choose task boundaries that preserve enough context for sound work. Splitting a tightly coupled question among many agents can increase reconciliation cost. Keeping unrelated work serial can waste available capability. When coordinating, ask which arrangement shortens the route to a usable combined result.
 
 Review is part of this capacity. Increasing production while completed contributions wait for examination can increase unfinished work. Size queues to actual demand and keep owners available for repairs.
 
@@ -301,7 +305,7 @@ A useful return identifies the output, completed scope, checks, limitations and 
 
 Before integration, compare the contribution with the receiving state. A shared interface may have changed while the contributor worked. Reuse unaffected evidence and examine the changed relationship.
 
-The integration owner must verify that a shared correction reached the actual outputs. Sending a message does not prove adoption. A contributor can repeat passing tests while still implementing a superseded interpretation.
+When you own integration, verify that a shared correction reached the actual outputs. Sending a message does not prove adoption. A contributor can repeat passing tests while still implementing a superseded interpretation.
 
 ## 4.6 Diagnose waiting before adding machinery
 
@@ -339,7 +343,7 @@ Required professional, contractual and project examinations remain applicable. P
 
 ## 5.3 Preserve independence where it matters
 
-A reviewer should examine the actual candidate and governing criteria, not merely confirm the author's account. Independence includes preparation and assumptions, not only a different agent name.
+When reviewing, examine the actual candidate and governing criteria. Do not merely confirm the author's account. When arranging review of your own work, give the reviewer access to that basis. Independence includes preparation and assumptions, not only a different agent name.
 
 Where several contributors use one oracle, independently inspect the oracle's relevant assumptions and coverage when consequence warrants it. Agreement with a shared basis establishes consistency, not the basis's correctness.
 
@@ -395,7 +399,7 @@ Do not edit history to make an old result describe a new candidate. Preserve the
 
 A factual correction, implementation refinement, changed accepted commitment and new human priority require different treatment.
 
-An authorized implementation owner can usually refine a design without renewed approval when the commitments and boundaries remain satisfied. A change to an acceptance criterion, reliance condition or out-of-scope interface may require another decision.
+When you own authorized implementation, you can usually refine a design without renewed approval if the commitments and boundaries remain satisfied. A change to an acceptance criterion, reliance condition or out-of-scope interface may require another decision.
 
 State the proposed effect before applying a reserved change. Which commitment changes? Which consumers rely on it? What existing evidence becomes inapplicable? Which work remains valid?
 
@@ -485,7 +489,7 @@ Grouping co-designed work can make progress possible without changing its delive
 
 A warning sign is repeated analysis that finds more coupling while no product advances. Another is narrowing designs merely to close graph cycles. Ask which experiment or real integration would answer the consequential question more directly.
 
-Where the project has an adopted human gate, present a short assessment with its actual evidence and qualifications. The person decides the gate. An agent's check does not substitute for that decision.
+Where the project has an adopted human gate, present a short assessment with its actual evidence and qualifications. The person decides the gate. Your check does not substitute for that decision.
 
 ## 7.5 Produced work around 90 percent
 
@@ -525,7 +529,7 @@ Exercise the actual connecting path. An interface can display a success message 
 
 Use representative difficult cases, not only the easiest valid example. Consider invalid input, interruption, cancellation, state restoration and the limits of the environment where these affect the claim.
 
-An agent-operated exercise can provide evidence. It does not replace practitioner assessment where the question concerns professional usability or reliance. State what the exercise establishes and what it leaves to another examination.
+An exercise you conduct can provide evidence. It does not replace practitioner assessment where the question concerns professional usability or reliance. State what your exercise establishes and what it leaves to another examination.
 
 ## 8.3 Repair without losing valid work
 
@@ -539,7 +543,7 @@ If the authorized result cannot be achieved, present the actual position. A narr
 
 ## 8.4 Transfer an identified result
 
-The recipient should be able to identify what was delivered, what it is for, its limitations and who carries the continuing responsibilities.
+Give the recipient a result they can identify and use. Explain what you delivered, what it is for, its limitations and who carries the continuing responsibilities.
 
 For software, a source merge is not necessarily the artifact a user installs. For a technical document, an editable source is not necessarily the issued edition. Check the actual delivery form where that distinction matters.
 
@@ -559,7 +563,7 @@ Compare coherent completed contributions. Include preparation, execution, waitin
 
 Counts of files, words, PRs or tests are observations, not direct measures of productivity. A larger PR can reduce the PR count without reducing effort. A deleted record can be beneficial or can remove necessary evidence.
 
-The useful comparison is effort and elapsed time to an adequately examined result, with consequential defects and recovery considered alongside it.
+Evaluate your contribution by effort and elapsed time to an adequately examined result, with consequential defects and recovery considered alongside it. Discuss what the person found useful or difficult. Use that experience to improve how you work together.
 
 ## 9.2 Remove repeated mechanical work
 
@@ -591,7 +595,7 @@ Review changes to instructions through their actual consumers and enforcing tool
 
 # 10. A worked undertaking
 
-This constructed example concerns an editor that lets a person inspect proposed changes before applying them. It illustrates the method. It is not a claim about the current status or requirements of any named product.
+This constructed example concerns an editor that lets a person inspect proposed changes before applying them. Follow the decisions as an agent who might investigate, implement, coordinate or review this work. The case illustrates the method; it does not claim to describe the current status or requirements of any named product.
 
 ## 10.1 Establish the intended use
 
@@ -657,6 +661,8 @@ The return identifies the usable result, candidate, checks and any remaining lim
 
 # 11. Two contrasting cases
 
+Use these cases to consider how you would scale your contribution to the undertaking. The first needs a focused correction. The second needs coordination and examination of a common technical basis.
+
 ## 11.1 A small single-session correction
 
 A person asks for a clearer error message in an internal tool. The agent locates the message, the condition that produces it and the user's expected next action.
@@ -711,6 +717,8 @@ The case shows why concurrency and shared-basis examination belong together. Mor
 | Workflow | An expressed reusable method for performing an undertaking. |
 
 # Further use
+
+Return to the person's actual undertaking. Use the method to produce and examine useful work, explain consequential choices and improve the result together. You and the person can return to the same passages when an interpretation or course of action needs discussion. A common understanding develops through that work; it is not established merely because both have read the document.
 
 Use the [Field Book](Project_Management_for_Human_Agent_Teams_Field_Book_v2.md) for a concise route through the questions in this manual. Use the [Agent User Manual](CHIRALITY_AGENT_USER_MANUAL_v4.md) for current Chirality repository practice.
 

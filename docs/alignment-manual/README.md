@@ -1,6 +1,14 @@
 # Manuals for human agent work
 
-These documents explain the management method and its repository application.
+These manuals are primarily for a person's own agent to read and use while
+working with that person on their problems and projects. They explain how to
+carry work through, with the person's purpose, judgment and circumstances at
+the centre. People can read them to understand and question the method too.
+
+The [courses](../human-team-courses/README.md) teach project management and
+project engineering to people. The manuals give their agents a working method.
+The person and agent then learn how to work together through an actual undertaking.
+
 Current development follows Root `AGENTS.md`, the active project entry, owner
 steering and applicable product commitments. A manual does not create authority
 merely because it is the latest edition.
@@ -19,7 +27,7 @@ Stable discovery link: `docs/alignment-manual/README.md#project-management-manua
 
 **Current edition: v2.** [Read HTML](Project_Management_for_Human_Agent_Teams_Field_Book_v2.html) · [Markdown source](Project_Management_for_Human_Agent_Teams_Field_Book_v2.md)
 
-A short decision and navigation aid for the person directing work. It preserves
+A short decision and navigation aid for an agent working with a person. It preserves
 the method's distinctions without requiring a universal sequence of records.
 
 Stable discovery link: `docs/alignment-manual/README.md#field-book`.
@@ -28,7 +36,7 @@ Stable discovery link: `docs/alignment-manual/README.md#field-book`.
 
 **Current edition: v4.** [Read HTML](CHIRALITY_AGENT_USER_MANUAL_v4.html) · [Markdown source](CHIRALITY_AGENT_USER_MANUAL_v4.md)
 
-Operational guidance for people and agents working in the current Chirality
+Operational guidance for agents and the people they work with in the Chirality
 repository: Root, App v4 and SWBPIPE. This is not the App product's user guide.
 
 Stable discovery link: `docs/alignment-manual/README.md#agent-user-manual`.
