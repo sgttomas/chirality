@@ -9,12 +9,14 @@ its evaluative emphasis as an instance of domain software. Iteration connects
 them: experience can revise the work, its methods, and the understanding of its
 purpose. Each perspective also requires the others.
 
-Start with the [shared introduction](INTRODUCTION.md). Read the Root chapters
-below, then the [App thesis](../../projects/chirality-app-v4/docs/thesis/THESIS.md)
-and [Piping thesis](../../projects/chirality-piping/docs/thesis/THESIS.md). The
-[worked example](WORKED_EXAMPLE.md) follows an illustrative undertaking across
-all three. The [shared conclusion](CONCLUSION.md) brings their contributions and
-remaining questions together.
+Start with the [shared introduction](INTRODUCTION.md). For the full argument,
+read the Root chapters below, then the
+[App thesis](../../projects/chirality-app-v4/docs/thesis/THESIS.md) and
+[Piping thesis](../../projects/chirality-piping/docs/thesis/THESIS.md). Each can
+also be read for its particular question. The [worked example](WORKED_EXAMPLE.md)
+provides a concrete route into their relationship through one illustrative
+undertaking. The [shared conclusion](CONCLUSION.md) brings their contributions
+and remaining questions together.
 
 Ontology, epistemology, praxeology, and axiology apply throughout this account.
 They ask what the work concerns, what supports understanding, how intent becomes
@@ -55,10 +57,12 @@ the conversation, repository instructions and adopted product commitments.
 | [Appendix E](appendix_e_development_history.md) | Development history, retired arrangements and lessons |
 | [References](references.md) / [Glossary](glossary.md) | Sources and terms |
 
-[The Chirality Framework](CHIRALITY_FRAMEWORK.md) presents the conceptual account
-in one document. [Systems Engineering Design Analysis](SE_Design_Analysis.md)
-is its shorter technical companion. There is no Appendix B; current role
-instructions are indexed in [AGENTS.md](../../AGENTS.md).
+[The Chirality Framework](CHIRALITY_FRAMEWORK.md) offers a compact route through
+the conceptual account. [Systems Engineering Design Analysis](SE_Design_Analysis.md)
+summarizes the technical analysis developed in Chapter 7. These companions can
+be read independently or used to revisit the argument; neither is an additional
+required volume. There is no Appendix B; current role instructions are indexed
+in [AGENTS.md](../../AGENTS.md).
 
 ## Source basis and historical editions
 

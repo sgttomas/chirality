@@ -132,6 +132,8 @@ Overlap can reduce time when activities have suitable boundaries. It can also ex
 
 ## Worked Northbank example
 
+The project definition supplies the scope and conditions for planning. The new forecast shows how cost and timing can change while the approved commitments remain in force.
+
 The project manager receives C03 Rev 0. Its forecast covers the existing 18 litres per second scope. A05 Rev 0 remains a proposal for 22 litres per second.
 
 C03 assumes order release at the end of Week 6. Five delivery weeks place delivery at the end of Week 11. Installation occupies Weeks 12 and 13. Commissioning occupies Week 14. Handover occupies Week 15.
