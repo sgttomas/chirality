@@ -118,6 +118,8 @@ Use detail that serves a decision, dependency, examination, or recovery need. A 
 
 ## Northbank worked example — Two basis revisions
 
+The responsibility brief depends on a clear working basis. Here, the task is to recover that basis and identify work affected by use of the wrong revision.
+
 A07 reports that the shared folder contains A02 Rev 0 and Rev 1 under similar filenames. A designer has opened Rev 0. Its draft flow is 15 litres per second.
 
 The document controller identifies A02 Rev 1 and its approval record. Its required flow is 18 litres per second. The controller preserves Rev 0 as an earlier draft and removes its ambiguity as the working basis.

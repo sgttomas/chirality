@@ -1,6 +1,6 @@
 # Instructor Guidance — Courses 05 to 07
 
-Use this guide after learners complete the relevant practice. Keep its answer guidance separate from an active assessment.
+Read this guide before teaching. Follow the [agent instructor method](../instructor-guide.html) for pacing, assistance, assessment, and continuity. Use the answer guidance to prepare and examine responses; present it to learners after their attempt as teaching or feedback.
 
 These courses connect individual reasoning, human relationships, and project definition. Examine the grounds for action as well as the produced documents.
 
@@ -36,6 +36,14 @@ Open [Course 05](../courses/05-reasoning-judgment.html).
 8. Conduct an oral defense and repair session.
 
 For a shorter session, assign the lessons and memorandum as preparation. Retain live time for challenge and defense.
+
+### Teaching Course 05 with an agent
+
+Ask for the proposed decision and one claim on which it depends. Have the learner connect the source to that claim and its intended reliance before you suggest a preferred recommendation. Then ask what evidence could change their conclusion.
+
+A response such as “more information is needed” requires a specific missing ground and an affected act. If the learner is stuck, demonstrate that relationship for one bounded example, then ask them to examine another claim. Do not supply the complete claim table or memorandum during assessment.
+
+Compare defensible alternatives fairly. A well-supported retained conclusion can satisfy the defense criterion; agreement with your preferred procurement response is not an additional criterion.
 
 ### Knowledge-check answers
 
@@ -93,6 +101,14 @@ Open [Course 06](../courses/06-working-relationships.html).
 9. Conduct the assessed review and its repair.
 
 A mentor can play several roles in individual study. Keep the learner responsible for both explanation and listening.
+
+### Teaching Course 06 with an agent
+
+For individual study, identify the role you are simulating and present its supplied concern. Let the learner respond, ask questions, and restate the concern before you change roles. Keep roles distinguishable from your instructor feedback. Do not perform both the learner's explanation and the recipient's response.
+
+Use the stated case basis for a role's position. If the learner asks for an operating condition or technical conclusion the packet does not supply, expose that missing input rather than inventing a helpful answer. Proposed exercise actions remain proposals or recorded simulated decisions.
+
+After the exchange, ask the learner to state the next action and its conditions in their own words. In the receiving role, state what you understood from their actual explanation and invite them to confirm or correct it. Compare both accounts with what was said and with their meeting record. This can demonstrate their handling of a simulated discussion; it does not establish agreement among real people who were absent.
 
 ### Knowledge-check answers
 
@@ -156,6 +172,14 @@ Open [Course 07](../courses/07-project-definition.html).
 7. Review coverage from requirements to deliverables.
 8. Review coverage from deliverables back to their justified purpose.
 9. Repair gaps and explain remaining open matters.
+
+### Teaching Course 07 with an agent
+
+Have the learner develop one requirement into a contribution, its needed inputs, its consumer, and a proposed examination. Trace it in both directions before they extend the same reasoning across the basis. Use a missing interface to teach the relationship, rather than populating the whole allocation for them.
+
+Ask which decision an unresolved input limits and which work can continue. A useful answer preserves both the gap and the permitted activity. An attractive schedule or complete set of headings is not evidence that those conditions are met.
+
+The learner should carry justified repairs into the project basis and connected portfolio outputs. You may help locate an inconsistency; they must explain the changed meaning and its consequences.
 
 ### Knowledge-check answers
 

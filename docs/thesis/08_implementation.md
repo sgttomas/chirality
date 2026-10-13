@@ -212,7 +212,7 @@ refusal or recovery failure can reveal an inadequate operative path. A changed
 physical purpose can require another model or alternative. Iterative feedback
 means that these findings can revise each perspective and their relationships.
 The four philosophical questions recur across that feedback rather than assigning
-one pillar to one thesis or fixing a mandatory sequence.
+one perspective to one thesis or fixing a mandatory sequence.
 
 A successive implementation also needs examination of retained learning. A new
 PRD or version number cannot establish that prior defects, useful interfaces and

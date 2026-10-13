@@ -4,11 +4,15 @@
 
 Edition 4
 
-This guide is for people directing agents and agents carrying out authorized development in `sgttomas/chirality`. It applies the general management method to current repository files and tools. It is not the user manual for the App product, a release authorization or an additional instruction layer.
+Use this guide as an agent carrying out authorized development with a person in `sgttomas/chirality`. The person can read it to understand and examine the same working arrangements. It applies the general management method to current repository files and tools. It is not the user manual for the App product, a release authorization or an additional instruction layer.
 
 Root `AGENTS.md`, the active project's `LOOP_INIT.md`, the conversation and applicable current product commitments govern the work. This guide explains their use. If it conflicts with them, identify the conflict and repair the guide; do not reinstate an obsolete procedure.
 
-The [Field Book](Project_Management_for_Human_Agent_Teams_Field_Book_v2.md) is the short management reference. The [management manual](Project_Management_for_Human_Agent_Teams_Consolidated_v9.md) explains the method and its reasons. Use the stable [manual index](README.md) to discover current editions. Record a specific edition when the exact source matters.
+Read the [management manual](Project_Management_for_Human_Agent_Teams_Consolidated_v9.md) for the method, reasoning and shared [working vocabulary](Project_Management_for_Human_Agent_Teams_Consolidated_v9.md#vocabulary). Keep the [Field Book](Project_Management_for_Human_Agent_Teams_Field_Book_v2.md) available during work. This guide explains their application to the repository. Use the stable [manual index](README.md) to discover current editions. Record a specific edition when the exact source matters.
+
+Here, **the person** is the human directing the undertaking. Repository instructions also call that person the owner. A **contribution owner** carries assigned work through examination, repair and transfer; an **integration owner** is responsible for how contributions become a usable result. Either can be an agent. Identify the person authorized to make a reserved decision rather than inferring that right from ownership of execution.
+
+Keep the common distinctions in use: sources and records support understanding; evidence supports particular claims; authorization and host permissions have different grounds; and completion does not itself confer acceptance, release or responsibility for professional reliance.
 
 ## 1. Select the active work
 
@@ -36,18 +40,18 @@ A useful first return identifies the work already available, the next authorized
 
 ## 2. Use roles as contributions
 
-Agent 0's responsibilities stay with the agent working with the owner: purpose, continuity and reserved choices. Other roles are opportunities to contribute, not mandatory stops.
+Agent 0's responsibilities stay with the agent working directly with the person: purpose, alignment, continuity and reserved choices. Other roles are opportunities to contribute, not mandatory stops.
 
 | Role | Useful contribution |
 |---|---|
-| HELP_HUMAN | Align the undertaking with the owner and maintain continuity. |
+| HELP_HUMAN | Align the undertaking with the person and maintain continuity. |
 | HELPS_HUMANS | Develop conception, design and concrete alternatives. |
 | WORKING_ITEMS | Carry implementation through repair and integration. |
 | TASK | Complete a bounded assignment; does not delegate. |
 
 One session may work directly across alignment, design and implementation. Delegate where independent contributions or a separation of concerns help. Give each contribution enough context and authority to continue through ordinary repairs.
 
-HELP_HUMAN is no longer inherently read-only. In Root's resolver, write targets come from an explicit normalized assignment and effective tool policy. Missing write authorization grants no targets. A read-only host still wins. A role never grants actual host permissions.
+HELP_HUMAN can perform authorized writes when the host and applicable instructions permit them. In Root's resolver, write targets come from an explicit normalized assignment and effective tool policy. Missing write authorization grants no targets. A read-only host still wins. A role never grants actual host permissions.
 
 TASK remains non-delegating even when a host offers delegation tools. It returns opportunities for further decomposition to its caller. Its assignment may be the conversation; a separate brief file is not inherently required.
 
@@ -67,11 +71,11 @@ Active project deliverables use `execution/PKG-nn/DEL-nn-nn/`.
 | Code, fixtures and tests | Implementation and executable examination. Their maintained location need not be the deliverable folder. |
 | PR and Git history | What changed, why, what was checked and what remains open. |
 
-There is no routine deliverable lifecycle file or Working/Issued split. Do not recreate `_STATUS.md`, MEMORY rows, dependency mirrors or progress registers. Existing historical files remain evidence of earlier arrangements, not templates for new work.
+Current ScopeOfWork, Design, declared needs, outputs and checks provide the working basis. Tools derive relationship views from those sources. Keep an additional record only for a concrete consumer, acceptance requirement or recovery need. Historical record formats remain evidence of earlier arrangements; use one in current work only where an applicable requirement or actual consumer needs it.
 
-Edit the current source when its meaning changes. A new commitment or changed acceptance criterion remains reserved for the owner unless already authorized. Apply an authorized decision without asking for the same approval again. A factual repair should not silently narrow a commitment.
+Edit the current source when its meaning changes. A new commitment or changed acceptance criterion remains reserved for the person authorized to decide it unless already authorized. Apply an authorized decision without asking for the same approval again. A factual repair should not silently narrow a commitment.
 
-The deliverable is the unit of responsibility, not an exclusive code ownership boundary. Several deliverables can use the same code. State those relationships where useful without inventing exclusive ownership.
+A deliverable is an intended work product with a defined contribution, conditions and assigned responsibility. Its repository folder holds the contract, design material and needs; the outputs can live elsewhere. Assign responsibility for carrying the deliverable through without treating its folder as an exclusive code boundary. Several deliverables can use the same code. State those relationships where useful without inventing exclusive ownership.
 
 ## 4. Query dependencies
 
@@ -92,13 +96,13 @@ python3 -m tools.deliverables --project projects/chirality-piping neighborhood D
 
 A single Git revision supplied to `touches` means that commit's changes, not the difference between that revision and the working tree. A PR reference requires authenticated `gh` access. The [CLI README](../../tools/deliverables/README.md) defines the supported forms and current limits.
 
-Each need identifies a supplier and a condition. Optional fields describe timing, gating and evidence. The consumer maintains its needs; reverse links are derived. Update unchanged rows only when their meaning actually changes.
+Each need identifies a supplier and a condition. Optional fields describe timing, gating and evidence. The consumer maintains its needs; reverse links are derived. Update a row only when its meaning changes.
 
-A present file proves presence, not suitability. A merge proves integration, not acceptance or fulfillment. The agent must inspect the relevant condition and evidence. The tool does not infer that a test passed or a deliverable is complete.
+A present file proves presence, not suitability. A confirmed Git merge establishes source integration into the selected revision. Establishing a usable integrated result also requires examination of the changed contribution and its affected relationships. The merge itself establishes neither acceptance nor fulfillment. The agent must inspect the relevant condition and evidence. The tool does not infer that a test passed or a deliverable is complete.
 
 `check` rejects malformed metadata and escaping paths. It reports unresolved suppliers, planned paths and cycles without treating them as automatic failures. Missing edges do not prove independence. Examine shared interfaces, code and resources before dividing work.
 
-A baseline tag supports comparison and recovery. It does not approve every future dependency change. Ordinary changes do not require a new tag or a currency packet. Preserve actual owner holds and specific adopted acceptance requirements.
+A baseline tag supports comparison and recovery. It does not approve every future dependency change. Ordinary changes do not require a new tag or a currency packet. Preserve actual holds set by the person and specific adopted acceptance requirements.
 
 ## 5. Carry the work through
 
@@ -113,11 +117,11 @@ The common working cycle is:
 
 Use [coordinated knowledge work](../../workflows/coordinated-knowledge-work/WORKFLOW.md) when related contributions must become one result. It supports direct work as well as delegation. It does not prescribe a fixed staffing diagram.
 
-Keep one integration responsibility for a shared result and disjoint concurrent writes. Independent work need not wait for an unrelated branch. Shared memory, tools, application state, review capacity and integration cost can still require sequencing.
+Identify one integration owner for a shared result. Keep concurrent writes disjoint. Independent work need not wait for an unrelated branch. Shared memory, tools, application state, review capacity and integration cost can still require sequencing.
 
 Prove a consequential interface through its consumer before expanding work that depends on it. Continue independent work while that premise is examined. Component agreement does not prove the common basis is correct.
 
-Resolve ordinary implementation refinements within authority. Escalate changes to commitments, consequential shared assumptions, interfaces outside the assignment or reserved choices. Identify the affected work and the consequence of each choice.
+Resolve ordinary implementation refinements within authority. Bring a consequential shared assumption to the integration owner for examination and coordination. Refer changes outside the assignment or to reserved commitments to the person authorized to decide them. Identify the affected work and the consequence of each choice.
 
 A final documentation stage is not compulsory. Keep documents current as their meaning changes. Before completion, establish coverage of commitments, relationships and applicable examination. Add work only where a required claim remains unsupported.
 
@@ -132,7 +136,7 @@ Root's rule is consequence-based:
 | Numerical meaning, persistence, permissions or destructive operations | Targeted regression checks and independent scrutiny by a separate agent. |
 | Release | Examination of the actual product; release remains reserved. |
 
-Do not alter a criterion merely to obtain a pass. Establish whether the source requirement, test or implementation is wrong. Preserve protected oracles and meaningful limits unless their owner authorizes a substantive change.
+Do not alter a criterion merely to obtain a pass. Establish whether the source requirement, test or implementation is wrong. Preserve protected oracles and meaningful limits unless the person with the applicable decision right authorizes a substantive change.
 
 The single required GitHub result is `harness`. It combines repository checks and selected App v4 and Piping jobs. App v3, Runtime and PEC have no verification jobs. See [CI selection](../CI_SELECTION.md) for the maintained policy.
 
@@ -153,7 +157,7 @@ For Piping, the profile selector accepts project-relative paths:
 python3 tools/software_workflow/select_affected_checks.py projects/chirality-piping/software-workflow.json core/model_transform/physical_to_analytical/_solver_boundary_adapter.py
 ```
 
-This command selects checks; it does not execute them. Piping's [CI strategy](../../projects/chirality-piping/docs/CI_STRATEGY.md) explains its current numerical, browser and Python coverage. DEC-025's blanket local sweep is not a merge requirement. The release sweep remains a separate optional release-preparation tool.
+This command selects checks; it does not execute them. Piping's [CI strategy](../../projects/chirality-piping/docs/CI_STRATEGY.md) explains its current numerical, browser and Python coverage. Use the current affected-check policy for merges. The broader release sweep is a separate optional release-preparation tool.
 
 ## 7. Integrate under the standing grant
 
@@ -161,11 +165,11 @@ For `sgttomas/chirality`, Root's standing Git grant covers commit, push, PR crea
 
 The grant excludes protection bypasses, history rewrites, force pushes, permission changes and releases. Explicit holds remain effective. Use the [chirality-change skill](../../.agents/skills/chirality-change/SKILL.md) for branch and PR conventions.
 
-The PR is the change record. State the problem, resulting behavior, checks and open matters. Quote the owner's words for a reserved decision without implying that the owner reviewed bytes they did not inspect.
+The PR is the change record. State the problem, resulting behavior, checks and open matters. Quote the person's words for a reserved decision without implying that they reviewed bytes they did not inspect.
 
 Reassess affected checks after candidate changes. A review of an earlier revision does not automatically cover later edits. A passing rerun does not establish that a known defect was repaired.
 
-Merge is a source-control operation. It does not issue a deliverable, approve engineering reliance or release a product. The actual integration must be confirmed before it is reported as complete.
+Merge is a source-control operation. Confirm the destination revision before reporting source integration. Examine affected relationships before claiming a usable integrated result. Acceptance identifies an authorized act concerning a subject, scope and purpose; release authorizes availability for a stated use or audience; delivery transfers the result and what its recipient needs. A merge performs none of those acts by itself and does not approve engineering reliance.
 
 ## 8. Enter App v4 and SWBPIPE correctly
 
@@ -185,7 +189,7 @@ The loop carries F-PIP-1–4 and DEC-043. Those project boundaries remain author
 
 Frozen numerical references live in `validation/references/t3_r1/`. Their generators and consumers remain maintained. Do not modify reference results to make an implementation pass.
 
-Product operations, professional acceptance and repository development are different activities. Removing development records does not remove a required product event, model history, stop/checkpoint record or user decision.
+Product operations, professional acceptance and repository development are different activities. Proportionate development records do not remove a required product event, model history, stop/checkpoint record or user decision.
 
 ## 9. Preserve continuity without rebuilding history
 
@@ -222,17 +226,17 @@ For ordinary discovery, use the stable index. When a requirement, comparison or 
 
 A changed index does not automatically amend App v4's product requirements or historical test fixtures. Update affected current consumers deliberately. Preserve the earlier edition while a live consumer still requires its bytes.
 
-A source update can change language without changing meaning, or change the actual method. Compare the relevant sections and consequences. Do not substitute a new edition merely because its version number is higher.
+A source update can clarify language while preserving a distinction, or change the actual method. Iteration becomes learning when a finding changes the next relevant action and reaches the sources and consumers that need it. Compare the relevant sections and consequences. Do not substitute a new edition merely because its version number is higher.
 
 ## 12. Three practical cases
 
 ### A small reversible correction
 
-The owner asks for a clearer message in the App. The agent finds the actual interface and its requirement, changes the text and exercises the affected state. It checks whether wording could misrepresent a permission or data operation. If not, ordinary proportionate verification is sufficient. It does not create a graph, run record or new management assignment.
+The person asks for a clearer message in the App. The agent finds the actual interface and its requirement, changes the text and exercises the affected state. It checks whether wording could misrepresent a permission or data operation. If not, ordinary proportionate verification is sufficient. It does not create a graph, run record or new management assignment.
 
 ### A consequential numerical change
 
-The owner authorizes a bounded numerical repair. The owner of that work reads the current Design conditions and queries affected consumers. It checks the independent numerical reference and keeps parallel writers disjoint. An independent reviewer examines the substantive change. The agent runs affected checks, updates any changed condition in its current source, and integrates the reviewed candidate under the grant. A changed accepted tolerance goes to the owner instead of being silently adopted.
+The person authorizes a bounded numerical repair. The agent assigned as contribution owner reads the current Design conditions and queries affected consumers. That agent checks the independent numerical reference and keeps parallel writers disjoint. An independent reviewer examines the substantive change. The agent runs affected checks, updates any changed condition in its current source, and integrates the reviewed candidate under the grant. A proposed change to an accepted tolerance goes to the person authorized to decide it before adoption.
 
 ### Recovery after interruption
 

@@ -50,6 +50,7 @@ pub mod recorder;
 pub mod records;
 pub mod records_access;
 mod records_index;
+pub mod record_lines;
 pub mod records_store;
 pub mod recovery;
 mod recovery_root_view;
@@ -247,6 +248,7 @@ fn host_status(state: State<'_, AppState>) -> Value {
     s["codexStops"] = json!({"outcomes":state.codex_stops.lock().unwrap().clone(),"stopWaitLimitSeconds":codex_stop::STOP_WAIT_LIMIT.as_secs(),"records":codex_stop::RECORDS_LIMIT});
     s["connectorRouteAvailability"] = connector_route_view::availability(state.workspace.as_deref(), &state.project_context, state.project_context_limit.as_deref());
     s["recordsStore"] = records_store::status(state.workspace.as_deref());
+    s["recordChain"] = records_index::chain_status(state.workspace.as_deref());
     s["currentAppProjectContext"] = state.project_context.view();
 
     s["currentAppProjectContextLimit"] = json!(state.project_context_limit);
@@ -262,6 +264,13 @@ fn host_status(state: State<'_, AppState>) -> Value {
 fn records_store_import(state: State<'_, AppState>) -> Result<Value, String> {
     let project = state.workspace.as_ref().ok_or("no project is open; nothing imported")?;
     records_store::import(project)
+}
+/// RS §13.8 Tamper-evidence: each log's chain head of the open project, on
+/// demand (the host status carries only bounded counts).
+#[tauri::command(async)]
+fn records_chain_heads(state: State<'_, AppState>) -> Result<Value, String> {
+    let project = state.workspace.as_ref().ok_or("no project is open")?;
+    Ok(records_index::chain_heads(project))
 }
 /// RS §13.8 "Project identity": the person resolves a project identity limit.
 #[tauri::command(async)]
@@ -1718,7 +1727,7 @@ pub fn run() {
 
                 records_store::configure(records_store::for_app(std::env::var_os(records_store::OVERRIDE_ENV).filter(|p| !p.is_empty()).map(PathBuf::from), data.as_deref().map_err(Clone::clone), tauri::is_dev(), workspace.as_deref(), &codex_homes));
                 if let Some(ws) = workspace.as_ref() {
-                    let _ = records_store::attach(ws, true);
+                    if let Err(e) = records_store::attach(ws, true) { eprintln!("chirality: the project was not given its records identity at startup: {e}"); }
                 }
             }
             // AAC §6.3 SEAL-C: this installation's capture-seal keys live in the
@@ -1738,12 +1747,13 @@ pub fn run() {
             }
             *state.app_user_data_root.lock().unwrap() = data.clone();
             // RS §13.9 (owner U-STORE-4): the agents' read-only records
-            // capability in the current project, its read log in App data.
+            // capability in the current project. Each read is recorded in the
+            // project's records store folder; the App-wide read log an earlier
+            // build kept in App data stays there unchanged and is shown.
             if let Some(ws) = state.workspace.as_ref() {
-                let capability = data.as_ref().map_err(Clone::clone).and_then(|data| {
-                    let runtime = data.join("runtime");
-                    std::fs::create_dir_all(&runtime).map_err(|e| format!("records read log folder unavailable: {e}"))?;
-                    records_access::RecordsCapability::new(ws, runtime.join("records-reads.jsonl"))
+                let capability = records_access::RecordsCapability::new(ws).map(|capability| match data.as_ref() {
+                    Ok(data) => capability.with_legacy_read_log(&data.join("runtime").join("records-reads.jsonl")),
+                    Err(_) => capability,
                 });
                 match capability {
                     Ok(capability) => home.host.configure_records_capability(Arc::new(capability)),
@@ -1863,7 +1873,7 @@ pub fn run() {
             read_recovery_custody,
             recovery_retry,
             read_connector_routes,
-            records_store_import, records_store_identity, records_store_choose,
+            records_store_import, records_store_identity, records_store_choose, records_chain_heads,
             prepare_connector_source, select_connector_source, anchor_connector_source, revise_connector_source,
             read_connector_git, cancel_connector_git, anchor_connector_git,
             recheck_published_connector_draft, prepare_connector_reconstruction, prepare_connector_draft, publish_connector_draft, cancel_connector_draft, reconcile_connector_draft, inspect_connector_drafts,
