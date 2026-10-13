@@ -91,20 +91,20 @@ def test_results_successor_branch_is_explicit_and_old_branches_reject_receipt():
 
 SUCC = "openpipestress.result_semantics/0.3.0/preview-physics-retained-1"
 PREVIEW = "openpipestress.result_semantics/0.3.0/preview-physics-1"
-SUCC_SHA = "ed1fc7fca562f26365157141f54c450cbfaf2ef65e689d37ff54086b70510357"
-PREVIEW_SHA = "ac522c1ee0c771ae1e3dc72facfe3e75a8f0b01009075c997658eae50e9bb60c"
+SUCC_SHA = "976ee83e7b73dfd37461f8ab5deaa8db96b0bc986e5a93f230b4008a38904158"
+PREVIEW_SHA = "7f693f06b7f975010ad0c8079242feb328fead3f57e0491d05ac8e09994b8209"
 PROFILE = "product_preview_retained_w1a_v2"
 CODES = ["retained_precision_absolute_verified", "retained_precision_not_covered"]
 # B3b (B3-D §7): the exact successor `<physics-retained>`, whose carrier branches follow
 # the preview successor's. Both successors, and only they, carry a receipt.
 EXACT = "openpipestress.result_semantics/0.3.0/physics-retained-1"
-EXACT_SHA = "7f830a90e7a5f7e1ec279ae0c2bf0e622ff80f40ac283ae502096880d32b5eb9"
+EXACT_SHA = "da642db8b12784a2ac54bfd6eecf4609db6f52e34ce2c5127ba2de4b60b2367e"
 EXACT_PROFILE = "exact_straight_retained_w1a_v2"
 SUCCESSORS = (SUCC, EXACT)
 # b7-plan's pressure-source join: a tenth run branch (no receipt); its contract
 # registry entry is appended after the exact successor's.
 PRESSURE_SOURCE = "openpipestress.result_semantics/0.3.0/pressure-source-1"
-PRESSURE_SOURCE_SHA = "3039f7ca7d36a82f9d34baea648159d7a780ec9623879ce5aa3c890b10b19a61"
+PRESSURE_SOURCE_SHA = "f2238777c36ceddca5240f40526cf4fe99e84820d593fa5961c5910884fb7803"
 MILESTONES = {
     "sparse_interactive": "174e17c55eadf69439d21d8809776a0e7d2ba95fa01a4ed0046366fb141a11a6",
     "dense_scrutiny": "ff24764d702080b944dc52dbd46f56380a1e6f7dbceebd364fc4d9419c8f9f55",
@@ -327,7 +327,7 @@ def test_every_existing_analysis_run_branch_refuses_a_receipt():
         refused = {"required": ["retained_precision"]} in branch.get("not", {}).get("anyOf", [])
         assert refused is (sid not in SUCCESSORS), sid
         assert ("retained_precision" in branch.get("required", [])) is (sid in SUCCESSORS), sid
-    assert ids.count(SUCC) == 1 and ids.count(EXACT) == 1 and ids.count(PRESSURE_SOURCE) == 1 and len(ids) == 10
+    assert ids.count(SUCC) == 1 and ids.count(EXACT) == 1 and ids.count(PRESSURE_SOURCE) == 1 and len(ids) == 9
     contract = schema["$defs"]["SemanticContract"]
     assert {"properties": {"id": {"const": SUCC}, "sha256": {"const": SUCC_SHA}}} in contract["oneOf"]
     # Two receipt-carrying identities without a former `not` now refuse a receipt.
@@ -405,7 +405,7 @@ def test_every_existing_stress_neutral_branch_refuses_a_receipt():
         ids.append(sid)
         assert ({"required": ["retained_precision"]} in branch.get("not", {}).get("anyOf", [])) is (sid not in SUCCESSORS), sid
         assert ("retained_precision" in branch.get("required", [])) is (sid in SUCCESSORS), sid
-    assert ids.count(SUCC) == 1 and ids.count(EXACT) == 1 and len(ids) == 9
+    assert ids.count(SUCC) == 1 and ids.count(EXACT) == 1 and len(ids) == 8
 
 
 # ---- B3b (I101, lane T): the exact successor's carrier branches (B3-D §7; REVISION_01 §6).

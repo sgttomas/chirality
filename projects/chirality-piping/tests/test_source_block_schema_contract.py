@@ -14,8 +14,7 @@ from pathlib import Path
 import pytest
 
 from core.analysis_runs.compatibility import (
-    PHYSICS_CONTRACT_ID, PHYSICS_CONTRACT_SHA256,
-    PRECISION_CONTRACT_ID, PRECISION_CONTRACT_SHA256,
+    PHYSICS_CONTRACT_ID, PHYSICS_CONTRACT_SHA256, PREVIEW_PHYSICS_CONTRACT_SHA256,
     SOURCE_BLOCKS_CONTRACT_ID, SOURCE_BLOCKS_CONTRACT_SHA256,
     analysis_record_projection, build_analysis_run_v0_3,
     numerical_use_standing, validate_analysis_run_v0_3, verify_analysis_run_record,
@@ -29,7 +28,6 @@ MODES = ("sparse_interactive", "dense_scrutiny")
 SOURCE_PAIRS = tuple(f"{prefix}{case}-{mode}" for prefix in ("", "ui/")
                      for case in ("n05", "n06", "multicase") for mode in MODES)
 METHODS = {
-    "precision-1": (PRECISION_CONTRACT_ID, PRECISION_CONTRACT_SHA256),
     "physics-1": (PHYSICS_CONTRACT_ID, PHYSICS_CONTRACT_SHA256),
     "source-blocks-1": (SOURCE_BLOCKS_CONTRACT_ID, SOURCE_BLOCKS_CONTRACT_SHA256),
 }
@@ -72,8 +70,8 @@ def source_analysis(name):
 
 @lru_cache(maxsize=None)
 def older_analysis(method):
-    family = "precision_connected_ui" if method == "precision-1" else "physics_connected_ui"
-    source = read_received(PROJECT / f"fixtures/results/{family}_mechanics_sparse.json")
+    assert method == "physics-1"
+    source = read_received(PROJECT / "fixtures/results/physics_connected_ui_mechanics_sparse.json")
     record = build_analysis_run_v0_3(source, input_manifest_ref={"object_type": "InputManifest", "ref": "reference:older-method"},
                                    input_manifest_hash=canonical_sha256_checked_v1({"received_source_ref": source["model_ref"]}))
     return source, record
@@ -104,7 +102,7 @@ def test_actual_source_block_analysis_has_closed_receipt_and_exact_method_bindin
     assert source == before
 
 
-@pytest.mark.parametrize("method", ("precision-1", "physics-1"))
+@pytest.mark.parametrize("method", ("physics-1",))
 def test_actual_older_analysis_branches_keep_their_original_id_hash_and_no_receipt(method):
     source, record = older_analysis(method)
     require_schema("analysis_run.v0.3.schema.json", record)
@@ -137,7 +135,7 @@ def test_closed_receipt_rejects_missing_unknown_and_foreign_method_fields(mutati
     with pytest.raises(AssertionError): require_schema("analysis_run.v0.3.schema.json", record)
 
 
-@pytest.mark.parametrize("method", ("precision-1", "physics-1"))
+@pytest.mark.parametrize("method", ("physics-1",))
 def test_receipt_cannot_be_downgraded_to_an_older_analysis_id_hash(method):
     record = deepcopy(source_analysis("n05-sparse_interactive")[2])
     identity = dict(zip(("id", "sha256"), METHODS[method]))
@@ -150,8 +148,8 @@ def test_receipt_cannot_be_downgraded_to_an_older_analysis_id_hash(method):
 def test_analysis_method_hash_and_each_row_contract_must_agree(mutation):
     record = deepcopy(source_analysis("n05-sparse_interactive")[2])
     run = record["analysis_run"]
-    if mutation == "wrong_hash": run["reproducibility"]["semantic_contract"]["sha256"] = PRECISION_CONTRACT_SHA256
-    elif mutation == "row_other_method": run["result_refs"][0]["semantic_contract"].update(id=PRECISION_CONTRACT_ID, sha256=PRECISION_CONTRACT_SHA256)
+    if mutation == "wrong_hash": run["reproducibility"]["semantic_contract"]["sha256"] = PREVIEW_PHYSICS_CONTRACT_SHA256
+    elif mutation == "row_other_method": run["result_refs"][0]["semantic_contract"].update(id=PHYSICS_CONTRACT_ID, sha256=PHYSICS_CONTRACT_SHA256)
     elif mutation == "row_wrong_hash": run["result_refs"][0]["semantic_contract"]["sha256"] = PHYSICS_CONTRACT_SHA256
     else: run["reproducibility"]["semantic_contract"]["id"] = "openpipestress.result_semantics/0.3.0/physics-source-1"
     with pytest.raises(AssertionError): require_schema("analysis_run.v0.3.schema.json", record)
@@ -187,7 +185,7 @@ def test_schema_and_table_identities_preserve_older_contracts_and_reference_rece
         assert hashlib.sha256(table.read_bytes()).hexdigest() == expected
     for name, definition in (("results.v0.3.schema.yaml", "ResultEnvelope"), ("analysis_run.v0.3.schema.json", "AnalysisRun")):
         branches = schema(name)["$defs"][definition]["oneOf"]
-        assert branches[2]["properties"]["source_block_recovery"] == {"$ref": RECEIPT_REF}
+        assert branches[1]["properties"]["source_block_recovery"] == {"$ref": RECEIPT_REF}
         assert schema(name)["$defs"][definition]["properties"]["source_block_recovery"]["oneOf"][0] == {"$ref": RECEIPT_REF}
     assert schema(RECEIPT_REF)["$id"] == "openpipestress.source_block_receipt/1.0.0"
 
@@ -242,10 +240,10 @@ def test_actual_derivative_rejects_missing_mismatched_or_foreign_receipt_method(
     elif mutation in ("null", "false", "empty"): envelope["source_block_recovery"] = {"null": None, "false": False, "empty": {}}[mutation]
     elif mutation == "foreign_physics": envelope["contract_evidence"] = None
     elif mutation == "wrong_profile": envelope["formulation_basis"]["profile_id"] = "exact_straight_pressure_v2"
-    elif mutation == "wrong_ref": envelope["semantic_contract_ref"]["ref_id"] = PRECISION_CONTRACT_ID
+    elif mutation == "wrong_ref": envelope["semantic_contract_ref"]["ref_id"] = PHYSICS_CONTRACT_ID
     elif mutation == "downgrade":
-        envelope["producer"]["semantic_contract_id"] = PRECISION_CONTRACT_ID
-        envelope["semantic_contract_ref"]["ref_id"] = PRECISION_CONTRACT_ID
+        envelope["producer"]["semantic_contract_id"] = PHYSICS_CONTRACT_ID
+        envelope["semantic_contract_ref"]["ref_id"] = PHYSICS_CONTRACT_ID
     elif mutation == "carrier_null": envelope["carrier_evidence"] = None
     else:
         envelope["producer"]["semantic_contract_id"] = "openpipestress.result_semantics/0.3.0/physics-source-1"
@@ -254,7 +252,7 @@ def test_actual_derivative_rejects_missing_mismatched_or_foreign_receipt_method(
 
 
 COMPOSITE_ID = "openpipestress.result_semantics/0.3.0/physics-source-1"
-COMPOSITE_SHA256 = "ba13f2aefd7a38bd725e5f111e6ec30144bc8776aa957c6278ee7b1178298ba1"
+COMPOSITE_SHA256 = "9020cb1bb9a30416dbe2fcb4fa4b142b56d0e03f99575edeff82b6bfc7b3e352"
 COMPOSITE_RECEIPT = "physics_source_recovery.schema.json"
 COMPOSITE_ROOT = PROJECT / "fixtures/product_preview/physics_source"
 COMPOSITE_PAIRS = tuple(f"{case}-{mode}" for case in ("n05", "n06", "mixed", "fields") for mode in MODES)
@@ -374,7 +372,7 @@ def test_actual_composite_maximum_metadata_has_a_method_scoped_canonical_route()
     # Validate the exact branch wiring; canonical packet positives remain the
     # separately supplied actual headless producer artifacts, never constructed here.
     branches = results["$defs"]["ResultEnvelope"]["oneOf"]
-    assert len(branches) == 10
+    assert len(branches) == 9
     for branch in branches:
         # Keyed by the branch's pinned producer identity, not by position: T0R
         # appended preview-physics-1 and T1 appended load-reference-1 and

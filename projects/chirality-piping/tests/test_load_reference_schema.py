@@ -27,11 +27,11 @@ CARRIERS = ("results.v0.3.schema.yaml", "analysis_run.v0.3.schema.json", "stress
 
 CONTRACT = "openpipestress.load_reference_state/1.0.0"
 LR_ID = "openpipestress.result_semantics/0.3.0/load-reference-1"
-LR_SHA = "44bc41c06f589fab6ce931ac0eaa5344765ff64fd5f880cc2dd69ecb839c4f4d"
+LR_SHA = "4174554dd73409bdc0d5fac52cbbbb3e5b4babcc372c336aa69cce33ffd376f4"
 LR_PROFILE = "resolved_straight_load_state_v1"
 PHYSICS_ID = "openpipestress.result_semantics/0.3.0/physics-1"
 PRESSURE_SOURCE_ID = "openpipestress.result_semantics/0.3.0/pressure-source-1"
-PHYSICS_SHA = "9a2cf6268b57bd5265a1a115497c07450819dd4d03cd5ab618097bd9d19da8cc"
+PHYSICS_SHA = "2fe3964501d6c83983a6216d2abaf490d654a1e7dac04c531127d37c839ca9fd"
 PHYSICS_PROFILE = "exact_straight_pressure_v2"
 LR_EVIDENCE_REF = {"$ref": "load_reference_state.schema.json#/$defs/LoadReferenceContractEvidence"}
 PHYSICS_RAW = PROJECT / "fixtures/results/physics_connected_mechanics_sparse.json"
@@ -603,7 +603,8 @@ def test_carrier_branches_are_appended_after_the_existing_methods():
     included); positions are looked up by identity, the relative order is pinned."""
     results = schema("results.v0.3.schema.yaml")["$defs"]["ResultEnvelope"]
     ids = [branch["properties"]["producer"]["properties"]["semantic_contract_id"]["const"] for branch in results["oneOf"]]
-    assert ids == ["openpipestress.result_semantics/0.3.0/precision-1", PHYSICS_ID,
+    # B1 removed precision-1's branch.
+    assert ids == [PHYSICS_ID,
                    "openpipestress.result_semantics/0.3.0/source-blocks-1",
                    "openpipestress.result_semantics/0.3.0/physics-source-1",
                    # b7-plan's pressure-source join carries pressure-source-1 after physics-source-1.

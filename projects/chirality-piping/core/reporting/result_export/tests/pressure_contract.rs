@@ -133,8 +133,14 @@ fn the_pressure_1_skeleton_keeps_physics_1_rows_under_its_own_identity() {
         "source_signature_count",
         "source_kind_count",
     ];
+    // physics-1 roots its lineage (B1 retired precision-1, its parent); only
+    // pressure-1 carries an inherited pin.
     let (p, q) = (pressure.as_object().unwrap(), physics.as_object().unwrap());
-    assert_eq!(p.keys().collect::<Vec<_>>(), q.keys().collect::<Vec<_>>());
+    assert!(!q.contains_key("inherited_semantic_contract_sha256"));
+    assert_eq!(
+        p.keys().filter(|k| *k != "inherited_semantic_contract_sha256").collect::<Vec<_>>(),
+        q.keys().collect::<Vec<_>>()
+    );
     for (key, value) in p {
         if !own.contains(&key.as_str()) {
             assert_eq!(value, &q[key], "{key}");
@@ -161,7 +167,13 @@ fn the_pressure_1_skeleton_keeps_physics_1_rows_under_its_own_identity() {
     assert_eq!(connector, expected);
     assert_eq!(p["source_signature_count"], rows.len());
     assert_eq!(p["source_kind_count"], q["source_kind_count"].as_u64().unwrap() + 6);
-    for (i, r) in rows.iter().enumerate() {
-        assert_eq!(r["signature_id"], format!("supported-source-{i:03}"));
-    }
+    // Signature ids are stable and ascending; removed rows are not renumbered:
+    // B3's three retired rows (008, 020, 021) and H-4's joint and thrust rows (038-042).
+    let numbers: Vec<u32> = rows
+        .iter()
+        .map(|r| r["signature_id"].as_str().unwrap().strip_prefix("supported-source-").unwrap().parse().unwrap())
+        .collect();
+    let removed = [8, 20, 21, 38, 39, 40, 41, 42];
+    let expected: Vec<u32> = (0..numbers.len() as u32 + 8).filter(|n| !removed.contains(n)).collect();
+    assert_eq!(numbers, expected);
 }

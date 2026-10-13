@@ -303,7 +303,7 @@ fn checked_dispatch(
     let (route, binding, token, findings, error) = match disposition {
         DispatchDisposition::PressureHealthy(resolved) => (
             "pressure_source",
-            json!({"id":"openpipestress.result_semantics/0.3.0/pressure-source-1","sha256":"3039f7ca7d36a82f9d34baea648159d7a780ec9623879ce5aa3c890b10b19a61"}),
+            json!({"id":"openpipestress.result_semantics/0.3.0/pressure-source-1","sha256":"f2238777c36ceddca5240f40526cf4fe99e84820d593fa5961c5910884fb7803"}),
             if resolved {
                 "needs_recompute"
             } else {
@@ -318,7 +318,7 @@ fn checked_dispatch(
         ),
         DispatchDisposition::PressureFinding(code) => (
             "pressure_source",
-            json!({"id":"openpipestress.result_semantics/0.3.0/pressure-source-1","sha256":"3039f7ca7d36a82f9d34baea648159d7a780ec9623879ce5aa3c890b10b19a61"}),
+            json!({"id":"openpipestress.result_semantics/0.3.0/pressure-source-1","sha256":"f2238777c36ceddca5240f40526cf4fe99e84820d593fa5961c5910884fb7803"}),
             "unsupported",
             json!([code]),
             Value::Null,
@@ -332,14 +332,14 @@ fn checked_dispatch(
         ),
         DispatchDisposition::PhysicsV2CapturedV3 => (
             "physics_source",
-            json!({"id":"openpipestress.result_semantics/0.3.0/physics-source-1","sha256":"ba13f2aefd7a38bd725e5f111e6ec30144bc8776aa957c6278ee7b1178298ba1"}),
+            json!({"id":"openpipestress.result_semantics/0.3.0/physics-source-1","sha256":"9020cb1bb9a30416dbe2fcb4fa4b142b56d0e03f99575edeff82b6bfc7b3e352"}),
             "unsupported",
             json!([sc::V3_READ_AS_V2]),
             Value::Null,
         ),
         DispatchDisposition::LoadReferenceV2T1 => (
             "load_reference_source",
-            json!({"id":"openpipestress.result_semantics/0.3.0/load-reference-source-1","sha256":"d1628194a7730f427843b00228dd233cf92b8e7d26f3bc31c660a3ea59e28337"}),
+            json!({"id":"openpipestress.result_semantics/0.3.0/load-reference-source-1","sha256":"e69e3eeafbd31e9b630a6797a7affaab6796212d8992f77bf2a4d2569a4fa096"}),
             "needs_recompute",
             json!([rv::LOAD_REFERENCE_SOURCE_NOT_NUMERICALLY_ELIGIBLE]),
             Value::Null,
@@ -491,9 +491,9 @@ fn add_control_entries(control: &Control, entries: &mut Vec<Value>) {
         &downgraded,
         invocation,
         "pressure-source",
-        Some("SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"),
-        Some("SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"),
-        DispatchDisposition::HeaderRefused("SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"),
+        Some("SOURCE_BLOCKS_DOWNGRADE_FORBIDDEN"),
+        Some("SOURCE_BLOCKS_DOWNGRADE_FORBIDDEN"),
+        DispatchDisposition::HeaderRefused("SOURCE_BLOCKS_DOWNGRADE_FORBIDDEN"),
     ));
     let mut budget = source.clone();
     budget["source_block_recovery"]["body"]["invocation_work"]["charged"] = json!(

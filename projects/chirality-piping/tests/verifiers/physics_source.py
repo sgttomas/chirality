@@ -32,7 +32,7 @@ TABLE = json.loads((ROOT / "fixtures/results/semantic_contract_v0_3_physics_sour
 SCHEMA_PATH = ROOT / "schemas/physics_source_recovery.schema.json"
 PRESSURE_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/pressure-source-1"
 PRESSURE_PROFILE = "exact_pressure_v3"
-PRESSURE_TABLE_SHA256 = "3039f7ca7d36a82f9d34baea648159d7a780ec9623879ce5aa3c890b10b19a61"
+PRESSURE_TABLE_SHA256 = "f2238777c36ceddca5240f40526cf4fe99e84820d593fa5961c5910884fb7803"
 PRESSURE_TABLE_PATH = ROOT / "fixtures/results/semantic_contract_v0_3_pressure_source_1.json"
 
 
@@ -91,7 +91,7 @@ class SourceContract(Enum):
         profile = _get(_get(source, "formulation_basis"), "profile_id")
         evidence = _get(source, "contract_evidence")
         if self is SourceContract.PRESSURE_V3 and header == physical.PRESSURE_ID and isinstance(source, Mapping) and "source_block_recovery" in source:
-            raise ValueError("SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN")
+            raise ValueError("SOURCE_BLOCKS_DOWNGRADE_FORBIDDEN")
         cases, regions = _get(evidence, "exact_cases"), _get(evidence, "pressure")
         names_other = header == other.CONTRACT_ID or profile == other.PROFILE
         names_other |= self is SourceContract.PRESSURE_V3 and header == "openpipestress.result_semantics/0.3.0/load-reference-source-1"

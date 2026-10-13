@@ -372,7 +372,7 @@ fn pinned_table_identity_profile_and_policy() {
     assert_eq!(sha(TABLE.as_bytes()), s::LOAD_REFERENCE_SOURCE_TABLE_SHA256);
     assert_eq!(
         s::LOAD_REFERENCE_SOURCE_TABLE_SHA256,
-        "d1628194a7730f427843b00228dd233cf92b8e7d26f3bc31c660a3ea59e28337"
+        "e69e3eeafbd31e9b630a6797a7affaab6796212d8992f77bf2a4d2569a4fa096"
     );
     let table = s::load_reference_source_contract();
     assert_eq!(table["semantic_contract_id"], s::LOAD_REFERENCE_SOURCE_ID);
@@ -644,7 +644,6 @@ fn header_dispatch_binds_one_profile_and_existing_readers_refuse_joined_labels()
     assert!(s::for_source(&header).is_err());
     // No other contract accepts the joined profile.
     for id in [
-        s::PRECISION_ID,
         s::PHYSICS_ID,
         s::PHYSICS_SOURCE_ID,
         s::LOAD_REFERENCE_ID,

@@ -25,10 +25,13 @@ const MODES: [PreviewSolverMode; 2] = [PreviewSolverMode::SparseInteractive, Pre
 /// K-D5 (DEL-04-01 kd5-member-relative-bound.md §§3.2, 3.4, 6) re-pinned both
 /// modes: the milestone case stays Sensitive (K-D5's estimate), and against main
 /// the bytes differ only by the two linear limitation sentences, the current
-/// maximum declaration literals and the fallback maximum's enclosure.
+/// maximum declaration literals and the fallback maximum's enclosure. B7a's H-4
+/// re-pinned them for the summary (the curved macro-element count's name, the
+/// deleted retired thrust count) and the reworded pressure/imposed-displacement
+/// limitation sentence.
 const ORDINARY_SHA256: [(&str, usize, &str); 2] = [
-    ("sparse_interactive", 68985, "abfc82f25247cd9963f20ea054d62c234e0c6e4fb41012d31ba9f9f64c2dace1"),
-    ("dense_scrutiny", 70103, "44cb3dada6e0682d4da769dbbfd3814cac54433d796e771b9aefe5ab8024d51a"),
+    ("sparse_interactive", 68961, "33a8e8d411ff0370f815ae904b2fbfbf6f19051bed45ede32bfc6690e8dee9e0"),
+    ("dense_scrutiny", 70079, "729ef94254ad7c3b14922b82fcb4cce8298028101257797566205f38d01ddff5"),
 ];
 /// The serializer's committed milestone output: sha256 of the pretty-printed
 /// successor envelope, and its receipt_sha256 (byte-stable, both modes).

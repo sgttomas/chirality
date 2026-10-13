@@ -13,7 +13,7 @@ from pathlib import Path
 import pytest
 
 from core.analysis_runs.compatibility import (
-    FRESH_CONTRACT_IDS, PRECISION_CONTRACT_ID, PREVIEW_PHYSICS_CONTRACT_ID, PREVIEW_PHYSICS_CONTRACT_SHA256,
+    FRESH_CONTRACT_IDS, PREVIEW_PHYSICS_CONTRACT_ID, PREVIEW_PHYSICS_CONTRACT_SHA256,
     PHYSICS_CONTRACT_ID, PHYSICS_SOURCE_CONTRACT_ID, PRESSURE_SOURCE_CONTRACT_ID, SOURCE_BLOCKS_CONTRACT_ID, _source_contract,
     LOAD_REFERENCE_CONTRACT_ID, LOAD_REFERENCE_SOURCE_CONTRACT_ID, PREVIEW_PHYSICS_RETAINED_CONTRACT_ID,
     build_analysis_run, is_fresh_contract_id, numerical_use_standing, rule_binding_refusal,
@@ -23,6 +23,7 @@ from tests.verifiers.preview_physics_evidence import (
     LIMITATIONS, validate_preview_physics_evidence, validate_transport_metadata,
 )
 from schema_validation import schema_for_definition, validate_instance
+from preview_transport_source import RETIRED_PRECISION_CONTRACT_ID
 from tests.verifiers import compatibility as verifier
 
 PROJECT = Path(__file__).resolve().parents[1]
@@ -163,7 +164,7 @@ def test_table_identity_and_registry():
     # b7-plan's pressure-source join: plus pressure-source-1.
     assert FRESH_CONTRACT_IDS == {PREVIEW_PHYSICS_CONTRACT_ID, SOURCE_BLOCKS_CONTRACT_ID, PHYSICS_CONTRACT_ID, PHYSICS_SOURCE_CONTRACT_ID,
                                   PRESSURE_SOURCE_CONTRACT_ID, LOAD_REFERENCE_CONTRACT_ID, LOAD_REFERENCE_SOURCE_CONTRACT_ID, PREVIEW_PHYSICS_RETAINED_CONTRACT_ID}
-    assert not is_fresh_contract_id(PRECISION_CONTRACT_ID) and is_fresh_contract_id(PREVIEW_PHYSICS_CONTRACT_ID)
+    assert not is_fresh_contract_id(RETIRED_PRECISION_CONTRACT_ID) and is_fresh_contract_id(PREVIEW_PHYSICS_CONTRACT_ID)
 
 
 def test_hand_built_envelope_reads_records_and_is_current_eligible():
@@ -231,14 +232,6 @@ def test_preview_metadata_vocabulary_is_scoped_to_its_branch():
 
 def _retired_kind(s):
     s["results"].append({"id": "result:reaction:support-S1", "kind": "reaction_resultant", "value": 1.0, "unit": "N", "entity_ref": "support:S1", "basis_ref": lc("load:A")})
-
-
-def _retired_code(s):
-    s["diagnostics"].append({"id": "diagnostic:retired", "code": "COMPONENT_STRESS_MULTIPLIER_APPLIED", "severity": "info", "message": "x", "affected_refs": ["component:C1"]})
-
-
-def _retired_skip_code(s):
-    s["diagnostics"].append({"id": "diagnostic:retired-skip", "code": "COMBINATION_STRESS_SUMMARY_SKIPPED", "severity": "warning", "message": "x", "affected_refs": ["combination:C-OK"]})
 
 
 def _dangling(s):
@@ -382,7 +375,7 @@ def _abs_sum_maximum(s):
 
 
 TAMPERS = [
-    _retired_kind, _retired_code, _retired_skip_code, _dangling, _dangling_summary, _headline_not_governing,
+    _retired_kind, _dangling, _dangling_summary, _headline_not_governing,
     _headline_first_case_only, _incomplete_with_headline, _outside_bounds, _off_midpoint, _support_magnitude,
     _dropped_moment, _combination_magnitude_linear, _combination_displacement_magnitude, _gated_combination_row,
     _missing_withheld_record, _withheld_record_in_one_case_only, _withheld_reason_changed, _zero_filled_withheld, _withheld_final_reaction, _intensified_in_combination,
@@ -455,7 +448,7 @@ def test_transport_metadata_checks_statement_without_rows():
             _source_contract(bad, check_receipt=False)
 
 
-@pytest.mark.parametrize("identity", [PRECISION_CONTRACT_ID, PHYSICS_CONTRACT_ID, SOURCE_BLOCKS_CONTRACT_ID, "openpipestress.result_semantics/0.3.0/preview-physics-2"])
+@pytest.mark.parametrize("identity", [RETIRED_PRECISION_CONTRACT_ID, PHYSICS_CONTRACT_ID, SOURCE_BLOCKS_CONTRACT_ID, "openpipestress.result_semantics/0.3.0/preview-physics-2"])
 def test_preview_never_falls_back_to_another_contract(identity):
     source = envelope()
     source["producer"]["semantic_contract_id"] = identity
@@ -474,26 +467,20 @@ def test_preview_evidence_is_required_and_exclusive():
         _source_contract(source)
 
 
-def precision_fixture():
-    # Actual precision-1 producer output (the connected UI fixture; no joint, no legacy pressure).
-    return json.loads((PROJECT / "fixtures/results/precision_connected_ui_mechanics_sparse.json").read_text())
-
-
-def test_precision_1_is_readable_but_never_current():
-    source = precision_fixture()
-    record = build(source)
-    assert verify_analysis_run_record(record) == "match"
-    assert source["numerical_quality"]["status"] == "checks_passed"
-    assert numerical_use_standing(source, bases(source)) == "needs_recompute"
-    assert standing_reason(source) == "PRECISION_1_HISTORICAL_SEMANTICS"
-
-
-def test_precision_1_offered_under_the_fresh_identity_is_refused():
-    source = precision_fixture()
-    source["producer"]["semantic_contract_id"] = PREVIEW_PHYSICS_CONTRACT_ID
-    with pytest.raises(ValueError, match="SOURCE_PREVIEW_PHYSICS_"):
+@pytest.mark.parametrize("mode", ["sparse", "dense"])
+def test_a_stored_precision_1_result_is_refused_by_name(mode):
+    # B1: precision-1 is no longer read. A solved preview statement stored under it
+    # (its evidence namespace removed) is refused by name, never recorded or Current.
+    source = json.loads((PROJECT / f"fixtures/results/preview_physics_connected_{mode}.json").read_text())
+    source["producer"]["semantic_contract_id"] = RETIRED_PRECISION_CONTRACT_ID
+    source.pop("contract_evidence")
+    message = "^SOURCE_PRECISION_1_RETIRED: precision-1 results are no longer read; re-run the analysis$"
+    with pytest.raises(ValueError, match=message):
         _source_contract(source)
+    with pytest.raises(ValueError, match=message):
+        build(source)
     assert numerical_use_standing(source, bases(source)) == "unsupported"
+    assert standing_reason(source) is None
 
 
 # ---- amendment A1 reader parity (a-g) ----
@@ -563,11 +550,7 @@ def _blocked_result_ref(s):
     s["diagnostics"][0]["affected_refs"].append("result:stress:pipe-P1")
 
 
-def _blocked_retired_code(s):
-    s["diagnostics"].append({"id": "diagnostic:retired", "code": "COMPONENT_STRESS_MULTIPLIER_APPLIED", "severity": "info", "message": "x", "affected_refs": ["component:C1"]})
-
-
-@pytest.mark.parametrize("change", [_blocked_rows, _blocked_headline, _blocked_evidence, _blocked_result_ref, _blocked_retired_code], ids=lambda f: f.__name__.strip("_"))
+@pytest.mark.parametrize("change", [_blocked_rows, _blocked_headline, _blocked_evidence, _blocked_result_ref], ids=lambda f: f.__name__.strip("_"))
 def test_a1_e_blocked_envelope_is_empty_and_clean(change):
     source = blocked()
     validate_preview_physics_evidence(source)
@@ -753,10 +736,6 @@ def test_a2_6_blocked_modifier_count_is_zero():
 
 
 def test_a2_10_standing_validates_before_a_standing_reason():
-    precision = precision_fixture()
-    assert numerical_use_standing(precision, bases(precision)) == "needs_recompute"
-    precision["numerical_quality"]["status"] = "unknown"
-    assert numerical_use_standing(precision, bases(precision)) == "unsupported"
     mixed, context = _mixed_source_blocks()
     bases_ = [case["basis_ref"] for case in mixed["source_block_recovery"]["body"]["cases"]]
     assert numerical_use_standing(mixed, bases_, context) == "needs_recompute"

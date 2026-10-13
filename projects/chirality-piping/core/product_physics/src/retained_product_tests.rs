@@ -2427,14 +2427,14 @@ fn i51_c0_mode_observation() -> ResultItem {
 }
 fn i51_c0_envelope(mut mode:ResultItem)->MechanicsEnvelope {
     mode.basis_ref=Some(ResultBasisRef{ref_type:"load_case".into(),ref_id:"case".into()});
-    let mut producer=mechanics_producer();producer.semantic_contract_id=preview_physics::ID.into();
+    let producer=mechanics_producer(preview_physics::ID);
     MechanicsEnvelope {contract_evidence:None,schema_version:MECHANICS_SCHEMA_VERSION.into(),producer,
         numerical_quality:unassessed_numerical_quality(),source_block_recovery:None,
         formulation_basis:preview_physics::formulation_basis(),document_kind:"isolated_C0_fixture".into(),
         run_id:"isolated_C0_no_solve".into(),model_ref:"fixture".into(),
         status:StatusEnvelope{mechanics:"MECHANICS_SOLVED".into(),rule_check:"not_performed".into(),professional_acceptance:"not_provided".into()},
         summary:Summary{node_count:2,segment_count:1,support_count:4,load_case_count:1,component_stress_modifier_count:0,
-            component_user_stiffness_macro_element_count:0,component_pressure_thrust_load_count:0,spring_hanger_user_input_count:0,
+            curved_bend_macro_element_count:0,spring_hanger_user_input_count:0,
             max_displacement:None,max_open_formula_stress:None},results:vec![mode],diagnostics:Vec::new(),
         professional_boundary:professional_boundary(),accepted_model_state_mutated:false}
 }

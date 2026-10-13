@@ -16,7 +16,7 @@ from core.analysis_runs import compatibility as c
 from core.analysis_runs import rust_reader
 
 CONTRACT_ID = "openpipestress.result_semantics/0.3.0/pressure-source-1"
-CONTRACT_SHA256 = "3039f7ca7d36a82f9d34baea648159d7a780ec9623879ce5aa3c890b10b19a61"
+CONTRACT_SHA256 = "f2238777c36ceddca5240f40526cf4fe99e84820d593fa5961c5910884fb7803"
 BINDING = {"id": CONTRACT_ID, "sha256": CONTRACT_SHA256}
 
 
@@ -112,7 +112,7 @@ def test_pressure_raw_and_transport_table_binding_is_reviewed_without_parsing_ro
 @pytest.mark.parametrize("reader,check_receipt", [("pressure-source", True), ("pressure-source-transport", False)])
 def test_pressure_wrapper_propagates_rust_refusal_without_a_fallback(controlled_rust, reader, check_receipt):
     outcomes, _ = controlled_rust
-    code = "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"
+    code = "SOURCE_BLOCKS_DOWNGRADE_FORBIDDEN"
     outcomes[reader] = {"ok": False, "error": {"code": code, "detail": None}}
     with pytest.raises(ValueError, match=code):
         c._source_contract(invented_source(), check_receipt=check_receipt)

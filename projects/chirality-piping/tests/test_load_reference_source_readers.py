@@ -46,8 +46,8 @@ NAMES = ["n05", "n06", "fields", "mixed", "eigen_motion"]
 MODES = {"sparse": "sparse_interactive", "dense": "dense_scrutiny"}
 JOINED = [f"{name}-{mode}" for name in NAMES for mode in MODES]
 FROZEN = {
-    "fixtures/results/semantic_contract_v0_3_load_reference_source_1.json": "d1628194a7730f427843b00228dd233cf92b8e7d26f3bc31c660a3ea59e28337",
-    "fixtures/results/semantic_contract_v0_3_physics_source_1.json": "ba13f2aefd7a38bd725e5f111e6ec30144bc8776aa957c6278ee7b1178298ba1",
+    "fixtures/results/semantic_contract_v0_3_load_reference_source_1.json": "e69e3eeafbd31e9b630a6797a7affaab6796212d8992f77bf2a4d2569a4fa096",
+    "fixtures/results/semantic_contract_v0_3_physics_source_1.json": "9020cb1bb9a30416dbe2fcb4fa4b142b56d0e03f99575edeff82b6bfc7b3e352",
 }
 INHERITED = "SOURCE_LOAD_REFERENCE_JOIN_PHYSICS_SOURCE"
 MANIFEST = {"object_type": "InputManifest", "ref": "manifest:load-reference-source-reader-test"}
@@ -275,8 +275,8 @@ def test_existing_readers_refuse_every_joined_envelope_under_their_own_labels():
         as_lr = deepcopy(raw)
         as_lr["producer"]["semantic_contract_id"] = LOAD_REFERENCE_CONTRACT_ID
         as_lr["formulation_basis"]["profile_id"] = "resolved_straight_load_state_v1"
-        assert outcome(lambda: verifier._source_contract(as_lr)) == "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"
-        assert outcome(lambda: _source_contract(as_lr)) == "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"
+        assert outcome(lambda: verifier._source_contract(as_lr)) == "SOURCE_BLOCKS_DOWNGRADE_FORBIDDEN"
+        assert outcome(lambda: _source_contract(as_lr)) == "SOURCE_BLOCKS_DOWNGRADE_FORBIDDEN"
         as_ps = deepcopy(raw)
         as_ps["producer"]["semantic_contract_id"] = "openpipestress.result_semantics/0.3.0/physics-source-1"
         as_ps["formulation_basis"]["profile_id"] = "exact_straight_pressure_v2"

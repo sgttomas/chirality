@@ -579,14 +579,14 @@ const TABLE_BYTES: &[u8] = include_bytes!(
 );
 const INHERITED_TABLE_BYTES: &[u8] =
     include_bytes!("../../../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json");
-const TABLE_HASH: &str = "ed1fc7fca562f26365157141f54c450cbfaf2ef65e689d37ff54086b70510357";
+const TABLE_HASH: &str = "976ee83e7b73dfd37461f8ab5deaa8db96b0bc986e5a93f230b4008a38904158";
 /// The exact successor's table (XTABLE) and its inherited physics-1 table.
 const EXACT_TABLE_BYTES: &[u8] = include_bytes!(
     "../../../../fixtures/results/semantic_contract_v0_3_physics_retained_1.json"
 );
 const PHYSICS_TABLE_BYTES: &[u8] =
     include_bytes!("../../../../fixtures/results/semantic_contract_v0_3_physics_1.json");
-const EXACT_TABLE_HASH: &str = "7f830a90e7a5f7e1ec279ae0c2bf0e622ff80f40ac283ae502096880d32b5eb9";
+const EXACT_TABLE_HASH: &str = "da642db8b12784a2ac54bfd6eecf4609db6f52e34ce2c5127ba2de4b60b2367e";
 /// RV78-N1's policies (B3D-8): the receipt values XTABLE's `receipt_bindings`
 /// binds from version 1, keyed by the receipt body's own paths.
 fn receipt_bindings() -> Value {
@@ -3441,10 +3441,8 @@ fn row_kind(r: &Value) -> &'static str {
         | "pipe_section_pressure_longitudinal_stress"
         | "constant_effort_support_applied_load"
         | "component_user_stress_multiplier_review"
-        | "component_user_stiffness_macro_element_review"
         | "constant_effort_user_input_review"
-        | "spring_hanger_user_input_review"
-        | "expansion_joint_pressure_thrust_load_review" => "input_derived",
+        | "spring_hanger_user_input_review" => "input_derived",
         "global_nodal_displacement_x"
         | "global_nodal_displacement_y"
         | "global_nodal_displacement_z"

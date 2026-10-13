@@ -912,8 +912,6 @@ pub const SOURCE_BLOCKS_SEMANTIC_CONTRACT_ID: &str =
 pub const PHYSICS_SOURCE_SEMANTIC_CONTRACT_ID: &str =
     "openpipestress.result_semantics/0.3.0/physics-source-1";
 pub const PRESSURE_SOURCE_SEMANTIC_CONTRACT_ID: &str = exact_admission::PRESSURE_SOURCE_SEMANTIC_CONTRACT_ID;
-pub const PRECISION_SEMANTIC_CONTRACT_ID: &str =
-    "openpipestress.result_semantics/0.3.0/precision-1";
 pub const PHYSICS_SEMANTIC_CONTRACT_ID: &str = "openpipestress.result_semantics/0.3.0/physics-1";
 
 #[derive(Debug, Clone, Serialize, PartialEq, Eq)]
@@ -984,24 +982,29 @@ pub struct FormulationBasis {
     pub limitations: Vec<String>,
 }
 
-pub fn mechanics_producer() -> MechanicsProducer {
+/// The producer under one semantic contract identity; there is no default.
+pub fn mechanics_producer(semantic_contract_id: &str) -> MechanicsProducer {
     MechanicsProducer {
         component_name: solver_component_name().to_string(),
         component_version: solver_component_version().to_string(),
-        semantic_contract_id: PRECISION_SEMANTIC_CONTRACT_ID.to_string(),
+        semantic_contract_id: semantic_contract_id.to_string(),
     }
 }
 
+/// B1: the identity is a function of the model's route. The exact routes
+/// (pressure-1, load-reference-1, physics-1) and otherwise the ordinary
+/// preview route (preview-physics-1); a source-selected envelope takes its
+/// source identity when it is published.
 fn mechanics_producer_for_model(model: &PreviewModel) -> MechanicsProducer {
-    let mut producer = mechanics_producer();
-    if pressure_runtime::exact_contract(model) == Some(pressure_runtime::ExactContract::PressureV3) {
-        producer.semantic_contract_id = PRESSURE_SEMANTIC_CONTRACT_ID.to_string();
+    mechanics_producer(if pressure_runtime::exact_contract(model) == Some(pressure_runtime::ExactContract::PressureV3) {
+        PRESSURE_SEMANTIC_CONTRACT_ID
     } else if case_state::is_load_state(model) {
-        producer.semantic_contract_id = LOAD_REFERENCE_SEMANTIC_CONTRACT_ID.to_string();
+        LOAD_REFERENCE_SEMANTIC_CONTRACT_ID
     } else if pressure_runtime::is_exact(model) {
-        producer.semantic_contract_id = PHYSICS_SEMANTIC_CONTRACT_ID.to_string();
-    }
-    producer
+        PHYSICS_SEMANTIC_CONTRACT_ID
+    } else {
+        preview_physics::ID
+    })
 }
 
 fn formulation_basis_for_model(model: &PreviewModel) -> FormulationBasis {
@@ -2077,8 +2080,7 @@ pub struct Summary {
     pub support_count: usize,
     pub load_case_count: usize,
     pub component_stress_modifier_count: usize,
-    pub component_user_stiffness_macro_element_count: usize,
-    pub component_pressure_thrust_load_count: usize,
+    pub curved_bend_macro_element_count: usize,
     pub spring_hanger_user_input_count: usize,
     pub max_displacement: Option<LocatedQuantity>,
     pub max_open_formula_stress: Option<LocatedQuantity>,
@@ -2191,13 +2193,17 @@ struct LoadCaseSolve {
     max_displacement: Option<LocatedQuantity>,
     max_stress: Option<LocatedQuantity>,
     component_stress_modifier_count: usize,
-    component_pressure_thrust_load_count: usize,
     preview: Option<preview_physics::CaseRecord>,
     /// K-D5 (DEL-04-01 kd5-member-relative-bound.md §3.2): the named warning
     /// of each certified member whose open-formula (L1) summary row is
     /// withheld. Preview-physics retires every summary row, so these apply
     /// only when it does not render (`withhold_certified_summaries`).
     withheld_summaries: Vec<Diagnostic>,
+    /// B3 (b7-plan): source-blocks-1's SIF×k review diagnostics, at their
+    /// positions in the invocation's diagnostics; published only when it does
+    /// not render (`preview_physics::restore_source_blocks_rows`). Goes with
+    /// B4/D1 (b).
+    source_blocks_diagnostics: Vec<(usize, Diagnostic)>,
 }
 
 #[derive(Debug, Clone)]
@@ -2851,6 +2857,7 @@ fn run_linear_static_preview_observed_inner(
         preview_physics::render(&model, built, &boundary.restrained_dofs, &mut load_case_solves, &mut diagnostics)
     });
     if preview.is_none() {
+        preview_physics::restore_source_blocks_rows(&mut load_case_solves, &mut diagnostics);
         withhold_certified_summaries(&mut load_case_solves, &mut diagnostics);
     }
     let max_displacement = maximum_across_cases(&load_case_solves, false);
@@ -2858,10 +2865,6 @@ fn run_linear_static_preview_observed_inner(
     let component_stress_modifier_count = load_case_solves
         .iter()
         .map(|solve| solve.component_stress_modifier_count)
-        .sum();
-    let component_pressure_thrust_load_count = load_case_solves
-        .iter()
-        .map(|solve| solve.component_pressure_thrust_load_count)
         .sum();
     let mut results = Vec::new();
     let mut pressure_evidence = Vec::new();
@@ -2925,9 +2928,7 @@ fn run_linear_static_preview_observed_inner(
         None => Vec::new(),
     };
     append_combination_modulus_basis_records(&model, &mut results);
-    // H-4: the key is kept; since T4-U3 it counts the curved macro-element rows
-    // only (the joint review rows are no longer produced).
-    let component_user_stiffness_macro_element_count =
+    let curved_bend_macro_element_count =
         append_curved_bend_macro_element_results(&built.curved_bend_elements, &mut results);
     let spring_hanger_user_input_count =
         append_spring_hanger_user_input_results(&model, &mut results);
@@ -3009,8 +3010,7 @@ fn run_linear_static_preview_observed_inner(
             support_count: model.supports.len(),
             load_case_count: model.load_cases.len(),
             component_stress_modifier_count,
-            component_user_stiffness_macro_element_count,
-            component_pressure_thrust_load_count,
+            curved_bend_macro_element_count,
             spring_hanger_user_input_count,
             max_displacement,
             max_open_formula_stress: max_stress,
@@ -3021,7 +3021,6 @@ fn run_linear_static_preview_observed_inner(
         accepted_model_state_mutated: false,
     };
     if let Some(rendered) = &preview {
-        envelope.producer.semantic_contract_id = preview_physics::ID.into();
         envelope.formulation_basis = preview_physics::formulation_basis();
         envelope.contract_evidence = Some(rendered.evidence(preview_gates));
     }
@@ -4518,9 +4517,9 @@ fn solve_load_case_observed(
             max_displacement: None,
             max_stress: None,
             component_stress_modifier_count: 0,
-            component_pressure_thrust_load_count: 0,
             preview: None,
             withheld_summaries: Vec::new(),
+            source_blocks_diagnostics: Vec::new(),
         });
     }
 
@@ -4554,9 +4553,9 @@ fn solve_load_case_observed(
                 max_displacement: None,
                 max_stress: None,
                 component_stress_modifier_count: 0,
-                component_pressure_thrust_load_count: 0,
                 preview: None,
                 withheld_summaries: Vec::new(),
+            source_blocks_diagnostics: Vec::new(),
             });
         }
         None => build_thermal_element_loads(
@@ -4661,9 +4660,9 @@ fn solve_load_case_observed(
                 max_displacement: None,
                 max_stress: None,
                 component_stress_modifier_count: 0,
-                component_pressure_thrust_load_count: 0,
                 preview: None,
                 withheld_summaries: Vec::new(),
+            source_blocks_diagnostics: Vec::new(),
             });
         }
     }
@@ -4947,9 +4946,9 @@ fn solve_load_case_observed(
                 max_displacement: None,
                 max_stress: None,
                 component_stress_modifier_count: 0,
-                component_pressure_thrust_load_count: 0,
                 preview: None,
                 withheld_summaries: Vec::new(),
+            source_blocks_diagnostics: Vec::new(),
             });
                     }
                 },
@@ -4979,9 +4978,9 @@ fn solve_load_case_observed(
                 max_displacement: None,
                 max_stress: None,
                 component_stress_modifier_count: 0,
-                component_pressure_thrust_load_count: 0,
                 preview: None,
                 withheld_summaries: Vec::new(),
+            source_blocks_diagnostics: Vec::new(),
             });
                 }
             }
@@ -5107,9 +5106,9 @@ fn solve_load_case_observed(
                     max_displacement: None,
                     max_stress: None,
                     component_stress_modifier_count: 0,
-                    component_pressure_thrust_load_count: 0,
                     preview: None,
                     withheld_summaries: Vec::new(),
+            source_blocks_diagnostics: Vec::new(),
                 });
             }
         }
@@ -5194,8 +5193,6 @@ fn solve_load_case_observed(
     let certified_source = member_bound.map(|_| certified_publication::source(built, &force, spring_entries));
     let mut recovery_records = Vec::new();
     require_finite_mechanics(displacements.iter().copied())?;
-    // U3: legacy pressure thrust is retired; the published summary count stays 0.
-    let component_pressure_thrust_load_count = 0;
     let mut max_displacement = None;
     for node in &model.nodes {
         let node_index = node_index(&model, &node.id).unwrap();
@@ -5386,7 +5383,10 @@ fn solve_load_case_observed(
                 }
             }
             if !pressure_runtime::is_exact(model) {
-                results.push(ResultItem {
+                // B3 (b7-plan): an ordinary case's row is the slot of the support's
+                // signed actions; only source-blocks-1 publishes the resultant
+                // (goes with B4/D1 (b)).
+                let row = ResultItem {
                     id: format!("result:reaction:{}", stable_suffix(&support.id)),
                     kind: "reaction_resultant".to_string(),
                     value: magnitude,
@@ -5395,7 +5395,14 @@ fn solve_load_case_observed(
                     basis_ref: None,
                     source_result_refs: Vec::new(),
                     metadata: None,
-                });
+                };
+                match preview_record.as_mut() {
+                    Some(record) => {
+                        record.slots.push((results.len(), preview_physics::Slot::Support(support.id.clone())));
+                        record.source_blocks_rows.push((results.len(), row));
+                    }
+                    None => results.push(row),
+                }
             }
         }
     }
@@ -5414,6 +5421,7 @@ fn solve_load_case_observed(
     let mut pipe_stress_extrema = Vec::new();
     let mut unavailable_stress_maximum_members = Vec::new();
     let mut withheld_summaries = Vec::new();
+    let mut source_blocks_diagnostics = Vec::new();
     let mut component_stress_modifier_count = 0;
     for (pipe_index, pipe) in built.pipes.iter().enumerate() {
         // T4-U3 (S20): a replaced span has no member rows, maxima or
@@ -6027,7 +6035,10 @@ fn solve_load_case_observed(
                     result_ref: result_id.clone(),
                 });
             }
-            results.push(ResultItem {
+            // B3 (b7-plan): an ordinary case's row is the slot of the member's
+            // maximum; only source-blocks-1 publishes the summary (goes with
+            // B4/D1 (b)).
+            let row = ResultItem {
                 id: result_id,
                 kind: "open_formula_stress_summary".to_string(),
                 value: value,
@@ -6036,7 +6047,14 @@ fn solve_load_case_observed(
                 basis_ref: None,
                 source_result_refs: Vec::new(),
                 metadata: None,
-            });
+            };
+            match preview_record.as_mut() {
+                Some(record) => {
+                    record.slots.push((results.len(), preview_physics::Slot::Maximum(pipe.element_id.clone())));
+                    record.source_blocks_rows.push((results.len(), row));
+                }
+                None => results.push(row),
+            }
         }
         if let Some(state) = exact_pressure
             .as_ref()
@@ -6056,17 +6074,28 @@ fn solve_load_case_observed(
                 certified_effective.as_ref(),
             );
         }
-        component_stress_modifier_count += append_component_stress_multiplier_results(
-            &mut results,
-            diagnostics,
-            model,
-            &load_case.id,
-            &pipe.element_id,
-            &end_i_stress,
-            &end_j_stress,
-            certified_member.as_ref(),
-            Some(section),
-        );
+        if !pressure_runtime::is_exact(model) {
+            // B3 (b7-plan): the SIF×k review rows and their diagnostics are
+            // source-blocks-1's only; they are published when the invocation does
+            // not render (`restore_source_blocks_rows`) and go with B4/D1 (b).
+            let (mut review_rows, mut review_diagnostics) = (Vec::new(), Vec::new());
+            component_stress_modifier_count += append_component_stress_multiplier_results(
+                &mut review_rows,
+                &mut review_diagnostics,
+                model,
+                &load_case.id,
+                &pipe.element_id,
+                &end_i_stress,
+                &end_j_stress,
+                certified_member.as_ref(),
+                Some(section),
+            );
+            match preview_record.as_mut() {
+                Some(record) => record.source_blocks_rows.extend(review_rows.into_iter().map(|row| (results.len(), row))),
+                None => results.extend(review_rows),
+            }
+            source_blocks_diagnostics.extend(review_diagnostics.into_iter().map(|d| (diagnostics.len(), d)));
+        }
     }
 
     append_connector_results(built, &displacements, &load_case.id, &mut results, diagnostics, &force, member_bound, &formation_bodies, &mut recovery_records);
@@ -6162,7 +6191,7 @@ fn solve_load_case_observed(
     // same pipeline that produced it: the resolver for 0.4.0, the case-wide
     // material methods otherwise.
     let source_case = if let Some(capture) = capture {
-        let qualified = qualify_source_case_rows(model, &load_case.id, &results);
+        let qualified = qualify_source_case_rows(model, &load_case.id, &preview_physics::with_source_blocks_rows(&results, preview_record.as_ref()));
         let finalized = if let Some(selected) = selected_source.take() {
             match source_row_bindings(&selected, &qualified) {
                 Ok(bindings) => {
@@ -6223,9 +6252,9 @@ fn solve_load_case_observed(
         max_displacement,
         max_stress,
         component_stress_modifier_count,
-        component_pressure_thrust_load_count,
         preview: preview_record,
         withheld_summaries,
+        source_blocks_diagnostics,
     })
 }
 
@@ -13562,8 +13591,7 @@ fn blocked_envelope(model: PreviewModel, diagnostics: Vec<Diagnostic>) -> Mechan
             support_count: model.supports.len(),
             load_case_count: model.load_cases.len(),
             component_stress_modifier_count: 0,
-            component_user_stiffness_macro_element_count: 0,
-            component_pressure_thrust_load_count: 0,
+            curved_bend_macro_element_count: 0,
             spring_hanger_user_input_count: 0,
             max_displacement: None,
             max_open_formula_stress: None,
@@ -13574,7 +13602,6 @@ fn blocked_envelope(model: PreviewModel, diagnostics: Vec<Diagnostic>) -> Mechan
         accepted_model_state_mutated: false,
     };
     if preview {
-        envelope.producer.semantic_contract_id = preview_physics::ID.into();
         envelope.formulation_basis = preview_physics::formulation_basis();
         envelope.contract_evidence = Some(preview_physics::empty_evidence());
         preview_physics::sanitize_blocked_diagnostics(&mut envelope.diagnostics);
@@ -14015,8 +14042,8 @@ mod kd5_withheld_summary_tests {
                 result_ref: format!("result:stress:{member}"),
             }),
             component_stress_modifier_count: 0,
-            component_pressure_thrust_load_count: 0,
             preview: None,
+            source_blocks_diagnostics: Vec::new(),
             withheld_summaries: if withheld {
                 vec![diag(
                     &format!("diagnostic:stress:{member}:summary-unavailable"),
@@ -14050,7 +14077,8 @@ mod kd5_withheld_summary_tests {
         // The invocation applies it exactly when preview-physics does not
         // render, and the per-member site defers the warning to it.
         let code = include_str!("lib.rs");
-        assert!(code.contains("    if preview.is_none() {\n        withhold_certified_summaries(&mut load_case_solves, &mut diagnostics);\n    }"));
+        // (B3: the source-blocks-1 rows are restored first, in the same branch.)
+        assert!(code.contains("    if preview.is_none() {\n        preview_physics::restore_source_blocks_rows(&mut load_case_solves, &mut diagnostics);\n        withhold_certified_summaries(&mut load_case_solves, &mut diagnostics);\n    }"));
         assert!(code.contains("                    withheld_summaries.push(diag(\n"));
     }
 }
@@ -15110,8 +15138,8 @@ mod tests {
                 env!("CARGO_PKG_VERSION")
             );
             assert_eq!(env!("CARGO_PKG_VERSION"), "0.2.0");
-            // T0R: fresh ordinary-route solves (solved or blocked) publish
-            // preview-physics-1; precision-1 is historical only.
+            // Fresh ordinary-route solves (solved or blocked) publish
+            // preview-physics-1, the route's identity (B1: no default).
             assert_eq!(
                 encoded["producer"]["semantic_contract_id"],
                 "openpipestress.result_semantics/0.3.0/preview-physics-1"
@@ -18334,14 +18362,7 @@ mod tests {
     fn flexibility_joint_missing_a_user_stiffness_is_refused_not_dropped() {
         // G11 (I111), T4-U3 (D-4): a legacy joint with any subset of its four
         // rates is refused by the legacy code, never skipped or solved as pipe,
-        // and no joint review row is produced.
-        let consumed = |output: &MechanicsEnvelope| {
-            output
-                .results
-                .iter()
-                .filter(|row| row.kind == "component_user_stiffness_macro_element_review")
-                .count()
-        };
+        // and no row is produced (H-4: the joint review row kind is removed).
         let mut observed = Vec::new();
         for missing in ["lateral", "axial", "angular", "torsional"] {
             let mut input = request_with_refused_joint();
@@ -18375,15 +18396,14 @@ mod tests {
             observed.push((
                 missing,
                 output.status.mechanics.clone(),
-                consumed(&output),
                 output.results.is_empty(),
                 refused,
             ));
         }
         let expected = ["lateral", "axial", "angular", "torsional"]
-            .map(|missing| (missing, "MODEL_INCOMPLETE".to_string(), 0, true, true))
+            .map(|missing| (missing, "MODEL_INCOMPLETE".to_string(), true, true))
             .to_vec();
-        assert_eq!(observed, expected, "(missing value, status, consumed review rows, no results, refused by name)");
+        assert_eq!(observed, expected, "(missing value, status, no results, refused by name)");
     }
 
     #[test]
@@ -18391,13 +18411,6 @@ mod tests {
         // G11, T4-U3 (D-4): a legacy joint whose pipe or node does not resolve
         // is refused by the legacy code, refs [component, pipe] (or [component]
         // when it names no pipe), never skipped.
-        let consumed = |output: &MechanicsEnvelope| {
-            output
-                .results
-                .iter()
-                .filter(|row| row.kind == "component_user_stiffness_macro_element_review")
-                .count()
-        };
         let mut observed = Vec::new();
         for case in ["no pipe", "unknown pipe", "unknown node", "node not on the pipe"] {
             let mut input = request_with_refused_joint();
@@ -18435,7 +18448,6 @@ mod tests {
             observed.push((
                 case,
                 output.status.mechanics.clone(),
-                consumed(&output),
                 output.results.is_empty(),
                 refusal,
             ));
@@ -18446,12 +18458,12 @@ mod tests {
             Some(refs)
         };
         let expected = vec![
-            ("no pipe", "MODEL_INCOMPLETE".to_string(), 0, true, refs(None)),
-            ("unknown pipe", "MODEL_INCOMPLETE".to_string(), 0, true, refs(Some("pipe:missing"))),
-            ("unknown node", "MODEL_INCOMPLETE".to_string(), 0, true, refs(Some("pipe:P-130"))),
-            ("node not on the pipe", "MODEL_INCOMPLETE".to_string(), 0, true, refs(Some("pipe:P-130"))),
+            ("no pipe", "MODEL_INCOMPLETE".to_string(), true, refs(None)),
+            ("unknown pipe", "MODEL_INCOMPLETE".to_string(), true, refs(Some("pipe:missing"))),
+            ("unknown node", "MODEL_INCOMPLETE".to_string(), true, refs(Some("pipe:P-130"))),
+            ("node not on the pipe", "MODEL_INCOMPLETE".to_string(), true, refs(Some("pipe:P-130"))),
         ];
-        assert_eq!(observed, expected, "(case, status, consumed review rows, no results, mapping refusal refs)");
+        assert_eq!(observed, expected, "(case, status, no results, mapping refusal refs)");
     }
 
     #[test]
@@ -22964,7 +22976,7 @@ mod tests {
         let result = run_linear_static_preview(curved_bend_span_request());
 
         assert_eq!(
-            result.summary.component_user_stiffness_macro_element_count,
+            result.summary.curved_bend_macro_element_count,
             1
         );
         let review = result

@@ -23,45 +23,45 @@ SEMANTIC_CONTRACT_ID = "openpipestress_result_semantics_v0_2"
 _CONTRACT_PATH = Path(__file__).resolve().parents[2] / "fixtures" / "results" / "semantic_contract_v0_2.json"
 
 
-PRECISION_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/precision-1"
-PRECISION_CONTRACT_SHA256 = "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e"
-_PRECISION_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_precision_1.json")
+# B1: precision-1 is no longer read; a stored precision-1 result is refused by name.
+RETIRED_PRECISION_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/precision-1"
+SOURCE_PRECISION_1_RETIRED = "SOURCE_PRECISION_1_RETIRED"
 PHYSICS_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/physics-1"
-PHYSICS_CONTRACT_SHA256 = "9a2cf6268b57bd5265a1a115497c07450819dd4d03cd5ab618097bd9d19da8cc"
+PHYSICS_CONTRACT_SHA256 = "2fe3964501d6c83983a6216d2abaf490d654a1e7dac04c531127d37c839ca9fd"
 _PHYSICS_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_physics_1.json")
 PHYSICS_SOURCE_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/physics-source-1"
-PHYSICS_SOURCE_CONTRACT_SHA256 = "ba13f2aefd7a38bd725e5f111e6ec30144bc8776aa957c6278ee7b1178298ba1"
+PHYSICS_SOURCE_CONTRACT_SHA256 = "9020cb1bb9a30416dbe2fcb4fa4b142b56d0e03f99575edeff82b6bfc7b3e352"
 _PHYSICS_SOURCE_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_physics_source_1.json")
 PRESSURE_SOURCE_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/pressure-source-1"
-PRESSURE_SOURCE_CONTRACT_SHA256 = "3039f7ca7d36a82f9d34baea648159d7a780ec9623879ce5aa3c890b10b19a61"
+PRESSURE_SOURCE_CONTRACT_SHA256 = "f2238777c36ceddca5240f40526cf4fe99e84820d593fa5961c5910884fb7803"
 _PRESSURE_SOURCE_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_pressure_source_1.json")
 
 # Resolved load/reference-state method: one table, one profile; the AnalysisRun
 # record mirrors physics-1 and carries no contract_evidence.
 LOAD_REFERENCE_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/load-reference-1"
-LOAD_REFERENCE_CONTRACT_SHA256 = "44bc41c06f589fab6ce931ac0eaa5344765ff64fd5f880cc2dd69ecb839c4f4d"
+LOAD_REFERENCE_CONTRACT_SHA256 = "4174554dd73409bdc0d5fac52cbbbb3e5b4babcc372c336aa69cce33ffd376f4"
 _LOAD_REFERENCE_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_load_reference_1.json")
 LOAD_REFERENCE_PROFILE = "resolved_straight_load_state_v1"
 # Joined load/reference-state method (retained-source receipt required): one
 # table, one profile, one receipt policy. The AnalysisRun record mirrors
 # physics-source-1 and carries source_block_recovery and contract_evidence.
 LOAD_REFERENCE_SOURCE_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/load-reference-source-1"
-LOAD_REFERENCE_SOURCE_CONTRACT_SHA256 = "d1628194a7730f427843b00228dd233cf92b8e7d26f3bc31c660a3ea59e28337"
+LOAD_REFERENCE_SOURCE_CONTRACT_SHA256 = "e69e3eeafbd31e9b630a6797a7affaab6796212d8992f77bf2a4d2569a4fa096"
 _LOAD_REFERENCE_SOURCE_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_load_reference_source_1.json")
 LOAD_REFERENCE_SOURCE_PROFILE = "resolved_straight_load_state_source_v1"
 PREVIEW_PHYSICS_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/preview-physics-1"
-PREVIEW_PHYSICS_CONTRACT_SHA256 = "ac522c1ee0c771ae1e3dc72facfe3e75a8f0b01009075c997658eae50e9bb60c"
+PREVIEW_PHYSICS_CONTRACT_SHA256 = "7f693f06b7f975010ad0c8079242feb328fead3f57e0491d05ac8e09994b8209"
 _PREVIEW_PHYSICS_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_preview_physics_1.json")
 # U6b (D-U6-6; D2 4.7 S-1, 4.9.6): the F2a preview successor. Its statements are
 # checked only by the accepted reader (`retained_precision`), and its standing
 # comes only from that reader's verified receipt (D1 5 item 3).
 PREVIEW_PHYSICS_RETAINED_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/preview-physics-retained-1"
-PREVIEW_PHYSICS_RETAINED_CONTRACT_SHA256 = "ed1fc7fca562f26365157141f54c450cbfaf2ef65e689d37ff54086b70510357"
+PREVIEW_PHYSICS_RETAINED_CONTRACT_SHA256 = "976ee83e7b73dfd37461f8ab5deaa8db96b0bc986e5a93f230b4008a38904158"
 _PREVIEW_PHYSICS_RETAINED_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_preview_physics_retained_1.json")
 # B3b (B3-D §2, §6.1): the exact successor over physics-1. As the preview successor, its statements are checked
 # only by the accepted reader, which dispatches on this identity, and its standing comes only from that reader.
 PHYSICS_RETAINED_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/physics-retained-1"
-PHYSICS_RETAINED_CONTRACT_SHA256 = "7f830a90e7a5f7e1ec279ae0c2bf0e622ff80f40ac283ae502096880d32b5eb9"
+PHYSICS_RETAINED_CONTRACT_SHA256 = "da642db8b12784a2ac54bfd6eecf4609db6f52e34ce2c5127ba2de4b60b2367e"
 _PHYSICS_RETAINED_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_physics_retained_1.json")
 RETAINED_CONTRACTS = {PREVIEW_PHYSICS_RETAINED_CONTRACT_ID: (PREVIEW_PHYSICS_RETAINED_CONTRACT_SHA256, _PREVIEW_PHYSICS_RETAINED_CONTRACT_PATH),
                       PHYSICS_RETAINED_CONTRACT_ID: (PHYSICS_RETAINED_CONTRACT_SHA256, _PHYSICS_RETAINED_CONTRACT_PATH)}
@@ -76,7 +76,6 @@ FRESH_CONTRACT_IDS = frozenset({PREVIEW_PHYSICS_CONTRACT_ID, SOURCE_BLOCKS_CONTR
                                 LOAD_REFERENCE_CONTRACT_ID, LOAD_REFERENCE_SOURCE_CONTRACT_ID,
                                 # U6b (D-U6-6): membership is not standing.
                                 PREVIEW_PHYSICS_RETAINED_CONTRACT_ID})
-PRECISION_1_HISTORICAL_SEMANTICS = "PRECISION_1_HISTORICAL_SEMANTICS"
 SOURCE_BLOCKS_ORDINARY_CASE_LEGACY_SEMANTICS = "SOURCE_BLOCKS_ORDINARY_CASE_LEGACY_SEMANTICS"
 RULE_SOURCE_BLOCKS_SUMMARY_NOT_RELIABLE = "RULE_SOURCE_BLOCKS_SUMMARY_NOT_RELIABLE"
 
@@ -247,8 +246,10 @@ def _source_contract(source: Mapping[str, Any], *, check_receipt: bool = True, r
     # The joined receipt cannot be downgraded to ordinary pressure-1, including
     # transport statements. This is a source-qualified exception only.
     if producer == {"component_name":"open_pipe_stress_product_physics", "component_version":"0.2.0", "semantic_contract_id":"openpipestress.result_semantics/0.3.0/pressure-1"} and "source_block_recovery" in source:
-        raise ValueError("SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN")
-    if not isinstance(producer, Mapping) or not isinstance(producer.get("semantic_contract_id"), str) or producer.get("semantic_contract_id") not in {PRECISION_CONTRACT_ID, PHYSICS_CONTRACT_ID, SOURCE_BLOCKS_CONTRACT_ID, PHYSICS_SOURCE_CONTRACT_ID, PRESSURE_SOURCE_CONTRACT_ID, PREVIEW_PHYSICS_CONTRACT_ID, LOAD_REFERENCE_CONTRACT_ID, LOAD_REFERENCE_SOURCE_CONTRACT_ID} or producer != {"component_name": "open_pipe_stress_product_physics", "component_version": "0.2.0", "semantic_contract_id": producer.get("semantic_contract_id")}:
+        raise ValueError("SOURCE_BLOCKS_DOWNGRADE_FORBIDDEN")
+    if producer == {"component_name": "open_pipe_stress_product_physics", "component_version": "0.2.0", "semantic_contract_id": RETIRED_PRECISION_CONTRACT_ID}:
+        raise ValueError(f"{SOURCE_PRECISION_1_RETIRED}: precision-1 results are no longer read; re-run the analysis")
+    if not isinstance(producer, Mapping) or not isinstance(producer.get("semantic_contract_id"), str) or producer.get("semantic_contract_id") not in {PHYSICS_CONTRACT_ID, SOURCE_BLOCKS_CONTRACT_ID, PHYSICS_SOURCE_CONTRACT_ID, PRESSURE_SOURCE_CONTRACT_ID, PREVIEW_PHYSICS_CONTRACT_ID, LOAD_REFERENCE_CONTRACT_ID, LOAD_REFERENCE_SOURCE_CONTRACT_ID} or producer != {"component_name": "open_pipe_stress_product_physics", "component_version": "0.2.0", "semantic_contract_id": producer.get("semantic_contract_id")}:
         raise ValueError("SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
     pressure_source = producer["semantic_contract_id"] == PRESSURE_SOURCE_CONTRACT_ID
     composite = producer["semantic_contract_id"] in {PHYSICS_SOURCE_CONTRACT_ID, PRESSURE_SOURCE_CONTRACT_ID}
@@ -262,13 +263,13 @@ def _source_contract(source: Mapping[str, Any], *, check_receipt: bool = True, r
     recovery_forbidden = producer["semantic_contract_id"] not in {SOURCE_BLOCKS_CONTRACT_ID, PHYSICS_SOURCE_CONTRACT_ID, PRESSURE_SOURCE_CONTRACT_ID, LOAD_REFERENCE_SOURCE_CONTRACT_ID} and "source_block_recovery" in source
     if rust_header_order and recovery_forbidden:
         # Ruling 1: Rust's order, the recovery member before the evidence demand.
-        raise ValueError("SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN")
+        raise ValueError("SOURCE_BLOCKS_DOWNGRADE_FORBIDDEN")
     if not physics and not preview and not load_reference and not joined and source.get("contract_evidence") is not None:
         raise ValueError("SOURCE_PHYSICS_CONTRACT_MISMATCH")
     if preview and not isinstance(source.get("contract_evidence"), Mapping):
         raise ValueError("SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED")
     if recovery_forbidden:
-        raise ValueError("SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN")
+        raise ValueError("SOURCE_BLOCKS_DOWNGRADE_FORBIDDEN")
     quality = source.get("numerical_quality")
     if not isinstance(quality, Mapping) or set(quality) != {"value_representation", "publication_quantization", "integrity_policy", "status", "cases"} or quality.get("value_representation") != "finite_binary64" or quality.get("publication_quantization") != "none" or quality.get("integrity_policy") != "M03-INTEGRITY-v1" or not isinstance(quality.get("status"), str) or quality.get("status") not in {"not_assessed", "checks_passed", "sensitive", "unresolved", "failed"} or not isinstance(quality.get("cases"), list):
         # RV108 N1: each enum membership test refuses a non-string value first. A list- or
@@ -347,7 +348,7 @@ def _source_contract(source: Mapping[str, Any], *, check_receipt: bool = True, r
             if receipt["receipt_sha256"] != domain_hash("source_blocks_receipt_v1", receipt["body"]):
                 raise ValueError("SOURCE_BLOCKS_RECEIPT_HASH")
         return SOURCE_BLOCKS_CONTRACT_ID, SOURCE_BLOCKS_CONTRACT_SHA256, _SOURCE_BLOCKS_CONTRACT_PATH
-    return PRECISION_CONTRACT_ID, PRECISION_CONTRACT_SHA256, _PRECISION_CONTRACT_PATH
+    raise ValueError("SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
 
 
 def numerical_use_standing(source: Mapping[str, Any], requested_basis_refs: list[Mapping[str, str]], source_block_context: Mapping[str, Any] | None = None) -> str:
@@ -420,8 +421,6 @@ def numerical_use_standing(source: Mapping[str, Any], requested_basis_refs: list
 
 
 def _standing_reason(contract: str, source: Mapping[str, Any]) -> str | None:
-    if contract == PRECISION_CONTRACT_ID:
-        return PRECISION_1_HISTORICAL_SEMANTICS
     if contract == SOURCE_BLOCKS_CONTRACT_ID and ordinary_case_legacy_semantics(source):
         return SOURCE_BLOCKS_ORDINARY_CASE_LEGACY_SEMANTICS
     return None

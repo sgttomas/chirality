@@ -7,15 +7,15 @@ import { invoke } from "@tauri-apps/api/core";
 import { createNativeMechanicsReplay, nativeMechanicsReplayPair } from "../../test/nativeMechanicsReplay";
 vi.mock("@tauri-apps/api/core",()=>({invoke:vi.fn()}));
 import { modelLoadBasisRefs, analysisRecordProjection, verifyAnalysisRunRecord } from "../../services/analysisRunCompatibility";
-import transport from "../../../../../fixtures/results/precision_transport_v0_3.json";
-import { PRECISION_CONTRACT_ID } from "../results/numericalResultQuality";
+import transport from "../../../../../fixtures/canonical_hash/binary64_transport_vectors.json";
+import { minimalPreviewStatement } from "../../test-support/retiredPrecision";
+import connectedPreview from "../../../../../fixtures/results/preview_physics_connected_sparse.json";
 import {afterEach,it,expect,vi} from 'vitest';
 import {act,fireEvent,render,screen,waitFor} from '@testing-library/react';
 import {mkdirSync,readFileSync,writeFileSync} from 'node:fs';
 import path from 'node:path';
 import {readRetainedPrecisionCorpus} from '../../test-support/retainedPrecisionCorpus';
 import modelJson from '../../../../../fixtures/product_preview/invented_demo_model.json';
-import resultJson from '../../../../../fixtures/product_preview/invented_demo_result_legacy_0_1.json';
 import {buildCurrentSessionInputManifest} from '../../services/inputManifestService';
 import {buildAnalysisRunPreview,runPreviewMechanics,loadBundledMechanicsReference} from '../../services/previewService';
 import {buildStressNeutralExportPacket,validateStressNeutralExportPacket,precisionStressRow,strictWitnessDisposition} from './StressNeutralExportPanel';
@@ -91,7 +91,7 @@ it('rejects duplicate missing path checksum metadata member divergence and packa
 
 // Native IPC simulation only; these exact two modes were emitted from the
 // maintained ordinary input. Neither old legacy rows nor run IDs are rewritten.
-// T0R: the fresh ordinary route is preview-physics-1; precision-1 is never Current.
+// T0R: the fresh ordinary route is preview-physics-1.
 async function currentPrecision(mode: "sparse_interactive" | "dense_scrutiny" = "sparse_interactive") {
  const {model}=nativeMechanicsReplayPair(mode,{profile:"preview"});
  (window as any).__TAURI_INTERNALS__={};
@@ -139,15 +139,14 @@ it('keeps preserved references out of export; the Sensitive demo is refused even
  expect(screen.queryByTestId('stress-neutral-export-link')).toBeNull();
 });
 
-it('binds precision v3 metadata and preserves shared f64 bits in CSV and JSON',async()=>{
- const model=structuredClone(modelJson) as PreviewModel,result=structuredClone(resultJson) as unknown as MechanicsResult;
- result.schema_version='0.2.0';result.producer={component_name:'open_pipe_stress_product_physics',component_version:'0.2.0',semantic_contract_id:PRECISION_CONTRACT_ID};
- result.formulation_basis={profile_id:'product_preview_mechanics_v1',limitations:['pressure/component/stress/support preview limitations retained']};
+it('binds preview v3 metadata and preserves shared f64 bits in CSV and JSON',async()=>{
+ // B1: the minimal preview-physics-1 transport statement replaces the retired precision-1 header.
  // Explicit synthetic consumer semantics for transport vectors; no physical producer qualification.
- result.results=transport.vectors.map(v=>({id:v.id,kind:'global_nodal_rotation_x',entity_ref:'node:transport',value:JSON.parse(v.decimal),unit:'rad',metadata:{component:'nodal_rotation_x',coordinate_system:'global',location:'summary',basis:'synthetic consumer transport fixture',sign_convention:'synthetic signed scalar'}}));
- result.diagnostics=[{id:'gate:test',code:'SYNTHETIC_GATE',severity:'info',message:'Consumer fixture only'}];
- result.numerical_quality={value_representation:'finite_binary64',publication_quantization:'none',integrity_policy:'M03-INTEGRITY-v1',status:'checks_passed',cases:model.load_cases.map(c=>({basis_ref:{ref_type:'load_case',ref_id:c.id},structural_status:'passive_model_basis',solve_quality:'checks_passed',model_matrix_fidelity:'represented_equations_retained',accuracy_evidence:'not_claimed',evidence_refs:['gate:test']}))};
- const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:result.producer.component_name,solver_version:'0.2.0',solver_build_ref:'test',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});
+ const model=structuredClone(modelJson) as PreviewModel,result=minimalPreviewStatement({run_id:'run:transport-vectors',model_ref:model.project.id,
+  rows:transport.vectors.map(v=>({id:v.id,kind:'global_nodal_rotation_x',entity_ref:'node:transport',value:JSON.parse(v.decimal),unit:'rad',metadata:{component:'nodal_rotation_x',coordinate_system:'global',location:'summary',basis:'synthetic consumer transport fixture',sign_convention:'synthetic signed scalar'}})),
+  diagnostics:[{id:'gate:test',code:'SYNTHETIC_GATE',severity:'info',message:'Consumer fixture only'}],
+  cases:model.load_cases.map(c=>({basis_ref:{ref_type:'load_case',ref_id:c.id},structural_status:'passive_model_basis',solve_quality:'checks_passed',model_matrix_fidelity:'represented_equations_retained',accuracy_evidence:'not_claimed',evidence_refs:['gate:test']}))});
+ const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:result.producer!.component_name,solver_version:'0.2.0',solver_build_ref:'test',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});
  const analysisRun=await buildAnalysisRunPreview(result,{inputManifest});
  const before=JSON.stringify(result),packet=await buildStressNeutralExportPacket({model,result,analysisRun}),decoded=JSON.parse(JSON.stringify(packet));
  expect(packet.schema_version).toBe('0.3.0');expect(packet.export_profile.profile_id).toBe('ops.stress_neutral.v3');
@@ -160,12 +159,15 @@ it('binds precision v3 metadata and preserves shared f64 bits in CSV and JSON',a
  await expect(validateStressNeutralExportPacket(decoded,result)).resolves.toBeUndefined();
  if(process.env.RESULTS_CONTRACT_OUTPUT_DIR){
    const dir=process.env.RESULTS_CONTRACT_OUTPUT_DIR;mkdirSync(dir,{recursive:true});
-   for(const [name,value] of Object.entries({'precision.source.json':result,'precision.analysis.json':analysisRun,'precision.model.json':model}))writeFileSync(path.join(dir,name),JSON.stringify(value,null,2));
-   writeFileSync(path.join(dir,'precision.packet.json'),await canonicalJsonCheckedV1(packet));
+   for(const [name,value] of Object.entries({'transport.source.json':result,'transport.analysis.json':analysisRun,'transport.model.json':model}))writeFileSync(path.join(dir,name),JSON.stringify(value,null,2));
+   writeFileSync(path.join(dir,'transport.packet.json'),await canonicalJsonCheckedV1(packet));
  }
  const csvSpellingPacket=async(value:number,spelling:string)=>{
    const candidate=structuredClone(packet);candidate.result_rows[0].value=value;
    for(const w of candidate.unit_preservation_witnesses)if(w.result_id===candidate.result_rows[0].result_id){w.source_quantity.value=value;w.target_quantity.value=value;}
+   // Every current route carries the source-row annotations; the edited row's goes with it.
+   const annotation=candidate.source_annotations.find((x:any)=>x.source_result_id===candidate.result_rows[0].result_id);
+   annotation.source_row.value=value;annotation.source_row_sha256=await canonicalSha256HexCheckedV1(annotation.source_row);annotation.source_value_bits=bits(value);
    const encode=(v:any)=>{const text=typeof v==='object'?v.ref:String(v);return /[",\n\r]/.test(text)?`"${text.replaceAll('"','""')}"`:text;};
    candidate.csv_text=candidate.export_profile.csv_columns.join(',')+'\n'+candidate.result_rows.map((r:any,i:number)=>candidate.export_profile.csv_columns.map((c:string)=>i===0&&c==='value'?spelling:encode(r[c])).join(',')).join('\n')+'\n';
    await rehash(candidate);return candidate;
@@ -187,21 +189,22 @@ it('binds precision v3 metadata and preserves shared f64 bits in CSV and JSON',a
  const wrongQuantity=structuredClone(canonicalDecoded);wrongQuantity.unit_preservation_witnesses[0].target_quantity.unit='wrong';await rehash(wrongQuantity);
  await expect(validateStressNeutralExportPacket(wrongQuantity)).rejects.toThrow('SN-UNIT-WITNESS-BINDING-MISMATCH');
  for(const value of [true,'1',null]) {
+   // The source reader refuses a non-number row value before any record or packet exists.
    const invalidSource=structuredClone(result);invalidSource.results[0].value=value as never;
-   const invalidAnalysis=await buildAnalysisRunPreview(invalidSource,{inputManifest});
-   await expect(buildStressNeutralExportPacket({model,result:invalidSource,analysisRun:invalidAnalysis})).rejects.toThrow('SN-PRECISION-ROW-VALUE-INVALID');
+   await expect(buildAnalysisRunPreview(invalidSource,{inputManifest})).rejects.toThrow('SOURCE_PREVIEW_PHYSICS_NUMBER_INVALID');
    const invalidPacket=structuredClone(packet);invalidPacket.result_rows[0].value=value;
    for(const witness of invalidPacket.unit_preservation_witnesses)if(witness.result_id===invalidPacket.result_rows[0].result_id){witness.source_quantity.value=value;witness.target_quantity.value=value;}
    const encode=(v:any)=>{const text=v!==null&&typeof v==='object'?v.ref:String(v);return /[",\n\r]/.test(text)?`"${text.replaceAll('"','""')}"`:text;};
    invalidPacket.csv_text=invalidPacket.export_profile.csv_columns.join(',')+'\n'+invalidPacket.result_rows.map((r:any)=>invalidPacket.export_profile.csv_columns.map((c:string)=>encode(r[c])).join(',')).join('\n')+'\n';
    await rehash(invalidPacket);
-   await expect(validateStressNeutralExportPacket(invalidPacket)).rejects.toThrow('SN-PRECISION-ROW-VALUE-INVALID');
+   // The source-row annotation (the received value) binds the row first.
+   await expect(validateStressNeutralExportPacket(invalidPacket)).rejects.toThrow('SN-SOURCE-ANNOTATION-ROW-BINDING');
  }
 
  await expect(validateStressNeutralExportPacket(decoded,undefined,analysisRun)).rejects.toThrow('SN-PRECISION-ANALYSIS-SOURCE-REQUIRED');
  const imported=structuredClone(packet);
  imported.provenance={source_name:'Python style fixture exporter',source_location:'interop-fixture',source_license:'project-governed',review_status:'pending',professional_claim:false};
- imported.result_rows.reverse();
+ // Rows keep the UTF-8 CSV's scalar result-id order (every current route); the exporter differs in provenance, witness and export ids.
  imported.result_rows.forEach((r:any)=>{r.provenance=structuredClone(imported.provenance);});
  imported.unit_preservation_witnesses=imported.result_rows.map((r:any,index:number)=>({witness_id:`unit-witness:${index}`,source_row_index:index,result_id:r.result_id,source_quantity:{value:r.value,unit:r.unit,dimension:r.dimension},target_quantity:{value:r.value,unit:r.unit,dimension:r.dimension},conversion_performed:false,policy:'preserve_received_value_and_unit'}));
  imported.stable_id_map.reverse();
@@ -273,7 +276,8 @@ it('binds precision v3 metadata and preserves shared f64 bits in CSV and JSON',a
  await expect(buildStressNeutralExportPacket({model,result,analysisRun:wrongModelRun})).rejects.toThrow('ANALYSIS_SOURCE_MODEL_STATE_MISMATCH');
  const bad=structuredClone(packet);bad.producer.semantic_contract_id='unknown';await expect(validateStressNeutralExportPacket(bad)).rejects.toThrow('SN-PRECISION-CONTRACT-MISMATCH');
  const withheldSource=structuredClone(result);
- withheldSource.results=[{id:'unknown:interop',entity_ref:'node:interop',kind:'unknown_quantity',value:1,unit:'mm'}];
+ // A row the reader admits without a resolvable signature (no component): an unknown semantic, withheld.
+ withheldSource.results=[{id:'unknown:interop',entity_ref:'nonlinear_supports',kind:'nonlinear_support_free_dof_work_residual',value:1,unit:'N*m',metadata:{coordinate_system:'solver_iteration',location:'final_iteration',basis:'invented transport fixture',sign_convention:'nonnegative max absolute free-DOF residual work product in the final linearized solve'}} as never];
  const withheldAnalysis=await buildAnalysisRunPreview(withheldSource,{inputManifest});
  const withheldPacket=await buildStressNeutralExportPacket({model,result:withheldSource,analysisRun:withheldAnalysis});
  withheldPacket.provenance=structuredClone(imported.provenance);
@@ -289,14 +293,13 @@ it('binds precision v3 metadata and preserves shared f64 bits in CSV and JSON',a
  withheldPacket.diagnostics.find((d:any)=>d.code==='SN-UNIT-WITNESS-WITHHELD-UNKNOWN-SEMANTIC').provenance={...imported.provenance,source_name:'unbound'};
  await rehash(withheldPacket);
  await expect(validateStressNeutralExportPacket(withheldPacket,withheldSource)).rejects.toThrow('SN-PRECISION-WITNESS-BINDING-MISMATCH');
- result.numerical_quality.status='not_assessed';await expect(buildStressNeutralExportPacket({model,result,analysisRun})).rejects.toThrow('SN-NUMERICAL-INTEGRITY-NEEDS-RECOMPUTE');
+ result.numerical_quality!.status='not_assessed';await expect(buildStressNeutralExportPacket({model,result,analysisRun})).rejects.toThrow('SN-NUMERICAL-INTEGRITY-NEEDS-RECOMPUTE');
 });
 
-it('projects precision location and missing component without guessed semantics',()=>{
- const source=structuredClone(resultJson) as unknown as MechanicsResult;
- source.schema_version='0.2.0';source.producer={component_name:'open_pipe_stress_product_physics',component_version:'0.2.0',semantic_contract_id:PRECISION_CONTRACT_ID};
- source.formulation_basis={profile_id:'product_preview_mechanics_v1',limitations:['Synthetic consumer fixture']};source.numerical_quality={value_representation:'finite_binary64',publication_quantization:'none',integrity_policy:'M03-INTEGRITY-v1',status:'not_assessed',cases:[]};
- const row=structuredClone(source.results.find(r=>r.kind==='element_local_axial_force')!);
+it('projects row location and missing component without guessed semantics',()=>{
+ const axial=structuredClone((connectedPreview as unknown as MechanicsResult).results.find(r=>r.kind==='element_local_axial_force')!);
+ const source=minimalPreviewStatement({run_id:'run:location',model_ref:'model:location',rows:[axial],cases:[]});
+ const row=structuredClone(axial);
  for(const value of [0,-0,Number.MIN_VALUE,-Number.MIN_VALUE,1.0000000000000002])expect(precisionStressRow({...row,value},source).value).toBe(value);
  for(const value of [true,'1',null,NaN,Infinity,-Infinity])expect(()=>precisionStressRow({...row,value} as never,source)).toThrow('SN-PRECISION-ROW-VALUE-INVALID');
 
