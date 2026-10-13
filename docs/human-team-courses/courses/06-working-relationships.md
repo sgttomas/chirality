@@ -1,12 +1,10 @@
 # Course 06 — Communication and Working Relationships
 
-Project participants hold different knowledge, interests, and responsibilities. Their contributions must become a common understanding that supports coordinated action.
+[Series](../index.html) · [Northbank case](../case-study.html) · [Glossary](../glossary.html) · [References](../references.html)
 
-Good communication makes evidence, disagreement, decisions, and obligations clear. It also gives people a practical way to correct that understanding.
+Project participants hold different knowledge, interests, and responsibilities. Their contributions must become a common understanding that supports coordinated action. Good communication makes evidence, disagreement, decisions, and obligations clear. It also gives people a practical way to correct that understanding.
 
 This course teaches communication, persuasion, negotiation, and supervision within a human team. Each participant remains responsible for the work and decisions assigned to them.
-
-[Series](../index.html) · [Northbank case](../case-study.html) · [Glossary](../glossary.html) · [References](../references.html)
 
 ## Prerequisites and outcomes
 
@@ -24,13 +22,9 @@ Use Northbank Packets A and B. Do not use later events as evidence of what parti
 
 ## Lesson 1 — Establish a shared picture
 
-People can use the same words and mean different things. “Approved” might concern scope, expenditure, a drawing, or technical suitability.
+People can use the same words and mean different things. “Approved” might concern scope, expenditure, a drawing, or technical suitability. Start by naming the activity and the decision under discussion. Explain the terms that change its meaning.
 
-Start by naming the activity and the decision under discussion. Explain the terms that change its meaning.
-
-Ask participants what they understand and what they need. Their answers may reveal an omitted operating condition or a misunderstood boundary.
-
-Listening requires more than waiting to speak. Identify the speaker's concern before proposing a solution.
+Ask participants what they understand and what they need. Their answers may reveal an omitted operating condition or a misunderstood boundary. Listening requires more than waiting to speak: identify the speaker's concern before proposing a solution.
 
 Use this sequence:
 
@@ -40,23 +34,15 @@ Use this sequence:
 4. Invite correction.
 5. Identify the decision or information now needed.
 
-Check understanding through consequences. Ask what the participant expects to happen after the proposed decision.
+Check understanding through consequences. Ask what the participant expects to happen after the proposed decision. An acknowledgment proves that a message was received, but it may leave important differences in interpretation unresolved.
 
-An acknowledgment proves that a message was received. It may leave important differences in interpretation unresolved.
-
-Select the communication method to suit the question. A short conversation can resolve wording quickly. A consequential decision needs an identifiable record.
-
-Prepare the record from the decision actually made. Include unresolved disagreement when it affects later work.
+Select the communication method to suit the question. A short conversation can resolve wording quickly. A consequential decision needs an identifiable record. Prepare that record from the decision actually made, including unresolved disagreement when it affects later work.
 
 ## Lesson 2 — Understand interests and authority
 
-A **stakeholder** affects the undertaking or is affected by it. Stakeholders can hold legitimate but competing interests.
+A **stakeholder** affects the undertaking or is affected by it. Stakeholders can hold legitimate but competing interests. Operations may value reliability and access. Procurement may need a complete purchase package. A sponsor may need a credible investment and delivery outlook.
 
-Operations may value reliability and access. Procurement may need a complete purchase package. A sponsor may need a credible investment and delivery outlook.
-
-An interest explains why a participant cares. Authority identifies which decisions the participant can make. Expertise concerns what they can assess competently.
-
-Do not infer one from another. A persuasive participant may lack the relevant authority. A quiet specialist may hold decisive technical knowledge.
+An interest explains why a participant cares. Authority identifies which decisions the participant can make. Expertise concerns what they can assess competently. Do not infer one from another: a persuasive participant may lack the relevant authority, while a quiet specialist may hold decisive technical knowledge.
 
 Prepare a small stakeholder table:
 
@@ -72,9 +58,7 @@ Use the appointment as evidence for decision rights. Check applicable profession
 
 Consider who is absent from the discussion. Maintenance, construction, and affected users may reveal consequences that design participants overlook.
 
-Ask about interests instead of attributing motives without evidence. Schedule pressure can reflect a real operating need.
-
-Explain conflicts as consequences to resolve. Avoid treating a person as the problem when requirements or responsibilities conflict.
+Ask about interests instead of attributing motives without evidence. Schedule pressure can reflect a real operating need. Explain conflicts as consequences to resolve. Avoid treating a person as the problem when requirements or responsibilities conflict.
 
 ## Lesson 3 — Explain and persuade credibly
 
@@ -96,9 +80,7 @@ Use this message structure:
 4. State the consequence.
 5. Propose the response and required owner.
 
-Persuasion helps people understand why action matters. It must remain open to evidence that challenges the recommendation.
-
-Avoid concealing a weakness because it makes agreement harder. A decision made without a material limitation can expose others to consequences they did not understand.
+Persuasion helps people understand why action matters. It must remain open to evidence that challenges the recommendation. Avoid concealing a weakness because it makes agreement harder. A decision made without disclosure of a material limitation can expose others to consequences they did not understand.
 
 Protect confidential information through the authorized communication route. Share enough permitted evidence for the recipient to examine the proposed reliance.
 
@@ -112,9 +94,7 @@ Ask the recipient to state the expected next action. Correct any misunderstandin
 
 ## Lesson 4 — Handle disagreement and negotiation
 
-Disagreement can concern facts, interpretation, objectives, acceptable consequences, or authority. These differences require different responses.
-
-A disputed measurement may need another observation. A disputed scope choice may need the sponsor's decision. A technical deviation needs competent technical assessment.
+Disagreement can concern facts, interpretation, objectives, acceptable consequences, or authority. These differences require different responses. A disputed measurement may need another observation. A disputed scope choice may need the sponsor's decision. A technical deviation needs competent technical assessment.
 
 First establish which kind of disagreement exists. Separate a shared observation from the conclusions participants draw from it.
 
@@ -144,13 +124,9 @@ Human performance depends on competence, workload, available information, and wo
 
 Give the contributor a result they can understand and examine. Identify the purpose, inputs, interfaces, constraints, and required return.
 
-Confirm that the person has enough competence and capacity. Arrange supervision or specialist support where the work needs it.
+Confirm that the person has enough competence and capacity. Arrange supervision or specialist support where the work needs it. Agree on when the contribution is needed and explain which activity depends on it. Ask the contributor to identify missing inputs and likely difficulties.
 
-Agree on when the contribution is needed. Explain which activity depends on it. Ask the contributor to identify missing inputs and likely difficulties.
-
-Use a review suited to the result's consequences. State what the review examines and who receives findings.
-
-Maintain ownership through repair. A producer should understand the defect and its effect on the intended result.
+Use a review suited to the result's consequences. State what the review examines and who receives findings. Maintain ownership through repair: a producer should understand the defect and its effect on the intended result.
 
 Check actual progress through usable outputs and unresolved conditions. Document counts alone may conceal missing interfaces or unexamined conclusions.
 
@@ -161,6 +137,8 @@ Distinguish an isolated error from a repeated competence, workload, or process p
 Mentoring should develop independent reasoning. Ask contributors to explain their basis and alternatives before supplying your preferred answer.
 
 ## Worked example — A Northbank coordination meeting
+
+The supplier recommendation now needs to guide coordinated action. This meeting checks that participants share an understanding of the next actions, their conditions, and the relevant decision rights.
 
 B02 records pressure to retain Week 12. B01 requests rapid acceptance. Operations also asks about the proposed 22 litres per second duty.
 
@@ -211,16 +189,6 @@ Discuss how you would disclose an interest that could affect your recommendation
 5. What must the record show when a meeting ends with unresolved technical concerns?
 6. How can a manager support truthful reporting and competent contributions?
 
-## Portfolio continuation and references
-
-Keep your stakeholder table and corrected meeting record. Link each consequential finding to its source or exercise decision.
-
-Carry the unresolved input owners into Course 07. Retain your explanation of the difference between scope authority and technical responsibility.
-
-Source adaptation: Consolidated v8 §§1.1, 1.6, 3.3, 4.5, and 4.7. These sections address decision rights, shared basis, assignments, and consequential choices.
-
-Use the shared [references](../references.html) for professional communication and collaboration competencies. The core practice requires no external reading.
-
 ## Assessed assignment — Establish an actionable common understanding
 
 Prepare and conduct a review of your Course 05 memorandum. Use Packets A and B as the information available to participants.
@@ -238,3 +206,13 @@ The instructor assesses these five observable criteria:
 3. The discussion fairly represents different positions and identifies appropriate routes for conflicting interests and confidential evidence.
 4. The record identifies decisions, conditions, action owners, and unresolved concerns accurately.
 5. Participant explanations establish a common next action or expose differences for repair.
+
+## Portfolio continuation and references
+
+Keep your stakeholder table and corrected meeting record. Link each consequential finding to its source or exercise decision.
+
+Carry the unresolved input owners into Course 07. Retain your explanation of the difference between scope authority and technical responsibility.
+
+Source adaptation: Consolidated v8 §§1.1, 1.6, 3.3, 4.5, and 4.7. These sections address decision rights, shared basis, assignments, and consequential choices.
+
+Use the shared [references](../references.html) for professional communication and collaboration competencies. The core practice requires no external reading.

@@ -20,7 +20,9 @@ establishes. A coherent design still needs evidence of its performance.
 
 ---
 
-## 3.2 The Four Pillars
+<a id="32-the-four-pillars"></a>
+
+## 3.2 The Four Perspectives
 
 ### 3.2.1 Ontology — What Exists in the System
 
@@ -245,10 +247,12 @@ The four perspectives constrain one another:
   actual result.
 - Experience of control costs can require a different method of examination.
 
-Epistemology thus has a particular emphasis in this study, while adequacy depends
-on all four. Inspectable warrant is valuable because of what people need to do
-and stand behind. It must be connected to a subject and a workable course of
-action. No pillar alone establishes suitability for professional practice.
+Epistemology receives particular emphasis in this study, while adequacy depends
+on all four perspectives.
+
+Inspectable warrant is valuable because of what people need to do and stand
+behind. It must be connected to a subject and a workable course of action. No
+single perspective establishes suitability for professional practice.
 
 Productivity and accountable reliance can support each other. Redundant records
 can impede both; useful checks can improve both. The design question is which
@@ -257,11 +261,13 @@ not how much administrative structure demonstrates concern for accountability.
 
 ---
 
-## 3.5 The Pillars as the Ontology of Professional Accountability
+<a id="35-the-pillars-as-the-ontology-of-professional-accountability"></a>
 
-The four pillars offer a compact evaluative framework. They are not an exhaustive
-ontology of everything a professional can perceive or a proof that every
-accountable system must adopt Chirality's vocabulary.
+## 3.5 The Perspectives as the Ontology of Professional Accountability
+
+The four perspectives offer a compact evaluative framework. They are not an
+exhaustive ontology of everything a professional can perceive or a proof that
+every accountable system must adopt Chirality's vocabulary.
 
 | Question | A failure it can expose |
 |---|---|
@@ -454,7 +460,7 @@ it lets participants examine and do, not merely because it exists.
 
 This contribution is narrower than an architectural prescription. `Claim` and
 `Warrant`, meaning and commitment, and the four
-accountability pillars remain important distinctions, but they are not
+accountability perspectives remain important distinctions, but they are not
 independent chiral structures. The primary chirality is only the
 accountability gap. The value of the metaphor is explanatory economy, not
 formal precision.
@@ -493,7 +499,7 @@ standard requires an assessment of the actual work and applicable obligations.
 
 Other frameworks address supporting parts of the architecture. Bunge and
 Wand and Weber [CITE:Bunge_ontology] [CITE:Wand_Weber_ontology] inform the
-ontological pillar; W3C PROV [CITE:W3C_PROV2013] supplies a provenance
+ontological perspective; W3C PROV [CITE:W3C_PROV2013] supplies a provenance
 vocabulary; Toulmin [CITE:Toulmin1958] is a precedent for the operational
 distinction between claims and warrants; and the INCOSE handbook
 [CITE:INCOSE2023] supplies the systems-engineering disciplines discussed in
@@ -502,7 +508,7 @@ the primary chirality.
 
 ---
 
-### 3.6.8 Perspectives and iterative Feedback
+### 3.6.8 Perspectives and Iterative Feedback
 
 The [shared introduction](INTRODUCTION.md#one-undertaking-three-perspectives)
 relates the normative, operative and evaluative emphases of the three theses.
@@ -514,7 +520,7 @@ answerability for the purpose and reliance at issue.
 
 ## 3.7 Summary
 
-The four pillars provide enduring, mutually corrective questions about work.
+The four perspectives provide enduring, mutually corrective questions about work.
 They direct attention to relevant distinctions, grounds, courses of action and
 values. They do not uniquely derive a document kit, gate sequence, staffing
 arrangement or runtime.
