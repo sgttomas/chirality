@@ -88,7 +88,7 @@ For each edition, use its explicit source and output path:
 python3 docs/alignment-manual/render_manual.py \
   --source docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v4.md \
   --output docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v4.html \
-  --basis-date 2026-10-10 --basis-revision 5d00723cd8dcd95e85716d1004c3a75d65a5d338 \
+  --basis-date 2026-10-12 --basis-revision 641b6a410130048673c455c1fcf7c46bc0e82c52 \
   --edition-label 'Operational guide' --metadata-at-end
 ```
 
