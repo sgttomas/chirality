@@ -77,12 +77,11 @@ claims, incomplete history or inconsistent declarations. A commit identifies
 recorded content; it does not establish its correctness, the completeness of the
 record or the authenticity of every represented human act.
 
-The earlier formulation, “if it is not in a versioned file, it does not exist for
-purposes of reliance,” was too broad. Purpose and authorization can arise in the
-conversation. Applications have operational state. Domain engines maintain
-models and results in their own stores. What matters is that the grounds needed
-for a particular use are accessible and sufficiently identified. The current
-artifact policy is one practical way to serve that requirement for development.
+Purpose and authorization can arise in the conversation. Applications have
+operational state, and domain engines maintain models and results in their own
+stores. The grounds needed for a particular use must be accessible and
+sufficiently identified. Versioned files serve that requirement for development;
+other stores serve their adopted application contracts.
 
 ### 4.2.3 Scope and Limits of the Filesystem Commitment
 
@@ -127,10 +126,9 @@ is not a claim that every domain has a naturally flat ontology. An intended
 work product is distinct from the folder used to manage it. Source code can live
 elsewhere, and several deliverables can be relevant to the same code.
 
-The earlier `1_Working`, `2_Checking` and `3_Issued` arrangement coupled file
-location to production status. Removing those locations changes the repository
-representation, not the distinction between development, examination and
-acceptance.
+Development, examination and acceptance remain distinct activities even when
+their artifacts occupy the same deliverable folder. Their meaning comes from the
+work, evidence and applicable acts.
 
 ### 4.3.2 Stable Identifiers
 
@@ -203,17 +201,14 @@ exhausting situated understanding.
 
 ## 4.4 Work, Evidence and Acceptance
 
-### 4.4.1 The Earlier Six-State Model
+### 4.4.1 Conditions of Work
 
-The earlier implementation used `OPEN`, `INITIALIZED`, `SEMANTIC_READY`,
-`IN_PROGRESS`, `CHECKING` and `ISSUED`. Its labels combined evidence that files
-had been created, progress descriptions and human decisions. `_STATUS.md` was
-intended to be their canonical indicator.
-
-That state machine is no longer the active development model. Its historical
-value was making some distinctions explicit. Its cost was maintaining a second
-description of work that could diverge from the artifacts and could imply more
-than a label supported.
+Availability, suitability, examination and acceptance concern different relations.
+A supplier may be usable for one consumer while inadequate for another. A review
+may apply to one revision or purpose; acceptance identifies a person's particular
+commitment. These distinctions guide action through their actual conditions and
+evidence. [Appendix E](appendix_e_development_history.md) records the development
+of this representation of work.
 
 ### 4.4.2 Actions and Authority
 
@@ -256,11 +251,10 @@ person's accountable judgment to the query tool or agent.
 
 ### 4.4.5 Warrant and Revision
 
-The earlier sequence `UNWARRANTED → CITED → REVIEWED → AUTHENTICATED` remains
-useful as a historical account of concerns, but it is inadequate as a universal
-progression of knowledge. A citation can be irrelevant; a reviewed claim can
-later be contradicted; an authenticated result can be wrong. Several claims in
-one artifact can have different grounds and limits.
+A claim's grounds, its examination and the reliance accepted on it can change
+independently. A citation can be irrelevant; a reviewed claim can later be
+contradicted; an authenticated result can be wrong. Several claims in one
+artifact can have different grounds and limits.
 
 The operative questions are what supports the claim, whether that support is
 appropriate here, what remains uncertain, and who accepts which reliance.
@@ -378,8 +372,7 @@ burden they impose.
 
 ### 4.7.1 Three Kinds of Claim
 
-The earlier R-, I- and K-series catalogs mixed values, representations,
-procedures and enforcement claims. The revised analysis distinguishes:
+The analysis distinguishes:
 
 1. **Normative commitments:** what responsibility and values the undertaking
    chooses to preserve, such as attributable human acceptance.
@@ -420,6 +413,18 @@ numerical oracle that consistently passes can remain valuable because it detects
 a consequential failure that would otherwise remain silent.
 
 ## 4.8 Coordination and Continuing Ownership
+
+The relation developed in the
+[shared introduction](INTRODUCTION.md#iteration-as-learning) has an architectural
+consequence: a correction must reach its actual consumer. A revised method needs
+an adoption path into the App; an engineering finding needs a path back to the
+relevant model, operation or design criterion. Root's sources and queries support
+that investigation, while the receiving application owns its operations and
+checks. A shared source establishes neither adoption nor domain adequacy.
+
+The [illustrative support-arrangement revision](WORKED_EXAMPLE.md) follows that
+relationship across physical intent, operation, calculation, alternatives and
+choice. It supplies no measured numerical result or proof of implementation.
 
 ### 4.8.1 Contributions Rather Than a Spawning Chart
 
@@ -548,10 +553,10 @@ committed versions, while selected tags identify baselines and recovery points.
 A tag that records an owner decision must accurately identify that decision; its
 creation is not the decision itself.
 
-The earlier immutable snapshot convention preserved many copies in the working
-tree. The reset retained historical recovery while removing routine copies and
-the obligations that produced them. This is a change in preservation mechanism,
-not permission to erase evidence required for a specific reliance or recovery.
+Retention follows the actual consumer, acceptance or recovery need. Identifying
+the relied-upon version and recovering an interrupted action are different needs
+and may require different mechanisms. [Appendix E](appendix_e_development_history.md)
+records the snapshot convention used during development.
 
 ## 4.10 Summary
 

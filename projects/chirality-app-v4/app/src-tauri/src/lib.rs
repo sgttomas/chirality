@@ -48,7 +48,10 @@ pub mod native_requests;
 pub mod receiving;
 pub mod recorder;
 pub mod records;
+pub mod records_access;
 mod records_index;
+pub mod record_lines;
+pub mod records_store;
 pub mod recovery;
 mod recovery_root_view;
 pub mod role_supply;
@@ -244,12 +247,61 @@ fn host_status(state: State<'_, AppState>) -> Value {
     s["continueAs"] = state.continue_as.lock().unwrap().view(&s);
     s["codexStops"] = json!({"outcomes":state.codex_stops.lock().unwrap().clone(),"stopWaitLimitSeconds":codex_stop::STOP_WAIT_LIMIT.as_secs(),"records":codex_stop::RECORDS_LIMIT});
     s["connectorRouteAvailability"] = connector_route_view::availability(state.workspace.as_deref(), &state.project_context, state.project_context_limit.as_deref());
+    s["recordsStore"] = records_store::status(state.workspace.as_deref());
+    s["recordChain"] = records_index::chain_status(state.workspace.as_deref());
     s["currentAppProjectContext"] = state.project_context.view();
+
     s["currentAppProjectContextLimit"] = json!(state.project_context_limit);
     if let Err(e) = &*state.instructions_root.lock().unwrap() {
         s["instructionsProblem"] = json!(e);
     }
     s
+}
+
+/// RS §13.8 "Existing records": the person's explicit import of the project's
+/// §13.7 records into the records store (byte-identical, verified copies).
+#[tauri::command(async)]
+fn records_store_import(state: State<'_, AppState>) -> Result<Value, String> {
+    let project = state.workspace.as_ref().ok_or("no project is open; nothing imported")?;
+    records_store::import(project)
+}
+/// RS §13.8 Tamper-evidence: each log's chain head of the open project, on
+/// demand (the host status carries only bounded counts).
+#[tauri::command(async)]
+fn records_chain_heads(state: State<'_, AppState>) -> Result<Value, String> {
+    let project = state.workspace.as_ref().ok_or("no project is open")?;
+    Ok(records_index::chain_heads(project))
+}
+/// RS §13.8 "Project identity": the person resolves a project identity limit.
+#[tauri::command(async)]
+fn records_store_identity(state: State<'_, AppState>, action: String) -> Result<Value, String> {
+    let project = state.workspace.as_ref().ok_or("no project is open; nothing changed")?;
+    match action.as_str() {
+        "adopt" => records_store::adopt(project),
+        "new-identity" => records_store::new_identity(project),
+        "restore-link" => records_store::restore_link(project),
+        _ => Err("unknown records store identity action; nothing changed".into()),
+    }
+}
+/// RS §13.8 "Placement": the person chooses where the records store is kept
+/// (another volume, for example), from the next start.
+#[tauri::command(async)]
+fn records_store_choose(state: State<'_, AppState>, location: String) -> Result<Value, String> {
+    let data = state.app_user_data_root.lock().unwrap().clone()?;
+    let homes = state.homes.lock().unwrap();
+    let configs: Vec<hosting::HostConfig> = [home_resources::HomeClass::Account, home_resources::HomeClass::ApiKey].into_iter()
+        .filter_map(|class| homes.entry(class).ok()).filter_map(|home| home.host_config.as_ref().ok().cloned()).collect();
+    drop(homes);
+    records_store::choose_location(&data, std::path::Path::new(&location), state.workspace.as_deref(), &codex_homes(configs.iter()))
+}
+/// The App-owned and configured Codex homes (account, key and probe homes,
+/// and the explicit home variables) the records store must stay out of.
+fn codex_homes<'a>(configs: impl Iterator<Item = &'a hosting::HostConfig>) -> Vec<PathBuf> {
+    let mut homes: Vec<PathBuf> = configs.flat_map(|cfg| [cfg.codex_home.clone(), cfg.probe_home.clone()]).collect();
+    homes.extend(["CHIRALITY_CODEX_HOME", "CHIRALITY_KEY_HOME", "CODEX_HOME"].iter().filter_map(|key| std::env::var_os(key).filter(|v| !v.is_empty()).map(PathBuf::from)));
+    homes.sort();
+    homes.dedup();
+    homes
 }
 
 #[tauri::command(async)]
@@ -434,6 +486,8 @@ fn add_api_key(app:tauri::AppHandle,state:State<'_,AppState>)->Result<Value,Stri
                 let custody=account.host.app_runtime_custody()?;
                 let host=Arc::new(Host::new_with_app_custody(custody)?);
                 if let Some(store)=&account_store{host.configure_distribution_store(Ok(store.clone()));}
+                // RS §13.9: the same project's records capability on this home's conversations.
+                if let Some(capability)=account.host.records_capability(){host.configure_records_capability(capability);}
                 let home=Arc::new(runtime_session::HomeSession::new(home_resources::HomeClass::ApiKey,host,Ok(config.clone()))?);
                 *home.attachment_custody.lock().unwrap()=Ok(attachment.clone());
                 home.recovery_startup.lock().unwrap().adopt_shared_source(&home.host);
@@ -1664,6 +1718,18 @@ pub fn run() {
     let host = Arc::clone(&home.host);
             app.manage(state);
             let data = app.path().app_data_dir().map_err(|e| e.to_string());
+            // RS §13.8: the App's records store, configured once before any
+            // record is read or written; a store that cannot be used refuses
+            // recording visibly, with no fallback. Opening the project gives it
+            // its identity once (`.chirality/project.json`).
+            {
+                let codex_homes = codex_homes(home.host_config.as_ref().ok().into_iter());
+
+                records_store::configure(records_store::for_app(std::env::var_os(records_store::OVERRIDE_ENV).filter(|p| !p.is_empty()).map(PathBuf::from), data.as_deref().map_err(Clone::clone), tauri::is_dev(), workspace.as_deref(), &codex_homes));
+                if let Some(ws) = workspace.as_ref() {
+                    if let Err(e) = records_store::attach(ws, true) { eprintln!("chirality: the project was not given its records identity at startup: {e}"); }
+                }
+            }
             // AAC §6.3 SEAL-C: this installation's capture-seal keys live in the
             // App data folder, outside every project.
             if let Ok(data) = data.as_ref() { capture_seal::install(data); }
@@ -1680,6 +1746,20 @@ pub fn run() {
                 *state.decision_writer_status.lock().unwrap() = runtime_session::continue_decision_writer(ws, control.as_mut(), "app-startup-writer");
             }
             *state.app_user_data_root.lock().unwrap() = data.clone();
+            // RS §13.9 (owner U-STORE-4): the agents' read-only records
+            // capability in the current project. Each read is recorded in the
+            // project's records store folder; the App-wide read log an earlier
+            // build kept in App data stays there unchanged and is shown.
+            if let Some(ws) = state.workspace.as_ref() {
+                let capability = records_access::RecordsCapability::new(ws).map(|capability| match data.as_ref() {
+                    Ok(data) => capability.with_legacy_read_log(&data.join("runtime").join("records-reads.jsonl")),
+                    Err(_) => capability,
+                });
+                match capability {
+                    Ok(capability) => home.host.configure_records_capability(Arc::new(capability)),
+                    Err(reason) => home.host.records_capability_unavailable(reason),
+                }
+            }
             // WR §3: App-kept draft bases live in the App data folder.
             if let Ok(data) = data.as_ref() { state.workflows.lock().unwrap().set_app_user_data(data.clone()); }
             // Current account/probe protection is independent of a bad new key
@@ -1793,6 +1873,7 @@ pub fn run() {
             read_recovery_custody,
             recovery_retry,
             read_connector_routes,
+            records_store_import, records_store_identity, records_store_choose, records_chain_heads,
             prepare_connector_source, select_connector_source, anchor_connector_source, revise_connector_source,
             read_connector_git, cancel_connector_git, anchor_connector_git,
             recheck_published_connector_draft, prepare_connector_reconstruction, prepare_connector_draft, publish_connector_draft, cancel_connector_draft, reconcile_connector_draft, inspect_connector_drafts,

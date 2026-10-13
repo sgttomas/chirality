@@ -146,9 +146,10 @@ the agreed result stops work without a compulsory closeout packet.
 
 ### 7.1 Invariant Systems
 
-Historical invariant catalogs combined values, procedures and tool properties.
-Naming a rule did not mathematically formalize it or establish its enforcement.
-Current adopted contracts must be consulted in their current homes.
+A stated value, procedure and tool property require different grounds. A named
+rule needs defined scope, an enforcement mechanism and evidence of its operation.
+Current adopted contracts are consulted in their current homes;
+[Appendix A](appendix_a_invariant_catalog.md) retains the catalog comparison.
 
 ### 7.2 Preconditions and Postconditions
 
@@ -181,8 +182,8 @@ is not evidence that its interpretation is correct.
 ### 7.4 State Machines
 
 Product request, persistence and operation protocols can benefit from explicit
-state machines. The retired deliverable lifecycle was one particular application
-of the technique, not a necessary representation of all work and acceptance.
+state machines faithful to their actual transitions and outcomes. Work, evidence
+and acceptance have several independently variable relations.
 
 ## 8. Human Factors & Decision Authority
 
@@ -230,10 +231,11 @@ do not prove that no single failure can compromise a result.
 
 ## 10. Assessment
 
-The reset removed mechanisms previously presented as necessary while retaining
-purpose, evidence, integration responsibility and reserved human decisions. That
-challenges the necessity of the earlier arrangement. Sustained productivity,
-recovery and transfer to other practitioners remain empirical questions.
+The arrangement preserves purpose, evidence, integration responsibility and
+reserved human decisions through inspectable sources and selected checks.
+Sustained productivity, recovery and transfer to other practitioners remain
+empirical questions. [Appendix E](appendix_e_development_history.md) preserves
+the development evidence and its limits.
 
 ### 10.1 The Revisable Relationship
 

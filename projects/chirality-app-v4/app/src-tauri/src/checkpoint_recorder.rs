@@ -183,6 +183,26 @@ fn stamp(m: &std::fs::Metadata) -> Stamp {
 
 /// One recorder output: the RS entry kind and its CE body.
 pub(crate) type Output = (&'static str, Value);
+/// RS §13.8 "Units written together": the outputs that must stand together,
+/// as consecutive ranges covering `outputs` in order. An event that changes
+/// an arrival's disposition (`act_counted`, `act_not_counted`,
+/// `arrival_declined`, `act_lapsed`) and the `disposition_change` it makes for
+/// that arrival, directly after it, are one unit: neither is read without the
+/// other. Every other output stands alone (a lapse label repaired after its
+/// lapse was recorded alone, a settlement, a limit).
+pub(crate) fn units(outputs: &[Output]) -> Vec<std::ops::Range<usize>> {
+    const EVENTS: [&str; 4] = ["act_counted", "act_not_counted", "arrival_declined", "act_lapsed"];
+    let mut out = Vec::new();
+    let mut i = 0;
+    while i < outputs.len() {
+        let paired = EVENTS.contains(&outputs[i].0)
+            && outputs.get(i + 1).is_some_and(|(kind, body)| *kind == "disposition_change" && body["arrival"] == outputs[i].1["arrival"]);
+        let end = if paired { i + 2 } else { i + 1 };
+        out.push(i..end);
+        i = end;
+    }
+    out
+}
 /// The project's human-act and act-declined records, read only when needed.
 pub(crate) type ActSource<'a> = &'a mut dyn FnMut() -> Result<ActRead, String>;
 
@@ -1519,8 +1539,9 @@ pub(crate) fn project_act_records(root: &Path) -> Result<ActRead, String> {
             Err("not written by the App's capturing surface (PH-4)".into())
         } else {
             if let Some(capture_id) = b["captureEvidence"][0]["ref"].as_str() {
-                let path = crate::storage::capture_path(&root, capture_id);
-                captures.push((path.clone(), capture_stamp(&path)));
+                if let Ok(path) = crate::storage::capture_path(&root, capture_id) {
+                    captures.push((path.clone(), capture_stamp(&path)));
+                }
             }
             match crate::file_act_view::capture(&root, b) {
                 Err(e) => Err(format!("capture evidence not resolved: {e}")),
@@ -1559,9 +1580,10 @@ pub(crate) fn acts_unread_limit(reason: &str) -> Output {
 pub(crate) fn act_records_fingerprint(root: &Path) -> Option<Vec<(String, u64, i64, i64)>> {
     use std::os::unix::fs::MetadataExt;
     let mut paths = crate::storage::discover(root).ok()?;
-    let store = crate::storage::capture_path(root, "x");
-    if let Some(dir) = store.parent() {
+    let dir = crate::storage::capture_dir(root).ok()?;
+    {
         paths.push(dir.to_path_buf());
+
         if let Ok(entries) = std::fs::read_dir(dir) {
             paths.extend(entries.filter_map(|e| e.ok().map(|e| e.path())));
         }

@@ -135,10 +135,14 @@ does not prove readiness, and a missing edge does not prove independence.
 Additional records are useful only where review, use, acceptance or recovery
 needs them.
 
-Normative, operative and evaluative functions remain distinguishable. Rules,
-action and examination must relate without being confused. The analogy to
-political governance is limited to that differentiation; it establishes no need
-for a corresponding hierarchy of agents or approval stops.
+The normative, operative and evaluative perspectives concern one undertaking.
+Commitments orient action; operations make action possible; evaluation examines
+what occurred and what it supports. Their relation is iterative: a finding can
+revise an operation, a method or an adopted criterion through the appropriate
+authority. These are overlapping perspectives, not a prescribed hierarchy of
+agents or a fixed sequence of approval stops. The
+[shared introduction](INTRODUCTION.md) develops this relation across the three
+theses.
 
 ### 2.7 What the Framework Does and Does Not Cover
 
@@ -196,8 +200,13 @@ sequence or permanent process topology.
 
 Control costs belong inside the evaluation. Attention, delay, maintainability
 and user agency matter alongside reliability. A control earns its place when
-its contribution justifies those costs. This does not trade away applicable
-professional obligations; it asks which mechanisms actually serve them.
+its contribution justifies those costs. Applicable obligations and adopted
+constraints govern what can be accepted; negotiable preferences support choices
+among permissible alternatives. Uncertain premises require examination rather
+than a favourable ranking. A local improvement can impose costs on construction,
+operation, maintenance or another person's work. No universal score settles
+these relationships. Judgment concerns which consequences matter in the actual
+undertaking and which mechanisms serve its obligations.
 
 ### 3.3 The Epistemic Architecture
 
@@ -234,11 +243,12 @@ A prohibition on invention does not ensure that fabrication never occurs.
 
 #### 3.3.3 Evidence and Acceptance
 
-Earlier versions used `UNWARRANTED → CITED → REVIEWED → AUTHENTICATED` as a
-warrant lifecycle. It remains a useful historical mnemonic but mixes different
-relationships. Evidence may be strengthened, contradicted or become inapplicable.
-Review has a subject, method and scope. Authentication is a person's attributable
-commitment concerning reliance. These do not form a universal progression.
+Evidence may be strengthened, contradicted or become inapplicable. Review has a
+subject, method and scope. Acceptance is an authorized act concerning an
+identified subject and purpose; professional authentication has additional
+obligations in its applicable setting. These relations do not form a universal
+progression. Their historical combination in a warrant lifecycle is discussed in
+[Appendix E](appendix_e_development_history.md).
 
 The practical questions are: what grounds support this claim; what examination
 has addressed it; and what reliance, if any, has a person accepted? No general
@@ -248,10 +258,8 @@ release a product, approve later changes or broaden its scope of use.
 ### 3.4 The Fractal Property
 
 The same questions can recur at several scales: one numerical result, a work
-product, an application or the agent-assisted undertaking itself. Earlier
-versions expressed that recurrence through four-document kits and parallel
-governance documents. Those were design choices, not necessary embodiments of
-the pillars.
+product, an application or the agent-assisted undertaking itself. Their recurrence
+calls for attention to the particular subject, not a prescribed set of forms.
 
 Recurrence is valuable when it reveals a consequential distinction at the scale
 being examined. It is not proof of completeness or a reason to reproduce the
@@ -320,9 +328,9 @@ itself open to examination. It invites reflexive inquiry rather than an infinite
 chain of required records.
 
 Chirality must therefore distinguish its own commitments, hypotheses and findings.
-The October transformation challenges the necessity of earlier machinery; the
-ensuing development can supply evidence about the replacement. Neither event
-alone proves superiority in every application or professional setting.
+Its arrangements must answer to evidence about usable results, failures, recovery
+and total effort. A coherent alternative or successful local correction cannot
+establish superiority in every application or professional setting.
 
 ---
 

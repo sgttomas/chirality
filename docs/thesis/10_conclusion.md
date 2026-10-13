@@ -18,22 +18,25 @@ lies in these contributions.
 
 ## 10.2 Contributions
 
-Current artifacts and derived relationships reduce the effort of reconstructing
-what governs a change. Continuing ownership carries contributions through repair
-and integration. Roles make those responsibilities explicit without requiring a
-separate agent for each one. Authority comes from the assignment and host, while
-the person retains judgment throughout the undertaking [CITE:Smith2019].
+Current artifacts and derived relationships are intended to reduce the effort of
+reconstructing what governs a change. Whether they do so at an acceptable total
+cost remains an empirical question. Continuing ownership gives responsibility for
+repair and integration a home. Roles make those responsibilities explicit without
+requiring a separate agent for each one. Authorization comes from the applicable
+assignment and governing commitments. The host supplies capabilities and enforces
+permissions on its controlled paths; it does not confer authority merely by
+making an operation available. The person retains judgment throughout the
+undertaking [CITE:Smith2019].
 
 Examination must reach the actual result. Correct source, valid representation
 and successful integration support different claims. A shared correction has to
 reach its consumers; announcing it is insufficient. Existing evidence can be
 reused where its grounds remain applicable.
 
-The repository's history shows why the means themselves need examination.
-Controls introduced for real difficulties accumulated costs and sometimes
-outlived their purpose. October's reset changed the duties and their enforcement
-together. It provides a candidate alternative whose productivity and reliability
-must be assessed through continued work.
+The means themselves require examination. Their reliability, usefulness and costs
+must be assessed through continued work. The case in Chapter 8 supplies bounded
+observations; [Appendix E](appendix_e_development_history.md) preserves the
+development history and the limits of the inferences drawn from it.
 
 ---
 
@@ -103,4 +106,6 @@ same achievement as carrying learning forward.
 
 The continuing task is to improve the means without allowing them to consume
 the undertaking. Their grounds remain open to examination, their costs matter,
-and their form must answer to the work.
+and their form must answer to the work. The [shared conclusion](CONCLUSION.md)
+returns to this iterative relation after the App and Piping arguments have been
+developed in their own settings.
