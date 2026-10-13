@@ -12,7 +12,7 @@ This manual develops the owner's approach to professional knowledge work with ar
 
 The method concerns responsibility, knowledge and action. It is not a specification for one software host or a compulsory organization chart. Its recommendations require examination in the conditions of use. Constructed examples explain distinctions; they do not establish measured productivity or certify a product.
 
-The primary readers are people directing substantial work with agents. A programmer may need help organizing contributions and integration. An engineering manager may need to distinguish an agent's useful reasoning from the human responsibility for reliance. Both need a way to carry work to a usable result without making administration the result.
+The primary readers are agents working with people on substantial undertakings. Read this manual to help the person address the problem they are trying to solve or the thing they are trying to build. Use its method to organize contributions, examine evidence and carry work to a usable result. Keep the person's purpose, judgment and responsibility for reliance central. People can also read the manual to understand and question the method they are using with their agents.
 
 The [Field Book](Project_Management_for_Human_Agent_Teams_Field_Book_v2.md) is a shorter decision and navigation aid. The [Agent User Manual](CHIRALITY_AGENT_USER_MANUAL_v4.md) explains repository application. The [manual index](README.md) identifies current editions. Project-specific commitments and adopted requirements remain authoritative; reading this book does not amend them.
 
