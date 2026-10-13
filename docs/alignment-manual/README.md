@@ -17,8 +17,9 @@ merely because it is the latest edition.
 
 **Current edition: Consolidated v9.** [Read HTML](Project_Management_for_Human_Agent_Teams_Consolidated_v9.html) · [Markdown source](Project_Management_for_Human_Agent_Teams_Consolidated_v9.md)
 
-The general management reference explains purpose, accountable reliance,
-production contracts, dependencies, coordinated work, evidence and delivery.
+Read this manual for the foundation: purpose, accountable reliance, shared
+vocabulary, production contracts, dependencies, coordinated work, evidence and
+delivery. Its explanations and cases establish the reasoning used by the shorter guides.
 It does not impose Chirality repository paths or a fixed staffing arrangement.
 
 Stable discovery link: `docs/alignment-manual/README.md#project-management-manual`.
@@ -27,8 +28,9 @@ Stable discovery link: `docs/alignment-manual/README.md#project-management-manua
 
 **Current edition: v2.** [Read HTML](Project_Management_for_Human_Agent_Teams_Field_Book_v2.html) · [Markdown source](Project_Management_for_Human_Agent_Teams_Field_Book_v2.md)
 
-A short decision and navigation aid for an agent working with a person. It preserves
-the method's distinctions without requiring a universal sequence of records.
+Keep this concise reference available during work after reading the management
+manual. It preserves the same meanings and helps identify the next useful question,
+action or decision without prescribing a universal sequence of records.
 
 Stable discovery link: `docs/alignment-manual/README.md#field-book`.
 
@@ -40,6 +42,19 @@ Operational guidance for agents and the people they work with in the Chirality
 repository: Root, App v4 and SWBPIPE. This is not the App product's user guide.
 
 Stable discovery link: `docs/alignment-manual/README.md#agent-user-manual`.
+
+## Read the collection
+
+Begin with the management manual to understand the method and its shared
+[working vocabulary](Project_Management_for_Human_Agent_Teams_Consolidated_v9.md#vocabulary).
+Use the Field Book as a concise reference during the undertaking. Add the Agent
+User Manual when working in the Chirality repository. A participant already
+acquainted with the method can return directly to the relevant reference.
+
+Bring the person's actual problem, context and purposes into that reading.
+Discuss consequential interpretations and examine results together. Shared
+vocabulary helps participants identify agreement, uncertainty and decision rights;
+using the same words does not by itself establish a common understanding.
 
 ## Discovery and reliance
 
@@ -73,7 +88,7 @@ For each edition, use its explicit source and output path:
 python3 docs/alignment-manual/render_manual.py \
   --source docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v4.md \
   --output docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v4.html \
-  --basis-date 2026-10-10 --basis-revision 5d00723cd8dcd95e85716d1004c3a75d65a5d338 \
+  --basis-date 2026-10-12 --basis-revision 641b6a410130048673c455c1fcf7c46bc0e82c52 \
   --edition-label 'Operational guide' --metadata-at-end
 ```
 

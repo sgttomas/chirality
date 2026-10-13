@@ -4,9 +4,21 @@
 
 Edition 2
 
-This field book helps a person direct work with agents. It identifies the next useful question, action or decision. It does not prescribe a fixed team, a universal approval sequence or a set of administrative records.
+Use this field book as an agent working with a person on their undertaking. It helps you identify the next useful question, action or decision while keeping the intended result, evidence and responsibilities in view. The person can use the same reference to discuss how the work should proceed.
 
-The [management manual](Project_Management_for_Human_Agent_Teams_Consolidated_v9.md) explains the reasoning and develops examples. The [operational guide](CHIRALITY_AGENT_USER_MANUAL_v4.md) applies the method in the Chirality repository. The [manual index](README.md) identifies current editions. An edition used for an accepted decision remains identifiable even when the current edition changes.
+Read the [management manual](Project_Management_for_Human_Agent_Teams_Consolidated_v9.md) for the method, reasoning and worked examples, then keep this book available during work. Use the [Chirality Agent User Manual](CHIRALITY_AGENT_USER_MANUAL_v4.md) when working in that repository. The [manual index](README.md) identifies current editions. An edition used for an accepted decision remains identifiable even when the current edition changes.
+
+## Shared meanings
+
+The [working vocabulary](Project_Management_for_Human_Agent_Teams_Consolidated_v9.md#vocabulary) defines terms for all three manuals. Keep these distinctions available during work:
+
+- Information can support situated understanding without being the same as that understanding. A claim needs grounds relevant to its subject and use.
+- Reckoning includes your investigation, planning, criticism, checking and adaptive action. The person's judgment engages with purpose, meaning and consequences throughout the undertaking.
+- Authorization comes from the assignment and governing commitments. Capability and host permissions determine what can actually be done; they do not alone authorize it.
+- A contribution owner carries assigned work through examination, repair and transfer. An integration owner brings the contributions into a usable combined result. Neither responsibility alone grants a reserved human decision.
+- Completion, acceptance, delivery, release and reliance concern different claims or acts. Identify which one the current work must establish.
+
+Use the terms to clarify the actual situation with the person. The questions below guide that work without prescribing fixed staffing, a universal approval sequence or a set of administrative records.
 
 ## 1. Start from the intended result
 
@@ -36,7 +48,7 @@ Move through this course as the work requires. A missing input holds only work t
 
 ## 2. Keep responsibility clear
 
-The agent working with the person carries Agent 0's responsibilities: purpose, continuity and preparation of reserved choices. Other roles are available contributions.
+The agent working directly with the person carries Agent 0's responsibilities: purpose, alignment, continuity and preparation of reserved choices. Other roles are available contributions.
 
 | Role | Contribution |
 |---|---|
@@ -49,7 +61,7 @@ One session can perform substantial work without delegation. A role is not a req
 
 When delegating, give a contributor a coherent result to own through ordinary repairs. Identify the relevant basis, write boundary, checks, return location and matters requiring another decision. Use the conversation or existing assignment rather than a mandatory form.
 
-Keep one integration responsibility for a shared result. This does not require one agent to perform every operation. It identifies who will examine how the contributions fit and carry the combined result to use.
+Identify one integration owner for a shared result. This does not require one agent to perform every operation. It identifies who will examine how the contributions fit and carry the combined result to use.
 
 ## 3. Establish a sufficient basis
 
@@ -70,7 +82,7 @@ A scope change, reliance decision or release can require the person's judgment. 
 
 ## 4. Define contributions and relationships
 
-Give each deliverable a stable identity and a complete responsibility. Avoid splitting work merely to create more assignments. Distinguish the deliverable, the working unit and the integration batch.
+Identify each deliverable as an intended work product with a defined contribution, conditions and assigned responsibility. Give it a stable identity where needed to follow changes. Its outputs realize the contribution; a folder or graph node can represent it without proving fulfillment. Avoid splitting work merely to create more assignments. Distinguish the deliverable, the working unit and the integration batch.
 
 A production contract identifies the contribution, outputs, governing constraints, acceptance criteria, interfaces and methods of examination. The representation can vary. It must let a producer and a receiver establish what is required without inventing missing commitments.
 
@@ -78,7 +90,7 @@ The consumer states what it needs from another contribution and when it needs it
 
 Tools can derive upstream and downstream relationships from those declarations. Use the relevant neighbourhood to find inputs, consumers and opportunities for concurrent work. Missing edges do not prove independence. Check shared interfaces, write targets and resources where they matter.
 
-Cycles require interpretation. Mutual design can proceed through coordinated iterations. An execution cycle may require a staged contract, changed boundary or owner decision. Do not remove a necessary relationship merely to make a diagram acyclic.
+Cycles require interpretation. Mutual design can proceed through coordinated iterations. An execution cycle may require a staged contract, changed boundary or a decision by the person authorized to change the commitment. Do not remove a necessary relationship merely to make a diagram acyclic.
 
 Keep finer implementation relationships where their consumers can use them. Add machine-readable detail when an actual query needs it. Do not maintain a second progress graph merely to repeat the source state.
 
@@ -98,11 +110,11 @@ Test a consequential premise through a usable path before expanding work that de
 
 Use host mechanisms for dispatch and returns. A queued message does not prove execution. A completed turn does not prove all assigned work was delivered. Account for dispatched work without requiring separate return files.
 
-Keep owners with their work through findings. Transfer ownership at a clear boundary when continuation is not possible. Preserve valid output and inspect uncertain operations before repeating them.
+Keep contribution owners with their work through findings. Transfer that responsibility at a clear boundary when continuation is not possible. Preserve valid output and inspect uncertain operations before repeating them.
 
 ## 6. Examine the claim that matters
 
-Verification asks whether the result meets specified requirements. Validation asks whether it serves the intended use. Different claims require different evidence.
+Verification asks whether the result conforms to specified requirements or an identified claim or reference. Validation asks whether it serves the intended use. Different claims require different evidence.
 
 A schema check can establish structure. A source comparison can establish fidelity. A numerical oracle can test a defined calculation. A user exercise can reveal whether an interaction is usable. None automatically establishes the others.
 
@@ -126,13 +138,13 @@ Maintain the authoritative artifacts when a commitment, design or dependency con
 
 A record needs a concrete consumer, an acceptance requirement or a recovery need. A useful record can be a required test result, a decision with material conditions, or the identity of a candidate proposed for release. Its form follows its purpose.
 
-Do not prescribe routine receipts, memory rows, reading logs, copied source or handoff chains. Product records required by the application or its users are a different matter; reducing development administration does not remove those requirements.
+Use existing information where it meets the need. Add a record when its consumer, acceptance requirement or recovery purpose justifies maintaining it. Product records required by the application or its users are a different matter; reducing development administration does not remove those requirements.
 
 At an interruption, keep one replaceable recovery note if current artifacts and the conversation are insufficient. Identify prepared versus executed work, pending checks, active operations, local-only work and the next useful action. Do not repeat an operation whose completion is uncertain until its actual state has been inspected.
 
 ## 8. Use development positions as questions
 
-Conceptual, FEED, 30%, 60%, 90% and delivery positions can help explain how work changes. They are not measurements of tasks, code or effort completed.
+This method uses engineering-derived names—conceptual, FEED (front-end engineering design), 30%, 60%, 90% and delivery—to ask how work changes. These positions are not measurements of tasks, code or effort completed. Other undertakings can use names suited to their practice.
 
 | Position | Question |
 |---|---|
@@ -143,16 +155,16 @@ Conceptual, FEED, 30%, 60%, 90% and delivery positions can help explain how work
 | 90% | Is the assembled result ready for its remaining concentrated examination? |
 | Delivery | Are acceptance, release and continuing responsibilities established for the identified result? |
 
-An undertaking can combine positions or revisit an affected part. This guide neither creates stage gates nor cancels adopted ones. A project that has a human gate still brings that gate to its decision owner.
+An undertaking can combine positions or revisit an affected part. This guide neither creates stage gates nor cancels adopted ones. A project that has a human gate still brings that decision to the person authorized to make it.
 
-At a 60% assessment, explain developed interfaces, unresolved coupling, proposed work grouping and residual risks. Do not weaken designs to eliminate cycles. Do not continue analysis indefinitely when a usable integration path can answer the consequential question. The applicable owner decides qualifications or changes to commitments.
+At a 60% assessment, explain developed interfaces, unresolved coupling, proposed work grouping and residual risks. Do not weaken designs to eliminate cycles. Do not continue analysis indefinitely when a usable integration path can answer the consequential question. The person with the applicable decision right decides qualifications or changes to commitments.
 
 ## 9. Finish and transfer responsibility
 
-Completion concerns the agreed result and its applicable evidence. Acceptance and release remain distinct acts. State what is usable, which conditions were checked and what remains unresolved.
+Completion means that the agreed work and its required examination are fulfilled within the authorized scope. Acceptance is an authorized act concerning an identified subject, scope and purpose. Release authorizes availability for a stated use or audience. Delivery transfers the result and what its recipient needs to use it. Reliance is using a contribution as a basis for a decision or action. State what is usable, which conditions were checked and which acts have occurred.
 
-For delivery, identify the actual artifact, revision, permitted use, limitations and continuing owner. Exercise the package or transfer path the receiver will use where that is necessary to establish delivery.
+For delivery, identify the actual artifact, revision, permitted use, limitations and participant responsible for continuing work. Exercise the package or transfer path the receiver will use where that is necessary to establish delivery.
 
 A handover needs enough information for the receiver's work. It does not require a fresh narrative of the project. Keep necessary operational instructions, recovery information and accepted limitations with the delivered result.
 
-Continue improving the method from actual work. Look for repeated discovery, avoidable waiting, duplicate checks, delayed integration and defects that escape. Use existing evidence to assess comparable completed work. Do not create another reporting system merely to demonstrate efficiency.
+Iteration becomes learning when a finding changes the next relevant action. It can lead to repair, a revised method or reconsideration of purpose or criteria within the applicable authority. Continue improving the method from actual work. Look for repeated discovery, avoidable waiting, duplicate checks, delayed integration and defects that escape. Use existing evidence to assess comparable completed work. Do not create another reporting system merely to demonstrate efficiency.

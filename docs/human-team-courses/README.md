@@ -6,8 +6,9 @@ Use the courses to prepare, perform, examine, and coordinate professional work. 
 
 These courses are written for you, the person learning project practice. The
 [Chirality manuals](../alignment-manual/README.md) are primarily for your own
-agent to read and use while working with you. Give the agent the Field Book and,
-when needed, the management manual. Describe the problem you want to solve or the
+agent to read and use while working with you. Give the agent the management manual
+to establish the method and vocabulary, then use the Field Book as a reference
+during work. Describe the problem you want to solve or the
 thing you want to build, and provide the relevant work and circumstances.
 
 Bring what you learn here into that undertaking. Examine the agent's contributions,
