@@ -331,6 +331,36 @@ export function RegisteredRevisions({ library, rows, busy, act }:{ library: stri
     {" "}<button disabled={busy} onClick={()=>act("workflow_refine_registered",{name:row.name,revision:row.revision})}>Refine from the revision store…</button></li>)}</ul>;
 }
 
+export function RecordsCapabilityBindings({ host }:{ host: Json }) {
+  const rows=(host?.threads??[]).filter((row:Json)=>JSON.stringify(row.generation)===JSON.stringify(host?.generation)&&row.recordsCapabilityBinding);
+  if (!rows.length) return null;
+  return <section aria-label="Conversation records capability"><h3>Conversation records capability</h3>
+    {rows.map((row:Json)=><p key={row.threadId}>{row.threadId}: {row.recordsCapabilityBinding.state}. {row.recordsCapabilityBinding.persistence??""}{row.recordsCapabilityBinding.limit?` · ${row.recordsCapabilityBinding.limit}`:""}</p>)}
+  </section>;
+}
+
+/** Stored claims remain quoted evidence even when their name/content matches
+ * a revision held locally. This view exposes no selection or registration act. */
+export function RegistrationEvidence({ evidence }:{ evidence: Json }) {
+  if (!evidence) return null;
+  return <section aria-label="Quoted registration history"><h3>Quoted registration history</h3>
+    <p>These stored claims do not make a workflow selectable here. Use a new review and your own registration to use its content.</p>
+    {(evidence.limits??[]).map((limit:string,i:number)=><p key={i}>History limit: {limit}</p>)}
+    <ul>{(evidence.rows??[]).map((row:Json,i:number)=><li key={`${row.ledgerSequence??i}`}>
+      {row.identity?.origin}:{row.identity?.name} · recorded source {row.identity?.source_root} · revision {row.identity?.revision} · recorded outcome {row.outcome}
+      <p>Quoted act reference: {row.act?.record_id}. Recorded at {row.recordedAt}.</p>
+      {(row.evidenceLimits??[]).map((limit:string,k:number)=><p key={k}>Quoted limit: {limit}</p>)}
+      {(row.claims??[]).length===0&&<p>Capturing installation unknown; no readable A15 record for this reference.</p>}
+      {(row.claims??[]).map((claim:Json,j:number)=><div key={j}>
+        <p>{claim.installation?.reference ? `Recorded installation reference ${claim.installation.reference} — unverified attribution` : "Capturing installation unknown — unverified attribution"}</p>
+        <p>Quoted actor claim: {JSON.stringify(claim.decisionActor)}.</p>
+        <p>Quoted subjects: {JSON.stringify(claim.boundSubject)}.</p>
+        {(claim.evidenceLimits??[]).map((limit:string,k:number)=><p key={k}>Quoted limit: {limit}</p>)}
+      </div>)}
+    </li>)}</ul>
+  </section>;
+}
+
 /** "Select revision ‹n›" on a retained review, for each revision that review
  * registered or re-confirmed in this App process (RC-2). The host resolves it
  * from the revision store (SL-4); nothing here picks a folder. ‹n› is the
@@ -364,26 +394,42 @@ export function RecordsStorePanel({ store, act }: { store: Json; act: (command: 
   if (!store) return null;
   const project = store.project;
   const attachment = project?.attachment;
+  const retention = project?.retention;
+  const kept = retention?.disposition === "kept";
+  const identityRepair = retention == null || kept;
+  const holdable = kept || retention?.disposition === "disposal incomplete";
   return <section aria-label="Records store">
     <h3>Records store</h3>
     {store.state === "available"
-      ? <p>Writing to {String(store.root)} ({String(store.placement)}).</p>
+      ? <p>Store: {String(store.root)} ({String(store.placement)}).</p>
       : <p role="alert">No records store: {String(store.error)}. Nothing is recorded; there is no fallback.</p>}
     {(store.limits ?? []).map((l: string) => <p key={l} role="note">{l}</p>)}
     {project && <>
       <p>Project: {attachment?.projectId ? String(attachment.projectId) : "no identity yet"}; reading {String(project.reading ?? project.state)}.</p>
       {attachment?.refusal && <p role="alert">{String(attachment.refusal)}</p>}
       {(project.notes ?? []).map((n: string) => <p key={n} role="note">{n}</p>)}
-      {project.notImported > 0 && <p>
+      {attachment?.projectId && !attachment?.refusal && kept && project.reading === "records store" && <p>
+        <button onClick={() => act("records_store_export")}>Export project records</button>{" "}
+        <small>Creates a verified package in a folder you choose.</small>
+      </p>}
+      {retention && <p role="note">{retention.closed ? "Project closed to recording." : "Project open."} Legal hold: {retention.legalHold ? "set" : "not set"}. Records: {String(retention.disposition)}. {retention.limit && String(retention.limit)}</p>}
+      {attachment?.projectId && !attachment?.refusal && holdable && <p>
+        {kept && <><button onClick={()=>act("records_store_retention",{action:retention.closed ? "reopen" : "close"})}>{retention.closed ? "Reopen project" : "Close project"}</button>{" "}</>}
+        <button onClick={()=>act("records_store_retention",{action:retention.legalHold ? "release-hold" : "set-hold"})}>{retention.legalHold ? "Release legal hold" : "Set legal hold"}</button>{" "}
+        {kept && retention.closed && !retention.legalHold && <button onClick={()=>act("records_store_retention",{action:"dispose"})}>Dispose of records after verified export</button>}
+      </p>}
+      {(retention?.disposition === "disposal incomplete" || retention?.disposition === "completion durability uncertain") && <p role="alert">Disposal or completion publication is unconfirmed and recording is blocked. {retention.legalHold ? <small>Legal hold blocks further disposal.</small> : <button onClick={()=>act("records_store_retention",{action:"resume-disposal"})}>Finish disposal</button>}</p>}
+      {project.notImported > 0 && kept && !retention.closed && <p>
         <button onClick={() => act("records_store_import")}>Import {String(project.notImported)} record file(s){project.notImportedKinds ? ` (${String(project.notImportedKinds)})` : ""}</button>{" "}
         <small>{String(project.importStanding ?? "")}</small>
       </p>}
-      {(attachment?.refusal || (attachment?.limits ?? []).length > 0) && <p>
+      {(attachment?.refusal || (attachment?.limits ?? []).length > 0) && identityRepair && <p>
         <button onClick={() => act("records_store_identity", { action: "adopt" })}>This folder is that project</button>{" "}
         <button onClick={() => act("records_store_identity", { action: "new-identity" })}>Give this folder a new identity</button>{" "}
         <button onClick={() => act("records_store_identity", { action: "restore-link" })}>Restore the project file</button>
       </p>}
     </>}
+    <p><button onClick={() => act("records_store_verify_export")}>Verify an exported package</button></p>
   </section>;
 }
 
@@ -445,6 +491,7 @@ export function WorkflowRootPanel({ data, host, act }:{ data: Json; host: Json; 
     <label>New draft name, or in-place library entry name <input {...EXACT_TEXT} value={name} onChange={e=>setName(e.target.value)} disabled={busy}/></label>
     <button disabled={busy||!data?.selection||!data?.activeLibrary} onClick={()=>action("workflow_create_draft",{name})}>Create draft from selected content</button>
     {(data?.libraries??[]).filter((l:Json)=>l.reference===data?.activeLibrary&&Array.isArray(l.registered)).map((l:Json)=><RegisteredRevisions key={l.reference} library={l.reference} rows={l.registered} busy={busy} act={action}/>)}
+    {(data?.libraries??[]).filter((l:Json)=>l.reference===data?.activeLibrary).map((l:Json)=><RegistrationEvidence key={l.reference} evidence={l.registrationEvidence}/>)}
     <label>Registered revision (content identity) <input {...EXACT_TEXT} value={revision} onChange={e=>setRevision(e.target.value)} disabled={busy}/></label>
     <button disabled={busy||!data?.activeLibrary||!name||!revision} onClick={()=>action("workflow_refine_registered",{name,revision})}>Refine registered revision from the revision store (no selection)</button>
     <button disabled={busy||!data?.activeLibrary||!name} onClick={()=>action("workflow_review",{names:[name],inPlace:true})}>Review this unregistered in-place library entry</button>
@@ -826,6 +873,7 @@ export function App() {
         </p>
         <CodexProcessControls host={host} busy={processBusy} act={(command, args) => { void processAct(command, args); }} />
         <p>Threads: {(host?.threads ?? []).map((t: Json) => `${t.threadId} (${t.status?.type ?? "?"}, gen ${JSON.stringify(t.generation)})`).join(", ") || "none"}</p>
+        <RecordsCapabilityBindings host={host} />
 
         <h3>Expected network contacts</h3>
         <p>Codex can contact the selected model provider at thread start, before a model turn. This view describes supplier behavior; socket measurements remain separate evidence.</p>

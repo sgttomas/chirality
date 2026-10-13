@@ -341,7 +341,8 @@ import sys,json,os
 if '--version' in sys.argv:
  print('codex-cli 0.160.0');sys.exit(0)
 def emit(v):print(json.dumps(v),flush=True)
-def thread(cwd):return {'id':'thread','cliVersion':'0.160.0','createdAt':1,'updatedAt':2,'cwd':cwd,'ephemeral':False,'modelProvider':'fixture-provider','preview':'fixture','projectId':None,'sessionId':'fixture-session','source':'appServer','status':{'type':'idle'},'turns':[]}
+def thread(cwd,identity='thread'):return {'id':identity,'cliVersion':'0.160.0','createdAt':1,'updatedAt':2,'cwd':cwd,'ephemeral':False,'modelProvider':'fixture-provider','preview':'fixture','projectId':None,'sessionId':'fixture-session','source':'appServer','status':{'type':'idle'},'turns':[]}
+threads={}
 for line in sys.stdin:
  f=json.loads(line)
  with open('wire.jsonl','a') as log:log.write(json.dumps(f)+'\n')
@@ -350,7 +351,13 @@ for line in sys.stdin:
  if method=='initialize':emit({'id':f['id'],'result':{'userAgent':'records-capability-fixture'}})
  elif method=='thread/start':
   cwd=f['params'].get('cwd') or os.getcwd()
+  threads['thread']=cwd
   emit({'id':f['id'],'result':{'thread':thread(cwd),'model':f['params'].get('model'),'modelProvider':f['params'].get('modelProvider'),'cwd':cwd,'approvalPolicy':'on-request','approvalsReviewer':'user','sandbox':{'type':'readOnly'},'instructionSources':[]}})
+ elif method=='thread/fork':
+  src=f['params']['threadId'];cwd=threads[src]
+  if os.path.exists('fork-cwd'):cwd=open('fork-cwd').read()
+  t=thread(cwd,'fork');t['forkedFromId']=src;threads['fork']=cwd
+  emit({'id':f['id'],'result':{'thread':t,'model':'fixture-model','modelProvider':'fixture-provider','cwd':cwd,'approvalPolicy':'on-request','approvalsReviewer':'user','sandbox':{'type':'readOnly'},'instructionSources':[]}})
  elif method=='turn/start':
   tid=f['params']['threadId']
   emit({'id':f['id'],'result':{'turn':{'id':'turn','status':'inProgress','items':[],'error':None,'itemsView':'summary'}}})
@@ -428,6 +435,65 @@ fn fake_peer_journey_the_agent_reads_this_projects_records_through_the_host() {
     assert!(!serde_json::to_string(&snapshot).unwrap().contains("JOURNEY"), "the host status carries no returned records");
     assert_eq!(snapshot["recordsCapability"]["recentReads"].as_array().unwrap().len(), 2);
     host.stop("fixture", "journey done").ok();
+}
+
+/// The forked tool reaches the actual Host rule only from a known offered
+/// source in the current generation. A changed native cwd still refuses data.
+#[test]
+fn records_access_fork_inherits_only_known_offer_and_keeps_project_scope() {
+    use std::os::unix::fs::PermissionsExt;
+    for mode in ["offered", "unoffered", "foreign-cwd"] {
+        let f = Scratch::new();
+        let project = f.project("project");
+        let other = f.project("other-project");
+        for name in ["account", "probe"] { std::fs::create_dir_all(f.0.join(name)).unwrap(); }
+        write_run(&project, "run:journey", 3, "FORK_PROJECT_EVIDENCE", false);
+        let script = f.0.join("peer.py");
+        std::fs::write(&script, PEER).unwrap();
+        std::fs::set_permissions(&script, std::fs::Permissions::from_mode(0o700)).unwrap();
+        let mut cfg = crate::hosting::HostConfig::new(script, f.0.join("account"), f.0.join("probe"), project.clone());
+        cfg.allow_unverified_dev = true;
+        cfg.wait_limit = Duration::from_secs(2);
+        let host = std::sync::Arc::new(crate::hosting::Host::new());
+        host.configure_records_capability(std::sync::Arc::new(capability(&f, &project)));
+        host.start(&cfg, "records fork fixture").unwrap();
+        let generation = host.snapshot()["generation"].clone();
+        let source = if mode == "unoffered" { &other } else { &project };
+        host.thread_start_with_guidance(source.to_str().unwrap(), "fixture-model", "fixture-provider", "guidance").unwrap();
+        let fork_cwd = if mode == "foreign-cwd" { &other } else { &project };
+        std::fs::write(project.join("fork-cwd"), fork_cwd.to_str().unwrap()).unwrap();
+        let request = host.thread_fork_dispatch(&generation, "thread").unwrap();
+        host.source_request_wait(&request, Duration::from_secs(2)).unwrap();
+        let fork = host.thread_fork_finish(&request).unwrap();
+        assert_eq!(fork["threadId"], "fork");
+        let wire = || -> Vec<Value> { std::fs::read_to_string(project.join("wire.jsonl")).unwrap_or_default().lines().map(|l| serde_json::from_str(l).unwrap()).collect() };
+        let outbound = wire().into_iter().find(|w| w["method"] == "thread/fork").unwrap();
+        assert_eq!(outbound["params"], json!({"threadId":"thread","deferGoalContinuation":true}));
+        host.turn_start_text(&generation, "fork", "Read the records in this project.").unwrap();
+        let deadline = Instant::now() + Duration::from_secs(10);
+        let reply = |id: &str| wire().into_iter().find(|w| w["id"] == id && w.get("method").is_none());
+        while reply("records-call-1").is_none() || reply("records-call-2").is_none() || reply("other-tool").is_none() {
+            assert!(Instant::now() < deadline, "{mode}: no replies: {:?}", wire());
+            std::thread::sleep(Duration::from_millis(20));
+        }
+        let first = reply("records-call-1").unwrap();
+        if mode == "unoffered" {
+            assert!(first["error"].is_object(), "a same-cwd fork cannot mint an unknown source's offer");
+            assert!(f.logged().is_empty());
+        } else {
+            assert_eq!(first["result"]["success"], mode == "offered");
+            let page: Value = serde_json::from_str(first["result"]["contentItems"][0]["text"].as_str().unwrap()).unwrap();
+            assert_eq!(page["items"].as_array().unwrap().len(), if mode == "offered" { 3 } else { 0 });
+            assert_eq!(f.logged().len(), 2, "offered calls are recorded, returned or refused");
+            assert!(f.logged().iter().all(|r| r["threadId"] == "fork"));
+            let snapshot = host.snapshot();
+            let first = snapshot["serverRequests"].as_array().unwrap().iter().find(|r| r["requestIdentity"] == "records-call-1").unwrap();
+            assert_eq!(first["originClass"], "named-service");
+            assert_eq!(first["settlement"]["origin"], json!({"class":"app-rule","ruleName":"records-read"}));
+        }
+        assert!(reply("other-tool").unwrap()["error"].is_object());
+        host.stop("fixture", "records fork done").ok();
+    }
 }
 
 // #1313 re-review M2: only path-valued fields are rewritten, as typed markers,
@@ -566,4 +632,245 @@ fn without_a_records_store_reads_are_refused() {
     assert_eq!(answer["success"], false);
     assert!(returned(&answer)["refused"].as_str().unwrap().contains("records store unavailable"));
     assert!(!f.read_log().exists());
+}
+
+#[test]
+fn records_access_source_refuses_named_pipe_without_waiting_for_its_writer() {
+    use crate::records_store::{self, Placement, Store};
+    use std::os::unix::{ffi::OsStrExt, fs::OpenOptionsExt};
+    struct StoreOverride;
+    impl Drop for StoreOverride {
+        fn drop(&mut self) {
+            records_store::use_store_for_test(None);
+        }
+    }
+    for store_owned in [true, false] {
+        let f = Scratch::new();
+        let project = f.project(if store_owned {
+            "store-project"
+        } else {
+            "legacy-project"
+        });
+        let store = f.project("records-store");
+        let configured = Store {
+            root: store,
+            placement: Placement::Test,
+            limits: vec![],
+        };
+        records_store::use_store_for_test(Some(Ok(configured.clone())));
+        let _override = StoreOverride;
+        let regular_id = if store_owned {
+            crate::records::append_project(&project, Some("run:pipe-fixture"), "app-writer:fixture", "evidence_limit", &crate::records::APP_WRITER,
+                json!({"label":"unresolvable reference","subjectRef":"invented regular record beside a pipe"})).unwrap()["recordId"].as_str().unwrap().to_owned()
+        } else {
+            let entry = crate::records::envelope(
+                "evidence_limit",
+                &crate::records::APP_WRITER,
+                json!({"label":"unresolvable reference","subjectRef":"invented regular legacy record beside a pipe"}),
+                "rec:app:regular-pipe-fixture".into(),
+                1,
+                Some("run:pipe-fixture"),
+                None,
+            );
+            let path = project.join(".chirality/records/runs/fixture/regular.jsonl");
+            std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+            std::fs::write(path, format!("{entry}\n")).unwrap();
+            records_store::attach(&project, true).unwrap();
+            assert!(!records_store::home(&project).unwrap().store_mode);
+            entry["recordId"].as_str().unwrap().to_owned()
+        };
+        let group_entries = if store_owned {
+            let log = crate::storage::project_log(
+                &project,
+                Some("run:pipe-fixture"),
+                "app-writer:fixture",
+            )
+            .unwrap();
+            let specs = (0..2).map(|n| crate::records::Spec {
+                kind: "evidence_limit", recorder: &crate::records::APP_WRITER,
+                body: json!({"label":"unresolvable reference","subjectRef":format!("invented regular group member {n}")}),
+                id: format!("rec:app:pipe-group-{n}"), observed_at: None,
+            }).collect();
+            crate::records::append_group(
+                &log,
+                specs,
+                Some("run:pipe-fixture"),
+                crate::records::RecordSet::Complete,
+            )
+            .unwrap()
+        } else {
+            vec![]
+        };
+        let pipe = if store_owned {
+            records_store::attach(&project, false)
+                .unwrap()
+                .dir
+                .unwrap()
+                .join("acts/000-pipe-fixture.jsonl")
+        } else {
+            project.join(".chirality/records/runs/fixture/000-pipe-fixture.jsonl")
+        };
+        std::fs::create_dir_all(pipe.parent().unwrap()).unwrap();
+        let name = std::ffi::CString::new(pipe.as_os_str().as_bytes()).unwrap();
+        assert_eq!(unsafe { libc::mkfifo(name.as_ptr(), 0o600) }, 0);
+        assert!(
+            crate::storage::discover(&project).unwrap().contains(&pipe),
+            "discovery semantics remain unchanged"
+        );
+        let expected_limit = format!(
+            "{}: not readable (no entry of it is returned)",
+            crate::storage::log_label(&project, &pipe)
+        );
+        // The only writer stays open until the completion check. Closing it
+        // releases an old blocking reader before any assertion can fail.
+        let mut writer = std::fs::OpenOptions::new()
+            .read(true)
+            .write(true)
+            .custom_flags(libc::O_NONBLOCK)
+            .open(&pipe)
+            .unwrap();
+        let entry = crate::records::envelope(
+            "evidence_limit",
+            &crate::records::APP_WRITER,
+            json!({"label":"unresolvable reference","subjectRef":"invented pipe bytes must not be read"}),
+            "rec:app:pipe-fixture".into(),
+            1,
+            Some("run:pipe-fixture"),
+            None,
+        );
+        writer.write_all(format!("{entry}\n").as_bytes()).unwrap();
+        let (done, completion) = std::sync::mpsc::channel();
+        let reader = std::thread::spawn(move || {
+            records_store::use_store_for_test(Some(Ok(configured)));
+            let corpus = ProjectPaths::new(&project).read();
+            records_store::use_store_for_test(None);
+            done.send(corpus).unwrap();
+        });
+        let early = completion.recv_timeout(Duration::from_secs(2));
+        let completed_before_writer_closed = early.is_ok();
+        drop(writer);
+        let corpus = early.unwrap_or_else(|_| {
+            completion
+                .recv_timeout(Duration::from_secs(2))
+                .expect("closed controlled writer releases owned reader")
+        });
+        reader.join().unwrap();
+        assert!(
+            completed_before_writer_closed,
+            "reader waited for a named pipe's writer"
+        );
+        assert!(
+            corpus.limits.contains(&expected_limit),
+            "{:?}",
+            corpus.limits
+        );
+        assert!(corpus
+            .entries
+            .iter()
+            .all(|e| e.entry["recordId"] != "rec:app:pipe-fixture"));
+        for entry in group_entries {
+            assert!(
+                corpus.entries.iter().any(|e| e.entry == entry),
+                "regular group members retain their exact parsed entries beside the pipe"
+            );
+        }
+        assert!(
+            corpus
+                .entries
+                .iter()
+                .any(|e| e.entry["recordId"] == regular_id),
+            "regular records remain readable beside the refused pipe"
+        );
+    }
+}
+
+#[test]
+fn records_access_parent_substitution_refuses_links_or_reads_the_already_held_original() {
+    use crate::records_store::{self, Placement, Store};
+    struct StoreOverride;
+    impl Drop for StoreOverride {
+        fn drop(&mut self) { records_store::use_store_for_test(None); }
+    }
+    for (store_owned, parent_already_open) in [(true, false), (false, false), (true, true), (false, true)] {
+        let f = Scratch::new();
+        let project = f.project("intended-project");
+        let other = f.project("second-invented-project");
+        records_store::use_store_for_test(Some(Ok(Store {
+            root: f.project("records-store"), placement: Placement::Test, limits: vec![],
+        })));
+        let _store = StoreOverride;
+        let mut fixtures = Vec::new();
+        for (root, marker) in [(&project, "INTENDED-SOURCE"), (&other, "SECOND-FIXTURE-MARKER")] {
+            let body = json!({"label":"unresolvable reference","subjectRef":marker});
+            let (log, entry) = if store_owned {
+                let entry = crate::records::append_project(root, Some("run:source-association"), "app-writer:source-fixture", "evidence_limit", &crate::records::APP_WRITER, body).unwrap();
+                (crate::storage::project_log(root, Some("run:source-association"), "app-writer:source-fixture").unwrap(), entry)
+            } else {
+                let entry = crate::records::envelope("evidence_limit", &crate::records::APP_WRITER, body, format!("rec:app:{marker}"), 1, Some("run:source-association"), None);
+                let log = root.join(".chirality/records/runs/fixture/writer.jsonl");
+                std::fs::create_dir_all(log.parent().unwrap()).unwrap();
+                std::fs::write(&log, format!("{entry}\n")).unwrap();
+                records_store::attach(root, true).unwrap();
+                assert!(!records_store::home(root).unwrap().store_mode);
+                (log, entry)
+            };
+            fixtures.push((log, entry["recordId"].as_str().unwrap().to_owned()));
+        }
+        let cap = capability(&f, &project);
+        let identity = cap.project_identity().unwrap();
+        let baseline = returned(&cap.answer(&call(0, json!({"operation":"read_run","run":"run:source-association"})), project.to_str()));
+        assert_eq!(baseline["items"].as_array().unwrap().len(), 1);
+        assert_eq!(baseline["items"][0]["quoted"]["recordId"], fixtures[0].1);
+        let (log, _) = &fixtures[0];
+        let expected_limit = format!("{}: not readable (no entry of it is returned)", crate::storage::log_label(&project, log));
+        let parent = log.parent().unwrap().to_owned();
+        let other_parent = fixtures[1].0.parent().unwrap().to_owned();
+        let held = f.0.join("original-invented-run-parent");
+        let moved = held.clone();
+        let after_directory = parent_already_open.then(|| parent.clone());
+        let _hook = crate::records_index::log_open_hook_for_test(log, after_directory.as_deref(), 0, move || {
+            std::fs::rename(&parent, &moved).unwrap();
+            std::os::unix::fs::symlink(&other_parent, &parent).unwrap();
+        });
+        let response = cap.answer(&call(1, json!({"operation":"read_run","run":"run:source-association"})), project.to_str());
+        assert!(held.is_dir(), "the deterministic after-check substitution ran");
+        assert_eq!(identity, cap.project_identity().unwrap(), "the physical project itself did not change");
+        assert_eq!(response["success"], true, "the existing incomplete page remains a returned, recorded page");
+        let page = returned(&response);
+        let limits = if parent_already_open {
+            assert_eq!(page["items"], baseline["items"], "the held original retains its exact parsed entries and source");
+            assert_eq!(page["limits"], baseline["limits"], "the original regular/legacy limits stay unchanged");
+            assert!(response.to_string().contains("INTENDED-SOURCE"));
+            baseline["limits"].as_array().unwrap().len()
+        } else {
+            assert_eq!(page["items"], json!([]));
+            assert_eq!(page["limits"], json!([expected_limit, "no readable entries for run run:source-association"]));
+            2 // The existing read_run limit also names the unreadable run.
+        };
+        assert_eq!(page["limits"].as_array().unwrap().len(), limits);
+        assert!(!response.to_string().contains("SECOND-FIXTURE-MARKER"));
+        assert!(!response.to_string().contains(&fixtures[1].1));
+        let logged = f.logged();
+        assert_eq!(logged.len(), 2);
+        assert_eq!(logged[1]["outcome"], "returned");
+        assert_eq!(logged[1]["returned"]["items"], usize::from(parent_already_open));
+        assert_eq!(logged[1]["returned"]["limits"], limits);
+        assert_eq!(logged[1]["returned"]["recordIds"], if parent_already_open { json!([fixtures[0].1]) } else { json!([]) });
+    }
+}
+
+#[test]
+fn records_continuity_physical_project_changed_during_source_read_is_a_logged_refusal() {
+    struct ReplacingSource { project: PathBuf, old: PathBuf }
+    impl RecordsSource for ReplacingSource {
+        fn read(&self) -> Corpus {
+            std::fs::rename(&self.project,&self.old).unwrap();std::fs::create_dir(&self.project).unwrap();
+            let record=crate::records::envelope("evidence_limit",&crate::records::APP_WRITER,json!({"label":"unresolvable reference","subjectRef":"NEW-PROJECT-SECRET","detail":"invented foreign records"}),"rec:foreign-project".into(),1,Some("run:foreign"),None);
+            Corpus { entries:vec![SourcedEntry {entry:record,log:"invented foreign source".into(),line:1}],limits:vec![] }
+        }
+    }
+    let f=Scratch::new();let project=f.project("project");let cap=RecordsCapability::with_source(&project,Box::new(ReplacingSource{project:project.clone(),old:f.0.join("original-project")}),f.read_log()).unwrap();
+    let response=cap.answer(&call(1,json!({"operation":"list_runs"})),project.to_str());
+    assert_eq!(response["success"],false);assert!(!response.to_string().contains("NEW-PROJECT-SECRET"));assert!(!response.to_string().contains("run:foreign"));
+    let log=f.logged();assert_eq!(log.len(),1);assert_eq!(log[0]["outcome"],"refused");assert!(log[0]["refusal"].as_str().unwrap().contains("physical project changed"));
 }

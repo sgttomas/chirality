@@ -11,6 +11,7 @@ pub mod act_policy;
 pub mod attachments;
 pub mod canonical;
 pub mod capture_seal;
+mod installation;
 pub mod catalog;
 mod checkpoint_recorder;
 mod model_turn_recorder;
@@ -52,6 +53,8 @@ pub mod records_access;
 mod records_index;
 pub mod record_lines;
 pub mod records_store;
+pub mod records_export;
+pub mod records_retention;
 pub mod recovery;
 mod recovery_root_view;
 pub mod role_supply;
@@ -140,6 +143,7 @@ pub fn host_config_from_env(workspace: Option<&PathBuf>) -> Result<HostConfig, S
     })?;
     let cwd = workspace.cloned().unwrap_or_else(std::env::temp_dir);
     let mut cfg = HostConfig::new(bin.into(), home.into(), probe_home()?, cwd);
+    cfg.records_project=workspace.is_some();
     cfg.expected_sha256 = std::env::var("CHIRALITY_CODEX_EXPECTED_SHA256").ok();
     cfg.allow_unverified_dev = std::env::var("CHIRALITY_ALLOW_UNVERIFIED")
         .map(|v| v == "1")
@@ -271,6 +275,50 @@ fn records_store_import(state: State<'_, AppState>) -> Result<Value, String> {
 fn records_chain_heads(state: State<'_, AppState>) -> Result<Value, String> {
     let project = state.workspace.as_ref().ok_or("no project is open")?;
     Ok(records_index::chain_heads(project))
+}
+/// The person picks the parent of a new, verified records export package.
+#[tauri::command(async)]
+fn records_store_export(app: tauri::AppHandle, state: State<'_, AppState>) -> Result<Value, String> {
+    let project = state.workspace.as_ref().ok_or("no project is open; nothing exported")?;
+    let Some(parent) = workflow_native_folder(&app, "Choose a folder for the records export")? else { return Ok(json!({"state":"export cancelled"})); };
+    let destination = parent.join(util::opaque_id("records-export-")?);
+    records_export::export(project, &destination)
+}
+#[tauri::command(async)]
+fn records_store_verify_export(app: tauri::AppHandle) -> Result<Value, String> {
+    let Some(folder) = workflow_native_folder(&app, "Choose a records export to verify")? else { return Ok(json!({"state":"verification cancelled"})); };
+    records_export::verify(&folder)
+}
+/// RS §13.8: administrative retention acts are captured only by this native
+/// question. The renderer supplies an offered action, never actor or evidence.
+#[tauri::command(async)]
+fn records_store_retention(app:tauri::AppHandle,state:State<'_,AppState>,action:String)->Result<Value,String>{
+    let project=state.workspace.as_deref().ok_or("no project is open")?;
+    let home=state.homes.lock().unwrap().active();
+    let observe=||->Result<(Value,Value),String>{
+        let active=state.homes.lock().unwrap().active();if !Arc::ptr_eq(&active,&home){return Err("Native home selection changed; review again".into());}
+        let (_,observed)=current_actor_context_for(&state,&home);
+        let mut actor=act_control::person(observed["displayName"].as_str(),observed["osAccount"].as_str());
+        if let Some(account)=observed["codexAccount"].as_str(){actor["codexAccount"]=json!(account);}
+        Ok((actor,json!({"observedHome":observed,"modeHomeClass":home.class().as_str()})))
+    };
+    if action=="close" {
+        let workflows=state.workflows.try_lock().map_err(|_|"A workflow operation is pending")?;workflows.retention_ready()?;
+        let acts=state.act.try_lock().map_err(|_|"An act operation is pending")?;
+        if acts.as_ref().is_some_and(|a|!a.writer_ready()){return Err("A native act still has pending records; retry its recording before closing the project".into());}
+    }
+    let bag=if action=="dispose" {match workflow_native_folder(&app,"Choose the verified export of this closed project's current records")? {Some(path)=>Some(path),None=>return Ok(json!({"state":"disposal cancelled"}))}}else{None};
+    let (actor,observed)=observe()?;
+    let plan=records_retention::prepare(project,&action,bag.as_deref(),&actor,&observed)?;
+    let (dont,perform)=match action.as_str(){"close"=>("Keep project open","Close project"),"reopen"=>("Keep project closed","Reopen project"),"set-hold"=>("Keep current hold state","Set legal hold"),"release-hold"=>("Keep legal hold","Release legal hold"),"dispose"=>("Keep records","Dispose of records"),"resume-disposal"=>("Leave incomplete","Finish disposal"),_=>return Err("unknown records retention action".into())};
+    let mut refused=None;
+    if !confirm_choice(&app,"Project records retention",records_retention::statement(&plan),dont,perform,&mut refused){return refused.map_or_else(||Ok(json!({"state":"cancelled; no retention act"})),Err);}
+    let (actor,current)=observe()?;
+    // Keep local record owners fixed during host revalidation/application.
+    let workflows=state.workflows.try_lock().map_err(|_|"Workflow context busy; review again")?;
+    let acts=state.act.try_lock().map_err(|_|"Act context busy; review again")?;
+    if action=="close" {workflows.retention_ready()?;if acts.as_ref().is_some_and(|a|!a.writer_ready()){return Err("Native act records became pending; review again".into());}}
+    records_retention::apply(plan,&actor,&current)
 }
 /// RS §13.8 "Project identity": the person resolves a project identity limit.
 #[tauri::command(async)]
@@ -487,7 +535,9 @@ fn add_api_key(app:tauri::AppHandle,state:State<'_,AppState>)->Result<Value,Stri
                 let host=Arc::new(Host::new_with_app_custody(custody)?);
                 if let Some(store)=&account_store{host.configure_distribution_store(Ok(store.clone()));}
                 // RS §13.9: the same project's records capability on this home's conversations.
-                if let Some(capability)=account.host.records_capability(){host.configure_records_capability(capability);}
+                if let Some(capability)=account.host.records_capability(){
+                    if let Some(context)=account.host.records_project_context(){host.configure_records_capability_with_context(capability,context);}else{host.configure_records_capability(capability);}
+                }
                 let home=Arc::new(runtime_session::HomeSession::new(home_resources::HomeClass::ApiKey,host,Ok(config.clone()))?);
                 *home.attachment_custody.lock().unwrap()=Ok(attachment.clone());
                 home.recovery_startup.lock().unwrap().adopt_shared_source(&home.host);
@@ -1732,7 +1782,7 @@ pub fn run() {
             }
             // AAC §6.3 SEAL-C: this installation's capture-seal keys live in the
             // App data folder, outside every project.
-            if let Ok(data) = data.as_ref() { capture_seal::install(data); }
+            if let Ok(data) = data.as_ref() { capture_seal::install(data); installation::install(data); }
             let state = app.state::<AppState>();
             *state.home_bootstrap.lock().unwrap() = (|| {
                 let data=data.as_ref().map_err(Clone::clone)?;
@@ -1756,7 +1806,7 @@ pub fn run() {
                     Err(_) => capability,
                 });
                 match capability {
-                    Ok(capability) => home.host.configure_records_capability(Arc::new(capability)),
+                    Ok(capability) => home.host.configure_records_capability_with_context(Arc::new(capability), state.project_context.clone()),
                     Err(reason) => home.host.records_capability_unavailable(reason),
                 }
             }
@@ -1873,7 +1923,7 @@ pub fn run() {
             read_recovery_custody,
             recovery_retry,
             read_connector_routes,
-            records_store_import, records_store_identity, records_store_choose, records_chain_heads,
+            records_store_import, records_store_identity, records_store_choose, records_chain_heads, records_store_export, records_store_verify_export, records_store_retention,
             prepare_connector_source, select_connector_source, anchor_connector_source, revise_connector_source,
             read_connector_git, cancel_connector_git, anchor_connector_git,
             recheck_published_connector_draft, prepare_connector_reconstruction, prepare_connector_draft, publish_connector_draft, cancel_connector_draft, reconcile_connector_draft, inspect_connector_drafts,
@@ -1935,6 +1985,7 @@ pub fn run() {
                 let st: State<'_, AppState> = app.state();
                 let homes = st.homes.lock().unwrap().entries();
                 let _ = app_quit::finish_exit(&homes, st.app_quit.proceeding());
+                records_index::close_all();
             }
             _ => {}
         });

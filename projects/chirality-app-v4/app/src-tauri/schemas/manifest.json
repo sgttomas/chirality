@@ -3,7 +3,7 @@
     {
       "file": "RS_RECORD.schema.json",
       "source": "projects/chirality-app-v4/execution/PKG-04/DEL-04-03/Design/RS_RECORD.schema.json",
-      "sha256": "066798995dbce9d6c8fcfaffcb6c8983c55f9d5ca4e8c6c00fa2b670d18a76ee",
+      "sha256": "05060e9708c84cae6b1d2545801b901e1d1cab1c3db4f0efbcf817fbdc5997d2",
       "id": "urn:chirality:app-v4:del-04-03:rs-record:0.1"
     },
     {
@@ -27,13 +27,13 @@
     {
       "file": "aac.offer.schema.json",
       "source": "projects/chirality-app-v4/execution/PKG-01/DEL-01-04/Design/aac.offer.schema.json",
-      "sha256": "fa1ccf2628b1e4653f7720eb45feaa7a887039c79a3929ef35a220461d0575b0",
+      "sha256": "8d1be39c7c012dfb66d4f621b574b6175a13a452f3011ab7bbdaf56ae171a30f",
       "id": "urn:chirality:app-v4:del-01-04:aac:offer:0.3"
     },
     {
       "file": "aac.capture-evidence.schema.json",
       "source": "projects/chirality-app-v4/execution/PKG-01/DEL-01-04/Design/aac.capture-evidence.schema.json",
-      "sha256": "1786998b1dd53ccf184d280ce5a571c9f385dcfd41beac8e20a6d279d1a25439",
+      "sha256": "9d768aa098036203c6d2d3fbcf11b6adb0d5ed1aa3ea16adbcc2da886c19da12",
       "id": "urn:chirality:app-v4:del-01-04:aac:capture-evidence:0.3"
     }
   ],

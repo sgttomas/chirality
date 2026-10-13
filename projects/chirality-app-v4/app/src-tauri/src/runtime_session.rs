@@ -313,7 +313,8 @@ pub fn reviewed_ledger_path(app_user_data: &std::path::Path) -> std::path::PathB
 }
 
 pub const INSTRUCTION_RELEASE: &str = "chirality-app-v4-unqualified-group-a-entry";
-// Exact v4-owned defaults independently READY in V0-INSTRUCTION-TRANCHE.
+// Exact current defaults are identified by ROLE_SET_SOURCE_BINDING.json.
+// Historical V0 review does not cover later default-guidance edits.
 pub const COMMON_DEFAULT: &[u8] = include_bytes!("../resources/instructions/AGENTS.md");
 pub fn role_default(role: crate::role_supply::Role) -> &'static [u8] {
     use crate::role_supply::Role::*;
@@ -4204,6 +4205,11 @@ impl Default for WorkflowRootSession {
     }
 }
 impl WorkflowRootSession {
+    pub(crate) fn retention_ready(&self)->Result<(),String>{
+        for run in self.runs.values(){let run=run.try_lock().map_err(|_|"A workflow operation is pending; settle it before closing project records")?;
+            if run.retention_activity.is_some() || run.has_pending_records(){return Err("A workflow run or its record publication is still open/pending; explicitly end or settle it before closing project records".into());}}
+        Ok(())
+    }
     pub fn snapshot(&self) -> Value {
         // Inventory describes verified build inputs, never release registration.
         let production_catalog = match crate::workflow_workspace::production_catalog::ProductionCatalog::load() {
@@ -4220,7 +4226,7 @@ impl WorkflowRootSession {
         json!({"productionCatalog":production_catalog,"selection":self.selected.as_ref().map(|s|json!({"reference":s.reference,"identity":s.selection.identity(),"standing":s.selection.admission().standing(),"package":crate::attachments::native_path_identity(&s.package),"currentLimit":s.selection.verify_store(&s.package).err(),"selectedAt":s.selected_at,"replaces":s.replaces,"newerRevision":self.newer_revision_view(s),"runnable":run_admission(&s.selection).is_ok(),"runLimit":run_admission(&s.selection).err(),
                 // NIR §9 PD-1 / AS §4 OV-1: the declared part, read from the selected revision's own bytes, for the run panel.
                 "declaration":s.selection.snapshot().declaration().map(|d|json!(d)).unwrap_or_else(|error|json!({"unavailable":error}))})),
-            "libraries":self.libraries.values().map(|l|json!({"reference":l.reference,"root":crate::attachments::native_path_identity(&l.root),"origin":l.origin,"sourceRoot":l.source_root,"reconciliation":l.owner.try_lock().map(|o|json!(o.reconciliation())).unwrap_or(Value::Null),"registered":l.owner.try_lock().map(|o|o.registered_listing()).unwrap_or(Value::Null)})).collect::<Vec<_>>(),"activeLibrary":self.active_library,"activeReview":self.active_review,
+            "libraries":self.libraries.values().map(|l|json!({"reference":l.reference,"root":crate::attachments::native_path_identity(&l.root),"origin":l.origin,"sourceRoot":l.source_root,"reconciliation":l.owner.try_lock().map(|o|json!(o.reconciliation())).unwrap_or(Value::Null),"registered":l.owner.try_lock().map(|o|o.registered_listing()).unwrap_or(Value::Null),"registrationEvidence":l.owner.try_lock().map(|o|o.registration_evidence()).unwrap_or(Value::Null)})).collect::<Vec<_>>(),"activeLibrary":self.active_library,"activeReview":self.active_review,
             "reviews":self.reviews.iter().map(|(id,review)|match review.try_lock(){Ok(review)=>json!({"reference":id,"status":review.status}),Err(_)=>json!({"reference":id,"state":"original native review interaction pending"})}).collect::<Vec<_>>(),
             "runs":self.runs.iter().map(|(id,run)|match run.try_lock(){Ok(run)=>run.view(id),Err(_)=>json!({"reference":id,"state":"original run operation pending"})}).collect::<Vec<_>>(),
             "reopened":self.reopened,
@@ -4790,7 +4796,9 @@ impl WorkflowRootSession {
             &crate::util::now_rfc3339(),
         )?;
         let client_id = crate::util::opaque_id("workflow-message:")?;
+        let retention_activity=crate::records_retention::activity(&project_root)?;
         let mut workflow_run = WorkflowRun {
+            retention_activity,
             home,
             project: records,
             project_root,
@@ -6190,6 +6198,7 @@ impl WorkflowCheckSlot {
     }
 }
 pub(crate) struct WorkflowRun {
+    retention_activity: Option<crate::storage::Ownership>,
     pub home: std::sync::Arc<HomeSession>,
     project: crate::workflow_workspace::publication::ProjectRecords,
     project_root: std::path::PathBuf,
@@ -6500,6 +6509,7 @@ impl WorkflowRun {
                 }
             }
         }
+        if self.lifecycle!=RunLifecycle::Open && !self.has_pending_records(){self.retention_activity=None;}
     }
     /// EXEC §3.1 CK-1/CK-2 through J2's seam, from this run's own selection,
     /// holding library, home, generation and conversation. Advisory only: the

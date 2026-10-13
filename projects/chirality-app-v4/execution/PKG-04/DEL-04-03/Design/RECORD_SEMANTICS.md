@@ -573,6 +573,11 @@ operations (proposals, applications, undo) are never flagged or annotated
   draft** and the **prior revision** (or none) (R17-11; C-01); purpose:
   "make it available in the project library" or "… in the user library"
   (ACT-POLICY-v0.9 §2.1). **Re-confirmation (CC-WR-RECONFIRM; WR-v0.2 §4.8).** An A15 composed from a WR descriptor with disposition *re-confirmation* re-confirms a registered revision for use in the App session that captured it: bound subject that revision; bound content its identity; relations the reviewed draft and that revision's own prior revision (or none); purpose "make it available again in this App session from the project library" or "… from the user library". It registers no new revision. It is new capture evidence of the person's act; it makes no earlier A15, capture or record trusted, and §14.1a and R-7 are unchanged. **Several entries in one act (DECISION-L L-4):**
+  A single existing entry reviewed in place uses the single A15 form with
+  `relations.reviewedDraft.draft` as WR ID-3 `entry:` and null `priorRevision`;
+  its singular wording and scope refer to that entry (owner, 2026-10-13:
+  "Allow direct single-entry registration (Recommended)"). The compatibility
+  relation name implies no created draft. For two or more entries,
   one A15 may register several library entries in place, each entry's bytes
   bound (*registered entries*, §6.1), like a batch A5 listing several items;
   wording "register workflow revisions", purpose "make them available in
@@ -1503,8 +1508,8 @@ logs, outside-run act logs, captures and WR WP-1 records, and (U-STORE-6,
 `connector_route_store.rs`) and the agents' records read log (§13.9); Units
 written together and the chain of Tamper-evidence (App `record_lines.rs`,
 `records.rs`, `records_index.rs`) for every RS log the App writes. The
-other mechanisms are not built yet (proposed, or owner decisions awaiting
-their slice); the store's copy of the App's fleet coordination observations
+derived SQLite index, BagIt export and recorded retention controls below
+are also implemented; the other mechanisms await their slices; the store's copy of the App's fleet coordination observations
 has its place below, but DEL-06-01 has no App writer or reader yet.
 
 - **Placement** (implemented). The App keeps its records in its own records
@@ -1588,6 +1593,26 @@ has its place below, but DEL-06-01 has no App writer or reader yet.
   or unverified once the App is signed. They never count as this person's
   registration: a workflow from such a library is selectable here only after
   the person registers it with their own A15.
+  **Current implementation.** The library view shows registration history
+  separately as quoted claims, retaining each original tuple, source root and
+  act reference, including rows from a library opened at another path. Each
+  act retains its quoted bound subjects; duplicate record identities and
+  unknown or mismatching complete ledger tuples are visible relationship
+  limits. A changed path does not establish another installation. New A15 captures and
+  their RS bodies carry optional `installation` {`reference`, `verification`:
+  `unverified`}: a secure opaque UUID reference kept once in the App data
+  folder's `installation.json`, independent of the chosen records store. It
+  is attribution metadata only; copying/editing that file can repeat/change
+  the claim. Legacy records, or a local identity that cannot be read or made
+  durable, show installation unknown; a capture with that failure retains its
+  actual native act and an explicit attribution limit. No cold file is
+  retroactively attributed or sealed. Verification waits for App signing;
+  the current reference authenticates neither the installation nor the act.
+  Selection still requires a registration/re-confirmation result held from
+  this process's own native A15; quoted history never enters that route. The
+  existing two-or-more-entry in-place route is supported after a move; AAC
+  still refuses a single `entry:` descriptor (its current implementation
+  conditions), so this slice does not establish that route.
 - **Split by who writes** (owner, 2026-10-12: "Split by who writes (Recommended)"). Records the App writes join the
   store: connector route accounts (DEL-07-02) and the App's own fleet
   coordination observations. Working files that the person and agents edit
@@ -1716,17 +1741,131 @@ has its place below, but DEL-06-01 has no App writer or reader yet.
   the owner accepted SEAL-C's residual "until signing" on 2026-10-11, and the
   key moves to the OS keychain at signing (AAC §6.3; OI-011). Whether
   checkpoints share SEAL-C's key, and SEAL-2/U-32, are decided there.
-- **Derived index** (proposed). A SQLite database in the store, built only from the
-  logs, answers cross-run queries. It is deletable and rebuildable and is
-  never the authority for a record (REQ-001; V4-REC-06). Where it disagrees
-  with the logs, the logs govern and the index is rebuilt.
+- **Derived index** (implemented; `records_index.rs`, `records_query.rs`).
+  A disposable SQLite database under the store's `indexes/` directory answers
+  record-identity, correction, act-claim and late-write queries across runs.
+  Record bodies stay in the logs; the database holds identities, membership
+  counts, positions, group-member ordinals and line hashes. Each process owns
+  a uniquely named cache and rebuilds it from the logs on first use, rather
+  than trusting an existing mutable database for absence or completeness.
+  At most four project indexes are held. SQLite positions and membership sets
+  are disk-backed; metadata for ordinary valid entries grows with logs and
+  directories, not entries. Diagnostics still grow with the limits they report. Rebuilds stream lines instead of holding each whole log.
+
+  The cache is deletable and rebuildable and is never record authority
+  (REQ-001; V4-REC-06). An unexpected cache change, deletion, replacement or
+  query failure invalidates it. Queries fall back to validated source scans
+  while a cache cannot be used; if the store cannot host derived metadata,
+  a private temporary SQLite cache may serve the process. This copies no
+  record body and provides no alternative home for records. Every returned
+  record is reread from its owning log and checked against its schema,
+  complete group, identity, sequence and exact indexed line hash. A mismatch
+  reports an incomplete read and forces source rebuilding. Cold startup
+  still validates all logs, and a full act projection still grows with its
+  result; this index alone does not bound that projection's memory.
+  Normal App exit releases active owned caches after final record writing;
+  eviction does so too. Shutdown cleanup is best effort, and a crash can leave
+  disposable cache files in `indexes/`. These may be deleted without deleting
+  records; no stale file is adopted as record authority.
+  The records capability constructs quoted entries lazily for the requested
+  page, avoiding a second complete set of copied record bodies. Its source
+  corpus and run-summary derivation still scan the complete set; they are
+  separate from this disk-backed index's memory bound.
 - **Retention and disposition** (owner U-STORE-1, 2026-10-12: "Keep;
   recorded disposal"). Records are kept with no expiry; nothing is disposed
   of automatically. The person may dispose of a closed project's records only
   as a recorded act, and only after a verified export package of them
   exists. A legal hold set on a project blocks its disposal until the hold is
-  released, and setting and releasing a hold are recorded acts. Until export
-  and that act are built, no deletion is offered.
+  released, and setting and releasing a hold are recorded acts, including a
+  hold on bytes retained by an incomplete disposal.
+
+  *Implemented* (`records_retention.rs`, native `records_store_retention`).
+  **Close project** records explicit closure and prevents new App recording
+  and Codex starts for that identity. Closure requires supplier activity in
+  this or another App process to have ended, hot workflow runs to have ended
+  and their pending publications to have settled, and native captures to have
+  settled; it ends no run or supplier itself. **Reopen project** reverses
+  closure before disposal. **Set legal hold** and **Release legal hold** are
+  native person choices; a hold blocks disposal while permitting recording.
+  Every choice records the observed App name, OS account and Codex account
+  when reported, marked identity not verified, separately from the App
+  interface recorder, with its project scope, purpose and frozen context.
+  These are records-administration acts, following the store's identity/import
+  administration, not additions to the shared human-act kind/class list.
+  `resources/runtime_core/records-administration.entry.schema.json` defines
+  their App-local format.
+
+  The store keeps a project's append-only administrative history at
+  `administration/<safe-project-key>/events/<sequence>.json`, outside the
+  subtree to be disposed. Each complete create-once file carries the previous
+  file's exact-byte SHA-256; unknown members, malformed files, missing order,
+  conflicting transitions or a broken link make retention state unavailable
+  and refuse further acts. Readers open regular single-link files without
+  following links or blocking on special files, and compare their opened
+  metadata before/after reading. Administrative publication and reconciliation
+  flush every event and every link through the store root, including visible
+  directories left by a failed earlier attempt. The App remembers accepted
+  sequence/head prefixes through later read errors; removing or replacing
+  already observed links refuses further recording or acts. A durable
+  `history-started.json` marker beside `events/` pins the first event and detects
+  a cold missing/empty event history while it survives. It is control evidence,
+  not another native act; the protected export snapshot retains the exact events.
+  Recovery requires restoring the original missing history from verified evidence;
+  nothing infers no hold from unreadable evidence.
+  Stable admission and activity locks live beside these events. Every owning
+  store write takes shared admission and rechecks retention after waiting;
+  the actual read-log append and WR descriptor publication do so too. Supplier,
+  hot run and pending native-capture activity leases keep closure from burying
+  pending work. Closed payloads remain readable/exportable. Ordinary project and WR readers refuse disposed or incomplete-disposal identities even if payload files are recreated; administration and verified-bag recovery use separate guarded readers. Disposed identities
+  retain their roots and administrative evidence; new recording, import,
+  replacement identity and reassociation are refused, and retained §13.7
+  originals never become the record source again.
+
+  **Dispose of records after verified export** chooses an existing bag natively.
+  It requires the project to be closed, no hold, and the bag's complete payload
+  inventory, each exact file hash/length and its prior administration snapshot
+  to equal the current store. The native question freezes the actual project,
+  physical folder/store/link identities, closure, hold, full observed actor
+  context and verified export identity; the host observes and verifies them
+  again after the choice under exclusive admission. A changed source, export,
+  actor or state refuses the application. The durable original disposal act,
+  naming the verified bag and complete payload identity, precedes removal.
+  The host rechecks that original bag identity, current remaining bytes and
+  original physical source folder after this publication. Each original member
+  is moved exclusively to `administration/<key>/removal/<original-relative-path>`
+  before its exact original-manifest hash is checked and it is unlinked; a
+  changed member survives there. Only empty directories are removed, so a new
+  file introduced during deletion stays and leaves disposal incomplete. No
+  recursive sweep removes unverified members. Completion is a separate App
+  observation after removal and folder sync.
+  Only `projects/<safe-project-key>/` is removed. Library A15 evidence,
+  retained project originals, co-written fleet files, the verified bag and
+  surviving administrative history remain.
+
+  A failed or uncertain removal/completion leaves **disposal incomplete**,
+  recording blocked, with the original native act intact. **Finish disposal**
+  rechecks that same original bag and pre-disposal history; every remaining
+  source or staged file must be an unchanged member of its original complete
+  payload. Extra/changed members, a replaced physical source folder or
+  changed/missing exports refuse recovery. A hold can be set or released on
+  an incomplete disposal; while held, Finish disposal is blocked. These later
+  acts keep the original disposal's actor, bag and pre-disposal history cutoff. An already
+  absent subtree can be synced and its completion recorded without another
+  invented disposal act. If a complete completion event is visible but its
+  publication sync failed, this process shows **completion durability
+  uncertain** and retains Finish disposal: it syncs the existing event and
+  administrative ancestors without another disposal or completion entry.
+  After relaunch, the completion either survived or the original disposal
+  remains incomplete. Unavailable store/identity errors never restore legacy
+  originals as a project record source, including the named-log readers;
+  explicit library evidence readers retain their separate paths. There is no
+  automatic deletion, retry or expiry.
+  These unsigned administrative bytes, like current unsigned exports, prove
+  neither a verified actor nor outside time against control of this machine.
+  After a cold restart, removal of a valid nonempty tail cannot be recognized
+  without an external checkpoint; neither can removal of the entire
+  administration control including its history marker. These are evidence
+  limits, not an inferred hold release or permission to reconstruct history.
 - **Export and import** (owner U-STORE-5, 2026-10-12: "BagIt + signed
   manifest"). A project's records move or are handed over as a verified
   BagIt package (RFC 8493): the store's files byte for byte, with a SHA-256
@@ -1734,6 +1873,43 @@ has its place below, but DEL-06-01 has no App writer or reader yet.
   signed. The package is readable and checkable without the App.
   Import verifies the package, never overwrites, keeps every record identity,
   and reports duplicates under R-5…R-8.
+  *Export implemented.* Created package and staging folders use 0700 and files
+  use 0600 from creation, including intermediate payload folders. Verification
+  never changes the permissions of an existing package. The records-store panel offers **Export project
+  records** for an attached project whose records are in the store. A native
+  folder selector chooses the parent; the App publishes a new BagIt 1.0 folder
+  without replacing an existing one. The payload contains the project store's
+  files byte for byte, including captures, workflow records, connector accounts,
+  import evidence and the read log. Store-wide rebuildable `indexes/` is outside the project payload; only
+  the known `.writer.lock` and `captures/.capture.lock` controls are omitted.
+  Imported connector files keep every byte, including interrupted-publication
+  `.tmp` files and unusual `.lock` names. The package has `bagit.txt`, a
+  `manifest-sha256.txt` covering every payload file exactly once, a protected
+  `records-chain-heads.json` tag computed from the copied RS logs, and a
+  `records-administration.json` tag containing the project's identity and the
+  prior administrative events' exact UTF-8 bytes as reversible JSON strings
+  (whitespace and line endings preserved), and a `tagmanifest-sha256.txt`
+  covering all export tags. The new disposal act remains in the surviving
+  ledger after that prior-history package is verified. This follows
+  [RFC 8493](https://www.rfc-editor.org/rfc/rfc8493.html).
+
+  Export holds shared stable admission, then capture ownership before exclusive
+  record ownership (read ownership also permits closed retained projects), checks
+  the source file inventory and stamps before and after copying, checks each
+  copy's hash against its source, verifies the package, and flushes files and
+  folders before publishing. A changed or unreadable source refuses the
+  export. These checks do not certify a coherent revision against a writer
+  that evades filesystem change observations. Broken chains, legacy lines and
+  evidence gaps remain in the copied records and the chain-head tag; a verified
+  package certifies its bytes, not complete history or human-act authenticity.
+  **Verify an exported package** rechecks the full inventory, both manifests
+  and the copied RS chain heads. The included standard-library `verify.py`
+  checks inventories and hashes without the App (`python3 verify.py <bag>`),
+  including the chain-head tag's checksum; it does not interpret RS semantics.
+  Both say the package is unsigned. Older exports without an administration
+  snapshot remain byte-checkable, with retention history explicitly unknown;
+  they never satisfy disposal's current-package prerequisite. Package import
+  remains unbuilt.
 - **Existing records** (implemented). The App discovers the §13.7 project logs and reads
   them in place. It then imports them explicitly (§13.7 discovery makes no
   implicit copy) into the store as byte-identical copies verified against
@@ -1867,18 +2043,72 @@ It realizes §13.8's agent access and does not change what a record is.
   was returned is accounted for by the read log, joined by generation and
   request identity. `dynamicTools` is experimental-only at Codex
   0.160.0, which the App already declares (`experimentalApi`). The pinned
-  `thread/resume` and `thread/fork` carry no `dynamicTools`, so a conversation
-  continued or copied is not offered the tool unless Codex keeps it with the
-  thread (not observed). The tool is the App's own capability, not a tool a
+  `thread/resume` and `thread/fork` carry no `dynamicTools`. The maintained
+  opt-in `app/supplier_checks/records_delivery.py` check observes stock
+  0.160.0 retaining the supplied capability through resume and fork, both
+  within its process and after a restart into the same scratch Codex home.
+  It uses the actual App definition and invented HTTP400 capture-only
+  providers, with no model prediction or App handler; threads started
+  without the capability remain without it. Both the custom provider and
+  built-in `lmstudio` route redirected to that fixture reported
+  `namespaceTools: true` and carried the declaration in the Code Mode
+  `functions.exec` description for the selected `gpt-6.1-sol` model. Delivery
+  when a provider reports `namespaceTools: false` and actual provider behavior
+  remain unobserved. The App carries a known source's offer to a correlated,
+  operationally admitted fork within the same generation. The maintained
+  `records_access_fork` fake-peer journey exercises the actual Host handler,
+  its prior-to-reply read log and project-cwd refusal; it grants nothing to
+  a fork whose source was not offered the tool. Cold continuity uses the
+  DEL-04-03 REC receiver receipt described below; a retained supplier
+  declaration alone grants no App handler. No native walkthrough has
+  witnessed these handler joins. The tool is the
+  App's own capability, not a tool a
   workflow can supply: it does not make WD's `dynamic-tool-call` present
   (EXEC compatibility row), and no act or act control is reachable through
   it (AAC NA-1).
-- **When it is used (direction).** The tool's description says to use it
+- **Cold offering continuity (current implementation).** The existing REC
+  `conversation_index` receiver tags (§4.1 of REC) hold the opaque owner
+  `DEL-04-03` value: compact UTF-8 JSON, format
+  `chirality.records-capability.receipt`, version `0.1`. It names the native
+  home/thread, actual REC home class, explicit Root App-project reference,
+  lossless canonical capability directory and its device/inode, the exact
+  supported definition's SHA-256, and original offering/admission full
+  generation, App request reference, RPC ID, method and thread. A fork also
+  names its source thread and preserves the original offered-start pointer.
+  The Host freezes the project with the offered parameters, and makes a
+  receipt only after an actually written, correlated, schema-valid and
+  operationally admitted App start carrying exactly this definition. No raw
+  supplier frame, guidance, settings or records are copied into it.
+  A genuine fork can retain a receipt only from known original offering and
+  project provenance; its CURRENT index uses that explicit project, never
+  native cwd. After a genuine current explicit resume admission, one matching,
+  nonconflicting durable receipt installs only the current-generation records
+  handler. Missing, malformed, conflicting, unsupported-definition or changed
+  home/Root-reference/physical-directory readings leave the capability visibly
+  unknown/unsupported; older offerings are never backfilled. REC source and
+  generation changes during lookup refuse binding. Every call still checks
+  native cwd and physical directory, rechecks after its source read, and logs
+  before replying. No resume/fork resends instructions, settings or dynamic
+  tools, or restores role, act or run authority.
+  A failed receipt append retains safe hot use with a cold-publication limit.
+  As REC's existing store contract allows, COMMIT can land before an error:
+  the current held observation does not claim that append durable. A fresh
+  healthy REC initialization which commits and folder-flushes its new session
+  marker can read that landed receipt, and a later genuine resume may use it.
+  Failed/incomplete fresh initialization refuses cold binding. The receipt
+  records the actual original start, not success of its original append
+  callback; it is unverified App operational metadata, never authenticated
+  supplier provenance or human-act authority.
+- **When it is used (direction).** The tool's description and bundled common
+  product guidance say to use it
   only when the person or the workflow directs the agent to rebuild context
   from the records; a person's message or a workflow's text gives that
   direction in the conversation. The App cannot tell a directed call from an
   undirected one, so it does not try: every call is recorded and shown, and
   what it returns is bounded and marked.
+  The new default reaches freshly seeded instruction stores; existing editable
+  copies are preserved. Guidance is read at a new conversation's start, never
+  resupplied on resume or fork (ROLE §4.2, §5.5).
 - **Operations** (arguments validated against the tool's input schema;
   unknown keys refused):
 
@@ -1910,7 +2140,18 @@ It realizes §13.8's agent access and does not change what a record is.
   records store subtree with the registered legacy log's imported copy, or
   before an import the §13.7 project logs under `.chirality/records/` and the
   registered legacy log in place), read by the R-2 reader; the move to the
-  store changed the source, not the tool. It never reads or returns keys (the capture-seal folder
+  store changed the source, not the tool. The capability and index open each
+  parent component without following links, relative to a held directory
+  descriptor, then open the regular log leaf without following links or
+  waiting for a pipe. Renaming an already-held parent cannot redirect that
+  read to its replacement. A refused log retains the existing unreadable
+  limit. The index also checks its captured stamp against the opened log
+  before parsing and against both the descriptor and pathname afterward;
+  a failed source read produces an incomplete-record limit and discards its
+  staged positions. The failed reading has no accepted stamp, so an ordinary refresh
+  retries it even when the original file's stamp is unchanged after recovery.
+  Its final growth guard comes from that same descriptor.
+  It never reads or returns keys (the capture-seal folder
 
   in App data), capture evidence files (act records cite them by reference),
   another project's records, workflow library acts (§13.8 keeps them with
@@ -2220,12 +2461,11 @@ machine; `records::durability_tests`, and the ignored
   since the last read).
 - *Bounded reads (current implementation; `records_index.rs`).* The
   writer's guards (W-0/W-1, CC-ID, the open-run complete-set guard, the
-  W-2 reconciliations) and the act read now use an in-process index of
-  the project's logs. It is rebuilt from them, never a store, and keeps
-  at most four projects. Per log it keeps the record identities with
-  their byte positions and `seq`, the limits and any torn tail. Its
-  memory grows linearly with the total number of entries: one small
-  record per entry.
+  W-2 reconciliations) and the act read use the derived SQLite index described
+  in §13.8. Identities, positions and membership counts live in its disposable
+  database; in-process state keeps per-log limits, chain and growth metadata.
+  Reads and rebuilds stream the shared R-2 parser's lines. Earlier in-process
+  index measurements below remain observations of the versions named there.
 
   How it stays current:
   - Each refresh re-walks the tree and takes every log's and directory's
@@ -2245,7 +2485,7 @@ machine; `records::durability_tests`, and the ignored
     during the read is left to the next refresh.
   - A line read again from its stored position (entries by identity,
     the act read's claims) is parsed and validated again (R-4), and must
-    still hold its indexed identity and `seq`. Otherwise the read fails
+    still hold its indexed identity, `seq` and exact line hash. Otherwise the read fails
     as incomplete and the log is read in full at the next refresh.
 
   The guarantees are those of the full read. An identity held by a
@@ -2257,6 +2497,17 @@ machine; `records::durability_tests`, and the ignored
   R-8), in one look at the index. It keeps its result while the index's
   act records, every capture it read (stamp, change time included) and
   the seal key basis are unchanged.
+  The completed checkpoint act read is an immutable in-process snapshot
+  shared by the cache and its readers; keeping or returning it copies no
+  record or capture bodies. A reader's earlier observation remains unchanged
+  after the cache is replaced. A new read still checks the same completeness,
+  act epoch, capture stamps and seal-key basis before using a kept snapshot.
+  Checkpoint eligibility uses the public correction reader's shared analysis
+  over borrowed source claims, then moves the original records and verified
+  captures into that snapshot. Public views materialize their correction
+  groups, A15 assessment snapshots and quoted record/source objects; the
+  checkpoint read consumes compact eligibility facts without materializing
+  correction groups or a second quoted record/source tree.
 
   Remaining blind spot: an in-place edit of a log's earlier bytes made
   together with an append, outside the kept 4 KiB, is not seen at once.
@@ -2311,6 +2562,71 @@ machine; `records::durability_tests`, and the ignored
   unchanged within the noise. The first act read's peak varied between 5.7
   and 7.1 GB at 100,000 acts across runs (5.5 GB for the earlier code in the
   same session).
+
+  **Derived SQLite index measurement (2026-10-13, debug build).** The maintained
+  ignored `records_index_disk_scale_report` uses one chained log and a fresh
+  child process per tier, without captures, a ledger or a full act projection.
+  Baseline is the `f79493a721` index, built in the same debug profile; it reads
+  the same fixture after the ten probe appends. These are observations, not
+  release-build latency estimates or a cold-start speed improvement.
+
+  | Valid entries | Database | RSS after index build / peak after verifier | Warm append | Cold build | Verifier pass | Baseline peak RSS / cold build |
+  |---|---|---|---|---|---|---|
+  | 30,000 | 8.3 MB | 47.5 / 51.1 MB | 5.4 ms | 1.66 s | 1.48 s | 73.4 MB / 1.33 s |
+  | 300,000 | 86.9 MB | 47.4 / 51.0 MB | 4.9 ms | 16.26 s | 15.08 s | 342.5 MB / 11.82 s |
+
+  Ordinary valid-entry index memory stays flat in this single-log scenario;
+  database size and cold source validation still grow with entries. Verifier
+  source parsing and staging run outside the index mutex. Installation copies
+  only positions under that mutex, and a hash-proved unchanged prefix means
+  ordinary append catch-up copies only the changed tail. A new or fully changed
+  log still requires transferring all its positions. Generation, per-log and
+  discovery revisions prevent an older pass from replacing newer reader state;
+  cache and source changes refuse a staged transfer. New and removed logs are
+  included even when no reader or writer refreshes the index. Earlier full act
+  projection and diagnostic memory limits remain separate.
+
+  **Shared checkpoint act snapshot measurement (2026-10-13, debug build).**
+  The maintained ignored `records_scale_report`, with
+  `CHIRALITY_SCALE_TIERS=10:300:1000,100:3000:1000`, ran before and after this
+  sharing change, in fresh child processes on the same macOS machine. Baseline
+  is `4e240843bd`, which already has the derived SQLite index. Each run log has
+  30 entries; each act cites its own sealed synthetic capture; each tier has
+  1,000 ledger rows. The act child retains the first read while reading again
+  after a run entry, so its peak includes both observations and the cache.
+
+  | Runs / acts | First act read, before / shared | Kept read after a run entry, before / shared | Peak act-child RSS, before / shared |
+  |---|---|---|---|
+  | 10 / 300 | 561 / 553 ms | 3.6 / 1.9 ms | 61.2 / 57.9 MB |
+  | 100 / 3,000 | 2.39 / 2.47 s | 28.5 / 12.6 ms | 201.7 / 155.8 MB |
+
+  These are bounded debug observations, not release latency estimates or a
+  claim that the first read became faster. At that snapshot-sharing step,
+  first-use source validation, full correction projection and capture
+  verification remained. A kept read still checks every capture's stamp.
+  No 100,000-act measurement was repeated;
+  the earlier large full-projection memory limit is not claimed resolved.
+
+  **Borrowed checkpoint relation analysis (2026-10-13, debug build).** The
+  same bounded report and tiers ran again before and after the shared-analysis
+  change. Baseline `45fd443f09` includes both snapshot sharing and recorded
+  disposal; it has the same source tree as the candidate's joined base
+  `78728d84c3`. Fresh child processes read the same synthetic scenarios on the
+  same macOS machine; machine load varied between measurements.
+
+  | Runs / acts | First act read, before / borrowed | Kept read after a run entry, before / borrowed | Peak act-child RSS, before / borrowed |
+  |---|---|---|---|
+  | 10 / 300 | 690 / 682 ms | 2.5 / 2.6 ms | 58.3 / 55.2 MB |
+  | 100 / 3,000 | 3.51 / 2.84 s | 14.1 / 13.1 ms | 156.2 / 96.8 MB |
+
+  This avoids a second full quoted record/source projection in the checkpoint
+  reader and moves the original record and verified capture values into its
+  result. It still validates source records and captures, keeps graph,
+  semantic and diagnostic state, and checks capture stamps on a kept read.
+  The correction graph algorithm and public view materialization are unchanged.
+  These observations establish neither release latency nor a 100,000-act
+  memory bound; no large-tier measurement was repeated, and retained records
+  and captures still grow with the project's act history.
 
 ## 15. Local prototype (R12-3)
 
