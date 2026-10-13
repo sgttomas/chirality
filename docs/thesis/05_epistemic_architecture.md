@@ -15,6 +15,10 @@ unsettled. Authentication records an accountable act; it does not make the
 content true or establish adequate engagement. Judgment shapes the undertaking
 throughout, while agents extend reckoning through inquiry and action.
 
+Knowledge resources are artifacts supporting situated knowing: models, sources,
+calculations and returned findings help a participant inquire and act. Their
+organization can preserve useful relations without containing or reproducing
+everything a knower brings to the undertaking.
 ---
 
 ## 5.2 The Problem: Absence of Intrinsic Epistemic Warrant
@@ -48,10 +52,10 @@ calculation passed.
 
 ## 5.3 The Four Mechanisms
 
-The four mechanisms below are design approaches to recurring problems. The
-historical K-* identifiers are retained for comparison with earlier versions;
-they do not restore retired instructions or schemas. Their implementation must
-serve an actual reader, check or reliance decision.
+The four mechanisms below are design approaches to recurring problems. Their
+implementation must serve an actual reader, check or reliance decision. The
+identifiers provide a cross-reference to [Appendix A](appendix_a_invariant_catalog.md);
+[Appendix E](appendix_e_development_history.md) records the evolving implementations.
 
 ### 5.3.1 Mandatory Provenance (K-PROV-1)
 
@@ -65,12 +69,9 @@ would matter. Tools can resolve references and compare revisions. Neither
 successful resolution nor an unchanged hash establishes that the source is
 applicable or that the interpretation is correct.
 
-The earlier Dependencies.csv schema required `EvidenceFile`, `SourceRef`
-and related fields. That was one representation of provenance, not its
-necessary form. The present deliverable model keeps consumer needs and their
-conditions in `deliverable.yaml`, with supporting explanation in current
-source documents where useful. A query exposes relationships without keeping
-a second authored graph.
+The deliverable model keeps consumer needs and their conditions in
+`deliverable.yaml`, with supporting explanation in current source documents where
+useful. A query exposes relationships from these declarations.
 
 **Worked example.** An agent reads a scope document stating that detailed
 design requires approved structural analysis. The consumer's need can say:
@@ -136,7 +137,7 @@ Labels can make an otherwise ambiguous distinction visible. They are
 annotations about a claim, not rankings of its truth or substitutes for its
 grounds.
 
-| Label used in earlier versions | Useful reading | What it does not establish |
+| Label | Useful reading | What it does not establish |
 |---|---|---|
 | FACT | A stated observation or an accurately cited source statement | The source's truth, completeness or applicability |
 | ASSUMPTION | A premise used provisionally in reasoning | That the premise is reasonable or safe for the intended use |
@@ -170,10 +171,8 @@ Their common aim is inspectability. That aim is constrained by ontology
 leads to action or repair) and axiology (which failures and costs matter).
 
 A useful architecture can expose a missing source, a failed oracle or an
-unresolved condition. It cannot guarantee detection of all epistemic failure.
-The original claim that detection could be architecturally enforced was too
-strong: complete-looking evidence may share a mistaken premise, and a
-validator only detects what its rule examines. Smith's distinction between
+unresolved condition. Complete-looking evidence may share a mistaken premise,
+and a validator detects only what its rule examines. Smith's distinction between
 relative consistency of artifacts and correctness about the world remains
 relevant here [CITE:Smith1985].
 
@@ -183,18 +182,9 @@ and what representation makes that examination practicable?
 
 ---
 
-## 5.5 The Warrant Lifecycle as Operational Model
+## 5.5 Grounds, Examination and Accountable Reliance
 
-Earlier versions used the sequence:
-
-```
-UNWARRANTED → CITED → REVIEWED → AUTHENTICATED
-```
-
-It was a useful reminder that a claim's fluent production does not authorize
-reliance. It was also misleading as a lifecycle. It mixed relationships of
-different kinds and suggested a monotonic progression that evidence does not
-support.
+Grounds, examination and reliance are related, independently revisable relations:
 
 - **Grounds:** a claim may have observations, calculations or arguments without
   a citation. A cited claim may have inadequate grounds.
@@ -305,11 +295,10 @@ accountable reliance must remain distinguishable from production and
 verification. It proposes inspectable sources, material unknowns, visible
 conflicts and useful annotations as ways to support that norm.
 
-These are design hypotheses with costs and limits. They warrant records only
-where a consumer, acceptance requirement or recovery need justifies them.
-Neither a mandatory claim lifecycle nor a universal register follows from the
-norm. The October revision removed such administrative requirements while
-retaining the distinctions they were intended to serve.
+These are design hypotheses with costs and limits. They warrant records where
+a consumer, acceptance requirement or recovery need justifies them. Their
+adequacy depends on whether participants can examine the material grounds and
+act on findings in time for the intended use.
 
 Agents can extend reckoning throughout the undertaking. Human judgment shapes
 its purpose, interpretation, action and reliance; it is not exhausted by an
