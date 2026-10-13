@@ -98,23 +98,15 @@ implementation proposal require a new owner decision. Its authority depends on
 the assignment, commitments and reserved choices.
 
 Provenance, explicit uncertainty, conflict surfacing and examination can make
-unsupported claims easier to find. The early system enforced these through
-required CSV fields, labels and review tables. Those historical mechanisms
-must be assessed separately from their purpose. A source-field validator detects
-a missing field; it does not determine whether the source is faithful, relevant
-or sufficient. An instruction against invention is not a guarantee that an agent
-will never fabricate content.
+unsupported claims easier to find. A source-field validator detects a missing
+field; assessing the source's faithfulness, relevance and sufficiency requires
+inquiry. An instruction against invention expresses a norm and needs examination
+of the resulting behaviour. The representations serving these purposes remain
+revisable; [Appendix E](appendix_e_development_history.md) records their development.
 
-#### The Warrant Lifecycle
+#### Grounds, Examination and Reliance
 
-Earlier versions represented warrant development as:
-
-```
-UNWARRANTED → CITED → REVIEWED → AUTHENTICATED
-```
-
-The notation is retained here to explain the historical design. It is not a
-required deliverable lifecycle. It combines different relationships:
+Three relationships support the inquiry:
 
 | Question | Relevant relation |
 |---|---|
@@ -124,15 +116,14 @@ required deliverable lifecycle. It combines different relationships:
 
 These relationships can change independently. A claim can acquire contrary
 evidence after review. A technically supported result may have no accepted use.
-A person can accept reliance under stated uncertainty without converting that
-uncertainty into a fact. Authentication changes normative standing; it does not
-add another experimental observation.
+A person can accept reliance under stated uncertainty while that uncertainty
+remains unresolved. Authentication changes normative standing; it adds no
+experimental observation.
 
-Review is therefore inquiry into adequacy for a purpose, not completion of a
-universal sequence. A content hash can identify what was examined or accepted
-where that binding is required. It cannot establish the meaning, quality or
-sufficiency of the examination. Nor does a review record establish the
-person's committed engagement.
+Review is inquiry into adequacy for a purpose. A content hash can identify what
+was examined or accepted where that binding is required. Assessing the meaning,
+quality and sufficiency of examination requires its grounds and findings. The
+person's committed engagement remains distinct from the review record.
 
 ### 3.2.3 Praxeology — How Work Is Done
 
@@ -190,6 +181,21 @@ permission to disregard a required condition. It is a basis for choosing and
 revising the mechanisms that meet the condition. Silent numerical error warrants
 a different examination from a reversible wording change.
 
+Axiological inquiry distinguishes applicable obligations and constraints,
+uncertain premises, negotiable preferences and the costs of control. An
+obligation must be identified in its actual scope; a preference for faster work
+cannot simply outweigh it. An uncertain load assumption concerns the grounds of
+an evaluation, rather than a value to trade away. Preferences among viable
+alternatives can concern maintainability, access, cost or user agency. Checks
+and approvals themselves consume time, attention and implementation effort.
+Those costs belong in the assessment of how a condition is met.
+
+These considerations need no universal scalar value function or mandated
+sequence. They can conflict, and their interpretation can change through use.
+Agents can expose consequences and compare practical alternatives. The person
+judges which purposes, constraints and tradeoffs they can stand behind, including
+when the question or available alternatives need revision.
+
 Values can be expressed in requirements, defaults, interfaces and prohibitions.
 Those expressions can guide action without becoming the person's commitment.
 The framework cannot mechanize the person's answerability by encoding a value
@@ -205,11 +211,10 @@ scales. A numerical result, a deliverable, an application and the framework itse
 can each be examined for their entities, grounds, course of action and values.
 The term describes this recurrence rather than a mathematical fractal.
 
-Earlier document kits assigned Datasheet, Specification, Guidance and Procedure
-to the four pillars. Governance texts used a similar division. These were
-historical implementations, not necessary consequences of the questions. The
-current deliverable model can answer several questions in one ScopeOfWork or
-Design document and derive other information through tools.
+A ScopeOfWork or Design document can answer several of these questions, while
+tools derive other useful views. The choice of representation follows the
+consumer's need. [Appendix E](appendix_e_development_history.md) records the
+particular document arrangements explored in developing this approach.
 
 | Scale | Example of a useful distinction |
 |---|---|
@@ -224,18 +229,12 @@ resource, not proof of completeness or a requirement for four documents.
 
 ---
 
-## 3.4 The Load-Bearing Pillar
+## 3.4 Mutually Corrective Perspectives
 
-Earlier revisions called epistemology the load-bearing pillar and argued that
-the other three existed to serve it. The concern motivating that emphasis remains:
-plausible agent output can conceal weak grounds. But the proposed thought
-experiment did not establish a hierarchy among the pillars.
-
-Removing prescribed gates does not remove praxeology. Replacing a filesystem
-schema does not remove ontology. The October transformation changed those
-mechanisms while preserving distinctions and responsibilities. It is evidence
-against treating the earlier mechanisms as necessary, not a demonstration that
-one pillar can be omitted.
+Epistemology receives particular emphasis because plausible agent output can
+conceal weak grounds. Adequacy nevertheless depends on all four perspectives.
+Evidence matters in relation to an intended use; distinctions matter through
+what they enable people to understand and do.
 
 The four perspectives constrain one another:
 
@@ -486,12 +485,11 @@ the producer's capability a substitute for the professional's attributable
 act.
 
 Authentication, as used here, binds an accountable actor to identified
-content, scope, and purpose. It confers accountable-reliance status; it does
-not turn information into knowledge, guarantee correctness, or determine what
-another knower must know. That interpretation distinguishes evidence and
-examination from accountable commitment. It does not require the historical warrant lifecycle
-or establish that a particular repository process satisfies a professional
-standard.
+content, scope and purpose. It confers accountable-reliance status; it does
+not turn information into knowledge, guarantee correctness or determine what
+another knower must know. Evidence, examination and accountable commitment
+remain distinct. Whether a particular process satisfies a professional
+standard requires an assessment of the actual work and applicable obligations.
 
 Other frameworks address supporting parts of the architecture. Bunge and
 Wand and Weber [CITE:Bunge_ontology] [CITE:Wand_Weber_ontology] inform the
@@ -503,6 +501,16 @@ Chapter 7. These relationships support the architecture without multiplying
 the primary chirality.
 
 ---
+
+### 3.6.8 Perspectives and iterative Feedback
+
+The [shared introduction](INTRODUCTION.md#one-undertaking-three-perspectives)
+relates the normative, operative and evaluative emphases of the three theses.
+Philosophically, that relation keeps a commitment distinct from its proposed
+means and from evidence of its adequacy. A finding about an application can
+change what participants understand or value, as well as how they act. The
+four questions make those revisions intelligible while preserving the person's
+answerability for the purpose and reliance at issue.
 
 ## 3.7 Summary
 

@@ -6,7 +6,13 @@
 
 This chapter reviews five bodies of work relevant to agent-assisted professional practice: agent architectures, model reliability, formal methods and safety engineering, professional regulation, and epistemic frameworks. It asks what these sources contribute to the design of work in which agents can produce substantial results while people remain answerable for reliance.
 
-The review is selective, not an exhaustive survey or a claim to priority. Its core sources informed the earlier architecture; selected 2026 sources help reassess that architecture after the repository transformation. Research papers, engineering reports, professional guidance and philosophical arguments serve different purposes. A benchmark result supports a claim within its evaluated conditions. An implementation report supplies experience and a design hypothesis. A professional standard specifies obligations within its scope. None alone validates Chirality as a complete system.
+The review is selective, not an exhaustive survey or a claim to priority. It uses
+its stated source corpus, including selected 2026 sources, to examine revisable
+architectural hypotheses. Research papers, engineering reports, professional
+guidance and philosophical arguments serve different purposes. A benchmark
+result supports a claim within its evaluated conditions. An implementation report
+supplies experience and a design hypothesis. A professional standard specifies
+obligations within its scope. None alone validates Chirality as a complete system.
 
 Three kinds of claim remain separate throughout:
 
@@ -14,7 +20,11 @@ Three kinds of claim remain separate throughout:
 - **Design hypotheses:** arrangements expected to support those commitments, such as bounded permissions, discoverable source artifacts or independent examination.
 - **Observations:** what use, testing and repository evidence establish about a particular arrangement.
 
-The earlier edition often described fixed agent tiers, lifecycle gates and mandatory claim labels as the necessary outcome of the literature. Those were historical design choices. The current interpretation preserves the distinctions they attempted to support while examining their effectiveness and cost. Ontology, epistemology, praxeology and axiology supply mutually corrective questions; they do not uniquely determine a staffing chart or file format.
+Ontology, epistemology, praxeology and axiology supply mutually corrective
+questions about distinctions, grounds, action and values. The literature informs
+possible responses without uniquely determining a staffing chart, sequence of
+gates or file format. [Appendix E](appendix_e_development_history.md) preserves
+the particular arrangements explored during development.
 
 ## 2.1 AI Agent Architectures and Multi-Agent Systems
 
@@ -40,7 +50,12 @@ A reusable framework also does not determine whether a particular deployment has
 
 Park et al.'s generative-agent experiment combined stored observations, retrieval, reflection and planning in a simulated social environment [8]. It demonstrated temporally extended and socially coordinated behaviour under the study's conditions. It did not establish professional reliability or prescribe a record policy for engineering work.
 
-The relevant question is how an agent recovers useful context. Earlier Chirality implementations answered partly through per-deliverable memory files and session handoffs. Those mechanisms accumulated overlapping descriptions of state and were subsequently retired from routine development. Current artifacts, selective tool queries, the conversation and existing change history now provide continuity; a replaceable recovery note is justified only when those are insufficient. The literature motivates retrieval and continuity, not a requirement to maintain a second narrative of every activity.
+The relevant question is how an agent recovers useful context. Current artifacts,
+selective tool queries, conversation and existing change history support continuity;
+a replaceable recovery note is justified when those are insufficient. The literature
+motivates retrieval and continuity. The representation must help a participant
+understand and continue the work, with its synchronization and attention costs
+included in the assessment.
 
 ### 2.1.4 Principle-Based Alignment
 
@@ -118,7 +133,11 @@ Ouyang et al.'s instruction-following work illustrates how human demonstrations 
 
 It is misleading to oppose model improvement to governance as though one reduces errors and the other necessarily detects all remaining errors. Better models can improve the assessment of evidence. Better information access can prevent errors before generation. Independent examination can still share a mistaken premise. A source can be stale or inapplicable even when retrieval and citation work correctly.
 
-Chirality's historical specialist audit roles were one arrangement for review. Current roles and workflows allow examination suited to the consequence without requiring a fixed audit department. For a solver change, an independent numerical oracle may supply more useful evidence than a second agent reading the same explanation. For an ambiguous commitment, dialogue with the owner may be necessary.
+Roles and workflows can support examination suited to consequence. For a solver
+change, an independent numerical oracle may supply more useful evidence than a
+second agent reading the same explanation. For an ambiguous commitment, dialogue
+with the owner may be necessary. The selected method needs grounds appropriate
+to the actual claim and possible failure.
 
 ### 2.2.4 Confidence Calibration
 
@@ -176,13 +195,16 @@ Formal methods and safety engineering provide resources for specifying behaviour
 
 Leveson's STAMP and STPA treat safety as a system-level control problem, including interactions that cannot be understood from component reliability alone [1]. This perspective is useful when an agent, tool, interface and person can each perform their local task while their combined activity produces an unsafe result.
 
-For Chirality, it motivates asking which actions, omissions, timing errors or misunderstandings could produce harm. The answer can inform a refusal condition, review, interface design or operating limit. Earlier invariant lists can be compared with this tradition, but naming constraints does not demonstrate that STPA has been performed or that the resulting system is safe.
+For Chirality, it motivates asking which actions, omissions, timing errors or misunderstandings could produce harm. The answer can inform a refusal condition, review, interface design or operating limit. Naming constraints does not demonstrate that STPA has been performed or that the resulting system is safe.
 
 ### 2.3.2 Avionics Software Assurance: DO-178C
 
 DO-178C provides a software-assurance framework in the airborne-systems context [2]. Its relevance here is the disciplined connection between requirements, implementation and verification evidence, with assurance related to the significance of failure.
 
-Chirality's former deliverable lifecycle borrowed the general idea of controlled transitions. It was not a DO-178C process or an equivalent assurance argument. The subsequent removal of development lifecycle-status files does not remove the need to identify what a product must do or examine whether it does it. Those questions are now addressed through current commitments and checks appropriate to the change.
+For Chirality, this tradition motivates identifying required product behaviour
+and the evidence needed to examine it. Current commitments and checks appropriate
+to a change serve those questions. This is neither a DO-178C process nor an
+equivalent assurance argument; that claim would require its own applicable basis.
 
 Software levels and agent roles are also different kinds of classification. Assigning Agent 0, manager or TASK responsibility does not establish a safety level or determine a contributor's permissible writes.
 
@@ -451,6 +473,10 @@ The five domains supply complementary questions and methods. They do not establi
 
 The enduring proposition is that purposeful agent-assisted work benefits from intelligible objects and relationships, inspectable grounds and limits, practicable action and correction, and attributable consequential commitments. The thesis chooses these as normative commitments. Discoverable current artifacts, selectively loaded methods, coherent ownership, host-enforced permissions and verification proportionate to consequence are design hypotheses for supporting them.
 
-The repository's history supplies observations about particular implementations. Retiring fixed development lifecycles and repeated administrative records while preserving important boundaries is evidence against the necessity of those old mechanisms. Continued development is evidence that the replacement can support work in this setting. It is not yet a controlled productivity comparison, proof of professional compliance or demonstration that another team will obtain the same result.
+The repository supplies observations about particular implementations. Continued
+development supports feasibility in this setting. A controlled productivity
+comparison, demonstrated professional compliance and transfer to another team
+remain separate claims. [Appendix E](appendix_e_development_history.md) preserves
+the developmental observations and their causal limits.
 
 The following chapters therefore examine how the philosophical account informs revisable designs, what the implementation enforces, what the case history shows, and what remains to be established. The framework's own claims are subject to the same discipline: commitments must be stated, hypotheses may fail, and observations must not be promoted beyond their evidence.

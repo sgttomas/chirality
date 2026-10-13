@@ -29,16 +29,19 @@ let work persist and remain open to examination. Tools make operations
 repeatable and relevant information accessible. Their value depends on serving
 the undertaking; maintaining them can otherwise displace the work they support.
 
-The repository's history shows both possibilities. Agent-led development produced
-applications and revised the means used to build them. It also accumulated
-records and controls whose costs became substantial. The October reset removed
-many duties and their enforcement. That experience supports further examination
-of simpler arrangements, without establishing a general productivity effect.
+Iteration connects inquiry, action, evaluation and revision. A finding can repair
+an output, change its method or expose a purpose that needs reconsideration.
+Learning is retained when the correction reaches the place where it matters.
+The development case supplies bounded evidence about these relations, without
+establishing a general productivity effect.
 
 The App is the workflow-authoring exemplar. SWBPIPE tests the approach in an
 engineering domain through models, operations, calculations and handoff. Their
 development asks whether shared meanings can support different practices without
-prescribing a universal execution system.
+prescribing a universal execution system. These are normative, operative and
+evaluative emphases within one iterative undertaking. The
+[shared introduction](INTRODUCTION.md) and [conclusion](CONCLUSION.md) develop
+their relationship; Appendix E carries the development history.
 
 The argument distinguishes adopted commitments, design hypotheses and observed
 findings. Its adequacy remains open to sustained use and another practitioner's
@@ -65,7 +68,7 @@ The originating intuition behind Chirality was that meaning is not manufactured 
 5. [Epistemic Architecture](05_epistemic_architecture.md)
 6. [Professional Practice Integration](06_professional_practice.md)
 7. [SE Design Analysis](07_se_design_analysis.md)
-8. [Implementation and Validation](08_implementation.md)
+8. [Evidence and Evaluation](08_implementation.md)
 9. [Discussion](09_discussion.md)
 10. [Conclusion](10_conclusion.md)
 
@@ -75,6 +78,7 @@ The originating intuition behind Chirality was that meaning is not manufactured 
 - B — Agent Index: maintained as the live registry `AGENTS.md` at the repository root; not reproduced as a static appendix
 - [C — APEGA Regulatory Mapping](appendix_c_apega_mapping.md)
 - [D — A Conjecture on the Nature of Being and Knowing](appendix_d_framework_s.md)
+- [E — Development History](appendix_e_development_history.md)
 
 **Reference Material**
 

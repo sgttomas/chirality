@@ -40,13 +40,12 @@ It does not establish that Chirality:
 - transfers to another practitioner without its author's continuing help;
 - meets professional regulatory obligations in a particular deployment.
 
-The owner reports a material improvement in agent behaviour and productivity
-after the October reset. The subsequent PRs show connected product work.
-Both are relevant evidence, but neither isolates cause or supplies a
-productivity multiplier. Work began at different times, agents and suppliers
-changed, generated material dominates some diffs, and the owner continued to
-steer. PR, line and file counts must not substitute for comparable completed
-work.
+The production evidence is bounded by changing agents and suppliers, different
+work start times, generated material in some diffs and the owner's continued
+steering. PR, line and file counts describe activity or size rather than
+comparable completed work. [Appendix E](appendix_e_development_history.md) retains
+the owner's reports and the development record; neither isolates a causal effect
+or supplies a productivity multiplier.
 
 ### 9.2.2 Regulatory Interpretation, Not Endorsement
 
@@ -88,13 +87,11 @@ can enforce particular predicates, subject to its entry points and coverage.
 Independent review supplies a different kind of examination. A human
 acceptance supplies an attributable commitment, not automatic error detection.
 
-Earlier editions grouped these under an invariant-enforcement model and
-sometimes inferred fault containment from declared write scopes. The revised
-account requires a property-specific argument: what is prevented, by which
-mechanism, under which conditions; what is merely requested; what is detected
-afterward; and what remains dependent on practice. A conforming test of path
-containment does not prove semantic correctness, and multiple layers can
-share the same mistaken assumption.
+A property-specific argument must identify what is prevented, by which
+mechanism and under which conditions; what is requested; what is detected
+afterward; and what remains dependent on practice. A conforming path-containment
+test establishes its tested boundary. Semantic correctness requires other
+evidence, and multiple layers can share the same mistaken assumption.
 
 Removing an obsolete validator can improve the system when its duty no
 longer serves the work. It does not remove the need to examine the actual
@@ -109,32 +106,27 @@ larger assignments practical; new capabilities can also expose new failure
 paths. A cheaper or degraded model may require more support or a narrower
 assignment. Benefit is not automatically monotonic in a fixed harness.
 
-The historical K-* catalog mixed several kinds of rule: professional
-commitments, product properties, operational conventions and accommodations
-for then-current hosts. It was therefore incorrect to predict that model
-changes could never justify an amendment to any invariant. Retaining a
-responsibility boundary does not preserve every mechanism formerly used to
-support it.
+A responsibility boundary can persist while the mechanisms supporting it change.
+Professional commitments, product properties and operational conventions each
+need examination on their own terms. Capability changes can warrant amendments
+to an assignment or a control; retaining a familiar mechanism is itself a
+design choice with consequences.
 
 Greater capability can warrant a revised assignment. It does not itself
 perform the person's judgment or grant institutional standing.
 
 ### 9.2.6 Over-Proceduralization and the Displacement of Attention
 
-The July discussion identified a limitation that the October reset later
-made concrete. Records, labels and procedures can help a practitioner attend
-to work; they can also become the objects of attention themselves. Polanyi's
-account of subsidiary and focal awareness helps describe this reversal
-[CITE:Polanyi1975]. The problem is not merely document volume. It is a loss
-of integrated meaning when administrative particulars displace the
+Records, labels and procedures can help a practitioner attend to work; they can
+also become the objects of attention themselves. Polanyi's account of subsidiary
+and focal awareness helps describe this reversal [CITE:Polanyi1975]. The problem
+is a loss of integrated meaning when administrative particulars displace the
 engineering question they were intended to support.
 
-The reset removed routine receipts, duplicated status, authored progress
-graphs and other record duties, together with their enforcement. Decisions
-now change their current governing text; tools derive relationships; Git and
-PRs retain history. This is evidence against the necessity of those earlier
-mechanisms for every undertaking. It is not controlled proof that every
-remaining mechanism is optimal or that every removed one lacked value.
+Decisions change their governing text; tools derive relationships; Git and PRs
+retain the committed change record. This arrangement is a design hypothesis:
+keeping current meaning accessible may improve continuity with fewer competing
+representations. Its value and costs require examination in actual work.
 
 The axiological assessment must include attention, delay, maintainability,
 user agency and the consequences of missed error. A control is valuable to
@@ -178,6 +170,14 @@ The same kernel can orient all three theses while their architectural arguments
 remain practical and separately examinable. Appendix D supplies the concise
 conjecture; elaborating it further cannot substitute for evidence at a receiving
 application.
+
+The [shared introduction](INTRODUCTION.md#one-undertaking-three-perspectives)
+frames transfer as a relation among normative reasons, operative participation
+and domain evaluation. A failure in the receiving practice can therefore qualify
+the shared claim: an intelligible method may still impose excessive adaptation
+costs or omit a consequential domain distinction. Evaluating proliferation requires
+both the benefit transferred and the work needed to make it useful, rather than
+agreement in terminology alone.
 
 ### 9.3.2 Across Regulatory Jurisdictions
 
@@ -231,12 +231,10 @@ concepts beyond this implementation. They need not all become fields in a
 register. Their representation should make the relevant relation discoverable
 where an undertaking needs it.
 
-The former sequence UNWARRANTED → CITED → REVIEWED → AUTHENTICATED was a
-historical mnemonic that combined unlike relations. Citation identifies a
-source; examination assesses something about its use; authentication is a
-particular attributable act. A cited claim can be wrong, a review can be
-limited, and a person can stand behind an identified result while disclosing
-uncertainty. These are not successive degrees of truth.
+Citation identifies a source; examination assesses something about its use;
+authentication is a particular attributable act. A cited claim can be wrong,
+a review can be limited, and a person can stand behind an identified result
+while disclosing uncertainty. These relations vary independently.
 
 What can transfer is a disciplined distinction among evidence, situated
 understanding and accountable reliance. The adequacy of a chosen
@@ -277,12 +275,10 @@ reallocation of professional responsibility would require an explicit
 institutional and normative argument; it is not an inference from improved
 output or delegated execution.
 
-The former prediction of zero capability-triggered K-* amendments is
-withdrawn. Each claimed property needs examination on its own terms.
-Improved models may change how responsibility is supported while leaving
-its current allocation in place. Conversely, a familiar mechanism may no
-longer support that allocation adequately. The framework's value lies in
-making such questions explicit and revisable.
+Each property needs examination on its own terms. Improved models may change
+how responsibility is supported while leaving its current allocation in place.
+Conversely, a familiar mechanism may cease to support that allocation adequately.
+The framework makes these questions explicit and revisable.
 
 ### 9.3.6 Relationship to the AI Alignment Problem
 
@@ -313,12 +309,10 @@ does not erase the need for interpretation and integration. The relevant novelty
 claim is therefore bounded by the implemented relation among these capabilities,
 not the invention of coordination or accountability.
 
-The owner proposed that Chirality's structural views reflect recurring needs
-of complex knowledge work, familiar from large-project delivery. That is a
-useful comparative hypothesis. The earlier version of this subsection
-extended a working-session observation into broad claims about project
-practice without an independently sourced comparison. Those claims are not
-established by this case.
+The structural views invite comparison with complex knowledge work, including
+large-project delivery. The correspondences below are a comparative hypothesis
+requiring independently sourced examination. They are not findings established
+by this case.
 
 The proposed correspondences can be stated without treating them as proof:
 
@@ -399,7 +393,7 @@ person. Counts of edges, citations or REVIEWED labels are not adequate proxies.
 Review has a parallel question: can the reviewer identify the candidate and the
 basis actually used, preserve valid evidence and detect a consequential shared
 premise error? The inquiry is whether the representation supports reckoning and
-human judgment, not whether a historical warrant lifecycle can be made universal.
+human judgment in the actual undertaking.
 
 ### 9.4.4 Formal Analysis of Specific Properties
 
@@ -483,10 +477,10 @@ queryable relationships, authority and continuing ownership through repairs.
 Its central danger is self-confirmation: producers and examiners can inherit the
 same framing, and a polished system of records can obscure the absent result.
 
-The October transformation provides evidence that some earlier means were
-replaceable. It does not establish a final architecture or isolate a
-productivity gain. The App and SWBPIPE extend the inquiry at different levels;
-neither inherits adequacy merely by sharing the framework.
+The case supports feasibility of specific production and correction paths.
+Productivity, sustained transfer and comparative reliability remain open empirical
+questions. The App and SWBPIPE examine different receiving contexts, each with
+its own subject and evidence.
 
 The useful trajectory is continued production with discriminating examination
 of the means. Root must make its own claims as accessible to correction as the
