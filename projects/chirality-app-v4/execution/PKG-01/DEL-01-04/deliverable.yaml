@@ -33,7 +33,7 @@ needs:
 - from: DEL-02-02
   condition: 'Receive source-qualified draft identity and actual draft/registration/collision/refusal
     transitions from the workflow workspace for native presentation, the A15 descriptor (one per act:
-    one reviewed draft, or several library entries registered in place) bound to the exact reviewed content,
+    one reviewed draft, one existing entry reviewed in place, or several library entries registered in place) bound to the exact reviewed content,
     and the run-start text and run-end line App DEL-02-02 supplies for the turns this slice composes.
 
 
@@ -405,6 +405,8 @@ code_paths:
 - app/src/ConversationRoles.tsx
 - app/src/exactText.ts
 - app/src-tauri/src/conversation_roles.rs
+- app/src-tauri/src/installation.rs
+- app/src-tauri/src/act_control_a15.rs
 checks:
 - app/src-tauri/tests/explicit_context.rs
 - app/src-tauri/src/conversation_roles_tests.rs
@@ -416,3 +418,6 @@ checks:
 - app/tests/run-offers.test.mjs
 - app/tests/workflow-drafts.test.mjs
 - app/tests/validate-records.test.mjs
+- app/src-tauri/src/installation.rs
+- app/src-tauri/src/act_control_a15.rs
+- app/src-tauri/tests/schema_validation.rs

@@ -111,7 +111,11 @@ impl RecordsSource for ProjectPaths {
             let label = crate::storage::log_label(&self.root, &path);
             let log = bounded(if Path::new(&label).is_absolute() { "<outside the project>" } else { &label }, 200);
 
-            let bytes = match std::fs::read(&path) {
+            let bytes = match crate::records_index::open_log(&path).and_then(|mut file| {
+                let mut bytes = Vec::new();
+                file.read_to_end(&mut bytes)?;
+                Ok(bytes)
+            }) {
                 Ok(bytes) => bytes,
                 Err(_) => {
                     corpus.limits.push(format!("{log}: not readable (no entry of it is returned)"));
@@ -226,16 +230,17 @@ const ACT_KINDS: &[&str] = &["human_act", "act_declined", "act_lapsed", "act_req
 /// The page `request` asks for, from `corpus`, within the bounds above.
 /// `project` is the project folder, rewritten in quoted entries.
 pub(crate) fn page(corpus: &Corpus, request: &Request, project: &ProjectRoot) -> Page {
-    let items: Vec<(Value, Option<String>)> = match request.operation.as_str() {
-        "list_runs" => runs(corpus, project).into_iter().map(|r| (r, None)).collect(),
-        "read_run" => corpus.entries.iter().filter(|e| e.entry["runId"].as_str() == request.run.as_deref()).map(|e| quoted(e, project)).collect(),
-        _ => corpus
+    // Quote only the requested page. Large projects must not create a second
+    // full set of copied/rewritten record bodies merely to return a few items.
+    let items: Box<dyn Iterator<Item = (Value, Option<String>)> + '_> = match request.operation.as_str() {
+        "list_runs" => Box::new(runs(corpus, project).into_iter().map(|r| (r, None))),
+        "read_run" => Box::new(corpus.entries.iter().filter(|e| e.entry["runId"].as_str() == request.run.as_deref()).map(|e| quoted(e, project))),
+        _ => Box::new(corpus
             .entries
             .iter()
             .filter(|e| e.entry["kind"].as_str().is_some_and(|k| ACT_KINDS.contains(&k)))
             .filter(|e| request.subject.as_deref().is_none_or(|s| has_string(&e.entry["body"], s)))
-            .map(|e| quoted(e, project))
-            .collect(),
+            .map(|e| quoted(e, project))),
     };
     let mut limits: Vec<String> = corpus.limits.iter().take(MAX_LIMITS).map(|l| bounded(l, 300)).collect();
     if corpus.limits.len() > MAX_LIMITS {
@@ -243,19 +248,19 @@ pub(crate) fn page(corpus: &Corpus, request: &Request, project: &ProjectRoot) ->
     }
     let mut page = Page { items: Vec::new(), next: None, limits, record_ids: Vec::new() };
     let mut bytes = 0usize;
-    for (n, (item, id)) in items.iter().enumerate().skip(request.offset) {
-        let size = serde_json::to_vec(item).map(|v| v.len()).unwrap_or(usize::MAX);
+    for (n, (item, id)) in items.enumerate().skip(request.offset) {
+        let size = serde_json::to_vec(&item).map(|v| v.len()).unwrap_or(usize::MAX);
         if page.items.len() == request.limit || (!page.items.is_empty() && bytes + size > RESPONSE_LIMIT / 2) {
             page.next = Some(format!("o:{n}"));
             break;
         }
         bytes += size;
-        page.items.push(item.clone());
+        page.items.push(item);
         if let Some(id) = id {
-            page.record_ids.push(bounded(id, 256));
+            page.record_ids.push(bounded(&id, 256));
         }
     }
-    if request.operation == "read_run" && items.is_empty() {
+    if request.operation == "read_run" && !corpus.entries.iter().any(|e| e.entry["runId"].as_str() == request.run.as_deref()) {
         page.limits.push(format!("no readable entries for run {}", bounded(request.run.as_deref().unwrap_or(""), 64)));
     }
     page
@@ -473,6 +478,7 @@ impl ReadLog {
         }
     }
     fn write(path: &Path, entry: &Value) -> Result<(), String> {
+        let _admission=crate::records_retention::write_path(path)?;
         static VALIDATOR: OnceLock<Result<jsonschema::Validator, String>> = OnceLock::new();
         let validator = VALIDATOR
             .get_or_init(|| serde_json::from_str::<Value>(LOG_SCHEMA).map_err(|e| e.to_string()).and_then(|s| jsonschema::options().offline().build(&s).map_err(|e| e.to_string())))
@@ -503,6 +509,7 @@ impl ReadLog {
 /// The capability the host offers in its current project.
 pub struct RecordsCapability {
     project: PathBuf,
+    project_identity: Option<Value>,
     root: ProjectRoot,
     source: Box<dyn RecordsSource>,
     log: Mutex<ReadLog>,
@@ -536,7 +543,7 @@ impl RecordsCapability {
         Ok(Self::build(project, source, LogPlace::Fixed(read_log)))
     }
     fn build(project: &Path, source: Box<dyn RecordsSource>, place: LogPlace) -> Self {
-        Self { project: project.to_path_buf(), root: ProjectRoot::new(project, project), source, legacy: None,
+        Self { project: project.to_path_buf(), project_identity: Self::directory_identity(project).ok(), root: ProjectRoot::new(project, project), source, legacy: None,
             log: Mutex::new(ReadLog { place, path: None, answered: HashSet::new(), recent: Vec::new(), limit: None }) }
     }
     /// §13.9: the App-wide read log an earlier build kept in App data
@@ -550,6 +557,18 @@ impl RecordsCapability {
         }
         self
     }
+    fn directory_identity(project: &Path) -> Result<Value, String> {
+        use std::os::unix::fs::MetadataExt;
+        let canonical = project.canonicalize().map_err(|_| "records capability physical project unavailable")?;
+        let metadata = std::fs::metadata(&canonical).map_err(|_| "records capability physical project unavailable")?;
+        if !metadata.is_dir() { return Err("records capability physical project is not a directory".into()); }
+        Ok(json!({"canonical":crate::attachments::native_path_identity(&canonical),"device":metadata.dev(),"inode":metadata.ino()}))
+    }
+    pub(crate) fn project_identity(&self) -> Result<Value, String> {
+        let current = Self::directory_identity(&self.project)?;
+        if self.project_identity.as_ref() != Some(&current) { return Err("records capability physical project changed; configure it again explicitly".into()); }
+        Ok(current)
+    }
     /// Whether a conversation started in `cwd` is in this project.
     pub fn offered_for(&self, cwd: &str) -> bool {
         Path::new(cwd).canonicalize().is_ok_and(|c| c == self.project)
@@ -559,11 +578,14 @@ impl RecordsCapability {
     /// recorded returns nothing. The records are read without the log held,
     /// so calls of other conversations do not wait on this read.
     pub fn answer(&self, call: &Call, cwd: Option<&str>) -> Value {
+        let physical_project = self.project_identity();
         let read_id = crate::util::opaque_id("rread:").unwrap_or_else(|_| "rread:unavailable".into());
         let key = (call.generation.clone(), call.thread.clone(), call.call.clone());
         let repeat = !self.log.lock().unwrap().answered.insert(key.clone());
         let request = if repeat {
             Err("this call was answered already; nothing read again".to_string())
+        } else if let Err(limit) = physical_project {
+            Err(limit)
         } else if !cwd.is_some_and(|c| self.offered_for(c)) {
             Err("the conversation is not in this App's current project; nothing read".to_string())
         } else {
@@ -573,8 +595,10 @@ impl RecordsCapability {
             Err(reason) => (refusal_text(&read_id, &reason), false, json!({"outcome":"refused","refusal":reason})),
             Ok(request) => {
                 let corpus = self.source.read();
-                let (text, page) = bounded_document(&read_id, &request, page(&corpus, &request, &self.root));
-                match text {
+                let prepared = self.project_identity().map(|_|bounded_document(&read_id, &request, page(&corpus, &request, &self.root)));
+                match prepared {
+                    Err(reason) => (refusal_text(&read_id,&reason), false, json!({"outcome":"refused","refusal":reason})),
+                    Ok((text,page)) => match text {
                     Some(text) => {
                         let record = json!({"outcome":"returned","returned":{"items":page.items.len(),"bytes":text.len(),
                             "content":{"method":EXACT_BYTES,"value":crate::util::sha256_hex(text.as_bytes())},"next":page.next,"recordIds":page.record_ids,"limits":page.limits.len()}});
@@ -584,8 +608,13 @@ impl RecordsCapability {
                         let reason = "no page of these records fits the 32 KiB bound; nothing returned";
                         (refusal_text(&read_id, reason), false, json!({"outcome":"refused","refusal":reason}))
                     }
+                    },
                 }
             }
+        };
+        let (text,success,record) = match self.project_identity() {
+            Ok(_) => (text,success,record),
+            Err(reason) => (refusal_text(&read_id,&reason),false,json!({"outcome":"refused","refusal":reason})),
         };
         let mut entry = json!({"format":"chirality.records-read-log","formatVersion":"0.1","readId":read_id,"at":now_rfc3339(),
             "appSession":call.app_session,"generation":call.generation,"requestIdentity":bounded(&serde_json::to_string(&call.request).unwrap_or_default(), 256),

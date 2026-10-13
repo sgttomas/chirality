@@ -276,9 +276,9 @@
       "core/loads/self_weight_wasm/Cargo.toml": "9461ca9a1a2403d5ebcb29d710260f02d50c08528b5e1b20150bf9ba27a79cbe",
       "core/loads/stress_recovery/Cargo.toml": "ebee79ddd58fb6c956261449d7c882a76303414cf87a1f10a7c9618b8df005be",
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
-      "core/model_operations/operation_applier/Cargo.toml": "6d185e6bc53e694aba1a53b9b21abaecba49e093bfeef043194de3b7c14f7e72",
+      "core/model_operations/operation_applier/Cargo.toml": "e4ae56b557a9b3b0a90fbfe737a6ec6a8bdff8a332da85e5d24a26bab4d0336a",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "c5f4ede43adbd9fa1c96c014b534364f560eaf383578ccd5837db2c329c7bfb0",
+      "core/product_physics/Cargo.toml": "c05b538f1492b3eaa16d2e7634a2845b9be78c1ba5349a48054cfdca2b529738",
       "core/reporting/audit_manifest/Cargo.toml": "7b941c18378533d99707ed00c6024df56d9e6ac09a85d4b22599aa3fab8754a5",
       "core/reporting/pdf_emitter/Cargo.toml": "24dc0377813b6895aa76a463d849179e35b5ab4e0330ddd0f9de343607def55c",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
@@ -286,7 +286,7 @@
       "core/reporting/report_package/Cargo.toml": "0d78c82a5360ece9a4122ec90dd31816c97f982dd528104aef0740b272a9e63d",
       "core/reporting/report_renderer/Cargo.toml": "fe19d0718b26f7d82c0ee8449eb5746561f7887b8eb7dd6e95de26dce192fde8",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
-      "core/reporting/result_export/Cargo.toml": "4088399c71267b57c62866c69c2c88d36a3cb20c5a49772057d76ca7f77368f4",
+      "core/reporting/result_export/Cargo.toml": "66acc3dc8e7ed8d753f6f6647a6e3394e4c1a56d79d2ef8c393f68686d32f4c8",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "3784dc3caabb41d3ba781c2a3e19332fe50852713b66b0227fac95f75131eabb",
       "core/rules/rule_check_runner/Cargo.toml": "398d4ee217dd83a7b3eb260a633b9a0285e3a47def8838095f75e544c41c4b4c",
@@ -296,9 +296,9 @@
       "core/serialization/canonical_json/Cargo.toml": "15002a43f703afd12087c8c8ccff95739d9d385ef3a640cc64cd34b84ab0a5bc",
       "core/solver/curved_bend/Cargo.toml": "5d7cf1288eac698c209aa4fd7493fa669aa57494950e75374ac07248001502d8",
       "core/solver/diagnostics/Cargo.toml": "11db1409fcfd3b0312ef80085e36eac4d7a66eb0f4298832137119835b1c92e8",
-      "core/solver/frame_kernel/Cargo.toml": "82044525bf3806e29ae125478fee055ca24cd95cc1962964e6c59da1e6448549",
+      "core/solver/frame_kernel/Cargo.toml": "b8b9b6ace8e9940255080da0cc62128114a8828557fa4fa79b162f72e09195c8",
       "core/solver/linear_supports/Cargo.toml": "8d38681e7d09f9f1502d8986ccbea888bfb678b0ea8022885d3f67503ba4881d",
-      "core/solver/nonlinear_integration/Cargo.toml": "6dc66a9f5ebd6744595642914fdd38555bb4f990f09248eb6bf4f7e2e61d1d28",
+      "core/solver/nonlinear_integration/Cargo.toml": "5547a21186ad730b6a8cc35d15cf482795af40063193c493d9c656239f67a530",
       "core/solver/nonlinear_supports/Cargo.toml": "c34c7d2a46294e3c2ab57b4b15028c48664670dfe25278b8b6d22147743a10a6",
       "core/solver/performance_harness/Cargo.toml": "a0347356b693128fe8ec483c7f44d1e81d0bb455b4d743ff656c64cdb9151285",
       "core/solver/sparse_direct/Cargo.toml": "835d487a51f26b1c7db8184afbb911ec62cea51db674ec1113a10b2c425f9a12",
@@ -424,7 +424,7 @@
         ]
       },
       "core/product_physics/build.rs": {
-        "sha256": "96da553c7e547c202a769f04682c400c410d83f8d55cf4e9f20b380da38eafb1",
+        "sha256": "77937a15d854db73c33f59ee3d76e073241748206f6bec625c311e9a9d5743e1",
         "source_trees": ["core/product_physics/Cargo.toml"],
         "inputs": [
           {
@@ -437,128 +437,137 @@
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_load_reference_source_1.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_load_reference_source_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
           },
           {
             "anchor": "../../fixtures/results/retained_precision_prepared_combination_v1.json",
             "base": "manifest",
             "files": ["fixtures/results/retained_precision_prepared_combination_v1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_physics_retained_1.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_physics_retained_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_preview_physics_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
           },
           {
             "anchor": "../../fixtures/results/retained_precision_prepared_ordinary_v1.json",
             "base": "manifest",
             "files": ["fixtures/results/retained_precision_prepared_ordinary_v1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_load_reference_1.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_load_reference_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_physics_source_1.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_physics_source_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_source_blocks_1.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_source_blocks_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
           },
           {
             "anchor": "../../fixtures/results/retained_precision_prepared_exact_v1.json",
             "base": "manifest",
             "files": ["fixtures/results/retained_precision_prepared_exact_v1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_precision_1.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_precision_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_physics_1.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_3_physics_1.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_2.json",
             "base": "manifest",
             "files": ["fixtures/results/semantic_contract_v0_2.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
           },
           {
             "anchor": "../../schemas/retained_precision_mp_v2.schema.json",
             "base": "manifest",
             "files": ["schemas/retained_precision_mp_v2.schema.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
           },
           {
             "anchor": "../../schemas/physics_source_recovery.schema.json",
             "base": "manifest",
             "files": ["schemas/physics_source_recovery.schema.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
           },
           {
             "anchor": "../../schemas/source_block_recovery.schema.json",
             "base": "manifest",
             "files": ["schemas/source_block_recovery.schema.json"],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
           },
           {
             "anchor": "Cargo.lock",
             "base": "manifest",
             "files": ["core/product_physics/Cargo.lock"],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
           },
           {
-            "anchor": "../../fixtures/results/semantic_contract_v0_3_pressure_source_1.json",
+            "anchor": "../../schemas/results_pressure_1.v0.3.schema.json",
             "base": "manifest",
-            "files": ["fixtures/results/semantic_contract_v0_3_pressure_source_1.json"],
+            "files": [
+              "schemas/results_pressure_1.v0.3.schema.json"
+            ],
             "source": "src/build_identity.rs",
-            "source_sha256": "a4c7e2a4022232f493e9a63e57c8cb01b045a65bf2d5bed7107fddb374bc66c8"
-          }
-        ]
+            "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
+          },
+        {
+          "anchor": "../../fixtures/results/semantic_contract_v0_3_pressure_source_1.json",
+          "base": "manifest",
+          "files": ["fixtures/results/semantic_contract_v0_3_pressure_source_1.json"],
+          "source": "src/build_identity.rs",
+          "source_sha256": "b4e848133fe9d38f7eff36270eed0adc12b2a9d67df4c577de7505c1208cb9aa"
+        }
+      ]
       },
       "core/product_physics/examples/exact_pressure_connected.rs": {
         "sha256": "801a9985ddc8265383fb8c7883e8f8780cedeeed8ee424a991a40cded1073e85",
@@ -589,47 +598,123 @@
           "reason": "Example reads the user-supplied model argument; no default repository file."
         }
       },
+      "core/product_physics/src/joint_pressure_tests.rs": {
+        "sha256": "987c5d1bb563a566ca2538e473473b7d718e1db39e37f45c4d7f1755d6c1eb14",
+        "source_trees": [
+          "core/loads/self_weight_wasm/Cargo.toml",
+          "core/model_operations/operation_applier/Cargo.toml",
+          "core/product_physics/Cargo.toml",
+          "core/runner/headless/Cargo.toml",
+          "validation/benchmarks/numerical_integrity/Cargo.toml",
+          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+        ],
+        "inputs": [
+          {
+            "anchor": "../../fixtures/results/pressure_v3_joint_reader_control.json",
+            "base": "manifest",
+            "files": [
+              "fixtures/results/pressure_v3_joint_reader_control.json"
+            ]
+          }
+        ]
+      },
       "core/product_physics/src/source_receipt/pressure_source_context_tests.rs": {
         "sha256": "c830dc71514193102a57313d7180533631213465a4d47163add28408e0141782",
         "source_trees": [
-          "core/loads/self_weight_wasm/Cargo.toml", "core/model_operations/operation_applier/Cargo.toml", "core/product_physics/Cargo.toml", "core/runner/headless/Cargo.toml",
-          "validation/benchmarks/numerical_integrity/Cargo.toml", "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "core/loads/self_weight_wasm/Cargo.toml",
+          "core/model_operations/operation_applier/Cargo.toml",
+          "core/product_physics/Cargo.toml",
+          "core/runner/headless/Cargo.toml",
+          "validation/benchmarks/numerical_integrity/Cargo.toml",
+          "validation/benchmarks/physics_audit_regression/Cargo.toml"
         ],
         "inputs": [
           {
             "anchor": "../../fixtures/product_preview/{family}/{name}.request.json",
             "base": "manifest",
             "files": [
-              "fixtures/product_preview/load_reference_source/eigen_motion.request.json", "fixtures/product_preview/load_reference_source/fields.request.json", "fixtures/product_preview/load_reference_source/mixed.request.json", "fixtures/product_preview/load_reference_source/n05.request.json",
-              "fixtures/product_preview/load_reference_source/n06.request.json", "fixtures/product_preview/physics_source/fields.request.json", "fixtures/product_preview/physics_source/mixed.request.json", "fixtures/product_preview/physics_source/mixed_units.request.json",
-              "fixtures/product_preview/physics_source/n05.request.json", "fixtures/product_preview/physics_source/n05_unicode.request.json", "fixtures/product_preview/physics_source/n05_units.request.json", "fixtures/product_preview/physics_source/n06.request.json"
+              "fixtures/product_preview/load_reference_source/eigen_motion.request.json",
+              "fixtures/product_preview/load_reference_source/fields.request.json",
+              "fixtures/product_preview/load_reference_source/mixed.request.json",
+              "fixtures/product_preview/load_reference_source/n05.request.json",
+              "fixtures/product_preview/load_reference_source/n06.request.json",
+              "fixtures/product_preview/physics_source/fields.request.json",
+              "fixtures/product_preview/physics_source/mixed.request.json",
+              "fixtures/product_preview/physics_source/mixed_units.request.json",
+              "fixtures/product_preview/physics_source/n05.request.json",
+              "fixtures/product_preview/physics_source/n05_unicode.request.json",
+              "fixtures/product_preview/physics_source/n05_units.request.json",
+              "fixtures/product_preview/physics_source/n06.request.json"
             ]
           },
           {
             "anchor": "fixtures/product_preview/{family}/{name}.request.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/load_reference_source/eigen_motion.request.json", "fixtures/product_preview/load_reference_source/fields.request.json", "fixtures/product_preview/load_reference_source/mixed.request.json", "fixtures/product_preview/load_reference_source/n05.request.json",
-              "fixtures/product_preview/load_reference_source/n06.request.json", "fixtures/product_preview/physics_source/fields.request.json", "fixtures/product_preview/physics_source/mixed.request.json", "fixtures/product_preview/physics_source/mixed_units.request.json",
-              "fixtures/product_preview/physics_source/n05.request.json", "fixtures/product_preview/physics_source/n05_unicode.request.json", "fixtures/product_preview/physics_source/n05_units.request.json", "fixtures/product_preview/physics_source/n06.request.json"
+              "fixtures/product_preview/load_reference_source/eigen_motion.request.json",
+              "fixtures/product_preview/load_reference_source/fields.request.json",
+              "fixtures/product_preview/load_reference_source/mixed.request.json",
+              "fixtures/product_preview/load_reference_source/n05.request.json",
+              "fixtures/product_preview/load_reference_source/n06.request.json",
+              "fixtures/product_preview/physics_source/fields.request.json",
+              "fixtures/product_preview/physics_source/mixed.request.json",
+              "fixtures/product_preview/physics_source/mixed_units.request.json",
+              "fixtures/product_preview/physics_source/n05.request.json",
+              "fixtures/product_preview/physics_source/n05_unicode.request.json",
+              "fixtures/product_preview/physics_source/n05_units.request.json",
+              "fixtures/product_preview/physics_source/n06.request.json"
             ]
           },
           {
             "anchor": "fixtures/product_preview/pressure_source/{family}/{name}-{}.raw.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-dense_scrutiny.raw.json", "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-sparse_interactive.raw.json", "fixtures/product_preview/pressure_source/load_reference_source/fields-dense_scrutiny.raw.json", "fixtures/product_preview/pressure_source/load_reference_source/fields-sparse_interactive.raw.json",
-              "fixtures/product_preview/pressure_source/load_reference_source/mixed-dense_scrutiny.raw.json", "fixtures/product_preview/pressure_source/load_reference_source/mixed-sparse_interactive.raw.json", "fixtures/product_preview/pressure_source/load_reference_source/n05-dense_scrutiny.raw.json", "fixtures/product_preview/pressure_source/load_reference_source/n05-sparse_interactive.raw.json",
-              "fixtures/product_preview/pressure_source/load_reference_source/n06-dense_scrutiny.raw.json", "fixtures/product_preview/pressure_source/load_reference_source/n06-sparse_interactive.raw.json", "fixtures/product_preview/pressure_source/physics_source/fields-dense_scrutiny.raw.json", "fixtures/product_preview/pressure_source/physics_source/fields-sparse_interactive.raw.json",
-              "fixtures/product_preview/pressure_source/physics_source/mixed-dense_scrutiny.raw.json", "fixtures/product_preview/pressure_source/physics_source/mixed-sparse_interactive.raw.json", "fixtures/product_preview/pressure_source/physics_source/mixed_units-dense_scrutiny.raw.json", "fixtures/product_preview/pressure_source/physics_source/mixed_units-sparse_interactive.raw.json",
-              "fixtures/product_preview/pressure_source/physics_source/n05-dense_scrutiny.raw.json", "fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json", "fixtures/product_preview/pressure_source/physics_source/n05_unicode-dense_scrutiny.raw.json", "fixtures/product_preview/pressure_source/physics_source/n05_unicode-sparse_interactive.raw.json",
-              "fixtures/product_preview/pressure_source/physics_source/n05_units-dense_scrutiny.raw.json", "fixtures/product_preview/pressure_source/physics_source/n05_units-sparse_interactive.raw.json", "fixtures/product_preview/pressure_source/physics_source/n06-dense_scrutiny.raw.json", "fixtures/product_preview/pressure_source/physics_source/n06-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/fields-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/fields-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed_units-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed_units-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_unicode-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_unicode-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_units-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_units-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06-sparse_interactive.raw.json"
             ]
           }
         ],
         "external_reads": {
           "kind": "audited-external-inputs",
           "reason": "cached_source_context_preserves_current_v2_v3_public_serializations reads optional original-v2 bytes only from the directory named by SWBPIPE_SOURCE_CONTEXT_V2_BYTES; no repository default."
+        }
+      },
+      "core/product_physics/src/u4a_tests.rs": {
+        "sha256": "5cfdecb6464c3ae9dce114a488c1f47b87a264b381ff4577466fb13998460af9",
+        "source_trees": [
+          "core/loads/self_weight_wasm/Cargo.toml",
+          "core/model_operations/operation_applier/Cargo.toml",
+          "core/product_physics/Cargo.toml",
+          "core/runner/headless/Cargo.toml",
+          "validation/benchmarks/numerical_integrity/Cargo.toml",
+          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+        ],
+        "inputs": [],
+        "external_reads": {
+          "kind": "audited-external-inputs",
+          "reason": "The cfg(test) U4a reference control optionally reads the path supplied by U4A_PREVIEW_BASELINE solely to compare expected preview-envelope bytes and hashes; it has no repository default or product-input read. Its request and oracle inputs are literal include_str! reads."
         }
       },
       "core/product_physics/tests/load_reference_state_runtime.rs": {
@@ -1554,39 +1639,39 @@
               "core/rules/expression_evaluator/src/lib.rs", "core/rules/rule_check_runner/src/lib.rs", "core/rules/rule_pack_document/src/lib.rs", "core/rules/rule_pack_lifecycle/src/lib.rs", "core/runner/headless/src/benchmark_binding.rs",
               "core/runner/headless/src/bin/headless_preview_runner.rs", "core/runner/headless/src/bin/openpipestress-runner.rs", "core/runner/headless/src/lib.rs", "core/runner/headless/src/load_reference_route_tests.rs",
               "core/runner/headless/src/reader_binding.rs", "core/runner/headless/src/redaction_binding.rs", "core/runner/headless/src/result_envelope_binding.rs", "core/serialization/canonical_json/src/bin/openpipestress_jcs_binary64.rs",
-              "core/serialization/canonical_json/src/bin/openpipestress_jcs_ijson.rs", "core/serialization/canonical_json/src/binary64.rs", "core/serialization/canonical_json/src/binary64_cli.rs",
-              "core/serialization/canonical_json/src/lib.rs", "core/solver/curved_bend/src/arc_integrals.rs", "core/solver/curved_bend/src/axis_tolerance_tests.rs", "core/solver/curved_bend/src/lib.rs",
-              "core/solver/curved_bend/src/load_vector_tests.rs", "core/solver/curved_bend/src/platform_bits_tests.rs", "core/solver/curved_bend/src/s11k_tests.rs", "core/solver/curved_bend/src/short_arc_tests.rs",
-              "core/solver/diagnostics/src/lib.rs", "core/solver/frame_kernel/src/connector.rs", "core/solver/frame_kernel/src/exact_sum.rs", "core/solver/frame_kernel/src/exact_sum/tests.rs", "core/solver/frame_kernel/src/lib.rs",
-              "core/solver/frame_kernel/src/load_ledger.rs", "core/solver/frame_kernel/src/rigid_body.rs", "core/solver/frame_kernel/src/structural.rs", "core/solver/frame_kernel/src/structural/arc_angle.rs",
-              "core/solver/frame_kernel/src/structural/arc_certificate.rs", "core/solver/frame_kernel/src/structural/arc_certificate_tests.rs", "core/solver/frame_kernel/src/structural/arc_recovery_tests.rs",
-              "core/solver/frame_kernel/src/structural/certified_recovery.rs", "core/solver/frame_kernel/src/structural/certified_recovery_tests.rs", "core/solver/frame_kernel/src/structural/exact_boundary.rs",
-              "core/solver/frame_kernel/src/structural/exact_boundary/functionals.rs", "core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs", "core/solver/frame_kernel/src/structural/exact_boundary/s11k_tests.rs",
-              "core/solver/frame_kernel/src/structural/formation_check.rs", "core/solver/frame_kernel/src/structural/formation_check_tests.rs", "core/solver/frame_kernel/src/structural/kf2_witness_tests.rs",
-              "core/solver/frame_kernel/src/structural/retained/adaptive.rs", "core/solver/frame_kernel/src/structural/retained/assemble.rs", "core/solver/frame_kernel/src/structural/retained/bound.rs",
-              "core/solver/frame_kernel/src/structural/retained/combine.rs", "core/solver/frame_kernel/src/structural/retained/directed.rs", "core/solver/frame_kernel/src/structural/retained/directed/certificate.rs",
-              "core/solver/frame_kernel/src/structural/retained/factor.rs", "core/solver/frame_kernel/src/structural/retained/ledger.rs", "core/solver/frame_kernel/src/structural/retained/mod.rs",
-              "core/solver/frame_kernel/src/structural/retained/origins.rs", "core/solver/frame_kernel/src/structural/retained/product_certificate.rs", "core/solver/frame_kernel/src/structural/retained/product_certificate/bridge.rs",
-              "core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs", "core/solver/frame_kernel/src/structural/retained/product_certificate/source_residual.rs", "core/solver/frame_kernel/src/structural/retained/recover.rs",
-              "core/solver/frame_kernel/src/structural/retained/seeded.rs", "core/solver/frame_kernel/src/structural/retained/source.rs", "core/solver/frame_kernel/src/structural/retained/verify.rs",
-              "core/solver/frame_kernel/src/structural/retained/wide.rs", "core/solver/frame_kernel/src/structural/retained/wide/multi.rs", "core/solver/frame_kernel/src/structural/retained/wide_sum.rs",
-              "core/solver/frame_kernel/src/structural/retained/work.rs", "core/solver/frame_kernel/src/structural/retained_resource.rs", "core/solver/frame_kernel/src/structural/s11f_tests.rs", "core/solver/frame_kernel/src/structural/s11k_tests.rs",
-              "core/solver/frame_kernel/src/structural/sparse.rs", "core/solver/frame_kernel/src/structural/sparse/tests.rs", "core/solver/linear_supports/src/lib.rs", "core/solver/nonlinear_integration/src/confirmation.rs", "core/solver/nonlinear_integration/src/confirmation_tests.rs", "core/solver/nonlinear_integration/src/lib.rs",
-              "core/solver/nonlinear_integration/src/product_equilibrium.rs", "core/solver/nonlinear_integration/src/s11k_tests.rs", "core/solver/nonlinear_integration/src/structural_adapter.rs", "core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs",
-              "core/solver/nonlinear_integration/src/structural_adapter/k2b_models.rs", "core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs", "core/solver/nonlinear_integration/src/structural_adapter/k5_tests.rs",
-              "core/solver/nonlinear_integration/src/structural_adapter/kd5_models.rs", "core/solver/nonlinear_integration/src/structural_adapter/kd5_tests.rs", "core/solver/nonlinear_supports/src/lib.rs",
-              "core/solver/performance_harness/examples/sparse_default_promotion_observation.rs", "core/solver/performance_harness/src/bin/k6_observe/alloc.rs", "core/solver/performance_harness/src/bin/k6_observe/main.rs",
-              "core/solver/performance_harness/src/bin/k6_observe/w1.rs", "core/solver/performance_harness/src/k6/canonical.rs", "core/solver/performance_harness/src/k6/counts.rs", "core/solver/performance_harness/src/k6/lanes.rs",
-              "core/solver/performance_harness/src/k6/mod.rs", "core/solver/performance_harness/src/k6/models.rs", "core/solver/performance_harness/src/k6/parity.rs", "core/solver/performance_harness/src/k6/staged.rs",
-              "core/solver/performance_harness/src/k6/w1/adapter.rs", "core/solver/performance_harness/src/k6/w1/counts.rs", "core/solver/performance_harness/src/k6/w1/envelope.rs", "core/solver/performance_harness/src/k6/w1/h_envelope.rs",
-              "core/solver/performance_harness/src/k6/w1/mod.rs", "core/solver/performance_harness/src/k6/w1/rows.rs", "core/solver/performance_harness/src/k6/w1/staged.rs", "core/solver/performance_harness/src/lib.rs",
-              "core/solver/sparse_direct/src/lib.rs", "core/solver/sparse_direct/src/structural.rs", "core/solver/sparse_direct/src/structural/k1_tests.rs", "core/solver/straight_pipe/src/lib.rs",
-              "core/solver/straight_pipe/src/s11k_tests.rs", "core/units/src/bin/openpipestress_units.rs", "core/units/src/lib.rs", "validation/benchmarks/mechanics/src/lib.rs", "validation/benchmarks/nonlinear/src/lib.rs",
-              "validation/benchmarks/numerical_integrity/src/main.rs", "validation/benchmarks/numerical_robustness/examples/vk_records.rs", "validation/benchmarks/numerical_robustness/examples/vk_scale.rs",
-              "validation/benchmarks/numerical_robustness/src/cases.rs", "validation/benchmarks/numerical_robustness/src/compare.rs", "validation/benchmarks/numerical_robustness/src/envelope.rs", "validation/benchmarks/numerical_robustness/src/exact.rs",
-              "validation/benchmarks/numerical_robustness/src/floor.rs", "validation/benchmarks/numerical_robustness/src/invariance.rs", "validation/benchmarks/numerical_robustness/src/lane.rs", "validation/benchmarks/numerical_robustness/src/lib.rs",
-              "validation/benchmarks/numerical_robustness/src/parity.rs", "validation/benchmarks/numerical_robustness/src/rcm.rs", "validation/benchmarks/numerical_robustness/src/records.rs", "validation/benchmarks/numerical_robustness/src/scale.rs",
-              "validation/benchmarks/numerical_robustness/src/sha256.rs", "validation/benchmarks/physics_audit_regression/src/lib.rs", "validation/benchmarks/stress/src/lib.rs"
+              "core/serialization/canonical_json/src/bin/openpipestress_jcs_ijson.rs", "core/serialization/canonical_json/src/binary64.rs", "core/serialization/canonical_json/src/binary64_cli.rs", "core/serialization/canonical_json/src/lib.rs",
+              "core/solver/curved_bend/src/arc_integrals.rs", "core/solver/curved_bend/src/axis_tolerance_tests.rs", "core/solver/curved_bend/src/lib.rs", "core/solver/curved_bend/src/load_vector_tests.rs",
+              "core/solver/curved_bend/src/platform_bits_tests.rs", "core/solver/curved_bend/src/s11k_tests.rs", "core/solver/curved_bend/src/short_arc_tests.rs", "core/solver/diagnostics/src/lib.rs",
+              "core/solver/frame_kernel/src/connector.rs", "core/solver/frame_kernel/src/exact_sum.rs", "core/solver/frame_kernel/src/exact_sum/tests.rs",
+              "core/solver/frame_kernel/src/lib.rs", "core/solver/frame_kernel/src/load_ledger.rs", "core/solver/frame_kernel/src/rigid_body.rs", "core/solver/frame_kernel/src/structural.rs",
+              "core/solver/frame_kernel/src/structural/arc_angle.rs", "core/solver/frame_kernel/src/structural/arc_certificate.rs", "core/solver/frame_kernel/src/structural/arc_certificate_tests.rs", "core/solver/frame_kernel/src/structural/arc_recovery_tests.rs",
+              "core/solver/frame_kernel/src/structural/certified_recovery.rs", "core/solver/frame_kernel/src/structural/certified_recovery_tests.rs", "core/solver/frame_kernel/src/structural/exact_boundary.rs", "core/solver/frame_kernel/src/structural/exact_boundary/functionals.rs",
+              "core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs", "core/solver/frame_kernel/src/structural/exact_boundary/s11k_tests.rs", "core/solver/frame_kernel/src/structural/formation_check.rs", "core/solver/frame_kernel/src/structural/formation_check_tests.rs",
+              "core/solver/frame_kernel/src/structural/kf2_witness_tests.rs", "core/solver/frame_kernel/src/structural/retained/adaptive.rs", "core/solver/frame_kernel/src/structural/retained/assemble.rs", "core/solver/frame_kernel/src/structural/retained/bound.rs",
+              "core/solver/frame_kernel/src/structural/retained/combine.rs", "core/solver/frame_kernel/src/structural/retained/directed.rs", "core/solver/frame_kernel/src/structural/retained/directed/certificate.rs", "core/solver/frame_kernel/src/structural/retained/factor.rs",
+              "core/solver/frame_kernel/src/structural/retained/ledger.rs", "core/solver/frame_kernel/src/structural/retained/mod.rs", "core/solver/frame_kernel/src/structural/retained/origins.rs", "core/solver/frame_kernel/src/structural/retained/product_certificate.rs",
+              "core/solver/frame_kernel/src/structural/retained/product_certificate/bridge.rs", "core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs", "core/solver/frame_kernel/src/structural/retained/product_certificate/source_residual.rs", "core/solver/frame_kernel/src/structural/retained/recover.rs",
+              "core/solver/frame_kernel/src/structural/retained/seeded.rs", "core/solver/frame_kernel/src/structural/retained/source.rs", "core/solver/frame_kernel/src/structural/retained/verify.rs", "core/solver/frame_kernel/src/structural/retained/wide.rs",
+              "core/solver/frame_kernel/src/structural/retained/wide/multi.rs", "core/solver/frame_kernel/src/structural/retained/wide_sum.rs", "core/solver/frame_kernel/src/structural/retained/work.rs", "core/solver/frame_kernel/src/structural/retained_resource.rs",
+              "core/solver/frame_kernel/src/structural/s11f_tests.rs", "core/solver/frame_kernel/src/structural/s11k_tests.rs", "core/solver/frame_kernel/src/structural/sparse.rs", "core/solver/frame_kernel/src/structural/sparse/tests.rs",
+              "core/solver/linear_supports/src/lib.rs", "core/solver/nonlinear_integration/src/confirmation.rs", "core/solver/nonlinear_integration/src/confirmation_tests.rs", "core/solver/nonlinear_integration/src/lib.rs", "core/solver/nonlinear_integration/src/product_equilibrium.rs", "core/solver/nonlinear_integration/src/s11k_tests.rs",
+              "core/solver/nonlinear_integration/src/structural_adapter.rs", "core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs", "core/solver/nonlinear_integration/src/structural_adapter/k2b_models.rs", "core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs",
+              "core/solver/nonlinear_integration/src/structural_adapter/k5_tests.rs", "core/solver/nonlinear_integration/src/structural_adapter/kd5_models.rs", "core/solver/nonlinear_integration/src/structural_adapter/kd5_tests.rs", "core/solver/nonlinear_supports/src/lib.rs",
+              "core/solver/performance_harness/examples/sparse_default_promotion_observation.rs", "core/solver/performance_harness/src/bin/k6_observe/alloc.rs", "core/solver/performance_harness/src/bin/k6_observe/main.rs", "core/solver/performance_harness/src/bin/k6_observe/w1.rs",
+              "core/solver/performance_harness/src/k6/canonical.rs", "core/solver/performance_harness/src/k6/counts.rs", "core/solver/performance_harness/src/k6/lanes.rs", "core/solver/performance_harness/src/k6/mod.rs",
+              "core/solver/performance_harness/src/k6/models.rs", "core/solver/performance_harness/src/k6/parity.rs", "core/solver/performance_harness/src/k6/staged.rs", "core/solver/performance_harness/src/k6/w1/adapter.rs",
+              "core/solver/performance_harness/src/k6/w1/counts.rs", "core/solver/performance_harness/src/k6/w1/envelope.rs", "core/solver/performance_harness/src/k6/w1/h_envelope.rs", "core/solver/performance_harness/src/k6/w1/mod.rs",
+              "core/solver/performance_harness/src/k6/w1/rows.rs", "core/solver/performance_harness/src/k6/w1/staged.rs", "core/solver/performance_harness/src/lib.rs", "core/solver/sparse_direct/src/lib.rs",
+              "core/solver/sparse_direct/src/structural.rs", "core/solver/sparse_direct/src/structural/k1_tests.rs", "core/solver/straight_pipe/src/lib.rs", "core/solver/straight_pipe/src/s11k_tests.rs",
+              "core/units/src/bin/openpipestress_units.rs", "core/units/src/lib.rs", "validation/benchmarks/mechanics/src/lib.rs", "validation/benchmarks/nonlinear/src/lib.rs",
+              "validation/benchmarks/numerical_integrity/src/main.rs", "validation/benchmarks/numerical_robustness/examples/vk_records.rs", "validation/benchmarks/numerical_robustness/examples/vk_scale.rs", "validation/benchmarks/numerical_robustness/src/cases.rs",
+              "validation/benchmarks/numerical_robustness/src/compare.rs", "validation/benchmarks/numerical_robustness/src/envelope.rs", "validation/benchmarks/numerical_robustness/src/exact.rs", "validation/benchmarks/numerical_robustness/src/floor.rs",
+              "validation/benchmarks/numerical_robustness/src/invariance.rs", "validation/benchmarks/numerical_robustness/src/lane.rs", "validation/benchmarks/numerical_robustness/src/lib.rs", "validation/benchmarks/numerical_robustness/src/parity.rs",
+              "validation/benchmarks/numerical_robustness/src/rcm.rs", "validation/benchmarks/numerical_robustness/src/records.rs", "validation/benchmarks/numerical_robustness/src/scale.rs", "validation/benchmarks/numerical_robustness/src/sha256.rs",
+              "validation/benchmarks/physics_audit_regression/src/lib.rs", "validation/benchmarks/stress/src/lib.rs",
+              "core/model_operations/operation_applier/src/joint_pressure_authoring.rs",
+              "core/product_physics/src/joint_pressure_tests.rs",
+              "core/product_physics/src/u4a_tests.rs"
             ],
             "scan": {
               "suffix": ".rs",
@@ -2298,59 +2383,123 @@
         }
       },
       "core/solver/nonlinear_integration/src/s11k_tests.rs": {
-        "sha256": "12e53f959a15f1b681ff50965a98b29a206bbbe1e534f8fa4258c30df1f9e7e3",
+        "sha256": "f6ff6917a104e6616f4f60398fbca6d44701873b1929a9129107b89d64e33cd1",
         "source_trees": [
-          "core/loads/self_weight_wasm/Cargo.toml", "core/model_operations/operation_applier/Cargo.toml", "core/product_physics/Cargo.toml", "core/runner/headless/Cargo.toml",
-          "core/solver/nonlinear_integration/Cargo.toml", "core/solver/performance_harness/Cargo.toml", "validation/benchmarks/nonlinear/Cargo.toml", "validation/benchmarks/numerical_integrity/Cargo.toml",
-          "validation/benchmarks/numerical_robustness/Cargo.toml", "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "core/loads/self_weight_wasm/Cargo.toml",
+          "core/model_operations/operation_applier/Cargo.toml",
+          "core/product_physics/Cargo.toml",
+          "core/runner/headless/Cargo.toml",
+          "core/solver/nonlinear_integration/Cargo.toml",
+          "core/solver/performance_harness/Cargo.toml",
+          "validation/benchmarks/nonlinear/Cargo.toml",
+          "validation/benchmarks/numerical_integrity/Cargo.toml",
+          "validation/benchmarks/numerical_robustness/Cargo.toml",
+          "validation/benchmarks/physics_audit_regression/Cargo.toml"
         ],
         "inputs": [
           {
             "anchor": "../../product_physics/src",
             "base": "manifest",
             "files": [
-              "core/product_physics/src/annulus_geometry.rs", "core/product_physics/src/bend_pressure.rs", "core/product_physics/src/build_identity.rs", "core/product_physics/src/case_state/input.rs",
-              "core/product_physics/src/case_state/material.rs", "core/product_physics/src/case_state/mod.rs", "core/product_physics/src/case_state/resolve.rs", "core/product_physics/src/case_state/temperature.rs",
-              "core/product_physics/src/case_state/tests.rs", "core/product_physics/src/case_state/thermal.rs", "core/product_physics/src/certified_loads.rs", "core/product_physics/src/certified_publication.rs",
-              "core/product_physics/src/exact_admission.rs", "core/product_physics/src/f1a_tests.rs", "core/product_physics/src/f1b_tests.rs", "core/product_physics/src/formation_guard.rs",
-              "core/product_physics/src/joint.rs", "core/product_physics/src/kd5_nonlinear_tests.rs", "core/product_physics/src/kd5_pressure_closure_tests.rs", "core/product_physics/src/lib.rs", "core/product_physics/src/membrane_publication_range.rs",
-              "core/product_physics/src/pressure_exact.rs", "core/product_physics/src/pressure_exact/source_geometry.rs", "core/product_physics/src/pressure_material.rs", "core/product_physics/src/pressure_runtime.rs",
-              "core/product_physics/src/pressure_sum.rs", "core/product_physics/src/preview_physics.rs", "core/product_physics/src/retained_facade_tests.rs", "core/product_physics/src/retained_memory.rs",
-              "core/product_physics/src/retained_memory_law_tests.rs", "core/product_physics/src/retained_memory_witness_tests.rs", "core/product_physics/src/retained_product.rs", "core/product_physics/src/retained_product_tests.rs",
-              "core/product_physics/src/retained_receipt.rs", "core/product_physics/src/retained_tests_hooks/grant2.rs", "core/product_physics/src/retained_wire.rs", "core/product_physics/src/retained_wire_tests.rs",
-              "core/product_physics/src/s11f_tests.rs", "core/product_physics/src/s11g_tests.rs", "core/product_physics/src/s11g_tests/arc_recovery.rs", "core/product_physics/src/s11g_tests/short_bend.rs",
-              "core/product_physics/src/self_weight.rs", "core/product_physics/src/source_budget_tests.rs", "core/product_physics/src/source_receipt.rs", "core/product_physics/src/source_receipt/composite.rs",
-              "core/product_physics/src/source_receipt/endpoint_maximum.rs", "core/product_physics/src/source_receipt/load_state_fallback_tests.rs", "core/product_physics/src/source_receipt/load_state_join_tests.rs", "core/product_physics/src/source_receipt/load_state_tests.rs",
-              "core/product_physics/src/source_receipt/pressure_source_context_tests.rs", "core/product_physics/src/source_receipt/rows.rs", "core/product_physics/src/source_receipt/source.rs", "core/product_physics/src/source_receipt/tests.rs",
-              "core/product_physics/src/source_recovery.rs", "core/product_physics/src/source_recovery/j7_rf_census.rs", "core/product_physics/src/source_recovery/j7_t4_consequences.rs", "core/product_physics/src/validation.rs"
+              "core/product_physics/src/annulus_geometry.rs",
+              "core/product_physics/src/bend_pressure.rs",
+              "core/product_physics/src/build_identity.rs",
+              "core/product_physics/src/case_state/input.rs",
+              "core/product_physics/src/case_state/material.rs",
+              "core/product_physics/src/case_state/mod.rs",
+              "core/product_physics/src/case_state/resolve.rs",
+              "core/product_physics/src/case_state/temperature.rs",
+              "core/product_physics/src/case_state/tests.rs",
+              "core/product_physics/src/case_state/thermal.rs",
+              "core/product_physics/src/certified_loads.rs",
+              "core/product_physics/src/certified_publication.rs",
+              "core/product_physics/src/exact_admission.rs",
+              "core/product_physics/src/f1a_tests.rs",
+              "core/product_physics/src/f1b_tests.rs",
+              "core/product_physics/src/formation_guard.rs",
+              "core/product_physics/src/joint.rs",
+              "core/product_physics/src/joint_pressure_tests.rs",
+              "core/product_physics/src/kd5_nonlinear_tests.rs",
+              "core/product_physics/src/kd5_pressure_closure_tests.rs",
+              "core/product_physics/src/lib.rs",
+              "core/product_physics/src/membrane_publication_range.rs",
+              "core/product_physics/src/pressure_exact.rs",
+              "core/product_physics/src/pressure_exact/source_geometry.rs",
+              "core/product_physics/src/pressure_material.rs",
+              "core/product_physics/src/pressure_runtime.rs",
+              "core/product_physics/src/pressure_sum.rs",
+              "core/product_physics/src/preview_physics.rs",
+              "core/product_physics/src/retained_facade_tests.rs",
+              "core/product_physics/src/retained_memory.rs",
+              "core/product_physics/src/retained_memory_law_tests.rs",
+              "core/product_physics/src/retained_memory_witness_tests.rs",
+              "core/product_physics/src/retained_product.rs",
+              "core/product_physics/src/retained_product_tests.rs",
+              "core/product_physics/src/retained_receipt.rs",
+              "core/product_physics/src/retained_tests_hooks/grant2.rs",
+              "core/product_physics/src/retained_wire.rs",
+              "core/product_physics/src/retained_wire_tests.rs",
+              "core/product_physics/src/s11f_tests.rs",
+              "core/product_physics/src/s11g_tests.rs",
+              "core/product_physics/src/s11g_tests/arc_recovery.rs",
+              "core/product_physics/src/s11g_tests/short_bend.rs",
+              "core/product_physics/src/self_weight.rs",
+              "core/product_physics/src/source_budget_tests.rs",
+              "core/product_physics/src/source_receipt.rs",
+              "core/product_physics/src/source_receipt/composite.rs",
+              "core/product_physics/src/source_receipt/endpoint_maximum.rs",
+              "core/product_physics/src/source_receipt/load_state_fallback_tests.rs",
+              "core/product_physics/src/source_receipt/load_state_join_tests.rs",
+              "core/product_physics/src/source_receipt/load_state_tests.rs",
+              "core/product_physics/src/source_receipt/pressure_source_context_tests.rs",
+              "core/product_physics/src/source_receipt/rows.rs",
+              "core/product_physics/src/source_receipt/source.rs",
+              "core/product_physics/src/source_receipt/tests.rs",
+              "core/product_physics/src/source_recovery.rs",
+              "core/product_physics/src/source_recovery/j7_rf_census.rs",
+              "core/product_physics/src/source_recovery/j7_t4_consequences.rs",
+              "core/product_physics/src/u4a_tests.rs",
+              "core/product_physics/src/validation.rs"
             ],
             "scan": {
               "suffix": ".rs"
             },
-            "audit": "non_test_modules lists every .rs file under product_physics/src (recursive read_dir, no exclusions) and requires each to be reached and read."
+            "audit": "The W4 guard recursively reads every .rs file under product_physics/src without exclusions; all nested join modules remain live inputs."
           },
           {
             "anchor": "product_equilibrium.rs",
             "base": "source",
-            "files": ["core/solver/nonlinear_integration/src/product_equilibrium.rs"]
+            "files": [
+              "core/solver/nonlinear_integration/src/product_equilibrium.rs"
+            ]
           },
           {
             "anchor": "structural_adapter.rs",
             "base": "source",
-            "files": ["core/solver/nonlinear_integration/src/structural_adapter.rs"]
+            "files": [
+              "core/solver/nonlinear_integration/src/structural_adapter.rs"
+            ]
           },
           {
             "anchor": "lib.rs",
             "base": "source",
-            "files": ["core/solver/nonlinear_integration/src/lib.rs"]
+            "files": [
+              "core/solver/nonlinear_integration/src/lib.rs"
+            ]
           },
           {
             "anchor": "src",
             "base": "manifest",
             "files": [
-              "core/solver/nonlinear_integration/src/confirmation.rs", "core/solver/nonlinear_integration/src/confirmation_tests.rs",
-              "core/solver/nonlinear_integration/src/s11k_tests.rs", "core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs", "core/solver/nonlinear_integration/src/structural_adapter/k2b_models.rs", "core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs",
-              "core/solver/nonlinear_integration/src/structural_adapter/k5_tests.rs", "core/solver/nonlinear_integration/src/structural_adapter/kd5_models.rs", "core/solver/nonlinear_integration/src/structural_adapter/kd5_tests.rs"
+              "core/solver/nonlinear_integration/src/confirmation.rs",
+              "core/solver/nonlinear_integration/src/confirmation_tests.rs",
+              "core/solver/nonlinear_integration/src/s11k_tests.rs",
+              "core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs",
+              "core/solver/nonlinear_integration/src/structural_adapter/k2b_models.rs",
+              "core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs",
+              "core/solver/nonlinear_integration/src/structural_adapter/k5_tests.rs",
+              "core/solver/nonlinear_integration/src/structural_adapter/kd5_models.rs",
+              "core/solver/nonlinear_integration/src/structural_adapter/kd5_tests.rs"
             ]
           }
         ]
@@ -2358,49 +2507,107 @@
       "core/solver/nonlinear_integration/src/structural_adapter/k5_tests.rs": {
         "sha256": "8ca0af7e032794051b26dcb9eec654584afba9b30903d8382a63ae7546220887",
         "source_trees": [
-          "core/loads/self_weight_wasm/Cargo.toml", "core/model_operations/operation_applier/Cargo.toml", "core/product_physics/Cargo.toml", "core/runner/headless/Cargo.toml",
-          "core/solver/nonlinear_integration/Cargo.toml", "core/solver/performance_harness/Cargo.toml", "validation/benchmarks/nonlinear/Cargo.toml", "validation/benchmarks/numerical_integrity/Cargo.toml",
-          "validation/benchmarks/numerical_robustness/Cargo.toml", "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "core/loads/self_weight_wasm/Cargo.toml",
+          "core/model_operations/operation_applier/Cargo.toml",
+          "core/product_physics/Cargo.toml",
+          "core/runner/headless/Cargo.toml",
+          "core/solver/nonlinear_integration/Cargo.toml",
+          "core/solver/performance_harness/Cargo.toml",
+          "validation/benchmarks/nonlinear/Cargo.toml",
+          "validation/benchmarks/numerical_integrity/Cargo.toml",
+          "validation/benchmarks/numerical_robustness/Cargo.toml",
+          "validation/benchmarks/physics_audit_regression/Cargo.toml"
         ],
         "inputs": [
           {
             "anchor": "../../product_physics/src",
             "base": "manifest",
             "files": [
-              "core/product_physics/src/annulus_geometry.rs", "core/product_physics/src/bend_pressure.rs", "core/product_physics/src/build_identity.rs", "core/product_physics/src/case_state/input.rs",
-              "core/product_physics/src/case_state/material.rs", "core/product_physics/src/case_state/mod.rs", "core/product_physics/src/case_state/resolve.rs", "core/product_physics/src/case_state/temperature.rs",
-              "core/product_physics/src/case_state/tests.rs", "core/product_physics/src/case_state/thermal.rs", "core/product_physics/src/certified_loads.rs", "core/product_physics/src/certified_publication.rs",
-              "core/product_physics/src/exact_admission.rs", "core/product_physics/src/f1a_tests.rs", "core/product_physics/src/f1b_tests.rs", "core/product_physics/src/formation_guard.rs",
-              "core/product_physics/src/joint.rs", "core/product_physics/src/kd5_nonlinear_tests.rs", "core/product_physics/src/kd5_pressure_closure_tests.rs", "core/product_physics/src/lib.rs", "core/product_physics/src/membrane_publication_range.rs",
-              "core/product_physics/src/pressure_exact.rs", "core/product_physics/src/pressure_exact/source_geometry.rs", "core/product_physics/src/pressure_material.rs", "core/product_physics/src/pressure_runtime.rs",
-              "core/product_physics/src/pressure_sum.rs", "core/product_physics/src/preview_physics.rs", "core/product_physics/src/retained_facade_tests.rs", "core/product_physics/src/retained_memory.rs",
-              "core/product_physics/src/retained_memory_law_tests.rs", "core/product_physics/src/retained_memory_witness_tests.rs", "core/product_physics/src/retained_product.rs", "core/product_physics/src/retained_product_tests.rs",
-              "core/product_physics/src/retained_receipt.rs", "core/product_physics/src/retained_tests_hooks/grant2.rs", "core/product_physics/src/retained_wire.rs", "core/product_physics/src/retained_wire_tests.rs",
-              "core/product_physics/src/s11f_tests.rs", "core/product_physics/src/s11g_tests.rs", "core/product_physics/src/s11g_tests/arc_recovery.rs", "core/product_physics/src/s11g_tests/short_bend.rs",
-              "core/product_physics/src/self_weight.rs", "core/product_physics/src/source_budget_tests.rs", "core/product_physics/src/source_receipt.rs", "core/product_physics/src/source_receipt/composite.rs",
-              "core/product_physics/src/source_receipt/endpoint_maximum.rs", "core/product_physics/src/source_receipt/load_state_fallback_tests.rs", "core/product_physics/src/source_receipt/load_state_join_tests.rs", "core/product_physics/src/source_receipt/load_state_tests.rs",
-              "core/product_physics/src/source_receipt/pressure_source_context_tests.rs", "core/product_physics/src/source_receipt/rows.rs", "core/product_physics/src/source_receipt/source.rs", "core/product_physics/src/source_receipt/tests.rs",
-              "core/product_physics/src/source_recovery.rs", "core/product_physics/src/source_recovery/j7_rf_census.rs", "core/product_physics/src/source_recovery/j7_t4_consequences.rs", "core/product_physics/src/validation.rs"
+              "core/product_physics/src/annulus_geometry.rs",
+              "core/product_physics/src/bend_pressure.rs",
+              "core/product_physics/src/build_identity.rs",
+              "core/product_physics/src/case_state/input.rs",
+              "core/product_physics/src/case_state/material.rs",
+              "core/product_physics/src/case_state/mod.rs",
+              "core/product_physics/src/case_state/resolve.rs",
+              "core/product_physics/src/case_state/temperature.rs",
+              "core/product_physics/src/case_state/tests.rs",
+              "core/product_physics/src/case_state/thermal.rs",
+              "core/product_physics/src/certified_loads.rs",
+              "core/product_physics/src/certified_publication.rs",
+              "core/product_physics/src/exact_admission.rs",
+              "core/product_physics/src/f1a_tests.rs",
+              "core/product_physics/src/f1b_tests.rs",
+              "core/product_physics/src/formation_guard.rs",
+              "core/product_physics/src/joint.rs",
+              "core/product_physics/src/joint_pressure_tests.rs",
+              "core/product_physics/src/kd5_nonlinear_tests.rs",
+              "core/product_physics/src/kd5_pressure_closure_tests.rs",
+              "core/product_physics/src/lib.rs",
+              "core/product_physics/src/membrane_publication_range.rs",
+              "core/product_physics/src/pressure_exact.rs",
+              "core/product_physics/src/pressure_exact/source_geometry.rs",
+              "core/product_physics/src/pressure_material.rs",
+              "core/product_physics/src/pressure_runtime.rs",
+              "core/product_physics/src/pressure_sum.rs",
+              "core/product_physics/src/preview_physics.rs",
+              "core/product_physics/src/retained_facade_tests.rs",
+              "core/product_physics/src/retained_memory.rs",
+              "core/product_physics/src/retained_memory_law_tests.rs",
+              "core/product_physics/src/retained_memory_witness_tests.rs",
+              "core/product_physics/src/retained_product.rs",
+              "core/product_physics/src/retained_product_tests.rs",
+              "core/product_physics/src/retained_receipt.rs",
+              "core/product_physics/src/retained_tests_hooks/grant2.rs",
+              "core/product_physics/src/retained_wire.rs",
+              "core/product_physics/src/retained_wire_tests.rs",
+              "core/product_physics/src/s11f_tests.rs",
+              "core/product_physics/src/s11g_tests.rs",
+              "core/product_physics/src/s11g_tests/arc_recovery.rs",
+              "core/product_physics/src/s11g_tests/short_bend.rs",
+              "core/product_physics/src/self_weight.rs",
+              "core/product_physics/src/source_budget_tests.rs",
+              "core/product_physics/src/source_receipt.rs",
+              "core/product_physics/src/source_receipt/composite.rs",
+              "core/product_physics/src/source_receipt/endpoint_maximum.rs",
+              "core/product_physics/src/source_receipt/load_state_fallback_tests.rs",
+              "core/product_physics/src/source_receipt/load_state_join_tests.rs",
+              "core/product_physics/src/source_receipt/load_state_tests.rs",
+              "core/product_physics/src/source_receipt/pressure_source_context_tests.rs",
+              "core/product_physics/src/source_receipt/rows.rs",
+              "core/product_physics/src/source_receipt/source.rs",
+              "core/product_physics/src/source_receipt/tests.rs",
+              "core/product_physics/src/source_recovery.rs",
+              "core/product_physics/src/source_recovery/j7_rf_census.rs",
+              "core/product_physics/src/source_recovery/j7_t4_consequences.rs",
+              "core/product_physics/src/u4a_tests.rs",
+              "core/product_physics/src/validation.rs"
             ],
             "scan": {
               "suffix": ".rs"
             },
-            "audit": "The W4 guard reads every .rs file under product_physics/src (recursive read_dir, no exclusions)."
+            "audit": "The W4 guard recursively reads every .rs file under product_physics/src without exclusions; all nested join modules remain live inputs."
           },
           {
             "anchor": "../structural_adapter.rs",
             "base": "source",
-            "files": ["core/solver/nonlinear_integration/src/structural_adapter.rs"]
+            "files": [
+              "core/solver/nonlinear_integration/src/structural_adapter.rs"
+            ]
           },
           {
             "anchor": "../lib.rs",
             "base": "source",
-            "files": ["core/solver/nonlinear_integration/src/lib.rs"]
+            "files": [
+              "core/solver/nonlinear_integration/src/lib.rs"
+            ]
           },
           {
             "anchor": "kd5_models.rs",
             "base": "source",
-            "files": ["core/solver/nonlinear_integration/src/structural_adapter/kd5_models.rs"]
+            "files": [
+              "core/solver/nonlinear_integration/src/structural_adapter/kd5_models.rs"
+            ]
           }
         ]
       },
