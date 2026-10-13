@@ -13,6 +13,7 @@ pub mod canonical;
 pub mod capture_seal;
 pub mod catalog;
 mod checkpoint_recorder;
+mod model_turn_recorder;
 pub mod codex_stop;
 mod app_quit;
 pub mod conversation_roles;
@@ -47,6 +48,7 @@ pub mod native_requests;
 pub mod receiving;
 pub mod recorder;
 pub mod records;
+mod records_index;
 pub mod recovery;
 mod recovery_root_view;
 pub mod role_supply;
@@ -154,6 +156,18 @@ fn read_recovery_custody_from_root(homes:&Mutex<runtime_session::HomeRouter>,mod
     let active=homes.try_lock().map_err(|_|"Home selection busy after read; refresh recovery source")?.active();
     if !Arc::ptr_eq(&home,&active){return Err("Active recovery home changed while reading; original snapshot not reassigned".into());}
     Ok(view)
+}
+
+/// RECOVERY §3.2 CV-15: the person asks for an unavailable conversation's
+/// recovery reads again. The host reads it on this home's ready Codex
+/// (`thread/read`, then its latest turns); nothing is resumed and nothing is
+/// sent to the conversation. Returns the recovery view after the reads.
+#[tauri::command(async)]
+fn recovery_retry(state: State<'_, AppState>, mode_home_class: String, generation: Value, thread_id: String) -> Result<Value,String> {
+    let home = state.homes.lock().unwrap().for_generation(&generation)?;
+    home.host.recovery_retry(&thread_id)?;
+    host_tick::recovery_tick_home(&home);
+    recovery_root_view::read(&home, &mode_home_class, &home.host.snapshot()["generation"])
 }
 
 #[tauri::command]
@@ -1098,11 +1112,27 @@ fn workflow_open_library(app:tauri::AppHandle,state:State<'_,AppState>,origin:St
     // WR SQ-D D-2: the opened library's drafts are listed at once.
     Ok(root.observe_drafts(&view["items"]).unwrap_or_else(|_|root.snapshot()))
 }
+/// "Select revision ‹n›" on a retained review: resolved from the revision
+/// store (WR SL-4); no folder picker.
 #[tauri::command(async)]
-fn workflow_select_registered(app:tauri::AppHandle,state:State<'_,AppState>,review_ref:String,revision:String)->Result<Value,String>{
-    let Some(path)=workflow_native_folder(&app,"Select actual holding copy of this hot registered revision")? else{return Ok(json!({"state":"native selection dismissed"}));};
+fn workflow_select_registered(state:State<'_,AppState>,review_ref:String,revision:String)->Result<Value,String>{
     let view=active_native_view(&state);
-    noted_selection(&state,&view,|root|root.select_hot_registered_copy(&review_ref,&revision,path))
+    noted_selection(&state,&view,|root|root.select_hot_registered_copy(&review_ref,&revision))
+}
+/// WR LS-1 "Select (in such a process)", SL-1: the person selects a registered
+/// revision from the active library's list; the host resolves it from the
+/// revision store. No folder picker: the store is the library's own.
+#[tauri::command(async)]
+fn workflow_select_listed(state:State<'_,AppState>,library_ref:String,name:String,revision:String)->Result<Value,String>{
+    let view=active_native_view(&state);
+    noted_selection(&state,&view,|root|root.select_listed_registered(&library_ref,&name,&revision))
+}
+/// WR SL-2: the person follows "newer revision ‹n› available"; a new selection
+/// event citing the one it replaces.
+#[tauri::command(async)]
+fn workflow_follow_newer_revision(state:State<'_,AppState>,selection_ref:String,revision:String)->Result<Value,String>{
+    let view=active_native_view(&state);
+    noted_selection(&state,&view,|root|root.follow_newer_revision(&selection_ref,&revision))
 }
 /// WR §3: the explicit App project's own library, without a folder picker.
 #[tauri::command(async)]
@@ -1307,7 +1337,7 @@ fn current_native_view(home:&Arc<runtime_session::HomeSession>)->Value{
 fn workflow_end_run(state:State<'_,AppState>,run_ref:String,finished_report:Option<Value>)->Result<Value,String>{
     let run=state.workflows.lock().unwrap().runs.get(&run_ref).cloned().ok_or("Actual run unavailable in this process")?;
     let home=run.try_lock().map_err(|_|"Original run operation pending")?.home.clone();
-    let view=current_native_view(&home);
+    let view=crate::host_tick::receive_view(&home); // with the server requests and custody events the recorder reads (CE-4, CE-13, CE-14)
     state.workflows.lock().unwrap().end_requested(&run_ref,&view,finished_report.as_ref())
 }
 /// RN-3/RN-4, PR-4: the person starts the workflow an agent message proposed (or,
@@ -1316,7 +1346,7 @@ fn workflow_end_run(state:State<'_,AppState>,run_ref:String,finished_report:Opti
 #[tauri::command(async)]
 fn workflow_start_proposed(state:State<'_,AppState>,generation:Value,message:Value,run_ref:Option<String>,person_text:String)->Result<Value,String>{
     let home=state.homes.lock().unwrap().for_generation(&generation)?;state.validate_home_source(&home)?;
-    let view=current_native_view(&home);
+    let view=crate::host_tick::receive_view(&home); // as workflow_end_run
     let next=state.workflows.lock().unwrap().start_proposed(&view,home,&generation,&message,run_ref.as_deref(),person_text,state.workspace.as_deref())?;
     let started=runtime_session::start_workflow_run(&state.workflows,&next);
     Ok(json!({"ended":run_ref,"started":next,"start":match started{Ok(v)=>v,Err(e)=>json!({"state":"proposed workflow run prepared but not started","limit":e})}}))
@@ -1325,7 +1355,7 @@ fn workflow_start_proposed(state:State<'_,AppState>,generation:Value,message:Val
 #[tauri::command(async)]
 fn workflow_end_and_start(state:State<'_,AppState>,run_ref:String,generation:Value,thread_id:String,person_text:String)->Result<Value,String>{
     let home=state.homes.lock().unwrap().for_generation(&generation)?;state.validate_home_source(&home)?;
-    let view=current_native_view(&home);
+    let view=crate::host_tick::receive_view(&home); // as workflow_end_run
     let next=state.workflows.lock().unwrap().end_and_start_viewed(&view,&run_ref,home,&generation,&thread_id,person_text,state.workspace.as_deref())?;
     let started=runtime_session::start_workflow_run(&state.workflows,&next);
     Ok(json!({"ended":run_ref,"started":next,"start":match started{Ok(v)=>v,Err(e)=>json!({"state":"successor not started","limit":e})}}))
@@ -1761,6 +1791,7 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             file_act_select, file_act_confirm, file_act_continue, file_act_dismiss, file_act_read,
             read_recovery_custody,
+            recovery_retry,
             read_connector_routes,
             prepare_connector_source, select_connector_source, anchor_connector_source, revise_connector_source,
             read_connector_git, cancel_connector_git, anchor_connector_git,
@@ -1793,7 +1824,7 @@ pub fn run() {
             continue_as_dismiss,
             conversation_fork,
             set_person_name,
-            workflow_select_development,workflow_select_production_bundle,workflow_select_production_copy,workflow_open_library,workflow_open_project_library,workflow_observe_drafts,workflow_trial_prepare,workflow_trial_again,workflow_trial_cancel,workflow_trial_send,workflow_trial_start_clean,workflow_trial_link,workflow_trial_unlink,workflow_trial_read,workflow_trial_bring_back,workflow_run_bring_back,workflow_bring_back_cancel,workflow_bring_back_send,workflow_trial_compare,workflow_review_draft,workflow_select_registered,workflow_create_draft,workflow_refine_registered,workflow_review,workflow_register_native,workflow_continue_registration,workflow_prepare_run,workflow_send_run,workflow_check_supply,workflow_retry_records,workflow_read_records,workflow_end_run,workflow_start_proposed,workflow_end_and_start,workflow_check_notice,workflow_skip_notice,workflow_reopen,workflow_end_recorded,workflow_reopened_notice,workflow_review_digest,native_confirmation_content,
+            workflow_select_development,workflow_select_production_bundle,workflow_select_production_copy,workflow_open_library,workflow_open_project_library,workflow_observe_drafts,workflow_trial_prepare,workflow_trial_again,workflow_trial_cancel,workflow_trial_send,workflow_trial_start_clean,workflow_trial_link,workflow_trial_unlink,workflow_trial_read,workflow_trial_bring_back,workflow_run_bring_back,workflow_bring_back_cancel,workflow_bring_back_send,workflow_trial_compare,workflow_review_draft,workflow_select_registered,workflow_select_listed,workflow_follow_newer_revision,workflow_create_draft,workflow_refine_registered,workflow_review,workflow_register_native,workflow_continue_registration,workflow_prepare_run,workflow_send_run,workflow_check_supply,workflow_retry_records,workflow_read_records,workflow_end_run,workflow_start_proposed,workflow_end_and_start,workflow_check_notice,workflow_skip_notice,workflow_reopen,workflow_end_recorded,workflow_reopened_notice,workflow_review_digest,native_confirmation_content,
             decision_view,
             continue_decision_recording,
             compose_offer,

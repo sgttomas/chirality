@@ -599,8 +599,24 @@ capture time (or "not supplied by host", R14-4) and capturing surface.
 file acts and declines through each cited capture, with AAC §6.3 SEAL-C and RS
 correction relations; an unrelated file-naming record is an unresolvable limit,
 not an act. No App act binds an agent message, so an AW-6 arrival remains waiting.
-Later acts on decided arrivals (§4.6), acts after run end (CE-16), lapses (CE-10)
-and observation loss/recovery (CE-13/14) are not yet recorded. Host-operation
+While the run is live, CE-10 is recorded for the App-file acts that answer an
+arrival's latest performance, with the before- and after-resume labels of
+§2.4.3, and an act on the current content of a referent lapsed after the resume
+point performs the arrival again (RC-8, JA-1). Other later acts on decided
+arrivals (§4.6), and lapses and acts after run end (CE-10 *after
+run end*, CE-16) are not yet recorded: the App does not observe a run after its
+end. While the run is live, CE-13 is recorded for DEL-01-02's custody losses that
+name its conversation and CE-14 for a later readable recovery read; a deciding
+loss names no arrival and writes no *unknown* label, because which arrival a lost
+production would have been is not established. A loss or recovery of an App
+session that ended (a relaunch) is not recorded, and AW-12's "the named item never
+completes (`turn/completed` *interrupted* or *failed*)" without a process loss
+writes no CE-13. An output that declares a gating checkpoint shows, in its
+human-act facet, the act standing the record holds for that checkpoint's latest
+arrival, including *lapsed* (PH-8, RH-1; AS OV-5); with no `act_lapsed` it reads
+*not yet evaluated*, never *not lapsed*. An output with no gating checkpoint
+shows *unknown* acts once an act entry concerns an arrival bound to it, and an
+observation loss or recovery still makes every facet *unknown*. Host-operation
 and host-outcome arrivals stay not evaluable without mapping (ADAPTER NM-2),
 so no CE-7 arises; an empty waiting list establishes no wider completeness.
 
@@ -616,7 +632,49 @@ resolves them. AW-7 reads one non-blocking regular-file snapshot up to 256 MiB
 with that limit. CE-4 uses App observation time and a conversation-item reference,
 not structured act meaning from a person-input request. AW-3 uses agent
 `collabAgentToolCall` items, not `subAgentActivity`. Act records are reread only
-when log/capture path, size or modification time changes. These interpretations
+when log/capture path, size or modification time changes. For CE-10 the App reads
+the act's bound file at each live observation and when the person ends the run;
+a file is rehashed only when its device, inode, size or modification or change
+time changes, or within two seconds of its change time. The resume point is the
+recorded `run_resumed` after the latest performance; without one a lapse is *before
+resume*. For a *performed* arrival the file is read after every item an observation
+delivers, so a resume point in that observation precedes the lapse; for one waiting
+again after a lapse it is read before acts are counted, so an act on the newest
+content counts. An unknown state is written once and
+changes no label; content back at c₀ is written and changes no label (RS U-12). A
+lapse whose label was not written gets it at the next observation. For CE-13 and
+CE-14 the custody events reach the recorder with the native view of the record
+tick and of the End run paths; in this App session the run current in a named
+conversation is its open run (one at a time, RE-7), and a loss counts for it from
+the generation it opened in on. A loss is *deciding* when an item it left in flight
+in the run may be a listed checkpoint's named event: a message whose streamed text
+(the native view's untruncated preview) has no settled first line other than the
+designating line (AW-6), or a file change whose received changes do not exclude the
+declared path (AW-7); a call's start is an arrival already observed (AW-3). CE-14
+is written only for a recovery read *accessible* matched to a recorded loss of the
+run not yet recovered whose live turns are the turns the read reports, because the
+custody event names no lost generation; two losses with the same live turns, or
+none, are not told apart. The reads list turns and return no item, so they decide
+nothing and no label changes. A conversation with no App index (no custody home)
+gets no custody `observation_lost` (RECOVERY close keeps only a limit), so its run
+records no CE-13. Each entry names its custody event, by which a repeated
+observation is not written again. After a lapse,
+acts count against the content the latest determinate lapse read; an act already
+cited for the arrival, such as one recorded "act on other content", is not
+reconsidered when the content later becomes the content it was made on (§4.6, the
+first decides). A performed arrival whose latest known lapse, after its resume
+point, is *lapsed* (not *subject absent* or back at c₀) is answered again by the
+first act in capture order of the required kind on the content the lapse read,
+whatever its capture time (SP-6; "by earlier act" when before the arrival); it
+alone answers the single App referent (JA-1). Acts of another kind or on other
+content and declines are not recorded against it, since it is not *waiting*; the
+optional CE-12 is not written for it ("unchanged"). Any performance after a lapse
+(this one, or one after a lapse before the resume point) answers that lapse, so the
+change to *performed* (HD-5) cannot precede its observation: its resume point is
+the first run action started at or after both the capture of each act it cites
+and the latest lapse observation recorded before it (A-9: no resume point from an
+unestablished order). A run action started earlier and delivered later is not its
+resume point. These interpretations
 remain disclosed pending governing treatment; they add no acceptance rule.
 
 #### 2.4.3 Transition table (per arrival, current phase)
