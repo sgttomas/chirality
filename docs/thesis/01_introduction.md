@@ -77,22 +77,22 @@ establishes an improvement in total effort and reliability.
 
 ## 1.4 Thesis structure
 
-The [shared introduction](INTRODUCTION.md) places the three theses within one
-argument. Root develops its normative orientation and the shared means through
-which it can inform work. This emphasis does not separate Root from operation
-or evaluation: its own arrangements must also be usable and answer to evidence.
+The [shared introduction](INTRODUCTION.md) places Root's normative emphasis
+within the argument of the three theses. The chapters here develop that account
+in four steps. Chapters 2–3 establish its precedents and philosophical
+distinctions. Chapters 4–5 examine how architecture can make those distinctions
+useful in work. Chapters 6–7 assess their professional-practice interpretation
+and the systems-engineering methods proposed to support them. Chapters 8–10
+then distinguish what the development evidence supports from the claims that
+remain open.
 
-Root supplies shared means for developing work, methods and applications. The
-App makes method itself a subject of work: people can express an intention, try
-a way of acting and revise it through what happens. Workflow authoring is
-therefore the first exemplar.
-
-SWBPIPE poses the domain question. Agent participation must preserve the
-meaning of an engineering model, the grounds of a calculation and the conditions
-of its use. Proliferation succeeds when shared means enable useful work in such
-a practice. A common protocol alone cannot establish it. Experience in either
-application can reveal a limitation in Root's methods or framing. This iterative
-relation makes application development part of the inquiry into the shared means.
+The App and SWBPIPE theses take the argument into particular applications.
+Workflow authoring makes method itself a subject of work; piping design tests
+whether shared means preserve engineering meaning, numerical grounds and the
+conditions of use. Experience in either application can reveal a limitation in
+Root's methods or framing. Application development is therefore part of the
+inquiry into the shared means, rather than a demonstration whose success can be
+assumed from the framework.
 
 ## 1.5 Scope and limitations
 

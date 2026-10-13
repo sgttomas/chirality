@@ -4,6 +4,11 @@ Chirality AI Ltd. — explanatory research, revised October 2026.
 
 **An account of professional accountability in agent-assisted work.**
 
+This compact account can be read on its own. The
+[Root thesis](README.md#reading-the-root-thesis) develops its sources,
+architecture and evidence; the [shared introduction](INTRODUCTION.md) relates
+it to the App and Piping theses.
+
 ---
 
 ## 1. Purpose
@@ -183,9 +188,11 @@ of every activity. A current artifact, a test result or an existing change
 record may already supply what is needed. Repeated representations can obscure
 consequential decisions and displace attention from the work.
 
-### 3.2 The Four Pillars
+<a id="32-the-four-pillars"></a>
 
-| Pillar | Enduring question | What it can expose |
+### 3.2 The Four Perspectives
+
+| Perspective | Enduring question | What it can expose |
 |---|---|---|
 | **Ontology** | What kind of thing or relationship is this? | Confusion between a proposal, an operation, a result and acceptance |
 | **Epistemology** | What supports the claim, and what are its limits? | Unsupported inference, stale evidence or inadequate examination |
@@ -211,7 +218,7 @@ undertaking and which mechanisms serve its obligations.
 ### 3.3 The Epistemic Architecture
 
 Epistemology receives particular attention because plausible outputs can conceal
-weak grounds. It does not subordinate the other pillars. Purpose determines
+weak grounds. It does not subordinate the other perspectives. Purpose determines
 which uncertainty matters; representation determines what can be examined;
 practice determines whether examination and correction can affect the result.
 
@@ -272,7 +279,7 @@ configuration management can identify a subject; verification and validation
 can test specified claims; interface design can constrain operations; human
 factors can assess how a person interprets and controls the work.
 
-The pillars guide the selection and evaluation of these methods. They do not
+The perspectives guide the selection and evaluation of these methods. They do not
 uniquely derive them. Each mechanism requires a reason tied to the undertaking,
 then evidence of its adequacy and cost. Changes in model capability can make
 some supervision mechanisms unnecessary while leaving the underlying

@@ -444,9 +444,11 @@ recoverable and human attention well directed. They are resources for design and
 criticism. Their value is not established by implementing a named artifact for
 each discipline.
 
-### 7.11.2 A Revisable Relationship to the Four Pillars
+<a id="7112-a-revisable-relationship-to-the-four-pillars"></a>
 
-| Pillar | SE questions it motivates | What remains contingent |
+### 7.11.2 A Revisable Relationship to the Four Perspectives
+
+| Perspective | SE questions it motivates | What remains contingent |
 |---|---|---|
 | Ontology | Which objects, identities and relationships need to be distinguished? | Folder layout, schemas and storage topology |
 | Epistemology | What supports a claim and how can its limits be examined? | Checks, source bindings and evidence formats |

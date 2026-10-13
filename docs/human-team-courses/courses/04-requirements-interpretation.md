@@ -118,6 +118,8 @@ Any resulting scope, resource, or commitment change still needs its proper autho
 
 ## Northbank worked example — Flow and changeover
 
+The evidence packet identified the governing source and the separate proposal. This example examines what their wording requires the team to do and what remains to be defined.
+
 The question is: “What must the equipment-development work provide under Packet A?” The consumer is the project engineer preparing the technical assignment.
 
 A02 Rev 1 requires 18 litres per second at the distribution header under conditions the project must establish. It requires two pump units, with one operating and one standby. It requires confirmation of the changeover function with operations.
