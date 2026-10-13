@@ -2,7 +2,7 @@
 
 [Series](../index.html) · [Case](../case-study.html) · [Glossary](../glossary.html) · [References](../references.html)
 
-Keep this guide separate from learner assessments. Use the shared case as the exercise basis. External readings are optional unless you supply the required source text.
+Read this guide before teaching. Follow the [agent instructor method](../instructor-guide.html) for pacing, assistance, assessment, and continuity. Use the shared case as the exercise basis. Present answer guidance after the learner has attempted the relevant work, as teaching or feedback. External readings are optional unless you supply the required source text.
 
 Assess each stated criterion as **meets**, **needs repair**, or **insufficient evidence**. A correct conclusion needs a source and a defensible explanation. A polished form cannot supply missing grounds.
 
@@ -19,6 +19,12 @@ Assess each stated criterion as **meets**, **needs repair**, or **insufficient e
 7. Require repairs where a conclusion exceeds its evidence or authority.
 
 Use the opening discussion to find differences between appointment and actual practice. Do not require learners to disclose confidential information.
+
+### Teaching Course 01 with an agent
+
+Begin with one proposed act: ask the learner who can perform it, who needs technical competence, and who answers for its consequences. Have them locate the relevant A01 basis before supplying your explanation. If they assign everything to the sponsor, return to the particular decision right rather than asking them to memorize the role titles.
+
+In the pressure exercise, represent the requesting party and wait for the learner's reply. Ask whose decisions could be affected by that reply and what its wording permits the recipient to infer. Examine their response against the source limits and affected-person reasoning. Do not write a truthful replacement on their behalf and then credit it as their demonstrated response.
 
 ### Knowledge-check answers
 
@@ -77,6 +83,14 @@ Training acceptance concerns the demonstrated learning result. It does not grant
 
 Use a simple document list for the session. Do not introduce a specialist control system unless it helps the learners' actual context.
 
+### Teaching Course 02 with an agent
+
+Ask the learner to explain the difference between finding a document and establishing its suitability for the current activity. Then attempt retrieval through the references in their submitted index. Follow the route they provide; do not silently repair a missing reference using your prior knowledge of the case.
+
+Report what you could actually retrieve, including any access limitation. A description of a folder does not establish that its files are accessible. When you already know the records, distinguish this check of the supplied route from a reader's unaided discovery. Use another reviewer where the required examination needs that separation.
+
+After an index repair, ask which earlier work could still rely on the wrong basis. Let the learner trace and repair the affected use; correcting the list alone does not demonstrate adoption.
+
 ### Knowledge-check answers
 
 1. A stable identity identifies the document across copies, locations, and revisions. A filename locates a file but can change or conceal its identity.
@@ -131,6 +145,14 @@ Avoid prescribing retention periods. The exercise teaches preservation of identi
 
 If the group uses digital searching, also provide a printed packet. Retrieval and interpretation must remain possible without an external connection.
 
+### Teaching Course 03 with an agent
+
+Give the research question and ask the learner to choose a source and explain what it can establish. Follow with a claim that the same source cannot support. This checks the relationship between question, evidence, and intended use rather than recognition of a familiar record number.
+
+If you supply a source to help a stalled learner, identify that assistance and have them examine its role and limits. Do not count your retrieval as their demonstration of discovery. Ask them to perform the next relevant retrieval through their own index.
+
+When a learner cites an external source, distinguish information about a method from evidence of a Northbank site condition. Request the actual passage and its applicability; do not accept or reject it solely because its conclusion agrees with your guide.
+
 ### Knowledge-check answers
 
 1. The decision or activity defines the consumer, relevant scope, needed evidence, and useful form of the answer. It prevents an unbounded collection.
@@ -184,6 +206,14 @@ An external source may inform a method, but it cannot establish an unrecorded No
 The offline exercise needs no statute or code text. It teaches what the missing applicability basis prevents. Do not invent legal instruments to make the exercise easier.
 
 For optional legal practice, select a real jurisdiction. Supply the current official adoption instruments and relevant amendments. Identify the exercise selection separately from Northbank's core packet. Give learners the exact source text needed for the task. Arrange suitably competent interpretation of the answer.
+
+### Teaching Course 04 with an agent
+
+Ask the learner to trace one proposed obligation to its source, conditions, and authority. Use A06 to examine what remains missing. If they name a familiar code, ask what establishes its applicability before discussing its technical provisions.
+
+When the learner requests a real legal answer, distinguish that inquiry from the offline assignment. Continue teaching from the supplied case, or prepare the separately sourced exercise described above. Do not insert an assumed jurisdiction or remembered clause into Northbank.
+
+Compare the learner's restatement with the original requirement. If it loses a condition, explain the effect and have the learner repair their own statement and proposed examination. Preserve the difference between recognizing an existing obligation and proposing a new project constraint.
 
 ### Knowledge-check answers
 
