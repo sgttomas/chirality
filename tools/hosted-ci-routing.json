@@ -1417,7 +1417,7 @@
             "anchor": "../../..",
             "base": "manifest",
             "files": [
-              "apps/desktop/src-tauri/build.rs", "apps/desktop/src-tauri/src/atomic_report_package_save.rs", "apps/desktop/src-tauri/src/host_memory.rs", "apps/desktop/src-tauri/src/ingress.rs", "apps/desktop/src-tauri/src/lib.rs", "apps/desktop/src-tauri/src/main.rs", "apps/desktop/src-tauri/src/memory_pool.rs",
+              "apps/desktop/src-tauri/build.rs", "apps/desktop/src-tauri/src/atomic_report_package_save.rs", "apps/desktop/src-tauri/src/command_ingress.rs", "apps/desktop/src-tauri/src/host_memory.rs", "apps/desktop/src-tauri/src/ingress.rs", "apps/desktop/src-tauri/src/lib.rs", "apps/desktop/src-tauri/src/main.rs", "apps/desktop/src-tauri/src/memory_pool.rs",
               "apps/desktop/src-tauri/src/model_document_file.rs", "apps/desktop/src-tauri/src/model_document_migration.rs", "apps/desktop/src-tauri/src/native_result_download.rs", "apps/desktop/src-tauri/src/native_smoke.rs",
               "apps/desktop/src-tauri/src/report_package_bridge.rs", "apps/desktop/src-tauri/src/solve_jobs.rs", "apps/desktop/src-tauri/src/solve_worker.rs", "apps/desktop/src-tauri/src/worker_alloc.rs", "core/gui/viewport_editor/src/lib.rs", "core/library_import/library_import_document/src/lib.rs", "core/loads/load_case_algebra/src/lib.rs",
               "core/loads/load_case_algebra/src/s11k_tests.rs", "core/loads/primitive_loads/src/lib.rs", "core/loads/self_weight_wasm/src/lib.rs", "core/loads/stress_recovery/src/elastic_extrema.rs",

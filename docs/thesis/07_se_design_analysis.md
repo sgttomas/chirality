@@ -6,10 +6,11 @@ Systems engineering offers methods for architecture, configuration management,
 verification, safety, requirements, control, formal analysis and human factors
 [CITE:INCOSE2023]. Their value depends on the problems they help resolve.
 
-Current practice can be compared with earlier mechanisms through repository
-instructions, the [deliverable CLI](../../tools/deliverables/README.md) and
-[CI selection](../CI_SELECTION.md). A rule's historical presence establishes
-that it was specified, not that it worked.
+The analysis uses repository instructions, the
+[deliverable CLI](../../tools/deliverables/README.md) and
+[CI selection](../CI_SELECTION.md) at the stated source basis.
+[Appendix E](appendix_e_development_history.md) retains the developmental
+comparisons. A specified rule needs evidence of its actual operation.
 
 Instructions are not formal verification. A completed checklist does not
 establish complete review coverage, and several controls may share the same
@@ -28,11 +29,10 @@ layout for every application:
 - **Information and execution:** where current meaning is maintained, what tools
   reveal, and what the host actually permits.
 
-Earlier descriptions conflated these concerns by assigning immutable write scopes
-to role names and by treating a mandatory agent hierarchy as the source of human
-authority. The current repository permits HELP_HUMAN to write within its assignment
-and host permissions. Agent 0 can carry work directly. TASK remains a bounded
-executor that does not delegate.
+HELP_HUMAN may write within its assignment and host permissions. Agent 0 can
+carry work directly; TASK remains a bounded executor that does not delegate.
+The role arrangement serves the undertaking's responsibilities, while human
+assignment and adopted policy establish authorization.
 
 The distinction between instructions and product content is also contextual.
 Repository instructions can be changed through an authorized Root undertaking;
@@ -76,11 +76,10 @@ history while those objects remain available. PRs supply change rationale and
 verification evidence. Current documents are edited in place rather than copied
 into a new run folder after every action.
 
-Git is not a complete execution event store. It does not automatically record
-unsaved changes, external inputs, host state or a person's actual engagement. The
-earlier assertion that it provides every configuration-management function by
-itself overstated the evidence. The relevant question is whether the configuration
-needed to reproduce or examine a particular result can be identified and recovered.
+Git records committed content. Unsaved changes, external inputs, host state and
+a person's actual engagement require their own evidence where relevant. The
+configuration needed to reproduce or examine a particular result must be
+identified and recoverable.
 
 ### 7.3.2 Identifying the Subject of Acceptance
 
@@ -88,8 +87,8 @@ A commit or content digest can identify the subject of a decision. That can
 prevent a reader from confusing an accepted revision with a later one. It does
 not establish that the named person made the decision or understood its subject.
 
-An acceptance's meaning also includes its scope and purpose. The historical
-SHA-binding contract remains applicable where an adopted product requires it;
+An acceptance's meaning also includes its scope and purpose. A
+SHA-binding contract applies where an adopted product requires it;
 this analysis does not amend that contract. For ordinary development, a changed
 commit does not itself require renewed owner approval for every unchanged
 commitment. The current authority and the consequences of the change determine
@@ -110,10 +109,10 @@ edge a compulsory human triage item.
 
 ### 7.3.4 Preservation Without Routine Copies
 
-The older architecture required immutable run snapshots and mutable `_LATEST`
-pointers. That provided visible history at the cost of copying sources, outputs
-and summaries into the working tree. October replaced this general duty with
-Git recovery, selected tags and records justified by actual consumers.
+Git recovery and selected tags preserve committed versions. Additional retention
+is justified by the consumer's need, including relied-upon evidence and uncertain
+operation outcomes. [Appendix E](appendix_e_development_history.md) records the
+development of this policy.
 
 Some evidence must still be preserved: a relied-upon analysis basis, a release
 package or the outcome needed to recover an interrupted operation. Its retention
@@ -155,11 +154,11 @@ Coverage needs a stated subject. Lines exercised, requirements linked, dependenc
 rows migrated and numerical cases checked measure different things. None is a
 complete measure of product adequacy.
 
-The dependency migrations provide a bounded example. Accounting for each active
-source row and comparing migrated edges against an accepted DAG can detect lost
-or altered declarations. Independent examination of representative meanings
-adds evidence that the migration preserved conditions. Neither establishes that
-the original declarations captured every real dependency.
+For a transformation of dependency declarations, source-row accounting and
+comparison with an identified graph basis can detect lost or altered relations.
+Independent examination of their meanings adds evidence that the conditions were
+preserved. Neither examination establishes that the original declarations
+captured every real dependency. Chapter 8 evaluates the bounded case evidence.
 
 Checks survive because of the consequential failures they can detect, their
 cost, overlap and whether failure would otherwise become visible in time. A
@@ -209,11 +208,10 @@ rule that every unknown either blocks everything or can be ignored.
 
 ### 7.5.3 Context Boundaries
 
-The earlier sealed-context model sought to make inputs explicit before delegated
-execution. Its useful concern was the basis of a result. A closed brief does not,
-however, remove learned model priors or establish that the agent used only
-intended information. Claims of complete context isolation require an execution
-mechanism and evidence beyond a metadata presence check.
+An identified input basis makes examination possible. A closed brief cannot
+remove learned model priors or establish that the agent used only intended
+information. Claims of complete context isolation require an execution mechanism
+and evidence beyond a metadata presence check.
 
 The current repository supplies the full assignment in the dispatch, keeps
 instructions in repository sources, and retrieves additional material according
@@ -249,8 +247,8 @@ into an apparent completeness claim.
 
 A PRD does not compile deterministically into an application. It leaves design
 choices that must be informed by the owner, supplier capabilities, prior defects
-and actual use. App v4 illustrates this: it preserves purposes and selected useful
-behaviours while revising the former Runtime topology and integration approach.
+and actual use. App v4 supplies an operative setting in which purposes, selected useful
+behaviours and actual supplier interfaces must become working application paths.
 
 A new implementation should be assessed for retained learning as well as speed.
 If it repeatedly loses valuable behaviour or rediscovers earlier failures, its
@@ -274,9 +272,9 @@ state description can change as work reveals new conditions.
 ### 7.7.2 Observables and Objectives
 
 Useful observations include whether an operation applied, which check ran, what
-an input contains and which consumers declare a need. “All deliverables say
-ISSUED” is no longer an objective or a measurement in the active model. Nor would
-it have established usefulness or adequacy in the earlier one.
+an input contains and which consumers declare a need. The objective is a usable
+result under the applicable conditions. A progress label measures only the
+classification asserted, rather than establishing that result.
 
 A completed undertaking needs evidence tied to its actual purpose. The owner
 must be able to understand what was achieved, what remains uncertain and what
@@ -309,16 +307,13 @@ supervision without itself transferring judgment.
 
 ## 7.8 Specification and Formal Methods
 
-### 7.8.1 Historical Invariant Families
+### 7.8.1 Stated Properties and Their Grounds
 
-The R-, I- and K-series catalogs named important concerns but combined distinct
-kinds of claim. Some rules expressed values, others prescribed files or phases,
-and others asserted properties of tools. Calling each an invariant did not give
-it a mathematical semantics or an enforcement mechanism.
-
-Appendix A preserves the historical families as an analytical comparison. Adopted
-product contracts still apply through their current sources. Retired workflow
-duties do not become current again because the thesis discusses their IDs.
+A value commitment, a procedure and a property of a tool require different
+arguments. A named rule needs precise scope and an actual enforcement mechanism
+before it can support a formal claim. Adopted product contracts apply through
+their current sources. [Appendix A](appendix_a_invariant_catalog.md) preserves
+the catalogs as a developmental comparison.
 
 ### 7.8.2 Preconditions and Postconditions
 
@@ -352,14 +347,11 @@ reinstate the older review gates.
 
 ### 7.8.4 State Machines Where They Fit
 
-State machines remain useful for product behaviour such as requests, process
-ownership or persistence operations when they describe actual transitions and
-failure outcomes. Retirement of `_STATUS.md` is not an argument against state
-machines in software.
-
-It is an argument against treating one administrative lifecycle as an adequate
-model of every deliverable's condition, claims and human acceptance. The proper
-scope of a state machine follows the behaviour being controlled.
+Product request, persistence and operation protocols benefit from explicit
+state machines when their transitions and failure outcomes faithfully represent
+the behaviour controlled. A deliverable's claims, dependencies and accepted uses
+can vary independently. The scope of a state machine follows the operation it
+models rather than supplying a universal model of work.
 
 ## 7.9 Human Factors and Decision Authority
 
@@ -382,7 +374,7 @@ Repeated registers, notices and status mirrors can increase it. Labels do not
 eliminate the need to examine claim reliability, and an immutable record can
 still be wrong or distracting.
 
-The reset treats attention as a scarce part of professional work. Information
+Attention is a scarce part of professional work. Information
 should be sufficient to review, use or recover the result, with detail accessible
 when needed. The value of this arrangement must be assessed in actual use,
 including by someone other than its author.
@@ -467,14 +459,21 @@ procedure can consume the attention that sound judgment requires. The framework
 is coherent through such correction, not through permanent commitment to one
 architecture.
 
+Applicable obligations and constraints, uncertain premises, negotiable preferences
+and control costs require distinct treatment. A missing physical input concerns
+the grounds of the calculation. A mandated review concerns an applicable
+obligation. A preference for a simpler interface and the attention cost of a
+control concern available design choices. Agents can compare consequences and
+alternatives; the person judges the arrangement in its situation. No universal
+scalar or compulsory sequence resolves these questions.
+
 ### 7.11.3 Bounded Conclusion
 
-October removed lifecycle status, routine record duties, compulsory authored work
-graphs and much associated enforcement while retaining current commitments,
-reserved decisions and consequence-based verification. This is evidence that the
-older mechanism set was not necessary to express those commitments. The repository
-changes do not by themselves prove improved safety, a precise productivity gain
-or economical transfer to another domain.
+An inspectable arrangement can preserve current commitments, reserved decisions
+and consequence-based verification while its mechanisms remain revisable.
+Architectural coherence supports a candidate explanation of how work proceeds.
+Evidence must establish improved safety, productivity or economical transfer to
+another domain on the actual basis and purpose examined.
 
 Those questions require use, failure analysis and recovery evidence over time.
 The defensible design claim is that Chirality supplies an inspectable, revisable

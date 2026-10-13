@@ -68,12 +68,19 @@ assess whether the available evidence meets the need. Continuing ownership
 carries findings into repairs and contributions into a usable whole. Changes to
 shared instructions must reach the tools and products that consume them.
 
-The history also exposes the cost of losing that relation. Records intended to
-support continuity accumulated into a competing body of work. Removing duties
-together with their enforcement reopened space for production. Whether the
-replacement improves total effort and reliability requires sustained observation.
+These are proposed contributions whose adequacy requires examination. A record
+can support continuity or become a competing body of work. A method can preserve
+learning or repeat a cost whose purpose has disappeared. Chapter 8 assesses the
+available evidence; [Appendix E](appendix_e_development_history.md) retains the
+development history. Neither the presence of a mechanism nor its removal
+establishes an improvement in total effort and reliability.
 
 ## 1.4 Thesis structure
+
+The [shared introduction](INTRODUCTION.md) places the three theses within one
+argument. Root develops its normative orientation and the shared means through
+which it can inform work. This emphasis does not separate Root from operation
+or evaluation: its own arrangements must also be usable and answer to evidence.
 
 Root supplies shared means for developing work, methods and applications. The
 App makes method itself a subject of work: people can express an intention, try
@@ -83,7 +90,9 @@ therefore the first exemplar.
 SWBPIPE poses the domain question. Agent participation must preserve the
 meaning of an engineering model, the grounds of a calculation and the conditions
 of its use. Proliferation succeeds when shared means enable useful work in such
-a practice. A common protocol alone cannot establish it.
+a practice. A common protocol alone cannot establish it. Experience in either
+application can reveal a limitation in Root's methods or framing. This iterative
+relation makes application development part of the inquiry into the shared means.
 
 ## 1.5 Scope and limitations
 
