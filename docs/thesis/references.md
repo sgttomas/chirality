@@ -174,7 +174,7 @@ assumptions; not an experimental demonstration.)
 
 ## Chirality Project Documents (Internal)
 
-These sources document the case. Historical instruments establish what an earlier implementation prescribed; they create no present duties. Unless a specific revision is supplied, retired Root governance paths are recoverable through `archive/pre-docs-cleanup-1` or the earlier commit recorded in Git. The pre-revision thesis is available at `510f4a9abccc0ac291872c72253eb2aef908c8c5`. Current authority is the conversation, repository instructions and adopted product commitments, not a bibliography entry. Paths are repository-relative.
+These sources document the case. Historical instruments establish what an earlier implementation prescribed; they create no present duties. Unless a specific revision is supplied, retired Root governance paths are recoverable through `archive/pre-docs-cleanup-1` or the earlier commit recorded in Git. The pre-revision thesis is available at `510f4a9abccc0ac291872c72253eb2aef908c8c5`. Current authority is the conversation, repository instructions and adopted product commitments, not a bibliography entry. Paths are repository-relative. The three current-source entries below use the common implementation basis `a602024416ace9652f61bb2043889c307fd4e09d`; their eight named files were checked and are byte-identical to those at the earlier cited basis `510f4a9abccc0ac291872c72253eb2aef908c8c5`. This concordance correction does not report new implementation testing.
 
 [Chirality_DIRECTIVE] Chirality Project, "docs/DIRECTIVE.md — Founding Intent, Design Philosophy, and Four-Pillar Framework," Internal Document, Chirality Repository, 2024–2026.
 
@@ -198,10 +198,10 @@ The Chirality Framework," Internal Document, Chirality Repository, maintained ex
 [Chirality_I1I10] Chirality Project, "docs/DECOMPOSITION_STANDARD.md — Decomposition Protocol Standard (I1–I10)," Internal Document, Chirality Repository, 2024–2026.
 
 
-[Chirality_CURRENT] Chirality Project, "AGENTS.md," "tools/deliverables/README.md," and "workflows/coordinated-knowledge-work/WORKFLOW.md," repository operating sources observed at `510f4a9abccc0ac291872c72253eb2aef908c8c5`, Oct. 10, 2026. These establish prescribed behaviour at that basis, not universal effectiveness.
+[Chirality_CURRENT] Chirality Project, "AGENTS.md," "tools/deliverables/README.md," and "workflows/coordinated-knowledge-work/WORKFLOW.md," repository operating sources observed at `a602024416ace9652f61bb2043889c307fd4e09d`, Oct. 10, 2026. These establish prescribed behaviour at that basis, not universal effectiveness.
 
 [Chirality_RESET] Chirality Project, efficiency reset and subsequent owner-authorized changes, PRs [1211](https://github.com/sgttomas/chirality/pull/1211), [1212](https://github.com/sgttomas/chirality/pull/1212), [1213](https://github.com/sgttomas/chirality/pull/1213), [1214](https://github.com/sgttomas/chirality/pull/1214), [1216](https://github.com/sgttomas/chirality/pull/1216), [1223](https://github.com/sgttomas/chirality/pull/1223), and [1224](https://github.com/sgttomas/chirality/pull/1224), Oct. 2026. Later owner decisions qualify the initial plan; the final implementations are the evidence for what changed.
 
-[Chirality_APPV4] Chirality Project, "projects/chirality-app-v4/docs/PRD.md," "ARCHITECTURE.md," and "HOST_INTEGRATION.md," observed at `510f4a9abccc0ac291872c72253eb2aef908c8c5`. Product commitments and design; delivery must be established separately.
+[Chirality_APPV4] Chirality Project, "projects/chirality-app-v4/docs/PRD.md," "ARCHITECTURE.md," and "HOST_INTEGRATION.md," observed at `a602024416ace9652f61bb2043889c307fd4e09d`. Product commitments and design; delivery must be established separately.
 
-[Chirality_SWBPIPE] Chirality Project, "projects/chirality-piping/docs/PRD.md" and "docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md," observed at `510f4a9abccc0ac291872c72253eb2aef908c8c5`. Domain requirements and an identified historical implementation decision; no claim of professional acceptance is inferred.
+[Chirality_SWBPIPE] Chirality Project, "projects/chirality-piping/docs/PRD.md" and "docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md," observed at `a602024416ace9652f61bb2043889c307fd4e09d`. Domain requirements and an identified historical implementation decision; no claim of professional acceptance is inferred.

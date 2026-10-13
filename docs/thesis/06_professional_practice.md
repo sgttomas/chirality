@@ -9,8 +9,8 @@ examination, documentation and reliance. The Alberta engineering setting gives
 these questions concrete obligations.
 
 **Scope of the regulatory analysis.** The mapping retains the source editions
-and interpretation used in the thesis as of **2026-07-02**. The October
-revision reassesses the architectural argument; it does not establish the
+and interpretation used in the thesis as of **2026-07-02**. This analysis
+reassesses the architectural argument; it does not establish the
 currency of those regulatory sources, amend the firm's practice management
 plan or certify legal compliance. The mapping is the author's interpretation,
 not a determination or endorsement by APEGA. Appendix C carries the detailed
@@ -22,7 +22,7 @@ relationship between review topics and proposed support.
 
 ### 6.2.1 Governing Legislation and Standards
 
-The original analysis situated the work under Alberta's *Engineering and
+The analysis situates the work under Alberta's *Engineering and
 Geoscience Professions Act*, its *General Regulation* and three APEGA practice
 standards:
 
@@ -46,12 +46,10 @@ technical information on which others rely to make decisions or take action.
 Its character is not created by a repository status field. Nor does an
 unauthenticated work product become a PWP only when someone authenticates it.
 
-The earlier mapping equated PWPs with deliverables in an ISSUED state. That
-confused a practice concept with one implementation's workflow label. The
-relevant distinctions are the work's content, purpose, intended reliance,
-state of examination and applicable professional acts. A draft can still
-contain consequential technical information, and a completed software change
-is not automatically an authenticated engineering work product.
+The relevant distinctions are the work's content, purpose, intended reliance,
+state of examination and applicable professional acts. A draft can contain
+consequential technical information. A completed software change has its own
+acceptance subject and need not constitute an authenticated engineering work product.
 
 Git integration, an owner accepting a development slice and professional
 authentication are different acts. Their subjects and authority must be
@@ -59,9 +57,9 @@ identified separately.
 
 ### 6.2.3 Applicability to AI-Assisted Work
 
-The earlier analysis also cited APEGA's *Guidance for Registrants Regarding
+The dated source basis includes APEGA's *Guidance for Registrants Regarding
 the Use of Artificial Intelligence Tools*, updated March 23, 2026
-[CITE:APEGA_AI2026]. It read that guidance as placing responsibility for
+[CITE:APEGA_AI2026]. The interpretation reads that guidance as placing responsibility for
 appropriate use and examination of AI results with the registrant, while
 comparing AI results to those of other technical tools.
 
@@ -78,12 +76,7 @@ sufficient performance of the obligation.
 
 ### 6.3.1 Structure of the Argument
 
-The original chapter argued that because the cited obligations described the
-professional's conduct, they necessarily applied to AI agents as “others.”
-That conclusion was stronger than the premises supported. Language about
-conduct does not by itself resolve the scope of a legal term.
-
-The narrower argument is:
+The argument is:
 
 1. Professional use of agent-produced work raises concrete questions about
    scope, competence, evidence, examination and responsibility.
@@ -100,8 +93,8 @@ a settled classification of the agent as a worker or tool.
 <a id="632-why-the-framework-applies-directly-not-by-analogy"></a>
 ### 6.3.2 Direct Application and Analogy: An Interpretive Limit
 
-The “others” interpretation was adopted in the earlier analysis as a
-conservative position. The alternative treats AI as a technical tool whose
+The “others” interpretation offers a conservative candidate position. The
+alternative treats AI as a technical tool whose
 results the professional must be competent to assess. Neither interpretation
 can be resolved simply by naming the system an agent or observing that it
 performs complicated work.
@@ -142,7 +135,7 @@ responsibility model.
 
 ### 6.4.1 The APEGA Standard
 
-The historical mapping used §3.1.1 of the cited reliance standard to examine
+The mapping uses §3.1.1 of the cited reliance standard to examine
 active involvement, responsibility in decision making and documentation.
 These topics direct attention to what the professional does throughout an
 undertaking. They do not demonstrate that a particular number of agents,
@@ -154,7 +147,7 @@ or an agent's instruction to ask when uncertain.
 
 ### 6.4.2 Active Involvement (APEGA §3.1.1.1)
 
-The five topics in the prior mapping remain useful:
+Five topics organize this inquiry:
 
 | Topic | Proposed support | What still requires examination |
 |---|---|---|
@@ -224,7 +217,7 @@ create an approval that never happened.
 
 ### 6.5.1 Applicability
 
-The earlier analysis used §3.1.2 of the cited reliance standard to organize
+The mapping uses §3.1.2 of the cited reliance standard to organize
 examination before professional reliance. Review in this sense is more than
 format checking: it examines whether the work and its grounds support the
 intended purpose.
@@ -235,9 +228,8 @@ that labels or dependency metadata may have missed.
 
 ### 6.5.2 Reliability, Accuracy, and Validity (APEGA §3.1.2.1)
 
-The earlier five-gate REVIEW protocol is no longer the required repository
-method. Its useful review subjects survive independently of its staffing and
-status transitions:
+Review addresses the following subjects in relation to the work's intended use.
+Its staffing and timing follow the required competence, consequences and grounds.
 
 | Review subject from the historical mapping | Application to agent-assisted work |
 |---|---|
@@ -384,12 +376,10 @@ produces and its cost. Schema validation can reject malformed inputs. Path
 containment can refuse an escaping write. A numerical oracle can detect a
 particular class of calculation error. Each has a bounded claim.
 
-The earlier DIRECTIVE/CONTRACT/SPEC/TYPES and R/I/K catalogs described one
-control arrangement. Many of their administrative duties were retired in
-October. Their removal challenges the claim that these duties follow necessarily
-from accountability and provides a candidate alternative. Whether the
-replacement preserves adequate support for professional reliance or performs
-better requires evaluation in actual practice.
+A candidate control arrangement needs evaluation in actual practice. Adequate
+support for professional reliance concerns the work, examination and engagement
+it enables. Architectural coherence supplies a rationale to examine, not a
+finding that obligations have been discharged.
 
 Current assurance selects checks according to consequence, detectability,
 overlap and cost. Reuse applicable evidence and repeat a check when a relevant
@@ -478,10 +468,9 @@ extract, infer, plan, evaluate, criticize, propose, implement, check, repair and
 integrate. They can select ordinary implementation details and apply decisions
 already authorized. These activities may involve substantial initiative.
 
-The statement in the earlier chapter that agents “do not make decisions” was
-too broad. They make operational selections within their authority. What they
-do not acquire through that capability is the person's accountable judgment
-or a reserved professional decision right.
+Agents can make operational selections within their assignment and adopted
+policy. Their capability supports extensive initiative; authority for reserved
+commitments and accountable professional reliance remains with the person.
 
 ### 6.8.3 AI Agent Prohibitions
 
@@ -515,7 +504,7 @@ no cross-jurisdiction compliance claim.
 
 ### 6.9.3 The "Relying on the Work of Others" and "Using a Tool" Distinction
 
-Both classifications deserve consideration. The original “others” argument
+Both classifications deserve consideration. The proposed “others” argument
 does not follow necessarily from the text's emphasis on professional conduct.
 A more demanding internal practice policy also does not prove compliance with
 a different legal interpretation. The support offered by discoverable evidence

@@ -4,6 +4,19 @@ This series teaches project management and project engineering for human teams. 
 
 Use the courses to prepare, perform, examine, and coordinate professional work. Develop the technical knowledge of your discipline alongside this series.
 
+These courses are written for you, the person learning project practice. The
+[Chirality manuals](../alignment-manual/README.md) are primarily for your own
+agent to read and use while working with you. Give the agent the management manual
+to establish the method and vocabulary, then use the Field Book as a reference
+during work. Describe the problem you want to solve or the
+thing you want to build, and provide the relevant work and circumstances.
+
+Bring what you learn here into that undertaking. Examine the agent's contributions,
+discuss consequential interpretations, and make the decisions that are yours.
+Ask the agent to carry the agreed work forward. You and your agent develop a shared
+way of working through producing, examining and improving the result. Return to
+the lessons and manuals when experience exposes a question you need to understand.
+
 ## Start the series
 
 Read the courses in the order below. Each course contains lessons, a worked example, practice, a knowledge check, and an assessed assignment.

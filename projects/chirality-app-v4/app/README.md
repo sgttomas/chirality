@@ -587,6 +587,37 @@ implemented behavior and qualification limits.
     changes the source conversation's role or record. Handoffs are kept in App
     process memory.
 
+25. **Records capability** (RS §13.8 "Agent access", §13.9; owner U-STORE-4,
+    "I choose option B"). Conversations the App starts in its current project
+    (`CHIRALITY_WORKSPACE`) are offered one read-only tool,
+    `chirality_records_read_v1` (`dynamicTools` on `thread/start`; not on a
+    resume or fork). Its operations are `list_runs`, `read_run` and
+    `read_acts`. Pages hold at most 50 items and the final text stays within
+    32 KiB (fewer items, or a refusal, when it would not); larger entries and
+    summaries come back as stubs, and a cursor continues the next page. The
+    Rust host answers on a worker thread by the App rule `records-read` and
+    reads only this project's records. It never returns keys, capture
+    evidence files, other projects' records, library acts (also when the
+    project is the library) or refused lines' content. Path-valued fields
+    (`workflow.sourceRoot`, `boundSubject`) come back as
+    `{"rewrittenPath":"<project>/…"}` or `{"withheldPath":"outside-project"}`;
+    every other string is quoted exactly and may contain paths. Every
+    return is one JSON document marked as quoted evidence, not instructions
+    or authority. Before the
+    agent gets an answer, the call (returned or refused) is written to the
+    read log in the project's records store subtree
+    (`reads/records-reads.jsonl`) and synced, so a read that cannot be
+    recorded (no store, a project with no identity yet, which an agent's
+    read never mints, or a project the store cannot attach) returns
+    nothing. Reads are recorded there before the project's records are
+    imported too. The App-wide `runtime/records-reads.jsonl` of earlier
+    builds holds reads of several projects, so it is not imported or split:
+    it stays in App data unchanged and the host status shows it. "returned" there means prepared for
+    return; whether the reply reached Codex is the request register's entry. The host status shows the capability
+    and its latest 20 reads, never what was returned. The agent can still
+    read the record files directly; Codex 0.160.0 cannot prevent that, and
+    such reads are not recorded.
+
 ## Modules
 
 | Module | Contribution |
@@ -598,7 +629,10 @@ implemented behavior and qualification limits.
 | `catalog.rs`, `proposal.rs`, `external_adapter.rs`, `receiving.rs`, `external_observation.rs` | Reviewed receiving contracts and exact person-selected observation custody; no external host dispatch or origin verification implied |
 | `src-tauri/src/schema_validation.rs`, `schemas/` | W-1 plus complete package/offer/capture checks; declared-ID registry with external retrieval disabled; embedded resources checked by `schemas/sync.py` |
 | `src-tauri/src/records.rs` | Validated append, UUID identities, sequence/read completeness, serialization and ordered capture late-write accounting |
-| `src-tauri/src/storage.rs` | Selected project/run/writer and library paths, legacy discovery, atomic capture persistence and locking |
+| `src-tauri/src/record_lines.rs`, `record_lines_tests.rs` | RS §13.8 lines: one entry or one group per line (read whole or not at all), each line's chain link to the one before, unchained (legacy) and broken-chain limits, and each log's chain head |
+| `src-tauri/src/records_access.rs`, `records_access_tests.rs`, `resources/runtime_core/records-read-log.entry.schema.json` | The agents' read-only records capability (RS §13.9): the offered tool, its storage-independent source (the logs R-1 discovers: the project's records store subtree, or §13.7 logs before an import), bounded quoted pages and the read log written before each answer; tests include a fake-peer journey in which the agent calls it |
+| `src-tauri/src/records_store.rs`, `records_store_tests.rs` | The App's records store (RS §13.8): placement and the explicit override, project identity and its limits, the explicit import of §13.7 records, and the host status `recordsStore` |
+| `src-tauri/src/storage.rs` | Store, project/run/writer and library paths, R-1 discovery (store subtree, or §13.7 paths in place before an import), atomic capture persistence and locking |
 | `src-tauri/src/recorder.rs` | Package byte snapshot and request/provenance-limit mapping |
 | `src-tauri/src/act_control.rs`, `act_control_a15.rs`, `act_control_file.rs`, `file_act_native.rs`, `canonical.rs` | A16, hot A15 and App-file offer/native custody; capture versus publication uncertainty, ordered retry and original content binding |
 | `file_act_root.rs`, `file_act_view.rs`, `src/FileActPanel.tsx` | Original file-offer ownership, separate read-only act/decline comparison and per-offer controls; no cold native-origin upgrade |
@@ -606,7 +640,7 @@ implemented behavior and qualification limits.
 | `attachments.rs`, `hosting::attachment_custody`, `resources/attachments/` | Native-selected immutable ordered text sources, durable metadata/client pointers before scoped send, and explicit native outcome limits |
 | `trace_receiving.rs`, `record_relations.rs` | Independent unverified trace imports and general record correction claims; neither verifies native origin |
 | `native_history.rs`, `role_lifecycle.rs` | Read-only native history, scoped Continue receiving and immutable original guidance bindings; cold role-source custody remains unfinished |
-| `connector_standing.rs`, `connector_route_store.rs`, `connector_route_view.rs`, `src/ConnectorRoutePanel.tsx` | Provider-independent standing, caller-account persistence and read-only inspection; saved claims do not verify source truth or actor duties |
+| `connector_standing.rs`, `connector_route_store.rs`, `connector_route_view.rs`, `src/ConnectorRoutePanel.tsx` | Provider-independent standing, caller-account persistence (in the project's records store subtree; earlier in-project accounts read in place until imported) and read-only inspection; saved claims do not verify source truth or actor duties |
 | `src/RequestCards.tsx` | Readable DEL-01-04 request cards, item anchors and the waiting-request indicator; answer values come unchanged from the host's register |
 | `src-tauri/src/codex_stop.rs`, `src/CodexControls.tsx` | Stop/Restart Codex (DEL-01-02 §4.1 C-12 with the DEL-01-04 §5.2 question): live-work assessment with runs in force, ask-first sequence, the ledger `codex_stop` record, interrupts before the stop within the stop wait limit, TO-4 labels and the in-process outcome panel |
 | `src-tauri/src/app_quit.rs` | App quit asked first (DEL-01-02 DEF-6, K-4, SQ-Q; DEL-01-04 §5.2): assessment across homes, `quit_requested`/`quit_answered`, quit interrupts (cause *quit*), the exit's process stops and `session_ended` (AS-09, AS-10); the DEF-1 exit rule; the C-24 waiting count |
@@ -748,9 +782,43 @@ The App routes configured account (`H-acct`) and explicitly prepared API-key (`H
 
 ## Storage and remaining work
 
-Project run logs use `.chirality/records/runs/<safe-run-key>/<safe-writer-key>.jsonl`;
-outside-run acts use `.chirality/records/acts/<safe-writer-key>.jsonl` with captures
-in `.chirality/captures/`. Library A15 allocation uses the library's
+The App keeps a project's records in its own records store (RS §13.8;
+`src-tauri/src/records_store.rs`), outside the project and every Codex home:
+`<App data>/records/` by default, or a folder the person chose (from the next
+start). Tests and development name it with `CHIRALITY_RECORDS_STORE`; a
+development build without it records nothing, and there is no fallback. Each
+project has one subtree, `projects/<safe-project-key>/`, holding
+`runs/<safe-run-key>/<safe-writer-key>.jsonl`, `acts/<safe-writer-key>.jsonl`,
+`captures/` and `workflow/` (WR WP-1 records), and the App's own logs for the
+project (U-STORE-6, "Split by who writes"): `connectors/route-accounts/`
+(connector route accounts) and `reads/records-reads.jsonl` (the agents'
+records read log). The project is linked to it by
+`.chirality/project.json`, an identity the App mints once; the store's own
+record of the project's roots governs. A changed link is a limit; a missing
+or unreadable one, a duplicate, or a moved project attaches nothing until the
+person restores the link, adopts the project or gives the folder a new
+identity. Records an earlier App wrote at the §13.7 paths
+(`.chirality/records/runs/`, `…/acts/`, `…/workflow/`, `.chirality/captures/`,
+the registered `records/coordination.rs.jsonl`, and connector route accounts
+in `.chirality/records/connectors/route-accounts/`) are read in place, and
+recording is refused ("import needed") until the person imports them:
+byte-identical copies verified by SHA-256, committed by the import's
+"completed" line (an interrupted import is resumed by running it again), with
+the originals left unchanged and no longer read. A copy carries only the
+trust of the folder it came from. A library's own act log in the project is
+library evidence, never part of the project's record set. The override
+`CHIRALITY_RECORDS_STORE` is read only by development and test builds, and a
+store inside the project or a Codex home is refused. The host status (`recordsStore`)
+
+shows the store, the project's identity and any import or identity limit.
+The fleet coordination log has no App writer yet (DEL-06-01). When it is
+built, the log stays one co-written file in the project,
+`.chirality/fleet/coordination.fleet.jsonl`, with every entry, and the App
+also records its own observations in the store (`fleet/coordination.fleet.jsonl`),
+whose copy governs inside the App (owner: "Write to both (Recommended)";
+FLEET_RECORDS FR-D1). File-native readers read the project file as it is. That
+file is not the registered legacy log `records/coordination.rs.jsonl`.
+Library A15 allocation uses the library's
 `.chirality/records/acts.jsonl` and `.chirality/captures/`; its native registration
 witness remains unfinished. There is no registration attempt journal (owner
 ruling 2026-10-10): when a library is opened, SQ-X finds A15 records that no
@@ -763,8 +831,23 @@ separate owners in one process; release at process death is `flock`'s, not
 tested). A
 `.chirality/.workflow-staging/attempts/` folder left by an earlier build is
 no longer read. Storage keys are separate from governed identities.
-Explicitly discovered legacy `records/coordination.rs.jsonl` stays intact.
+Explicitly registered legacy `records/coordination.rs.jsonl` stays intact (imported, not rewritten).
 Unwritable or incomplete targets report limits without silent relocation.
+
+Each RS line the App writes is linked to the line before it in its log (RS
+§13.8 Tamper-evidence: the SHA-256 of that line's bytes), and entries that
+must stand together, such as an act counted and the disposition change it
+makes, are written as one group line and read whole or not at all. Lines
+written before the chain, imported ones included, read as "unchained
+(legacy)", a limit that leaves the log complete; the chain starts after
+them. An edited, removed or unlinked line after the chain started is a broken
+chain: the log is incomplete and nothing repairs it. Until a chain head is
+kept elsewhere (signed checkpoints, export manifests), removing a log's last
+lines, or every link of a log this process has not read chained, is not
+detected. The host status
+(`recordChain`) shows bounded counts of chained, legacy and broken logs;
+each log's chain head comes on demand (`records_chain_heads`).
+Signed checkpoints wait for App signing (OI-011).
 
 Attachment metadata arrays and pointer-only client request records live under
 the App user-data `runtime/nir/attachment-supplies/` and
@@ -882,7 +965,13 @@ Design only while a current requirement, test or ruling uses it.
 ## Recorded connector route accounts
 
 With an explicitly associated App project, **Read / refresh accounts** inspects
-its canonical connector route-account directory without creating it. The view
+its canonical connector route-account directory without creating it: in the
+project's records store subtree (`connectors/route-accounts/`), or, before the
+person imports them, the accounts an earlier build wrote in the project, read
+in place (CRP-v0.3 §1). The view says which. Accounts are written only in the
+store; reading mints no project identity. A binding taken before the import
+names the original file and is refused afterwards as a location mismatch for
+explicit reconciliation; it is never rebound to the copy. The view
 shows the recorded question, gaps and responsibility, duties, and parsed source
 and conclusion fields. Duplicate IDs and discovery issues remain visible; an
 empty or incomplete scan does not establish that no work remains. Unknown or

@@ -39,9 +39,11 @@ fn scale_runs(root: &std::path::Path, runs: usize) {
     let rec = &crate::records::APP_WRITER;
     for r in 0..runs {
         let run = format!("run:scale:{r}");
-        let log = crate::storage::project_log(root, Some(&run), "app-writer:local");
+        let log = crate::storage::project_log(root, Some(&run), "app-writer:local").unwrap();
         std::fs::create_dir_all(log.parent().unwrap()).unwrap();
         let mut out = std::io::BufWriter::new(std::fs::File::create(&log).unwrap());
+        // Chained as the App writes them (RS §13.8 Tamper-evidence).
+        let mut previous: Option<String> = None;
         for seq in 1..=SCALE_ENTRIES_PER_RUN as u64 {
             let (kind, body) = match seq {
                 n if n == SCALE_ENTRIES_PER_RUN as u64 => ("run_ended", json!({"stoppedBy":"the person","cause":"ended by the person","waitingArrivals":[]})),
@@ -49,9 +51,12 @@ fn scale_runs(root: &std::path::Path, runs: usize) {
                 n if n % 7 == 0 => ("evidence_limit", json!({"label":"lost acknowledgement","subjectRef":format!("server-request:1/{n}"),"detail":"synthetic scale entry"})),
                 n => ("model_turn", json!({"turn":n,"scope":"turn","requested":"fixture-provider/fixture-model","effective":"fixture-provider/fixture-model","destinationClass":"local model server"})),
             };
-            let entry = crate::records::envelope(kind, rec, body, format!("rec:app:scale-{r}-{seq}"), seq, Some(&run), Some("2026-10-12T00:00:00.000Z"));
+            let mut entry = crate::records::envelope(kind, rec, body, format!("rec:app:scale-{r}-{seq}"), seq, Some(&run), Some("2026-10-12T00:00:00.000Z"));
+            entry["prevLine"] = crate::record_lines::link(previous.as_deref());
             if r == 0 { validator.validate(&entry).unwrap_or_else(|e| panic!("{kind}: {e}")); }
-            writeln!(out, "{}", serde_json::to_string(&entry).unwrap()).unwrap();
+            let line = serde_json::to_string(&entry).unwrap();
+            previous = Some(crate::record_lines::line_identity(line.as_bytes()));
+            writeln!(out, "{line}").unwrap();
         }
     }
 }
@@ -60,9 +65,10 @@ fn scale_runs(root: &std::path::Path, runs: usize) {
 fn scale_acts(root: &std::path::Path, acts: usize) {
     use std::io::Write;
     let validator = crate::schema_validation::bundled().unwrap();
-    let log = crate::storage::project_log(root, None, "scale-act-writer");
+    let log = crate::storage::project_log(root, None, "scale-act-writer").unwrap();
     std::fs::create_dir_all(log.parent().unwrap()).unwrap();
     let mut out = std::io::BufWriter::new(std::fs::File::create(&log).unwrap());
+    let mut previous: Option<String> = None;
     let file = root.join("out/summary.md");
     for a in 0..acts {
         let id = format!("cap:scale-{a}");
@@ -73,13 +79,16 @@ fn scale_acts(root: &std::path::Path, acts: usize) {
             "answers":{"standing":"no arrival: a standing act (RC-6)"},"evidenceLimits":["identity not verified"]});
         if a == 0 { crate::schema_validation::validate_capture(&capture).unwrap(); }
         crate::capture_seal::seal(root, &mut capture).unwrap();
-        let path = crate::storage::capture_path(root, &id);
+        let path = crate::storage::write_capture_path(root, &id).unwrap();
         if a == 0 { std::fs::create_dir_all(path.parent().unwrap()).unwrap(); }
         std::fs::write(path, serde_json::to_vec(&capture).unwrap()).unwrap();
         let kind = crate::records::capture_record_kind(&capture).unwrap();
-        let entry = crate::records::envelope(kind, &crate::records::APP_INTERFACE, crate::act_control::act_body(&capture), format!("rec:app:scale-act-{a}"), a as u64 + 1, None, None);
+        let mut entry = crate::records::envelope(kind, &crate::records::APP_INTERFACE, crate::act_control::act_body(&capture), format!("rec:app:scale-act-{a}"), a as u64 + 1, None, None);
+        entry["prevLine"] = crate::record_lines::link(previous.as_deref());
         if a == 0 { validator.validate(&entry).unwrap(); }
-        writeln!(out, "{}", serde_json::to_string(&entry).unwrap()).unwrap();
+        let line = serde_json::to_string(&entry).unwrap();
+        previous = Some(crate::record_lines::line_identity(line.as_bytes()));
+        writeln!(out, "{line}").unwrap();
     }
 }
 /// A ledger of `lines` schema-valid rows: one session start, then per
@@ -165,7 +174,16 @@ fn records_scale_child() {
             let before = scale_rss_bytes();
             let start = t();
             let (limits, ids) = crate::records_index::with_index(&root, |ix| (ix.limits().len(), ix.holds("rec:app:none")));
-            json!({"buildMs":scale_ms(start),"limits":limits,"held":ids,"rssBeforeBytes":before,"peakRssBytes":scale_rss_bytes()})
+            let build = scale_ms(start);
+            // The host status's chain part (polled every second; RS §13.8), and the heads on demand.
+            let start = t();
+            let mut status = 0;
+            for _ in 0..10 { status = crate::records_index::chain_status(Some(&root)).to_string().len(); }
+            let status_ms = scale_ms(start) / 10.0;
+            let start = t();
+            let heads = crate::records_index::chain_heads(&root).to_string().len();
+            json!({"buildMs":build,"limits":limits,"held":ids,"rssBeforeBytes":before,"peakRssBytes":scale_rss_bytes(),
+                "chainStatusMs":status_ms,"chainStatusBytes":status,"chainHeadsMs":scale_ms(start),"chainHeadsBytes":heads})
         }
         "acts" => {
             let start = t();
@@ -273,7 +291,9 @@ fn records_scale_report() {
             let spec = json!({"what":what,"root":root,"keys":keys,"ledger":ledger,"runs":runs,"acts":acts});
             let output = std::process::Command::new(std::env::current_exe().unwrap())
                 .args([SCALE_CHILD, "--exact", "--ignored", "--nocapture", "--test-threads=1"])
-                .env("CHIRALITY_SCALE_CHILD", spec.to_string()).output().unwrap();
+                .env("CHIRALITY_SCALE_CHILD", spec.to_string())
+                // The child reads the parent's records store (RS §13.8), named explicitly.
+                .env(crate::records_store::OVERRIDE_ENV, crate::records_store::current().unwrap().root).output().unwrap();
             let text = String::from_utf8_lossy(&output.stdout);
             let result = text.lines().find_map(|l| l.split_once("SCALE-RESULT ").map(|(_, r)| r.to_owned()))
                 .unwrap_or_else(|| panic!("{what}: no result: {text} {}", String::from_utf8_lossy(&output.stderr)));

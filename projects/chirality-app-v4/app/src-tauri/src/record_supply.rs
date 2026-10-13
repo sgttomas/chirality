@@ -86,7 +86,7 @@ pub(crate) fn append_live(
     {
         return Err("R3 supplier joins changed since preparation; nothing written".into());
     }
-    let (entries, own) = match crate::records::append_record_set(&root, &run_log(&root, &pending.run), set, &pending.record_id) {
+    let (entries, own) = match run_log(&root, &pending.run).and_then(|log| crate::records::append_record_set(&root, &log, set, &pending.record_id)) {
         Ok(entries) => entries,
         Err(error) => { pending.failure.get_or_insert(error.clone()); return Err(error); }
     };
@@ -115,7 +115,7 @@ pub(crate) fn append_live(
                 && existing["observedAt"] == pending.observed_at.as_str() =>
         {
             if set == crate::records::RecordSet::ReadableBesideIncomplete {
-                if let Err(error) = crate::storage::sync_publication(&run_log(&root, &pending.run)) {
+                if let Err(error) = run_log(&root, &pending.run).and_then(|log| crate::storage::sync_publication(&log)) {
                     pending.failure.get_or_insert(error.clone());
                     return Err(error);
                 }
@@ -173,6 +173,9 @@ pub struct PendingRunEntry {
     /// would be refused the same way); it is never written, and a "record write
     /// failed" limit names it so later entries proceed.
     pub refused: Option<String>,
+    /// RS §13.8 "Units written together": consecutive pending entries with the
+    /// same group are one unit, written as one group line (or not at all).
+    pub group: Option<String>,
 }
 impl PendingRunEntry {
     pub fn new(kind: &'static str, body: Value, observed_at: String) -> Result<Self, String> {
@@ -184,6 +187,7 @@ impl PendingRunEntry {
             failure: None,
             written: None,
             refused: None,
+            group: None,
         })
     }
     /// Neither written nor permanently refused: still owed to the log (W-2).
@@ -220,7 +224,7 @@ pub(crate) fn permanent_refusal_in(
     if let Some(reason) = crate::records::nonconformance(kind, body, record_id, run, observed_at) {
         return Some(format!("it is nonconformant (RS W-1 (a)): {reason}"));
     }
-    let (entries, own) = crate::records::append_record_set(root, &run_log(root, run), set, record_id).ok()?;
+    let (entries, own) = crate::records::append_record_set(root, &run_log(root, run).ok()?, set, record_id).ok()?;
     // An exact owning receipt may have landed before an uncertain sync. A
     // later collision cannot make that observation truthfully "never written".
     if own.iter().any(|e| e["recordId"] == record_id && e["kind"] == kind
@@ -232,6 +236,84 @@ pub(crate) fn permanent_refusal_in(
         .find(|e| e["recordId"].as_str() == Some(record_id)
             && !(e["kind"] == kind && e["body"] == *body && e["runId"] == run && e["observedAt"] == observed_at))
         .map(|e| format!("its reserved record identity {record_id} is already held by a different entry ({} in run {})", e["kind"], e["runId"]))
+}
+/// RS §14.1 Permanent refusals for a unit (RS §13.8): a unit stands whole, so
+/// when the writer refuses any of its entries permanently, it refuses the
+/// unit; the reason names the entry refused.
+#[cfg(test)]
+pub(crate) fn permanent_group_refusal_in(
+    root: &std::path::Path,
+    run: &str,
+    group: &[PendingRunEntry],
+    set: crate::records::RecordSet,
+) -> Option<String> {
+    unit_refusal(root, run, group, set).map(|(reason, _)| reason)
+}
+/// RS §14.1 Permanent refusals for a unit, with which of its entries are
+/// already in the owning log. Beside a refusal of one of its entries, a unit
+/// only partly in its log (an earlier write of it that left some entries
+/// alone, as no App writer does) can never be reconciled: logs only grow, and
+/// a unit is written whole. Its entries in the log stay there, alone.
+fn unit_refusal(
+    root: &std::path::Path,
+    run: &str,
+    group: &[PendingRunEntry],
+    set: crate::records::RecordSet,
+) -> Option<(String, Vec<Option<Value>>)> {
+    let refused = group.iter().find_map(|e| permanent_refusal_in(root, run, e.kind, &e.record_id, &e.body, &e.observed_at, set)
+        .map(|reason| if group.len() > 1 { format!("{reason} (its unit of {} entries stands whole: RS §13.8)", group.len()) } else { reason }));
+    if let Some(reason) = refused {
+        return Some((reason, vec![None; group.len()]));
+    }
+    if group.len() < 2 {
+        return None;
+    }
+    let ids: Vec<&str> = group.iter().map(|e| e.record_id.as_str()).collect();
+    let (_, own) = crate::records::append_record_set_ids(root, &run_log(root, run).ok()?, set, &ids).ok()?;
+    let present: Vec<Option<Value>> = group.iter().map(|p| own.iter().find(|e| e["recordId"] == p.record_id.as_str() && e["kind"] == p.kind
+        && e["body"] == p.body && e["runId"] == run && e["observedAt"] == p.observed_at.as_str()).cloned()).collect();
+    let alone: Vec<&str> = group.iter().zip(&present).filter(|(_, p)| p.is_some()).map(|(e, _)| e.record_id.as_str()).collect();
+    (!alone.is_empty() && alone.len() < group.len()).then(|| (format!("its unit is only partly in its log ({} there alone); a unit is written whole (RS §13.8), so the rest of it can never be written", alone.join(", ")), present))
+}
+/// The "record write failed" limits for a unit the writer refuses
+/// permanently (RS §14.1 Permanent refusals, §13.8): one for each of its
+/// entries not in the log, in order, and the reason. The flush then continues
+/// past the unit.
+pub(crate) fn unit_refusal_limits(
+    root: &std::path::Path,
+    run: &str,
+    group: &[PendingRunEntry],
+    set: crate::records::RecordSet,
+) -> Option<(String, Vec<PendingRunEntry>)> {
+    let (reason, present) = unit_refusal(root, run, group, set)?;
+    let limits = group.iter().zip(present).filter(|(_, p)| p.is_none())
+        .map(|(e, _)| never_written_limit(e.kind, &e.record_id, &reason, &e.observed_at).ok()).collect::<Option<Vec<_>>>()?;
+    Some((reason, limits))
+}
+/// Settles a unit the writer refuses permanently: an entry already in the
+/// log is its own receipt (written, as it reads), every other entry is
+/// refused with the reason. Returns the "record write failed" limits for the
+/// refused entries, in order, for the flush to write where the unit stood.
+pub(crate) fn settle_refused_unit(
+    root: &std::path::Path,
+    run: &str,
+    group: &mut [PendingRunEntry],
+    set: crate::records::RecordSet,
+) -> Option<Vec<PendingRunEntry>> {
+    let (reason, present) = unit_refusal(root, run, group, set)?;
+    let limits = group.iter().zip(&present).filter(|(_, p)| p.is_none())
+        .map(|(e, _)| never_written_limit(e.kind, &e.record_id, &reason, &e.observed_at).ok()).collect::<Option<Vec<_>>>()?;
+    for (e, p) in group.iter_mut().zip(present) {
+        match p {
+            Some(written) => {
+                // In the record (alone): not a late write with its own limit.
+                e.failure = None;
+                e.written = Some(written);
+            }
+            None => e.refused = Some(reason.clone()),
+        }
+    }
+    Some(limits)
 }
 /// The "record write failed" limit for an entry the writer refuses permanently:
 /// it names the entry's reserved identity and says it can never be written, why,
@@ -256,7 +338,7 @@ pub(crate) fn append_run_entry(
     append_run_entry_in(root, run, entry, crate::records::RecordSet::Complete)
 }
 /// The run's own log for the App's lifecycle entries (`append_run_entry`).
-pub(crate) fn run_log(root: &std::path::Path, run: &str) -> std::path::PathBuf {
+pub(crate) fn run_log(root: &std::path::Path, run: &str) -> Result<std::path::PathBuf, String> {
     crate::storage::project_log(root, Some(run), LIVE_WRITER)
 }
 /// As `append_run_entry`, with what the writer requires of the project's other
@@ -270,7 +352,7 @@ pub(crate) fn append_run_entry_in(
     if let Some(written) = &entry.written {
         return Ok(written.clone());
     }
-    let (entries, own) = match crate::records::append_record_set(root, &run_log(root, run), set, &entry.record_id) {
+    let (entries, own) = match run_log(root, run).and_then(|log| crate::records::append_record_set(root, &log, set, &entry.record_id)) {
         Ok(entries) => entries,
         Err(error) => { entry.failure.get_or_insert(error.clone()); return Err(error); }
     };
@@ -299,7 +381,8 @@ pub(crate) fn append_run_entry_in(
                 && existing["observedAt"] == entry.observed_at.as_str() =>
         {
             if set == crate::records::RecordSet::ReadableBesideIncomplete {
-                if let Err(error) = crate::storage::sync_publication(&run_log(root, run)) {
+                if let Err(error) = run_log(root, run).and_then(|log| crate::storage::sync_publication(&log)) {
+
                     entry.failure.get_or_insert(error.clone());
                     return Err(error);
                 }
@@ -342,6 +425,82 @@ pub(crate) fn append_run_entry_in(
         )?;
     }
     entry.written = Some(written.clone());
+    Ok(written)
+}
+
+/// W-1/W-2 for one unit of entries (RS §13.8 "Units written together") in
+/// the run's log, as one group line: idempotent for an uncertain earlier write
+/// (every identity present with the same content is the receipt), late writes
+/// followed by "record write failed" for each entry. A unit only partly
+/// present cannot be reconciled: nothing is written. A unit of one entry is
+/// `append_run_entry_in`.
+pub(crate) fn append_run_group_in(
+    root: &std::path::Path,
+    run: &str,
+    group: &mut [PendingRunEntry],
+    set: crate::records::RecordSet,
+) -> Result<Vec<Value>, String> {
+    if group.len() == 1 {
+        return append_run_entry_in(root, run, &mut group[0], set).map(|v| vec![v]);
+    }
+    if group.iter().all(|e| e.written.is_some()) {
+        return Ok(group.iter().filter_map(|e| e.written.clone()).collect());
+    }
+    fn failed(group: &mut [PendingRunEntry], error: String) -> Result<Vec<Value>, String> {
+        for e in group.iter_mut() {
+            e.failure.get_or_insert(error.clone());
+        }
+        Err(error)
+    }
+    let ids: Vec<String> = group.iter().map(|e| e.record_id.clone()).collect();
+    let id_refs: Vec<&str> = ids.iter().map(String::as_str).collect();
+    let (entries, own) = match run_log(root, run).and_then(|log| crate::records::append_record_set_ids(root, &log, set, &id_refs)) {
+        Ok(found) => found,
+        Err(error) => return failed(group, error),
+    };
+    let same = |e: &Value, p: &PendingRunEntry| e["kind"] == p.kind && e["body"] == p.body && e["runId"] == run && e["observedAt"] == p.observed_at.as_str();
+    let mut existing = Vec::new();
+    for p in group.iter() {
+        let held: Vec<&Value> = entries.iter().filter(|e| e["recordId"] == p.record_id.as_str()).collect();
+        if held.len() > 1 || held.iter().any(|e| !same(e, p)) {
+            return failed(group, format!("RS identity {} has readable duplicate or conflicting content; owning write cannot be reconciled", p.record_id));
+        }
+        let owned = own.iter().find(|e| e["recordId"] == p.record_id.as_str());
+        if owned.is_none() && !held.is_empty() {
+            return failed(group, format!("RS identity {} found outside its owning log; owning write not established", p.record_id));
+        }
+        if owned.is_some_and(|e| !same(e, p)) {
+            return Err(format!("RS identity {} already holds other content; nothing written", p.record_id));
+        }
+        existing.push(owned.cloned());
+    }
+    let written = match existing.iter().filter(|e| e.is_some()).count() {
+        0 => {
+            let members = group.iter().map(|p| (p.kind, p.body.clone(), p.record_id.as_str(), p.observed_at.as_str())).collect();
+            match crate::records::append_project_group_in(root, run, LIVE_WRITER, members, set) {
+                Ok(written) => written,
+                Err(error) => return failed(group, error),
+            }
+        }
+        n if n == group.len() => {
+            if set == crate::records::RecordSet::ReadableBesideIncomplete {
+                if let Err(error) = run_log(root, run).and_then(|log| crate::storage::sync_publication(&log)) {
+                    return failed(group, error);
+                }
+            }
+            existing.into_iter().flatten().collect()
+        }
+        _ => return failed(group, format!("RS unit {} is only partly in its log; a unit is written whole (RS §13.8), so it cannot be reconciled", ids.join(", "))),
+    };
+    for p in group.iter() {
+        if let Some(failure) = &p.failure {
+            crate::records::note_project_late_write(root, run, LIVE_WRITER, &p.record_id,
+                &format!("{} written after its original observation; first failure: {failure}", p.kind), set)?;
+        }
+    }
+    for (p, w) in group.iter_mut().zip(&written) {
+        p.written = Some(w.clone());
+    }
     Ok(written)
 }
 

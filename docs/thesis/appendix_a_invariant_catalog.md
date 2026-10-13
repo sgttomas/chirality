@@ -25,6 +25,11 @@ used for all three, often without a mathematical specification. Identifying that
 mixture is part of the revision, not a reason to discard every concern the
 catalog expressed.
 
+The catalogs below retain the identifiers needed to interpret earlier sources.
+[Appendix E](appendix_e_development_history.md#e3-representations-of-work-and-warrant)
+explains how their representations developed and why the current argument separates
+commitments, methods and observed properties.
+
 ## A.1 Workflow Design Requirements (R1–R17)
 
 | Historical IDs | Concern and former mechanism | Current interpretation |
