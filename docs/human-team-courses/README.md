@@ -56,6 +56,16 @@ Keep your course outputs in one learning portfolio. Identify each output and its
 
 Use a mentor for individual study. The mentor can challenge the evidence, interpretation, and proposed reliance. Course 12 requires a team or a facilitated role exercise.
 
+## Study with an agent instructor
+
+An agent can teach the lessons, discuss the case, challenge your reasoning, and assess your work against the course criteria. Give it access to the [teaching guide](instructor-guide.html), the current course and its linked instructor companion, and the [case records](case-study.html). The guide explains how to support your learning while keeping your own contribution visible.
+
+You can begin with:
+
+> Act as my instructor for this course series. Read the teaching guide and the relevant course, instructor companion, and case records before teaching. Start by establishing my purpose and experience, using what I have already told you. Work through manageable activities with me. Explain when I need help, let me attempt and defend the work, and assess my demonstrations against the stated criteria. Distinguish practice, worked examples, and assessment. Ask for any required material you cannot access.
+
+Bring your own questions and ask for a different explanation when needed. Keep the portfolio outputs you will use in later courses. The practicum's team or individual-study arrangement and independent examination requirements still apply; the teaching guide explains how the agent should handle them.
+
 ## Assessment
 
 Each course states observable criteria for its assignment. The instructor uses three ratings: meets the criterion, needs repair, or has insufficient evidence.

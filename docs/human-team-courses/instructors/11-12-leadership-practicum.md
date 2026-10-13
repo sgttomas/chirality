@@ -2,7 +2,7 @@
 
 [Series](../index.html) · [Northbank case](../case-study.html) · [Glossary](../glossary.html) · [References](../references.html)
 
-Use this guide after reading the learner courses. Keep answer guidance separate during assessed work.
+Read this guide and the learner courses before teaching. Follow the [agent instructor method](../instructor-guide.html) for pacing, assistance, assessment, and continuity. Prepare with the answer guidance while preserving the learner's opportunity to attempt and explain the assessed work.
 
 The case supports several defensible recommendations. Assess their basis, conditions, consequences, and authority. Do not require one preferred organizational arrangement.
 
@@ -40,6 +40,14 @@ Use a six-hour session plan. Divide it across sessions if needed.
 Select the independent reader before writing begins. A mentor can perform this function for individual study.
 
 Ask each learner which claim remains unestablished. Use that answer to distinguish further necessary work from optional improvements.
+
+### Teaching Course 11 with an agent
+
+Ask the learner to explain one causal connection in their diagnosis: the mechanism, timing, supporting observation, and what remains a hypothesis. Challenge it with a relevant alternative explanation before accepting a diagram or persuasive narrative as a demonstrated cause.
+
+Represent a stakeholder concern from D01 or D02 and ask how the learner's recommendation treats its consequences. Preserve the distinction between an incentive arrangement and evidence of a person's motive. Let the learner compare and defend alternatives rather than steering them toward your preferred continuation decision.
+
+Arrange the course's independent reading of the actual memorandum. If you substantially authored its reasoning, a reviewer persona does not provide that independence. Use the shared guide's treatment of production involvement and continue useful preparation while any required examination remains open.
 
 ### Course 11 knowledge-check answers
 
@@ -137,6 +145,16 @@ Assign role numbers and the initial cards. Confirm the rotation rule. Select an 
 If a reviewer produced an affected item, assign a different reviewer. Another team or a mentor can provide this examination.
 
 The facilitator represents decision authorities only within the simulation. No simulated decision establishes real technical competence, legal compliance, or operating permission.
+
+### Facilitate the practicum as an agent
+
+Identify whether this is the team practicum or the facilitated individual adaptation. Preserve the published phase order, time allocations, required outputs, defense, and individual examination. An untimed rehearsal can prepare the learner; label it as rehearsal rather than reporting that the published assessment occurred.
+
+At each event, state the current phase, source set, and the role whose request you are presenting. Give the learner the event prompt and wait for their work and decision request. Examine the request, then issue the applicable simulated disposition within its stated remit. Have the learner apply it to the affected outputs before the next dependent activity. Ordinary coaching and source clarification can continue without advancing the event.
+
+Keep instructor feedback distinct from a simulated authority's words. Do not generate the learner's request, its defense, and the decision yourself. Silence supplies no decision. If the learner already knows a standard script, ask them to explain why its disposition follows from the current grounds rather than pretending the outcome is secret.
+
+During rotation, require the incoming participant to inspect the saved candidate. During final examination, receive each person's own explanation. Your simulated participants cannot supply evidence that a human team agreed or that each learner understood the result.
 
 ### Release sequence
 
@@ -388,9 +406,9 @@ Use a focused written response or another brief examination for individual repai
 
 ## Individual-study direction
 
-The mentor plays the requesting and decision roles. The learner prepares separate role outputs and records each source set.
+You may act as the mentor for individual study, presenting the requesting and decision roles one at a time. The learner prepares separate role outputs and records each source set.
 
-Use the same event prompts and standard decisions. The mentor independently examines the learner's outputs and conducts the final examination.
+Use the same event prompts and standard decisions, waiting for the learner's response at each event. Examine their actual outputs and conduct the final examination. Where your production involvement prevents independent scrutiny, arrange another suitably prepared reviewer as required by the course. Your own role changes do not resolve that limitation.
 
 Record the limits of single-person production. Do not describe sequential self-review as independent examination.
 
