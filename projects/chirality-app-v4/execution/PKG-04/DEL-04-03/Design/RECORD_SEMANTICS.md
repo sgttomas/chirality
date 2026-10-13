@@ -1078,6 +1078,7 @@ write to their own logs; the reader joins them (§14.2 R-8).
 | — | `observedAt` | The time of the observed event where it differs from the write (a late write, FC-1) |
 | Corrects (optional) | `corrects`, `correctionReason` | Both or neither |
 | Run | `runId` | Opaque `run:…`; absent in an act log |
+| — | `prevLine` | The chain link (§13.8 *Tamper-evidence*): {`method` `chirality.rs.line.sha256/v1`, `value`}, the value being the SHA-256 (lowercase hex) of the preceding complete line's exact bytes without its line feed, or null on a log's first line. On a group line (§13.3) the group carries it and its entries carry none. Optional in the schema: a line without it reads as unchained (legacy) before a log's first linked line, and as a broken chain after it |
 
 **App record identity minting (CC-ID; bounded record-only technical choice).**
 For each new App record, obtain 16 bytes from the operating system's secure
@@ -1155,6 +1156,17 @@ annotations as RS's structured objects; `run_ended` stopped by *the person*,
 end of a run (v0.9). The disposition's annotations are derived
 labels of the `act_counted`, `act_not_counted` and `act_lapsed` entries and
 agree with them (EXEC RC-10).
+
+**Group lines (§13.8 *Units written together*).** A line may hold a group
+instead of one entry: `{"format":"chirality.rs.group","formatVersion":"0.1",
+"groupId":"grp:app:‹uuid›","prevLine":…,"entries":[…]}`, with two or more
+entries of the kinds above (schema `$defs/groupLine`; added in place in
+format 0.1). The App writes as one group an event that changes an arrival's
+disposition (`act_counted`, `act_not_counted`, `arrival_declined`,
+`act_lapsed`) with the `disposition_change` it makes for that arrival, and an
+`act_request` with its "requester identity not established" limit (§13.6).
+Every other entry stands alone on its line. A group's entries keep their own
+identities and `seq`; the group's identity names the line only.
 
 #### 13.3.1 LOOP §2.3's checkpoint events (R14-1)
 
@@ -1241,7 +1253,12 @@ recorder named as the decision actor (HA-2); an A15 whose bound subjects,
 bound contents and registered entries do not correspond, or whose bound
 content is not its reviewed content (WR ID-2; v0.9); an unsandboxed outside process
 without "process network not observed"; a contact naming an in-work grant
-that is not in the record; records of one capture that disagree.
+that is not in the record; records of one capture that disagree. For a group
+line (§13.3) the schema refuses fewer than two entries and an entry carrying
+its own chain link; the reader checks that its entries have consecutive
+`seq`, one run (or none) and distinct identities, and takes the group whole
+or not at all. The reader also checks each line's chain link (§13.8
+*Tamper-evidence*).
 
 ### 13.6 Requests as record elements (RS 5)
 
@@ -1483,7 +1500,9 @@ settled. **Implemented** (App `records_store.rs`, `storage.rs`): Placement,
 Project identity, Existing records and Failures below, for a project's run
 logs, outside-run act logs, captures and WR WP-1 records, and (U-STORE-6,
 "Split by who writes") for its connector route accounts (DEL-07-02,
-`connector_route_store.rs`) and the agents' records read log (§13.9). The
+`connector_route_store.rs`) and the agents' records read log (§13.9); Units
+written together and the chain of Tamper-evidence (App `record_lines.rs`,
+`records.rs`, `records_index.rs`) for every RS log the App writes. The
 other mechanisms are not built yet (proposed, or owner decisions awaiting
 their slice); the store's copy of the App's fleet coordination observations
 has its place below, but DEL-06-01 has no App writer or reader yet.
@@ -1614,21 +1633,82 @@ has its place below, but DEL-06-01 has no App writer or reader yet.
   `.chirality/fleet/` is in the import census. The registered legacy log
   `records/coordination.rs.jsonl` (§13.7) is a different file: an RS record
   log, not DEL-06-01's `chirality.fleet.record` log.
-- **Units written together** (proposed). Entries that must stand together, such as an
-  `act_counted` entry and its label, a lapse and its label, or a batch of request
-  endings, are written as one line that holds the group. The reader accepts a
-  group whole or reports it as a limit; it never reads half a group. The
-  group form is defined with the schema (§13.2–§13.3), and single-entry lines
-  stay valid. Groups are single-writer, since logs are per run and writer.
-  When implemented, R-2 ("one entry per line") and W-1's one-line write read
-  "one entry or one group per line".
-- **Tamper-evidence.** Each line carries the content
-  identity of the preceding complete line of its log, with its method
-  designation. A line that W-0 terminated after a torn write (FC-2) is not a
-  link, and the reader reports the gap. Imported legacy logs have no chain and
-  read as "unchained (legacy)", a limit. Checkpoint entries at intervals are
-  signed. A reader reports a broken chain or a signature that does not verify
-  as a limit and never repairs it. The owner set this strength (U-STORE-3,
+- **Units written together** (implemented; App `record_lines.rs`, `records.rs`
+  `append_group`, `record_supply.rs` `append_run_group_in`). Entries that must
+  stand together are written as one line that holds the group (§13.3 *Group
+  lines*): an event that changes an arrival's disposition with the
+  `disposition_change` it makes (an `act_counted` entry and its label, a lapse
+  and its label), and a request with its requester-identity limit. The reader
+  accepts a group whole or reports the line as a limit; it never reads half a
+  group. Single-entry lines stay valid. Groups are single-writer, since logs
+  are per run and writer. R-2 ("one entry per line") and W-1's one-line write
+  read "one entry or one group per line": §14.2 R-2 is read with this
+  amendment, its row unchanged. As implemented:
+  - Request endings are not grouped. Each settlement stands on its own, and
+    one written before another misstates nothing. The recovery ledger's
+    batches already commit in one SQLite transaction (DEL-01-02 §7).
+  - R-1 counts each entry's identity; an entry's line (the records
+    capability's `line`) is its group's line.
+  - W-2 keeps a unit whole. Every identity present with the same content is
+    the receipt of an uncertain write. After a late write, each entry is
+    named by its own "record write failed" limit. A permanent refusal of one
+    entry refuses its unit, and each entry gets its "record write failed"
+    limit.
+  - A unit only partly present (some of its entries alone in the log, which
+    no App write leaves) can never be reconciled, since logs only grow. Its
+    write is a permanent refusal: nothing more of it is written, each entry
+    not in the log gets its "record write failed" limit, and the run's later
+    entries proceed. The entries already there stay, alone.
+  - A lapse recorded alone (an earlier label write failed) still gets its
+    label alone.
+- **Tamper-evidence** (chain implemented; signed checkpoints wait for App
+  signing). Each line the App writes carries the content identity of the
+  preceding complete line of its log, with its method designation (`prevLine`,
+  §13.2): the SHA-256 of that line's exact bytes without its line feed
+  (`chirality.rs.line.sha256/v1`), or null on a log's first line. A line that
+  W-0 terminated after a torn write (FC-2) is not a link: W-0's limit links to
+  the line before it, and the reader notes the gap. As implemented:
+  - *Unchained (legacy).* Lines with no link before a log's first linked line
+    read as "unchained (legacy)", a limit that does not make the log
+    incomplete: an imported §13.7 log, or a store log written before the
+    chain.
+  - *Where the chain starts.* In an existing log the chain starts at its
+    first linked line, which links to the last unchained line. The App never
+    rewrites earlier lines to chain them.
+  - *A broken chain.* A line with no link after a linked line, or a link that
+    does not name the preceding line, breaks the chain. That is a limit that
+    makes the log incomplete, so writers refuse as for any unreadable line,
+    and it is never repaired. A complete line that is not read (unreadable or
+    invalid) is still the line the next one links to.
+  - *Chain head.* A log's head is the identity of its last link line with its
+    line count, read from the log itself (`record_lines::chain_head`). Export
+    (U-STORE-5) records it in its manifest. The host status `recordChain`
+    carries only bounded counts (logs, chained, legacy, broken) and at most
+    five names of broken and of legacy logs, from the index as last read, with
+    when it was last refreshed (`readAt`) and last verified (`verifiedAt`).
+    While nothing records, a verifier pass brings the counts up to date. The
+    heads come on demand (host command `records_chain_heads`).
+  - *Links removed in this process's sight.* A log that this process read
+    with a chain and that later reads with no link at all is a broken chain,
+    not unchained (legacy). The R-2 reader and the index remember this per
+    process only.
+  - *Verification.* The bounded index checks the links of each log's growth
+    as it reads it; the verifier's pass checks every link in full (§14.3,
+    *Bounded reads*).
+  - *Not detected.* Until a chain head is kept elsewhere (signed checkpoints,
+    or export manifests), removing a log's last lines, or all its links
+    outside the case above, is not detected. A log stripped of every link
+    reads as unchained (legacy), a limit, and the App's next line starts its
+    chain again.
+  - *Signed checkpoints* are not built. A checkpoint will be an entry naming
+    the head it covers, with its signature; it waits for App signing (OI-011),
+    when SEAL-C's key moves to the OS keychain. Until then the chain shows an
+    edit only when the links after it were not recomputed, and a head kept
+    elsewhere (an export manifest, once export is built) shows a later
+    rewrite of what it covers.
+
+  A reader reports a broken chain or a signature that does not verify as a
+  limit and never repairs it. The owner set this strength (U-STORE-3,
   2026-10-12: "Chain + signed checkpoints"), with no external anchoring: it
   detects edits by anyone without the checkpoint key, not by someone who
   controls this machine and its keychain, and proves no outside time.
@@ -1688,10 +1768,11 @@ has its place below, but DEL-06-01 has no App writer or reader yet.
   regular, single-link file with the stamp the census recorded, unchanged
   while it is read, and an entry swapped after the census (for a link, a
   hard link or other bytes) or a name that is not UTF-8 is a conflict, never
-  copied. A connector account writer checks its permission again once it
-  holds the project's writer lock, so a writer that waited behind an import
-  that stopped after its "started" line writes nothing; the RS run and act
-  writers take that lock in `records.rs` and do not yet check again. While the store holds nothing for the
+  copied. A connector account writer and the RS run and act writers
+  (`records.rs`, at an append and at W-0) check their permission again once
+  they hold the project's writer lock (`records_store::writer_lock`), so a
+  writer that waited behind an import that stopped after its "started" line
+  writes nothing. While the store holds nothing for the
   project and such records exist, they are read in place and every new
   recording is refused with "import needed" (the act control's recovery
   included), so no history is split across two homes. The import is the
@@ -1944,8 +2025,8 @@ skeleton is historical; prototype/Ajv validation alone never supplies W-1.
 
 | Step | What happens | What can fail | Who reports it | Record left | What happens next |
 |---|---|---|---|---|---|
-| **W-0 Open** | Opens the log for (run, writer); takes the next `seq` after the last entry; if the last line is unterminated, terminates it (never truncates or edits) and appends "partial entry not recovered" | The log cannot be read or written | The writer, to its caller (the App or host run recording) | Nothing new | Entries are held as *pending write* (W-2); the display compares *missing in record* (§8) |
-| **W-1 Append** | Completes the header, validates the entry against the schema, then writes one line in one write and syncs it; `seq` advances only on success | (a) The entry is nonconformant. (b) The write fails | (a) and (b): the writer, to its caller, naming the entry | (a) Nothing: a nonconformant entry is never written as a best effort. (b) Nothing yet | (a) The caller corrects its input or records the limit it can; a refused pending observation is not held (W-2, permanent refusals). (b) W-2 |
+| **W-0 Open** | Opens the log for (run, writer); takes the next `seq` after the last entry; if the last line is unterminated, terminates it (never truncates or edits) and appends "partial entry not recovered", linked to the line before the torn one (§13.8) | The log cannot be read or written | The writer, to its caller (the App or host run recording) | Nothing new | Entries are held as *pending write* (W-2); the display compares *missing in record* (§8) |
+| **W-1 Append** | Completes the header, validates the entry against the schema, then writes one line (the entry, or the group it stands in, §13.8) carrying its chain link in one write and syncs it; `seq` advances only on success | (a) The entry is nonconformant. (b) The write fails | (a) and (b): the writer, to its caller, naming the entry | (a) Nothing: a nonconformant entry is never written as a best effort. (b) Nothing yet | (a) The caller corrects its input or records the limit it can; a refused pending observation is not held (W-2, permanent refusals). (b) W-2 |
 | **W-2 Late write** | At the next append or retry, writes the pending entries in their order, then an `evidence_limit` "record write failed" naming them; each keeps its `observedAt` | The writer stops before the pending entries are written | The caller already holds the failure report | The entries are not in the record | The display shows *missing in record*; a later run cannot back-fill them |
 | **W-3 Correct** | Appends a new entry of the same kind naming the corrected one in `corrects`, with a reason | A correction of another kind, or without a reason | Schema (reason) and reader (kind), §13.5 | The correction is nonconformant and changes nothing | The corrected entry stays readable, marked "corrected by ⟨entry⟩" |
 
@@ -2112,6 +2193,13 @@ machine; `records::durability_tests`, and the ignored
   reader shows the entry; a retry under the same reserved identity
   refuses, so nothing is duplicated (FC-1). Not shown: survival of
   OS-acknowledged data at a power failure, and a full device (ENOSPC).
+- *Groups and the chain (2026-10-12, debug build; `records::durability_tests`,
+  `record_lines::tests`).* 50 SIGKILLs of a child appending group lines of
+  two 24 KiB entries left only whole groups, in sequence, with an unbroken
+  chain; so did 50 of the single-entry child. Neither left a torn tail, as
+  before. A short write of a group line leaves a partial only, of which no
+  entry is read. The reopened writer terminates it, W-0's limit links to the
+  line before it, and the chain continues unbroken.
 - *Scale.* Logs of 30 entries a run, and A7 act records citing sealed
   captures. A first year is estimated at 1,000 runs and 3,000 acts.
 
@@ -2150,7 +2238,11 @@ machine; `records::durability_tests`, and the ignored
     in full.
   - A background verifier re-lists every directory and re-reads every
     log in full, outside the index lock and off the record tick. A pass
-    starts every 60 s (`CHIRALITY_RECORDS_VERIFY_SECS`).
+    starts every 60 s (`CHIRALITY_RECORDS_VERIFY_SECS`). A log whose stamp
+    did not change while the pass read it replaces the index's state when
+    they differ, or when the log changed since the index last read it, so
+    the index catches up without a reader or writer. A log that changed
+    during the read is left to the next refresh.
   - A line read again from its stored position (entries by identity,
     the act read's claims) is parsed and validated again (R-4), and must
     still hold its indexed identity and `seq`. Otherwise the read fails
@@ -2194,6 +2286,31 @@ machine; `records::durability_tests`, and the ignored
   100,000 captures) no longer runs on the record tick. The first act
   read in a process still peaks at 6.2 GB at 100,000 acts (9.1 GB
   before).
+
+  With the chain and groups (RS §13.8; 2026-10-12, release build, same
+  harness with chained logs, measured back to back with the earlier code on a
+  loaded machine, so only the comparison holds). Each line is about 110 bytes
+  longer (284 MB of logs instead of 234 MB at 10,000 runs), and each line read
+  in full is hashed once. A log's growth is checked from the link where its
+  last complete line starts, so a next append still reads only what changed.
+
+  | Runs / acts | Append, first / next | Verifier pass | Index build | Index memory | Act read, first / after a run entry |
+  |---|---|---|---|---|---|
+  | 100 / 300 | 46 / 5 ms (40 / 7) | 34 ms (31) | 61 ms (66) | 28 MB (23) | 148 / 2.3 ms (185 / 3.8) |
+  | 1,000 / 3,000 | 388 / 16 ms (266 / 20) | 0.32 s (0.26) | 0.36 s (0.30) | 47 MB (45) | 1.18 s / 28 ms (1.15 s / 27) |
+  | 10,000 / 100,000 | 4.5 s / 150 ms (5.1 s / 152) | 4.3 s (3.1) | 4.5 s (3.4) | 257 MB (243) | 26.5 s / 0.55 s (24.5 s / 0.60) |
+
+  The host status's chain part (`recordChain`, polled every second) looks at
+  the cached index only: 0.05 ms and about 300 bytes at 10,000 runs (10,001
+  logs), at every tier. The heads on demand (`records_chain_heads`) refresh
+  the index and list every log: 1.3 ms and 43 KB at 100 runs, 12 ms and
+  0.42 MB at 1,000, and 131 ms and 4.2 MB at 10,000.
+
+  Earlier code in brackets. Full reads cost up to about a third more; next
+  appends and the record tick (1.2 s writing again at 10,000 runs, both) are
+  unchanged within the noise. The first act read's peak varied between 5.7
+  and 7.1 GB at 100,000 acts across runs (5.5 GB for the earlier code in the
+  same session).
 
 ## 15. Local prototype (R12-3)
 

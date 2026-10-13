@@ -50,6 +50,7 @@ pub mod recorder;
 pub mod records;
 pub mod records_access;
 mod records_index;
+pub mod record_lines;
 pub mod records_store;
 pub mod recovery;
 mod recovery_root_view;
@@ -247,6 +248,7 @@ fn host_status(state: State<'_, AppState>) -> Value {
     s["codexStops"] = json!({"outcomes":state.codex_stops.lock().unwrap().clone(),"stopWaitLimitSeconds":codex_stop::STOP_WAIT_LIMIT.as_secs(),"records":codex_stop::RECORDS_LIMIT});
     s["connectorRouteAvailability"] = connector_route_view::availability(state.workspace.as_deref(), &state.project_context, state.project_context_limit.as_deref());
     s["recordsStore"] = records_store::status(state.workspace.as_deref());
+    s["recordChain"] = records_index::chain_status(state.workspace.as_deref());
     s["currentAppProjectContext"] = state.project_context.view();
 
     s["currentAppProjectContextLimit"] = json!(state.project_context_limit);
@@ -262,6 +264,13 @@ fn host_status(state: State<'_, AppState>) -> Value {
 fn records_store_import(state: State<'_, AppState>) -> Result<Value, String> {
     let project = state.workspace.as_ref().ok_or("no project is open; nothing imported")?;
     records_store::import(project)
+}
+/// RS §13.8 Tamper-evidence: each log's chain head of the open project, on
+/// demand (the host status carries only bounded counts).
+#[tauri::command(async)]
+fn records_chain_heads(state: State<'_, AppState>) -> Result<Value, String> {
+    let project = state.workspace.as_ref().ok_or("no project is open")?;
+    Ok(records_index::chain_heads(project))
 }
 /// RS §13.8 "Project identity": the person resolves a project identity limit.
 #[tauri::command(async)]
@@ -1864,7 +1873,7 @@ pub fn run() {
             read_recovery_custody,
             recovery_retry,
             read_connector_routes,
-            records_store_import, records_store_identity, records_store_choose,
+            records_store_import, records_store_identity, records_store_choose, records_chain_heads,
             prepare_connector_source, select_connector_source, anchor_connector_source, revise_connector_source,
             read_connector_git, cancel_connector_git, anchor_connector_git,
             recheck_published_connector_draft, prepare_connector_reconstruction, prepare_connector_draft, publish_connector_draft, cancel_connector_draft, reconcile_connector_draft, inspect_connector_drafts,
