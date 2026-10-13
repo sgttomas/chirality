@@ -295,7 +295,7 @@
       "core/serialization/canonical_json/Cargo.toml": "15002a43f703afd12087c8c8ccff95739d9d385ef3a640cc64cd34b84ab0a5bc",
       "core/solver/curved_bend/Cargo.toml": "5d7cf1288eac698c209aa4fd7493fa669aa57494950e75374ac07248001502d8",
       "core/solver/diagnostics/Cargo.toml": "11db1409fcfd3b0312ef80085e36eac4d7a66eb0f4298832137119835b1c92e8",
-      "core/solver/frame_kernel/Cargo.toml": "db2378513d21d770b4d7816fa365f11b0bb5585c3667871ef35d5de4d6bc2f66",
+      "core/solver/frame_kernel/Cargo.toml": "5e45b3e44782fac2cceff2eb69ecfc57b309f0fedba1045b99a043adfc4b055e",
       "core/solver/linear_supports/Cargo.toml": "8d38681e7d09f9f1502d8986ccbea888bfb678b0ea8022885d3f67503ba4881d",
       "core/solver/nonlinear_integration/Cargo.toml": "1769bef18cadcc31250e9fe32de592432400a9ebe9860211dd0b7511be2c0f7c",
       "core/solver/nonlinear_supports/Cargo.toml": "c34c7d2a46294e3c2ab57b4b15028c48664670dfe25278b8b6d22147743a10a6",
