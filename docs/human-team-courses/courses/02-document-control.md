@@ -1,14 +1,14 @@
-# Course 02 — Document and Configuration Control
+# Course 02: Document and Configuration Control
 
 [Series](../index.html) · [Case](../case-study.html) · [Glossary](../glossary.html) · [References](../references.html)
 
-People need to know which information governs their work. They also need to know whether the information describes the actual product. Document control and configuration control establish these relationships.
+People need to know which information governs their work and whether that information describes the actual product. Document control and configuration control establish these relationships.
 
 This course teaches a practical control method for a small project. You will identify records, establish their permitted use, distribute changes, and trace effects. You will preserve earlier information so another person can understand a decision's basis.
 
 ## Prerequisites and outcomes
 
-Complete Course 01. Read Northbank Packet A. Keep your appointment response available.
+Complete Course 01 and read Northbank Packet A. Keep your appointment response available.
 
 By the end, you can:
 
@@ -18,17 +18,17 @@ By the end, you can:
 - Trace a change to its affected users and work.
 - Identify differences between defining records and the actual configuration.
 
-## Lesson 1 — Give information a stable identity
+## Lesson 1: Give information a stable identity
 
-A filename helps locate a document. It may not identify the document reliably. People copy files, rename them, and attach extracts to messages. Similar filenames can contain different revisions.
+A filename helps you find a document, but it may not identify the document reliably. People copy files, rename them, and attach extracts to messages; similar filenames can contain different revisions.
 
-Use a stable identity that survives those movements. Northbank uses A02 for the project basis. Rev 0 and Rev 1 are different revisions of that identified document. A reference to “the basis file” leaves the reader uncertain.
+Use a stable identity that survives those movements. Northbank uses A02 for the project basis; Rev 0 and Rev 1 are different revisions of that identified document. A reference to “the basis file” leaves the reader uncertain.
 
-Record enough information to retrieve the exact item. Useful fields include identity, title, revision, status, origin, location, and issue date. Add subject and use limits where they matter. An attachment copied into another folder should retain its identity and revision.
+Record enough information to retrieve the exact item. Useful fields include identity, title, revision, status, origin, location, and issue date; add subject and use limits where they matter. An attachment copied into another folder should keep its identity and revision.
 
-An extract also needs identity. State its parent source and the extent of the extract. A table copied without its source note can change the reader's understanding. At Northbank, the legacy schedule's planning-estimate note is essential to its evidential value.
+An extract also needs identity, so state its parent source and the extent of the extract. A table copied without its source note can change how the reader understands it. At Northbank, the planning-estimate note on the legacy schedule is essential to its value as evidence.
 
-Use one authoritative location for a controlled item when the working system permits it. Other copies should identify their origin and controlled status. Arrange access so the people doing the work can retrieve the required revision.
+Use one authoritative location for a controlled item when the working system allows it; other copies should identify their origin and controlled status. Arrange access so the people doing the work can retrieve the required revision.
 
 Apply this identification method:
 
@@ -39,19 +39,19 @@ Apply this identification method:
 5. Identify any parent source or attached evidence.
 6. Check that the intended user can retrieve it.
 
-Preserve earlier revisions according to the actual retention requirements. They help reconstruct a decision and explain a later change. Control access to sensitive information under the applicable arrangements.
+Preserve earlier revisions according to the actual retention requirements: they help reconstruct a decision and explain a later change. Control access to sensitive information under the applicable arrangements.
 
-## Lesson 2 — Distinguish revision, status, and purpose
+## Lesson 2: Distinguish revision, status, and purpose
 
-A revision identifies a version. Status describes its condition under the control process. Purpose describes the use for which the item was issued. These three fields answer different questions.
+A revision identifies a version, status describes its condition under the control process, and purpose describes what the item was issued for. These three fields answer different questions.
 
-The highest revision may be a draft. An older revision may remain the approved basis for a particular activity. A document issued for review may support comments but lack authorization for purchase or construction.
+The highest revision may be a draft; an older revision may remain the approved basis for a particular activity. A document issued for review may support comments but not be authorized for purchase or construction.
 
-Approval also has scope. A02 Rev 1 is approved for project development. It states unresolved inputs. Its approval does not establish that equipment selection is complete. A04 is a checked observation with explicit limits.
+Approval also has scope. A02 Rev 1 is approved for project development and states unresolved inputs; its approval does not establish that equipment selection is complete. A04 is a checked observation with explicit limits.
 
-Create a baseline when a group of identified information must serve as a controlled reference. State its purpose and change process. Include the relevant revisions, decisions, and unresolved conditions. A baseline can contain open matters if their treatment is explicit and suitable for its purpose.
+Create a baseline when a group of identified information must serve as a controlled reference. State its purpose and change process, and include the relevant revisions, decisions, and unresolved conditions. A baseline can contain open matters if their treatment is explicit and suitable for its purpose.
 
-Before relying on an item, ask:
+Before you rely on an item, ask:
 
 - Is this the identified revision needed for the activity?
 - Does its status permit this use?
@@ -68,19 +68,19 @@ Use an issue check:
 5. Identify the issued revisions.
 6. Notify the intended recipients.
 
-Do not use a “current” label without defining current for what purpose. When several activities use different baselines, make their relationships explicit. Otherwise, people can combine individually valid information into an inconsistent result.
+Do not use a “current” label without defining what purpose it is current for. When several activities use different baselines, make their relationships explicit; otherwise, people can combine individually valid information into an inconsistent result.
 
-## Lesson 3 — Control a change through its consequences
+## Lesson 3: Control a change through its consequences
 
-A changed document can affect work already completed. It can also change inputs that another person is using. Revision control preserves the versions; change control addresses these consequences.
+A changed document can affect work already completed, and it can also change inputs that another person is using. Revision control preserves the versions; change control deals with these consequences.
 
-Begin with the proposed departure from the approved basis. Identify its reason, affected requirements, technical effects, resource effects, and decision authority. Seek the necessary decision before implementing a reserved change.
+Start with the proposed departure from the approved basis. Identify its reason, the requirements it affects, its technical and resource effects, and who has authority to decide it. Seek the necessary decision before you implement a reserved change.
 
-After approval, update the defining information and notify the affected people. Ask each receiving owner to examine the effect on their work. A message sent is evidence of distribution. It does not establish that the recipient applied the change correctly.
+After approval, update the defining information and notify the affected people. Ask each receiving owner to examine the effect on their work. A sent message is evidence of distribution, but it does not establish that the recipient applied the change correctly.
 
-Different owners may need different actions. A flow change can affect pump selection, piping, electrical loads, controls, supports, tests, and operating information. The exact effects require competent examination. Do not assume the list is complete merely because it is long.
+Different owners may need different actions. A flow change can affect pump selection, piping, electrical loads, controls, supports, tests, and operating information, but the exact effects require competent examination. Do not assume the list is complete just because it is long.
 
-Keep the original proposal and decision basis available. Identify which revisions the new decision changes. Record any conditions on implementation. This allows a successor to distinguish an authorized change from an unexplained document difference.
+Keep the original proposal and decision basis available, identify which revisions the new decision changes, and record any conditions on implementation. That lets a successor tell an authorized change apart from an unexplained document difference.
 
 Apply a controlled-change method:
 
@@ -93,17 +93,17 @@ Apply a controlled-change method:
 7. Check adoption in affected work.
 8. Preserve the decision and earlier basis.
 
-Where an input defect is found, correct its distribution promptly. Assess the work that already used it. Preserve the defect and repair evidence when later examination needs them. A silent file replacement prevents that examination.
+Where an input defect is found, correct its distribution promptly and assess the work that already used it. Preserve the defect and repair evidence when later examination needs them; a silent file replacement prevents that examination.
 
-## Lesson 4 — Connect the records to the product
+## Lesson 4: Connect the records to the product
 
 Configuration means the arrangement and characteristics of the product or system. Its defining information can include drawings, specifications, software versions, equipment lists, settings, and selected vendor data.
 
-Document control alone cannot show what was installed. A revised drawing may be approved but unapplied. A field change may exist without an updated drawing. A test may concern a configuration different from the delivered one.
+Document control alone cannot show what was installed: a revised drawing may be approved but not applied, a field change may exist without an updated drawing, and a test may cover a configuration different from the delivered one.
 
-Configuration control connects the product, its defining records, authorized changes, and examination evidence. For each important item, identify the actual configuration and the records that define it. Match observations to that configuration.
+Configuration control connects the product, its defining records, authorized changes, and examination evidence. For each important item, identify the actual configuration and the records that define it, and match observations to that configuration.
 
-At early Northbank development, the project has no selected pump configuration. The product-family brochure cannot fill that gap. It may support investigation, but it does not identify a selected motor, curve, materials, or control arrangement.
+In early Northbank development, the project has no selected pump configuration, and the product-family brochure cannot fill that gap. It may support investigation, but it does not identify a selected motor, curve, materials, or control arrangement.
 
 Use a configuration comparison at a meaningful transition:
 
@@ -114,17 +114,17 @@ Use a configuration comparison at a meaningful transition:
 5. Record discrepancies and affected evidence.
 6. Assign each discrepancy a required response.
 
-Use detail that serves a decision, dependency, examination, or recovery need. A small project can use a simple list. Complex products may need specialized systems. The control must make the relationship understandable to the people who rely on it.
+Use detail that serves a decision, dependency, examination, or recovery need. A small project can use a simple list, but complex products may need specialized systems. The control must make the relationship understandable to the people who rely on it.
 
-## Northbank worked example — Two basis revisions
+## Northbank worked example: Two basis revisions
 
 The responsibility brief depends on a clear working basis. Here, the task is to recover that basis and identify work affected by use of the wrong revision.
 
-A07 reports that the shared folder contains A02 Rev 0 and Rev 1 under similar filenames. A designer has opened Rev 0. Its draft flow is 15 litres per second.
+A07 reports that the shared folder contains A02 Rev 0 and Rev 1 under similar filenames. A designer has opened Rev 0, whose draft flow is 15 litres per second.
 
-The document controller identifies A02 Rev 1 and its approval record. Its required flow is 18 litres per second. The controller preserves Rev 0 as an earlier draft and removes its ambiguity as the working basis.
+The document controller identifies A02 Rev 1 and its approval record. That revision's required flow is 18 litres per second. The controller preserves Rev 0 as an earlier draft and removes the ambiguity about whether it is the working basis.
 
-The project engineer then examines affected work. The controller cannot determine technical impact merely by relabeling the file. The designer must identify calculations, sketches, and selection notes that used Rev 0.
+The project engineer then examines the affected work. The controller cannot determine technical impact just by relabeling the file. The designer must identify the calculations, sketches, and selection notes that used Rev 0.
 
 | Item | Control response | Further examination |
 | --- | --- | --- |
@@ -134,19 +134,19 @@ The project engineer then examines affected work. The controller cannot determin
 | A04 Rev 1 | Add its checked observation and location to the working index. | Keep capacity, protection, and compatibility unresolved. |
 | A05 Rev 0 | Retain as a proposal. | Prepare the sponsor's requested impact assessment. |
 
-The correction does not create a new scope decision. It restores the working use of the already approved A02 Rev 1. Any affected technical work still needs examination and repair.
+The correction does not create a new scope decision; it puts the already approved A02 Rev 1 back into working use. Any affected technical work still needs examination and repair.
 
-## Transfer example — A manufactured product drawing
+## Transfer example: A manufactured product drawing
 
-A workshop holds Drawing D17 Rev 2, issued for manufacture. Engineering later creates Rev 3 as a review draft. A technician finds Rev 3 in a message.
+A workshop holds Drawing D17 Rev 2, issued for manufacture. Engineering later creates Rev 3 as a review draft, and a technician finds Rev 3 in a message.
 
-The revision number alone does not authorize manufacture to Rev 3. The technician checks the issued purpose and approval. If a physical part already follows Rev 3, the team examines that discrepancy before describing the part as conforming.
+The revision number alone does not authorize manufacture to Rev 3, so the technician checks the purpose it was issued for and its approval. If a physical part already follows Rev 3, the team examines that discrepancy before describing the part as conforming.
 
-Preserve the draft and the manufactured-part identity. The technical owner determines the consequence. Document control supports that determination through reliable records.
+Preserve the draft and the identity of the manufactured part. The technical owner determines the consequence, and document control supports that determination through reliable records.
 
-## Practice — Recover a controlled working basis
+## Practice: Recover a controlled working basis
 
-Use A02 to A07 and Portfolio 01. The supplied condition is the A07 folder discrepancy. No additional approval or technical result is available.
+Use A02 to A07 and Portfolio 01. The supplied condition is the folder discrepancy reported in A07, and no additional approval or technical result is available.
 
 Supply these outputs:
 
@@ -156,7 +156,7 @@ Supply these outputs:
 4. An impact enquiry for work that may have used A02 Rev 0 or A03.
 5. A comparison checklist for a future selected equipment configuration.
 
-State which entries come from Packet A. Identify any missing location or distribution information. Do not fabricate a completed impact assessment. Ask a partner to retrieve the basis using your list.
+State which entries come from Packet A, and identify any missing location or distribution information. Do not invent a completed impact assessment. Ask a partner to retrieve the basis using your list.
 
 ## Knowledge check
 
@@ -167,9 +167,9 @@ State which entries come from Packet A. Identify any missing location or distrib
 5. What distinguishes document control from configuration control?
 6. What response is needed after work used the wrong basis revision?
 
-## Assessed assignment — Issue a controlled basis
+## Assessed assignment: Issue a controlled basis
 
-Prepare a controlled-basis package for Northbank project development. Use Packet A only. Include a revision list, issue note, affected-work enquiry, and change method.
+Prepare a controlled-basis package for Northbank project development. Use Packet A only, and include a revision list, an issue note, an affected-work enquiry, and a change method.
 
 An instructor assesses five observable criteria:
 
@@ -181,12 +181,12 @@ An instructor assesses five observable criteria:
 | Change consequences | The method assigns impact examination, decision, distribution, and adoption checks. |
 | Configuration relationship | The package identifies missing product definition and limits the proposed comparison accordingly. |
 
-Demonstrate retrieval to a reviewer. Explain one impact enquiry. Repair any ambiguous basis or unsupported configuration claim. Training acceptance grants no authority to release a real purchase or construction package.
+Demonstrate retrieval to a reviewer and explain one impact enquiry. Repair any ambiguous basis or unsupported configuration claim. Acceptance in training grants no authority to release a real purchase or construction package.
 
 ## Portfolio continuation and references
 
-Keep the package as Portfolio 02. Link it to Portfolio 01. Course 03 will improve its subject index and assess the evidence behind selected claims.
+Keep the package as Portfolio 02 and link it to Portfolio 01. Course 03 will improve its subject index and assess the evidence behind selected claims.
 
 The [management manual (Edition 9)](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html), sections 6.3 and 6.6, explains why a record needs a concrete purpose and why reliance needs an identified edition. This course adapts those principles.
 
-For optional study, compare your organization’s actual document and configuration procedures with the [series glossary](../glossary.html). Use the [reference guide](../references.html) to distinguish source purpose and authority.
+For optional study, compare your organization’s actual document and configuration procedures with the [series glossary](../glossary.html). Use the [reference guide](../references.html) to distinguish each source's purpose and authority.
