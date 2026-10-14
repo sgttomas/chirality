@@ -204,6 +204,6 @@ Explain your package to a peer. Repair defects found during the examination. Ret
 
 Add the package to your Course 07 project basis. Carry unresolved technical conditions into Course 09. Carry examination and handover prerequisites into Course 10.
 
-Read Field Book §§4–5 and 7 in [References](../references.html). They connect dependencies, ready work, and change propagation. Consolidated v8 §§5.2–5.8 explain completion and integration. Adapt these principles to human responsibilities.
+Read Field Book (Edition 2) §§4–5 and 7 in [References](../references.html). They connect dependencies, ready work, and change propagation. Management manual (Edition 9) §§4.3–4.5 and 8.1 explain completion and integration. Adapt these principles to human responsibilities.
 
 The optional APM readings provide a wider project management account. The supplied case contains all inputs for this course's core exercises.

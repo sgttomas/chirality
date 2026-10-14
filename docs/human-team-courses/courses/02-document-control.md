@@ -187,6 +187,6 @@ Demonstrate retrieval to a reviewer. Explain one impact enquiry. Repair any ambi
 
 Keep the package as Portfolio 02. Link it to Portfolio 01. Course 03 will improve its subject index and assess the evidence behind selected claims.
 
-The [Consolidated manual](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v8.md), section 7.4, explains why records must help people establish what applies and what exists. This course adapts that principle.
+The [management manual (Edition 9)](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html), sections 6.3 and 6.6, explains why a record needs a concrete purpose and why reliance needs an identified edition. This course adapts those principles.
 
 For optional study, compare your organization’s actual document and configuration procedures with the [series glossary](../glossary.html). Use the [reference guide](../references.html) to distinguish source purpose and authority.

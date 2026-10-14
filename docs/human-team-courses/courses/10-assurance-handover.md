@@ -216,6 +216,6 @@ Connect your account to the Course 09 configuration and interface package. Retai
 
 Carry the remaining decisions into Course 11. They will become part of the project's continuation decision and the final practicum.
 
-Read Field Book §§6–8 and Consolidated v8 §§5.9–5.14 and chapter 6 in [References](../references.html). They explain evidence limits, product examination, and transfer of continuing responsibility.
+Read Field Book (Edition 2) §§6 and 9, and management manual (Edition 9) §§5.4–5.6, 7.5–7.6, and chapter 8, in [References](../references.html). They explain evidence limits, product examination, and transfer of continuing responsibility.
 
 The optional NASA readings deepen verification and validation methods. All core exercises can use the supplied offline records.
