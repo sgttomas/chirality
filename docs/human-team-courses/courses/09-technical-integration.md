@@ -202,7 +202,7 @@ Explain one interface to both its proposed supplier and consumer. Revise it unti
 
 ## Portfolio continuation and reading
 
-Connect your interface package to Course 08's readiness conditions. Carry the current configuration and open findings into Course 10's assurance plan.
+Keep your interface package as Portfolio 09. Connect it to Course 08's readiness conditions. Carry the current configuration and open findings into Course 10's assurance plan.
 
 Read Field Book (Edition 2) §§4–7 and management manual (Edition 9) §§4.5, 6.1–6.2, and 8.1–8.3 in [References](../references.html). Their dependency, integration, and evidence principles support this course.
 

@@ -202,7 +202,7 @@ Explain your package to a peer. Repair defects found during the examination. Ret
 
 ## Portfolio continuation and reading
 
-Add the package to your Course 07 project basis. Carry unresolved technical conditions into Course 09. Carry examination and handover prerequisites into Course 10.
+Keep the package as Portfolio 08 and add it to your Course 07 project basis. Carry unresolved technical conditions into Course 09. Carry examination and handover prerequisites into Course 10.
 
 Read Field Book (Edition 2) §§4–5 and 7 in [References](../references.html). They connect dependencies, ready work, and change propagation. Management manual (Edition 9) §§4.3–4.5 and 8.1 explain completion and integration. Adapt these principles to human responsibilities.
 

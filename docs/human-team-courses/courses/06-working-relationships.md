@@ -209,7 +209,7 @@ The instructor assesses these five observable criteria:
 
 ## Portfolio continuation and references
 
-Keep your stakeholder table and corrected meeting record. Link each consequential finding to its source or exercise decision.
+Keep your stakeholder table and corrected meeting record as Portfolio 06. Link each consequential finding to its source or exercise decision.
 
 Carry the unresolved input owners into Course 07. Retain your explanation of the difference between scope authority and technical responsibility.
 

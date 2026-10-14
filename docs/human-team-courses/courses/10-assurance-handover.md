@@ -212,7 +212,7 @@ Ask a peer to act as the receiving operations lead. Repair any gap that prevents
 
 ## Portfolio continuation and reading
 
-Connect your account to the Course 09 configuration and interface package. Retain C04's original observation separately from your corrected conclusion.
+Keep your account as Portfolio 10. Connect it to the Course 09 configuration and interface package. Retain C04's original observation separately from your corrected conclusion.
 
 Carry the remaining decisions into Course 11. They will become part of the project's continuation decision and the final practicum.
 
