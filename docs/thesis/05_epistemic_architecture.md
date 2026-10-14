@@ -19,6 +19,7 @@ Knowledge resources are artifacts supporting situated knowing: models, sources,
 calculations and returned findings help a participant inquire and act. Their
 organization can preserve useful relations without containing or reproducing
 everything a knower brings to the undertaking.
+
 ---
 
 ## 5.2 The Problem: Absence of Intrinsic Epistemic Warrant

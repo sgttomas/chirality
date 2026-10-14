@@ -246,4 +246,4 @@ Needs repair: a polished basis that adopts 22 litres per second, deletes unresol
 
 Return each defect with its affected claim and evidence. Ask the learner to repair the reasoning and its connected outputs.
 
-Close each assignment when all five criteria have sufficient evidence. Preserve the remaining genuine uncertainty within the approved learning output.
+Close each assignment when all five criteria are rated meets. Preserve the remaining genuine uncertainty within the approved learning output.

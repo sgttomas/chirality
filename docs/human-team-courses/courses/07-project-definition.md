@@ -219,10 +219,10 @@ The instructor assesses these five observable criteria:
 
 ## Portfolio continuation and references
 
-Keep the repaired assignment, project basis, requirement table, and scope allocation. Link them to your earlier sources and decisions.
+Keep the repaired assignment, project basis, requirement table, and scope allocation as Portfolio 07. Link them to your earlier sources and decisions.
 
 Carry these records into Course 08 for planning. Use their interfaces and readiness conditions in Course 09.
 
-Source adaptation: Field Book §§3–4 and Consolidated v8 §§2.1–2.7 and 3.1–3.7. These sections address basis, scope, outputs, and examination.
+Source adaptation: Field Book (Edition 2) §§3–4 and management manual (Edition 9) §§2.1–2.6 and 3.1–3.2. These sections address basis, scope, outputs, and examination.
 
 Use the shared [references](../references.html) for systems engineering fundamentals and project governance. External readings are optional for the supplied assignment.
