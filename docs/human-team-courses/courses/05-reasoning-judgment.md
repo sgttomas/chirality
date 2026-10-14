@@ -220,7 +220,7 @@ The instructor assesses these five observable criteria:
 
 ## Portfolio continuation and references
 
-Keep the reviewed claim table and decision memorandum in your portfolio. Link them to the controlled sources from earlier courses.
+Keep the reviewed claim table and decision memorandum as Portfolio 05. Link them to the controlled sources from earlier courses.
 
 Use them in Course 06 to explain a difficult recommendation. Use their unresolved inputs in Course 07 to define further work.
 

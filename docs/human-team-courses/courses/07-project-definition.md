@@ -219,7 +219,7 @@ The instructor assesses these five observable criteria:
 
 ## Portfolio continuation and references
 
-Keep the repaired assignment, project basis, requirement table, and scope allocation. Link them to your earlier sources and decisions.
+Keep the repaired assignment, project basis, requirement table, and scope allocation as Portfolio 07. Link them to your earlier sources and decisions.
 
 Carry these records into Course 08 for planning. Use their interfaces and readiness conditions in Course 09.
 

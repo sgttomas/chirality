@@ -335,7 +335,7 @@ Complete the same written package and individual defense. Label the result as a 
 
 ## Portfolio and references
 
-Keep the final package, phase decisions, review findings, repaired versions, and individual explanation. Keep an index that makes their relationships retrievable.
+Keep the final package, phase decisions, review findings, repaired versions, and individual explanation as Portfolio 12. Keep an index that makes their relationships retrievable.
 
 Use the [references](../references.html) for further study. Compare the source manuals' basis, dependency, examination, and integration principles with your experience.
 
