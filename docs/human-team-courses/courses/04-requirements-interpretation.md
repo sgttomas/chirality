@@ -187,6 +187,6 @@ Defend one interpretation orally. Show the passage and explain an alternative re
 
 Keep the memorandum as Portfolio 04. Link each requirement to its controlled source and evidence entry. Course 05 will use this basis to reason about alternatives, uncertainty, and recommendations.
 
-The [Field Book](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v1.html), section 3, supports separate treatment of requirements, assumptions, proposals, and open matters.
+The [Field Book (Edition 2)](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v2.html), section 3, supports separate treatment of requirements, assumptions, proposals, and open matters.
 
 The [NRC model-code explanation](https://nrc.canada.ca/en/certifications-evaluations-standards/codes-canada/canadas-construction-system-context-model-codes) illustrates adoption in Canadian construction. It is background reading, not an adoption instrument for Northbank. Read the [series reference limits](../references.html) before using an external source.

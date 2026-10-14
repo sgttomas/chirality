@@ -224,6 +224,6 @@ Keep the reviewed claim table and decision memorandum in your portfolio. Link th
 
 Use them in Course 06 to explain a difficult recommendation. Use their unresolved inputs in Course 07 to define further work.
 
-Source adaptation: Consolidated v8 §§1.3–1.6, 2.6–2.7, and 4.9–4.10. These sections address claims, uncertainty, examination, and preserved decision grounds.
+Source adaptation: Management manual (Edition 9) §§1.2, 2.4–2.5, and 5.1–5.4. These sections address claims, uncertainty, examination, and preserved decision grounds.
 
 Read the shared [references](../references.html) for professional competencies and systems engineering fundamentals. Further reading is optional for the supplied exercise.
