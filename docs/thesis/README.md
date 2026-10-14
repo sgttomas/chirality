@@ -5,7 +5,7 @@
 The three theses examine how agent capability becomes purposeful work whose
 reasons and consequences people can still understand and correct. Root gives the
 argument its normative emphasis, the App its operative emphasis, and Piping its evaluative emphasis as
-one example of domain software. Iteration connects
+an instance of domain software. Iteration connects
 them: experience can revise the work, its methods, and the understanding of what
 the work is for. Each perspective also requires the others.
 
