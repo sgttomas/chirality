@@ -1,18 +1,18 @@
 # Northbank Water Transfer Upgrade
 
-Northbank is a fictional industrial site. It transfers non-potable water between an existing tank and a distribution header.
+Northbank is a fictional industrial site that transfers non-potable water between an existing tank and a distribution header.
 
-All people, documents, prices, technical values, and project events below are invented for teaching. They are exercise inputs. They are not an engineering design or operating instruction.
+All people, documents, prices, technical values, and project events below are invented for teaching. They are exercise inputs, not an engineering design or operating instruction.
 
 ## How to use the case
 
 Each record has a stable identifier. Cite the identifier, revision, and relevant statement in your work.
 
-Start with Packet A. Release Packet B for Courses 05 to 07. Release Packet C for Courses 08 to 10. Release Packet D for Courses 11 and 12.
+Start with Packet A. Release Packet B for Courses 05 to 07, Packet C for Courses 08 to 10, and Packet D for Courses 11 and 12.
 
-An earlier course can use later packets as additional practice. Identify the packet available when making each decision. Later knowledge does not change what an earlier participant knew.
+An earlier course can use later packets as additional practice. Identify the packet available when making each decision: later knowledge does not change what an earlier participant knew.
 
-The packets contain discrepancies and incomplete evidence. Treat each statement according to its source and status. Do not assume that every document is authoritative for every question.
+The packets contain discrepancies and incomplete evidence, so treat each statement according to its source and status. Do not assume that every document is authoritative for every question.
 
 ## Packet A
 
@@ -242,4 +242,4 @@ Use a record only when it helps the next activity. The following fields can supp
 | Finding | Observation, affected requirement or claim, evidence, consequence, owner, closure evidence |
 | Handover | Delivered configuration, supporting evidence, limits, receiving owner, continuing obligations |
 
-These fields support the exercise. They do not prescribe an organization's document system.
+These fields support the exercise, but they do not prescribe an organization's document system.
