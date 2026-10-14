@@ -4,18 +4,19 @@
 
 ## 3.1 Introduction
 
-Ontology asks what exists and how it is represented. Bunge and Wand and Weber
-provide a source for assessing representations in information systems
-[CITE:Bunge_ontology] [CITE:Wand_Weber_ontology]. Epistemology concerns knowledge
-and its grounds; provenance models provide one operational vocabulary
-[CITE:W3C_PROV2013]. Praxeology concerns action and practical reasoning, for
-which systems engineering offers methods [CITE:INCOSE2023]. Axiology concerns
-values, purposes and consequences, including professional obligations
-[CITE:APEGA_RWO2021]. These are related questions, not a sequence of mandatory
-forms.
+Ontology, epistemology, praxeology and axiology are related questions, not a
+sequence of mandatory forms. Ontology asks what exists and how it is
+represented. Bunge and Wand and Weber provide a source for assessing
+representations in information systems [CITE:Bunge_ontology]
+[CITE:Wand_Weber_ontology]. Epistemology concerns knowledge and its grounds;
+provenance models provide one operational vocabulary [CITE:W3C_PROV2013].
+Praxeology concerns action and practical reasoning, for which systems
+engineering offers methods [CITE:INCOSE2023]. Axiology concerns values,
+purposes and consequences, including professional obligations
+[CITE:APEGA_RWO2021].
 
 **Normative commitments** state values or obligations. **Design hypotheses**
-propose means of serving them. **Empirical findings** report what examination
+propose ways of serving them. **Empirical findings** report what examination
 establishes. A coherent design still needs evidence of its performance.
 
 ---
@@ -40,41 +41,41 @@ Three levels must remain distinct:
 | Implementation convenience | A lock, cache, index or temporary file | What operation it supports and whether its failure affects the work |
 
 Domain representations should express the work faithfully [CITE:Bunge_ontology]
-[CITE:Wand_Weber_ontology]. Locks and caches serve implementation needs; their
-presence does not give them authority over domain meaning.
+[CITE:Wand_Weber_ontology]. Locks and caches serve implementation needs, but
+their presence does not give them authority over domain meaning.
 
 The filesystem is a shared working medium, not the ontology itself. In current
 repository practice, a deliverable folder brings together commitments, design
-and declared needs. Tools derive relationships from those sources. The folder
-can misrepresent the work; the graph can omit a dependency. A query must report
-its basis and unresolved inputs rather than treat successful parsing as proof
-of suitability. Product engines may own domain state under their applicable
-contracts, so not every authoritative fact is a Markdown file.
+and declared needs, and tools derive relationships from those sources. The
+folder can misrepresent the work, and the graph can omit a dependency. A query
+must report its basis and unresolved inputs rather than treat successful
+parsing as proof of suitability. Product engines may own domain state under
+their applicable contracts, so not every authoritative fact is a Markdown file.
 
-The tree answers what belongs within a larger undertaking. The dependency graph
-answers what one contribution needs from another. A network can expose other
-relevant connections, such as a common source or decision. These are views of
-the work and need not be separately authored stores. Attention is the activity
-through which participants relate these views to the undertaking. A missing
-edge cannot establish independence: shared writes, resources and interfaces may
+The tree answers what belongs within a larger piece of work, and the dependency
+graph answers what one contribution needs from another. A network can expose
+other relevant connections, such as a common source or decision. These are
+views of the work and need not be separately authored stores. It is through
+attention that participants relate these views to the work. A missing edge
+cannot establish independence: shared writes, resources and interfaces may
 still connect apparently separate tasks.
 
-The distinction between descriptive and constitutive records also requires
-care. A stress result describes a state of affairs and can be wrong. An approval
-record may be part of an institutional act if the applicable process gives it
-that role. Its formal presence alone does not establish that the actor had
-authority, adequately examined the subject or engaged with its consequences.
-A recorded decision and a well-founded decision remain different claims.
+Telling descriptive records from constitutive ones also requires care. A stress
+result describes a state of affairs and can be wrong. An approval record may be
+part of an institutional act if the applicable process gives it that role. Its
+formal presence alone does not establish that the actor had authority,
+adequately examined the subject or engaged with its consequences. A recorded
+decision and a well-founded decision remain different claims.
 
 ### 3.2.2 Epistemology — What Can Be Known, and How
 
-Fluent output is not self-certifying. A numerical value and plausible citation
-can look credible while being unsupported. Retrieval and other techniques can
-improve grounding, but the presence of a source does not establish that it
-supports every inference made from it [CITE:Ji2023].
+Fluent output does not certify itself. A numerical value and a plausible
+citation can look credible and still be unsupported. Retrieval and other
+techniques can improve grounding, but the presence of a source does not
+establish that it supports every inference made from it [CITE:Ji2023].
 
-The framework therefore asks that material grounds and their limits be
-inspectable. A source can support a definition without supporting a numerical
+The framework therefore asks that material grounds and their limits be open to
+inspection. A source can support a definition without supporting a numerical
 formula extracted from it. A test can establish specified behaviour without
 establishing fitness for every use. Agreement among agents can show consistency
 with a shared premise while leaving that premise unexamined.
@@ -96,15 +97,16 @@ for inquiry, not an exhaustive state space of knowledge.
 FACT, ASSUMPTION, PROPOSAL and TBD are useful conventions where a consumer needs
 them. They must not imply that a cited statement is universally true or that
 an adopted assumption has become an observation. Nor does every routine
-implementation proposal require a new owner decision. Its authority depends on
-the assignment, commitments and reserved choices.
+implementation proposal require a new owner decision. Such a proposal's authority
+depends on the assignment, commitments and reserved choices.
 
 Provenance, explicit uncertainty, conflict surfacing and examination can make
 unsupported claims easier to find. A source-field validator detects a missing
-field; assessing the source's faithfulness, relevance and sufficiency requires
-inquiry. An instruction against invention expresses a norm and needs examination
-of the resulting behaviour. The representations serving these purposes remain
-revisable; [Appendix E](appendix_e_development_history.md) records their development.
+field, but assessing whether the source is faithful, relevant and sufficient
+requires inquiry. An instruction against invention expresses a norm, and the
+behaviour it produces needs examination. The representations serving these
+purposes stay open to revision, and
+[Appendix E](appendix_e_development_history.md) records their development.
 
 #### Grounds, Examination and Reliance
 
@@ -119,27 +121,28 @@ Three relationships support the inquiry:
 These relationships can change independently. A claim can acquire contrary
 evidence after review. A technically supported result may have no accepted use.
 A person can accept reliance under stated uncertainty while that uncertainty
-remains unresolved. Authentication changes normative standing; it adds no
+remains unresolved. Authentication changes normative standing but adds no
 experimental observation.
 
-Review is inquiry into adequacy for a purpose. A content hash can identify what
-was examined or accepted where that binding is required. Assessing the meaning,
-quality and sufficiency of examination requires its grounds and findings. The
-person's committed engagement remains distinct from the review record.
+Review is inquiry into whether something is adequate for a purpose. A content
+hash can identify what was examined or accepted where that binding is required.
+Assessing what an examination means, how good it is and whether it is
+sufficient requires its grounds and findings. The person's committed engagement
+remains distinct from the review record.
 
 ### 3.2.3 Praxeology — How Work Is Done
 
 The praxeological question is how intention becomes a usable result through
 investigation, production, examination, repair and integration. Responsibility
-must persist across these activities. It need not be divided among agents at
-every boundary.
+must persist across these activities, but it need not be divided among agents
+at every boundary.
 
 The current roles describe contributions. Agent 0 holds purpose and continuity
-with the owner. HELPS_HUMANS contributes design. WORKING_ITEMS owns an
-implementation undertaking and integration. TASK executes a bounded assignment
-and does not delegate. Except for Agent 0's continuing responsibilities, the
-undertaking determines which roles are useful. One session may carry the work
-without delegation.
+with the owner. HELPS_HUMANS contributes design. WORKING_ITEMS owns
+implementation work and integration. TASK executes a bounded assignment and
+does not delegate. Except for Agent 0's continuing responsibilities, the work
+determines which roles are useful. One session may carry the work without
+delegation.
 
 Responsibility, staffing and permissions are different. A role identifies a
 contribution; an assignment identifies the present objective and limits; a host
@@ -148,20 +151,20 @@ grant tools or impose a universal read-only rule. Written boundaries and
 mechanical containment must be described according to what they actually enforce.
 
 One coordinator owns a shared result. Independent work need not wait behind an
-unresolved branch. Shared writes, interfaces, resource limits and review capacity
-can nevertheless justify sequencing. The graph identifies declared relationships;
-participants must examine whether apparent independence is real.
+unresolved branch, but shared writes, interfaces, resource limits and review
+capacity can still justify sequencing. The graph identifies declared
+relationships; participants must examine whether apparent independence is real.
 
-Owners continue through ordinary repairs. A finding changes the relevant action,
-not necessarily the staffing. Existing evidence remains useful unless a change,
-contradiction or uncovered concern invalidates it. An uncertain outcome requires
-inspection before an action is repeated. A separate approval is needed only
-where authority or an applicable condition requires it.
+Owners stay with the work through ordinary repairs. A finding changes the
+relevant action, not necessarily the staffing. Existing evidence remains useful
+unless a change, contradiction or uncovered concern invalidates it. An uncertain
+outcome requires inspection before an action is repeated. A separate approval
+is needed only where authority or an applicable condition requires it.
 
-This practice preserves explicit holds and owner-reserved commitments. It removes
-the inference that accountable work must have a gate at every phase or a separate
-record at every handoff. The method must support progress, correction and recovery
-within authority, with costs proportionate to the undertaking.
+This practice preserves explicit holds and owner-reserved commitments. It
+removes the inference that accountable work must have a gate at every phase or
+a separate record at every handoff. The method must support progress,
+correction and recovery within authority, with costs proportionate to the work.
 
 ### 3.2.4 Axiology — What the System Values
 
@@ -171,17 +174,17 @@ work for reliance. Applicable professional obligations remain with the person
 who undertakes them.
 
 The axiology also includes useful attention, maintainability, user agency and
-timely delivery. These are not costs external to accountability. A register can
-bury a consequential decision. A repeated approval can train a person to respond
-mechanically. Unnecessary checking can displace examination of a more consequential
-uncertainty. Removing such a control can improve both throughput and responsible
-engagement.
+timely delivery. These are not costs that sit outside accountability. A
+register can bury a decision that matters. A repeated approval can train a
+person to respond mechanically. Unnecessary checking can crowd out examination
+of an uncertainty that matters more. Removing such a control can improve both
+throughput and responsible engagement.
 
-A control is justified when its contribution to understanding, reliability or
-appropriate authority warrants its attention, delay and complexity. That is not
-permission to disregard a required condition. It is a basis for choosing and
-revising the mechanisms that meet the condition. Silent numerical error warrants
-a different examination from a reversible wording change.
+A control is justified when what it contributes to understanding, reliability
+or appropriate authority is worth its attention, delay and complexity. That is
+not permission to disregard a required condition, but a basis for choosing and
+revising the mechanisms that meet the condition. A silent numerical error calls
+for a different examination than a reversible wording change does.
 
 Axiological inquiry distinguishes applicable obligations and constraints,
 uncertain premises, negotiable preferences and the costs of control. An
@@ -189,8 +192,8 @@ obligation must be identified in its actual scope; a preference for faster work
 cannot simply outweigh it. An uncertain load assumption concerns the grounds of
 an evaluation, rather than a value to trade away. Preferences among viable
 alternatives can concern maintainability, access, cost or user agency. Checks
-and approvals themselves consume time, attention and implementation effort.
-Those costs belong in the assessment of how a condition is met.
+and approvals themselves consume time, attention and implementation effort, and
+those costs belong in the assessment of how a condition is met.
 
 These considerations need no universal scalar value function or mandated
 sequence. They can conflict, and their interpretation can change through use.
@@ -201,14 +204,14 @@ when the question or available alternatives need revision.
 Values can be expressed in requirements, defaults, interfaces and prohibitions.
 Those expressions can guide action without becoming the person's commitment.
 The framework cannot mechanize the person's answerability by encoding a value
-function. It can make tradeoffs visible, preserve their consequences and help the
-person respond to them.
+function, but it can make tradeoffs visible, preserve their consequences and
+help the person respond to them.
 
 ---
 
 ## 3.3 The Fractal Property
 
-The *fractal property* names the recurrence of the four questions at different
+The *fractal property* names the way the four questions recur at different
 scales. A numerical result, a deliverable, an application and the framework itself
 can each be examined for their entities, grounds, course of action and values.
 The term describes this recurrence rather than a mathematical fractal.
@@ -225,18 +228,18 @@ particular document arrangements explored in developing this approach.
 | Application | An available operation does not establish authority to apply it |
 | Framework | A coherent mechanism does not establish that its benefit exceeds its cost |
 
-Repeating the questions can expose a neglected relationship. Repeating the
-forms without that purpose can create administrative work. Recurrence is a design
-resource, not proof of completeness or a requirement for four documents.
+Repeating the questions can expose a neglected relationship, but repeating the
+forms without that purpose can create administrative work. Recurrence is a
+design resource, not proof of completeness or a requirement for four documents.
 
 ---
 
 ## 3.4 Mutually Corrective Perspectives
 
 Epistemology receives particular emphasis because plausible agent output can
-conceal weak grounds. Adequacy nevertheless depends on all four perspectives.
-Evidence matters in relation to an intended use; distinctions matter through
-what they enable people to understand and do.
+hide weak grounds, but adequacy still depends on all four perspectives.
+Evidence matters in relation to an intended use, and distinctions matter
+through what they enable people to understand and do.
 
 The four perspectives constrain one another:
 
@@ -250,14 +253,15 @@ The four perspectives constrain one another:
 Epistemology receives particular emphasis in this study, while adequacy depends
 on all four perspectives.
 
-Inspectable warrant is valuable because of what people need to do and stand
-behind. It must be connected to a subject and a workable course of action. No
-single perspective establishes suitability for professional practice.
+Warrant that can be inspected is valuable because of what people need to do and
+stand behind. It must be connected to a subject and a workable course of
+action. No single perspective establishes suitability for professional practice.
 
 Productivity and accountable reliance can support each other. Redundant records
-can impede both; useful checks can improve both. The design question is which
-arrangement enables useful work with adequate evidence and appropriate authority,
-not how much administrative structure demonstrates concern for accountability.
+can impede both, and useful checks can improve both. The design question is
+which arrangement makes useful work possible with adequate evidence and
+appropriate authority, not how much administrative structure shows concern for
+accountability.
 
 ---
 
@@ -276,13 +280,13 @@ every accountable system must adopt Chirality's vocabulary.
 | How does this become usable work? | Leaving completed contributions without integration |
 | What matters and to whom? | Improving a local metric while reducing user control or safety |
 
-Consider an agent proposing a support change in SWBPIPE. The physical model,
-proposal, applied operation, analysis result and acceptance must remain distinct.
-The result depends on identified inputs, methods and assumptions. The operation
-needs an actual route through validation and application, including refusal of
-stale inputs and recovery where supported. The person retains applicable
-engineering and reliance decisions. These questions guide the design without
-selecting a unique API, file format or process topology.
+Consider an agent that proposes a support change in SWBPIPE. The physical
+model, proposal, applied operation, analysis result and acceptance must remain
+distinct. The result depends on identified inputs, methods and assumptions. The
+operation needs an actual route through validation and application, including
+refusing stale inputs and recovering where that is supported. The person
+retains applicable engineering and reliance decisions. These questions guide
+the design without selecting a unique API, file format or process topology.
 
 Systems engineering supplies methods that can serve those questions
 [CITE:INCOSE2023]. Their selection is a design hypothesis to examine in use.
@@ -295,81 +299,82 @@ is mutually corrective, rather than a one-way derivation from philosophy to code
 
 ## 3.6 The Chirality of Knowledge
 
-The project name identifies one explanatory claim: there is a permanent
-accountability gap between externalizable information and accountable
-knowing. The metaphor is deliberately bounded. It does not supply a geometry
-of knowledge, divide knowledge into a fixed number of parts, or make every
-duality in the architecture chiral.
+The project's name points to one explanatory claim: there is a permanent
+accountability gap between externalizable information and accountable knowing.
+The metaphor is deliberately limited. It does not supply a geometry of
+knowledge, divide knowledge into a fixed number of parts, or make every duality
+in the architecture chiral.
 
 ### 3.6.1 Information and the Knower
 
 Information can be recorded, transmitted, copied, cited, compared, and
-organized. Knowledge is a situated achievement of a knower. Without a knower,
-information is not known as knowledge. The thesis does not impose the usual
-factive condition that only true belief can count as knowledge: a person may
-know wrongly, incompletely, or provisionally and later revise what they know.
-Professional evidence and review matter partly because knowing can be
+organized, but knowledge is a situated achievement of a knower. Without a
+knower, information is not known as knowledge. The thesis does not impose the
+usual factive condition that only true belief can count as knowledge: a person
+may know wrongly, incompletely, or provisionally and later revise what they
+know. Professional evidence and review matter partly because knowing can be
 mistaken.
 
-This position separates two questions that are easily conflated:
+This position separates two questions that are easily confused:
 
 1. **What does a person know from the information?** This is situated in the
    knower and may differ with context, purpose, experience, and time.
 2. **What reliance has an accountable actor accepted?** This is recorded by a
    scoped act bound to identified content.
 
-Evidence and review may discipline what a person knows. Authentication
-answers the second question by evidencing the actor's attributable acceptance
-of reliance; it neither creates knowledge nor establishes reality as it
-ultimately is.
+Evidence and review may discipline what a person knows. Authentication answers
+the second question by providing evidence of the actor's attributable
+acceptance of reliance; it neither creates knowledge nor establishes reality as
+it ultimately is.
 
 ### 3.6.2 The Accountability Gap and Operational `Gap`
 
 The permanent **accountability gap** is the non-identity between information
 and accountable knowing. No artifact, provenance chain, semantic model, or
 approval record is identical with a person's knowing. More information may
-change what a person knows; it does not remove the need for a knower or make
-the resulting knowing universal.
+change what a person knows, but it does not remove the need for a knower or
+make the resulting knowing universal.
 
 The operational primitive `Gap` has a narrower meaning. It records that a
-warrant has not been found for a claim. An operational `Gap` is remediable:
+warrant has not been found for a claim. An operational `Gap` can be remedied:
 a source may be located or a claim revised. A ruling may authorize action
 under uncertainty without supplying the missing warrant. The accountability
-gap is not missing evidence and cannot be closed by another citation. Keeping the terms separate prevents a permanent feature of knowing
-from being mistaken for a workflow defect.
+gap is not missing evidence and cannot be closed by another citation. Keeping
+the terms separate prevents a permanent feature of knowing from being mistaken
+for a workflow defect.
 
 ### 3.6.3 Configurational Multiplicity
 
-Identical information may occasion different knowledge in different knowers,
-or in one knower under different contexts, purposes, or times. This thesis
-calls that openness **configurational multiplicity**. The phrase does not
-claim that every interpretation is equally good or that evidence is
-irrelevant. It says that information underdetermines the situated knowing it
-may occasion.
+Identical information may occasion different knowledge in different
+knowers, or in one knower under different contexts, purposes, or times. This
+thesis calls that openness **configurational multiplicity**. The phrase does
+not claim that every interpretation is equally good or that evidence is
+irrelevant. It says that information does not fully determine the situated
+knowing it may occasion.
 
 Chirality's schemas, Knowledge Types, semantic lenses, and knowledge graphs
-are therefore scaffolding rather than exhaustive categorizations. They make
+are therefore scaffolding rather than complete classifications. They make
 important questions and relationships inspectable, support comparison, and
 focus professional review. They do not define a closed state space containing
 everything any knower can perceive in the information. A semantic model can
-organize a work product for a stated purpose; it does not legislate the limits
-of knowledge.
+organize a work product for a stated purpose, but it does not dictate the
+limits of knowledge.
 
-Authentication stabilizes one accountable relation within this multiplicity.
-An identifiable actor binds acceptance to identified content or SHA, scope,
-and purpose. That act gives the information accountable-reliance status
-within the stated relation. Another knower may know something different from
-the same information, and the authenticating actor may later revise their own
-knowing through a new attributable act.
+Authentication stabilizes one accountable relationship within this
+multiplicity. An identifiable actor binds acceptance to identified content or
+SHA, scope, and purpose, and that act gives the information accountable-reliance
+status within the stated relationship. Another knower may know something
+different from the same information, and the authenticating actor may later
+revise their own knowing through a new attributable act.
 
 ### 3.6.4 Philosophical Precedents and Limits
 
-The framework draws resources from six philosophical precedents without
-claiming exact correspondence or derivation.
+The framework draws on six philosophical precedents without claiming exact
+correspondence or derivation.
 
 **Niels Bohr's complementarity** [CITE:Bohr1958] provides a precedent for
 resisting the demand that every adequate account collapse into one
-description. The thesis borrows only that restraint. It does not import a
+description. The thesis borrows only that restraint and does not import a
 physical theory into epistemology.
 
 **Michael Polanyi's personal and tacit knowing** [CITE:Polanyi1958]
@@ -396,15 +401,16 @@ rigid procedures.
 **Judgment is situated and committed.** It is the person's world-involving
 engagement with what the work means, what matters and what they will stand
 behind. It shapes purpose, framing, interpretation and action throughout the
-undertaking. Final acceptance is one expression of judgment; an approval record
+work. Final acceptance is one expression of judgment; an approval record
 neither exhausts it nor proves sufficient engagement.
 
-**Responsibility is distinct from capability.** The present professional
-allocation places accountable judgment and duty of care with the person. Greater
-agent capability can change delegation, supervision and verification without
-itself transferring that responsibility. This is not a metaphysical proof of
-what every future machine could or could not become. It also prescribes no
-read-only Agent 0, mandatory manager layer or repeated approval of ordinary work.
+**Responsibility is distinct from capability.** As professional responsibility
+is currently allocated, accountable judgment and duty of care rest with the
+person. Greater agent capability can change delegation, supervision and
+verification without itself transferring that responsibility. This is not a
+metaphysical proof of what every future machine could or could not become. It
+also prescribes no read-only Agent 0, mandatory manager layer or repeated
+approval of ordinary work.
 
 For clarity, this thesis uses *assessment*, *evaluation*, *interpretation* and
 *selection* for agent activities when *judgment* would confuse this distinction.
@@ -417,8 +423,8 @@ supports the practical distinction between producing an output and giving
 inspectable grounds for reliance. It does not place machines and humans in
 mutually exclusive metaphysical realms.
 
-**Robert Brandom's inferentialism** [CITE:Brandom1994] illuminates the
-normative statuses undertaken when a person makes and defends a claim. It
+**Robert Brandom's inferentialism** [CITE:Brandom1994] sheds light on the
+normative statuses a person undertakes when they make and defend a claim. It
 helps explain why attributed commitment matters, but the project's
 operational `Claim`, `Warrant`, and `Ruling` primitives are governance
 constructs rather than translations of Brandom's system.
@@ -441,8 +447,8 @@ correspondence.
 The metaphor gives the project a compact name for an orientation that cannot
 be delegated away: information may be externalized, while knowing and
 accountable reliance remain situated in persons. The architecture can expose
-the informational substrate and record an accountable relation across the
-gap. It cannot replace the knower with the record.
+the informational substrate and record an accountable relationship across the
+gap, but it cannot replace the knower with the record.
 
 Polanyi's account of tacit integration gives this limit a positive structure
 [CITE:Polanyi1975]. In the from–to structure of knowing, a person attends
@@ -451,31 +457,30 @@ in themselves lose the joint meaning they subtend. The governed record is
 designed to occupy the subsidiary position: the practitioner attends from
 claims, grounds, models and their relationships to the engineering reality
 that remains focal. On this reading, explicit representation can support
-integrated understanding. A failure occurs when recording displaces attention
-to the work — a failure mode this thesis names directly (§6.9.4, §9.2.6).
+integrated understanding. A failure occurs when recording crowds out attention
+to the work. This thesis names that failure mode directly (§6.9.4, §9.2.6).
 Several disciplines serve the intended orientation: generated output must not
 claim acceptance in its own voice (§6.8.3), and examination responds to the
-consequence and detectability of error (§5.7). A record is useful through what
-it lets participants examine and do, not merely because it exists.
+consequences of an error and how detectable it is (§5.7). A record is useful
+through what it lets participants examine and do, not merely because it exists.
 
 This contribution is narrower than an architectural prescription. `Claim` and
-`Warrant`, meaning and commitment, and the four
-accountability perspectives remain important distinctions, but they are not
-independent chiral structures. The primary chirality is only the
-accountability gap. The value of the metaphor is explanatory economy, not
-formal precision.
+`Warrant`, meaning and commitment, and the four accountability perspectives
+remain important distinctions, but they are not independent chiral structures.
+The primary chirality is only the accountability gap. The value of the metaphor
+is explanatory economy, not formal precision.
 
 ### 3.6.6 Why the Gap Is Not a Synthesis Problem
 
 The contrast with Hegelian synthesis is practical rather than a claim about
 all dialectical philosophy. In professional AI governance, it would be a
 mistake to treat better output as progressively eliminating the accountable
-professional. Capability can reduce effort and error while leaving the
-allocation of authority unchanged.
+professional. Capability can reduce effort and error without changing who
+holds which authority.
 
 Chirality therefore optimizes for visibility and attributable reliance
 across the gap, not for erasing it. This position does not deny that human and
-machine activity can be deeply integrated. It denies only that integration,
+machine activity can be deeply integrated; it denies only that integration,
 accuracy, or fluency by itself transfers duty of care or makes authentication
 automatic. The gap persists because information and accountable knowing are
 not the same kind of status.
@@ -494,8 +499,9 @@ Authentication, as used here, binds an accountable actor to identified
 content, scope and purpose. It confers accountable-reliance status; it does
 not turn information into knowledge, guarantee correctness or determine what
 another knower must know. Evidence, examination and accountable commitment
-remain distinct. Whether a particular process satisfies a professional
-standard requires an assessment of the actual work and applicable obligations.
+remain distinct. Determining whether a particular process satisfies a
+professional standard requires an assessment of the actual work and
+applicable obligations.
 
 Other frameworks address supporting parts of the architecture. Bunge and
 Wand and Weber [CITE:Bunge_ontology] [CITE:Wand_Weber_ontology] inform the
@@ -512,11 +518,11 @@ the primary chirality.
 
 The [shared introduction](INTRODUCTION.md#one-undertaking-three-perspectives)
 relates the normative, operative and evaluative emphases of the three theses.
-Philosophically, that relation keeps a commitment distinct from its proposed
-means and from evidence of its adequacy. A finding about an application can
-change what participants understand or value, as well as how they act. The
-four questions make those revisions intelligible while preserving the person's
-answerability for the purpose and reliance at issue.
+Philosophically, that relationship keeps a commitment distinct from its
+proposed means and from evidence of its adequacy. A finding about an
+application can change what participants understand or value, as well as how
+they act. The four questions make those revisions understandable while
+preserving the person's answerability for the purpose and reliance at issue.
 
 ## 3.7 Summary
 
@@ -525,12 +531,13 @@ They direct attention to relevant distinctions, grounds, courses of action and
 values. They do not uniquely derive a document kit, gate sequence, staffing
 arrangement or runtime.
 
-The reckoning/judgment distinction preserves both sophisticated agent capability
-and the person's situated commitment. Agents can carry substantial authorized
-work. The person remains responsible for the professional reliance they accept,
-and that engagement begins before the final approval.
+The distinction between reckoning and judgment preserves both sophisticated
+agent capability and the person's situated commitment. Agents can carry
+substantial authorized work. The person remains responsible for the
+professional reliance they accept, and that engagement begins before the final
+approval.
 
 The primary chirality remains the non-identity between externalizable information
-and accountable knowing. Evidence and records can support that relation without
-performing it. The recurring four questions apply to Chirality itself: its
-mechanisms require examination for adequacy, cost and limits of transfer.
+and accountable knowing. Evidence and records can support that relationship
+without performing it. The recurring four questions apply to Chirality itself:
+its mechanisms require examination for adequacy, cost and limits of transfer.
