@@ -135,6 +135,7 @@ jobs:
       - name: Supplier carriage detector regressions (no supplier required)
         run: |
           python3 supplier_checks/test_records_delivery.py
+          python3 supplier_checks/test_local_auth.py
           python3 -m unittest discover -s tests -p 'child_role_carrier_test.py'
       - name: Focused persistence and authority boundaries (full suite on request)
         run: |
