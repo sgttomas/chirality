@@ -209,10 +209,10 @@ The instructor assesses these five observable criteria:
 
 ## Portfolio continuation and references
 
-Keep your stakeholder table and corrected meeting record. Link each consequential finding to its source or exercise decision.
+Keep your stakeholder table and corrected meeting record as Portfolio 06. Link each consequential finding to its source or exercise decision.
 
 Carry the unresolved input owners into Course 07. Retain your explanation of the difference between scope authority and technical responsibility.
 
-Source adaptation: Consolidated v8 §§1.1, 1.6, 3.3, 4.5, and 4.7. These sections address decision rights, shared basis, assignments, and consequential choices.
+Source adaptation: Management manual (Edition 9) §§1.2, 1.4, 2.1, 2.5, and 4.2. These sections address decision rights, shared basis, assignments, and consequential choices.
 
 Use the shared [references](../references.html) for professional communication and collaboration competencies. The core practice requires no external reading.
