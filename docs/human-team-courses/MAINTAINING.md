@@ -28,8 +28,8 @@ for source in sorted(root.rglob('*.md')):
         '/tmp/chirality-course-renderer/bin/python',
         'docs/alignment-manual/render_manual.py',
         '--source', str(source), '--output', str(output),
-        '--basis-date', '2026-10-13',
-        '--basis-revision', 'ea82d2bd80e26286b64ece33210e8100bbb013cd',
+        '--basis-date', '2026-10-14',
+        '--basis-revision', 'ebfaab37e3540e7b63ff8561e8f418bee455a99e',
         '--edition-label', 'Human team courses', '--metadata-at-end',
     ], check=True)
 PY
