@@ -1,8 +1,8 @@
-# Teaching Guide — Courses 11 and 12
+# Instructor Guide: Courses 11 and 12
 
 [Series](../index.html) · [Northbank case](../case-study.html) · [Glossary](../glossary.html) · [References](../references.html)
 
-Read this guide and the learner courses before teaching. Follow the [agent instructor method](../instructor-guide.html) for pacing, assistance, assessment, and continuity. Prepare with the answer guidance while preserving the learner's opportunity to attempt and explain the assessed work.
+Read this guide and the learner courses before teaching. Follow the [agent instructor method](../instructor-guide.html) for pacing, assistance, assessment, and continuity. Prepare with the answer guidance, but preserve the learner's opportunity to attempt and explain the assessed work.
 
 The case supports several defensible recommendations. Assess their basis, conditions, consequences, and authority. Do not require one preferred organizational arrangement.
 
@@ -22,11 +22,11 @@ Preserve these distinctions throughout both courses:
 
 Do not add a legal clause, technical calculation, selected configuration, test result, or approval to close a gap.
 
-A facilitator decision can create a new simulated event under D03. Identify its scope explicitly. Preserve the preceding source basis.
+A facilitator decision can create a new simulated event under D03. Identify its scope explicitly and preserve the preceding source basis.
 
 ## Course 11 session directions
 
-Use a six-hour session plan. Divide it across sessions if needed.
+Use a six-hour session plan, divided across sessions if needed.
 
 | Activity | Time | Facilitator action |
 | --- | ---: | --- |
@@ -39,11 +39,11 @@ Use a six-hour session plan. Divide it across sessions if needed.
 
 Select the independent reader before writing begins: another person or a reviewer not involved in producing the memorandum. If you coach the learner, you cannot also be that reader.
 
-Ask each learner which claim remains unestablished. Use that answer to distinguish further necessary work from optional improvements.
+Ask each learner which claim remains unestablished, and use that answer to separate further necessary work from optional improvements.
 
 ### Teaching Course 11 with an agent
 
-Ask the learner to explain one causal connection in their diagnosis: the mechanism, timing, supporting observation, and what remains a hypothesis. Challenge it with a relevant alternative explanation before accepting a diagram or persuasive narrative as a demonstrated cause.
+Ask the learner to explain one causal connection in their diagnosis: the mechanism, timing, supporting observation, and what remains a hypothesis. Challenge it with a relevant alternative explanation before you accept a diagram or persuasive narrative as a demonstrated cause.
 
 Represent a stakeholder concern from D01 or D02 and ask how the learner's recommendation treats its consequences. Preserve the distinction between an incentive arrangement and evidence of a person's motive. Let the learner compare and defend alternatives rather than steering them toward your preferred continuation decision.
 
@@ -51,65 +51,65 @@ Arrange the course's independent reading of the actual memorandum. If you substa
 
 ### Course 11 knowledge-check answers
 
-**11.1 — How does a feedback explanation differ from a dependency map?**
+**11.1: How does a feedback explanation differ from a dependency map?**
 
 A dependency map identifies inputs or conditions that an activity needs. A feedback explanation identifies effects that return to influence an earlier condition.
 
-The explanation must give a mechanism and time relationship. Source evidence must distinguish observed connections from plausible hypotheses.
+The explanation must give a mechanism and a time relationship, and source evidence must distinguish observed connections from plausible hypotheses.
 
-**11.2 — Why can a document-count report conceal delivery risk?**
+**11.2: Why can a document-count report conceal delivery risk?**
 
-It measures activity or output count. It does not establish resolved interfaces, technical adequacy, configuration identity, or operating readiness.
+It measures activity or output count but does not establish resolved interfaces, technical adequacy, configuration identity, or operating readiness.
 
 D02 shows these omitted matters. A high count can coexist with an untested changeover function and an unsupported handover claim.
 
-**11.3 — Which decision rights remain separate when the sponsor approves expenditure?**
+**11.3: Which decision rights remain separate when the sponsor approves expenditure?**
 
 Technical suitability remains with the competent technical authorities. Procurement requires the authorized purchase package. Operations receives its assigned readiness and operating responsibilities.
 
 The sponsor's decision cannot determine an unresolved law or erase professional obligations. A01 and A06 preserve those limits.
 
-**11.4 — How should reversibility affect the timing of an uncertain decision?**
+**11.4: How should reversibility affect the timing of an uncertain decision?**
 
-Gather consequential information before a difficult-to-reverse commitment where proportionate. Define the investigation's limit, owner, and decision purpose.
+Where proportionate, gather consequential information before a commitment that is difficult to reverse. Define the investigation's limit, owner, and decision purpose.
 
 Compare the consequences of delay with those of proceeding. Reversibility does not automatically justify indefinite investigation or an unsupported release.
 
-**11.5 — What evidence is needed before the proposed activity overlap can support a Week 12 recovery claim?**
+**11.5: What evidence is needed before the proposed activity overlap can support a Week 12 recovery claim?**
 
 The team needs defined activity boundaries, installation readiness, commissioning prerequisites, resource availability, access arrangements, and a credible revised sequence.
 
 The relevant competent parties must examine the proposal. D01 supplies no agreed boundary or prerequisite analysis.
 
-The duration saving must be supported by that sequence. Calling work parallel does not remove its physical or technical dependencies.
+That sequence must support the duration saving. Calling work parallel does not remove its physical or technical dependencies.
 
-**11.6 — What would make the response to D02 an institutional improvement rather than another report?**
+**11.6: What would make the response to D02 an institutional improvement rather than another report?**
 
 An assigned practice must change where it affects a future activity. For example, readiness reporting could require open acceptance conditions and disposition evidence.
 
 Name the owner and the consuming decision. Examine whether the change improves the next readiness decision.
 
-The response must also permit adverse evidence to reach competent examination. Adding a register without changing its use is insufficient.
+The response must also permit adverse evidence to reach competent examination. Adding a register without changing how it is used is not enough.
 
 ### Course 11 defensible reasoning
 
 A satisfactory diagnosis can identify three connected failures: incomplete technical inputs, an execution forecast beyond commitments, and overstated readiness.
 
-It must distinguish these findings from an explanation of their causes. D02 creates a plausible incentive conflict. It does not establish a person's motive.
+It must distinguish these findings from an explanation of their causes. D02 creates a plausible incentive conflict, but it does not establish a person's motive.
 
-One defensible direction is bounded continuation of investigations and unaffected work. Dependent commitments remain controlled while the sponsor considers credible options.
+One defensible direction is bounded continuation of investigations and unaffected work. Under this direction, dependent commitments remain controlled while the sponsor considers credible options.
 
 Another defensible direction is suspension of affected procurement or use. It must identify what remains active and how continuing obligations are preserved.
 
-A recommendation for scope reduction must identify the required sponsor decision. It must also demonstrate what useful result the reduced scope could achieve.
+A recommendation to reduce scope must identify the required sponsor decision and must also demonstrate what useful result the reduced scope could achieve.
 
-A recommendation for temporary use must request an assessed operating basis. D01 does not establish that the existing arrangement is suitable.
+A recommendation for temporary use must request an assessed operating basis, because D01 does not establish that the existing arrangement is suitable.
 
 Assess possible effects on workers, operators, affected people, and the environment. Require evidence before a possible consequence becomes a claimed hazard finding.
 
-The learner must retain truthful readiness reporting despite the bonus. A confidential source requires an appropriate reporting route and authorized access.
+The learner must keep readiness reporting truthful despite the bonus. A confidential source requires an appropriate reporting route and authorized access.
 
-The case contains no confidentiality clause. A learner must identify missing conditions instead of inventing a prohibition or disclosure entitlement.
+The case contains no confidentiality clause, so a learner must identify missing conditions instead of inventing a prohibition or disclosure entitlement.
 
 ### Course 11 assignment criteria
 
@@ -138,7 +138,7 @@ Use blank pages or a shared folder for these records:
 - Findings and examination plans.
 - Receiving recommendation and continuation memorandum.
 
-Templates are optional. The necessary relationships must be visible in the saved work.
+Templates are optional, but the necessary relationships must be visible in the saved work.
 
 Assign role numbers and the initial cards. Confirm the rotation rule. Select an independent reviewer for each candidate before examination.
 
@@ -148,7 +148,7 @@ The facilitator represents decision authorities only within the simulation. No s
 
 ### Facilitate the practicum as an agent
 
-Identify whether this is the team practicum or the facilitated individual adaptation. Preserve the published phase order, time allocations, required outputs, defense, and individual examination. An untimed rehearsal can prepare the learner; label it as rehearsal rather than reporting that the published assessment occurred.
+Identify whether this is the team practicum or the facilitated individual adaptation. Preserve the published phase order, time allocations, required outputs, defense, and individual examination. An untimed rehearsal can prepare the learner; label it as rehearsal rather than report that the published assessment occurred.
 
 At each event, state the current phase, source set, and the role whose request you are presenting. Give the learner the event prompt and wait for their work and decision request. Examine the request, then issue the applicable simulated disposition within its stated remit. Have the learner apply it to the affected outputs before the next dependent activity. Ordinary coaching and source clarification can continue without advancing the event.
 
@@ -158,15 +158,15 @@ During rotation, require the incoming participant to inspect the saved candidate
 
 ### Release sequence
 
-Keep D03 order. Release the stated records at each event. Ask learners to state the current source set before preparing their request.
+Keep the D03 order and release the stated records at each event. Ask learners to state the current source set before they prepare their request.
 
-Learners may know later packets from earlier courses. Assess chronological reasoning by the declared source set, rather than pretending they lack that knowledge.
+Learners may know later packets from earlier courses, so assess chronological reasoning by the declared source set rather than pretending they lack that knowledge.
 
-Use the standard decision scripts below for a common track. Record the chosen script as a new event only after the request is received.
+Use the standard decision scripts below for a common track. Record the chosen script as a new event only after you receive the request.
 
 Each decision record needs an identity, authority, question, exact disposition, conditions, and affected outputs. Use identifiers such as DEC-P01.
 
-Do not imply a decision through silence. An unanswered request remains open.
+Do not imply a decision through silence: an unanswered request remains open.
 
 ## Phase 0 direction script
 
@@ -174,13 +174,13 @@ Say: “Establish the approved working basis from Packet A and B03. Give each un
 
 Ask: “Which conditions prevent the next dependent commitment? Which useful work can proceed under the current authority?”
 
-Expected outputs identify 18 litres per second, the 240,000 budget, Week 12 target, and A01 decision rights.
+Expected outputs identify 18 litres per second, the 240,000 budget, the Week 12 target, and the A01 decision rights.
 
 They must preserve hydraulic, legal, capacity, protection, and changeover uncertainties. Proposed assignments and dates must have a declared planning status.
 
-Check the source index for A04. A07 demonstrates why its earlier omission matters.
+Check the source index for A04. A07 demonstrates why the earlier omission of A04 matters.
 
-## Event 1 — Supplier acceptance
+## Event 1: Supplier acceptance
 
 Say: “The supplier requests acceptance of B01 within two working days. It wants to preserve the proposed delivery slot.”
 
@@ -194,13 +194,13 @@ Ask the discipline participant: “What does A04 establish? Which further questi
 
 Record the simulated authority and its remit. A technical decision does not authorize expenditure.
 
-An adequate response identifies 600 V versus 480 V. It also identifies the incomplete configuration, selected curve, operating cases, and hydraulic basis.
+An adequate response identifies 600 V versus 480 V, and it also identifies the incomplete configuration, selected curve, operating cases, and hydraulic basis.
 
-Do not accept “change the voltage label” as a technical repair. Compatibility and the selected equipment need competent examination.
+Do not accept “change the voltage label” as a technical repair: compatibility and the selected equipment need competent examination.
 
-Review the current supplier-response revision. Return findings to its producer. Confirm the response can guide procurement without an unsupported release.
+Review the current revision of the supplier response and return findings to its producer. Confirm that the response can guide procurement without an unsupported release.
 
-## Event 2 — Operations request
+## Event 2: Operations request
 
 Say: “Operations requests adoption of 22 litres per second and automatic changeover. The sponsor previously requested an impact assessment.”
 
@@ -214,9 +214,9 @@ An adequate assessment traces effects into selection, electrical work, controls,
 
 It must identify missing input instead of asserting every effect as a known design change. Automatic changeover needs assessment as a proposed function.
 
-A02 already requires confirmation of changeover needs. That obligation does not establish approval of automatic changeover.
+A02 already requires confirmation of changeover needs, but that obligation does not establish approval of automatic changeover.
 
-## Event 3 — Forecast
+## Event 3: Forecast
 
 Say: “C03 arrives for the existing 18 litres per second scope. The sponsor asks whether the original commitments remain credible.”
 
@@ -234,7 +234,7 @@ Expected sequence:
 | Commissioning | Week 14 |
 | Handover | Week 15 |
 
-The sequential forecast is three weeks beyond the Week 12 target. It excludes the 22 litres per second proposal.
+The sequential forecast is three weeks beyond the Week 12 target, and it excludes the 22 litres per second proposal.
 
 **Standard sponsor disposition:** “The forecast is acknowledged. Prepare credible continuation options. The authorized budget and target remain unchanged pending a commitment decision.”
 
@@ -242,7 +242,7 @@ This response does not authorize spending the difference. Ask the team to distin
 
 Accept alternative recovery proposals only as proposals. Require evidence for supplier conditions, resource capacity, prerequisites, and any assumed savings.
 
-## Event 4 — Acceptance claim
+## Event 4: Acceptance claim
 
 Say: “The simulation now moves to the later installation scenario in C04. Its cover sheet claims complete acceptance.”
 
@@ -254,19 +254,19 @@ Ask: “Which claim does the test support? Which claims still lack evidence? Wha
 
 **Standard receiving disposition:** “Handover cannot be reported complete on this record. Identify the operating information, training, maintenance, and readiness conditions still required.”
 
-Record the two decisions separately. Neither makes the observed test invalid. Both constrain the conclusions drawn from it.
+Record the two decisions separately. Neither makes the observed test invalid, but both constrain the conclusions drawn from it.
 
 Expected findings distinguish incomplete hydraulic and configuration information, unexercised scenarios, and incomplete receiving arrangements. C05 leaves training and spare parts unresolved.
 
-C04 leaves changeover, power interruption, alarm response, and maintenance isolation unexercised. Assess coverage against established intended behavior before treating a specific test as required.
+C04 leaves changeover, power interruption, alarm response, and maintenance isolation unexercised. Assess coverage against established intended behavior before you treat a specific test as required.
 
-Untested behavior is unestablished. The supplied record does not demonstrate failure in those scenarios.
+Untested behavior is unestablished, but the supplied record does not demonstrate failure in those scenarios.
 
 The obsolete operating-instruction reference must receive a controlled repair. Do not infer an installed voltage configuration from that instruction alone.
 
 The assurance plan must identify prerequisites, responsible examiners, acceptance conditions, and the proposed claim each activity can support.
 
-## Event 5 — Incentives and adverse evidence
+## Event 5: Incentives and adverse evidence
 
 Say: “D02 now reveals the handover bonus and document-count reporting. The junior engineer's concern was marked closed without disposition evidence.”
 
@@ -276,7 +276,7 @@ Release D01 and D02. Ask: “How does this change your account of readiness, rep
 
 Ask the team to examine the concern's basis. Its closure lacks recorded examination or authorized disposition.
 
-A defensible response corrects that status, assigns competent examination, and traces the effect on acceptance. It does not assume personal misconduct.
+A defensible response corrects that status, assigns competent examination, and traces the effect on acceptance, without assuming personal misconduct.
 
 Ask: “Who could be affected by premature reliance? Which consequences need evidence? Where must the concern be reported?”
 
@@ -298,15 +298,15 @@ Use a branch only when the submitted request identifies the necessary basis. Sta
 
 **Reject:** Decline the proposed action with a reason tied to evidence, authority, or conditions. Identify the next permitted work if applicable.
 
-A proposed scope or budget amendment requires the relevant sponsor decision. It must not silently alter A02 or conceal the earlier decision basis.
+A proposed scope or budget amendment requires the relevant sponsor decision, and it must not silently alter A02 or conceal the earlier decision basis.
 
 A technical approval requires adequate technical evidence and the relevant simulated authority. The supplied packets cannot substantiate broad equipment or operating acceptance.
 
 If a branch needs additional evidence, supply it as a clearly identified fictional case record. Preserve the common-track assessment separately.
 
-Do not create favorable facts merely to allow a participant to finish. An accurately bounded recommendation can complete the learning assignment.
+Do not create favorable facts merely to let a participant finish. An accurately bounded recommendation can complete the learning assignment.
 
-## Phase 6 — Integrated defense
+## Phase 6: Integrated defense
 
 Use the first twenty minutes for the team presentation. Give the reviewers thirty minutes for questions and findings.
 
@@ -323,9 +323,9 @@ Select questions from this script:
 7. “Explain what would change your recommended continuation direction.”
 8. “Show who receives each continuing obligation.”
 
-An answer must point to the current package. An oral correction alone does not repair a contradictory saved output.
+An answer must point to the current package, because an oral correction alone does not repair a contradictory saved output.
 
-## Phase 7 — Individual examination
+## Phase 7: Individual examination
 
 Allow thirty minutes for the two-page explanation. Give each participant ten minutes for examination in a six-person group.
 
@@ -337,37 +337,37 @@ Alternative challenge: “A supplier asks you to omit the voltage discrepancy fr
 
 Accept an explanation of appropriate disclosure to authorized recipients. Do not require indiscriminate public release or secrecy that conceals a significant concern.
 
-Ask the participant to distinguish their own technical competence from authority held by another role. Identify how they would obtain necessary scrutiny.
+Ask the participant to distinguish their own technical competence from authority held by another role. Identify how they would get necessary scrutiny.
 
 ### Course 12 knowledge-check answers
 
-**12.1 — What must an incoming participant inspect during role rotation?**
+**12.1: What must an incoming participant inspect during role rotation?**
 
 Inspect the current output revision, source set, decisions, open findings, and next action. Compare the transfer account with the actual saved work.
 
-**12.2 — What makes a reviewer independent for an assigned output?**
+**12.2: What makes a reviewer independent for an assigned output?**
 
 The reviewer did not produce the affected work and has suitable competence for the examination. Their assignment identifies the candidate, purpose, and conditions.
 
 Rotation or a new title alone does not establish independence. Assign another reviewer when production creates a conflict.
 
-Consider shared assumptions, incentives, and relationships that could impair scrutiny. Arrange examination that addresses those limits. Agreement between reviewers does not establish a shared premise's correctness.
+Consider shared assumptions, incentives, and relationships that could impair scrutiny, and arrange examination that addresses those limits. Agreement between reviewers does not establish that a shared premise is correct.
 
-**12.3 — How must the team treat a facilitator's conditional decision?**
+**12.3: How must the team treat a facilitator's conditional decision?**
 
 Record it as an identified simulated event. Apply only its authorized scope. Carry its conditions into affected work and keep unapproved matters open.
 
-**12.4 — What does the Phase 4 time change establish about earlier technical gaps?**
+**12.4: What does the Phase 4 time change establish about earlier technical gaps?**
 
-It establishes that the reported observation belongs to a later scenario. It does not establish that earlier gaps were resolved or authorized.
+It establishes that the reported observation belongs to a later scenario, but it does not establish that earlier gaps were resolved or authorized.
 
-**12.5 — Why must C03 remain separate from the 22 litres per second proposal?**
+**12.5: Why must C03 remain separate from the 22 litres per second proposal?**
 
 C03 applies to the existing 18 litres per second scope. It excludes the proposed increase and does not establish its cost, schedule, or suitability.
 
-**12.6 — How can the team finish this practicum while project acceptance remains unsupported?**
+**12.6: How can the team finish this practicum while project acceptance remains unsupported?**
 
-The assigned work product is an examined decision package. It can establish accurate limits, next work, responsible parties, and decision requests without claiming unsupported acceptance.
+The assigned work product is an examined decision package, which can establish accurate limits, next work, responsible parties, and decision requests without claiming unsupported acceptance.
 
 ## Team and individual assessment
 
@@ -408,7 +408,7 @@ Use a focused written response or another brief examination for individual repai
 
 You may act as the mentor for individual study, presenting the requesting and decision roles one at a time. As mentor, you cannot also be the independent reviewer. The learner prepares separate role outputs and records each source set.
 
-Use the same event prompts and standard decisions, waiting for the learner's response at each event. Examine their actual outputs and conduct the final examination. Arrange the independent examination the course requires with another suitably prepared reviewer. Your own role changes do not provide independence.
+Use the same event prompts and standard decisions, waiting for the learner's response at each event. Examine their actual outputs and conduct the final examination. Arrange the independent examination the course requires with another suitably prepared reviewer, because your own role changes do not provide independence.
 
 Record the limits of single-person production. Do not describe sequential self-review as independent examination.
 

@@ -2,7 +2,7 @@
 
 [Series](../index.html) · [Northbank case](../case-study.html) · [Glossary](../glossary.html) · [References](../references.html)
 
-Read this guide before teaching. Follow the [agent instructor method](../instructor-guide.html) for pacing, assistance, assessment, and continuity. It supplies answer guidance, discussion methods, and assessment examples. Present the guidance to learners after their attempt as teaching or feedback. Accept different defensible solutions that meet the stated criteria.
+Read this guide before teaching. Follow the [agent instructor method](../instructor-guide.html) for pacing, assistance, assessment, and continuity. This guide supplies answer guidance, discussion methods, and assessment examples. Present that guidance to learners after their attempt, as teaching or feedback. Accept different defensible solutions that meet the stated criteria.
 
 Use Packets A, B, and C. Keep Packet D for the later courses unless you declare an additional exercise. Preserve each source's identity, revision, and status.
 
@@ -21,23 +21,23 @@ Use Packets A, B, and C. Keep Packet D for the later courses unless you declare 
 9. Review the sponsor briefings in pairs.
 10. Assess and repair the execution packages.
 
-A session can be divided around Steps 5 and 8. Preserve one project basis across the sessions. Avoid introducing unrecorded approvals to make the problem easier.
+You can divide a session around Steps 5 and 8, but preserve one project basis across the sessions. Avoid introducing unrecorded approvals to make the problem easier.
 
 ### Teaching Course 08 with an agent
 
-Ask the learner to identify the cost basis and release prerequisite before calculating. Have them show the calculation and schedule dependencies. You may independently check the arithmetic with a tool, but your correct total does not establish that they understood which amounts or durations belonged in it.
+Ask the learner to identify the cost basis and release prerequisite before they calculate. Have them show the calculation and schedule dependencies. You may independently check the arithmetic with a tool, but your correct total does not establish that they understood which amounts or durations belonged in it.
 
-When a result differs, locate the first changed input, duplicated amount, or unsupported dependency together. Explain the relevant method if needed, then have the learner repair their workings and the affected briefing. Preserve the supplied figures and avoid invented savings.
+When a result differs, work with the learner to locate the first changed input, duplicated amount, or unsupported dependency. Explain the relevant method if needed, then have the learner repair their workings and the affected briefing. Preserve the supplied figures and avoid invented savings.
 
-Before ending the exercise, ask what the corrected forecast authorizes. This connects the calculation to the decision and exposes a budget or readiness inference that correct arithmetic alone would miss.
+Before ending the exercise, ask what the corrected forecast authorizes. This question connects the calculation to the decision and exposes a budget or readiness inference that correct arithmetic alone would miss.
 
 ### Six keyed knowledge-check answers
 
-1. **Readiness and schedule.** A date places an activity on a calendar. Readiness requires the inputs, resources, competence, access, and authority needed for its stated work. Evidence must establish their required conditions.
-2. **Resource conflict.** Independent activities can require the same unavailable person or resource. The calculated dependency sequence then overstates possible concurrency. Revise capacity, sequence, or scope within authority.
-3. **Budget and forecast.** A01 gives the sponsor authority over budget changes. C03 is expressly a forecast. It assesses a 265,000 outcome but does not authorize that expenditure or amend A02.
+1. **Readiness and schedule.** A date places an activity on a calendar, but readiness requires the inputs, resources, competence, access, and authority needed for its stated work. Evidence must establish their required conditions.
+2. **Resource conflict.** Independent activities can require the same unavailable person or resource; the calculated dependency sequence then overstates possible concurrency. Revise capacity, sequence, or scope within authority.
+3. **Budget and forecast.** A01 gives the sponsor authority over budget changes. C03 is expressly a forecast: it assesses a 265,000 outcome but does not authorize that expenditure or amend A02.
 4. **Double counting.** Adding actual expenditure duplicates cost when the forecast already includes it. C03 states that each forecast item includes recorded actual expenditure. An actual-plus-remaining model is valid only with non-overlapping amounts.
-5. **Equipment release.** Northbank needs the reviewed technical purchase package and required expenditure authorization. Technical work must address the configuration, voltage discrepancy, operating basis, and relevant requirements. Supplier timing is an input to planning, not approval.
+5. **Equipment release.** Northbank needs the reviewed technical purchase package and the required expenditure authorization. Technical work must address the configuration, voltage discrepancy, operating basis, and relevant requirements. Supplier timing is an input to planning, not approval.
 6. **Overlap.** Define the activity boundaries, prerequisites, resource capacity, safety and technical consequences, authorization, and affected examination. Calculate savings only after the proposed overlap has a supported basis.
 
 ### Calculation guidance
@@ -59,31 +59,31 @@ The difference is approximately 10.4 percent of the baseline:
 
 > 25,000 ÷ 240,000 × 100 = 10.4167 percent.
 
-This percentage describes forecast cost growth against the baseline. It does not establish the cause of each increase beyond the supplied figures.
+This percentage describes forecast cost growth against the baseline, but it does not establish the cause of each increase beyond the supplied figures.
 
 C02's sequence gives end Week 4 release, end Week 8 delivery, Weeks 9–10 installation, Week 11 commissioning, and Week 12 handover.
 
 C03's sequence gives end Week 6 release, end Week 11 delivery, Weeks 12–13 installation, Week 14 commissioning, and Week 15 handover.
 
-The forecast handover is three weeks beyond the target. The sequence assumes ready site works and no overlap. Neither assumption establishes technical purchase readiness.
+The forecast handover is three weeks beyond the target. The sequence assumes ready site works and no overlap, but neither assumption establishes technical purchase readiness.
 
 For the separate cost example:
 
 > Actual 90,000 + remaining 175,000 = expected final cost 265,000.
 
-Adding actual 90,000 to C03's inclusive total gives 355,000. That result contains a duplicate 90,000. Learners should explain the error rather than merely give the corrected total.
+Adding actual 90,000 to C03's inclusive total gives 355,000, which contains a duplicate 90,000. Learners should explain the error rather than merely give the corrected total.
 
 ### Sample practice reasoning
 
-A useful purchase-release table separates technical package review, expenditure authorization, and supplier delivery confirmation. It identifies the responsible contributor and evidence for each condition.
+A useful purchase-release table separates technical package review, expenditure authorization, and supplier delivery confirmation, and it identifies the responsible contributor and evidence for each condition.
 
-The technical review can identify B01's missing selected curve and configuration. It can identify A04's capacity and protection limits. It must not claim those matters were resolved by C03.
+The technical review can identify B01's missing selected curve and configuration. It can also identify A04's capacity and protection limits. It must not claim that C03 resolved those matters.
 
-A credible sponsor briefing states the 18 litres per second scope, 265,000 forecast, and end-Week-15 finish. It identifies the budget and target decisions without implying approval.
+A credible sponsor briefing states the 18 litres per second scope, the 265,000 forecast, and the end-Week-15 finish. It identifies the budget and target decisions without implying approval.
 
-An option can request investigation of an alternative supplier slot or a bounded overlap. The learner must state what remains unconfirmed. Accept other options with comparable evidence and consequence treatment.
+An option can request investigation of an alternative supplier slot or a bounded overlap, but the learner must state what remains unconfirmed. Accept other options with comparable evidence and treatment of consequences.
 
-The briefing should exclude A05's proposed increase from the stated forecast. An alternative addressing 22 litres per second needs a separate impact assessment and scope decision.
+The briefing should exclude A05's proposed increase from the stated forecast; an alternative that addresses 22 litres per second needs a separate impact assessment and scope decision.
 
 ### Assessment guidance and common defects
 
@@ -100,7 +100,7 @@ Common defects include:
 - Reporting a supplier promise as technical readiness.
 - Using document counts as complete evidence of progress.
 
-Ask the learner to show the affected equation or dependency. A rewritten conclusion alone does not establish that the underlying error is repaired.
+Ask the learner to show the affected equation or dependency, because a rewritten conclusion alone does not establish that the underlying error is repaired.
 
 ## Course 09: Project Engineering and Technical Integration
 
@@ -117,32 +117,32 @@ Ask the learner to show the affected equation or dependency. A rewritten conclus
 9. Trace the substitution through affected work.
 10. Assess and repair the coordination package.
 
-Require learners to read the consumer's needs before proposing the supplier's return. This reveals missing conditions that a discipline-only discussion can overlook.
+Require learners to read the consumer's needs before they propose the supplier's return. This reveals missing conditions that a discipline-only discussion can overlook.
 
 ### Teaching Course 09 with an agent
 
-Represent a receiving role and ask the learner what contribution would let that role proceed. Then change to the proposed supplier and ask what inputs remain necessary. Give only the supplied case position; a simulated exchange does not create the missing engineering data.
+Play a receiving role and ask the learner what contribution would let that role proceed. Then switch to the proposed supplier and ask what inputs remain necessary. Give only the position the case supplies; a simulated exchange does not create the missing engineering data.
 
-Use the learner's actual interface entry to examine meaning, timing, conditions, and responsibility. Ask how the consumer will determine suitability after receipt. If you provide a model entry as teaching, require the learner to develop and explain another entry rather than treating yours as their completed coordination work.
+Use the learner's actual interface entry to examine meaning, timing, conditions, and responsibility. Ask how the consumer will determine suitability after receipt. If you provide a model entry as teaching, require the learner to develop and explain another entry rather than treat yours as their completed coordination work.
 
-For a proposed substitution, have the learner trace an affected relationship into connected outputs. Retain the course's construction, operation, and maintenance coverage instead of allowing one familiar discipline to stand for the whole examination.
+For a proposed substitution, have the learner trace an affected relationship into connected outputs. Keep the course's construction, operation, and maintenance coverage rather than letting one familiar discipline stand for the whole examination.
 
 ### Six keyed knowledge-check answers
 
-1. **Pump selection.** The 18 litres per second value lacks the established suction conditions, pressure, water properties, and operating cases. A02 expressly leaves these unresolved. A selected configuration and competent technical assessment are also needed.
-2. **Electrical survey.** A04 records a checked 600 V, three-phase, 60 Hz connection observation. It does not establish spare capacity, protection coordination, or equipment compatibility. Those matters need electrical assessment.
+1. **Pump selection.** The 18 litres per second value lacks the established suction conditions, pressure, water properties, and operating cases; A02 expressly leaves these unresolved. A selected configuration and competent technical assessment are also needed.
+2. **Electrical survey.** A04 records a checked 600 V, three-phase, 60 Hz connection observation, but it does not establish spare capacity, protection coordination, or equipment compatibility. Those matters need electrical assessment.
 3. **Interface assignments.** Add supplier and consumer owners, required contribution, conditions, point of need, examination, and closure evidence. B03 supplies needs but no assigned owners or required dates.
-4. **Brochure limits.** A product-family description may omit the selected model, ratings, accessories, materials, operating cases, and settings. A project review needs the identified configuration and relevant performance data.
-5. **Operating and maintenance review.** Participants can expose access, isolation, alarms, restart, removal, and spare-part needs. Early examination permits these needs to affect design before procurement or construction constrains the response.
+4. **Brochure limits.** A product-family description may omit the selected model, ratings, accessories, materials, operating cases, and settings, but a project review needs the identified configuration and relevant performance data.
+5. **Operating and maintenance review.** Participants can expose access, isolation, alarms, restart, removal, and spare-part needs. Early examination lets these needs affect design before procurement or construction constrains the response.
 6. **Substitution propagation.** Assess affected interfaces and authority. Record the actual decision. Update configuration and dependent work. Confirm consumers adopted the change. Repeat affected examination and retain valid unaffected evidence.
 
 ### Sample basis and interface reasoning
 
-An acceptable basis table states A02's 18 litres per second requirement and unresolved conditions. It preserves A05 as a 22 litres per second proposal.
+An acceptable basis table states A02's 18 litres per second requirement and its unresolved conditions, and it preserves A05 as a 22 litres per second proposal.
 
-It cites A04 for the observed connection and its limitations. It identifies B01 as an unaccepted submission. It treats A06 as open applicability work.
+It cites A04 for the observed connection and its limitations, identifies B01 as an unaccepted submission, and treats A06 as open applicability work.
 
-The learner must not turn the observed 600 V connection into an assumed approved motor arrangement. The actual compatibility solution requires competent assessment.
+The learner must not turn the observed 600 V connection into an assumed approved motor arrangement; the actual compatibility solution requires competent assessment.
 
 Possible interface assignments include:
 
@@ -161,7 +161,7 @@ Required dates can use points of need because the packet supplies no detailed in
 
 ### Supplier questions and change example
 
-Useful supplier questions request:
+Useful supplier questions ask for:
 
 - The selected configuration and its revision identity.
 - Performance data for the established operating cases.
@@ -169,11 +169,11 @@ Useful supplier questions request:
 - Loads, dimensions, and access data for dependent design.
 - Applicable maintenance and spare-part information.
 
-A question can expose that the operating cases are not yet established. The learner should name the project's required contribution before requesting supplier evidence against it.
+A question can expose that the operating cases are not yet established. The learner should name the project's required contribution before they request supplier evidence against it.
 
 For a proposed motor substitution, trace electrical supply compatibility, capacity, protection, controls, dimensions, supporting arrangements, operating information, and affected tests.
 
-Do not require a particular substitute voltage or design. The assignment assesses the impact route, not an invented equipment solution.
+Do not require a particular substitute voltage or design: the assignment assesses the impact route, not an invented equipment solution.
 
 ### Assessment guidance and common defects
 
@@ -190,7 +190,7 @@ Common defects include:
 - Assuming automatic changeover is already approved.
 - Closing integration findings with a meeting label alone.
 
-Ask learners to review one construction activity, one operating activity, and one maintenance activity. Each review must trace the activity's requirements, interfaces, and examination. A collection of separate discipline documents cannot substitute for that account.
+Ask learners to review one construction activity, one operating activity, and one maintenance activity. Each review must trace the activity's requirements, interfaces, and examination; a collection of separate discipline documents cannot substitute for that account.
 
 ## Course 10: Assurance, Delivery, and Handover
 
@@ -207,36 +207,36 @@ Ask learners to review one construction activity, one operating activity, and on
 9. Review the residual-obligation account.
 10. Assess and repair the proposed handover package.
 
-Keep the exercise at planning and evidence-account level. It supplies no authority or procedure for physical equipment operation.
+Keep the exercise at the level of planning and evidence accounts. It supplies no authority or procedure for operating physical equipment.
 
 ### Teaching Course 10 with an agent
 
-Ask the learner to state the narrow observation supported by C04 before evaluating its cover-sheet claim. If they conclude that every untested function failed, explain the difference between missing examination and observed failure, then ask them to repair the finding while retaining valid evidence.
+Ask the learner to state the narrow observation that C04 supports before they evaluate its cover-sheet claim. If they conclude that every untested function failed, explain the difference between missing examination and observed failure, then ask them to repair the finding while retaining valid evidence.
 
-In the receiving-role exercise, ask what the proposed package enables the recipient to understand or do and which obligations remain. Wait for the learner's explanation and inspect the actual handover account. Do not invent completed training, configuration checks, or an operating authorization to move the scenario forward.
+In the receiving-role exercise, ask what the proposed package enables the recipient to understand or do, and which obligations remain. Wait for the learner's explanation and inspect the actual handover account. Do not invent completed training, configuration checks, or an operating authorization to move the scenario forward.
 
 A bounded recommendation can meet the learning criteria while actual project acceptance remains unsupported. Assess that reasoning and the required coverage, rather than rewarding an unqualified “complete” status.
 
 ### Six keyed knowledge-check answers
 
-1. **Early examination.** Production can conceal features or make correction expensive. Some decisions need examination before purchasing or irreversible work. Plan evidence, competence, independence, and repair time with the work.
+1. **Early examination.** Production can hide features or make correction expensive, and some decisions need examination before purchasing or irreversible work. Plan evidence, competence, independence, and repair time with the work.
 2. **Verification and validation.** Verification asks whether specified requirements are satisfied. Validation asks whether the result is fit for intended use under relevant conditions. A method supports only the questions its basis and coverage can answer.
-3. **C04 observation.** It records 18 litres per second in one normal condition with incomplete hydraulic details. It does not establish performance across the required operating cases or unexercised behavior. It cannot support complete acceptance.
+3. **C04 observation.** It records 18 litres per second in one normal condition with incomplete hydraulic details. It does not establish performance across the required operating cases or unexercised behavior, and it cannot support complete acceptance.
 4. **Evidence identity.** Identify configuration, revision, starting state, conditions, method, instruments where relevant, observer, expected behavior, actual observation, and limitations. Preserve the source records needed to interpret the conclusion.
-5. **Commissioning and handover.** Commissioning examines readiness and behavior under defined conditions. Handover transfers the identified result and responsibilities. Receiving information, training, maintenance arrangements, and the relevant decisions remain distinct considerations.
+5. **Commissioning and handover.** Commissioning examines readiness and behavior under defined conditions; handover transfers the identified result and responsibilities. Receiving information, training, maintenance arrangements, and the relevant decisions remain distinct considerations.
 6. **Qualified transfer.** The actual requirements and authorized decision must permit the qualification. Preserve the unmet obligation, use limitation, receiving owner, resources, closure condition, and authority. Transfer does not prove fulfilment.
 
 ### Sample findings and coverage
 
-A useful finding cites C04 Rev 0's complete-acceptance cover-sheet claim. It identifies the single observation, missing hydraulic conditions, unexercised scenarios, and incomplete configuration evidence.
+A useful finding cites the complete-acceptance claim on C04 Rev 0's cover sheet. It identifies the single observation, the missing hydraulic conditions, the unexercised scenarios, and the incomplete configuration evidence.
 
 Its consequence is that complete acceptance lacks a supporting basis. Its response includes correcting the claim and arranging the missing definition, examination, and decisions.
 
-Do not accept a finding that declares all untested behavior failed. The report supplies absence of examination, not observed failure in each scenario.
+Do not accept a finding that declares all untested behavior failed: the report supplies absence of examination, not observed failure in each scenario.
 
 A useful coverage table can include flow, changeover, electrical compatibility, installed configuration, operating instructions, training, and maintenance arrangements. Learners need six identified requirements or readiness conditions.
 
-Flow evidence needs the configuration, suction and discharge conditions, water properties, relevant operating case, measurement method, and other conditions needed by competent assessment. Do not demand invented technical values.
+Flow evidence needs the configuration, suction and discharge conditions, water properties, relevant operating case, measurement method, and other conditions that competent assessment needs. Do not demand invented technical values.
 
 Changeover and abnormal responses need their required behavior established before defining expected test results. A05's automatic-changeover proposal has not amended A02.
 
@@ -244,15 +244,15 @@ A06's open applicability remains visible. The teaching packet cannot establish l
 
 ### Sample handover reasoning
 
-The configuration package should reconcile the installed equipment and defining records. It should connect instructions to that configuration. The earlier 480 V reference requires examination and correction.
+The configuration package should reconcile the installed equipment with the defining records and connect the instructions to that configuration. The earlier 480 V reference requires examination and correction.
 
 Operations needs applicable instructions, training, defined operating conditions, and receiving arrangements. Maintenance needs applicable equipment information and confirmed spare-parts arrangements.
 
 The sponsor's request does not establish complete handover. A01 identifies sponsor, technical, and receiving responsibilities. The proposed account must route each decision to the appropriate authority.
 
-Accept a properly bounded proposal for further examination or qualified delivery only when it preserves every unmet condition and required decision. Do not accept unsupported routine-operation permission.
+Accept a properly bounded proposal for further examination or qualified delivery only when it preserves every unmet condition and required decision. Do not accept unsupported permission for routine operation.
 
-Identify any authorized change to a requirement. It does not prove that the original result met the earlier requirement. Qualified delivery must remain within applicable duties.
+Identify any authorized change to a requirement; such a change does not prove that the original result met the earlier requirement. Qualified delivery must remain within applicable duties.
 
 ### Assessment guidance and common defects
 
@@ -267,10 +267,10 @@ Common defects include:
 - Equating uploaded documents with operational readiness.
 - Transferring an unmet obligation without its consequences or owner.
 
-Require repair of the relevant claim, coverage, or responsibility. Preserve valid C04 observations with their limited scope. Do not erase the original evidence while correcting its interpretation.
+Require repair of the relevant claim, coverage, or responsibility. Preserve valid C04 observations with their limited scope, and do not erase the original evidence while you correct its interpretation.
 
 ## Continue the learning portfolio
 
-Courses 08 to 10 should produce connected packages. Schedule readiness must use the technical interface conditions. Assurance must examine the identified configuration and requirements.
+Courses 08 to 10 should produce connected packages: schedule readiness must use the technical interface conditions, and assurance must examine the identified configuration and requirements.
 
 Carry remaining matters into Course 11 without declaring them completed. Retain calculations, decisions, observations, and repaired assignments with their relevant revisions.
