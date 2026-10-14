@@ -37,7 +37,7 @@ Use a six-hour session plan. Divide it across sessions if needed.
 | Independent examination | 0.75 hour | Examine authority, ethical effects, and conditions for proceeding. |
 | Repair and defense | 0.75 hour | Confirm affected repairs and hear the revised recommendation. |
 
-Select the independent reader before writing begins. A mentor can perform this function for individual study.
+Select the independent reader before writing begins: another person or a reviewer not involved in producing the memorandum. If you coach the learner, you cannot also be that reader.
 
 Ask each learner which claim remains unestablished. Use that answer to distinguish further necessary work from optional improvements.
 
@@ -142,7 +142,7 @@ Templates are optional. The necessary relationships must be visible in the saved
 
 Assign role numbers and the initial cards. Confirm the rotation rule. Select an independent reviewer for each candidate before examination.
 
-If a reviewer produced an affected item, assign a different reviewer. Another team or a mentor can provide this examination.
+If a reviewer produced an affected item, assign a different reviewer. Another team or an uninvolved mentor can provide this examination.
 
 The facilitator represents decision authorities only within the simulation. No simulated decision establishes real technical competence, legal compliance, or operating permission.
 
@@ -406,9 +406,9 @@ Use a focused written response or another brief examination for individual repai
 
 ## Individual-study direction
 
-You may act as the mentor for individual study, presenting the requesting and decision roles one at a time. The learner prepares separate role outputs and records each source set.
+You may act as the mentor for individual study, presenting the requesting and decision roles one at a time. As mentor, you cannot also be the independent reviewer. The learner prepares separate role outputs and records each source set.
 
-Use the same event prompts and standard decisions, waiting for the learner's response at each event. Examine their actual outputs and conduct the final examination. Where your production involvement prevents independent scrutiny, arrange another suitably prepared reviewer as required by the course. Your own role changes do not resolve that limitation.
+Use the same event prompts and standard decisions, waiting for the learner's response at each event. Examine their actual outputs and conduct the final examination. Arrange the independent examination the course requires with another suitably prepared reviewer. Your own role changes do not provide independence.
 
 Record the limits of single-person production. Do not describe sequential self-review as independent examination.
 

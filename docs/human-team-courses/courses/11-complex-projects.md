@@ -238,9 +238,9 @@ The assignment must meet these five criteria:
 
 ## Portfolio and references
 
-Keep the memorandum, map, decision table, review findings, and repaired revision. Preserve the source basis used for each version.
+Keep the memorandum, map, decision table, review findings, and repaired revision as Portfolio 11. Preserve the source basis used for each version.
 
-Use the [references](../references.html) for further study. Consolidated v8 explains dependencies, ownership, examination, and recovery of a usable position.
+Use the [references](../references.html) for further study. Management manual (Edition 9) chapters 3–6 explain dependencies, ownership, examination, and recovery of a usable position.
 
 Its agent hierarchy does not govern this human team. APM governance and NASA technical management provide additional perspectives for comparison.
 

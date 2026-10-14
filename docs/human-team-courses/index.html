@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
-<meta name="source-sha256" content="1bc65f9983982ff83f5c85d3eac2a6805619fc424f8210e1c966535e8b334e7b">
+<meta name="source-sha256" content="82e74286504fdb61d4babac5212b5f384eb4cd553385af2344ab2176b8156ea3">
 <meta name="source-basis-date" content="2026-10-13">
-<meta name="source-basis-revision" content="1452f006c49a50df9e6c909840675c096812616f">
+<meta name="source-basis-revision" content="ea82d2bd80e26286b64ece33210e8100bbb013cd">
 <title>Project Practice for Human Teams · Chirality</title>
 <style>
 :root {
@@ -198,13 +198,12 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
   <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Human team courses · offline reading edition</span></div>
 </header>
 <details class="mobile-toc">
-  <summary>Contents · 6 sections</summary>
+  <summary>Contents · 5 sections</summary>
   <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#start-the-series">Start the series</a></li>
 <li><a href="#study-with-a-team">Study with a team</a></li>
 <li><a href="#study-with-an-agent-instructor">Study with an agent instructor</a></li>
 <li><a href="#assessment">Assessment</a></li>
-<li><a href="#source-and-reading-editions">Source and reading editions</a></li>
-<li><a href="#render-the-reading-editions">Render the reading editions</a></li></ol></nav>
+<li><a href="#sources-and-references">Sources and references</a></li></ol></nav>
 </details>
 <div class="layout">
 <aside class="sidebar">
@@ -214,8 +213,7 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <li><a href="#study-with-a-team">Study with a team</a></li>
 <li><a href="#study-with-an-agent-instructor">Study with an agent instructor</a></li>
 <li><a href="#assessment">Assessment</a></li>
-<li><a href="#source-and-reading-editions">Source and reading editions</a></li>
-<li><a href="#render-the-reading-editions">Render the reading editions</a></li></ol>
+<li><a href="#sources-and-references">Sources and references</a></li></ol>
   </nav>
   <div class="nav-help">
     <p>Find a term with <kbd>⌘ F</kbd> or <kbd>Ctrl F</kbd>. Use your browser’s print command for a paper copy.</p>
@@ -342,42 +340,17 @@ the lessons and manuals when experience exposes a question you need to understan
 <p>Meet each criterion before closing the assignment. A strong presentation does not compensate for an unsupported conclusion. Correct errors, then show the affected work again.</p>
 <p>Different solutions can satisfy a criterion. Explain the source basis, authority, reasoning, uncertainty, and consequences of your solution.</p>
 <p>The series provides training materials. It does not grant professional authority or establish competence for every technical assignment. Use the actual jurisdiction, appointment, and professional requirements for real work.</p>
-<h2 id="source-and-reading-editions">Source and reading editions</h2>
-<p>The Markdown files are the maintained course source. Each HTML file renders its matching source. Open <code>index.html</code> to read the series offline. Follow external references when a network connection is available.</p>
-<p>The source files are in <code>courses/</code>, <code>instructors/</code>, and this directory. Instructor guides include answer guidance. Keep them separate from a learner assessment when necessary.</p>
+<h2 id="sources-and-references">Sources and references</h2>
 <p>Read <a href="references.html">References</a> for source roles and further reading. The existing Chirality manuals retain their edition identities. This series adapts their project principles for human teams. It does not change their text or repository instructions.</p>
-<h2 id="render-the-reading-editions">Render the reading editions</h2>
-<p>The renderer uses the dependencies in <code>../alignment-manual/requirements.txt</code>. Run these commands from the repository root:</p>
-<pre><code class="language-sh">python3 -m venv /tmp/chirality-course-renderer
-/tmp/chirality-course-renderer/bin/python -m pip install -r docs/alignment-manual/requirements.txt
-</code></pre>
-<p>Render all Markdown files with the explicit edition basis below:</p>
-<pre><code class="language-sh">/tmp/chirality-course-renderer/bin/python - &lt;&lt;'PY'
-from pathlib import Path
-import subprocess
-root = Path('docs/human-team-courses')
-for source in sorted(root.rglob('*.md')):
-    output = source.with_name('index.html') if source.name == 'README.md' else source.with_suffix('.html')
-    subprocess.run([
-        '/tmp/chirality-course-renderer/bin/python',
-        'docs/alignment-manual/render_manual.py',
-        '--source', str(source), '--output', str(output),
-        '--basis-date', '2026-10-11',
-        '--basis-revision', '26d04270617c405fc3ca131d2ea6c86120ecc5ed',
-        '--edition-label', 'Human team courses', '--metadata-at-end',
-    ], check=True)
-PY
-</code></pre>
-<p>The basis revision identifies the repository used to prepare this edition. Each source fingerprint identifies the actual rendered Markdown bytes. Add <code>--check</code> to the renderer arguments to check currency without writing.</p>
-<p>After a source change, regenerate the affected HTML. Check navigation and content at desktop and narrow widths. Check print layout before distributing a printed copy.</p>
+<p>Instructor guides include answer guidance. Keep them separate from a learner assessment when necessary.</p>
 <!-- END MARKDOWN CONTENT -->
     </article>
   </div>
   <footer class="document-footer">
   <dl class="document-meta">
     <div><dt>Source basis dated</dt><dd>13 October 2026</dd></div>
-    <div><dt>Repository basis</dt><dd><code>1452f006c49a50df9e6c909840675c096812616f</code></dd></div>
-    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="README.md">README.md</a><br><code>1bc65f9983982ff83f5c85d3eac2a6805619fc424f8210e1c966535e8b334e7b</code></dd></div>
+    <div><dt>Repository basis</dt><dd><code>ea82d2bd80e26286b64ece33210e8100bbb013cd</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="README.md">README.md</a><br><code>82e74286504fdb61d4babac5212b5f384eb4cd553385af2344ab2176b8156ea3</code></dd></div>
   </dl>
     <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
     <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
