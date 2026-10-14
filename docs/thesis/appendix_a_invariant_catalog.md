@@ -10,7 +10,8 @@ The original definitions are recoverable at `archive/pre-docs-cleanup-1` in the
 [decomposition standard](https://github.com/sgttomas/chirality/blob/archive/pre-docs-cleanup-1/docs/DECOMPOSITION_STANDARD.md)
 and [CONTRACT.md](https://github.com/sgttomas/chirality/blob/archive/pre-docs-cleanup-1/docs/CONTRACT.md).
 These sources contain different historical amendments; the table below explains
-the families rather than claiming to reproduce one simultaneous original catalog.
+the families rather than claiming to reproduce a single original catalog as it
+stood at one time.
 
 Current repository authority comes from [AGENTS.md](../../AGENTS.md), the
 conversation and applicable project commitments. Some historical identifiers
@@ -19,11 +20,11 @@ remain in [Product boundaries](../PRODUCT_BOUNDARIES.md) for adopted consumers;
 read by tools. Those sources determine applicability. This appendix neither
 widens nor retires their contracts.
 
-The analytical distinction is between a commitment, a proposed mechanism and
-evidence that the mechanism does its job. The historical word “invariant” was
-used for all three, often without a mathematical specification. Identifying that
-mixture is part of the revision, not a reason to discard every concern the
-catalog expressed.
+The distinction this analysis draws is between a commitment, a proposed
+mechanism and evidence that the mechanism does its job. The historical word
+“invariant” was used for all three, often without a mathematical specification.
+Identifying that mixture is part of the revision, not a reason to discard every
+concern the catalog expressed.
 
 The catalogs below retain the identifiers needed to interpret earlier sources.
 [Appendix E](appendix_e_development_history.md#e3-representations-of-work-and-warrant)
@@ -68,7 +69,7 @@ The role files, workflows and tool contracts are the operational sources.
 
 The old decomposition protocol made every family compulsory for every conforming
 run. The current interpretation preserves the questions while leaving their
-representation and examination to the undertaking. Current accepted project
+representation and examination to the work. Current accepted project
 commitments still govern any particular decomposition change.
 
 ## A.3 System-Wide Invariants (K-*)
@@ -89,10 +90,10 @@ product consumers retain the applicable definitions in
 [Product boundaries](../PRODUCT_BOUNDARIES.md#retained-invariant-identifiers).
 Their scope must be respected rather than inferred from this historical account.
 
-A content binding makes an acceptance's subject identifiable; it neither performs
-the human act nor makes the subject correct. Judgment shapes the purpose,
-questions and reliance throughout the undertaking. An acceptance record is one
-expression of it, not its exhaustive definition.
+A content binding makes an acceptance's subject identifiable, but it neither
+performs the human act nor makes the subject correct. Judgment shapes the
+purpose, questions and reliance throughout the work. An acceptance record is one
+expression of judgment, not its exhaustive definition.
 
 ### A.3.3 Sealing and Context
 
@@ -100,10 +101,11 @@ expression of it, not its exhaustive definition.
 **K-GHOST-1** limited a delegated agent to declared sources and its sealed brief.
 These former development procedures are not current universal duties.
 
-The continuing concern is an intelligible assignment and result basis, together
-with real privacy and access boundaries. A metadata check cannot authenticate a
-human decision or erase the model's learned priors. Current assignments and host
-permissions replace no applicable product-specific restriction by implication.
+The continuing concern is an understandable assignment and result basis,
+together with real privacy and access boundaries. A metadata check cannot
+authenticate a human decision or erase the model's learned priors. Current
+assignments and host permissions do not, by implication, replace any applicable
+product-specific restriction.
 
 ### A.3.4 Dependencies
 
@@ -154,25 +156,26 @@ reliance, and releases remain owner acts.
 ### A.3.9 Provenance and Epistemic Integrity
 
 **K-PROV-1**, **K-INVENT-1**, **K-CONFLICT-1** and **K-CLAIM-1** addressed sources,
-unknowns, disagreements and claim strength. Their retained adopted-product wording
-is in [Product boundaries](../PRODUCT_BOUNDARIES.md#retained-invariant-identifiers).
+unknowns, disagreements and claim strength. Their wording, as retained for
+adopted products, is in
+[Product boundaries](../PRODUCT_BOUNDARIES.md#retained-invariant-identifiers).
 
 The important limitation is that a citation can be wrong or irrelevant, an unknown
 can remain undetected, and several reviewers can share a mistaken premise. These
-rules direct attention and support examination; their existence does not guarantee
-that unsupported output is always found. The chapter's earlier universal assurance
-claims therefore exceeded what the catalog established.
+rules direct attention and support examination, but their existence does not
+guarantee that unsupported output is always found. The chapter's earlier claims
+of universal assurance therefore exceeded what the catalog established.
 
 ### A.3.10 Write Scope and Snapshots
 
 **K-WRITE-1** prescribed role-header scopes, **K-WRITE-2** specified checkout
 path containment, and **K-SNAP-1** required immutable tool-root outputs. The
 current repository derives write authority from assignment and host, not a role's
-fixed directory category. Explicit read-only conditions remain effective.
+fixed directory category. Explicit read-only conditions remain in effect.
 
 The [resolver](../../tools/workflow_runtime/resolve_workflow.py) reports policy
-and performs checks on declared inputs; it is not itself a sandbox. Applicable
-containment formats remain described in
+and checks declared inputs, but it is not itself a sandbox. Applicable
+containment formats are still described in
 [Compatibility formats](../COMPATIBILITY_FORMATS.md#paths-and-containment).
 Historical snapshot duties do not require new run folders. Evidence needed for a
 particular consumer or recovery still requires appropriate preservation.
@@ -180,18 +183,18 @@ particular consumer or recovery still requires appropriate preservation.
 ### A.3.11 Agent Index and Governance Surface
 
 **K-AGENTS-1** coupled the entry file, registry and former runtime hierarchy.
-The current four roles describe contributions. Agent 0's continuity is the given;
-other contributions are engaged as useful. TASK's no-delegation boundary remains.
-A registry cannot grant host permissions or silently override the authorized
-assignment. The active entry and role files, rather than an archived index, govern
-repository work.
+The current four roles describe contributions. Agent 0's continuity is the
+given; other contributions are engaged as useful. TASK's no-delegation boundary
+remains. A registry cannot grant host permissions or silently override the
+authorized assignment. The active entry and role files, rather than an archived
+index, govern repository work.
 
 ### A.3.12 Domain Engine Integration
 
 **K-DOMAIN-1** through **K-DOMAIN-4** distinguish engine-owned state, protected
 writes, controlled proposal/application and professional acceptance. The adopted
 definitions remain in [Product boundaries](../PRODUCT_BOUNDARIES.md#domain-integration).
-They are not retired by the removal of administrative development records.
+Removing administrative development records does not retire them.
 
 The phrase “authoritative domain truth” in the historical definition is read as
 canonical domain state under the engine's control, not a claim of guaranteed
@@ -203,8 +206,8 @@ requirement for a particular product operation.
 ## A.4 Enforcement Map: Analytical Limits
 
 The old map assigned IDs to instruction, runtime, human-review and future-tooling
-layers. That allocation was a design proposal and documentation of some mechanisms;
-it did not establish full implementation, independent failures or a comprehensive
+layers. That allocation proposed a design and documented some mechanisms, but it
+did not establish full implementation, independent failures or a comprehensive
 assurance argument.
 
 | Kind of mechanism | Evidence it can supply | Limit that remains |
@@ -216,8 +219,9 @@ assurance argument.
 | Independent examination | Criticism from a separate contribution | Independence of assumptions and complete detection are not guaranteed |
 | Human decision record | An inspectable representation of a decision and subject | The record does not supply the person's situated judgment or guarantee truth |
 
-The current thesis therefore uses the catalog as evidence of architectural
-learning. Some concerns survived in simpler forms; some product boundaries remain
-explicit contracts; several general mechanisms were retired. This supports a
-revisable relation between principles and design, not the claim that every named
-invariant was necessary or that its removal is automatically safe in every domain.
+The current thesis therefore uses the catalog as evidence of what was learned
+about the architecture. Some concerns survived in simpler forms; some product
+boundaries remain explicit contracts; several general mechanisms were retired.
+This supports a relationship between principles and design that remains open to
+revision, not the claim that every named invariant was necessary or that its
+removal is automatically safe in every domain.

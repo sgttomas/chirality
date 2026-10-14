@@ -4,17 +4,17 @@
 
 ## 6.1 Introduction
 
-Professional use of agents raises questions about supervision, competence,
-examination, documentation and reliance. The Alberta engineering setting gives
-these questions concrete obligations.
+Using agents in professional work raises questions about supervision,
+competence, examination, documentation and reliance. The Alberta engineering
+setting attaches concrete obligations to these questions.
 
 **Scope of the regulatory analysis.** The mapping retains the source editions
 and interpretation used in the thesis as of **2026-07-02**. This analysis
-reassesses the architectural argument; it does not establish the
-currency of those regulatory sources, amend the firm's practice management
-plan or certify legal compliance. The mapping is the author's interpretation,
-not a determination or endorsement by APEGA. Appendix C carries the detailed
-relationship between review topics and proposed support.
+reassesses the architectural argument; it does not establish whether those
+regulatory sources are current, amend the firm's practice management plan or
+certify legal compliance. The mapping is the author's interpretation, not a
+determination or endorsement by APEGA. Appendix C sets out in detail how the
+review topics relate to the proposed support.
 
 ---
 
@@ -33,8 +33,9 @@ standards:
 - *Professional Practice Management Plan*, November 2022, v1.1
   [CITE:APEGA_PPMP].
 
-The cited editions supply the section references below. Their applicability
-and currency must be established for an actual undertaking.
+The cited editions supply the section references below. Their
+applicability, and whether they are current, must be established for
+actual work.
 
 The firm's *Professional Engineering with Agentic AI in Regulated Practice*
 is maintained in its quality management system [CITE:Chirality_PE].
@@ -48,12 +49,13 @@ unauthenticated work product become a PWP only when someone authenticates it.
 
 The relevant distinctions are the work's content, purpose, intended reliance,
 state of examination and applicable professional acts. A draft can contain
-consequential technical information. A completed software change has its own
-acceptance subject and need not constitute an authenticated engineering work product.
+technical information that matters. A completed software change has its own
+subject of acceptance and need not be an authenticated engineering work
+product.
 
 Git integration, an owner accepting a development slice and professional
-authentication are different acts. Their subjects and authority must be
-identified separately.
+authentication are different acts, and the subject and authority of each must
+be identified separately.
 
 ### 6.2.3 Applicability to AI-Assisted Work
 
@@ -65,8 +67,8 @@ comparing AI results to those of other technical tools.
 
 The thesis proposed using the supervision and review topics from the
 reliance standard to structure AI-assisted practice. That proposal remains
-useful as a design inquiry. It does not settle whether an AI agent is an
-“other” in the standard's legal meaning. The ability to map a mechanism to a
+useful as a design inquiry, but it does not settle whether an AI agent is an
+“other” in the standard's legal meaning. Being able to map a mechanism to a
 professional concern establishes neither direct legal applicability nor
 sufficient performance of the obligation.
 
@@ -94,40 +96,42 @@ a settled classification of the agent as a worker or tool.
 ### 6.3.2 Direct Application and Analogy: An Interpretive Limit
 
 The “others” interpretation offers a conservative candidate position. The
-alternative treats AI as a technical tool whose
-results the professional must be competent to assess. Neither interpretation
-can be resolved simply by naming the system an agent or observing that it
-performs complicated work.
+alternative treats AI as a technical tool whose results the professional must
+be competent to assess. Neither interpretation can be settled simply by
+calling the system an agent or by observing that it performs complicated
+work.
 
-A tool classification does not imply that casual review is adequate. A
-worker analogy does not prove that extra records or approvals improve
+Classifying AI as a tool does not imply that casual review is adequate, and
+an analogy to a worker does not prove that extra records or approvals improve
 protection. The appropriate examination depends on the work's consequences,
-the nature of possible error and the applicable professional requirements.
+the kinds of error that are possible and the applicable professional
+requirements.
 
 Agents can interpret requirements, compare alternatives, criticize designs
-and take authorized action. This is sophisticated **reckoning** in the
-thesis's terminology. **Judgment** is the person's situated, committed and
-world-involving answerability for the undertaking. The distinction does not
-restrict agents to clerical production, and it does not make their legal
-classification a consequence of their capability.
+and take authorized action. In the thesis's terminology, this is
+sophisticated **reckoning**. **Judgment** is the person's situated, committed
+and world-involving answerability for the work. The distinction does not
+restrict agents to clerical production, nor does it make their legal
+classification follow from their capability.
 
 ### 6.3.3 The Technology Provider Distinction
 
 A model supplier, the host application, the agent's assignment and the
-professional work are distinct objects of examination. Supplier capability
-claims do not establish that a particular output is suitable for reliance.
-Similarly, an instruction framework does not make the supplier component safe
-by definition.
+professional work are separate things to examine. A supplier's claims about
+capability do not establish that a particular output is suitable for
+reliance. Likewise, an instruction framework does not make the supplier's
+component safe by definition.
 
-The practical agent system includes the model, instructions, context, tools,
-permissions and execution environment. Investigating a failure may require
-examining any of these. A model update can alter behaviour; a tool can return
-wrong units; a permission defect can allow an unintended operation.
+In practice, the agent system includes the model, instructions, context,
+tools, permissions and execution environment, and investigating a failure may
+require examining any of these. A model update can change behaviour; a tool
+can return wrong units; a permission defect can allow an unintended
+operation.
 
 The thesis allocates accountable professional commitment to the person using
-the work. It makes no general legal determination here about suppliers' or
-firms' liabilities. Those questions cannot be settled by the architecture's
-responsibility model.
+the work. It makes no general legal determination here about the liabilities
+of suppliers or firms, and the architecture's responsibility model cannot
+settle those questions.
 
 ---
 
@@ -137,13 +141,13 @@ responsibility model.
 
 The mapping uses §3.1.1 of the cited reliance standard to examine
 active involvement, responsibility in decision making and documentation.
-These topics direct attention to what the professional does throughout an
-undertaking. They do not demonstrate that a particular number of agents,
-levels or approval stops is necessary.
+These topics direct attention to what the professional does throughout the
+work, but they do not demonstrate that a particular number of agents, levels
+or approval stops is necessary.
 
-Chirality's contribution is proposed support for that conduct. Actual
-supervision cannot be inferred from a passed validator, an available dashboard
-or an agent's instruction to ask when uncertain.
+Chirality contributes proposed support for that conduct. Actual supervision
+cannot be inferred from a passed validator, an available dashboard or an
+instruction telling an agent to ask when it is uncertain.
 
 ### 6.4.2 Active Involvement (APEGA §3.1.1.1)
 
@@ -158,10 +162,10 @@ Five topics organize this inquiry:
 | Conduct periodic review | Review at points where errors or changes have material consequences | Whether the examination covered the relevant risks and work |
 
 Agent 0 maintains continuity; managers and bounded contributors are used
-where they serve the undertaking. Roles do not grant permissions. Write
-access follows the assignment and host limits, and TASK does not delegate in
-the repository's chosen role framework. That arrangement is one current
-implementation, not a deduction from the professional topics above.
+where they serve the work. Roles do not grant permissions. Write access
+follows the assignment and host limits, and TASK does not delegate in the
+repository's chosen role framework. That arrangement is one current
+implementation, not something deduced from the professional topics above.
 
 ### 6.4.3 Responsibility in Decision Making (APEGA §3.1.1.2)
 
@@ -175,7 +179,7 @@ these obligations to a repository's reserved decisions.
 
 The repository separately permits standing authorization for investigation,
 implementation and repair. Ordinary action need not return to the owner
-merely because a procedural stage has changed, while changes to reserved
+merely because a procedural stage has changed, but changes to reserved
 commitments, acceptance criteria, reliance purposes or risk decisions require
 the appropriate person. These are repository arrangements, not a narrower
 interpretation of the cited professional obligation. Where that obligation
@@ -189,27 +193,27 @@ without pretending to exercise the person's judgment. The required professional
 involvement must still be established for the actual practice context.
 
 The decision changes the artifact it governs. Its reason and scope are
-preserved where the undertaking needs them, using its existing change record
-when adequate. Removing an administrative ledger does not remove an actual
-professional documentation requirement.
+preserved where the work needs them, using the existing change record when
+that record is adequate. Removing an administrative ledger does not remove an
+actual professional documentation requirement.
 
 ### 6.4.4 Documentation of Due Diligence
 
 Documentation should let a relevant reader reconstruct what was directed,
 examined and relied upon. The amount and form depend on the practice context
 and applicable requirements. Current source documents, identified outputs,
-conversation capture and version history may supply that evidence; a special
+captured conversation and version history may supply that evidence; a special
 record is justified where these are insufficient.
 
-Git preserves committed content and its changes. It does not automatically
-capture every conversation, action, input, human decision or external event.
-Nor does a versioned instruction prove that it was followed. A practice claim
-must state its actual evidentiary coverage.
+Git preserves committed content and its changes, but it does not
+automatically capture every conversation, action, input, human decision or
+external event. Nor does a versioned instruction prove that it was followed.
+A claim about practice must state what its evidence actually covers.
 
 The person can perform an authorized act through a host that captures the
-result. A machine-written record of that act is not a machine-originated
-acceptance. Conversely, a generated statement that approval occurred cannot
-create an approval that never happened.
+result. A machine-written record of that act is not an acceptance that
+originated with the machine. Conversely, a generated statement that approval
+occurred cannot create an approval that never happened.
 
 ---
 
@@ -217,19 +221,21 @@ create an approval that never happened.
 
 ### 6.5.1 Applicability
 
-The mapping uses §3.1.2 of the cited reliance standard to organize
-examination before professional reliance. Review in this sense is more than
-format checking: it examines whether the work and its grounds support the
-intended purpose.
+The mapping uses §3.1.2 of the cited reliance standard to organize the
+examination that comes before professional reliance. Review in this sense is
+more than format checking: it examines whether the work and its grounds
+support the intended purpose.
 
-No mandatory claim lifecycle follows. Cited, reviewed and authenticated
-identify different relationships. They are not increasing truth values. The appropriate review must consider material claims
-that labels or dependency metadata may have missed.
+No mandatory lifecycle for claims follows. Cited, reviewed and authenticated
+identify different relationships; they are not increasing truth values. The
+appropriate review must consider material claims that labels or dependency
+metadata may have missed.
 
 ### 6.5.2 Reliability, Accuracy, and Validity (APEGA §3.1.2.1)
 
-Review addresses the following subjects in relation to the work's intended use.
-Its staffing and timing follow the required competence, consequences and grounds.
+Review addresses the following subjects in relation to the work's intended
+use. Who carries out the review, and when, depends on the required
+competence, consequences and grounds.
 
 | Review subject from the historical mapping | Application to agent-assisted work |
 |---|---|
@@ -254,8 +260,8 @@ required professional reviewer.
 ### 6.5.3 Adherence to Regulatory Requirements (APEGA §3.1.2.2)
 
 The historical mapping included legislation, practice standards and
-project-specific approvals or permits. A current undertaking must identify
-its applicable requirements and authoritative source editions. An instruction
+project-specific approvals or permits. Current work must identify its
+applicable requirements and authoritative source editions. An instruction
 to obey them is behavioural guidance, not a compliance check. A checker can
 establish a bounded property only if its rule correctly represents the
 applicable requirement and its coverage is adequate.
@@ -268,26 +274,26 @@ properties by its presence. A short current basis can be clearer than a
 complete set of contradictory templates.
 
 A changed repository procedure does not automatically amend an external
-practice obligation. Any applicable practice-system requirement must be
-addressed in its actual home by the responsible person. This chapter neither
-adds such an obligation nor declares it discharged.
+practice obligation. The responsible person must address any applicable
+practice-system requirement in its actual home. This chapter neither adds
+such an obligation nor declares it discharged.
 
 ### 6.5.5 Authentication
 
 The cited authentication discussion concerns a professional act relating a
 person to identified work and responsibility for its use. This framework
-reserves that act to the appropriate person. A PR merge, successful analysis
-or generated receipt does not perform it.
+reserves that act to the appropriate person; a PR merge, a successful analysis
+or a generated receipt does not perform it.
 
-Content addressing can identify the bytes associated with the act. Reliable
-attribution, scope and purpose remain separately necessary. A fingerprint
-alone proves neither who approved the work nor whether the examination was
-adequate. These limits apply whether the record is typed by the person or
-captured by an authorized host interaction.
+Content addressing can identify the bytes associated with the act, but
+reliable attribution, scope and purpose remain separately necessary. A
+fingerprint alone proves neither who approved the work nor whether the
+examination was adequate. These limits apply whether the person types the
+record or an authorized host interaction captures it.
 
 A later change leaves the historical act attached to its original subject.
-Whether a prior acceptance remains applicable to changed work requires an
-assessment of the affected content and reliance conditions. A universal rule
+Whether a prior acceptance remains applicable to changed work requires
+assessing the affected content and reliance conditions. A universal rule
 that any repository edit voids all earlier acceptance is not warranted.
 
 Authentication does not create knowledge, establish truth or exhaust
@@ -304,43 +310,44 @@ in §6.1; software does not guarantee their fulfilment.
 
 ### 6.6.1 Public Welfare as First Constraint
 
-The framework gives public safety and protection of people, property and the
-environment priority over schedule or convenience. Material hazards require
-appropriate examination and decision. A severity label can help attention;
-it cannot guarantee that hazards were found or effectively controlled.
+The framework puts public safety and the protection of people, property and
+the environment ahead of schedule or convenience. Material hazards require
+appropriate examination and decision. A severity label can help direct
+attention, but it cannot guarantee that hazards were found or effectively
+controlled.
 
-Delay, excessive paperwork and diversion of expert attention also have
-consequences. Their costs belong in the design assessment. Removing a
+Delay, excessive paperwork and the diversion of expert attention also have
+consequences, and their costs belong in the design assessment. Removing a
 low-value check can improve practice when it frees attention for an important
 failure mode; removing a numerical oracle can worsen it when wrong results
 would otherwise remain plausible.
 
 ### 6.6.2 Responsible Charge Remains Human
 
-Chirality locates accountable professional commitment with the person. Agents
-may perform extensive reckoning and act within granted authority. They do not
-thereby acquire the person's responsibility or authority to authenticate.
-This is the framework's allocation for the systems examined here, not a
-metaphysical proof about every possible future machine.
+Chirality places accountable professional commitment with the person. Agents
+may perform extensive reckoning and act within the authority granted to them,
+but they do not thereby acquire the person's responsibility or authority to
+authenticate. This is the framework's allocation for the systems examined here,
+not a metaphysical proof about every possible future machine.
 
-Judgment is exercised throughout the undertaking. Reducing it to the last
+Judgment is exercised throughout the work. Reducing it to the final
 signature would make an unattended approval ritual appear sufficient. A
 person's decision needs engagement with what the work means and what they
-will stand behind; a record can evidence an act but cannot guarantee that
-engagement.
+will stand behind; a record can serve as evidence of an act but cannot
+guarantee that engagement.
 
 ### 6.6.3 Competence Includes Tool Competence
 
 The professional needs a defensible basis for assessing the tools and work
 used for the intended purpose. This includes knowing what a check establishes,
-where a model or calculation may fail and when further expertise is needed.
-It does not mean that every computation must be repeated manually.
+where a model or calculation may fail and when further expertise is needed,
+but it does not mean that every computation must be repeated manually.
 
 Useful evidence can include analytical solutions, validated benchmarks,
 independent methods, input inspection and observed behaviour. Competence
-cannot be inferred from possession of a checklist, tool catalog or instruction
-file. The architecture can make evidence accessible; the person must be able
-to understand its relevance and limits.
+cannot be inferred from having a checklist, tool catalog or instruction file.
+The architecture can make evidence accessible, but the person must be able to
+understand its relevance and limits.
 
 ### 6.6.4 Evidence Over Plausibility
 
@@ -356,14 +363,14 @@ and focused checks. It is not proof that invention or omission cannot occur.
 
 Authority, evidential strength and task responsibility are different orders.
 An applicable law or contract constrains action; it is not a scientific
-observation. Strong evidence can disclose that a chosen model is wrong
-without authorizing an agent to alter a reserved commitment. Professional
-judgment interprets applicability and acts within constraints; it is not a
-last-place evidence source below every published document.
+observation. Strong evidence can show that a chosen model is wrong without
+authorizing an agent to change a reserved commitment. Professional judgment
+interprets applicability and acts within constraints; it is not a source of
+evidence ranked last, below every published document.
 
 Current instructions and assignments identify where decisions belong. Roles
-help organize contributions without creating professional authority by their
-names or numerical types.
+help organize contributions, but their names or numerical types do not create
+professional authority.
 
 ---
 
@@ -372,14 +379,14 @@ names or numerical types.
 ### 6.7.1 Architectural Controls
 
 A proposed control should identify the failure it addresses, the evidence it
-produces and its cost. Schema validation can reject malformed inputs. Path
-containment can refuse an escaping write. A numerical oracle can detect a
+produces and its cost. Schema validation can reject malformed inputs, path
+containment can refuse an escaping write, and a numerical oracle can detect a
 particular class of calculation error. Each has a bounded claim.
 
-A candidate control arrangement needs evaluation in actual practice. Adequate
-support for professional reliance concerns the work, examination and engagement
-it enables. Architectural coherence supplies a rationale to examine, not a
-finding that obligations have been discharged.
+A candidate arrangement of controls needs to be evaluated in actual practice.
+Adequate support for professional reliance concerns the work, examination and
+engagement it enables. Architectural coherence supplies a rationale to
+examine, not a finding that obligations have been discharged.
 
 Current assurance selects checks according to consequence, detectability,
 overlap and cost. Reuse applicable evidence and repeat a check when a relevant
@@ -388,8 +395,8 @@ specific property still applies even when the general process becomes lighter.
 
 ### 6.7.2 Instruction Governance as Release Engineering
 
-Instruction changes can alter behaviour and deserve versioned, reviewable
-changes. The depth of examination depends on the affected behaviour. A
+Instruction changes can alter behaviour and deserve to be versioned and
+reviewable. The depth of examination depends on the affected behaviour. A
 permission change warrants different scrutiny from a clarified entry point.
 
 Instructions must also agree with their enforcement. Removing a read-only
@@ -410,10 +417,10 @@ wrong formula, precision rule, unit conversion or design basis. The strength
 of its evidence depends on validated behaviour and applicability. Agents may
 also make useful observations about a deterministic tool's failure.
 
-The division of labour is revisable. A reusable tool is worthwhile where it
-improves reliability or effort enough to justify building and maintaining it.
-The existence of an algorithmic possibility does not require a new tool for
-every one-off action.
+The division of labour is open to revision. A reusable tool is worthwhile
+where it improves reliability or effort enough to justify building and
+maintaining it. That an algorithmic solution is possible does not require a
+new tool for every one-off action.
 
 ### 6.7.4 Technology Provider Due Diligence
 
@@ -426,40 +433,41 @@ application.
 As models improve, a control added for an earlier limitation can become
 unnecessary overhead. Reassess the control against observed behaviour and
 remaining risk. Stronger output does not by itself transfer accountable
-judgment or remove the need to inspect consequential results.
+judgment or remove the need to inspect results that matter.
 
 ### 6.7.5 Evidence and Auditability
 
-A usable evidence arrangement makes relevant inputs, results, changes and acts
-retrievable by an appropriate reader. It states what was captured and what
-was not. Source history, product logs and existing review records may be
-sufficient; routine copies of the same information can obscure rather than
-improve inspection.
+A usable evidence arrangement makes relevant inputs, results, changes and
+acts retrievable by an appropriate reader, and it states what was captured
+and what was not. Source history, product logs and existing review records
+may be sufficient; routine copies of the same information can obscure
+inspection rather than improve it.
 
 Three questions guide assessment: can a reviewer identify what supports the
 claim, can a participant recover the state needed to continue, and can an
-appropriate reader reconstruct a consequential act? These require evidence
-from actual use. An exhaustive-looking register is not a substitute.
+appropriate reader reconstruct an act that matters? Answering them requires
+evidence from actual use, and an exhaustive-looking register is not a
+substitute for it.
 
 ---
 
 ## 6.8 The Human-AI Contract
 
-The contract here is the framework's allocation of responsibility. It is not
-a new grant of product permissions or a claim that every instruction is
+The contract here is the framework's allocation of responsibility, not a new
+grant of product permissions or a claim that every instruction is
 mechanically enforceable.
 
 ### 6.8.1 Human Responsibilities
 
-The person establishes or accepts the undertaking's purpose, material
-commitments, limits and reliance conditions. They provide or arrange the
-competence needed for consequential decisions, determine reserved risk
-acceptance and perform any required professional act. They can authorize
+The person establishes or accepts the work's purpose, material commitments,
+limits and reliance conditions. They provide or arrange the competence needed
+for decisions that matter, determine reserved risk acceptance and perform any
+required professional act. They can authorize
 agents to continue ordinary work without repeated approval.
 
-Agent 0 supports continuity with that person. It does not replace their
-judgment. Meaningful engagement includes framing and revising the undertaking,
-not merely approving an output prepared elsewhere.
+Agent 0 supports continuity with that person but does not replace their
+judgment. Meaningful engagement includes framing and revising the work, not
+merely approving an output prepared elsewhere.
 
 ### 6.8.2 AI Agent Permitted Actions
 
@@ -469,8 +477,9 @@ integrate. They can select ordinary implementation details and apply decisions
 already authorized. These activities may involve substantial initiative.
 
 Agents can make operational selections within their assignment and adopted
-policy. Their capability supports extensive initiative; authority for reserved
-commitments and accountable professional reliance remains with the person.
+policy. Their capability supports extensive initiative, but authority for
+reserved commitments and accountable professional reliance remains with the
+person.
 
 ### 6.8.3 AI Agent Prohibitions
 
@@ -499,16 +508,16 @@ for support, not certificates of compliance.
 
 The sources concern Alberta engineering practice. Similar practical questions
 may arise elsewhere, but their legal meaning and required conduct cannot be
-transferred merely by replacing the regulator's name. This chapter establishes
-no cross-jurisdiction compliance claim.
+transferred merely by replacing the regulator's name. This chapter
+establishes no claim of compliance across jurisdictions.
 
 ### 6.9.3 The "Relying on the Work of Others" and "Using a Tool" Distinction
 
 Both classifications deserve consideration. The proposed “others” argument
 does not follow necessarily from the text's emphasis on professional conduct.
-A more demanding internal practice policy also does not prove compliance with
-a different legal interpretation. The support offered by discoverable evidence
-and controlled operations can remain useful while that classification is
+Nor does a more demanding internal practice policy prove compliance with a
+different legal interpretation. The support that discoverable evidence and
+controlled operations offer can remain useful while that classification is
 unresolved.
 
 <a id="694-the-architecture-is-necessary-but-not-sufficient"></a>
@@ -525,7 +534,7 @@ failures and the attention, delay and complexity it imposes.
 ### 6.9.5 Evolving Regulatory Context
 
 The section references and interpretive mapping retain their 2026-07-02
-source basis. This revision has not refreshed their currency. A current
+source basis. This revision has not rechecked whether they are current. A current
 professional application requires a separate examination of the applicable
 sources and practice requirements. Repository development experience can
 inform that examination but cannot determine its legal outcome.
@@ -534,19 +543,19 @@ inform that examination but cannot determine its legal outcome.
 
 ## 6.10 Summary
 
-The professional-practice analysis supplies concrete questions for the design
-of agent-assisted work: what was directed, what supports the result, what was
+The professional-practice analysis offers concrete questions for designing
+agent-assisted work: what was directed, what supports the result, what was
 examined, which limits remain and who stands behind reliance.
 
 Chirality proposes ways to make those questions answerable. Continuing
-ownership, discoverable current artifacts, useful checks and attributable
-acts can support practice without a fixed hierarchy or routine record chain.
+ownership, discoverable current artifacts, useful checks and attributable acts
+can support practice without a fixed hierarchy or a routine chain of records.
 Their effectiveness remains an empirical question. Instructions, content
 hashes and passed tests each establish only bounded facts.
 
 The enduring commitment is to distinguish extensive agent reckoning from the
 person's situated judgment throughout the work. Greater capability can change
-the appropriate supervision and verification arrangements without itself
-transferring that accountable engagement. The revised mapping preserves this
-commitment while withdrawing the claim that one architecture guarantees—or
-is necessary for—professional compliance.
+which supervision and verification arrangements are appropriate without
+itself transferring that accountable engagement. The revised mapping
+preserves this commitment while withdrawing the claim that one architecture
+guarantees, or is necessary for, professional compliance.
