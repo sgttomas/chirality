@@ -769,7 +769,7 @@ one arrangement follows necessarily from the literature.
 
 The enduring proposition is that purposeful agent-assisted work benefits from
 understandable objects and relationships, inspectable grounds and limits,
-practicable action and correction, and attributable commitments that matter. The
+practicable action and correction, and attributable consequential commitments. The
 thesis chooses these as normative commitments. Discoverable current artifacts,
 selectively loaded methods, coherent ownership, host-enforced permissions and
 verification proportionate to consequence are design hypotheses for supporting
