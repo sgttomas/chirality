@@ -76,43 +76,8 @@ Different solutions can satisfy a criterion. Explain the source basis, authority
 
 The series provides training materials. It does not grant professional authority or establish competence for every technical assignment. Use the actual jurisdiction, appointment, and professional requirements for real work.
 
-## Source and reading editions
-
-The Markdown files are the maintained course source. Each HTML file renders its matching source. Open `index.html` to read the series offline. Follow external references when a network connection is available.
-
-The source files are in `courses/`, `instructors/`, and this directory. Instructor guides include answer guidance. Keep them separate from a learner assessment when necessary.
+## Sources and references
 
 Read [References](references.html) for source roles and further reading. The existing Chirality manuals retain their edition identities. This series adapts their project principles for human teams. It does not change their text or repository instructions.
 
-## Render the reading editions
-
-The renderer uses the dependencies in `../alignment-manual/requirements.txt`. Run these commands from the repository root:
-
-```sh
-python3 -m venv /tmp/chirality-course-renderer
-/tmp/chirality-course-renderer/bin/python -m pip install -r docs/alignment-manual/requirements.txt
-```
-
-Render all Markdown files with the explicit edition basis below:
-
-```sh
-/tmp/chirality-course-renderer/bin/python - <<'PY'
-from pathlib import Path
-import subprocess
-root = Path('docs/human-team-courses')
-for source in sorted(root.rglob('*.md')):
-    output = source.with_name('index.html') if source.name == 'README.md' else source.with_suffix('.html')
-    subprocess.run([
-        '/tmp/chirality-course-renderer/bin/python',
-        'docs/alignment-manual/render_manual.py',
-        '--source', str(source), '--output', str(output),
-        '--basis-date', '2026-10-11',
-        '--basis-revision', '26d04270617c405fc3ca131d2ea6c86120ecc5ed',
-        '--edition-label', 'Human team courses', '--metadata-at-end',
-    ], check=True)
-PY
-```
-
-The basis revision identifies the repository used to prepare this edition. Each source fingerprint identifies the actual rendered Markdown bytes. Add `--check` to the renderer arguments to check currency without writing.
-
-After a source change, regenerate the affected HTML. Check navigation and content at desktop and narrow widths. Check print layout before distributing a printed copy.
+Instructor guides include answer guidance. Keep them separate from a learner assessment when necessary.
