@@ -1,4 +1,4 @@
-# Course 01 — Professional Practice and Responsibility
+# Course 01: Professional Practice and Responsibility
 
 [Series](../index.html) · [Case](../case-study.html) · [Glossary](../glossary.html) · [References](../references.html)
 
@@ -18,7 +18,7 @@ By the end, you can:
 - Recognize work that exceeds your competence or appointment.
 - Prepare a clear request for assistance or a decision.
 
-## Lesson 1 — Understand whom the work serves
+## Lesson 1: Understand whom the work serves
 
 An assignment usually names a client, sponsor, or manager, but its effects can reach many other people. Constructors must install the result, operators must use it, and maintenance staff must service it. Other people can experience its environmental or social effects.
 
@@ -47,7 +47,7 @@ Use this method when you receive an assignment:
 
 Scale the detail to the work: a small drawing correction may need a short note, and a new installation needs a broader account. The point is to bring out consequences the assignment could otherwise miss.
 
-## Lesson 2 — Match responsibility with authority
+## Lesson 2: Match responsibility with authority
 
 Responsibility is the work or decision a person must carry. Authority covers the acts that person may perform. Accountability is the obligation to explain and answer for that responsibility.
 
@@ -70,7 +70,7 @@ Prepare a decision map when authority is uncertain:
 
 Avoid assigning a vague phrase such as “overall approval.” Say whether the act concerns scope, expenditure, technical conformity, delivery, or operating readiness, because a person may have authority for only one of these matters.
 
-## Lesson 3 — Work within demonstrated competence
+## Lesson 3: Work within demonstrated competence
 
 Competence is the knowledge, skill, experience, and judgment that the assigned work needs. It is specific to the task and its conditions: experience with one type of equipment does not establish competence for every installation.
 
@@ -95,7 +95,7 @@ Use a competence check before beginning consequential work:
 
 Do not claim competence just because a checklist is complete. Use the check to find where evidence, experience, or assistance falls short.
 
-## Lesson 4 — Communicate concerns and preserve responsibility
+## Lesson 4: Communicate concerns and preserve responsibility
 
 A concern becomes useful when another person can understand it and act on it. State the condition you observed, the supporting evidence, the work affected, and the consequence. Then identify the response that is needed.
 
@@ -118,7 +118,7 @@ Prepare a concern for decision:
 
 After a decision, check exactly what was decided and on what conditions. A request to investigate permits the investigation; it does not approve the solution that the investigation may recommend.
 
-## Northbank worked example — An assignment under an incomplete basis
+## Northbank worked example: An assignment under an incomplete basis
 
 The project manager asks the project engineer to prepare the equipment-selection work. Packet A is available, but no supplier selection is available yet.
 
@@ -141,7 +141,7 @@ A concise return could state: “Prepare the input investigations under A02 Rev 
 
 This gives the manager useful work to arrange, while preserving the sponsor's decision and each discipline's responsibilities.
 
-## Transfer example — A software service upgrade
+## Transfer example: A software service upgrade
 
 A service manager asks a developer to increase processing speed. A security specialist holds responsibility for the access design. The product owner decides which user functions change.
 
@@ -149,7 +149,7 @@ The developer can examine performance under the current requirements but cannot 
 
 The same decision map applies: identify the act, its authority, the technical contributions, the affected people, and the reserved decision. The technical details differ, but the responsibilities still need clear homes.
 
-## Practice — Prepare a responsibility brief
+## Practice: Prepare a responsibility brief
 
 Use A01 to A07 and work in pairs. One participant prepares the brief; the other challenges its authority and evidence.
 
@@ -176,7 +176,7 @@ Use Packet A only, and identify its records by revision. Do not invent a legal r
 5. How should you respond when commercial pressure requests an unsupported technical statement?
 6. How does independent review affect the producer's responsibility?
 
-## Assessed assignment — Establish your working responsibility
+## Assessed assignment: Establish your working responsibility
 
 Prepare a two-page appointment response for the Northbank project engineer. Use Packet A and your practice outputs. Include an activity plan and one decision request.
 
