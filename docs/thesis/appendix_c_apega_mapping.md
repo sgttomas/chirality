@@ -6,7 +6,7 @@ support. Its principal source is *Relying on the Work of Others and
 Outsourcing*, May 2021, v4.0 [CITE:APEGA_RWO2021], alongside the authentication
 and practice-management sources identified in Chapter 6 [CITE:APEGA_Auth]
 [CITE:APEGA_PPMP]. Section numbers below refer to that source basis; this
-revision has not established their present currency.
+revision has not established that they are still current.
 
 The tables express the author's interpretation and design hypotheses. They
 do not certify compliance, establish that AI agents are legally “others,” or
@@ -20,17 +20,17 @@ performed the relevant activity. Chapter 6 explains the interpretive limits.
 
 ---
 
-The evolution of this candidate practice arrangement is recorded in
-[Appendix E](appendix_e_development_history.md#e6-corrections-of-earlier-claims).
-The mapping below keeps the dated professional topics distinct from the proposed
-support and the evidence needed to assess it.
+[Appendix E](appendix_e_development_history.md#e6-corrections-of-earlier-claims)
+records how this candidate practice arrangement evolved. The mapping below
+keeps the dated professional topics distinct from the proposed support and the
+evidence needed to assess it.
 
 ## C.1 Direct Supervision and Control (APEGA §3.1.1)
 
 The historical mapping used supervision and control to examine the
 professional's engagement throughout the work. It formerly equated that
-engagement with gates and an Agent 0/1/2 hierarchy. The revised mapping treats
-those as implementation choices. Responsibility for purpose, integration and
+engagement with gates and an Agent 0/1/2 hierarchy, but the revised mapping
+treats those as implementation choices. Responsibility for purpose, integration and
 reserved decisions can remain clear under different staffing arrangements.
 
 ### C.1.1 Active Involvement (APEGA §3.1.1.1)
@@ -59,12 +59,12 @@ others' decisions; the source does not say only reserved decisions
 | Preserving relevant decisions | Edit the source the decision governs; preserve its reason in an adequate existing change record or required professional record | Whether the act and its scope can be reconstructed; a generated statement cannot create an unperformed decision |
 
 Repository operating rules allow ordinary authorized work to continue without
-a new approval at every procedural step. That arrangement does not narrow the
-professional responsibility stated above or displace applicable review,
+a new approval at every procedural step, but that arrangement does not narrow
+the professional responsibility stated above or displace applicable review,
 approval and documentation requirements. A technical engineering or geoscience
 decision remains within that responsibility even when the repository treats it
-as an operational selection. No new repository gate is established by this
-historical mapping.
+as an operational selection. This historical mapping establishes no new
+repository gate.
 
 ### C.1.3 Documentation of Due Diligence (APEGA §3.1.1 — Record Keeping Requirement)
 
@@ -114,8 +114,8 @@ not automatically add independent evidence.
 
 The prior mapping included legislation, practice standards, permits and
 contractual approvals. Current work must establish which sources and editions
-apply. A prompt instructing an agent to obey a requirement is not a
-verification of compliance with that requirement.
+apply. A prompt instructing an agent to obey a requirement does not verify
+compliance with that requirement.
 
 A bounded tool check can help where a requirement has been correctly encoded.
 Its output must disclose its scope; the mapping cannot infer that the rest of
@@ -126,22 +126,22 @@ the appropriate person's decision.
 
 The prior mapping included adherence to the practice management plan and the
 clarity, readability, consistency and completeness of the work. A prescribed
-folder or document kit cannot ensure those properties. They must be examined
+folder or document kit cannot ensure those properties; they must be examined
 in the actual work and its use.
 
 Versioned instruction changes, accurate permission enforcement and targeted
-checks can support the practice system. Their attention and maintenance costs
-also matter. Removing unnecessary administration is compatible with keeping
-an applicable quality requirement; the requirement and one historical
-implementation of it are distinct.
+checks can support the practice system, but what they cost in attention and
+maintenance also matters. Removing unnecessary administration is compatible
+with keeping an applicable quality requirement; the requirement and one
+historical implementation of it are distinct.
 
 ---
 
 ## C.3 Authentication (APEGA §3.1 and *Authenticating Professional Work Products*)
 
 The cited authentication context concerns the person's attributable
-professional act. The framework reserves that act to the appropriate person;
-it does not identify it with a repository merge or software lifecycle state.
+professional act. The framework reserves that act to the appropriate person
+and does not equate it with a repository merge or software lifecycle state.
 
 | Relation to preserve | Candidate support | What it cannot establish alone |
 |---|---|---|
@@ -153,12 +153,12 @@ it does not identify it with a repository merge or software lifecycle state.
 
 A record may report an act, or an authorized interaction may perform an act
 under the applicable process. The host can capture that interaction without
-becoming the decision-maker. The fact that software wrote a record does not
-make the act agent-originated; the fact that a record exists does not prove
-the act occurred.
+becoming the decision-maker. A record written by software does not make the
+act agent-originated, and a record's existence does not prove that the act
+occurred.
 
 Judgment in this thesis is the person's situated, committed engagement with
-the undertaking throughout framing, interpretation and action. Authentication
+the work throughout framing, interpretation and action. Authentication
 is one possible expression of that engagement. It does not create knowledge,
 make the content true or guarantee the quality of the engagement.
 
@@ -171,7 +171,7 @@ definitions or a report of present registration status.
 
 | Term | Distinction preserved in this analysis |
 |---|---|
-| Licensed professional | The person whose professional authority and competence must be established for the undertaking |
+| Licensed professional | The person whose professional authority and competence must be established for the work |
 | Permit holder and Responsible Member | Roles in the cited practice context whose actual obligations and standing require the applicable practice-system sources |
 | Professional work product | Technical work considered in relation to its intended reliance; not created by an ISSUED field or by authentication |
 | Authentication | The attributable professional act concerning identified work and responsibility; not a machine assessment of truth |

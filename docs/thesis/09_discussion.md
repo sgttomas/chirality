@@ -6,15 +6,15 @@
 
 Root is both a means of producing agent-assisted work and a subject of that
 work. Participants use its instructions, methods and tools to examine and change
-those same surfaces. This gives the case its generative character and its main
-risk: the environment can improve itself, but it can also reproduce its own
-assumptions across producers, tools and reviewers.
+them. This gives the case both its generative character and its main risk: the
+environment can improve itself, but it can also reproduce its own assumptions
+across producers, tools and reviewers.
 
 The strongest case for Root is not that capable agents cannot work without a
-framework. They often can, and ordinary conversation, files and tools may be
-enough. Its case is that repeated undertakings expose relationships whose
-neglect becomes expensive: lost intent, hidden assumptions, disconnected results
-and unclear authority. Shared means are justified where they preserve useful
+framework: they often can, and ordinary conversation, files and tools may be
+enough. Its case is that repeated undertakings expose relationships that become
+expensive to neglect: lost intent, hidden assumptions, disconnected results and
+unclear authority. Shared means are justified where they preserve useful
 learning about those relationships at less cost than repeatedly rebuilding it.
 
 The four perspectives help expose that risk. A label may be mistaken for an act,
@@ -30,8 +30,8 @@ by naming them. Its adequacy must be examined on actual connecting paths.
 
 Root has not been assessed in a controlled comparison of development
 arrangements or in a controlled study with practising engineers. The repository
-demonstrates substantial agent-assisted production, examination and repair.
-It does not establish that Chirality:
+demonstrates substantial agent-assisted production, examination and repair, but
+it does not establish that Chirality:
 
 - improves detection of consequential errors compared with other workable
   arrangements;
@@ -40,12 +40,13 @@ It does not establish that Chirality:
 - transfers to another practitioner without its author's continuing help;
 - meets professional regulatory obligations in a particular deployment.
 
-The production evidence is bounded by changing agents and suppliers, different
-work start times, generated material in some diffs and the owner's continued
-steering. PR, line and file counts describe activity or size rather than
-comparable completed work. [Appendix E](appendix_e_development_history.md) retains
-the owner's reports and the development record; neither isolates a causal effect
-or supplies a productivity multiplier.
+The production evidence is limited by changing agents and suppliers, work
+started at different times, generated material in some diffs and the owner's
+continued steering. PR, line and file counts describe activity or size rather
+than comparable completed work.
+[Appendix E](appendix_e_development_history.md) retains the owner's reports and
+the development record; neither isolates a causal effect or supplies a
+productivity multiplier.
 
 ### 9.2.2 Regulatory Interpretation, Not Endorsement
 
@@ -53,12 +54,12 @@ The APEGA mapping is an interpretation of professional supervision, review and
 reliance [CITE:APEGA_RWO2021]. Describing an agent as a contributor or a tool
 does not discharge the professional's duties.
 
-An implementation can preserve identified inputs, actions and decisions.
-It cannot establish that a professional was competent, performed sufficient
+An implementation can preserve identified inputs, actions and decisions, but
+it cannot establish that a professional was competent, performed sufficient
 review, or made a valid professional authentication merely because a record
 exists. Application acceptance, approval of repository work and professional
 authentication must remain distinct. The appropriate interpretation and
-practice requirements need confirmation for the actual jurisdiction, work
+practice requirements need to be confirmed for the actual jurisdiction, work
 and date of use.
 
 ### 9.2.3 Jurisdiction-Specific Regulatory Framework
@@ -68,29 +69,30 @@ jurisdictions and disciplines have their own definitions of competence,
 supervision, review, authentication and responsibility. Similar language is
 not evidence that requirements or legal consequences are interchangeable.
 
-The portable research question is whether the application makes relevant
-work, grounds and acts inspectable. The legal adequacy of a deployment
+The research question that carries over is whether the application makes
+relevant work, grounds and acts inspectable. The legal adequacy of a deployment
 requires a separate, current assessment. The four philosophical questions
 are not a regulatory checklist that certifies its answer.
 
 ### 9.2.4 Instruction-Level Enforcement
 
 Making the means explicit has a limit. No finite set of instructions can specify
-all situated work, and a longer instruction stack can conceal conflicts rather
-than resolve them. The architectural aim is to make the relevant purpose,
+all situated work, and a longer instruction stack can hide conflicts instead
+of resolving them. The architectural aim is to make the relevant purpose,
 constraints and sources available for competent reckoning. It must avoid equating
 that guidance with either complete understanding or mechanical prohibition.
 
 Instructions guide agent behaviour; they do not mechanically prevent every
 prohibited action. A resolver, sandbox, schema validator or operation engine
-can enforce particular predicates, subject to its entry points and coverage.
-Independent review supplies a different kind of examination. A human
-acceptance supplies an attributable commitment, not automatic error detection.
+can enforce particular predicates, within the limits of its entry points and
+coverage. Independent review supplies a different kind of examination.
+Acceptance by a person supplies an attributable commitment, not automatic error
+detection.
 
-A property-specific argument must identify what is prevented, by which
+An argument about a specific property must identify what is prevented, by which
 mechanism and under which conditions; what is requested; what is detected
-afterward; and what remains dependent on practice. A conforming path-containment
-test establishes its tested boundary. Semantic correctness requires other
+afterward; and what still depends on practice. A conforming path-containment
+test establishes the boundary it tested. Semantic correctness requires other
 evidence, and multiple layers can share the same mistaken assumption.
 
 Removing an obsolete validator can improve the system when its duty no
@@ -99,45 +101,45 @@ permission, persistence and domain boundaries that remain.
 
 ### 9.2.5 LLM Capability Evolution
 
-Agent capabilities affect the appropriate delegation, instruction, recovery
-and verification arrangements. A procedure that once compensated for poor
-continuity may later interrupt useful work. Improved inference can make
+Agent capabilities affect which arrangements for delegation, instruction,
+recovery and verification are appropriate. A procedure that once compensated
+for poor continuity may later interrupt useful work. Improved inference can make
 larger assignments practical; new capabilities can also expose new failure
 paths. A cheaper or degraded model may require more support or a narrower
 assignment. Benefit is not automatically monotonic in a fixed harness.
 
-A responsibility boundary can persist while the mechanisms supporting it change.
-Professional commitments, product properties and operational conventions each
-need examination on their own terms. Capability changes can warrant amendments
-to an assignment or a control; retaining a familiar mechanism is itself a
-design choice with consequences.
+A responsibility boundary can stay in place while the mechanisms that support
+it change. Professional commitments, product properties and operational
+conventions each need to be examined on their own terms. Capability changes can
+warrant amendments to an assignment or a control; keeping a familiar mechanism
+is itself a design choice with consequences.
 
-Greater capability can warrant a revised assignment. It does not itself
+Greater capability can warrant a revised assignment, but it does not itself
 perform the person's judgment or grant institutional standing.
 
 ### 9.2.6 Over-Proceduralization and the Displacement of Attention
 
-Records, labels and procedures can help a practitioner attend to work; they can
-also become the objects of attention themselves. Polanyi's account of subsidiary
-and focal awareness helps describe this reversal [CITE:Polanyi1975]. The problem
-is a loss of integrated meaning when administrative particulars displace the
-engineering question they were intended to support.
+Records, labels and procedures can help a practitioner attend to work, but they
+can also themselves become the objects of attention. Polanyi's account of
+subsidiary and focal awareness helps describe this reversal [CITE:Polanyi1975].
+The problem is that integrated meaning is lost when administrative particulars
+displace the engineering question they were intended to support.
 
 Decisions change their governing text; tools derive relationships; Git and PRs
 retain the committed change record. This arrangement is a design hypothesis:
 keeping current meaning accessible may improve continuity with fewer competing
-representations. Its value and costs require examination in actual work.
+representations. Its value and costs need to be examined in actual work.
 
 The axiological assessment must include attention, delay, maintainability,
 user agency and the consequences of missed error. A control is valuable to
-the extent that its contribution to understanding, reliability or appropriate
-authority justifies those costs. Efficiency does not override every other
-value, but its costs cannot be excluded from the comparison.
+the extent that what it contributes to understanding, reliability or
+appropriate authority justifies those costs. Efficiency does not override every
+other value, but its costs cannot be excluded from the comparison.
 
-Some records remain essential: an identified result, a consequential human
-act or an uncertain operation outcome may need a durable trace. Machine
+Some records remain essential: an identified result, a consequential act by a
+person or an uncertain outcome of an operation may need a durable trace. Machine
 execution history can also support diagnosis and recovery. Their function
-justifies them; routine duplication of the same account does not. No amount
+justifies them; routinely duplicating the same account does not. No amount
 of recording can compel substantive judgment or guarantee that a person
 understands what they accept.
 
@@ -148,48 +150,49 @@ understands what they accept.
 ### 9.3.1 Across Engineering Domains
 
 Root's immediate subject is a development environment. The App's subject is
-agent participation inside an application, first through workflow authoring.
-SWBPIPE's subject is that participation in piping design and stress-model
-authoring. Keeping these questions distinct prevents success in one from being
+agent participation inside an application, first through authoring workflows.
+SWBPIPE's subject is that participation in piping design and in authoring stress
+models. Keeping these questions distinct prevents success in one from being
 reported as proof of the others.
 
 The [App thesis](../../projects/chirality-app-v4/docs/thesis/README.md) can test
 whether discoverable operations, host authority and interaction support useful
-workflow work. The [SWBPIPE thesis](../../projects/chirality-piping/docs/thesis/README.md)
-can test whether domain meaning and numerical evidence remain faithful through
-human and agent entry points. Neither needs to reproduce Root's filesystem or
-all its methods to preserve the common orientation.
+work on workflows. The
+[SWBPIPE thesis](../../projects/chirality-piping/docs/thesis/README.md) can test
+whether domain meaning and numerical evidence remain faithful through the entry
+points used by people and agents. Neither needs to reproduce Root's filesystem
+or all its methods to preserve the common orientation.
 
 Proliferation requires an economically useful transfer. Another application must
 adopt capabilities without rebuilding a large custom governance stack, and its
 users must understand the resulting operations. Shared schemas alone establish
-compatibility claims at most. Integration effort, preserved meaning, recovery
+at most claims of compatibility. Integration effort, preserved meaning, recovery
 and usefulness provide stronger evidence.
 
 The same kernel can orient all three theses while their architectural arguments
-remain practical and separately examinable. Appendix D supplies the concise
-conjecture; elaborating it further cannot substitute for evidence at a receiving
+stay practical and can be examined separately. Appendix D supplies the concise
+conjecture; elaborating it further cannot substitute for evidence in a receiving
 application.
 
 The [shared introduction](INTRODUCTION.md#one-undertaking-three-perspectives)
-frames transfer as a relation among normative reasons, operative participation
-and domain evaluation. A failure in the receiving practice can therefore qualify
-the shared claim: an intelligible method may still impose excessive adaptation
-costs or omit a consequential domain distinction. Evaluating proliferation requires
-both the benefit transferred and the work needed to make it useful, rather than
-agreement in terminology alone.
+frames transfer as a relationship among normative reasons, operative
+participation and domain evaluation. So a failure in the receiving practice can
+qualify the shared claim: an understandable method may still impose excessive
+adaptation costs or leave out a consequential domain distinction. Evaluating
+proliferation requires both the benefit transferred and the work needed to make
+it useful, rather than agreement in terminology alone.
 
 ### 9.3.2 Across Regulatory Jurisdictions
 
 The general distinction between producing information and taking
-responsibility for reliance can inform work in different jurisdictions.
-It does not transport the Alberta regulatory interpretation unchanged.
-Each application needs its own account of who may act, what review is due,
-which records matter and what constitutes authentication, if applicable.
+responsibility for reliance can inform work in different jurisdictions, but it
+does not carry the Alberta regulatory interpretation over unchanged. Each
+application needs its own account of who may act, what review is due, which
+records matter and what constitutes authentication, if applicable.
 
 A successful translation may change controls substantially while preserving
-the framework's questions. Such a change is evidence of adaptation rather
-than necessarily a failure of the framework.
+the framework's questions. Such a change is evidence of adaptation, not
+necessarily a failure of the framework.
 
 <a id="933-the-four-pillar-framework-as-an-evaluation-lens"></a>
 
@@ -217,10 +220,11 @@ administrative lifecycle:
 
 These questions constrain one another. A failure of recovery may reveal a
 missing distinction between an attempted and a completed action. A newly
-identified consequence may change the appropriate examination. A
+identified consequence may change what examination is appropriate. A
 burdensome control may consume the attention needed for substantive review.
 There is no linear derivation from one perspective to a uniquely correct
-architecture, and no perspective's importance permits neglect of the others.
+architecture, and no perspective is important enough to permit neglect of the
+others.
 
 The lens is non-exhaustive. It guides inquiry; it does not supply a complete
 ontology of work or guarantee that a system answering each question is
@@ -229,9 +233,9 @@ adequate.
 ### 9.3.4 Epistemic Relations as Portable Concepts
 
 Claims, grounds, uncertainty, gaps, conflicts and decisions are useful
-concepts beyond this implementation. They need not all become fields in a
-register. Their representation should make the relevant relation discoverable
-where an undertaking needs it.
+concepts beyond this implementation, but they need not all become fields in a
+register. Their representation should make the relevant relationship
+discoverable where the work needs it.
 
 Citation identifies a source; examination assesses something about its use;
 authentication is a particular attributable act. A cited claim can be wrong,
@@ -240,8 +244,8 @@ while disclosing uncertainty. These relations vary independently.
 
 What can transfer is a disciplined distinction among evidence, situated
 understanding and accountable reliance. The adequacy of a chosen
-representation remains a design hypothesis. It cannot externalize everything
-a knower brings to the work.
+representation remains a design hypothesis, and that representation cannot
+externalize everything a knower brings to the work.
 
 ### 9.3.5 Capability-Invariance of the Authority Boundary
 
@@ -253,41 +257,41 @@ Smith's distinction between reckoning and judgment supplies the philosophical
 vocabulary [CITE:Smith2019]. Reckoning can be extensive and sophisticated:
 agents investigate, infer, plan, compare, criticize, propose, check and act
 within granted authority. This account does not equate reckoning with a
-simple calculation or require its execution through rigid procedures.
+simple calculation or require that it be carried out through rigid procedures.
 
 Judgment is the person's situated and committed, world-involving engagement
 with what the work means, what matters and what they will stand behind. It
 shapes the question, relevant distinctions and grounds for reliance
-throughout an undertaking. A final approval is one possible expression of
+throughout the work. A final approval is one possible expression of
 that engagement. Its record neither exhausts judgment nor guarantees its
 substance.
 
 The present professional allocation reserves accountable commitments to
 people. That allocation permits substantial agent initiative and continuing
-authority for ordinary work. It does not entail a read-only Agent 0,
+authority for ordinary work, but it does not entail a read-only Agent 0,
 mandatory managerial tiers or renewed approval at every internal step.
 The agent responsibilities and the person's judgment concern different
-relations to the undertaking.
+relationships to the work.
 
 Collins's account of socially acquired tacit knowledge contributes a further
 reason to examine context and participation rather than equating capability
-scores with accountable standing [CITE:Collins2010]. It does not settle the
-metaphysical possibilities of future artificial systems. Any proposed
+scores with accountable standing [CITE:Collins2010]. It does not settle what
+is metaphysically possible for future artificial systems. Any proposed
 reallocation of professional responsibility would require an explicit
 institutional and normative argument; it is not an inference from improved
 output or delegated execution.
 
-Each property needs examination on its own terms. Improved models may change
+Each property needs to be examined on its own terms. Improved models may change
 how responsibility is supported while leaving its current allocation in place.
-Conversely, a familiar mechanism may cease to support that allocation adequately.
+Conversely, a familiar mechanism may stop supporting that allocation adequately.
 The framework makes these questions explicit and revisable.
 
 ### 9.3.6 Relationship to the AI Alignment Problem
 
-Model-level work seeks desirable behaviour through training, feedback and
-other interventions [CITE:Ouyang2022] [CITE:Bai2022]. Chirality examines the
+Work at the model level seeks desirable behaviour through training, feedback
+and other interventions [CITE:Ouyang2022] [CITE:Bai2022]. Chirality examines the
 system of use: how outputs, operations, evidence and human acts are related
-in an undertaking.
+in the work.
 
 These concerns are complementary. The framework does not make a model
 truthful or safe under arbitrary deployment. Nor can an attribution record
@@ -306,15 +310,15 @@ instruction can enforce all professional conduct.
 Root does not need a claim that these concerns are unique to agents. People have
 long managed dependencies, uncertainty and collective responsibility. Agents
 change the scale, pace and cost of producing candidates, and can make some
-intermediate structures themselves. That shifts which constraints dominate; it
-does not erase the need for interpretation and integration. The relevant novelty
-claim is therefore bounded by the implemented relation among these capabilities,
-not the invention of coordination or accountability.
+intermediate structures themselves. That shifts which constraints dominate, but
+it does not erase the need for interpretation and integration. So the relevant
+claim of novelty is bounded by the implemented relationship among these
+capabilities, not the invention of coordination or accountability.
 
 The structural views invite comparison with complex knowledge work, including
 large-project delivery. The correspondences below are a comparative hypothesis
-requiring independently sourced examination. They are not findings established
-by this case.
+that requires independently sourced examination; they are not findings
+established by this case.
 
 The proposed correspondences can be stated without treating them as proof:
 
@@ -342,10 +346,10 @@ neither demonstrated as possible nor shown necessary.
 
 The comparison also must not equate a software acceptance control with an
 engineer's authentication, or presume that software work lacks consequential
-accountability. Analogies can identify design questions; their adequacy needs
-examination within the receiving practice. An independent comparison with
-project-delivery methods and a second practitioner's use would be more
-informative than further elaboration of the analogy by its author.
+accountability. Analogies can identify design questions, but whether they are
+adequate needs to be examined within the receiving practice. An independent
+comparison with project-delivery methods and a second practitioner's use would
+be more informative than the analogy's author elaborating it further.
 
 ---
 
@@ -353,13 +357,13 @@ informative than further elaboration of the analogy by its author.
 
 ### 9.4.1 Empirical Validation
 
-The Root question calls for assessment of comparable usable results,
-consequential escaped errors, recovery and total effort across the full
-production path. Time shifted from an agent to the owner, reviewer or next
-undertaking must not disappear from the account. Existing PR, CI and session evidence can
-support bounded observation without a new administrative register. Measures
-must account for work begun earlier, generated content, task mix and the
-owner's time.
+The Root question calls for assessing comparable usable results, consequential
+escaped errors, recovery and total effort across the full production path. Time
+shifted from an agent to the owner, reviewer or next undertaking must not
+disappear from the account. Existing PR, CI and session evidence can support
+bounded observation without a new administrative register. Measures must
+account for work begun earlier, generated content, task mix and the owner's
+time.
 
 A controlled study with practitioners could compare arrangements on error
 detection, calibrated confidence and review effort. Self-reported confidence
@@ -369,9 +373,10 @@ the scope and limits of what they accept.
 
 ### 9.4.2 Enforcement at Consequential Boundaries
 
-Future engineering should target actual permission, operation, persistence
-and recovery boundaries. For example, an unknown action outcome calls for
-recovery semantics; an escaping write target calls for effective containment.
+Future engineering should target the actual boundaries of permission,
+operation, persistence and recovery. For example, an unknown action outcome
+calls for recovery semantics; an escaping write target calls for effective
+containment.
 Neither problem necessarily requires a general runtime governance engine.
 
 Each proposed control should state the consequential failure it addresses,
@@ -387,23 +392,23 @@ continue within authorization. Observe whether the participant finds an actual
 source, relies on an obsolete summary, mistakes availability for suitability or
 initiates an unnecessary global search.
 
-This examines the value of deliverable sources and queries without treating
-metadata completeness as the outcome. A missing declaration can be corrected
+This test examines the value of deliverable sources and queries without
+treating complete metadata as the outcome. A missing declaration can be corrected
 where useful; a sound inference may still require reading code or consulting the
 person. Counts of edges, citations or REVIEWED labels are not adequate proxies.
 
 Review has a parallel question: can the reviewer identify the candidate and the
 basis actually used, preserve valid evidence and detect a consequential shared
 premise error? The inquiry is whether the representation supports reckoning and
-human judgment in the actual undertaking.
+human judgment in the actual work.
 
 ### 9.4.4 Formal Analysis of Specific Properties
 
 Formal methods may help with narrowly defined properties such as path
 containment, state transitions, refusal of stale operations or duplicate
 application after interruption. Their value depends on a faithful model,
-verified implementation correspondence and coverage of the actual entry
-points.
+verified correspondence between the model and the implementation, and coverage
+of the actual entry points.
 
 A proof about such a model cannot establish that an engineering claim is
 true, that the intended need is met, or that a person has exercised
@@ -419,32 +424,33 @@ broader regulatory survey a prerequisite for current development.
 ### 9.4.6 Multi-User Concurrent Execution
 
 Concurrent agents already contribute to repository work. The additional
-question is multiple accountable people acting on a shared undertaking:
-which authority applies, how concurrent edits are handled, and how each
-person understands another's commitments.
+question concerns multiple accountable people acting on shared work: which
+authority applies, how concurrent edits are handled, and how each person
+understands another's commitments.
 
-Locks can address certain write conflicts. They cannot alone resolve
+Locks can address certain write conflicts, but they cannot alone resolve
 conflicting purposes or responsibility. A useful test should examine a
-concrete shared activity and its recovery paths instead of assuming one
+concrete shared activity and its recovery paths instead of assuming that one
 coordination topology solves both mechanical and human problems.
 
 ### 9.4.7 Extension to Other Applications and Agent Platforms
 
 The strongest objection to proliferation is that each domain may require so
 much interpretation and custom integration that little of the shared framework
-reduces the work. That outcome would not make SWBPIPE useless; it would limit the
-broader architectural claim. The test is whether something valuable transfers
+reduces the work. That outcome would not make SWBPIPE useless, but it would limit
+the broader architectural claim. The test is whether something valuable transfers
 while each application keeps its distinctive meanings, rather than whether both
 can use the same vocabulary.
 
 The App and SWBPIPE supply the first distinct receiving contexts. Root should be
 examined for what it enables them to reuse: current sources, selected methods,
-meaningful capability descriptions and an intelligible allocation of authority.
+meaningful capability descriptions and an understandable allocation of
+authority.
 The transfer need not include a common daemon, provider wrapper or record store.
 Native supplier capability can remain valuable precisely because Root avoids
 reimplementing it without a consumer.
 
-Successive application derivations add a longitudinal test. Does a new PRD-led
+Successive derivations of an application add a test over time. Does a new PRD-led
 implementation preserve relevant lessons, observed defects and useful behaviour,
 while removing obsolete topology? A new codebase or faster generation is not
 sufficient. Repeatedly rediscovering the same failure would qualify the claim of
@@ -477,13 +483,14 @@ Root supplies a coherent, revisable environment for human–agent production. It
 strongest case is the connection between current artifacts, selective methods,
 queryable relationships, authority and continuing ownership through repairs.
 Its central danger is self-confirmation: producers and examiners can inherit the
-same framing, and a polished system of records can obscure the absent result.
+same framing, and a polished system of records can obscure the fact that the
+result is absent.
 
-The case supports feasibility of specific production and correction paths.
-Productivity, sustained transfer and comparative reliability remain open empirical
-questions. The App and SWBPIPE examine different receiving contexts, each with
-its own subject and evidence.
+The case supports the feasibility of specific production and correction paths,
+but productivity, sustained transfer and comparative reliability remain open
+empirical questions. The App and SWBPIPE examine different receiving contexts,
+each with its own subject and evidence.
 
-The useful trajectory is continued production with discriminating examination
-of the means. Root must make its own claims as accessible to correction as the
-claims in the work it helps generate.
+The useful way forward is continued production with discriminating examination
+of the means. Root must make its own claims as open to correction as the claims
+in the work it helps generate.

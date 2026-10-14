@@ -12,14 +12,14 @@ the development record, earlier arrangements and the limits of that history.
 Root's principal contribution is normative: purposes, responsibilities, distinctions
 and criteria guide work while remaining open to correction. Its tools also make
 some relationships operable. The App supplies the chiefly operative perspective;
-Piping supplies the chiefly evaluative perspective as a domain-software instance.
-Evidence in one perspective can inform another without establishing its claims.
-Ontology, epistemology, praxeology and axiology concern all three.
+Piping supplies the chiefly evaluative perspective as an instance of domain
+software. Evidence in one perspective can inform another without establishing
+its claims. Ontology, epistemology, praxeology and axiology concern all three.
 
 The evaluation distinguishes specification, exercised behaviour and adequacy for
-use. A written contract establishes what was required. A passing check establishes
-what its inputs and predicates exercised. Professional adequacy and human
-engagement need grounds appropriate to their own subjects.
+use. A written contract establishes what was required, and a passing check
+establishes what its inputs and predicates exercised. Professional adequacy and
+human engagement need grounds appropriate to their own subjects.
 
 ## 8.2 Authorization and Enforced Boundaries
 
@@ -63,19 +63,19 @@ Active project deliverables maintain commitments and acceptance criteria in
 needs and conditions in `deliverable.yaml`. The
 [Root entry](../../execution/_Coordination/LOOP_INIT.md) locates the shared
 component and affected consumers; an active project entry locates product
-commitments. The authorized undertaking directs the inquiry.
+commitments. The authorized work directs the inquiry.
 
 The [deliverable CLI](../../tools/deliverables/README.md) exposes
 `neighborhood`, `impact`, `touches`, `dag-diff` and `check`. It reports source
 locations and its observed basis, including working-tree changes. Code mappings
 indicate relevance, not exclusive ownership. Missing mappings leave a partial
-answer rather than proving absence of consumers.
+answer rather than proving that there are no consumers.
 
 `check` rejects malformed data and invalid or escaping identities and paths.
 Unresolved suppliers, planned paths and cycles are reported distinctly. Mutual
 or non-gating relationships can legitimately form cycles. The checker does not
-establish an input's suitability; an agent must examine its condition and actual
-contents within the assignment.
+establish that an input is suitable; an agent must examine the input's condition
+and actual contents within the assignment.
 
 ### 8.3.2 Preservation of Meaning Through Transformation
 
@@ -85,22 +85,23 @@ evidence about preservation of dependency conditions. Source-row accounting and
 comparison with identified graph bases detect omitted or changed declarations.
 Independent examination of meanings complements those mechanical checks.
 
-This supports preservation on the examined basis. It establishes neither that
-the source declarations captured every real dependency nor that any supplier
-met its consumer's condition. Several distinct conditions between the same pair
-of deliverables must remain intelligible; reducing them to one readiness label
-would lose part of the relationship.
+This supports preservation on the examined basis, but it establishes neither
+that the source declarations captured every real dependency nor that any
+supplier met its consumer's condition. Several distinct conditions between the
+same pair of deliverables must remain understandable; reducing them to one
+readiness label would lose part of the relationship.
 
 ### 8.3.3 Method Selection and Actual Consumers
 
 Methods are indexed in `workflows/index.json` and selected as needed. The resolver
 specifies ordered selection, explicit resources and source identities. Missing
 or escaping selected resources fail resolution; omitted resources are not read.
-Returned hashes identify the inputs read by the resolver. They do not establish
-that the host delivered them to an agent or that the agent applied the method.
+Returned hashes identify the inputs read by the resolver, but they do not
+establish that the host delivered them to an agent or that the agent applied the
+method.
 
 The [workflow index builder](../../tools/validation/build_workflow_index.py)
-connects package metadata to the catalog. An adopted App bundle is a separate
+connects package metadata to the catalog; an adopted App bundle is a separate
 consumer. The useful evidence concerns the saved source, selected identity,
 affected consumer and checked connection. Updating a shared source alone cannot
 establish adoption by each product.
@@ -110,10 +111,10 @@ establish adoption by each product.
 ### 8.4.1 Continuing Ownership
 
 The [coordinated-knowledge-work workflow](../../workflows/coordinated-knowledge-work/WORKFLOW.md)
-organizes purpose, integration, contributions and scrutiny. Owners remain with
-ordinary repairs. Independent work can continue while an unrelated branch is
-unresolved; shared writes, interfaces, resources and review capacity can require
-coordination. A missing declared edge cannot prove independence.
+organizes purpose, integration, contributions and scrutiny. Owners continue
+through ordinary repairs. Independent work can continue while an unrelated
+branch is unresolved; shared writes, interfaces, resources and review capacity
+can require coordination. A missing declared edge cannot prove independence.
 
 The implementation supplies a usable method, not proof that every undertaking
 retains intent or reaches integration. Continuity draws on current artifacts,
@@ -125,9 +126,9 @@ alone does not establish that work resumed without loss or duplicated action.
 
 The [CI selection reference](../CI_SELECTION.md) defines `harness` as the required
 aggregate result for repository checks and selected active-product workflows.
-Unrelated jobs can be skipped explicitly. A selected failed, cancelled or missing
-job must prevent the aggregate from passing. Selection and failure propagation
-are distinct properties requiring examination.
+Unrelated jobs can be skipped explicitly. A selected job that fails, is cancelled
+or is missing must prevent the aggregate from passing. Selection and failure
+propagation are distinct properties requiring examination.
 
 [PR #1214](https://github.com/sgttomas/chirality/pull/1214) supplies recorded
 checks of that selection. Applicable prior passes can be reused, with the explicit
@@ -145,19 +146,21 @@ important behaviour was selected or that the checks cover it adequately.
 
 The integration reviews recorded in [Appendix E](appendix_e_development_history.md)
 identified live technical references among intended removals. Repair needed both
-relocation and consumer updates. A passing generated-product test did not establish
-that the next generator invocation would remain usable. The connecting path,
-rather than the isolated component, was the subject requiring examination.
+relocation and consumer updates. A passing test of the generated product did not
+establish that the next invocation of the generator would remain usable. The
+connecting path, rather than the isolated component, was the subject requiring
+examination.
 
 [App PR #1240](https://github.com/sgttomas/chirality/pull/1240) supplies a different
 witness: actual native interaction exposed role-header accumulation and input
 autocorrection defects, followed by repair. This supports exercising the assembled
-application. It does not establish general usability or absence of other defects.
-The appropriate finding concerned product behaviour and prompted product repair.
+application, but it does not establish general usability or the absence of other
+defects. The appropriate finding concerned product behaviour and prompted product
+repair.
 
-Agents can perform extensive reckoning on such evidence: inference, criticism,
+Agents can do extensive reckoning on such evidence: inference, criticism,
 comparison, investigation and authorized action. Human judgment sets and revises
-the undertaking's purpose and what the person can stand behind throughout.
+the purpose of the work and what the person can stand behind throughout.
 Independent agent scrutiny can improve the grounds without performing that
 person's act of reliance.
 
@@ -173,17 +176,18 @@ trial runs and inspection of returned work supply operative paths through which
 intent and methods can be tried and revised.
 
 The [host-integration contract](../../projects/chirality-app-v4/docs/HOST_INTEGRATION.md)
-proposes discoverable application capabilities. A common catalog does not establish
-correct domain behaviour, good interfaces, recovery or every transport adapter.
+proposes making application capabilities discoverable. A common catalog does not
+establish correct domain behaviour, good interfaces, recovery or every transport
+adapter.
 [PR #1244](https://github.com/sgttomas/chirality/pull/1244) assigns file and record
 writes, supplier interaction and capture of human acts to the Rust host, while
 the web view presents and sends human-initiated requests. This ruling is a product
-commitment; its text alone does not establish conformance of all paths.
+commitment; its text alone does not establish that all paths conform to it.
 
 An accepted act and substantive engagement remain different claims. Capturing a
-human action can support attribution and identify its subject. It cannot establish
-that the person understood the consequences or performed adequate professional
-examination.
+human action can support attribution and identify its subject, but it cannot
+establish that the person understood the consequences or performed adequate
+professional examination.
 
 ### 8.5.2 Evaluative Perspective: Piping
 
@@ -202,7 +206,7 @@ results support the proposed use. Passing the first cannot establish the others.
 
 The [illustrative support-arrangement revision](WORKED_EXAMPLE.md) links those
 questions to practical alternatives and the person's choice and revision. It is
-an illustration, not measured evidence. Piping is one domain-software instance;
+an illustration, not measured evidence. Piping is one instance of domain software;
 its numerical results do not establish economical transfer to all domains.
 
 ### 8.5.3 Iterative Feedback
@@ -216,8 +220,8 @@ one perspective to one thesis or fixing a mandatory sequence.
 
 A successive implementation also needs examination of retained learning. A new
 PRD or version number cannot establish that prior defects, useful interfaces and
-owner decisions were considered. Root's source accessibility helps that inquiry;
-actual receiving-product evidence must establish the result.
+owner decisions were considered. The accessibility of Root's sources helps that
+inquiry, but actual receiving-product evidence must establish the result.
 
 ## 8.6 Assessment and Remaining Questions
 
@@ -230,34 +234,34 @@ actual receiving-product evidence must establish the result.
 | Human acts can have identified subjects | Product commitments and attributable decisions where captured | Competence, understanding and substantive engagement |
 | The arrangement transfers useful means | App and domain-software implementations | Adaptation costs and use by another practitioner |
 
-The basis supports feasibility of specific mechanisms and production paths.
+The basis supports the feasibility of specific mechanisms and production paths.
 Repository instructions, role files, selected methods, deliverable sources and
 the query CLI are in use; the relevant Git and CI paths have been exercised.
 [PR #1238](https://github.com/sgttomas/chirality/pull/1238) provides the accepted
-manuals describing that working model. Their existence does not imply that the
-whole system is fully validated.
+manuals describing that working model, but their existence does not imply that
+the whole system is fully validated.
 
 Evaluation must include applicable obligations, uncertain premises, negotiable
 preferences and control costs separately. Required conditions retain their
-standing. Attention, delay, maintenance, false alarms and missed-error consequences
-matter in choosing how to meet them. More records or checks need a concrete
-contribution to the work; fewer controls need evidence that their functions are
-unnecessary or adequately served elsewhere. There is no universal scalar or
-mandated process that resolves this assessment.
+standing; attention, delay, maintenance, false alarms and the consequences of
+missed errors matter in choosing how to meet them. More records or checks need to
+make a concrete contribution to the work; fewer controls need evidence that their
+functions are unnecessary or adequately served elsewhere. No universal scalar or
+mandated process resolves this assessment.
 
 The most useful further investigations concern connecting paths: whether a fresh
 participant finds a governing condition and its supplier; whether a method change
 reaches its adopted consumer; whether a reviewer receives the candidate and actual
-basis; and whether interruption permits reliable continuation. Their outcomes
-must concern usable work, consequential errors and total effort, including owner
-attention. These research questions create no product commitments or standing
-implementation backlog.
+basis; and whether work can continue reliably after an interruption. Their
+outcomes must concern usable work, errors that matter and total effort, including
+owner attention. These research questions create no product commitments or
+standing implementation backlog.
 
 Controlled productivity, comparative error detection, professional suitability,
-portability and sustained adoption remain unestablished. The development record's
-reported improvements do not isolate causal effects from model capabilities,
-accumulated knowledge, work begun earlier or the owner's involvement. Activity
-counts cannot supply those missing comparisons.
+portability and sustained adoption remain unestablished. The improvements
+reported in the development record do not isolate causal effects from model
+capabilities, accumulated knowledge, work begun earlier or the owner's
+involvement. Activity counts cannot supply those missing comparisons.
 
 ## 8.7 Summary
 
@@ -267,6 +271,7 @@ examination and correction. The strength of each finding remains bounded by its
 actual subject, source basis and checked path.
 
 App and Piping expose operative and evaluative questions that Root alone cannot
-answer. Their findings can revise the common means through iterative feedback.
-Accountable human judgment remains situated engagement throughout that relation;
-neither implementation traces nor passing checks establish it on the person's behalf.
+answer. Their findings can revise the shared means through iterative feedback.
+Accountable human judgment remains situated engagement throughout that
+relationship; neither implementation traces nor passing checks establish it on
+the person's behalf.
