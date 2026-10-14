@@ -133,7 +133,9 @@ jobs:
       - name: Design schema conditional regressions
         run: python3 -m unittest discover -s ../execution/PKG-04/DEL-04-03/Design/prototype -p 'test_minischema.py'
       - name: Supplier carriage detector regressions (no supplier required)
-        run: python3 supplier_checks/test_records_delivery.py
+        run: |
+          python3 supplier_checks/test_records_delivery.py
+          python3 -m unittest discover -s tests -p 'child_role_carrier_test.py'
       - name: Focused persistence and authority boundaries (full suite on request)
         run: |
           if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
