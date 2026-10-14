@@ -1,6 +1,6 @@
 # Chirality at the Root: A Generative Environment for Human–Agent Work
 
-**The Root Thesis — shared means, methods and accountable development**
+**The Root Thesis: shared means, methods and accountable development**
 
 ---
 
@@ -13,39 +13,42 @@ Chirality AI Ltd. (APEGA P17007)
 
 ## Abstract
 
-Agent capability becomes useful through a relation to purpose, a body of work
-and a person who can answer for its use. Chirality Root sustains that relation
-through shared roles, methods, tools and artifacts, while keeping those means
-open to examination and improvement.
+Agent capability becomes useful through a relationship to purpose, a body of
+work and a person who can answer for its use. Chirality Root sustains that
+relationship through shared roles, methods, tools and artifacts, while keeping
+those means open to examination and improvement.
 
-Ontology, epistemology, praxeology and axiology ask what the undertaking consists
-of, what supports understanding, how intent becomes a result and what makes that
+Ontology, epistemology, praxeology and axiology ask what the work consists of,
+what supports understanding, how intent becomes a result and what makes that
 result worth pursuing. Agents extend reckoning through inquiry and action.
 Human judgment shapes what matters and what the person will stand behind.
-Greater capability expands the work without itself settling its purposes.
+Greater capability expands the work but does not itself settle what the work
+is for.
 
-Roles make responsibilities intelligible. Methods carry experience. Artifacts
+Roles make responsibilities understandable. Methods carry experience. Artifacts
 let work persist and remain open to examination. Tools make operations
 repeatable and relevant information accessible. Their value depends on serving
-the undertaking; maintaining them can otherwise displace the work they support.
+the work; if they do not, maintaining them can take the place of the work they
+support.
 
 Iteration connects inquiry, action, evaluation and revision. A finding can repair
-an output, change its method or expose a purpose that needs reconsideration.
+an output, change its method or show that a purpose needs reconsideration.
 Learning is retained when the correction reaches the place where it matters.
-The development case supplies bounded evidence about these relations, without
-establishing a general productivity effect.
+The development case gives bounded evidence about these relationships, but does
+not establish a general productivity effect.
 
-The App is the workflow-authoring exemplar. SWBPIPE tests the approach in an
-engineering domain through models, operations, calculations and handoff. Their
-development asks whether shared meanings can support different practices without
-prescribing a universal execution system. These are normative, operative and
-evaluative emphases within one iterative undertaking. The
-[shared introduction](INTRODUCTION.md) and [conclusion](CONCLUSION.md) develop
-their relationship; Appendix E carries the development history.
+The App is the exemplar for workflow authoring. SWBPIPE tests the
+approach in an engineering domain through models, operations, calculations and
+handoff. Their development asks whether shared meanings can support different
+practices without prescribing a universal execution system. These are
+normative, operative and evaluative emphases within one iterative body of work.
+The [shared introduction](INTRODUCTION.md) and [conclusion](CONCLUSION.md)
+develop their relationship; Appendix E carries the development history.
 
 The argument distinguishes adopted commitments, design hypotheses and observed
-findings. Its adequacy remains open to sustained use and another practitioner's
-experience. Appendix D carries the shared philosophical kernel.
+findings. Whether it is adequate remains open to testing through sustained use
+and another practitioner's experience. Appendix D carries the shared
+philosophical kernel.
 
 **Keywords:** human–agent work, purpose, meaning, roles, methods, artifacts,
 ontology, epistemology, praxeology, axiology, reckoning, judgment, application
@@ -55,7 +58,7 @@ derivation, proliferation, accountable reliance
 
 ## Author's Note
 
-The originating intuition behind Chirality was that meaning is not manufactured — not by the machine, and not by the professional. It is encountered, already intelligible and already significant, under conditions of responsibility. The architecture developed in this thesis is a practical attempt to preserve that encounter in AI-assisted professional work: to let AI widen what the professional can perceive, compare, and prepare, while keeping the acts of judgment, commitment, and answerability where they have always lived — with the person. The main argument asks no assent beyond professional and philosophical grounds. The deeper layer, for readers who want it, is developed in Appendix D, which also records the origin of the conjecture (§D.8).
+The originating intuition behind Chirality was that meaning is not manufactured: not by the machine, and not by the professional. It is encountered, already intelligible and already significant, under conditions of responsibility. The architecture developed in this thesis is a practical attempt to preserve that encounter in AI-assisted professional work: to let AI widen what the professional can perceive, compare, and prepare, while keeping the acts of judgment, commitment, and answerability where they have always lived, with the person. The main argument asks no assent beyond professional and philosophical grounds. The deeper layer, for readers who want it, is developed in Appendix D, which also records the origin of the conjecture (§D.8).
 
 ---
 
@@ -74,11 +77,11 @@ The originating intuition behind Chirality was that meaning is not manufactured 
 
 **Appendices**
 
-- [A — Historical Controls and Current Interpretation](appendix_a_invariant_catalog.md)
-- B — Agent Index: maintained as the live registry `AGENTS.md` at the repository root; not reproduced as a static appendix
-- [C — APEGA Regulatory Mapping](appendix_c_apega_mapping.md)
-- [D — A Conjecture on the Nature of Being and Knowing](appendix_d_framework_s.md)
-- [E — Development History](appendix_e_development_history.md)
+- [A: Historical Controls and Current Interpretation](appendix_a_invariant_catalog.md)
+- B: Agent Index, maintained as the live registry `AGENTS.md` at the repository root and not reproduced as a static appendix
+- [C: APEGA Regulatory Mapping](appendix_c_apega_mapping.md)
+- [D: A Conjecture on the Nature of Being and Knowing](appendix_d_framework_s.md)
+- [E: Development History](appendix_e_development_history.md)
 
 **Reference Material**
 
