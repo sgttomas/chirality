@@ -276,9 +276,9 @@
       "core/loads/self_weight_wasm/Cargo.toml": "06b09e51d3b1e25341e1ef05fae7cd27a983205cecf7f451753c1e65c2ebfd1f",
       "core/loads/stress_recovery/Cargo.toml": "ebee79ddd58fb6c956261449d7c882a76303414cf87a1f10a7c9618b8df005be",
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
-      "core/model_operations/operation_applier/Cargo.toml": "ecaf7f9b8dfc6df94113a610f9f2b9ffb14eef030d53335b8f41f5d472b244db",
+      "core/model_operations/operation_applier/Cargo.toml": "4fc025c384b5ece947ead443808089ae15dc37b680d7040dd3c1788c6293bc3c",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "3a4e2f10b4c8c8341edef4708ec863fd5588ce0d8ae8fae3fa1bdb69e49d9981",
+      "core/product_physics/Cargo.toml": "ab5b199299bdfb4329c28c79e148f8f322004d9d3a33de8497846b9e56b272bb",
       "core/reporting/audit_manifest/Cargo.toml": "7b941c18378533d99707ed00c6024df56d9e6ac09a85d4b22599aa3fab8754a5",
       "core/reporting/pdf_emitter/Cargo.toml": "24dc0377813b6895aa76a463d849179e35b5ab4e0330ddd0f9de343607def55c",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
@@ -286,13 +286,13 @@
       "core/reporting/report_package/Cargo.toml": "3e2d171cb762ae3020f63a9dfb99771bdd66df8364c8521a2b1b4b7dd987bbd7",
       "core/reporting/report_renderer/Cargo.toml": "fe19d0718b26f7d82c0ee8449eb5746561f7887b8eb7dd6e95de26dce192fde8",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
-      "core/reporting/result_export/Cargo.toml": "86a0023adf8502de3414c4e53e366394f70dd025fec6431cd939e00d575a192f",
+      "core/reporting/result_export/Cargo.toml": "32510a958da3f5edccf7d49dc6dcb7da976b516d99b1f7cdea7fc87ce984f08b",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "3784dc3caabb41d3ba781c2a3e19332fe50852713b66b0227fac95f75131eabb",
       "core/rules/rule_check_runner/Cargo.toml": "74ab4cfa6825b9eb33c4e15e01685bd1cb25cfffcde10e6eeb1ce3973fdb2007",
       "core/rules/rule_pack_document/Cargo.toml": "8e04c4f958b0bd88e05885fa77b9d5311240e913481b54a968e71e90068d59c5",
       "core/rules/rule_pack_lifecycle/Cargo.toml": "811d32918f3d13d8d2a9115ebb6ce9b0243078626bc426d8dbd97224eb2dbd56",
-      "core/runner/headless/Cargo.toml": "9270d12c8d4aeea63c0f7a8e5da1d5652e686166fd67c1936486e93afef92d55",
+      "core/runner/headless/Cargo.toml": "4c69f78e9315c638688293f2549a03faf9998719ce2a6009075021ce44e7db69",
       "core/serialization/canonical_json/Cargo.toml": "6e633f01036771cc2dd8077bd814f787c500d974b500e78404165172d07bb151",
       "core/solver/curved_bend/Cargo.toml": "5d7cf1288eac698c209aa4fd7493fa669aa57494950e75374ac07248001502d8",
       "core/solver/diagnostics/Cargo.toml": "11db1409fcfd3b0312ef80085e36eac4d7a66eb0f4298832137119835b1c92e8",
@@ -313,7 +313,7 @@
     },
     "reads": {
       "core/product_physics/src/source_receipt/pressure_source_context_tests.rs": {
-        "sha256": "dfb3db43ca3be97e15211932175d1f3c16c5594c11fef924b71e778dc3a6bfc2",
+        "sha256": "3cf6d4be25f04aef7156b256dc3b227ae311a902e55de4247a437f56fb1fdbf4",
         "source_trees": [
           "core/loads/self_weight_wasm/Cargo.toml",
           "core/model_operations/operation_applier/Cargo.toml",
@@ -324,39 +324,21 @@
         ],
         "inputs": [
           {
-            "anchor": "../../fixtures/product_preview/{family}/{name}.request.json",
+            "anchor": "../../fixtures/product_preview/pressure_source/{family}/{name}.request.json",
             "base": "manifest",
             "files": [
-              "fixtures/product_preview/load_reference_source/eigen_motion.request.json",
-              "fixtures/product_preview/load_reference_source/fields.request.json",
-              "fixtures/product_preview/load_reference_source/mixed.request.json",
-              "fixtures/product_preview/load_reference_source/n05.request.json",
-              "fixtures/product_preview/load_reference_source/n06.request.json",
-              "fixtures/product_preview/physics_source/fields.request.json",
-              "fixtures/product_preview/physics_source/mixed.request.json",
-              "fixtures/product_preview/physics_source/mixed_units.request.json",
-              "fixtures/product_preview/physics_source/n05.request.json",
-              "fixtures/product_preview/physics_source/n05_unicode.request.json",
-              "fixtures/product_preview/physics_source/n05_units.request.json",
-              "fixtures/product_preview/physics_source/n06.request.json"
-            ]
-          },
-          {
-            "anchor": "fixtures/product_preview/{family}/{name}.request.json",
-            "base": "project",
-            "files": [
-              "fixtures/product_preview/load_reference_source/eigen_motion.request.json",
-              "fixtures/product_preview/load_reference_source/fields.request.json",
-              "fixtures/product_preview/load_reference_source/mixed.request.json",
-              "fixtures/product_preview/load_reference_source/n05.request.json",
-              "fixtures/product_preview/load_reference_source/n06.request.json",
-              "fixtures/product_preview/physics_source/fields.request.json",
-              "fixtures/product_preview/physics_source/mixed.request.json",
-              "fixtures/product_preview/physics_source/mixed_units.request.json",
-              "fixtures/product_preview/physics_source/n05.request.json",
-              "fixtures/product_preview/physics_source/n05_unicode.request.json",
-              "fixtures/product_preview/physics_source/n05_units.request.json",
-              "fixtures/product_preview/physics_source/n06.request.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/fields.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed_units.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_unicode.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_units.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06.request.json"
             ]
           },
           {
@@ -389,11 +371,7 @@
               "fixtures/product_preview/pressure_source/physics_source/n06-sparse_interactive.raw.json"
             ]
           }
-        ],
-        "external_reads": {
-          "kind": "audited-external-inputs",
-          "reason": "cached_source_context_preserves_current_v2_v3_public_serializations reads optional original-v2 bytes only from the directory named by SWBPIPE_SOURCE_CONTEXT_V2_BYTES; no repository default."
-        }
+        ]
       },
       "core/library_import/library_import_document/tests/provenance_parity.rs": {
         "sha256": "e85f023b2d2be6756a055e4c48f02f7e2f1ee63a237a5bba01f76dee7b992b1a",
@@ -543,23 +521,23 @@
         ]
       },
       "core/model_operations/operation_applier/tests/load_state_delete_control.rs": {
-        "sha256": "4d288fbf4662f353c8861818100853993880414f5b642910ee1b6324ae654658",
+        "sha256": "dcce52df5e70bfcf0090e38b2ceb23e7f811dec8fb13f345948f76f79bc32799",
         "source_trees": [
           "core/model_operations/operation_applier/Cargo.toml"
         ],
         "inputs": [
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference_source/eigen_motion.request.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/load_reference_source/eigen_motion.request.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference_source/eigen_motion.request.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion.request.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference/connected.request.json",
+            "anchor": "../../../../fixtures/product_preview/pressure/load_reference/connected.request.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference/connected.request.json"
+              "fixtures/product_preview/pressure/load_reference/connected.request.json"
             ]
           },
           {
@@ -600,7 +578,7 @@
         ]
       },
       "core/product_physics/build.rs": {
-        "sha256": "6fce438fc44608211723e0579cc965feec2bb8a0f8f1acbb265c7bdaba3a5519",
+        "sha256": "d7dd114dc31ae819a1425c7a18965231e4553166e554d0917c02399f839fb4ef",
         "source_trees": [
           "core/product_physics/Cargo.toml"
         ],
@@ -619,16 +597,7 @@
               "fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "9fb18f84cf78bfa089a883c91c6079df44aa8f329316fea894c251f111c836f4"
-          },
-          {
-            "anchor": "../../fixtures/results/semantic_contract_v0_3_load_reference_source_1.json",
-            "base": "manifest",
-            "files": [
-              "fixtures/results/semantic_contract_v0_3_load_reference_source_1.json"
-            ],
-            "source": "src/build_identity.rs",
-            "source_sha256": "9fb18f84cf78bfa089a883c91c6079df44aa8f329316fea894c251f111c836f4"
+            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
           },
           {
             "anchor": "../../fixtures/results/retained_precision_prepared_combination_v1.json",
@@ -637,7 +606,7 @@
               "fixtures/results/retained_precision_prepared_combination_v1.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "9fb18f84cf78bfa089a883c91c6079df44aa8f329316fea894c251f111c836f4"
+            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_physics_retained_1.json",
@@ -646,7 +615,7 @@
               "fixtures/results/semantic_contract_v0_3_physics_retained_1.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "9fb18f84cf78bfa089a883c91c6079df44aa8f329316fea894c251f111c836f4"
+            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json",
@@ -655,7 +624,7 @@
               "fixtures/results/semantic_contract_v0_3_preview_physics_1.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "9fb18f84cf78bfa089a883c91c6079df44aa8f329316fea894c251f111c836f4"
+            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
           },
           {
             "anchor": "../../fixtures/results/retained_precision_prepared_ordinary_v1.json",
@@ -664,25 +633,7 @@
               "fixtures/results/retained_precision_prepared_ordinary_v1.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "9fb18f84cf78bfa089a883c91c6079df44aa8f329316fea894c251f111c836f4"
-          },
-          {
-            "anchor": "../../fixtures/results/semantic_contract_v0_3_load_reference_1.json",
-            "base": "manifest",
-            "files": [
-              "fixtures/results/semantic_contract_v0_3_load_reference_1.json"
-            ],
-            "source": "src/build_identity.rs",
-            "source_sha256": "9fb18f84cf78bfa089a883c91c6079df44aa8f329316fea894c251f111c836f4"
-          },
-          {
-            "anchor": "../../fixtures/results/semantic_contract_v0_3_physics_source_1.json",
-            "base": "manifest",
-            "files": [
-              "fixtures/results/semantic_contract_v0_3_physics_source_1.json"
-            ],
-            "source": "src/build_identity.rs",
-            "source_sha256": "9fb18f84cf78bfa089a883c91c6079df44aa8f329316fea894c251f111c836f4"
+            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
           },
           {
             "anchor": "../../fixtures/results/retained_precision_prepared_exact_v1.json",
@@ -691,16 +642,7 @@
               "fixtures/results/retained_precision_prepared_exact_v1.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "9fb18f84cf78bfa089a883c91c6079df44aa8f329316fea894c251f111c836f4"
-          },
-          {
-            "anchor": "../../fixtures/results/semantic_contract_v0_3_physics_1.json",
-            "base": "manifest",
-            "files": [
-              "fixtures/results/semantic_contract_v0_3_physics_1.json"
-            ],
-            "source": "src/build_identity.rs",
-            "source_sha256": "9fb18f84cf78bfa089a883c91c6079df44aa8f329316fea894c251f111c836f4"
+            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
           },
           {
             "anchor": "../../schemas/retained_precision_mp_v2.schema.json",
@@ -709,7 +651,7 @@
               "schemas/retained_precision_mp_v2.schema.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "9fb18f84cf78bfa089a883c91c6079df44aa8f329316fea894c251f111c836f4"
+            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
           },
           {
             "anchor": "../../schemas/physics_source_recovery.schema.json",
@@ -718,7 +660,7 @@
               "schemas/physics_source_recovery.schema.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "9fb18f84cf78bfa089a883c91c6079df44aa8f329316fea894c251f111c836f4"
+            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
           },
           {
             "anchor": "Cargo.lock",
@@ -727,7 +669,7 @@
               "core/product_physics/Cargo.lock"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "9fb18f84cf78bfa089a883c91c6079df44aa8f329316fea894c251f111c836f4"
+            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
           },
           {
             "anchor": "../../schemas/results_pressure_1.v0.3.schema.json",
@@ -736,16 +678,25 @@
               "schemas/results_pressure_1.v0.3.schema.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "9fb18f84cf78bfa089a883c91c6079df44aa8f329316fea894c251f111c836f4"
+            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_pressure_source_1.json",
             "base": "manifest",
             "source": "src/build_identity.rs",
-            "source_sha256": "9fb18f84cf78bfa089a883c91c6079df44aa8f329316fea894c251f111c836f4",
+            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99",
             "files": [
               "fixtures/results/semantic_contract_v0_3_pressure_source_1.json"
             ]
+          },
+          {
+            "anchor": "../../fixtures/results/semantic_contract_v0_3_pressure_1.json",
+            "base": "manifest",
+            "files": [
+              "fixtures/results/semantic_contract_v0_3_pressure_1.json"
+            ],
+            "source": "src/build_identity.rs",
+            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
           }
         ]
       },
@@ -787,7 +738,7 @@
         }
       },
       "core/product_physics/src/joint_pressure_tests.rs": {
-        "sha256": "b8de6ba84087019fa96f2c9bad96fa36e0ce4f2de284d99383151f03491ca889",
+        "sha256": "6145c72a4d40e3856571ca2fda7fcac429e6176354ea4e95e2f6d2877e87825d",
         "source_trees": [
           "core/loads/self_weight_wasm/Cargo.toml",
           "core/model_operations/operation_applier/Cargo.toml",
@@ -807,7 +758,7 @@
         ]
       },
       "core/product_physics/src/u4a_tests.rs": {
-        "sha256": "14535fa7e56a9df28a92306287e5624b878e01a793c3e235e0b98ddc678bcc35",
+        "sha256": "f69a08d07446b799edf9eeb1a6e67fc3644a9b592e356d6a31f57ae702a9cc50",
         "source_trees": [
           "core/loads/self_weight_wasm/Cargo.toml",
           "core/model_operations/operation_applier/Cargo.toml",
@@ -823,7 +774,7 @@
         }
       },
       "core/product_physics/tests/load_reference_state_runtime.rs": {
-        "sha256": "01b5123dd1007fe050de0c0524ab2f4772ea8117336e4dee6cb4169e74be7a8a",
+        "sha256": "12ceb3582658298edb0895b83db8142f922b824d8b40d7fc0b974e784b813e95",
         "source_trees": [
           "core/product_physics/Cargo.toml"
         ],
@@ -838,16 +789,16 @@
         ]
       },
       "core/product_physics/tests/load_reference_state_runtime_extension.rs": {
-        "sha256": "5febacba957bc9aed01c8010ea3496616d05021290c2b15d0e08cbabf4558a58",
+        "sha256": "b01d08cf3d6ec59923ddb484a152d4521c941413acbde67eba6f16101e38dbf4",
         "source_trees": [
           "core/product_physics/Cargo.toml"
         ],
         "inputs": [
           {
-            "anchor": "/../../fixtures/product_preview/load_reference_source/eigen_motion.request.json",
+            "anchor": "/../../fixtures/product_preview/pressure_source/load_reference_source/eigen_motion.request.json",
             "base": "manifest",
             "files": [
-              "fixtures/product_preview/load_reference_source/eigen_motion.request.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion.request.json"
             ]
           },
           {
@@ -860,33 +811,63 @@
         ]
       },
       "core/product_physics/tests/pressure_source_join.rs": {
-        "sha256": "108409127412ed87f114ec71469957fee77f391cbaa800d93a2f3a5315752ecb",
+        "sha256": "32db27c724d2cc9a5fa172f6855a3a609e6fd7e60f20f6d7066c9dd00926e2bb",
         "source_trees": [
           "core/product_physics/Cargo.toml"
         ],
         "inputs": [
           {
-            "anchor": "fixtures/product_preview/{}/{name}.request.json",
+            "anchor": "fixtures/product_preview/pressure_source/{}/{name}.request.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/load_reference_source/eigen_motion.request.json",
-              "fixtures/product_preview/load_reference_source/fields.request.json",
-              "fixtures/product_preview/load_reference_source/mixed.request.json",
-              "fixtures/product_preview/load_reference_source/n05.request.json",
-              "fixtures/product_preview/load_reference_source/n06.request.json",
-              "fixtures/product_preview/physics_source/fields.request.json",
-              "fixtures/product_preview/physics_source/mixed.request.json",
-              "fixtures/product_preview/physics_source/mixed_units.request.json",
-              "fixtures/product_preview/physics_source/n05.request.json",
-              "fixtures/product_preview/physics_source/n05_unicode.request.json",
-              "fixtures/product_preview/physics_source/n05_units.request.json",
-              "fixtures/product_preview/physics_source/n06.request.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/fields.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed_units.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_unicode.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_units.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06.request.json"
+            ]
+          },
+          {
+            "anchor": "fixtures/product_preview/pressure_source/{}/{name}-{}.raw.json",
+            "base": "project",
+            "files": [
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/fields-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/fields-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed_units-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed_units-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_unicode-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_unicode-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_units-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_units-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06-sparse_interactive.raw.json"
             ]
           }
         ]
       },
       "core/product_physics/tests/pressure_source_join/consequences.rs": {
-        "sha256": "3075b7c8be8b94cc5c13d090806fd5309a50028020316b310f0a28af3b7cb919",
+        "sha256": "7bd408c3be0dad083faf714c8240eac93b27447cf987246d39e965f6bd9dd8f6",
         "source_trees": [
           "core/product_physics/Cargo.toml"
         ],
@@ -1014,7 +995,7 @@
         }
       },
       "core/reporting/result_export/tests/base_reader_outcomes.rs": {
-        "sha256": "9c508c5c7cf11891c78b7b4560fcb934ff5b001fd2ea84865542fe31d4ba6d60",
+        "sha256": "042adf5d03f83aca6e6cb9a7702e5c55db1606ae8766378e908dd9e9f7cace4e",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -1119,156 +1100,83 @@
             ]
           },
           {
-            "anchor": "fixtures/product_preview/load_reference_source/{name}.raw.json",
+            "anchor": "fixtures/product_preview/pressure_source/load_reference_source/{name}.raw.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/load_reference_source/eigen_motion-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/eigen_motion-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/fields-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/fields-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/mixed-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/mixed-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/n05-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/n05-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/n06-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/n06-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-sparse_interactive.raw.json"
             ]
           },
           {
             "anchor": "fixtures/product_preview/{dir}/{name}-{mode}.raw.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/load_reference/connected-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference/pressure-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference/pressure-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/fields-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/fields-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/mixed-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/mixed-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/mixed_units-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/mixed_units-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n05-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n05_unicode-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05_unicode-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n05_units-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05_units-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n06-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n06-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure/load_reference/connected-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure/load_reference/connected-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure/load_reference/pressure-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure/load_reference/pressure-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/fields-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/fields-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed_units-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed_units-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_unicode-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_unicode-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_units-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_units-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06-sparse_interactive.raw.json"
             ]
           },
           {
             "anchor": "fixtures/product_preview/{dir}/{name}.request.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/load_reference/connected.request.json",
-              "fixtures/product_preview/load_reference/pressure.request.json",
-              "fixtures/product_preview/load_reference_source/eigen_motion.request.json",
-              "fixtures/product_preview/load_reference_source/fields.request.json",
-              "fixtures/product_preview/load_reference_source/mixed.request.json",
-              "fixtures/product_preview/load_reference_source/n05.request.json",
-              "fixtures/product_preview/load_reference_source/n06.request.json",
-              "fixtures/product_preview/physics_source/fields.request.json",
-              "fixtures/product_preview/physics_source/mixed.request.json",
-              "fixtures/product_preview/physics_source/mixed_units.request.json",
-              "fixtures/product_preview/physics_source/n05.request.json",
-              "fixtures/product_preview/physics_source/n05_unicode.request.json",
-              "fixtures/product_preview/physics_source/n05_units.request.json",
-              "fixtures/product_preview/physics_source/n06.request.json"
+              "fixtures/product_preview/pressure/load_reference/connected.request.json",
+              "fixtures/product_preview/pressure/load_reference/pressure.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/fields.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed_units.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_unicode.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_units.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06.request.json"
             ]
           },
           {
             "anchor": "fixtures/results/{name}.json",
             "base": "project",
             "files": [
-              "fixtures/results/invented/tp_phys_015_canonical_solve_result_envelope.json",
-              "fixtures/results/invented/tp_phys_015_section_property_stress_evidence_envelope.json",
-              "fixtures/results/load_reference_connected_dense.analysis_run.json",
-              "fixtures/results/load_reference_connected_dense.document.json",
-              "fixtures/results/load_reference_connected_dense.stress_neutral.json",
-              "fixtures/results/load_reference_connected_sparse.analysis_run.json",
-              "fixtures/results/load_reference_connected_sparse.document.json",
-              "fixtures/results/load_reference_connected_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_pressure_dense.analysis_run.json",
-              "fixtures/results/load_reference_pressure_dense.document.json",
-              "fixtures/results/load_reference_pressure_dense.stress_neutral.json",
-              "fixtures/results/load_reference_pressure_sparse.analysis_run.json",
-              "fixtures/results/load_reference_pressure_sparse.document.json",
-              "fixtures/results/load_reference_pressure_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_eigen_motion_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_eigen_motion_dense.document.json",
-              "fixtures/results/load_reference_source_eigen_motion_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_eigen_motion_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_eigen_motion_sparse.document.json",
-              "fixtures/results/load_reference_source_eigen_motion_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_fields_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_fields_dense.document.json",
-              "fixtures/results/load_reference_source_fields_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_fields_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_fields_sparse.document.json",
-              "fixtures/results/load_reference_source_fields_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_mixed_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_mixed_dense.document.json",
-              "fixtures/results/load_reference_source_mixed_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_mixed_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_mixed_sparse.document.json",
-              "fixtures/results/load_reference_source_mixed_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_n05_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_n05_dense.document.json",
-              "fixtures/results/load_reference_source_n05_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_n05_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_n05_sparse.document.json",
-              "fixtures/results/load_reference_source_n05_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_n06_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_n06_dense.document.json",
-              "fixtures/results/load_reference_source_n06_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_n06_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_n06_sparse.document.json",
-              "fixtures/results/load_reference_source_n06_sparse.stress_neutral.json",
-              "fixtures/results/physics_connected_mechanics_dense.json",
-              "fixtures/results/physics_connected_mechanics_sparse.json",
-              "fixtures/results/physics_connected_ui_mechanics_dense.json",
-              "fixtures/results/physics_connected_ui_mechanics_sparse.json",
-              "fixtures/results/physics_thermal_ui_mechanics_dense.json",
-              "fixtures/results/physics_thermal_ui_mechanics_sparse.json",
-              "fixtures/results/pressure_v3_connector_reader_corpus.json",
-              "fixtures/results/pressure_v3_straight_reader_corpus.json",
+              "fixtures/results/pressure_connected_mechanics_dense.json",
+              "fixtures/results/pressure_connected_mechanics_sparse.json",
+              "fixtures/results/pressure_connected_ui_mechanics_dense.json",
+              "fixtures/results/pressure_connected_ui_mechanics_sparse.json",
+              "fixtures/results/pressure_thermal_ui_mechanics_dense.json",
+              "fixtures/results/pressure_thermal_ui_mechanics_sparse.json",
               "fixtures/results/preview_physics_connected_dense.json",
               "fixtures/results/preview_physics_connected_sparse.json",
               "fixtures/results/preview_physics_invented_dense.json",
               "fixtures/results/preview_physics_invented_sparse.json",
-              "fixtures/results/preview_physics_unicode_ids_sparse.json",
-              "fixtures/results/retained_precision_b2_parity_probes.json",
-              "fixtures/results/retained_precision_carrier_cases.json",
-              "fixtures/results/retained_precision_cases.json",
-              "fixtures/results/retained_precision_combination_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_combination_successor_sparse_interactive.json",
-              "fixtures/results/retained_precision_exact_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_exact_successor_derivative_dense_scrutiny.json",
-              "fixtures/results/retained_precision_exact_successor_derivative_sparse_interactive.json",
-              "fixtures/results/retained_precision_exact_successor_sparse_interactive.json",
-              "fixtures/results/retained_precision_l0_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_l0_successor_sparse_interactive.json",
-              "fixtures/results/retained_precision_milestone_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_milestone_successor_sparse_interactive.json",
-              "fixtures/results/retained_precision_prepared_combination_v1.json",
-              "fixtures/results/retained_precision_prepared_exact_v1.json",
-              "fixtures/results/retained_precision_prepared_ordinary_v1.json",
-              "fixtures/results/retained_precision_reader_outcomes.json",
-              "fixtures/results/retained_precision_rv120_b3_inputs.json",
-              "fixtures/results/retained_precision_successor_derivative_dense_scrutiny.json",
-              "fixtures/results/retained_precision_successor_derivative_sparse_interactive.json",
-              "fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_w_c2_successor_sparse_interactive.json",
-              "fixtures/results/semantic_contract_v0_3_load_reference_1.json",
-              "fixtures/results/semantic_contract_v0_3_load_reference_source_1.json",
-              "fixtures/results/semantic_contract_v0_3_physics_1.json",
-              "fixtures/results/semantic_contract_v0_3_physics_retained_1.json",
-              "fixtures/results/semantic_contract_v0_3_physics_source_1.json",
-              "fixtures/results/semantic_contract_v0_3_pressure_1.json",
-              "fixtures/results/semantic_contract_v0_3_preview_physics_1.json",
-              "fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json"
+              "fixtures/results/preview_physics_unicode_ids_sparse.json"
             ]
           },
           {
@@ -1285,23 +1193,23 @@
         ]
       },
       "core/reporting/result_export/tests/load_reference_contract.rs": {
-        "sha256": "32b3d80612ea1798148ccab9a92507577b51187dbab121a99d9956a0fe668be2",
+        "sha256": "11f02d842f7099d0b55974a3f06a3b0e0f65c7c9bef2ddc45255b863669ffe13",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
         "inputs": [
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json",
+            "anchor": "../../../../fixtures/product_preview/pressure/load_reference/connected-sparse_interactive.raw.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure/load_reference/connected-sparse_interactive.raw.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference/pressure-sparse_interactive.raw.json",
+            "anchor": "../../../../fixtures/product_preview/pressure/load_reference/pressure-sparse_interactive.raw.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference/pressure-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure/load_reference/pressure-sparse_interactive.raw.json"
             ]
           },
           {
@@ -1312,17 +1220,17 @@
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference/connected-dense_scrutiny.raw.json",
+            "anchor": "../../../../fixtures/product_preview/pressure/load_reference/connected-dense_scrutiny.raw.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference/connected-dense_scrutiny.raw.json"
+              "fixtures/product_preview/pressure/load_reference/connected-dense_scrutiny.raw.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference/pressure-dense_scrutiny.raw.json",
+            "anchor": "../../../../fixtures/product_preview/pressure/load_reference/pressure-dense_scrutiny.raw.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference/pressure-dense_scrutiny.raw.json"
+              "fixtures/product_preview/pressure/load_reference/pressure-dense_scrutiny.raw.json"
             ]
           },
           {
@@ -1333,31 +1241,31 @@
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference/connected.request.json",
+            "anchor": "../../../../fixtures/product_preview/pressure/load_reference/connected.request.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference/connected.request.json"
+              "fixtures/product_preview/pressure/load_reference/connected.request.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference/pressure.request.json",
+            "anchor": "../../../../fixtures/product_preview/pressure/load_reference/pressure.request.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference/pressure.request.json"
+              "fixtures/product_preview/pressure/load_reference/pressure.request.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/results/semantic_contract_v0_3_load_reference_1.json",
+            "anchor": "../../../../fixtures/results/semantic_contract_v0_3_pressure_1.json",
             "base": "source",
             "files": [
-              "fixtures/results/semantic_contract_v0_3_load_reference_1.json"
+              "fixtures/results/semantic_contract_v0_3_pressure_1.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/results/physics_connected_mechanics_sparse.json",
+            "anchor": "../../../../fixtures/results/pressure_connected_mechanics_sparse.json",
             "base": "source",
             "files": [
-              "fixtures/results/physics_connected_mechanics_sparse.json"
+              "fixtures/results/pressure_connected_mechanics_sparse.json"
             ]
           },
           {
@@ -1368,108 +1276,98 @@
             ]
           },
           {
-            "anchor": "../../../fixtures/results/load_reference_{}.document.json",
+            "anchor": "../../../fixtures/results/pressure_load_state_{}.document.json",
             "base": "manifest",
             "files": [
-              "fixtures/results/load_reference_connected_dense.document.json",
-              "fixtures/results/load_reference_connected_sparse.document.json",
-              "fixtures/results/load_reference_pressure_dense.document.json",
-              "fixtures/results/load_reference_pressure_sparse.document.json",
-              "fixtures/results/load_reference_source_eigen_motion_dense.document.json",
-              "fixtures/results/load_reference_source_eigen_motion_sparse.document.json",
-              "fixtures/results/load_reference_source_fields_dense.document.json",
-              "fixtures/results/load_reference_source_fields_sparse.document.json",
-              "fixtures/results/load_reference_source_mixed_dense.document.json",
-              "fixtures/results/load_reference_source_mixed_sparse.document.json",
-              "fixtures/results/load_reference_source_n05_dense.document.json",
-              "fixtures/results/load_reference_source_n05_sparse.document.json",
-              "fixtures/results/load_reference_source_n06_dense.document.json",
-              "fixtures/results/load_reference_source_n06_sparse.document.json"
+              "fixtures/results/pressure_load_state_connected_dense.document.json",
+              "fixtures/results/pressure_load_state_connected_sparse.document.json",
+              "fixtures/results/pressure_load_state_pressure_dense.document.json",
+              "fixtures/results/pressure_load_state_pressure_sparse.document.json"
             ]
           }
         ]
       },
       "core/reporting/result_export/tests/load_reference_source_contract.rs": {
-        "sha256": "5f1a9a50f322e0bdd8223b258446f58e141313d983b05938d36ff49dff89098d",
+        "sha256": "214b496fb9f1d5d211fb495fd96ae81403d27ff615b1dd9db0eb57a4df663844",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
         "inputs": [
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference_source/eigen_motion-sparse_interactive.raw.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-sparse_interactive.raw.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference_source/eigen_motion-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-sparse_interactive.raw.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference_source/eigen_motion-dense_scrutiny.raw.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-dense_scrutiny.raw.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference_source/eigen_motion-dense_scrutiny.raw.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-dense_scrutiny.raw.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference_source/fields-sparse_interactive.raw.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/load_reference_source/fields-sparse_interactive.raw.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference_source/fields-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/fields-sparse_interactive.raw.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference_source/mixed-sparse_interactive.raw.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/load_reference_source/mixed-sparse_interactive.raw.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference_source/mixed-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed-sparse_interactive.raw.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference_source/n05-sparse_interactive.raw.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/load_reference_source/n05-sparse_interactive.raw.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference_source/n05-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-sparse_interactive.raw.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference_source/n06-sparse_interactive.raw.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/load_reference_source/n06-sparse_interactive.raw.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference_source/n06-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/n06-sparse_interactive.raw.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json",
+            "anchor": "../../../../fixtures/product_preview/pressure/load_reference/connected-sparse_interactive.raw.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure/load_reference/connected-sparse_interactive.raw.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference_source/fields-dense_scrutiny.raw.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/load_reference_source/fields-dense_scrutiny.raw.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference_source/fields-dense_scrutiny.raw.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/fields-dense_scrutiny.raw.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference_source/mixed-dense_scrutiny.raw.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/load_reference_source/mixed-dense_scrutiny.raw.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference_source/mixed-dense_scrutiny.raw.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed-dense_scrutiny.raw.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference_source/n05-dense_scrutiny.raw.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/load_reference_source/n05-dense_scrutiny.raw.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference_source/n05-dense_scrutiny.raw.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-dense_scrutiny.raw.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference_source/n06-dense_scrutiny.raw.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/load_reference_source/n06-dense_scrutiny.raw.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference_source/n06-dense_scrutiny.raw.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/n06-dense_scrutiny.raw.json"
             ]
           },
           {
@@ -1480,80 +1378,73 @@
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference_source/eigen_motion.request.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/load_reference_source/eigen_motion.request.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference_source/eigen_motion.request.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion.request.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/results/semantic_contract_v0_3_load_reference_source_1.json",
+            "anchor": "../../../../fixtures/results/semantic_contract_v0_3_pressure_source_1.json",
             "base": "source",
             "files": [
-              "fixtures/results/semantic_contract_v0_3_load_reference_source_1.json"
+              "fixtures/results/semantic_contract_v0_3_pressure_source_1.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference_source/fields.request.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/load_reference_source/fields.request.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference_source/fields.request.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/fields.request.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference_source/mixed.request.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/load_reference_source/mixed.request.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference_source/mixed.request.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed.request.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference_source/n05.request.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/load_reference_source/n05.request.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference_source/n05.request.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/n05.request.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference_source/n06.request.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/load_reference_source/n06.request.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference_source/n06.request.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/n06.request.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/load_reference/connected.request.json",
+            "anchor": "../../../../fixtures/product_preview/pressure/load_reference/connected.request.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/load_reference/connected.request.json"
+              "fixtures/product_preview/pressure/load_reference/connected.request.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/results/semantic_contract_v0_3_load_reference_1.json",
+            "anchor": "../../../../fixtures/results/semantic_contract_v0_3_pressure_1.json",
             "base": "source",
             "files": [
-              "fixtures/results/semantic_contract_v0_3_load_reference_1.json"
+              "fixtures/results/semantic_contract_v0_3_pressure_1.json"
             ]
           },
           {
-            "anchor": "../../../../fixtures/results/semantic_contract_v0_3_physics_source_1.json",
+            "anchor": "../../../../fixtures/product_preview/pressure_source/physics_source/n05.request.json",
             "base": "source",
             "files": [
-              "fixtures/results/semantic_contract_v0_3_physics_source_1.json"
-            ]
-          },
-          {
-            "anchor": "../../../../fixtures/product_preview/physics_source/n05.request.json",
-            "base": "source",
-            "files": [
-              "fixtures/product_preview/physics_source/n05.request.json"
+              "fixtures/product_preview/pressure_source/physics_source/n05.request.json"
             ]
           },
           {
@@ -1585,25 +1476,25 @@
             ]
           },
           {
-            "anchor": "../../../fixtures/results/load_reference_source_{stem}_{mode}.document.json",
+            "anchor": "../../../fixtures/results/pressure_source_load_state_{stem}_{mode}.document.json",
             "base": "manifest",
             "files": [
-              "fixtures/results/load_reference_source_eigen_motion_dense.document.json",
-              "fixtures/results/load_reference_source_eigen_motion_sparse.document.json",
-              "fixtures/results/load_reference_source_fields_dense.document.json",
-              "fixtures/results/load_reference_source_fields_sparse.document.json",
-              "fixtures/results/load_reference_source_mixed_dense.document.json",
-              "fixtures/results/load_reference_source_mixed_sparse.document.json",
-              "fixtures/results/load_reference_source_n05_dense.document.json",
-              "fixtures/results/load_reference_source_n05_sparse.document.json",
-              "fixtures/results/load_reference_source_n06_dense.document.json",
-              "fixtures/results/load_reference_source_n06_sparse.document.json"
+              "fixtures/results/pressure_source_load_state_eigen_motion_dense.document.json",
+              "fixtures/results/pressure_source_load_state_eigen_motion_sparse.document.json",
+              "fixtures/results/pressure_source_load_state_fields_dense.document.json",
+              "fixtures/results/pressure_source_load_state_fields_sparse.document.json",
+              "fixtures/results/pressure_source_load_state_mixed_dense.document.json",
+              "fixtures/results/pressure_source_load_state_mixed_sparse.document.json",
+              "fixtures/results/pressure_source_load_state_n05_dense.document.json",
+              "fixtures/results/pressure_source_load_state_n05_sparse.document.json",
+              "fixtures/results/pressure_source_load_state_n06_dense.document.json",
+              "fixtures/results/pressure_source_load_state_n06_sparse.document.json"
             ]
           }
         ]
       },
       "core/reporting/result_export/tests/number_form.rs": {
-        "sha256": "d2250c477e4de33e59228724d65a105446939bfff56b56257a6e90adb1f336e1",
+        "sha256": "27379ce163276d7b1e354dcdc8fc79569d2bb71c0f6ed53bec5154309e8f5556",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -1623,174 +1514,85 @@
             ]
           },
           {
-            "anchor": "fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json",
+            "anchor": "fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json"
             ]
           },
           {
-            "anchor": "fixtures/product_preview/physics_source/n05.request.json",
+            "anchor": "fixtures/product_preview/pressure_source/physics_source/n05.request.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/physics_source/n05.request.json"
+              "fixtures/product_preview/pressure_source/physics_source/n05.request.json"
             ]
           },
           {
-            "anchor": "fixtures/results/physics_connected_mechanics_sparse.json",
+            "anchor": "fixtures/results/pressure_connected_mechanics_sparse.json",
             "base": "project",
             "files": [
-              "fixtures/results/physics_connected_mechanics_sparse.json"
+              "fixtures/results/pressure_connected_mechanics_sparse.json"
             ]
           }
         ]
       },
       "core/reporting/result_export/tests/physics_source_contract.rs": {
-        "sha256": "aebbbecdfe8f3189f167be82a55cf2cce8d19a8caaee04bd00e851341a7dfbfc",
+        "sha256": "74ae0150c91eb2763e417d94700429728ba3749061e3386568695bbbbf6bc9f0",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
         "inputs": [
           {
-            "anchor": "fixtures/results/physics_connected_mechanics_sparse.json",
+            "anchor": "fixtures/results/pressure_connected_mechanics_sparse.json",
             "base": "project",
             "files": [
-              "fixtures/results/physics_connected_mechanics_sparse.json"
+              "fixtures/results/pressure_connected_mechanics_sparse.json"
             ]
           },
           {
-            "anchor": "fixtures/product_preview/physics_source/{name}-{mode}.raw.json",
+            "anchor": "fixtures/product_preview/pressure_source/physics_source/{name}-{mode}.raw.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/physics_source/fields-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/fields-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/mixed-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/mixed-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/mixed_units-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/mixed_units-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n05-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n05_unicode-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05_unicode-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n05_units-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05_units-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n06-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n06-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure_source/physics_source/fields-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/fields-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed_units-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed_units-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_unicode-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_unicode-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_units-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_units-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06-sparse_interactive.raw.json"
             ]
           },
           {
-            "anchor": "fixtures/product_preview/physics_source/{name}.request.json",
+            "anchor": "fixtures/product_preview/pressure_source/physics_source/{name}.request.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/physics_source/fields.request.json",
-              "fixtures/product_preview/physics_source/mixed.request.json",
-              "fixtures/product_preview/physics_source/mixed_units.request.json",
-              "fixtures/product_preview/physics_source/n05.request.json",
-              "fixtures/product_preview/physics_source/n05_unicode.request.json",
-              "fixtures/product_preview/physics_source/n05_units.request.json",
-              "fixtures/product_preview/physics_source/n06.request.json"
+              "fixtures/product_preview/pressure_source/physics_source/fields.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed_units.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_unicode.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_units.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06.request.json"
             ]
           },
           {
-            "anchor": "fixtures/results/{name}.json",
+            "anchor": "fixtures/product_preview/pressure_source/load_reference_source/n05-sparse_interactive.raw.json",
             "base": "project",
             "files": [
-              "fixtures/results/base_reader_outcomes.json",
-              "fixtures/results/invented/tp_phys_015_canonical_solve_result_envelope.json",
-              "fixtures/results/invented/tp_phys_015_section_property_stress_evidence_envelope.json",
-              "fixtures/results/loadReferenceReaderCases.cases.json",
-              "fixtures/results/loadReferenceSourceLedger.cases.json",
-              "fixtures/results/load_reference_connected_dense.analysis_run.json",
-              "fixtures/results/load_reference_connected_dense.document.json",
-              "fixtures/results/load_reference_connected_dense.stress_neutral.json",
-              "fixtures/results/load_reference_connected_sparse.analysis_run.json",
-              "fixtures/results/load_reference_connected_sparse.document.json",
-              "fixtures/results/load_reference_connected_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_pressure_dense.analysis_run.json",
-              "fixtures/results/load_reference_pressure_dense.document.json",
-              "fixtures/results/load_reference_pressure_dense.stress_neutral.json",
-              "fixtures/results/load_reference_pressure_sparse.analysis_run.json",
-              "fixtures/results/load_reference_pressure_sparse.document.json",
-              "fixtures/results/load_reference_pressure_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_eigen_motion_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_eigen_motion_dense.document.json",
-              "fixtures/results/load_reference_source_eigen_motion_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_eigen_motion_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_eigen_motion_sparse.document.json",
-              "fixtures/results/load_reference_source_eigen_motion_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_fields_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_fields_dense.document.json",
-              "fixtures/results/load_reference_source_fields_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_fields_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_fields_sparse.document.json",
-              "fixtures/results/load_reference_source_fields_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_mixed_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_mixed_dense.document.json",
-              "fixtures/results/load_reference_source_mixed_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_mixed_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_mixed_sparse.document.json",
-              "fixtures/results/load_reference_source_mixed_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_n05_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_n05_dense.document.json",
-              "fixtures/results/load_reference_source_n05_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_n05_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_n05_sparse.document.json",
-              "fixtures/results/load_reference_source_n05_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_n06_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_n06_dense.document.json",
-              "fixtures/results/load_reference_source_n06_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_n06_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_n06_sparse.document.json",
-              "fixtures/results/load_reference_source_n06_sparse.stress_neutral.json",
-              "fixtures/results/physics_connected_mechanics_dense.json",
-              "fixtures/results/physics_connected_ui_mechanics_dense.json",
-              "fixtures/results/physics_connected_ui_mechanics_sparse.json",
-              "fixtures/results/physics_thermal_ui_mechanics_dense.json",
-              "fixtures/results/physics_thermal_ui_mechanics_sparse.json",
-              "fixtures/results/pressure_v3_connector_reader_corpus.json",
-              "fixtures/results/pressure_v3_straight_reader_corpus.json",
-              "fixtures/results/preview_physics_connected_dense.json",
-              "fixtures/results/preview_physics_connected_sparse.json",
-              "fixtures/results/preview_physics_invented_dense.json",
-              "fixtures/results/preview_physics_invented_sparse.json",
-              "fixtures/results/preview_physics_tamper_vector.json",
-              "fixtures/results/preview_physics_unicode_ids_sparse.json",
-              "fixtures/results/retained_precision_b2_parity_probes.json",
-              "fixtures/results/retained_precision_carrier_cases.json",
-              "fixtures/results/retained_precision_cases.json",
-              "fixtures/results/retained_precision_combination_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_combination_successor_sparse_interactive.json",
-              "fixtures/results/retained_precision_exact_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_exact_successor_derivative_dense_scrutiny.json",
-              "fixtures/results/retained_precision_exact_successor_derivative_sparse_interactive.json",
-              "fixtures/results/retained_precision_exact_successor_sparse_interactive.json",
-              "fixtures/results/retained_precision_l0_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_l0_successor_sparse_interactive.json",
-              "fixtures/results/retained_precision_milestone_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_milestone_successor_sparse_interactive.json",
-              "fixtures/results/retained_precision_prepared_combination_v1.json",
-              "fixtures/results/retained_precision_prepared_exact_v1.json",
-              "fixtures/results/retained_precision_prepared_ordinary_v1.json",
-              "fixtures/results/retained_precision_reader_outcomes.json",
-              "fixtures/results/retained_precision_rv120_b3_inputs.json",
-              "fixtures/results/retained_precision_successor_derivative_dense_scrutiny.json",
-              "fixtures/results/retained_precision_successor_derivative_sparse_interactive.json",
-              "fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_w_c2_successor_sparse_interactive.json",
-              "fixtures/results/semantic_contract_v0_3_load_reference_1.json",
-              "fixtures/results/semantic_contract_v0_3_load_reference_source_1.json",
-              "fixtures/results/semantic_contract_v0_3_physics_1.json",
-              "fixtures/results/semantic_contract_v0_3_physics_retained_1.json",
-              "fixtures/results/semantic_contract_v0_3_physics_source_1.json",
-              "fixtures/results/semantic_contract_v0_3_pressure_1.json",
-              "fixtures/results/semantic_contract_v0_3_preview_physics_1.json",
-              "fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-sparse_interactive.raw.json"
             ]
           }
         ]
       },
       "core/reporting/result_export/tests/preview_physics_contract.rs": {
-        "sha256": "e2274363fbf631f483e1c576ecca7f27fd4f9129eefb51b5575fa9e70887d138",
+        "sha256": "e31b787344c05bb3880bf9a4e8c219f2a3a6eee5c5e7f3080866d69e5d77fb19",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -1813,101 +1615,25 @@
             "anchor": "../../../fixtures/results",
             "base": "manifest",
             "files": [
-              "fixtures/results/base_reader_outcomes.json",
-              "fixtures/results/invented/tp_phys_015_section_property_stress_evidence_envelope.json",
-              "fixtures/results/loadReferenceReaderCases.cases.json",
-              "fixtures/results/loadReferenceSourceLedger.cases.json",
-              "fixtures/results/load_reference_connected_dense.analysis_run.json",
-              "fixtures/results/load_reference_connected_dense.document.json",
-              "fixtures/results/load_reference_connected_dense.stress_neutral.json",
-              "fixtures/results/load_reference_connected_sparse.analysis_run.json",
-              "fixtures/results/load_reference_connected_sparse.document.json",
-              "fixtures/results/load_reference_connected_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_pressure_dense.analysis_run.json",
-              "fixtures/results/load_reference_pressure_dense.document.json",
-              "fixtures/results/load_reference_pressure_dense.stress_neutral.json",
-              "fixtures/results/load_reference_pressure_sparse.analysis_run.json",
-              "fixtures/results/load_reference_pressure_sparse.document.json",
-              "fixtures/results/load_reference_pressure_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_eigen_motion_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_eigen_motion_dense.document.json",
-              "fixtures/results/load_reference_source_eigen_motion_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_eigen_motion_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_eigen_motion_sparse.document.json",
-              "fixtures/results/load_reference_source_eigen_motion_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_fields_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_fields_dense.document.json",
-              "fixtures/results/load_reference_source_fields_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_fields_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_fields_sparse.document.json",
-              "fixtures/results/load_reference_source_fields_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_mixed_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_mixed_dense.document.json",
-              "fixtures/results/load_reference_source_mixed_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_mixed_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_mixed_sparse.document.json",
-              "fixtures/results/load_reference_source_mixed_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_n05_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_n05_dense.document.json",
-              "fixtures/results/load_reference_source_n05_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_n05_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_n05_sparse.document.json",
-              "fixtures/results/load_reference_source_n05_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_n06_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_n06_dense.document.json",
-              "fixtures/results/load_reference_source_n06_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_n06_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_n06_sparse.document.json",
-              "fixtures/results/load_reference_source_n06_sparse.stress_neutral.json",
-              "fixtures/results/physics_connected_mechanics_dense.json",
-              "fixtures/results/physics_connected_mechanics_sparse.json",
-              "fixtures/results/physics_connected_ui_mechanics_dense.json",
-              "fixtures/results/physics_connected_ui_mechanics_sparse.json",
-              "fixtures/results/physics_thermal_ui_mechanics_dense.json",
-              "fixtures/results/physics_thermal_ui_mechanics_sparse.json",
-              "fixtures/results/pressure_v3_connector_reader_corpus.json",
-              "fixtures/results/pressure_v3_straight_reader_corpus.json",
               "fixtures/results/preview_physics_connected_dense.json",
               "fixtures/results/preview_physics_connected_sparse.json",
               "fixtures/results/preview_physics_invented_dense.json",
               "fixtures/results/preview_physics_invented_sparse.json",
-              "fixtures/results/preview_physics_unicode_ids_sparse.json",
-              "fixtures/results/retained_precision_b2_parity_probes.json",
-              "fixtures/results/retained_precision_carrier_cases.json",
-              "fixtures/results/retained_precision_cases.json",
-              "fixtures/results/retained_precision_combination_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_combination_successor_sparse_interactive.json",
-              "fixtures/results/retained_precision_exact_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_exact_successor_derivative_dense_scrutiny.json",
-              "fixtures/results/retained_precision_exact_successor_derivative_sparse_interactive.json",
-              "fixtures/results/retained_precision_exact_successor_sparse_interactive.json",
-              "fixtures/results/retained_precision_l0_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_l0_successor_sparse_interactive.json",
-              "fixtures/results/retained_precision_milestone_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_milestone_successor_sparse_interactive.json",
-              "fixtures/results/retained_precision_prepared_combination_v1.json",
-              "fixtures/results/retained_precision_prepared_exact_v1.json",
-              "fixtures/results/retained_precision_prepared_ordinary_v1.json",
-              "fixtures/results/retained_precision_reader_outcomes.json",
-              "fixtures/results/retained_precision_rv120_b3_inputs.json",
-              "fixtures/results/retained_precision_successor_derivative_dense_scrutiny.json",
-              "fixtures/results/retained_precision_successor_derivative_sparse_interactive.json",
-              "fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_w_c2_successor_sparse_interactive.json",
-              "fixtures/results/semantic_contract_v0_3_load_reference_1.json",
-              "fixtures/results/semantic_contract_v0_3_load_reference_source_1.json",
-              "fixtures/results/semantic_contract_v0_3_physics_1.json",
-              "fixtures/results/semantic_contract_v0_3_physics_retained_1.json",
-              "fixtures/results/semantic_contract_v0_3_physics_source_1.json",
-              "fixtures/results/semantic_contract_v0_3_pressure_1.json",
-              "fixtures/results/semantic_contract_v0_3_preview_physics_1.json",
-              "fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json"
+              "fixtures/results/preview_physics_unicode_ids_sparse.json"
             ]
+          },
+          {
+            "anchor": "../../..",
+            "base": "manifest",
+            "files": [
+              "fixtures/product_preview/invented_mechanics_result_preview_physics_1_sparse.json"
+            ],
+            "audit": "a2_shared_tamper_vector reads each base the tamper vector names from the project root; these are the bases outside fixtures/results."
           }
         ]
       },
       "core/reporting/result_export/tests/reader_verdict.rs": {
-        "sha256": "40e63f728542f10a3248a831c468511bf32bd23aa4032fa751b19245983264d7",
+        "sha256": "99a6ee410e0a943accdad2d67d11c40b31583b4ee1605d019dd30063a1ed3ad5",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -1934,10 +1660,10 @@
             ]
           },
           {
-            "anchor": "fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json",
+            "anchor": "fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json"
             ]
           },
           {
@@ -1951,59 +1677,8 @@
             "anchor": "/../../../fixtures/results/",
             "base": "manifest",
             "files": [
-              "fixtures/results/base_reader_outcomes.json",
-              "fixtures/results/invented/tp_phys_015_canonical_solve_result_envelope.json",
-              "fixtures/results/invented/tp_phys_015_section_property_stress_evidence_envelope.json",
-              "fixtures/results/loadReferenceReaderCases.cases.json",
-              "fixtures/results/loadReferenceSourceLedger.cases.json",
-              "fixtures/results/load_reference_connected_dense.analysis_run.json",
-              "fixtures/results/load_reference_connected_dense.document.json",
-              "fixtures/results/load_reference_connected_dense.stress_neutral.json",
-              "fixtures/results/load_reference_connected_sparse.analysis_run.json",
-              "fixtures/results/load_reference_connected_sparse.document.json",
-              "fixtures/results/load_reference_connected_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_pressure_dense.analysis_run.json",
-              "fixtures/results/load_reference_pressure_dense.document.json",
-              "fixtures/results/load_reference_pressure_dense.stress_neutral.json",
-              "fixtures/results/load_reference_pressure_sparse.analysis_run.json",
-              "fixtures/results/load_reference_pressure_sparse.document.json",
-              "fixtures/results/load_reference_pressure_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_eigen_motion_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_eigen_motion_dense.document.json",
-              "fixtures/results/load_reference_source_eigen_motion_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_eigen_motion_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_eigen_motion_sparse.document.json",
-              "fixtures/results/load_reference_source_eigen_motion_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_fields_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_fields_dense.document.json",
-              "fixtures/results/load_reference_source_fields_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_fields_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_fields_sparse.document.json",
-              "fixtures/results/load_reference_source_fields_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_mixed_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_mixed_dense.document.json",
-              "fixtures/results/load_reference_source_mixed_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_mixed_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_mixed_sparse.document.json",
-              "fixtures/results/load_reference_source_mixed_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_n05_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_n05_dense.document.json",
-              "fixtures/results/load_reference_source_n05_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_n05_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_n05_sparse.document.json",
-              "fixtures/results/load_reference_source_n05_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_n06_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_n06_dense.document.json",
-              "fixtures/results/load_reference_source_n06_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_n06_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_n06_sparse.document.json",
-              "fixtures/results/load_reference_source_n06_sparse.stress_neutral.json",
-              "fixtures/results/physics_connected_mechanics_dense.json",
-              "fixtures/results/physics_connected_mechanics_sparse.json",
-              "fixtures/results/physics_connected_ui_mechanics_dense.json",
-              "fixtures/results/physics_connected_ui_mechanics_sparse.json",
-              "fixtures/results/physics_thermal_ui_mechanics_dense.json",
-              "fixtures/results/physics_thermal_ui_mechanics_sparse.json",
+              "fixtures/results/pressure_connected_mechanics_dense.json",
+              "fixtures/results/pressure_connected_mechanics_sparse.json",
               "fixtures/results/pressure_v3_arc_reader_corpus.json",
               "fixtures/results/pressure_v3_connector_reader_corpus.json",
               "fixtures/results/pressure_v3_straight_reader_corpus.json",
@@ -2011,36 +1686,9 @@
               "fixtures/results/preview_physics_connected_sparse.json",
               "fixtures/results/preview_physics_invented_dense.json",
               "fixtures/results/preview_physics_invented_sparse.json",
-              "fixtures/results/preview_physics_tamper_vector.json",
-              "fixtures/results/preview_physics_unicode_ids_sparse.json",
-              "fixtures/results/retained_precision_b2_parity_probes.json",
-              "fixtures/results/retained_precision_carrier_cases.json",
-              "fixtures/results/retained_precision_cases.json",
-              "fixtures/results/retained_precision_combination_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_combination_successor_sparse_interactive.json",
-              "fixtures/results/retained_precision_exact_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_exact_successor_derivative_dense_scrutiny.json",
-              "fixtures/results/retained_precision_exact_successor_derivative_sparse_interactive.json",
-              "fixtures/results/retained_precision_exact_successor_sparse_interactive.json",
-              "fixtures/results/retained_precision_l0_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_l0_successor_sparse_interactive.json",
-              "fixtures/results/retained_precision_milestone_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_milestone_successor_sparse_interactive.json",
-              "fixtures/results/retained_precision_prepared_combination_v1.json",
-              "fixtures/results/retained_precision_prepared_exact_v1.json",
-              "fixtures/results/retained_precision_prepared_ordinary_v1.json",
-              "fixtures/results/retained_precision_reader_outcomes.json",
-              "fixtures/results/retained_precision_rv120_b3_inputs.json",
-              "fixtures/results/retained_precision_successor_derivative_dense_scrutiny.json",
-              "fixtures/results/retained_precision_successor_derivative_sparse_interactive.json",
-              "fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_w_c2_successor_sparse_interactive.json",
-              "fixtures/results/semantic_contract_v0_3_load_reference_1.json",
-              "fixtures/results/semantic_contract_v0_3_load_reference_source_1.json",
-              "fixtures/results/semantic_contract_v0_3_physics_1.json",
               "fixtures/results/semantic_contract_v0_3_physics_retained_1.json",
-              "fixtures/results/semantic_contract_v0_3_physics_source_1.json",
               "fixtures/results/semantic_contract_v0_3_pressure_1.json",
+              "fixtures/results/semantic_contract_v0_3_pressure_source_1.json",
               "fixtures/results/semantic_contract_v0_3_preview_physics_1.json",
               "fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json"
             ]
@@ -2054,87 +1702,89 @@
             ]
           },
           {
-            "anchor": "fixtures/product_preview/load_reference_source/{name}.request.json",
+            "anchor": "fixtures/product_preview/pressure_source/load_reference_source/{stem}.request.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/load_reference_source/eigen_motion.request.json",
-              "fixtures/product_preview/load_reference_source/fields.request.json",
-              "fixtures/product_preview/load_reference_source/mixed.request.json",
-              "fixtures/product_preview/load_reference_source/n05.request.json",
-              "fixtures/product_preview/load_reference_source/n06.request.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06.request.json"
             ]
           },
           {
             "anchor": "fixtures/product_preview/{folder}/n05-sparse_interactive.raw.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json"
             ]
           },
           {
-            "anchor": "fixtures/product_preview/load_reference_source/{name}.raw.json",
+            "anchor": "fixtures/product_preview/pressure_source/load_reference_source/{name}.raw.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/load_reference_source/eigen_motion-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/eigen_motion-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/fields-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/fields-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/mixed-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/mixed-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/n05-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/n05-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/n06-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/n06-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06-sparse_interactive.raw.json"
             ]
           },
           {
-            "anchor": "fixtures/product_preview/physics_source/{name}-{mode}.raw.json",
+            "anchor": "fixtures/product_preview/pressure_source/physics_source/{name}-{mode}.raw.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/physics_source/fields-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/fields-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/mixed-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/mixed-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/mixed_units-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/mixed_units-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n05-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05_unicode-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05_unicode-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n05_units-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05_units-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n06-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n06-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure_source/physics_source/fields-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/fields-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed_units-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed_units-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_unicode-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_unicode-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_units-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_units-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06-sparse_interactive.raw.json"
             ]
           },
           {
-            "anchor": "fixtures/product_preview/physics_source/{name}.request.json",
+            "anchor": "fixtures/product_preview/pressure_source/physics_source/{name}.request.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/physics_source/fields.request.json",
-              "fixtures/product_preview/physics_source/mixed.request.json",
-              "fixtures/product_preview/physics_source/mixed_units.request.json",
-              "fixtures/product_preview/physics_source/n05.request.json",
-              "fixtures/product_preview/physics_source/n05_unicode.request.json",
-              "fixtures/product_preview/physics_source/n05_units.request.json",
-              "fixtures/product_preview/physics_source/n06.request.json"
+              "fixtures/product_preview/pressure_source/physics_source/fields.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed_units.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_unicode.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05_units.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06.request.json"
             ]
           },
           {
-            "anchor": "fixtures/product_preview/load_reference/{name}.raw.json",
+            "anchor": "fixtures/product_preview/pressure/load_reference/{name}.raw.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/load_reference/connected-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference/pressure-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference/pressure-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure/load_reference/connected-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure/load_reference/connected-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure/load_reference/pressure-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure/load_reference/pressure-sparse_interactive.raw.json"
             ]
           },
           {
-            "anchor": "fixtures/product_preview/load_reference/{}.request.json",
+            "anchor": "fixtures/product_preview/pressure/load_reference/{}.request.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/load_reference/connected.request.json",
-              "fixtures/product_preview/load_reference/pressure.request.json"
+              "fixtures/product_preview/pressure/load_reference/connected.request.json",
+              "fixtures/product_preview/pressure/load_reference/pressure.request.json"
             ]
           },
           {
@@ -2302,6 +1952,7 @@
               "core/loads/stress_recovery/src/lib.rs",
               "core/loads/user_loads/src/lib.rs",
               "core/model_operations/operation_applier/src/atomic_batch.rs",
+              "core/model_operations/operation_applier/src/b7b_transport_tests.rs",
               "core/model_operations/operation_applier/src/bend_authoring.rs",
               "core/model_operations/operation_applier/src/boundary_association.rs",
               "core/model_operations/operation_applier/src/display_units.rs",
@@ -2320,6 +1971,7 @@
               "core/product_physics/examples/preview_physics_capture.rs",
               "core/product_physics/examples/preview_result.rs",
               "core/product_physics/src/annulus_geometry.rs",
+              "core/product_physics/src/b7b_admission_tests.rs",
               "core/product_physics/src/bend_pressure.rs",
               "core/product_physics/src/build_identity.rs",
               "core/product_physics/src/case_state/input.rs",
@@ -2556,7 +2208,7 @@
         ]
       },
       "core/reporting/result_export/tests/retained_precision_contract.rs": {
-        "sha256": "2f06c36e556c05af2df066bc97c417112cd0f960610d726fd992a0985cd05a03",
+        "sha256": "594f1a03f11d793a19362b60240031d6fe4816a49ae1e4e18ad46fb41a5492ae",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -2625,10 +2277,10 @@
             ]
           },
           {
-            "anchor": "../../../../fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json",
+            "anchor": "../../../../fixtures/results/pressure_connected_mechanics_sparse.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json"
+              "fixtures/results/pressure_connected_mechanics_sparse.json"
             ]
           },
           {
@@ -2711,7 +2363,7 @@
         ]
       },
       "core/reporting/result_export/tests/retained_precision_derivative_golden.rs": {
-        "sha256": "a4a82ec23258487dd3fe1b20569b08ffa8e987ad5df6efc4b8cd6332ae311dac",
+        "sha256": "13dbb80382d6fb40add516ba7132887fb9766612e2882680d3fed22bcc85cb15",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -2748,128 +2400,29 @@
             "anchor": "../../../fixtures/results",
             "base": "manifest",
             "files": [
-              "fixtures/results/base_reader_outcomes.json",
-              "fixtures/results/invented/tp_phys_015_canonical_solve_result_envelope.json",
-              "fixtures/results/invented/tp_phys_015_section_property_stress_evidence_envelope.json",
-              "fixtures/results/loadReferenceReaderCases.cases.json",
-              "fixtures/results/loadReferenceSourceLedger.cases.json",
-              "fixtures/results/load_reference_connected_dense.analysis_run.json",
-              "fixtures/results/load_reference_connected_dense.document.json",
-              "fixtures/results/load_reference_connected_dense.stress_neutral.json",
-              "fixtures/results/load_reference_connected_sparse.analysis_run.json",
-              "fixtures/results/load_reference_connected_sparse.document.json",
-              "fixtures/results/load_reference_connected_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_pressure_dense.analysis_run.json",
-              "fixtures/results/load_reference_pressure_dense.document.json",
-              "fixtures/results/load_reference_pressure_dense.stress_neutral.json",
-              "fixtures/results/load_reference_pressure_sparse.analysis_run.json",
-              "fixtures/results/load_reference_pressure_sparse.document.json",
-              "fixtures/results/load_reference_pressure_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_eigen_motion_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_eigen_motion_dense.document.json",
-              "fixtures/results/load_reference_source_eigen_motion_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_eigen_motion_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_eigen_motion_sparse.document.json",
-              "fixtures/results/load_reference_source_eigen_motion_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_fields_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_fields_dense.document.json",
-              "fixtures/results/load_reference_source_fields_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_fields_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_fields_sparse.document.json",
-              "fixtures/results/load_reference_source_fields_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_mixed_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_mixed_dense.document.json",
-              "fixtures/results/load_reference_source_mixed_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_mixed_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_mixed_sparse.document.json",
-              "fixtures/results/load_reference_source_mixed_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_n05_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_n05_dense.document.json",
-              "fixtures/results/load_reference_source_n05_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_n05_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_n05_sparse.document.json",
-              "fixtures/results/load_reference_source_n05_sparse.stress_neutral.json",
-              "fixtures/results/load_reference_source_n06_dense.analysis_run.json",
-              "fixtures/results/load_reference_source_n06_dense.document.json",
-              "fixtures/results/load_reference_source_n06_dense.stress_neutral.json",
-              "fixtures/results/load_reference_source_n06_sparse.analysis_run.json",
-              "fixtures/results/load_reference_source_n06_sparse.document.json",
-              "fixtures/results/load_reference_source_n06_sparse.stress_neutral.json",
-              "fixtures/results/physics_connected_mechanics_dense.json",
-              "fixtures/results/physics_connected_mechanics_sparse.json",
-              "fixtures/results/physics_connected_ui_mechanics_dense.json",
-              "fixtures/results/physics_connected_ui_mechanics_sparse.json",
-              "fixtures/results/physics_thermal_ui_mechanics_dense.json",
-              "fixtures/results/physics_thermal_ui_mechanics_sparse.json",
-              "fixtures/results/pressure_v3_connector_reader_corpus.json",
-              "fixtures/results/pressure_v3_straight_reader_corpus.json",
-              "fixtures/results/preview_physics_connected_dense.json",
-              "fixtures/results/preview_physics_connected_sparse.json",
-              "fixtures/results/preview_physics_invented_dense.json",
-              "fixtures/results/preview_physics_invented_sparse.json",
-              "fixtures/results/preview_physics_tamper_vector.json",
-              "fixtures/results/preview_physics_unicode_ids_sparse.json",
-              "fixtures/results/retained_precision_b2_parity_probes.json",
-              "fixtures/results/retained_precision_carrier_cases.json",
-              "fixtures/results/retained_precision_cases.json",
-              "fixtures/results/retained_precision_combination_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_combination_successor_sparse_interactive.json",
               "fixtures/results/retained_precision_exact_successor_derivative_dense_scrutiny.json",
               "fixtures/results/retained_precision_exact_successor_derivative_sparse_interactive.json",
-              "fixtures/results/retained_precision_l0_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_l0_successor_sparse_interactive.json",
-              "fixtures/results/retained_precision_prepared_combination_v1.json",
-              "fixtures/results/retained_precision_prepared_exact_v1.json",
-              "fixtures/results/retained_precision_prepared_ordinary_v1.json",
-              "fixtures/results/retained_precision_reader_outcomes.json",
-              "fixtures/results/retained_precision_rv120_b3_inputs.json",
               "fixtures/results/retained_precision_successor_derivative_dense_scrutiny.json",
-              "fixtures/results/retained_precision_successor_derivative_sparse_interactive.json",
-              "fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json",
-              "fixtures/results/retained_precision_w_c2_successor_sparse_interactive.json",
-              "fixtures/results/semantic_contract_v0_3_load_reference_1.json",
-              "fixtures/results/semantic_contract_v0_3_load_reference_source_1.json",
-              "fixtures/results/semantic_contract_v0_3_physics_1.json",
-              "fixtures/results/semantic_contract_v0_3_physics_retained_1.json",
-              "fixtures/results/semantic_contract_v0_3_physics_source_1.json",
-              "fixtures/results/semantic_contract_v0_3_pressure_1.json",
-              "fixtures/results/semantic_contract_v0_3_preview_physics_1.json",
-              "fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json"
+              "fixtures/results/retained_precision_successor_derivative_sparse_interactive.json"
             ]
           }
         ]
       },
       "core/reporting/result_export/tests/source_blocks.rs": {
-        "sha256": "9a89a130de17a9a12d000500ef8042b79226c08b97d6dd8e82e88bafad8a307e",
+        "sha256": "7b8b2ccc03cc07907971d2a414a73e9dc3ba9630c0f9bce555654be2e4db88f0",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
         "inputs": [
           {
-            "anchor": "../../../fixtures/product_preview/physics_source",
+            "anchor": "../../../fixtures/product_preview/pressure_source/physics_source",
             "base": "manifest",
             "files": [
-              "fixtures/product_preview/physics_source/fields-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/fields-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/fields.request.json",
-              "fixtures/product_preview/physics_source/mixed-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/mixed-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/mixed.request.json",
-              "fixtures/product_preview/physics_source/mixed_units-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/mixed_units-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/mixed_units.request.json",
-              "fixtures/product_preview/physics_source/n05-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n05.request.json",
-              "fixtures/product_preview/physics_source/n05_unicode-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05_unicode-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n05_unicode.request.json",
-              "fixtures/product_preview/physics_source/n05_units-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05_units-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n05_units.request.json",
-              "fixtures/product_preview/physics_source/n06-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n06-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n06.request.json"
+              "fixtures/product_preview/pressure_source/physics_source/mixed-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json"
             ]
           }
         ]
@@ -3154,7 +2707,7 @@
         ]
       },
       "core/runner/headless/src/bin/openpipestress-runner.rs": {
-        "sha256": "9dbf42d39876cf1d2261f5e1b66508aac7afedf5f0df38d5fd4ff52335aa3f11",
+        "sha256": "f76fd28781d83e7d7aad6fc0e28827401a5dcab825121deef1ccb3976fdabd3f",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
@@ -3174,10 +2727,10 @@
             ]
           },
           {
-            "anchor": "../../../../../fixtures/product_preview/physics_source/n05.request.json",
+            "anchor": "../../../../../fixtures/product_preview/pressure_source/physics_source/n05.request.json",
             "base": "source",
             "files": [
-              "fixtures/product_preview/physics_source/n05.request.json"
+              "fixtures/product_preview/pressure_source/physics_source/n05.request.json"
             ]
           },
           {
@@ -3195,63 +2748,69 @@
             ]
           },
           {
-            "anchor": "../../../fixtures/product_preview/physics_source/n05.request.json",
+            "anchor": "../../../fixtures/product_preview/pressure_source/physics_source/n05.request.json",
             "base": "manifest",
             "files": [
-              "fixtures/product_preview/physics_source/n05.request.json"
+              "fixtures/product_preview/pressure_source/physics_source/n05.request.json"
             ]
           }
         ]
       },
       "core/runner/headless/src/load_reference_route_tests.rs": {
-        "sha256": "4a2b7f532c2ac16ccb8170754a4948f1369fe6125a1890c801665f6cf30b3e9c",
+        "sha256": "7fdae427bd4c11d650a60f065f5564f2e30ddb6287b3f93fb7aa3682f1a4a040",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
         "inputs": [
           {
-            "anchor": "fixtures/product_preview/load_reference",
+            "anchor": "fixtures/product_preview/pressure/load_reference/{stem}.request.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/load_reference/connected-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference/connected.request.json",
-              "fixtures/product_preview/load_reference/pressure-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference/pressure-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference/pressure.request.json"
+              "fixtures/product_preview/pressure/load_reference/connected.request.json",
+              "fixtures/product_preview/pressure/load_reference/pressure.request.json"
             ]
           },
           {
-            "anchor": "fixtures/product_preview/load_reference_source/{stem}.request.json",
+            "anchor": "fixtures/product_preview/pressure_source/load_reference_source/{stem}.request.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/load_reference_source/eigen_motion.request.json",
-              "fixtures/product_preview/load_reference_source/fields.request.json",
-              "fixtures/product_preview/load_reference_source/mixed.request.json",
-              "fixtures/product_preview/load_reference_source/n05.request.json",
-              "fixtures/product_preview/load_reference_source/n06.request.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06.request.json"
             ]
           },
           {
-            "anchor": "fixtures/product_preview/load_reference_source/{stem}-{}.raw.json",
+            "anchor": "fixtures/product_preview/pressure_source/load_reference_source/{stem}-{}.raw.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/load_reference_source/eigen_motion-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/eigen_motion-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/fields-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/fields-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/mixed-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/mixed-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/n05-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/n05-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/n06-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/n06-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06-sparse_interactive.raw.json"
+            ]
+          },
+          {
+            "anchor": "fixtures/product_preview/pressure/load_reference/{stem}-{}.raw.json",
+            "base": "project",
+            "files": [
+              "fixtures/product_preview/pressure/load_reference/connected-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure/load_reference/connected-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure/load_reference/pressure-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure/load_reference/pressure-sparse_interactive.raw.json"
             ]
           }
         ]
       },
       "core/runner/headless/src/result_envelope_binding.rs": {
-        "sha256": "b7b79639795d3f969796ca1aa2f326eb2b0888c85b4b093578010999af2d5bdf",
+        "sha256": "d20053df08b095f31f11fe427b838435507343df786fa8445a8d13630daf00e9",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
@@ -3293,84 +2852,18 @@
             ]
           },
           {
-            "anchor": "../../../fixtures/product_preview/physics_source",
+            "anchor": "../../../fixtures/product_preview/pressure_source/physics_source",
             "base": "manifest",
             "files": [
-              "fixtures/product_preview/physics_source/n05.request.json",
-              "fixtures/product_preview/physics_source/n06.request.json",
-              "fixtures/product_preview/physics_source/mixed.request.json"
-            ]
-          },
-          {
-            "anchor": "fixtures/product_preview",
-            "base": "project",
-            "files": [
-              "fixtures/product_preview/DEMO_FIXTURES.md",
-              "fixtures/product_preview/demo_fixture_generation.json",
-              "fixtures/product_preview/invented_agent_proposal.json",
-              "fixtures/product_preview/invented_dec092_temperature_g_request.json",
-              "fixtures/product_preview/invented_demo_model.json",
-              "fixtures/product_preview/invented_demo_result_preview_physics_1_dense.json",
-              "fixtures/product_preview/invented_demo_result_preview_physics_1_sparse.json",
-              "fixtures/product_preview/invented_demo_rule_pack.json",
-              "fixtures/product_preview/invented_design_knowledge.json",
-              "fixtures/product_preview/invented_mechanics_result_preview_physics_1_dense.json",
-              "fixtures/product_preview/invented_mechanics_result_preview_physics_1_sparse.json",
-              "fixtures/product_preview/invented_preview_model.json",
-              "fixtures/product_preview/load_reference/connected-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference/connected.request.json",
-              "fixtures/product_preview/load_reference/pressure-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference/pressure-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference/pressure.request.json",
-              "fixtures/product_preview/load_reference_source/eigen_motion-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/eigen_motion-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/eigen_motion.request.json",
-              "fixtures/product_preview/load_reference_source/fields-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/fields-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/fields.request.json",
-              "fixtures/product_preview/load_reference_source/mixed-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/mixed-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/mixed.request.json",
-              "fixtures/product_preview/load_reference_source/n05-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/n05-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/n05.request.json",
-              "fixtures/product_preview/load_reference_source/n06-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/n06-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/n06.request.json",
-              "fixtures/product_preview/physics_source/fields-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/fields-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/fields.request.json",
-              "fixtures/product_preview/physics_source/mixed-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/mixed-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/mixed.request.json",
-              "fixtures/product_preview/physics_source/mixed_units-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/mixed_units-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/mixed_units.request.json",
-              "fixtures/product_preview/physics_source/n05-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n05.request.json",
-              "fixtures/product_preview/physics_source/n05_unicode-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05_unicode-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n05_unicode.request.json",
-              "fixtures/product_preview/physics_source/n05_units-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05_units-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n05_units.request.json",
-              "fixtures/product_preview/physics_source/n06-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n06-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n06.request.json",
-              "fixtures/product_preview/preview_physics_fixture_generation.json",
-              "fixtures/product_preview/r2_from_blank_rehearsal.json",
-              "fixtures/product_preview/rf_skew_t_cant_off_122_r1e-04.desktop_model.json",
-              "fixtures/product_preview/rf_skew_t_cant_off_122_r1e-04.desktop_result_dense_scrutiny.json",
-              "fixtures/product_preview/rf_skew_t_cant_off_122_r1e-04.desktop_result_sparse_interactive.json",
-              "fixtures/product_preview/rf_skew_t_cant_off_122_r1e-04.request.json"
+              "fixtures/product_preview/pressure_source/physics_source/mixed.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06.request.json"
             ]
           }
         ]
       },
       "core/runner/headless/tests/load_reference_cli.rs": {
-        "sha256": "a71e53084f4143f9758c5faaedda142be5c36b412927b9070e3ca75f325c2f70",
+        "sha256": "4ade273d082a01db01b5e4f1dd378d97532ea680f7bc5be1a50ab8e713d0661b",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
@@ -3383,83 +2876,74 @@
             ]
           },
           {
-            "anchor": "fixtures/product_preview/load_reference_source/{stem}.request.json",
+            "anchor": "fixtures/product_preview/pressure_source/load_reference_source/{stem}.request.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/load_reference_source/eigen_motion.request.json",
-              "fixtures/product_preview/load_reference_source/fields.request.json",
-              "fixtures/product_preview/load_reference_source/mixed.request.json",
-              "fixtures/product_preview/load_reference_source/n05.request.json",
-              "fixtures/product_preview/load_reference_source/n06.request.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05.request.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06.request.json"
             ]
           },
           {
-            "anchor": "fixtures/product_preview/load_reference_source/{stem}-{}.raw.json",
+            "anchor": "fixtures/product_preview/pressure_source/load_reference_source/{stem}-{}.raw.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/load_reference_source/eigen_motion-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/eigen_motion-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/fields-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/fields-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/mixed-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/mixed-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/n05-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/n05-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference_source/n06-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference_source/n06-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/fields-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/mixed-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/load_reference_source/n06-sparse_interactive.raw.json"
             ]
           },
           {
-            "anchor": "fixtures/product_preview/load_reference/{stem}.request.json",
+            "anchor": "fixtures/product_preview/pressure/load_reference/{stem}.request.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/load_reference/connected.request.json",
-              "fixtures/product_preview/load_reference/pressure.request.json"
+              "fixtures/product_preview/pressure/load_reference/connected.request.json",
+              "fixtures/product_preview/pressure/load_reference/pressure.request.json"
             ]
           },
           {
-            "anchor": "fixtures/product_preview/load_reference/{stem}-{}.raw.json",
+            "anchor": "fixtures/product_preview/pressure/load_reference/{stem}-{}.raw.json",
             "base": "project",
             "files": [
-              "fixtures/product_preview/load_reference/connected-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json",
-              "fixtures/product_preview/load_reference/pressure-dense_scrutiny.raw.json",
-              "fixtures/product_preview/load_reference/pressure-sparse_interactive.raw.json"
+              "fixtures/product_preview/pressure/load_reference/connected-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure/load_reference/connected-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure/load_reference/pressure-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure/load_reference/pressure-sparse_interactive.raw.json"
             ]
           }
         ]
       },
       "core/runner/headless/tests/physics_source_connected.rs": {
-        "sha256": "b56a5fd3e986f1cf921f969ee736a0a6dc4b4e4c16bb6e39e7dc0746001f399c",
+        "sha256": "c8e30dbbac377680de328005764525588dcda1c34d820ba98899e11c7c442ce5",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
         "inputs": [
           {
-            "anchor": "../../../fixtures/product_preview/physics_source",
+            "anchor": "../../../fixtures/product_preview/pressure_source/physics_source",
             "base": "manifest",
             "files": [
-              "fixtures/product_preview/physics_source/fields-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/fields-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/fields.request.json",
-              "fixtures/product_preview/physics_source/mixed-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/mixed-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/mixed.request.json",
-              "fixtures/product_preview/physics_source/mixed_units-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/mixed_units-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/mixed_units.request.json",
-              "fixtures/product_preview/physics_source/n05-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n05.request.json",
-              "fixtures/product_preview/physics_source/n05_unicode-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05_unicode-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n05_unicode.request.json",
-              "fixtures/product_preview/physics_source/n05_units-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n05_units-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n05_units.request.json",
-              "fixtures/product_preview/physics_source/n06-dense_scrutiny.raw.json",
-              "fixtures/product_preview/physics_source/n06-sparse_interactive.raw.json",
-              "fixtures/product_preview/physics_source/n06.request.json"
+              "fixtures/product_preview/pressure_source/physics_source/fields-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/fields-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/fields.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/mixed.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n05.request.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06-dense_scrutiny.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06-sparse_interactive.raw.json",
+              "fixtures/product_preview/pressure_source/physics_source/n06.request.json"
             ]
           }
         ]
@@ -3705,6 +3189,7 @@
             "base": "manifest",
             "files": [
               "core/product_physics/src/annulus_geometry.rs",
+              "core/product_physics/src/b7b_admission_tests.rs",
               "core/product_physics/src/bend_pressure.rs",
               "core/product_physics/src/build_identity.rs",
               "core/product_physics/src/case_state/input.rs",
@@ -3837,6 +3322,7 @@
             "base": "manifest",
             "files": [
               "core/product_physics/src/annulus_geometry.rs",
+              "core/product_physics/src/b7b_admission_tests.rs",
               "core/product_physics/src/bend_pressure.rs",
               "core/product_physics/src/build_identity.rs",
               "core/product_physics/src/case_state/input.rs",
@@ -4323,7 +3809,7 @@
         ]
       },
       "core/product_physics/src/w1_source_census_tests.rs": {
-        "sha256": "d6cfa9910e3b9d616c8e796f1f4b210fcfd8d271802c310d13ac37238c342da9",
+        "sha256": "7ad6d3cfacfc4454ee275b9987efd60608ac54fd2880b716c2c3bbdf82f05f8b",
         "source_trees": [
           "core/loads/self_weight_wasm/Cargo.toml",
           "core/model_operations/operation_applier/Cargo.toml",
@@ -4365,6 +3851,61 @@
             "base": "project",
             "files": [
               "fixtures/results/retained_precision_failed_ordinary_n06.json"
+            ]
+          }
+        ]
+      },
+      "core/reporting/result_export/tests/connector_contract.rs": {
+        "sha256": "be351016fbcf3dc62222f0bf93b149b5b44073c28f1cab9fb726c755422d1ea9",
+        "source_trees": [
+          "core/reporting/result_export/Cargo.toml"
+        ],
+        "inputs": [
+          {
+            "anchor": "fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json",
+            "base": "project",
+            "files": [
+              "fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json"
+            ]
+          },
+          {
+            "anchor": "fixtures/product_preview/pressure_source/load_reference_source/n05-sparse_interactive.raw.json",
+            "base": "project",
+            "files": [
+              "fixtures/product_preview/pressure_source/load_reference_source/n05-sparse_interactive.raw.json"
+            ]
+          }
+        ]
+      },
+      "core/runner/headless/tests/untied_joint_pressure_references.rs": {
+        "sha256": "a911efd017d18b13bc7d47fb49bce08eefc79981b97eeb132856249a063ef441",
+        "source_trees": [
+          "core/runner/headless/Cargo.toml"
+        ],
+        "inputs": [
+          {
+            "anchor": "../../../validation/references/t4_u5a",
+            "base": "manifest",
+            "files": [
+              "validation/references/t4_u5a/requests/J3-0.request.json",
+              "validation/references/t4_u5a/requests/J3-1.request.json",
+              "validation/references/t4_u5a/requests/J3-1F.request.json",
+              "validation/references/t4_u5a/requests/J3-1K.request.json",
+              "validation/references/t4_u5a/requests/J3-1N.request.json",
+              "validation/references/t4_u5a/requests/J3-1Q.request.json",
+              "validation/references/t4_u5a/requests/J3-1R.request.json",
+              "validation/references/t4_u5a/requests/J3-1T.request.json",
+              "validation/references/t4_u5a/requests/J3-1TQ.request.json",
+              "validation/references/t4_u5a/requests/J3-1V.request.json",
+              "validation/references/t4_u5a/requests/J3-1W.request.json",
+              "validation/references/t4_u5a/requests/J3-3.request.json",
+              "validation/references/t4_u5a/requests/J3-3S.request.json",
+              "validation/references/t4_u5a/requests/J3-5U.request.json",
+              "validation/references/t4_u5a/requests/J3-5UA.request.json",
+              "validation/references/t4_u5a/requests/J3-AE1.request.json",
+              "validation/references/t4_u5a/requests/J3-AE3.request.json",
+              "validation/references/t4_u5a/requests/J3-R.request.json",
+              "validation/references/t4_u5a/requests/J3-RP.request.json"
             ]
           }
         ]
