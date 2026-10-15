@@ -603,9 +603,10 @@ While the run is live, CE-10 is recorded for the App-file acts that answer an
 arrival's latest performance, with the before- and after-resume labels of
 §2.4.3, and an act on the current content of a referent lapsed after the resume
 point performs the arrival again (RC-8, JA-1). Other later acts on decided
-arrivals (§4.6), and lapses and acts after run end (CE-10 *after
-run end*, CE-16) are not yet recorded: the App does not observe a run after its
-end. While the run is live, CE-13 is recorded for DEL-01-02's custody losses that
+arrivals (§4.6) are not yet recorded. A distinct ended-run observer records
+later verified App-file acts as CE-16, without changing ended dispositions
+(RE-2). It also records CE-10 *after run end* and a **lapsed** CE-18 for an
+already performed single-file A4/A6/A7 arrival (RC-8; current conditions below). While the run is live, CE-13 is recorded for DEL-01-02's custody losses that
 name its conversation and CE-14 for a later readable recovery read; a deciding
 loss names no arrival and writes no *unknown* label, because which arrival a lost
 production would have been is not established. A loss or recovery of an App
@@ -972,6 +973,24 @@ limit. RE-4's automatic run-owner end "interruption not recovered" is not
 written. This use is the consumer side of a proposed row, DEL-02-03 →
 DEL-01-02 (D1's NR-D1-1, no SCC by D1's check), which the register owner
 decides.
+
+**Current App run-start gate.** REC's conversation identity includes its native
+home; two held runs in distinct homes can have the same bare native thread ID.
+For a new start, an otherwise possibly-live durable opening is excluded only
+when its original held run proves the other home, and the original physical
+project and records-home association still agree with the requested project.
+The safe authoritative log reader must find one unique owning `run_opened`
+matching that held entry's identity, full body and observation time, with no
+current ending. A second index refresh must retain the same private log revision
+and discovery basis, so a later append or changed source cannot support the
+exception from stale query positions. Its original records-home directory pin is retained during WR publication, before the native
+start consumes the run text; a newly opened handle cannot supply that proof.
+An exact landed entry with an unconfirmed publication callback can match the
+original held pending entry. Busy, missing, conflicting or changed-source proof
+keeps the conservative refusal. This adds no persisted home claim or cold run
+authority: reopened and legacy openings without the original hot proof still
+use the existing RE-4/RE-7 guard. Named source placement is rechecked after the
+read; no atomic lifetime against external filesystem replacement is claimed.
 
 **The placement question, prepared (OI-014; not asked in this pass).** Where
 the App-side checker and recorder live: (a) inside the App, as local
@@ -2390,6 +2409,129 @@ only. It would establish no host implementation, round-trip execution,
 provider adoption or human act (SoW VER-007; AX-002).
 
 ## Current implementation conditions
+
+**After-run-end act observations (RE-2 / CE-16).** The Rust project record tick
+reads recorded App ended-run sources independently of the live recorder's Open
+guard, including after reopening and without a running supplier. It uses the
+shared current verified App-file A4/A6/A7 act read; capture seals and record
+relations have their existing limits and do not verify personal identity or
+performance. The act's capture time must be strictly after the recorded run-end
+observation, with comparable RFC3339 instants; equal or unorderable times are
+named limits. Discovery time remains the new entry's `observedAt`. The association
+uses the ended arrival's historical project-relative file subject, without
+following a current alias or requiring today's file to exist. Corrected,
+unresolved or conflicting opened/ended/arrival sources and nonunique arrival
+coordinates cannot supply a new derived relation; readable originals remain
+historical display evidence.
+
+One exact-subject candidate index references the shared immutable act observation.
+Owning run projections are retained by indexed source revision; unchanged ticks
+still check record/capture/name/key freshness, but do not decode run bodies or
+rebuild candidate/arrival relations. Only checkpoint presentation/binding entries
+are retained from an eligible owning run log. A source-scoped owning control
+serializes post-end publication; source and current evidence are rechecked before
+writing. Exact persisted arrival/act relations deduplicate after relaunch. A
+failed or uncertain write retains its original reserved record identity and first
+observation time in this process; retry uses existing W-2 recovery and late-write
+limits, and project closure refuses while those outputs remain pending. Process
+loss can lose an unpublished observation; reopening rediscovers eligible acts
+with a new observation time, without reconstructing the lost first observation.
+The unsigned log/chain and source readers retain their stated limits.
+
+`ArrivalRecord` labels CE-16 **After run end** for hot and reopened source views,
+including pending/late-write limits. A coordinate-only persisted CE-16 is not
+attributed to a corrected or nonunique arrival subject, or one whose source
+relation is unresolved. The presentation names that association limit and keeps
+the raw post-end source history inspectable; no chronology or new subject binding
+is inferred from a later correction. The CE-16 path counts no act and changes
+no disposition or lapse; it processes no native item/custody event and creates
+no arrival. A new or continued run receives no old arrival/act observations; its
+own arrival can count an earlier still-current act under the existing SP-6 rule.
+The maintained synthetic supplier/Host/tick/reopen fixtures exercise A4/A6/A7,
+capture-time and historical-subject boundaries, warm cross-log corrections,
+prewrite evidence change and durable write recovery; they are not a person-act
+or live-provider witness.
+
+**After-run-end file lapses (RC-8 / CE-10; RS L-1…L-8, L-11, L-12).** The same
+project observer compares current bytes only for a single App-file A4/A6/A7
+arrival recorded **performed** before the unique run end. The basis is its last
+pre-end performance, its `answeredBy` acts and exact counted-act citations; a
+legitimate later live performance can bind content different from the original
+arrival's content. The verified act must bind that historical file subject,
+required kind and current performance content. Corrected, conflicting or
+unresolved performance, count, prior lapse or disposition sources hold further
+derivation as well as the opened/ended/arrival conditions above. A new count or
+performance after the recorded end cannot supply a new basis. A post-end
+performed/lapsed label with a different ordinal or answered-act association is
+a source-relation limit; it is not silently normalized to the pre-end basis.
+
+Each current read walks opened physical project/parent folders without following
+aliases, checks the original physical project and all owning names, and compares
+the opened regular file with its final named source. A cache hit repeats the
+owning-folder checks; a leaf stamp alone proves no currency. Missing components
+prove absence only within the verified physical ownership chain. Aliases,
+nonregular files, unreadable or raced sources and the existing bounded read cap
+produce **unknown (unavailable)**, which changes no disposition. The current
+single-subject comparison and record deduplication are shared with live CE-10.
+Unchanged verified source/content observations retain their projections.
+
+Existing records-store retention admission is held before reserving any new CE-16
+or CE-10 observation. A closed retained store still supplies historical views
+with its recording limitation, but ordinary later file edits acquire no new
+pending unit. An explicit native Reopen permits a fresh eligible observation;
+An observation acquires the existing project activity lease before reservation
+under that admission and retains it until all observer W-2 units settle. A
+second Root/process that cannot see private pending bodies still cannot Close
+or dispose over them; an exporter may back up the persisted prefix, but cannot
+settle private W-2 or grant disposal. Process loss releases the lease with the
+process-only custody. Any already-owed unit keeps its identity/body/time.
+
+A known changed identity or subject absence reserves CE-10 and its **lapsed**
+CE-18 as one atomic group in the original App owning run log, retaining the
+performance ordinal, acts, c0/c1 and observation time. Each publication rechecks
+the project/store/run identity, original binding records, correction eligibility
+and current verified act evidence under the existing source control. A failed
+or uncertain write keeps the first coherent c1 and reserved body/time; later
+ordinary file edits do not erase or rewrite that observed interval, and later
+observations wait behind its W-2 retry. Project closure refuses while it is
+pending. Original labels owed to a recorded pre-end lapse keep that lapse's
+recorded time and before/after-resume meaning. Unknowns claim neither lapse nor
+currency. Returning to c0 records the return while preserving the observed lapse
+interval; it does not restore performed (RS U-12 remains open).
+
+Hot and reopened arrival views show the ended **lapsed** label and CE-10 timing,
+with per-observation pending/late-write qualifications. A held observation says
+its label is pending, rather than claiming a durable label. They request no new
+act, resume or arrival. Coordinate-only CE-10/CE-18 history
+is not assigned to a corrected, ambiguous or unresolved current arrival subject,
+and the output facet names the source-association limit. Original observations
+remain inspectable as history. Later CE-16 acts still change no ended disposition,
+and no performance is inherited by a new run. Maintained synthetic owner-flow
+checks exercise A4/A6/A7 hot/cold reads, latest live performance, source/capture
+corrections and freshness, atomic W-2 retries, parent/leaf aliases, nonplain and
+raced files, true absence and the actual DTO display. These are implementation
+checks, not native person-act, supplier or release evidence.
+
+**Checkpoint capture observations.** The checkpoint reader receives the source
+actually attempted by the shared file-act capture reader, rather than resolving
+that source separately before reading it. A successful byte observation supplies
+the opened file's stamp after the unchanged-file and final named-file checks;
+that stamp also watches a subsequent JSON, schema, identity or seal refusal.
+An unresolved source or ambiguous failed byte observation is retried on the next
+read. A specifically proved absent capture can be kept: the reader observes
+absence relative to an opened physical owning folder and verifies that folder's
+unchanged stamp against its name. The absence watch invalidates when the file
+appears, the physical owning folder changes or becomes unavailable, or the owning
+path becomes an alias. Kept observations recheck the existing physical owning
+folders and each named capture's stamp,
+so a parent replaced by an alias cannot preserve a current act merely by keeping
+the child inode unchanged. Per-record home, identity, import, terminal and key
+checks, and per-file containment, alias, regular-file and coherent-read guards,
+remain on the shared read path. The ordinary file-act view's JSON and the
+checkpoint counting/lapse rules are unchanged. Maintained checkpoint regressions
+cover kept absence and restoration after missing/invalid evidence and key refusal, replacement
+before and after the final named-file check, leaf and parent aliases, changed
+capture ownership on import and a warm act observation after verified disposal.
 
 **Open implementation conditions — run identity and continuation.** The App
 mints `run:workflow:<uuid>` until EXEC supplies or adopts the run identity WR

@@ -59,6 +59,22 @@ struct Handoff {
     /// `{"state":"sent","turnId":…}` or `{"state":"failed","reason":…}`.
     request: Value,
     started: Option<Value>,
+    native_owner:Option<std::sync::Weak<crate::hosting::Host>>,
+}
+
+/// Frozen source of an actual admitted Continue-as handoff. No JSON constructor,
+/// Serde, or operational authority: it can only identify a recorded relation.
+pub(crate) struct ContinuationSource {
+    generation: Value,
+    thread: String,
+    handoff: String,
+    native_owner:Option<std::sync::Weak<crate::hosting::Host>>,
+}
+impl ContinuationSource {
+    pub(crate) fn generation(&self)->&Value { &self.generation }
+    pub(crate) fn thread(&self)->&str { &self.thread }
+    pub(crate) fn handoff(&self)->&str { &self.handoff }
+    pub(crate) fn belongs_to(&self,host:&crate::hosting::Host)->bool {self.native_owner.as_ref().and_then(std::sync::Weak::upgrade).is_some_and(|owner|std::ptr::eq(owner.as_ref(),host))}
 }
 
 /// App process memory only: open "Continue as" handoffs. A dismissed or
@@ -116,6 +132,7 @@ impl Handoffs {
             request_text: handoff_request_text(target),
             request: json!({"state":"sending"}),
             started: None,
+            native_owner:None,
         };
         let reserved = (handoff.id.clone(), handoff.request_text.clone());
         self.open.push(handoff);
@@ -166,6 +183,14 @@ impl Handoffs {
             "sourceRole":h.source_role,"handoff":h.id}))
     }
 
+    /// Read-only proof from the actual handoff after the existing home/role/
+    /// not-started guards; callers freeze this before the native start.
+    pub(crate) fn continuation_with_source(&self,id:&str,generation:&Value,role:Option<Role>)->Result<(Value,ContinuationSource),String> {
+        let context=self.continuation(id,generation,role)?;
+        let h=self.open.iter().find(|h|h.id==id).ok_or("Continue-as source unavailable")?;
+        Ok((context,ContinuationSource {generation:h.generation.clone(),thread:h.source_thread.clone(),handoff:h.id.clone(),native_owner:h.native_owner.clone()}))
+    }
+    pub(crate) fn continuation_source(&self,id:&str,generation:&Value,role:Option<Role>)->Result<ContinuationSource,String> {self.continuation_with_source(id,generation,role).map(|(_,source)|source)}
     pub fn started(&mut self, id: &str, thread: &str, generation: &Value) {
         if let Some(h) = self.open.iter_mut().find(|h| h.id == id) {
             h.started = Some(json!({"threadId":thread,"generation":generation}));
@@ -225,6 +250,25 @@ pub fn handoff_draft(snapshot: &Value, generation: &Value, thread: &str, turn: &
     }
 }
 
+fn limit_entries(role: Role, modified: bool) -> Vec<Value> {
+    let all = json!({"limitId":"L-ALL-1","statement":"Work within the brief's write targets","basis":"A brief is text; Codex sandbox and approval are the person's own settings (D3), not role enforcement","notEnforcement":["brief-text","worktree","sandbox","approval-policy"]});
+    let task = json!({"limitId":"L-TASK-1","statement":"A task agent does not delegate","basis":"DECISION-K3 K-10; stated in the shipped TASK guidance; no supplier control is named at the pin","notEnforcement":["approval-policy","sandbox","user-configuration","depth-limit"]});
+        let mut limits = vec![];
+        for limit in if role == Role::TASK { vec![&task, &all] } else { vec![&all] } {
+            let mut limit = limit.clone();
+            if modified {
+                limit["standing"] = json!("unknown");
+                limit["presentedAs"] = json!("Not known whether the supplied guidance states this");
+                limit["basis"] = json!(format!("the role's guidance copy is modified (LA-2); {}", limit["basis"].as_str().unwrap_or("")));
+            } else {
+                limit["standing"] = json!("stated-not-enforced");
+                limit["presentedAs"] = json!("Stated, not enforced");
+            }
+            limits.push(limit);
+        }
+    limits
+}
+
 /// ROLE §6.2: each role's stated limits with their standing, as handed by the
 /// role-limit account (format `chirality.role.limits` 0.2). A modified role
 /// copy makes its limits unknown (LA-2); a file not read is reported, never
@@ -234,8 +278,6 @@ pub fn limit_account(root: Option<&std::path::Path>) -> Value {
         Ok(set) => set,
         Err(reason) => return json!({"available":false,"reason":reason}),
     };
-    let all = json!({"limitId":"L-ALL-1","statement":"Work within the brief's write targets","basis":"A brief is text; Codex sandbox and approval are the person's own settings (D3), not role enforcement","notEnforcement":["brief-text","worktree","sandbox","approval-policy"]});
-    let task = json!({"limitId":"L-TASK-1","statement":"A task agent does not delegate","basis":"DECISION-K3 K-10; stated in the shipped TASK guidance; no supplier control is named at the pin","notEnforcement":["approval-policy","sandbox","user-configuration","depth-limit"]});
     let mut roles = vec![];
     let mut not_read = vec![];
     for definition in &set.roles {
@@ -252,19 +294,7 @@ pub fn limit_account(root: Option<&std::path::Path>) -> Value {
             }
         };
         let modified = guidance.modified();
-        let mut limits = vec![];
-        for limit in if definition.name == Role::TASK { vec![&task, &all] } else { vec![&all] } {
-            let mut limit = limit.clone();
-            if modified {
-                limit["standing"] = json!("unknown");
-                limit["presentedAs"] = json!("Not known whether the supplied guidance states this");
-                limit["basis"] = json!(format!("the role's guidance copy is modified (LA-2); {}", limit["basis"].as_str().unwrap_or("")));
-            } else {
-                limit["standing"] = json!("stated-not-enforced");
-                limit["presentedAs"] = json!("Stated, not enforced");
-            }
-            limits.push(limit);
-        }
+        let limits = limit_entries(definition.name, modified);
         roles.push(json!({"role":definition.name,"meaning":definition.meaning,"delegation":definition.delegation,
             "guidanceState":if modified {"modified"} else {"default"},"guidanceContent":crate::role_supply::content(guidance.bytes()),"limits":limits}));
     }
@@ -275,18 +305,69 @@ pub fn limit_account(root: Option<&std::path::Path>) -> Value {
         "standing":"Stated in the role's guidance; Codex does not enforce it. Approval policy, sandbox, your configuration and the depth limit are not this limit's enforcement."})
 }
 
+/// Current immutable per-supply limit evidence. The preserved 0.2 per-release
+/// proposal and today's editable-copy display are different accounts. This
+/// assessment uses only the composition's original selected part and comparison.
+pub(crate) fn frozen_limit_account(composition: &crate::role_supply::Composition) -> Result<Value, String> {
+    composition.verify()?;
+    let parts=composition.carried["developerInstructions"]["parts"].as_array().ok_or("original source parts absent")?;
+    let (guidance, limits)=match composition.role {
+        None => (Value::Null,Vec::new()),
+        Some(role) => {
+            let part=parts.iter().find(|p|p["kind"]=="role-guidance" && p["role"]==role.name()).ok_or("original selected role part absent")?;
+            let modified=match part["source"]["state"].as_str(){Some("modified")=>true,Some("default")=>false,_=>return Err("original role comparison unestablished".into())};
+            let source=&part["source"];
+            let (release,default)=match source["store"].as_str(){Some("seeded-copy")=>(&source["release"],&source["defaultContent"]),Some("editable-copy")=>(&source["reviewedDefault"]["release"],&source["reviewedDefault"]["content"]),_=>return Err("original default comparison source absent".into())};
+            let known=release==crate::runtime_session::INSTRUCTION_RELEASE && *default==crate::role_supply::content(crate::runtime_session::role_default(role));
+            let mut limits=limit_entries(role,modified || !known);
+            if !known {for limit in &mut limits {limit["basis"]=json!("The original comparison is not this App's named shipped role default; whether that original guidance states this limit is unknown");}}
+            (json!({"content":part["content"],"source":part["source"]}),limits)
+        }
+    };
+    Ok(json!({"format":"chirality.role.limits.observation","formatVersion":"0.1",
+        "role":composition.role.map(|r|r.name()).unwrap_or("none"),"roleSet":composition.role_set_identity(),
+        "composedContent":composition.carried["developerInstructions"]["content"],"roleGuidance":guidance,"limits":limits,
+        "basis":"original App composition; role instructions do not establish supplier enforcement"}))
+}
+
 /// NIR CA-4 / ROLE F-1 through the real Host: `thread/fork` with the thread
 /// id and no instructions (plus `deferGoalContinuation`, see
 /// `Host::thread_fork_dispatch`), the forked conversation admitted from its
 /// correlated result, and its role bound as inherited from the source's
 /// original binding.
-pub fn fork_conversation(home: &crate::runtime_session::HomeSession, generation: &Value, source_thread: &str, wait: std::time::Duration) -> Result<Value, String> {
-    let receipt = home.host.thread_fork_dispatch(generation, source_thread)?;
-    let evidence = home.host.source_request_wait(&receipt, wait)?;
-    let row = home.host.thread_fork_finish(&receipt).map_err(|e| format!("{e} (fork request outcome: {})", evidence["outcome"]))?;
-    let binding = home.history.lock().unwrap().fork_observed(&home.host, &receipt, source_thread);
-    Ok(json!({"thread":row,"role":binding.unwrap_or_else(|error| json!({"standing":"unknown","reason":format!("the fork's role binding was refused: {error}")})),
-        "standing":"Same-role copy: thread/fork carried no instructions, so the fork keeps the source's guidance; the source conversation is unchanged."}))
+/// Source-issued successful fork, not deserializable or reconstructed from UI data.
+pub(crate) struct AdmittedFork {result:Value,source:crate::hosting::SourceRequest}
+impl AdmittedFork {
+    pub(crate) fn result(&self)->&Value {&self.result}
+    pub(crate) fn source(&self)->&crate::hosting::SourceRequest {&self.source}
+    pub(crate) fn into_result(self)->Value {self.result}
+}
+pub fn fork_conversation(home:&crate::runtime_session::HomeSession,generation:&Value,source_thread:&str,wait:std::time::Duration)->Result<Value,String> {
+    fork_conversation_observed(home,generation,source_thread,wait).map(AdmittedFork::into_result)
+}
+pub(crate) fn fork_conversation_observed(home: &crate::runtime_session::HomeSession, generation: &Value, source_thread: &str, wait: std::time::Duration) -> Result<AdmittedFork, String> {
+    let mut source=None;
+    let result=fork_conversation_tracked(home,generation,source_thread,wait,|receipt|source=Some(receipt.clone()))?;
+    Ok(AdmittedFork {result,source:source.ok_or("successful fork lacks its original source receipt")?})
+}
+/// Retain the genuine dispatch even when the following native wait remains
+/// unknown. The callback cannot alter the original command/result semantics.
+pub(crate) fn fork_conversation_tracked(home: &crate::runtime_session::HomeSession, generation: &Value, source_thread: &str, wait: std::time::Duration, on_dispatch:impl FnOnce(&crate::hosting::SourceRequest)) -> Result<Value, String> {
+    let supply_ref=crate::util::opaque_id("sup:")?;
+    let receipt = match home.host.thread_fork_dispatch(generation, source_thread) {
+        Ok(receipt)=>receipt,
+        Err(reason)=>{
+            let actual=home.host.snapshot()["generation"].clone();
+            let source=if actual==*generation{actual}else{Value::Null};
+            let publication=home.history.lock().unwrap().fork_refused(&supply_ref,&source,source_thread,&reason,reason.starts_with("refused-not-sent:"));
+            return Err(format!("{reason}; role supply observation: {publication}"));
+        }
+    };
+    on_dispatch(&receipt);
+    home.history.lock().unwrap().fork_dispatched_with_supply(receipt.clone(),source_thread,&supply_ref)?;
+    let waited = home.host.source_request_wait(&receipt, wait);
+    let mut history=home.history.lock().unwrap();history.reconcile(&home.host);
+    match history.fork_result(&receipt){Some(result)=>result,None=>Err(match waited{Ok(evidence)=>format!("Fork remains {} (write {}); native receipt retained, no automatic retry",evidence["outcome"],evidence["writeResult"]),Err(error)=>error})}
 }
 
 /// The `conversation_fork` command body: route to the home that owns the
@@ -316,7 +397,7 @@ pub(crate) fn continue_as_begin(
     let source_role = home.history.lock().unwrap().binding(&home_name, thread)
         .map(|binding| binding.role_in_force(&home_name, thread))
         .unwrap_or(RoleInForce::Unknown { reason: "original App supply binding not established".into() });
-    let (id, text) = handoffs.lock().unwrap().reserve(generation, thread, source_role, target)?;
+    let (id,text)={let mut owner=handoffs.lock().unwrap();let(id,text)=owner.reserve(generation,thread,source_role,target)?;owner.open.iter_mut().find(|h|h.id==id).unwrap().native_owner=Some(std::sync::Arc::downgrade(&home.host));(id,text)};
     let outcome = match crate::runtime_session::send_with_pending_notice_in_mode(workflows, generation, thread, &text, None) {
         Some(sent) => notice_turn_outcome(sent),
         None => crate::runtime_session::send_conversation_text(&home.host.snapshot(), generation, thread, &text,
@@ -338,10 +419,15 @@ fn notice_turn_outcome(sent: crate::runtime_session::NoticeSend) -> Result<Value
 
 /// `thread_start` with `continue_as` (CA-3): the relation to record, read from
 /// the open handoff in the start's own home, or a refusal before anything is sent.
-pub(crate) fn continuation_for_start(handoffs: &std::sync::Mutex<Handoffs>, home: &crate::runtime_session::HomeSession, continue_as: Option<&str>, role: Option<Role>) -> Result<Option<Value>, String> {
+pub(crate) fn continuation_for_start(handoffs:&std::sync::Mutex<Handoffs>,home:&crate::runtime_session::HomeSession,continue_as:Option<&str>,role:Option<Role>)->Result<Option<Value>,String> {
+    continuation_for_start_observed(handoffs,home,continue_as,role).map(|(context,_)|context)
+}
+/// One actual Handoffs guard and one current home generation produce both
+/// original start metadata and a private source proof before dispatch.
+pub(crate) fn continuation_for_start_observed(handoffs:&std::sync::Mutex<Handoffs>,home:&crate::runtime_session::HomeSession,continue_as:Option<&str>,role:Option<Role>)->Result<(Option<Value>,Option<ContinuationSource>),String> {
     match continue_as {
-        Some(id) => handoffs.lock().unwrap().continuation(id, &home.host.snapshot()["generation"], role).map(Some),
-        None => Ok(None),
+        Some(id)=>{let generation=home.host.snapshot()["generation"].clone();let(context,source)=handoffs.lock().unwrap().continuation_with_source(id,&generation,role)?;Ok((Some(context),Some(source)))},
+        None=>Ok((None,None)),
     }
 }
 

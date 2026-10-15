@@ -49,8 +49,24 @@ implemented behavior and qualification limits.
 
 1. The Rust host starts the stock App Server, completes its handshake and keeps
    native frames with full `{appSession, home, spawnCounter}` generation identity.
+   Startup EOF reports a handshake failure with observed exit facts if that
+   attempt is still handshaking at settlement. Stop or replacement can win
+   settlement; held startup frames keep the never-ready marker. The host keeps
+   the actual leader reservation through every process-group census/signal.
+   Unexpected EOF leaves surviving descendants running; natural empty-group
+   cleanup reaps only the original leader. Later Stop retains its actual exit
+   facts. Counts describe live members of the original reserved process group;
+   detached or escaped descendants are unobserved. Current lifecycle JSON gives
+   an unavailable count as
+   `checked:false`, `surviving:null` with a reason; legacy records stay readable.
 2. The person chooses a primary role (or none) and explicitly enters a model
-   and a configured Codex provider for a new thread. Codex retains its own configuration and permissions. The view
+   and a configured Codex provider for a new thread. The actual native
+   configuration must establish that this provider matches the chosen access
+   entry before Start, Continue as or a clean trial dispatches. Private config
+   replies/errors are projected to safe outcomes; unavailable definitions refuse
+   without a fallback. This is a source/folder observation, not a lock on later
+   configuration or a credential-validity check (ACCESS §5.4). Codex retains its
+   own configuration and permissions. The view
    discloses expected model contact at thread start, before a turn; it does not
    represent that notice as measured socket traffic. Reviewed v4 guidance seeds
    an editable App instruction copy without overwriting edits; new conversations
@@ -167,12 +183,17 @@ implemented behavior and qualification limits.
     **Select revision ‹n›** is offered only when this process holds that
     revision; following it is a new selection whose `selection_record` cites
     the one it replaces (`replaces`). Any person's selection of a registered
-    revision replacing another registered selection cites it the same way
-    (§5.4); a candidate selection that cannot run is not cited. The selection
-    stays App-wide, not per conversation as WR §5.4 is headed. A selection is
-    recorded when a run of it is prepared, since the record names the run's
-    conversation, so a replaced selection no run used has no record of its
-    own. Bundled (LS-5) entries remain inspect-only candidates.
+    revision replacing another registered selection in the same chat cites it
+    the same way (§5.4); a candidate selection that cannot run is not cited.
+    The owner chose: "Each chat keeps its own selection (Recommended)".
+    Each chat keeps its pending choice in its actual App home source; started
+    runs retain their own revision, and a new chat has no selection. Library
+    browsing and explicit no-chat inspection stay shared; inspection supplies
+    no next-workflow default. The App constructs a selection record when a run
+    is prepared and publishes it before dispatch, since the record names the
+    run's conversation; a replaced selection no run used has no record of its
+    own. Whether a record is due at selection itself remains open with the WR
+    owner. Bundled (LS-5) entries remain inspect-only candidates.
 17. The selected conversation shows its native activity readably: messages,
     reasoning summaries, plan items and checklist revisions, tool rows and
     descendants, grouped by turn in native start order and, within a turn, in
@@ -227,6 +248,11 @@ implemented behavior and qualification limits.
     edited published copy is not used, and a store that does not recompute
     refuses with nothing selected or started. Unresolved proposals show their notice. The activity view marks run
     starts and ends from the App's run records and folds the supplied run text.
+    Run-start checks distinguish native homes when the App retains the original
+    run source and its exact recorded opening. An open run in another home
+    with the same bare native thread ID then leaves this chat available. Busy,
+    missing or conflicting source proof, and cold history without that proof,
+    retain the existing conservative refusal.
 21. **Save a workflow** starts from a draft list. Under the owner's OI-008 ruling
     (first given for the draft workspace as "A, proceed with the Rust host."), the Rust host observes
     the open library's `.chirality/workflow-drafts/` folders. **Open this App
@@ -507,11 +533,14 @@ implemented behavior and qualification limits.
     App writes no host-outcome, A5 item or A12 entries (AW-8…AW-10, CE-7,
     CE-9), no observation loss or recovery of an earlier App session (after a
     relaunch the custody events of the session that ended are gone, and the
-    run gets RS's "App-restart interruption" limit instead) and, since it observes
-    no run after its end, no after-end lapse or act (CE-10 *after run end*,
-    CE-16). A path is compared as text
-    (U-E26). Recording follows the active home's view while the App
-    refreshes, and when the person ends the run. Each declared output shows its
+    run gets RS's "App-restart interruption" limit instead). The independent
+    project record tick observes eligible later App-file acts (CE-16), and
+    changes to the bound file of an already performed single App-file A4/A6/A7
+    checkpoint (CE-10/CE-18), after its run ends. Hot and reopened views show
+    these observations with their source and publication limits; continuation
+    inherits no prior performance. A path is compared as text (U-E26).
+    Recording uses the Rust host's own ticks across its held homes and project
+    sources, independently of web-view refresh, and when the person ends the run. Each declared output shows its
     promise apart from its standing facets (AS §8), which come only from the
     run record: with nothing recorded they read none reported, not recorded or
     missing. An arrival bound to the output adds only where the agent put it.
@@ -593,6 +622,21 @@ implemented behavior and qualification limits.
     changes the source conversation's role or record. Handoffs are kept in App
     process memory.
 
+    The Rust host records each App start/fork attempt's actual supply
+    observations in the project's explicit records store (ROLE §6.1a),
+    retaining content-identified copies of the exact App-owned guidance
+    bytes. **Read quoted role-supply history** inspects those bytes and
+    recorded outcomes without a native request. Cold history is unsigned,
+    unverified file evidence; it leaves the current conversation's role
+    unknown and restores no role binding or CCE owner.
+
+    A run opened with a confirmed original role supply records a role-guidance
+    reference after `run_opened`, with adoption unknown. Its immutable sources
+    retain the exact original guidance, historical limit assessment and
+    source-qualified run-start context. The explicit workflow-supply read
+    resolves these as quoted evidence and reports missing or substituted
+    sources; reading files creates no role binding or native request.
+
 25. **Records capability** (RS §13.8 "Agent access", §13.9; owner U-STORE-4,
     "I choose option B"). Conversations the App starts in its current project
     (`CHIRALITY_WORKSPACE`) are offered one read-only tool,
@@ -601,7 +645,10 @@ implemented behavior and qualification limits.
     the opt-in [records supplier check](supplier_checks/records_delivery.py).
     That capture-only fixture uses the actual App definition, has no model
     prediction or App handler, and observes only `namespaceTools: true`
-    routes (RS §13.9). A fork admitted from a known offered source in the
+    routes (RS §13.9). Its optional `--include-flat-model` case checks the
+    catalogue-reported `gpt-5.5` model's flat function declarations; that
+    renderer omits scalar length/range bounds, while the App separately
+    validates actual call arguments. A fork admitted from a known offered source in the
     same Codex generation inherits the App's handler binding; a fake-peer
     Host journey verifies its read-log and project-scope behavior. An actual
     offered/admitted start keeps a compact unverified receipt in REC's existing
@@ -639,11 +686,31 @@ implemented behavior and qualification limits.
     read the record files directly; Codex 0.160.0 cannot prevent that, and
     such reads are not recorded.
 
+    Full role-guidance records in a **read run** page can include a small
+    historical metadata companion with source identities, recorded role limits
+    and a narrow run context. Raw guidance and source rows are omitted; missing
+    or oversized sources leave the original record visible with a qualified
+    companion. This restores no role authority and does not check WR
+    correspondence. The existing tool definition and read accounting remain
+    unchanged.
+
+26. The Rust host records actual **Fork** and **Continue as** relationships
+    between native conversations in the selected project's records store,
+    then copies each exact line to `.chirality/fleet/coordination.fleet.jsonl`.
+    Session IDs are qualified by their actual native home/source. Recording
+    requires no objective label or grouping choice. Unknown native outcomes
+    and failed or uncertain recording remain visible limits; host ticks retry
+    the original recording without sending another native command. The Fleet
+    reader retains both format versions as quoted evidence. These logs are
+    currently unsigned and unchained; cold reads restore no conversation or
+    role authority.
+
 ## Modules
 
 | Module | Contribution |
 |---|---|
-| `src-tauri/src/hosting.rs` | HOSTING/ACCESS lifecycle, generation, request correlation, ordered native journal, development verification and network disclosure; reviewed 0.160.0 protocol resources in `resources/supplier/` |
+| `src-tauri/src/hosting.rs`, `process_group_custody.rs` | Source-owned process groups, exact/unavailable original-group census; HOSTING/ACCESS lifecycle, generation, request correlation, ordered native journal, development verification and network disclosure; reviewed 0.160.0 protocol resources in `resources/supplier/` |
+| `src-tauri/src/hosting_startup_refusal_tests.rs` | Actual Host startup EOF settlement, never-ready frames, first/restarted source and Stop/replacement races; opt-in cached stock startup control/refusal without login or model calls |
 | `native_requests.rs`, `recovery.rs`, `native_items.rs`, `access.rs` | Typed native request custody, pointer ledger, scoped live/ended activity and reported account/destination observations |
 | `src-tauri/src/recovery_store.rs`, `recovery_store_tests.rs` | The pointer ledger's SQLite store (DEL-01-02 §7): append-only triggers, one transaction per batch, synced commits, the held current entries' indexed query, the once-only JSON Lines import; tests include the flat cost from 1,000 to 100,000 rows |
 | `role_supply.rs`, `runtime_session.rs`, `resources/instructions/` | Reviewed v4 defaults, fixed composition bytes, seeding and generation-bound receiving/startup; supplier/model adoption remains a separate warrant |
@@ -663,7 +730,8 @@ implemented behavior and qualification limits.
 | `src-tauri/src/decision_view.rs`, `act_policy.rs`, `standing.rs` | Decision projection, A16 method-aware standing and provenance limits; recorded claims do not establish native act admission |
 | `attachments.rs`, `hosting::attachment_custody`, `resources/attachments/` | Native-selected immutable ordered text sources, durable metadata/client pointers before scoped send, and explicit native outcome limits |
 | `trace_receiving.rs`, `record_relations.rs` | Independent unverified trace imports and general record correction claims; neither verifies native origin |
-| `native_history.rs`, `role_lifecycle.rs` | Read-only native history, scoped Continue receiving and immutable original guidance bindings; cold role-source custody remains unfinished |
+| `native_history.rs`, `role_lifecycle.rs` | Read-only native history, scoped Continue receiving and immutable original guidance bindings |
+| `role_observations.rs`, `role_record_source.rs`, `role_observations_tests.rs`, `role_observations_host_tests.rs`, `role_r3_run_tests.rs`, `src/ConversationRoles.tsx` | App start/fork supply observations, exact retained App guidance and historical limits; private confirmed receipts supply role R3 references at run opening, with immutable source-qualified run context and explicit quoted cold inspection; cold claims restore no role/CCE authority |
 | `connector_standing.rs`, `connector_route_store.rs`, `connector_route_view.rs`, `src/ConnectorRoutePanel.tsx` | Provider-independent standing, caller-account persistence (in the project's records store subtree; earlier in-project accounts read in place until imported) and read-only inspection; saved claims do not verify source truth or actor duties |
 | `src/RequestCards.tsx` | Readable DEL-01-04 request cards, item anchors and the waiting-request indicator; answer values come unchanged from the host's register |
 | `src-tauri/src/codex_stop.rs`, `src/CodexControls.tsx` | Stop/Restart Codex (DEL-01-02 §4.1 C-12 with the DEL-01-04 §5.2 question): live-work assessment with runs in force, ask-first sequence, the ledger `codex_stop` record, interrupts before the stop within the stop wait limit, TO-4 labels and the in-process outcome panel |
@@ -715,6 +783,17 @@ its required host and will fail closed. The approved 0.160.0 archive's complete 
 verified and probed; earlier flat-binary observations remain source-specific.
 This development setup does not establish qualified distribution identity.
 
+On macOS, the opt-in startup refusal check uses the cached stock binary above,
+fresh `mktemp -d` file-auth homes and a localhost-only OS sandbox. It compares
+a supported initialize with a configuration refused before initialize, for
+first start and restart. It sends no login, thread or model call:
+
+```sh
+(cd src-tauri && cargo test --offline --locked --lib \
+  startup_refusal_stock_config_control_and_first_start_restart_refusal \
+  -- --ignored --test-threads=1)
+```
+
 On macOS, the opt-in records supplier check uses that already prepared binary
 with fresh credential-free homes and a localhost-only OS sandbox. It captures
 declarations for started, resumed and forked threads, includes threads without
@@ -728,6 +807,24 @@ CHIRALITY_SKIP_CODEX=1 cargo run --offline --locked --manifest-path src-tauri/Ca
   --example records_tool_definition > "$records_probe_dir/definition.json"
 python3 supplier_checks/records_delivery.py --codex "$CHIRALITY_CODEX_BIN" \
   --definition "$records_probe_dir/definition.json"
+```
+
+Add `--include-flat-model` to exercise the supported alternate flat function
+renderer as well. The check reports the actual model/provider and hot/cold
+`namespaceTools` values; a flat declaration does not establish a false value.
+
+The opt-in local-auth supplier check uses the same identified binary and fresh
+isolated homes. It supplies only an invented generated canary, captures exact
+Bearer correspondence at a loopback HTTP400 fixture hot and after restart,
+and checks the anonymous route, logout persistence and native ChatGPT-only
+policy refusal. It makes no prediction or real-key validation. Redacted
+evidence stays in the reported scratch directory; the owned auth leaf is
+removed even on failure and Native stderr is discarded before transfer.
+Authenticated local App access remains unoffered. From `app/`:
+
+```sh
+python3 supplier_checks/test_local_auth.py
+python3 supplier_checks/local_auth.py --codex "$CHIRALITY_CODEX_BIN"
 ```
 
 `npm test` validates actual Rust outputs against canonical Design schemas,
@@ -988,8 +1085,10 @@ CE-8, CE-10…CE-14, CE-17…CE-19). It does not yet record host-operation or
 host-outcome arrivals, A5 items or A12 relations (CE-7, CE-9), the *unknown*
 label of a deciding loss, losses or recoveries of an earlier App session,
 replaced arrivals (CE-15, which follows only from A5
-items), anything after the run's end (CE-10 *after run end*, CE-16), or output
-records. An output gated by a checkpoint shows that checkpoint's recorded act
+items), or output records. The independent ended-run observer records eligible
+later App-file acts (CE-16) and per-referent lapse of already performed single
+App-file A4/A6/A7 checkpoints (CE-10/CE-18), with current source checks and
+explicit pending/late-write limits. An output gated by a checkpoint shows that checkpoint's recorded act
 standing, *lapsed* included; an observation loss or recovery still makes an
 output's facets unknown.
 
@@ -1027,9 +1126,14 @@ known only for the conversation the home last started (otherwise *unknown*).
 The re-route's reason and the native turn identity have no place in the entry
 body. Nothing is recorded after the run's end.
 
-Conversation roles (item 24)
-keep handoffs in process memory and write no persistent role-supply log;
-delete or archive beside Fork waits on U-R13.
+Conversation roles (item 24) keep handoffs in process memory. Confirmed App
+role-supply observations and content-addressed App instruction bytes are kept
+in the current project's records store under `role-supply/observations.jsonl`
+and `role-supply/content/`. An actual workflow run records role-guidance R3 by
+reference to the original supply, limit account and run context. Pending or
+unavailable publication stays qualified; cold source reading quotes historical
+file evidence and restores no current role or CCE authority. Native child-role
+supply is still unimplemented. Delete or archive beside Fork waits on U-R13.
 
 The ask-first App quit (item 22a) and the startup SR-08 write are
 implemented but not witnessed natively, as are the startup RQ-06 endings. The Restart Codex question

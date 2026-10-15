@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
-<meta name="source-sha256" content="64a546719bb3c5389de1a94fcccfd5a23a33e582fb8d6034fe45e9a77591d3b8">
-<meta name="source-basis-date" content="2026-10-13">
-<meta name="source-basis-revision" content="20a67b8005f5b4a5065da2b030cd532340f48e2f">
-<title>Course 04 — Interpreting Requirements and Obligations · Chirality</title>
+<meta name="source-sha256" content="bd9a57dcba1db41e952d4ed45f0ab7dd04f072b3a58b6b659fe0299918afd523">
+<meta name="source-basis-date" content="2026-10-14">
+<meta name="source-basis-revision" content="ebfaab37e3540e7b63ff8561e8f418bee455a99e">
+<title>Course 04: Interpreting Requirements and Obligations · Chirality</title>
 <style>
 :root {
   color-scheme: light;
@@ -200,15 +200,15 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <details class="mobile-toc">
   <summary>Contents · 11 sections</summary>
   <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#prerequisites-and-outcomes">Prerequisites and outcomes</a></li>
-<li><a href="#lesson-1--establish-why-the-statement-governs">Lesson 1 — Establish why the statement governs</a></li>
-<li><a href="#lesson-2--read-the-requirement-in-its-context">Lesson 2 — Read the requirement in its context</a></li>
-<li><a href="#lesson-3--connect-applicability-to-the-actual-assignment">Lesson 3 — Connect applicability to the actual assignment</a></li>
-<li><a href="#lesson-4--resolve-ambiguity-without-inventing-authority">Lesson 4 — Resolve ambiguity without inventing authority</a></li>
-<li><a href="#northbank-worked-example--flow-and-changeover">Northbank worked example — Flow and changeover</a></li>
-<li><a href="#transfer-example--a-software-availability-specification">Transfer example — A software availability specification</a></li>
-<li><a href="#practice--interpret-and-enquire">Practice — Interpret and enquire</a></li>
+<li><a href="#lesson-1-establish-why-the-statement-governs">Lesson 1: Establish why the statement governs</a></li>
+<li><a href="#lesson-2-read-the-requirement-in-its-context">Lesson 2: Read the requirement in its context</a></li>
+<li><a href="#lesson-3-connect-applicability-to-the-actual-assignment">Lesson 3: Connect applicability to the actual assignment</a></li>
+<li><a href="#lesson-4-resolve-ambiguity-without-inventing-authority">Lesson 4: Resolve ambiguity without inventing authority</a></li>
+<li><a href="#northbank-worked-example-flow-and-changeover">Northbank worked example: Flow and changeover</a></li>
+<li><a href="#transfer-example-a-software-availability-specification">Transfer example: A software availability specification</a></li>
+<li><a href="#practice-interpret-and-enquire">Practice: Interpret and enquire</a></li>
 <li><a href="#knowledge-check">Knowledge check</a></li>
-<li><a href="#assessed-assignment--establish-the-interpreted-basis">Assessed assignment — Establish the interpreted basis</a></li>
+<li><a href="#assessed-assignment-establish-the-interpreted-basis">Assessed assignment: Establish the interpreted basis</a></li>
 <li><a href="#portfolio-continuation-and-references">Portfolio continuation and references</a></li></ol></nav>
 </details>
 <div class="layout">
@@ -216,15 +216,15 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
   <nav aria-label="Sections">
     <p class="nav-label">In this manual</p>
     <ol class="contents"><li><a href="#prerequisites-and-outcomes">Prerequisites and outcomes</a></li>
-<li><a href="#lesson-1--establish-why-the-statement-governs">Lesson 1 — Establish why the statement governs</a></li>
-<li><a href="#lesson-2--read-the-requirement-in-its-context">Lesson 2 — Read the requirement in its context</a></li>
-<li><a href="#lesson-3--connect-applicability-to-the-actual-assignment">Lesson 3 — Connect applicability to the actual assignment</a></li>
-<li><a href="#lesson-4--resolve-ambiguity-without-inventing-authority">Lesson 4 — Resolve ambiguity without inventing authority</a></li>
-<li><a href="#northbank-worked-example--flow-and-changeover">Northbank worked example — Flow and changeover</a></li>
-<li><a href="#transfer-example--a-software-availability-specification">Transfer example — A software availability specification</a></li>
-<li><a href="#practice--interpret-and-enquire">Practice — Interpret and enquire</a></li>
+<li><a href="#lesson-1-establish-why-the-statement-governs">Lesson 1: Establish why the statement governs</a></li>
+<li><a href="#lesson-2-read-the-requirement-in-its-context">Lesson 2: Read the requirement in its context</a></li>
+<li><a href="#lesson-3-connect-applicability-to-the-actual-assignment">Lesson 3: Connect applicability to the actual assignment</a></li>
+<li><a href="#lesson-4-resolve-ambiguity-without-inventing-authority">Lesson 4: Resolve ambiguity without inventing authority</a></li>
+<li><a href="#northbank-worked-example-flow-and-changeover">Northbank worked example: Flow and changeover</a></li>
+<li><a href="#transfer-example-a-software-availability-specification">Transfer example: A software availability specification</a></li>
+<li><a href="#practice-interpret-and-enquire">Practice: Interpret and enquire</a></li>
 <li><a href="#knowledge-check">Knowledge check</a></li>
-<li><a href="#assessed-assignment--establish-the-interpreted-basis">Assessed assignment — Establish the interpreted basis</a></li>
+<li><a href="#assessed-assignment-establish-the-interpreted-basis">Assessed assignment: Establish the interpreted basis</a></li>
 <li><a href="#portfolio-continuation-and-references">Portfolio continuation and references</a></li></ol>
   </nav>
   <div class="nav-help">
@@ -234,12 +234,12 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 </aside>
 <main id="manual-content" tabindex="-1">
   <div class="paper">
-    <article aria-labelledby="course-04--interpreting-requirements-and-obligations">
+    <article aria-labelledby="course-04-interpreting-requirements-and-obligations">
 <!-- BEGIN MARKDOWN CONTENT -->
-<h1 id="course-04--interpreting-requirements-and-obligations">Course 04 — Interpreting Requirements and Obligations</h1>
+<h1 id="course-04-interpreting-requirements-and-obligations">Course 04: Interpreting Requirements and Obligations</h1>
 <p><a href="../index.html">Series</a> · <a href="../case-study.html">Case</a> · <a href="../glossary.html">Glossary</a> · <a href="../references.html">References</a></p>
-<p>Interpret a retrieved statement to understand whether and how it governs work. You must establish its authority, applicability, meaning, and conditions. You must also recognize where the available sources cannot support a conclusion.</p>
-<p>This course teaches a method for interpreting project requirements and organizing an external-requirements enquiry. The offline exercise uses Northbank Packet A. It does not assign Northbank a real jurisdiction or code edition.</p>
+<p>Interpret a retrieved statement to understand whether and how it governs work. You must establish its authority, applicability, meaning, and conditions, and you must also recognize where the available sources cannot support a conclusion.</p>
+<p>This course teaches a method for interpreting project requirements and organizing an external-requirements enquiry. The offline exercise uses Northbank Packet A, but it does not assign Northbank a real jurisdiction or code edition.</p>
 <h2 id="prerequisites-and-outcomes">Prerequisites and outcomes</h2>
 <p>Complete Courses 01 to 03. Read A01, A02, A05, and A06 closely. Keep your evidence packet available.</p>
 <p>By the end, you can:</p>
@@ -250,13 +250,13 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <li>Distinguish a requirement, proposal, assumption, and interpretation.</li>
 <li>Prepare an interpretation memorandum with unresolved matters and affected decisions.</li>
 </ul>
-<h2 id="lesson-1--establish-why-the-statement-governs">Lesson 1 — Establish why the statement governs</h2>
-<p>Sources enter a project through different relationships. Legislation can impose obligations within its jurisdiction and scope. Contracts can establish obligations between identified parties. Approved project decisions can define the assignment. A technical reference can inform analysis without itself governing the assignment.</p>
-<p>Establish the relationship for the actual source. Do not infer it from a familiar title or an organization's reputation. A standard can be technically useful without being adopted into the governing requirements. Its role may also follow a contract or another applicable instrument.</p>
-<p>An applicable obligation can govern before the team recognizes it. Interpretation identifies that obligation. It does not create project authority to waive it.</p>
-<p>The National Research Council explains that Canadian model construction codes acquire legal authority through government adoption. Adoption can include amendments. This example shows why a publication's existence does not establish its applicability. It does not identify the requirements for Northbank. <a href="https://nrc.canada.ca/en/certifications-evaluations-standards/codes-canada/canadas-construction-system-context-model-codes">NRC model-code context</a></p>
-<p>The governing edition needs evidence. A recently published edition may differ from the edition adopted or specified for the assignment. Check the effective dates, relevant amendments, transition provisions, and actual work conditions. Obtain suitable expertise where the interpretation requires it.</p>
-<p>Do not build a universal precedence ladder from source categories. Several obligations can apply together. Their relationship depends on the actual instruments and circumstances. A contract may specify a conflict process, but that process does not erase applicable external duties.</p>
+<h2 id="lesson-1-establish-why-the-statement-governs">Lesson 1: Establish why the statement governs</h2>
+<p>Sources enter a project through different relationships. Legislation can impose obligations within its jurisdiction and scope, contracts can establish obligations between identified parties, and approved project decisions can define the assignment. A technical reference can inform analysis without itself governing the assignment.</p>
+<p>Establish the relationship for the actual source; do not infer it from a familiar title or an organization's reputation. A standard can be technically useful without being adopted into the governing requirements. Its role may also come from a contract or another applicable instrument.</p>
+<p>An applicable obligation can govern before the team recognizes it. Interpretation identifies that obligation, but it does not create project authority to waive it.</p>
+<p>The National Research Council explains that Canadian model construction codes acquire legal authority through government adoption; adoption can include amendments. This example shows why a publication's existence does not establish its applicability, but it does not identify the requirements for Northbank. <a href="https://nrc.canada.ca/en/certifications-evaluations-standards/codes-canada/canadas-construction-system-context-model-codes">NRC model-code context</a></p>
+<p>The governing edition needs evidence, because a recently published edition may differ from the edition adopted or specified for the assignment. Check the effective dates, relevant amendments, transition provisions, and actual work conditions, and get suitable expertise where the interpretation requires it.</p>
+<p>Do not build a universal order of precedence from source categories. Several obligations can apply together, and their relationship depends on the actual instruments and circumstances. A contract may specify a conflict process, but that process does not erase applicable external duties.</p>
 <p>Apply this authority enquiry:</p>
 <ol>
 <li>Identify the exact statement and source edition.</li>
@@ -267,12 +267,12 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <li>Record any missing basis for that role.</li>
 </ol>
 <p>At Northbank, A02 Rev 1 has a recorded project-development approval. A06 leaves external legal applicability open. These are separate findings.</p>
-<h2 id="lesson-2--read-the-requirement-in-its-context">Lesson 2 — Read the requirement in its context</h2>
-<p>A clause can change meaning when separated from its definitions and conditions. Read enough of the source to preserve those relationships. Follow relevant cross-references rather than assuming that the local sentence is complete.</p>
-<p>Find the actor, required act or result, object, conditions, and limits. Identify any exception and the evidence needed to invoke it. Check whether the source defines ordinary words differently. Preserve those definitions in the interpretation.</p>
-<p>A statement can contain both a requirement and an unresolved definition. A02 requires 18 litres per second at the distribution header. It also requires the project to establish the operating conditions. The number alone does not define a complete performance examination.</p>
-<p>Read qualifying language carefully. “Under the operating conditions that the project must establish” makes those conditions necessary to the requirement's application. Removing that phrase would enlarge the apparent evidence from a single measurement.</p>
-<p>Do not treat permission as an obligation, or a recommendation as an adopted commitment, without the relevant basis. Use the source's actual conventions. The force of a word depends on the instrument and its definitions.</p>
+<h2 id="lesson-2-read-the-requirement-in-its-context">Lesson 2: Read the requirement in its context</h2>
+<p>A clause can change meaning when separated from its definitions and conditions, so read enough of the source to keep those relationships. Follow relevant cross-references rather than assuming that the local sentence is complete.</p>
+<p>Find the actor, the required act or result, the object, the conditions, and the limits. Identify any exception and the evidence needed to invoke it. Check whether the source defines ordinary words differently, and keep those definitions in the interpretation.</p>
+<p>A statement can contain both a requirement and an unresolved definition. A02 requires 18 litres per second at the distribution header, and it also requires the project to establish the operating conditions. The number alone does not define a complete performance examination.</p>
+<p>Read qualifying language carefully. “Under the operating conditions that the project must establish” makes those conditions necessary for applying the requirement. Removing that phrase would make a single measurement appear to provide more evidence.</p>
+<p>Do not treat permission as an obligation, or a recommendation as an adopted commitment, without the relevant basis. Use the source's actual conventions, because the force of a word depends on the instrument and its definitions.</p>
 <p>Use a contextual reading method:</p>
 <ol>
 <li>Read the surrounding section.</li>
@@ -282,13 +282,13 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <li>Follow the relevant cross-references.</li>
 <li>Restate the requirement without losing its conditions.</li>
 </ol>
-<p>Keep the original passage available beside the restatement. Ask another participant to compare them. A useful interpretation makes the source actionable while preserving its meaning.</p>
-<h2 id="lesson-3--connect-applicability-to-the-actual-assignment">Lesson 3 — Connect applicability to the actual assignment</h2>
-<p>Applicability is the relationship that makes a requirement govern the work under stated conditions. Technical similarity alone cannot establish it. Two systems may use similar components while falling under different requirements.</p>
-<p>Identify the actual asset and work boundary. Determine what is existing, what changes, and which activities the assignment includes. Record relevant operating conditions and facility characteristics. These facts help the competent participants evaluate applicability.</p>
-<p>The Northbank description states that the water is non-potable. That fact cannot establish a complete legal classification. The case gives no real jurisdiction, permit basis, adoption instrument, or contract references. A06 requires the team to identify those gaps.</p>
-<p>For each candidate requirement, record the source, applicability conditions, matching project evidence, conclusion, and unresolved questions. A conclusion can be “unresolved” when a necessary fact or instrument is missing. Explain the decisions that it prevents.</p>
-<p>Assign an owner who can obtain the input or arrange competent interpretation. State the point of need. An open enquiry becomes manageable when people know what result is required before dependent work proceeds.</p>
+<p>Keep the original passage available beside the restatement, and ask another participant to compare them. A useful interpretation makes the source actionable while preserving its meaning.</p>
+<h2 id="lesson-3-connect-applicability-to-the-actual-assignment">Lesson 3: Connect applicability to the actual assignment</h2>
+<p>Applicability is the relationship that makes a requirement govern the work under stated conditions. Technical similarity alone cannot establish it: two systems may use similar components and still fall under different requirements.</p>
+<p>Identify the actual asset and work boundary. Determine what already exists, what changes, and which activities the assignment includes. Record relevant operating conditions and facility characteristics; these facts help the competent participants evaluate applicability.</p>
+<p>The Northbank description states that the water is non-potable, but that fact cannot establish a complete legal classification. The case gives no real jurisdiction, permit basis, adoption instrument, or contract references, and A06 requires the team to identify those gaps.</p>
+<p>For each candidate requirement, record the source, applicability conditions, matching project evidence, conclusion, and unresolved questions. A conclusion can be “unresolved” when a necessary fact or instrument is missing; explain the decisions that it prevents.</p>
+<p>Assign an owner who can get the input or arrange competent interpretation. State the point of need. An open enquiry becomes manageable when people know what result is required before dependent work proceeds.</p>
 <p>Apply this applicability method:</p>
 <ol>
 <li>Define the asset and work boundary.</li>
@@ -299,13 +299,13 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <li>State the conclusion and unresolved matters.</li>
 <li>Identify the decisions that depend on resolution.</li>
 </ol>
-<p>The method guides an enquiry. It does not make the learner a legal authority. Seek authoritative clarification or legal expertise where the actual question requires it.</p>
-<h2 id="lesson-4--resolve-ambiguity-without-inventing-authority">Lesson 4 — Resolve ambiguity without inventing authority</h2>
+<p>The method guides an enquiry, but it does not make you a legal authority. Seek authoritative clarification or legal expertise where the actual question requires it.</p>
+<h2 id="lesson-4-resolve-ambiguity-without-inventing-authority">Lesson 4: Resolve ambiguity without inventing authority</h2>
 <p>An interpretation explains how a source applies or what it means. A decision authorizes an act within a stated authority. A change amends a controlled basis through its governing process. These acts can be related, but their effects differ.</p>
-<p>A project engineer may explain that A05 is a proposal. The explanation does not reject the proposal or amend A02. The sponsor's requested impact assessment gives the team further work to perform.</p>
-<p>When sources appear inconsistent, preserve their identities and ask what relationship explains the difference. An earlier draft, a proposed change, and an approved basis may contain different values without creating an unresolved authority conflict.</p>
-<p>Where a genuine conflict remains, identify both statements and the consequence. Use the actual clarification or dispute process. Do not choose the most convenient statement or automatically choose the one that appears more demanding. Its technical effects may also need examination.</p>
-<p>An interpretation memorandum should state the question, sources, context, reasoning, conclusion, limits, and next action. Make uncertainty specific. “More information is needed” gives little direction. Identify the missing input and the decision it blocks.</p>
+<p>A project engineer may explain that A05 is a proposal, but the explanation does not reject the proposal or amend A02. The impact assessment that the sponsor requested gives the team further work to do.</p>
+<p>When sources seem inconsistent, keep their identities and ask what relationship explains the difference. An earlier draft, a proposed change, and an approved basis may contain different values without creating an unresolved authority conflict.</p>
+<p>Where a genuine conflict remains, identify both statements and the consequence, and use the actual clarification or dispute process. Do not choose the most convenient statement or automatically choose the one that seems more demanding; its technical effects may also need examination.</p>
+<p>An interpretation memorandum should state the question, sources, context, reasoning, conclusion, limits, and next action. Make uncertainty specific. “More information is needed” gives little direction, so identify the missing input and the decision it blocks.</p>
 <p>Use this memorandum method:</p>
 <ol>
 <li>State the question and proposed reliance.</li>
@@ -316,13 +316,13 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <li>Identify the clarification or decision still required.</li>
 <li>Name affected work and receiving participants.</li>
 </ol>
-<p>An interpretation can reveal an existing obligation missing from the project basis. Record that obligation and assess the affected work. The obligation does not await sponsor adoption.</p>
-<p>Any resulting scope, resource, or commitment change still needs its proper authority. Connect that decision to change control. Preserve the earlier reasoning. Notify affected owners and examine adoption in their work.</p>
-<h2 id="northbank-worked-example--flow-and-changeover">Northbank worked example — Flow and changeover</h2>
+<p>An interpretation can reveal an existing obligation that is missing from the project basis. Record that obligation and assess the affected work. The obligation does not wait for the sponsor to adopt it.</p>
+<p>Any resulting scope, resource, or commitment change still needs its proper authority. Connect that decision to change control and keep the earlier reasoning. Notify affected owners and examine adoption in their work.</p>
+<h2 id="northbank-worked-example-flow-and-changeover">Northbank worked example: Flow and changeover</h2>
 <p>The evidence packet identified the governing source and the separate proposal. This example examines what their wording requires the team to do and what remains to be defined.</p>
 <p>The question is: “What must the equipment-development work provide under Packet A?” The consumer is the project engineer preparing the technical assignment.</p>
-<p>A02 Rev 1 requires 18 litres per second at the distribution header under conditions the project must establish. It requires two pump units, with one operating and one standby. It requires confirmation of the changeover function with operations.</p>
-<p>A05 Rev 0 proposes 22 litres per second and automatic changeover. It records no scope amendment. The sponsor requests an impact assessment.</p>
+<p>A02 Rev 1 requires 18 litres per second at the distribution header under conditions the project must establish. It requires two pump units, with one operating and one standby, and it requires confirmation of the changeover function with operations.</p>
+<p>A05 Rev 0 proposes 22 litres per second and automatic changeover, but it records no scope amendment. The sponsor requests an impact assessment.</p>
 <div class="table-scroll" role="region" tabindex="0" aria-label="Table 1; scroll horizontally if needed">
 <table>
 <thead>
@@ -361,12 +361,12 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 </tbody>
 </table>
 </div>
-<p>The memorandum avoids calling automatic changeover an approved requirement. It also avoids treating standby provision as a complete changeover design. The assignment can gather inputs and examine the proposal. Final dependent conclusions still need the stated basis.</p>
-<h2 id="transfer-example--a-software-availability-specification">Transfer example — A software availability specification</h2>
+<p>The memorandum avoids calling automatic changeover an approved requirement, and it also avoids treating standby provision as a complete changeover design. The assignment can gather inputs and examine the proposal, but final dependent conclusions still need the stated basis.</p>
+<h2 id="transfer-example-a-software-availability-specification">Transfer example: A software availability specification</h2>
 <p>Use this invented contract exercise: Specification S1 says, “Provide a monthly availability report using the measurement method agreed with the customer.” Request S2 says, “Please add automatic compensation calculations.” No amendment is recorded.</p>
-<p>S1 requires the report but leaves the measurement method for agreement. S2 proposes additional work. The analyst must obtain the method and assess the proposed calculation scope. The analyst cannot infer a compensation obligation from S2 alone.</p>
-<p>These are fictional assignment statements. They are not legislation, code clauses, or legal opinions.</p>
-<h2 id="practice--interpret-and-enquire">Practice — Interpret and enquire</h2>
+<p>S1 requires the report but leaves the measurement method for agreement, and S2 proposes additional work. The analyst must get the method and assess the proposed calculation scope, but cannot infer a compensation obligation from S2 alone.</p>
+<p>These are fictional assignment statements, not legislation, code clauses, or legal opinions.</p>
+<h2 id="practice-interpret-and-enquire">Practice: Interpret and enquire</h2>
 <p>Use Packet A and Portfolio 03. No external reading is required.</p>
 <p>Supply these outputs:</p>
 <ol>
@@ -386,8 +386,8 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <li>What inputs does A06 require before a real applicability conclusion?</li>
 <li>How do an interpretation, an authorized decision, and a controlled change differ?</li>
 </ol>
-<h2 id="assessed-assignment--establish-the-interpreted-basis">Assessed assignment — Establish the interpreted basis</h2>
-<p>Prepare a memorandum for Northbank project development. Include the practice outputs and a requirement table. State a proposed examination for each approved project requirement at the available level of definition.</p>
+<h2 id="assessed-assignment-establish-the-interpreted-basis">Assessed assignment: Establish the interpreted basis</h2>
+<p>Prepare a memorandum for Northbank project development, and include the practice outputs and a requirement table. State a proposed examination for each approved project requirement at the available level of definition.</p>
 <p>An instructor assesses five observable criteria:</p>
 <div class="table-scroll" role="region" tabindex="0" aria-label="Table 2; scroll horizontally if needed">
 <table>
@@ -421,19 +421,19 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 </tbody>
 </table>
 </div>
-<p>Defend one interpretation orally. Show the passage and explain an alternative reading. Repair any invented obligation or lost qualification. Training acceptance grants no authority to determine real legal applicability.</p>
+<p>Defend one interpretation orally, show the passage, and explain an alternative reading. Repair any invented obligation or lost qualification. Acceptance in training grants no authority to determine real legal applicability.</p>
 <h2 id="portfolio-continuation-and-references">Portfolio continuation and references</h2>
-<p>Keep the memorandum as Portfolio 04. Link each requirement to its controlled source and evidence entry. Course 05 will use this basis to reason about alternatives, uncertainty, and recommendations.</p>
-<p>The <a href="../../alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v1.html">Field Book</a>, section 3, supports separate treatment of requirements, assumptions, proposals, and open matters.</p>
+<p>Keep the memorandum as Portfolio 04, and link each requirement to its controlled source and evidence entry. Course 05 will use this basis to reason about alternatives, uncertainty, and recommendations.</p>
+<p>The <a href="../../alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v2.html">Field Book (Edition 2)</a>, section 3, supports treating requirements, assumptions, proposals, and open matters separately.</p>
 <p>The <a href="https://nrc.canada.ca/en/certifications-evaluations-standards/codes-canada/canadas-construction-system-context-model-codes">NRC model-code explanation</a> illustrates adoption in Canadian construction. It is background reading, not an adoption instrument for Northbank. Read the <a href="../references.html">series reference limits</a> before using an external source.</p>
 <!-- END MARKDOWN CONTENT -->
     </article>
   </div>
   <footer class="document-footer">
   <dl class="document-meta">
-    <div><dt>Source basis dated</dt><dd>13 October 2026</dd></div>
-    <div><dt>Repository basis</dt><dd><code>20a67b8005f5b4a5065da2b030cd532340f48e2f</code></dd></div>
-    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="04-requirements-interpretation.md">04-requirements-interpretation.md</a><br><code>64a546719bb3c5389de1a94fcccfd5a23a33e582fb8d6034fe45e9a77591d3b8</code></dd></div>
+    <div><dt>Source basis dated</dt><dd>14 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>ebfaab37e3540e7b63ff8561e8f418bee455a99e</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="04-requirements-interpretation.md">04-requirements-interpretation.md</a><br><code>bd9a57dcba1db41e952d4ed45f0ab7dd04f072b3a58b6b659fe0299918afd523</code></dd></div>
   </dl>
     <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
     <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>

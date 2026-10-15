@@ -50,10 +50,12 @@
 //! pauses, re-holds or refuses anything; the outputs are entries for the run
 //! record and nothing else. CE-7 never arises in an App run: A5 is valid only
 //! at a host outcome (FB-16), which this App does not evaluate (AW-8…AW-10).
-//! Nothing is observed after the run's end, so no *after run end* lapse
-//! (CE-10) and no CE-16 `act_after_run_end` is written.
+//! The live recorder stops at run end. The distinct `after_run_end` observer
+//! records CE-16 against ended arrivals without counting or changing them.
+//! The observer also uses the shared CE-10 comparison for verified performed
+//! single-file A4/A6/A7 sources after end, with the ended lapsed label.
 use serde_json::{json, Value};
-use std::collections::BTreeSet;
+use std::collections::{BTreeMap, BTreeSet};
 use std::path::Path;
 
 /// The App's exact-byte content method (RS §6.2a, CC-CONTENT-RX).
@@ -207,17 +209,22 @@ pub(crate) fn units(outputs: &[Output]) -> Vec<std::ops::Range<usize>> {
 pub(crate) type ActSource<'a> = &'a mut dyn FnMut() -> Result<ActRead, String>;
 
 /// The project's App-file acts and declines as the recorder may count them.
-/// `acts` are `{record, capture}`: current (uncorrected) records written by
+/// `acts` are private `{record, declineBoundContent?}` facts: current
+/// (uncorrected) records written by
 /// the App's capturing surface whose one cited capture object resolves,
-/// validates and says what the record says (SP-3, RS R-8, HA-1).
+/// validates and says what the record says (SP-3, RS R-8, HA-1). Each full
+/// original record is retained. Each full capture is released after its
+/// successful per-claim verification and exact decline-content extraction.
+/// Only declines retain their `boundContent` array under `declineBoundContent`,
+/// never a slim capture DTO. Publication follows global duplicate-capture resolution.
 /// `unresolved` are `{record, reason}`: records that claim a file act but
 /// cannot be so verified; they never become acts (RS §13.7) and are shown as
 /// an "unresolvable reference" limit on an arrival whose file they name.
 #[derive(Clone, Debug, Default)]
-pub(crate) struct ActRead(std::sync::Arc<ActReadData>);
+pub(crate) struct ActRead(std::sync::Arc<ActReadData>, std::sync::Arc<BTreeMap<String, String>>);
 
 /// A completed observation is immutable. The cache and its readers share
-/// these same records and captures until the existing read basis changes;
+/// these same full records and decline-content facts until the read basis changes;
 /// an earlier reader may keep its observation after a new one is built.
 #[derive(Debug, Default)]
 pub(crate) struct ActReadData {
@@ -225,8 +232,13 @@ pub(crate) struct ActReadData {
     pub unresolved: Vec<Value>,
 }
 impl ActRead {
+    /// The immutable verified observation, including correction/key/capture basis.
+    pub(crate) fn same_observation(&self, other: &Self) -> bool { std::sync::Arc::ptr_eq(&self.0, &other.0) }
+    /// Shared RS relation assessment also names corrected or unresolved non-act
+    /// targets. Ended-arrival observers must not derive from those old claims.
+    pub(crate) fn record_limit(&self, id: &str) -> Option<&str> { self.1.get(id).map(String::as_str) }
     fn new(data: ActReadData) -> Self {
-        Self(std::sync::Arc::new(data))
+        Self(std::sync::Arc::new(data), Default::default())
     }
 }
 impl std::ops::Deref for ActRead {
@@ -599,7 +611,7 @@ impl CheckpointRecorder {
         }
         let Some(read) = records.as_ref() else { return };
         let cache = &mut self.contents;
-        let outputs = lapses_of(&all, read, &crate::util::now_rfc3339(), &mut |subject| cached_content(cache, root, subject), waiting_only);
+        let outputs = lapses_of(&all, read, &crate::util::now_rfc3339(), &mut |subject| cached_content(cache, root, subject), waiting_only, false, None);
         for (_, body) in outputs.iter().filter(|(k, b)| *k == "act_lapsed" && b["when"] == "before resume") {
             for arrival in self.arrivals.iter_mut().filter(|a| a.reference() == body["arrival"]) {
                 arrival.resumed = false;
@@ -952,7 +964,7 @@ pub(crate) fn count_acts(entries: &[Value], read: &ActRead, root: &Path) -> Vec<
             let id = record["recordId"].as_str()?;
             let index = on_subject(&named(record))?;
             if record["kind"] == "act_declined" {
-                Some((b["time"].as_str().filter(|t| comparable(t))?, id, record, b["declinedKind"].as_str()?, &a["capture"]["boundContent"][index]))
+                Some((b["time"].as_str().filter(|t| comparable(t))?, id, record, b["declinedKind"].as_str()?, &a["declineBoundContent"][index]))
             } else {
                 Some((b["captureTime"].as_str().filter(|t| comparable(t))?, id, record, b["actKind"].as_str()?, &b["boundContent"][index]))
             }
@@ -1117,30 +1129,63 @@ pub(crate) fn lapse_evaluable(entries: &[Value]) -> bool {
 /// currency (A-10), and the effect of content back at `c0` is RS U-12, so
 /// neither changes a label.
 pub(crate) fn observe_lapses(entries: &[Value], read: &ActRead, now: &str, current: &mut dyn FnMut(&Path) -> Current) -> Vec<Output> {
-    lapses_of(entries, read, now, current, false)
+    lapses_of(entries, read, now, current, false, false, None)
+}
+/// CE-10 after a recorded run end. The owning observer validates the source
+/// and counted performance first; only performed/lapsed ended arrivals are
+/// compared. Unknowns and content returning to c0 never restore performance.
+pub(crate) fn observe_ended_lapses(
+    entries: &[Value],
+    read: &ActRead,
+    now: &str,
+    arrivals: &[Value],
+    current: &mut dyn FnMut(&Path) -> Current,
+) -> Vec<Output> {
+    lapses_of(entries, read, now, current, false, true, Some(arrivals))
+}
+/// The performed basis as recorded before the unique run end.
+/// Later observations never manufacture a new performance of an ended run.
+pub(crate) fn ended_lapse_basis(entries: &[Value]) -> Vec<(Value, Value, Value)> {
+    let Some(end) = entries.iter().position(|e| e["kind"] == "run_ended") else {
+        return vec![];
+    };
+    let prefix = &entries[..end];
+    prefix.iter().filter(|e|e["kind"]=="checkpoint_arrival").filter_map(|entry|{
+        let arrival=json!({"checkpoint":entry["body"]["checkpoint"],"arrivalOrdinal":entry["body"]["arrivalOrdinal"]});
+        if disposition(prefix,&[],&arrival).as_deref()!=Some("performed"){return None}
+        let (at,performance)=latest_performance(prefix,&arrival)?;
+        let content=observed_content(&prefix[..at],&arrival).unwrap_or(&entry["body"]["referents"][0]["content"]);
+        Some((entry["body"].clone(),performance.clone(),content.clone()))
+    }).collect()
 }
 /// [`observe_lapses`], for the arrivals whose latest label is *waiting* only
 /// when `waiting_only` (such an arrival has no resume point after its latest
 /// performance, so its lapse is *before resume* whatever an observation's
 /// items show).
-fn lapses_of(entries: &[Value], read: &ActRead, now: &str, current: &mut dyn FnMut(&Path) -> Current, waiting_only: bool) -> Vec<Output> {
+fn lapses_of(entries: &[Value], read: &ActRead, now: &str, current: &mut dyn FnMut(&Path) -> Current, waiting_only: bool, ended: bool, allowed: Option<&[Value]>) -> Vec<Output> {
     use crate::standing::{compare, CurrentContent, Lapse};
     let mut out: Vec<Output> = Vec::new();
+    let ended_basis=if ended {ended_lapse_basis(entries)} else {vec![]};
     let pending = |out: &[Output]| -> Vec<Value> { entries.iter().cloned().chain(out.iter().map(|(k, b)| json!({"kind":k,"body":b}))).collect() };
     for arrival_entry in entries.iter().filter(|e| e["kind"] == "checkpoint_arrival") {
         let body = &arrival_entry["body"];
         let arrival = json!({"checkpoint":body["checkpoint"],"arrivalOrdinal":body["arrivalOrdinal"]});
+        if allowed.is_some_and(|arrivals| !arrivals.contains(&arrival)) { continue; }
+        if ended && !ended_basis.iter().any(|(b,_,_)|b["checkpoint"]==body["checkpoint"]&&b["arrivalOrdinal"]==body["arrivalOrdinal"]){continue}
         let referents = body["referents"].as_array().map(Vec::as_slice).unwrap_or_default();
         let [referent] = referents else { continue };
         let Some(shown) = referent["subject"].as_str() else { continue };
         let all = pending(&out);
         let latest = disposition(&all, &[], &arrival);
-        if !matches!(latest.as_deref(), Some("performed" | "waiting")) || (waiting_only && latest.as_deref() != Some("waiting")) {
+        if (ended && !matches!(latest.as_deref(), Some("performed" | "lapsed")))
+            || (!ended && !matches!(latest.as_deref(), Some("performed" | "waiting")))
+            || (waiting_only && latest.as_deref() != Some("waiting")) {
             continue;
         }
-        let Some((at, performance)) = latest_performance(&all, &arrival) else { continue };
+        let performance_entries = if ended { &all[..all.iter().position(|e| e["kind"] == "run_ended").unwrap()] } else { &all };
+        let Some((at, performance)) = latest_performance(performance_entries, &arrival) else { continue };
         let resumed = all[at + 1..].iter().any(|e| e["kind"] == "run_resumed" && e["body"]["arrival"] == arrival);
-        let when = if latest.as_deref() == Some("performed") && resumed { "after resume" } else { "before resume" };
+        let when = if ended { "after run end" } else if latest.as_deref() == Some("performed") && resumed { "after resume" } else { "before resume" };
         let (ordinal, answered) = (performance["performanceOrdinal"].clone(), performance["answeredBy"].clone());
         for id in answered.as_array().into_iter().flatten().filter_map(Value::as_str) {
             let Some(act) = read.acts.iter().map(|a| &a["record"]).find(|r| r["kind"] == "human_act" && r["recordId"] == id) else { continue };
@@ -1193,7 +1238,10 @@ fn lapses_of(entries: &[Value], read: &ActRead, now: &str, current: &mut dyn FnM
             if !matches!(state, "lapsed" | "lapsed (subject absent)") {
                 continue;
             }
-            if when == "after resume" {
+            if when == "after run end" {
+                out.push(("disposition_change", json!({"arrival":arrival,"disposition":"lapsed","performanceOrdinal":ordinal,"answeredBy":answered,
+                    "annotations":[{"label":"act lapsed at","actRefs":[id],"time":time,"referents":[shown]}]})));
+            } else if when == "after resume" {
                 out.push(("disposition_change", json!({"arrival":arrival,"disposition":"performed","performanceOrdinal":ordinal,"answeredBy":answered,
                     "annotations":[{"label":"act lapsed at","actRefs":[id],"time":time,"referents":[shown]}]})));
             } else {
@@ -1488,14 +1536,33 @@ pub(crate) fn waiting_arrivals(entries: &[Value]) -> Vec<Value> {
 /// The last act read, kept while no act-relevant record (the index's act
 /// epoch), no capture file it read (stamp) and not the seal key basis
 /// (`capture_seal::verification_basis`) has changed.
-struct ActCache { root: std::path::PathBuf, epoch: u64, keys: String, captures: Vec<(std::path::PathBuf, Option<crate::records_index::Stamp>)>, read: ActRead }
+struct ActCache { root: std::path::PathBuf, epoch: u64, keys: String, captures: Vec<crate::file_act_view::CaptureWatch>, read: ActRead }
 static ACT_CACHE: std::sync::Mutex<Option<ActCache>> = std::sync::Mutex::new(None);
 #[cfg(test)]
 pub(crate) fn forget_act_read_for_test() {
     *ACT_CACHE.lock().unwrap_or_else(|p| p.into_inner()) = None;
 }
-fn capture_stamp(path: &Path) -> Option<crate::records_index::Stamp> {
-    std::fs::symlink_metadata(path).ok().map(|m| crate::records_index::Stamp::of(&m))
+fn capture_stamp(path: &Path) -> Result<Option<crate::records_index::Stamp>, std::io::Error> {
+    match std::fs::symlink_metadata(path) {
+        Ok(m) => Ok(Some(crate::records_index::Stamp::of(&m))),
+        Err(e) if e.kind() == std::io::ErrorKind::NotFound => Ok(None),
+        Err(e) => Err(e),
+    }
+}
+fn captures_unchanged(captures: &[crate::file_act_view::CaptureWatch]) -> bool {
+    // A child inode alone cannot detect an owning folder replaced by an alias.
+    // Check each existing physical owning folder again on this attempt, once
+    // per distinct folder; every named file is checked against its read stamp.
+    let mut folders = std::collections::BTreeMap::new();
+    captures.iter().all(|watch| {
+        let Some(folder) = watch.path.parent() else { return false };
+        let current = *folders.entry(folder).or_insert_with(|| {
+            crate::storage::check_path(folder).ok()?;
+            std::fs::symlink_metadata(folder).ok().filter(|m| m.is_dir()).map(|m| crate::records_index::Stamp::of(&m))
+        });
+        current.is_some() && watch.absent_folder_stamp.is_none_or(|stamp| current == Some(stamp))
+            && capture_stamp(&watch.path).is_ok_and(|stamp| stamp == watch.stamp)
+    })
 }
 pub(crate) fn project_act_records(root: &Path) -> Result<ActRead, String> {
     let root = std::fs::canonicalize(root).map_err(|e| format!("project root not readable: {e}"))?;
@@ -1515,7 +1582,7 @@ pub(crate) fn project_act_records(root: &Path) -> Result<ActRead, String> {
         let epoch = ix.act_epoch();
         if let Some(cache) = ACT_CACHE.lock().unwrap_or_else(|p| p.into_inner()).as_ref() {
             if cache.root == root && cache.epoch == epoch && cache.keys == keys
-                && cache.captures.iter().all(|(p, s)| capture_stamp(p) == *s) {
+                && captures_unchanged(&cache.captures) {
                 return Ok(Look::Kept(cache.read.clone()));
             }
         }
@@ -1530,7 +1597,18 @@ pub(crate) fn project_act_records(root: &Path) -> Result<ActRead, String> {
         let analysis = crate::decision_view::record_relations::analyze(&claims, &complete);
         claims.iter().map(|claim| analysis.claim_state(claim["record"]["recordId"].as_str().unwrap_or(""))).collect()
     }; // Drop the analysis's borrows before moving the original record bodies.
+    let mut relation_limits = BTreeMap::new();
+    for (claim, state) in claims.iter().zip(&states) {
+        let reason = if state.corrected { Some("record has a recorded correction") }
+            else if state.nonconformant { Some("nonconformant record relation") }
+            else if state.identity_resolution == "conflicting identity" { Some("conflicting record identity") }
+            else { state.relation_limit };
+        if let (Some(id), Some(reason)) = (claim["record"]["recordId"].as_str(), reason) {
+            relation_limits.insert(id.to_owned(), reason.to_owned());
+        }
+    }
     let mut captures = Vec::new();
+    let mut reusable = true;
     let mut read = ActReadData::default();
     let mut seen: BTreeSet<String> = BTreeSet::new();
     let mut by_capture: std::collections::BTreeMap<String, Vec<String>> = std::collections::BTreeMap::new();
@@ -1556,21 +1634,29 @@ pub(crate) fn project_act_records(root: &Path) -> Result<ActRead, String> {
         } else if record["recorder"]["role"] != crate::records::APP_INTERFACE.role || record["recorder"]["identity"] != crate::records::APP_INTERFACE.identity {
             Err("not written by the App's capturing surface (PH-4)".into())
         } else {
-            if let Some(capture_id) = b["captureEvidence"][0]["ref"].as_str() {
-                if let Ok(path) = crate::storage::capture_path(&root, capture_id) {
-                    captures.push((path.clone(), capture_stamp(&path)));
-                }
-            }
-            match crate::file_act_view::capture(&root, b) {
+            let observed = crate::file_act_view::observe_capture(&root, b);
+            reusable &= observed.reusable;
+            if let Some(watch) = observed.watch { captures.push(watch); }
+            match observed.result {
                 Err(e) => Err(format!("capture evidence not resolved: {e}")),
                 Ok(capture) if !crate::file_act_view::corresponds(&capture, &record) => Err("the record differs from the capture it cites".into()),
                 Ok(capture) => Ok(capture),
             }
         };
         match verified {
-            Ok(capture) => {
+            Ok(mut capture) => {
                 by_capture.entry(capture["captureId"].as_str().unwrap_or_default().to_owned()).or_default().push(id.to_owned());
-                read.acts.push(Value::Object(serde_json::Map::from_iter([("record".into(), record), ("capture".into(), capture)])));
+                // These remain private candidates until the complete R-8 pass.
+                // Full schema/seal/backlink/correspondence checks have finished;
+                // R-8 needs the verified identity above, not the full capture.
+                // Keep every original record and move the exact decline array,
+                // releasing all other capture fields before reading the next one.
+                let mut fields = serde_json::Map::from_iter([("record".into(), record)]);
+                if decline {
+                    let content = capture.as_object_mut().and_then(|c| c.remove("boundContent")).unwrap_or(Value::Null);
+                    fields.insert("declineBoundContent".into(), content);
+                }
+                read.acts.push(Value::Object(fields));
             }
             Err(reason) => read.unresolved.push(Value::Object(serde_json::Map::from_iter([("record".into(), record), ("reason".into(), Value::String(reason))]))),
         }
@@ -1585,8 +1671,11 @@ pub(crate) fn project_act_records(root: &Path) -> Result<ActRead, String> {
             ("reason".into(), Value::String("several records cite one capture (RS R-8)".into())),
         ]))));
     }
-    let read = ActRead::new(read);
-    *ACT_CACHE.lock().unwrap_or_else(|p| p.into_inner()) = Some(ActCache { root, epoch, keys, captures, read: read.clone() });
+    // Publish/cache only this complete observation, after every eligible claim
+    // and the global duplicate-capture decision. Public readers resolve their
+    // own full captures; these rows are private verified checkpoint facts.
+    let read = ActRead(std::sync::Arc::new(read), std::sync::Arc::new(relation_limits));
+    *ACT_CACHE.lock().unwrap_or_else(|p| p.into_inner()) = reusable.then(|| ActCache { root, epoch, keys, captures, read: read.clone() });
     Ok(read)
 }
 /// The limit written before `run_ended` when the person ends a run while an

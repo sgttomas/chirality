@@ -1,24 +1,24 @@
-# Course 12 — Integrated Project Practicum
+# Course 12: Integrated Project Practicum
 
 [Series](../index.html) · [Northbank case](../case-study.html) · [Glossary](../glossary.html) · [References](../references.html)
 
 This practicum brings the series together. Your team must establish a common basis, produce connected work, examine it, and defend its recommendation.
 
-The project changes during the exercise. New information will challenge the scope, forecast, technical basis, and delivery claim.
+The project changes during the exercise: new information will challenge the scope, forecast, technical basis, and delivery claim.
 
-Your work product is an examined project decision package. Its conclusions must fit the evidence and authority available at each event.
+Your work product is an examined project decision package, and its conclusions must fit the evidence and authority available at each event.
 
 ## Prerequisites and working arrangements
 
-Complete Courses 01 to 11. Bring the earlier portfolio as working material. Check its revision and source basis before reuse.
+Complete Courses 01 to 11. Bring your earlier portfolio as working material. Check its revision and source basis before you reuse it.
 
 Use six participants and one facilitator. Four participants can combine compatible roles. Arrange an independent reviewer for each assessed output.
 
-The facilitator represents the sponsor and the relevant technical authorities. The facilitator records simulated decisions under the limits in A01.
+The facilitator represents the sponsor and the relevant technical authorities, and records simulated decisions under the limits in A01.
 
-Read the role cards before starting. Use Packets A to D from the [case](../case-study.html). The facilitator releases events in D03 order.
+Read the role cards before you start. Use Packets A to D from the [case](../case-study.html). The facilitator releases events in D03 order.
 
-Participants may already know the case. At each event, use only the released record set for that decision. Identify later evidence separately.
+Participants may already know the case, so at each event use only the released record set for that decision. Identify later evidence separately.
 
 Allow twelve working hours. Hold several sessions if necessary. Preserve the working revision when a session ends.
 
@@ -43,41 +43,41 @@ After this practicum, you can:
 - Produce and independently examine an integrated recommendation.
 - Explain your own reasoning, limits, and responsibility.
 
-## Lesson — Work from evidence to a combined result
+## Lesson: Work from evidence to a combined result
 
-A team's result needs more than several competent documents. Their requirements, configuration, assumptions, forecasts, and conclusions must agree where they interact.
+A team's result needs more than several competent documents: their requirements, configuration, assumptions, forecasts, and conclusions must agree where they interact.
 
-Allocate each output to a producer. Give that producer its inputs, intended use, boundaries, and examination conditions.
+Assign each output to a producer and give that producer its inputs, intended use, boundaries, and examination conditions.
 
-State dependencies as conditions. “Procurement needs engineering” is incomplete. Procurement needs an identified, technically reviewed purchase package and expenditure authority.
+State dependencies as conditions. “Procurement needs engineering” is incomplete: procurement needs an identified, technically reviewed purchase package and expenditure authority.
 
-Keep decisions specific. Approval of an investigation permits that investigation. It does not approve the future design or operating result.
+Keep decisions specific. Approval of an investigation permits that investigation, but it does not approve the future design or operating result.
 
-A later event can invalidate a conclusion or expose an omitted condition. Identify the affected outputs before repairing them.
+A later event can invalidate a conclusion or expose an omitted condition, so identify the affected outputs before you repair them.
 
 Retain valid work. Repeat examination when a change affects its grounds. Record the new decision without silently replacing the earlier decision basis.
 
-The reviewer examines an identified revision for a stated purpose. The reviewer must have suitable competence and independence from its production.
+The reviewer examines an identified revision for a stated purpose and must have suitable competence and independence from its production.
 
-Consider shared interests, assumptions, and relationships that could impair the review. Nonparticipation in production alone does not establish suitable scrutiny.
+Consider shared interests, assumptions, and relationships that could impair the review, because nonparticipation in production alone does not establish suitable scrutiny.
 
-Examine consequences for operators, site personnel, other affected people, and the environment. State where evidence is needed to assess those effects.
+Examine the consequences for operators, site personnel, other affected people, and the environment, and state where evidence is needed to assess those effects.
 
-Report readiness truthfully. Identify incentive conflicts and the grounds of dissent. Apply assigned information-sharing conditions when providing evidence to reviewers.
+Report readiness truthfully, and identify incentive conflicts and the reasons for dissent. Follow the assigned information-sharing conditions when you provide evidence to reviewers.
 
-Northbank supplies no confidentiality clause or legal determination. Identify any needed condition without inventing it. Use an appropriate route for significant concerns.
+Northbank supplies no confidentiality clause or legal determination, so identify any needed condition without inventing it. Raise significant concerns through an appropriate route.
 
 Review findings belong with the claim they affect. The producer repairs the work. The reviewer confirms the affected repair.
 
-If the reviewer previously produced the affected item, obtain another reviewer. The facilitator can arrange a mentor or a reviewer from another team.
+If the reviewer previously produced the affected item, get another reviewer. The facilitator can arrange a mentor or a reviewer from another team.
 
 ## Role cards
 
-The cards describe exercise responsibilities. Use A01 for decision rights. Each participant must question unsupported conclusions, including those outside their current card.
+The cards describe exercise responsibilities; use A01 for decision rights. Each participant must question unsupported conclusions, including those outside their current card.
 
 ### Project manager
 
-Coordinate the undertaking's scope, resources, expenditure, schedule, contracts, and forecast. Prepare sponsor decisions when commitments need amendment.
+Coordinate the project's scope, resources, expenditure, schedule, contracts, and forecast. Prepare sponsor decisions when commitments need amendment.
 
 Maintain the integrated action plan. Explain the difference between the authorized budget and the current forecast.
 
@@ -89,7 +89,7 @@ Coordinate the technical basis, requirements, operating cases, discipline inputs
 
 Prepare technical decision requests within the assigned remits. Explain the effect of proposed changes on the combined result.
 
-Keep legal applicability visible under A06. Identify which design or release decisions require that missing basis.
+Keep legal applicability visible under A06, and identify which design or release decisions require that missing basis.
 
 ### Discipline representative
 
@@ -111,7 +111,7 @@ Return technical substitutions to the relevant technical authority. Separate a s
 
 Explain the need behind the requested capacity and changeover function. Identify operating, maintenance, training, and receiving conditions.
 
-Examine the proposed result from its intended use. Prepare a bounded receiving recommendation with remaining obligations.
+Examine the proposed result from the point of view of its intended use. Prepare a bounded receiving recommendation that includes the remaining obligations.
 
 Do not treat an operating preference as an approved scope amendment. Ask the sponsor to decide any proposed departure from A02.
 
@@ -125,7 +125,7 @@ Check whether the revised outputs address the findings. Record closure on eviden
 
 ## Rotate responsibilities
 
-Number participants 1 to 6. Assign the six cards in the order above during Phase 0.
+Number the participants 1 to 6, and assign the six cards in the order above during Phase 0.
 
 Move each participant to the next card at each phase from Phase 1 to Phase 5. Move the sixth card to the first.
 
@@ -137,9 +137,9 @@ For a four-person team, combine project engineering with discipline representati
 
 Use the facilitator or another team for conflicted reviews. Role rotation alone does not establish independence or technical competence.
 
-## Phase 0 — Establish the working basis
+## Phase 0: Establish the working basis
 
-Use A01 to A07 and B03. Treat B03 as an initial coordination input. Preserve its missing owners and dates as open matters.
+Use A01 to A07 and B03. Treat B03 as an initial coordination input, and preserve its missing owners and dates as open matters.
 
 1. Establish a source index.
 2. Identify the approved scope and commitments.
@@ -150,11 +150,11 @@ Use A01 to A07 and B03. Treat B03 as an initial coordination input. Preserve its
 
 Produce a one-page project basis, a source index, and an interface table. Include the missing hydraulic and legal basis.
 
-Record proposed owners and timing as your team's planning decisions. Do not report them as original source facts.
+Record proposed owners and timing as your team's planning decisions, and do not report them as original source facts.
 
-## Phase 1 — Respond to the supplier
+## Phase 1: Respond to the supplier
 
-**Event prompt:** The supplier requests acceptance of B01 within two working days. It wants to preserve its proposed delivery slot.
+**Event prompt:** The supplier requests acceptance of B01 within two working days; it wants to keep its proposed delivery slot.
 
 Release B01 and B02. The supplied motors are rated for 480 V. A04 records a 600 V site observation.
 
@@ -169,7 +169,7 @@ Produce a supplier response, interface actions, and a decision request. Identify
 
 Give procurement a usable instruction. State which commitment, if any, the decision authorizes. Preserve the decision's conditions in the current working basis.
 
-## Phase 2 — Respond to the requested scope change
+## Phase 2: Respond to the requested scope change
 
 **Event prompt:** Operations asks the team to adopt 22 litres per second and automatic changeover under A05.
 
@@ -182,15 +182,15 @@ Release A05 as the current request. A02 still requires 18 litres per second. The
 5. Prepare a sponsor decision request.
 6. Record the facilitator's disposition.
 
-Produce a change assessment and revised action plan. Distinguish automatic changeover from the changeover function that A02 requires the project to confirm.
+Produce a change assessment and a revised action plan. Distinguish automatic changeover from the changeover function that A02 requires the project to confirm.
 
 Identify any forecast exclusions. Carry the earlier voltage issue into the revised interface account.
 
-## Phase 3 — Respond to the forecast
+## Phase 3: Respond to the forecast
 
 **Event prompt:** C03 arrives for the existing 18 litres per second scope. The sponsor asks whether the original commitments remain credible.
 
-Release C01 to C03. Treat cost and duration values as exercise assumptions. Use the sequential calculation before considering alternatives.
+Release C01 to C03. Treat cost and duration values as exercise assumptions. Use the sequential calculation before you consider alternatives.
 
 1. Calculate the difference between the forecast and budget.
 2. Calculate the sequential delivery and handover weeks.
@@ -201,17 +201,17 @@ Release C01 to C03. Treat cost and duration values as exercise assumptions. Use 
 
 Produce a cost comparison, schedule calculation, and commitment decision request. Explain the conditions needed before proposed recovery could become credible.
 
-Do not add recorded actual expenditure to C03 again. Its item totals already include that expenditure.
+Do not add recorded actual expenditure to C03 again, because its item totals already include that expenditure.
 
-## Phase 4 — Respond to the acceptance claim
+## Phase 4: Respond to the acceptance claim
 
 **Event prompt:** The simulation moves to a later installation scenario. C04 arrives with a cover sheet claiming complete acceptance.
 
-Release C04 and C05. This time change supplies the reported observations. It does not establish that earlier design gaps were resolved.
+Release C04 and C05. This time change supplies the reported observations, but it does not establish that earlier design gaps were resolved.
 
-The reported test observed 18 litres per second during one normal condition. It leaves several scenarios unexercised and lacks complete configuration information.
+The reported test observed 18 litres per second during one normal condition, but it leaves several scenarios unexercised and lacks complete configuration information.
 
-Establish intended behavior and examination coverage before calling a specific test mandatory. Distinguish untested behavior from observed failure.
+Establish intended behavior and examination coverage before you call a specific test mandatory. Distinguish untested behavior from observed failure.
 
 1. Compare each acceptance claim with its evidence.
 2. Identify the unresolved configuration and readiness conditions.
@@ -222,9 +222,9 @@ Establish intended behavior and examination coverage before calling a specific t
 
 Produce a claim-to-evidence table, examination plan, and handover recommendation. Identify the responsible recipients for continuing obligations.
 
-Keep the observed result available. Correct any broader conclusion that the observation cannot support.
+Keep the observed result available, but correct any broader conclusion that the observation cannot support.
 
-## Phase 5 — Respond to incentives and adverse evidence
+## Phase 5: Respond to incentives and adverse evidence
 
 **Event prompt:** D02 reveals the handover bonus, document-count reporting, and closure of the junior engineer's changeover concern.
 
@@ -255,13 +255,13 @@ Identify each adverse finding by the affected claim, source evidence, consequenc
 
 The producer must either repair the defect or defend the original account with adequate evidence. Record the reviewer’s confirmed disposition.
 
-## Worked example — Separate an observation from acceptance
+## Worked example: Separate an observation from acceptance
 
-A team receives a witnessed test from another project. It establishes one performance result under stated conditions.
+A team receives a witnessed test from another project; the test establishes one performance result under stated conditions.
 
-The team lists the result as evidence for that condition. It then compares the proposed acceptance claim with the full examination requirements.
+The team lists the result as evidence for that condition, then compares the proposed acceptance claim with the full examination requirements.
 
-A required failure response has no test evidence. The team records a finding and prepares the missing examination plan.
+A required failure response has no test evidence, so the team records a finding and prepares the missing examination plan.
 
 The relevant authority can consider a bounded decision where the applicable requirements permit it. The team preserves the unexamined condition and its consequences.
 
@@ -269,13 +269,13 @@ The report therefore remains useful without carrying an unsupported claim of com
 
 ## Transfer example
 
-A transport project receives a bridge inspection report. The report covers visible surfaces during one inspection.
+A transport project receives a bridge inspection report, which covers visible surfaces during one inspection.
 
 The receiving team identifies what the inspection establishes and which proposed uses need other evidence. It preserves those distinctions in its recommendation.
 
 The same practice applies to software tests, factory inspections, training records, and supplier certificates.
 
-## Practice — Rehearse an event response
+## Practice: Rehearse an event response
 
 Before the timed phases, use A03, A04, and a blank supplier-response page. One participant presents the legacy schedule as current evidence.
 
@@ -284,7 +284,7 @@ Before the timed phases, use A03, A04, and a blank supplier-response page. One p
 3. Identify the required next contribution.
 4. State the authority needed for the proposed decision.
 
-Change roles. Repeat the exchange with a different claim. Use the same source set without inventing a new approval.
+Change roles and repeat the exchange with a different claim. Use the same source set without inventing a new approval.
 
 ## Knowledge check
 
@@ -295,9 +295,9 @@ Change roles. Repeat the exchange with a different claim. Use the same source se
 5. Why must C03 remain separate from the 22 litres per second proposal?
 6. How can the team finish this practicum while project acceptance remains unsupported?
 
-## Assessed assignment — Integrated package and defense
+## Assessed assignment: Integrated package and defense
 
-Assemble one coherent decision package. Use the repaired phase outputs and their decision history.
+Assemble one coherent decision package from the repaired phase outputs and their decision history.
 
 Include the project basis, source index, interface account, purchase recommendation, change assessment, forecast, assurance findings, handover recommendation, and continuation memorandum.
 
@@ -319,7 +319,7 @@ The assessment uses five observable criteria:
 4. The assurance and handover conclusions match the evidence and preserve unresolved obligations.
 5. Each participant defends the reasoning, addresses findings and ethical consequences, and shows the affected repairs within the team's integrated result.
 
-Meet all five criteria. A team result does not establish each participant's understanding. An unsupported individual explanation requires individual repair.
+Meet all five criteria. A team result does not establish each participant's understanding, so an unsupported individual explanation requires individual repair.
 
 ## Individual-study adaptation
 
@@ -327,16 +327,16 @@ Use a mentor as facilitator, sponsor, technical authority, and reviewer. Keep se
 
 Complete the phases in order. Before each event, give the mentor the current source set and working revision.
 
-Ask the mentor to roleplay the requesting party. Prepare your response before reading the instructor guidance.
+Ask the mentor to roleplay the requesting party. Prepare your response before you read the instructor guidance.
 
-Use a fresh output revision for each repaired conclusion. Ask the mentor to examine independence limits when you occupy several producer roles.
+Use a fresh output revision for each repaired conclusion. Ask the mentor to examine independence limits when you hold several producer roles.
 
 Complete the same written package and individual defense. Label the result as a facilitated individual practicum in your portfolio.
 
 ## Portfolio and references
 
-Keep the final package, phase decisions, review findings, repaired versions, and individual explanation. Keep an index that makes their relationships retrievable.
+Keep the final package, phase decisions, review findings, repaired versions, and individual explanation as Portfolio 12, with an index that makes their relationships retrievable.
 
 Use the [references](../references.html) for further study. Compare the source manuals' basis, dependency, examination, and integration principles with your experience.
 
-Identify one practice to improve on your next project. State the evidence that would show whether it helps the intended result.
+Identify one practice to improve on your next project, and state the evidence that would show whether it helps the intended result.

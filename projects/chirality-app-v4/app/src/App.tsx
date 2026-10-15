@@ -1,4 +1,5 @@
 import { ConnectorSourcePanel } from "./ConnectorSourcePanel";
+import { FleetRecordsPanel, readFleetPacket, type FleetPacket } from "./FleetRecordsPanel";
 import { ConnectorRoutePanel, emptyRouteRead, routeReadTransition, type RouteReadState, type RouteView } from "./ConnectorRoutePanel";
 // The interface reads host snapshots and asks the host to act. It holds no pipe
 // (HOSTING H2), writes no record and cannot capture an act: the native
@@ -6,9 +7,10 @@ import { ConnectorRoutePanel, emptyRouteRead, routeReadTransition, type RouteRea
 import { useCallback, useEffect, useRef, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { appHome, CodexProcessControls, stopLabel } from "./CodexControls";
-import { ContinueAsPanel, ModelProviderFields, RoleChoice, RoleHeader, SupplyStatus } from "./ConversationRoles";
+import { ContinueAsPanel, ModelProviderFields, RoleChoice, RoleHeader, RoleHistoryReader, SupplyStatus } from "./ConversationRoles";
 import { EXACT_TEXT } from "./exactText";
-import { RunPanel, SelectedWorkflow, runBringBackDefault } from "./RunPanel";
+import { ArrivalRecord, RunPanel, SelectedWorkflow, runBringBackDefault } from "./RunPanel";
+import { chatWorkflow, workflowArguments, workflowContext } from "./workflowSelection";
 import { FileActPanel } from "./FileActPanel";
 import { NativeActivityView } from "./NativeActivity";
 import { PlanModeControl } from "./PlanMode";
@@ -127,14 +129,15 @@ export function ConversationPanel({ host, threadKey, setThreadKey, answer, runAc
       <option value="">Select a conversation</option>
       {currentThreads.map((thread: Json) => <option key={JSON.stringify([thread.generation, thread.threadId])} value={JSON.stringify([thread.generation, thread.threadId])}>{thread.threadId} · {thread.model ?? "model not reported"} via {thread.modelProvider ?? "provider not reported"}</option>)}
     </select></label>
-    {selected && <RoleHeader key={`role-header:${selected.threadId}`} thread={selected} limits={host?.roleLimits} busy={!!busy} ready={host?.state === "ready"} trialConversation={trialConversation} trialsStartedHere={trialsStartedHere}
+    {selected && <RoleHeader key={`role-header:${JSON.stringify([selected.generation, selected.threadId])}`} thread={selected} limits={host?.roleLimits} busy={!!busy} ready={host?.state === "ready"} trialConversation={trialConversation} trialsStartedHere={trialsStartedHere}
+      readSupplyHistory={() => invoke("role_supply_history", { generation: selected.generation, thread: selected.threadId })}
       continueAs={role => { void roleAct("asking for a handoff summary", "continue_as_begin", { generation: selected.generation, threadId: selected.threadId, role }); }}
       fork={() => { void roleAct("forking", "conversation_fork", { generation: selected.generation, threadId: selected.threadId }, result => {
         if (result?.thread?.threadId) setThreadKey(JSON.stringify([result.thread.generation, result.thread.threadId]));
       }); }} />}
     {threadKey && !selected && <p>Selected conversation is no longer available in this generation; choose a current conversation.</p>}
     {handoffs.map((handoff: Json) => <ContinueAsPanel key={handoff.id} handoff={handoff} entries={startEntries(host)} busy={!!busy} ready={host?.state === "ready"}
-      start={choice => { void roleAct("starting the new conversation", "thread_start", { ...choice, modeHomeClass: host?.homeRouting?.activeModeHomeClass, role: handoff.targetRole ?? null, continueAs: handoff.id }); }}
+      start={choice => { void roleAct("starting the new conversation", "thread_start", { ...choice, modeHomeClass: host?.homeRouting?.activeModeHomeClass, role: handoff.targetRole ?? null, preselected: false, continueAs: handoff.id }); }}
       send={async draft => { const started = handoff.started; if (!started) return false; return (await roleAct("sending the handoff message", "conversation_send_text", { generation: started.generation, threadId: started.threadId, text: draft, mode: null })) !== undefined; }}
       open={() => { const started = handoff.started; if (started) setThreadKey(JSON.stringify([started.generation, started.threadId])); }}
       dismiss={() => { void roleAct("closing the handoff", "continue_as_dismiss", { id: handoff.id }); }} />)}
@@ -179,10 +182,13 @@ export function ConversationPanel({ host, threadKey, setThreadKey, answer, runAc
   </section>;
 }
 
-export function HistoryPanel({ host, refresh }: { host: Json; refresh: () => Promise<void> }) {
+export function HistoryPanel({ host, refresh, threadKey, setThreadKey }: { host: Json; refresh: () => Promise<Json>; threadKey: string; setThreadKey: (key: string) => void }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [direction, setDirection] = useState("desc");
+  // A source or chat choice rendered during the pending refresh supersedes its old snapshot.
+  const latest = useRef({ host, threadKey });
+  latest.current = { host, threadKey };
   const history = host?.nativeHistory;
   const selected = history?.selected;
   const generation = history?.generation;
@@ -190,9 +196,38 @@ export function HistoryPanel({ host, refresh }: { host: Json; refresh: () => Pro
   const available = host?.state === "ready" && history?.state === "history-receiving" && JSON.stringify(generation) === JSON.stringify(host?.generation);
   const run = async (action: string, cursor: string | null = null, reference: string | null = null, pagingDirection = direction) => {
     setBusy(true); setError("");
-    try { await invoke("history_action", { generation, selectionEpoch: epoch, action, cursor, direction: pagingDirection, reference }); }
+    const priorRequests = new Set((history?.dispatches ?? []).map((dispatch: Json) => dispatch.requestRef));
+    let result: Json;
+    try { result = await invoke("history_action", { generation, selectionEpoch: epoch, action, cursor, direction: pagingDirection, reference }); }
     catch (e) { setError(String(e)); }
-    finally { try { await refresh(); } catch (e) { setError(String(e)); } setBusy(false); }
+    finally {
+      try {
+        const refreshed = await refresh();
+        const current = latest.current.host === host ? refreshed : latest.current.host;
+        const same = (a: Json, b: Json) => JSON.stringify(a) === JSON.stringify(b);
+        const resolution = result?.selected?.streamResolutions?.["thread-state"];
+        const dispatch = (result?.dispatches ?? []).find((row: Json) => row.requestRef && !priorRequests.has(row.requestRef)
+          && row.writeResult === "written" && row.outcome === "response-observed-result" && row.sourceCurrent === true
+          && same(row.generation, generation) && same(row.localQuery, resolution?.query)
+          && row.localQuery?.method === "thread/resume" && row.localQuery?.params?.threadId === selected?.threadId);
+        const admitted = dispatch?.activeAdmission;
+        // Only a new matched Continue admission opens a chat; indexed pages remain read-only.
+        if (action === "continue" && latest.current.threadKey === threadKey && admitted?.nativeResumeObserved === true && admitted.resumeRequestRef === dispatch.requestRef
+          && typeof admitted.threadId === "string" && admitted.threadId && admitted.threadId === selected?.threadId
+          && admitted.generation && same(admitted.generation, generation) && same(result?.generation, generation)
+          && result?.selectionEpoch === epoch && result?.selected?.threadId === admitted.threadId
+          && result?.selected?.state === "resume-response-observed" && result?.selected?.resumeEligibilityCurrent === true
+          && resolution?.outcome === "native-result-observed" && current?.state === "ready" && same(current.generation, admitted.generation)
+          && same(current.nativeHistory?.generation, generation) && current.nativeHistory?.selectionEpoch === epoch
+          && current.nativeHistory?.selected?.threadId === admitted.threadId && current.nativeHistory.selected.state === "resume-response-observed"
+          && current.nativeHistory.selected.resumeEligibilityCurrent === true && same(current.nativeHistory.selected.streamResolutions?.["thread-state"], resolution)
+          && (current.threads ?? []).some((row: Json) => row.threadId === admitted.threadId && same(row.generation, admitted.generation)
+            && row.nativeResumeObserved === true && row.resumeRequestRef === dispatch.requestRef)) {
+          setThreadKey(JSON.stringify([admitted.generation, admitted.threadId]));
+        }
+      } catch (e) { setError(String(e)); }
+      setBusy(false);
+    }
   };
   const select = async (threadId: string) => {
     if (!threadId) return;
@@ -325,9 +360,9 @@ export function workflowActionMessage(command: string, result: Json): string {
 /** The active library's registered revisions (WR §4.6 LS-1). A revision this App
  * process holds a registration or re-confirmation result for is offered Select;
  * the host resolves it from the revision store (SL-1, SL-4). Every row keeps Refine. */
-export function RegisteredRevisions({ library, rows, busy, act }:{ library: string; rows: Json[]; busy: boolean; act: (command:string,args:Record<string,unknown>)=>unknown }) {
+export function RegisteredRevisions({ library, rows, busy, act, chatAvailable = true }:{ library: string; rows: Json[]; busy: boolean; chatAvailable?: boolean; act: (command:string,args:Record<string,unknown>)=>unknown }) {
   return <ul aria-label="Registered revisions in the active library">{rows.map((row:Json)=><li key={`${row.name}@${row.revision}`}>{row.name} · revision {row.sequence} · {row.label}
-    {row.selectable===true&&<> <button disabled={busy} onClick={()=>act("workflow_select_listed",{libraryRef:library,name:row.name,revision:row.revision})}>Select revision {row.sequence}</button></>}
+    {row.selectable===true&&<> <button disabled={busy||!chatAvailable} onClick={()=>act("workflow_select_listed",{libraryRef:library,name:row.name,revision:row.revision})}>Select revision {row.sequence}</button></>}
     {" "}<button disabled={busy} onClick={()=>act("workflow_refine_registered",{name:row.name,revision:row.revision})}>Refine from the revision store…</button></li>)}</ul>;
 }
 
@@ -365,14 +400,14 @@ export function RegistrationEvidence({ evidence }:{ evidence: Json }) {
  * registered or re-confirmed in this App process (RC-2). The host resolves it
  * from the revision store (SL-4); nothing here picks a folder. ‹n› is the
  * revision's sequence as the library lists it, or its first 12 characters. */
-export function ReviewSelectButtons({ review, libraries, busy, act }:{ review: Json; libraries: Json[]; busy: boolean; act: (command:string,args:Record<string,unknown>)=>unknown }) {
+export function ReviewSelectButtons({ review, libraries, busy, act, chatAvailable = true }:{ review: Json; libraries: Json[]; busy: boolean; chatAvailable?: boolean; act: (command:string,args:Record<string,unknown>)=>unknown }) {
   // Only the library that holds this tuple (its origin and source root): the same
   // content may be registered under another sequence in another library.
   const listed=(id:Json)=>libraries.filter((l:Json)=>l.origin===id?.origin&&l.sourceRoot===id?.source_root)
     .flatMap((l:Json)=>Array.isArray(l.registered)?l.registered:[])
     .find((row:Json)=>row.name===id?.name&&row.revision===id?.revision)?.sequence;
   return <>{(review?.status?.entries??[]).filter((entry:Json)=>entry.state==="registered"||entry.state==="re-confirmed").map((entry:Json)=>
-    <button key={entry.identity.revision} disabled={busy} onClick={()=>act("workflow_select_registered",{reviewRef:review.reference,revision:entry.identity.revision})}>Select revision {listed(entry.identity)??String(entry.identity.revision).slice(0,12)}</button>)}</>;
+    <button key={entry.identity.revision} disabled={busy||!chatAvailable} onClick={()=>act("workflow_select_registered",{reviewRef:review.reference,revision:entry.identity.revision})}>Select revision {listed(entry.identity)??String(entry.identity.revision).slice(0,12)}</button>)}</>;
 }
 
 /** WR SL-2: "newer revision ‹n› available" beside the selection. The selection
@@ -437,17 +472,23 @@ export function WorkflowRootPanel({ data, host, act }:{ data: Json; host: Json; 
   const [name,setName]=useState("coordinated-knowledge-work");
   const [revision,setRevision]=useState("");
   const [thread,setThread]=useState("");
+  // A source switch clears the local chat control; repeated bare thread IDs do not transfer it.
+  useEffect(()=>setThread(""),[data?.context?.sourceRef,JSON.stringify(host?.generation)]);
+  const context=workflowContext(data,host,thread);
+  const selected=thread ? chatWorkflow(data,data?.context?.sourceRef,thread) : data?.inspection;
+  const chatAvailable=!!context&&!!thread;
   const [text,setText]=useState("");
   const [busy,setBusy]=useState(false);
   const [message,setMessage]=useState("");
   // Resolves to the host's result, or undefined when the command failed (the message shows why).
-  const action=async(command:string,args:Record<string,unknown>):Promise<Json>=>{setBusy(true);try{const result=await act(command,args);setMessage(workflowActionMessage(command,result));
+  const action=async(command:string,args:Record<string,unknown>):Promise<Json>=>{setBusy(true);try{const result=await act(command,workflowArguments(command,args,data,host,thread));setMessage(workflowActionMessage(command,result));
     // An App-made draft is listed again by the host (WR SQ-D D-2).
-    if(command==="workflow_create_draft"||command==="workflow_refine_registered"){await act("workflow_observe_drafts",{}).catch(()=>undefined);}
+    if(command==="workflow_create_draft"||command==="workflow_refine_registered"){await act("workflow_observe_drafts",workflowArguments("workflow_observe_drafts",{},result?.context?result:{...data,activeLibrary:result?.library??data?.activeLibrary},host,thread)).catch(()=>undefined);}
     return result;
   }catch(e){setMessage(String(e));return undefined;}finally{setBusy(false);}};
   const conversations:Json[]=(host?.threads??[]).filter((entry:Json)=>JSON.stringify(entry.generation)===JSON.stringify(host?.generation));
   const entries:Json[]=data?.reviews??[];
+  const orderedReviews=entries.filter(review=>review.reference===data?.activeReview).concat(entries.filter(review=>review.reference!==data?.activeReview));
   // J6 D-1 / V14 F2, F8: the digest of each complete review as the host
   // reports it (the native A15 statement names the same value), and this
   // view's own recomputation as a check. Kept per review so it stays readable
@@ -472,45 +513,46 @@ export function WorkflowRootPanel({ data, host, act }:{ data: Json; host: Json; 
     return()=>{live=false;};
   },[presentations]); // eslint-disable-line react-hooks/exhaustive-deps
   return <section><h2>Workflow selection and native registration</h2><a href="#file-acts">Review a workspace draft file for a separate standing act</a>
+    <label>Workflow chat <select value={thread} onChange={e=>setThread(e.target.value)} disabled={busy}><option value="">No chat — inspect library content</option>{(host?.threads??[]).filter((entry:Json)=>JSON.stringify(entry.generation)===JSON.stringify(host?.generation)).map((entry:Json)=><option key={entry.threadId} value={entry.threadId}>{entry.threadId} · {entry.modelProvider}/{entry.model}</option>)}</select></label>
+    <p>{thread ? "This chat keeps its own pending workflow selection. Started runs keep their own revision." : "Library browsing is shared. Inspection here selects no workflow for a new chat."}</p>
     <p>Development content, native registration, supplied text, model adoption and run standing remain separate observations.</p>
     <p>Bundle candidate content can be inspected or copied into a draft. It is not runnable as a shipped workflow; release registration remains pending.</p>
     {(data?.productionCatalog?.entries??[]).map((entry:Json)=><article key={entry.name}>
       <p>{entry.name} · {entry.revision}</p>
-      <button disabled={busy} onClick={()=>action("workflow_select_production_bundle",{name:entry.name})}>Inspect bundled candidate</button>
-      <button disabled={busy||!data?.activeLibrary} onClick={()=>action("workflow_select_production_copy",{name:entry.name})}>Inspect matching candidate in opened library</button>
+      <button disabled={busy||!context} onClick={()=>action("workflow_select_production_bundle",{name:entry.name})}>Inspect bundled candidate</button>
+      <button disabled={busy||!context||!data?.activeLibrary} onClick={()=>action("workflow_select_production_copy",{name:entry.name})}>Inspect matching candidate in opened library</button>
     </article>)}
-    <button disabled={busy} onClick={()=>action("workflow_select_development",{})}>Select exact development workflow holding copy…</button>
-    <button disabled={busy} onClick={()=>action("workflow_open_library",{origin:"project"})}>Open project workflow library…</button>
-    <button disabled={busy} onClick={()=>action("workflow_open_library",{origin:"user"})}>Open user workflow library…</button>
-    <SelectedWorkflow selection={data?.selection}/>
-    <NewerRevisionNotice selection={data?.selection} busy={busy} act={action}/>
+    <button disabled={busy||!context} onClick={()=>action("workflow_select_development",{})}>Select exact development workflow holding copy…</button>
+    <button disabled={busy||!context} onClick={()=>action("workflow_open_library",{origin:"project"})}>Open project workflow library…</button>
+    <button disabled={busy||!context} onClick={()=>action("workflow_open_library",{origin:"user"})}>Open user workflow library…</button>
+    <SelectedWorkflow selection={selected} inspection={!thread}/>
+    {thread&&<NewerRevisionNotice selection={selected} busy={busy||!context} act={action}/>}
     <details><summary>Selection and libraries as the host reports them (paths shown as text; identities keep their exact bytes; a path that is not valid UTF-8 is marked)</summary>
-    <pre style={{whiteSpace:"pre-wrap"}}>{JSON.stringify(readablePaths({selection:data?.selection,libraries:data?.libraries,activeLibrary:data?.activeLibrary}),null,2)}</pre></details>
+    <pre style={{whiteSpace:"pre-wrap"}}>{JSON.stringify(readablePaths({selection:selected,inspection:data?.inspection,chatContext:context,libraries:data?.libraries,activeLibrary:data?.activeLibrary}),null,2)}</pre></details>
     <WorkflowDraftsView data={data?.drafts} workspace={data?.projectLibraryAvailable===true} pointerLimits={data?.trialPointerLimits} conversations={conversations}
       runs={[...(data?.runs??[]),...(data?.reopened?.runs??[])]} pending={data?.pendingTrials} busy={busy} act={action}/>
     <label>New draft name, or in-place library entry name <input {...EXACT_TEXT} value={name} onChange={e=>setName(e.target.value)} disabled={busy}/></label>
-    <button disabled={busy||!data?.selection||!data?.activeLibrary} onClick={()=>action("workflow_create_draft",{name})}>Create draft from selected content</button>
-    {(data?.libraries??[]).filter((l:Json)=>l.reference===data?.activeLibrary&&Array.isArray(l.registered)).map((l:Json)=><RegisteredRevisions key={l.reference} library={l.reference} rows={l.registered} busy={busy} act={action}/>)}
+    <button disabled={busy||!context||!selected||!data?.activeLibrary} onClick={()=>action("workflow_create_draft",{name})}>{thread?"Create draft from this chat’s selected content":"Create draft from inspected content"}</button>
+    {(data?.libraries??[]).filter((l:Json)=>l.reference===data?.activeLibrary&&Array.isArray(l.registered)).map((l:Json)=><RegisteredRevisions key={l.reference} library={l.reference} rows={l.registered} busy={busy} chatAvailable={chatAvailable} act={action}/>)}
     {(data?.libraries??[]).filter((l:Json)=>l.reference===data?.activeLibrary).map((l:Json)=><RegistrationEvidence key={l.reference} evidence={l.registrationEvidence}/>)}
     <label>Registered revision (content identity) <input {...EXACT_TEXT} value={revision} onChange={e=>setRevision(e.target.value)} disabled={busy}/></label>
     <button disabled={busy||!data?.activeLibrary||!name||!revision} onClick={()=>action("workflow_refine_registered",{name,revision})}>Refine registered revision from the revision store (no selection)</button>
     <button disabled={busy||!data?.activeLibrary||!name} onClick={()=>action("workflow_review",{names:[name],inPlace:true})}>Review this unregistered in-place library entry</button>
     <small> Drafts are reviewed from the draft list above.</small>
-    {entries.map(review=><article key={review.reference}>
-      <h3>{review.reference}</h3>
-      {digests[review.reference]&&<p>{digestComparison(digests[review.reference])}{review.status?.presentation?"":" (as last shown with the review; while the native confirmation is open, the review it names is shown under \"Content named by an open native confirmation\")"}. Read the complete review below before choosing {review.status?.presentation?.entries?.[0]?.disposition==="re-confirmation"?"Re-confirm":"Register"}: the native confirmation shows the act statement and this digest, not the review itself.</p>}
+    {orderedReviews.map(review=><article key={review.reference}>
+      <h3>{review.reference===data?.activeReview?"Current review":"Retained review"} · {review.reference}</h3>
+      {digests[review.reference]&&<p>{digestComparison(digests[review.reference])}{review.status?.presentation?<> Read the complete review below before choosing {review.status.presentation.entries?.[0]?.disposition==="re-confirmation"?"Re-confirm":"Register"}: the native confirmation shows the act statement and this digest, not the review itself.</>:" (as last shown with the review; while the native confirmation is open, the review it names is shown under \"Content named by an open native confirmation\")"}</p>}
       {review.status?.presentation?.entries?.[0]?.disposition==="re-confirmation"&&<p role="note">{review.status.presentation.entries[0].message}. {review.status.presentation.entries[0].reconfirmation?.statement}</p>}
+      {review.status?.presentation&&<p><button disabled={busy||review.reference!==data?.activeReview} onClick={()=>action("workflow_register_native",{reviewRef:review.reference})}>{review.status?.presentation?.entries?.[0]?.disposition==="re-confirmation"?"Re-confirm this revision for use in this App session through native A15 confirmation…":"Register this review through native A15 confirmation…"}</button></p>}
       <pre style={{whiteSpace:"pre-wrap"}}>{JSON.stringify(readablePaths(review.status??review),null,2)}</pre>
       <LastCleanTrialLine line={review.lastCleanTrial} busy={busy} act={action}/>
-      <button disabled={busy||review.reference!==data?.activeReview} onClick={()=>action("workflow_register_native",{reviewRef:review.reference})}>{review.status?.presentation?.entries?.[0]?.disposition==="re-confirmation"?"Re-confirm this revision for use in this App session through native A15 confirmation…":"Register this review through native A15 confirmation…"}</button>
       <button disabled={busy} onClick={()=>action("workflow_continue_registration",{reviewRef:review.reference})}>Continue original captured registration</button>
-      <ReviewSelectButtons review={review} libraries={data?.libraries??[]} busy={busy} act={action}/>
+      <ReviewSelectButtons review={review} libraries={data?.libraries??[]} busy={busy} chatAvailable={chatAvailable} act={action}/>
     </article>)}
     <h3>Send selected workflow text</h3>
-    <label>Current native conversation <select value={thread} onChange={e=>setThread(e.target.value)} disabled={busy}><option value="">Select conversation</option>{(host?.threads??[]).filter((entry:Json)=>JSON.stringify(entry.generation)===JSON.stringify(host?.generation)).map((entry:Json)=><option key={entry.threadId} value={entry.threadId}>{entry.threadId} · {entry.modelProvider}/{entry.model}</option>)}</select></label>
     <label>Person text <textarea value={text} onChange={e=>setText(e.target.value)} disabled={busy} rows={3}/></label>
-    {data?.selection&&data.selection.runnable!==true&&<p role="note">Not runnable: {data.selection.runLimit}</p>}
-    <button disabled={busy||host?.state!=="ready"||!thread||data?.selection?.runnable!==true} onClick={()=>action("workflow_prepare_run",{generation:host.generation,threadId:thread,personText:text})}>Prepare exact selected workflow text</button>
+    {selected&&selected.runnable!==true&&<p role="note">Not runnable: {selected.runLimit}</p>}
+    <button disabled={busy||!context||host?.state!=="ready"||!thread||selected?.runnable!==true} onClick={()=>action("workflow_prepare_run",{generation:host.generation,threadId:thread,personText:text})}>Prepare exact selected workflow text</button>
     <button disabled={busy} onClick={()=>action("workflow_read_records",{})}>Read recorded workflow supply (durable, read-only)</button>
     <button disabled={busy} onClick={()=>action("workflow_reopen",{})}>Reopen recorded workflow runs (read-only)</button>
     {data?.reopened&&<article><h3>Recorded runs (reopened from project records)</h3><p>{data.reopened.standing}</p>
@@ -518,13 +560,19 @@ export function WorkflowRootPanel({ data, host, act }:{ data: Json; host: Json; 
         {r.state?.startsWith("open")&&!(data?.runs??[]).some((h:Json)=>h.reference===r.run)&&<button disabled={busy} onClick={()=>action("workflow_end_recorded",{runId:r.run,threadId:r.conversation??null})}>End this interrupted run</button>}</li>)}</ul>
       {(data.reopened.limits??[]).length>0&&<p>Record limits: {JSON.stringify(data.reopened.limits)}</p>}
       {data.reopened.restartLimits&&<p>App-restart interruption limits (written by the host at startup): {(data.reopened.restartLimits.outcomes??[]).map((o:Json)=>`${o.threadId}: ${o.outcome}${o.run?` on ${o.run}`:""}${typeof o.detail==="string"?` (${o.detail})`:""}`).join("; ")||data.reopened.restartLimits.reason||"no restart facts"}</p>}</article>}
+    {data?.afterRunEnd&&<article><h3>After-run-end observations</h3><p>{data.afterRunEnd.standing}</p>
+      {(data.afterRunEnd.limits??[]).length>0&&<p role="alert">Observation/recording limits: {JSON.stringify(data.afterRunEnd.limits)}</p>}
+      {(data.afterRunEnd.held??[]).map((r:Json)=><p key={r.recordId} role="status">Not yet recorded: {r.recordId} for ended run {r.run}, first observed {r.observedAt}. {r.limit}</p>)}
+      <details><summary>Recorded post-end source history (JSON)</summary><pre style={{whiteSpace:"pre-wrap"}}>{JSON.stringify(data.afterRunEnd.runs??[],null,2)}</pre></details>
+      {(data.afterRunEnd.runs??[]).filter((r:Json)=>!(data?.runs??[]).some((h:Json)=>h.reference===r.run)).map((r:Json)=><div key={r.run}><p>Ended run {r.run}. Source project {r.source?.projectId}.</p><ul>{(r.records??[]).filter((e:Json)=>e.kind==="checkpoint_arrival").map((e:Json)=><ArrivalRecord key={e.recordId} arrival={e} all={r.records??[]}/>)}</ul></div>)}
+    </article>}
     {(data?.endedAfterRelaunch??[]).map((end:Json)=><article key={end.run}><h3>{end.run} (ended after the relaunch)</h3>
       <p>End notice: {end.endNotice?.state??"none"}. {end.limit}</p>
       {end.endNotice?.state?.startsWith("pending")&&<p role="status">The next message in conversation {end.conversation} carries this end notice first, once.
         <button disabled={busy} onClick={()=>action("workflow_reopened_notice",{runId:end.run,action:"retry"})}>Retry the end-notice record</button>
         {end.noticeRecordFailure&&<button disabled={busy} onClick={()=>action("workflow_reopened_notice",{runId:end.run,action:"skip"})}>Send without the end notice (recorded as not supplied)</button>}</p>}
     </article>)}
-    {(data?.runs??[]).map((run:Json)=><article key={run.reference}><h3>{run.reference}</h3>
+    {(data?.runs??[]).map((run:Json)=>{const next=chatWorkflow(data,data?.context?.sourceRef,run.conversation);return <article key={run.reference}><h3>{run.reference}</h3>
       <p>Run: {run.lifecycle?.state}{run.lifecycle?.follows?` · follows ${run.lifecycle.follows}`:""}{run.lifecycle?.end?` · ${run.lifecycle.end.cause}`:""}. Records: {run.publication?.state}. Send: {run.status?.state}{run.status?.limit?` (${run.status.limit})`:""}. Supplied: {suppliedSummary(run)}. Adoption: unknown.</p>
       {run.endNotice&&<p>End notice: {run.endNotice.state}</p>}
       {run.endNotice?.state?.startsWith("pending")&&<p role="status">The next message in this conversation, with or without attachments or a mode, carries this end notice first, once.{run.status?.limit?` Last attempt: ${run.status.limit}`:""}
@@ -538,11 +586,11 @@ export function WorkflowRootPanel({ data, host, act }:{ data: Json; host: Json; 
       <button disabled={busy||!run.pendingRecords} onClick={()=>action("workflow_retry_records",{runRef:run.reference})}>Retry pending records (never sends)</button>
       {run.lifecycle?.state?.startsWith("open")&&<>
         <button disabled={busy} onClick={()=>action("workflow_end_run",{runRef:run.reference,finishedReport:null})}>End run</button>
-        <button disabled={busy||host?.state!=="ready"||data?.selection?.runnable!==true} onClick={()=>action("workflow_end_and_start",{runRef:run.reference,generation:host.generation,threadId:run.conversation,personText:text})}>End this run and start {data?.selection?.identity?.name??"the selected workflow"}</button>
+        <button disabled={busy||host?.state!=="ready"||run.home!==host?.generation?.home||next?.runnable!==true} onClick={()=>action("workflow_end_and_start",{runRef:run.reference,generation:host.generation,threadId:run.conversation,personText:text})}>End this run and start {next?.identity?.name??"this chat’s selected workflow"}</button>
       </>}
       {run.endNotice?.state?.startsWith("sent")&&<button disabled={busy||host?.state!=="ready"} onClick={()=>action("workflow_check_notice",{runRef:run.reference})}>Check the end notice in native history (new check)</button>}
       <p>Selection and run text are recorded before sending; if recording fails nothing is sent. A run opens when its start turn is observed and ends only when the person ends it: an interrupt, stop, quit, failed or completed turn, or an agent's "Workflow finished" line does not end it. Ending here records "ended by the person"; when the agent writes its "Workflow finished" line, the conversation offers End run beneath that message, which records cause "completed". After an end, the next message in this conversation (text, a plan or default mode turn, an attachment-bearing turn or a Continue-as request) carries the end notice first, once. Load/select this conversation and its received turn in native History before checking.</p>
-    </article>)}
+    </article>;})}
     {message&&<p role="status" style={{whiteSpace:"pre-wrap"}}>{message}</p>}
   </section>;
 }
@@ -700,6 +748,15 @@ export function DecisionPackagesPanel({ view, name, setName, recordName, refresh
 }
 
 export function App() {
+  const [fleet, setFleet] = useState<FleetPacket | null>(null);
+  const [fleetError, setFleetError] = useState("");
+  const [fleetBusy, setFleetBusy] = useState(false);
+  const refreshFleet = async () => {
+    setFleetBusy(true); setFleetError("");
+    try { setFleet(await readFleetPacket(command => invoke<FleetPacket>(command))); }
+    catch (error) { setFleet(null); setFleetError(String(error)); }
+    finally { setFleetBusy(false); }
+  };
   const [routeRead, setRouteRead] = useState<RouteReadState>(emptyRouteRead);
   const readRoutes = async () => {
     setRouteRead(s => routeReadTransition(s, {type: "start"}));
@@ -732,12 +789,14 @@ export function App() {
 
 
   const refresh = useCallback(async () => {
-    setHost(await invoke("host_status"));
+    const snapshot: Json = await invoke("host_status");
+    setHost(snapshot);
     try {
       setView(await invoke("decision_view"));
     } catch (e) {
       setView({ error: String(e) });
     }
+    return snapshot;
   }, []);
 
   useEffect(() => {
@@ -753,7 +812,11 @@ export function App() {
 
   const act = async (cmd: string, args?: Record<string, unknown>) => {
     try {
-      const r = await invoke(cmd, args);
+      const r: Json = await invoke(cmd, args);
+      // Open the admitted native start in its own source, never the pre-click snapshot.
+      if (cmd === "thread_start" && r?.startGeneration && typeof r?.result?.thread?.id === "string" && r.result.thread.id) {
+        setThreadKey(JSON.stringify([r.startGeneration, r.result.thread.id]));
+      }
       setMessage(`${cmd}: ${JSON.stringify(r).slice(0, 300)}`);
     } catch (e) {
       setMessage(`${cmd}: ${String(e)}`);
@@ -864,12 +927,14 @@ export function App() {
           setRole={next => { roleInitialized.current = true; setRoleTouched(true); setRole(next); }} />
         <p><small>Role set: {host?.roleSet?.standing ?? host?.roleSet?.reason ?? "unavailable"}.</small></p>
         <SupplyStatus supply={host?.roleSupply} />
+        <RoleHistoryReader scope={JSON.stringify(host?.generation)} ready={host?.state === "ready"} read={() => invoke("role_supply_history", { generation: host?.generation, thread: null })} />
         {host?.instructionsProblem && <p role="alert">Role guidance store: {host.instructionsProblem}</p>}
         <RecordsStorePanel store={host?.recordsStore} act={act} />
+        <FleetRecordsPanel packet={fleet} error={fleetError} busy={fleetBusy} refresh={() => { void refreshFleet(); }} />
         <p>Selection: {host?.accessSelection ? JSON.stringify(host.accessSelection) : "No model selected"}</p>
         <p>Account (App-observed, identity not verified): {JSON.stringify(host?.accountObservation ?? { state: "unknown" })}</p>
         <p>
-          <button onClick={() => act("thread_start", { model, modelProvider, entryId, modeHomeClass: host?.homeRouting?.activeModeHomeClass, role: role || null })} disabled={host?.state !== "ready" || !model.trim() || !modelProvider.trim() || !entryId}>Start thread</button>
+          <button onClick={() => act("thread_start", { model, modelProvider, entryId, modeHomeClass: host?.homeRouting?.activeModeHomeClass, role: role || null, preselected: !roleTouched && !!role && role === host?.roleSet?.defaultRole })} disabled={host?.state !== "ready" || !model.trim() || !modelProvider.trim() || !entryId}>Start thread</button>
         </p>
         <CodexProcessControls host={host} busy={processBusy} act={(command, args) => { void processAct(command, args); }} />
         <p>Threads: {(host?.threads ?? []).map((t: Json) => `${t.threadId} (${t.status?.type ?? "?"}, gen ${JSON.stringify(t.generation)})`).join(", ") || "none"}</p>
@@ -893,7 +958,7 @@ export function App() {
         nativeHistoryGeneration={host?.nativeHistory?.generation ?? null}
         read={() => invoke("read_recovery_custody", { modeHomeClass: host?.homeRouting?.activeModeHomeClass, generation: host?.generation ?? null })}
         retry={(threadId: string) => invoke("recovery_retry", { modeHomeClass: host?.homeRouting?.activeModeHomeClass, generation: host?.generation ?? null, threadId })} />
-      <HistoryPanel host={host} refresh={refresh} />
+      <HistoryPanel host={host} refresh={refresh} threadKey={threadKey} setThreadKey={setThreadKey} />
 
       <ConversationPanel codexBusy={processBusy} host={host} threadKey={threadKey} setThreadKey={setThreadKey} answer={answerRequest} runAct={runAct} trialRunAct={trialRunAct} send={async (generation, threadId, text, mode) => {
         await conversationAction("conversation_send_text", { generation, threadId, text, mode: mode ?? null });
@@ -914,8 +979,9 @@ export function App() {
         <h2>Native requests and execution</h2>
         <p>Recovery initialization: {host?.recoveryInitialization?.state ?? "not-initialized"} · host configured: {String(host?.recoveryInitialization?.hostConfigured ?? false)}</p>
         {(host?.recoveryInitialization?.historyLimits ?? []).map((limit: string) => <p role="alert" key={limit}>App history limit: {limit}</p>)}
-        <p>Ledger: {host?.recoveryInitialization?.path?.displayPath ?? "location not established"} {host?.recoveryInitialization?.path?.pathDisplayLimit}</p>
-        {host?.recoveryInitialization?.configurationError && <p role="alert">Ledger initialization failed: {host.recoveryInitialization.configurationError}. No App recovery recording happens until this is resolved (a JSON Lines ledger named here must be repaired or moved aside). Native supplier processing is not blocked.</p>}
+        <p>SQLite recovery ledger: {host?.recoveryInitialization?.database ?? "location not established"} {host?.recoveryInitialization?.path?.pathDisplayLimit}</p>
+        <p>Legacy JSON Lines import location: {host?.recoveryInitialization?.path?.displayPath ?? "location not established"} {host?.recoveryInitialization?.path?.pathDisplayLimit}</p>
+        {host?.recoveryInitialization?.configurationError && <p role="alert">Ledger initialization failed: {host.recoveryInitialization.configurationError}. Native supplier processing is not blocked.</p>}
         <p>Directory publication: {host?.recoveryInitialization?.directoryPublication ?? "not established"} · later persistence failure: {host?.recoveryPersistenceError ?? "none reported"}</p>
         <details><summary>Recovery initialization and historical pointer state</summary><pre>{JSON.stringify({ initialization: host?.recoveryInitialization, recovery: host?.recovery }, null, 2)}</pre></details>
         <p>Observer: {JSON.stringify(host?.observerCursor)} · gap: {String(host?.observerGap ?? true)}</p>

@@ -59,6 +59,14 @@ pub(crate) fn receive_view(home: &HomeSession) -> Value {
 /// observations of its open runs. Lock order as `host_status`: runtime, then
 /// Root, then a run.
 pub(crate) fn tick_home(home: &HomeSession, workflows: &Mutex<WorkflowRootSession>) {
+    // Reconcile only this home's retained private receipts. A genuinely late
+    // role outcome is recorded even when no web view polls this home. Release
+    // History before runtime/Root/run locks: host_status takes runtime then
+    // History, so retaining this guard across receive_view would invert order.
+    {
+        let mut history = home.history.lock().unwrap();
+        history.reconcile(&home.host);
+    }
     let view = receive_view(home);
     record_run_observations(workflows, &view);
 }
@@ -69,6 +77,13 @@ pub(crate) fn tick(homes: &Mutex<HomeRouter>, workflows: &Mutex<WorkflowRootSess
     for home in entries {
         tick_home(&home, workflows);
     }
+}
+
+/// The App's actual record tick also observes ended project arrivals without
+/// requiring a running supplier or a web-view read.
+pub(crate) fn tick_project(homes:&Mutex<HomeRouter>,workflows:&Mutex<WorkflowRootSession>,project:Option<&std::path::Path>) {
+    tick(homes,workflows);
+    if let Some(project)=project {if let Ok(mut root)=workflows.try_lock(){root.observe_ended_runs(project);}}
 }
 
 /// The trial tick for one home: the TT-9 reads due in the view as last

@@ -1,6 +1,6 @@
 # Terms for Project Practice
 
-Use these meanings within the courses. A governing law, contract, or standard can define a term differently. Use that definition where it applies.
+Use these meanings within the courses. A governing law, contract, or standard can define a term differently; use that definition where it applies.
 
 ## Definitions
 
@@ -57,6 +57,6 @@ Use these meanings within the courses. A governing law, contract, or standard ca
 | Verification | Examination of conformity to specified requirements. |
 | Warrant | The grounds that justify a claim for the proposed reliance. |
 
-An authorized decision can establish or change commitments, permissions, and assigned responsibilities. It does not establish unexamined physical behavior or performance. A declared status needs supporting evidence for the proposed reliance.
+An authorized decision can establish or change commitments, permissions, and assigned responsibilities, but it does not establish unexamined physical behavior or performance. A declared status needs supporting evidence for the proposed reliance.
 
 [Return to the series](index.html). [Open the case](case-study.html).

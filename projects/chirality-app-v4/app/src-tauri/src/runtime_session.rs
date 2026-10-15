@@ -940,7 +940,7 @@ pub fn steer_conversation_turn(
     // This acknowledgment never changes turn/item state or implies replacement/end.
     Ok(response)
 }
-/// Memory-only selected native history and original App role evidence. A history
+/// Memory-only native history and live role bindings; quoted supply records are separate. A history
 /// view is never an operational thread register or a trusted cold-replay source.
 #[derive(Default)]
 pub struct HistorySession {
@@ -950,6 +950,9 @@ pub struct HistorySession {
     limits: Vec<String>,
     dispatches: Vec<HistoryPending>,
     starts: Vec<StartPending>,
+    forks: Vec<ForkPending>,
+    role_log: Option<Result<std::sync::Arc<crate::role_observations::RoleLog>, String>>,
+    role_publications: std::collections::BTreeMap<String,std::sync::Arc<crate::role_observations::PublishedRoleSupply>>,
     closed_history_generations: Vec<Value>,
     list_direction: Option<String>,
     turn_direction: Option<String>,
@@ -961,13 +964,65 @@ struct HistoryPending {
     finished: bool,
     evidence: Value,
 }
+struct ForkPending {
+    receipt: crate::hosting::SourceRequest,
+    source_thread: String,
+    supply_ref: String,
+    finished: bool,
+    result: Option<Result<Value,String>>,
+    done: bool,
+    recorded: std::collections::BTreeSet<String>,
+}
+struct StartObservation {
+    composition: crate::role_supply::Composition,
+    supply_ref: String,
+    preselected: Option<bool>,
+    continued_from: Option<Value>,
+    recorded: std::collections::BTreeSet<String>,
+    done: bool,
+}
 struct StartPending {
+    observation: StartObservation,
     receipt: crate::hosting::SourceRequest,
     prepared: Option<crate::role_lifecycle::PreparedStart>,
     finished: bool,
     evidence: Value,
 }
 impl HistorySession {
+    pub fn configure_role_log_source(&mut self, source:Result<std::sync::Arc<crate::role_observations::RoleLog>,String>) {if self.role_log.is_none(){self.role_log=Some(source);}}
+    pub fn configure_role_log(&mut self, project: &std::path::Path) {
+        if self.role_log.is_none() { self.role_log=Some(crate::role_observations::RoleLog::open(project).map(std::sync::Arc::new)); }
+    }
+    pub fn read_role_supply(&self, home: &str, thread: Option<&str>) -> Value {
+        match self.role_log.as_ref() {
+            Some(Ok(log)) => log.read(home,thread),
+            _ => json!({"observations":[],"limits":[self.role_log.as_ref().and_then(|r|r.as_ref().err()).cloned().unwrap_or("explicit App project role log unavailable".into())],"complete":false,"currentRoleAuthorityRestored":false,"standing":"Quoted App observations only; no current role or CCE authority restored"}),
+        }
+    }
+    pub fn role_refused(&self, supply_ref:&str, generation:&Value, role:Option<crate::role_supply::Role>, preselected:Option<bool>, reason:&str, before_dispatch:bool) -> Value {
+        self.role_refused_continuing(supply_ref,generation,role,preselected,reason,before_dispatch,None)
+    }
+    pub fn role_refused_continuing(&self, supply_ref:&str, generation:&Value, role:Option<crate::role_supply::Role>, preselected:Option<bool>, reason:&str, before_dispatch:bool, continued_from:Option<Value>) -> Value {
+        let request=json!({"home":generation["home"],"generation":if generation.is_object(){generation.clone()}else{Value::Null},"requestIdentity":null,"requestRef":null,"method":"thread/start","writeResult":if before_dispatch{"not-attempted"}else{"not-established"},"outcome":if before_dispatch{"refused-before-send"}else{"unknown"},"sourceCurrent":null});
+        let row=crate::role_observations::row(supply_ref,"thread-start",None,request,json!({"role":role.map(|r|r.name()).unwrap_or("none"),"preselected":preselected,"roleSet":crate::role_supply::content(crate::role_supply::BUNDLED_ROLE_SET)}),if before_dispatch{"refused-before-send"}else{"unknown"},None,json!({"instructionSources":null,"agentRole":null,"forkedFromId":null}),json!({"continuedFrom":continued_from}),Some(reason));
+        self.publish_role(row,None)
+    }
+    pub fn fork_refused(&self, supply_ref:&str, generation:&Value, source_thread:&str, reason:&str, before_send:bool) -> Value {
+        let known = crate::recovery::generation_ref(generation).is_ok();
+        let home = if known {generation["home"].clone()} else {Value::Null};
+        let source = home.as_str().and_then(|home|self.roles.get(home,source_thread));
+        let selection = match source.map(|b|b.role_in_force(home.as_str().unwrap_or(""),source_thread)) {
+            Some(crate::role_lifecycle::RoleInForce::AppObserved{role,..}) => json!({"role":role.map(|r|r.name()).unwrap_or("none"),"preselected":null,"roleSet":null}),
+            _ => json!({"role":"unknown","preselected":null,"roleSet":null}),
+        };
+        let request=json!({"home":home,"generation":if known{generation.clone()}else{Value::Null},"requestIdentity":null,"requestRef":null,"method":"thread/fork","writeResult":if before_send{"not-attempted"}else{"not-established"},"outcome":if before_send{"refused-before-send"}else{"unknown"},"sourceCurrent":null});
+        let row=crate::role_observations::row(supply_ref,"fork",None,request,selection,if before_send{"refused-before-send"}else{"unknown"},None,json!({"instructionSources":null,"agentRole":null,"forkedFromId":null}),json!({"sourceThread":source_thread,"inheritedFrom":source.map(|b|b.supply_ref())}),Some(reason));
+        self.publish_role(row,None)
+    }
+    fn publish_role(&self,row:Result<Value,String>,composition:Option<&crate::role_supply::Composition>)->Value {
+        let result=row.and_then(|row| match self.role_log.as_ref(){Some(Ok(log))=>log.append(row,composition),Some(Err(error))=>Err(error.clone()),None=>Err("explicit App project role log unavailable".into())});
+        result.unwrap_or_else(|error|json!({"state":"not-confirmed","limit":error,"standing":"Native effects remain as actually observed; no confirmed role history, automatic resend or record fallback"}))
+    }
     pub fn synchronize(&mut self, host: &Value) {
         let generation = &host["generation"];
         if self
@@ -983,7 +1038,7 @@ impl HistorySession {
                     self.closed_history_generations.push(old_generation);
                 }
             }
-            self.limits.push("History receiving generation ended; pages discarded. Original role evidence is memory-only; cold replay is unknown.".into());
+            self.limits.push("History receiving generation ended; pages discarded. Original live role binding remains memory-only; cold role authority is unknown. Quoted supply history is separate.".into());
         }
         if host["state"] == "ready"
             && self.history.is_none()
@@ -1082,7 +1137,11 @@ impl HistorySession {
         supply_ref: &str,
         continued_from: Option<Value>,
     ) -> Result<(), String> {
+        self.start_dispatched_selected(receipt,composition,supply_ref,continued_from,None)
+    }
+    pub fn start_dispatched_selected(&mut self, receipt: crate::hosting::SourceRequest, composition:&crate::role_supply::Composition, supply_ref:&str, continued_from:Option<Value>, preselected:Option<bool>)->Result<(),String> {
         let e = receipt.evidence();
+        let original_relation=continued_from.clone();
         let prepared = (|| {
             let prepared = crate::role_lifecycle::PreparedStart::new(
                 e["home"].as_str().ok_or("start home absent")?,
@@ -1102,12 +1161,16 @@ impl HistorySession {
         let error = prepared.as_ref().err().cloned();
         let mut summary = receipt_summary(&e);
         summary["roleSet"] = composition.role_set_identity().clone();
+        summary["supplyRef"] = json!(supply_ref);
+        summary["selection"] = json!(composition.role);
+        summary["carried"] = composition.carried.clone();
         if let Some(error) = error.as_ref() {
             summary["rolePreparationError"] = json!(error);
         }
         // Registration already happened at Host. Keep its actual receipt even
         // when role preparation fails; neither no-send nor automatic retry follows.
         self.starts.push(StartPending {
+            observation: StartObservation {composition:composition.clone(),supply_ref:supply_ref.into(),preselected,continued_from:original_relation,recorded:Default::default(),done:false},
             receipt,
             prepared: prepared.ok(),
             finished: false,
@@ -1134,10 +1197,15 @@ impl HistorySession {
                     continue;
                 }
             };
+            let record_status=pending.evidence.get("roleSupplyRecord").cloned();
             let preparation_error = pending.evidence.get("rolePreparationError").cloned();
             let role_set = pending.evidence["roleSet"].clone();
             pending.evidence = receipt_summary(&status);
             pending.evidence["roleSet"] = role_set;
+            pending.evidence["supplyRef"] = json!(pending.observation.supply_ref);
+            pending.evidence["selection"] = json!(pending.observation.composition.role);
+            pending.evidence["carried"] = pending.observation.composition.carried.clone();
+            if let Some(record_status)=record_status{pending.evidence["roleSupplyRecord"]=record_status;}
             if let Some(error) = preparation_error {
                 pending.evidence["rolePreparationError"] = error;
             }
@@ -1279,7 +1347,43 @@ impl HistorySession {
                 }
             }
         }
+        self.record_start_observations(host);
+        self.reconcile_forks(host);
     }
+    /// Immutable source observations: waiting may end before a genuinely late
+    /// response. Each state is attempted once; a record error never retries native work.
+    fn record_start_observations(&mut self,host:&crate::hosting::Host) {
+        for pending in &mut self.starts {
+            if pending.observation.done {continue;}
+            let Ok(status)=host.source_request_status(&pending.receipt) else{continue};
+            if status["response"].is_null() && status["waitingEnded"]!=true && status["sourceCurrent"]==true && status["writeResult"]=="written" {continue;}
+            let key=serde_json::to_string(&json!([status["writeResult"],status["outcome"],status["response"].is_null()])).unwrap();
+            if !pending.observation.recorded.insert(key){continue;}
+            pending.observation.done=!status["response"].is_null()||status["sourceCurrent"]!=true;
+            let observation=&pending.observation;let thread=status["response"]["result"]["thread"]["id"].as_str().filter(|v|!v.is_empty());
+            let supplied=thread.and_then(|thread|self.roles.get(status["home"].as_str().unwrap_or(""),thread)).is_some_and(|b|b.supply_ref()==observation.supply_ref) && pending.evidence["activeAdmission"]==true;
+            let outcome=if supplied{"supplied"}else if status["outcome"]=="response-observed-error"{"request-failed"}else{"unknown"};
+            let carried=(status["writeResult"]=="written" && status["sentFrame"]["params"]["developerInstructions"]==observation.composition.text).then(||observation.composition.carried.clone());
+            let mut request=crate::role_observations::request(&status);request["method"]=json!("thread/start");
+            let row=crate::role_observations::row(&observation.supply_ref,"thread-start",thread,request,json!({"role":observation.composition.role.map(|r|r.name()).unwrap_or("none"),"preselected":observation.preselected,"roleSet":observation.composition.role_set_identity()}),outcome,carried.clone(),crate::role_observations::reported(&status),json!({"continuedFrom":observation.continued_from}),(!supplied).then_some("No source-bound admitted role supply established by this observation; native request state is retained separately"));
+            let result=row.and_then(|row|match self.role_log.as_ref(){Some(Ok(log))=>{
+                if supplied {
+                    let binding=self.roles.get(status["home"].as_str().unwrap_or(""),thread.unwrap()).ok_or("original role binding absent")?;
+                    let (status,receipt)=log.publish_bound(row,Some(&observation.composition),binding,None)?;
+                    if let Some(receipt)=receipt{self.role_publications.insert(observation.supply_ref.clone(),receipt);}
+                    Ok(status)
+                } else {log.append(row,carried.as_ref().map(|_|&observation.composition))}
+            },Some(Err(error))=>Err(error.clone()),None=>Err("explicit App project role log unavailable".into())});
+            pending.evidence["roleSupplyRecord"]=result.unwrap_or_else(|error|json!({"state":"not-confirmed","limit":error,"standing":"Native effects retained; no successful durable role history or automatic retry"}));
+        }
+    }
+    pub(crate) fn role_publication(&self,home:&str,thread:&str)->Result<Option<std::sync::Arc<crate::role_observations::PublishedRoleSupply>>,String>{
+        let Some(binding)=self.roles.get(home,thread)else{return Ok(None);};
+        let receipt=self.role_publications.get(binding.supply_ref()).filter(|p|p.home()==home && p.thread()==thread)
+            .ok_or("original role supply publication not confirmed; no R3 grant from quoted files")?;
+        Ok(Some(receipt.clone()))
+    }
+    pub fn role_record_status(&self,supply_ref:&str)->Value{self.starts.iter().find(|p|p.observation.supply_ref==supply_ref).map(|p|p.evidence["roleSupplyRecord"].clone()).unwrap_or(Value::Null)}
     pub fn start_admitted(&self, receipt: &crate::hosting::SourceRequest) -> bool {
         self.starts.iter().any(|p| {
             p.receipt.request_ref() == receipt.request_ref()
@@ -1335,19 +1439,54 @@ impl HistorySession {
     /// request and its correlated response. The fork inherits the source's
     /// original guidance; the source binding is left exactly as it was. With
     /// no source binding the fork's role stays unknown (nothing is bound).
-    pub fn fork_observed(&mut self, host: &crate::hosting::Host, receipt: &crate::hosting::SourceRequest, source_thread: &str) -> Result<Value, String> {
-        let status = host.source_request_status(receipt)?;
-        let home = status["home"].as_str().ok_or("fork home absent")?.to_owned();
-        let Some(source) = self.roles.get(&home, source_thread).cloned() else {
-            return Ok(json!({"kind":"inherited-fork","sourceThread":source_thread,"role":{"standing":"unknown","reason":"source conversation's original App role not established in this App process; the fork keeps the source's guidance, whatever it is"}}));
-        };
-        let request = source.fork(&home, status["generation"].clone(), status["requestIdentity"].clone(),
-            status["requestRef"].as_str().ok_or("fork request reference absent")?, &crate::util::opaque_id("sup:")?)?;
-        let binding = request.observe(&status["generation"], &status["sentFrame"], &status["response"])?;
-        let relation = binding.relation();
-        let thread = binding.thread().to_owned();
-        self.roles.insert(binding)?;
-        Ok(json!({"kind":"inherited-fork","thread":thread,"relation":relation,"role":self.role(&home,&thread)}))
+    pub fn fork_dispatched(&mut self,receipt:crate::hosting::SourceRequest,source_thread:&str)->Result<(),String>{
+        self.fork_dispatched_with_supply(receipt,source_thread,&crate::util::opaque_id("sup:")?)
+    }
+    pub fn fork_dispatched_with_supply(&mut self,receipt:crate::hosting::SourceRequest,source_thread:&str,supply_ref:&str)->Result<(),String>{
+        if self.forks.iter().any(|p|p.receipt.request_ref()==receipt.request_ref()){return Err("fork receipt already retained".into());}
+        self.forks.push(ForkPending{receipt,source_thread:source_thread.into(),supply_ref:supply_ref.into(),finished:false,result:None,done:false,recorded:Default::default()});Ok(())
+    }
+    pub fn fork_result(&self,receipt:&crate::hosting::SourceRequest)->Option<Result<Value,String>>{self.forks.iter().find(|p|p.receipt.request_ref()==receipt.request_ref()).and_then(|p|p.result.clone())}
+    fn reconcile_forks(&mut self,host:&crate::hosting::Host){
+        for index in 0..self.forks.len(){
+            if self.forks[index].done {continue;}
+            let(receipt,source_thread,supply_ref,finished)={let p=&self.forks[index];(p.receipt.clone(),p.source_thread.clone(),p.supply_ref.clone(),p.finished)};
+            let Ok(status)=host.source_request_status(&receipt)else{continue};
+            if !finished && status["sourceCurrent"]==true && status["writeResult"]=="written" && !status["response"].is_null(){
+                let result=host.thread_fork_finish(&receipt).map(|thread|{let role=self.bind_fork(host,&receipt,&source_thread,&supply_ref).unwrap_or_else(|error|json!({"standing":"unknown","reason":format!("fork role binding refused: {error}; native fork remains admitted")}));json!({"thread":thread,"role":role,"standing":"Same-role copy: thread/fork carried no instructions, so the fork keeps the source's guidance; the source conversation is unchanged."})});
+                self.forks[index].result=Some(result);self.forks[index].finished=true;
+            }else if !finished && status["sourceCurrent"]!=true{self.forks[index].finished=true;self.forks[index].result=Some(Err("fork source generation ended; native effects remain as observed".into()));}
+            if status["response"].is_null() && status["waitingEnded"]!=true && status["sourceCurrent"]==true && status["writeResult"]=="written"{continue;}
+            let key=serde_json::to_string(&json!([status["writeResult"],status["outcome"],status["response"].is_null()])).unwrap();if !self.forks[index].recorded.insert(key){continue;}
+            self.forks[index].done=!status["response"].is_null()||status["sourceCurrent"]!=true;
+            let home=status["home"].as_str().unwrap_or("");let thread=status["response"]["result"]["thread"]["id"].as_str().filter(|s|!s.is_empty());
+            let inherited=thread.and_then(|thread|self.roles.get(home,thread)).is_some_and(|b|b.supply_ref()==supply_ref);
+            let source=self.roles.get(home,&source_thread);let source_role=source.map(|b|b.role_in_force(home,&source_thread));
+            let selection=match source_role{Some(crate::role_lifecycle::RoleInForce::AppObserved{role,..})=>json!({"role":role.map(|r|r.name()).unwrap_or("none"),"preselected":null,"roleSet":null}),_=>json!({"role":"unknown","preselected":null,"roleSet":null})};
+            let mut request=crate::role_observations::request(&status);request["method"]=json!("thread/fork");
+            let row=crate::role_observations::row(&supply_ref,"fork",thread,request,selection,if inherited{"inherited"}else if status["outcome"]=="response-observed-error"{"request-failed"}else{"unknown"},None,crate::role_observations::reported(&status),json!({"sourceThread":source_thread,"inheritedFrom":source.map(|b|b.supply_ref())}),(!inherited).then_some("Original App role/source supply not established for this fork; native outcome remains separately observed"));
+            let publication=if inherited {
+                row.and_then(|row|match self.role_log.as_ref(){Some(Ok(log))=>{
+                    let binding=self.roles.get(home,thread.unwrap()).ok_or("original fork binding absent")?;
+                    let parent=source.and_then(|b|self.role_publications.get(b.supply_ref())).cloned();
+                    let(status,receipt)=log.publish_bound(row,None,binding,parent.as_ref())?;
+                    if let Some(receipt)=receipt{self.role_publications.insert(supply_ref.clone(),receipt);}
+                    Ok(status)
+                },Some(Err(error))=>Err(error.clone()),None=>Err("explicit App project role log unavailable".into())})
+                    .unwrap_or_else(|error|json!({"state":"not-confirmed","limit":error,"standing":"Native fork effect retained; no R3 grant from quoted files"}))
+            } else {self.publish_role(row,None)};
+            match &mut self.forks[index].result{Some(Ok(result))=>result["roleSupplyRecord"]=publication,Some(Err(error))=>*error=format!("{error}; role supply observation: {publication}"),None=>{}}
+        }
+    }
+    fn bind_fork(&mut self,host:&crate::hosting::Host,receipt:&crate::hosting::SourceRequest,source_thread:&str,supply_ref:&str)->Result<Value,String>{
+        let status=host.source_request_status(receipt)?;let home=status["home"].as_str().ok_or("fork home absent")?.to_owned();
+        let Some(source)=self.roles.get(&home,source_thread).cloned()else{return Ok(json!({"kind":"inherited-fork","sourceThread":source_thread,"role":{"standing":"unknown","reason":"source conversation's original App role not established in this App process; supplier guidance remains unverified"}}));};
+        let request=source.fork(&home,status["generation"].clone(),status["requestIdentity"].clone(),status["requestRef"].as_str().ok_or("fork request reference absent")?,supply_ref)?;
+        let binding=request.observe(&status["generation"],&status["sentFrame"],&status["response"])?;let relation=binding.relation();let thread=binding.thread().to_owned();self.roles.insert(binding)?;Ok(json!({"kind":"inherited-fork","thread":thread,"relation":relation,"role":self.role(&home,&thread)}))
+    }
+    /// Legacy internal caller: native admission already performed by its owner.
+    pub fn fork_observed(&mut self,host:&crate::hosting::Host,receipt:&crate::hosting::SourceRequest,source_thread:&str)->Result<Value,String>{
+        self.bind_fork(host,receipt,source_thread,&crate::util::opaque_id("sup:")?)
     }
     pub fn snapshot(&self, instruction_root: Option<&std::path::Path>) -> Value {
         let Some(history) = self.history.as_ref() else {
@@ -2299,6 +2438,7 @@ fn home_resource_view(observation: &crate::home_resources::HomeObservation) -> V
 /// it never substitutes for the Host's opaque full generation or transfers threads.
 pub struct HomeSession {
     pub(crate) class: crate::home_resources::HomeClass,
+    pub(crate) workflow_source_ref: String,
     pub(crate) host: std::sync::Arc<crate::hosting::Host>,
     pub(crate) host_config: Result<crate::hosting::HostConfig, String>,
     pub(crate) runtime: std::sync::Mutex<RuntimeSession>,
@@ -2326,6 +2466,7 @@ impl HomeSession {
         }
         Ok(Self {
             class,
+            workflow_source_ref: crate::util::opaque_id("workflow-home:" )?,
             host,
             host_config: config,
             runtime: std::sync::Mutex::new(RuntimeSession::default()),
@@ -2722,7 +2863,7 @@ pub fn assess_native_home_work(
     let (cursor, position) = runtime.cursor();
     let observation = home.host.observe(cursor, position);
     let snapshot = &observation["snapshot"];
-    if snapshot["generation"] != *generation || snapshot["state"] != "ready" {
+    if snapshot["generation"] != *generation || snapshot["state"] != "ready" || snapshot["generationClosed"] == true {
         return Err("Selected native home/full generation is unavailable for assessment; no window/home fallback".into());
     }
     let received = runtime.receive(&observation);
@@ -2758,7 +2899,7 @@ pub fn assess_native_home_work(
             unresolved_turns.push(json!({"threadId":turn["threadId"],"turnId":turn["turnId"],"reportedStatus":turn["nativeTurn"]["status"],"terminalEventObserved":turn["terminalEventObserved"],"observationEnded":turn["observationEnded"],"limit":"progress memo lacks current target warrant or is contradictory; activity not established, no ended inference"}));
         }
     }
-    let requests=snapshot["serverRequests"].as_array().into_iter().flatten().filter(|request|request["generation"]==*generation&&request["state"]=="outstanding").map(|request|json!({"generation":request["generation"],"requestIdentity":request["requestIdentity"],"method":request["method"],"state":request["state"],"threadId":request["nativeParameters"]["threadId"],"turnId":request["nativeParameters"]["turnId"]})).collect::<Vec<_>>();
+    let requests=snapshot["serverRequests"].as_array().into_iter().flatten().filter(|request|request["generation"]==*generation&&request["closedGeneration"]!=true&&matches!(request["state"].as_str(),Some("outstanding"|"settling"))).map(|request|json!({"generation":request["generation"],"requestIdentity":request["requestIdentity"],"method":request["method"],"state":request["state"],"threadId":request["nativeParameters"]["threadId"],"turnId":request["nativeParameters"]["turnId"]})).collect::<Vec<_>>();
     let native = &received["nativeView"];
     let valid_view =
         native["generation"] == *generation && received["nativeViewObservationEnded"] != true;
@@ -4132,7 +4273,9 @@ fn run_admission(selection: &crate::workflow_workspace::Selection) -> Result<(),
     }
 }
 pub(crate) struct WorkflowRootSession {
-    selected: Option<WorkflowSelectionState>,
+    after_run_end: crate::after_run_end::Observer,
+    selected: std::collections::HashMap<crate::workflow_selection::Chat, WorkflowSelectionState>,
+    inspected: Option<WorkflowSelectionState>,
     pub libraries: std::collections::HashMap<String, std::sync::Arc<WorkflowLibraryContext>>,
     pub active_library: Option<String>,
     pub reviews:
@@ -4153,7 +4296,7 @@ pub(crate) struct WorkflowRootSession {
     app_user_data: Option<std::path::PathBuf>,
     /// WR PR-5: where the person's latest own workflow selection fell in the native
     /// view; older agent proposals are superseded by it.
-    selection_mark: Option<crate::run_offers::SelectionMark>,
+    selection_marks: std::collections::HashMap<(String, String), crate::run_offers::SelectionMark>,
     /// WR SQ-D D-2/D-4: the latest draft observation per opened library.
     drafts: std::collections::HashMap<String, DraftListing>,
     /// D-3 "app action": per library, draft name -> content the App itself wrote.
@@ -4182,7 +4325,9 @@ const DRAFT_TRANSITIONS_KEPT: usize = 100;
 impl Default for WorkflowRootSession {
     fn default() -> Self {
         Self {
-            selected: None,
+            after_run_end: Default::default(),
+            selected: Default::default(),
+            inspected: None,
             libraries: Default::default(),
             active_library: None,
             reviews: Default::default(),
@@ -4193,7 +4338,7 @@ impl Default for WorkflowRootSession {
             notice_flags: Default::default(),
             held_successors: Default::default(),
             app_user_data: None,
-            selection_mark: None,
+            selection_marks: Default::default(),
             drafts: Default::default(),
             app_made: Default::default(),
             trials: Default::default(),
@@ -4206,10 +4351,42 @@ impl Default for WorkflowRootSession {
 }
 impl WorkflowRootSession {
     pub(crate) fn retention_ready(&self)->Result<(),String>{
+        if self.after_run_end.has_pending(){return Err("After-run-end observations still have pending records; wait for recording before closing project records".into());}
         for run in self.runs.values(){let run=run.try_lock().map_err(|_|"A workflow operation is pending; settle it before closing project records")?;
             if run.retention_activity.is_some() || run.has_pending_records(){return Err("A workflow run or its record publication is still open/pending; explicitly end or settle it before closing project records".into());}}
         Ok(())
     }
+    fn selection_view(&self, s: &WorkflowSelectionState) -> Value {
+        json!({"reference":s.reference,"identity":s.selection.identity(),"standing":s.selection.admission().standing(),"package":crate::attachments::native_path_identity(&s.package),"currentLimit":s.selection.verify_store(&s.package).err(),"selectedAt":s.selected_at,"replaces":s.replaces,"newerRevision":self.newer_revision_view(s),"runnable":run_admission(&s.selection).is_ok(),"runLimit":run_admission(&s.selection).err(),
+                // NIR §9 PD-1 / AS §4 OV-1: the declared part, read from the selected revision's own bytes, for the run panel.
+                "declaration":s.selection.snapshot().declaration().map(|d|json!(d)).unwrap_or_else(|error|json!({"unavailable":error}))})
+    }
+    fn choice(&self, chat: Option<&crate::workflow_selection::Chat>) -> Option<&WorkflowSelectionState> {
+        match chat { Some(chat) => self.selected.get(chat), None => self.inspected.as_ref() }
+    }
+    pub(crate) fn verify_choice_context(&self, context: &crate::workflow_selection::Context, chat: Option<&crate::workflow_selection::Chat>) -> Result<(), String> {
+        let expected = if chat.is_some() { context.selection_ref.as_deref() } else { context.inspection_ref.as_deref() };
+        if self.choice(chat).map(|s|s.reference.as_str()) != expected {
+            return Err("The displayed workflow choice changed; refresh before selecting, inspecting or preparing".into());
+        }
+        Ok(())
+    }
+    pub(crate) fn verify_library_context(&self, context: &crate::workflow_selection::Context) -> Result<(), String> {
+        if self.active_library.as_deref() != context.library_ref.as_deref() {
+            return Err("The displayed active library changed; refresh before using its content".into());
+        }
+        Ok(())
+    }
+    fn choose(&mut self, chat: Option<&crate::workflow_selection::Chat>, selected: WorkflowSelectionState) {
+        match chat { Some(chat) => { self.selected.insert(chat.clone(), selected); }, None => self.inspected = Some(selected) }
+    }
+    fn choice_result(&self, chat: Option<&crate::workflow_selection::Chat>) -> Value {
+        let mut result = self.snapshot();
+        result["choice"] = self.choice(chat).map(|s|self.selection_view(s)).unwrap_or(Value::Null);
+        result["choiceChat"] = chat.map(|c|json!({"sourceRef":c.source,"threadId":c.thread})).unwrap_or(Value::Null);
+        result
+    }
+    pub(crate) fn observe_ended_runs(&mut self,project:&std::path::Path){self.after_run_end.observe(project);}
     pub fn snapshot(&self) -> Value {
         // Inventory describes verified build inputs, never release registration.
         let production_catalog = match crate::workflow_workspace::production_catalog::ProductionCatalog::load() {
@@ -4223,12 +4400,12 @@ impl WorkflowRootSession {
             },
             Err(error) => json!({"standing":"candidate catalog unavailable","entries":[],"limit":error}),
         };
-        json!({"productionCatalog":production_catalog,"selection":self.selected.as_ref().map(|s|json!({"reference":s.reference,"identity":s.selection.identity(),"standing":s.selection.admission().standing(),"package":crate::attachments::native_path_identity(&s.package),"currentLimit":s.selection.verify_store(&s.package).err(),"selectedAt":s.selected_at,"replaces":s.replaces,"newerRevision":self.newer_revision_view(s),"runnable":run_admission(&s.selection).is_ok(),"runLimit":run_admission(&s.selection).err(),
-                // NIR §9 PD-1 / AS §4 OV-1: the declared part, read from the selected revision's own bytes, for the run panel.
-                "declaration":s.selection.snapshot().declaration().map(|d|json!(d)).unwrap_or_else(|error|json!({"unavailable":error}))})),
+        json!({"productionCatalog":production_catalog,"selections":self.selected.iter().map(|(chat,s)|json!({"sourceRef":chat.source,"threadId":chat.thread,"selection":self.selection_view(s)})).collect::<Vec<_>>(),
+            "inspection":self.inspected.as_ref().map(|s|self.selection_view(s)),
             "libraries":self.libraries.values().map(|l|json!({"reference":l.reference,"root":crate::attachments::native_path_identity(&l.root),"origin":l.origin,"sourceRoot":l.source_root,"reconciliation":l.owner.try_lock().map(|o|json!(o.reconciliation())).unwrap_or(Value::Null),"registered":l.owner.try_lock().map(|o|o.registered_listing()).unwrap_or(Value::Null),"registrationEvidence":l.owner.try_lock().map(|o|o.registration_evidence()).unwrap_or(Value::Null)})).collect::<Vec<_>>(),"activeLibrary":self.active_library,"activeReview":self.active_review,
             "reviews":self.reviews.iter().map(|(id,review)|match review.try_lock(){Ok(review)=>json!({"reference":id,"status":review.status}),Err(_)=>json!({"reference":id,"state":"original native review interaction pending"})}).collect::<Vec<_>>(),
-            "runs":self.runs.iter().map(|(id,run)|match run.try_lock(){Ok(run)=>run.view(id),Err(_)=>json!({"reference":id,"state":"original run operation pending"})}).collect::<Vec<_>>(),
+            "runs":self.runs.iter().map(|(id,run)|match run.try_lock(){Ok(run)=>self.after_run_end.decorate(id,run.view(id)),Err(_)=>json!({"reference":id,"state":"original run operation pending"})}).collect::<Vec<_>>(),
+            "afterRunEnd":self.after_run_end.view(),
             "reopened":self.reopened,
             "restartLimits":self.restart_limits,
             "endedAfterRelaunch":self.reopened_ends_view(),
@@ -4332,51 +4509,51 @@ impl WorkflowRootSession {
         let listed = draft["content"]["value"].as_str().ok_or("Listed draft has no content identity; refresh the draft list")?.to_owned();
         self.begin_review_listed(home, context, vec![name.to_owned()], false, Some(listed))
     }
-    pub fn select_development_copy(&mut self, path: std::path::PathBuf) -> Result<Value, String> {
+    pub fn select_development_copy(&mut self, chat: Option<&crate::workflow_selection::Chat>, path: std::path::PathBuf) -> Result<Value, String> {
         let catalog = crate::workflow_workspace::development_catalog::DevelopmentCatalog::load()?;
         let held = catalog.recognize_holding_copy(&path)?;
         held.verify_current()?;
-        self.selected = Some(WorkflowSelectionState {
+        self.choose(chat, WorkflowSelectionState {
             reference: crate::util::opaque_id("workflow-selection:")?,
             selection: held.selection().clone(),
             package: path,
             selected_at: crate::util::now_rfc3339(),
-            replaces: self.replaced(),
+            replaces: chat.and_then(|chat| self.replaced(chat)),
         });
-        Ok(self.snapshot())
+        Ok(self.choice_result(chat))
     }
     /// Native caller resolves App resource_dir/workflows. This records an explicit
     /// candidate selection only; CC-WR-PKG-CANDIDATE-01 is not adopted admission.
-    pub fn select_production_bundle(&mut self, root: std::path::PathBuf, name: &str) -> Result<Value, String> {
+    pub fn select_production_bundle(&mut self, chat: Option<&crate::workflow_selection::Chat>, root: std::path::PathBuf, name: &str) -> Result<Value, String> {
         let catalog = crate::workflow_workspace::production_catalog::ProductionCatalog::load()?;
         let resolved = catalog.select_bundle_package(&root, name)?;
         resolved.verify_current()?;
-        self.selected = Some(WorkflowSelectionState {
+        self.choose(chat, WorkflowSelectionState {
             reference: crate::util::opaque_id("workflow-selection:")?,
             selection: resolved.selection().clone(),
             package: resolved.package_path().to_path_buf(),
             selected_at: crate::util::now_rfc3339(),
-            replaces: self.replaced(),
+            replaces: chat.and_then(|chat| self.replaced(chat)),
         });
-        Ok(self.snapshot())
+        Ok(self.choice_result(chat))
     }
     /// Recognition uses the actual opened library, never a caller's registry
     /// assertion. A matching candidate copy remains non-runnable, not LS-8.
-    pub fn select_production_copy(&mut self, name: &str) -> Result<Value, String> {
+    pub fn select_production_copy(&mut self, chat: Option<&crate::workflow_selection::Chat>, name: &str) -> Result<Value, String> {
         let library = self.active_library()?;
         let _owner = library.owner.try_lock().map_err(|_| "Original library owner busy/unavailable; selection pending")?;
         let catalog = crate::workflow_workspace::production_catalog::ProductionCatalog::load()?;
         let resolved = catalog.recognize_holding_copy(&library.root, name)?;
         resolved.verify_current()?;
-        self.selected = Some(WorkflowSelectionState {
+        self.choose(chat, WorkflowSelectionState {
             reference: crate::util::opaque_id("workflow-selection:")?,
             selection: resolved.selection().clone(),
             package: resolved.package_path().to_path_buf(),
             selected_at: crate::util::now_rfc3339(),
-            replaces: self.replaced(),
+            replaces: chat.and_then(|chat| self.replaced(chat)),
         });
         drop(_owner);
-        Ok(self.snapshot())
+        Ok(self.choice_result(chat))
     }
     pub fn open_library(
         &mut self,
@@ -4437,7 +4614,7 @@ impl WorkflowRootSession {
     /// registered or re-confirmed in this process (RC-2), resolved from its
     /// revision store and verified there (SL-4), never from a published copy
     /// or any other folder, through the path a list selection uses.
-    pub fn select_hot_registered_copy(&mut self, review_ref: &str, revision: &str) -> Result<Value, String> {
+    pub fn select_hot_registered_copy(&mut self, chat: &crate::workflow_selection::Chat, review_ref: &str, revision: &str) -> Result<Value, String> {
         let review = self
             .reviews
             .get(review_ref)
@@ -4457,13 +4634,13 @@ impl WorkflowRootSession {
             .try_lock()
             .map_err(|_| "Original library owner busy/unavailable; selection pending")?
             .store_copy(held.identity());
-        self.choose_registered(&held, store)
+        self.choose_registered(chat, &held, store)
     }
     /// WR SL-2 / §5.4: the registered selection in force, which a new
     /// selection by the person replaces and cites. A candidate selection that
     /// can never run (TT-1) is not cited; the registered selection it replaced is.
-    fn replaced(&self) -> Option<String> {
-        self.selected.as_ref().and_then(|s| match run_admission(&s.selection) {
+    fn replaced(&self, chat: &crate::workflow_selection::Chat) -> Option<String> {
+        self.selected.get(chat).and_then(|s| match run_admission(&s.selection) {
             Ok(()) => Some(s.reference.clone()),
             Err(_) => s.replaces.clone(),
         })
@@ -4523,7 +4700,7 @@ impl WorkflowRootSession {
     /// else keeps its standing and route (SL-5; §5.4).
     /// `library_ref` is the library whose list the person pressed; a press that
     /// arrives after the active library changed selects nothing.
-    pub fn select_listed_registered(&mut self, library_ref: &str, name: &str, revision: &str) -> Result<Value, String> {
+    pub fn select_listed_registered(&mut self, chat: &crate::workflow_selection::Chat, library_ref: &str, name: &str, revision: &str) -> Result<Value, String> {
         if !crate::workflow_workspace::valid_name(name) {
             return Err("Invalid workflow name".into());
         }
@@ -4538,14 +4715,14 @@ impl WorkflowRootSession {
         let refusal = owner.not_selectable(name, revision);
         drop(owner);
         let held = self.held_registered(&library, &identity)?.ok_or(refusal)?;
-        self.choose_registered(&held, store)
+        self.choose_registered(chat, &held, store)
     }
     /// WR SL-2: following "newer revision ‹n› available". A new selection event
     /// that cites the one it replaces; the earlier selection, and any record of
     /// it, is left as it is. `selection_ref` and `revision` are what the notice
     /// showed; a changed selection or slot refuses.
-    pub fn follow_newer_revision(&mut self, selection_ref: &str, revision: &str) -> Result<Value, String> {
-        let current = self.selected.as_ref().ok_or("No workflow selected; nothing to follow")?;
+    pub fn follow_newer_revision(&mut self, chat: &crate::workflow_selection::Chat, selection_ref: &str, revision: &str) -> Result<Value, String> {
+        let current = self.selected.get(chat).ok_or("No workflow selected in this chat; nothing to follow")?;
         if current.reference != selection_ref {
             return Err("The selection changed since the notice was shown; nothing selected".into());
         }
@@ -4563,18 +4740,19 @@ impl WorkflowRootSession {
         let refusal = owner.not_selectable(&newer.name, &newer.revision);
         drop(owner);
         let held = self.held_registered(&library, &newer)?.ok_or(refusal)?;
-        self.choose_registered(&held, store)
+        self.choose_registered(chat, &held, store)
     }
     /// SL-1/SL-4: the person's selection of a held registered revision, resolved
     /// from `store` and verified there; it replaces (and cites) the one in force.
-    fn choose_registered(&mut self, held: &crate::workflow_workspace::RegisteredRevision, store: std::path::PathBuf) -> Result<Value, String> {
-        self.selected = Some(self.resolve_registered(held, store)?);
-        Ok(self.snapshot())
+    fn choose_registered(&mut self, chat: &crate::workflow_selection::Chat, held: &crate::workflow_workspace::RegisteredRevision, store: std::path::PathBuf) -> Result<Value, String> {
+        let selected = self.resolve_registered(chat, held, store)?;
+        self.selected.insert(chat.clone(), selected);
+        Ok(self.choice_result(Some(chat)))
     }
     /// SL-4: a held registered revision resolved from its revision `store` and
     /// verified there; never the published copy, never a substitute. The new
     /// selection cites the registered selection it would replace (SL-2 / §5.4).
-    fn resolve_registered(&self, held: &crate::workflow_workspace::RegisteredRevision, store: std::path::PathBuf) -> Result<WorkflowSelectionState, String> {
+    fn resolve_registered(&self, chat: &crate::workflow_selection::Chat, held: &crate::workflow_workspace::RegisteredRevision, store: std::path::PathBuf) -> Result<WorkflowSelectionState, String> {
         let selection = held.select();
         crate::storage::check_path(&store)?;
         selection.verify_store(&store)?;
@@ -4583,17 +4761,14 @@ impl WorkflowRootSession {
             selection,
             package: store,
             selected_at: crate::util::now_rfc3339(),
-            replaces: self.replaced(),
+            replaces: self.replaced(chat),
         })
     }
-    pub fn create_selected_draft(&mut self, name: &str) -> Result<Value, String> {
+    pub fn create_selected_draft(&mut self, chat: Option<&crate::workflow_selection::Chat>, name: &str) -> Result<Value, String> {
         if !crate::workflow_workspace::valid_name(name) {
             return Err("Invalid workflow draft name".into());
         }
-        let selected = self
-            .selected
-            .as_ref()
-            .ok_or("Select an actual closed workflow holding copy first")?;
+        let selected = match chat { Some(chat) => self.selected.get(chat), None => self.inspected.as_ref() }.ok_or("Choose an actual closed workflow holding copy in this chat, or inspect one with no chat, first")?;
         selected.selection.verify_store(&selected.package)?;
         let library = self.active_library()?;
         let mut owner = library.owner.try_lock().map_err(|_| "Original library owner busy/unavailable; draft operation pending")?;
@@ -4716,10 +4891,8 @@ impl WorkflowRootSession {
             return Err(format!("This conversation is {what} of a draft; start runs in another conversation (WR TT-2). Nothing prepared or sent"));
         }
         current_conversation(&home.host.snapshot(), generation, thread)?;
-        let selected = self
-            .selected
-            .as_ref()
-            .ok_or("No actual closed workflow selection")?;
+        let chat = crate::workflow_selection::Chat::in_home(&home, thread);
+        let selected = self.selected.get(&chat).ok_or("No actual closed workflow selection in this chat")?;
         run_admission(&selected.selection)?;
         // WP-1: only the explicitly opened App project owns WR records; no
         // source-root, library, cwd or user-data fallback.
@@ -4817,6 +4990,7 @@ impl WorkflowRootSession {
             follows: prior.map(|(run, _)| run),
             lifecycle: RunLifecycle::Prepared,
             entries: Vec::new(),
+            role_source: None,
             end: None,
             notice: NoticeState::None,
             notice_checks: Vec::new(),
@@ -4887,10 +5061,12 @@ impl WorkflowRootSession {
             }
         }
         let reading = crate::records::supply::read_project_runs(records, &[]);
+        #[cfg(test)]
+        AFTER_RUN_PRIOR_READING.with(|hook| { if let Some(action) = hook.borrow_mut().take() { action(); } });
         if let Some(cold) = reading
             .possibly_live_in(thread)
             .into_iter()
-            .find(|r| !hot.contains(&r.run))
+            .find(|r| !hot.contains(&r.run) && !(reading.limits.is_empty() && self.hot_run_in_other_home(r, home, thread, records)))
         {
             return Err(match &cold.lifecycle {
                 crate::records::supply::RecordedLifecycle::Unknown(reason) => format!("A workflow run recorded in this conversation is in an unknown state ({}: {reason}; record limits: {:?}); it may still be live, so no second run is started (RE-7). Repair the record, then End it with \"End this interrupted run\". Nothing prepared", cold.run, reading.limits),
@@ -4898,6 +5074,75 @@ impl WorkflowRootSession {
             });
         }
         Ok(prior)
+    }
+    /// A durable opening has no persisted native home. Only the original held
+    /// run can disambiguate it here; missing/busy/conflicting proof is unknown.
+    fn hot_run_in_other_home(
+        &self,
+        recorded: &crate::records::supply::RecordedRun,
+        home: &str,
+        thread: &str,
+        records: &crate::workflow_workspace::publication::ProjectRecords,
+    ) -> bool {
+        if recorded.lifecycle != crate::records::supply::RecordedLifecycle::OpenInterrupted { return false; }
+        let Some(owner) = self.runs.get(&recorded.run) else { return false; };
+        let Ok(run) = owner.try_lock() else { return false; };
+        let scope = run.prepared().scope();
+        let Some(source) = run.source.as_ref() else { return false; };
+        if scope.home.is_empty() || scope.home == home || scope.run != recorded.run
+            || scope.conversation != thread || scope.generation["home"] != scope.home
+            || crate::recovery::generation_ref(&scope.generation).is_err()
+            || source.generation() != &scope.generation
+            || source.attempted_frame()["method"] != "turn/start"
+            || source.attempted_frame()["params"]["threadId"] != thread
+            || !run.attempted || run.turn_id.as_ref().is_none_or(String::is_empty)
+            || run.published.is_none() || run.project.root() != run.project_root
+        { return false; }
+        let mut openings = run.entries.iter().filter(|e| e.kind == "run_opened");
+        let Some(original) = openings.next() else { return false; };
+        if openings.next().is_some() || original.refused.is_some()
+            || original.body["runId"] != recorded.run || original.body["conversationRef"] != thread
+        { return false; }
+        let Ok(held) = run.project.original_source_binding() else { return false; };
+        let Ok(requested) = records.source_binding() else { return false; };
+        if !held.same_source(&requested) { return false; }
+        let owning = held.records_root().join(crate::storage::log_rel(Some(&recorded.run), crate::records::supply::LIVE_WRITER));
+        let mut basis = Vec::new();
+        let exact = crate::records_index::with_index(records.root(), |index| {
+            if !index.limits().is_empty() || !index.partials().is_empty() { return false; }
+            let mut found = 0;
+            for path in index.paths() {
+                let Some(revision) = index.log_revision(&path) else { return false; };
+                basis.push((path.clone(), revision));
+                let Ok(entries) = index.entries_in_log(&path) else { return false; };
+                for entry in entries {
+                    // The first lifecycle projection may predate a new end.
+                    // No current ending can support this open-run exception.
+                    if entry["kind"] == "run_ended" && entry["runId"] == recorded.run { return false; }
+                    // Identity conflicts in any kind, or another opening for
+                    // this run, prevent an exclusion. Every candidate is reread.
+                    if entry["recordId"] == original.record_id || (entry["kind"] == "run_opened" && entry["runId"] == recorded.run) {
+                        if path != owning || entry["kind"] != "run_opened"
+                            || entry["recordId"] != original.record_id || entry["runId"] != recorded.run
+                            || entry["body"] != original.body || entry["observedAt"] != original.observed_at
+                        { return false; }
+                        found += 1;
+                    }
+                }
+            }
+            found == 1 && index.limits().is_empty() && index.partials().is_empty()
+        });
+        // Checked query lines do not establish absence of a later append.
+        // Refresh again: an added/changed/removed log or cache rebuild changes
+        // the private source revision basis and keeps the refusal conservative.
+        let stable = exact && crate::records_index::with_index(records.root(), |index| {
+            index.paths().len() == basis.len() && basis.iter().all(|(path, revision)| index.log_revision(path) == Some(*revision))
+                && index.limits().is_empty() && index.partials().is_empty()
+        });
+        // Recheck named placement after reading. Retention admissions are held
+        // throughout; persistent source substitution cannot become a proof.
+        stable && run.project.source_binding().is_ok_and(|now| held.same_source(&now))
+            && records.source_binding().is_ok_and(|now| requested.same_source(&now))
     }
     fn conversation_run(
         &self,
@@ -5038,7 +5283,8 @@ impl WorkflowRootSession {
             return Err("That finished report belongs to another run; nothing ended".into());
         }
         let successor = {
-            let selected = self.selected.as_ref().ok_or("No actual closed workflow selection")?;
+            let chat = crate::workflow_selection::Chat::in_home(&home, thread);
+            let selected = self.selected.get(&chat).ok_or("No actual closed workflow selection in this chat")?;
             run_admission(&selected.selection)?;
             selected.selection.identity().name.clone()
         };
@@ -5261,14 +5507,14 @@ impl WorkflowRootSession {
     /// WR PR-5: the person made their own workflow selection while `view` was current
     /// (lib.rs reads the view before the selection command). Proposals received up
     /// to then are superseded; a stale offer can no longer replace this selection.
-    pub fn note_selection(&mut self, view: &Value) {
-        self.selection_mark = Some(crate::run_offers::SelectionMark::in_view(view));
+    pub fn note_selection(&mut self, view: &Value, thread: &str) {
+        if let Some(home) = view["home"].as_str() { self.selection_marks.insert((home.into(), thread.into()), crate::run_offers::SelectionMark::in_view(view)); }
     }
     /// PR-5 supersession points for a conversation: runs started there, and the
     /// person's latest own selection.
     fn supersessions(&self, view: &Value, home: &str, thread: &str) -> Vec<crate::run_offers::RunStart> {
         let mut points = self.run_starts(view, home, thread);
-        points.extend(self.selection_mark.as_ref().map(|mark| mark.supersession(view)));
+        points.extend(self.selection_marks.get(&(home.into(), thread.into())).map(|mark| mark.supersession(view)));
         points
     }
     /// RN-3…RN-7, PR-1…PR-5, FN-1…FN-3: the offers the person may act on, from
@@ -5445,9 +5691,10 @@ impl WorkflowRootSession {
             .map_err(|_| "Original library owner busy; nothing selected")?
             .store_copy(&found.identity);
         let chosen = self
-            .resolve_registered(&found.revision, store)
+            .resolve_registered(&crate::workflow_selection::Chat::in_home(&home, &thread), &found.revision, store)
             .map_err(|cause| format!("proposed workflow {}: {cause}; nothing selected or started", named.text()))?;
-        let previous = self.selected.replace(chosen);
+        let chat = crate::workflow_selection::Chat::in_home(&home, &thread);
+        let previous = self.selected.insert(chat.clone(), chosen);
         let proposal = json!({"conversation":thread,"item":message.item,"proposed_name":named.text()});
         let prepared = match live {
             None => self.prepare_run_with(home, generation, &thread, person_text, project, None, Some(proposal)),
@@ -5455,7 +5702,7 @@ impl WorkflowRootSession {
         };
         // Nothing was prepared: the person's earlier selection stays in force.
         if prepared.is_err() {
-            self.selected = previous;
+            match previous { Some(previous) => { self.selected.insert(chat, previous); }, None => { self.selected.remove(&chat); } }
         }
         prepared
     }
@@ -5575,6 +5822,8 @@ thread_local! {
     /// Test hook: the next `WorkflowRun::send` panics while its lock is held,
     /// before (`Some(false)`) or after (`Some(true)`) its write is attempted.
     static PANIC_IN_SEND: std::cell::Cell<Option<bool>> = const { std::cell::Cell::new(None) };
+    /// Mutate the authoritative record after the first lifecycle projection.
+    static AFTER_RUN_PRIOR_READING: std::cell::RefCell<Option<Box<dyn FnOnce()>>> = const { std::cell::RefCell::new(None) };
 }
 /// A start's notice holds (TX-5), released exactly once: by `release` with the
 /// start's outcome on the normal path, or on drop if the start's send path
@@ -6219,6 +6468,7 @@ pub(crate) struct WorkflowRun {
     pub(crate) lifecycle: RunLifecycle,
     /// Ordered RS lifecycle entries for this run's log (W-2 order kept).
     entries: Vec<crate::records::supply::PendingRunEntry>,
+    role_source: Option<crate::role_observations::PreparedRoleRunSupply>,
     end: Option<crate::workflow_workspace::OwnerRunEnd>,
     notice: NoticeState,
     notice_checks: Vec<WorkflowCheckSlot>,
@@ -6454,7 +6704,12 @@ impl WorkflowRun {
                     // entries of the same group), written whole or not at all.
                     let group = self.entries[index].group.clone();
                     let end = index + 1 + self.entries[index + 1..].iter().take_while(|e| group.is_some() && e.group == group && e.pending()).count();
-                    match crate::records::supply::append_run_group_in(&self.project_root, &run, &mut self.entries[index..end], set) {
+                    let role_check=if self.entries[index..end].iter().any(|e|e.kind=="supplied_guidance" && e.body["supplyForm"].as_str().is_some_and(|f|f.starts_with("role guidance"))) {
+                        self.role_source.as_ref().ok_or("original role publication receipt unavailable".to_owned()).and_then(|source|source.publish_or_verify(&self.project_root))
+                    } else {Ok(())};
+                    let append=role_check.and_then(|_|crate::records::supply::append_run_group_in(&self.project_root,&run,&mut self.entries[index..end],set));
+                    if let Err(error)=&append {if self.entries[index].kind=="supplied_guidance" {self.entries[index].failure.get_or_insert(error.clone());}}
+                    match append {
                         Ok(_) => true,
                         Err(_) => {
                             // A refused unit, or one only partly in its log, is settled
@@ -6740,8 +6995,13 @@ impl WorkflowRun {
         if let Some(prior) = &self.follows {
             body["follows"] = json!(prior);
         }
-        // R5a: the role in force from this conversation's own App supply binding.
+        // R5a and R3 use this conversation's original private binding/receipt.
+        let mut role_source=None;
         if let Ok(history) = self.home.history.try_lock() {
+            match history.role_publication(&scope.home,&scope.conversation) {
+                Ok(source)=>role_source=source,
+                Err(error)=>self.status["roleGuidanceRecord"]=json!({"state":"unavailable","limit":error,"adoption":"unknown"}),
+            }
             if let Some(crate::role_lifecycle::RoleInForce::AppObserved { role, .. }) = history
                 .binding(&scope.home, &scope.conversation)
                 .map(|b| b.role_in_force(&scope.home, &scope.conversation))
@@ -6754,6 +7014,19 @@ impl WorkflowRun {
         match crate::records::supply::PendingRunEntry::new("run_opened", body, opened_at.clone()) {
             Ok(entry) => self.entries.push(entry),
             Err(e) => self.status["recordLimit"] = json!(format!("run_opened identity unavailable: {e}")),
+        }
+        // R3 observes this run's use of original guidance, never a new native
+        // supply. The original occasion stays in its referenced observation.
+        if let Some(source)=role_source {
+            let prepared=self.published.as_ref().ok_or_else(||"original WR run publication absent".to_owned()).and_then(|published|{
+                let native=self.source.as_ref().ok_or_else(||"original native run-start receipt absent".to_owned())?;
+                let opened=self.entries.iter().find(|e|e.kind=="run_opened").ok_or_else(||"original run-opened identity absent".to_owned())?;
+                source.prepare_run(&self.project,published,&self.home.host,native,opened,&self.person_text,&self.client_id,self.turn_id.as_deref().unwrap_or(""))
+            });
+            match prepared {
+                Ok((entry,pending))=>{self.entries.push(entry);self.role_source=Some(pending);},
+                Err(error)=>self.status["roleGuidanceRecord"]=json!({"state":"unavailable","limit":error,"adoption":"unknown"}),
+            }
         }
         // EXEC A-2, §2.7: the run starter tags the conversation with the run
         // reference through REC (RECOVERY §4.1). A tag that cannot be stored lives
@@ -7307,6 +7580,18 @@ pub(crate) mod trial_flows;
 mod workflow_root_tests {
     use super::*;
     use std::{path::PathBuf,sync::{Arc,Mutex},time::Duration};
+    impl WorkflowRootSession {
+        fn fixture_chat(&self) -> crate::workflow_selection::Chat {
+            self.selected.keys().next().cloned().unwrap_or(crate::workflow_selection::Chat { source:"explicit single-chat selection fixture".into(), thread:"thread".into() })
+        }
+        fn fixture_choice(&self) -> Option<&WorkflowSelectionState> {
+            self.selected.values().next().or(self.inspected.as_ref())
+        }
+        fn fixture_snapshot(&self) -> Value {
+            let mut v=self.snapshot();let choice=self.fixture_choice().map(|s|self.selection_view(s)).unwrap_or(Value::Null);
+            v["selection"]=choice.clone();v["choice"]=choice;v
+        }
+    }
     struct Fixture {root:PathBuf,package:PathBuf}
     impl Fixture {
         fn new()->Self {
@@ -7316,14 +7601,14 @@ mod workflow_root_tests {
             for(name,bytes)in catalog.select_embedded().snapshot().files(){std::fs::write(package.join(name),bytes).unwrap();}
             Self{root,package}
         }
-        fn selected(&self)->WorkflowRootSession{let mut root=WorkflowRootSession::default();root.select_development_copy(self.package.clone()).unwrap();root}
+        fn selected(&self)->WorkflowRootSession{let mut root=WorkflowRootSession::default();root.select_development_copy(None,self.package.clone()).unwrap();root}
         /// The ordinary journey (TT-1): development copy -> draft -> review -> A15 -> hot registered selection.
         fn registered(&self)->WorkflowRootSession{self.registered_with(|_|{})}
         /// As `registered`, with the draft edited before its review (a changed WORKFLOW.md).
         fn registered_with(&self,edit:impl FnOnce(&std::path::Path))->WorkflowRootSession{
             let mut root=self.selected();let control=Arc::new(Mutex::new(Some(crate::act_control::ActControl::new(&self.root))));
             root.open_library(self.root.clone(),"project",Some(&self.root),control.clone()).unwrap();
-            root.create_selected_draft("coordinated-knowledge-work").unwrap();
+            root.create_selected_draft(None,"coordinated-knowledge-work").unwrap();
             edit(&self.root.join(".chirality/workflow-drafts/coordinated-knowledge-work"));
             let home=Arc::new(HomeSession::new(crate::home_resources::HomeClass::Account,Arc::new(crate::hosting::Host::new()),Err("supplier intentionally unavailable".into())).unwrap());
             root.begin_review(home,json!({"hostState":"absent","identityVerified":false}),vec!["coordinated-knowledge-work".into()],false).unwrap();
@@ -7337,8 +7622,8 @@ mod workflow_root_tests {
                 let result=owner.confirm_a15_after_native_event(offer,event,&current).unwrap();drop(current);drop(owner_guard);
                 review.attempted_native=true;review.accept_result(result).unwrap();
                 review.registered.values().next().unwrap().identity().revision.clone()};
-            root.select_hot_registered_copy(&reference,&revision).unwrap();
-            assert_eq!(root.snapshot()["selection"]["standing"],"registered revision");
+            root.select_hot_registered_copy(&root.fixture_chat(),&reference,&revision).unwrap();
+            assert_eq!(root.fixture_snapshot()["selection"]["standing"],"registered revision");
             root
         }
         fn wr_files(&self)->Vec<String>{let mut v:Vec<String>=std::fs::read_dir(crate::storage::project_file(&self.root, "workflow").unwrap()).map(|d|d.filter_map(|e|e.ok()).map(|e|e.file_name().to_string_lossy().into_owned()).filter(|n|n.ends_with(".json")&&!n.starts_with('.')).collect()).unwrap_or_default();v.sort();v}
@@ -7351,7 +7636,7 @@ mod workflow_root_tests {
         let library_ref=root.open_library(f.root.clone(),"project",Some(&f.root),control.clone()).unwrap();
         assert!(Arc::ptr_eq(&root.active_library().unwrap().control,&control));
         assert_eq!(root.open_library(f.root.clone(),"project",Some(&f.root),control.clone()).unwrap(),library_ref);
-        root.create_selected_draft("coordinated-knowledge-work").unwrap();
+        root.create_selected_draft(None,"coordinated-knowledge-work").unwrap();
         let home=Arc::new(HomeSession::new(crate::home_resources::HomeClass::Account,Arc::new(crate::hosting::Host::new()),Err("supplier intentionally unavailable".into())).unwrap());
         root.begin_review(home,json!({"hostState":"absent","identityVerified":false}),vec!["coordinated-knowledge-work".into()],false).unwrap();
         let reference=root.active_review.clone().unwrap();let review=root.reviews[&reference].clone();let mut review=review.lock().unwrap();
@@ -7365,25 +7650,35 @@ mod workflow_root_tests {
         review.attempted_native=true;review.accept_result(result).unwrap();
         let revision=review.registered.values().next().unwrap().identity().revision.clone();
         assert_eq!(review.status["entries"][0]["state"],"registered");drop(review);
-        root.select_hot_registered_copy(&reference,&revision).unwrap();
-        assert_eq!(root.snapshot()["selection"]["standing"],"registered revision");
+        root.select_hot_registered_copy(&root.fixture_chat(),&reference,&revision).unwrap();
+        assert_eq!(root.fixture_snapshot()["selection"]["standing"],"registered revision");
         // PD-1: the run panel reads the selected revision's declared part from the host, as WD read it.
-        let declaration=&root.snapshot()["selection"]["declaration"];
+        let declaration=&root.fixture_snapshot()["selection"]["declaration"];
         assert!(declaration["reading"].is_string()&&declaration["categories"].is_object(),"{declaration}");
-        let mut cold=WorkflowRootSession::default();assert!(cold.select_hot_registered_copy(&reference,&revision).is_err(),"readable ledger/tuple cannot recreate hot registration authority");
-        assert!(cold.select_development_copy(f.root.join(".chirality/workflows/coordinated-knowledge-work")).is_ok(),"exact copy can separately retain development admission, not old A15");
+        let mut cold=WorkflowRootSession::default();assert!(cold.select_hot_registered_copy(&cold.fixture_chat(),&reference,&revision).is_err(),"readable ledger/tuple cannot recreate hot registration authority");
+        assert!(cold.select_development_copy(None,f.root.join(".chirality/workflows/coordinated-knowledge-work")).is_ok(),"exact copy can separately retain development admission, not old A15");
     }
     #[test]
     fn workflow_root_whole_selected_copy_changes_and_library_alias_are_refused(){
         let f=Fixture::new();let mut root=f.selected();let control=Arc::new(Mutex::new(Some(crate::act_control::ActControl::new(&f.root))));
         root.open_library(f.root.clone(),"project",Some(&f.root),control.clone()).unwrap();
         std::fs::write(f.package.join("REVIEW-NOTES.md"),"changed separate package file").unwrap();
-        assert!(root.create_selected_draft("kept-draft").is_err());assert!(!f.root.join(".chirality/workflow-drafts/kept-draft").exists());
+        assert!(root.create_selected_draft(None,"kept-draft").is_err());assert!(!f.root.join(".chirality/workflow-drafts/kept-draft").exists());
         let alias=f.root.join("aliased-library");std::os::unix::fs::symlink(&f.root,&alias).unwrap();
         assert!(root.open_library(alias,"project",Some(&f.root),control).is_err());
     }
     struct Peer { fixture:Fixture,home:Arc<HomeSession>,generation:Value }
     impl Peer {
+        fn registered(&self)->WorkflowRootSession { self.registered_with(|_|{}) }
+        fn registered_with(&self, edit:impl FnOnce(&std::path::Path))->WorkflowRootSession {
+            let mut root=self.fixture.registered_with(edit);
+            root.selected.clear();
+            let reference=root.active_review.clone().unwrap();
+            let revision=root.reviews[&reference].lock().unwrap().registered.keys().next().unwrap().clone();
+            current_conversation(&self.home.host.snapshot(),&self.generation,"thread").unwrap();
+            root.select_hot_registered_copy(&crate::workflow_selection::Chat::in_home(&self.home,"thread"),&reference,&revision).unwrap();
+            root
+        }
         fn new()->Self{Self::build(false)}
         /// EXEC §2.7 / RECOVERY §4.1: with the App's REC ledger configured and the conversation indexed
         /// for a known App project (H-acct), so the run tag can be stored.
@@ -7417,6 +7712,10 @@ for line in sys.stdin:
  elif method=='thread/start':
   starts[0]+=1
   result={'thread':thread('thread' if starts[0]==1 else 'thread-%d'%starts[0]),'model':f['params'].get('model') or 'fixture-model','modelProvider':f['params'].get('modelProvider') or 'fixture-provider','cwd':f['params'].get('cwd') or os.getcwd(),'approvalPolicy':'on-request','approvalsReviewer':'user','sandbox':{'type':'readOnly'},'instructionSources':[]}
+ elif method=='thread/fork':
+  starts[0]+=1
+  copied=thread('thread-%d'%starts[0]);copied['forkedFromId']=f['params']['threadId']
+  result={'thread':copied,'model':'fixture-model','modelProvider':'fixture-provider','cwd':os.getcwd(),'approvalPolicy':'on-request','approvalsReviewer':'user','sandbox':{'type':'readOnly'}}
  elif method=='turn/start':
   # Publish-before-send witness: the WR records the peer can see when the turn arrives.
   with open('turn-start-wr.jsonl','a') as log:log.write(json.dumps(wr())+'\n')
@@ -7430,10 +7729,10 @@ for line in sys.stdin:
   if mode('turn-mode')=='slow':
    import time;time.sleep(1.5)
   text=f['params']['input'][0]['text'];client=f['params'].get('clientUserMessageId','');inputs=[e.get('text','') for e in f['params']['input']];result={'turn':turn()}
-  if mode('notify-mode')=='checkpoint':
+  if mode('notify-mode') in ('checkpoint','checkpoint-file'):
    emit({'id':f['id'],'result':result})
    tid=f['params']['threadId']
-   for n,item in enumerate([{'id':'start-user','type':'userMessage','content':[]},{'id':'m1','type':'agentMessage','text':'Spacing report'}]):
+   for n,item in enumerate([{'id':'start-user','type':'userMessage','content':[]}] + ([{'id':'f1','type':'fileChange','status':'completed','changes':[{'path':'out/summary.md','kind':{'type':'add'},'diff':''}]}] if mode('notify-mode')=='checkpoint-file' else [{'id':'m1','type':'agentMessage','text':'Spacing report'}])):
     emit({'method':'item/started','params':{'threadId':tid,'turnId':result['turn']['id'],'item':item}})
     emit({'method':'item/completed','params':{'threadId':tid,'turnId':result['turn']['id'],'item':item}})
    continue
@@ -7561,7 +7860,7 @@ for line in sys.stdin:
     #[test]
     // WR TT-1/TX-1: moved from a development selection to the ordinary registered route; assertions unchanged.
     fn workflow_root_closed_prepare_scoped_send_failed_turn_and_genuine_pages(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let reference=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person exact\r\ntext".into(),peer.project()).unwrap();
+        let peer=Peer::new();let mut root=peer.registered();let reference=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person exact\r\ntext".into(),peer.project()).unwrap();
         let run=root.runs[&reference].clone();let mut run=run.lock().unwrap();
         run.send().unwrap();assert_eq!(run.turn_id.as_deref(),Some("turn"));assert_eq!(run.status["observedStatus"],"failed");
         let attempted=peer.wire().into_iter().find(|f|f["method"]=="turn/start").unwrap();assert_eq!(attempted["params"],run.prepared().turn_params("person exact\r\ntext",&run.client_id).unwrap());
@@ -7571,7 +7870,7 @@ for line in sys.stdin:
     #[test]
     // WR TT-1/TX-1: moved from a development selection to the ordinary registered route; assertions unchanged.
     fn workflow_root_stale_prepared_scope_keeps_original_receipt_without_resend(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let mut stale=peer.generation.clone();stale["spawnCounter"]=json!(999);
+        let peer=Peer::new();let mut root=peer.registered();let mut stale=peer.generation.clone();stale["spawnCounter"]=json!(999);
         assert!(root.prepare_run(peer.home.clone(),&stale,"thread","text".into(),peer.project()).is_err());
         let reference=root.prepare_run(peer.home.clone(),&peer.generation,"thread","text".into(),peer.project()).unwrap();let run=root.runs[&reference].clone();let mut run=run.lock().unwrap();run.send().unwrap();let original=run.source.as_ref().unwrap().request_ref().to_owned();
         peer.home.host.stop_scoped(&peer.generation,"fixture","source loss").unwrap();assert!(run.check_native_supply().is_err());assert!(run.send().is_err());assert_eq!(run.source.as_ref().unwrap().request_ref(),original);assert_eq!(run.status["adoption"],"unknown");
@@ -7591,14 +7890,14 @@ for line in sys.stdin:
         let before_records = peer.fixture.rs_entries();
         let before_wr = peer.fixture.wr_files();
         let before_record_directory = crate::records_store::existing(&peer.fixture.root, "runs").exists();
-        let before_selection = root.snapshot()["selection"]["reference"].clone();
+        let before_selection = root.fixture_snapshot()["selection"]["reference"].clone();
         let refused = root.prepare_run(peer.home.clone(), &peer.generation, "thread", "candidate examination".into(), peer.project());
         assert!(refused.as_ref().is_err_and(|e| e.contains("TT-1") && e.contains("TX-1") && e.contains("production bundle candidate")), "{refused:?}");
         assert!(root.runs.is_empty());
         assert!(root.conversations.is_empty());
         assert!(root.notice_flags.is_empty());
         assert!(root.held_successors.is_empty());
-        assert_eq!(root.snapshot()["selection"]["reference"], before_selection);
+        assert_eq!(root.fixture_snapshot()["selection"]["reference"], before_selection);
         assert_eq!(peer.wire(), before_wire, "no native request dispatched by refusal");
         assert_eq!(peer.fixture.rs_entries(), before_records, "no RS record written");
         assert_eq!(peer.fixture.wr_files(), before_wr, "no WR record written");
@@ -7610,61 +7909,61 @@ for line in sys.stdin:
         let peer = Peer::new();
         let bundle = p2_candidate_bundle(&peer.fixture);
         let mut root = WorkflowRootSession::default();
-        let view = root.select_production_bundle(bundle.clone(), "coordinated-knowledge-work").unwrap();
+        let view = root.select_production_bundle(Some(&crate::workflow_selection::Chat::in_home(&peer.home,"thread")),bundle.clone(), "coordinated-knowledge-work").unwrap();
         let entry = &view["productionCatalog"]["entries"][0];
-        assert_eq!(entry["identity"], view["selection"]["identity"]);
+        assert_eq!(entry["identity"], view["choice"]["identity"]);
         assert_eq!(entry["runnable"], false);
-        assert_eq!(view["selection"]["standing"], crate::workflow_workspace::production_catalog::PRODUCTION_STANDING);
-        assert_eq!(view["selection"]["runnable"], false);
-        assert!(view["selection"]["currentLimit"].is_null());
+        assert_eq!(view["choice"]["standing"], crate::workflow_workspace::production_catalog::PRODUCTION_STANDING);
+        assert_eq!(view["choice"]["runnable"], false);
+        assert!(view["choice"]["currentLimit"].is_null());
         p2_candidate_refuses_without_effects(&mut root, &peer);
         // Same-named development content is not silently substituted on failure.
-        let selected = view["selection"]["reference"].clone();
+        let selected = view["choice"]["reference"].clone();
         std::fs::write(bundle.join("MANIFEST.json"), b"{}").unwrap();
-        assert!(root.select_production_bundle(bundle, "coordinated-knowledge-work").is_err());
-        assert_eq!(root.snapshot()["selection"]["reference"], selected);
-        assert!(root.snapshot()["selection"]["currentLimit"].as_str().unwrap().contains("manifest differs"));
+        assert!(root.select_production_bundle(None,bundle, "coordinated-knowledge-work").is_err());
+        assert_eq!(root.fixture_snapshot()["selection"]["reference"], selected);
+        assert!(root.fixture_snapshot()["selection"]["currentLimit"].as_str().unwrap().contains("manifest differs"));
         p2_candidate_refuses_without_effects(&mut root, &peer);
     }
     #[test]
     fn p2_root_candidate_copy_uses_open_library_and_preserves_refusal_after_mutation() {
         let peer = Peer::new();
         let mut root = WorkflowRootSession::default();
-        assert!(root.select_production_copy("coordinated-knowledge-work").is_err());
+        assert!(root.select_production_copy(None,"coordinated-knowledge-work").is_err());
         let library = peer.fixture.root.join("candidate-library");
         std::fs::create_dir_all(library.join(".chirality/workflows")).unwrap();
         let catalog = crate::workflow_workspace::production_catalog::ProductionCatalog::load().unwrap();
         let package = library.join(".chirality/workflows/coordinated-knowledge-work");
         catalog.select_embedded().snapshot().publish_new(&package).unwrap();
         root.open_library(library.clone(), "project", None, Arc::new(Mutex::new(None))).unwrap();
-        let view = root.select_production_copy("coordinated-knowledge-work").unwrap();
-        assert_eq!(view["selection"]["identity"]["source_root"], crate::workflow_workspace::production_catalog::RELEASE_SUBJECT);
-        assert_eq!(view["selection"]["runnable"], false);
-        assert_eq!(root.selected.as_ref().unwrap().package, package);
+        let view = root.select_production_copy(Some(&crate::workflow_selection::Chat::in_home(&peer.home,"thread")),"coordinated-knowledge-work").unwrap();
+        assert_eq!(view["choice"]["identity"]["source_root"], crate::workflow_workspace::production_catalog::RELEASE_SUBJECT);
+        assert_eq!(view["choice"]["runnable"], false);
+        assert_eq!(root.fixture_choice().unwrap().package, package);
         p2_candidate_refuses_without_effects(&mut root, &peer);
         std::fs::write(library.join(".chirality/workflow-registry.jsonl"), b"{bad}\n").unwrap();
-        assert!(root.snapshot()["selection"]["currentLimit"].as_str().unwrap().contains("registration ledger malformed"));
-        let selected = view["selection"]["reference"].clone();
-        assert!(root.select_production_copy("coordinated-knowledge-work").is_err());
-        assert_eq!(root.snapshot()["selection"]["reference"], selected);
+        assert!(root.fixture_snapshot()["selection"]["currentLimit"].as_str().unwrap().contains("registration ledger malformed"));
+        let selected = view["choice"]["reference"].clone();
+        assert!(root.select_production_copy(None,"coordinated-knowledge-work").is_err());
+        assert_eq!(root.fixture_snapshot()["selection"]["reference"], selected);
         p2_candidate_refuses_without_effects(&mut root, &peer);
     }
     #[test]
     fn p2_root_candidate_copy_never_reinterprets_registered_slot() {
         let fixture = Fixture::new();
         let mut root = fixture.registered();
-        let before = root.snapshot()["selection"].clone();
-        let error = root.select_production_copy("coordinated-knowledge-work").unwrap_err();
+        let before = root.fixture_snapshot()["selection"].clone();
+        let error = root.select_production_copy(None,"coordinated-knowledge-work").unwrap_err();
         assert!(error.contains("registered slot"), "{error}");
-        assert_eq!(root.snapshot()["selection"], before);
+        assert_eq!(root.fixture_snapshot()["selection"], before);
         assert_eq!(before["standing"], "registered revision");
         assert_eq!(before["runnable"], true);
     }
     // J1 control: WR TT-1/TX-1/WP-6. A development selection may be shown, never run.
     #[test]
     fn workflow_root_development_selection_run_is_refused_tt1_tx1(){
-        let peer=Peer::new();let mut root=peer.fixture.selected();
-        assert_eq!(root.snapshot()["selection"]["standing"],crate::workflow_workspace::development_catalog::STANDING);
+        let peer=Peer::new();let mut root=WorkflowRootSession::default();root.select_development_copy(Some(&crate::workflow_selection::Chat::in_home(&peer.home,"thread")),peer.fixture.package.clone()).unwrap();
+        assert_eq!(root.fixture_snapshot()["selection"]["standing"],crate::workflow_workspace::development_catalog::STANDING);
         let refused=root.prepare_run(peer.home.clone(),&peer.generation,"thread","text".into(),peer.project());
         assert!(refused.as_ref().is_err_and(|e|e.contains("TT-1")&&e.contains("TX-1")),"{refused:?}");
         assert!(root.runs.is_empty());assert_eq!(peer.turn_starts(),0);assert!(peer.fixture.wr_files().is_empty());
@@ -7672,7 +7971,7 @@ for line in sys.stdin:
     // J1 control: WR SC-1/WP-5 publish-before-send, SC-6 new check per read, RS R3 per check.
     #[test]
     fn workflow_root_registered_run_publishes_before_send_and_records_each_check(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let reference=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         let run=root.runs[&reference].clone();let mut run=run.lock().unwrap();run.send().unwrap();
         let seen=peer.wr_at_turn_start();assert_eq!(seen.len(),1);assert_eq!(seen[0].len(),2,"selection and run_text must be durable before turn/start: {seen:?}");
@@ -7689,7 +7988,7 @@ for line in sys.stdin:
         let mut root=f.selected();let control=Arc::new(Mutex::new(Some(crate::act_control::ActControl::new(&f.root))));
         root.open_project_library(Some(&f.root),control).unwrap();
         root.observe_drafts(&json!([])).unwrap();
-        root.create_selected_draft(DRAFT).unwrap();root
+        root.create_selected_draft(None,DRAFT).unwrap();root
     }
     fn fixture_home()->Arc<HomeSession>{Arc::new(HomeSession::new(crate::home_resources::HomeClass::Account,Arc::new(crate::hosting::Host::new()),Err("supplier intentionally unavailable".into())).unwrap())}
     #[test]
@@ -7747,7 +8046,7 @@ for line in sys.stdin:
     // ---- Trials (WR §4.2 TT-2…TT-13; §17 steps 5–7) through the real Host ----
     /// The registered fixture with its draft listed and an App data folder.
     fn trial_root(peer:&Peer)->WorkflowRootSession{
-        let mut root=peer.fixture.registered();root.set_app_user_data(peer.fixture.root.join("app-data"));root.observe_drafts(&json!([])).unwrap();root
+        let mut root=peer.registered();root.set_app_user_data(peer.fixture.root.join("app-data"));root.observe_drafts(&json!([])).unwrap();root
     }
     fn trial_rows(root:&WorkflowRootSession,view:&Value)->Vec<Value>{
         let mut status=root.snapshot();root.decorate_status(&mut status,view);
@@ -7772,7 +8071,7 @@ for line in sys.stdin:
     #[test]
     fn model_turn_entries_record_each_turn_and_the_reroute_through_the_record_tick(){
         let peer=Peer::new();peer.set_mode("notify-mode","reroute");
-        let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let workflows=Mutex::new(root);let homes=Mutex::new(HomeRouter::new(peer.home.clone()).unwrap());
         let model_turns=||rs_for(&peer,&a).into_iter().filter(|e|e["kind"]=="model_turn").map(|e|e["body"].clone()).collect::<Vec<_>>();
         let until=|count:usize|{let deadline=std::time::Instant::now()+Duration::from_secs(5);
@@ -7828,8 +8127,8 @@ for line in sys.stdin:
         assert_eq!(kinds_for(&peer,&a).len(),after.len(),"recorded once");
         // host_status itself no longer drives the recorder.
         let lib=include_str!("lib.rs");let start=lib.find("fn host_status(").unwrap();let body=&lib[start..start+lib[start..].find("\n}\n").unwrap()];
-        assert!(!body.contains("record_run_observations")&&!body.contains("trial_reads_due"),"host_status is a read");
-        assert!(lib.contains("host_tick::tick(&state.homes, &state.workflows)"),"the App runs the host tick");
+        assert!(!body.contains("record_run_observations")&&!body.contains("trial_reads_due")&&!body.contains("history.reconcile"),"host_status is a read");
+        assert!(lib.contains("host_tick::tick_project(&state.homes, &state.workflows, state.workspace.as_deref())"),"the App runs its explicit-project host tick");
     }
     #[test]
     fn delegated_trial_prefills_sends_only_on_send_and_links_only_on_acknowledgment(){
@@ -7903,14 +8202,14 @@ for line in sys.stdin:
         let again=trial_flows::read_trial_again(&root,&peer.home,&reference,&descendant_view(&peer,&[])).unwrap();
         assert_eq!(again["recorded"][0]["fidelity"]["state"],"differs");assert_eq!(again["recorded"][0]["fidelity"]["difference"],"workflow body differs");
         assert_eq!(links(&peer).observations(&reference).len(),3);
-        // Unreadable child: listed "input not read"; the person links it, then unlinks.
+        // Unreadable child: listed "input not read"; the explicit control links it, then unlinks.
         peer.set_mode("child-mode","error");
         tick_reads(&peer,&root,&descendant_view(&peer,&["child-d"]));
         let rows=trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]));
         assert!(rows[0]["subAgent"]["unread"].as_array().unwrap().iter().any(|c|c=="child-d"));
         let view=descendant_view(&peer,&["child-d"]);
         assert!(root.lock().unwrap().link_trial_child(&reference,"thread-77",true,&view).unwrap_err().contains("not a sub-agent"),"the person links only a sub-agent of the authoring conversation");
-        let linked=root.lock().unwrap().link_trial_child(&reference,"child-d",true,&view).unwrap();assert_eq!(linked["linked_by"],"by the person");
+        let linked=root.lock().unwrap().link_trial_child(&reference,"child-d",true,&view).unwrap();assert_eq!(linked["linked_by"],"explicit link control");
         root.lock().unwrap().link_trial_child(&reference,"child-d",false,&Value::Null).unwrap();
         assert_eq!(trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]))[0]["subAgent"]["state"],"sub-agent not linked","the latest link or unlink stands");
     }
@@ -7926,7 +8225,7 @@ for line in sys.stdin:
     // Trial witness 2026-10-10 (a): once the person links a sub-agent, it is no
     // longer offered "Link as trial ‹n›" for that trial.
     #[test]
-    fn a_sub_agent_linked_by_the_person_is_not_offered_again_for_its_trial(){
+    fn a_sub_agent_linked_through_control_is_not_offered_again_for_its_trial(){
         let peer=Peer::new();let mut root=trial_root(&peer);let g=peer.generation.clone();
         let reference=root.prepare_trial("delegated",DRAFT,Some((&g,"thread")),Some(&peer.home),peer.project()).unwrap()["reference"].as_str().unwrap().to_owned();
         let root=Mutex::new(root);trial_flows::send_trial(&root,&peer.home,&reference,&g,"thread","").unwrap();
@@ -8667,7 +8966,7 @@ for line in sys.stdin:
     // WP-5: failed pre-send publication sends nothing; a retry republishes the same original bytes.
     #[test]
     fn workflow_root_publication_failure_sends_nothing_and_retry_keeps_original_bytes(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let reference=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         let run=root.runs[&reference].clone();let mut run=run.lock().unwrap();
         let pending=run.view(&reference)["publication"].clone();assert_eq!(pending["state"],"pending; not recorded");
@@ -8690,7 +8989,7 @@ for line in sys.stdin:
         assert_eq!(std::fs::read(file(selection_ref)).unwrap(),original,"same identity, same original bytes");assert!(file(text_ref).exists());
         let view=run.view(&reference);assert_eq!(view["publication"]["selection"],selection_ref);assert_eq!(view["publication"]["runText"],text_ref);
         let reopened=crate::workflow_workspace::publication::ProjectRecords::open(&peer.fixture.root).unwrap();
-        let selection=reopened.resolve(selection_ref).unwrap();assert_eq!(selection.envelope()["observed_at"],root.snapshot()["selection"]["selectedAt"],"original selection time, not retry time");
+        let selection=reopened.resolve(selection_ref).unwrap();assert_eq!(selection.envelope()["observed_at"],root.fixture_snapshot()["selection"]["selectedAt"],"original selection time, not retry time");
         run.send().unwrap();assert_eq!(peer.turn_starts(),1);
         let name=|r:&str|file(r).file_name().unwrap().to_string_lossy().into_owned();
         let seen=peer.wr_at_turn_start();assert_eq!(seen.len(),1);assert!(seen[0].contains(&name(selection_ref))&&seen[0].contains(&name(text_ref)),"{seen:?}");
@@ -8699,7 +8998,7 @@ for line in sys.stdin:
     // WP-1: an unknown or unopenable project is refused with no fallback store.
     #[test]
     fn workflow_root_unknown_project_is_refused_without_fallback(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let none=root.prepare_run(peer.home.clone(),&peer.generation,"thread","text".into(),None);
         assert!(none.as_ref().is_err_and(|e|e.contains("No explicit App project")&&e.contains("no fallback")),"{none:?}");
         assert!(root.prepare_run(peer.home.clone(),&peer.generation,"thread","text".into(),Some(std::path::Path::new("relative-project"))).is_err());
@@ -8710,7 +9009,7 @@ for line in sys.stdin:
     // SC-3/SC-4 and §16.4: each mode is a new native read and a new immutable check; R3 copies the state.
     #[test]
     fn workflow_root_each_read_maps_state_faithfully_into_new_check_and_r3(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let reference=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         let run=root.runs[&reference].clone();let mut run=run.lock().unwrap();run.send().unwrap();peer.select_history();
         let cases=[("","verified",Some("client id")),("noclient","verified",Some("first user message of the turn")),("paged","verified",Some("client id")),
@@ -8741,7 +9040,7 @@ for line in sys.stdin:
     // supply_check *not found* grounded in that Host receipt; R3 stays unavailable (RS §13.6a).
     #[test]
     fn workflow_root_refused_send_records_not_found_check_and_keeps_r3_unavailable(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();peer.set_mode("turn-mode","error");
+        let peer=Peer::new();let mut root=peer.registered();peer.set_mode("turn-mode","error");
         let reference=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         let run=root.runs[&reference].clone();let mut run=run.lock().unwrap();
         assert!(run.send().is_err());assert_eq!(peer.turn_starts(),1);assert!(run.turn_id.is_none());
@@ -8761,7 +9060,7 @@ for line in sys.stdin:
     // claiming *not found*; status stays "outcome unknown"; no resend (EXEC §2.7 / WR §16.4 RN-4).
     #[test]
     fn workflow_root_unknown_send_outcome_mints_no_check_and_never_resends(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();peer.set_mode("turn-mode","exit");
+        let peer=Peer::new();let mut root=peer.registered();peer.set_mode("turn-mode","exit");
         let reference=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         let run=root.runs[&reference].clone();let mut run=run.lock().unwrap();
         assert!(run.send().is_err());assert_eq!(peer.turn_starts(),1);assert!(run.turn_id.is_none());
@@ -8774,7 +9073,7 @@ for line in sys.stdin:
     #[test]
     fn workflow_root_post_send_record_failures_retry_without_resend(){
         use std::os::unix::fs::PermissionsExt;
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let reference=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         let run=root.runs[&reference].clone();let mut run=run.lock().unwrap();run.send().unwrap();peer.select_history();
         // 1. RS writer unavailable: WR check published, R3 pending.
@@ -8811,7 +9110,7 @@ for line in sys.stdin:
     // earlier pending R3 of the run, in order, before its own; the log order follows observation.
     #[test]
     fn workflow_root_recovered_writer_appends_pending_r3_in_observation_order(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let reference=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         let run=root.runs[&reference].clone();let mut run=run.lock().unwrap();run.send().unwrap();peer.select_history();
         let runs=crate::storage::project_file(&peer.fixture.root, "runs").unwrap();let aside=crate::storage::project_file(&peer.fixture.root, "runs-aside").unwrap();
@@ -8833,7 +9132,7 @@ for line in sys.stdin:
     // traversal, byte for byte; count alone is not a binding.
     #[test]
     fn workflow_root_check_minting_binds_pages_to_host_custody(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();peer.set_mode("items-mode","paged");
+        let peer=Peer::new();let mut root=peer.registered();peer.set_mode("items-mode","paged");
         let reference=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         let run=root.runs[&reference].clone();let mut run=run.lock().unwrap();run.send().unwrap();peer.select_history();
         let published=run.published.take().unwrap();let turn=run.turn_id.clone().unwrap();let generation=run.prepared().scope().generation.clone();
@@ -8848,7 +9147,7 @@ for line in sys.stdin:
     // each reread has its own body `check` identity, not only its own envelope id.
     #[test]
     fn workflow_root_each_reread_has_a_new_check_identity(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let reference=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         let run=root.runs[&reference].clone();let mut run=run.lock().unwrap();run.send().unwrap();peer.select_history();
         let project=crate::workflow_workspace::publication::ProjectRecords::open(&peer.fixture.root).unwrap();
@@ -8860,7 +9159,7 @@ for line in sys.stdin:
     // Outcome 5: a later process resolves every published record from the project alone.
     #[test]
     fn workflow_root_fresh_process_resolves_records_without_run_claims(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let reference=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         let (selection_ref,text_ref,check_ref,orphan_ref)={let run=root.runs[&reference].clone();let mut run=run.lock().unwrap();run.send().unwrap();peer.select_history();
             let check=run.check_native_supply().unwrap()["check"]["reference"].as_str().unwrap().to_owned();
@@ -8896,7 +9195,7 @@ for line in sys.stdin:
     // J3 control: EXEC A-2/RE-7 and RS R1. Opening writes run_opened; a second live start is refused.
     #[test]
     fn j3_open_writes_run_opened_and_second_live_start_is_refused(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let a=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         root.runs[&a].clone().lock().unwrap().send().unwrap();
         assert_eq!(kinds_for(&peer,&a).first().map(String::as_str),Some("run_opened"),"opening writes run_opened first");
@@ -8906,7 +9205,7 @@ for line in sys.stdin:
     // J3 control: RE-7 / CH-1 alone, so the refusal is observed independently of run_opened.
     #[test]
     fn j3_second_live_start_in_conversation_is_refused(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let a=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         root.runs[&a].clone().lock().unwrap().send().unwrap();
         let second=root.prepare_run(peer.home.clone(),&peer.generation,"thread","again".into(),peer.project());
@@ -8915,13 +9214,21 @@ for line in sys.stdin:
     // J3 control: EXEC §3.1 CK-1 at selection for a run and CK-2 before the first action.
     #[test]
     fn j3_compatibility_ck1_and_ck2_are_evaluated_advisory_only(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let a=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         let run=root.runs[&a].clone();let mut run=run.lock().unwrap();run.send().unwrap();
         let view=run.view(&a);let occasions:Vec<Value>=view["compatibility"].as_array().map(|v|v.iter().map(|e|e["occasionLabel"].clone()).collect()).unwrap_or_default();
         assert_eq!(occasions,vec![json!("CK-1 selection"),json!("CK-2 run start")],"{}",view["compatibility"]);
     }
+    /// Fixture intent: explicitly select its held revision in this chat before
+    /// starting it. Production never fills an unselected chat this way.
+    fn choose_fixture_chat(peer:&Peer,root:&mut WorkflowRootSession,thread:&str) {
+        let reference=root.active_review.clone().unwrap();
+        let revision=root.reviews[&reference].lock().unwrap().registered.keys().next().unwrap().clone();
+        root.select_hot_registered_copy(&crate::workflow_selection::Chat::in_home(&peer.home,thread),&reference,&revision).unwrap();
+    }
     fn open_run(peer:&Peer,root:&mut WorkflowRootSession,thread:&str)->String{
+        if !root.selected.contains_key(&crate::workflow_selection::Chat::in_home(&peer.home,thread)) {choose_fixture_chat(peer,root,thread);}
         let reference=root.prepare_run(peer.home.clone(),&peer.generation,thread,"person".into(),peer.project()).unwrap();
         root.runs[&reference].clone().lock().unwrap().send().unwrap();assert_eq!(root.runs[&reference].lock().unwrap().lifecycle,RunLifecycle::Open);reference
     }
@@ -8932,7 +9239,7 @@ for line in sys.stdin:
     // a new start in that conversation is refused, and only the person's end closes it.
     #[test]
     fn j3_vc_e_17_interrupt_stop_quit_and_relaunch_never_end_a_run(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let _=peer.home.host.turn_interrupt(&peer.generation,"thread","turn","H-acct",&crate::stop_records::person("")); // DEF-3; acknowledgment immaterial
         assert_eq!(root.runs[&a].lock().unwrap().lifecycle,RunLifecycle::Open,"interrupt is the turn's outcome only");
         peer.home.host.stop_scoped(&peer.generation,"the person","Codex stop").unwrap(); // DEF-5 (the App quit path stops the same way, DEF-6)
@@ -8940,7 +9247,7 @@ for line in sys.stdin:
         assert!(!rs_for(&peer,&a).iter().any(|e|e["kind"]=="run_ended"),"no run_ended without the person's end");
         // Window close touches no child or run (DEF-1): there is no App code path for it to call.
         // Relaunch: process state is lost; the person re-selects the same registered revision.
-        let mut fresh=WorkflowRootSession::default();fresh.selected=root.selected.take();drop(root);
+        let mut fresh=WorkflowRootSession::default();fresh.selected=std::mem::take(&mut root.selected);drop(root);
         let generation=peer.relaunch();
         let reopened=fresh.reopen(&peer.fixture.root,&[]).unwrap();
         let entry=reopened["runs"].as_array().unwrap().iter().find(|r|r["run"]==a.as_str()).unwrap().clone();
@@ -8958,7 +9265,7 @@ for line in sys.stdin:
     // run_ended in the ended run's log.
     #[test]
     fn j3_end_writes_run_ended_and_the_next_ordinary_turn_carries_the_notice_once(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let wr_before=peer.fixture.wr_files().len();
         root.runs[&a].lock().unwrap().end_run(None,None).unwrap();
         let end=rs_for(&peer,&a).into_iter().find(|e|e["kind"]=="run_ended").unwrap();assert_eq!(end["body"],json!({"stoppedBy":"the person","cause":"ended by the person","waitingArrivals":[]}));
@@ -8990,7 +9297,7 @@ for line in sys.stdin:
     /// turn/start frames whose input carries a run-end line.
     fn notice_frames(peer:&Peer)->usize{peer.wire().iter().filter(|f|f["method"]=="turn/start"&&f["params"]["input"].as_array().is_some_and(|i|i.iter().any(|e|e["text"].as_str().is_some_and(|t|t.starts_with("[Chirality] Workflow run ended:"))))).count()}
     fn ended_run(peer:&Peer)->(Mutex<WorkflowRootSession>,String){
-        let mut root=peer.fixture.registered();let a=open_run(peer,&mut root,"thread");
+        let mut root=peer.registered();let a=open_run(peer,&mut root,"thread");
         root.runs[&a].lock().unwrap().end_run(None,None).unwrap();(Mutex::new(root),a)
     }
     fn notice_state(root:&Mutex<WorkflowRootSession>,a:&str)->String{root.lock().unwrap().runs[a].lock().unwrap().view(a)["endNotice"]["state"].as_str().unwrap().to_owned()}
@@ -9169,7 +9476,7 @@ for line in sys.stdin:
     // copy cannot be written the run is not prepared, recorded or sent.
     #[test]
     fn run_start_files_line_names_a_usable_folder_or_refuses_the_start(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let a=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         let text=root.runs[&a].lock().unwrap().prepared().text().to_owned();
         // The holding folder is the revision store (SL-4), inside the project: the
@@ -9183,7 +9490,7 @@ for line in sys.stdin:
         // Another explicit project: the holding copy is outside it.
         let other=std::fs::canonicalize(std::env::temp_dir()).unwrap().join(crate::util::opaque_id("workflow-supply-project-").unwrap());
         std::fs::create_dir(&other).unwrap();
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let b=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),Some(&other)).unwrap();
         let (text,revision)={let run=root.runs[&b].lock().unwrap();(run.prepared().text().to_owned(),run.prepared().workflow().revision.clone())};
         let label=format!(".chirality/workflow-supply/coordinated-knowledge-work/{}/coordinated-knowledge-work",crate::storage::key(&revision));
@@ -9193,7 +9500,7 @@ for line in sys.stdin:
         // A third project whose supply area cannot be written: refused with the cause, nothing prepared.
         let blocked=std::fs::canonicalize(std::env::temp_dir()).unwrap().join(crate::util::opaque_id("workflow-supply-blocked-").unwrap());
         std::fs::create_dir_all(blocked.join(".chirality")).unwrap();std::fs::write(blocked.join(".chirality/workflow-supply"),b"x").unwrap();
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let runs=root.runs.len();
         let refused=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),Some(&blocked)).unwrap_err();
         assert!(refused.contains("other files of this revision could not be supplied")&&refused.contains("not prepared or sent"),"{refused}");
@@ -9281,7 +9588,7 @@ for line in sys.stdin:
     /// The fixture registered with a declared part carrying checkpoints (the
     /// recorder's own fixture declaration), appended to its WORKFLOW.md.
     fn declared(peer:&Peer)->WorkflowRootSession{
-        peer.fixture.registered_with(|draft|{let path=draft.join("WORKFLOW.md");let mut text=std::fs::read_to_string(&path).unwrap();
+        peer.registered_with(|draft|{let path=draft.join("WORKFLOW.md");let mut text=std::fs::read_to_string(&path).unwrap();
             text.push_str(&format!("\n```workflow-declaration\n{}\n```\n",crate::checkpoint_recorder::tests::DECLARATION));std::fs::write(&path,text).unwrap();})
     }
     /// A receiver view of the fixture conversation with receipt positions: the
@@ -9373,6 +9680,1307 @@ for line in sys.stdin:
     }
     // CE-5 through the actual run and RS writer (AAC §6.3 / EXEC §2.4–2.5): the person's act on the file
     // output is counted, so run_ended lists only the arrival whose act was not recorded.
+    // Actual owned supplier → Host → explicit-project record tick. Every
+    // capture is synthetic source evidence, never a native human witness.
+    fn after_run_end_fixture(peer:&Peer,kind:&str)->(Mutex<WorkflowRootSession>,Mutex<HomeRouter>,String){
+        peer.set_mode("notify-mode","checkpoint-file");
+        let file=peer.fixture.root.join("out/summary.md");std::fs::create_dir_all(file.parent().unwrap()).unwrap();std::fs::write(&file,b"v1").unwrap();
+        let mut root=peer.fixture.registered_with(|draft|{
+            let path=draft.join("WORKFLOW.md");let mut text=std::fs::read_to_string(&path).unwrap();
+            let declaration=crate::checkpoint_recorder::tests::DECLARATION.replace("\"required_act\":\"A7\"",&format!("\"required_act\":\"{kind}\""));
+            text.push_str(&format!("\n```workflow-declaration\n{declaration}\n```\n"));std::fs::write(&path,text).unwrap();
+        });
+        let a=open_run(peer,&mut root,"thread");let root=Mutex::new(root);let homes=Mutex::new(HomeRouter::new(peer.home.clone()).unwrap());
+        let until=std::time::Instant::now()+Duration::from_secs(5);
+        while !rs_for(peer,&a).iter().any(|e|e["kind"]=="checkpoint_arrival") && std::time::Instant::now()<until{crate::host_tick::tick_project(&homes,&root,peer.project());std::thread::sleep(Duration::from_millis(10));}
+        assert!(rs_for(peer,&a).iter().any(|e|e["kind"]=="checkpoint_arrival"&&e["body"]["requiredAct"]==kind));
+        let view=crate::host_tick::receive_view(&peer.home);root.lock().unwrap().end_plain(&a,&view).unwrap();
+        std::thread::sleep(Duration::from_millis(2));(root,homes,a)
+    }
+    fn performed_file_fixture(
+        peer: &Peer,
+        kind: &str,
+        end: bool,
+    ) -> (
+        Mutex<WorkflowRootSession>,
+        Mutex<HomeRouter>,
+        String,
+        String,
+    ) {
+        peer.set_mode("notify-mode", "checkpoint-file");
+        let file = peer.fixture.root.join("out/summary.md");
+        std::fs::create_dir_all(file.parent().unwrap()).unwrap();
+        std::fs::write(&file, b"v1").unwrap();
+        let mut state = peer.fixture.registered_with(|draft| {
+            let path = draft.join("WORKFLOW.md");
+            let mut text = std::fs::read_to_string(&path).unwrap();
+            let declaration = crate::checkpoint_recorder::tests::DECLARATION.replace(
+                "\"required_act\":\"A7\"",
+                &format!("\"required_act\":\"{kind}\""),
+            );
+            // This owner-flow fixture declares only valid checkpoints, with an
+            // explicit gate on the file output whose act standing is displayed.
+            let mut declaration: Value = serde_json::from_str(&declaration).unwrap();
+            declaration["checkpoints"]
+                .as_array_mut()
+                .unwrap()
+                .retain(|c| c["name"] != "CP-bad");
+            declaration["returned_outputs"][1]["gating_checkpoint"] = json!("CP-rely");
+            text.push_str(&format!("\n```workflow-declaration\n{declaration}\n```\n"));
+            std::fs::write(path, text).unwrap();
+        });
+        let a = open_run(peer, &mut state, "thread");
+        let root = Mutex::new(state);
+        let homes = Mutex::new(HomeRouter::new(peer.home.clone()).unwrap());
+        let until = std::time::Instant::now() + Duration::from_secs(5);
+        while !rs_for(peer, &a)
+            .iter()
+            .any(|e| e["kind"] == "checkpoint_arrival")
+            && std::time::Instant::now() < until
+        {
+            crate::host_tick::tick_project(&homes, &root, peer.project());
+            std::thread::sleep(Duration::from_millis(10));
+        }
+        let act = record_file_act(
+            peer,
+            "out/summary.md",
+            kind,
+            b"v1",
+            &crate::util::now_rfc3339(),
+        );
+        for _ in 0..3 {
+            crate::host_tick::tick_project(&homes, &root, peer.project());
+        }
+        assert!(rs_for(peer, &a)
+            .iter()
+            .any(|e| e["kind"] == "act_counted" && e["body"]["act"]["recordId"] == act));
+        if end {
+            let view = crate::host_tick::receive_view(&peer.home);
+            root.lock().unwrap().end_plain(&a, &view).unwrap();
+        }
+        (root, homes, a, act)
+    }
+    fn after_end_performed_file_fixture(
+        peer: &Peer,
+        kind: &str,
+    ) -> (
+        Mutex<WorkflowRootSession>,
+        Mutex<HomeRouter>,
+        String,
+        String,
+    ) {
+        performed_file_fixture(peer, kind, true)
+    }
+    fn cross_log_source_correction(peer: &Peer, run: &str, original: &Value) {
+        let mut correction = original.clone();
+        correction["recordId"] = json!(crate::util::opaque_id("rec:app:").unwrap());
+        correction["seq"] = json!(1);
+        correction["corrects"] = original["recordId"].clone();
+        correction["correctionReason"] =
+            json!("Synthetic correction makes this original source ineligible");
+        correction["prevLine"] = crate::record_lines::link(None);
+        crate::schema_validation::bundled()
+            .unwrap()
+            .validate(&correction)
+            .unwrap();
+        let path = crate::storage::project_log(
+            &peer.fixture.root,
+            Some(run),
+            "synthetic-lapse-correction",
+        )
+        .unwrap();
+        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+        std::fs::write(path, format!("{correction}\n")).unwrap();
+    }
+    #[test]
+    fn after_end_file_lapse_uses_the_latest_live_performance_content() {
+        let peer = Peer::new();
+        let (root, homes, a, old) = performed_file_fixture(&peer, "A7", false);
+        let file = peer.fixture.root.join("out/summary.md");
+        std::fs::write(&file, b"v2").unwrap();
+        crate::host_tick::tick_project(&homes, &root, peer.project());
+        assert_eq!(
+            rs_for(&peer, &a)
+                .iter()
+                .filter(|r| r["kind"] == "disposition_change")
+                .last()
+                .unwrap()["body"]["disposition"],
+            "waiting"
+        );
+        let new = record_file_act(
+            &peer,
+            "out/summary.md",
+            "A7",
+            b"v2",
+            &crate::util::now_rfc3339(),
+        );
+        for _ in 0..3 {
+            crate::host_tick::tick_project(&homes, &root, peer.project());
+        }
+        assert_eq!(
+            rs_for(&peer, &a)
+                .iter()
+                .filter(|r| r["kind"] == "disposition_change")
+                .last()
+                .unwrap()["body"]["answeredBy"],
+            json!([new])
+        );
+        let view = crate::host_tick::receive_view(&peer.home);
+        root.lock().unwrap().end_plain(&a, &view).unwrap();
+        std::fs::write(file, b"v3").unwrap();
+        crate::host_tick::tick_project(&homes, &root, peer.project());
+        let records = rs_for(&peer, &a);
+        let latest = records
+            .iter()
+            .filter(|r| r["kind"] == "act_lapsed")
+            .last()
+            .unwrap();
+        assert_eq!(latest["body"]["when"], "after run end");
+        assert_eq!(latest["body"]["act"]["recordId"], new);
+        assert_ne!(latest["body"]["act"]["recordId"], old);
+        assert_eq!(
+            latest["body"]["c0"]["value"],
+            crate::util::sha256_hex(b"v2")
+        );
+        assert_eq!(
+            latest["body"]["c1"]["value"],
+            crate::util::sha256_hex(b"v3")
+        );
+        assert_eq!(
+            records
+                .iter()
+                .find(|r| r["kind"] == "checkpoint_arrival")
+                .unwrap()["body"]["referents"][0]["content"]["value"],
+            crate::util::sha256_hex(b"v1")
+        );
+    }
+    #[test]
+    fn after_end_file_lapse_warm_and_cold_corrections_refuse_the_counted_source() {
+        for kind in [
+            "checkpoint_arrival",
+            "disposition_change",
+            "act_counted",
+            "act_lapsed",
+        ] {
+            let peer = Peer::new();
+            let (root, homes, a, _) = after_end_performed_file_fixture(&peer, "A7");
+            crate::host_tick::tick_project(&homes, &root, peer.project());
+            if kind == "act_lapsed" {
+                std::fs::write(peer.fixture.root.join("out/summary.md"), b"v2").unwrap();
+                crate::host_tick::tick_project(&homes, &root, peer.project());
+            }
+            let records = rs_for(&peer, &a);
+            let original = records
+                .iter()
+                .find(|r| {
+                    r["kind"] == kind
+                        && (kind != "disposition_change" || r["body"]["disposition"] == "performed")
+                })
+                .unwrap();
+            cross_log_source_correction(&peer, &a, original);
+            let before = rs_for(&peer, &a)
+                .iter()
+                .filter(|r| r["kind"] == "act_lapsed")
+                .count();
+            std::fs::write(peer.fixture.root.join("out/summary.md"), b"v3").unwrap();
+            crate::host_tick::tick_project(&homes, &root, peer.project());
+            assert_eq!(
+                rs_for(&peer, &a)
+                    .iter()
+                    .filter(|r| r["kind"] == "act_lapsed")
+                    .count(),
+                before,
+                "{kind}"
+            );
+            let hot = root.lock().unwrap().snapshot();
+            assert!(
+                hot["afterRunEnd"]["limits"]
+                    .as_array()
+                    .unwrap()
+                    .iter()
+                    .any(|v| v.as_str().unwrap().contains("correction")),
+                "{kind}: {hot}"
+            );
+            assert!(hot["runs"][0]["lifecycle"]["records"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .filter(|r| r["kind"] == "checkpoint_arrival")
+                .all(|r| r["afterRunEndRelationLimit"].is_string()));
+            let mut fresh = WorkflowRootSession::default();
+            fresh.reopen(&peer.fixture.root, &[]).unwrap();
+            let fresh = Mutex::new(fresh);
+            crate::host_tick::tick_project(&homes, &fresh, peer.project());
+            assert_eq!(
+                rs_for(&peer, &a)
+                    .iter()
+                    .filter(|r| r["kind"] == "act_lapsed")
+                    .count(),
+                before
+            );
+        }
+    }
+    #[test]
+    fn after_end_file_lapse_persisted_history_is_not_rebound_to_a_corrected_subject() {
+        let peer = Peer::new();
+        let (root, homes, a, _) = after_end_performed_file_fixture(&peer, "A7");
+        std::fs::write(peer.fixture.root.join("out/summary.md"), b"v2").unwrap();
+        crate::host_tick::tick_project(&homes, &root, peer.project());
+        let records = rs_for(&peer, &a);
+        let original = records
+            .iter()
+            .find(|r| r["kind"] == "checkpoint_arrival")
+            .unwrap();
+        let log = crate::records::supply::run_log(&peer.fixture.root, &a).unwrap();
+        let mut correction = original.clone();
+        correction["recordId"] = json!(crate::util::opaque_id("rec:app:").unwrap());
+        correction["seq"] = json!(records.last().unwrap()["seq"].as_u64().unwrap() + 1);
+        correction["corrects"] = original["recordId"].clone();
+        correction["correctionReason"] = json!("Synthetic corrected arrival subject");
+        correction["body"]["referents"][0]["subject"] = json!("output summary: file out/new.md");
+        correction["prevLine"] = crate::record_lines::fixture::next_link(&log);
+        crate::schema_validation::bundled()
+            .unwrap()
+            .validate(&correction)
+            .unwrap();
+        let mut file = std::fs::OpenOptions::new().append(true).open(log).unwrap();
+        std::io::Write::write_all(&mut file, format!("{correction}\n").as_bytes()).unwrap();
+        drop(file);
+        let mut fresh = WorkflowRootSession::default();
+        fresh.reopen(&peer.fixture.root, &[]).unwrap();
+        let fresh = Mutex::new(fresh);
+        crate::host_tick::tick_project(&homes, &fresh, peer.project());
+        let dto = fresh.lock().unwrap().snapshot();
+        assert_eq!(
+            rs_for(&peer, &a)
+                .iter()
+                .filter(|r| r["kind"] == "act_lapsed")
+                .count(),
+            1
+        );
+        println!("AFTER_END_LAPSE_CORRECTED_DTO:{dto}");
+    }
+    #[test]
+    fn after_end_file_lapse_prewrite_capture_loss_holds_original_interval_and_warm_ticks_reuse_it()
+    {
+        let peer = Peer::new();
+        let (root, homes, a, act) = after_end_performed_file_fixture(&peer, "A7");
+        crate::host_tick::tick_project(&homes, &root, peer.project());
+        let before = root.lock().unwrap().after_run_end.work.clone();
+        for _ in 0..3 {
+            crate::host_tick::tick_project(&homes, &root, peer.project());
+        }
+        assert_eq!(root.lock().unwrap().after_run_end.work, before);
+        let read = crate::checkpoint_recorder::project_act_records(&peer.fixture.root).unwrap();
+        let cap = read
+            .acts
+            .iter()
+            .find(|r| r["record"]["recordId"] == act)
+            .unwrap()["record"]["body"]["captureEvidence"][0]["ref"]
+            .as_str()
+            .unwrap();
+        let path = crate::storage::capture_path(&peer.fixture.root, cap).unwrap();
+        let bytes = std::fs::read(&path).unwrap();
+        let changed = path.clone();
+        std::fs::write(peer.fixture.root.join("out/summary.md"), b"v2").unwrap();
+        crate::after_run_end::BEFORE_WRITE.with(|h| {
+            *h.borrow_mut() = Some(Box::new(move || std::fs::remove_file(changed).unwrap()))
+        });
+        crate::host_tick::tick_project(&homes, &root, peer.project());
+        assert!(!rs_for(&peer, &a).iter().any(|r| r["kind"] == "act_lapsed"));
+        let dto = root.lock().unwrap().snapshot();
+        assert_eq!(dto["afterRunEnd"]["pending"], true);
+        let held = dto["afterRunEnd"]["held"].as_array().unwrap().clone();
+        assert_eq!(held.len(), 2);
+        std::fs::write(peer.fixture.root.join("out/summary.md"), b"v1").unwrap();
+        std::fs::write(path, bytes).unwrap();
+        for _ in 0..3 {
+            crate::host_tick::tick_project(&homes, &root, peer.project());
+        }
+        let records = rs_for(&peer, &a);
+        for original in held {
+            let written = records
+                .iter()
+                .find(|r| r["recordId"] == original["recordId"])
+                .unwrap();
+            assert_eq!(written["body"], original["body"]);
+            assert_eq!(written["observedAt"], original["observedAt"]);
+        }
+        assert_eq!(
+            records
+                .iter()
+                .filter(|r| r["kind"] == "act_lapsed")
+                .last()
+                .unwrap()["body"]["state"],
+            "matches c0 again after observed lapse"
+        );
+        assert_eq!(
+            records
+                .iter()
+                .filter(|r| r["kind"] == "disposition_change")
+                .last()
+                .unwrap()["body"]["disposition"],
+            "lapsed"
+        );
+    }
+    #[test]
+    fn after_end_file_lapse_refuses_wrong_kind_subject_caption_or_new_post_end_performance() {
+        for change in ["kind", "subject", "caption", "post-end"] {
+            let peer = Peer::new();
+            let (root, homes, a, old) = after_end_performed_file_fixture(&peer, "A7");
+            let mut records = rs_for(&peer, &a);
+            if change == "caption" {
+                records
+                    .iter_mut()
+                    .find(|r| r["kind"] == "act_counted")
+                    .unwrap()["body"]["act"]["capturedAt"] = json!("2026-01-01T00:00:00Z");
+            } else if change == "post-end" {
+                let mut label = records
+                    .iter()
+                    .find(|r| {
+                        r["kind"] == "disposition_change" && r["body"]["disposition"] == "performed"
+                    })
+                    .unwrap()
+                    .clone();
+                label["recordId"] = json!(crate::util::opaque_id("rec:app:").unwrap());
+                label["seq"] = json!(records.last().unwrap()["seq"].as_u64().unwrap() + 1);
+                label["body"]["performanceOrdinal"] = json!(2);
+                records.push(label);
+            } else {
+                let (path, kind) = if change == "kind" {
+                    ("out/summary.md", "A4")
+                } else {
+                    std::fs::write(peer.fixture.root.join("other.md"), b"v1").unwrap();
+                    ("other.md", "A7")
+                };
+                let other = record_file_act(&peer, path, kind, b"v1", &crate::util::now_rfc3339());
+                let read =
+                    crate::checkpoint_recorder::project_act_records(&peer.fixture.root).unwrap();
+                let body = &read
+                    .acts
+                    .iter()
+                    .find(|r| r["record"]["recordId"] == other)
+                    .unwrap()["record"]["body"];
+                for entry in &mut records {
+                    if entry["kind"] == "act_counted" && entry["body"]["act"]["recordId"] == old {
+                        entry["body"]["act"]["recordId"] = json!(other);
+                        entry["body"]["act"]["actKind"] = body["actKind"].clone();
+                        entry["body"]["act"]["capturedAt"] = body["captureTime"].clone();
+                    }
+                    if entry["kind"] == "disposition_change"
+                        && entry["body"]["disposition"] == "performed"
+                    {
+                        entry["body"]["answeredBy"] = json!([other]);
+                    }
+                }
+            }
+            for record in &records {
+                crate::schema_validation::bundled()
+                    .unwrap()
+                    .validate(record)
+                    .unwrap();
+            }
+            let bytes = records.iter().map(|r| format!("{r}\n")).collect::<String>();
+            let log = crate::records::supply::run_log(&peer.fixture.root, &a).unwrap();
+            std::fs::write(log, crate::record_lines::fixture::rechain(bytes.as_bytes())).unwrap();
+            std::fs::write(peer.fixture.root.join("out/summary.md"), b"v2").unwrap();
+            crate::host_tick::tick_project(&homes, &root, peer.project());
+            assert!(
+                !rs_for(&peer, &a).iter().any(|r| r["kind"] == "act_lapsed"),
+                "{change}"
+            );
+            let dto = root.lock().unwrap().snapshot();
+            assert!(
+                !dto["afterRunEnd"]["limits"].as_array().unwrap().is_empty(),
+                "{change}: {dto}"
+            );
+        }
+    }
+    #[test]
+    fn after_end_file_lapse_later_publication_rechecks_evidence_and_incomplete_sources_are_limits()
+    {
+        let peer = Peer::new();
+        let (root, homes, a, act) = after_end_performed_file_fixture(&peer, "A7");
+        let second = "run:workflow:synthetic-performed-ended";
+        let log = crate::records::supply::run_log(&peer.fixture.root, second).unwrap();
+        let mut text = String::new();
+        for entry in rs_for(&peer, &a) {
+            let mut e = entry;
+            e["runId"] = json!(second);
+            if e["kind"] == "run_opened" {
+                e["body"]["runId"] = json!(second);
+            }
+            e["recordId"] = json!(crate::util::opaque_id("rec:app:").unwrap());
+            text.push_str(&format!("{e}\n"));
+        }
+        std::fs::create_dir_all(log.parent().unwrap()).unwrap();
+        std::fs::write(log, crate::record_lines::fixture::rechain(text.as_bytes())).unwrap();
+        let read = crate::checkpoint_recorder::project_act_records(&peer.fixture.root).unwrap();
+        let id = read
+            .acts
+            .iter()
+            .find(|c| c["record"]["recordId"] == act)
+            .unwrap()["record"]["body"]["captureEvidence"][0]["ref"]
+            .as_str()
+            .unwrap();
+        let path = crate::storage::capture_path(&peer.fixture.root, id).unwrap();
+        let bytes = std::fs::read(&path).unwrap();
+        let changed = path.clone();
+        std::fs::write(peer.fixture.root.join("out/summary.md"), b"v2").unwrap();
+        crate::after_run_end::AFTER_WRITE.with(|h| {
+            *h.borrow_mut() = Some(Box::new(move || std::fs::remove_file(changed).unwrap()))
+        });
+        crate::host_tick::tick_project(&homes, &root, peer.project());
+        assert_eq!(
+            peer.fixture
+                .rs_entries()
+                .iter()
+                .filter(|r| r["kind"] == "act_lapsed")
+                .count(),
+            1
+        );
+        assert_eq!(
+            root.lock().unwrap().snapshot()["afterRunEnd"]["pending"],
+            true
+        );
+        std::fs::write(path, bytes).unwrap();
+        for _ in 0..3 {
+            crate::host_tick::tick_project(&homes, &root, peer.project());
+        }
+        assert_eq!(
+            peer.fixture
+                .rs_entries()
+                .iter()
+                .filter(|r| r["kind"] == "act_lapsed")
+                .count(),
+            2
+        );
+        let broken =
+            crate::storage::project_log(&peer.fixture.root, Some(&a), "synthetic-malformed")
+                .unwrap();
+        std::fs::write(&broken, b"not-json\n").unwrap();
+        std::fs::write(peer.fixture.root.join("out/summary.md"), b"v3").unwrap();
+        crate::host_tick::tick_project(&homes, &root, peer.project());
+        let (readable, limits) = crate::storage::read_all(&peer.fixture.root);
+        assert!(!limits.is_empty());
+        assert_eq!(
+            readable
+                .iter()
+                .filter(|r| r["kind"] == "act_lapsed")
+                .count(),
+            2
+        );
+        let dto = root.lock().unwrap().snapshot();
+        assert!(!dto["afterRunEnd"]["limits"].as_array().unwrap().is_empty());
+        std::fs::remove_file(broken).unwrap();
+        for _ in 0..2 {
+            crate::host_tick::tick_project(&homes, &root, peer.project());
+        }
+        assert_eq!(
+            peer.fixture
+                .rs_entries()
+                .iter()
+                .filter(|r| r["kind"] == "act_lapsed")
+                .count(),
+            4
+        );
+    }
+    #[test]
+    fn after_end_file_lapse_does_not_project_an_unbound_arrival_from_a_shared_act_subject() {
+        let peer = Peer::new();
+        let (root, homes, a, _) = after_end_performed_file_fixture(&peer, "A7");
+        let mut records = rs_for(&peer, &a);
+        let end = records.pop().unwrap();
+        assert_eq!(end["kind"], "run_ended");
+        // A distinct historical message arrival cites the same actual sealed
+        // file act. Its coordinate is unique, but that subject is not a file.
+        for kind in ["checkpoint_arrival", "act_counted", "disposition_change"] {
+            let mut extra = records
+                .iter()
+                .find(|r| {
+                    r["kind"] == kind
+                        && (kind != "disposition_change" || r["body"]["disposition"] == "performed")
+                })
+                .unwrap()
+                .clone();
+            extra["recordId"] = json!(crate::util::opaque_id("rec:app:").unwrap());
+            if kind == "checkpoint_arrival" {
+                extra["body"]["checkpoint"] = json!("CP-message");
+                extra["body"]["referents"][0]["subject"] =
+                    json!("output summary: message examination report");
+            } else {
+                extra["body"]["arrival"]["checkpoint"] = json!("CP-message");
+            }
+            records.push(extra);
+        }
+        records.push(end);
+        for (at, record) in records.iter_mut().enumerate() {
+            record["seq"] = json!(at + 1);
+            crate::schema_validation::bundled()
+                .unwrap()
+                .validate(record)
+                .unwrap();
+        }
+        let lines = records.iter().map(|r| format!("{r}\n")).collect::<String>();
+        let log = crate::records::supply::run_log(&peer.fixture.root, &a).unwrap();
+        std::fs::write(log, crate::record_lines::fixture::rechain(lines.as_bytes())).unwrap();
+        std::fs::write(peer.fixture.root.join("out/summary.md"), b"v2").unwrap();
+        crate::host_tick::tick_project(&homes, &root, peer.project());
+        let records = rs_for(&peer, &a);
+        let lapses = records
+            .iter()
+            .filter(|r| r["kind"] == "act_lapsed")
+            .collect::<Vec<_>>();
+        assert_eq!(lapses.len(), 1);
+        assert_eq!(lapses[0]["body"]["arrival"]["checkpoint"], "CP-rely");
+        assert!(!records.iter().any(|r| r["kind"] == "disposition_change"
+            && r["body"]["arrival"]["checkpoint"] == "CP-message"
+            && r["body"]["disposition"] == "lapsed"));
+    }
+    #[test]
+    fn after_end_file_lapse_concurrent_source_refresh_keeps_only_bounded_rows_and_reuses_them() {
+        let peer = Peer::new();
+        let (root, homes, a, _) = after_end_performed_file_fixture(&peer, "A7");
+        crate::host_tick::tick_project(&homes, &root, peer.project());
+        let project = peer.fixture.root.clone();
+        let run = a.clone();
+        crate::after_run_end::BETWEEN_PHASES.with(|hook|*hook.borrow_mut()=Some(Box::new(move||{
+            let body=json!({"turn":99,"scope":"turn","requested":"synthetic-large-unrelated-model-name".repeat(1024),"effective":"unknown","reroute":false,"destinationClass":"unknown"});let mut pending=crate::records::supply::PendingRunEntry::new("model_turn",body,crate::util::now_rfc3339()).unwrap();crate::records::supply::append_run_entry(&project,&run,&mut pending).unwrap();
+        })));
+        crate::host_tick::tick_project(&homes, &root, peer.project());
+        assert!(own_log(&peer, &a)
+            .iter()
+            .any(|r| r["kind"] == "model_turn" && r["body"]["turn"] == 99));
+        let dto = root.lock().unwrap().snapshot();
+        assert!(dto["afterRunEnd"]["runs"][0]["records"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .all(|r| r["kind"] != "model_turn"));
+        // Allow the changed indexed source to settle in both phases, then count
+        // actual row materializations as well as comparison/projection work.
+        for _ in 0..2 {
+            crate::host_tick::tick_project(&homes, &root, peer.project());
+        }
+        let before = root.lock().unwrap().after_run_end.work.clone();
+        let row = root.lock().unwrap().snapshot()["afterRunEnd"]["runs"].clone();
+        for _ in 0..4 {
+            crate::host_tick::tick_project(&homes, &root, peer.project());
+        }
+        assert_eq!(root.lock().unwrap().after_run_end.work, before);
+        assert_eq!(root.lock().unwrap().snapshot()["afterRunEnd"]["runs"], row);
+    }
+    #[test]
+    fn after_end_file_lapse_conflicting_lapsed_association_is_a_limit_not_a_repair() {
+        for mismatch in ["ordinal", "answeredBy"] {
+            let peer = Peer::new();
+            let (root, homes, a, act) = after_end_performed_file_fixture(&peer, "A7");
+            let records = own_log(&peer, &a);
+            let mut body = records
+                .iter()
+                .find(|r| {
+                    r["kind"] == "disposition_change" && r["body"]["disposition"] == "performed"
+                })
+                .unwrap()["body"]
+                .clone();
+            body["disposition"] = json!("lapsed");
+            if mismatch == "ordinal" {
+                body["performanceOrdinal"] = json!(2);
+            } else {
+                body["answeredBy"] = json!([format!("{act}:synthetic-different-association")]);
+            }
+            let mut pending = crate::records::supply::PendingRunEntry::new(
+                "disposition_change",
+                body,
+                crate::util::now_rfc3339(),
+            )
+            .unwrap();
+            crate::records::supply::append_run_entry(&peer.fixture.root, &a, &mut pending).unwrap();
+            let log = crate::records::supply::run_log(&peer.fixture.root, &a).unwrap();
+            let before = std::fs::read(&log).unwrap();
+            std::fs::write(peer.fixture.root.join("out/summary.md"), b"v2").unwrap();
+            crate::host_tick::tick_project(&homes, &root, peer.project());
+            assert_eq!(
+                std::fs::read(&log).unwrap(),
+                before,
+                "a conflicting lapsed association cannot be silently normalized: {mismatch}"
+            );
+            let dto = root.lock().unwrap().snapshot();
+            assert!(
+                dto["afterRunEnd"]["limits"]
+                    .as_array()
+                    .unwrap()
+                    .iter()
+                    .any(|v| v.as_str().unwrap().contains("association")),
+                "{dto}"
+            );
+            assert!(dto["runs"][0]["lifecycle"]["records"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .filter(|r| r["kind"] == "checkpoint_arrival")
+                .all(|r| r["afterRunEndRelationLimit"].is_string()));
+            let mut cold = WorkflowRootSession::default();
+            cold.reopen(&peer.fixture.root, &[]).unwrap();
+            let cold = Mutex::new(cold);
+            crate::host_tick::tick_project(&homes, &cold, peer.project());
+            assert_eq!(
+                std::fs::read(log).unwrap(),
+                before,
+                "cold reads retain the contradiction as source evidence"
+            );
+        }
+    }
+    #[test]
+    fn after_end_file_lapse_closed_store_retains_history_without_new_pending_and_reopen_observes() {
+        let peer = Peer::new();
+        let (root, homes, a, _) = after_end_performed_file_fixture(&peer, "A7");
+        crate::host_tick::tick_project(&homes, &root, peer.project());
+        assert!(root.lock().unwrap().retention_ready().is_ok());
+        let log = crate::records::supply::run_log(&peer.fixture.root, &a).unwrap();
+        peer.home
+            .host
+            .stop(
+                "owned closed-records fixture",
+                "owned mock supplier stops before synthetic administration",
+            )
+            .unwrap();
+        let actor = crate::act_control::person(Some("Invented test person"), Some("fixture-os"));
+        let observed =
+            json!({"fixture":"synthetic native administrative callback; no live person"});
+        let plan =
+            crate::records_retention::prepare(&peer.fixture.root, "close", None, &actor, &observed)
+                .unwrap();
+        crate::records_retention::apply(plan, &actor, &observed).unwrap();
+        let before = std::fs::read(&log).unwrap();
+        std::fs::write(peer.fixture.root.join("out/summary.md"), b"v2").unwrap();
+        for _ in 0..2 {
+            root.lock().unwrap().observe_ended_runs(&peer.fixture.root);
+        }
+        let dto = root.lock().unwrap().snapshot();
+        assert_eq!(std::fs::read(&log).unwrap(), before);
+        assert_eq!(dto["afterRunEnd"]["pending"], false);
+        assert!(root.lock().unwrap().retention_ready().is_ok());
+        assert!(dto["afterRunEnd"]["limits"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|v| v.as_str().unwrap().contains("closed")));
+        assert!(dto["afterRunEnd"]["runs"][0]["records"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|r| r["kind"] == "run_ended"));
+        let mut cold = WorkflowRootSession::default();
+        cold.reopen(&peer.fixture.root, &[]).unwrap();
+        cold.observe_ended_runs(&peer.fixture.root);
+        assert_eq!(cold.snapshot()["afterRunEnd"]["pending"], false);
+        assert!(cold.snapshot()["afterRunEnd"]["runs"][0]["records"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|r| r["kind"] == "run_ended"));
+        assert_eq!(std::fs::read(&log).unwrap(), before);
+        let plan = crate::records_retention::prepare(
+            &peer.fixture.root,
+            "reopen",
+            None,
+            &actor,
+            &observed,
+        )
+        .unwrap();
+        crate::records_retention::apply(plan, &actor, &observed).unwrap();
+        for _ in 0..3 {
+            root.lock().unwrap().observe_ended_runs(&peer.fixture.root);
+        }
+        let rows = own_log(&peer, &a);
+        assert_eq!(rows.iter().filter(|r| r["kind"] == "act_lapsed").count(), 1);
+        assert_eq!(
+            rows.iter()
+                .filter(|r| r["kind"] == "disposition_change")
+                .last()
+                .unwrap()["body"]["disposition"],
+            "lapsed"
+        );
+        assert_eq!(
+            root.lock().unwrap().snapshot()["afterRunEnd"]["pending"],
+            false
+        );
+    }
+    fn synthetic_ended_retention_action(peer: &Peer, action: &str) {
+        let actor = crate::act_control::person(Some("Invented test person"), Some("fixture-os"));
+        let observed =
+            json!({"fixture":"synthetic native administrative callback; no live person"});
+        let plan =
+            crate::records_retention::prepare(&peer.fixture.root, action, None, &actor, &observed)
+                .unwrap();
+        crate::records_retention::apply(plan, &actor, &observed).unwrap();
+    }
+    #[test]
+    fn after_end_file_lapse_closed_store_also_prevents_new_ce16_reservation() {
+        let peer = Peer::new();
+        let (root, _, a) = after_run_end_fixture(&peer, "A7");
+        let act = record_file_act(
+            &peer,
+            "out/summary.md",
+            "A7",
+            b"v1",
+            &crate::util::now_rfc3339(),
+        );
+        let log = crate::records::supply::run_log(&peer.fixture.root, &a).unwrap();
+        peer.home
+            .host
+            .stop(
+                "owned closed-records fixture",
+                "owned supplier stops before synthetic administration",
+            )
+            .unwrap();
+        synthetic_ended_retention_action(&peer, "close");
+        let before = std::fs::read(&log).unwrap();
+        root.lock().unwrap().observe_ended_runs(&peer.fixture.root);
+        assert_eq!(std::fs::read(&log).unwrap(), before);
+        assert_eq!(
+            root.lock().unwrap().snapshot()["afterRunEnd"]["pending"],
+            false
+        );
+        assert!(root.lock().unwrap().retention_ready().is_ok());
+        synthetic_ended_retention_action(&peer, "reopen");
+        root.lock().unwrap().observe_ended_runs(&peer.fixture.root);
+        let rows = own_log(&peer, &a);
+        assert_eq!(
+            rows.iter()
+                .filter(|r| r["kind"] == "act_after_run_end" && r["body"]["act"]["recordId"] == act)
+                .count(),
+            1
+        );
+        assert_eq!(
+            rows.iter()
+                .filter(|r| r["kind"] == "disposition_change")
+                .last()
+                .unwrap()["body"]["disposition"],
+            "waiting"
+        );
+    }
+    #[test]
+    fn after_end_file_lapse_pending_activity_fences_other_root_close_and_export_never_settles_w2() {
+        let peer = Peer::new();
+        let (root, homes, a, act) = after_end_performed_file_fixture(&peer, "A7");
+        let read = crate::checkpoint_recorder::project_act_records(&peer.fixture.root).unwrap();
+        let id = read
+            .acts
+            .iter()
+            .find(|r| r["record"]["recordId"] == act)
+            .unwrap()["record"]["body"]["captureEvidence"][0]["ref"]
+            .as_str()
+            .unwrap();
+        let path = crate::storage::capture_path(&peer.fixture.root, id).unwrap();
+        let bytes = std::fs::read(&path).unwrap();
+        let changed = path.clone();
+        std::fs::write(peer.fixture.root.join("out/summary.md"), b"v2").unwrap();
+        crate::after_run_end::BEFORE_WRITE.with(|hook| {
+            *hook.borrow_mut() = Some(Box::new(move || std::fs::remove_file(changed).unwrap()))
+        });
+        crate::host_tick::tick_project(&homes, &root, peer.project());
+        let pending = root.lock().unwrap().snapshot()["afterRunEnd"]["held"]
+            .as_array()
+            .unwrap()
+            .clone();
+        assert_eq!(pending.len(), 2);
+        std::fs::write(path, bytes).unwrap();
+        let log = crate::records::supply::run_log(&peer.fixture.root, &a).unwrap();
+        let before = std::fs::read(&log).unwrap();
+        peer.home
+            .host
+            .stop(
+                "owned closed-records fixture",
+                "owned supplier stops before synthetic administration",
+            )
+            .unwrap();
+        // An independent Root cannot see process-only W2, so native retention
+        // must also consult the shared project activity lifetime.
+        let mut second = WorkflowRootSession::default();
+        second.reopen(&peer.fixture.root, &[]).unwrap();
+        assert!(second.retention_ready().is_ok());
+        let actor = crate::act_control::person(Some("Invented test person"), Some("fixture-os"));
+        let observed =
+            json!({"fixture":"synthetic native administrative callback; no live person"});
+        let denied =
+            crate::records_retention::prepare(&peer.fixture.root, "close", None, &actor, &observed)
+                .and_then(|plan| crate::records_retention::apply(plan, &actor, &observed));
+        assert!(
+            denied
+                .as_ref()
+                .is_err_and(|e| e.contains("Project activity")),
+            "another controller cannot close over original W2: {denied:?}"
+        );
+        assert_eq!(std::fs::read(&log).unwrap(), before);
+        let dir = crate::records_store::home(&peer.fixture.root)
+            .unwrap()
+            .attachment
+            .dir
+            .unwrap();
+        let activity = dir
+            .parent()
+            .and_then(std::path::Path::parent)
+            .unwrap()
+            .join("administration")
+            .join(dir.file_name().unwrap())
+            .join(".activity.lock");
+        let external = |path: &std::path::Path| {
+            std::process::Command::new("python3").arg("-c").arg("import fcntl,os,sys\nf=os.open(sys.argv[1],os.O_RDWR)\ntry: fcntl.flock(f,fcntl.LOCK_EX|fcntl.LOCK_NB)\nexcept BlockingIOError: sys.exit(0)\nsys.exit(1)").arg(path).status().unwrap()
+        };
+        assert_eq!(
+            external(&activity).code(),
+            Some(0),
+            "a different process also sees original pending activity"
+        );
+        // The existing exporter can back up the persisted prefix. It cannot
+        // include or settle the original process's unpublished observation.
+        let export = std::fs::canonicalize(std::env::temp_dir())
+            .unwrap()
+            .join(crate::util::opaque_id("ended-pending-export-").unwrap());
+        let bag = crate::records_export::export(&peer.fixture.root, &export).unwrap();
+        assert_eq!(bag["state"], "verified export created");
+        assert!(crate::records_export::verify(&export).is_ok());
+        assert_eq!(
+            root.lock().unwrap().snapshot()["afterRunEnd"]["held"],
+            json!(pending)
+        );
+        let disposed = crate::records_retention::prepare(
+            &peer.fixture.root,
+            "dispose",
+            Some(&export),
+            &actor,
+            &observed,
+        );
+        assert!(
+            disposed.is_err(),
+            "an export cannot grant disposal while Close is refused"
+        );
+        std::fs::remove_dir_all(export).unwrap();
+        std::fs::write(peer.fixture.root.join("out/summary.md"), b"v3").unwrap();
+        for _ in 0..3 {
+            root.lock().unwrap().observe_ended_runs(&peer.fixture.root);
+        }
+        assert_eq!(
+            external(&activity).code(),
+            Some(1),
+            "activity is released when all observer W2 has settled"
+        );
+        let rows = own_log(&peer, &a);
+        for original in pending {
+            let written = rows
+                .iter()
+                .find(|r| r["recordId"] == original["recordId"])
+                .unwrap();
+            assert_eq!(written["body"], original["body"]);
+            assert_eq!(written["observedAt"], original["observedAt"]);
+        }
+        assert_eq!(rows.iter().filter(|r| r["kind"] == "act_lapsed").count(), 2);
+        assert_eq!(
+            root.lock().unwrap().snapshot()["afterRunEnd"]["pending"],
+            false
+        );
+        synthetic_ended_retention_action(&peer, "close");
+    }
+    #[test]
+    fn after_end_file_lapse_actual_owner_tick_and_cold_reopen_keep_the_closed_source() {
+        for kind in ["A4", "A6", "A7"] {
+            let peer = Peer::new();
+            let (root, homes, a, act) = after_end_performed_file_fixture(&peer, kind);
+            let file = peer.fixture.root.join("out/summary.md");
+            let ended = rs_for(&peer, &a);
+            assert_eq!(
+                ended
+                    .iter()
+                    .filter(|e| e["kind"] == "disposition_change")
+                    .last()
+                    .unwrap()["body"]["disposition"],
+                "performed"
+            );
+            let acts_before = std::fs::read(
+                crate::storage::project_file(&peer.fixture.root, crate::recorder::LOG).unwrap(),
+            )
+            .unwrap();
+            let (wire, requests) = (peer.wire().len(), peer.home.host.client_requests().len());
+            std::fs::write(&file, b"v2").unwrap();
+            for _ in 0..3 {
+                crate::host_tick::tick_project(&homes, &root, peer.project());
+            }
+            let records = rs_for(&peer, &a);
+            let late = records
+                .iter()
+                .filter(|e| e["kind"] == "act_lapsed")
+                .collect::<Vec<_>>();
+            assert_eq!(late.len(), 1, "{records:#?}");
+            assert_eq!(late[0]["body"]["act"]["recordId"], act);
+            assert_eq!(late[0]["body"]["when"], "after run end");
+            assert_eq!(late[0]["body"]["state"], "lapsed");
+            assert_eq!(
+                late[0]["body"]["c0"]["value"],
+                crate::util::sha256_hex(b"v1")
+            );
+            assert_eq!(
+                late[0]["body"]["c1"]["value"],
+                crate::util::sha256_hex(b"v2")
+            );
+            assert_eq!(
+                records
+                    .iter()
+                    .filter(|e| e["kind"] == "disposition_change")
+                    .last()
+                    .unwrap()["body"]["disposition"],
+                "lapsed"
+            );
+            assert_eq!(
+                records.iter().filter(|e| e["kind"] == "run_ended").count(),
+                1
+            );
+            assert_eq!(
+                records
+                    .iter()
+                    .filter(|e| e["kind"] == "act_counted")
+                    .count(),
+                ended.iter().filter(|e| e["kind"] == "act_counted").count()
+            );
+            assert_eq!(
+                records
+                    .iter()
+                    .filter(|e| e["kind"] == "run_resumed")
+                    .count(),
+                ended.iter().filter(|e| e["kind"] == "run_resumed").count()
+            );
+            assert_eq!(
+                (peer.wire().len(), peer.home.host.client_requests().len()),
+                (wire, requests)
+            );
+            assert_eq!(
+                std::fs::read(
+                    crate::storage::project_file(&peer.fixture.root, crate::recorder::LOG).unwrap()
+                )
+                .unwrap(),
+                acts_before
+            );
+            let hot = root.lock().unwrap().snapshot();
+            let shown = hot["runs"][0]["lifecycle"]["records"].as_array().unwrap();
+            assert!(shown
+                .iter()
+                .any(|e| e["kind"] == "act_lapsed" && e["body"]["when"] == "after run end"));
+            assert_eq!(
+                shown
+                    .iter()
+                    .filter(|e| e["kind"] == "disposition_change")
+                    .last()
+                    .unwrap()["body"]["disposition"],
+                "lapsed"
+            );
+            let mut fresh = WorkflowRootSession::default();
+            fresh.reopen(&peer.fixture.root, &[]).unwrap();
+            let fresh = Mutex::new(fresh);
+            crate::host_tick::tick_project(&homes, &fresh, peer.project());
+            assert_eq!(
+                rs_for(&peer, &a),
+                records,
+                "cold dedup retains all exact source records"
+            );
+            assert!(
+                fresh.lock().unwrap().snapshot()["afterRunEnd"]["runs"][0]["records"]
+                    .as_array()
+                    .unwrap()
+                    .iter()
+                    .any(|e| e["kind"] == "act_lapsed")
+            );
+            std::fs::write(&file, b"v1").unwrap();
+            for _ in 0..2 {
+                crate::host_tick::tick_project(&homes, &fresh, peer.project());
+            }
+            let back = rs_for(&peer, &a);
+            assert_eq!(
+                back.iter()
+                    .filter(|e| e["kind"] == "act_lapsed")
+                    .last()
+                    .unwrap()["body"]["state"],
+                "matches c0 again after observed lapse"
+            );
+            assert_eq!(
+                back.iter()
+                    .filter(|e| e["kind"] == "disposition_change")
+                    .last()
+                    .unwrap()["body"]["disposition"],
+                "lapsed",
+                "returning content cannot restore an ended performance"
+            );
+            assert!(crate::storage::read_all(&peer.fixture.root).1.is_empty());
+            if kind == "A7" {
+                println!(
+                    "AFTER_END_LAPSE_DTO:{}",
+                    serde_json::to_string(&hot).unwrap()
+                );
+            }
+        }
+    }
+    #[test]
+    fn after_end_file_lapse_pending_group_keeps_first_observation_through_later_edits() {
+        let peer = Peer::new();
+        let (root, homes, a, act) = after_end_performed_file_fixture(&peer, "A7");
+        let file = peer.fixture.root.join("out/summary.md");
+        std::fs::write(&file, b"v2").unwrap();
+        let log = crate::records::supply::run_log(&peer.fixture.root, &a).unwrap();
+        let folder = log.parent().unwrap().to_owned();
+        crate::after_run_end::BEFORE_WRITE.with(|hook| {
+            *hook.borrow_mut() = Some(Box::new(move || {
+                crate::storage::fail_directory_for_test(Some(folder))
+            }))
+        });
+        crate::host_tick::tick_project(&homes, &root, peer.project());
+        crate::storage::fail_directory_for_test(None);
+        let status = root.lock().unwrap().snapshot();
+        assert_eq!(status["afterRunEnd"]["pending"], true, "{status:#}");
+        assert!(root.lock().unwrap().retention_ready().is_err());
+        println!("AFTER_END_LAPSE_PENDING_DTO:{status}");
+        let pending = status["afterRunEnd"]["held"].as_array().unwrap().clone();
+        assert_eq!(pending.len(), 2);
+        assert_eq!(pending[0]["kind"], "act_lapsed");
+        assert_eq!(pending[0]["body"]["act"]["recordId"], act);
+        assert_eq!(
+            pending[0]["body"]["c1"]["value"],
+            crate::util::sha256_hex(b"v2")
+        );
+        let landed = rs_for(&peer, &a)
+            .into_iter()
+            .filter(|e| pending.iter().any(|p| p["recordId"] == e["recordId"]))
+            .collect::<Vec<_>>();
+        assert!(
+            landed.is_empty() || landed.len() == 2,
+            "a directory-sync failure may leave the complete group readable, never half a unit"
+        );
+        std::fs::write(&file, b"v3").unwrap();
+        crate::host_tick::tick_project(&homes, &root, peer.project());
+        let recovered = rs_for(&peer, &a);
+        for before in &pending {
+            let written = recovered
+                .iter()
+                .find(|e| e["recordId"] == before["recordId"])
+                .unwrap();
+            assert_eq!(written["body"], before["body"]);
+            assert_eq!(written["observedAt"], before["observedAt"]);
+        }
+        let lines = std::fs::read_to_string(&log).unwrap();
+        assert!(
+            lines
+                .lines()
+                .filter_map(|line| serde_json::from_str::<Value>(line).ok())
+                .any(|line| line["format"] == "chirality.rs.group"
+                    && line["entries"].as_array().is_some_and(|entries| pending
+                        .iter()
+                        .all(|p| entries.iter().any(|e| e["recordId"] == p["recordId"])))),
+            "CE10 and its ended label stand in one group line"
+        );
+        for _ in 0..3 {
+            crate::host_tick::tick_project(&homes, &root, peer.project());
+        }
+        let final_records = rs_for(&peer, &a);
+        let lapses = final_records
+            .iter()
+            .filter(|e| e["kind"] == "act_lapsed")
+            .collect::<Vec<_>>();
+        assert_eq!(lapses.len(), 2);
+        assert_eq!(
+            lapses[0]["body"]["c1"]["value"],
+            crate::util::sha256_hex(b"v2")
+        );
+        assert_eq!(
+            lapses[1]["body"]["c1"]["value"],
+            crate::util::sha256_hex(b"v3")
+        );
+        assert_eq!(
+            root.lock().unwrap().snapshot()["afterRunEnd"]["pending"],
+            false
+        );
+        println!("AFTER_END_LAPSE_LATE_DTO:{}", root.lock().unwrap().snapshot());
+    }
+    #[test]
+    fn after_end_file_lapse_unknown_alias_and_absent_subject_preserve_the_ended_performance() {
+        let peer = Peer::new();
+        let (root, homes, a, _) = after_end_performed_file_fixture(&peer, "A7");
+        let out = peer.fixture.root.join("out");
+        let actual = peer.fixture.root.join("physical-out");
+        std::fs::rename(&out, &actual).unwrap();
+        std::os::unix::fs::symlink("physical-out", &out).unwrap();
+        crate::host_tick::tick_project(&homes, &root, peer.project());
+        let unknown = rs_for(&peer, &a);
+        assert_eq!(
+            unknown
+                .iter()
+                .filter(|e| e["kind"] == "act_lapsed")
+                .last()
+                .unwrap()["body"]["state"],
+            "unknown (unavailable)"
+        );
+        assert_eq!(
+            unknown
+                .iter()
+                .filter(|e| e["kind"] == "disposition_change")
+                .last()
+                .unwrap()["body"]["disposition"],
+            "performed"
+        );
+        std::fs::remove_file(&out).unwrap();
+        std::fs::rename(&actual, &out).unwrap();
+        std::fs::remove_file(out.join("summary.md")).unwrap();
+        crate::host_tick::tick_project(&homes, &root, peer.project());
+        let missing = rs_for(&peer, &a);
+        let last = missing
+            .iter()
+            .filter(|e| e["kind"] == "act_lapsed")
+            .last()
+            .unwrap();
+        assert_eq!(last["body"]["state"], "lapsed (subject absent)");
+        assert_eq!(last["body"]["c1"], "subject absent");
+        assert_eq!(
+            missing
+                .iter()
+                .filter(|e| e["kind"] == "disposition_change")
+                .last()
+                .unwrap()["body"]["disposition"],
+            "lapsed"
+        );
+    }
+    #[test]
+    fn after_run_end_actual_tick_reopen_and_new_run_keep_finality(){
+        for kind in ["A4","A6","A7"]{
+            let peer=Peer::new();let(root,homes,a)=after_run_end_fixture(&peer,kind);
+            let act=record_file_act(&peer,"out/summary.md",kind,b"v1",&crate::util::now_rfc3339());
+            for _ in 0..3{crate::host_tick::tick_project(&homes,&root,peer.project());}
+            let old=rs_for(&peer,&a);let marked:Vec<_>=old.iter().filter(|e|e["kind"]=="act_after_run_end").collect();assert_eq!(marked.len(),1,"{old:#?}");
+            assert_eq!(marked[0]["body"]["act"]["recordId"],act);assert!(!old.iter().any(|e|e["kind"]=="act_counted"));
+            assert_eq!(old.iter().filter(|e|e["kind"]=="disposition_change").last().unwrap()["body"]["disposition"],"waiting");
+            let hot=root.lock().unwrap().snapshot();assert!(hot["runs"][0]["lifecycle"]["records"].as_array().unwrap().iter().any(|e|e["kind"]=="act_after_run_end"));
+            let mut fresh=WorkflowRootSession::default();fresh.reopen(&peer.fixture.root,&[]).unwrap();let fresh=Mutex::new(fresh);
+            crate::host_tick::tick_project(&homes,&fresh,peer.project());assert_eq!(rs_for(&peer,&a),old,"durable dedup after Root state loss");
+            assert_eq!(fresh.lock().unwrap().snapshot()["afterRunEnd"]["runs"].as_array().unwrap().len(),1);
+            peer.set_mode("turn-id","next-turn");let b={let mut root=root.lock().unwrap();open_run(&peer,&mut root,"thread")};
+            assert!(!rs_for(&peer,&b).iter().any(|e|e["kind"]=="checkpoint_arrival"||e["kind"]=="act_counted"));
+            let until=std::time::Instant::now()+Duration::from_secs(5);
+            while !rs_for(&peer,&b).iter().any(|e|e["kind"]=="act_counted")&&std::time::Instant::now()<until{crate::host_tick::tick_project(&homes,&root,peer.project());std::thread::sleep(Duration::from_millis(10));}
+            let next=rs_for(&peer,&b);assert_eq!(next.iter().find(|e|e["kind"]=="run_opened").unwrap()["body"]["follows"],a,"sequential continuation has its own run identity");let counted=next.iter().find(|e|e["kind"]=="act_counted").unwrap();assert_eq!(counted["body"]["act"]["recordId"],act);assert_eq!(counted["body"]["relation"],"earlier act");assert_eq!(rs_for(&peer,&a),old);
+            if kind=="A7"{println!("AFTER_END_DTO:{}",serde_json::to_string(&hot).unwrap());}
+        }
+    }
+    #[test]
+    fn after_run_end_uses_capture_time_and_bound_subject_not_current_file(){
+        let peer=Peer::new();let(root,homes,a)=after_run_end_fixture(&peer,"A7");
+        let ended=rs_for(&peer,&a).into_iter().find(|e|e["kind"]=="run_ended").unwrap();let time=ended["observedAt"].as_str().unwrap();
+        let pre=record_file_act(&peer,"out/summary.md","A7",b"v1","2026-01-01T00:00:00.000Z");
+        let equal=record_file_act(&peer,"out/summary.md","A7",b"v1",time);
+        let bad=record_file_act(&peer,"out/summary.md","A7",b"v1","not a timestamp");
+        let later=record_file_act(&peer,"out/summary.md","A6",b"v1",&crate::util::now_rfc3339());
+        let file=peer.fixture.root.join("out/summary.md");std::fs::rename(&file,peer.fixture.root.join("out/moved.md")).unwrap();
+        let another=record_file_act(&peer,"out/moved.md","A7",b"v1",&crate::util::now_rfc3339());
+        std::os::unix::fs::symlink(peer.fixture.root.join("out/moved.md"),&file).unwrap();
+        crate::host_tick::tick_project(&homes,&root,peer.project());
+        let records=rs_for(&peer,&a);let marked:Vec<_>=records.iter().filter(|e|e["kind"]=="act_after_run_end").collect();assert_eq!(marked.len(),1);assert_eq!(marked[0]["body"]["act"]["recordId"],later);
+        for id in [pre,equal,bad,another]{assert!(!marked.iter().any(|e|e["body"]["act"]["recordId"]==id));}
+        assert!(root.lock().unwrap().snapshot()["afterRunEnd"]["limits"].as_array().unwrap().iter().any(|s|s.as_str().unwrap().contains("time not comparable")));
+        std::fs::remove_file(file).unwrap();crate::host_tick::tick_project(&homes,&root,peer.project());assert_eq!(rs_for(&peer,&a),records,"deleted/aliased current file changes no ended relation/disposition");
+    }
+    #[test]
+    fn after_run_end_uncertain_write_keeps_identity_time_and_recovers_once(){
+        let peer=Peer::new();let(root,homes,a)=after_run_end_fixture(&peer,"A7");
+        let act=record_file_act(&peer,"out/summary.md","A7",b"v1",&crate::util::now_rfc3339());
+        let log=crate::records::supply::run_log(&peer.fixture.root,&a).unwrap();let folder=log.parent().unwrap().to_owned();
+        crate::after_run_end::BEFORE_WRITE.with(|h|*h.borrow_mut()=Some(Box::new(move||crate::storage::fail_directory_for_test(Some(folder)))));
+        crate::host_tick::tick_project(&homes,&root,peer.project());crate::storage::fail_directory_for_test(None);
+        let status=root.lock().unwrap().snapshot();assert_eq!(status["afterRunEnd"]["pending"],true,"{status}");
+        assert!(root.lock().unwrap().retention_ready().is_err());
+        let pending=status["afterRunEnd"]["runs"][0]["records"].as_array().unwrap().iter().find(|e|e["kind"]=="act_after_run_end").unwrap().clone();
+        assert_eq!(pending["written"],false);assert_eq!(pending["body"]["act"]["recordId"],act);
+        for _ in 0..3{crate::host_tick::tick_project(&homes,&root,peer.project());}
+        let records=rs_for(&peer,&a);let marked:Vec<_>=records.iter().filter(|e|e["kind"]=="act_after_run_end").collect();assert_eq!(marked.len(),1);assert_eq!(marked[0]["recordId"],pending["recordId"]);assert_eq!(marked[0]["observedAt"],pending["observedAt"]);
+        assert!(records.iter().any(|e|e["kind"]=="evidence_limit"&&e["body"]["label"]=="record write failed"));
+        assert_eq!(root.lock().unwrap().snapshot()["afterRunEnd"]["pending"],false);
+    }
+
+    // The shared act read includes non-act correction targets from other logs;
+    // a warm owning run must not keep deriving from its obsolete subject.
+    #[test]
+    fn after_run_end_persisted_observation_is_not_rebound_to_corrected_subject(){
+        let peer=Peer::new();let(root,homes,a)=after_run_end_fixture(&peer,"A7");
+        record_file_act(&peer,"out/summary.md","A7",b"v1",&crate::util::now_rfc3339());
+        crate::host_tick::tick_project(&homes,&root,peer.project());
+        let original=rs_for(&peer,&a).into_iter().find(|e|e["kind"]=="checkpoint_arrival").unwrap();
+        let log=crate::records::supply::run_log(&peer.fixture.root,&a).unwrap();let mut correction=original.clone();
+        correction["recordId"]=json!(crate::util::opaque_id("rec:app:").unwrap());correction["seq"]=json!(rs_for(&peer,&a).last().unwrap()["seq"].as_u64().unwrap()+1);correction["corrects"]=original["recordId"].clone();correction["correctionReason"]=json!("Synthetic correction of historical arrival subject");correction["body"]["referents"][0]["subject"]=json!("output summary: file out/new.md");correction["prevLine"]=crate::record_lines::fixture::next_link(&log);
+        crate::schema_validation::bundled().unwrap().validate(&correction).unwrap();let mut file=std::fs::OpenOptions::new().append(true).open(log).unwrap();std::io::Write::write_all(&mut file,format!("{correction}\n").as_bytes()).unwrap();drop(file);
+        let mut fresh=WorkflowRootSession::default();fresh.reopen(&peer.fixture.root,&[]).unwrap();let fresh=Mutex::new(fresh);crate::host_tick::tick_project(&homes,&fresh,peer.project());
+        let dto=fresh.lock().unwrap().snapshot();let records=dto["afterRunEnd"]["runs"][0]["records"].as_array().unwrap();
+        assert_eq!(records.iter().filter(|r|r["kind"]=="act_after_run_end").count(),1,"raw observation is retained exactly once");
+        assert!(records.iter().filter(|r|r["kind"]=="checkpoint_arrival").all(|r|r["afterRunEndRelationLimit"].as_str().is_some_and(|s|s.contains("correction"))));
+        crate::host_tick::tick_project(&homes,&root,peer.project());let hot=root.lock().unwrap().snapshot();assert!(hot["runs"][0]["lifecycle"]["records"].as_array().unwrap().iter().filter(|r|r["kind"]=="checkpoint_arrival").all(|r|r["afterRunEndRelationLimit"].is_string()));
+        println!("AFTER_END_CORRECTED_DTO:{}",dto);
+    }
+
+    #[test]
+    fn after_run_end_warm_cross_log_correction_refuses_old_subject(){
+        let peer=Peer::new();let(root,homes,a)=after_run_end_fixture(&peer,"A7");
+        crate::host_tick::tick_project(&homes,&root,peer.project());
+        let original=rs_for(&peer,&a).into_iter().find(|e|e["kind"]=="checkpoint_arrival").unwrap();
+        let mut correction=original.clone();let id=crate::util::opaque_id("rec:app:").unwrap();
+        correction["recordId"]=json!(id);correction["seq"]=json!(1);correction["corrects"]=original["recordId"].clone();correction["correctionReason"]=json!("Synthetic source repairs the misrecorded file subject");
+        correction["body"]["referents"][0]["subject"]=json!("output summary: file out/new.md");
+        correction["prevLine"]=crate::record_lines::link(None);
+        crate::schema_validation::bundled().unwrap().validate(&correction).unwrap();
+        let log=crate::storage::project_log(&peer.fixture.root,Some(&a),"synthetic-correction").unwrap();std::fs::create_dir_all(log.parent().unwrap()).unwrap();std::fs::write(&log,format!("{}\n",correction)).unwrap();
+        let before=root.lock().unwrap().after_run_end.work.clone();
+        let act=record_file_act(&peer,"out/summary.md","A7",b"v1",&crate::util::now_rfc3339());
+        crate::host_tick::tick_project(&homes,&root,peer.project());
+        assert!(!rs_for(&peer,&a).iter().any(|e|e["kind"]=="act_after_run_end"&&e["body"]["act"]["recordId"]==act));
+        let state=root.lock().unwrap();assert!(state.snapshot()["afterRunEnd"]["limits"].as_array().unwrap().iter().any(|s|s.as_str().unwrap().contains("recorded correction")));
+        assert!(state.after_run_end.work.candidate_builds>before.candidate_builds);
+    }
+    #[test]
+    fn after_run_end_warm_ticks_reuse_projections_but_refresh_capture_evidence(){
+        let peer=Peer::new();let(root,homes,a)=after_run_end_fixture(&peer,"A7");
+        crate::host_tick::tick_project(&homes,&root,peer.project());
+        let before=root.lock().unwrap().after_run_end.work.clone();
+        for _ in 0..4 { crate::host_tick::tick_project(&homes,&root,peer.project()); }
+        assert_eq!(root.lock().unwrap().after_run_end.work,before,"warm ticks must check freshness without decoding/rebuilding full projections");
+        let act=record_file_act(&peer,"out/summary.md","A7",b"v1",&crate::util::now_rfc3339());
+        crate::host_tick::tick_project(&homes,&root,peer.project());
+        assert_eq!(rs_for(&peer,&a).iter().filter(|e|e["kind"]=="act_after_run_end"&&e["body"]["act"]["recordId"]==act).count(),1);
+        crate::host_tick::tick_project(&homes,&root,peer.project());
+        let settled=root.lock().unwrap().after_run_end.work.clone();
+        for _ in 0..4 { crate::host_tick::tick_project(&homes,&root,peer.project()); }
+        assert_eq!(root.lock().unwrap().after_run_end.work,settled);
+    }
+    #[test]
+    fn after_run_end_later_publication_rechecks_shared_act_freshness(){
+        let peer=Peer::new();let(root,homes,a)=after_run_end_fixture(&peer,"A7");
+        let second="run:workflow:synthetic-second-ended";let log=crate::records::supply::run_log(&peer.fixture.root,second).unwrap();let mut text=String::new();
+        for entry in rs_for(&peer,&a) {let mut e=entry;e["runId"]=json!(second);if e["kind"]=="run_opened"{e["body"]["runId"]=json!(second);}e["recordId"]=json!(crate::util::opaque_id("rec:app:").unwrap());text.push_str(&format!("{e}\n"));}
+        std::fs::create_dir_all(log.parent().unwrap()).unwrap();std::fs::write(log,crate::record_lines::fixture::rechain(text.as_bytes())).unwrap();
+        let act=record_file_act(&peer,"out/summary.md","A7",b"v1",&crate::util::now_rfc3339());let read=crate::checkpoint_recorder::project_act_records(&peer.fixture.root).unwrap();let cap=read.acts.iter().find(|c|c["record"]["recordId"]==act).unwrap()["record"]["body"]["captureEvidence"][0]["ref"].as_str().unwrap();let path=crate::storage::capture_path(&peer.fixture.root,cap).unwrap();let bytes=std::fs::read(&path).unwrap();let changed=path.clone();
+        crate::after_run_end::AFTER_WRITE.with(|h|*h.borrow_mut()=Some(Box::new(move||std::fs::remove_file(changed).unwrap())));
+        crate::host_tick::tick_project(&homes,&root,peer.project());let records=peer.fixture.rs_entries();assert_eq!(records.iter().filter(|r|r["kind"]=="act_after_run_end").count(),1,"later publication must not reuse stale capture evidence");let status=root.lock().unwrap().snapshot();assert_eq!(status["afterRunEnd"]["pending"],true);
+        std::fs::write(path,bytes).unwrap();for _ in 0..3 {crate::host_tick::tick_project(&homes,&root,peer.project());}assert_eq!(peer.fixture.rs_entries().iter().filter(|r|r["kind"]=="act_after_run_end").count(),2);assert_eq!(root.lock().unwrap().snapshot()["afterRunEnd"]["pending"],false);
+    }
+
+    #[test]
+    fn after_run_end_prewrite_changed_act_is_held_then_recovers_original_identity(){
+        let peer=Peer::new();let(root,homes,a)=after_run_end_fixture(&peer,"A7");
+        let act=record_file_act(&peer,"out/summary.md","A7",b"v1",&crate::util::now_rfc3339());
+        let read=crate::checkpoint_recorder::project_act_records(&peer.fixture.root).unwrap();let capture=read.acts.iter().find(|r|r["record"]["recordId"]==act).unwrap()["record"]["body"]["captureEvidence"][0]["ref"].as_str().unwrap().to_owned();
+        let path=crate::storage::capture_dir(&peer.fixture.root).unwrap().join(format!("{}.json",crate::storage::key(&capture)));let bytes=std::fs::read(&path).unwrap();let changed=path.clone();
+        crate::after_run_end::BEFORE_WRITE.with(|h|*h.borrow_mut()=Some(Box::new(move||std::fs::remove_file(changed).unwrap())));
+        crate::host_tick::tick_project(&homes,&root,peer.project());
+        assert!(!rs_for(&peer,&a).iter().any(|e|e["kind"]=="act_after_run_end"));
+        let status=root.lock().unwrap().snapshot();assert_eq!(status["afterRunEnd"]["pending"],true);
+        let pending=status["afterRunEnd"]["runs"][0]["records"].as_array().unwrap().iter().find(|e|e["kind"]=="act_after_run_end").unwrap().clone();assert!(pending["limit"].as_str().unwrap().contains("unavailable/changed"));
+        std::fs::write(path,bytes).unwrap();for _ in 0..3 { crate::host_tick::tick_project(&homes,&root,peer.project()); }
+        let records=rs_for(&peer,&a);let written=records.iter().find(|e|e["kind"]=="act_after_run_end").unwrap();assert_eq!(written["recordId"],pending["recordId"]);assert_eq!(written["observedAt"],pending["observedAt"]);
+        assert!(records.iter().any(|e|e["kind"]=="evidence_limit"&&e["body"]["label"]=="record write failed"));
+    }
+
     #[test]
     fn end_counts_recorded_acts_so_waiting_arrivals_exclude_performed_ones(){
         let peer=Peer::new();let mut root=declared(&peer);let a=open_run(&peer,&mut root,"thread");let run=root.runs[&a].clone();
@@ -9738,7 +11346,7 @@ for line in sys.stdin:
     // keeps the report as the agent's statement and places the end marker.
     #[test]
     fn j3_end_on_finished_report_records_completed(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let view=offer_view(&peer,&[("turn","m",1,FINISHED,"live-observed")]);
         let offers=root.offers(&view);assert_eq!(offers.as_array().unwrap().len(),1,"{offers}");
         assert_eq!(offers[0]["message"]["itemId"],"m");assert_eq!(offers[0]["finished"]["run"],a.as_str());assert!(offers[0]["proposal"].is_null());
@@ -9752,7 +11360,7 @@ for line in sys.stdin:
     // FN-1/FN-2 negatives: no *completed* end without the run's own finished report observed live.
     #[test]
     fn j3_no_completed_end_without_a_finished_report(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         for (view,why) in [
             (offer_view(&peer,&[("turn","m",1,"Done, I think the workflow is finished.","live-observed")]),"prose is not a report"),
             (offer_view(&peer,&[("turn","m",1,"Done.\nWorkflow finished: project:another-workflow","live-observed")]),"another workflow"),
@@ -9774,7 +11382,7 @@ for line in sys.stdin:
     // selection, recorded as "agent proposal confirmed by the person" with the proposal cited.
     #[test]
     fn j3_proposal_is_not_a_start_until_the_person_confirms(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let view=offer_view(&peer,&[("turn","p",1,PROPOSED,"live-observed")]);
         let wr_before=peer.fixture.wr_files().len();
         let offers=root.offers(&view);
@@ -9803,7 +11411,7 @@ for line in sys.stdin:
     // with the finished report in the same message A ends *completed*, then B starts after A.
     #[test]
     fn j3_proposal_during_a_run_is_end_and_start_and_completed_on_a_report(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let both=format!("{FINISHED}\n{PROPOSED}");
         let view=offer_view(&peer,&[("turn","m",1,&both,"live-observed")]);
         let offers=root.offers(&view);assert_eq!(offers.as_array().unwrap().len(),1,"one message, one offer row: {offers}");
@@ -9819,7 +11427,7 @@ for line in sys.stdin:
         let first=last_turn_start(&peer)["params"]["input"][0]["text"].as_str().unwrap().lines().next().unwrap().to_owned();
         assert!(first.starts_with("[Chirality] Previous workflow run ended: coordinated-knowledge-work")&&first.contains(", completed)."),"{first}");
         // Without a report the same step ends A "ended to start ‹B›".
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let view=offer_view(&peer,&[("turn","m",1,PROPOSED,"live-observed")]);
         assert_eq!(root.offers(&view)[0]["proposal"]["runInForce"]["endCause"],"ended to start coordinated-knowledge-work");
         let b=root.start_proposed(&view,peer.home.clone(),&peer.generation,&msgv("turn","m"),Some(&a),String::new(),peer.project()).unwrap();
@@ -9834,7 +11442,7 @@ for line in sys.stdin:
         (reference,revision)
     }
     fn fixture_store(f:&Fixture,root:&WorkflowRootSession)->std::path::PathBuf{
-        let id=root.selected.as_ref().unwrap().selection.identity().clone();
+        let id=root.fixture_choice().unwrap().selection.identity().clone();
         f.root.join(".chirality/workflow-revisions").join(&id.name).join(crate::storage::key(&id.revision)).join(&id.name)
     }
     // WR SL-4: "Select revision ‹n›" on a retained review resolves the revision
@@ -9844,46 +11452,46 @@ for line in sys.stdin:
     fn workflow_reselection_review_select_resolves_the_store_only(){
         let f=Fixture::new();let mut root=f.registered();let (reference,revision)=review_of(&root);
         let store=fixture_store(&f,&root);
-        assert_eq!(root.selected.as_ref().unwrap().package,store,"the fixture's own review selection");
+        assert_eq!(root.fixture_choice().unwrap().package,store,"the fixture's own review selection");
         // An unrelated folder with identical bytes exists (the development holding copy).
         assert_eq!(crate::workflow_workspace::Snapshot::capture(&f.package).unwrap().revision(),revision,"identical copy elsewhere");
         let published=f.root.join(".chirality/workflows/coordinated-knowledge-work/WORKFLOW.md");
         std::fs::write(&published,"---\nname: coordinated-knowledge-work\n---\nedited outside registration\n").unwrap();
-        let first=root.selected.as_ref().unwrap().reference.clone();
-        let selected=root.select_hot_registered_copy(&reference,&revision).unwrap();
-        assert_eq!(root.selected.as_ref().unwrap().package,store);
-        assert_ne!(root.selected.as_ref().unwrap().package,f.package);
-        assert_eq!(selected["selection"]["replaces"],first.as_str());
-        assert!(selected["selection"]["currentLimit"].is_null(),"the store verifies: {}",selected["selection"]);
-        assert_eq!(selected["selection"]["declaration"],root.snapshot()["selection"]["declaration"]);
+        let first=root.fixture_choice().unwrap().reference.clone();
+        let selected=root.select_hot_registered_copy(&root.fixture_chat(),&reference,&revision).unwrap();
+        assert_eq!(root.fixture_choice().unwrap().package,store);
+        assert_ne!(root.fixture_choice().unwrap().package,f.package);
+        assert_eq!(selected["choice"]["replaces"],first.as_str());
+        assert!(selected["choice"]["currentLimit"].is_null(),"the store verifies: {}",selected["choice"]);
+        assert_eq!(selected["choice"]["declaration"],root.fixture_snapshot()["selection"]["declaration"]);
     }
     // SL-4: a store that does not recompute is refused, with no fallback to the
     // published copy or any other folder; the selection in force stays.
     #[test]
     fn workflow_reselection_review_select_refuses_a_tampered_store(){
         let f=Fixture::new();let mut root=f.registered();let (reference,revision)=review_of(&root);
-        let store=fixture_store(&f,&root);let before=root.selected.as_ref().unwrap().reference.clone();
+        let store=fixture_store(&f,&root);let before=root.fixture_choice().unwrap().reference.clone();
         let file=store.join("WORKFLOW.md");let kept=std::fs::read(&file).unwrap();
         std::fs::write(&file,b"tampered store").unwrap();
-        let refused=root.select_hot_registered_copy(&reference,&revision).unwrap_err();
+        let refused=root.select_hot_registered_copy(&root.fixture_chat(),&reference,&revision).unwrap_err();
         assert!(refused.contains("revision not verified"),"{refused}");
-        assert_eq!(root.selected.as_ref().unwrap().reference,before,"selection unchanged");
+        assert_eq!(root.fixture_choice().unwrap().reference,before,"selection unchanged");
         std::fs::write(&file,kept).unwrap();
-        root.select_hot_registered_copy(&reference,&revision).expect("restored store resolves");
+        root.select_hot_registered_copy(&root.fixture_chat(),&reference,&revision).expect("restored store resolves");
     }
     // RC-2: only a revision the named retained review holds is selected.
     #[test]
     fn workflow_reselection_review_select_refuses_stale_review_or_revision(){
         let f=Fixture::new();let mut root=f.registered();let (reference,revision)=review_of(&root);
-        let before=root.selected.as_ref().unwrap().reference.clone();
-        let stale=root.select_hot_registered_copy("review:not-retained",&revision).unwrap_err();
+        let before=root.fixture_choice().unwrap().reference.clone();
+        let stale=root.select_hot_registered_copy(&root.fixture_chat(),"review:not-retained",&revision).unwrap_err();
         assert!(stale.contains("not retained"),"{stale}");
-        let other=root.select_hot_registered_copy(&reference,&"f".repeat(64)).unwrap_err();
+        let other=root.select_hot_registered_copy(&root.fixture_chat(),&reference,&"f".repeat(64)).unwrap_err();
         assert!(other.contains("unavailable in this review"),"{other}");
-        assert_eq!(root.selected.as_ref().unwrap().reference,before,"selection unchanged");
+        assert_eq!(root.fixture_choice().unwrap().reference,before,"selection unchanged");
     }
     fn store_of(peer:&Peer,root:&WorkflowRootSession)->std::path::PathBuf{
-        let id=root.selected.as_ref().unwrap().selection.identity().clone();
+        let id=root.fixture_choice().unwrap().selection.identity().clone();
         peer.fixture.root.join(".chirality/workflow-revisions").join(&id.name).join(crate::storage::key(&id.revision)).join(&id.name)
     }
     // WR SL-4: a confirmed proposal is resolved from the revision store, never the
@@ -9891,8 +11499,8 @@ for line in sys.stdin:
     #[test]
     fn workflow_reselection_proposal_resolves_the_revision_store(){
         for edited in [false,true]{
-            let peer=Peer::new();let mut root=peer.fixture.registered();
-            let store=store_of(&peer,&root);let first=root.selected.as_ref().unwrap().reference.clone();
+            let peer=Peer::new();let mut root=peer.registered();
+            let store=store_of(&peer,&root);let first=root.fixture_choice().unwrap().reference.clone();
             let original=std::fs::read_to_string(store.join("WORKFLOW.md")).unwrap();
             if edited{
                 let published=peer.fixture.root.join(".chirality/workflows/coordinated-knowledge-work/WORKFLOW.md");
@@ -9900,8 +11508,8 @@ for line in sys.stdin:
             }
             let view=offer_view(&peer,&[("turn","p",1,PROPOSED,"live-observed")]);
             let b=root.start_proposed(&view,peer.home.clone(),&peer.generation,&msgv("turn","p"),None,String::new(),peer.project()).unwrap();
-            assert_eq!(root.selected.as_ref().unwrap().package,store,"resolved from the revision store (published copy edited: {edited})");
-            assert_eq!(root.selected.as_ref().unwrap().replaces.as_deref(),Some(first.as_str()));
+            assert_eq!(root.fixture_choice().unwrap().package,store,"resolved from the revision store (published copy edited: {edited})");
+            assert_eq!(root.fixture_choice().unwrap().replaces.as_deref(),Some(first.as_str()));
             let root=Mutex::new(root);start_workflow_run(&root,&b).unwrap();
             let text=last_turn_start(&peer)["params"]["input"][0]["text"].as_str().unwrap().to_owned();
             let body=original.split_once("\n---\n").map_or(original.as_str(),|(_,b)|b);
@@ -9917,14 +11525,14 @@ for line in sys.stdin:
     // published copy that still verifies; nothing is selected, prepared or sent.
     #[test]
     fn workflow_reselection_proposal_refuses_a_tampered_store(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
-        let store=store_of(&peer,&root);let before=root.selected.as_ref().unwrap().reference.clone();
+        let peer=Peer::new();let mut root=peer.registered();
+        let store=store_of(&peer,&root);let before=root.fixture_choice().unwrap().reference.clone();
         let file=store.join("WORKFLOW.md");let kept=std::fs::read(&file).unwrap();
         std::fs::write(&file,b"tampered store").unwrap();
         let view=offer_view(&peer,&[("turn","p",1,PROPOSED,"live-observed")]);
         let refused=root.start_proposed(&view,peer.home.clone(),&peer.generation,&msgv("turn","p"),None,String::new(),peer.project()).unwrap_err();
         assert!(refused.contains("revision not verified")&&refused.contains("nothing selected or started"),"{refused}");
-        assert_eq!(root.selected.as_ref().unwrap().reference,before,"the person's selection stays");
+        assert_eq!(root.fixture_choice().unwrap().reference,before,"the person's selection stays");
         assert!(root.runs.is_empty());assert_eq!(peer.turn_starts(),0);
         std::fs::write(&file,kept).unwrap();
         root.start_proposed(&view,peer.home.clone(),&peer.generation,&msgv("turn","p"),None,String::new(),peer.project()).expect("restored store resolves");
@@ -9933,7 +11541,7 @@ for line in sys.stdin:
     // offered and not started from a proposal.
     #[test]
     fn workflow_reselection_proposal_refuses_a_revision_not_held_here(){
-        let peer=Peer::new();let _registered=peer.fixture.registered();
+        let peer=Peer::new();let _registered=peer.registered();
         let mut cold=WorkflowRootSession::default();
         cold.open_library(peer.fixture.root.clone(),"project",Some(&peer.fixture.root),Arc::new(Mutex::new(Some(crate::act_control::ActControl::new(&peer.fixture.root))))).unwrap();
         let view=offer_view(&peer,&[("turn","p",1,PROPOSED,"live-observed")]);
@@ -9941,15 +11549,15 @@ for line in sys.stdin:
         assert!(notice.contains("registered but not selectable in this App session: re-confirm"),"{notice}");
         let refused=cold.start_proposed(&view,peer.home.clone(),&peer.generation,&msgv("turn","p"),None,String::new(),peer.project()).unwrap_err();
         assert!(refused.contains("re-confirm"),"{refused}");
-        assert!(cold.selected.is_none()&&cold.runs.is_empty());
+        assert!(cold.selected.is_empty()&&cold.runs.is_empty());
     }
     // SL-7 / PR-4 with SL-2: a chained run started from a proposal records how,
     // proposal, prior_run and replaces as before; only the store resolution changed.
     #[test]
     fn workflow_reselection_proposal_chained_run_record_fields(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
-        let first=root.selected.as_ref().unwrap().reference.clone();
-        let identity=root.selected.as_ref().unwrap().selection.identity().clone();
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
+        let first=root.fixture_choice().unwrap().reference.clone();
+        let identity=root.fixture_choice().unwrap().selection.identity().clone();
         let both=format!("{FINISHED}\n{PROPOSED}");
         let view=offer_view(&peer,&[("turn","m",1,&both,"live-observed")]);
         let b=root.start_proposed(&view,peer.home.clone(),&peer.generation,&msgv("turn","m"),Some(&a),String::new(),peer.project()).unwrap();
@@ -9975,7 +11583,7 @@ for line in sys.stdin:
     // *completed* (only "ended to start ‹B›" depends on B), and the end notice becomes pending.
     #[test]
     fn j3_completed_end_and_start_stays_completed_when_b_does_not_start(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let both=format!("{FINISHED}\n{PROPOSED}");
         let view=offer_view(&peer,&[("turn","m",1,&both,"live-observed")]);
         let b=root.start_proposed(&view,peer.home.clone(),&peer.generation,&msgv("turn","m"),Some(&a),String::new(),peer.project()).unwrap();
@@ -9991,14 +11599,14 @@ for line in sys.stdin:
     // the stale offer refuses and never replaces that selection. A newer proposal is offered.
     #[test]
     fn j3_a_later_selection_by_the_person_supersedes_a_proposal(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let view=offer_view(&peer,&[("turn","p",1,PROPOSED,"live-observed")]);
         assert!(!root.offers(&view)[0]["proposal"].is_null());
-        let before=root.snapshot()["selection"]["reference"].clone();assert!(before.is_string());
-        root.note_selection(&view); // the person selected their own workflow while this view was current
+        let before=root.fixture_snapshot()["selection"]["reference"].clone();assert!(before.is_string());
+        root.note_selection(&view,"thread"); // the person selected their own workflow while this view was current
         assert!(root.offers(&view).as_array().unwrap().iter().all(|o|o["proposal"].is_null()),"{}",root.offers(&view));
         assert!(root.start_proposed(&view,peer.home.clone(),&peer.generation,&msgv("turn","p"),None,String::new(),peer.project()).is_err());
-        assert_eq!(root.snapshot()["selection"]["reference"],before,"the stale offer did not replace the person's selection");
+        assert_eq!(root.fixture_snapshot()["selection"]["reference"],before,"the stale offer did not replace the person's selection");
         assert!(root.runs.is_empty());assert_eq!(peer.turn_starts(),0);
         let newer=offer_view(&peer,&[("turn","p",1,PROPOSED,"live-observed"),("turn","q",2,PROPOSED,"live-observed")]);
         let offers=root.offers(&newer);assert_eq!(offers[0]["message"]["itemId"],"q","a proposal received after the selection is offered: {offers}");
@@ -10006,17 +11614,17 @@ for line in sys.stdin:
     // RN-1 (review M3): chain ends place A's end marker; rows read from history never move it.
     #[test]
     fn j3_chain_ends_place_the_end_marker_from_live_rows_only(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let view=offer_view(&peer,&[("turn","m",1,"Working.","live-observed"),("history-turn","h",5,"Older","recovered-from-supplier")]);
         let b=root.end_and_start_viewed(&view,&a,peer.home.clone(),&peer.generation,"thread","B".into(),peer.project()).unwrap();
         assert_eq!(root.runs[&a].lock().unwrap().view(&a)["endedAfterTurn"],"turn");
         let root=Mutex::new(root);start_workflow_run(&root,&b).unwrap();
         assert_eq!(ended_cause(&peer,&a),"ended to start coordinated-knowledge-work");
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let view=offer_view(&peer,&[("turn","m",1,PROPOSED,"live-observed"),("history-turn","h",5,"Older","recovered-from-supplier")]);
         root.start_proposed(&view,peer.home.clone(),&peer.generation,&msgv("turn","m"),Some(&a),String::new(),peer.project()).unwrap();
         assert_eq!(root.runs[&a].lock().unwrap().view(&a)["endedAfterTurn"],"turn");
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let view=offer_view(&peer,&[("turn","m",1,"Working.","live-observed"),("history-turn","h",5,"Older","recovered-from-supplier")]);
         root.end_plain(&a,&view).unwrap();assert_eq!(root.runs[&a].lock().unwrap().view(&a)["endedAfterTurn"],"turn");
     }
@@ -10024,14 +11632,14 @@ for line in sys.stdin:
     // report observed in the later generation; the lib.rs request shape is parsed by the host.
     #[test]
     fn j3_report_in_a_later_generation_and_the_end_request_shape(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let mut later=peer.generation.clone();later["spawnCounter"]=json!(peer.generation["spawnCounter"].as_u64().unwrap()+1);
         let view=json!({"home":peer.generation["home"],"generation":later,"items":[agent_row("t9","m",0,FINISHED)]});
         assert!(root.end_requested(&a,&view,Some(&json!({"threadId":"thread","turnId":"t9"}))).is_err(),"a malformed reference is refused");
         assert_eq!(root.runs[&a].lock().unwrap().lifecycle,RunLifecycle::Open);
         root.end_requested(&a,&view,Some(&msgv("t9","m"))).unwrap();
         assert_eq!(ended_cause(&peer,&a),"completed");
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         root.end_requested(&a,&view,Some(&Value::Null)).unwrap();
         assert_eq!(ended_cause(&peer,&a),"ended by the person","no report is a plain end");
     }
@@ -10039,7 +11647,7 @@ for line in sys.stdin:
     // and a proposal superseded by a later run start.
     #[test]
     fn j3_start_proposed_refusals(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let view=offer_view(&peer,&[("turn","p",1,PROPOSED,"live-observed")]);
         let mut stale=peer.generation.clone();stale["spawnCounter"]=json!(999);
         assert!(root.start_proposed(&view,peer.home.clone(),&stale,&msgv("turn","p"),None,String::new(),peer.project()).is_err(),"stale generation");
@@ -10057,7 +11665,7 @@ for line in sys.stdin:
     // conversation is not the current run's report.
     #[test]
     fn j3_an_earlier_runs_report_does_not_end_the_current_run(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         root.runs[&a].lock().unwrap().end_run(None,None).unwrap();let b=open_run(&peer,&mut root,"thread");
         let view=json!({"home":peer.generation["home"],"generation":peer.generation,"items":[agent_row("t-a","m",1,FINISHED),user_row("turn","b-user",2)]});
         assert!(root.offers(&view).as_array().unwrap().iter().all(|o|o["finished"].is_null()));
@@ -10069,7 +11677,7 @@ for line in sys.stdin:
     // end notice for A; B inherits nothing.
     #[test]
     fn j3_end_and_start_orders_a_end_before_b_open_with_exact_chain(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let refused=root.prepare_run(peer.home.clone(),&peer.generation,"thread","B".into(),peer.project());assert!(refused.is_err(),"a plain start is refused while A is live");
         let b=root.end_and_start(&a,peer.home.clone(),&peer.generation,"thread","B text".into(),peer.project()).unwrap();
         let root=Mutex::new(root);start_workflow_run(&root,&b).unwrap();
@@ -10090,7 +11698,7 @@ for line in sys.stdin:
     // TX-5: after a plain end, a successor start consumes the pending notice through its chain line.
     #[test]
     fn j3_successor_after_plain_end_gets_chain_only_and_no_notice(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         root.runs[&a].lock().unwrap().end_run(None,None).unwrap();
         let b=root.prepare_run(peer.home.clone(),&peer.generation,"thread","B".into(),peer.project()).unwrap();
         let root=Mutex::new(root);start_workflow_run(&root,&b).unwrap();
@@ -10103,7 +11711,7 @@ for line in sys.stdin:
     // VC-E-17 (iv), FN-3, PR-4: an agent's finished report and proposal lines change nothing.
     #[test]
     fn j3_finished_and_proposal_lines_have_no_lifecycle_effect(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();peer.set_mode("items-mode","finished");let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();peer.set_mode("items-mode","finished");let a=open_run(&peer,&mut root,"thread");
         peer.select_history();let check=root.runs[&a].lock().unwrap().check_native_supply().unwrap()["check"].clone();assert_eq!(check["state"],"verified","{check}");
         assert_eq!(root.runs[&a].lock().unwrap().lifecycle,RunLifecycle::Open);assert_eq!(root.runs.len(),1);
         assert!(!rs_for(&peer,&a).iter().any(|e|e["kind"]=="run_ended"));assert_eq!(peer.turn_starts(),1);
@@ -10112,8 +11720,10 @@ for line in sys.stdin:
     // conversation's run stays live.
     #[test]
     fn j3_fork_conversation_has_no_live_run(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let fork=peer.second_thread();
+        assert!(root.prepare_run(peer.home.clone(),&peer.generation,&fork,"fork".into(),peer.project()).unwrap_err().contains("No actual closed workflow selection"), "the fork has no inherited pending selection");
+        choose_fixture_chat(&peer,&mut root,&fork);
         let b=root.prepare_run(peer.home.clone(),&peer.generation,&fork,"fork".into(),peer.project()).expect("no live run in the fork");
         assert_eq!(root.runs[&a].lock().unwrap().lifecycle,RunLifecycle::Open);assert_eq!(root.runs[&b].lock().unwrap().lifecycle,RunLifecycle::Prepared);
         assert!(root.prepare_run(peer.home.clone(),&peer.generation,"thread","again".into(),peer.project()).is_err());
@@ -10121,7 +11731,7 @@ for line in sys.stdin:
     // A-3 failure boundary: a refused start opens no run, writes no run_opened and blocks nothing.
     #[test]
     fn j3_failed_send_opens_no_run_and_does_not_block_a_new_start(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();peer.set_mode("turn-mode","error");
+        let peer=Peer::new();let mut root=peer.registered();peer.set_mode("turn-mode","error");
         let a=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         assert!(root.runs[&a].lock().unwrap().send().is_err());assert_eq!(root.runs[&a].lock().unwrap().lifecycle,RunLifecycle::StartNotConfirmed);
         assert!(rs_for(&peer,&a).iter().all(|e|e["kind"]!="run_opened"));
@@ -10135,10 +11745,10 @@ for line in sys.stdin:
     // the run reads as not confirmed and a new start is allowed.
     #[test]
     fn j3_relaunch_end_of_an_unconfirmed_start_beside_a_torn_log_is_refused(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();peer.set_mode("turn-mode","error");
+        let peer=Peer::new();let mut root=peer.registered();peer.set_mode("turn-mode","error");
         let a=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         assert!(root.runs[&a].lock().unwrap().send().is_err());
-        let mut fresh=WorkflowRootSession::default();fresh.selected=root.selected.take();drop(root);
+        let mut fresh=WorkflowRootSession::default();fresh.selected=std::mem::take(&mut root.selected);drop(root);
         let torn=crate::storage::project_file(&peer.fixture.root, "runs/torn").unwrap();std::fs::create_dir_all(&torn).unwrap();std::fs::write(torn.join("w.jsonl"),b"{\"partial\":").unwrap();
         let refused=fresh.end_recorded_run(&peer.fixture.root,&a,"thread",false,None);
         assert!(refused.as_ref().is_err_and(|e|e.contains("no run_opened")&&e.contains("nothing to end")),"{refused:?}");
@@ -10154,7 +11764,7 @@ for line in sys.stdin:
     // for a run whose closing entry could be in the unreadable part.
     #[test]
     fn j3_reopen_after_state_loss_preserves_ended_and_unknown(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         root.runs[&a].lock().unwrap().end_run(None,None).unwrap();let b=open_run(&peer,&mut root,"thread");drop(root);
         let project=crate::workflow_workspace::publication::ProjectRecords::open(&peer.fixture.root).unwrap();
         let reading=crate::records::supply::read_project_runs(&project,&[json!({"kind":"app_restart_interruption","threadId":"thread","eventId":"cev:fixture"})]);
@@ -10171,7 +11781,7 @@ for line in sys.stdin:
     // (no environment collector) no R14 compatibility_report_ref is written.
     #[test]
     fn j3_compatibility_is_advisory_and_writes_no_r14_on_refused_publication(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let view=root.runs[&a].lock().unwrap().view(&a);let compat=view["compatibility"].as_array().unwrap().clone();assert_eq!(compat.len(),2);
         for c in &compat{assert_eq!(c["publication"]["state"],"not published","{c}");assert!(c["r14"].as_str().unwrap().contains("no R14 written"));assert_eq!(c["gate"],"informs only; never gates a start (CC-3)");assert_eq!(c["advisory"],true,"J2 view field kept");}
         assert!(peer.fixture.rs_entries().iter().all(|e|e["kind"]!="compatibility_report_ref"),"no R14 from a refused publication");
@@ -10182,7 +11792,7 @@ for line in sys.stdin:
     #[test]
     fn v10_g1_pending_notice_survives_record_failure_and_relaunch_then_sent_once(){
         use std::os::unix::fs::PermissionsExt;
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         root.runs[&a].lock().unwrap().end_run(None,None).unwrap();let root=Mutex::new(root);
         std::fs::set_permissions(wr_dir(&peer),std::fs::Permissions::from_mode(0o500)).unwrap();
         let first=send_with_pending_notice(&root,&peer.generation,"thread","hello").expect("notice pending");
@@ -10200,7 +11810,7 @@ for line in sys.stdin:
     // sent; it stays pending and the next ordinary turn carries it.
     #[test]
     fn v10_g1_notice_refused_before_write_stays_pending(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         root.runs[&a].lock().unwrap().end_run(None,None).unwrap();let root=Mutex::new(root);
         let starts=peer.turn_starts();
         NOTICE_REFUSED_BEFORE_WRITE.with(|v|v.set(true));
@@ -10216,7 +11826,7 @@ for line in sys.stdin:
     // Sent, and the next ordinary turn after relaunch carries it once.
     #[test]
     fn v10_r1_notice_accepted_but_never_written_stays_pending(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         root.runs[&a].lock().unwrap().end_run(None,None).unwrap();let root=Arc::new(Mutex::new(root));
         let (t2,t3)=(peer.second_thread(),{peer.second_thread();"thread-3".to_owned()});
         let host=peer.home.host.clone();let g=peer.generation.clone();
@@ -10243,7 +11853,7 @@ for line in sys.stdin:
     // cannot be prepared, A is untouched (still live, no run_ended, no notice).
     #[test]
     fn v10_g2_end_and_start_leaves_a_untouched_when_b_cannot_be_prepared(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         // B cannot be prepared: the selected revision's store no longer recomputes
         // (the selection resolves from the store, SL-4, so an edited published copy would not do).
         let copy=store_of(&peer,&root).join("WORKFLOW.md");
@@ -10257,7 +11867,7 @@ for line in sys.stdin:
     // plain end with a truthful cause and a pending end notice; B is not live.
     #[test]
     fn v10_g2_end_and_start_falls_back_to_plain_end_when_b_does_not_start(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         peer.set_mode("turn-mode","error");
         let b=root.end_and_start(&a,peer.home.clone(),&peer.generation,"thread","B".into(),peer.project()).unwrap();
         let root=Mutex::new(root);assert!(start_workflow_run(&root,&b).is_err());
@@ -10273,7 +11883,7 @@ for line in sys.stdin:
     // pending end notice, and B is withdrawn.
     #[test]
     fn v10_r2_successor_start_failing_before_send_writes_a_plain_end_with_notice(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let c=open_run(&peer,&mut root,"thread");root.runs[&c].lock().unwrap().end_run(None,None).unwrap();
         let a=open_run(&peer,&mut root,"thread");
         let b=root.end_and_start(&a,peer.home.clone(),&peer.generation,"thread","B".into(),peer.project()).unwrap();
@@ -10292,7 +11902,7 @@ for line in sys.stdin:
     // run_opened once A is free.
     #[test]
     fn v10_r2_busy_predecessor_does_not_leave_its_end_only_in_memory(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let b=root.end_and_start(&a,peer.home.clone(),&peer.generation,"thread","B".into(),peer.project()).unwrap();
         let busy_a=root.runs[&a].clone();let root=Arc::new(Mutex::new(root));
         let busy=busy_a.lock().unwrap();
@@ -10309,7 +11919,7 @@ for line in sys.stdin:
     // dispatched, so C can never be live while A falls back to "No workflow is in force".
     #[test]
     fn v10_r5_held_successor_reserves_its_conversation_at_prepare_and_dispatch(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         // C is prepared before A opens (a prepared run is not live), so its dispatch is checked on its own.
         let a=root.prepare_run(peer.home.clone(),&peer.generation,"thread","A".into(),peer.project()).unwrap();
         let c=root.prepare_run(peer.home.clone(),&peer.generation,"thread","C".into(),peer.project()).unwrap();
@@ -10329,7 +11939,7 @@ for line in sys.stdin:
     // A falls back to a plain end, a new run may be prepared in the conversation.
     #[test]
     fn v10_r5_reservation_ends_with_the_successor_outcome(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         peer.set_mode("turn-mode","error");
         let b=root.end_and_start(&a,peer.home.clone(),&peer.generation,"thread","B".into(),peer.project()).unwrap();
         let root=Mutex::new(root);assert!(start_workflow_run(&root,&b).is_err());peer.set_mode("turn-mode","");
@@ -10340,7 +11950,7 @@ for line in sys.stdin:
     // turn/start for B, one run_ended for A, and no hold left behind.
     #[test]
     fn v10_r5_concurrent_successor_starts_claim_the_hold_once(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let b=root.end_and_start(&a,peer.home.clone(),&peer.generation,"thread","B".into(),peer.project()).unwrap();
         let root=Arc::new(Mutex::new(root));let starts=peer.turn_starts();let barrier=Arc::new(std::sync::Barrier::new(2));
         let workers:Vec<_>=(0..2).map(|_|{let(shared,b,barrier)=(root.clone(),b.clone(),barrier.clone());std::thread::spawn(move||{barrier.wait();start_workflow_run(&shared,&b)})}).collect();
@@ -10353,7 +11963,7 @@ for line in sys.stdin:
     // nothing; it never releases or rewrites A's held end.
     #[test]
     fn v10_r2_unclaimed_start_of_a_held_successor_sends_nothing(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let b=root.end_and_start(&a,peer.home.clone(),&peer.generation,"thread","B".into(),peer.project()).unwrap();
         assert_eq!(root.held_successors.remove(&b).as_deref(),Some(a.as_str()),"claimed elsewhere");
         let root=Mutex::new(root);let starts=peer.turn_starts();
@@ -10364,8 +11974,8 @@ for line in sys.stdin:
     // live, so a new start in its conversation is refused with the reason and the end route.
     #[test]
     fn v10_g3_unknown_recorded_run_blocks_a_new_start(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
-        let mut fresh=WorkflowRootSession::default();fresh.selected=root.selected.take();drop(root);
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
+        let mut fresh=WorkflowRootSession::default();fresh.selected=std::mem::take(&mut root.selected);drop(root);
         let torn=crate::storage::project_file(&peer.fixture.root, "runs/torn").unwrap();std::fs::create_dir_all(&torn).unwrap();std::fs::write(torn.join("w.jsonl"),b"{\"partial\":").unwrap();
         let refused=fresh.prepare_run(peer.home.clone(),&peer.generation,"thread","B".into(),peer.project());
         assert!(refused.as_ref().is_err_and(|e|e.contains("unknown")&&e.contains(&a)&&e.contains("End")),"{refused:?}");
@@ -10384,7 +11994,7 @@ for line in sys.stdin:
     // it; on recovery the late entries are written in observation order, each with its limit.
     #[test]
     fn v10_g4_lifecycle_entries_written_late_in_order_with_limits(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let runs=crate::storage::project_file(&peer.fixture.root, "runs").unwrap();std::fs::write(&runs,b"blocked").unwrap();
         let a=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         let run=root.runs[&a].clone();let mut run=run.lock().unwrap();run.send().unwrap();assert_eq!(run.lifecycle,RunLifecycle::Open);
@@ -10398,7 +12008,7 @@ for line in sys.stdin:
     // and run_ended, following observation order, not lifecycle entries first.
     #[test]
     fn v10_g4_late_records_follow_observation_order_across_kinds(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let peer=Peer::new();let mut root=peer.registered();
         let runs=crate::storage::project_file(&peer.fixture.root, "runs").unwrap();std::fs::write(&runs,b"blocked").unwrap();
         let a=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         let run=root.runs[&a].clone();let mut run=run.lock().unwrap();run.send().unwrap();peer.select_history();
@@ -10411,7 +12021,7 @@ for line in sys.stdin:
     // ordinary text in its conversation; only a pending end notice must go first.
     #[test]
     fn v10_g5_busy_run_without_pending_notice_does_not_block_ordinary_text(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let run=root.runs[&a].clone();let root=Mutex::new(root);
         let busy=run.lock().unwrap(); // the run is busy, e.g. waiting on history pages
         assert!(send_with_pending_notice(&root,&peer.generation,"thread","hello").is_none(),"no notice pending: ordinary sending applies");
@@ -10427,7 +12037,7 @@ for line in sys.stdin:
     #[test]
     fn v10_g5_unwritable_notice_offers_retry_or_recorded_send_without_it(){
         use std::os::unix::fs::PermissionsExt;
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         root.runs[&a].lock().unwrap().end_run(None,None).unwrap();let root=Mutex::new(root);
         std::fs::set_permissions(wr_dir(&peer),std::fs::Permissions::from_mode(0o500)).unwrap();
         let refused=send_with_pending_notice(&root,&peer.generation,"thread","hello").expect("pending").unwrap_err();
@@ -10447,7 +12057,7 @@ for line in sys.stdin:
     // failure that did not happen, and the notice stays pending.
     #[test]
     fn v10_r4_skip_refused_without_an_actual_notice_record_failure(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let run=root.runs[&a].clone();run.lock().unwrap().end_run(None,None).unwrap();
         assert_eq!(run.lock().unwrap().view(&a)["noticeRecordFailure"],Value::Null,"no skip choice offered");
         let skipped=run.lock().unwrap().skip_end_notice();
@@ -10462,7 +12072,7 @@ for line in sys.stdin:
     #[test]
     fn v10_r4_skip_records_the_actual_failure_and_is_withdrawn_once_the_record_is_written(){
         use std::os::unix::fs::PermissionsExt;
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         let t2=peer.second_thread();let b=open_run(&peer,&mut root,&t2);
         for r in [&a,&b]{root.runs[r].lock().unwrap().end_run(None,None).unwrap();}
         let root=Mutex::new(root);
@@ -10485,7 +12095,7 @@ for line in sys.stdin:
     #[test]
     fn v10_g5_retry_publishes_notice_record_then_next_turn_carries_it(){
         use std::os::unix::fs::PermissionsExt;
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
         root.runs[&a].lock().unwrap().end_run(None,None).unwrap();let root=Mutex::new(root);
         std::fs::set_permissions(wr_dir(&peer),std::fs::Permissions::from_mode(0o500)).unwrap();
         assert!(send_with_pending_notice(&root,&peer.generation,"thread","hello").unwrap().is_err());
@@ -10499,8 +12109,8 @@ for line in sys.stdin:
     // ended as *completed*; only the person's plain end applies.
     #[test]
     fn v10_g7_reopened_run_cannot_be_ended_as_completed(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
-        let mut fresh=WorkflowRootSession::default();fresh.selected=root.selected.take();drop(root);
+        let peer=Peer::new();let mut root=peer.registered();let a=open_run(&peer,&mut root,"thread");
+        let mut fresh=WorkflowRootSession::default();fresh.selected=std::mem::take(&mut root.selected);drop(root);
         assert!(fresh.end_recorded_run(&peer.fixture.root,&a,"thread",true,None).is_err());
         assert!(!rs_for(&peer,&a).iter().any(|e|e["kind"]=="run_ended"),"nothing written");
         assert_eq!(fresh.end_recorded_run(&peer.fixture.root,&a,"thread",false,None).unwrap()["cause"],"ended by the person");
@@ -10508,7 +12118,7 @@ for line in sys.stdin:
     #[test]
     fn workflow_root_wrc1_busy_capture_owner_refuses_without_blocking_observer_root(){
         let f=Fixture::new();let mut root=f.selected();let control=Arc::new(Mutex::new(Some(crate::act_control::ActControl::new(&f.root))));
-        root.open_library(f.root.clone(),"project",Some(&f.root),control.clone()).unwrap();root.create_selected_draft("coordinated-knowledge-work").unwrap();
+        root.open_library(f.root.clone(),"project",Some(&f.root),control.clone()).unwrap();root.create_selected_draft(None,"coordinated-knowledge-work").unwrap();
         let root=Arc::new(Mutex::new(root));let held=control.lock().unwrap();let shared=root.clone();
         let(started_tx,started_rx)=std::sync::mpsc::channel();let(done_tx,done_rx)=std::sync::mpsc::channel();
         let worker=std::thread::spawn(move||{let mut root=shared.lock().unwrap();started_tx.send(()).unwrap();let home=Arc::new(HomeSession::new(crate::home_resources::HomeClass::Account,Arc::new(crate::hosting::Host::new()),Err("offline fixture".into())).unwrap());let result=root.begin_review(home,json!({"hostState":"absent"}),vec!["coordinated-knowledge-work".into()],false);drop(root);done_tx.send(result.is_err()).unwrap();});
@@ -10521,16 +12131,20 @@ for line in sys.stdin:
     }
     #[test]
     fn workflow_root_wrc1_busy_review_selection_refuses_without_global_wait(){
-        let f=Fixture::new();let mut root=f.selected();let control=Arc::new(Mutex::new(Some(crate::act_control::ActControl::new(&f.root))));root.open_library(f.root.clone(),"project",Some(&f.root),control).unwrap();root.create_selected_draft("coordinated-knowledge-work").unwrap();
+        let f=Fixture::new();let mut root=f.selected();let control=Arc::new(Mutex::new(Some(crate::act_control::ActControl::new(&f.root))));root.open_library(f.root.clone(),"project",Some(&f.root),control).unwrap();root.create_selected_draft(None,"coordinated-knowledge-work").unwrap();
         let home=Arc::new(HomeSession::new(crate::home_resources::HomeClass::Account,Arc::new(crate::hosting::Host::new()),Err("offline fixture".into())).unwrap());root.begin_review(home,json!({"hostState":"absent"}),vec!["coordinated-knowledge-work".into()],false).unwrap();
         let reference=root.active_review.clone().unwrap();let original=root.reviews[&reference].clone();let held=original.lock().unwrap();let root=Arc::new(Mutex::new(root));let shared=root.clone();
         let(started_tx,started_rx)=std::sync::mpsc::channel();let(done_tx,done_rx)=std::sync::mpsc::channel();
-        let worker=std::thread::spawn(move||{let mut root=shared.lock().unwrap();started_tx.send(()).unwrap();let result=root.select_hot_registered_copy(&reference,"not-a-replayable-registered-identity");drop(root);done_tx.send(result.is_err()).unwrap();});
+        let worker=std::thread::spawn(move||{let mut root=shared.lock().unwrap();started_tx.send(()).unwrap();let chat=root.fixture_chat();let result=root.select_hot_registered_copy(&chat,&reference,"not-a-replayable-registered-identity");drop(root);done_tx.send(result.is_err()).unwrap();});
         started_rx.recv_timeout(Duration::from_secs(2)).unwrap();let outcome=done_rx.recv_timeout(Duration::from_millis(200));let observer_root_available=root.try_lock().is_ok();drop(held);worker.join().unwrap();
         assert_eq!(outcome.ok(),Some(true),"busy original review must return pending, not block workflow root");assert!(observer_root_available);
     }
     // WR TX-5 / SQ-END, (d), (j): restart residuals.
+    include!("role_r3_run_tests.rs");
+    include!("records_access_role_tests.rs");
     include!("run_restart_tests.rs");
+    include!("workflow_chat_selection_tests.rs");
+    include!("home_qualified_hot_run_tests.rs");
     // RS §14 / DEL-01-02 §7: multi-year scale measurement (ignored; run on request).
     include!("records_scale_tests.rs");
 }

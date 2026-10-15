@@ -499,6 +499,16 @@ show nothing of the kind.
 | V-d | App-kept items Codex does not keep in history (for example plan checklist revisions, R17-4) are shown by their owners as "not recoverable after relaunch"; this file shows nothing in their place | — |
 | V-e | After a graceful stop, Codex's history holds a line it wrote itself ("The user interrupted the previous turn on purpose", OBS-2 O-2). The view shows it as "written by Codex when the App stopped it", never as the person's words (G-5) | — |
 
+After explicit **Continue selected conversation**, the view opens the native
+conversation only when the new matching resume dispatch reports active
+admission and the refreshed current source still holds that admission for the
+same history selection. It uses the admitted full generation and native thread
+ID. Read-only, refused, failed, superseded or identity-incomplete results leave
+the conversation selection and unsent composer unchanged. A newer source or
+conversation choice made while the refresh is pending takes precedence over
+its delayed result. Continue sends no message and performs no retry; original App role evidence remains unknown
+after a cold restart.
+
 ### 5.4 Conversation start display (K-3)
 
 | # | Rule |
@@ -509,6 +519,11 @@ show nothing of the kind.
 | ST-4 | The chosen model, provider and access mode are shown in the conversation header as DEL-01-05 reports them; the observed destination per turn is DEL-01-01's (HOSTING §8.3) and DEL-04-03's to record |
 | ST-5 | **Role (C-15).** The start display offers the conversation roles DEL-02-04 lists (HELP_HUMAN, HELPS_HUMANS and WORKING_ITEMS; TASK is not a conversation role, ROLE SL-1, owner ruling 2026-10-10: "TASK is not a conversational role"), plus **"no role"** (R17-9: untyped conversations are allowed). The role whose registry entry has `default_for_new_chat` true (HELP_HUMAN in Root's `agents/registry.json` today) is shown **preselected**, labelled as a preselection, and the person can change it or clear it to "no role" before the first send |
 | ST-6 | The role is **fixed for the conversation's life** (DECISION-L L-2). The header shows it; where DEL-02-04 reports that the role's guidance was edited after this conversation started, the header says "guidance changed since this conversation started" (R19-3), and offers "Continue as ‹role›" (§5.8) |
+
+After an ordinary Start succeeds, the conversation view selects the native
+thread ID in the start result's own full generation. A refused or failed start
+leaves the selected conversation and unsent composer unchanged. Opening the
+conversation sends no text; the person still presses Send explicitly.
 
 The selection states and the last-choice store are DEL-01-05's (IF-10; NR-3
 new row). This file only places them.
@@ -997,6 +1012,24 @@ RS's own schema.
 - v0.1 (D round 1): first version.
 
 ## Current implementation conditions
+
+**Reply outcome on close.** The owner chose:
+
+> Close as “Reply outcome unknown” (Recommended)
+
+A queued reply whose write never began closes as ended unanswered with the
+source context. An admitted write still unobserved at close becomes a closed
+**Reply outcome unknown** card; it no longer says Sending or permits another
+answer. The prepared answer remains visible, with secret values removed as
+before. A completed local result, observed before or after closure, stays on
+the original request even if another source uses the same request ID. The
+source stays closed. The card reports local written/failed evidence separately
+from whether Codex received or acted on the reply; neither is established by
+completion alone. A post-close supplier frame cannot provide acknowledgment.
+REC preserves the initial unknown and any later actual result across restart.
+Live-home confirmations include eligible queued/in-progress work and exclude
+closed or superseded sources. Owned-stdio and presentation checks establish
+these local paths; they are not a native walkthrough.
 
 **Open positive-acceptance condition — user verification (FO-6).** The stock
 0.160.0 source assessment has not supplied a documented receiving route for

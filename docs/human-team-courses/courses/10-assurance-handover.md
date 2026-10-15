@@ -4,7 +4,7 @@
 
 ## Purpose and preparation
 
-Assurance provides justified confidence in an identified result. It connects the requirements, produced configuration, examinations, evidence, and proposed reliance.
+Assurance provides justified confidence in an identified result. It connects the requirements, the configuration produced, the examinations, the evidence, and the proposed reliance.
 
 Delivery provides the result to its recipient. Handover transfers continuing responsibilities with the information needed to carry them.
 
@@ -20,9 +20,9 @@ After this course, you can:
 
 ## Lesson 1: Plan quality with the work
 
-A final inspection cannot recover every opportunity lost during production. Some features become concealed. Some decisions need review before ordering or construction. Plan their examination while the work remains accessible.
+A final inspection cannot recover every opportunity lost during production: some features become hidden, and some decisions need review before ordering or construction. So plan their examination while the work is still accessible.
 
-Start from each applicable requirement. Identify its output, examination method, evidence, examiner, and decision. State the point when examination becomes necessary.
+Start from each applicable requirement and identify its output, examination method, evidence, examiner, and decision. State the point when examination becomes necessary.
 
 Use a coverage table:
 
@@ -32,25 +32,25 @@ Use a coverage table:
 | Required changeover behavior | Equipment and controls together | Review and defined functional test | Starting state, event, response, and observed result |
 | Operating readiness | Instructions and trained receiving team | Document examination and readiness demonstration | Applicable records and receiving decision |
 
-This table proposes an examination route. It does not claim Northbank has completed the route or approved the methods.
+This table proposes an examination route; it does not claim that Northbank has completed the route or approved the methods.
 
-Set independence according to the requirement and consequences. A competent producer's check and an independent review answer related but different questions. Assign the reviewer a clear purpose and sufficient context.
+Set the level of independence according to the requirement and the consequences. A competent producer's check and an independent review answer related but different questions. Assign the reviewer a clear purpose and enough context.
 
 Allow time for correction and re-examination. A plan that schedules review immediately before an irreversible action may leave no workable response to findings.
 
-Agree the required records with their users. Retain enough evidence to understand and challenge the conclusion. Avoid collecting forms that nobody uses.
+Agree the required records with the people who will use them. Retain enough evidence to understand and challenge the conclusion, but avoid collecting forms that nobody uses.
 
 ## Lesson 2: Choose examinations for the claim
 
-Verification examines conformity to specified requirements. Validation examines fitness for intended use under relevant conditions. The same test can contribute to both when its basis supports both questions.
+Verification examines conformity to specified requirements; validation examines fitness for intended use under the relevant conditions. The same test can contribute to both when its basis supports both questions.
 
 A calculation checks predicted behavior under its model and inputs. A review examines reasoning, assumptions, coverage, and conclusions. An inspection examines observable features. A test exercises behavior under defined conditions.
 
-Choose a method that can answer the actual question. Reading a drawing cannot establish an installed dimension. Observing one operating condition cannot establish all operating cases.
+Choose a method that can answer the actual question: reading a drawing cannot establish an installed dimension, and observing one operating condition cannot establish all operating cases.
 
-Component checks matter. Connected behavior also needs examination. A standby pump, controller, and power system can each pass separate checks while their changeover interaction remains untested.
+Component checks matter, but connected behavior also needs examination: a standby pump, controller, and power system can each pass separate checks while their changeover interaction remains untested.
 
-Define a test before treating its result as a pass:
+Define a test before you treat its result as a pass:
 
 1. Identify the governing requirement.
 2. Identify the configuration and starting state.
@@ -59,25 +59,25 @@ Define a test before treating its result as a pass:
 5. Identify measurement and observation methods.
 6. Define the decision and finding route.
 
-A real test plan also needs the relevant safety, access, operational, and authorization arrangements. This course prepares examination plans. It does not supply instructions to energize or operate equipment.
+A real test plan also needs the relevant safety, access, operational, and authorization arrangements. In this course you prepare examination plans; the course does not supply instructions to energize or operate equipment.
 
-Protect acceptance criteria during repair. If the result fails, investigate the cause. A defective test can require correction, but that correction needs a substantive basis and the proper authority.
+Protect the acceptance criteria during repair. If the result fails, investigate the cause. A defective test can require correction, but that correction needs a substantive basis and the proper authority.
 
-Changing an expected value only to obtain a pass removes the meaning of the check.
+Changing an expected value only to get a pass removes the meaning of the check.
 
 ## Lesson 3: Preserve the scope of evidence
 
-Evidence belongs to an identified result, conditions, method, and observation. Retain those relationships. An unqualified statement such as “tested successfully” omits too much to support reliance.
+Evidence belongs to an identified result, conditions, method, and observation, so retain those relationships. An unqualified statement such as “tested successfully” leaves out too much to support reliance.
 
-Distinguish observation from interpretation and decision. A witness can confirm that a measurement occurred. The measurement's adequacy for acceptance remains a further question.
+Keep observation separate from interpretation and decision. A witness can confirm that a measurement occurred, but whether the measurement is adequate for acceptance is still a further question.
 
-Read evidence in both directions. For each obligation, find the relevant result and examination. For each acceptance claim, locate its actual supporting evidence.
+Read evidence in both directions: for each obligation, find the relevant result and examination, and for each acceptance claim, find the actual evidence that supports it.
 
-Record limits openly. An incomplete configuration list limits traceability. Missing test conditions limit interpretation. Unperformed scenarios leave their behavior unestablished.
+Record limits openly. An incomplete configuration list limits traceability, missing test conditions limit interpretation, and scenarios that were not performed leave their behavior unestablished.
 
-A later observation does not prove earlier design gaps were resolved. It can establish observed behavior within its own scope. Resolve other gaps through evidence or a decision within the decision owner's authority. A disposition can limit reliance; it cannot establish unexamined behavior.
+A later observation does not prove that earlier design gaps were resolved, but it can establish observed behavior within its own scope. Resolve other gaps through evidence or a decision within the decision owner's authority. A disposition can limit reliance; it cannot establish unexamined behavior.
 
-After a repair, assess affected evidence. A setting change can invalidate a functional test. A corrected spelling in an unrelated instruction may leave that test valid. Re-examine according to the actual relationship.
+After a repair, assess the evidence it affects. A setting change can invalidate a functional test, but a corrected spelling in an unrelated instruction may leave that test valid. Re-examine according to the actual relationship.
 
 Use a finding that supports action:
 
@@ -87,7 +87,7 @@ Use a finding that supports action:
 - Responsible owner.
 - Required closure evidence or authorized disposition.
 
-Keep unresolved findings visible until their closure basis exists. A meeting record's “closed” label does not create missing evidence.
+Keep unresolved findings visible until the basis for closing them exists. A meeting record's “closed” label does not create missing evidence.
 
 ## Lesson 4: Establish commissioning readiness
 
@@ -95,27 +95,27 @@ Commissioning establishes readiness and behavior under defined conditions before
 
 Define prerequisites for each commissioning activity. These can include complete installation, configuration records, prerequisite checks, approved procedures, suitable instruments, competent participants, and operating coordination.
 
-Allocate boundaries where work continues nearby. Identify what is ready, what remains under construction, and which activities can affect each other. Assess these relationships before overlapping installation and commissioning.
+Allocate boundaries where work continues nearby. Identify what is ready, what is still under construction, and which activities can affect each other. Assess these relationships before you overlap installation and commissioning.
 
-Build the commissioning plan from required operating activities. Include normal use and relevant abnormal or recovery behavior. Select cases through competent technical assessment.
+Build the commissioning plan from the required operating activities, and include normal use and relevant abnormal or recovery behavior. Use competent technical assessment to select the cases.
 
-For Northbank, C04 identifies unexercised changeover, power interruption, alarm response, and maintenance isolation. These gaps need assessment against the established requirements and operating basis.
+For Northbank, C04 identifies changeover, power interruption, alarm response, and maintenance isolation as unexercised. These gaps need to be assessed against the established requirements and operating basis.
 
-Do not invent expected responses where the design basis leaves them open. Resolve the required behavior first. Then prepare its examination.
+Do not invent expected responses where the design basis leaves them open. Resolve the required behavior first, then prepare its examination.
 
-Arrange operators' participation where their understanding or performance matters. A commissioning team's demonstration does not establish that receiving operators understand the instructions.
+Arrange for operators to take part where their understanding or performance matters. A commissioning team's demonstration does not establish that the receiving operators understand the instructions.
 
-Separate readiness to perform a test from readiness for operational use. A controlled examination can proceed under conditions that do not permit routine service. Define and authorize those conditions through the actual project arrangements.
+Keep readiness to perform a test separate from readiness for operational use: a controlled examination can proceed under conditions that do not permit routine service. Define and authorize those conditions through the actual project arrangements.
 
-The commissioning account should state completed examinations, findings, configuration, limits, and the next decision. It should permit the recipient to distinguish proven behavior from work still ahead.
+The commissioning account should state completed examinations, findings, configuration, limits, and the next decision, and it should allow the recipient to distinguish proven behavior from work still ahead.
 
 ## Lesson 5: Deliver an identified result and responsibility
 
 Acceptance is an authorized decision for an identified result, purpose, and conditions. A contractual acceptance, technical approval, authorization to operate, and operational handover can have different decision owners.
 
-Base each decision on evidence suited to its stated purpose. An acceptance decision establishes its authorized disposition. It does not establish physical performance beyond the supporting evidence.
+Base each decision on evidence suited to its stated purpose. An acceptance decision establishes its authorized disposition, but it does not establish physical performance beyond the supporting evidence.
 
-Identify those arrangements from the appointment and governing requirements. Do not infer an authority merely because someone requests a completion date.
+Identify those arrangements from the appointment and the governing requirements. Do not infer an authority merely because someone asks for a completion date.
 
 A useful handover package identifies:
 
@@ -128,25 +128,25 @@ A useful handover package identifies:
 
 Check that instructions apply to the actual installation. An instruction copied from an earlier supplier submission can direct the recipient to the wrong configuration.
 
-Confirm training, information access, maintenance arrangements, and receipt of responsibility. Placing files in a folder establishes availability. It does not establish that the receiving team can use them.
+Confirm training, access to information, maintenance arrangements, and receipt of responsibility. Placing files in a folder establishes availability, but it does not establish that the receiving team can use them.
 
 Account for residual work explicitly. Some minor work may accompany a qualified handover where the authorized conditions permit it. Required technical evidence cannot become optional through a renamed list.
 
 A qualified handover must respect applicable duties. Risk acceptance does not supply authority to waive a duty.
 
-State the unfinished obligation, effect on use, owner, resources, due condition, and decision. If a necessary condition remains unmet, the proposed reliance remains unsupported.
+State the unfinished obligation, its effect on use, its owner, resources, due condition, and decision. If a necessary condition remains unmet, the proposed reliance remains unsupported.
 
-Close the project account against the actual outcome. Preserve original and amended commitments. A useful reduced result can still fall short of the original scope.
+Close the project account against the actual outcome, and preserve the original and amended commitments. A useful reduced result can still fall short of the original scope.
 
 ## Worked Northbank example
 
-The earlier coordination work identified needed technical contributions. This later exercise asks what the supplied evidence actually establishes for acceptance and handover.
+The earlier coordination work identified technical contributions that were needed; this later exercise asks what the supplied evidence actually establishes for acceptance and handover.
 
-The project engineer receives C04 Rev 0 and C05 Rev 0 in a later exercise. C04 records observed flow of 18 litres per second during one normal transfer condition.
+The project engineer receives C04 Rev 0 and C05 Rev 0 in a later exercise. C04 records an observed flow of 18 litres per second during one normal transfer condition.
 
-It does not record the full hydraulic conditions. It does not establish performance across A02's unresolved operating cases. It also leaves several interactions unexercised.
+It does not record the full hydraulic conditions or establish performance across A02's unresolved operating cases, and it also leaves several interactions unexercised.
 
-The draft cover sheet claims complete acceptance. That claim exceeds the report's evidence. The team must correct the claim and establish the remaining examination and decision basis.
+The draft cover sheet claims complete acceptance, but that claim goes beyond the report's evidence. The team must correct the claim and establish the remaining examination and decision basis.
 
 | Supplied observation | Consequence for handover | Needed response |
 | --- | --- | --- |
@@ -156,7 +156,7 @@ The draft cover sheet claims complete acceptance. That claim exceeds the report'
 | Instruction cites earlier 480 V submission | Instruction applicability is doubtful | Examine and correct it against the actual configuration |
 | Training and spare-parts arrangements incomplete | Receiving readiness remains incomplete | Complete or obtain authorized dispositions for the arrangements |
 
-This table does not assert equipment failure in the untested cases. It states that the supplied evidence does not establish their behavior.
+This table does not assert equipment failure in the untested cases; it states that the supplied evidence does not establish their behavior.
 
 A defensible response to the sponsor is:
 
@@ -168,9 +168,9 @@ A06's legal applicability inquiry also remains open in the supplied case. No cou
 
 A migrated database can pass a record-count check while user permissions, recovery, and reporting remain unexamined. The count provides useful evidence for one claim.
 
-Build acceptance around the intended activities. Identify the software configuration, data state, test conditions, user participation, and recovery arrangements.
+Build acceptance around the intended activities, and identify the software configuration, data state, test conditions, user participation, and recovery arrangements.
 
-Transfer support and administration responsibility with usable instructions. Record any retained source system and unresolved obligations. Apply the organization's actual security and delivery requirements.
+Transfer responsibility for support and administration together with usable instructions. Record any source system that is retained and any unresolved obligations. Apply the organization's actual security and delivery requirements.
 
 ## Practice
 
@@ -185,7 +185,7 @@ Prepare four outputs:
 
 Include the information needed to examine the flow observation. Identify the missing configuration and instruction relationships. State which decision each proposed record supports.
 
-Do not execute equipment tests. This exercise develops the plan and evidence account from supplied records.
+Do not run equipment tests. In this exercise you develop the plan and evidence account from the supplied records.
 
 ## Knowledge check
 
@@ -198,7 +198,7 @@ Do not execute equipment tests. This exercise develops the plan and evidence acc
 
 ## Assessed assignment
 
-Prepare Northbank's proposed assurance and handover account. Include coverage, findings, commissioning prerequisites, recipient information, responsibilities, and a sponsor recommendation.
+Prepare Northbank's proposed assurance and handover account, including coverage, findings, commissioning prerequisites, recipient information, responsibilities, and a recommendation to the sponsor.
 
 Use these five observable criteria:
 
@@ -212,10 +212,10 @@ Ask a peer to act as the receiving operations lead. Repair any gap that prevents
 
 ## Portfolio continuation and reading
 
-Connect your account to the Course 09 configuration and interface package. Retain C04's original observation separately from your corrected conclusion.
+Keep your account as Portfolio 10 and connect it to the Course 09 configuration and interface package. Retain C04's original observation separately from your corrected conclusion.
 
 Carry the remaining decisions into Course 11. They will become part of the project's continuation decision and the final practicum.
 
-Read Field Book §§6–8 and Consolidated v8 §§5.9–5.14 and chapter 6 in [References](../references.html). They explain evidence limits, product examination, and transfer of continuing responsibility.
+Read Field Book (Edition 2) §§6 and 9, and management manual (Edition 9) §§5.4–5.6, 7.5–7.6, and chapter 8, in [References](../references.html). They explain evidence limits, product examination, and transfer of continuing responsibility.
 
-The optional NASA readings deepen verification and validation methods. All core exercises can use the supplied offline records.
+The optional NASA readings go deeper into verification and validation methods, but all core exercises can use the supplied offline records.

@@ -2427,3 +2427,103 @@ rules run as written, not a VER pass.
 | VC-29 Double fidelity (v0.8) | The eight committed transcripts | Replay each transcript's App frames against the double seeded from it, then against the double seeded from `A-bin-freshhome` | Supplier frames byte-identical and exit code 0; across seeds equal except `emittedAtMs`; constructed and mutated frames valid against the committed bundle | Yes. **Ran 2026-09-30: pass** (8/8 byte-identical; cross-seed equal) | VER-001, VER-002 |
 | VC-30 Capability account completeness (v0.8; §8.4) | Committed bundles, `_spike/inventory.txt`, the recorded accepted-method list, the five TS-only names | Parse §8.4 | Each of 19 item kinds, 11 server-request kinds, 170 client methods and 85 notifications in exactly one group; variant and (obs) marks match the sources. The (obs) marks stay the spike's; OBS-1 and OBS-1b observations are in §10.1, not in the marks | Yes. **Ran 2026-09-30: pass**; rerun at the RP-3 repair: pass | OUT-002; DEP-02-01-025 |
 | VC-31 Name-to-group mapping (RP-3 repair; R14-5) | WD-v0.8 §4.2.5 and this §8.4 | Resolve each portable name's group and every supplier name its row cites | Each of WD's ten names resolves to one Part A group; every cited supplier name that §8.4 places in a group is a member of that group | Yes. **Ran 2026-09-30: pass**, as DEL-02-01's prototype check S-11 (`wdproto.py selftest`), which reads this file | OUT-002; DEP-02-01-025 |
+
+## Current implementation conditions
+
+**Supplier EOF during startup (Rust host).** EOF from the current installed
+`handshaking` source first attempts cleanup only of its captured process group before
+reaping the matching Child, closes that exact generation and delivers its held
+frames marked `generationNeverReady`. If the same installed start attempt is
+still `handshaking` at final settlement, it emits one LT-11 with the observed
+exit code or signal, receipt position, malformed-frame and diagnostic-byte
+counts, and the first closure's request counts. The current implementation
+halts after one failure; it adds no automatic restart. The initialize waiter
+cannot write a second failure or admit readiness after closure. A later Stop
+can own the final LT-23 instead; the earlier EOF closure and never-ready
+frames remain. A superseding attempt receives no old-source failure; EOF
+after readiness keeps LT-12.
+
+`hosting_startup_refusal_tests.rs` exercises first start and restart through
+the actual Host with owned synthetic peers, including pending initialize,
+a surviving descendant, a known reply before EOF, Stop/App-quit and
+superseded-source races. Its opt-in cached stock 0.160.0 check uses fresh
+file-auth homes and a
+localhost-only OS sandbox: supported configuration reaches ready, while
+unsupported `approval_policy = "untrusted"` exits before initialize and is
+reported as LT-11. It sends no login, thread or model call and changes no
+person's configuration. These checks establish controller behavior and this
+bounded supplier refusal, not a native App walkthrough or qualification.
+
+**Process-group custody (Rust host).** Each hosted process group is created
+through the owning spawn module, which retains the actual unreaped Child.
+Nonblocking `WNOWAIT` observations retain its exit status without releasing the
+PID reservation. A bounded immediate retry handles an interrupted observation;
+other nonterminal errors retain the actual spawned custody and an explicit
+limit. EOF polling waits outside custody/source locks until an exit is
+observed; unavailable observation does not produce LT-12 or inferred closure.
+Every group-only Darwin census and signal runs under that
+same custody; after retirement no operation addresses the old numeric group.
+A census examines live members of the original reserved group, including its
+leader while alive, with a 64 KiB member budget. Detached or escaped
+descendants are unobserved; this account establishes no complete tree absence. Partial,
+unreadable, changed or over-budget inventories remain unavailable. Only the
+exact leader with an observed exit, and members observed as zombies, are
+excluded from the live count; a reserved zombie alone is not a survivor.
+
+Unexpected ready EOF retains live descendants without ending them. Read-only
+natural cleanup retires authority and reaps the original leader only after a
+complete empty census. Deliberate Stop keeps the existing 3 s grace, 50 ms
+polling and 200 ms post-force wait; its final census and optional signal share
+custody. `forcedAfterGrace` records an actual force syscall attempt, including
+an attempted failure, rather than a no-op on a now-empty retired group. Old
+custody retained during slot replacement is never rebound to the successor;
+its maintenance has no lifecycle or request authority. Waiting for a live
+leader that closed stdout sleeps outside source and custody locks, so Stop
+can still act. The original observed exit facts remain available to a later
+Stop even when LT-12 already recorded them.
+
+Current producers use `hosting.lifecycle-event.v0.10.schema.json` and the
+`lifecycle-event.s1.v0.10` envelope. A complete census has `checked:true` and
+an exact nonnegative `surviving` count of observed live members in that group.
+Its handling text retains the detached/escaped-descendant limitation. An unavailable census has
+`checked:false`, `surviving:null` and `handling:"unavailable: …"`; raw App JSON
+retains that distinction. The exact v0.9 and `lifecycle-event.s1` schemas and
+legacy reads remain unchanged. This is a current representation/ownership
+repair, with no new restart or descendant policy. The owned synthetic peers
+in `hosting_process_group_custody_tests.rs` exercise EOF, Stop, natural
+cleanup, replacement and current publication/readback; they are controller
+fixtures, not supplier qualification or a native walkthrough. Error controls
+model scoped SDK returns; they are not native signal-interruption witnesses.
+
+**Reply outcome at generation close (Rust host).** The owner chose:
+
+> Close as “Reply outcome unknown” (Recommended)
+
+Preparation does not establish an actual write. Explicit private preparation
+and admission facts distinguish a queued reply from an admitted write. Closing
+while queued ends the request unanswered with its actual context and
+`not-attempted` result. Closing while an admitted write remains unobserved gives
+`reply-outcome-unknown`, result `unknown`, and the original close context. The
+prepared reply stays available, with secret values removed as before. Neither
+branch invents a write failure, successful reply or acknowledgment.
+
+Each existing guarded writer, including the dormant offered-call writer,
+publishes its immutable actual IO result outside the lifecycle lock. Observers
+and close retain a result completed before closure; a later observed result
+updates only the original full H5/request identity, even after replacement.
+The source stays closed. A local write proves neither Codex receipt nor action.
+Post-close supplier frames cannot acknowledge or re-admit that source. The
+guarded offered writer retains its receipt-cut resolution semantics; its
+private `canonicalUpdated` flag names the original caller's bookkeeping, not
+whether an observer/closer retained the source result. No issuer is activated.
+Live-home assessments keep eligible queued/in-progress work pending and refuse
+closed or superseded sources.
+
+The current public schema has a distinct `v0.11` identity and accepts prior
+`v0.10` records unchanged. The exact pre-change `v0.10` schema is retained
+beside it and in the compiled resources. It rejects the new unknown state and
+closed-source field; an older reader must report that limitation rather than
+claim a complete reading. The current source and embedded bytes are identical
+and bound in `runtime_core/MANIFEST.json`. The historical transition table
+above is unchanged. Local checks use owned stdio peers and actual REC storage;
+they establish no native walkthrough or supplier behavior.

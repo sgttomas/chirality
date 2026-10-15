@@ -424,6 +424,59 @@ because the App always sends both explicitly on `thread/start` (CS-8), the
 configured default never selects a conversation's model. `Model.isDefault`
 from `model/list` may be shown as Codex's own label, never preselected.
 
+#### Current native provider admission
+
+Ordinary Start, Continue as and a clean trial share the current Rust start
+receiver. Before it dispatches `thread/start`, it reads `config/read` from
+that actual Host, full H5 generation and working folder. A private, non-Serde
+receipt binds the chosen provider/model/folder to that reading. The original
+source and exact destination are checked again after the frame-writer queue;
+any newer `config/read` for that same known source/folder, including the
+delegation reader, invalidates an older receipt even if it is unavailable.
+A read with no reported request cwd establishes no folder. A reading of another folder
+or Host supplies no replacement authority.
+
+This implements §2 and LP-1's existing classification: cloud entries require
+built-in OpenAI; local entries require a configured Responses provider without
+a credential element. At stock 0.160.0, a fresh credential-free default home
+reports an explicit empty `model_providers` map, and a custom `openai`
+definition is refused by `config/read` as a reserved built-in ID. A custom
+anonymous definition reports its nullable credential channels explicitly and
+`requires_openai_auth:false`. The receiver requires that reported coverage;
+missing maps/channels, malformed known-field shapes, untyped new fields and
+uncertain header/query roles are
+unavailable, never inferred anonymous. Explicit authentication fields,
+Authorization/API-key headers and identified query/user-info credentials are
+not offered. Fixed non-auth HTTP header roles remain supported. A Responses
+model-server URL must be a parseable HTTP(S) URL for this receiving path;
+unsupported transports are unavailable. Nonloopback HTTP(S) addresses remain
+eligible. Neither address nor the configured default chooses the entry.
+
+The assurance is classification at the native observation cut, not a
+configuration/destination lock: Codex supplies no version-conditioned
+`thread/start` in this path. A later external edit without another observation
+is unobserved. `openai_base_url` does not itself redefine the built-in entry;
+this receiver claims no destination guarantee, credential presence/validity,
+account sign-in completion or provider/model availability. It neither rewrites
+configuration nor silently tries another provider.
+
+Whole configurations and native error messages can contain credentials. This
+private read projects an outcome immediately for public request evidence,
+capture/journals and canonical client errors; only its private waiter consumes
+the original reply to classify. Every wait ends and drains its own receiver,
+including malformed/error/timeout/stale reads; later replies stay reduced.
+Refusals contain no configuration values and flow through the existing visible
+message and role-refusal publisher. An unassociated response/malformed diagnostic from this known
+private configuration source is withheld with an unattributed diagnostic limit.
+A valid native server request sharing a client numeric ID retains its separate
+method/params consumer and mandatory reply; its ID does not make it a config
+response.
+This is not a new human act or an authentication gate. Synthetic Host/source,
+queued-currentness and actual refusal-publication/display regressions are in
+`app/src-tauri/src/access_provider_tests.rs` and
+`app/tests/access-provider.test.mjs`; the stock metadata controls read only
+fresh file-auth scratch configurations and make no model/authentication calls.
+
 ### 5.4.1 Explicit project context and unknown view (CC-ACCESS-EXPLICIT-PROJECT-CONTEXT)
 
 Root/shared supplies an actual configured/opened App project reference or
@@ -820,6 +873,43 @@ AK-5, AK-6's storage effect and AK-10 need an observation with a key, and the
 owner chose not to observe sign-in or API-key flows now (DECISION-L L-6 A),
 so these rows stay labelled as resting on the protocol types at 0.158.0; the
 question returns at the phase review if the design needs it.
+
+### Current supplier receiving check (0.160.0)
+
+The opt-in maintained check `app/supplier_checks/local_auth.py` exercises
+the identified stock macOS arm64 0.160.0 binary (SHA256
+`112fae7a5a1223e673c8a1791d32338f37df8b527ff1159bb8adac6c4dbf1b4b`).
+This is separate from the 0.158.0 definition-pin rows above. Its three
+synthetic cases capture ten loopback Responses requests and return HTTP400
+without prediction. Each case uses a fresh Codex and OS home, an environment
+without inherited credential variables, file authentication and a
+localhost-only OS sandbox. Only a generated invented canary is supplied;
+the check never reads the native auth file and removes its owned auth leaf
+even after a failed evidence write. Retained RPC frames are redacted before
+storage and Native stderr is discarded before credential transfer.
+
+With `requires_openai_auth = true`, native API-key login returns
+`{type: "apiKey"}`, account reads report that kind, and the loopback request's
+Bearer header exactly matches the invented canary both hot and after a
+Native restart. `config/read`, with and without layers, omits the canary.
+Native logout removes the file-auth leaf; account reads and requests remain
+unauthenticated after a second restart. With the flag false, login still
+creates the file-auth leaf, but account reads remain null and no captured
+request carries authorization. The forced-ChatGPT case requires the actual
+correlated native API-key login error, no auth leaf and no provider request;
+a timeout or process exit cannot pass as a policy refusal.
+
+The required-auth case also sends an unauthenticated request before login
+and after logout: the flag does not establish an authentication gate.
+This fixture establishes carrier and storage-effect observations only for
+the identified supplier and invented endpoint. It validates no real key,
+actual provider, model result, ChatGPT replacement or App integration.
+Authenticated local access remains unoffered, and OI-010 remains open.
+The parameterized check emits its exact script/helper/protocol hashes and
+redacted results into fresh private scratch; no dated witness is required
+to repeat it. `app/supplier_checks/test_local_auth.py` checks the exact
+header/request and refusal oracles, redaction, both shared stderr modes and
+cleanup failure paths without running the supplier.
 
 ## 11. Local providers and the handoff to DEL-05-01 (REQ-003, REQ-008)
 

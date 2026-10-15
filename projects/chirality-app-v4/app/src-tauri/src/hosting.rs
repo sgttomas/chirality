@@ -35,6 +35,8 @@ mod request_event_join;
 pub(crate) mod call_custody;
 #[path = "hosting_successor.rs"]
 pub(crate) mod successor;
+#[path = "process_group_custody.rs"]
+pub(crate) mod process_group_custody;
 #[path = "attachment_custody.rs"]
 pub mod attachment_custody;
 use attachment_custody::AttachmentCustody;
@@ -190,6 +192,8 @@ struct Inner {
     malformed: u64,
     pending: HashMap<String, (usize, Sender<Value>)>,
     source_requests: HashMap<String, SourceEvidence>,
+    provider_read_revisions: HashMap<String,(Value,String)>,
+    private_config_channels: Vec<Value>,
     server_requests: RequestRegister,
     recovery: Option<Arc<Mutex<RecoveryLedger>>>,
     /// The ledger's bounded snapshot and its held entries (DEL-01-02 §7):
@@ -236,6 +240,10 @@ struct Inner {
     child_pid: Option<i32>,
 }
 
+#[path = "access_provider.rs"]
+mod access_provider;
+pub(crate) use access_provider::ProviderAdmission;
+
 // Non-deserializable capabilities issued only by the actual Host sender.
 #[derive(Clone)]
 pub struct SourceRequest {
@@ -263,6 +271,7 @@ struct SourceEvidence {
     auth_response_shape: Option<bool>,
     source_pipe:Option<(u64,(u64,u64))>,
     records_project: Option<records_continuity::Project>,
+    private_config: bool,
 }
 impl SourceRequest {
     pub fn generation(&self) -> &Value { &self.generation }
@@ -283,7 +292,7 @@ impl SourceRequest {
         let Some(e) = i.source_requests.get(&self.frame["id"].to_string()) else { return json!({"outcome":"source-record-unavailable"}); };
         let record = &i.client_requests[e.index];
         json!({"generation":self.generation,"home":self.generation["home"],"requestIdentity":self.frame["id"],"requestRef":self.request_ref,
-            "frameEvidence":if e.auth_projection{"explicit redacted account projection; not original wire bytes"}else if e.response.as_ref().is_some_and(is_delegation_withheld){"original source frame; its reply is kept reduced to its outcome (delegation-availability read, NPTD §7.1), not as received"}else{"original source frame"},"responseReduced":e.response.as_ref().is_some_and(is_delegation_withheld),"sensitiveFieldsRedacted":e.auth_projection,"authPolicyStanding":e.auth_policy_standing,"authResponseShapeValid":e.auth_response_shape,"attemptedFrame":self.frame,"sentFrame":if e.written {Some(&self.frame)}else{None},"writeAttemptInProgress":e.write_attempt_in_progress,"effectiveWriteOutcome":if e.write_attempt_in_progress {"unknown while actual write is in progress"}else if e.written{"complete source write observed"}else{"no complete source write observed"},"lastClientObservation":record,"writeResult":if e.write_attempt_in_progress {"write-in-progress"}else if e.written {"written"}else if e.write_error.is_some(){"write-failed"}else if record["writeResult"]=="not-attempted"{"last-prewrite-observation"}else{"reserved/no complete write observation"},"actualWriteAttemptObserved":e.attempt_position.is_some(),"noAttemptCause":if e.attempt_position.is_none(){e.source_limit.as_ref()}else{None},"canonicalProjectionAvailable":record.is_object()&&e.source_limit.is_none()&&!(e.write_error.is_some()&&e.response.is_some()),"sourceLimit":e.source_limit,
+            "frameEvidence":if e.private_config{"private provider configuration outcome projection; not original wire bytes"}else if e.auth_projection{"explicit redacted account projection; not original wire bytes"}else if e.response.as_ref().is_some_and(is_delegation_withheld){"original source frame; its reply is kept reduced to its outcome (delegation-availability read, NPTD §7.1), not as received"}else{"original source frame"},"responseReduced":e.private_config||e.response.as_ref().is_some_and(is_delegation_withheld),"sensitiveFieldsRedacted":e.auth_projection||e.private_config,"authPolicyStanding":e.auth_policy_standing,"authResponseShapeValid":e.auth_response_shape,"attemptedFrame":self.frame,"sentFrame":if e.written {Some(&self.frame)}else{None},"writeAttemptInProgress":e.write_attempt_in_progress,"effectiveWriteOutcome":if e.write_attempt_in_progress {"unknown while actual write is in progress"}else if e.written{"complete source write observed"}else{"no complete source write observed"},"lastClientObservation":record,"writeResult":if e.write_attempt_in_progress {"write-in-progress"}else if e.written {"written"}else if e.write_error.is_some(){"write-failed"}else if record["writeResult"]=="not-attempted"{"last-prewrite-observation"}else{"reserved/no complete write observation"},"actualWriteAttemptObserved":e.attempt_position.is_some(),"noAttemptCause":if e.attempt_position.is_none(){e.source_limit.as_ref()}else{None},"canonicalProjectionAvailable":record.is_object()&&e.source_limit.is_none()&&!(e.write_error.is_some()&&e.response.is_some()),"sourceLimit":e.source_limit,
             "outcome":if e.write_attempt_in_progress{json!("unknown/in-progress")}else if e.write_error.is_some()&&e.response.is_some(){json!("native response and failed write both observed; canonical projection unavailable")}else if e.written&&e.response.is_some()&&e.source_limit.is_some(){json!(observed_response_outcome(e.response.as_ref().unwrap()))}else if record.is_object(){record["outcome"].clone()}else if e.written&&e.response.is_some(){json!(observed_response_outcome(e.response.as_ref().unwrap()))}else{json!("reserved/canonical projection unavailable; outcome unknown")},
             "waitingEnded":record.get("waitingEnded").and_then(Value::as_bool).or_else(||e.observation_base.get("waitingEnded").and_then(Value::as_bool)).unwrap_or(false),"response":e.response,"writeError":e.write_error,
             "sourceCurrent":i.generation==self.generation&&i.state=="ready"&&!i.server_requests.is_closed(&self.generation)})
@@ -580,7 +589,8 @@ pub struct Host {
     distribution_store: Mutex<Option<Result<Arc<crate::distribution_store::Store>, String>>>,
     inner: Arc<(Mutex<Inner>, Condvar)>,
     stdin: Mutex<Option<ChildStdin>>,
-    child: Mutex<Option<Child>>,
+    child: Mutex<Option<Arc<process_group_custody::OwnedProcess>>>,
+    retired_processes: Mutex<Vec<Arc<process_group_custody::OwnedProcess>>>,
     records_activity: Mutex<Option<(Value,crate::storage::Ownership)>>,
     #[cfg(test)]
     aa_before_write: Mutex<Option<Box<dyn FnOnce(&Host, &SourceRequest) + Send>>>,
@@ -615,7 +625,13 @@ pub struct Host {
     #[cfg(test)]
     before_delegation_wait: Mutex<Option<Box<dyn Fn(&SourceRequest) + Send>>>,
     #[cfg(test)]
+    before_provider_wait: Mutex<Option<Box<dyn Fn(&Host,&SourceRequest) + Send>>>,
+    #[cfg(test)]
     before_eof_gate: Mutex<Option<Box<dyn FnOnce() + Send>>>,
+    #[cfg(test)]
+    after_eof_work: Mutex<Option<Box<dyn FnOnce() + Send>>>,
+    #[cfg(test)]
+    before_startup_eof_signal: Mutex<Option<Box<dyn FnOnce(i32) + Send>>>,
     #[cfg(test)]
     before_stop_cleanup: Mutex<Option<Box<dyn FnOnce() + Send>>>,
     #[cfg(test)]
@@ -661,6 +677,7 @@ impl Host {
             inner: Arc::new((Mutex::new(inner), Condvar::new())),
             stdin: Mutex::new(None),
             child: Mutex::new(None),
+            retired_processes: Mutex::new(Vec::new()),
             records_activity: Mutex::new(None),
             #[cfg(test)]
             aa_before_write: Mutex::new(None),
@@ -687,7 +704,13 @@ impl Host {
             #[cfg(test)]
             before_delegation_wait: Mutex::new(None),
             #[cfg(test)]
+            before_provider_wait: Mutex::new(None),
+            #[cfg(test)]
             before_eof_gate: Mutex::new(None),
+            #[cfg(test)]
+            after_eof_work: Mutex::new(None),
+            #[cfg(test)]
+            before_startup_eof_signal: Mutex::new(None),
             #[cfg(test)]
             before_stop_cleanup: Mutex::new(None),
             #[cfg(test)]
@@ -763,7 +786,7 @@ impl Host {
         }
     }
     pub fn snapshot(&self) -> Value {
-        let (mut snapshot,capability)={let i=self.inner.0.lock().unwrap();(Self::snapshot_inner(&i),i.records_capability.clone())};
+        let (mut snapshot,capability)={let mut i=self.inner.0.lock().unwrap();(Self::snapshot_inner(&mut i),i.records_capability.clone())};
         Self::with_records_capability(&mut snapshot,capability);snapshot
     }
     /// RS §13.9: the capability's account, read with no Host lock held (it
@@ -805,10 +828,12 @@ impl Host {
         let i=self.inner.0.lock().unwrap();
         i.conversation_turns.iter().find(|t|t["generation"]==*generation&&t["threadId"]==thread_id&&t["turnId"]==turn_id).cloned()
     }
-    fn snapshot_inner(i: &Inner) -> Value {
+    fn snapshot_inner(i: &mut Inner) -> Value {
+        Self::observe_reply_writes(i);
         json!({
             "state": i.state,
             "generation": i.generation,
+            "generationClosed": i.server_requests.is_closed(&i.generation),
             "supplierStanding": i.supplier_standing,
             "networkDisclosure": network_disclosure(),
             "verification": i.verification,
@@ -881,8 +906,8 @@ impl Host {
     /// Snapshot then all later frames in receipt order. Detach is simply ceasing
     /// calls; it never touches the pipe. A foreign/closed cursor gets a gap marker.
     pub fn observe(&self, generation: &Value, after: u64) -> Value {
-        let i = self.inner.0.lock().unwrap();
-        let snapshot = Self::snapshot_inner(&i);
+        let mut i = self.inner.0.lock().unwrap();
+        let snapshot = Self::snapshot_inner(&mut i);
         let capability = i.records_capability.clone();
         let gap = *generation != i.generation || after > i.receipt_position || !matches!(i.state.as_str(), "ready" | "handshaking");
         let frames: Vec<_> = i.journal.iter().filter(|e| {
@@ -927,12 +952,16 @@ impl Host {
         }
     }
     fn persist_requests(i:&mut Inner){
+        let requests = i.server_requests.entries();
+        Self::persist_request_observations(i, &requests);
+    }
+    fn persist_request_observations(i: &mut Inner, requests: &[Value]) {
         if i.recovery.is_none(){return;}
         // Each request's summary is compared with the held entries, the queued
         // facts and the summaries queued before it here, searched in place.
         let held=i.recovery_snapshot.as_ref().map(|o|Arc::clone(&o.rows)).unwrap_or_default();
         let queue=Arc::clone(&i.pending_recovery);let mut facts=queue.facts.lock().unwrap();
-        for request in i.server_requests.entries(){match RecoveryLedger::request_summary_entry_in(&request,crate::recovery::History::new(&held,facts.make_contiguous())){Ok(Some(entry))=>facts.push_back(entry),Ok(None)=>{},Err(error)=>{i.recovery_error=Some(error.clone());i.recovery_projection_errors.push(json!({"generation":request["generation"],"requestIdentity":request["requestId"],"method":request["method"],"limit":error,"standing":"pointer projection unavailable; original request source retained"}));}}}
+        for request in requests {match RecoveryLedger::request_summary_entry_in(request,crate::recovery::History::new(&held,facts.make_contiguous())){Ok(Some(entry))=>facts.push_back(entry),Ok(None)=>{},Err(error)=>{i.recovery_error=Some(error.clone());i.recovery_projection_errors.push(json!({"generation":request["generation"],"requestIdentity":request["requestId"],"method":request["method"],"limit":error,"standing":"pointer projection unavailable; original request source retained"}));}}}
     }
     /// Nonblocking writer admission: captured facts stay queued when another
     /// actual writer owns IO. No service/store or silent drop is introduced.
@@ -1307,15 +1336,14 @@ impl Host {
             .env("CODEX_HOME", &cfg.codex_home)
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())
-            .stderr(Stdio::piped())
-            .process_group(0); // H11: the supplier and its descendants are one unit.
+            .stderr(Stdio::piped()); // owning spawn applies process_group(0)
         for v in CREDENTIAL_VARS {
             cmd.env_remove(v);
         }
         if self.runtime_custody.lock().unwrap().as_ref().is_some_and(|c|c.end_observation.lock().unwrap().is_some()){return Err("App session end observed; native source not spawned".into());}
         let home_identity=format!("app-home:{}",sha256_hex(cfg.codex_home.as_os_str().as_encoded_bytes()));
         if self.spawn_counters.lock().unwrap().get(&home_identity)==Some(&u64::MAX){return Err("home spawn counter exhausted; native source not spawned, no reuse".into());}
-        let mut child = match cmd.spawn() {
+        let child = match process_group_custody::OwnedProcess::spawn(&mut cmd) {
             Ok(c) => c,
             Err(e) => {
                 let mut i = self.inner.0.lock().unwrap();
@@ -1325,37 +1353,41 @@ impl Host {
                 return Err(format!("spawn failed: {e}"));
             }
         };
-        if prospective.is_some() {
+        {
             // Retain local child ownership until exact prospective allocation.
             let allocation = {
                 let mut i = self.inner.0.lock().unwrap();
                 self.allocate_home_spawn(&mut i, home_identity.clone()).and_then(|_| {
                     let allocated = json!({"appSession":i.app_session,"home":i.home,"spawnCounter":i.spawn_counter});
-                    if prospective.as_ref() != Some(&allocated) { Err("allocated generation contradicted prospective tuple".into()) } else { Ok(()) }
+                    if prospective.is_some() && prospective.as_ref() != Some(&allocated) { Err("allocated generation contradicted prospective tuple".into()) } else { Ok(()) }
                 })
             };
             if let Err(e) = allocation {
-                successor::terminate(&mut child);
+                let cleanup=child.abort_spawn();
+                if !child.released(){self.retired_processes.lock().unwrap().push(Arc::clone(&child));}
                 let mut i = self.inner.0.lock().unwrap();
-                self.lt(&mut i,"LT-08","spawn-failed","halted-after-repeated-failure",json!({"failure":format!("{e}; child reaped"),"failureCount":1}));
+                self.lt(&mut i,"LT-08","spawn-failed","halted-after-repeated-failure",json!({"failure":format!("{e}; actual spawn cleanup: {}",cleanup.report()),"failureCount":1}));
                 return Err(e);
             }
         }
-        let stdout = child.stdout.take().unwrap();
-        let stderr = child.stderr.take().unwrap();
+        let stdout = child.take_stdout().unwrap();
+        let stderr = child.take_stderr().unwrap();
         let source_gate = match successor_gate { Some(guard) => guard, None => self.attachment_gate.lock().unwrap() };
-        *self.stdin.lock().unwrap() = child.stdin.take();
+        *self.stdin.lock().unwrap() = child.take_stdin();
         let pid = child.id() as i32;
-        *self.child.lock().unwrap() = Some(child);
+        let old=self.child.lock().unwrap().replace(Arc::clone(&child));
+        if let Some(old)=old {if !old.released(){old.maintain();self.retired_processes.lock().unwrap().push(old);}}
+        self.retired_processes.lock().unwrap().retain(|p|!p.released());
         {
             let mut i = self.inner.0.lock().unwrap();
             // Allocate only after actual spawn, preserving home counter across
             // recreated Hosts within this same genuine App custody.
-            if prospective.is_none() { self.allocate_home_spawn(&mut i,home_identity)?; }
             i.attachment_pipe_epoch += 1;
             i.aa_capture=None;
             i.cce_offer=None;
             i.generation = json!({"appSession": i.app_session, "home": i.home, "spawnCounter": i.spawn_counter});
+            child.bind(&i.generation)?;
+            if let Some(limit)=child.observation_limit(){let g=i.generation.clone();i.journal.push(json!({"generation":g,"class":"process-exit-observation-unavailable","reason":limit,"standing":"actual spawned custody retained; no observed exit inferred"}));}
             i.start_admission=Some(StartAdmission::Installed{attempt,generation:i.generation.clone()});
             i.receipt_position = 0;
             i.held.clear();
@@ -1419,13 +1451,13 @@ impl Host {
         let _gate = self.attachment_gate.lock().unwrap();
         let mut i = self.inner.0.lock().unwrap();
         Self::check_successor_handshake(&i, generation, attempt)?;
-        if let Some(pid) = i.child_pid {
-            // The checked current source remains under the same gate as Stop/EOF.
-            unsafe { libc::killpg(pid, libc::SIGKILL); }
-        }
+        let process=self.child.lock().unwrap().as_ref().filter(|p|p.belongs_to(generation)).cloned();
+        let cleanup=process.as_ref().map(|p|p.signal(libc::SIGKILL));
         Self::deliver_never_ready(&mut i);
         let counts = Self::close_generation(&mut i);
         self.lt(&mut i,"LT-11","handshake-failed","halted-after-repeated-failure",json!({"failure":failure,"failureCount":1,"closedGeneration":counts}));
+        if let Some(Err(e))=cleanup{i.journal.push(json!({"generation":generation,"class":"process-cleanup-unavailable","reason":e}));}
+        if let Some(process)=process{process.maintain();}
         Err(failure)
     }
     fn finish_successor_handshake(&self, generation: &Value, attempt: u64, caps: Value, response: Result<Value,String>) -> Result<Value,String> {
@@ -1509,12 +1541,14 @@ impl Host {
         }
         let generation = i.generation.clone();
         let cause=if i.stop_record.is_some() {if i.stop_record.as_ref().is_some_and(|s|s["reason"]=="App quit"||s["reason"]==crate::app_quit::QUIT_STOP_REASON) {"app-quit"} else if i.stop_record.as_ref().is_some_and(|s|s["reason"]=="system termination") {"system-termination"} else {"supplier-stop"}} else {"supplier-exit"};
+        Self::observe_reply_writes(i);
+        let (ended, settlements) = i.server_requests.close_for_observed(&generation, cause);
+        Self::persist_request_observations(i, &settlements);
         i.execution_custody.close(&generation,cause,&i.server_requests.entries(),&now_rfc3339());
         Self::persist_execution(i);
         Self::persist_recovery(i);
         Self::stop_requests_generation_closed(i,&generation);
         Self::oauth_lost(i,&generation);
-        let ended = i.server_requests.close_for(&generation, cause);
         Self::persist_requests(i);
         for turn in &mut i.conversation_turns {
             if turn["generation"] == generation { turn["observationEnded"] = json!(true); }
@@ -1527,13 +1561,11 @@ impl Host {
     pub fn answer_server_request(&self, generation:&Value,id:&Value,answer:&Value,origin:&str,actor:Option<&str>)->Result<Value,String>{
         let(frame,bound)={let mut i=self.inner.0.lock().unwrap();let frame=i.server_requests.prepare(generation,id,answer,origin,actor)?;let bound=self.capture_pipe(&i);(frame,bound)};
         let result=bound.and_then(|bound|self.write_reply(bound,&frame));
-        if result.is_err(){let mut i=self.inner.0.lock().unwrap();if i.generation==*generation&&!i.server_requests.is_closed(generation){i.server_requests.written(generation,id,false);Self::persist_requests(&mut i);}}
         self.flush_recovery_observations();result?;Ok(json!({"replyWriteResult":"written","acknowledgment":"not-observed"}))
     }
     pub fn error_server_request(&self,generation:&Value,id:&Value,error:&Value,origin:&str)->Result<Value,String>{
         let(frame,bound)={let mut i=self.inner.0.lock().unwrap();let frame=i.server_requests.prepare_error(generation,id,error,origin)?;let bound=self.capture_pipe(&i);(frame,bound)};
         let result=bound.and_then(|bound|self.write_reply(bound,&frame));
-        if result.is_err(){let mut i=self.inner.0.lock().unwrap();if i.generation==*generation&&!i.server_requests.is_closed(generation){i.server_requests.written(generation,id,false);Self::persist_requests(&mut i);}}
         self.flush_recovery_observations();result?;Ok(json!({"replyWriteResult":"written","acknowledgment":"not-observed"}))
     }
     fn capture_pipe(&self,i:&Inner)->Result<BoundPipe,String>{
@@ -1560,11 +1592,27 @@ impl Host {
         // cannot be overwritten by a late locally prepared reply.
         !i.journal.iter().chain(i.held.iter()).any(|e|e["generation"]==*generation&&e["frame"]["method"]=="serverRequest/resolved"&&e["frame"]["params"]["requestId"]==frame["id"]&&e["frame"]["params"]["threadId"]==entry["nativeParameters"]["threadId"])
     }
+    fn observe_reply_writes(i: &mut Inner) {
+        let settlements = i.server_requests.observe_completed_reply_writes();
+        if !settlements.is_empty() {
+            Self::persist_request_observations(i, &settlements);
+            Self::persist_requests(i);
+            let requests = i.server_requests.entries();
+            for settlement in &settlements {
+                let generation = &settlement["generation"];
+                if i.server_requests.is_closed(generation) {
+                    let context = settlement["endContext"].as_str().unwrap_or("supplier-exit");
+                    i.execution_custody.closed_request_outcomes(generation,context,&requests,&now_rfc3339());
+                }
+            }
+            Self::persist_recovery(i);
+        }
+    }
     fn write_reply(&self,mut bound:BoundPipe,frame:&Value)->Result<(),String>{
         let bytes=Self::frame_bytes(frame)?;let serial=self.frame_write.lock().unwrap();
-        {let _gate=self.attachment_gate.lock().unwrap();let i=self.inner.0.lock().unwrap();self.check_bound(&i,&bound)?;if !Self::reply_eligible(&i,&bound.generation,frame){return Err("reply no longer eligible after source/frame wait; nothing sent".into());}}
-        let result=Self::write_complete(&mut bound.file,&bytes);drop(serial);
-        let mut i=self.inner.0.lock().unwrap();if i.generation!=bound.generation||i.server_requests.is_closed(&bound.generation){return Err("reply write finished for closed/superseded source; no successor settlement inferred".into());}
+        let observation={let _gate=self.attachment_gate.lock().unwrap();let mut i=self.inner.0.lock().unwrap();self.check_bound(&i,&bound)?;if !Self::reply_eligible(&i,&bound.generation,frame){return Err("reply no longer eligible after source/frame wait; nothing sent".into());}i.server_requests.begin_reply_write(&bound.generation,&frame["id"])?};
+        let result=Self::write_complete(&mut bound.file,&bytes);observation.complete(result.is_ok());drop(serial);
+        let mut i=self.inner.0.lock().unwrap();Self::observe_reply_writes(&mut i);if i.generation!=bound.generation||i.server_requests.is_closed(&bound.generation){drop(i);self.flush_recovery_observations();return Err("reply write finished for closed/superseded source; original result retained, no successor settlement inferred".into());}
         i.server_requests.written(&bound.generation,&frame["id"],result.is_ok());Self::persist_requests(&mut i);drop(i);self.flush_recovery_observations();result
     }
 
@@ -1594,6 +1642,9 @@ impl Host {
         self.request_begin_with_offer(method,params,initiator,handshake,expected_generation,private_credential,oauth_cancel,aa_reservation,None,None)
     }
     fn request_begin_with_offer(&self,method:&str,params:Value,initiator:Value,handshake:bool,expected_generation:Option<&Value>,private_credential:bool,oauth_cancel:Option<&SourceRequest>,aa_reservation:Option<request_event_join::CaptureReservation>,cce_intent:Option<call_custody::OfferIntent>,records_project:Option<records_continuity::Project>)->Result<SourceRequest,String>{
+        self.request_begin_with_access_offer(method,params,initiator,handshake,expected_generation,private_credential,oauth_cancel,aa_reservation,cce_intent,records_project,false,None)
+    }
+    fn request_begin_with_access_offer(&self,method:&str,params:Value,initiator:Value,handshake:bool,expected_generation:Option<&Value>,private_credential:bool,oauth_cancel:Option<&SourceRequest>,aa_reservation:Option<request_event_join::CaptureReservation>,cce_intent:Option<call_custody::OfferIntent>,records_project:Option<records_continuity::Project>,private_config:bool,provider_admission:Option<&ProviderAdmission>)->Result<SourceRequest,String>{
         #[cfg(test)] let cce_selected=cce_intent.is_some();
         let (tx, rx) = channel();
         let mut i = self.inner.0.lock().unwrap();
@@ -1605,6 +1656,7 @@ impl Host {
         }
         if expected_generation.map(|g|g!=&i.generation||i.server_requests.is_closed(g)).unwrap_or(false) {return Err(format!("refused-not-sent: {method} generation changed before request registration"));}
         Self::check_send_admitted(&i,method)?;
+        if let Some(proof)=provider_admission{self.check_provider_admission(&i,proof,&params)?;}
         if expected_generation.is_some()&&matches!(method,"turn/start"|"turn/interrupt"|"turn/steer") {Self::check_conversation_request(&i,method,&params)?;}
         let oauth_mode=if method=="account/login/start" {match params["type"].as_str(){Some("chatgpt")=>Some(oauth_control::OAuthMode::Chatgpt),Some("chatgptDeviceCode")=>Some(oauth_control::OAuthMode::DeviceCode),_=>None}}else{None};
         if oauth_mode.is_some(){
@@ -1621,12 +1673,16 @@ impl Host {
         let bytes=Self::frame_bytes(&raw_frame)?;drop(raw_frame);drop(params);
         if auth_rpc::account_method(method)&&!i.account_channels.contains(&i.generation){let g=i.generation.clone();i.account_channels.push(g);}
         let request=SourceRequest {source:Arc::downgrade(&self.inner),generation:i.generation.clone(),frame:frame.clone(),request_ref:format!("{}:client:{id}",opaque_id("host-request")?),receiver:Arc::new(Mutex::new(rx))};
+        if method=="config/read" {if let Some(cwd)=frame["params"]["cwd"].as_str().filter(|cwd|!cwd.is_empty()){
+            i.provider_read_revisions.insert(cwd.to_owned(),(request.generation.clone(),request.request_ref.clone()));
+        }}
+        if private_config&&!i.private_config_channels.contains(&request.generation){i.private_config_channels.push(request.generation.clone());}
         let cce_bound=cce_intent.map(|intent|call_custody::Offer::bind(intent,&self.inner,&request)).transpose().map_err(|e|e.message())?;
         // This private receipt account is separate from the published client
         // record schema; only completion of the actual write sets sentFrame.
         let rec=json!({"recordKind":"client-request","generation":i.generation,"requestIdentity":id,"method":method,"initiator":initiator});
         i.client_requests.push(Value::Null);let idx=i.client_requests.len()-1;i.pending.insert(id.to_string(),(idx,tx));
-        i.source_requests.insert(id.to_string(),SourceEvidence {request:request.clone(),index:idx,written:false,write_error:None,response:None,attachment:None,reserved_sender:None,write_attempt_in_progress:false,attempt_position:None,response_position:None,observation_base:rec,source_limit:None,auth_projection,auth_policy_standing:None,auth_response_shape:None,source_pipe:None,records_project});
+        i.source_requests.insert(id.to_string(),SourceEvidence {request:request.clone(),index:idx,written:false,write_error:None,response:None,attachment:None,reserved_sender:None,write_attempt_in_progress:false,attempt_position:None,response_position:None,observation_base:rec,source_limit:None,auth_projection,auth_policy_standing:None,auth_response_shape:None,source_pipe:None,records_project,private_config});
         if let Some(mode)=oauth_mode{
             let pin=LoginSourcePin{generation:request.generation.clone(),rpc_id:json!(id),request_ref:request.request_ref.clone(),mode};
             let controller=oauth_control::Controller::begin(&pin);
@@ -1653,6 +1709,7 @@ impl Host {
             {let _gate=self.attachment_gate.lock().unwrap();let mut i=self.inner.0.lock().unwrap();self.check_bound(&i,&bound)?;
                 if !i.pending.contains_key(&id.to_string()){return Err("request no longer pending before actual source write".into());}
                 Self::check_send_admitted(&i,method)?;
+                if let Some(proof)=provider_admission{self.check_provider_admission(&i,proof,&frame["params"])?;}
                 if expected_generation.is_some()&&matches!(method,"turn/start"|"turn/interrupt"|"turn/steer"){Self::check_conversation_request_excluding(&i,method,&frame["params"],Some(&json!(id)))?;}
                 if let Some(original)=oauth_cancel{
                     let state=Self::oauth_scope(&i,original)?;
@@ -2139,20 +2196,26 @@ impl Host {
             let bytes=Self::frame_bytes(&frame)?;if bytes.len()>2048{return Err("offered response frame limit".into())}
             let serial=self.frame_write.lock().unwrap();
             #[cfg(test)] {let hook=self.cce_before_cut.lock().unwrap().take();if let Some(h)=hook{h(self,call);}}
-            {let _gate=self.attachment_gate.lock().unwrap();let i=self.inner.0.lock().unwrap();self.check_bound(&i,&bound)?;Self::cce_check_call(&i,call)?;
+            let observation={let _gate=self.attachment_gate.lock().unwrap();let mut i=self.inner.0.lock().unwrap();self.check_bound(&i,&bound)?;Self::cce_check_call(&i,call)?;
                 let e=i.server_requests.original_offered(f.index,&i.generation,&f.rpc.view()).ok_or("original offered entry absent")?;
                 if e["state"]!="settling"||e["replyWriteResult"]!="not-attempted"||f.resolution.load(Ordering::SeqCst)!=0{return Err("original offered reply no longer eligible".into())}
-                f.cut.store(i.receipt_position,Ordering::SeqCst);f.state.compare_exchange(1,2,Ordering::SeqCst,Ordering::SeqCst).map_err(|_|"offered attempt no longer preparable")?;}
+                f.cut.store(i.receipt_position,Ordering::SeqCst);f.state.compare_exchange(1,2,Ordering::SeqCst,Ordering::SeqCst).map_err(|_|"offered attempt no longer preparable")?;
+                let generation=i.generation.clone();i.server_requests.begin_reply_write(&generation,&f.rpc.view())?};
             #[cfg(test)] {let hook=self.cce_after_cut.lock().unwrap().take();if let Some(h)=hook{h(self,call);}}
             #[cfg(test)] let write=match self.cce_simulated_write.lock().unwrap().take(){Some(reason)=>Err(format!("simulated offered write settlement: {reason}")),None=>Self::write_complete(&mut bound.file,&bytes)};
             #[cfg(not(test))] let write=Self::write_complete(&mut bound.file,&bytes);
+            observation.complete(write.is_ok());
             f.state.store(if write.is_ok(){3}else{4},Ordering::SeqCst);
             #[cfg(test)] {let hook=self.cce_after_write.lock().unwrap().take();if let Some(h)=hook{h(self,call);}}
             drop(serial);
             let mut i=self.inner.0.lock().unwrap();
-            if !f.generation.matches(&i.generation)||i.server_requests.is_closed(&i.generation){return Err("offered local IO completed after closure; private original outcome retained, canonical settlement unavailable".into())}
-            if i.server_requests.original_offered(f.index,&i.generation,&f.rpc.view()).is_none_or(|e|e["state"]!="settling"){return Err("offered local IO observed; original canonical settlement unavailable".into())}
-            let generation=i.generation.clone();i.server_requests.written(&generation,&f.rpc.view(),write.is_ok());f.canonical.store(true,Ordering::SeqCst);Self::persist_requests(&mut i);drop(i);self.flush_recovery_observations();write
+            Self::observe_reply_writes(&mut i);
+            if !f.generation.matches(&i.generation)||i.server_requests.is_closed(&i.generation){return Err("offered local IO completed for closed/replaced source; original result retained, no delivery or successor settlement inferred".into())}
+            if i.server_requests.original_offered(f.index,&i.generation,&f.rpc.view()).is_none_or(|e|!matches!(e["state"].as_str(),Some("settling"|"answered"|"settle-write-failed"))){return Err("offered local IO observed; original canonical settlement unavailable".into())}
+            let generation=i.generation.clone();i.server_requests.written(&generation,&f.rpc.view(),write.is_ok());
+            // This private flag records this caller's guarded bookkeeping;
+            // an observer/closer can independently retain completed source IO.
+            f.canonical.store(true,Ordering::SeqCst);Self::persist_requests(&mut i);drop(i);self.flush_recovery_observations();write
         })();
         if result.is_err()&&owns_preparation{let _=f.state.compare_exchange(1,5,Ordering::SeqCst,Ordering::SeqCst);}
         result
@@ -2192,7 +2255,7 @@ impl Host {
             let mut association=json!({"submissionRef":submission,"threadId":thread,"supplyRefs":list.supply_refs()});if let Some(turn)=expected_turn{association["expectedTurnId"]=json!(turn);}
             let client=json!({"recordKind":"client-request","generation":generation,"requestIdentity":id,"method":method,"initiator":{"kind":"person-directed"},"writeResult":"not-attempted","outcome":"prepared-not-sent","submissionAssociation":association});
             i.client_requests.push(client.clone());let index=i.client_requests.len()-1;
-            i.source_requests.insert(id.to_string(),SourceEvidence{records_project:None,request:source.clone(),index,written:false,write_error:None,response:None,reserved_sender:Some(tx),write_attempt_in_progress:false,attempt_position:None,response_position:None,observation_base:client.clone(),source_limit:None,auth_projection:false,auth_policy_standing:None,auth_response_shape:None,source_pipe:None,attachment:Some(AttachmentLink{custody:Arc::clone(&custody),records:list.supply_records(),original:client.clone(),limit:None})});(source,client,identity,i.attachment_pipe_epoch)
+            i.source_requests.insert(id.to_string(),SourceEvidence{private_config:false,records_project:None,request:source.clone(),index,written:false,write_error:None,response:None,reserved_sender:Some(tx),write_attempt_in_progress:false,attempt_position:None,response_position:None,observation_base:client.clone(),source_limit:None,auth_projection:false,auth_policy_standing:None,auth_response_shape:None,source_pipe:None,attachment:Some(AttachmentLink{custody:Arc::clone(&custody),records:list.supply_records(),original:client.clone(),limit:None})});(source,client,identity,i.attachment_pipe_epoch)
         };
         // Never hold Inner across file operations. Failure consumes its reserved
         // RPC; partial/uncertain publication cannot authorize native write.
@@ -3090,6 +3153,7 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
 
     fn spawn_reader(self: &Arc<Self>, stdout: std::process::ChildStdout, generation: Value) {
         let me = Arc::clone(self);
+        let process=self.child.lock().unwrap().as_ref().filter(|p|p.belongs_to(&generation)).cloned();
         std::thread::spawn(move || {
             let mut rd = BufReader::new(stdout);
             let mut line = Vec::new();
@@ -3100,7 +3164,9 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
                     Ok(_) => me.on_line(&line, &generation),
                 }
             }
-            me.on_eof(&generation);
+            me.on_eof_process(&generation,process);
+            #[cfg(test)]
+            if let Some(hook)=me.after_eof_work.lock().unwrap().take(){hook();}
         });
     }
 
@@ -3142,15 +3208,27 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
         let next_receipt=i.receipt_position+1;
         if let Some(raw)=parsed.as_ref(){Self::oauth_admit(&mut i,generation,next_receipt,raw,auth_shape);}
         let known_account_channel=i.account_channels.contains(generation);
-        let (frame,projected)=match parsed{Some(frame)if frame.is_object()&&(!known_account_channel||auth_rpc::protocol_envelope(&frame))=>{
+        let known_private_config_channel=i.private_config_channels.contains(generation);
+        // Client and server ID spaces are independent. A valid server request
+        // sharing a client ID retains its actual method/params and reply duty.
+        let private_config=correlated_method.as_deref()==Some("config/read")&&parsed.as_ref().is_some_and(|f|
+            (f.get("method").is_none()||f.get("method").is_some_and(|m|!m.is_string())||f.get("result").is_some()||f.get("error").is_some())
+            &&f.get("id").is_some_and(|id|i.source_requests.get(&id.to_string()).is_some_and(|e|e.private_config)));
+        let unattributed_private_config=known_private_config_channel&&parsed.as_ref().is_some_and(|f|{
+            !private_config&&(f.get("method").is_none()&&safe_reply_id.is_none()||f.get("method").is_some_and(|m|!m.is_string())||f.get("result").is_some_and(|r|r.get("config").is_some())&&correlated_method.as_deref()!=Some("config/read"))
+        });
+        let (frame,projected)=match parsed{Some(frame)if frame.is_object()&&!unattributed_private_config&&(!known_account_channel||auth_rpc::protocol_envelope(&frame))=>{
             auth_rpc::project_received_frame(&frame,correlated_method.as_deref(),safe_reply_id.as_ref(),possible_original_account,known_account_channel)
-        },_ if known_account_channel=>(json!({"observation":"nonprotocol or unparseable diagnostic from known original account source withheld; unattributed, no RPC/method invented"}),true),_ =>(json!(text),false)};
+        },_ if known_private_config_channel=>(json!({"observation":"unassociated response or malformed diagnostic on private configuration source withheld; no RPC or response association invented"}),true),_ if known_account_channel=>(json!({"observation":"nonprotocol or unparseable diagnostic from known original account source withheld; unattributed, no RPC/method invented"}),true),_ =>(json!(text),false)};
+        let private_config_frame=private_config.then(||frame.clone());
+        let frame=if private_config{access_provider::withheld(&frame)}else{frame};
+        let projection_label=if private_config{Some("private provider configuration outcome projection; not original bytes")}else if known_private_config_channel&&projected{Some("private source diagnostic projection; not original bytes")}else if projected{Some("sensitive account projection; not original bytes")}else{None};
         // NPTD §7.1 delegation reads: their result bodies (whole model
         // catalogues, whole configurations) are never journalled.
         let delegation_reply = correlated_method.as_deref().is_some_and(|m| DELEGATION_READ_METHODS.contains(&m)) && frame.get("method").is_none();
         if &i.generation != generation || i.server_requests.is_closed(generation) {
-            let journalled = if delegation_reply { delegation_withheld(&frame) } else { frame };
-            i.journal.push(json!({"generation":generation,"class":"closed-generation-frame","frame":journalled,"sourceProjection":if projected{Some("sensitive account projection; not original bytes")}else{None}}));return;
+            let journalled = if delegation_reply&&!private_config { delegation_withheld(&frame) } else { frame };
+            i.journal.push(json!({"generation":generation,"class":"closed-generation-frame","frame":journalled,"sourceProjection":projection_label}));return;
         }
         i.receipt_position+=1;let pos=i.receipt_position;let gen=i.generation.clone();
         let epoch=i.aa_epoch;let pipe_epoch=i.attachment_pipe_epoch;
@@ -3176,13 +3254,13 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
             if accepted {if let Some(Ok(a))=offered {if let Some(index)=i.server_requests.original_offered_index(&gen,&frame["id"],pos){if let Some(offer)=i.cce_offer.as_mut(){offer.received(&gen,pos,index,&frame,a);cce_call=offer.take();}}}}
             match received {
                 Ok(Some(reply)) => {
-                    match self.capture_pipe(&i){Ok(bound)=>automatic_reply=Some((bound,reply)),Err(_)=>i.server_requests.written(&gen,&frame["id"],false)}
+                    match self.capture_pipe(&i){Ok(bound)=>automatic_reply=Some((bound,reply)),Err(reason)=>i.journal.push(json!({"generation":gen,"class":"request-reply-not-attempted","reason":reason,"requestIdentity":frame["id"]}))}
                 }
                 Ok(None) => {
                     if frame["method"] == "currentTime/read" && capabilities["experimentalApi"] == true {
                         let seconds = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap_or_default().as_secs();
                         if let Ok(reply) = i.server_requests.prepare(&gen, &frame["id"], &json!({"currentTimeAt":seconds}), "app-rule:current-time", None) {
-                            match self.capture_pipe(&i){Ok(bound)=>automatic_reply=Some((bound,reply)),Err(_)=>i.server_requests.written(&gen,&frame["id"],false)}
+                            match self.capture_pipe(&i){Ok(bound)=>automatic_reply=Some((bound,reply)),Err(reason)=>i.journal.push(json!({"generation":gen,"class":"request-reply-not-attempted","reason":reason,"requestIdentity":frame["id"]}))}
                         }
                     }
                 }
@@ -3192,7 +3270,13 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
                 }
             }
         } else if class == "notification" && frame["method"] == "serverRequest/resolved" {
-            i.server_requests.resolved(&gen, &frame["params"]);
+            if i.server_requests.offered_resolution_before_settlement(&gen, &frame["params"]["requestId"]) {
+                i.server_requests.resolved(&gen, &frame["params"]);
+                Self::observe_reply_writes(&mut i);
+            } else {
+                Self::observe_reply_writes(&mut i);
+                i.server_requests.resolved(&gen, &frame["params"]);
+            }
             if let Some(offer)=i.cce_offer.as_ref(){offer.resolution(&gen,pos,&frame["params"]);}
         }
         if (class == "server-request"&&private_auth_reply.is_none()) || (class == "notification" && frame["method"] == "serverRequest/resolved") {
@@ -3234,13 +3318,13 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
                 // until the reading takes its fields (`delegation_signals_read`).
                 let waiting_ended = i.client_requests[idx]["waitingEnded"] == true || i.source_requests.get(&key).is_some_and(|e| e.observation_base["waitingEnded"] == true);
                 // Nobody waits on the channel then either: it holds the reduced form too.
-                let kept = if delegation_reply && waiting_ended { delegation_withheld(&frame) } else { frame.clone() };
+                let kept = if private_config {frame.clone()} else if delegation_reply && waiting_ended { delegation_withheld(&frame) } else { frame.clone() };
                 if let Some(e) = i.source_requests.get_mut(&key) { e.response = Some(kept.clone()); e.response_position=Some(pos); e.auth_response_shape=auth_shape; }
                 Self::stop_request_response(&mut i, &gen, &frame);
-                let _ = tx.send(kept);
+                let _ = tx.send(if private_config&&!waiting_ended{private_config_frame.unwrap()}else{kept});
                 // Responses are also journaled, with their metadata beside the native frame (H6).
-                let journalled = if delegation_reply { delegation_withheld(&frame) } else { frame.clone() };
-                let entry = json!({"generation": gen, "position": pos, "class": class, "frame": journalled,"sourceProjection":if projected{Some("sensitive account projection; not original bytes")}else{None}});
+                let journalled = if delegation_reply&&!private_config { delegation_withheld(&frame) } else { frame.clone() };
+                let entry = json!({"generation": gen, "position": pos, "class": class, "frame": journalled,"sourceProjection":projection_label});
                 if i.state == "handshaking" { i.held.push(entry); } else { i.journal.push(entry); }
                 let attachment_source = i.source_requests.get(&key).filter(|e|e.attachment.is_some()).map(|e|e.request.clone());
                 drop(i);
@@ -3251,12 +3335,12 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
             // Uncorrelated response: surfaced, never dropped (§5). A reply to a
             // delegation read no longer pending (its write failed) is surfaced
             // as its outcome only.
-            let journalled = if delegation_reply { delegation_withheld(&frame) } else { frame };
-            let entry = json!({"generation": gen, "position": pos, "class": "uncorrelated-response", "frame": journalled,"sourceProjection":if projected{Some("sensitive account projection; not original bytes")}else{None}});
+            let journalled = if delegation_reply&&!private_config { delegation_withheld(&frame) } else { frame };
+            let entry = json!({"generation": gen, "position": pos, "class": "uncorrelated-response", "frame": journalled,"sourceProjection":projection_label});
             if i.state == "handshaking" { i.held.push(entry); } else { i.journal.push(entry); }
             return;
         }
-        let entry = json!({"generation": gen, "position": pos, "class": class, "frame": frame,"sourceProjection":if projected{Some("sensitive account projection; not original bytes")}else{None}});
+        let entry = json!({"generation": gen, "position": pos, "class": class, "frame": frame,"sourceProjection":projection_label});
         if i.state == "handshaking" {
             i.held.push(entry); // H4
         } else {
@@ -3283,7 +3367,7 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
             i.journal.push(json!({"generation":gen,"position":pos,"class":"private-auth-request-reply","requestIdentity":"redacted/unavailable; no public replay authority","replyWriteResult":if result.is_ok(){"written"}else{"unknown/write-failed"},"acknowledgment":"not-observed","standing":"original private framing ID used only for immediate unsupported-method reply; not sign-in completion"}));
         }
         self.flush_recovery_observations();
-        if let Some((bound,reply))=automatic_reply{let generation=bound.generation.clone();let id=reply["id"].clone();if self.write_reply(bound,&reply).is_err(){let mut i=self.inner.0.lock().unwrap();if i.generation==generation&&!i.server_requests.is_closed(&generation){i.server_requests.written(&generation,&id,false);Self::persist_requests(&mut i);}}}
+        if let Some((bound,reply))=automatic_reply { let _ = self.write_reply(bound,&reply); }
     }
 
     /// The facts of an offered records call, read under Inner (RS §13.9).
@@ -3306,10 +3390,10 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
         let reference=json!({"readId":read_id,"bytes":text.len(),"content":{"method":"chirality.app.exact-bytes.sha256/v1","value":sha256_hex(text.as_bytes())},"success":answer["success"]});
         let prepared={let mut i=self.inner.0.lock().unwrap();
             match i.server_requests.prepare_named_tool(&generation,&call.request,&answer,"app-rule:records-read",reference){
-                Ok(frame)=>match self.capture_pipe(&i){Ok(bound)=>Some((bound,frame)),Err(_)=>{i.server_requests.written(&generation,&call.request,false);Self::persist_requests(&mut i);None}},
+                Ok(frame)=>match self.capture_pipe(&i){Ok(bound)=>Some((bound,frame)),Err(reason)=>{i.journal.push(json!({"generation":generation,"class":"records-call-reply-not-attempted","reason":reason,"requestIdentity":call.request}));None}},
                 Err(reason)=>{i.journal.push(json!({"generation":generation,"class":"records-call-not-answered","reason":reason,"requestIdentity":call.request}));None}
             }};
-        if let Some((bound,frame))=prepared{if self.write_reply(bound,&frame).is_err(){let mut i=self.inner.0.lock().unwrap();if i.generation==generation&&!i.server_requests.is_closed(&generation){i.server_requests.written(&generation,&call.request,false);Self::persist_requests(&mut i);}}}
+        if let Some((bound,frame))=prepared { let _ = self.write_reply(bound,&frame); }
         self.flush_recovery_observations();
     }
     /// One immediate unsupported-auth-request duty, captured under the original source.
@@ -3323,59 +3407,67 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
     }
 
     fn on_eof(&self, generation: &Value) {
-        let source_pid={let mut i=self.inner.0.lock().unwrap();i.account_channels.retain(|g|g!=generation);if i.generation!=*generation{return;}i.child_pid};
-        // Reap only the captured owning child, never a successor installed
-        // between the first scope check and the final source gate.
-        let status=self.child.lock().unwrap().as_mut().filter(|c|Some(c.id() as i32)==source_pid).and_then(|c|c.wait().ok());
+        let process=self.child.lock().unwrap().as_ref().filter(|p|p.belongs_to(generation)).cloned();
+        self.on_eof_process(generation,process);
+    }
+    fn on_eof_process(&self,generation:&Value,process:Option<Arc<process_group_custody::OwnedProcess>>) {
+        let startup_closure = {
+            let _gate = self.attachment_gate.lock().unwrap();
+            let mut i = self.inner.0.lock().unwrap();
+            i.account_channels.retain(|g|g!=generation);
+            if i.generation == *generation && i.state == "handshaking" && !i.server_requests.is_closed(generation)
+                && i.start_admission == Some(StartAdmission::Installed { attempt: i.start_attempt, generation: generation.clone() })
+                && process.as_ref().is_some_and(|p|p.belongs_to(generation)&&Some(p.id() as i32)==i.child_pid) {
+                let process=process.as_ref().unwrap();
+                #[cfg(test)]
+                if let Some(hook)=self.before_startup_eof_signal.lock().unwrap().take(){hook(process.id() as i32);}
+                if let Err(e)=process.signal(libc::SIGKILL){i.journal.push(json!({"generation":generation,"class":"process-cleanup-unavailable","reason":e}));}
+                let attempt=i.start_attempt;
+                Self::deliver_never_ready(&mut i);
+                Some((attempt,Self::close_generation(&mut i)))
+            } else {None}
+        };
+        // This is the captured original custody, not a later Host child slot.
+        // WNOWAIT polling holds neither the source gate nor custody mutex asleep.
+        let mut last_limit=None;
+        let status=if let Some(process)=&process {
+            match process.wait_exit_observed(|reason|{
+                if last_limit.as_deref()!=Some(reason){self.inner.0.lock().unwrap().journal.push(json!({"generation":generation,"class":"process-exit-observation-unavailable","reason":reason,"standing":"original custody retained while available; no exit or closure inferred"}));last_limit=Some(reason.to_owned());}
+            }) {
+                Ok(status)=>Some(status),
+                Err(_)=>{process.maintain();return;}, // no observed exit, no LT12/closure
+            }
+        }else{None};
         #[cfg(test)]
-        if let Some(hook) = self.before_eof_gate.lock().unwrap().take() { hook(); }
-        let _source_gate = self.attachment_gate.lock().unwrap();
-        let mut i = self.inner.0.lock().unwrap();
+        if let Some(hook)=self.before_eof_gate.lock().unwrap().take(){hook();}
+        let descendants=process.as_ref().map(|p|p.release_if_empty()).unwrap_or_else(||process_group_custody::Census::Unknown("actual process custody absent".into()));
+        if let Some(process)=&process{process.maintain();}
+        let _source_gate=self.attachment_gate.lock().unwrap();
+        let mut i=self.inner.0.lock().unwrap();
         if i.generation != *generation {
             i.journal.push(json!({"generation":generation,"class":"superseded-generation-eof","standing":"EOF observer belongs to a superseded source; no successor closure inferred"}));
             return;
         }
-        let exit = json!({
-            "exitCode": status.and_then(|s| s.code()),
-            "signal": status.and_then(|s| std::os::unix::process::ExitStatusExt::signal(&s)).map(|s| s.to_string()),
-            "lastReceiptPosition": i.receipt_position,
-            "malformedFrameCount": i.malformed,
-            "diagnosticOutputBytes": i.stderr_bytes,
-        });
-        let counts = Self::close_generation(&mut i);
-        if i.state == "stopping" {
-            // LT-23 is written by stop(), which owns the descendant check.
-            let gen = i.generation.clone();
-            i.journal.push(json!({"generation": gen, "class": "exit", "exitFacts": exit}));
-            self.inner.1.notify_all();drop(i);drop(_source_gate);self.flush_recovery_observations();self.release_records_activity(generation);
-            return;
+        let exit=json!({"exitCode":status.and_then(|s|s.code()),"signal":status.and_then(|s|std::os::unix::process::ExitStatusExt::signal(&s)).map(|s|s.to_string()),
+            "lastReceiptPosition":i.receipt_position,"malformedFrameCount":i.malformed,"diagnosticOutputBytes":i.stderr_bytes});
+        let handshake_ended=startup_closure.as_ref().is_some_and(|(attempt,_)|i.state=="handshaking"&&i.start_attempt==*attempt
+            &&i.start_admission==Some(StartAdmission::Installed{attempt:*attempt,generation:generation.clone()}));
+        let counts=match startup_closure{Some((_,counts))=>counts,None=>Self::close_generation(&mut i)};
+        if i.state=="stopping" {
+            i.journal.push(json!({"generation":generation,"class":"exit","exitFacts":exit}));
+            self.inner.1.notify_all();drop(i);drop(_source_gate);self.flush_recovery_observations();self.release_records_activity(generation);return;
         }
-        let terminal=if i.state == "ready" {
-            // LT-12: ended with no App stop record, whatever the exit status (S-F-07).
-            self.lt(&mut i, "LT-12", "child-ended-without-stop-record", "exited-unexpectedly",
-                    json!({"exitFacts": exit, "closedGeneration": counts}));
+        let terminal=if i.state=="ready" {
+            self.lt(&mut i,"LT-12","child-ended-without-stop-record","exited-unexpectedly",json!({"exitFacts":exit,"closedGeneration":counts,"descendants":descendants.report()}));
             Self::capture_terminal(&mut i,TerminalKind::UnexpectedExit)
+        }else if handshake_ended{
+            self.lt(&mut i,"LT-11","handshake-failed","halted-after-repeated-failure",json!({"failure":"supplier ended before initialize handshake completed","failureCount":1,"exitFacts":exit,"closedGeneration":counts}));None
         }else{None};
         drop(i);drop(_source_gate);
-        if let Some((token,event,prior))=terminal {self.schedule_terminal_publication(token,event,prior);}
-        self.flush_recovery_observations();
-        self.release_records_activity(generation);
+        if let Some((token,event,prior))=terminal{self.schedule_terminal_publication(token,event,prior);}
+        self.flush_recovery_observations();self.release_records_activity(generation);
     }
     fn release_records_activity(&self,generation:&Value){let mut held=self.records_activity.lock().unwrap();if held.as_ref().is_some_and(|(g,_)|g==generation){*held=None;}}
-
-    fn kill_group(&self) {
-        if let Some(pid) = self.inner.0.lock().unwrap().child_pid {
-            // SAFETY: plain signal to the process group created at spawn (H11).
-            unsafe {
-                libc::killpg(pid, libc::SIGKILL);
-            }
-        }
-    }
-
-    fn group_alive(pid: i32) -> bool {
-        // SAFETY: signal 0 only checks for existence of the group.
-        unsafe { libc::killpg(pid, 0) == 0 }
-    }
 
     /// HOSTING §4.5 deliberate stop (DEF-5a): stop record first, then close input,
     /// then end the whole process group after a grace period (H11).
@@ -3432,7 +3524,7 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
     }
     fn stop_inner(&self,expected_generation:Option<&Value>, actor: &str, reason: &str) -> Result<Value, String> {
         let source_gate = self.attachment_gate.lock().unwrap();
-        let pid;let target_generation;
+        let process;let target_generation;
         {
             let mut i = self.inner.0.lock().unwrap();
             if expected_generation.is_some_and(|g|g!=&i.generation){return Err("Stop target full generation changed; no successor stop or fallback".into());}
@@ -3470,7 +3562,7 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
                 i.successor_terminal_pending=false;
                 i.successor_artifact_error=Some("LT-12 evidence unavailable: later Stop transition in progress".into());
             }
-            pid = i.child_pid;
+            process = self.child.lock().unwrap().as_ref().filter(|p|p.belongs_to(&target_generation)).cloned();
             i.attachment_pipe_epoch += 1;
         }
         #[cfg(test)]
@@ -3478,18 +3570,18 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
         *self.stdin.lock().unwrap() = None; // close input: polite end
         drop(source_gate);
         let mut forced = false;
-        if let Some(pid) = pid {
+        let mut cleanup_limit=None;
+        let descendants = if let Some(process) = &process {
             let deadline = std::time::Instant::now() + Duration::from_secs(3);
-            while Self::group_alive(pid) && std::time::Instant::now() < deadline {
+            while !process.census().empty() && std::time::Instant::now() < deadline {
                 std::thread::sleep(Duration::from_millis(50));
             }
-            if Self::group_alive(pid) {
-                forced = true;
-                unsafe {libc::killpg(pid,libc::SIGKILL);}
-                std::thread::sleep(Duration::from_millis(200));
+            if !process.census().empty() {
+                (forced,cleanup_limit)=process.force_if_needed();
+                if forced {std::thread::sleep(Duration::from_millis(200));}
             }
-        }
-        let surviving = pid.map(|p| if Self::group_alive(p) { 1 } else { 0 }).unwrap_or(0);
+            let result=process.release_if_empty();process.maintain();result
+        }else{process_group_custody::Census::Unknown("actual process custody absent; no numeric action".into())};
         // Wait for the reader to observe EOF.
         let (lock, cv) = &*self.inner;
         let mut i = lock.lock().unwrap();
@@ -3504,13 +3596,17 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
             .unwrap_or(json!({"exitCode": null, "signal": null}));
         exit["forcedAfterGrace"] = json!(forced);
         if i.generation!=target_generation {
-            i.journal.push(json!({"generation":target_generation,"class":"superseded-generation-stop","capturedProcessGroup":pid,"forced":forced,"survivingDescendantCount":surviving,"standing":"captured old target handled; successor is not stopped or closed"}));
+            i.journal.push(json!({"generation":target_generation,"class":"superseded-generation-stop","capturedProcessGroup":process.as_ref().map(|p|p.id()),"forced":forced,"descendants":descendants.report(),"standing":"captured old target handled; successor is not stopped or closed"}));
             return Err("Stop target generation was replaced while waiting; no successor closure inferred".into());
         }
+        if exit["exitCode"].is_null()&&exit["signal"].is_null(){if let Some(status)=process.as_ref().and_then(|p|p.observe_exit().ok().flatten()){
+            exit["exitCode"]=json!(status.code());exit["signal"]=json!(std::os::unix::process::ExitStatusExt::signal(&status).map(|s|s.to_string()));
+        }}
+        if let Some(error)=cleanup_limit {i.journal.push(json!({"generation":target_generation,"class":"process-cleanup-unavailable","reason":error}));}
         let counts = Self::close_generation(&mut i);
         self.lt(&mut i, "LT-23", "tree-ended", "stopped", json!({
             "exitFacts": exit,
-            "descendants": {"checked": true, "surviving": surviving, "handling": if surviving > 0 { "recorded; not ended" } else { "none surviving" }},
+            "descendants": descendants.report(),
             "closedGeneration": counts}));
         let terminal=Self::capture_terminal(&mut i,TerminalKind::Stopped);
         let response=json!({"state":i.state});drop(i);
@@ -3621,6 +3717,11 @@ mod request_transport_tests {
     #[test]
     fn unknown_transport_write_failure_is_visible_and_generation_close_never_grants() {
         let host = host(); let generation = host.snapshot()["generation"].clone();
+        // Supply an actual closed transport writer: an absent pipe is a
+        // preparation refusal, not evidence that a write was attempted/failed.
+        // This raw peer is transport-only; it conveys no hosted group authority.
+        let mut peer=Command::new("/usr/bin/true").stdin(Stdio::piped()).stdout(Stdio::null()).stderr(Stdio::null()).spawn().unwrap();
+        *host.stdin.lock().unwrap()=peer.stdin.take();peer.wait().unwrap();
         host.on_line(br#"{"id":1,"method":"future/request","params":{"threadId":"t"}}"#,&generation);
         assert_eq!(host.snapshot()["serverRequests"][0]["state"],"errored");
         assert_eq!(host.snapshot()["serverRequests"][0]["replyWriteResult"],"write-failed");
@@ -3739,6 +3840,7 @@ mod additive_guidance_transport_tests {
 
 #[cfg(test)]
 mod conversation_transport_tests {
+    mod role_observations_host_tests { include!("role_observations_host_tests.rs"); }
     mod namespace_admission_tests { include!("namespace_admission_tests.rs"); }
     use super::*;
     fn g()->Value {json!({"appSession":"conversation-session","home":"conversation-home","spawnCounter":1})}
@@ -3757,6 +3859,140 @@ mod conversation_transport_tests {
         });
         let result=operation();let outbound=rx.recv().unwrap();worker.join().unwrap();*host.stdin.lock().unwrap()=None;assert!(child.wait().unwrap().success());(result,outbound)
     }
+    #[test]
+    fn reply_close_retains_late_actual_result_and_cold_unknown() {
+        use std::os::fd::AsRawFd;
+        for fails in [false,true] {
+            let root=std::env::temp_dir().canonicalize().unwrap().join(opaque_id("reply-close-late-").unwrap());std::fs::create_dir(&root).unwrap();let path=root.join("ledger.jsonl");
+            let host=host();{let mut i=host.inner.0.lock().unwrap();i.state="absent".into();i.app_session="conversation-session".into();i.home="conversation-home".into();i.spawn_counter=1;}
+            host.configure_recovery(path.clone()).unwrap();host.inner.0.lock().unwrap().state="ready".into();
+            let mut child=Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).spawn().unwrap();*host.stdin.lock().unwrap()=child.stdin.take();let stdout=child.stdout.take().unwrap();
+            let request=json!({"id":"reply","method":"item/tool/requestUserInput","params":{"threadId":"thread","turnId":"turn","itemId":"item","questions":[]}});
+            host.on_line(&serde_json::to_vec(&request).unwrap(),&g());
+            let caller=Arc::clone(&host);let worker=std::thread::spawn(move||caller.error_server_request(&g(),&json!("reply"),&json!({"code":-32000,"message":"x".repeat(8*1024*1024)}),"app-rule:synthetic-error"));
+            let(first_tx,first_rx)=channel();let(go_tx,go_rx)=channel();let(done_tx,done_rx)=channel();
+            let reader=std::thread::spawn(move||{let mut input=BufReader::new(stdout);let mut bytes=vec![0;512];let _=first_tx.send(input.read_exact(&mut bytes).is_ok());let _=go_rx.recv_timeout(Duration::from_secs(8));let read=input.read_until(b'\n',&mut bytes);let frame=serde_json::from_slice::<Value>(&bytes).ok();let _=done_tx.send((bytes.len(),read.is_ok(),frame));});
+            let home=crate::runtime_session::HomeSession::new(crate::home_resources::HomeClass::Account,Arc::clone(&host),Err("owned reply-close source".into())).unwrap();
+            let begun=first_rx.recv_timeout(Duration::from_secs(3));assert_eq!(crate::runtime_session::assess_native_home_work(&home,&g()).unwrap().snapshot()["observedOutstandingRequests"].as_array().unwrap().len(),1);let mut i=host.inner.0.lock().unwrap();let blocked=host.frame_write.try_lock().is_err();let count=Host::close_generation(&mut i);let at_close=i.server_requests.entries()[0].clone();drop(i);
+            assert!(crate::runtime_session::assess_native_home_work(&home,&g()).is_err(),"closed generation is not a live home");
+            host.flush_recovery_observations();
+            std::fs::copy(path.with_extension("sqlite"),root.join("unknown.sqlite")).unwrap();
+            let mut cold=RecoveryLedger::open(root.join("unknown.jsonl")).unwrap();cold.append(RecoveryLedger::session_end_entry("conversation-session","system-terminated",&[]).unwrap()).unwrap();cold.start_session("cold-control-session","invented-reopen").unwrap();let cold_unknown=cold.recorded_entries();drop(cold);
+            let mut successor=g();successor["home"]=json!("next-home");successor["spawnCounter"]=json!(2);{let mut i=host.inner.0.lock().unwrap();i.generation=successor.clone();i.state="ready".into();}
+            let mut next_child=Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).spawn().unwrap();*host.stdin.lock().unwrap()=next_child.stdin.take();let next_stdout=next_child.stdout.take().unwrap();
+            let mut next_request=request.clone();next_request["params"]["threadId"]=json!("successor-thread");host.on_line(&serde_json::to_vec(&next_request).unwrap(),&successor);let successor_before=host.inner.0.lock().unwrap().server_requests.entries()[1].clone();
+            let mut postclose_native=json!({"method":"serverRequest/resolved","params":{"threadId":"thread","requestId":"reply"}});host.on_line(&serde_json::to_vec(&postclose_native).unwrap(),&g());
+            if fails {child.kill().unwrap();}
+            go_tx.send(()).unwrap();let complete=done_rx.recv_timeout(Duration::from_secs(4));if complete.is_err(){let _=child.kill();let _=next_child.kill();}
+            let caller_result=worker.join().unwrap();reader.join().unwrap();let _=child.wait();
+            postclose_native["params"]["threadId"]=json!("thread");host.on_line(&serde_json::to_vec(&postclose_native).unwrap(),&g());
+            let after=host.inner.0.lock().unwrap().server_requests.entries();let public=host.snapshot()["serverRequests"][0].clone();
+            let mut poll=libc::pollfd{fd:next_stdout.as_raw_fd(),events:libc::POLLIN,revents:0};let successor_bytes_ready=unsafe{libc::poll(&mut poll,1,0)};*host.stdin.lock().unwrap()=None;let _=next_child.wait();let mut next_bytes=Vec::new();BufReader::new(next_stdout).read_to_end(&mut next_bytes).unwrap();
+            host.flush_recovery_observations();let ledger=host.inner.0.lock().unwrap().recovery.take().unwrap();let hot=ledger.lock().unwrap().recorded_entries();drop(ledger);
+            let mut reopened=RecoveryLedger::open(path.clone()).unwrap();reopened.append(RecoveryLedger::session_end_entry("conversation-session","system-terminated",&[]).unwrap()).unwrap();reopened.start_session("after-late-control-session","invented-reopen").unwrap();let cold_result=reopened.recorded_entries();drop(reopened);
+            let source_rows=|history:&Value|history.as_array().unwrap().iter().filter(|e|e["kind"]=="register_entry_summary"&&crate::recovery::generation_from_ref(e["generation"].as_str().unwrap()).unwrap()==g()).cloned().collect::<Vec<_>>();
+            assert_eq!(begun.unwrap(),true);assert!(blocked);assert_eq!(count["endedUnanswered"],0);assert_eq!(at_close["state"],"reply-outcome-unknown");assert_eq!(at_close["replyWriteResult"],"unknown");assert_eq!(at_close["closedGeneration"],true);assert_eq!(at_close["endContext"],"supplier-exit");assert_eq!(at_close["settlement"]["origin"],"app-rule:synthetic-error");
+            let unknown=source_rows(&cold_unknown);assert_eq!(unknown.last().unwrap()["transition"],"RQ-10");assert_eq!(unknown.last().unwrap()["state"],"closed");assert_eq!(unknown.last().unwrap()["endedAs"],"reply-outcome-unknown");assert_eq!(unknown.last().unwrap()["replyWrite"],"unknown");assert!(!unknown.iter().any(|e|e["transition"]=="RQ-06"));
+            let(size,read_ok,frame)=complete.unwrap();assert!(read_ok);if fails {assert!(frame.is_none());assert!(size<8*1024*1024);}else{let frame=frame.unwrap();assert_eq!(frame["id"],"reply");assert_eq!(frame["error"]["message"].as_str().unwrap().len(),8*1024*1024);assert!(size>8*1024*1024);}
+            if fails {assert!(caller_result.is_err());} else if let Ok(response)=&caller_result {assert_eq!(response["replyWriteResult"],"written");assert_eq!(response["acknowledgment"],"not-observed");}assert_eq!(after[0]["state"],if fails{"settle-write-failed"}else{"errored"});assert_eq!(after[0]["replyWriteResult"],if fails{"write-failed"}else{"written"});assert_eq!(after[0]["generation"],g());assert_eq!(after[0]["closedGeneration"],true);assert_eq!(after[0]["acknowledgment"],"not-observed");assert_eq!(after[1],successor_before);assert_eq!(successor_bytes_ready,0);assert!(next_bytes.is_empty());assert_eq!(public["acknowledgmentObservation"]["status"],"not-observed");
+            for history in [&hot,&cold_result] {let rows=source_rows(history);assert!(rows.iter().any(|e|e["transition"]=="RQ-10"));assert!(!rows.iter().any(|e|e["transition"]=="RQ-04"||e["transition"]=="RQ-06"||e["transition"]=="RQ-09"));assert_eq!(rows.last().unwrap()["replyWrite"],if fails{"write-failed"}else{"written"});assert_eq!(rows.last().unwrap()["endedAs"],if fails{"settle-write-failed"}else{"errored"});}
+            std::fs::remove_dir_all(root).unwrap();
+        }
+    }
+
+    #[test]
+    fn reply_close_capture_refusals_and_receipt_errors_keep_actual_io_meaning() {
+        for written in [false,true] {
+            for method in ["currentTime/read","future/request","item/tool/call"] {
+                let root=std::env::temp_dir().canonicalize().unwrap().join(opaque_id("reply-close-capture-").unwrap());std::fs::create_dir(&root).unwrap();
+                let host=host();{let mut i=host.inner.0.lock().unwrap();i.state="absent".into();i.app_session="conversation-session".into();i.declared_capabilities=Some(json!({"experimentalApi":true}));}
+                host.configure_recovery(root.join("ledger.jsonl")).unwrap();host.inner.0.lock().unwrap().state="ready".into();
+                let frame=json!({"id":"reply","method":method,"params":{"threadId":"thread"}});
+                if written {
+                    let (result,captured)=exchange(&host,None,vec![],||{host.on_line(&serde_json::to_vec(&frame).unwrap(),&g());Ok(Value::Null)});
+                    assert!(result.is_ok());assert_eq!(captured["id"],"reply");
+                    assert_eq!(captured.get("error").is_some(),method!="currentTime/read");
+                } else {assert!(host.stdin.lock().unwrap().is_none());host.on_line(&serde_json::to_vec(&frame).unwrap(),&g());}
+                let mut i=host.inner.0.lock().unwrap();let before=i.server_requests.entries()[0].clone();
+                assert_ne!(before["laterProtocolError"],true,"receipt-time errors do not become later R9 errors");
+                assert_eq!(before["replyWriteResult"],if written {"written"} else {"not-attempted"});
+                assert_eq!(before["state"],if written {if method=="currentTime/read" {"answered"} else {"errored"}} else {"settling"});
+                let counts=Host::close_generation(&mut i);let source=i.server_requests.entries()[0].clone();drop(i);host.flush_recovery_observations();
+                assert_eq!(counts["endedUnanswered"],if written {0} else {1});assert_eq!(source["generation"],g());assert_eq!(source["requestId"],"reply");
+                assert_eq!(source["classification"],before["classification"]);assert_eq!(source["settlement"],before["settlement"]);assert_eq!(source["acknowledgment"],"not-observed");
+                if !written {assert_eq!(source["state"],"ended-unanswered");assert_eq!(source["endContext"],"supplier-exit");}
+                let recorded=host.recorded_recovery_entries();let transitions=recorded.as_array().unwrap().iter().filter(|e|e["kind"]=="register_entry_summary").map(|e|e["transition"].as_str().unwrap()).collect::<Vec<_>>();
+                assert_eq!(transitions,if !written {vec!["RQ-01","RQ-04"]} else if method=="currentTime/read" {vec!["RQ-01","RQ-03","RQ-05"]} else {vec!["RQ-01","RQ-08"]},"actual captured source: {method} written={written}");
+                std::fs::remove_dir_all(root).unwrap();
+            }
+        }
+    }
+    #[test]
+    fn reply_close_preserves_queued_and_completed_io_with_recorded_recovery() {
+        fn small(entry:&Value)->Value {json!({"state":entry["state"],"replyWriteResult":entry["replyWriteResult"],"closedGeneration":entry["closedGeneration"],"endContext":entry["endContext"],"origin":entry["settlement"]["origin"],"acknowledgment":entry["acknowledgment"]})}
+        fn last_request(ledger:&RecoveryLedger)->Value {ledger.recorded_entries().as_array().unwrap().iter().rev().find(|e|e["kind"]=="register_entry_summary").expect("actual recorded request pointer exists").clone()}
+        for mode in ["queued-answer","queued-error","written-before-close-error","observed-before-close-error","normal-error-control"] {
+            let root=std::env::temp_dir().canonicalize().unwrap().join(opaque_id("reply-close-diag-").unwrap());std::fs::create_dir(&root).unwrap();let path=root.join("ledger.jsonl");
+            let host=host();{let mut i=host.inner.0.lock().unwrap();i.state="absent".into();i.app_session="conversation-session".into();i.home="conversation-home".into();i.spawn_counter=1;}
+            host.configure_recovery(path.clone()).unwrap();host.inner.0.lock().unwrap().state="ready".into();
+            let mut child=Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).spawn().unwrap();*host.stdin.lock().unwrap()=child.stdin.take();let stdout=child.stdout.take().unwrap();
+            host.on_line(&serde_json::to_vec(&json!({"id":"reply","method":"item/tool/requestUserInput","params":{"threadId":"thread","turnId":"turn","itemId":"item","questions":[]}})).unwrap(),&g());
+            let home=crate::runtime_session::HomeSession::new(crate::home_resources::HomeClass::Account,Arc::clone(&host),Err("owned reply-close test source".into())).unwrap();
+            let pending=||crate::runtime_session::assess_native_home_work(&home,&g()).unwrap().snapshot()["observedOutstandingRequests"].as_array().unwrap().len();
+            let received={let i=host.inner.0.lock().unwrap();small(&i.server_requests.entries()[0])};assert_eq!(received["state"],"outstanding");
+            let before;let counts;let captured;let result;let mut write_serial_released=false;
+            if mode.starts_with("queued") {
+                let serial=host.frame_write.lock().unwrap();let caller=Arc::clone(&host);let answer=mode=="queued-answer";
+                let worker=std::thread::spawn(move||if answer{caller.answer_server_request(&g(),&json!("reply"),&json!({"answers":{}}),"app-rule:synthetic-negative",None)}else{caller.error_server_request(&g(),&json!("reply"),&json!({"code":-32000,"message":"invented queued error"}),"app-rule:synthetic-error")});
+                let deadline=std::time::Instant::now()+Duration::from_secs(2);while host.inner.0.lock().unwrap().server_requests.entries()[0]["state"]!="settling"&&std::time::Instant::now()<deadline{std::thread::sleep(Duration::from_millis(2));}
+                assert_eq!(pending(),1,"queued prepared reply remains pending in the actual live-home assessment");
+                {let mut i=host.inner.0.lock().unwrap();before=small(&i.server_requests.entries()[0]);counts=Host::close_generation(&mut i);}
+                drop(serial);result=worker.join().unwrap();*host.stdin.lock().unwrap()=None;assert!(child.wait().unwrap().success());let mut bytes=Vec::new();BufReader::new(stdout).read_to_end(&mut bytes).unwrap();captured=bytes.len();assert_eq!(captured,0);assert!(result.is_err());
+            } else {
+                let bytes=if mode.ends_with("before-close-error"){8*1024*1024}else{1024};let caller=Arc::clone(&host);
+                let worker=std::thread::spawn(move||caller.error_server_request(&g(),&json!("reply"),&json!({"code":-32000,"message":"x".repeat(bytes)}),"app-rule:synthetic-error"));
+                if mode.ends_with("before-close-error") {
+                    let(first_tx,first_rx)=channel();let(go_tx,go_rx)=channel();let(done_tx,done_rx)=channel();
+                    let reader=std::thread::spawn(move||{let mut input=BufReader::new(stdout);let mut first=vec![0;512];let first_ok=input.read_exact(&mut first).is_ok();let _=first_tx.send(first_ok);let _=go_rx.recv_timeout(Duration::from_secs(5));let read=input.read_until(b'\n',&mut first);let valid=serde_json::from_slice::<Value>(&first).ok().is_some_and(|v|v["id"]=="reply"&&v["error"]["message"].as_str().is_some_and(|s|s.len()==8*1024*1024));let _=done_tx.send((first.len(),valid,read.is_ok()));});
+                    let begun=first_rx.recv_timeout(Duration::from_secs(3));assert_eq!(pending(),1,"actual in-progress source reply remains pending");let mut i=host.inner.0.lock().unwrap();before=small(&i.server_requests.entries()[0]);assert!(host.frame_write.try_lock().is_err(),"owned large reply is actually writing before receiver drains it");go_tx.send(()).unwrap();let complete=done_rx.recv_timeout(Duration::from_secs(3));
+                    let deadline=std::time::Instant::now()+Duration::from_secs(2);while std::time::Instant::now()<deadline{if host.frame_write.try_lock().is_ok(){write_serial_released=true;break;}std::thread::sleep(Duration::from_millis(2));}
+                    if mode=="observed-before-close-error" {let reading=Host::snapshot_inner(&mut i);assert_eq!(reading["serverRequests"][0]["state"],"errored");assert_eq!(reading["serverRequests"][0]["replyWriteResult"],"written");}
+                    counts=Host::close_generation(&mut i);i.generation["spawnCounter"]=json!(2);i.spawn_counter=2;i.state="ready".into();drop(i);
+                    if begun.as_ref()!=Ok(&true)||!matches!(complete,Ok((_,true,true)))||!write_serial_released{let _=child.kill();}
+                    *host.stdin.lock().unwrap()=None;result=worker.join().unwrap();reader.join().unwrap();let status=child.wait().unwrap();assert!(begun.unwrap());let(size,valid,read_ok)=complete.unwrap();assert!(valid&&read_ok&&write_serial_released&&status.success());captured=size;assert!(result.is_err());
+                } else {
+                    let reader=std::thread::spawn(move||{let mut input=BufReader::new(stdout);let mut line=Vec::new();input.read_until(b'\n',&mut line).unwrap();line.len()});result=worker.join().unwrap();captured=reader.join().unwrap();assert!(result.is_ok());assert_eq!(pending(),0,"known completed live reply is not pending");{let mut i=host.inner.0.lock().unwrap();before=small(&i.server_requests.entries()[0]);counts=Host::close_generation(&mut i);}*host.stdin.lock().unwrap()=None;assert!(child.wait().unwrap().success());
+                }
+            }
+            assert!(crate::runtime_session::assess_native_home_work(&home,&g()).is_err(),"closed or superseded source cannot become new live work");
+            let after={let i=host.inner.0.lock().unwrap();small(&i.server_requests.entries()[0])};host.flush_recovery_observations();let ledger=host.inner.0.lock().unwrap().recovery.take().unwrap();let (hot,transitions)={let ledger=ledger.lock().unwrap();let transitions=ledger.recorded_entries().as_array().unwrap().iter().filter(|e|e["kind"]=="register_entry_summary").map(|e|e["transition"].as_str().unwrap().to_owned()).collect::<Vec<_>>();(last_request(&ledger),transitions)};drop(ledger);
+            std::fs::copy(path.with_extension("sqlite"),root.join("without-record.sqlite")).unwrap();let mut no_end=RecoveryLedger::open(root.join("without-record.jsonl")).unwrap();no_end.start_session("new-session-without-record","invented-reopen").unwrap();let cold_no_end=last_request(&no_end);drop(no_end);
+            let mut known=RecoveryLedger::open(path.clone()).unwrap();known.append(RecoveryLedger::session_end_entry("conversation-session","system-terminated",&[]).unwrap()).unwrap();drop(known);let mut known=RecoveryLedger::open(path).unwrap();known.start_session("new-session-with-known-end","invented-reopen").unwrap();let cold_known_end=last_request(&known);drop(known);
+            let expected=if mode.starts_with("queued") {"RQ-04"} else {"RQ-05"};
+            assert_eq!(before["state"],if mode=="normal-error-control" {"errored"} else {"settling"});
+            assert_eq!(transitions,if mode.starts_with("queued") {vec!["RQ-01","RQ-04"]} else {vec!["RQ-01","RQ-03","RQ-05"]},"observed write must precede closure: {mode}");
+            assert_eq!(after["closedGeneration"],true,"{mode}");
+            assert_eq!(after["acknowledgment"],"not-observed","{mode}");
+            assert_eq!(hot["transition"],expected,"actual hot source pointer: {mode}");
+            assert_eq!(cold_no_end["transition"],expected,"cold pointer without a session end: {mode}");
+            assert_eq!(cold_known_end["transition"],expected,"cold pointer with a recorded session end: {mode}");
+            assert_eq!(after["state"],if mode.starts_with("queued") {"ended-unanswered"} else {"errored"},"{mode}");
+            assert_eq!(after["replyWriteResult"],if mode.starts_with("queued") {"not-attempted"} else {"written"},"{mode}");
+            assert_eq!(counts["endedUnanswered"],if mode.starts_with("queued") {1} else {0},"{mode}");
+            if mode.starts_with("queued") {assert_eq!(after["endContext"],"supplier-exit","{mode}");assert_eq!(captured,0);} else {assert!(captured>0);}
+            let inner=host.inner.0.lock().unwrap();
+            let source=inner.server_requests.entries()[0].clone();
+            assert_eq!(source["generation"],g(),"original full H5 remains: {mode}");
+            assert_eq!(source["requestId"],"reply");
+            assert_eq!(inner.server_requests.entries().len(),1,"no successor request created");
+            let events=inner.execution_custody.events();
+            assert_eq!(events.iter().filter(|e|e["kind"]=="request_ended_unanswered").count(),if mode.starts_with("queued") {1} else {0},"custody must follow actual source outcome: {mode}");
+            assert_eq!(events.iter().filter(|e|e["kind"]=="acknowledgment_not_observed").count(),if mode.starts_with("queued") {0} else {1},"a completed write has lost acknowledgment, not unanswered intent: {mode}");
+            drop(inner);
+            std::fs::remove_dir_all(root).unwrap();
+        }
+    }
+
     #[test]
     fn required_native_text_and_interrupt_params_match_generated_schema_without_overrides() {
         let text="Exact\n\né / 家\n{\"approvalPolicy\":\"never\"}";let params=Host::text_turn_params("thread",text).unwrap();assert_eq!(params,json!({"threadId":"thread","input":[{"type":"text","text":text,"text_elements":[]}]}));
@@ -3907,6 +4143,50 @@ mod conversation_transport_tests {
     fn history_selected()->NativeHistory {let mut view=NativeHistory::new("conversation-home",g()).unwrap();let q=view.list_threads(None,crate::native_history::Direction::Desc).unwrap();view.receive(&q,"conversation-home",&g(),&json!({"data":[history_thread("notLoaded")],"nextCursor":null})).unwrap();view.select("stored").unwrap();view}
     fn history_exchange(host:&Arc<Host>,query:&HistoryQuery,response:Option<Value>)->(HistoryDispatch,Value,Value) {let mut receipt=None;let(result,outbound)=exchange(host,response,vec![],||{let r=host.history_dispatch(query)?;let evidence=host.history_wait(&r,Duration::from_millis(15))?;receipt=Some(r);Ok(evidence)});(receipt.unwrap(),result.unwrap(),outbound)}
     #[test]
+    fn history_bridge_current_started_child_reaches_metadata_without_guidance_or_admission() {
+        use crate::native_history::Direction;
+        use crate::runtime_session::HistorySession;
+        fn deliver(host: &Arc<Host>, session: &mut HistorySession, query: &HistoryQuery, result: Value) -> Value {
+            let (receipt, evidence, outbound) = history_exchange(host, query, Some(json!({"result":result})));
+            assert_eq!(evidence["writeResult"], "written");
+            assert_eq!(evidence["outcome"], "response-observed-result");
+            assert_eq!(evidence["sentFrame"], outbound);
+            assert_eq!(outbound["params"], *query.params());
+            session.dispatched(receipt);
+            session.reconcile(host);
+            outbound
+        }
+        let host = host();
+        { let mut inner = host.inner.0.lock().unwrap(); inner.threads.clear(); inner.next_id = 80; }
+        let mut session = HistorySession::default();
+        let q = session.prepare(&host.snapshot(), &g(), 0, "list", None, Direction::Desc, None).unwrap();
+        deliver(&host, &mut session, &q, json!({"data":[history_thread("notLoaded")],"nextCursor":null}));
+        session.select(&host.snapshot(), &g(), 0, "stored").unwrap();
+        let q = session.prepare(&host.snapshot(), &g(), 1, "turns", None, Direction::Desc, None).unwrap();
+        deliver(&host, &mut session, &q, json!({"data":[{"id":"native-turn","status":"completed","items":[],"itemsView":"summary","error":null}]}));
+        let q = session.prepare(&host.snapshot(), &g(), 1, "items", None, Direction::Desc, Some("native-turn")).unwrap();
+        deliver(&host, &mut session, &q, json!({"data":[{"turnId":"native-turn","completedAtMs":1,"item":{"id":"native-start","type":"subAgentActivity","kind":"started","agentPath":"/root/task","agentThreadId":"native-child"}}]}));
+        let original = session.snapshot(None)["selected"]["knownChildren"][0].clone();
+        assert!(original.get("parentThreadId").is_none());
+        assert_eq!(original["sourceQuery"], serde_json::to_value(&q).unwrap());
+        for parent in [None, Some("foreign-parent"), Some("stored")] {
+            let q = session.prepare(&host.snapshot(), &g(), 1, "child", None, Direction::Desc, Some("native-child")).unwrap();
+            assert_eq!(q.params(), &json!({"threadId":"native-child","includeTurns":false}));
+            let mut native = history_thread("idle"); native["id"] = json!("native-child");
+            if let Some(parent) = parent { native["parentThreadId"] = json!(parent); }
+            let outbound = deliver(&host, &mut session, &q, json!({"thread":native.clone()}));
+            assert_ne!(outbound["id"], json!(q.id()));
+            let snapshot = session.snapshot(None);
+            assert_eq!(snapshot["selected"]["childReads"]["native-child"]["native"]["thread"], native);
+            assert_eq!(snapshot["selected"]["childReads"]["native-child"]["appRole"]["standing"], "unknown");
+            assert_eq!(snapshot["selected"]["childReads"]["native-child"]["parentRelationship"]["standing"], if parent == Some("stored") {"native-parent-confirmed"} else {"unknown"});
+            assert_eq!(session.role("conversation-home", "native-child")["standing"], "unknown");
+            assert!(host.snapshot()["threads"].as_array().unwrap().is_empty());
+            assert_eq!(snapshot["activeBindingPerformed"], false);
+            assert_eq!(snapshot["selected"]["knownChildren"][0]["sourceQuery"], original["sourceQuery"]);
+        }
+    }
+    #[test]
     fn history_bridge_actual_rpc_receipt_before_wait_timeout_clone_and_late_correlation() {
         let host=host();host.inner.0.lock().unwrap().next_id=40;let mut view=history_selected();let query=view.read_metadata().unwrap();let(receipt,evidence,outbound)=history_exchange(&host,&query,None);
         assert_ne!(receipt.source().request_id(),&json!(query.id()));assert_eq!(receipt.source().request_id(),&json!(41));assert_eq!(receipt.query(),&query);assert_eq!(evidence["sentFrame"],outbound);assert_eq!(outbound["params"],*query.params());assert_eq!(evidence["writeResult"],"written");assert_eq!(evidence["outcome"],"pending");assert_eq!(evidence["waitingEnded"],true);assert!(evidence["response"].is_null());assert!(!receipt.source().request_ref().is_empty());assert_eq!(host.snapshot()["threads"].as_array().unwrap().len(),1);
@@ -4005,7 +4285,9 @@ mod conversation_transport_tests {
     #[test]
     fn attachment_host_queued_old_eof_never_closes_actual_successor_request_or_turn() {
         for field in ["appSession","home","spawnCounter"] {
-            let host=host();let gate=host.attachment_gate.lock().unwrap();let(tx,rx)=channel();let(proceed,continue_eof)=channel();*host.before_eof_gate.lock().unwrap()=Some(Box::new(move||{tx.send(()).unwrap();continue_eof.recv_timeout(Duration::from_secs(2)).unwrap();}));let observer=Arc::clone(&host);let worker=std::thread::spawn(move||observer.on_eof(&g()));rx.recv_timeout(Duration::from_secs(1)).unwrap();
+            // Let initial EOF scope inspection pass before pausing the final
+            // settlement gate; holding that gate before this hook cannot reach it.
+            let host=host();let(tx,rx)=channel();let(proceed,continue_eof)=channel();*host.before_eof_gate.lock().unwrap()=Some(Box::new(move||{tx.send(()).unwrap();continue_eof.recv_timeout(Duration::from_secs(2)).unwrap();}));let observer=Arc::clone(&host);let worker=std::thread::spawn(move||observer.on_eof(&g()));rx.recv_timeout(Duration::from_secs(1)).unwrap();let gate=host.attachment_gate.lock().unwrap();
             let mut successor=g();successor[field]=if field=="spawnCounter"{json!(2)}else{json!("successor")};{let mut i=host.inner.0.lock().unwrap();Host::close_generation(&mut i);i.generation=successor.clone();i.state="ready".into();i.threads.push(json!({"generation":successor,"threadId":"successor-thread"}));}
             let mut child=Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::null()).stderr(Stdio::null()).spawn().unwrap();*host.stdin.lock().unwrap()=child.stdin.take();drop(gate);let source=host.thread_start_with_guidance_dispatch(&successor,"/invented","selected","configured","exact successor").unwrap();host.on_line(&serde_json::to_vec(&json!({"method":"turn/started","params":{"threadId":"successor-thread","turn":complete_turn()}})).unwrap(),&successor);let before=host.snapshot();proceed.send(()).unwrap();worker.join().unwrap();let after=host.snapshot();assert_eq!(after["generation"],successor);assert_eq!(after["state"],"ready");assert_eq!(after["clientRequests"],before["clientRequests"]);assert_eq!(source.evidence()["outcome"],"pending");assert_eq!(after["conversationTurns"],before["conversationTurns"]);assert!(!host.inner.0.lock().unwrap().server_requests.is_closed(&successor));assert_eq!(after["journal"].as_array().unwrap().last().unwrap()["generation"],g());assert_eq!(after["journal"].as_array().unwrap().last().unwrap()["class"],"superseded-generation-eof");*host.stdin.lock().unwrap()=None;assert!(child.wait().unwrap().success());
         }
@@ -4014,7 +4296,7 @@ mod conversation_transport_tests {
     #[test]
     #[ignore = "owned subprocess probe; parent watchdog invokes exact case"]
     fn attachment_host_nonreader_probe() {
-        let log=std::path::PathBuf::from(std::env::var_os("CHIRALITY_NONREADER_LOG").unwrap());let host=host();let(root,owner,selections)=attachment_fixture();let mut child=Command::new("/bin/sleep").arg("60").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).process_group(0).spawn().unwrap();let pid=child.id() as i32;std::fs::write(log.join("owned-pid"),pid.to_string()).unwrap();*host.stdin.lock().unwrap()=child.stdin.take();let stdout=child.stdout.take().unwrap();*host.child.lock().unwrap()=Some(child);host.inner.0.lock().unwrap().child_pid=Some(pid);host.spawn_reader(stdout,g());
+        let log=std::path::PathBuf::from(std::env::var_os("CHIRALITY_NONREADER_LOG").unwrap());let host=host();let(root,owner,selections)=attachment_fixture();let child=process_group_custody::OwnedProcess::spawn(Command::new("/bin/sleep").arg("60").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).process_group(0)).unwrap();let pid=child.id() as i32;std::fs::write(log.join("owned-pid"),pid.to_string()).unwrap();*host.stdin.lock().unwrap()=child.take_stdin();let stdout=child.take_stdout().unwrap();child.bind(&g()).unwrap();*host.child.lock().unwrap()=Some(child);host.inner.0.lock().unwrap().child_pid=Some(pid);host.spawn_reader(stdout,g());
         let packet=Arc::new(host.prepare_attachment_turn(Arc::clone(&owner),&g(),"thread",None,&"x".repeat(4*1024*1024),&selections).unwrap());let sender=Arc::clone(&host);let prepared=Arc::clone(&packet);let(tx,rx)=channel();let writer=std::thread::spawn(move||assert!(tx.send(sender.dispatch_attachment_turn(&prepared)).is_ok()));
         let deadline=std::time::Instant::now()+Duration::from_secs(2);while host.inner.0.lock().unwrap().send_position==0&&std::time::Instant::now()<deadline{std::thread::sleep(Duration::from_millis(5));}assert_eq!(host.inner.0.lock().unwrap().send_position,1);assert!(matches!(rx.recv_timeout(Duration::from_millis(200)),Err(std::sync::mpsc::RecvTimeoutError::Timeout)));
         let reply_mode=std::env::var("CHIRALITY_NONREADER_MODE").is_ok_and(|m|m=="reply");let known_reply=json!({"id":packet.source().request_id(),"result":{"turn":complete_turn()}});if reply_mode{host.on_line(&serde_json::to_vec(&known_reply).unwrap(),&g());}
@@ -4091,7 +4373,7 @@ mod conversation_transport_tests {
     #[test]
     fn explicit_context_paused_ledger_preserves_summary_order_and_allows_actual_stop(){
         use crate::recovery::{ExplicitAppProjectContext as Context,AppProjectSource};let(host,g,root,owner,selections)=context_fixture();let packet=Arc::new(context_packet(&host,&owner,&g,&selections));let ledger=host.inner.0.lock().unwrap().recovery.clone().unwrap();let paused=ledger.lock().unwrap();let caller=Arc::clone(&host);let prepared=Arc::clone(&packet);let writer=std::thread::spawn(move||caller.bind_attachment_context(&prepared,&Context::known("Q",AppProjectSource::ConfiguredDirectory).unwrap(),Some("H-acct")));let deadline=std::time::Instant::now()+Duration::from_secs(1);while host.recovery_writer.try_lock().is_ok()&&std::time::Instant::now()<deadline{std::thread::sleep(Duration::from_millis(5));}assert!(host.recovery_writer.try_lock().is_err());
-        host.on_line(&serde_json::to_vec(&json!({"id":"request","method":"item/tool/requestUserInput","params":{"threadId":"thread","turnId":"turn","itemId":"item","questions":[]}})).unwrap(),&g);assert!(!host.snapshot()["recoveryPendingObservations"].as_array().unwrap().is_empty());let mut child=Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).process_group(0).spawn().unwrap();*host.stdin.lock().unwrap()=child.stdin.take();let stdout=child.stdout.take().unwrap();let pid=child.id() as i32;*host.child.lock().unwrap()=Some(child);host.inner.0.lock().unwrap().child_pid=Some(pid);host.spawn_reader(stdout,g.clone());let started=std::time::Instant::now();assert_eq!(host.stop("person:fixture","codex-stop").unwrap()["state"],"stopped");assert!(started.elapsed()<Duration::from_secs(2));assert!(!host.snapshot()["recoveryPendingObservations"].as_array().unwrap().is_empty());drop(paused);assert!(writer.join().unwrap().is_err());host.flush_recovery_observations();let view=host.snapshot();assert!(view["recoveryPendingObservations"].as_array().unwrap().is_empty());let recorded=host.recorded_recovery_entries();let summaries:Vec<_>=recorded.as_array().unwrap().iter().filter(|e|e["kind"]=="register_entry_summary").collect();assert_eq!(summaries[0]["state"],"listed");assert_eq!(summaries.last().unwrap()["state"],"closed");assert!(host.recorded_recovery_entries().as_array().unwrap().iter().all(|e|e["kind"]!="conversation_index"));std::fs::remove_dir_all(root).unwrap();
+        host.on_line(&serde_json::to_vec(&json!({"id":"request","method":"item/tool/requestUserInput","params":{"threadId":"thread","turnId":"turn","itemId":"item","questions":[]}})).unwrap(),&g);assert!(!host.snapshot()["recoveryPendingObservations"].as_array().unwrap().is_empty());let child=process_group_custody::OwnedProcess::spawn(Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).process_group(0)).unwrap();*host.stdin.lock().unwrap()=child.take_stdin();let stdout=child.take_stdout().unwrap();let pid=child.id() as i32;child.bind(&g).unwrap();*host.child.lock().unwrap()=Some(child);host.inner.0.lock().unwrap().child_pid=Some(pid);host.spawn_reader(stdout,g.clone());let started=std::time::Instant::now();assert_eq!(host.stop("person:fixture","codex-stop").unwrap()["state"],"stopped");assert!(started.elapsed()<Duration::from_secs(2));assert!(!host.snapshot()["recoveryPendingObservations"].as_array().unwrap().is_empty());drop(paused);assert!(writer.join().unwrap().is_err());host.flush_recovery_observations();let view=host.snapshot();assert!(view["recoveryPendingObservations"].as_array().unwrap().is_empty());let recorded=host.recorded_recovery_entries();let summaries:Vec<_>=recorded.as_array().unwrap().iter().filter(|e|e["kind"]=="register_entry_summary").collect();assert_eq!(summaries[0]["state"],"listed");assert_eq!(summaries.last().unwrap()["state"],"closed");assert!(host.recorded_recovery_entries().as_array().unwrap().iter().all(|e|e["kind"]!="conversation_index"));std::fs::remove_dir_all(root).unwrap();
     }
 
     // Shared consumer join uses actual private selection/Prepared/SourceRequest
@@ -4155,9 +4437,9 @@ mod conversation_transport_tests {
     // Owned pipe fixture: actual App custody and actual after-spawn counter
     // allocator; ready/native thread setup is synthetic, not supplier proof.
     fn app_custody_mock_home(host:&Arc<Host>,home:&std::path::Path)->Value {
-        let mut child=Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).process_group(0).spawn().unwrap();let pid=child.id() as i32;
-        *host.stdin.lock().unwrap()=child.stdin.take();let stdout=child.stdout.take().unwrap();*host.child.lock().unwrap()=Some(child);
-        let g={let mut i=host.inner.0.lock().unwrap();host.allocate_home_spawn(&mut i,format!("app-home:{}",sha256_hex(home.as_os_str().as_encoded_bytes()))).unwrap();i.attachment_pipe_epoch+=1;i.child_pid=Some(pid);i.generation=json!({"appSession":i.app_session,"home":i.home,"spawnCounter":i.spawn_counter});i.state="ready".into();i.declared_capabilities=Some(json!({"experimentalApi":false}));let g=i.generation.clone();i.threads.push(json!({"generation":g,"threadId":"thread","cwd":"/synthetic/native"}));g};host.spawn_reader(stdout,g.clone());g
+        let child=process_group_custody::OwnedProcess::spawn(Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null())).unwrap();let pid=child.id() as i32;
+        *host.stdin.lock().unwrap()=child.take_stdin();let stdout=child.take_stdout().unwrap();*host.child.lock().unwrap()=Some(Arc::clone(&child));
+        let g={let mut i=host.inner.0.lock().unwrap();host.allocate_home_spawn(&mut i,format!("app-home:{}",sha256_hex(home.as_os_str().as_encoded_bytes()))).unwrap();i.attachment_pipe_epoch+=1;i.child_pid=Some(pid);i.generation=json!({"appSession":i.app_session,"home":i.home,"spawnCounter":i.spawn_counter});i.state="ready".into();i.declared_capabilities=Some(json!({"experimentalApi":false}));let g=i.generation.clone();i.threads.push(json!({"generation":g,"threadId":"thread","cwd":"/synthetic/native"}));g};child.bind(&g).unwrap();host.spawn_reader(stdout,g.clone());g
     }
     fn app_custody_root()->(std::path::PathBuf,Arc<Host>){let root=std::env::temp_dir().join(opaque_id("app-custody-").unwrap());std::fs::create_dir(&root).unwrap();let root=root.canonicalize().unwrap();let host=Arc::new(Host::new());host.configure_recovery(root.join("recovery.ledger.jsonl")).unwrap();(root,host)}
     fn namespace_guard_fixture()->(PathBuf,Arc<Host>,Arc<attachment_custody::NativeNamespaceBindings>,crate::home_resources::OwnedHomePlan){
@@ -4229,14 +4511,22 @@ mod conversation_transport_tests {
     fn app_custody_context_refresh_preserves_both_home_indexes_and_shared_hot_claims(){
         use crate::recovery::ExplicitAppProjectContext as Context;let(root,owner,selections)=attachment_fixture();let account=Arc::new(Host::new());account.configure_recovery(owner.root().join("runtime/recovery.ledger.jsonl")).unwrap();let ga=app_custody_mock_home(&account,&root.join("codex"));let cap=account.app_runtime_custody().unwrap();let key=Arc::new(Host::new_with_app_custody(Arc::clone(&cap)).unwrap());let gb=app_custody_mock_home(&key,&root.join("key"));let p=Context::known("project:P",crate::recovery::AppProjectSource::ConfiguredDirectory).unwrap();let q=Context::known("project:Q",crate::recovery::AppProjectSource::ConfiguredDirectory).unwrap();account.observe_conversation_project(&ga,"thread",Some("H-acct"),&p).unwrap();key.observe_conversation_project(&gb,"thread",Some("H-key"),&q).unwrap();assert_eq!(account.observe_conversation_project(&ga,"thread",Some("H-acct"),&q).unwrap()["indexSnapshot"]["project"],"project:P");assert_eq!(key.observe_conversation_project(&gb,"thread",Some("H-key"),&p).unwrap()["indexSnapshot"]["project"],"project:Q");
         // Exact real prepared capability; no key-home custody guard relaxation.
-        let packet=account.prepare_attachment_turn(Arc::clone(&owner),&ga,"thread",None,"synthetic person text",&selections).unwrap();let binding=account.bind_attachment_context(&packet,&q,None).unwrap();assert_eq!(binding["persistence"],"memory-only");assert!(Arc::ptr_eq(&account.submission_contexts,&key.submission_contexts));let hot=key.submission_contexts.lock().unwrap().clone();assert!(crate::recovery::submission_context_plan(None,&[],&hot.iter().map(|h|h["tag"].clone()).collect::<Vec<_>>(),packet.submission_ref(),Some("project:R")).is_err());assert!(packet.cancel());account.stop_scoped(&ga,"person:synthetic","codex-stop").unwrap();key.stop_scoped(&gb,"person:synthetic","codex-stop").unwrap();std::fs::remove_dir_all(root).unwrap();
+        let packet=account.prepare_attachment_turn(Arc::clone(&owner),&ga,"thread",None,"synthetic person text",&selections).unwrap();let binding=account.bind_attachment_context(&packet,&q,None).unwrap();assert_eq!(binding["persistence"],"memory-only");assert!(Arc::ptr_eq(&account.submission_contexts,&key.submission_contexts));let hot=key.submission_contexts.lock().unwrap().clone();assert!(crate::recovery::submission_context_plan(None,&[],&hot.iter().map(|h|h["tag"].clone()).collect::<Vec<_>>(),packet.submission_ref(),Some("project:R")).is_err());assert!(packet.cancel());
+        // Stop's terminal state precedes the reader's out-of-lock REC flush.
+        // Await completion of these two exact owned EOF tasks before deleting
+        // their scratch source, rather than retrying/remasking a late write.
+        let (a_done,a_finished)=channel();let (b_done,b_finished)=channel();
+        *account.after_eof_work.lock().unwrap()=Some(Box::new(move||a_done.send(()).unwrap()));
+        *key.after_eof_work.lock().unwrap()=Some(Box::new(move||b_done.send(()).unwrap()));
+        account.stop_scoped(&ga,"person:synthetic","codex-stop").unwrap();key.stop_scoped(&gb,"person:synthetic","codex-stop").unwrap();
+        a_finished.recv_timeout(Duration::from_secs(5)).unwrap();b_finished.recv_timeout(Duration::from_secs(5)).unwrap();std::fs::remove_dir_all(root).unwrap();
     }
     #[test]
     fn scoped_stop_full_tuple_guard_has_zero_effect_then_valid_pipe_and_late_source_control(){
         let host=host();let before=host.snapshot();let epoch=host.inner.0.lock().unwrap().attachment_pipe_epoch;
         for (field,value) in [("appSession",json!("other-session")),("home",json!("other-home")),("spawnCounter",json!(2))]{let mut foreign=g();foreign[field]=value;assert!(host.stop_scoped(&foreign,"person:test","codex-stop").unwrap_err().contains("no successor stop"));assert_eq!(host.snapshot(),before);assert_eq!(host.inner.0.lock().unwrap().attachment_pipe_epoch,epoch);}
         let gate=host.attachment_gate.lock().unwrap();let caller=Arc::clone(&host);let(tx,rx)=channel();let worker=std::thread::spawn(move||tx.send(caller.stop_scoped(&g(),"person:test","codex-stop")).unwrap());{let mut i=host.inner.0.lock().unwrap();i.generation["home"]=json!("same-counter-successor-home");i.attachment_pipe_epoch+=1;}drop(gate);assert!(rx.recv_timeout(Duration::from_secs(1)).unwrap().unwrap_err().contains("no successor stop"));worker.join().unwrap();assert_eq!(host.state(),"ready");assert!(host.inner.0.lock().unwrap().stop_record.is_none());
-        let host=super::conversation_transport_tests::host();let mut child=Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).process_group(0).spawn().unwrap();let pid=child.id() as i32;*host.stdin.lock().unwrap()=child.stdin.take();let stdout=child.stdout.take().unwrap();*host.child.lock().unwrap()=Some(child);host.inner.0.lock().unwrap().child_pid=Some(pid);host.spawn_reader(stdout,g());
+        let host=super::conversation_transport_tests::host();let child=process_group_custody::OwnedProcess::spawn(Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).process_group(0)).unwrap();let pid=child.id() as i32;*host.stdin.lock().unwrap()=child.take_stdin();let stdout=child.take_stdout().unwrap();child.bind(&g()).unwrap();*host.child.lock().unwrap()=Some(child);host.inner.0.lock().unwrap().child_pid=Some(pid);host.spawn_reader(stdout,g());
         assert_eq!(host.stop_scoped(&g(),"person:test","codex-stop").unwrap()["state"],"stopped");let ended=host.lifecycle_events().into_iter().find(|e|e["transitionId"]=="LT-23").unwrap();assert!(ended.to_string().contains("exitFacts"));
         {let mut i=host.inner.0.lock().unwrap();i.generation["spawnCounter"]=json!(2);i.state="ready".into();}host.on_eof(&g());assert_eq!(host.state(),"ready");assert_eq!(host.snapshot()["generation"]["spawnCounter"],2);assert!(host.stop_scoped(&g(),"person:test","codex-stop").unwrap_err().contains("no successor stop"));
     }

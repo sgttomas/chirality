@@ -795,7 +795,7 @@ states (OE-1).
 | DEL-01-02 (RECOVERY-v0.2; v0.9) | — (R17-10: DEL-01-02 consumes nothing of DEL-04-03 and writes no RS entry; RECOVERY §8.2) | The custody events of RECOVERY-v0.2 §8 (`recovery.custody-event.schema.json`), which the App writer maps: `request_ended_unanswered` → R13 *ended unanswered (process exit)*; `acknowledgment_not_observed` → R11 "lost acknowledgement"; `app_restart_interruption` → R11 "App-restart interruption" on the run current in the conversation at the interruption; `observation_lost` / `observation_recovered` reach R8 through DEL-02-03 (CE-13, CE-14) | Designed (PROPOSED), not built; a turn interrupt is not recorded in format 0.1 (§3) |
 | DEL-01-04 (AAC-v0.2, NIR-v0.2; v0.9) | §6 human-act record and §13 entry kinds, which the act control writes (`human_act` *direct capture*, recorder role "App interface (capturing surface)"; `act_declined`) through the writer of §14.1; record-out for act presentation (NIR §8) and the checkpoint and standing display it places (NIR §9) | Captures of acts on App content and of A15 (AAC §1.2, §4); capture evidence objects (AAC §5.2) | The act control's obligation is PROPOSED until SCA-V4-003 carries SC2-01-04-1 (amended by SC3-01-04-1); SEAL-2 open (U-32) |
 | DEL-02-02 (WR-v0.2; v0.9) | A15 records (HA-10), which its `library_entry` cites; R2 *selected* | The A15 descriptor the act control composes from (WR RB-4); the selection record (R2 *selected*); the per-run workflow supply record for R3 (R19-7) | Designed (PROPOSED), not built. No register row names DEL-02-02 as a supplier of DEL-04-03; one is proposed in the F-C return |
-| DEL-02-04 (ROLE-v0.2; v0.9) | R3 and R5a meanings | The supply record 0.2 (role guidance at start and fork), the limit account and the limit observations (ROLE §6) | Designed (PROPOSED), not built; DEP-02-04-012 |
+| DEL-02-04 (ROLE-v0.2; v0.9) | R3 and R5a meanings | The supply record 0.2 (role guidance at start and fork), the limit account and the limit observations (ROLE §6) | Current ROLE §6.1a supplies a private receipt for confirmed App observations and exact retained guidance, historical limits and run context. The run owner records the role R3 after `run_opened`; the durable reader resolves its references as quoted evidence, with adoption unknown and no restored role/CCE authority. Observation versions 0.1 and 0.2 remain readable; the separate proposed supply format 0.2 is unchanged. DEP-02-04-012 |
 | External host run recording (DEP-04-03-016; DEP-001) | §§3–9 | Receipts, origin marks, subject content identities, capture evidence and reference, lapse, per-operation settings version, constraint receipt, per-turn guidance, host holds (SQ-02; governance phase), channel restrictions on destination | Adoption unclaimed; OI-013 placement. SWBPIPE answered 2026-09-28 (relayed; no commitment or contribution, RELAY §4): no capture-evidence reference (SQ-01), no host-held route (SQ-02), whole-model identity only (SQ-03), whole-model staleness (SQ-07), session-only receipts (SQ-09), receiptless session undo (SQ-10), no A13 facility (SQ-28) |
 
 ### 10.1 Receivers and suppliers by register row (R9-6)
@@ -1505,12 +1505,16 @@ settled. **Implemented** (App `records_store.rs`, `storage.rs`): Placement,
 Project identity, Existing records and Failures below, for a project's run
 logs, outside-run act logs, captures and WR WP-1 records, and (U-STORE-6,
 "Split by who writes") for its connector route accounts (DEL-07-02,
-`connector_route_store.rs`) and the agents' records read log (§13.9); Units
+`connector_route_store.rs`) and the agents' records read log (§13.9), and
+the App's role-supply observations and exact retained App guidance bytes
+(DEL-02-04, ROLE §6.1a, `role_observations.rs`); Units
 written together and the chain of Tamper-evidence (App `record_lines.rs`,
 `records.rs`, `records_index.rs`) for every RS log the App writes. The
 derived SQLite index, BagIt export and recorded retention controls below
-are also implemented; the other mechanisms await their slices; the store's copy of the App's fleet coordination observations
-has its place below, but DEL-06-01 has no App writer or reader yet.
+are also implemented; the other mechanisms await their slices. DEL-06-01's
+manual source reader compares the co-written fleet log with the store's copy
+as described below. Its App writer records source-qualified Fork/Continue-as
+relationships and recording outcomes; other Fleet producers remain unbuilt.
 
 - **Placement** (implemented). The App keeps its records in its own records
   store at `<App-own-user-data>/records/` (the Tauri App data folder),
@@ -1520,8 +1524,11 @@ has its place below, but DEL-06-01 has no App writer or reader yet.
   `acts/<safe-writer-storage-key>.jsonl`, `captures/` (and
   `captures/pending/`) and `workflow/` (WR §16.8 WP-1 records), keyed as in
   §13.7, `connectors/route-accounts/<uuid>.json` (DEL-07-02 accounts, CRP
-  §2), `reads/records-reads.jsonl` (the §13.9 read log) and, when DEL-06-01
-  is built, `fleet/coordination.fleet.jsonl` (the App's own coordination
+  §2), `reads/records-reads.jsonl` (the §13.9 read log),
+  `role-supply/observations.jsonl` and `role-supply/content/<sha256>.utf8`
+  (ROLE §6.1a's App observations, exact App-owned guidance, historical limits
+  and run-start context),
+  and `fleet/coordination.fleet.jsonl` (the App's own coordination
   observations, also written to the project's log, below), beside the
   store's own records: `store.json` (the store's identity,
   written once), `roots.jsonl` (every project root the store has seen) and,
@@ -1634,8 +1641,8 @@ has its place below, but DEL-06-01 has no App writer or reader yet.
   project (`.chirality/records/connectors/route-accounts/`) are existing
   records (below).
   *Fleet coordination log* (owner, 2026-10-12: "Write to both
-  (Recommended)"; Design only, to be built with DEL-06-01, which has no App
-  writer or reader yet). The log is co-written (FR-D1): the App writes only
+  (Recommended)"; the manual reader is implemented in DEL-06-01 FR §6.1,
+  and the native-link writer in §6.2). The log is co-written (FR-D1): the App writes only
   its observations (`dispatch_observed`, `child_observed`,
   `observation_ended`, `related_conversation`), and agents and the person
   write the entries they are the actors or recorders of with ordinary file
@@ -1651,11 +1658,33 @@ has its place below, but DEL-06-01 has no App writer or reader yet.
   protection: they read the project file as it is, and an agent can write
   into it an entry that names the App as its recorder; INV-FL-2 refuses
   App-observation kinds only from other recorders, so it does not catch
-  that. This adds no
-  file and changes no entry in the project log, so the log's shape and
-  format are unchanged and REQ-005's consumers need no new account. Until
-  DEL-06-01 is built no App code writes either copy, and nothing in
-  `.chirality/fleet/` is in the import census. The registered legacy log
+  that. Existing 0.1 entries remain unchanged. The separate native-links 0.2
+  profile records source-qualified conversation relationships and mechanical
+  recording outcomes under FR §4's quoted owner direction. The actual observer
+  writes the store first and copies the same exact line into the project;
+  other dispatch/child/observation-ended producers remain unbuilt. The manual
+  reader preserves exact store line bytes and their written order as the
+  governing copy; project replays cannot move an observation in that order.
+  A missing, incomplete or conflicting protected source supplies no App
+  observation projection. A per-process length/hash proof retains the longest
+  accepted prefix of this identified store/project source: shrinking,
+  rewriting or removing it withholds the governing projection until the
+  original prefix is restored. An unchanged prefix may grow by append.
+  Unsigned cold files alone cannot establish that earlier history was removed.
+  The existing placement check also withholds that
+  provenance for a known agent-writable development store, whose matching
+  bytes and order remain quoted evidence with the limit. Reads create,
+  attach, import and repair nothing. Protected `fleet/coordination.fleet.jsonl`
+  is retained project payload for export and disposal; neither fleet log is
+  part of the RS corpus, derived query index, records capability or RS
+  chain-head manifest or ordinary RS-home decision, and nothing in
+  `.chirality/fleet/` is in the import census. A Fleet-only export requires
+  no waiting ordinary legacy records and no incomplete, unknown or torn
+  import state, checked again under the export's capture/writer locks.
+  An empty capture folder or one containing only the exact regular,
+  single-link capture lock establishes no ordinary RS home; actual captures
+  and unknown/non-control members retain the existing home meaning.
+  The registered legacy log
   `records/coordination.rs.jsonl` (§13.7) is a different file: an RS record
   log, not DEL-06-01's `chirality.fleet.record` log.
 - **Units written together** (implemented; App `record_lines.rs`, `records.rs`
@@ -1885,7 +1914,8 @@ has its place below, but DEL-06-01 has no App writer or reader yet.
   Imported connector files keep every byte, including interrupted-publication
   `.tmp` files and unusual `.lock` names. The package has `bagit.txt`, a
   `manifest-sha256.txt` covering every payload file exactly once, a protected
-  `records-chain-heads.json` tag computed from the copied RS logs, and a
+  `records-chain-heads.json` tag computed from the copied RS logs and the
+  role-supply observation log through its own schema/chain reader, and a
   `records-administration.json` tag containing the project's identity and the
   prior administrative events' exact UTF-8 bytes as reversible JSON strings
   (whitespace and line endings preserved), and a `tagmanifest-sha256.txt`
@@ -1903,7 +1933,14 @@ has its place below, but DEL-06-01 has no App writer or reader yet.
   evidence gaps remain in the copied records and the chain-head tag; a verified
   package certifies its bytes, not complete history or human-act authenticity.
   **Verify an exported package** rechecks the full inventory, both manifests
-  and the copied RS chain heads. The included standard-library `verify.py`
+  and the copied logs' declared chain-head profile. New tags use profile 0.2
+  for RS and role-supply heads; the older 0.1 RS-only profile remains
+  verifiable, with role-supply head coverage explicitly unestablished.
+  Current-store matching still requires complete payload-byte and
+  administrative coverage under either profile. Auxiliary role rows never
+  enter the R1 index or the capability's record pages. Referenced role R3s can
+  carry the bounded historical metadata companion described in §13.9, without
+  returning those raw rows. The included standard-library `verify.py`
   checks inventories and hashes without the App (`python3 verify.py <bag>`),
   including the chain-head tag's checksum; it does not interpret RS semantics.
   Both say the package is unsigned. Older exports without an administration
@@ -2052,7 +2089,17 @@ It realizes §13.8's agent access and does not change what a record is.
   without the capability remain without it. Both the custom provider and
   built-in `lmstudio` route redirected to that fixture reported
   `namespaceTools: true` and carried the declaration in the Code Mode
-  `functions.exec` description for the selected `gpt-6.1-sol` model. Delivery
+  `functions.exec` description for the selected `gpt-6.1-sol` model. The
+  optional `--include-flat-model` case uses the supplier-catalogue-reported
+  `gpt-5.5` model with the same custom capture-only provider. Its five offered
+  start/hot-resume/hot-fork/cold-resume/cold-fork turns carry one flat function
+  declaration, and both unoffered controls carry none. Hot and cold capability
+  reads still report `namespaceTools: true`. The observed flat parameters omit
+  string length and integer range bounds, preserving the types, enum, required
+  fields, `additionalProperties` and description. The detector accepts only
+  the exact App schema or that exact observed projection; it establishes
+  typed declaration carriage, not delivery or enforcement of the omitted
+  bounds. Actual App calls retain their separate input validation below. Delivery
   when a provider reports `namespaceTools: false` and actual provider behavior
   remain unobserved. The App carries a known source's offer to a correlated,
   operationally admitted fork within the same generation. The maintained
@@ -2120,6 +2167,41 @@ It realizes §13.8's agent access and does not change what a record is.
 
   A decision package (DEL-06-02) is not an operation yet: its view joins more
   than records, and no consumer needs it through this tool today.
+- **Referenced role metadata.** A full role-guidance R3 retained in a
+  `read_run` page can have a separate `supplierReading` companion. The
+  original quoted record, source, stub choice, record identities and cursor
+  remain unchanged. The companion gives historical file metadata only:
+  controlled state/limit codes, exact source and lineage identities, selected
+  role and historical limit enums, and a narrow run context. Adoption stays
+  unknown and it restores no current role or CCE authority. WR correspondence
+  is explicitly omitted; this is not the full App supplier reading or complete
+  instruction-byte reconstruction.
+
+  The projection excludes raw role rows, guidance/composed/part text,
+  generation/request objects, paths, free-text policy statements and backend
+  errors, WR content, captures and library acts. Missing, unsafe, inconsistent,
+  corrected or disposed sources qualify the companion; they do not erase or
+  replace the original R3. A bounded relation inspection that cannot establish
+  the prior claim's condition returns unknown/omitted, never an uncorrected
+  claim by default. The input schema, operations, document version and tool
+  definition identity stay unchanged.
+
+  **Implementation test values:** one answer's additional companion source
+  reads are limited to 2 MiB in total, with a 1 MiB role-log limit, 512 KiB
+  owning-run and composed/part-guidance limits, 64 KiB JSON-payload limit,
+  64 source files and lineage depth 8. Reads enforce their
+  remaining budget through opened nonblocking/no-follow regular single-link
+  descriptors, including racing growth; overflow or unavailable integrity
+  yields a safe omission code. Only selected-page role R3s are enriched;
+  already-read corpus facts supply the bounded relation inspection, limited to
+  128 claims, 512 KiB before copying and 200,000 corpus-entry inspections. The
+  existing ordinary corpus read is unchanged and is outside the additional
+  2 MiB companion budget. No new
+  all-project act scan is added for the companion. The ordinary bounded page
+  is formed first. Each companion is at most 2 KiB and is reduced or omitted
+  if it would exceed the final 32 KiB document limit; the original page and
+  cursor survive. The final enriched bytes and digest are recorded by the
+  existing read-log-before-reply path.
 - **Bounds.** At most 50 items a page (20 when no limit is given); a page
   stops before its items pass 16 KiB. An entry over 8 KiB, and a derived
   run summary over 8 KiB, is returned as a stub whose identity fields are cut
@@ -2133,9 +2215,10 @@ It realizes §13.8's agent access and does not change what a record is.
   (no sign, no leading zero). Records are only appended, so an entry
   appended between two pages can make the next page repeat an item but
   never skip one. Returns go to the conversation's model provider, which
-  may be a cloud provider, so pages are small and nothing outside the
-  records is added.
-- **Excluded.** The capability reads only this project's records through a
+  may be a cloud provider, so pages remain small and return only this
+  project's ordinary records and the bounded referenced-role metadata
+  projection. Raw auxiliary rows and guidance bytes remain omitted.
+- **Excluded.** Record pages read only this project's R1 records through a
   storage-independent source: the logs R-1 discovers (§13.8: the project's
   records store subtree with the registered legacy log's imported copy, or
   before an import the §13.7 project logs under `.chirality/records/` and the
@@ -2466,6 +2549,13 @@ machine; `records::durability_tests`, and the ignored
   database; in-process state keeps per-log limits, chain and growth metadata.
   Reads and rebuilds stream the shared R-2 parser's lines. Earlier in-process
   index measurements below remain observations of the versions named there.
+  The parser reuses each observed raw-line digest for the chain and W-0's
+  exact-byte comparison. W-0 lookahead skips JSON decoding only when valid
+  UTF-8 contains neither a JSON escape nor the literal recovery label; every
+  possible marker keeps the full JSON interpretation. Raw-byte identities,
+  including a carriage return before the line feed, and the existing torn-line,
+  group, sequence and chain limits are unchanged. The differential regression
+  checks compare complete parsed observations with the earlier interpretation.
 
   How it stays current:
   - Each refresh re-walks the tree and takes every log's and directory's
@@ -2499,12 +2589,42 @@ machine; `records::durability_tests`, and the ignored
   the seal key basis are unchanged.
   The completed checkpoint act read is an immutable in-process snapshot
   shared by the cache and its readers; keeping or returning it copies no
-  record or capture bodies. A reader's earlier observation remains unchanged
+  record or decline-content bodies. A reader's earlier observation remains unchanged
   after the cache is replaced. A new read still checks the same completeness,
   act epoch, capture stamps and seal-key basis before using a kept snapshot.
+  The ended-run observer (`after_run_end.rs`; EXEC §4.9 RE-2 and its current
+  implementation conditions) shares that verified observation and its compact
+  correction/identity assessment. It records CE-16 for later A4/A6/A7 App-file
+  captures against eligible recorded arrivals without changing ended
+  dispositions. It caches owning-log projections and exact-subject candidates;
+  unchanged ticks reuse them, and each publication rechecks current evidence.
+  Relaunch reads the durable relations. A correction or ambiguous arrival
+  coordinate withholds an unproved display association while retaining the raw
+  record and an explicit limit. For an already performed single App-file
+  A4/A6/A7 arrival, the observer also records post-end CE-10/CE-18 against
+  its latest eligible performance and original bound content (EXEC's current
+  implementation conditions). File currentness is checked independently of
+  record/capture changes; unsafe aliases, non-plain or unreadable sources stay
+  unknown, while proved physical absence can establish a lapse. Pending writes
+  retain the first observed content and time. Warm projections reuse unchanged
+  rows, and hot/cold displays qualify unconfirmed or late publication. Return
+  to the earlier content remains record-only under U-12; a new run inherits
+  no prior performance or lapse.
   Checkpoint eligibility uses the public correction reader's shared analysis
-  over borrowed source claims, then moves the original records and verified
-  captures into that snapshot. Public views materialize their correction
+  over borrowed source claims. The private snapshot retains every full original
+  record. Each capture remains full through its schema, seal, backlink and
+  correspondence checks. A successful private candidate then releases its
+  unused capture fields; declines retain their exact `boundContent` array as
+  `declineBoundContent`, without normalization. Every eligible claim still
+  reads and verifies its own source, including repeated capture identities.
+  Global R-8 duplicate-capture resolution follows the complete scan, using
+  the same verified capture-to-record membership. Only then is the immutable
+  observation published or cached; ordinary failures and R-8 refusals keep
+  their original record values, reasons and order.
+  These are private verified facts, not a capture DTO. Capture watches, key
+  basis and failure retries are unchanged. Public file-act views resolve full
+  captures independently, including their original scope, purpose and content.
+  Public correction views materialize their correction
   groups, A15 assessment snapshots and quoted record/source objects; the
   checkpoint read consumes compact eligibility facts without materializing
   correction groups or a second quoted record/source tree.
@@ -2628,6 +2748,70 @@ machine; `records::durability_tests`, and the ignored
   memory bound; no large-tier measurement was repeated, and retained records
   and captures still grow with the project's act history.
 
+
+  **Compact private checkpoint snapshot (2026-10-14, debug build).** The
+  maintained ignored `records_scale_report` ran before and after final
+  post-verification compaction with
+  `CHIRALITY_SCALE_TIERS=10:300:1000,100:3000:1000`, fresh scratch stores,
+  sealed captures and a fresh child process for each read path. Baseline is
+  `7022435b91`; its record-reader production bytes match `16c6f2d93`. Each run
+  has 30 entries, each tier has 1,000 ledger rows, and the act child holds its
+  first observation while reading again after a run entry. All fixture acts
+  are positive A7s; decline content is covered by the maintained regression.
+
+  | Runs / acts | Retained rows as compact JSON, before / after | Original records as compact JSON, both | RSS after first read, before / after | Peak through kept read, before / after | First act read, before / after |
+  |---|---|---|---|---|---|
+  | 10 / 300 | 642,891 / 329,911 bytes | 326,611 bytes | 55.8 / 55.8 MB | 56.2 / 56.2 MB | 595 / 598 ms |
+  | 100 / 3,000 | 6,444,392 / 3,308,612 bytes | 3,275,612 bytes | 97.7 / 97.8 MB | 98.1 / 98.2 MB | 2.25 / 2.29 s |
+
+  The original full record values remain in the snapshot. The baseline keeps
+  a full capture for each of its 300 or 3,000 verified acts; the candidate
+  reports zero full-capture rows and zero decline-content rows in these
+  positive-only fixtures. Encoded length measures the private retained
+  representation, not heap size or a memory bound. The baseline serialized
+  after recording time/current/peak RSS; the candidate counts streamed JSON
+  bytes with constant output storage. Both use the same compact JSON encoding.
+  Metric work follows the cold-time and RSS samples. Warm reads after the run
+  entry share the same immutable observation in both versions (2.5 / 2.4 ms
+  and 13.0 / 13.1 ms). Full captures remained transient through duplicate-capture
+  resolution in that candidate, and freeing values need not release allocator pages. These
+  observations show the smaller retained representation, no RSS or first-peak
+  improvement and no cold-latency improvement; they establish no release or
+  100,000-act bound. Source validation and full record retention still grow
+  with the project history.
+
+  **Capture lifetime during the checkpoint read (2026-10-14, debug build).**
+  A focused act-only child used the maintained `scale_runs`/`scale_acts`
+  fixtures at 10 runs / 300 acts and 100 runs / 3,000 acts, with 30 entries
+  per run. Each paired report used a fresh scratch records store; each tier
+  had its own project and seal-key folders and a fresh child process.
+  Baseline `11ea55dec8` includes final snapshot compaction; the candidate's
+  base is `e808a095d8`, whose act-reader, capture, index and scale-fixture
+  bytes match that baseline. Temporary constant-size counters
+  tracked fully verified capture values held by the scan, and current/peak
+  RSS was sampled at source-analysis, R-8 and return boundaries. The counters
+  and samples were removed from maintained code after the comparison.
+
+  | Runs / acts | Verified full captures held before R-8, before / after | Maximum scan-owned verified full captures, before / after | RSS before R-8, before / after | Peak through kept read, before / after | First act read, before / after |
+  |---|---|---|---|---|---|
+  | 10 / 300 | 300 / 0 | 300 / 1 | 55.7 / 55.3 MB | 56.5 / 55.9 MB | 613 / 623 ms |
+  | 100 / 3,000 | 3,000 / 0 | 3,000 / 1 | 96.8 / 83.9 MB | 97.5 / 84.3 MB | 2.42 / 2.44 s |
+
+  At 3,000 acts, RSS after relation analysis was 74.7 / 74.9 MB; releasing
+  each verified capture removes its cumulative tree retention before R-8.
+  Both final snapshots encode to exactly 329,911 bytes at 300 acts and
+  3,308,612 bytes at 3,000 acts, with unchanged original-record encodings
+  of 326,611 and 3,275,612 bytes. Constant-storage encoding follows all time
+  and RSS samples. Both versions return the same held observation on the
+  later kept read (3.1 / 2.6 ms and 13.9 / 14.2 ms), with all acts and no
+  unresolved rows in these positive-only fixtures. Exact multi-subject
+  decline contents and consumers are covered by maintained regressions.
+  These paired observations show lower RSS/peak at the 3,000-act tier,
+  unchanged final representation and no cold-latency improvement. They are
+  not a release or 100,000-act bound. Full records, metadata, decline facts
+  and each individual capture's validation allocations remain; allocator
+  pages need not be returned merely because a value was released.
+
 ## 15. Local prototype (R12-3)
 
 `prototype/` holds a prototype, not product code (its README says so):
@@ -2740,7 +2924,7 @@ validator it also compares their outcomes. These remain Design rehearsals.
 | U-STORE-3 *Decided 2026-10-12:* tamper-evidence strength (owner: "Chain + signed checkpoints") | — | — | Per-log hash chain; signed checkpoints after App signing, key in the OS keychain; no external anchoring (§13.8; OI-011) |
 | U-STORE-4 *Decided 2026-10-12:* agent reads through an App-provided, project-scoped, read-only records capability (owner: "I choose option B") | — | — | Direct file reads cannot be prevented under Codex 0.160.0; the limit is stated (§13.8). The capability is §13.9 |
 | U-STORE-5 *Decided 2026-10-12:* backup and export package format (owner: "BagIt + signed manifest") | — | — | BagIt (RFC 8493) package, SHA-256 manifest with chain heads, signed after App signing (§13.8) |
-| U-STORE-6 *Decided 2026-10-12:* fleet and connector files split by who writes (owner, 2026-10-12: "Split by who writes (Recommended)"); *refined 2026-10-12* for the coordination log (owner: "Write to both (Recommended)") | — | — | Connector accounts and the agents' read log join the store (implemented); briefs and graphs stay in the project. The decision first called the coordination log App-written; it is co-written, so it stays one file in the project with every entry, and the App also records its own observations in the store, whose copy governs inside the App (§13.8; Design only until DEL-06-01) |
+| U-STORE-6 *Decided 2026-10-12:* fleet and connector files split by who writes (owner, 2026-10-12: "Split by who writes (Recommended)"); *refined 2026-10-12* for the coordination log (owner: "Write to both (Recommended)") | — | — | Connector accounts and the agents' read log join the store (implemented); briefs and graphs stay in the project. The decision first called the coordination log App-written; it is co-written, so it stays one file in the project with every entry, and the App also records its own observations in the store, whose copy governs inside the App (§13.8; manual reader implemented in FR §6.1, App observation writer remains Design) |
 | U-19 Host receipt or own evaluation of the governing checkpoint constraint (governance phase) | Host owner (relay SQ-02). SQ-02 answered 2026-09-28: none (route (iv)); planning a route is a SWBPIPE owner decision (ANS §2) | Before connected integration; when the owner resumes UI-SUCCESSOR (DECISION-3) | Phase 1: no constraint recorded as carried. In either phase, "constraint not carriable on this host" is recorded where the host schema has no element (R8-10): in the current phase it says that the expected constraint could not be carried and was recorded only (ADAPTER GC-4, P §3.3); it bears on a hold-support value only in the governance phase (R10-2). Governance phase: only host-held satisfies R2-12; App-assured unavailable (R5-2); model-supplied or absent is an R11 limit |
 | U-20 *Closed (v0.9; RECOVERY-v0.2 §8.2).* R13 feed beyond DEL-01-01 observed facts | DEL-01-02 (decided by its design) | — | Exactly two DEL-01-02 facts: `request_ended_unanswered` → R13 *ended unanswered (process exit)*; `acknowledgment_not_observed` → R11 "lost acknowledgement" (with `app_restart_interruption` → R11 "App-restart interruption") |
 | U-21 Host-loop per-turn guidance identities | Host owner (relay) | Before connected integration | R3 *unknown* where absent |

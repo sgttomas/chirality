@@ -284,7 +284,7 @@ test('the selected workflow shows its declared part instead of a JSON dump',()=>
   const undeclared=h(DeclaredPart,{declaration:{raw:null,reading:'undeclared',categories:Object.fromEntries(cats.map(c=>[c,'undeclared'])),elements:{},findings:[]}});
   assert.ok(undeclared.includes('declares no requirements part')&&undeclared.includes('Not declared.'));
   const app=readFileSync(new URL('../src/App.tsx',import.meta.url),'utf8');
-  assert.ok(app.includes('<SelectedWorkflow selection={data?.selection}/>')&&app.includes('<RunPanel run={run} conversations={conversations} bringBackDefault={runBringBackDefault(data,run.reference)} busy={busy} act={action}/>'));
+  assert.ok(app.includes('<SelectedWorkflow selection={selected} inspection={!thread}/>')&&app.includes('<RunPanel run={run} conversations={conversations} bringBackDefault={runBringBackDefault(data,run.reference)} busy={busy} act={action}/>'));
 });
 
 test('Bring a real run back to authoring calls the host only on the press, with the chosen conversation (TT-10, TT-11)',()=>{
@@ -366,4 +366,74 @@ test('tool-permission settlements and model turns feed no facet; a lost acknowle
   }
   const html=h(StandingFacets,{facets:after});
   assert.ok(!/\bchecked\b|verified|approved|accepted|relied|passed|permitted/i.test(html),html);
+});
+
+test('post-end A4/A6/A7 observations stay against the ended arrival and never alter its disposition or output facets',()=>{
+  const a=arrival('CP-rely',1,'item:end/turn/file','output summary: file out/summary.md');
+  const final=entry('disposition_change',{arrival:{checkpoint:'CP-rely',arrivalOrdinal:1},disposition:'waiting',performanceOrdinal:0});
+  const observations=['A4','A6','A7'].map((actKind,i)=>entry('act_after_run_end',{arrival:{checkpoint:'CP-rely',arrivalOrdinal:1},act:{recordId:`later-${i}`,actKind,capturedAt:'2026-10-13T14:00:00Z',capturingSurface:'app_act_control'}}));
+  const records=[a,final,entry('run_ended',{cause:'ended by the person',waitingArrivals:[{checkpoint:'CP-rely',arrivalOrdinal:1}]}),...observations];
+  const html=h(ArrivalRecord,{arrival:a,all:records});
+  assert.ok(html.includes('reached; act not yet recorded'));for(const kind of ['A4','A6','A7'])assert.ok(html.includes(`After run end: ${kind}`));
+  assert.ok(html.includes('The ended arrival disposition is unchanged.'));
+  const out={name:'summary',form:'file',gating_checkpoint:'CP-rely',promised_standing:['relied on by the person']};
+  const before=outputStanding(out,run({lifecycle:{records:records.slice(0,3)}}));
+  assert.deepEqual(outputStanding(out,run({lifecycle:{records}})),before);
+  const pending={...observations[0],written:false,limit:'source unavailable; original observation held'};
+  assert.ok(h(ArrivalRecord,{arrival:a,all:[a,final,pending]}).includes('Not yet written to the run record'));
+  const other={...observations[0],body:{...observations[0].body,arrival:{checkpoint:'CP-rely',arrivalOrdinal:2}}};
+  assert.ok(!h(ArrivalRecord,{arrival:a,all:[a,final,other]}).includes('After run end:'));
+});
+
+test('actual host tick DTO presents a post-end observation against its final waiting arrival',()=>{
+  const {spawnSync}=createRequire(import.meta.url)('node:child_process');
+  const {fileURLToPath}=createRequire(import.meta.url)('node:url');
+  const proc=spawnSync('cargo',['+1.97.1','test','--offline','--locked','--lib','runtime_session::workflow_root_tests::after_run_end_actual_tick_reopen_and_new_run_keep_finality','--','--exact','--nocapture','--test-threads=1'],{cwd:fileURLToPath(new URL('../src-tauri',import.meta.url)),encoding:'utf8',env:{...process.env,CHIRALITY_SKIP_CODEX:'1'}});
+  assert.equal(proc.status,0,proc.stderr+proc.stdout);
+  const line=proc.stdout.split('\n').find(line=>line.includes('AFTER_END_DTO:'));assert.ok(line);
+  const dto=JSON.parse(line.slice(line.indexOf('AFTER_END_DTO:')+'AFTER_END_DTO:'.length));
+  const records=dto.afterRunEnd.runs[0].records;const a=records.find(r=>r.kind==='checkpoint_arrival');
+  const html=h(ArrivalRecord,{arrival:a,all:records});assert.match(html,/After run end: A7/);assert.match(html,/reached; act not yet recorded/);assert.match(html,/ended arrival disposition is unchanged/);
+  assert.equal(records.filter(r=>r.kind==='act_after_run_end').length,1);assert.equal(records.filter(r=>r.kind==='act_counted').length,0);
+});
+
+test('actual reopened corrected-arrival DTO preserves CE16 history without assigning it to the corrected subject',()=>{
+  const {spawnSync}=createRequire(import.meta.url)('node:child_process');const {fileURLToPath}=createRequire(import.meta.url)('node:url');
+  const proc=spawnSync('cargo',['+1.97.1','test','--offline','--locked','--lib','runtime_session::workflow_root_tests::after_run_end_persisted_observation_is_not_rebound_to_corrected_subject','--','--exact','--nocapture','--test-threads=1'],{cwd:fileURLToPath(new URL('../src-tauri',import.meta.url)),encoding:'utf8',env:{...process.env,CHIRALITY_SKIP_CODEX:'1'}});assert.equal(proc.status,0,proc.stderr+proc.stdout);
+  const line=proc.stdout.split('\n').find(line=>line.includes('AFTER_END_CORRECTED_DTO:'));assert.ok(line);const dto=JSON.parse(line.slice(line.indexOf('AFTER_END_CORRECTED_DTO:')+'AFTER_END_CORRECTED_DTO:'.length));
+  const records=dto.afterRunEnd.runs[0].records;const corrected=records.find(r=>r.kind==='checkpoint_arrival'&&r.corrects);
+  const html=h(ArrivalRecord,{arrival:corrected,all:records});assert.match(html,/out\/new.md/);assert.doesNotMatch(html,/After run end: A7/);assert.match(html,/Post-end subject association not established/);
+  const {WorkflowRootPanel}=load('App.tsx');const full=h(WorkflowRootPanel,{data:dto,host:{state:'ready',generation:{},threads:[]},act:async()=>{}});
+  assert.doesNotMatch(full,/After run end: A7/);assert.match(full,/Recorded post-end source history/);assert.ok(full.includes('act_after_run_end'),'raw CE16 remains inspectable');assert.match(full,/Post-end subject association not established/);
+});
+
+test('actual ended performed-file DTO displays a lapse without reopening or asking for an act',()=>{
+  const {spawnSync}=createRequire(import.meta.url)('node:child_process');const {fileURLToPath}=createRequire(import.meta.url)('node:url');
+  const proc=spawnSync('cargo',['+1.97.1','test','--offline','--locked','--lib','runtime_session::workflow_root_tests::after_end_file_lapse_actual_owner_tick_and_cold_reopen_keep_the_closed_source','--','--exact','--nocapture','--test-threads=1'],{cwd:fileURLToPath(new URL('../src-tauri',import.meta.url)),encoding:'utf8',env:{...process.env,CHIRALITY_SKIP_CODEX:'1'}});assert.equal(proc.status,0,proc.stderr+proc.stdout);
+  const line=proc.stdout.split('\n').find(line=>line.includes('AFTER_END_LAPSE_DTO:'));assert.ok(line);const dto=JSON.parse(line.slice(line.indexOf('AFTER_END_LAPSE_DTO:')+'AFTER_END_LAPSE_DTO:'.length));
+  const records=dto.runs[0].lifecycle.records;const a=records.find(r=>r.kind==='checkpoint_arrival');const html=h(ArrivalRecord,{arrival:a,all:records});
+  assert.match(html,/Arrival 1: lapsed/);assert.match(html,/after run end; the arrival is recorded as lapsed/);assert.doesNotMatch(html,/recorded as waiting again/);assert.match(html,/Nothing is asked or stopped/);
+  assert.equal(records.filter(r=>r.kind==='run_ended').length,1);assert.equal(records.filter(r=>r.kind==='act_lapsed').length,1);
+  const facets=outputStanding({name:'summary',form:'file',gating_checkpoint:a.body.checkpoint,promised_standing:['relied on by the person']},run({lifecycle:{records}}));assert.match(facets.humanActs,/lapsed/);
+});
+
+test('actual corrected ended lapse DTO keeps the original observation as history without rebinding its label or output facet',()=>{
+  const {spawnSync}=createRequire(import.meta.url)('node:child_process');const {fileURLToPath}=createRequire(import.meta.url)('node:url');
+  const proc=spawnSync('cargo',['+1.97.1','test','--offline','--locked','--lib','runtime_session::workflow_root_tests::after_end_file_lapse_persisted_history_is_not_rebound_to_a_corrected_subject','--','--exact','--nocapture','--test-threads=1'],{cwd:fileURLToPath(new URL('../src-tauri',import.meta.url)),encoding:'utf8',env:{...process.env,CHIRALITY_SKIP_CODEX:'1'}});assert.equal(proc.status,0,proc.stderr+proc.stdout);
+  const line=proc.stdout.split('\n').find(line=>line.includes('AFTER_END_LAPSE_CORRECTED_DTO:'));assert.ok(line);const dto=JSON.parse(line.slice(line.indexOf('AFTER_END_LAPSE_CORRECTED_DTO:')+'AFTER_END_LAPSE_CORRECTED_DTO:'.length));const records=dto.afterRunEnd.runs[0].records;const a=records.find(r=>r.kind==='checkpoint_arrival'&&r.corrects);
+  const html=h(ArrivalRecord,{arrival:a,all:records});assert.match(html,/out\/new.md/);assert.doesNotMatch(html,/arrival is recorded as lapsed/);assert.match(html,/Post-end subject association not established/);
+  const facets=outputStanding({name:'summary',form:'file',gating_checkpoint:a.body.checkpoint,promised_standing:['relied on by the person']},run({lifecycle:{records}}));assert.match(facets.humanActs,/^unknown:.*no established post-end subject association/);
+  const {WorkflowRootPanel}=load('App.tsx');const full=h(WorkflowRootPanel,{data:dto,host:{state:'ready',generation:{},threads:[]},act:async()=>{}});assert.match(full,/Recorded post-end source history/);assert.ok(full.includes('act_lapsed'));assert.doesNotMatch(full,/arrival is recorded as lapsed/);
+  for(const limited of [{...a,corrects:undefined,afterRunEndRelationLimit:'original counted source corrected'}, {...a,corrects:undefined}]) {
+    const source=[...records.filter(r=>r.kind!=='checkpoint_arrival'),limited];if(!limited.afterRunEndRelationLimit)source.push({...limited,recordId:'duplicate-coordinate'});
+    assert.doesNotMatch(h(ArrivalRecord,{arrival:limited,all:source}),/arrival is recorded as lapsed/);assert.match(outputStanding({name:'summary',gating_checkpoint:a.body.checkpoint},run({lifecycle:{records:source}})).humanActs,/^unknown:/);
+  }
+});
+
+test('actual held lapse DTO qualifies its pending label and later write on the same observation',()=>{
+  const {spawnSync}=createRequire(import.meta.url)('node:child_process');const {fileURLToPath}=createRequire(import.meta.url)('node:url');
+  const proc=spawnSync('cargo',['+1.97.1','test','--offline','--locked','--lib','runtime_session::workflow_root_tests::after_end_file_lapse_pending_group_keeps_first_observation_through_later_edits','--','--exact','--nocapture','--test-threads=1'],{cwd:fileURLToPath(new URL('../src-tauri',import.meta.url)),encoding:'utf8',env:{...process.env,CHIRALITY_SKIP_CODEX:'1'}});assert.equal(proc.status,0,proc.stderr+proc.stdout);
+  const dto=marker=>{const line=proc.stdout.split('\n').find(line=>line.includes(marker));assert.ok(line);return JSON.parse(line.slice(line.indexOf(marker)+marker.length));};
+  const pending=dto('AFTER_END_LAPSE_PENDING_DTO:');const records=pending.afterRunEnd.runs[0].records;const a=records.find(r=>r.kind==='checkpoint_arrival');const held=records.find(r=>r.kind==='act_lapsed');assert.equal(held.written,false);const html=h(ArrivalRecord,{arrival:a,all:records});assert.match(html,/arrival’s pending label is lapsed/);assert.match(html,/Not yet written to the run record/);assert.doesNotMatch(html,/arrival is recorded as lapsed/);
+  const late=dto('AFTER_END_LAPSE_LATE_DTO:');const recovered=late.afterRunEnd.runs[0].records;assert.equal(recovered.filter(r=>r.recordId===held.recordId).length,1);const again=h(ArrivalRecord,{arrival:recovered.find(r=>r.kind==='checkpoint_arrival'),all:recovered});assert.match(again,/Written late; the run record carries/);assert.doesNotMatch(again,/pending label/);assert.equal(recovered.find(r=>r.recordId===held.recordId).observedAt,held.observedAt);
 });
