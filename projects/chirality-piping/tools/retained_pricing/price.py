@@ -12,7 +12,10 @@ Environment (all optional): RP_REPO (the repository to read revisions from; defa
 RP_OUT (default --out), RP_JOB_WRAPPER (a command each point runs under, e.g. a host's job-slot wrapper; split
 like a shell word list). See README.md for inputs, outputs, exit codes and limits.
 """
-import argparse, difflib, json, os, shlex, shutil, subprocess, sys, tempfile
+import argparse, difflib, json, os, re, shlex, shutil, subprocess, sys, tempfile
+from lib.b7a_retired_carry import prepare as prepare_b7a_retired_carry
+from base.b7a_domain_model import prepare as prepare_b7a_domain
+from base.b7a_formation_model import prepare as prepare_b7a_formation
 
 H = os.path.dirname(os.path.abspath(__file__))
 BASE, LIB, RULES, DATA = (os.path.join(H, d) for d in ("base", "lib", "rules", "data"))
@@ -23,7 +26,7 @@ RULE_FILES = ("callgraph_rules.g4.json", "loop_bounds.g4.json", "text_args.g4.js
 POINTS = (("L", 3, 0), ("L", 2, 1), ("L", 1, 2), ("E", 3, 0))
 GIT_ENV = dict(os.environ, GIT_OPTIONAL_LOCKS="0")
 MARKER = ".retained_pricing_out"            # written in an output directory this tool created or claimed while empty
-OWNED = ("snap", "map", "chain", "rcL", "rcE", "runs", "logs", "tree_merged.json", "summary.json", "o10_check_L.json", "o10_check_E.json")
+OWNED = ("snap", "prepared_rules", "map", "chain", "rcL", "rcE", "runs", "logs", "tree_merged.json", "summary.json", "o10_check_L.json", "o10_check_E.json")
 RESOLUTIONS = os.path.join(RULES, "linemap_resolutions.json")
 
 
@@ -62,10 +65,32 @@ def snapshot(repo, rev, dst):
     return os.path.join(dst, P)
 
 
+CORRECT_NORM = ("core/numerics/correct_norm", "open_pipe_stress_correct_norm")
+
+
+def chain_crates(chain, W):
+    """The chain's crate source directories at the snapshot, and the dependency edges they add to the call graph.
+
+    JN1 (retained-pricing-rules.md): the pressure-source join moved frame_kernel's `correct_norm` module, unchanged,
+    into its own crate. Where the snapshot has that crate, its source is scanned and each scanned crate whose
+    Cargo.toml depends on it gets the dependency edge, so `norm2`/`norm3` calls keep resolving to those functions.
+    A snapshot without it prices exactly as before."""
+    crates = open(os.path.join(chain, "crate_dirs.txt")).read().split()
+    deps = []
+    crate, package = CORRECT_NORM
+    if os.path.isfile(os.path.join(W, crate, "src", "lib.rs")):
+        for c in crates:
+            manifest = os.path.join(W, os.path.dirname(c), "Cargo.toml")
+            if os.path.isfile(manifest) and re.search(r"^\s*" + re.escape(package) + r"\s*=", open(manifest).read(), re.M):
+                deps.append(os.path.dirname(c) + ":" + crate)
+        crates = crates + [crate + "/src"]
+    return crates, deps
+
+
 def template_inventory(W, chain):
     """The chain's template inventory regenerated on the snapshot (production .rs files of the chain's crates)."""
     files = []
-    for c in open(os.path.join(chain, "crate_dirs.txt")).read().split():
+    for c in chain_crates(chain, W)[0]:
         for d, _, fs in os.walk(os.path.join(W, c)):
             if "/tests" in d or "/bin" in d:
                 continue
@@ -80,9 +105,10 @@ def point(chain, O, caps, W, looplog=True):
     if os.path.exists(O):
         shutil.rmtree(O)
     os.makedirs(O)
-    e = chain_env(CG_REPAIR="1", CG_EXTRA_DEPS="core/product_physics:core/reporting/result_export", CG_RULES=os.path.join(chain, "callgraph_rules.g4.json"),
+    crates, extra_deps = chain_crates(chain, W)
+    e = chain_env(CG_REPAIR="1", CG_EXTRA_DEPS=",".join(["core/product_physics:core/reporting/result_export"] + extra_deps),
+                  CG_RULES=os.path.join(chain, "callgraph_rules.g4.json"),
                   CG_EDGES_OUT=os.path.join(O, "edges.json"), CG_AUDIT_OUT=os.path.join(O, "audit.json"))
-    crates = open(os.path.join(chain, "crate_dirs.txt")).read().split()
     for args, env in (([os.path.join(chain, "callgraph_g5.py"), ".", os.path.join(O, "cg.out.json"), ROOT_FN, *crates], e),
                       ([os.path.join(chain, "text_lexicon.py"), ".", os.path.join(O, "edges.json"), ROOT_FN, os.path.join(O, "lexicon.json")], None)):
         r = py(args, env=env, cwd=W)
@@ -163,8 +189,28 @@ def cmd_run(a):
     # 1. the snapshot
     W = snapshot(repo, rev, os.path.join(out, "snap"))
     # 2. the base chain's line-keyed rules, basis -> rev (stops on any key it cannot carry)
+    try:
+        prepared, retirement_report = prepare_b7a_retired_carry(W, BASE, os.path.join(out, "prepared_rules", "retired"))
+    except ValueError as error:
+        stop(4, str(error))
+    report["b7a_retired_carry"] = retirement_report
+    # Exact historical/missing-source delegation still enters original strict
+    # carry. Actual current B7a source carries the positive widened premises.
+    if retirement_report is not None:
+        try:
+            widened, domain_report = prepare_b7a_domain(W, BASE, os.path.join(out, "prepared_rules", "widened"), prepared)
+        except ValueError as error:
+            stop(4, str(error))
+        prepared.update(widened)
+        report["b7a_positive_domain"] = domain_report
+        try:
+            formed, formation_report = prepare_b7a_formation(W, prepared, os.path.join(out, "prepared_rules", "formed"))
+        except ValueError as error:
+            stop(4, str(error))
+        prepared.update(formed)
+        report["b7a_formed_ownership"] = formation_report
     m = os.path.join(out, "map")
-    r = py([os.path.join(LIB, "linemap_rules.py"), "--prune-deleted", repo, BASIS, rev, m] + [os.path.join(BASE, f) for f in RULE_FILES],
+    r = py([os.path.join(LIB, "linemap_rules.py"), "--prune-deleted", repo, BASIS, rev, m] + [prepared.get(f, os.path.join(BASE, f)) for f in RULE_FILES],
            env=chain_env(LINEMAP_CRATES=os.path.join(BASE, "crate_dirs.txt"), LINEMAP_ROWS=os.path.join(DATA, "basis_text_rows.json"),
                          LINEMAP_RESOLUTIONS=RESOLUTIONS),
            out=os.path.join(out, "logs", "linemap.json"))

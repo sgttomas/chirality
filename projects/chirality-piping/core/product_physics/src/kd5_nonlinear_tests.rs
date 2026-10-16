@@ -66,6 +66,23 @@ const REFERENCES: [Reference; 7] = [
     },
 ];
 
+/// The oracle binds the immutable 0.1.0 reference bytes. Exercise those same
+/// physical inputs on B7a's current public route by explicitly re-authoring only
+/// the test invocation's document version; the reference files stay unchanged.
+fn current_reference_request(reference: &Reference) -> serde_json::Value {
+    use sha2::{Digest, Sha256};
+    let oracle: serde_json::Value = serde_json::from_str(reference.oracle).unwrap();
+    assert_eq!(
+        format!("{:x}", Sha256::digest(reference.request.as_bytes())),
+        oracle["request_sha256"].as_str().unwrap(),
+        "the independent oracle binds the complete immutable request bytes"
+    );
+    let mut request: serde_json::Value = serde_json::from_str(reference.request).unwrap();
+    assert_eq!(request["model"]["schema_version"], serde_json::json!("0.1.0"));
+    request["model"]["schema_version"] = serde_json::json!(crate::MODEL_SCHEMA_VERSION);
+    request
+}
+
 fn bound_pair(value: &serde_json::Value) -> (f64, f64) {
     (value[0].as_f64().unwrap(), value[1].as_f64().unwrap())
 }
@@ -96,15 +113,9 @@ fn single_case(request: &serde_json::Value, case: &str) -> serde_json::Value {
 /// rows within B of the exact signed value, and the named reasons.
 #[test]
 fn kd5_nonlinear_references_bind_and_match_in_both_modes() {
-    use sha2::{Digest, Sha256};
     for reference in &REFERENCES {
         let oracle: serde_json::Value = serde_json::from_str(reference.oracle).unwrap();
-        assert_eq!(
-            format!("{:x}", Sha256::digest(reference.request.as_bytes())),
-            oracle["request_sha256"].as_str().unwrap(),
-            "the independent oracle binds the complete maintained request bytes"
-        );
-        let request: serde_json::Value = serde_json::from_str(reference.request).unwrap();
+        let request = current_reference_request(reference);
         // The actual normalized leaves the generator was given.
         let mut model: PreviewModel = serde_json::from_value(request["model"].clone()).unwrap();
         let mut materials = model.materials.clone();
@@ -222,7 +233,7 @@ fn kd5_eight_committed_nonlinear_case_modes_pass_with_the_confirmation() {
 #[test]
 fn rotational_friction_is_refused_by_name_at_validation() {
     for (dof, refused) in [("RX", true), ("RZ", true), ("UX", false)] {
-        let mut request: serde_json::Value = serde_json::from_str(REFERENCES[1].request).unwrap();
+        let mut request = current_reference_request(&REFERENCES[1]);
         let support = request["model"]["supports"].as_array_mut().unwrap().iter_mut().find(|s| s["id"] == "support:NL-F").unwrap();
         support["nonlinear"]["dof"] = serde_json::json!(dof);
         let output = run_linear_static_preview_value_with_mode(request, PreviewSolverMode::DenseScrutiny).unwrap();
@@ -243,7 +254,7 @@ fn rotational_friction_is_refused_by_name_at_validation() {
 /// modes; no confirmation runs and no certified row is published.
 #[test]
 fn gap_cases_keep_their_recovery_basis_branch() {
-    let mut request: serde_json::Value = serde_json::from_str(REFERENCES[4].request).unwrap();
+    let mut request = current_reference_request(&REFERENCES[4]);
     let support = request["model"]["supports"].as_array_mut().unwrap().iter_mut().find(|s| s["id"] == "support:NL-U").unwrap();
     support["nonlinear"] = serde_json::json!({"behavior": "gap", "dof": "UZ", "initial_state": "inactive", "closes_when": "negative_displacement", "gap": {"value": 1e-5, "unit": "m"}});
     for case in ["load:PRESSED", "load:LIFTED"] {

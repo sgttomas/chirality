@@ -148,19 +148,21 @@ fn record_shape(record: &Value, node: bool) -> Result<()> {
             &["outside_diameter", "wall_thickness"],
             &[
                 "mill_tolerance",
+                "corrosion_allowance",
                 "material_density",
                 "contents_density",
                 "insulation_thickness",
                 "insulation_density",
             ],
         )?;
-        for (_, q) in record["section"].as_object().unwrap() {
-            if !q.is_null() {
+        for (key, q) in record["section"].as_object().unwrap() {
+            if key == "corrosion_allowance" || !q.is_null() {
                 fields(q, &["value", "unit"], &[])?;
                 number(&q["value"])?;
                 text(q, "unit")?;
             }
         }
+        super::section_bindings::validate_corrosion_allowance(&record["section"]).map_err(err)?;
         text(record, "material")?;
         text(record, "from")?;
         text(record, "to")?;
@@ -657,10 +659,10 @@ pub(crate) fn resolve_geometry(model: &Value, intent: &Value) -> Result<Option<G
         return Ok(None);
     }
     if model["document_kind"] != "openpipestress.product_preview.model"
-        || model["schema_version"] != "0.1.0"
+        || model["schema_version"] != open_pipe_stress_product_physics::MODEL_SCHEMA_VERSION
     {
         return Err(err(
-            "Geometry operations require recognized product_preview.model schema 0.1.0",
+            "Geometry operations require the current product_preview.model schema 0.5.0",
         ));
     }
     if intent["operation_kind"] != "modify"
@@ -688,7 +690,7 @@ pub(crate) fn resolve_geometry(model: &Value, intent: &Value) -> Result<Option<G
 mod tests {
     use super::*;
     fn model() -> Value {
-        json!({"schema_version":"0.1.0","document_kind":"openpipestress.product_preview.model","project":{"id":"project:test","units":{"length":"m"}},"nodes":[{"id":"node:a","label":"A","position":{"x":0.,"y":0.,"z":0.},"provenance":"user"},{"id":"node:b","label":"B","position":{"x":4.,"y":0.,"z":0.},"provenance":"user"}],"pipe_segments":[{"id":"pipe:a","label":"Pipe","from":"node:a","to":"node:b","section":{"outside_diameter":{"value":0.1,"unit":"m"},"wall_thickness":{"value":0.005,"unit":"m"},"contents_density":{"value":800.,"unit":"kg/m^3"}},"material":"material:a","y_reference":{"x":0.,"y":1.,"z":0.},"provenance":"user"}],"materials":[{"id":"material:a"}],"supports":[],"components":[],"load_cases":[]})
+        json!({"schema_version":"0.5.0","document_kind":"openpipestress.product_preview.model","project":{"id":"project:test","units":{"length":"m"}},"nodes":[{"id":"node:a","label":"A","position":{"x":0.,"y":0.,"z":0.},"provenance":"user"},{"id":"node:b","label":"B","position":{"x":4.,"y":0.,"z":0.},"provenance":"user"}],"pipe_segments":[{"id":"pipe:a","label":"Pipe","from":"node:a","to":"node:b","section":{"outside_diameter":{"value":0.1,"unit":"m"},"wall_thickness":{"value":0.005,"unit":"m"},"contents_density":{"value":800.,"unit":"kg/m^3"}},"material":"material:a","y_reference":{"x":0.,"y":1.,"z":0.},"provenance":"user"}],"materials":[{"id":"material:a"}],"supports":[],"components":[],"load_cases":[]})
     }
     fn split_payload() -> Value {
         json!({"pipe_ref":"pipe:a","fraction":0.25,"new_node":{"id":"node:new","label":"New","provenance":"user"},"new_pipe":{"id":"pipe:new","label":"New pipe","provenance":"user"}})

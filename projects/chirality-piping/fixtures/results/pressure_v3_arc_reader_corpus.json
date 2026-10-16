@@ -231,6 +231,10 @@
               "material": "material:steel",
               "provenance": "invented VP-STATIC exact_pressure_1 reference input (T4-I7); not library, component or code-rule data",
               "section": {
+                "corrosion_allowance": {
+                  "unit": "m",
+                  "value": 0.0
+                },
                 "mill_tolerance": {
                   "unit": "m",
                   "value": 0.000889
@@ -257,6 +261,10 @@
               "material": "material:steel",
               "provenance": "invented VP-STATIC exact_pressure_1 reference input (T4-I7); not library, component or code-rule data",
               "section": {
+                "corrosion_allowance": {
+                  "unit": "m",
+                  "value": 0.0
+                },
                 "mill_tolerance": {
                   "unit": "m",
                   "value": 0.000889
@@ -283,6 +291,10 @@
               "material": "material:steel",
               "provenance": "invented VP-STATIC exact_pressure_1 reference input (T4-I7); not library, component or code-rule data",
               "section": {
+                "corrosion_allowance": {
+                  "unit": "m",
+                  "value": 0.0
+                },
                 "mill_tolerance": {
                   "unit": "m",
                   "value": 0.000889
@@ -306,6 +318,7 @@
           ],
           "pressure_contract": {
             "mode": "exact_pressure_v3",
+            "shear_model": "euler_bernoulli",
             "version": "3.0.0"
           },
           "project": {
@@ -319,7 +332,7 @@
               "temperature": "degC"
             }
           },
-          "schema_version": "0.3.0",
+          "schema_version": "0.5.0",
           "supports": [
             {
               "family": "anchor",
@@ -352,7 +365,7 @@
           ]
         }
       },
-      "document_schema_version": "0.3.0",
+      "document_schema_version": "0.5.0",
       "envelope": {
         "accepted_model_state_mutated": false,
         "contract_evidence": {
@@ -1172,7 +1185,7 @@
             "Structural line loads act as entered; contents density does not imply hydrostatic pressure head or a coupled static-fluid pressure/weight state.",
             "Signed support actions are attributed only for admitted linear restraints and springs; ambiguous coincident rigid attribution is refused.",
             "The circular normal-stress maximum bounds the supplied binary64 polynomial coefficient enclosures; solution error is separate, and incomplete coverage withholds the headline.",
-            "No corrosion-allowance input or shear-deformation selection is provided. Retained-source recovery is not joined for this contract; only ordinary structural recovery is published. No code compliance or professional acceptance is produced, and actual numerical admission remains separate.",
+            "Every member section declares its corrosion allowance and the contract declares its shear model; only a zero allowance and the euler_bernoulli shear model are admitted. This envelope publishes ordinary structural recovery. Retained-source recovery is available only for straight members, linear restraints or springs, nodal force and moment loads and explicitly empty pressure regions; an authored load/reference-state group includes resolved eigenloads and prescribed motions. Other source families are declined by name. No code compliance or professional acceptance is produced, and actual numerical admission remains separate.",
             "Realized curved bends (curved_bend_macro_element with the user's bend radius and flexibility factor k, one k for both bending planes) are admitted under pressure: each owns the term K_b*u_free(eps_p) - c_b, with eps_p = (1-2nu)pAi/(E As) (the straight Lame mean Poisson term on the arc) and c_b its own end caps along the end tangents; on an arc N_w = N_el + pAi and S = N_el, and shear and moments are elastic. A region changes direction only at realized bends: a bend-end direction change up to alpha_tan = 1e-3 rad is carried exactly by the remainder pAi(t_in - t_out); a larger change (a mitre) and a straight-straight kink are refused. Geometry-only (chord) bends carry no pressure and are refused. On arcs the straight Lame hoop and radial values and the governing normal-stress maximum are withheld; the excluded effects above apply to every bend result.",
             "Member actions, section actions, stresses and support reactions of a load case reported NUMERICAL_INTEGRITY_CHECKS_PASSED are recovered at 128-bit precision from the formation check's corrected displacement and rounded once; they are not binary64 recomputations from the published displacements, from which they may differ by about 1e-12 of the body's action scale (at most about 6e-9 in the evaluation sets).",
             "The recovery is checked against the formation check's re-formed system (stiffness and loads formed at 128-bit precision from the binary64 inputs). The published displacements are the solve's own, judged by the formation check's per-row rule; support reactions balance the re-formed loads, not the solve's binary64 load vector."
@@ -1223,7 +1236,7 @@
             "id": "result:solver-mode:linear-solve-basis",
             "kind": "linear_solver_mode_basis",
             "metadata": {
-              "basis": "DEC-053 sparse_default_promotion; solver_mode=sparse_interactive; solution_basis=sparse_structural_integrity_primary; structural_policy=M03-INTEGRITY-v1; profile_pivot_residual_observation_basis=legacy_unscaled_DEC050_DEC053;  default_sparse_promotion=interactive_default; dense_scrutiny_available=true; sparse_entry_count=58; original_profile_entries=66; ordered_profile_entries=42; original_half_bandwidth=11; ordered_half_bandwidth=5; nonpositive_pivots=0; pivot_condition_ratio_proxy=2070.876338720393; max_abs_sparse_residual=0.0000000006693881005048752; dense_fallback=false; dense_fallback_message=none",
+              "basis": "DEC-053 sparse_default_promotion; solver_mode=sparse_interactive; solution_basis=sparse_structural_integrity_primary; structural_policy=M03-INTEGRITY-v1; default_sparse_promotion=interactive_default; dense_scrutiny_available=true; dense_fallback=false; dense_fallback_message=none",
               "component": "linear_solver_mode",
               "coordinate_system": "reduced_system",
               "location": "case:u2",
@@ -1263,7 +1276,7 @@
             "id": "result:disp:node-C",
             "kind": "displacement_magnitude",
             "unit": "mm",
-            "value": 4.613943850175023
+            "value": 4.613943850175024
           },
           {
             "basis_ref": {
@@ -5853,15 +5866,14 @@
           "rule_check": "RULE_INPUTS_INCOMPLETE"
         },
         "summary": {
-          "component_pressure_thrust_load_count": 0,
           "component_stress_modifier_count": 0,
-          "component_user_stiffness_macro_element_count": 1,
+          "curved_bend_macro_element_count": 1,
           "load_case_count": 1,
           "max_displacement": {
             "location_ref": "node:C",
             "result_ref": "result:disp:node-C",
             "unit": "mm",
-            "value": 4.613943850175023
+            "value": 4.613943850175024
           },
           "max_open_formula_stress": null,
           "node_count": 4,
@@ -6155,6 +6167,10 @@
               "material": "material:steel",
               "provenance": "invented VP-STATIC exact_pressure_1 reference input (T4-I7); not library, component or code-rule data",
               "section": {
+                "corrosion_allowance": {
+                  "unit": "m",
+                  "value": 0.0
+                },
                 "mill_tolerance": {
                   "unit": "m",
                   "value": 0.000889
@@ -6181,6 +6197,10 @@
               "material": "material:steel",
               "provenance": "invented VP-STATIC exact_pressure_1 reference input (T4-I7); not library, component or code-rule data",
               "section": {
+                "corrosion_allowance": {
+                  "unit": "m",
+                  "value": 0.0
+                },
                 "mill_tolerance": {
                   "unit": "m",
                   "value": 0.000889
@@ -6207,6 +6227,10 @@
               "material": "material:steel",
               "provenance": "invented VP-STATIC exact_pressure_1 reference input (T4-I7); not library, component or code-rule data",
               "section": {
+                "corrosion_allowance": {
+                  "unit": "m",
+                  "value": 0.0
+                },
                 "mill_tolerance": {
                   "unit": "m",
                   "value": 0.000889
@@ -6230,6 +6254,7 @@
           ],
           "pressure_contract": {
             "mode": "exact_pressure_v3",
+            "shear_model": "euler_bernoulli",
             "version": "3.0.0"
           },
           "project": {
@@ -6285,7 +6310,7 @@
               "provenance": "invented VP-STATIC exact_pressure_1 reference input (T4-I7); not library, component or code-rule data"
             }
           ],
-          "schema_version": "0.4.0",
+          "schema_version": "0.5.0",
           "supports": [
             {
               "family": "anchor",
@@ -6318,7 +6343,7 @@
           ]
         }
       },
-      "document_schema_version": "0.4.0",
+      "document_schema_version": "0.5.0",
       "envelope": {
         "accepted_model_state_mutated": false,
         "contract_evidence": {
@@ -7354,7 +7379,7 @@
             "Structural line loads act as entered; contents density does not imply hydrostatic pressure head or a coupled static-fluid pressure/weight state.",
             "Signed support actions are attributed only for admitted linear restraints and springs; ambiguous coincident rigid attribution is refused.",
             "The circular normal-stress maximum bounds the supplied binary64 polynomial coefficient enclosures; solution error is separate, and incomplete coverage withholds the headline.",
-            "No corrosion-allowance input or shear-deformation selection is provided. Retained-source recovery is not joined for this contract; only ordinary structural recovery is published. No code compliance or professional acceptance is produced, and actual numerical admission remains separate.",
+            "Every member section declares its corrosion allowance and the contract declares its shear model; only a zero allowance and the euler_bernoulli shear model are admitted. This envelope publishes ordinary structural recovery. Retained-source recovery is available only for straight members, linear restraints or springs, nodal force and moment loads and explicitly empty pressure regions; an authored load/reference-state group includes resolved eigenloads and prescribed motions. Other source families are declined by name. No code compliance or professional acceptance is produced, and actual numerical admission remains separate.",
             "One resolved case per load case supplies each member's selected E/nu with derived G, actual/selected/installation temperatures and explicit expansion definition; each case is solved independently.",
             "Thermal and fit reference strain compose as lambda_fit*lambda_thermal-1 and enter once as an axial eigenstrain; uniform member temperature only, no gradients, finite strain, inelasticity or fit-up joints.",
             "Global rigid support translations/rotations are prescribed absolute boundary values through the partitioned solve; reactions come from the unreduced equations. Spring base motion, device preload/reference, inactive or locked supports are not provided.",
@@ -7410,7 +7435,7 @@
             "id": "result:solver-mode:linear-solve-basis",
             "kind": "linear_solver_mode_basis",
             "metadata": {
-              "basis": "DEC-053 sparse_default_promotion; solver_mode=dense_scrutiny; solution_basis=dense_structural_integrity_primary; structural_policy=M03-INTEGRITY-v1; profile_pivot_residual_observation_basis=legacy_unscaled_DEC050_DEC053;  default_sparse_promotion=interactive_default; dense_scrutiny_available=true; sparse_entry_count=58; original_profile_entries=66; ordered_profile_entries=42; original_half_bandwidth=11; ordered_half_bandwidth=5; nonpositive_pivots=0; pivot_condition_ratio_proxy=2070.876338720393; max_abs_sparse_residual=0.0000000006693881005048752; dense_fallback=false; dense_fallback_message=none",
+              "basis": "DEC-053 sparse_default_promotion; solver_mode=dense_scrutiny; solution_basis=dense_structural_integrity_primary; structural_policy=M03-INTEGRITY-v1; default_sparse_promotion=interactive_default; dense_scrutiny_available=true; dense_fallback=false; dense_fallback_message=none",
               "component": "linear_solver_mode",
               "coordinate_system": "reduced_system",
               "location": "case:u2",
@@ -7418,24 +7443,6 @@
             },
             "unit": "mode_code",
             "value": 2.0
-          },
-          {
-            "basis_ref": {
-              "ref_id": "case:u2",
-              "ref_type": "load_case"
-            },
-            "entity_ref": "solver:sparse_direct",
-            "id": "result:sparse-live:dense-parity-relative-delta",
-            "kind": "sparse_live_path_dense_parity_relative_delta",
-            "metadata": {
-              "basis": "DEC-053 dense_scrutiny_sparse_parity; solver_mode=dense_scrutiny; sparse_interactive_default=true; dense_parity_oracle=true; solver=core/solver/sparse_direct; assembly=direct_reduced_profile_entries; ordering=reverse_cuthill_mckee; reduced_dofs=12; sparse_entry_count=58; original_profile_entries=66; ordered_profile_entries=42; original_half_bandwidth=11; ordered_half_bandwidth=5; max_abs_dense_sparse_delta=0.0000000000000005169475958410885; max_abs_sparse_residual=0.0000000006693881005048752; nonpositive_pivots=0; profile_direct_assembly=observed; default_sparse_promotion=interactive_default",
-              "component": "sparse_live_path",
-              "coordinate_system": "reduced_system",
-              "location": "load_case",
-              "sign_convention": "unitless max absolute dense-sparse solution delta divided by max dense solution magnitude; no release threshold asserted"
-            },
-            "unit": "unitless",
-            "value": 1.6811598779700535e-13
           },
           {
             "basis_ref": {
@@ -7457,7 +7464,7 @@
             "id": "result:disp:node-B",
             "kind": "displacement_magnitude",
             "unit": "mm",
-            "value": 4.440888012171325
+            "value": 4.440888012171324
           },
           {
             "basis_ref": {
@@ -12058,9 +12065,8 @@
           "rule_check": "RULE_INPUTS_INCOMPLETE"
         },
         "summary": {
-          "component_pressure_thrust_load_count": 0,
           "component_stress_modifier_count": 0,
-          "component_user_stiffness_macro_element_count": 1,
+          "curved_bend_macro_element_count": 1,
           "load_case_count": 1,
           "max_displacement": {
             "location_ref": "node:C",
@@ -12218,6 +12224,10 @@
               "material": "material:steel",
               "provenance": "invented VP-STATIC exact_pressure_1 reference input (T4-I7); not library, component or code-rule data",
               "section": {
+                "corrosion_allowance": {
+                  "unit": "m",
+                  "value": 0.0
+                },
                 "mill_tolerance": {
                   "unit": "m",
                   "value": 0.000889
@@ -12244,6 +12254,10 @@
               "material": "material:steel",
               "provenance": "invented VP-STATIC exact_pressure_1 reference input (T4-I7); not library, component or code-rule data",
               "section": {
+                "corrosion_allowance": {
+                  "unit": "m",
+                  "value": 0.0
+                },
                 "mill_tolerance": {
                   "unit": "m",
                   "value": 0.000889
@@ -12270,6 +12284,10 @@
               "material": "material:steel",
               "provenance": "invented VP-STATIC exact_pressure_1 reference input (T4-I7); not library, component or code-rule data",
               "section": {
+                "corrosion_allowance": {
+                  "unit": "m",
+                  "value": 0.0
+                },
                 "mill_tolerance": {
                   "unit": "m",
                   "value": 0.000889
@@ -12293,6 +12311,7 @@
           ],
           "pressure_contract": {
             "mode": "exact_pressure_v3",
+            "shear_model": "euler_bernoulli",
             "version": "3.0.0"
           },
           "project": {
@@ -12306,7 +12325,7 @@
               "temperature": "degC"
             }
           },
-          "schema_version": "0.3.0",
+          "schema_version": "0.5.0",
           "supports": [
             {
               "family": "anchor",
@@ -12339,7 +12358,7 @@
           ]
         }
       },
-      "document_schema_version": "0.3.0",
+      "document_schema_version": "0.5.0",
       "envelope": {
         "accepted_model_state_mutated": false,
         "contract_evidence": {
@@ -13186,7 +13205,7 @@
             "Structural line loads act as entered; contents density does not imply hydrostatic pressure head or a coupled static-fluid pressure/weight state.",
             "Signed support actions are attributed only for admitted linear restraints and springs; ambiguous coincident rigid attribution is refused.",
             "The circular normal-stress maximum bounds the supplied binary64 polynomial coefficient enclosures; solution error is separate, and incomplete coverage withholds the headline.",
-            "No corrosion-allowance input or shear-deformation selection is provided. Retained-source recovery is not joined for this contract; only ordinary structural recovery is published. No code compliance or professional acceptance is produced, and actual numerical admission remains separate.",
+            "Every member section declares its corrosion allowance and the contract declares its shear model; only a zero allowance and the euler_bernoulli shear model are admitted. This envelope publishes ordinary structural recovery. Retained-source recovery is available only for straight members, linear restraints or springs, nodal force and moment loads and explicitly empty pressure regions; an authored load/reference-state group includes resolved eigenloads and prescribed motions. Other source families are declined by name. No code compliance or professional acceptance is produced, and actual numerical admission remains separate.",
             "Realized curved bends (curved_bend_macro_element with the user's bend radius and flexibility factor k, one k for both bending planes) are admitted under pressure: each owns the term K_b*u_free(eps_p) - c_b, with eps_p = (1-2nu)pAi/(E As) (the straight Lame mean Poisson term on the arc) and c_b its own end caps along the end tangents; on an arc N_w = N_el + pAi and S = N_el, and shear and moments are elastic. A region changes direction only at realized bends: a bend-end direction change up to alpha_tan = 1e-3 rad is carried exactly by the remainder pAi(t_in - t_out); a larger change (a mitre) and a straight-straight kink are refused. Geometry-only (chord) bends carry no pressure and are refused. On arcs the straight Lame hoop and radial values and the governing normal-stress maximum are withheld; the excluded effects above apply to every bend result.",
             "Member actions, section actions, stresses and support reactions of a load case reported NUMERICAL_INTEGRITY_CHECKS_PASSED are recovered at 128-bit precision from the formation check's corrected displacement and rounded once; they are not binary64 recomputations from the published displacements, from which they may differ by about 1e-12 of the body's action scale (at most about 6e-9 in the evaluation sets).",
             "The recovery is checked against the formation check's re-formed system (stiffness and loads formed at 128-bit precision from the binary64 inputs). The published displacements are the solve's own, judged by the formation check's per-row rule; support reactions balance the re-formed loads, not the solve's binary64 load vector."
@@ -13237,7 +13256,7 @@
             "id": "result:solver-mode:linear-solve-basis",
             "kind": "linear_solver_mode_basis",
             "metadata": {
-              "basis": "DEC-053 sparse_default_promotion; solver_mode=dense_scrutiny; solution_basis=dense_structural_integrity_primary; structural_policy=M03-INTEGRITY-v1; profile_pivot_residual_observation_basis=legacy_unscaled_DEC050_DEC053;  default_sparse_promotion=interactive_default; dense_scrutiny_available=true; sparse_entry_count=62; original_profile_entries=66; ordered_profile_entries=42; original_half_bandwidth=11; ordered_half_bandwidth=5; nonpositive_pivots=0; pivot_condition_ratio_proxy=2071.2884251676287; max_abs_sparse_residual=0.00000000004547473508864641; dense_fallback=false; dense_fallback_message=none",
+              "basis": "DEC-053 sparse_default_promotion; solver_mode=dense_scrutiny; solution_basis=dense_structural_integrity_primary; structural_policy=M03-INTEGRITY-v1; default_sparse_promotion=interactive_default; dense_scrutiny_available=true; dense_fallback=false; dense_fallback_message=none",
               "component": "linear_solver_mode",
               "coordinate_system": "reduced_system",
               "location": "case:u2",
@@ -13245,24 +13264,6 @@
             },
             "unit": "mode_code",
             "value": 2.0
-          },
-          {
-            "basis_ref": {
-              "ref_id": "case:u2",
-              "ref_type": "load_case"
-            },
-            "entity_ref": "solver:sparse_direct",
-            "id": "result:sparse-live:dense-parity-relative-delta",
-            "kind": "sparse_live_path_dense_parity_relative_delta",
-            "metadata": {
-              "basis": "DEC-053 dense_scrutiny_sparse_parity; solver_mode=dense_scrutiny; sparse_interactive_default=true; dense_parity_oracle=true; solver=core/solver/sparse_direct; assembly=direct_reduced_profile_entries; ordering=reverse_cuthill_mckee; reduced_dofs=12; sparse_entry_count=62; original_profile_entries=66; ordered_profile_entries=42; original_half_bandwidth=11; ordered_half_bandwidth=5; max_abs_dense_sparse_delta=0.00000000000000000032526065174565133; max_abs_sparse_residual=0.00000000004547473508864641; nonpositive_pivots=0; profile_direct_assembly=observed; default_sparse_promotion=interactive_default",
-              "component": "sparse_live_path",
-              "coordinate_system": "reduced_system",
-              "location": "load_case",
-              "sign_convention": "unitless max absolute dense-sparse solution delta divided by max dense solution magnitude; no release threshold asserted"
-            },
-            "unit": "unitless",
-            "value": 1.3337854570397245e-15
           },
           {
             "basis_ref": {
@@ -13295,7 +13296,7 @@
             "id": "result:disp:node-C",
             "kind": "displacement_magnitude",
             "unit": "mm",
-            "value": 0.31373375443991525
+            "value": 0.3137337544399152
           },
           {
             "basis_ref": {
@@ -17885,15 +17886,14 @@
           "rule_check": "RULE_INPUTS_INCOMPLETE"
         },
         "summary": {
-          "component_pressure_thrust_load_count": 0,
           "component_stress_modifier_count": 0,
-          "component_user_stiffness_macro_element_count": 1,
+          "curved_bend_macro_element_count": 1,
           "load_case_count": 1,
           "max_displacement": {
             "location_ref": "node:C",
             "result_ref": "result:disp:node-C",
             "unit": "mm",
-            "value": 0.31373375443991525
+            "value": 0.3137337544399152
           },
           "max_open_formula_stress": null,
           "node_count": 4,
@@ -18288,6 +18288,10 @@
               "material": "material:steel",
               "provenance": "invented VP-STATIC exact_pressure_1 reference input (T4-I7); not library, component or code-rule data",
               "section": {
+                "corrosion_allowance": {
+                  "unit": "m",
+                  "value": 0.0
+                },
                 "mill_tolerance": {
                   "unit": "m",
                   "value": 0.000889
@@ -18314,6 +18318,10 @@
               "material": "material:steel",
               "provenance": "invented VP-STATIC exact_pressure_1 reference input (T4-I7); not library, component or code-rule data",
               "section": {
+                "corrosion_allowance": {
+                  "unit": "m",
+                  "value": 0.0
+                },
                 "mill_tolerance": {
                   "unit": "m",
                   "value": 0.000889
@@ -18340,6 +18348,10 @@
               "material": "material:steel",
               "provenance": "invented VP-STATIC exact_pressure_1 reference input (T4-I7); not library, component or code-rule data",
               "section": {
+                "corrosion_allowance": {
+                  "unit": "m",
+                  "value": 0.0
+                },
                 "mill_tolerance": {
                   "unit": "m",
                   "value": 0.000889
@@ -18366,6 +18378,10 @@
               "material": "material:steel",
               "provenance": "invented VP-STATIC exact_pressure_1 reference input (T4-I7); not library, component or code-rule data",
               "section": {
+                "corrosion_allowance": {
+                  "unit": "m",
+                  "value": 0.0
+                },
                 "mill_tolerance": {
                   "unit": "m",
                   "value": 0.000889
@@ -18389,6 +18405,7 @@
           ],
           "pressure_contract": {
             "mode": "exact_pressure_v3",
+            "shear_model": "euler_bernoulli",
             "version": "3.0.0"
           },
           "project": {
@@ -18402,7 +18419,7 @@
               "temperature": "degC"
             }
           },
-          "schema_version": "0.3.0",
+          "schema_version": "0.5.0",
           "supports": [
             {
               "family": "anchor",
@@ -18435,7 +18452,7 @@
           ]
         }
       },
-      "document_schema_version": "0.3.0",
+      "document_schema_version": "0.5.0",
       "envelope": {
         "accepted_model_state_mutated": false,
         "contract_evidence": {
@@ -18930,7 +18947,7 @@
             "Structural line loads act as entered; contents density does not imply hydrostatic pressure head or a coupled static-fluid pressure/weight state.",
             "Signed support actions are attributed only for admitted linear restraints and springs; ambiguous coincident rigid attribution is refused.",
             "The circular normal-stress maximum bounds the supplied binary64 polynomial coefficient enclosures; solution error is separate, and incomplete coverage withholds the headline.",
-            "No corrosion-allowance input or shear-deformation selection is provided. Retained-source recovery is not joined for this contract; only ordinary structural recovery is published. No code compliance or professional acceptance is produced, and actual numerical admission remains separate.",
+            "Every member section declares its corrosion allowance and the contract declares its shear model; only a zero allowance and the euler_bernoulli shear model are admitted. This envelope publishes ordinary structural recovery. Retained-source recovery is available only for straight members, linear restraints or springs, nodal force and moment loads and explicitly empty pressure regions; an authored load/reference-state group includes resolved eigenloads and prescribed motions. Other source families are declined by name. No code compliance or professional acceptance is produced, and actual numerical admission remains separate.",
             "Objective connectors (expansion joints, objective_connector 1.0.0): symmetric-midpoint, small-displacement, small-rotation linear elastic law with the authored 6x6 work matrix, frame, offsets and installed reference q_ref, replacing exactly one straight span (replaces_span); untied hardware only. A pressurized joint (constant_effective_area_reference_v1) is a coaxial edge of one equal-bore pressure region between straight members, with zero attachment offsets, and carries the dead pressure load p(Ae - Ai) at its attachments, Ae being the authored effective area; unequal bore or pressure, offset faces, joints at region terminals or beside realized arcs, and ties are refused. No finite rotation, follower or geometric stiffness, pressure stiffening, squirm or stability, tie, temperature law or stop is modelled; the replaced span carries no load, member result or self-weight. Connector actions are published as generalized and end-node elastic actions, with the joint pressure force pAe and the effective axial force published separately; they are outside the straight-member recovery coverage.",
             "Realized curved bends (curved_bend_macro_element with the user's bend radius and flexibility factor k, one k for both bending planes) are admitted under pressure: each owns the term K_b*u_free(eps_p) - c_b, with eps_p = (1-2nu)pAi/(E As) (the straight Lame mean Poisson term on the arc) and c_b its own end caps along the end tangents; on an arc N_w = N_el + pAi and S = N_el, and shear and moments are elastic. A region changes direction only at realized bends: a bend-end direction change up to alpha_tan = 1e-3 rad is carried exactly by the remainder pAi(t_in - t_out); a larger change (a mitre) and a straight-straight kink are refused. Geometry-only (chord) bends carry no pressure and are refused. On arcs the straight Lame hoop and radial values and the governing normal-stress maximum are withheld; the excluded effects above apply to every bend result.",
             "Member actions, section actions, stresses and support reactions of a load case reported NUMERICAL_INTEGRITY_CHECKS_PASSED are recovered at 128-bit precision from the formation check's corrected displacement and rounded once; they are not binary64 recomputations from the published displacements, from which they may differ by about 1e-12 of the body's action scale (at most about 6e-9 in the evaluation sets).",
@@ -18982,7 +18999,7 @@
             "id": "result:solver-mode:linear-solve-basis",
             "kind": "linear_solver_mode_basis",
             "metadata": {
-              "basis": "DEC-053 sparse_default_promotion; solver_mode=sparse_interactive; solution_basis=sparse_structural_integrity_primary; structural_policy=M03-INTEGRITY-v1; profile_pivot_residual_observation_basis=legacy_unscaled_DEC050_DEC053;  default_sparse_promotion=interactive_default; dense_scrutiny_available=true; sparse_entry_count=84; original_profile_entries=114; ordered_profile_entries=60; original_half_bandwidth=11; ordered_half_bandwidth=5; nonpositive_pivots=0; pivot_condition_ratio_proxy=662.4095053157595; max_abs_sparse_residual=0.00000000043655745685100555; dense_fallback=false; dense_fallback_message=none",
+              "basis": "DEC-053 sparse_default_promotion; solver_mode=sparse_interactive; solution_basis=sparse_structural_integrity_primary; structural_policy=M03-INTEGRITY-v1; default_sparse_promotion=interactive_default; dense_scrutiny_available=true; dense_fallback=false; dense_fallback_message=none",
               "component": "linear_solver_mode",
               "coordinate_system": "reduced_system",
               "location": "case:u2",
@@ -23065,9 +23082,8 @@
           "rule_check": "RULE_INPUTS_INCOMPLETE"
         },
         "summary": {
-          "component_pressure_thrust_load_count": 0,
           "component_stress_modifier_count": 0,
-          "component_user_stiffness_macro_element_count": 1,
+          "curved_bend_macro_element_count": 1,
           "load_case_count": 1,
           "max_displacement": {
             "location_ref": "node:C",
@@ -23339,6 +23355,10 @@
               "material": "material:steel",
               "provenance": "invented VP-STATIC exact_pressure_1 reference input (T4-I7); not library, component or code-rule data",
               "section": {
+                "corrosion_allowance": {
+                  "unit": "m",
+                  "value": 0.0
+                },
                 "mill_tolerance": {
                   "unit": "m",
                   "value": 0.000889
@@ -23362,6 +23382,7 @@
           ],
           "pressure_contract": {
             "mode": "exact_pressure_v3",
+            "shear_model": "euler_bernoulli",
             "version": "3.0.0"
           },
           "project": {
@@ -23375,7 +23396,7 @@
               "temperature": "degC"
             }
           },
-          "schema_version": "0.3.0",
+          "schema_version": "0.5.0",
           "supports": [
             {
               "family": "anchor",
@@ -23394,7 +23415,7 @@
           ]
         }
       },
-      "document_schema_version": "0.3.0",
+      "document_schema_version": "0.5.0",
       "envelope": {
         "accepted_model_state_mutated": false,
         "contract_evidence": {
@@ -23650,7 +23671,7 @@
             "Structural line loads act as entered; contents density does not imply hydrostatic pressure head or a coupled static-fluid pressure/weight state.",
             "Signed support actions are attributed only for admitted linear restraints and springs; ambiguous coincident rigid attribution is refused.",
             "The circular normal-stress maximum bounds the supplied binary64 polynomial coefficient enclosures; solution error is separate, and incomplete coverage withholds the headline.",
-            "No corrosion-allowance input or shear-deformation selection is provided. Retained-source recovery is not joined for this contract; only ordinary structural recovery is published. No code compliance or professional acceptance is produced, and actual numerical admission remains separate.",
+            "Every member section declares its corrosion allowance and the contract declares its shear model; only a zero allowance and the euler_bernoulli shear model are admitted. This envelope publishes ordinary structural recovery. Retained-source recovery is available only for straight members, linear restraints or springs, nodal force and moment loads and explicitly empty pressure regions; an authored load/reference-state group includes resolved eigenloads and prescribed motions. Other source families are declined by name. No code compliance or professional acceptance is produced, and actual numerical admission remains separate.",
             "Objective connectors (expansion joints, objective_connector 1.0.0): symmetric-midpoint, small-displacement, small-rotation linear elastic law with the authored 6x6 work matrix, frame, offsets and installed reference q_ref, replacing exactly one straight span (replaces_span); untied hardware only. A pressurized joint (constant_effective_area_reference_v1) is a coaxial edge of one equal-bore pressure region between straight members, with zero attachment offsets, and carries the dead pressure load p(Ae - Ai) at its attachments, Ae being the authored effective area; unequal bore or pressure, offset faces, joints at region terminals or beside realized arcs, and ties are refused. No finite rotation, follower or geometric stiffness, pressure stiffening, squirm or stability, tie, temperature law or stop is modelled; the replaced span carries no load, member result or self-weight. Connector actions are published as generalized and end-node elastic actions, with the joint pressure force pAe and the effective axial force published separately; they are outside the straight-member recovery coverage.",
             "Member actions, section actions, stresses and support reactions of a load case reported NUMERICAL_INTEGRITY_CHECKS_PASSED are recovered at 128-bit precision from the formation check's corrected displacement and rounded once; they are not binary64 recomputations from the published displacements, from which they may differ by about 1e-12 of the body's action scale (at most about 6e-9 in the evaluation sets).",
             "The recovery is checked against the formation check's re-formed system (stiffness and loads formed at 128-bit precision from the binary64 inputs). The published displacements are the solve's own, judged by the formation check's per-row rule; support reactions balance the re-formed loads, not the solve's binary64 load vector."
@@ -23701,7 +23722,7 @@
             "id": "result:solver-mode:linear-solve-basis",
             "kind": "linear_solver_mode_basis",
             "metadata": {
-              "basis": "DEC-053 sparse_default_promotion; solver_mode=sparse_interactive; solution_basis=sparse_structural_integrity_primary; structural_policy=M03-INTEGRITY-v1; profile_pivot_residual_observation_basis=legacy_unscaled_DEC050_DEC053;  default_sparse_promotion=interactive_default; dense_scrutiny_available=true; sparse_entry_count=8; original_profile_entries=12; ordered_profile_entries=8; original_half_bandwidth=4; ordered_half_bandwidth=1; nonpositive_pivots=0; pivot_condition_ratio_proxy=18.555555555555557; max_abs_sparse_residual=0.0000000000004547473508864641; dense_fallback=false; dense_fallback_message=none",
+              "basis": "DEC-053 sparse_default_promotion; solver_mode=sparse_interactive; solution_basis=sparse_structural_integrity_primary; structural_policy=M03-INTEGRITY-v1; default_sparse_promotion=interactive_default; dense_scrutiny_available=true; dense_fallback=false; dense_fallback_message=none",
               "component": "linear_solver_mode",
               "coordinate_system": "reduced_system",
               "location": "case:u2",
@@ -24533,9 +24554,8 @@
           "rule_check": "RULE_INPUTS_INCOMPLETE"
         },
         "summary": {
-          "component_pressure_thrust_load_count": 0,
           "component_stress_modifier_count": 0,
-          "component_user_stiffness_macro_element_count": 0,
+          "curved_bend_macro_element_count": 0,
           "load_case_count": 1,
           "max_displacement": {
             "location_ref": "node:B",
@@ -24557,6 +24577,6 @@
   "corpus": "T4-U2 pressure-1 realized-arc reader corpus",
   "generator": "core/product_physics/tests/pressure_arc_readers.rs::shared_arc_reader_corpus_is_current",
   "inputs": [
-    "validation/references/t4_i7/u2_document_sketches.json U2-L-ANCH-PTW-K2 (0.3.0, 0.4.0) and U2-L-KINK-ANCH-P-K2 (0.3.0); the L line with a connector tail and a replaced-span-only model, both built by the generator from U2-L-ANCH-PTW-K2 0.3.0"
+    "validation/references/t4_i7/u2_document_sketches.json U2-L-ANCH-PTW-K2 (0.3.0, 0.4.0) and U2-L-KINK-ANCH-P-K2 (0.3.0); the L line with a connector tail and a replaced-span-only model, both built by the generator from U2-L-ANCH-PTW-K2 0.3.0; every frozen sketch copy re-authored to model document 0.5.0 (exact_pressure_v3, euler_bernoulli, corrosion allowance 0 m) at test time, the frozen bytes unchanged"
   ]
 }

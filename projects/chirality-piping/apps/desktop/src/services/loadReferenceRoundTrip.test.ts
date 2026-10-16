@@ -1,8 +1,10 @@
-/** No lossy projection of 0.4.0 models or load/reference-state results anywhere
- * they pass through the desktop (T1 WP2): session clone, browser persistence,
- * input manifest, native IPC capture, the wasm operation route and saved
- * results. Absent keys stay absent, explicit nulls stay null, and a key the
- * desktop does not model survives byte-exactly. All values are invented. */
+/** No lossy projection of load/reference-state models or results anywhere they pass
+ * through the desktop (T1 WP2): session clone, browser persistence, input manifest,
+ * native IPC capture, the wasm operation route and saved results. Absent keys stay
+ * absent, explicit nulls stay null, and a key the desktop does not model survives
+ * byte-exactly. B7b: the documents are current 0.5.0 exact-contract models with the
+ * load/reference-state group (0.4.0 is retired by name), and the results are their
+ * pressure-1 (ordinary) and pressure-source-1 (joined) twins. All values are invented. */
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { createSolveJobTransport, solveBytes } from "../test/nativeMechanicsReplay";
 const invokeMock = vi.hoisted(() => vi.fn());
@@ -12,7 +14,7 @@ import { resolve } from "node:path";
 import type { AnalysisRunEnvelope, EditorOperationIntent, MechanicsResult, PreviewModel } from "../types";
 import { clonePreviewModel } from "../features/workspace/sessionModel";
 import { createLocalProject,
-  findLocalProject, evaluateModelDocumentLocal, LOAD_REFERENCE_MODEL_SCHEMA_VERSION, modelDocumentVersionCheckStatus, openLocalProject, saveLocalProject } from "./projectService";
+  findLocalProject, evaluateModelDocumentLocal, modelDocumentVersionCheckStatus, openLocalProject, saveLocalProject } from "./projectService";
 import { buildCurrentSessionInputManifest } from "./inputManifestService";
 import { runPreviewMechanics, hasNativeMechanicsInvocation, retainedNativeMechanicsInvocation } from "./previewService";
 import { applyModelOperation } from "./operationService";
@@ -27,8 +29,8 @@ const text = (value: unknown) => JSON.stringify(value);
 
 /** The committed connected request model, completed with the case metadata the
  * desktop needs, plus an explicit null and a key the desktop does not model. */
-function model040(): PreviewModel {
-  const model = structuredClone(json("fixtures/product_preview/load_reference/connected.request.json").model) as PreviewModel & Record<string, unknown>;
+function loadStateModel(): PreviewModel {
+  const model = structuredClone(json("fixtures/product_preview/pressure/load_reference/connected.request.json").model) as PreviewModel & Record<string, unknown>;
   for (const loadCase of model.load_cases) Object.assign(loadCase, { label: loadCase.id, kind: "invented_test_case", status: "invented_test_status" });
   Object.assign(model, { data_boundary: { source: "invented" }, diagnostics: [] });
   (model.reference_configurations![0] as Record<string, unknown>).label = null;
@@ -38,26 +40,26 @@ function model040(): PreviewModel {
 }
 const loadStateKeys = (model: PreviewModel) => text({ references: model.reference_configurations, laws: model.materials?.map(m => m.expansion_laws), states: model.load_cases.map(c => c.analysis_state) });
 
-describe("0.4.0 documents in the browser persistence mirror", () => {
-  it("mirrors native: 0.4.0 is current and retained as authored; 0.4.1 is refused and 0.3.0 is the explicit pressure namespace", () => {
-    const status = evaluateModelDocumentLocal(model040());
-    expect(status).toMatchObject({ status: "current", source_schema_version: "0.4.0", target_schema_version: LOAD_REFERENCE_MODEL_SCHEMA_VERSION, product_schema_migration_status: "current", persistence_state: "stored_document_current", applied_migration_ids: [] });
-    expect(status.detail).toBe("Explicit model 0.4.0 is retained without migration or upgrade; load/reference-state records, pressure-profile inputs and solve eligibility are validated separately.");
-    expect(modelDocumentVersionCheckStatus(model040())).toBe("current");
-    expect(evaluateModelDocumentLocal({ ...model040(), schema_version: "0.4.1" }).status).toBe("newer_than_supported");
-    expect(evaluateModelDocumentLocal({ ...model040(), schema_version: "0.3.0" })).toMatchObject({ status: "current", target_schema_version: "0.3.0" });
+describe("load/reference-state documents in the browser persistence mirror", () => {
+  it("mirrors native: the 0.5.0 document is current and retained as authored; 0.3.0, 0.4.0 and 0.4.1 are refused by name and 0.5.1 is newer", () => {
+    const status = evaluateModelDocumentLocal(loadStateModel());
+    expect(status).toMatchObject({ status: "current", source_schema_version: "0.5.0", target_schema_version: "0.5.0" });
+    expect(status.detail).toBe("Model document 0.5.0 is the current version; a pressure contract, when present, and solve eligibility are validated separately.");
+    expect(modelDocumentVersionCheckStatus(loadStateModel())).toBe("current");
+    for (const version of ["0.3.0", "0.4.0", "0.4.1"]) expect(evaluateModelDocumentLocal({ ...loadStateModel(), schema_version: version }).status, version).toBe("retired_schema");
+    expect(evaluateModelDocumentLocal({ ...loadStateModel(), schema_version: "0.5.1" }).status).toBe("newer_than_supported");
   });
 
   it("round-trips the model, the raw result and its AnalysisRun byte-exactly through create, save and open", async () => {
-    const model = model040(), before = text(model);
+    const model = loadStateModel(), before = text(model);
     const created = await createLocalProject(model);
     expect(text(created.model)).toBe(before);
-    expect(created.model_document_migration?.status).toBe("current");
-    const raw = json("fixtures/product_preview/load_reference_source/mixed-sparse_interactive.raw.json") as MechanicsResult;
-    const run = json("fixtures/results/load_reference_source_mixed_sparse.analysis_run.json") as AnalysisRunEnvelope;
+    expect(created.model_document_version?.status).toBe("current");
+    const raw = json("fixtures/product_preview/pressure_source/load_reference_source/mixed-sparse_interactive.raw.json") as MechanicsResult;
+    const run = json("fixtures/results/pressure_source_load_state_mixed_sparse.analysis_run.json") as AnalysisRunEnvelope;
     // Saves over its own stored snapshot (no envelope hash here); the replacement
     // guard is covered in projectService.test.ts.
-    await saveLocalProject(model, [], null, null, raw, run, null, null, null, (await findLocalProject(model.project.id))!.revision);
+    await saveLocalProject(model, [], null, null, raw, run, null, null, (await findLocalProject(model.project.id))!.revision);
     const opened = await openLocalProject(model.project.id);
     expect(text(opened!.model)).toBe(before);
     expect(loadStateKeys(opened!.model)).toBe(loadStateKeys(model));
@@ -69,21 +71,21 @@ describe("0.4.0 documents in the browser persistence mirror", () => {
   });
 });
 
-describe("0.4.0 documents through session state, manifests, IPC and operations", () => {
+describe("load/reference-state documents through session state, manifests, IPC and operations", () => {
   it("the undo checkpoint clone keeps every key and explicit null", () => {
-    const model = model040();
+    const model = loadStateModel();
     expect(text(clonePreviewModel(model))).toBe(text(model));
   });
 
   it("the input manifest carries the whole model and its cases unprojected", async () => {
-    const model = model040();
+    const model = loadStateModel();
     const manifest = await buildCurrentSessionInputManifest({ model, solver: { solver_name: "open_pipe_stress_product_physics", solver_version: "0.2.0", solver_build_ref: "test:invented", solver_mode: "sparse_interactive", settings: {} }, active_rule_packs: [], external_assets: [] });
     expect(text(manifest.manifest.model_basis.model_payload)).toBe(text(model));
     expect(text(manifest.manifest.load_basis.load_cases)).toBe(text(model.load_cases));
   });
 
   it("native IPC receives the exact model and the received result is preserved verbatim", async () => {
-    const model = model040(), raw = json("fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json") as MechanicsResult;
+    const model = loadStateModel(), raw = json("fixtures/product_preview/pressure/load_reference/connected-sparse_interactive.raw.json") as MechanicsResult;
     (window as unknown as Record<string, unknown>).__TAURI_INTERNALS__ = {};
     let sent: unknown = null;
     invokeMock.mockImplementation(createSolveJobTransport((request) => { sent = request.model; return solveBytes(raw); }).invoke);
@@ -95,7 +97,7 @@ describe("0.4.0 documents through session state, manifests, IPC and operations",
   });
 
   it("an unrelated wasm operation returns the model with every load/reference-state record unchanged", async () => {
-    const model = model040();
+    const model = loadStateModel();
     const intent = {
       audit_boundary: { direct_model_mutation_allowed: false, mutates_accepted_model_state: false, mutation_route: "structured_operations_only", requires_user_acceptance: true },
       author_type: "user",
@@ -117,21 +119,32 @@ describe("0.4.0 documents through session state, manifests, IPC and operations",
     expect(applied.reference_configurations).toEqual(model.reference_configurations);
     expect(applied.load_cases.map(c => c.analysis_state)).toEqual(model.load_cases.map(c => c.analysis_state));
     expect(Object.hasOwn(applied.reference_configurations![0], "label")).toBe(true);
-    expect(applied.schema_version).toBe("0.4.0");
+    expect(applied.schema_version).toBe("0.5.0");
     expect((applied.materials![0] as Record<string, unknown>).unmodeled_material_key).toBe("kept");
   });
 });
 
 describe("saved load/reference-state results keep the raw hash and the resolved evidence", () => {
-  it.each([
-    ["fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json", false],
-    ["fixtures/product_preview/load_reference_source/eigen_motion-dense_scrutiny.raw.json", true],
-  ] as const)("%s", async (path, joined) => {
+  // Both are recorded by the desktop as Python records them (B7b): the joined
+  // (pressure-source-1) record embeds the resolved evidence; the ordinary (pressure-1)
+  // record embeds none, and its desktop and committed Python records bind the same raw hash.
+  it("fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-dense_scrutiny.raw.json", async () => {
+    const path = "fixtures/product_preview/pressure_source/load_reference_source/eigen_motion-dense_scrutiny.raw.json";
     const raw = receivedFixture<MechanicsResult>(path), model = json(path.replace(/-(sparse_interactive|dense_scrutiny)\.raw\.json$/, ".request.json")).model as PreviewModel;
     const manifest = { manifest_ref: { object_type: "InputManifest", ref: "manifest:invented" }, manifest_sha256: "1".repeat(64), manifest: { model_basis: { model_ref: raw.model_ref }, solver_basis: { solver_name: raw.producer!.component_name, solver_version: raw.producer!.component_version, solver_build_ref: "test:invented" } } };
     const record = await buildAnalysisRunV03(raw, manifest, undefined, modelLoadBasisRefs(model));
     expect(record.analysis_run.hashes.find(h => h.payload_scope === "received_result")!.value).toBe(await canonicalSha256HexCheckedV1(raw));
-    if (joined) expect(text(record.analysis_run.contract_evidence)).toBe(text(raw.contract_evidence));
-    else expect(Object.hasOwn(record.analysis_run, "contract_evidence")).toBe(false);
+    expect(text(record.analysis_run.contract_evidence)).toBe(text(raw.contract_evidence));
+  });
+  it("fixtures/product_preview/pressure/load_reference/connected-sparse_interactive.raw.json", async () => {
+    const path = "fixtures/product_preview/pressure/load_reference/connected-sparse_interactive.raw.json";
+    const raw = receivedFixture<MechanicsResult>(path), model = json("fixtures/product_preview/pressure/load_reference/connected.request.json").model as PreviewModel;
+    const manifest = { manifest_ref: { object_type: "InputManifest", ref: "manifest:invented" }, manifest_sha256: "1".repeat(64), manifest: { model_basis: { model_ref: raw.model_ref }, solver_basis: { solver_name: raw.producer!.component_name, solver_version: raw.producer!.component_version, solver_build_ref: "test:invented" } } };
+    const desktop = await buildAnalysisRunV03(raw, manifest, undefined, modelLoadBasisRefs(model));
+    const python = json("fixtures/results/pressure_load_state_connected_sparse.analysis_run.json") as AnalysisRunEnvelope;
+    for (const record of [desktop, python]) {
+      expect(record.analysis_run.hashes.find(h => h.payload_scope === "received_result")!.value).toBe(await canonicalSha256HexCheckedV1(raw));
+      expect(Object.hasOwn(record.analysis_run, "contract_evidence")).toBe(false);
+    }
   });
 });

@@ -270,6 +270,7 @@ const TABLE: &[(&str, &str, usize, &str)] = &[
     ("SA/structural_adapter.rs", "new", 4, "exempt: symmetry-roundoff provenance and integer counts"),
     ("SA/structural_adapter.rs", "element", 2, "exempt: symmetry-roundoff provenance and integer counts"),
     ("SA/structural_adapter.rs", "geometry", 1, "integer: queue index"),
+    ("SA/structural_adapter.rs", "gap_attempt", 1, "integer: B7a D6's checked WorkTotal of refused reservations; an overflow joins its status and nothing saturates"),
     ("SA/structural_adapter.rs", "scrutinize_gaps", 3, "exempt: max folds of gap-scrutiny observations (T5's in-loop scrutiny)"),
     // ---- nonlinear_integration (signatures only in S11-K; serialized with T5)
     ("nonlinear_integration/lib.rs", "solve_active_set_frame_with_mode_and_springs", 1, "exempt: linear spring stiffness formation"),
@@ -336,7 +337,7 @@ const TABLE: &[(&str, &str, usize, &str)] = &[
     ("FK/structural/certified_recovery.rs", "from_member_primitives", 0, "K-D5 repaired recovery: exact split products and corrected displacements in exact row sums; ball transformations and all radii/remainders directed; publication rounded once"),
     ("FK/structural/certified_recovery.rs", "uniform_loads", 0, "K-D5 repaired recovery: exact split products and corrected displacements in exact row sums; ball transformations and all radii/remainders directed; publication rounded once"),
     ("FK/structural/certified_recovery.rs", "local_operator", 0, "K-D5 repaired recovery: exact split products and corrected displacements in exact row sums; ball transformations and all radii/remainders directed; publication rounded once"),
-    ("FK/structural/certified_recovery.rs", "arc_end_axes", 0, "U4a: selected end frame is formed at p in ball arithmetic; exact binary64 geometry and directed coefficient radii on the tangent branch"),
+    ("FK/structural/certified_recovery.rs", "arc_end_axes", 0, "U4a: exact binary64 geometry re-formed at p in ball arithmetic; directed coefficient radii"),
     ("FK/structural/certified_recovery.rs", "tangent_end_operator_and_loads", 0, "U4a: end tangent rotation enters intended operator and loads before certified single-rounding evaluation; ball arithmetic and directed radii"),
     ("FK/structural/certified_recovery.rs", "local_loads", 0, "K-D5 repaired recovery: exact split products and corrected displacements in exact row sums; ball transformations and all radii/remainders directed; publication rounded once"),
     ("FK/structural/certified_recovery.rs", "corrected_ball", 0, "K-D5 repaired recovery: exact split products and corrected displacements in exact row sums; ball transformations and all radii/remainders directed; publication rounded once"),

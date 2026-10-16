@@ -1,4 +1,4 @@
-//! Closed authoring operations for the model 0.4.0 load/reference-state records
+//! Closed authoring operations for the current exact load/reference-state group
 //! (`openpipestress.load_reference_state/1.0.0`), carried through the common
 //! Review/Apply seam in the same shape as `pressure_authoring`.
 //!
@@ -23,7 +23,7 @@ type Result<T> = std::result::Result<T, RichError>;
 /// Limit (manager ruling Q2; review B F7): the operation-level inverse cannot
 /// restore an explicit-null prior (for example `analysis_state: null`), because
 /// an explicit `null` after-value is refused. Such a prior is not admissible in
-/// 0.4.0 anyway (the product blocks it with `LOAD_STATE_EXPLICIT_NULL_UNSUPPORTED`),
+/// the current group anyway (the product blocks it with `LOAD_STATE_EXPLICIT_NULL_UNSUPPORTED`),
 /// and desktop Undo restores whole-model checkpoints, so it is unaffected.
 const NOT_PRESENT: &str = "not_present";
 
@@ -440,10 +440,11 @@ pub(crate) fn resolve(
             "Structured load/reference-state input requires unit none and dimension dimensionless",
         ));
     }
-    if model.get("schema_version").and_then(Value::as_str) != Some(LOAD_STATE_MODEL_VERSION) {
+    if model.get("schema_version").and_then(Value::as_str) != Some(LOAD_STATE_MODEL_VERSION)
+        || !crate::is_exact_pressure_document(model) {
         return Err(refuse(
             "OP-LOAD-STATE-SCHEMA-VERSION-INVALID",
-            format!("{path} can be authored only on a model whose schema_version is already {LOAD_STATE_MODEL_VERSION}; no operation changes the version"),
+            format!("{path} requires current model {LOAD_STATE_MODEL_VERSION} with an explicit exact pressure contract; no operation changes the version"),
         ));
     }
     let owner = match object_type {

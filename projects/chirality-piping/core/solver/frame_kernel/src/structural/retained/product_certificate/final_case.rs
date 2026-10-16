@@ -118,8 +118,6 @@ pub enum ProductRecipe {
     NonQuantity,
     /// Selected-material presence record; PP owns its exact source/text binding.
     ModulusBasisRecord,
-    /// Existing dense/sparse observation, with independent ancillary coverage.
-    DenseParityObservation,
 }
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ProductUnit {
@@ -240,6 +238,7 @@ pub struct LaneTrace<'a> {pub law:source_residual::ReadoutLaw,pub result:Result<
 pub struct ProductProofTrace<'a> {
     pub lanes:[Option<LaneTrace<'a>>;2],pub numeric:NumericTrace,pub comparisons_lme:WorkTotal,
     pub visits:WorkTotal,pub scalar_operations:WorkTotal,pub projection_conversions:WorkTotal,
+    /// Actual SI midpoint conversion for MPa Stress rows; raw conversion for every other unit.
     pub projection_outcomes:&'a [(usize,super::super::wide::multi::Binary64Outcome)],
     pub capacities:[usize;7],pub prepared_capacity_bytes:[usize;6],pub completion_merged:bool,
     pub trace_copy_work:&'a TraceCopyWork,
@@ -1034,17 +1033,6 @@ pub(crate) fn certify<'a>(
     }
     spent
 }
-fn mark_dense_parity(
-    spent: &mut ProductCertificateSpent<'_>, row: &ProductFinalRow<'_>, seen: &mut bool,
-) -> Result<(), ProductFailure> {
-    spent.visit()?;
-    if *seen || row.unit != ProductUnit::Record || row.body != 0
-        || !row.value.is_finite() || *row.value < 0.0 {
-        return Err(bad("dense parity coverage/value"));
-    }
-    *seen = true;
-    Ok(())
-}
 fn run_case(
     invocation: &RecordedInvocation,
     run: usize,
@@ -1123,7 +1111,7 @@ fn row_scales(owner:&adaptive::RetainedSolve,facts:&[ProductMemberFacts],spent:&
     -> Result<Vec<[f64;4]>,ProductFailure> {
     let source=owner.source();
     // B2-K (KD §5.2, R-7): a mechanics combination owner publishes no circular
-    // maximum, intensified row, mode, parity or modulus record. Its coverage is
+    // maximum, intensified row, mode or modulus record. Its coverage is
     // every native row and derivative slots 0-19 of each member (slot 20 stays
     // empty); no mode record is required. Every other rule is the case's.
     let combination=!owner.prep.factors.is_empty();
@@ -1142,7 +1130,6 @@ fn row_scales(owner:&adaptive::RetainedSolve,facts:&[ProductMemberFacts],spent:&
         derivative_coverage.resize(derivative_count, false);
         let mut nonquantity = false;
         let mut modulus_basis = false;
-        let mut dense_parity = false;
         if spent.verdicts.capacity()<spent.rows.len() {
             spent.visit()?;
             // Release the previous allocation before reserving; normal prepared
@@ -1175,7 +1162,7 @@ fn row_scales(owner:&adaptive::RetainedSolve,facts:&[ProductMemberFacts],spent:&
             if r.case_id != spent.rows[0].case_id {
                 return Err(bad("case association"));
             }
-            if combination && matches!(r.recipe, ProductRecipe::NonQuantity | ProductRecipe::DenseParityObservation
+            if combination && matches!(r.recipe, ProductRecipe::NonQuantity
                 | ProductRecipe::ModulusBasisRecord | ProductRecipe::CircularMaximum { .. }) {
                 return Err(bad("combination row family"));
             }
@@ -1185,9 +1172,6 @@ fn row_scales(owner:&adaptive::RetainedSolve,facts:&[ProductMemberFacts],spent:&
                         return Err(bad("nonquantity coverage"));
                     }
                     nonquantity = true;
-                }
-                ProductRecipe::DenseParityObservation => {
-                    mark_dense_parity(spent, r, &mut dense_parity)?;
                 }
                 ProductRecipe::ModulusBasisRecord => {
                     if modulus_basis || r.unit != ProductUnit::Record {
@@ -1331,7 +1315,7 @@ fn check_intervals(owner:&adaptive::RetainedSolve, facts:&[ProductMemberFacts],
             let recipe_id = r.recipe;
             if matches!(
                 recipe_id,
-                ProductRecipe::NonQuantity | ProductRecipe::ModulusBasisRecord | ProductRecipe::DenseParityObservation
+                ProductRecipe::NonQuantity | ProductRecipe::ModulusBasisRecord
             ) {
                 spent.verdicts.push(ProductRowVerdict {
                     row: i,
@@ -1577,7 +1561,7 @@ impl<'a> ProductRowSpec<'a> {
     pub fn mechanical(id:&'a str,case_id:&'a str,unit:ProductUnit,body:u32,recipe:ProductRecipe)
         -> Result<Self,ProductFailure> {
         if id.is_empty() || case_id.is_empty() || unit==ProductUnit::Record
-            || matches!(recipe,ProductRecipe::NonQuantity|ProductRecipe::ModulusBasisRecord|ProductRecipe::DenseParityObservation) {
+            || matches!(recipe,ProductRecipe::NonQuantity|ProductRecipe::ModulusBasisRecord) {
             return Err(bad("mechanical descriptor"));
         }
         Ok(Self{id,case_id,unit,body,recipe,observed:None})
@@ -1585,10 +1569,6 @@ impl<'a> ProductRowSpec<'a> {
     pub fn mode(id:&'a str,case_id:&'a str,body:u32,code:u8)->Result<Self,ProductFailure> {
         if !matches!(code,1|2) {return Err(bad("mode code"));}
         Ok(Self{id,case_id,body,unit:ProductUnit::Record,recipe:ProductRecipe::NonQuantity,observed:Some(f64::from(code).to_bits())})
-    }
-    pub fn parity(id:&'a str,case_id:&'a str,body:u32,bits:u64)->Result<Self,ProductFailure> {
-        let x=f64::from_bits(bits);if !x.is_finite() || x<0.0 {return Err(bad("parity bits"));}
-        Ok(Self{id,case_id,body,unit:ProductUnit::Record,recipe:ProductRecipe::DenseParityObservation,observed:Some(bits)})
     }
     pub fn material_record(id:&'a str,case_id:&'a str,body:u32)->Self {
         Self{id,case_id,body,unit:ProductUnit::Record,recipe:ProductRecipe::ModulusBasisRecord,observed:Some(1f64.to_bits())}
@@ -1639,7 +1619,8 @@ impl<'s,'m> ProductProofStartSpent<'s,'m> {
     }
 }
 pub(crate) fn begin_prepared_product<'s,'m>(invocation:&RecordedInvocation,run:usize,
-    owner:&'s adaptive::RetainedSolve,facts:&'s [ProductMemberFacts],specs:&'m [ProductRowSpec<'m>])
+    owner:&'s adaptive::RetainedSolve,facts:&'s [ProductMemberFacts],specs:&'m [ProductRowSpec<'m>],
+    radius_law:source_residual::RadiusLaw)
     -> ProductProofStartSpent<'s,'m> {
     let mut work=ProductCertificateSpent::new(&[]);
     let result=(|| {
@@ -1692,7 +1673,7 @@ pub(crate) fn begin_prepared_product<'s,'m>(invocation:&RecordedInvocation,run:u
             owner.selected_precision(),&laws,source_residual::ReadoutLaw::AdmittedK);
         let (kr,kw)=kspent.into_readouts(&anchor);let k=work.retain_lane(kr,kw)?;
         let sspent=source_residual::source_residual_prepared(owner,source,&owner.evidence().source_encoding,
-            owner.selected_precision(),&laws,&anchor,&k);
+            owner.selected_precision(),&laws,&anchor,&k,radius_law);
         let (sr,sw)=sspent.into_readouts(&anchor);let source_rows=work.retain_lane(sr,sw)?;
         if k.data!=source_rows.data || k.rows.len()!=owner.publish().rows.len()
             || source_rows.rows.len()!=k.rows.len() {return Err(bad("lane coverage/data"));}
@@ -1725,8 +1706,9 @@ fn project_hull(interval:Enclosure,unit:ProductUnit,row:usize,work:&mut ProductC
         let raw=match unit {
             ProductUnit::Millimetre=>{work.visit()?;let scale=lift(1000.)?;
                 ctx.mul(&midpoint,&scale).map_err(AttemptStop::from).map_err(NumericError::from)?},
-            ProductUnit::Megapascal=>{work.visit()?;let scale=lift(1_000_000.)?;
-                ctx.div(&midpoint,&scale).map_err(AttemptStop::from).map_err(NumericError::from)?},
+            // begin_prepared_product admits MPa only for the typed Stress recipe.
+            // DEF-O/E/C: convert its SI midpoint before binary64 MPa publication.
+            ProductUnit::Megapascal=>midpoint,
             ProductUnit::Record=>return Err(bad("record projection")),_=>midpoint,
         };
         work.visit()?;
@@ -1736,11 +1718,17 @@ fn project_hull(interval:Enclosure,unit:ProductUnit,row:usize,work:&mut ProductC
         let outcome=raw.to_binary64();
         // Reserved and charged before entry; no fallible operation can lose the actual outcome.
         work.projection_outcomes.push((row,outcome));
-        match outcome {
-            super::super::wide::multi::Binary64Outcome::Normal(y)|super::super::wide::multi::Binary64Outcome::Subnormal{value:y,..}=>Ok(if y==0.0 {0.0}else{y}),
-            super::super::wide::multi::Binary64Outcome::Underflow{..}=>Ok(0.0),
-            _=>Err(NumericError::Binary64Range.into()),
-        }
+        let value=match outcome {
+            super::super::wide::multi::Binary64Outcome::Normal(y)|super::super::wide::multi::Binary64Outcome::Subnormal{value:y,..}=>if y==0.0 {0.0}else{y},
+            super::super::wide::multi::Binary64Outcome::Underflow{..}=>0.0,
+            _=>return Err(NumericError::Binary64Range.into()),
+        };
+        // Other units retain their existing raw conversion and trace word.
+        let published=if unit==ProductUnit::Megapascal {
+            work.f64_op(Scalar64::Div,value,1_000_000.)?
+        } else {value};
+        if !published.is_finite() {return Err(NumericError::Binary64Range.into());}
+        Ok(if published==0.0 {0.0}else{published})
     })();
     work.numeric.wide.record(&ctx);
     result
@@ -1876,7 +1864,7 @@ fn support_hypot(specs:&[ProductRowSpec<'_>],values:&[f64],support:u32,first:usi
     if let Some(f)=work.status().fault(){return Err(ProductFailure{cause:Cause::Accounting(f)});}
     // I109: one correctly rounded 3-norm (platform-independent), still charged as the two
     // scalar operations of the former `hypot` chain.
-    let value=crate::correct_norm::norm3(v[0],v[1],v[2]);
+    let value=open_pipe_stress_correct_norm::norm3(v[0],v[1],v[2]);
     if !value.is_finite() || value<0.0{return Err(bad("support projection hypot range"));}
     Ok(if value==0.0{0.0}else{value})
 }

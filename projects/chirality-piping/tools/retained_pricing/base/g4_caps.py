@@ -40,6 +40,11 @@ P = 7 * n + 51 * m + 8 * g + 3                     # P_final
 Q = 7 * n + 30 * m + sp + k + 2 * g
 CC = CAPS.get("c", 1) if which == "caps" else 1   # I82: requested cases
 AA = CAPS.get("a", CC) if which == "caps" else 1  # I82: attempted cases (|A| <= c)
+import b7a_phase_model as _phase_model
+_phase_context = _phase_model.consumer_context(SNAP, H)
+_actual_cases = CAPS.get("lc", CC) if which == "caps" else 1
+_phase_success = _phase_model.successful_counts(_phase_context, _actual_cases, CC, l)
+_phase_ordinary = _phase_model.ordinary_counts(_phase_context, _actual_cases, CC, l)
 LL = min(CAPS.get("L", CC * l), CC * l) if which == "caps" else l
 PA = CC * P                                       # I82: rows of the c-case envelope
 ID, RID, KB, BITS, TOK, SHA = CAPS.get("ident", 128), 1024, 32, 16, 64, 64
@@ -124,6 +129,11 @@ def rec(cnt, slots=0, obj=1, ent=0, strb=0, nums=0, depth=4):
     return VF(arr=cnt * slots, obj=cnt * obj, ent=cnt * ent, strb=cnt * strb, keyb=cnt * ent * KB, nums=cnt * nums, depth=depth)
 NB = n                                               # bodies <= n
 BUILDS, RECORDS, ATTEMPTS = 7, 4, 4
+import b7a_domain_model as _wide_model
+_wide_model.inspect(SNAP)
+# CC is the existing C_eq upper (3): requested basis groups plus combinations
+# cannot exceed it. Calls retain their one-batch-plus-z structure.
+BUILDS *= CC
 REFUSALS = 3 * N                                     # bound refusals per record: Uc and S per block (blocks <= F <= N) plus the shared build's
 SOURCE = (rec(1, obj=4, ent=23, strb=TOK + ID + 3 * SHA, nums=3)
           + rec(n, slots=1 + 3, ent=4, strb=ID + 3 * BITS, nums=2)                    # id_maps.nodes
@@ -165,9 +175,23 @@ ATTEMPT = rec(1, obj=8, ent=40, strb=4 * TOK + 10 * TOK, nums=20) + PREPARATION 
 ATTEMPT = ATTEMPT.scale(AA)                          # I82: product_attempts[], one per attempted case
 ORDINARY = rec(1, obj=6, ent=20, strb=2 * TOK + ID + 4 * L_DIAGID) + VF(arr=DENV, strb=DENV * L_DIAGID)  # diagnostic_refs
 ORDINARY = ORDINARY.scale(CC)                        # I82: ordinary_attempts[], one per requested case
+import b7a_formation_model as _formed_model
+_formed_model.inspect(SNAP)
+_finding_cases = (_phase_success["finding_cases"] if _phase_context["branch"] == "success"
+                  else _phase_ordinary["finding_cases"])
+FINDING_VALUE = VF(**_formed_model.finding_value_facts(_finding_cases, n, l, ID, L_DIAGID))
+ORDINARY += FINDING_VALUE
+# ordinary_members owns finding and formation before ordinary_entry copies
+# formation into its entry. Keep both constructor originals independently.
+FINDING_VALUE_BUILD = FINDING_VALUE.tree() * 2
 CALLS = rec(1, slots=4 * AA, obj=3, ent=11, strb=2 * TOK, nums=6) + rec(1, slots=2 * AA, obj=2, ent=7, strb=SHA + TOK, nums=4)
 BUILDS_V = rec(BUILDS, slots=1, obj=4, ent=31, strb=3 * TOK + 19 * 0, nums=26) + REASON.scale(BUILDS)
 MATERIAL = rec(1, slots=2, obj=2, ent=4, strb=TOK) + rec(8, slots=1, obj=3, ent=7, strb=ID + 2 * BITS + 2 * TOK, nums=1)
+# Keep the historical base tree, then add a complete named-selector union:
+# outer/selector/case-index owners and up to8 conservative material owners
+# per basis. Actual used materials<=4; each selection may carry point_id.
+MATERIAL += (rec(CC, slots=3 + CC, obj=3, ent=10, strb=ID + 2 * TOK, nums=2)
+             + rec(8 * CC, slots=1, obj=4, ent=12, strb=2 * ID + 2 * BITS + 3 * TOK, nums=1))
 TOP = rec(1, obj=4, ent=24, strb=6 * TOK + 5 * TOK + 2 * SHA, nums=8) + rec(1, slots=1, ent=7, strb=TOK, nums=4)
 BODY = (TOP + CASE + SOURCE + MATERIAL + CALLS + BUILDS_V + ORDINARY + ATTEMPT)
 BODY.depth = 9
@@ -186,6 +210,16 @@ STAGED = (s("MechanicsEnvelope") + Xc("ResultItem", PA) + B(PA * ROW) + Xc("Diag
           + PREVIEW_T * CC + B(64 * 1024)
           + s("String") * (4 * PA))          # G5 part 2 (RV87 N-1(b)): ResultItem.source_result_refs Vec backings
 rows["T18.1 staged typed envelope copy (U3 D-b; live during T16 only)"] = STAGED
+# B4/D1 retains an additional failed Preview manifest beside its blocked
+# original before this later STAGED copy. Keep STAGED in full; this union
+# additionally pays diagnostic/evidence/row backings and content, quality
+# cases/reference vectors and all fixed quality labels.
+_FAILED_QUALITY = (V("NumericalCaseQuality", CC)
+                   + V("String", 3) * CC + s("String") * CC
+                   + B(CC * (ID + 64 + 3 * L_DIAGID) + 3 * 64))
+_FAILED_MANIFEST_COPY = STAGED + _FAILED_QUALITY
+rows["T18.1a additional failed-manifest typed clone (B7a stage 1)"] = _FAILED_MANIFEST_COPY
+
 
 # =========================================================================== T16 publication
 # serialize_frozen -> serialize_selected_from (retained_wire.rs:1474-1563 at b1f80234dc); finish
@@ -242,17 +276,19 @@ def static_tree(path):
 STATIC_FILES = ["schemas/physics_source_recovery.schema.json", "schemas/retained_precision_mp_v2.schema.json",
                 "fixtures/results/retained_precision_prepared_ordinary_v1.json",
                 "fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json",
-                "fixtures/results/semantic_contract_v0_2.json", "fixtures/results/semantic_contract_v0_3_precision_1.json",
+                "fixtures/results/semantic_contract_v0_2.json",
                 "fixtures/results/semantic_contract_v0_3_physics_1.json", "fixtures/results/semantic_contract_v0_3_load_reference_1.json",
                 "fixtures/results/semantic_contract_v0_3_load_reference_source_1.json",
                 "fixtures/results/semantic_contract_v0_3_preview_physics_1.json",
                 "fixtures/results/semantic_contract_v0_3_physics_source_1.json",
                 "fixtures/results/semantic_contract_v0_3_source_blocks_1.json", "schemas/source_block_recovery.schema.json"]
+STATIC_FILES = _wide_model.reader_static_files(SNAP, STATIC_FILES)
 STATICS = X(); static_facts = {}
 for p_ in STATIC_FILES:
     t_, f_ = static_tree(os.path.join(SNAP, p_))
     STATICS = STATICS + t_; static_facts[p_] = f_
-rows["T17.0 the 13 result_export OnceLock statics (process-lifetime, first use counted here)"] = STATICS
+rows[f"T17.0 the {len(STATIC_FILES)} result_export OnceLock owners over {len(set(STATIC_FILES))} JSON inputs "
+     "(process-lifetime, first use counted here)"] = STATICS
 INVOC = INVOC_VF.tree()
 ENVP = ENV_S                                                                          # project()/public: the successor without its receipt
 SETS = (X({"Node(&str,())": tree_nodes(PA) + 2 * tree_nodes(DENV) + tree_nodes(n + m + g)})   # rowids, diagnostic ids x2, model ids
@@ -384,6 +420,8 @@ form("T17_moving_invocation", B(j3cap(INVOC_VF.text()) // 2))
 for name_, x_ in (("STAGED", STAGED), ("SUCC", SUCC.tree()), ("INVOC", INVOC), ("STATICS", STATICS), ("BODY", BODY.tree()),
                   ("NOTICE", NOTICE), ("NOTICE_moving", T18_RESERVE_MOV), ("T19", T19)):
     form(name_, x_)
+form("FAILED_MANIFEST_COPY", _FAILED_MANIFEST_COPY)
+form("FORMATION_VALUE_BUILD", FINDING_VALUE_BUILD)
 for name_, c_ in (("TAV_X", TAV_X), ("TAV_W", TAV_W), ("TXT_moving", TXT_MOV), ("HELPER_moving", HELPER_MOV), ("T07_moving", T07_MOV)):
     form(name_, B(c_))
 exprs = {
@@ -394,7 +432,8 @@ exprs = {
 }
 # G5 part 2 (RV84 C-N3(a), (b); ruled): T19's spawn heap is allocated before the observed run and the reader's
 # process-lifetime statics are live after the first permitted invocation, so both count in every phase.
-EVERY = ["T11", "T19", "STATICS"]
+# The additional held source clone is conservatively resident in every phase.
+EVERY = ["T11", "T19", "STATICS", "FAILED_MANIFEST_COPY", "FORMATION_VALUE_BUILD"]
 def phases_of(mode):
     ob = f"O_base_{mode}"
     w2 = [ob, "TAV_W", "T12_T15", "NOTICE"] + EVERY

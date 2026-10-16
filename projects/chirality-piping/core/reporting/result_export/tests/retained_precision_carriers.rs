@@ -23,21 +23,21 @@ const PINNED: [(&str, &str, &str, &str); 2] = [
     (
         "sparse_interactive",
         SPARSE,
-        "174e17c55eadf69439d21d8809776a0e7d2ba95fa01a4ed0046366fb141a11a6",
-        "1932f8843dee94baccff7c21ebc01523d8a509919b9a3bbd48e26167ffd1eff4",
+        "e3e0830d34d7403da45cc5900aa40cc42d090478d9c2d3ba57bcecf9b6070d2e",
+        "bc1e36fac28680a6ad65901b021dbfeb9e3424349ede29ebd8358201839154d1",
     ),
     (
         "dense_scrutiny",
         DENSE,
-        "ff24764d702080b944dc52dbd46f56380a1e6f7dbceebd364fc4d9419c8f9f55",
-        "39895d62e38a6bc87242d5591384c23ab274e71832d974f40da915d13a0f7356",
+        "c24d4a1cbfb4668fe071fd1b9cc9abed35589c390992ebad33dd0a9159cf3316",
+        "0712cc45083fddc20f4434ccdf887d2b9c3f46810c579b12c1a8fbde2c34ce79",
     ),
 ];
 /// The milestone's validated class counts (R/I61 experiment 02; RV86 recount):
 /// relative, absolute, input-derived, non-quantity.
 const CLASSES: [(&str, [u64; 4]); 2] = [
     ("sparse_interactive", [25, 69, 3, 1]),
-    ("dense_scrutiny", [25, 69, 3, 2]),
+    ("dense_scrutiny", [25, 69, 3, 1]),
 ];
 
 struct Milestone {
@@ -531,34 +531,39 @@ fn u6a_downgrades_to_a_base_identity_are_refused() {
     }
 }
 
-const LEGACY: &str = include_str!("../../../../fixtures/product_preview/invented_demo_result_legacy_0_1.json");
-
-/// RV88 U6a S-1 (R06) and U6b S-1: a legacy 0.1.0 source is refused with a
-/// receipt member of any value, at raw, metadata, standing and derive, and with
-/// the W1 token on one row, at raw, standing and derive.
+/// b7-plan E2: a producer-less 0.1.0 mechanics result is refused by name
+/// (`MECHANICS_RESULT_VERSION_RETIRED`) at raw, metadata, standing and derive.
+/// RV88 U6a S-1 (R06) and U6b S-1 still hold before that refusal: a receipt
+/// member of any value is refused as a downgrade first.
 #[test]
-fn u6a_legacy_sources_carrying_a_receipt_or_token_are_refused() {
-    let legacy: Value = serde_json::from_str(LEGACY).unwrap();
-    assert_eq!(legacy["schema_version"], "0.1.0");
-    assert!(s::for_source(&legacy).is_ok());
-    assert_eq!(s::numerical_use_standing(&legacy, &[]), "needs_recompute");
-    assert!(derive(&legacy).is_ok());
+fn u6a_retired_sources_and_those_carrying_a_receipt_or_token_are_refused() {
+    let mut retired: Value = serde_json::from_str(include_str!(
+        "../../../../fixtures/product_preview/invented_demo_result_preview_physics_1_sparse.json"
+    ))
+    .unwrap();
+    retired["schema_version"] = json!("0.1.0");
+    for key in ["producer", "numerical_quality", "formulation_basis", "contract_evidence"] {
+        retired.as_object_mut().unwrap().remove(key);
+    }
+    let retired_code = |e: String| e == s::MECHANICS_RESULT_VERSION_RETIRED;
+    assert!(retired_code(s::for_source(&retired).unwrap_err()));
+    assert!(retired_code(s::for_source_metadata(&retired).unwrap_err()));
+    assert_eq!(s::numerical_use_standing(&retired, &[]), "unsupported");
+    assert!(retired_code(derive(&retired).unwrap_err()));
     let m = &milestones()[0];
     for member in [m.source["retained_precision"].clone(), Value::Null, json!({})] {
-        let mut carrying = legacy.clone();
+        let mut carrying = retired.clone();
         carrying["retained_precision"] = member.clone();
         assert_eq!(s::for_source(&carrying).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, "{member}");
         assert_eq!(s::for_source_metadata(&carrying).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, "{member}");
         assert_eq!(s::numerical_use_standing(&carrying, &[]), "unsupported");
         assert_eq!(derive(&carrying).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN);
     }
-    let mut token = legacy.clone();
+    let mut token = retired.clone();
     let last = token["results"].as_array().unwrap().len() - 1;
     token["results"][last]["recovery_method"] = json!(rp::METHOD);
-    assert_eq!(s::for_source(&token).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN);
-    assert!(s::for_source_metadata(&token).is_ok());
+    assert!(retired_code(s::for_source(&token).unwrap_err()));
     assert_eq!(s::numerical_use_standing(&token, &[]), "unsupported");
-    assert_eq!(derive(&token).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN);
 }
 
 #[test]
@@ -680,7 +685,6 @@ fn u6a_each_class_maps_to_its_refusal_and_disclosure() {
 }
 
 const PREVIEW_SPARSE: &str = include_str!("../../../../fixtures/results/preview_physics_invented_sparse.json");
-const BLOCKS_N05: &str = include_str!("../../../../fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json");
 const CASES: &str = include_str!("../../../../fixtures/results/retained_precision_carrier_cases.json");
 /// RR "RV88 on U6a, U6c, U6b (and U6d)": the only ruled differences between the
 /// languages' carriers (and F5's shared semantics); any other is a defect. RR
@@ -708,9 +712,7 @@ fn shared_fixtures(cases: &Value) -> Vec<(String, Value, Value)> {
             let text = match f["path"].as_str().unwrap() {
                 "fixtures/results/retained_precision_milestone_successor_sparse_interactive.json" => SPARSE,
                 "fixtures/results/retained_precision_milestone_successor_dense_scrutiny.json" => DENSE,
-                "fixtures/product_preview/invented_demo_result_legacy_0_1.json" => LEGACY,
                 "fixtures/results/preview_physics_invented_sparse.json" => PREVIEW_SPARSE,
-                "fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json" => BLOCKS_N05,
                 p => panic!("{p}"),
             };
             assert_eq!(format!("{:x}", Sha256::digest(text.as_bytes())), f["sha256"].as_str().unwrap());
@@ -749,7 +751,7 @@ fn apply_shared(c: &Value, fixture: &(String, Value, Value)) -> (Value, Option<V
 
 /// The shared three-language standing-parity scenarios (U6b and U6d consume
 /// the same file): the Rust carrier's standing and raw dispatch per case,
-/// the F-5 guard forms on legacy and preview-physics-1 sources included.
+/// the F-5 guard forms on preview-physics-1 sources included.
 #[test]
 fn u6a_shared_carrier_cases_rust() {
     let cases: Value = serde_json::from_str(CASES).unwrap();
@@ -764,10 +766,10 @@ fn u6a_shared_carrier_cases_rust() {
         assert_eq!(dispatch, c["expected_dispatch"].as_str().unwrap(), "{}", c["id"]);
         n += 1;
     }
-    assert_eq!(n, 20);
+    assert_eq!(n, 17);
     // The raw fixtures' guard cases are refused only through their edit.
     let raw: Vec<&str> = fixtures.iter().filter(|f| f.2.is_null()).map(|f| f.0.as_str()).collect();
-    assert_eq!(raw, ["legacy_preview_0_1", "preview_physics_1_invented_sparse", "source_blocks_n05_sparse"]);
+    assert_eq!(raw, ["preview_physics_1_invented_sparse"]);
     for fixture in fixtures.iter().filter(|f| f.2.is_null()) {
         assert!(s::for_source(&fixture.1).is_ok(), "{}", fixture.0);
         assert_eq!(s::numerical_use_standing(&fixture.1, &[]), "needs_recompute", "{}", fixture.0);
@@ -843,12 +845,6 @@ fn expected_binding(source: &Value, expected: &str) -> Vec<Option<String>> {
     let code = (code != "none").then(|| code.to_string());
     match rule {
         "every_row" => vec![code; rows.len()],
-        "source_blocks_summary" => {
-            let headline = &source["summary"]["max_open_formula_stress"]["result_ref"];
-            let want: Vec<Option<String>> = rows.iter().map(|row| (row["kind"] == "open_formula_stress_summary" || (headline.is_string() && row["id"] == *headline)).then(|| code.clone()).flatten()).collect();
-            assert!(want.contains(&None) && want.contains(&code));
-            want
-        }
         other => panic!("{other}"),
     }
 }

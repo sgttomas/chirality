@@ -7,7 +7,6 @@ use super::retained_product as rp;
 use super::retained_tests_hooks as hooks;
 use super::retained_wire as wire;
 use super::*;
-use open_pipe_stress_frame_kernel::structural::exact_boundary::functionals::AttemptStage;
 use open_pipe_stress_frame_kernel::structural::retained_api as k;
 use open_pipe_stress_result_export::retained_precision as reader;
 use serde_json::{json, Value};
@@ -27,10 +26,18 @@ const MODES: [PreviewSolverMode; 2] = [PreviewSolverMode::SparseInteractive, Pre
 /// K-D5 (DEL-04-01 kd5-member-relative-bound.md §§3.2, 3.4, 6) re-pinned both
 /// modes: the milestone case stays Sensitive (K-D5's estimate), and against main
 /// the bytes differ only by the two linear limitation sentences, the current
-/// maximum declaration literals and the fallback maximum's enclosure.
+/// maximum declaration literals and the fallback maximum's enclosure. B7a's H-4
+/// re-pinned them for the summary (the curved macro-element count's name, the
+/// deleted retired thrust count) and the reworded pressure/imposed-displacement
+/// limitation sentence; B4/D1 (b) re-pinned both modes: the preview route
+/// attempts no source blocks, so the envelope loses only its
+/// `diagnostic:source-recovery:case` disclosure; E14 re-pinned dense, which no
+/// longer publishes the retired parity observation row.
+/// C5 adds the adopted arc end-tangent limitation sentence; the current ordinary
+/// companions preserve every physical row and are still equal under capture.
 const ORDINARY_SHA256: [(&str, usize, &str); 2] = [
-    ("sparse_interactive", 68985, "abfc82f25247cd9963f20ea054d62c234e0c6e4fb41012d31ba9f9f64c2dace1"),
-    ("dense_scrutiny", 70103, "44cb3dada6e0682d4da769dbbfd3814cac54433d796e771b9aefe5ab8024d51a"),
+    ("sparse_interactive", 68215, "262350431963ec51fe025007f4381fdfc84326f68b80a7c13f73bed768c1a580"),
+    ("dense_scrutiny", 68236, "9fc0332eaf7798ed96f2013beb3cca2f7f429830b1e5719bdf535da8c02aad3d"),
 ];
 /// The serializer's committed milestone output: sha256 of the pretty-printed
 /// successor envelope, and its receipt_sha256 (byte-stable, both modes).
@@ -38,8 +45,8 @@ const ORDINARY_SHA256: [(&str, usize, &str); 2] = [
 /// successor differs only by the current maximum declaration and fallback enclosure, the two
 /// linear limitation sentences, and the receipt and publication hashes that bind them.
 const SUCCESSOR_SHA256: [(&str, &str, &str); 2] = [
-    ("sparse_interactive", "174e17c55eadf69439d21d8809776a0e7d2ba95fa01a4ed0046366fb141a11a6", "1932f8843dee94baccff7c21ebc01523d8a509919b9a3bbd48e26167ffd1eff4"),
-    ("dense_scrutiny", "ff24764d702080b944dc52dbd46f56380a1e6f7dbceebd364fc4d9419c8f9f55", "39895d62e38a6bc87242d5591384c23ab274e71832d974f40da915d13a0f7356"),
+    ("sparse_interactive", "e3e0830d34d7403da45cc5900aa40cc42d090478d9c2d3ba57bcecf9b6070d2e", "bc1e36fac28680a6ad65901b021dbfeb9e3424349ede29ebd8358201839154d1"),
+    ("dense_scrutiny", "c24d4a1cbfb4668fe071fd1b9cc9abed35589c390992ebad33dd0a9159cf3316", "0712cc45083fddc20f4434ccdf887d2b9c3f46810c579b12c1a8fbde2c34ce79"),
 ];
 
 fn sha(bytes: &[u8]) -> String {
@@ -48,11 +55,11 @@ fn sha(bytes: &[u8]) -> String {
 fn milestone_raw() -> Value {
     serde_json::from_str(MILESTONE).unwrap()
 }
-/// The private prepared driver on the unchanged 0.1.0 milestone: the candidate,
+/// The private prepared driver on the unchanged 0.5.0 milestone: the candidate,
 /// its captured invocation and the bytes of its single ordinary run.
 fn milestone_candidate(mode: PreviewSolverMode) -> (rp::PrivatePreparedCandidate, source_receipt::CapturedInvocation, Vec<u8>) {
     let raw = milestone_raw();
-    assert_eq!(raw["model"]["schema_version"], json!("0.1.0"), "milestone request unchanged at 0.1.0");
+    assert_eq!(raw["model"]["schema_version"], json!(crate::MODEL_SCHEMA_VERSION), "milestone request unchanged at 0.5.0");
     let (request, capture) = source_receipt::CapturedInvocation::parse(raw, mode).unwrap();
     let mut prepared = rp::PreparedCase::prepare_observed(request, mode, &capture).unwrap_or_else(|e| panic!("{:?}", e.capture.error));
     let ordinary = serde_json::to_vec(prepared.ordinary()).unwrap();
@@ -175,14 +182,6 @@ fn u1_typed_ordinary_capture_milestone() {
         assert!(record["message"].as_str().unwrap().contains("formation_check: reason="), "test oracle only: the D5 line is present");
         assert!(!seed.recovery_demoted);
         println!("I61_U1_SEED {} finding={:?}", mode.as_str(), seed.load_row_finding);
-        match &seed.legacy {
-            Some(rp::LegacySeed::Unavailable { work, diagnostic_ref }) => {
-                assert_eq!(diagnostic_ref, "diagnostic:source-recovery:case");
-                assert_eq!(*work, rp::LegacyWork { stage: "source closure", helper_stage: AttemptStage::SourceClosure,
-                    charged: 46628, rejected: 0, limit: 4_000_000 });
-            }
-            other => panic!("legacy unavailable expected: {other:?}"),
-        }
     }
 }
 
@@ -355,7 +354,6 @@ fn u1_receipt_check_wire_vocabulary() {
         (C::WorkCounter(k::WorkFault::Both), "work_counter_inconsistent"),
         (C::WorkCounterRange, "work_counter_range"),
         (C::WorkCounterInconsistent, "work_counter_inconsistent"),
-        (C::SaturationNotExcluded, "saturation_not_excluded"),
         (C::Association, "association"),
         (C::Scope, "association"),
         (C::Untranslated, "encoding"),
@@ -369,10 +367,9 @@ fn u1_receipt_check_wire_vocabulary() {
     }
 }
 
-/// D-4 §3 items 2 and 4: a trace Count is exact or abandons, and a legacy
-/// `rejected` beyond the safe range is `saturation_not_excluded`.
+/// D-4 §3 item 2: a trace Count is exact or abandons.
 #[test]
-fn u1_exact_or_abandon_counts_and_legacy_rejected() {
+fn u1_exact_or_abandon_counts() {
     let mut overflow = k::StageWork::default();
     overflow.formation = u64::MAX;
     overflow.assembly = 1;
@@ -381,69 +378,6 @@ fn u1_exact_or_abandon_counts_and_legacy_rejected() {
     assert_eq!(failures, vec![wire::ReceiptFailure { check: wire::ReceiptCheck::WorkCounter(k::WorkFault::Overflow), field_path: "Count.value" }]);
     let (count, failures) = wire::test_count(k::StageWork::default().checked_total());
     assert_eq!((count, failures.len()), (json!({"kind":"exact","value":0}), 0));
-    let saturated = rp::LegacyWork { stage: "solve", helper_stage: AttemptStage::Solve, charged: 7, rejected: usize::MAX, limit: 9 };
-    let mut work = Vec::new();
-    assert_eq!(wire::test_legacy_source(Some(&rp::LegacySeed::Unavailable { work: saturated, diagnostic_ref: "d".into() }), 0, &mut work),
-        Err(wire::ReceiptFailure { check: wire::ReceiptCheck::SaturationNotExcluded, field_path: "legacy_source_work[].rejected" }));
-    let ranged = rp::LegacyWork { charged: 1 << 53, rejected: 0, ..saturated };
-    assert_eq!(wire::test_legacy_source(Some(&rp::LegacySeed::Unavailable { work: ranged, diagnostic_ref: "d".into() }), 0, &mut Vec::new()).err().map(|f| f.check),
-        Some(wire::ReceiptCheck::WorkCounterRange));
-}
-
-/// D39 (ROOT, 2026-10-04) with T1 (a): each legacy route row's disposition.
-#[test]
-fn u1_d39_legacy_dispositions() {
-    let work = rp::LegacyWork { stage: "formation guard", helper_stage: AttemptStage::SourceClosure, charged: 0, rejected: 0, limit: 0 };
-    let attempted = rp::LegacyWork { stage: "solve", helper_stage: AttemptStage::Solve, charged: 7, rejected: 3, limit: 9 };
-    let rows: [(rp::LegacySeed, Value, Option<&str>, Option<Value>); 4] = [
-        (rp::LegacySeed::NotEligible, json!({"disposition":"not_eligible","diagnostic_ref":null,"work_ref":null}), None, None),
-        (rp::LegacySeed::NotRequired, json!({"disposition":"not_required","diagnostic_ref":null,"work_ref":null}), None, None),
-        (rp::LegacySeed::DeclinedWithoutAttempt { work, diagnostic_ref: "d:decline".into() },
-            json!({"disposition":"declined_without_attempt","diagnostic_ref":null,"work_ref":0}), Some("d:decline"),
-            Some(json!({"case_index":2,"stage":"formation guard","helper_stage":"source_closure","charged":0,"rejected":0,"limit":0,"settlement":"booked"}))),
-        (rp::LegacySeed::Unavailable { work: attempted, diagnostic_ref: "d:attempt".into() },
-            json!({"disposition":"unavailable","diagnostic_ref":null,"work_ref":0}), Some("d:attempt"),
-            Some(json!({"case_index":2,"stage":"solve","helper_stage":"solve","charged":7,"rejected":3,"limit":9,"settlement":"booked"}))),
-    ];
-    for (seed, expected, omitted, entry) in rows {
-        let mut work_list = Vec::new();
-        let (value, omit) = wire::test_legacy_source(Some(&seed), 2, &mut work_list).unwrap();
-        assert_eq!(value, expected, "{seed:?}");
-        assert_eq!(omit.as_deref(), omitted, "{seed:?}");
-        assert_eq!(work_list.first(), entry.as_ref(), "{seed:?}");
-    }
-    // Ok(recovery): exact-block selected, the coexistence bypass (D-15): no successor.
-    let mut work_list = Vec::new();
-    assert_eq!(wire::test_legacy_source(Some(&rp::LegacySeed::ExactSelected), 0, &mut work_list).err().map(|f| f.check),
-        Some(wire::ReceiptCheck::Scope));
-    // No captured route: refused typed, never guessed.
-    assert_eq!(wire::test_legacy_source(None, 0, &mut work_list).err().map(|f| f.check), Some(wire::ReceiptCheck::Untranslated));
-}
-
-/// D39 at the capture: the route recorders keep each branch distinct (G-l).
-#[test]
-fn u1_d39_route_capture() {
-    let failure = |attempted: bool| {
-        let mut capture = rp::ProductCapture::default();
-        let decline = source_recovery::formation_decline_without_attempt();
-        capture.ordinary_legacy_failure("c", attempted, &decline, "d:legacy");
-        // The route call after the attempt block never overwrites a failure.
-        capture.ordinary_legacy_route("c", true, true, false);
-        capture.ordinary[0].legacy.clone()
-    };
-    assert!(matches!(failure(false), Some(rp::LegacySeed::DeclinedWithoutAttempt { work, ref diagnostic_ref })
-        if work.stage == "formation guard" && (work.charged, work.rejected, work.limit) == (0, 0, 0) && diagnostic_ref == "d:legacy"));
-    assert!(matches!(failure(true), Some(rp::LegacySeed::Unavailable { .. })));
-    let route = |eligible: bool, needs: bool, exact: bool| {
-        let mut capture = rp::ProductCapture::default();
-        capture.ordinary_legacy_route("c", eligible, needs, exact);
-        capture.ordinary[0].legacy.clone()
-    };
-    assert!(matches!(route(false, true, false), Some(rp::LegacySeed::NotEligible)));
-    assert!(matches!(route(false, false, false), Some(rp::LegacySeed::NotEligible)));
-    assert!(matches!(route(true, false, false), Some(rp::LegacySeed::NotRequired)));
-    assert!(matches!(route(true, true, true), Some(rp::LegacySeed::ExactSelected)));
-    assert!(route(true, true, false).is_none(), "an attempted branch is recorded only by its failure");
 }
 
 /// The in-tree fixtures bind the serializer's constants (A4 closed by the fan-in).
@@ -452,7 +386,7 @@ fn u1_constants_bound_to_in_tree_fixtures() {
     let definition: Value = serde_json::from_str(DEFINITION).unwrap();
     let table: Value = serde_json::from_str(TABLE).unwrap();
     assert_eq!(wire::domain_hash("retained_precision_formation_v1", &definition).as_deref(), Some(wire::DEFINITION_SHA256));
-    assert_eq!(table["product_formation_definitions"], json!([{"id":wire::DEFINITION_ID,"sha256":wire::DEFINITION_SHA256},{"id":"RP-PREPARED-COMBINATION-DUAL-v1","sha256":"d3fde142aff9c05d709b2fc2a04add42e14c66be3e2b2ba82012da57edf3d957"}]));
+    assert_eq!(table["product_formation_definitions"], json!([{"id":wire::DEFINITION_ID,"sha256":wire::DEFINITION_SHA256},{"id":"RP-PREPARED-COMBINATION-DUAL-v1","sha256":"34ce87e7ad6da457d81a5cbf25a077fb5d08f2960c5fd815e1163646de02d24a"}]));
     assert_eq!(table["semantic_contract_id"], json!(wire::RETAINED_SEMANTIC_ID));
     assert_eq!(table["formulation_profile_id"], json!(wire::RETAINED_PROFILE_ID));
     assert_eq!(table["receipt_policy"], json!(wire::POLICY));
@@ -473,9 +407,8 @@ fn u1_refusals_are_typed() {
     assert_eq!(wire::serialize_cases(&mut prepared, &staged, &two).err(), Some(wire::ReceiptFailure { check: wire::ReceiptCheck::Association, field_path: "invocation" }));
 }
 
-/// G-b and D39 on an actual load-row case (captured entry): the finding demotes a
-/// Passed report, so its sentence is disclosed in the integrity diagnostic, and the
-/// legacy route declines without an attempt. Capture leaves the ordinary bytes
+/// G-b on an actual load-row case (captured entry): the finding demotes a
+/// Passed report, so its sentence is disclosed in the integrity diagnostic. Capture leaves the ordinary bytes
 /// unchanged here too. S11-G T1's RF-CANCEL-UDL-W1e8 is now Sensitive at the solve
 /// under K-D5's closure (DEL-04-01 kd5-member-relative-bound.md §§1, 4.2), so the
 /// Passed load-row case is the same request with a soft branch
@@ -504,14 +437,7 @@ fn u1_load_row_case_capture() {
         assert_eq!(seed.d5_diagnostic_ref, None, "{mode:?}: no K-D5 line, so no d5 reference");
         let record = observed.diagnostics.iter().find(|d| d.id == integrity).unwrap();
         assert!(record.message.ends_with(&finding.sentence) || record.message.contains(&finding.sentence), "test oracle only");
-        match &seed.legacy {
-            Some(rp::LegacySeed::DeclinedWithoutAttempt { work, diagnostic_ref }) => {
-                assert_eq!(*work, rp::LegacyWork { stage: "formation guard", helper_stage: AttemptStage::SourceClosure, charged: 0, rejected: 0, limit: 0 });
-                assert_eq!(diagnostic_ref, &format!("diagnostic:source-recovery:{}", seed.case));
-            }
-            other => panic!("{mode:?}: D39 declined_without_attempt expected: {other:?}"),
-        }
-        println!("I61_U1_LOAD_ROW {} initial=report(sensitive) finding_ref={:?} d5={:?} legacy=declined_without_attempt", mode.as_str(), finding.diagnostic_ref, seed.d5_diagnostic_ref);
+        println!("I61_U1_LOAD_ROW {} initial=report(sensitive) finding_ref={:?} d5={:?}", mode.as_str(), finding.diagnostic_ref, seed.d5_diagnostic_ref);
     }
 }
 
@@ -544,7 +470,7 @@ fn body(successor: &Value) -> &Value {
 
 /// The C1-C3 unavailable representation of an actual preparation refusal (the closed annulus
 /// helper refuses a zero diameter: `fail_preparation_of_case`) beside a selected case: case-2
-/// has no CaseSource, Run or execution entry; its legacy disclosure is kept and referenced.
+/// has no CaseSource, Run or execution entry.
 #[test]
 fn u1g2_preparation_refusal_representation() {
     let mode = PreviewSolverMode::SparseInteractive;
@@ -563,12 +489,11 @@ fn u1g2_preparation_refusal_representation() {
     let attempt = &b["product_attempts"][1];
     assert_eq!((attempt["result"]["kind"].as_str(), attempt["result"]["error"]["kind"].as_str(), &attempt["run_ref"], &attempt["source_ref"]),
         (Some("unavailable"), Some("preparation"), &Value::Null, &Value::Null));
-    // Unselected: the legacy disclosure is kept and referenced (C2:160), no method token.
-    let Some(rp::LegacySeed::Unavailable { diagnostic_ref, .. }) = &prepared.capture.ordinary[1].legacy else { panic!("legacy unavailable expected") };
-    assert_eq!(diagnostic_ref, "diagnostic:source-recovery:case-2");
-    assert_eq!(b["ordinary_attempts"][1]["legacy_source"], json!({"disposition":"unavailable","diagnostic_ref":diagnostic_ref,"work_ref":1}));
+    // Unselected: no method token. B4/D1 (b): the preview route attempts no source
+    // blocks, so the attempt carries no legacy record and no source-recovery disclosure.
+    assert!(b["ordinary_attempts"][1].get("legacy_source").is_none() && b.get("legacy_source_work").is_none());
     let diagnostics = successor["diagnostics"].as_array().unwrap();
-    assert!(diagnostics.iter().any(|d| d["id"] == json!(diagnostic_ref) && d["code"] == "SOURCE_BLOCK_RECOVERY_UNAVAILABLE"));
+    assert!(!diagnostics.iter().any(|d| d["code"] == "SOURCE_BLOCK_RECOVERY_UNAVAILABLE"));
     let case_rows = || successor["results"].as_array().unwrap().iter().filter(|r| r["basis_ref"]["ref_id"] == "case-2");
     assert!(case_rows().count() > 0 && case_rows().all(|r| r.get("recovery_method").is_none()));
     let unavailable: Vec<&Value> = diagnostics.iter().filter(|d| d["code"] == wire::UNAVAILABLE_CODE).collect();
@@ -778,30 +703,27 @@ fn u1g2_run_and_body_charge_conservation_negatives() {
         Some(wire::ReceiptFailure { check: wire::ReceiptCheck::WorkCounterInconsistent, field_path: "work.charged" }), "R09");
 }
 
-/// RV82-N1 (R10, R14): T1 (a)'s guards on a doctored envelope: another legacy
-/// disclosure still naming the selected case (G4), and an omitted id whose
-/// diagnostic is not the legacy disclosure.
+/// RV82-N1 (R10) after B4/D1 (b): the preview route attempts no source blocks, so the
+/// actual envelope carries no source-unavailable disclosure; one naming the selected case
+/// (a route-E composite's) is omitted, and a second still naming it is refused (G4).
 #[test]
 fn u1g2_t1a_guard_negatives() {
     let (candidate, _, _) = milestone_candidate(PreviewSolverMode::SparseInteractive);
     let base = serde_json::to_value(candidate.envelope()).unwrap();
-    let legacy_id = "diagnostic:source-recovery:case";
+    assert!(!base["diagnostics"].as_array().unwrap().iter().any(|d| d["code"] == "SOURCE_BLOCK_RECOVERY_UNAVAILABLE"));
     let mut own = base.clone();
-    assert!(wire::test_successor_envelope(&mut own, "case", Some(legacy_id)).is_ok(), "precondition: the actual envelope");
-    // R10: a second legacy disclosure naming the selected case survives the omission.
+    assert!(wire::test_successor_envelope(&mut own, "case").is_ok(), "precondition: the actual envelope");
+    let disclosure = |id: &str| json!({"id": id, "code": "SOURCE_BLOCK_RECOVERY_UNAVAILABLE", "severity": "info",
+        "message": "m", "source": "core/product_physics", "affected_refs": ["case"]});
+    let mut one = base.clone();
+    one["diagnostics"].as_array_mut().unwrap().push(disclosure("diagnostic:source-recovery:case"));
+    assert!(wire::test_successor_envelope(&mut one, "case").is_ok());
+    assert!(!one["diagnostics"].as_array().unwrap().iter().any(|d| d["code"] == "SOURCE_BLOCK_RECOVERY_UNAVAILABLE"), "omitted");
     let mut doubled = base.clone();
-    let mut copy = doubled["diagnostics"].as_array().unwrap().iter().find(|d| d["id"] == legacy_id).unwrap().clone();
-    copy["id"] = json!("diagnostic:source-recovery:case:second");
-    doubled["diagnostics"].as_array_mut().unwrap().push(copy);
-    assert_eq!(wire::test_successor_envelope(&mut doubled, "case", Some(legacy_id)).err(),
-        Some(wire::ReceiptFailure { check: wire::ReceiptCheck::Association, field_path: "diagnostics[legacy]" }), "R10");
-    // R14: the captured id resolves to a diagnostic naming the case with another code.
-    let mut recoded = base.clone();
-    for d in recoded["diagnostics"].as_array_mut().unwrap() {
-        if d["id"] == legacy_id { d["code"] = json!("NUMERICAL_INTEGRITY_SENSITIVE"); }
-    }
-    assert_eq!(wire::test_successor_envelope(&mut recoded, "case", Some(legacy_id)).err(),
-        Some(wire::ReceiptFailure { check: wire::ReceiptCheck::Association, field_path: "diagnostics[-legacy]" }), "R14");
+    doubled["diagnostics"].as_array_mut().unwrap().push(disclosure("diagnostic:source-recovery:case"));
+    doubled["diagnostics"].as_array_mut().unwrap().push(disclosure("diagnostic:source-recovery:case:second"));
+    assert_eq!(wire::test_successor_envelope(&mut doubled, "case").err(),
+        Some(wire::ReceiptFailure { check: wire::ReceiptCheck::Association, field_path: "diagnostics[-source_unavailable]" }), "R10");
 }
 
 /// RV82-N1 (R13): the report outcome must equal the unchanged assessed quality.
@@ -816,29 +738,17 @@ fn u1g2_initial_quality_crosscheck_negative() {
         Some(wire::ReceiptFailure { check: wire::ReceiptCheck::Association, field_path: "ordinary_attempts[].initial.outcome" }), "R13");
 }
 
-/// RV82-N1 (R22): 2^53-1 itself is a safe JSON integer; only beyond it refuses.
-#[test]
-fn u1g2_safe_range_boundary() {
-    let max_safe = (1usize << 53) - 1;
-    let at = rp::LegacyWork { stage: "solve", helper_stage: AttemptStage::Solve, charged: max_safe, rejected: max_safe, limit: max_safe };
-    let mut work = Vec::new();
-    assert!(wire::test_legacy_source(Some(&rp::LegacySeed::Unavailable { work: at, diagnostic_ref: "d".into() }), 0, &mut work).is_ok(), "R22: 2^53-1 is in range");
-    assert_eq!(work[0]["charged"], json!(max_safe as u64));
-    let beyond = rp::LegacyWork { charged: max_safe + 1, ..at };
-    assert_eq!(wire::test_legacy_source(Some(&rp::LegacySeed::Unavailable { work: beyond, diagnostic_ref: "d".into() }), 0, &mut Vec::new()).err().map(|f| f.check),
-        Some(wire::ReceiptCheck::WorkCounterRange));
-}
-
 /// B3b-P (B3-D P-9; REVISION_01 §1.2, S-1): the exact route's wire constants are bound to the
 /// in-tree statics J1 landed: DEF-E's H is `EXACT_DEFINITION_SHA256` and the physics-retained-1
 /// table binds it, its identity, profile, policies and `receipt_bindings` (B3D-8, the serializer's
-/// own values); its inherited hash is physics-1's table bytes. The preview route's descriptor is
+/// own values); its inherited hash is pressure-1's table bytes (B7b D4 (a)). The preview route's descriptor is
 /// the unchanged module constants.
 #[test]
 fn b3b_exact_constants_bound_to_in_tree_fixtures() {
     const EXACT_DEFINITION: &str = include_str!("../../../fixtures/results/retained_precision_prepared_exact_v1.json");
     const EXACT_TABLE: &str = include_str!("../../../fixtures/results/semantic_contract_v0_3_physics_retained_1.json");
-    const PHYSICS_1_TABLE: &str = include_str!("../../../fixtures/results/semantic_contract_v0_3_physics_1.json");
+    // B7b D4 (a): physics-retained-1 is based on pressure-1 (exact_pressure_v3).
+    const PRESSURE_1_TABLE: &str = include_str!("../../../fixtures/results/semantic_contract_v0_3_pressure_1.json");
     let definition: Value = serde_json::from_str(EXACT_DEFINITION).unwrap();
     let table: Value = serde_json::from_str(EXACT_TABLE).unwrap();
     assert_eq!(definition["id"], json!(wire::EXACT_DEFINITION_ID));
@@ -851,8 +761,8 @@ fn b3b_exact_constants_bound_to_in_tree_fixtures() {
     assert_eq!(table["accuracy_classification"]["policy"], json!(wire::FACADE_POLICY));
     assert_eq!(table["receipt_bindings"], json!({"canonicalization":wire::CANONICALIZATION,"method":wire::METHOD,"projection_policy":wire::PROJECTION_POLICY,
         "work":{"case_limit":wire::CASE_LIMIT,"invocation_limit":wire::INVOCATION_LIMIT},"work_policy":wire::WORK_POLICY}));
-    assert_eq!(table["inherited_semantic_contract_sha256"], json!(format!("{:x}", Sha256::digest(PHYSICS_1_TABLE.as_bytes()))));
-    assert_eq!(serde_json::from_str::<Value>(PHYSICS_1_TABLE).unwrap()["semantic_contract_id"], json!(PHYSICS_SEMANTIC_CONTRACT_ID));
+    assert_eq!(table["inherited_semantic_contract_sha256"], json!(format!("{:x}", Sha256::digest(PRESSURE_1_TABLE.as_bytes()))));
+    assert_eq!(serde_json::from_str::<Value>(PRESSURE_1_TABLE).unwrap()["semantic_contract_id"], json!(crate::exact_admission::PRESSURE_SEMANTIC_CONTRACT_ID));
     // The two descriptors.
     let preview = wire::route_wire(rp::W1Route::Preview);
     assert_eq!((preview.semantic_id, preview.profile_id, preview.definition_id, preview.definition_sha256, preview.geometry_route),

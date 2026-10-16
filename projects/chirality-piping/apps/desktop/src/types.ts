@@ -220,10 +220,11 @@ export type AnalysisStateInput = {
   provenance: string;
 };
 
-/* Published result evidence: `contract_evidence` of load-reference-1 and
- * load-reference-source-1 (schemas/load_reference_state.schema.json
- * LoadReferenceContractEvidence and LoadReferenceStateRecord). Readers: the Rust
- * load-reference readers, through features/results/resultReader.ts. */
+/* Published result evidence: the `load_reference_states` records of a pressure-1 or
+ * pressure-source-1 statement whose model carries the load/reference-state group
+ * (schemas/load_reference_state.schema.json LoadReferenceStateRecord). Readers: the
+ * Rust pressure-1 and pressure-source-1 readers, through
+ * features/results/resultReader.ts. */
 export type LoadReferenceConsumedMaterialPoint = { point_id: string; temperature_k: number | null; E_pa: number; nu: number; retained_G_ignored: boolean };
 export type LoadReferenceLawSegment = { use: "interpolation_sample" | "integration_interval"; lower_index: number; upper_index: number; start_k: number; end_k: number };
 export type LoadReferenceMember = {
@@ -288,17 +289,19 @@ export type LoadReferenceStateRecord = {
   contributions: LoadReferenceContribution[];
   excluded_sources: LoadReferenceExcludedSource[];
 };
-/** Closed evidence namespace; `pressure` and `exact_cases` are the inherited
- * physics-1 statements with the resolved member pair. */
-export type LoadReferenceContractEvidence = {
+/** The exact evidence namespace of a load/reference-state statement: pressure-1's
+ * (schemas/results_pressure_1.v0.3.schema.json PressureContractEvidence) or
+ * pressure-source-1's (schemas/physics_source_recovery.schema.json
+ * pressure_source_resolved_evidence), each with its `load_reference_states`. */
+export type LoadStateContractEvidence = {
   pressure: Array<Record<string, unknown>>;
-  connector: [];
+  connector: Array<Record<string, unknown>>;
   exact_cases: Array<Record<string, unknown>>;
   load_reference_states: LoadReferenceStateRecord[];
 };
 
 export type PreviewModel = {
-  pressure_contract?: { version: string; mode: string };
+  pressure_contract?: { version: string; mode: string; shear_model?: "euler_bernoulli" | "timoshenko_annulus_energy_v1" };
   schema_version: string;
   document_kind: string;
   data_boundary: Record<string, string>;
@@ -359,7 +362,8 @@ export type PreviewModel = {
     /** Per-span section quantities. Besides `outside_diameter` and
      * `wall_thickness`, the record carries optional user-entered slots from
      * the preview-engine input surface (`core/product_physics`
-     * `PipeSectionInput`), including `mill_tolerance` — the user-entered
+     * `PipeSectionInput`), including `corrosion_allowance` (required explicitly
+     * for an exact pressure solve, with no zero default) and `mill_tolerance` — the user-entered
      * absolute mill-tolerance thickness reduction (length). Absence means no
      * reduction; absence is not a default value of zero. */
     section: Record<string, { value: number; unit: string }>;
@@ -1260,48 +1264,13 @@ export type PackageHashEvidence = {
   hash_status: "computed_local_preview";
 };
 
-export type ModelDocumentMigrationStatus = {
-  status: "current" | "migrated" | "newer_than_supported" | "unsupported_schema" | "failed" | string;
+// The model document's version status (DEL-02-05 CLM-003). There is no
+// migration: every version other than the current one is refused by name.
+export type ModelDocumentVersionStatus = {
+  status: "current" | "retired_schema" | "newer_than_supported" | "unsupported_schema";
   source_schema_version: string;
   target_schema_version: string;
-  migration_framework: string;
-  db_migration_status: string;
-  product_schema_migration_status: string;
-  applied_migration_ids: string[];
-  persistence_state: string;
   detail: string;
-};
-
-export type ModelMigrationLedgerRecord = {
-  record_kind: string;
-  recorded_at_unix: number;
-  source_schema_version: string;
-  target_schema_version: string;
-  applied_migration_ids: string[];
-  migration_framework: string;
-  pre_migration_model_hash: string;
-  post_migration_model_hash: string;
-  trigger: string;
-  destructive_rewrite: boolean;
-  professional_boundary: Record<string, boolean>;
-  hash_evidence?: {
-    schema: "model_migration_hash_evidence_v1";
-    source_payload_basis: "incoming_pre_migration_model" | "stored_pre_open_migration_model";
-    received: {
-      model_hash: unknown;
-      project_envelope_hash: unknown;
-    };
-    prior_stored: null | {
-      model_hash: unknown;
-      project_envelope_hash: unknown;
-    };
-    computed: {
-      pre_migration_model_hash: string;
-      post_migration_model_hash: string;
-      post_migration_project_envelope_hash: string;
-    };
-    received_claim_verification: "not_asserted";
-  };
 };
 
 export type LocalProjectEnvelope = {
@@ -1314,6 +1283,5 @@ export type LocalProjectEnvelope = {
   analysis_run: AnalysisRunEnvelope | null;
   model_hash: ModelHashEvidence | null;
   project_envelope_hash: ProjectEnvelopeHashEvidence | null;
-  model_document_migration: ModelDocumentMigrationStatus | null;
-  model_migration_ledger: ModelMigrationLedgerRecord[];
+  model_document_version: ModelDocumentVersionStatus | null;
 };

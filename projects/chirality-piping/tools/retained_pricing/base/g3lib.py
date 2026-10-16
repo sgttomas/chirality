@@ -216,6 +216,14 @@ ASSUMED.update({
 })
 
 
+# Shared B7a illustrative layouts must exist in each fresh pricing process.
+# These preserve the formed-construction helper's existing estimates; G5
+# binds both exact Rust types and supplies the actual qualification values.
+ASSUMED.update({
+    "s(FormationRow)": 3 * ASSUMED["s(ExactAccumulator)"] + 128,
+    "s((usize,[f64;4]))": 5 * ASSUMED["s(usize)"],
+})
+
 # KD5 illustrative layouts only; g5_profile binds actual in-build sizes.
 import os as _pricing_os
 _pricing_snapshot = _pricing_os.environ.get("RP_SNAPSHOT")
@@ -229,6 +237,8 @@ _pricing_fc = _pricing_os.path.join(_pricing_snapshot, "core/solver/frame_kernel
 if _pricing_fc and _pricing_os.path.exists(_pricing_fc) and "pub struct MemberBoundInputs" in open(_pricing_fc, encoding="utf-8").read():
     ASSUMED.update({"s(MemberBoundInputs)": 80, "s(LoadClosureRecord)": 32,
                     "s(LoadPrimitive)": 512, "s(LoadClosureEntry)": 80,
+                    "s(CertifiedSummand)": 1024, "s(BasisState)": 2048, "s(BasisCustody)": 512,
+                    "s(ElementUniformLoadContribution)": 128, "s(SpannedUniformLocalLoad)": 64, "s(NumericalCaseQuality)": 256,
                     "s(RecoveryGroup)": 120, "s((String,[f64;2]))": 40,
                     "s(CertifiedMemberOption)": 3368, "s(CertifiedMemberRecovery)": 3360,
                     "s(CertifiedMemberRecoveryResult)": 3376, "s(CertifiedMemberRecoveryPairResult)": 6736,

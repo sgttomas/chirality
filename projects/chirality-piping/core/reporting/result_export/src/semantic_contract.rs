@@ -1,18 +1,6 @@
 //! Exact current producer semantics. No ID substring or unit-only family inference.
 use serde_json::Value;
 use std::sync::OnceLock;
-pub fn contract() -> &'static Value {
-    static CONTRACT: OnceLock<Value> = OnceLock::new();
-    CONTRACT.get_or_init(|| {
-        serde_json::from_str(include_str!(
-            "../../../../fixtures/results/semantic_contract_v0_2.json"
-        ))
-        .expect("pinned semantic contract")
-    })
-}
-pub fn signature(row: &Value) -> Result<Option<&'static Value>, String> {
-    signature_in(contract(), row)
-}
 pub fn signature_in(table: &'static Value, row: &Value) -> Result<Option<&'static Value>, String> {
     let kind = row["kind"].as_str().ok_or("SOURCE_KIND_MISSING")?;
     let known: Vec<_> = table["rows"]
@@ -58,19 +46,13 @@ pub fn signature_in(table: &'static Value, row: &Value) -> Result<Option<&'stati
     Ok(Some(units[0]))
 }
 /// The signature of `row` under the table `for_source` selected for `source`.
-/// Under pressure-1 a connector row's signature is held as code
-/// (`connector_evidence`), since pressure-1 resolves its other rows against
-/// physics-1's resident table and holds no table of its own (T4-RV14 F1).
-pub fn signature_for(source: &Value, table: &'static Value, row: &Value) -> Result<Option<Value>, String> {
-    if source["producer"]["semantic_contract_id"] == PRESSURE_ID {
-        if let Some(signature) = crate::connector_evidence::signature(row)? {
-            return Ok(Some(signature));
-        }
-    }
+/// Connector signatures, including the two scalar pressure rows, resolve
+/// through the same independently bound ordinary pressure table.
+pub fn signature_for(_source: &Value, table: &'static Value, row: &Value) -> Result<Option<Value>, String> {
     Ok(signature_in(table, row)?.cloned())
 }
 /// Canonical metadata under the vocabulary `for_source` selected for `source`
-/// (pressure-1: physics-1's plus the connector entries).
+/// Connector-specific location/basis rules remain independently checked.
 pub fn canonical_metadata_for(source: &Value, table: &Value, row: &Value) -> Option<Value> {
     if source["producer"]["semantic_contract_id"] == PRESSURE_ID
         && crate::connector_evidence::is_connector_kind(row["kind"].as_str().unwrap_or_default())
@@ -90,9 +72,6 @@ pub fn complete_metadata(row: &Value) -> bool {
     .iter()
     .all(|k| row["metadata"][k].as_str().is_some_and(|s| !s.is_empty()))
 }
-pub fn canonical_metadata(row: &Value) -> Option<Value> {
-    canonical_metadata_in(contract(), row)
-}
 pub fn canonical_metadata_in(table: &Value, row: &Value) -> Option<Value> {
     if !complete_metadata(row) {
         return None;
@@ -110,27 +89,22 @@ pub fn canonical_metadata_in(table: &Value, row: &Value) -> Option<Value> {
     Some(Value::Object(projection))
 }
 
-/// Dispatch is source-bound; reserved successor IDs never select the precision table.
-pub const PHYSICS_SOURCE_ID: &str = "openpipestress.result_semantics/0.3.0/physics-source-1";
-pub const PHYSICS_ID: &str = "openpipestress.result_semantics/0.3.0/physics-1";
+/// Dispatch is source-bound; a reserved successor ID never selects a table.
 /// T4-U2a (H-1): `3.0.0/exact_pressure_v3` publishes under the reserved
 /// `pressure-1` semantics on 0.3.0 and 0.4.0 documents, with one profile.
 pub const PRESSURE_ID: &str = "openpipestress.result_semantics/0.3.0/pressure-1";
 pub const PRESSURE_PROFILE: &str = "exact_pressure_v3";
-pub const PRECISION_ID: &str = "openpipestress.result_semantics/0.3.0/precision-1";
-/// Resolved load/reference-state method; bound to exactly one formulation profile.
-pub const LOAD_REFERENCE_ID: &str = "openpipestress.result_semantics/0.3.0/load-reference-1";
-pub const LOAD_REFERENCE_PROFILE: &str = "resolved_straight_load_state_v1";
-pub const LOAD_REFERENCE_TABLE_SHA256: &str =
-    "44bc41c06f589fab6ce931ac0eaa5344765ff64fd5f880cc2dd69ecb839c4f4d";
-/// Joined load/reference-state method (retained-source receipt required);
-/// bound to exactly one formulation profile and one receipt policy.
-pub const LOAD_REFERENCE_SOURCE_ID: &str = crate::load_reference_source::CONTRACT_ID;
-pub const LOAD_REFERENCE_SOURCE_PROFILE: &str = crate::load_reference_source::PROFILE;
-pub const LOAD_REFERENCE_SOURCE_TABLE_SHA256: &str = crate::load_reference_source::TABLE_SHA256;
+pub const PRESSURE_SOURCE_ID: &str = crate::physics_source::PRESSURE_CONTRACT_ID;
+/// Independent current resident source-family table, with no ordinary alias.
+pub const PRESSURE_SOURCE_TABLE_SHA256: &str = "dec4f4e7af6f60cf5615facc1b1ff11c8d5df5b3907fc28d922d661672383435";
+pub const PRESSURE_TABLE_SHA256: &str = "a4e3bf2cfb7e0b3fa84a564cde03545cefafda903c34f4dd6a526fa0be982375";
+/// B1 (b7-plan): precision-1 is no longer read. A stored precision-1 result is
+/// refused by name (re-run the analysis); no table, route or notice remains.
+pub const RETIRED_PRECISION_ID: &str = "openpipestress.result_semantics/0.3.0/precision-1";
+pub const SOURCE_PRECISION_1_RETIRED: &str = "SOURCE_PRECISION_1_RETIRED";
 pub const PREVIEW_PHYSICS_ID: &str = "openpipestress.result_semantics/0.3.0/preview-physics-1";
 pub const PREVIEW_PHYSICS_SHA256: &str =
-    "ac522c1ee0c771ae1e3dc72facfe3e75a8f0b01009075c997658eae50e9bb60c";
+    "e89312bb5090d05f90da715e097f32f47d9a8d29f3f2eee55a4f38eca4d20f32";
 /// U6a (D-U6-6; D2 4.7 S-1, 4.9.6): the F2a preview successor. Its raw and
 /// transport statements are checked only by the accepted reader
 /// (`crate::retained_precision`), never by this module's ordinary branches, and
@@ -138,15 +112,15 @@ pub const PREVIEW_PHYSICS_SHA256: &str =
 pub const PREVIEW_PHYSICS_RETAINED_ID: &str = crate::retained_precision::CONTRACT_ID;
 pub const PREVIEW_PHYSICS_RETAINED_PROFILE: &str = crate::retained_precision::PROFILE;
 pub const PREVIEW_PHYSICS_RETAINED_SHA256: &str =
-    "7cff3e9fe0c29a5b34d1762662e71ad58f00bb2993e9a3f1893323c0d64161e0";
+    "930535a544aedb3c6eb5dea60c59e617dd609f41c1386d9cf9c7c401b9c531f1";
 /// B3b (B3-D §6.1): the exact successor `<physics-retained>`, whose base is
-/// physics-1. Like the preview successor, its raw and transport statements are
+/// pressure-1 since B7b D4 (a). Like the preview successor, its raw and transport statements are
 /// checked only by the accepted reader (`crate::retained_precision`, its exact
 /// route), and its standing comes only from that reader's verified receipt.
 pub const PHYSICS_RETAINED_ID: &str = crate::retained_precision::EXACT_CONTRACT_ID;
 pub const PHYSICS_RETAINED_PROFILE: &str = crate::retained_precision::EXACT_PROFILE;
 pub const PHYSICS_RETAINED_SHA256: &str =
-    "c4987e874889645ac315b5f55f58690082ad5e7745527f20e3e316efa3e70a3d";
+    "695812491aec03b97def5013c5ea2461cb2a0e1f1f25b24c18ad1c9b6beee574";
 /// A receipt member or a W1 method-token row offered under any other identity
 /// (I66 F-5: the base readers' closed lists do not name `retained_precision`).
 pub const RETAINED_PRECISION_DOWNGRADE_FORBIDDEN: &str = "RETAINED_PRECISION_DOWNGRADE_FORBIDDEN";
@@ -260,84 +234,41 @@ pub fn retained_row_classes(
             .collect(),
     ))
 }
-pub fn precision_contract() -> &'static Value {
-    static CONTRACT: OnceLock<Value> = OnceLock::new();
-    CONTRACT.get_or_init(|| {
-        serde_json::from_str(include_str!(
-            "../../../../fixtures/results/semantic_contract_v0_3_precision_1.json"
-        ))
-        .expect("pinned precision semantic contract")
-    })
+/// Current ordinary pressure rows have their own reviewed resident table.
+/// The independently cached source table below retains its source-only family.
+pub fn verify_pressure_table(bytes: &[u8]) -> Result<Value, String> {
+    use sha2::{Digest, Sha256};
+    if format!("{:x}", Sha256::digest(bytes)) != PRESSURE_TABLE_SHA256 {
+        return Err("SOURCE_PRESSURE_TABLE_HASH".into());
+    }
+    let table: Value = serde_json::from_slice(bytes)
+        .map_err(|_| "SOURCE_PRESSURE_TABLE_HASH".to_string())?;
+    if table["semantic_contract_id"] != PRESSURE_ID
+        || table["formulation_profile_id"] != PRESSURE_PROFILE
+        || table["source_signature_count"] != 88
+        || table["source_kind_count"] != 59 {
+        return Err("SOURCE_PRESSURE_TABLE_IDENTITY".into());
+    }
+    Ok(table)
 }
-pub fn physics_contract() -> &'static Value {
-    static CONTRACT: OnceLock<Value> = OnceLock::new();
-    CONTRACT.get_or_init(|| {
-        serde_json::from_str(include_str!(
-            "../../../../fixtures/results/semantic_contract_v0_3_physics_1.json"
-        ))
-        .expect("pinned physics semantic contract")
-    })
-}
-/// T4-U2a: `pressure-1`'s row table. Its skeleton
-/// (`fixtures/results/semantic_contract_v0_3_pressure_1.json`) keeps physics-1's
-/// rows unchanged under its own identity and profile, so this reader resolves
-/// pressure-1 rows against physics-1's resident table and holds no table of its
-/// own: no static is added to the reader's reach (T4-RV14 F1). The identity and
-/// profile are checked from the envelope header, never inferred from the table.
-/// T4-U3's objective connector rows, the skeleton's only rows beyond
-/// physics-1's, are checked against code constants ([`CONNECTOR_ROW_KINDS`]),
-/// not against a resident table. A unit that gives pressure-1 rows of its own
-/// through a table must first settle how that table is priced (T3 O-10).
 pub fn pressure_rows_contract() -> &'static Value {
-    physics_contract()
+    static CONTRACT: OnceLock<Value> = OnceLock::new();
+    CONTRACT.get_or_init(|| {
+        verify_pressure_table(include_bytes!(
+            "../../../../fixtures/results/semantic_contract_v0_3_pressure_1.json"
+        )).expect("pinned ordinary pressure semantic contract")
+    })
 }
 /// T4-U3 (S14): the objective connector row signatures of `pressure-1`:
 /// (kind, unit, components, locations).
 pub use crate::connector_evidence::KINDS as CONNECTOR_ROW_KINDS;
 /// T4-U2: the connector rows' stable basis and the canonical metadata
-/// vocabulary they add to physics-1's under pressure-1.
+/// vocabulary they add to the straight-member vocabulary under pressure-1.
 pub use crate::connector_evidence::{
     ROW_BASIS as CONNECTOR_ROW_BASIS, VOCABULARY_COMPONENTS as CONNECTOR_VOCABULARY_COMPONENTS,
     VOCABULARY_COORDINATE_SYSTEMS as CONNECTOR_VOCABULARY_COORDINATE_SYSTEMS,
     VOCABULARY_LOCATIONS as CONNECTOR_VOCABULARY_LOCATIONS,
 };
-/// Pinned table bytes: identity, profile and sha256 are checked, never inferred.
-pub fn verify_load_reference_table(bytes: &[u8]) -> Result<Value, String> {
-    use sha2::{Digest, Sha256};
-    if format!("{:x}", Sha256::digest(bytes)) != LOAD_REFERENCE_TABLE_SHA256 {
-        return Err("SOURCE_LOAD_REFERENCE_TABLE_HASH".into());
-    }
-    let table: Value = serde_json::from_slice(bytes)
-        .map_err(|_| "SOURCE_LOAD_REFERENCE_TABLE_HASH".to_string())?;
-    if table["semantic_contract_id"] != LOAD_REFERENCE_ID
-        || table["formulation_profile_id"] != LOAD_REFERENCE_PROFILE
-    {
-        return Err("SOURCE_LOAD_REFERENCE_TABLE_IDENTITY".into());
-    }
-    Ok(table)
-}
-pub fn load_reference_contract() -> &'static Value {
-    static CONTRACT: OnceLock<Value> = OnceLock::new();
-    CONTRACT.get_or_init(|| {
-        verify_load_reference_table(include_bytes!(
-            "../../../../fixtures/results/semantic_contract_v0_3_load_reference_1.json"
-        ))
-        .expect("pinned load-reference semantic contract")
-    })
-}
-/// Pinned joined table bytes: identity, profile, policy and sha256 are checked.
-pub fn verify_load_reference_source_table(bytes: &[u8]) -> Result<Value, String> {
-    crate::load_reference_source::verify_table(bytes)
-}
-pub fn load_reference_source_contract() -> &'static Value {
-    static CONTRACT: OnceLock<Value> = OnceLock::new();
-    CONTRACT.get_or_init(|| {
-        verify_load_reference_source_table(include_bytes!(
-            "../../../../fixtures/results/semantic_contract_v0_3_load_reference_source_1.json"
-        ))
-        .expect("pinned load-reference-source semantic contract")
-    })
-}
 pub fn preview_physics_contract() -> &'static Value {
     static CONTRACT: OnceLock<Value> = OnceLock::new();
     CONTRACT.get_or_init(|| {
@@ -347,14 +278,65 @@ pub fn preview_physics_contract() -> &'static Value {
         .expect("pinned preview-physics semantic contract")
     })
 }
-pub fn physics_source_contract() -> &'static Value {
+/// Verify the independent current source table. Its full reviewed-byte digest
+/// binds the unchanged 69 signatures, vocabulary, bases and hash vectors.
+pub fn verify_pressure_source_table(bytes: &[u8]) -> Result<Value, String> {
+    use sha2::{Digest, Sha256};
+    if format!("{:x}", Sha256::digest(bytes)) != PRESSURE_SOURCE_TABLE_SHA256 {
+        return Err("SOURCE_PRESSURE_SOURCE_TABLE_HASH".into());
+    }
+    let table: Value = serde_json::from_slice(bytes).map_err(|_| "SOURCE_PRESSURE_SOURCE_TABLE_HASH".to_string())?;
+    if table["semantic_contract_id"] != PRESSURE_SOURCE_ID
+        || table["formulation_profile_id"] != PRESSURE_PROFILE
+        || table["source_block_policy"] != crate::physics_source::SourceContract::PressureV3.policy()
+        || table["source_signature_count"] != 69
+        || table["source_kind_count"] != 51 {
+        return Err("SOURCE_PRESSURE_SOURCE_TABLE_IDENTITY".into());
+    }
+    Ok(table)
+}
+pub fn pressure_source_contract() -> &'static Value {
     static CONTRACT: OnceLock<Value> = OnceLock::new();
     CONTRACT.get_or_init(|| {
-        serde_json::from_str(include_str!(
-            "../../../../fixtures/results/semantic_contract_v0_3_physics_source_1.json"
-        ))
-        .expect("pinned composite physical/source semantic contract")
+        verify_pressure_source_table(include_bytes!(
+            "../../../../fixtures/results/semantic_contract_v0_3_pressure_source_1.json"
+        )).expect("pinned current pressure-source semantic contract")
     })
+}
+#[cfg(test)]
+mod b7b_current_table_tests {
+    use super::*;
+
+    #[test]
+    fn b7b_current_tables_are_independent_and_bind_their_own_bytes() {
+        let ordinary = pressure_rows_contract();
+        let source = pressure_source_contract();
+        assert_eq!(ordinary["rows"].as_array().unwrap().len(), 88);
+        assert_eq!(source["rows"].as_array().unwrap().len(), 69);
+        assert_eq!(source["source_kind_count"], 51);
+        assert!(ordinary.get("inherited_semantic_contract_sha256").is_none());
+        assert!(source.get("inherited_semantic_contracts").is_none());
+        let scalar: Vec<_> = ordinary["rows"].as_array().unwrap().iter()
+            .filter(|row| matches!(row["component"].as_str(), Some("pe_x" | "s_x"))).collect();
+        assert_eq!(scalar.len(), 2, "padding creates no duplicate scalar signatures");
+        for row in scalar {
+            let input = serde_json::json!({"kind": row["kind"], "unit": row["unit"],
+                "metadata": {"component": row["component"]}});
+            assert!(signature_in(ordinary, &input).unwrap().is_some());
+            assert!(signature_in(source, &input).unwrap().is_none(),
+                "ordinary joint signatures never widen the source table");
+        }
+        let mut ordinary_bytes = include_bytes!(
+            "../../../../fixtures/results/semantic_contract_v0_3_pressure_1.json"
+        ).to_vec();
+        ordinary_bytes.push(b' ');
+        assert_eq!(verify_pressure_table(&ordinary_bytes).unwrap_err(), "SOURCE_PRESSURE_TABLE_HASH");
+        let mut source_bytes = include_bytes!(
+            "../../../../fixtures/results/semantic_contract_v0_3_pressure_source_1.json"
+        ).to_vec();
+        source_bytes.push(b' ');
+        assert_eq!(verify_pressure_source_table(&source_bytes).unwrap_err(), "SOURCE_PRESSURE_SOURCE_TABLE_HASH");
+    }
 }
 /// Header dispatch only; canonical envelopes have no raw rows. This does not
 /// validate physical evidence and must never be used alone to qualify raw output.
@@ -367,22 +349,55 @@ pub fn for_source_metadata(source: &Value) -> Result<(&'static Value, &'static s
     }
     forbid_retained_member(source)?;
     match source["schema_version"].as_str() {
-        Some("0.1.0") => {
-            if [
-                "producer",
-                "numerical_quality",
-                "formulation_basis",
-                "contract_evidence",
-                "source_block_recovery",
-            ]
-            .iter()
-            .any(|k| source.get(k).is_some())
-            {
-                return Err("LEGACY_SOURCE_METADATA_CONTRADICTION".into());
-            }
-            Ok((contract(), "0.2.0"))
-        }
-        Some("0.2.0") => {
+        Some(MECHANICS_RESULT_VERSION) => current_header(source),
+        Some(RETIRED_MECHANICS_RESULT_VERSION) => Err(MECHANICS_RESULT_VERSION_RETIRED.into()),
+        _ => Err("SOURCE_SCHEMA_VERSION_UNSUPPORTED".into()),
+    }
+}
+/// The one current mechanics-result carrier version (MechanicsEnvelope's
+/// `schema_version`). Its producer header names the semantic contract.
+pub const MECHANICS_RESULT_VERSION: &str = "0.2.0";
+/// The producer-less 0.1.0 carrier is retired (b7-plan E2): it has no producer
+/// or semantic contract and no current table reads it, so it is refused by
+/// name (re-solve the model), never read.
+pub const RETIRED_MECHANICS_RESULT_VERSION: &str = "0.1.0";
+pub const MECHANICS_RESULT_VERSION_RETIRED: &str = "MECHANICS_RESULT_VERSION_RETIRED";
+/// B4/D1 (b): the retired non-composite source-block identity, refused by name.
+pub const RETIRED_SOURCE_BLOCKS_ID: &str = "openpipestress.result_semantics/0.3.0/source-blocks-1";
+pub const SOURCE_BLOCKS_1_RETIRED: &str = "SOURCE_BLOCKS_1_RETIRED";
+/// B7b (A4/A5): the identities of the retired `2.0.0/exact_straight_pressure_v2`
+/// contract, refused by name (re-author the model and re-run); none is read.
+pub const RETIRED_EXACT_V2_IDS: [&str; 4] = [
+    "openpipestress.result_semantics/0.3.0/physics-1",
+    "openpipestress.result_semantics/0.3.0/physics-source-1",
+    "openpipestress.result_semantics/0.3.0/load-reference-1",
+    "openpipestress.result_semantics/0.3.0/load-reference-source-1",
+];
+pub const SOURCE_EXACT_PRESSURE_V2_RETIRED: &str = "SOURCE_EXACT_PRESSURE_V2_RETIRED";
+/// The one result-export version (b7-plan E2). Exports carry the source's
+/// producer header as copied members; their other versions are retired.
+pub const RESULT_EXPORT_VERSION: &str = "0.3.0";
+/// Header dispatch of a result export: the members the derivative copied from
+/// its source (producer, numerical quality, formulation basis, contract
+/// evidence and receipts) are read as the transported header of a current
+/// mechanics result, by the same checks as `for_source_metadata`, and the
+/// export's `semantic_contract_ref` must name that producer's contract.
+pub fn for_export_metadata(envelope: &Value) -> Result<(&'static Value, &'static str), String> {
+    if envelope["schema_version"] != RESULT_EXPORT_VERSION {
+        return Err("RESULT_EXPORT_VERSION_UNSUPPORTED".into());
+    }
+    let mut header = envelope.clone();
+    header["schema_version"] = Value::from(MECHANICS_RESULT_VERSION);
+    let selected = for_source_metadata(&header)?;
+    if envelope["semantic_contract_ref"]
+        != serde_json::json!({"ref_type": "semantic_contract", "ref_id": envelope["producer"]["semantic_contract_id"]})
+    {
+        return Err("SEMANTIC_CONTRACT_BINDING_MISMATCH".into());
+    }
+    Ok(selected)
+}
+fn current_header(source: &Value) -> Result<(&'static Value, &'static str), String> {
+        {
             let p = &source["producer"];
             if !exact_keys(
                 p,
@@ -393,41 +408,46 @@ pub fn for_source_metadata(source: &Value) -> Result<(&'static Value, &'static s
                 ],
             ) || p["component_name"] != "open_pipe_stress_product_physics"
                 || p["component_version"] != "0.2.0"
-                || !matches!(
-                    p["semantic_contract_id"].as_str(),
-                    Some(
-                        PRECISION_ID
-                            | PHYSICS_ID
-                            | PRESSURE_ID
-                            | PHYSICS_SOURCE_ID
-                            | LOAD_REFERENCE_ID
-                            | LOAD_REFERENCE_SOURCE_ID
-                            | PREVIEW_PHYSICS_ID
-                            | crate::source_blocks::CONTRACT_ID
-                    )
-                )
             {
                 return Err("SOURCE_PRODUCER_CONTRACT_UNSUPPORTED".into());
             }
-            // The load-reference methods own no carrier namespace (same code
-            // and position as the Python reader's first dispatch check).
-            if (p["semantic_contract_id"] == LOAD_REFERENCE_ID
-                || p["semantic_contract_id"] == LOAD_REFERENCE_SOURCE_ID)
+            if p["semantic_contract_id"] == RETIRED_PRECISION_ID {
+                return Err(format!("{SOURCE_PRECISION_1_RETIRED}: precision-1 results are no longer read; re-run the analysis"));
+            }
+            if p["semantic_contract_id"] == RETIRED_SOURCE_BLOCKS_ID {
+                return Err(format!("{SOURCE_BLOCKS_1_RETIRED}: source-blocks-1 results are no longer read; re-run the analysis"));
+            }
+            if RETIRED_EXACT_V2_IDS.iter().any(|id| p["semantic_contract_id"] == *id) {
+                return Err(format!("{SOURCE_EXACT_PRESSURE_V2_RETIRED}: 2.0.0/exact_straight_pressure_v2 results are no longer read; re-author the model as 0.5.0 with the current exact pressure contract and re-run the analysis"));
+            }
+            if !matches!(
+                p["semantic_contract_id"].as_str(),
+                Some(
+                    PRESSURE_ID | PRESSURE_SOURCE_ID | PREVIEW_PHYSICS_ID
+                )
+            ) {
+                return Err("SOURCE_PRODUCER_CONTRACT_UNSUPPORTED".into());
+            }
+            // The load/reference-state group owns no carrier namespace (the
+            // retired load-reference routes' guard, kept on the current group).
+            if source["contract_evidence"].get("load_reference_states").is_some()
                 && source.get("carrier_evidence").is_some()
             {
                 return Err("SOURCE_PRODUCER_CONTRACT_UNSUPPORTED".into());
             }
-            if p["semantic_contract_id"] != crate::source_blocks::CONTRACT_ID
-                && p["semantic_contract_id"] != PHYSICS_SOURCE_ID
-                && p["semantic_contract_id"] != LOAD_REFERENCE_SOURCE_ID
+            if p["semantic_contract_id"] != PRESSURE_SOURCE_ID
                 && source.get("source_block_recovery").is_some()
             {
-                return Err("SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN".into());
+                return Err("SOURCE_BLOCKS_DOWNGRADE_FORBIDDEN".into());
             }
             if p["semantic_contract_id"] == PREVIEW_PHYSICS_ID
                 && !source.get("contract_evidence").is_some_and(Value::is_object)
             {
                 return Err("SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED".into());
+            }
+            match p["semantic_contract_id"].as_str() {
+                Some(PRESSURE_SOURCE_ID) => crate::physics_source::SourceContract::PressureV3.check_received(source)?,
+                _ => {}
             }
             let q = &source["numerical_quality"];
             if !exact_keys(
@@ -493,13 +513,8 @@ pub fn for_source_metadata(source: &Value) -> Result<(&'static Value, &'static s
             }
             let f = &source["formulation_basis"];
             let profile = match p["semantic_contract_id"].as_str() {
-                Some(PHYSICS_ID | PHYSICS_SOURCE_ID) => "exact_straight_pressure_v2",
                 // T4-U2a: the only profile of pressure-1, on 0.3.0 and 0.4.0.
-                Some(PRESSURE_ID) => PRESSURE_PROFILE,
-                // The only profile for load-reference-1; no other contract accepts it.
-                Some(LOAD_REFERENCE_ID) => LOAD_REFERENCE_PROFILE,
-                // The only profile for load-reference-source-1, likewise exclusive.
-                Some(LOAD_REFERENCE_SOURCE_ID) => LOAD_REFERENCE_SOURCE_PROFILE,
+                Some(PRESSURE_ID | PRESSURE_SOURCE_ID) => PRESSURE_PROFILE,
                 _ => "product_preview_mechanics_v1",
             };
             if !exact_keys(f, &["profile_id", "limitations"])
@@ -513,20 +528,13 @@ pub fn for_source_metadata(source: &Value) -> Result<(&'static Value, &'static s
             // Canonical metadata has no raw rows. Select the explicit table here;
             // raw evidence and source-block invocation checks are separate APIs.
             let table = match p["semantic_contract_id"].as_str() {
-                Some(PHYSICS_ID) => physics_contract(),
                 Some(PRESSURE_ID) => pressure_rows_contract(),
-                Some(PHYSICS_SOURCE_ID) => physics_source_contract(),
-                Some(LOAD_REFERENCE_ID) => load_reference_contract(),
-                Some(LOAD_REFERENCE_SOURCE_ID) => load_reference_source_contract(),
-                Some(crate::source_blocks::CONTRACT_ID) => source_blocks_contract(),
-                Some(PRECISION_ID) => precision_contract(),
+                Some(PRESSURE_SOURCE_ID) => pressure_source_contract(),
                 Some(PREVIEW_PHYSICS_ID) => preview_physics_contract(),
                 _ => return Err("SOURCE_PRODUCER_CONTRACT_UNSUPPORTED".into()),
             };
-            Ok((table, "0.3.0"))
+            Ok((table, RESULT_EXPORT_VERSION))
         }
-        _ => Err("SOURCE_SCHEMA_VERSION_UNSUPPORTED".into()),
-    }
 }
 /// Raw dispatch validates the selected physical contract, never inferring it
 /// from a profile name or a numerical/accuracy label.
@@ -541,24 +549,10 @@ pub fn for_source(source: &Value) -> Result<(&'static Value, &'static str), Stri
     let selected = for_source_metadata(source)?;
     forbid_retained_rows(source)?;
     match source["producer"]["semantic_contract_id"].as_str() {
-        Some(PHYSICS_ID) => {
-            forbid_load_reference_evidence(source)?;
-            validate_physics_evidence(source)?
-        }
         Some(PREVIEW_PHYSICS_ID) => validate_preview_physics_evidence(source)?,
         Some(PRESSURE_ID) => validate_pressure_evidence(source)?,
-        Some(PHYSICS_SOURCE_ID) => {
-            forbid_load_reference_evidence(source)?;
-            crate::physics_source::validate(source, None)?;
-        }
-        Some(LOAD_REFERENCE_ID) => validate_load_reference_evidence(source)?,
-        Some(LOAD_REFERENCE_SOURCE_ID) => {
-            validate_load_reference_source_evidence(source)?;
-        }
-        Some(crate::source_blocks::CONTRACT_ID) => {
-            // Shape/publication validation does not supply an actual invocation
-            // or recreate the producer's private arithmetic receipt.
-            crate::source_blocks::validate(source, None)?;
+        Some(PRESSURE_SOURCE_ID) => {
+            crate::physics_source::validate_in(source, None, crate::physics_source::SourceContract::PressureV3)?;
         }
         _ => {
             if source
@@ -573,40 +567,14 @@ pub fn for_source(source: &Value) -> Result<(&'static Value, &'static str), Stri
     }
     Ok(selected)
 }
-pub use crate::load_reference::{
-    validate_load_reference_evidence, validate_load_reference_transport_metadata,
-};
-pub use crate::load_reference_source::{
-    validate_load_reference_source_evidence, validate_load_reference_source_transport_metadata,
-};
-pub use crate::physics_evidence::{
-    validate_physics_evidence, validate_pressure_evidence,
-    validate_transport_metadata as validate_physics_transport_metadata, PressureContract,
-    V2_READ_AS_V3, V3_READ_AS_V2,
-};
-/// These inputs were already refused by the closed physics namespaces; the
-/// shared code only names the load-reference downgrade in both readers.
-fn forbid_load_reference_evidence(source: &Value) -> Result<(), String> {
-    if source["contract_evidence"]
-        .get("load_reference_states")
-        .is_some()
-    {
-        return Err("SOURCE_LOAD_REFERENCE_EVIDENCE_FORBIDDEN".into());
-    }
-    Ok(())
-}
+pub use crate::physics_evidence::{validate_pressure_evidence, PressureContract};
 pub use crate::preview_physics_evidence::validate_preview_physics_evidence;
 
 /// Identities a fresh solve may publish (DESIGN 5.7, S1 10). One static set in
 /// every language, never a route predicate. T1 added its identities on activation.
 pub const FRESH_IDENTITIES: &[&str] = &[
     PREVIEW_PHYSICS_ID,
-    crate::source_blocks::CONTRACT_ID,
-    PHYSICS_ID,
-    PHYSICS_SOURCE_ID,
-    // T1 activation (DESIGN 10.3, SF-4): 0.4.0 exact-route identities only.
-    LOAD_REFERENCE_ID,
-    LOAD_REFERENCE_SOURCE_ID,
+    PRESSURE_SOURCE_ID,
     // T4-U2: pressure-1 (`3.0.0/exact_pressure_v3`) on 0.3.0 and 0.4.0.
     PRESSURE_ID,
     // U6a (D-U6-6; D2 4.7 S-1): membership is not standing. The successor's
@@ -616,36 +584,22 @@ pub const FRESH_IDENTITIES: &[&str] = &[
 pub fn is_fresh_identity(semantic_contract_id: &str) -> bool {
     FRESH_IDENTITIES.contains(&semantic_contract_id)
 }
-pub const PRECISION_1_HISTORICAL_SEMANTICS: &str = "PRECISION_1_HISTORICAL_SEMANTICS";
-pub const SOURCE_BLOCKS_ORDINARY_CASE_LEGACY_SEMANTICS: &str =
-    "SOURCE_BLOCKS_ORDINARY_CASE_LEGACY_SEMANTICS";
-pub const RULE_SOURCE_BLOCKS_SUMMARY_NOT_RELIABLE: &str = "RULE_SOURCE_BLOCKS_SUMMARY_NOT_RELIABLE";
 /// Why a readable source is not Current. Derived from the received bytes only.
-pub fn standing_reason(source: &Value) -> Option<&'static str> {
-    match source["producer"]["semantic_contract_id"].as_str() {
-        Some(PRECISION_ID) => Some(PRECISION_1_HISTORICAL_SEMANTICS),
-        Some(crate::source_blocks::CONTRACT_ID)
-            if crate::source_blocks::has_ordinary_qualified_case(source) =>
-        {
-            Some(SOURCE_BLOCKS_ORDINARY_CASE_LEGACY_SEMANTICS)
-        }
-        _ => None,
-    }
+/// B1 (precision-1) and B4/D1 (b) (source-blocks-1) retired the last
+/// identities with a standing reason: both are refused by name before any
+/// reading, so every readable source has none. The seam stays the readers'
+/// one standing-reason answer.
+pub fn standing_reason(_source: &Value) -> Option<&'static str> {
+    None
 }
-/// Rule binding refusal (DESIGN 5.7 SF-B). The abs-sum summary of a
-/// non-composite source-blocks-1 envelope may not be bound, directly or via
-/// its headline reference. Every binding site calls this helper.
+/// Rule binding refusal (DESIGN 5.7 SF-B): a successor row by its validated
+/// class. Every binding site calls this helper. (B4/D1 (b) retired the
+/// non-composite source-blocks-1 summary refusal with that identity.)
 pub fn rule_binding_refusal(envelope: &Value, row: &Value) -> Option<&'static str> {
     if is_retained(envelope) {
         return retained_binding_refusal(envelope, row);
     }
-    if envelope["producer"]["semantic_contract_id"] != crate::source_blocks::CONTRACT_ID {
-        return None;
-    }
-    let headline = &envelope["summary"]["max_open_formula_stress"]["result_ref"];
-    (row["kind"] == "open_formula_stress_summary"
-        || (headline.is_string() && row["id"] == *headline))
-        .then_some(RULE_SOURCE_BLOCKS_SUMMARY_NOT_RELIABLE)
+    None
 }
 /// D2 4.9.9 before S-I: a successor row binds only when its validated class
 /// allows it. A headline binds the row its `result_ref` names, so it is
@@ -841,24 +795,14 @@ pub fn numerical_use_standing_with_context(
     let Ok((_, version)) = for_source(source) else {
         return "unsupported";
     };
-    // T0R (A2 item 10): validate first; then historical precision-1 and mixed
-    // ordinary source-blocks-1 are never Current.
-    if standing_reason(source).is_some() {
-        return "needs_recompute";
-    }
-    // T1 (declared standing edit, T1_WAVE1_RULINGS.md section 6): admitted joined
-    // evidence is never numerically eligible here, because a 0.4.0 resolved case
-    // cannot be re-derived from a captured request by a reader. Identical in
-    // outcome to the fall-through (its status is never checks_passed).
-    if source["producer"]["semantic_contract_id"] == LOAD_REFERENCE_SOURCE_ID {
-        return "needs_recompute";
-    }
+    // T0R (A2 item 10): validate first. (B1 and B4/D1 (b) refuse precision-1
+    // and source-blocks-1 by name, so no readable source has a standing reason.)
     if version != "0.3.0" || requested_basis_refs.is_empty() {
         return "needs_recompute";
     }
     if matches!(
         source["producer"]["semantic_contract_id"].as_str(),
-        Some(crate::source_blocks::CONTRACT_ID | PHYSICS_SOURCE_ID)
+        Some(PRESSURE_SOURCE_ID)
     ) {
         let expected = source["source_block_recovery"]["body"]["cases"]
             .as_array()
@@ -869,11 +813,7 @@ pub fn numerical_use_standing_with_context(
         if expected != requested_basis_refs {
             return "needs_recompute";
         }
-        let standing = if source["producer"]["semantic_contract_id"] == PHYSICS_SOURCE_ID {
-            crate::physics_source::validate(source, actual_invocation)
-        } else {
-            crate::source_blocks::validate(source, actual_invocation)
-        };
+        let standing = crate::physics_source::validate_in(source, actual_invocation, crate::physics_source::SourceContract::PressureV3);
         return match standing {
             Ok(true) => "numerically_eligible",
             Ok(false) => "needs_recompute",
@@ -944,13 +884,28 @@ fn nonempty_string(value: &Value) -> bool {
     value.as_str().is_some_and(|text| !text.is_empty())
 }
 
-/// Additive signatures preserve p1 bytes and meanings under a distinct identity.
-pub fn source_blocks_contract() -> &'static Value {
-    static CONTRACT: OnceLock<Value> = OnceLock::new();
-    CONTRACT.get_or_init(|| {
-        serde_json::from_str(include_str!(
-            "../../../../fixtures/results/semantic_contract_v0_3_source_blocks_1.json"
-        ))
-        .expect("pinned source-block semantic contract")
-    })
+#[cfg(test)]
+mod e14_tests {
+    use super::*;
+    use serde_json::json;
+
+    /// E14: the DEC-050/053 parity observation is retired; no current table
+    /// carries its kind, so a row of it has no signature in any table.
+    #[test]
+    fn e14_no_table_carries_the_retired_parity_kind() {
+        let row = json!({"kind":"sparse_live_path_dense_parity_relative_delta","unit":"unitless",
+            "entity_ref":"solver:sparse_direct","value":0.0,
+            "metadata":{"component":"sparse_live_path","coordinate_system":"reduced_system","location":"load_case",
+                "basis":"retired","sign_convention":"retired"}});
+        let tables = [preview_physics_retained_contract(), physics_retained_contract(),
+            pressure_rows_contract(), preview_physics_contract(), pressure_source_contract()];
+        for table in tables {
+            assert!(table["rows"].as_array().unwrap().iter().all(|r| r["kind"] != row["kind"]), "{}", table["semantic_contract_id"]);
+            assert_eq!(signature_in(table, &row).ok().flatten(), None, "{}", table["semantic_contract_id"]);
+        }
+        let pressure_source: Value = serde_json::from_str(include_str!(
+            "../../../../fixtures/results/semantic_contract_v0_3_pressure_source_1.json"
+        )).unwrap();
+        assert!(pressure_source["rows"].as_array().unwrap().iter().all(|r| r["kind"] != row["kind"]));
+    }
 }

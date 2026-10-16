@@ -263,7 +263,8 @@ fn norm(values: [f64; 3], intervals: [[f64; 2]; 3]) -> Result<Norm, ReceiptError
     });
     let lo = norm_corner(abs.map(|p| p[0]), false)?;
     let hi = norm_corner(abs.map(|p| p[1]), true)?;
-    let value = scaled_norm(values);
+    // E15: the representative is one correctly rounded norm3 of the checked values.
+    let value = norm3(values[0], values[1], values[2]);
     if !value.is_finite() || value < lo || value > hi {
         return Err(bad("support norm representative range"));
     }
@@ -461,6 +462,9 @@ pub(super) fn physical_source_built(
     source_selected: bool,
     load_state: Option<(&case_state::resolve::ResolvedCase, Option<&Value>)>,
 ) -> Result<(), ReceiptError> {
+    // Every caller supplies the model rebuilt from capture, through either the
+    // pre-0.4 normalization or resolved-case replay; envelope labels are absent.
+    let context = CompositeSourceContext::for_model(model)?;
     if !pressure_runtime::is_exact(model) || built.exact_sections.len() != model.pipe_segments.len()
     {
         return Err(bad("physical source exact profile and geometry inventory"));
@@ -506,7 +510,7 @@ pub(super) fn physical_source_built(
             "recovery_method",
         ])
         || evidence["load_case_id"] != case_id
-        || evidence["profile_mode"] != "exact_straight_pressure_v2"
+        || evidence["profile_mode"] != context.profile_mode()
         || evidence["recovery_method"] != expected_method
         || evidence["material_basis"]
             != if load_state.is_some() {
@@ -592,12 +596,10 @@ fn validate_physics_rows(
     source_selected: bool,
 ) -> Result<(), ReceiptError> {
     validate_case_rows(&case.id, actual)?;
-    // Ordinary physical admission deliberately uses the exact-physics table,
-    // never the older precision/source ordinary allowlist.
-    let table: Value = serde_json::from_str(include_str!(
-        "../../../../fixtures/results/semantic_contract_v0_3_physics_1.json"
-    ))
-    .map_err(|e| bad(e.to_string()))?;
+    // Physical row admission uses the reader's own resident pressure-source
+    // table: the same (kind, unit, component) signatures the publication is
+    // later read against, never an ordinary or retired allowlist.
+    let table = open_pipe_stress_result_export::semantic_contract::pressure_source_contract();
     let signatures = table["rows"]
         .as_array()
         .ok_or_else(|| bad("physics signatures"))?;
@@ -768,7 +770,7 @@ impl FinalizedSourceBlockCase {
                 .map_err(|e| bad(format!("composite current source: {e:?}")))?;
             #[cfg(test)]
             trace("current_source_binding_complete", &selected);
-            let primary = rows::expected_primary_for(&input, &selected, true)?;
+            let primary = rows::expected_primary_for(&input, &selected)?;
             let mut additional = Vec::new();
             let mut derived_checks = Vec::new();
             let mut section_stress_checks = Vec::new();
@@ -893,7 +895,7 @@ impl FinalizedSourceBlockCase {
                     section_stress_checks.push(json!({"result_id":row.id,"recipe_id":"retained_source_straight_stress_v1","pipe_id":member.member_id,"location":metadata.location,"component":metadata.component,"functional_index":index,"functional_id":source::functional_id(&input.load_case.id,index),"action":{"value":projection.value(),"interval":projection.interval()},"parameters":{"area_m2":section.area,"section_modulus_m3":section.section_modulus,"torsion_radius_m":section.torsion_radius,"torsion_constant_m4":section.torsion_constant,"pa_per_mpa":1e6}}));
                 }
             }
-            let ledger = rows::bind_for(&input, &selected, actual, bindings, true, additional)?;
+            let ledger = rows::bind_for(&input, &selected, actual, bindings, additional)?;
             if ledger.rows.iter().any(|t| {
                 t.treatment == "inspection_only"
                     && !actual
@@ -980,11 +982,7 @@ impl FinalizedSourceBlockCase {
                 .collect(),
             supports: json!([]),
             failure: None,
-            work: work_wire(exact::WorkReport {
-                charged: 0,
-                rejected: 0,
-                limit: 0,
-            })?,
+            work: work_wire(exact::WorkReport::new(0, 0, 0))?,
             actual_rows: serialized(&actual)?,
             qualified: true,
             exact: false,
@@ -1183,5 +1181,5 @@ pub(super) fn take_trace() -> Vec<Value> {
 }
 #[cfg(test)]
 fn trace(stage: &str, selected: &SelectedSourceRecovery) {
-    WORK_TRACE.with(|trace|if let Some(values)=&mut *trace.borrow_mut(){values.push(json!({"stage":stage,"charged":selected.summary().work.charged,"rejected":selected.summary().work.rejected}));});
+    WORK_TRACE.with(|trace|if let Some(values)=&mut *trace.borrow_mut(){values.push(json!({"stage":stage,"charged":selected.summary().work.charged,"rejected":selected.summary().work.rejected.exact().ok()}));});
 }

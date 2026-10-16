@@ -1,13 +1,72 @@
 //! Explicit composite validation of untouched physical and retained-source records.
 //! Hash/recipe consistency is not custody; numerical use needs captured invocation.
-use crate::source_blocks::{domain_hash, shape_in};
+use crate::source_blocks::{domain_hash, shape_in, shape_in_resources};
+use open_pipe_stress_correct_norm::norm3;
 use open_pipe_stress_units::{canonical_unit, convert_for_dimension, unit_by_symbol, Dimension};
 use serde_json::{json, Value};
 use std::collections::{HashMap, HashSet};
 use std::sync::OnceLock;
 
-pub const CONTRACT_ID: &str = "openpipestress.result_semantics/0.3.0/physics-source-1";
-pub const PROFILE: &str = "exact_straight_pressure_v2";
+pub const PRESSURE_CONTRACT_ID: &str = "openpipestress.result_semantics/0.3.0/pressure-source-1";
+pub const PRESSURE_PROFILE: &str = "exact_pressure_v3";
+/// Current source identity selected independently from the actual invocation.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum SourceContract { PressureV3 }
+impl SourceContract {
+    pub const fn identity(self) -> &'static str { PRESSURE_CONTRACT_ID }
+    pub const fn profile(self) -> &'static str { PRESSURE_PROFILE }
+    pub const fn policy(self) -> &'static str { "PRESSURE-SOURCE-1" }
+    pub const fn case_domain(self) -> &'static str { "pressure_source_case_evidence_v1" }
+    pub const fn pressure(self) -> crate::physics_evidence::PressureContract {
+        crate::physics_evidence::PressureContract::PressureV3
+    }
+    pub fn from_invocation(invocation: &Value) -> Result<Self, String> {
+        let model = &invocation["request"]["model"];
+        if model["schema_version"] == "0.5.0"
+            && model.get("shear_model").is_none()
+            && model["pressure_contract"] == json!({"version":"3.0.0", "mode":PRESSURE_PROFILE, "shear_model":"euler_bernoulli"})
+        {
+            Ok(Self::PressureV3)
+        } else {
+            Err("PHYSICS_SOURCE_ACTUAL_CONTRACT_UNSUPPORTED".into())
+        }
+    }
+    pub(crate) fn check_invocation(self, invocation: &Value) -> Result<(), String> {
+        Self::from_invocation(invocation)?;
+        zero_corrosion_allowances(&invocation["request"]["model"])
+    }
+    pub(crate) fn check_received(self, source: &Value) -> Result<(), String> {
+        let header = &source["producer"]["semantic_contract_id"];
+        if *header == crate::semantic_contract::PRESSURE_ID && source.get("source_block_recovery").is_some() {
+            return Err("SOURCE_BLOCKS_DOWNGRADE_FORBIDDEN".into());
+        }
+        require(*header == self.identity() && source["formulation_basis"]["profile_id"] == self.profile(), "IDENTITY")
+    }
+}
+
+/// b7-plan "Exact-contract fields": every pipe section of the captured exact
+/// document declares an explicit length-valued zero corrosion allowance;
+/// absent, null, malformed or nonzero allowances are outside the contract the
+/// producer admits, so a statement bound to such an invocation is refused.
+fn zero_corrosion_allowances(model: &Value) -> Result<(), String> {
+    for pipe in array(&model["pipe_segments"])? {
+        require(
+            normalized_quantity(&pipe["section"]["corrosion_allowance"], Dimension::Length)
+                .is_ok_and(|value| value == 0.0),
+            "ACTUAL_CORROSION_ALLOWANCE",
+        )?;
+    }
+    Ok(())
+}
+
+/// Authored presence selects the optional load/reference-state group.
+/// Null and incomplete values retain the group's validation duties.
+fn model_carries_load_state(model: &Value) -> bool {
+    model.get("reference_configurations").is_some()
+        || model["materials"].as_array().is_some_and(|materials| materials.iter().any(|m| m.get("expansion_laws").is_some()))
+        || model["load_cases"].as_array().is_some_and(|cases| cases.iter().any(|c| c.get("analysis_state").is_some()))
+}
+
 pub const EXACT: &str = "retained_source_blocks_exact_v1";
 pub const MAX_BASIS: &str = "retained_source_endpoint_normal_max_v1";
 pub const MAX_SIGN: &str = "nonnegative maximum absolute axial-plus-bending normal stress over an unloaded circular straight span; retained endpoint actions with projected-action and arithmetic bounds; endpoint witness does not imply uniqueness; torsional shear separate";
@@ -45,7 +104,11 @@ fn schema() -> &'static Value {
     })
 }
 pub fn validate_receipt_shape(receipt: &Value) -> Result<(), String> {
-    require(shape_in(receipt, schema(), schema()), "RECEIPT_SHAPE")
+    validate_receipt_shape_in(receipt, SourceContract::PressureV3)
+}
+pub fn validate_receipt_shape_in(receipt: &Value, contract: SourceContract) -> Result<(), String> {
+    // The schema's root is the closed PRESSURE-SOURCE-1 receipt.
+    require(receipt["body"]["policy"] == contract.policy() && shape_in(receipt, schema(), schema()), "RECEIPT_SHAPE")
 }
 fn case<'a>(source: &'a Value, cid: &str) -> Result<&'a Value, String> {
     let found = array(&source["source_block_recovery"]["body"]["cases"])?
@@ -57,18 +120,29 @@ fn case<'a>(source: &'a Value, cid: &str) -> Result<&'a Value, String> {
 }
 /// Transport statements only: no raw publication hash, invocation, or Current claim.
 pub fn validate_transport_metadata(source: &Value) -> Result<(), String> {
+    validate_transport_metadata_in(source, SourceContract::PressureV3)
+}
+/// Explicit transport context, without an invocation or a freshness claim.
+pub fn validate_transport_metadata_in(source: &Value, contract: SourceContract) -> Result<(), String> {
+    contract.check_received(source)?;
+    let resolved = contract == SourceContract::PressureV3 && source["contract_evidence"].get("load_reference_states").is_some();
+    if resolved { crate::load_reference::prepass(source, false, crate::load_reference::Method::PressureJoined)?; }
     let receipt = &source["source_block_recovery"];
-    validate_receipt_shape(receipt)?;
+    validate_receipt_shape_in(receipt, contract)?;
     let body = &receipt["body"];
     require(
         receipt["receipt_sha256"] == domain_hash("source_blocks_receipt_v1", body)?,
         "RECEIPT_HASH",
     )?;
     let evidence = &source["contract_evidence"];
-    require(
-        shape_in(evidence, &schema()["$defs"]["physical_evidence"], schema()),
-        "PHYSICAL_SHAPE",
-    )?;
+    let definition = &schema()["$defs"]["pressure_source_physical_evidence"];
+    let closed_shape = if resolved {
+        // This already pinned resource serves the received resolved state. No
+        // result/schema copy or received-profile inference selects the context.
+        let load_schema = crate::load_reference::transport_schema()?;
+        shape_in_resources(evidence, definition, schema(), &[("load_reference_state.schema.json", load_schema)])
+    } else { shape_in(evidence, definition, schema()) };
+    require(closed_shape, "PHYSICAL_SHAPE")?;
     let physical = array(&evidence["exact_cases"])?;
     let records = array(&body["cases"])?;
     require(
@@ -87,6 +161,24 @@ pub fn validate_transport_metadata(source: &Value) -> Result<(), String> {
         records.iter().any(|c| c["selected_method"] == EXACT),
         "SOURCE_SELECTION_REQUIRED",
     )?;
+    if resolved {
+        // One received state per case, in case order, each solved in the mode
+        // its receipt case records (the retired load-reference-source-1
+        // receipt's order and requested-mode bindings, kept on the current group).
+        require(
+            array(&evidence["load_reference_states"])?
+                .iter()
+                .map(|s| &s["load_case_id"])
+                .eq(physical.iter().map(|c| &c["load_case_id"])),
+            "LOAD_REFERENCE_CASE_ORDER",
+        )?;
+        for (record, state) in records.iter().zip(array(&evidence["load_reference_states"])?) {
+            require(
+                record["requested_mode"] == state["solve"]["requested_mode"],
+                "LOAD_REFERENCE_REQUESTED_MODE",
+            )?;
+        }
+    }
     for (record, exact) in records.iter().zip(physical) {
         let cid = text(&exact["load_case_id"])?;
         let pressure = array(&evidence["pressure"])?
@@ -97,14 +189,14 @@ pub fn validate_transport_metadata(source: &Value) -> Result<(), String> {
             exact["recovery_method"] == record["selected_method"],
             "RECOVERY_METHOD",
         )?;
-        require(
-            record["physical_evidence_sha256"]
-                == domain_hash(
-                    "physics_source_case_evidence_v1",
-                    &json!({"exact_case":exact,"pressure":pressure}),
-                )?,
-            "PHYSICAL_CASE_HASH",
-        )?;
+        let mut proof = json!({"exact_case":exact,"pressure":pressure});
+        if resolved {
+            let state = array(&evidence["load_reference_states"])?
+                .iter().find(|s| s["load_case_id"] == exact["load_case_id"])
+                .ok_or("PHYSICS_SOURCE_LOAD_REFERENCE_CASE")?;
+            proof["load_reference_state"] = state.clone();
+        }
+        require(record["physical_evidence_sha256"] == domain_hash(contract.case_domain(), &proof)?, "PHYSICAL_CASE_HASH")?;
         if record["selected_method"] == EXACT {
             require(pressure.is_empty(), "SOURCE_PRESSURE_INVENTORY")?;
             let plan = &record["source"];
@@ -227,23 +319,14 @@ fn absolute([lo, hi]: [f64; 2]) -> [f64; 2] {
         [0.0, (-lo).max(hi)]
     }
 }
+/// E15: the receipt's declared norm is one correctly rounded `norm3` (a
+/// two-component bending norm is `norm3(y, z, 0)`, the same as `norm2`).
 fn norm(values: &[f64]) -> Result<f64, String> {
-    let scale = values.iter().map(|v| v.abs()).fold(0.0_f64, f64::max);
-    if scale == 0.0 {
-        return Ok(0.0);
+    match *values {
+        [y, z] => finite(norm3(y, z, 0.0)),
+        [x, y, z] => finite(norm3(x, y, z)),
+        _ => Err("PHYSICS_SOURCE_NORM_ARITY".into()),
     }
-    let squares = values
-        .iter()
-        .map(|v| {
-            let r = v / scale;
-            r * r
-        })
-        .collect::<Vec<_>>();
-    let mut total = squares[0] + squares[1];
-    if squares.len() == 3 {
-        total += squares[2];
-    }
-    finite(scale * total.sqrt())
 }
 fn norm_bound(values: [f64; 3], upper: bool) -> Result<f64, String> {
     let scale = values.into_iter().fold(0.0_f64, f64::max);
@@ -606,10 +689,8 @@ pub(crate) fn validate_derived(
         "NORM_RECIPE",
     )
 }
-pub(crate) fn validate_source_case(
-    source: &Value,
-    record: &Value,
-    invocation: Option<&Value>,
+pub(crate) fn validate_source_case_in(
+    source: &Value, record: &Value, invocation: Option<&Value>, contract: SourceContract,
 ) -> Result<(), String> {
     require(
         matches!(
@@ -678,8 +759,8 @@ pub(crate) fn validate_source_case(
     if let Some(invocation) = invocation {
         let model = &invocation["request"]["model"];
         require(
-            model["schema_version"] == "0.3.0"
-                && model["pressure_contract"] == json!({"version":"2.0.0","mode":PROFILE}),
+            model["schema_version"] == "0.5.0"
+                && SourceContract::from_invocation(invocation).ok() == Some(contract),
             "ACTUAL_EXACT_PROFILE",
         )?;
         let actual = array(&model["load_cases"])?
@@ -701,7 +782,10 @@ pub(crate) fn validate_source_case(
         require(
             array(&actual["primitive_loads"])?
                 .iter()
-                .all(|l| l["target"]["type"] == "node" && l["category"] != "thermal"),
+                .all(|l| (l["target"]["type"] == "node" && l["category"] != "thermal")
+                    || (model_carries_load_state(model)
+                        && l["target"]["type"] == "element" && l["category"] == "thermal"
+                        && matches!(l["dimension"].as_str(), Some("temperature_change" | "temperature_interval")))),
             "ACTUAL_NODAL_LOADS",
         )?;
         require(
@@ -1129,14 +1213,26 @@ fn validate_stress(
     require(same(&row["value"], value)?, "STRESS_RECIPE_VALUE")
 }
 pub fn validate(source: &Value, actual_invocation: Option<&Value>) -> Result<bool, String> {
-    validate_transport_metadata(source)?;
-    crate::physics_evidence::validate_physics_evidence_in(
-        source,
-        true,
-        crate::physics_evidence::PressureContract::StraightV2,
-    )?;
-    let eligible = crate::source_blocks::validate_in(source, actual_invocation, true)?;
-    if let Some(invocation) = actual_invocation {
+    validate_in(source, actual_invocation, SourceContract::PressureV3)
+}
+/// Raw admission under a caller-selected source contract. The invocation fixes
+/// its expected contract independently of every received label and profile.
+pub fn validate_in(source: &Value, actual_invocation: Option<&Value>, contract: SourceContract) -> Result<bool, String> {
+    if let Some(invocation) = actual_invocation { contract.check_invocation(invocation)?; }
+    contract.check_received(source)?;
+    let resolved = contract == SourceContract::PressureV3 && source["contract_evidence"].get("load_reference_states").is_some();
+    if contract == SourceContract::PressureV3 {
+        if let Some(invocation) = actual_invocation {
+            let model = &invocation["request"]["model"];
+            require(model["schema_version"] == "0.5.0", "ACTUAL_MODEL_SCHEMA")?;
+            require(resolved == model_carries_load_state(model), "ACTUAL_LOAD_REFERENCE_CONTEXT")?;
+        }
+    }
+    if resolved { crate::load_reference_source::validate_pressure_source_evidence(source, true)?; }
+    validate_transport_metadata_in(source, contract)?;
+    crate::physics_evidence::validate_physics_evidence_in(source, true, contract.pressure())?;
+    let eligible = crate::source_blocks::validate_source_contract_in(source, actual_invocation, contract)?;
+    if let Some(invocation) = actual_invocation.filter(|_| !resolved) {
         for exact in array(&source["contract_evidence"]["exact_cases"])? {
             let actual = array(&invocation["request"]["model"]["load_cases"])?
                 .iter()
@@ -1145,7 +1241,9 @@ pub fn validate(source: &Value, actual_invocation: Option<&Value>) -> Result<boo
             actual_materials(invocation, actual, exact)?;
         }
     }
-    Ok(eligible)
+    // T1 still holds: reading and binding the current resolved state does not
+    // independently rederive it from the captured request (join standing ruling).
+    Ok(eligible && !resolved)
 }
 
 #[cfg(test)]
@@ -1154,7 +1252,7 @@ mod review_repair_tests {
     fn isolated_torsion(action: f64) -> (Value, Value, Value) {
         // Isolated scalar helper input, deliberately not full/resealed source evidence.
         let mut source: Value = serde_json::from_str(include_str!(
-            "../../../../fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json"
+            "../../../../fixtures/product_preview/pressure_source/physics_source/n05-sparse_interactive.raw.json"
         ))
         .unwrap();
         let mut case = source["source_block_recovery"]["body"]["cases"][0].clone();
@@ -1198,6 +1296,20 @@ mod review_repair_tests {
         row["value"] = json!(action * 1e-40 / 1e-160 / 1e6);
         (source, case, row)
     }
+    /// E15: the composite support and endpoint norms are the correctly rounded
+    /// value; the former max-scaled recipe's last bit is no longer reproduced.
+    #[test]
+    fn e15_composite_norms_are_correctly_rounded() {
+        assert_eq!(norm(&[3.0, 4.0, 0.0]).unwrap().to_bits(), 5.0_f64.to_bits());
+        assert_eq!(
+            norm(&[-1.327, -8.603, -8.186]).unwrap().to_bits(),
+            0x4027_e5fc_308f_80ed
+        );
+        assert_eq!(norm(&[7.944, 6.99]).unwrap().to_bits(), 0x4025_29b4_c153_125e);
+        assert_eq!(norm(&[0.0, -0.0]).unwrap().to_bits(), 0);
+        assert!(norm(&[f64::MAX, f64::MAX]).is_err());
+        assert!(norm(&[1.0]).is_err());
+    }
     #[test]
     fn torsion_rejects_subnormal_intermediate_while_preserving_zero_and_normal() {
         let (source, case, row) = isolated_torsion(1e-280);
@@ -1214,10 +1326,10 @@ mod review_repair_tests {
     #[test]
     fn normalized_named_point_and_strict_bracket_match_actual_materials() {
         let request: Value = serde_json::from_str(include_str!(
-            "../../../../fixtures/product_preview/physics_source/mixed_units.request.json"
+            "../../../../fixtures/product_preview/pressure_source/physics_source/mixed_units.request.json"
         ))
         .unwrap();
-        let source:Value=serde_json::from_str(include_str!("../../../../fixtures/product_preview/physics_source/mixed_units-sparse_interactive.raw.json")).unwrap();
+        let source:Value=serde_json::from_str(include_str!("../../../../fixtures/product_preview/pressure_source/physics_source/mixed_units-sparse_interactive.raw.json")).unwrap();
         let material = &request["model"]["materials"][0];
         let case = &request["model"]["load_cases"][1];
         let selected = selected_material(material, case).unwrap();
@@ -1301,7 +1413,7 @@ mod review_repair_tests {
     fn every_consumed_pair_is_checked_before_selected_material_publication() {
         for stage in ["base", "lower_bracket", "upper_bracket", "selected"] {
             let request: Value = serde_json::from_str(include_str!(
-                "../../../../fixtures/product_preview/physics_source/mixed_units.request.json"
+                "../../../../fixtures/product_preview/pressure_source/physics_source/mixed_units.request.json"
             ))
             .unwrap();
             let mut material = request["model"]["materials"][0].clone();

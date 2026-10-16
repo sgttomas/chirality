@@ -10,9 +10,12 @@ Standard claim fence applies (F-PIP-2; claims taxonomy per DEC-081).
 ## Status (2026-10-13, resumed implementation)
 
 The owner resumed T4-U4a from the controlled pause. Stage 1 is implemented
-and checked; the separate stage-2 preview flip is being prepared for B7a's
-H-4 wave. Registration remains stale until the owning batch's review and
-re-registration; these checks do not establish acceptance.
+and checked; the independently reviewed stage-2 preview flip and O-13
+adapter are implemented in B7a's H-4 wave. Their source, sentence, schema
+and live table linkage travel together. The current B7a assembly remains
+UNREGISTERED; its actual source D3 precedes the one public corpus regeneration,
+D8 and consuming checks because the W1 public corpus writers require G0 admission.
+These checks do not establish acceptance.
 
 **Designed.** Sections 1–10: the tangent-frame, node-on-element convention
 for arc end rows (§2), the closed-form chord-to-tangent rotation and its
@@ -137,13 +140,18 @@ code and frozen bytes are unchanged. The current VP mapping review is
 `validation/qualification/fixtures/exact_pressure/INDEPENDENT_REVIEW_T4-U4A.md`.
 
 **Remaining work.**
-1. T3's integration of the reviewed stage-2 commit and O-13 adapter with
-   B7a's H-4 C4–C6 (§§5, 8).
-2. When B7 retires model versions, re-express the requests in model 0.5.0:
-   B7a refuses the preview-physics-1 cases' 0.2.0 documents and B7b the
-   pressure-1 cases' 0.4.0 documents. Only the request bytes and
-   `requests_sha256` change (generator `--write`, then its verify mode and an
-   independent value check); the oracle values do not.
+1. T3 completes B7a's integration of the reviewed stage-2 commit and O-13
+   adapter with H-4 C4–C6 (§§5, 8), actual source D3, the single public corpus
+   regeneration and consuming checks. The remaining fixture sentence copies
+   and public arc/L-line outputs are regenerated from that actual source;
+   historical stored outputs are not current producer evidence.
+2. B7a's test-only current-format helper verifies the frozen request SHA,
+   then re-authors only each copied preview invocation's version to 0.5.0.
+   The frozen requests, oracle, physical operands, group criteria and
+   mandatory pressure-1 binary64 controls remain unchanged. B7b must likewise
+   express the pressure-1 invocations in its one current format after the
+   pressure-format retirement; it does not imply a product compatibility
+   path or permission to change the frozen reference values.
 
 **Dependencies.**
 - DEL-04-01 (FK): the certified tangent end operator in

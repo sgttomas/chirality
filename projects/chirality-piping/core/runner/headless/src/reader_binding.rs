@@ -142,21 +142,18 @@ pub const READERS: &[Reader] = &[
         read: dispatch,
     },
     // `reader_verdict::validate`: `{"source", "model"?}` or `{"source", "invocation"?}`.
+    // B7b: the current readers only (`reader_verdict::READERS`); the retired v2
+    // readers (physics, physics-source, load-reference, load-reference-source)
+    // have no entry, and a statement under a retired identity is refused by name
+    // at `dispatch`.
     base!("preview-physics", &[]),
-    base!("physics", &["model"]),
-    base!("physics-source", &["invocation"]),
-    base!("source-blocks", &["invocation"]),
+    base!("pressure-source", &["invocation"]),
     base!("source-recovery", &[]),
-    base!("load-reference", &["model"]),
-    base!("load-reference-source", &[]),
     base!("pressure", &["model"]),
-    // `reader_verdict::transport`: `{"source": <statement>}`.
+    // `reader_verdict::transport`: `{"source": <statement>}`. pressure-1 has no
+    // transport reader; its entry refuses by name (SOURCE_PRESSURE_TRANSPORT_UNSUPPORTED).
     transport!("preview-physics"),
-    transport!("physics"),
-    transport!("physics-source"),
-    transport!("source-blocks"),
-    transport!("load-reference"),
-    transport!("load-reference-source"),
+    transport!("pressure-source"),
     transport!("pressure"),
     // `reader_verdict::row_semantics`: `{"row", "source"?}`.
     Reader {
@@ -240,7 +237,6 @@ pub fn read(reader: &str, input: &str) -> Result<(u8, Value), String> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use open_pipe_stress_result_export::source_blocks as sb;
 
     #[test]
     fn unusable_inputs_never_run_a_reader() {
@@ -255,12 +251,21 @@ mod tests {
                 r#"{"source":{},"invocation":null}"#,
             ),
             ("dispatch", r#"{"source":{},"extra":1}"#),
-            ("physics", r#"{"source":{},"invocation":null}"#),
-            ("source-blocks", r#"{"source":{},"model":null}"#),
+            ("pressure", r#"{"source":{},"invocation":null}"#),
+            ("pressure-source", r#"{"source":{},"model":null}"#),
             ("preview-physics", r#"{"source":{},"model":{}}"#),
-            ("load-reference-source", r#"{"source":{},"model":{}}"#),
-            ("physics-transport", r#"{"source":{},"model":{}}"#),
-            ("source-blocks-transport", r#"{"source":{},"model":{}}"#),
+            ("source-recovery", r#"{"source":{},"model":{}}"#),
+            ("pressure-transport", r#"{"source":{},"model":{}}"#),
+            ("pressure-source-transport", r#"{"source":{},"model":{}}"#),
+            // B7b: the retired v2 readers have no entry.
+            ("physics", r#"{"source":{}}"#),
+            ("physics-source", r#"{"source":{}}"#),
+            ("load-reference", r#"{"source":{}}"#),
+            ("load-reference-source", r#"{"source":{}}"#),
+            ("physics-transport", r#"{"source":{}}"#),
+            ("physics-source-transport", r#"{"source":{}}"#),
+            ("load-reference-transport", r#"{"source":{}}"#),
+            ("load-reference-source-transport", r#"{"source":{}}"#),
             ("standing", r#"{"source":{}}"#),
             ("rule-binding", r#"{"row":{}}"#),
             ("classification-summary", r#"{"source":{},"model":{}}"#),
@@ -304,25 +309,38 @@ mod tests {
         for (reader, input, outcome) in [
             ("dispatch", json!({"source": source}), rv::dispatch(&source, None, None)),
             ("dispatch", json!({"source": source, "model": null, "invocation": null}), rv::dispatch(&source, None, None)),
-            ("physics", json!({"source": source, "model": {"load_cases": []}}), rv::validate("physics", &source, Some(&json!({"load_cases": []})), None)),
-            ("source-blocks", json!({"source": source}), rv::validate("source-blocks", &source, None, None)),
+            ("pressure", json!({"source": source, "model": {"load_cases": []}}), rv::validate("pressure", &source, Some(&json!({"load_cases": []})), None)),
+            ("pressure-source", json!({"source": source}), rv::validate("pressure-source", &source, None, None)),
             ("source-recovery", json!({"source": source}), rv::validate("source-recovery", &source, None, None)),
-            ("source-blocks-transport", json!({"source": source}), rv::transport("source-blocks", &source)),
-            ("load-reference-transport", json!({"source": source}), rv::transport("load-reference", &source)),
+            ("pressure-source-transport", json!({"source": source}), rv::transport("pressure-source", &source)),
+            ("pressure-transport", json!({"source": source}), rv::transport("pressure", &source)),
+            ("preview-physics-transport", json!({"source": source}), rv::transport("preview-physics", &source)),
             ("row-semantics", json!({"row": {"kind": "x"}}), rv::row_semantics(&json!({"kind": "x"}), None)),
         ] {
             let (code, output) = read(reader, &input.to_string()).unwrap();
             assert_eq!(output["outcome"], outcome, "{reader}");
             assert_eq!(code, if outcome["ok"] == true { EXIT_PASS } else { EXIT_REFUSED }, "{reader}");
         }
-        // A legacy header is admitted by the dispatch; its standing is not eligible.
+        // b7-plan E2: a retired 0.1.0 header is refused by name; its standing is not eligible.
         let (code, output) = read("dispatch", &json!({"source": source}).to_string()).unwrap();
-        assert_eq!((code, output["outcome"]["route"].as_str()), (EXIT_PASS, Some("legacy")));
+        assert_eq!((code, output["outcome"]["route"].as_str()), (EXIT_REFUSED, Some("unsupported")));
+        assert_eq!(output["outcome"]["error"]["code"], sc::MECHANICS_RESULT_VERSION_RETIRED);
         assert_eq!(output["outcome"]["standing"]["eligible"], false);
-        // Every reader_verdict reader and transport has an entry.
+        // Every reader_verdict reader has an entry, and the base and transport
+        // entries are exactly the current readers (B7b).
         for name in rv::READERS {
             assert!(READERS.iter().any(|r| r.name == name), "{name}");
         }
+        let names: Vec<&str> = READERS.iter().map(|r| r.name).collect();
+        assert_eq!(
+            names,
+            [
+                "retained-precision", "retained-precision-transport", "dispatch",
+                "preview-physics", "pressure-source", "source-recovery", "pressure",
+                "preview-physics-transport", "pressure-source-transport", "pressure-transport",
+                "row-semantics", "standing", "classification-summary", "rule-binding",
+            ]
+        );
     }
 
     #[test]
@@ -340,16 +358,16 @@ mod tests {
         let (code, output) =
             read("standing", &json!({"source": source, "requested_basis_refs": {}}).to_string()).unwrap();
         assert_eq!((code, &output["outcome"]["error"]["code"]), (EXIT_REFUSED, &json!("READER_REQUESTED_BASIS_REFS_INVALID")));
-        let envelope = json!({"producer": {"semantic_contract_id": sb::CONTRACT_ID}, "summary": {}});
+        // B4/D1 (b): the retired source-blocks-1 summary refusal is gone; no row of it is refused here.
+        let envelope = json!({"producer": {"semantic_contract_id": sc::RETIRED_SOURCE_BLOCKS_ID}, "summary": {}});
         let row = json!({"id": "r", "kind": "open_formula_stress_summary"});
         let (_, output) = read("rule-binding", &json!({"envelope": envelope, "row": row}).to_string()).unwrap();
         assert_eq!(output["outcome"], json!({"ok": true, "refusal": sc::rule_binding_refusal(&envelope, &row)}));
-        assert_eq!(output["outcome"]["refusal"], sc::RULE_SOURCE_BLOCKS_SUMMARY_NOT_RELIABLE);
+        assert_eq!(output["outcome"]["refusal"], Value::Null);
         let (_, output) = read("classification-summary", &json!({"source": source}).to_string()).unwrap();
         assert_eq!(output["outcome"], json!({"ok": true, "summary": []}));
-        // A transported receipt of the wrong shape is refused with the reader's code.
-        let (code, output) =
-            read("source-blocks-transport", &json!({"source": {"source_block_recovery": {}}}).to_string()).unwrap();
-        assert_eq!((code, &output["outcome"]["error"]["code"]), (EXIT_REFUSED, &json!("SOURCE_BLOCKS_RECEIPT_SHAPE")));
+        // The retired source-blocks readers have no entry.
+        assert!(read("source-blocks", &json!({"source": {}}).to_string()).is_err());
+        assert!(read("source-blocks-transport", &json!({"source": {}}).to_string()).is_err());
     }
 }

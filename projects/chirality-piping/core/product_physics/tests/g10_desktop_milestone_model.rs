@@ -18,10 +18,17 @@ const MODES: [PreviewSolverMode; 2] = [PreviewSolverMode::SparseInteractive, Pre
 /// K-D5 (DEL-04-01 kd5-member-relative-bound.md §§3.2, 3.4, 6) re-pinned both
 /// modes: the milestone case stays Sensitive (K-D5's estimate), and against main
 /// the bytes differ only by the two linear limitation sentences, the current
-/// maximum declaration literals and the fallback maximum's enclosure.
+/// maximum declaration literals and the fallback maximum's enclosure. B7a's H-4
+/// re-pinned them for the summary (the curved macro-element count's name, the
+/// deleted retired thrust count) and the reworded pressure/imposed-displacement
+/// limitation sentence; B4/D1 (b) re-pinned both: the envelope loses only its
+/// source-recovery disclosure; E14 re-pinned dense, which no longer publishes the
+/// retired parity observation row. C5 re-pinned both for the adopted arc
+/// end-tangent limitation sentence: restoring the former sentence recovers the
+/// previous bytes exactly.
 const ORDINARY_SHA256: [(&str, usize, &str); 2] = [
-    ("sparse_interactive", 68985, "abfc82f25247cd9963f20ea054d62c234e0c6e4fb41012d31ba9f9f64c2dace1"),
-    ("dense_scrutiny", 70103, "44cb3dada6e0682d4da769dbbfd3814cac54433d796e771b9aefe5ab8024d51a"),
+    ("sparse_interactive", 68215, "262350431963ec51fe025007f4381fdfc84326f68b80a7c13f73bed768c1a580"),
+    ("dense_scrutiny", 68236, "9fc0332eaf7798ed96f2013beb3cca2f7f429830b1e5719bdf535da8c02aad3d"),
 ];
 /// Fields of the request's model entries that receive a `label` equal to their `id`.
 const LABELLED: [&str; 4] = ["materials", "nodes", "pipe_segments", "supports"];

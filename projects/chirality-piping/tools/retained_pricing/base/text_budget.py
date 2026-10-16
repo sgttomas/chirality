@@ -168,6 +168,22 @@ if C6_STATE is not None:
 elif TA.get("first_error_guard") or any("KD5C6:" in v.get("why", "") for v in TA.get("site_from", {}).values()):
     raise ValueError("KD5C6: current caps on a known historical source")
 
+# B7a targets one immediate-return allocation in the actual FK evaluator.
+# Full call counts, helper visits, loop costs and downstream copies remain.
+import b7a_formation_model as FK_RETURN_MODEL
+FK_RETURN_STATE = FK_RETURN_MODEL.first_return_state(proot, TA, cg, inv["rows"], LEX)
+import b7a_returning_errors as OWNED_RETURN_MODEL
+OWNED_RETURN_STATE = OWNED_RETURN_MODEL.state(proot, TA, cg, inv["rows"], LEX, os.environ.get("TB_EXTRA_ZERO", ""))
+import b7a_scoped_text_model as SCOPED_TEXT_MODEL
+SCOPED_TEXT_STATE = SCOPED_TEXT_MODEL.state(proot, TA, LB, cg, inv["rows"], LEX)
+import b7a_phase_model as PHASE_MODEL
+PHASE_STATE = PHASE_MODEL.state(proot, LB, TA, cg, inv["rows"], LEX,
+    os.environ.get("TB_EXTRA_ZERO", ""), os.environ.get("TB_FN_ZERO", ""))
+PHASE_CAPS = dict(_c) if which == "caps" else dict(c=1, lc=1, l=3, n=2, ident=46)
+import b7a_owner_choices as OWNER_CHOICES
+OWNER_CHOICES_STATE = OWNER_CHOICES.state(proot, TA, LB, cg, inv["rows"], LEX,
+    os.environ.get("TB_EXTRA_ZERO", ""), os.environ.get("TB_FN_ZERO", ""))
+
 # a `.join(` whose receiver is a work/bound status lattice value produces no String: drop it
 # before the ancestor set is formed, so its (non-text) callers' loops are not required
 _zero_join = [re.compile(r["re"]) for r in TA.get("join_rules", []) if r["bytes"] == "0"]
@@ -278,6 +294,12 @@ def short(k):
 LOOP_TOTAL = [(e["fn"], re.compile(e["loop"]), e["total"], re.compile(e["covers"]) if e.get("covers") else None)
               for e in LB.get("loop_total", [])]
 def loop_total(fk, stack):
+    phase_total = PHASE_MODEL.finding_loop_total(PHASE_STATE, fk, stack, PHASE_CAPS, M)
+    if phase_total is not None:
+        return phase_total
+    scoped = SCOPED_TEXT_MODEL.owner_total(SCOPED_TEXT_STATE, fk, stack, M)
+    if scoped is not None:
+        return scoped
     for fs, rx, tot, cov in LOOP_TOTAL:
         if short(fk) == fs and any(rx.search(h) for h in stack):
             # loops the total already covers (matched, or enclosing ones named by `covers`) drop out
@@ -428,6 +450,10 @@ def arg_max(spec, arg, lex=False):
     return None
 
 AGG = TA.get("site_aggregate", {})
+# B7b-DX: exclusive diagnostic groups (empty unless a decision declares one; see the group pass after the rows).
+DIAG_EXCLUSIVE = TA.get("diag_exclusive", {})
+DIAG_EXCLUSIVE_SITES = {k for g in DIAG_EXCLUSIVE.values() for k in g["sites"]}
+DIAG_EXCLUSIVE_SEEN = {}
 unclassified = collections.Counter()
 rows, total_req, max_size = [], 0, 0
 D, diag_bytes = 0, 0
@@ -465,6 +491,9 @@ def evaluate_format(r):
     return size
 def message_size(r):
     """Bound on the moved/converted message of one diag(...) site."""
+    scoped = SCOPED_TEXT_MODEL.message(SCOPED_TEXT_STATE, r)
+    if scoped is not None:
+        return scoped
     m = " ".join(r.get("message_arg", "").split())
     if m.startswith("format!("):
         cands = [x for x in fmt_by_line.get(r["file"], []) if r["line"] <= x["line"] <= r["line"] + 40
@@ -486,6 +515,9 @@ big_refs = []
 def refs_bytes(f, line):
     """Bytes of the affected_refs Vec and its Strings for the diag( call at f:line: the
     fifth argument, parsed from the blanked source."""
+    scoped = SCOPED_TEXT_MODEL.refs(SCOPED_TEXT_STATE, f, line)
+    if scoped is not None:
+        return scoped
     if f not in _spancache:
         loops_at_line(f, line, None)
     bt, offs, _ = _spancache[f]
@@ -540,11 +572,19 @@ for r in inv["rows"]:
     reached, mult = site_mult(f, line, fk, loops, key)
     if C6_STATE is not None:
         C6_MODEL.positive_witness(C6_STATE, f, line, r["kind"], mult, M)
+    FK_RETURN_MODEL.first_return_witness(FK_RETURN_STATE, f, line, r["kind"], mult, M)
+    OWNED_RETURN_MODEL.witness(OWNED_RETURN_STATE, f, line, r["kind"], mult, M)
+    PHASE_MODEL.allocation_witness(PHASE_STATE, f, line, r["kind"], PHASE_CAPS, M, mult, fk, loops)
+    OWNER_CHOICES.error_witness(OWNER_CHOICES_STATE, f, line, r["kind"], mult, M, fk, loops)
     sf = TA.get("site_from", {}).get(key)
     if sf is not None and mult:
         mult = sum(M[k] for k in M if short(k) in sf["from"]) * ev(sf["per"])
     if C6_STATE is not None:
         C6_MODEL.rebound_witness(C6_STATE, f, line, r["kind"], mult, M)
+    FK_RETURN_MODEL.first_return_witness(FK_RETURN_STATE, f, line, r["kind"], mult, M, rebound=True)
+    OWNED_RETURN_MODEL.witness(OWNED_RETURN_STATE, f, line, r["kind"], mult, M, rebound=True)
+    PHASE_MODEL.allocation_witness(PHASE_STATE, f, line, r["kind"], PHASE_CAPS, M, mult, fk, loops)
+    OWNER_CHOICES.error_witness(OWNER_CHOICES_STATE, f, line, r["kind"], mult, M, fk, loops, rebound=True)
     so = TA.get("site_size", {}).get(key)
     if key in AGG:
         size = ev(AGG[key]["bytes"])
@@ -569,10 +609,17 @@ for r in inv["rows"]:
                              "class": first_rule_class(" ".join(ph["arg"].split())), "mult": mult, "fn": fk})
         if cands and (key in AGG or so is not None):
             size = max(size, evaluate_format(r))
+    SCOPED_TEXT_MODEL.witness(SCOPED_TEXT_STATE, f, line, r["kind"], mult, M)
     if r["kind"] == "diag" and mult:
-        D += mult
         rb = refs_bytes(f, line)
-        diag_bytes += mult * (size + message_size(r) + rb)
+        if key in DIAG_EXCLUSIVE_SITES:
+            # B7b-DX: a declared exclusive group's sites pay their count and diagnostic bytes once per owner
+            # call (below); every other cost of the site (its TEXT request, formats, refs) stays as priced here.
+            DIAG_EXCLUSIVE_SEEN[key] = {"fn": fk, "loops": list(loops), "mult": mult,
+                                        "bytes": size + message_size(r) + rb}
+        else:
+            D += mult
+            diag_bytes += mult * (size + message_size(r) + rb)
         if mult and rb > TA["diag_refs_default_bytes"]:
             big_refs.append((key, rb, mult))
     tav_size = size
@@ -584,11 +631,29 @@ for r in inv["rows"]:
     st = TA.get("site_total", {}).get(key)
     if st is not None and mult:
         req = ev(st["bytes"])
+    phase_req = PHASE_MODEL.finding_requested(PHASE_STATE, f, line, r["kind"], PHASE_CAPS, M, mult, fk, loops)
+    if phase_req is not None:
+        req = phase_req
     total_req += req
     if mult:
         max_size = max(max_size, tav_size)
     rows.append({"file": f, "line": line, "kind": r["kind"], "fn": fk, "reached": bool(reached), "loops": loops,
                  "mult": mult, "bytes": tav_size, "req": req})
+# B7b-DX: each declared exclusive diagnostic group (text_args `diag_exclusive`, from the decisions' O10_DIAG_EXCLUSIVE)
+# pushes at most one diagnostic per call of its owner. Every member must be a reached diag site of that owner with the
+# owner's own multiplicity (no enclosing loop), so the group adds that multiplicity to D once and its largest member's
+# bytes to the retained diagnostic bytes. Any missing, extra-loop, foreign or unequal member leaves the run incomplete.
+for name, group in DIAG_EXCLUSIVE.items():
+    seen = [DIAG_EXCLUSIVE_SEEN.get(k) for k in group["sites"]]
+    owner_mult = sum(M[k] for k in M if short(k) == short(group["fn"]))
+    if not owner_mult and all(s is None for s in seen):
+        continue                      # the owner is not reached in this variant: the group adds nothing
+    if (any(s is None for s in seen) or any(short(s["fn"]) != short(group["fn"]) or s["loops"] or s["mult"] != owner_mult
+                                            for s in seen)):
+        unclassified[("diag-exclusive", name)] += 1
+        continue
+    D += owner_mult
+    diag_bytes += owner_mult * max(s["bytes"] for s in seen)
 for r in LEX:
     f, line, fk = r["file"], r["line"], r["fn"]
     key = f"{short(f)}:{line}:{r['kind']}"
@@ -613,6 +678,8 @@ for r in LEX:
         mult = 0
     if C6_STATE is not None:
         C6_MODEL.positive_witness(C6_STATE, f, line, r["kind"], mult, M)
+    OWNED_RETURN_MODEL.witness(OWNED_RETURN_STATE, f, line, r["kind"], mult, M)
+    OWNER_CHOICES.source_witness(OWNER_CHOICES_STATE, f, line, r["kind"], mult, M, COUNTS["l"], owner=fk, stack=loops)
     sf = TA.get("site_from", {}).get(lkey)
     if sf is not None and mult:
         # G4: every execution of this site lies inside a call of one of `from`, at most `per`
@@ -620,6 +687,8 @@ for r in LEX:
         mult = sum(M[k] for k in M if short(k) in sf["from"]) * ev(sf["per"])
     if C6_STATE is not None:
         C6_MODEL.rebound_witness(C6_STATE, f, line, r["kind"], mult, M)
+    OWNED_RETURN_MODEL.witness(OWNED_RETURN_STATE, f, line, r["kind"], mult, M, rebound=True)
+    OWNER_CHOICES.source_witness(OWNER_CHOICES_STATE, f, line, r["kind"], mult, M, COUNTS["l"], rebound=True, owner=fk, stack=loops)
     CUR[0] = f"{f}:{line}"
     CUR_FN[0] = fk
     priced = r["arg"] if r["kind"] == "push_str" else r["receiver"]
@@ -669,11 +738,22 @@ for r in LEX:
     st = TA.get("site_total", {}).get(lkey)
     if st is not None and mult:
         req = ev(st["bytes"])
+    SCOPED_TEXT_MODEL.witness(SCOPED_TEXT_STATE, f, line, r["kind"], mult, M)
+    req += SCOPED_TEXT_MODEL.extra_requested(SCOPED_TEXT_STATE, f, line, r["kind"], M)
     total_req += req
     if mult:
         max_size = max(max_size, size)
     rows.append({"file": f, "line": line, "kind": r["kind"], "fn": fk, "reached": bool(reached), "loops": loops,
                  "mult": mult, "bytes": size, "req": req, "receiver": r["receiver"][-120:]})
+# The complete match selects one base String. Keep each site's physical
+# multiplicity/prospective cost visible, but count the closed group once.
+# All independent auxiliary rows remain in total_req at their old charge.
+recipe_group = OWNER_CHOICES.recipe_group(OWNER_CHOICES_STATE, rows, M)
+total_req = total_req - recipe_group["standalone_requested_bytes"] + recipe_group["req"]
+for row in rows:
+    if OWNER_CHOICES.recipe_witness(OWNER_CHOICES_STATE, row, M):
+        row["allocation_group"] = recipe_group["name"]
+        row["counted_as_group"] = True
 # G6 repair (RV87 SF-3): every identifier-bearing expression at a positive-multiplicity site must
 # be in the audit table, whichever rule would price it; an identifier-class rule hit outside it
 # too (G6).
@@ -726,6 +806,7 @@ out = {"which": which, "roots": roots, "reachable_fns": len(reach), "complete": 
        "sites": len(rows), "sites_reached": sum(1 for x in rows if x["reached"]),
        "sites_with_positive_multiplicity": sum(1 for x in rows if x["mult"] > 0),
        "total_text_requested_bytes": total_req,
+       "allocation_groups": [recipe_group],
        "largest_single_site_bytes": max_size,
        "total_text_moving_bytes": total_req + max_size,
        "D_diagnostics": D, "retained_diagnostic_bytes": diag_bytes, "large_refs_sites": big_refs,

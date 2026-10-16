@@ -1,36 +1,28 @@
-//! Closed source-block statement/binding checks. No imported receipt constructs
-//! a live exact response, and a digest is never treated as arithmetic proof.
-use crate::semantic_contract::{signature_in, source_blocks_contract};
+//! Closed source-block statement/binding checks of the exact-route composite
+//! (pressure-source-1). B4/D1 (b) retired the preview route's non-composite
+//! source-blocks-1 identity, its table and its receipt schema; B7b retired the
+//! v2 composites (physics-source-1, load-reference-source-1). No imported receipt constructs a live exact response,
+//! and a digest is never treated as arithmetic proof.
+use crate::semantic_contract::signature_in;
 use open_pipe_stress_canonical_json::canonical_json_checked_v1_text;
+use open_pipe_stress_correct_norm::norm3;
 use serde_json::{json, Value};
 use sha2::{Digest, Sha256};
 use std::collections::{HashMap, HashSet};
-use std::sync::OnceLock;
 
-pub const CONTRACT_ID: &str = "openpipestress.result_semantics/0.3.0/source-blocks-1";
-pub const CONTRACT_SHA256: &str =
-    "5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f";
 // The fixed 64ε recipe envelope is separate from affine input uncertainty.
-// It covers divides, squares, ordered additions, sqrt, multiplication and tiny
-// normalized underflows with a unit largest component and normal final output.
+// It is an arithmetic-error reserve, not a comparison tolerance: the norm
+// recipe (E15: one correctly rounded norm3, at most half an ulp) and its
+// normal final output lie well inside it.
 const NORM_ARITHMETIC_BOUND: f64 = 64.0 * f64::EPSILON;
 const NORM_INPUT_RELATIVE_LIMIT: f64 =
     (1.0e-9 - NORM_ARITHMETIC_BOUND) / (1.0 + NORM_ARITHMETIC_BOUND);
-// Additional conservative current-carrier reserve for stress and summary.
+// Additional conservative current-carrier reserve for the composites' straight stress.
 const STRESS_ARITHMETIC_BOUND: f64 = 128.0 * f64::EPSILON;
 const STRESS_INPUT_RELATIVE_LIMIT: f64 =
     (1.0e-9 - STRESS_ARITHMETIC_BOUND) / (1.0 + STRESS_ARITHMETIC_BOUND);
-const STRESS_LOCATIONS: [&str; 5] = ["end_i", "quarter_1", "midspan", "quarter_3", "end_j"];
-const STRESS_KINDS: [&str; 4] = [
-    "element_local_axial_normal_stress",
-    "element_local_bending_normal_stress_y",
-    "element_local_bending_normal_stress_z",
-    "element_local_torsional_shear_stress",
-];
 const EXACT: &str = "retained_source_blocks_exact_v1";
 const COMPONENTS: [&str; 6] = ["Fx", "Fy", "Fz", "Mx", "My", "Mz"];
-const SUPPORT_SIGN: &str =
-    "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node";
 macro_rules! require {
     ($condition:expr, $code:literal) => {
         if !$condition {
@@ -67,15 +59,6 @@ fn unique(items: &[Value]) -> bool {
         .enumerate()
         .all(|(i, v)| !items[..i].contains(v))
 }
-fn schema() -> &'static Value {
-    static SCHEMA: OnceLock<Value> = OnceLock::new();
-    SCHEMA.get_or_init(|| {
-        serde_json::from_str(include_str!(
-            "../../../../schemas/source_block_recovery.schema.json"
-        ))
-        .expect("closed receipt schema")
-    })
-}
 // JSON Schema compares numbers by value: producer 0.0 must satisfy const/enum 0.
 // serde_json::Number representation equality alone distinguishes integer and f64.
 fn schema_scalar_equal(value: &Value, expected: &Value) -> bool {
@@ -85,23 +68,34 @@ fn schema_scalar_equal(value: &Value, expected: &Value) -> bool {
     }
 }
 pub(crate) fn shape_in(v: &Value, s: &Value, root: &Value) -> bool {
+    shape_in_resources(v, s, root, &[])
+}
+/// Closed local shapes plus explicitly supplied repository resources. Unknown
+/// names and missing fragments fail closed; no loading, network or inference.
+pub(crate) fn shape_in_resources(v: &Value, s: &Value, root: &Value, resources: &[(&str, &Value)]) -> bool {
     if let Some(reference) = s["$ref"].as_str() {
-        return root
-            .pointer(reference.trim_start_matches('#'))
-            .is_some_and(|target| shape_in(v, target, root));
+        let (target_root, pointer) = if let Some(pointer) = reference.strip_prefix('#') {
+            (root, pointer)
+        } else {
+            let Some((name, pointer)) = reference.split_once('#') else { return false };
+            let Some((_, resource)) = resources.iter().find(|(key, _)| *key == name) else { return false };
+            (*resource, pointer)
+        };
+        return target_root.pointer(pointer)
+            .is_some_and(|target| shape_in_resources(v, target, target_root, resources));
     }
     if let Some(branches) = s["anyOf"].as_array() {
-        if !branches.iter().any(|s| shape_in(v, s, root)) {
+        if !branches.iter().any(|s| shape_in_resources(v, s, root, resources)) {
             return false;
         }
     }
     if let Some(branches) = s["oneOf"].as_array() {
-        if branches.iter().filter(|s| shape_in(v, s, root)).count() != 1 {
+        if branches.iter().filter(|s| shape_in_resources(v, s, root, resources)).count() != 1 {
             return false;
         }
     }
     if let Some(branches) = s["allOf"].as_array() {
-        if !branches.iter().all(|s| shape_in(v, s, root)) {
+        if !branches.iter().all(|s| shape_in_resources(v, s, root, resources)) {
             return false;
         }
     }
@@ -109,7 +103,7 @@ pub(crate) fn shape_in(v: &Value, s: &Value, root: &Value) -> bool {
         return types.iter().any(|kind| {
             let mut branch = s.clone();
             branch["type"] = kind.clone();
-            shape_in(v, &branch, root)
+            shape_in_resources(v, &branch, root, resources)
         });
     }
     if let Some(constant) = s.get("const") {
@@ -147,12 +141,12 @@ pub(crate) fn shape_in(v: &Value, s: &Value, root: &Value) -> bool {
             }) && (s["additionalProperties"] != false
                 || o.keys().all(|k| properties.contains_key(k)))
                 && o.iter()
-                    .all(|(k, v)| properties.get(k).is_none_or(|s| shape_in(v, s, root)))
+                    .all(|(k, v)| properties.get(k).is_none_or(|s| shape_in_resources(v, s, root, resources)))
         }
         Some("array") => v.as_array().is_some_and(|a| {
             a.len() >= s["minItems"].as_u64().unwrap_or(0) as usize
                 && a.len() <= s["maxItems"].as_u64().unwrap_or(16384) as usize
-                && a.iter().all(|v| shape_in(v, &s["items"], root))
+                && a.iter().all(|v| shape_in_resources(v, &s["items"], root, resources))
         }),
         Some("string") => v.as_str().is_some_and(|t| {
             t.chars().count() >= s["minLength"].as_u64().unwrap_or(0) as usize
@@ -185,10 +179,6 @@ pub fn domain_hash(domain: &str, payload: &Value) -> Result<String, String> {
         canonical_json_checked_v1_text(&serde_json::to_string(&value).map_err(|e| e.to_string())?)?;
     Ok(format!("{:x}", Sha256::digest(checked.as_bytes())))
 }
-pub fn validate_receipt_shape(receipt: &Value) -> Result<(), String> {
-    require!(shape_in(receipt, schema(), schema()), "RECEIPT_SHAPE");
-    Ok(())
-}
 /// A receipt's canonical commitment; shared by raw and transported statements.
 fn validate_receipt_hash(receipt: &Value) -> Result<(), String> {
     require!(
@@ -196,13 +186,6 @@ fn validate_receipt_hash(receipt: &Value) -> Result<(), String> {
         "RECEIPT_HASH"
     );
     Ok(())
-}
-/// A transported source-blocks-1 receipt: shape and hash only. The raw
-/// publication and invocation are not transported, so neither is recomputed.
-pub fn validate_transport_metadata(source: &Value) -> Result<(), String> {
-    let receipt = &source["source_block_recovery"];
-    validate_receipt_shape(receipt)?;
-    validate_receipt_hash(receipt)
 }
 /// Bind the receipt to the raw publication. Callers validate the receipt first.
 pub fn validate_publication_hash(source: &Value) -> Result<(), String> {
@@ -218,15 +201,8 @@ pub fn validate_publication_hash(source: &Value) -> Result<(), String> {
     );
     Ok(())
 }
-fn signature(row: &Value, composite: bool) -> Result<Option<&'static Value>, String> {
-    let s = signature_in(
-        if composite {
-            crate::semantic_contract::physics_source_contract()
-        } else {
-            source_blocks_contract()
-        },
-        row,
-    )?;
+fn signature(row: &Value) -> Result<Option<&'static Value>, String> {
+    let s = signature_in(crate::semantic_contract::pressure_source_contract(), row)?;
     Ok(s.filter(|s| s["component"].is_null() || s["component"] == row["metadata"]["component"]))
 }
 fn ordinary_method(mode: &Value) -> Option<&'static str> {
@@ -370,7 +346,7 @@ fn source_plan(p: &Value, projections: &[Value], model: Option<&Value>) -> Resul
     }
     Ok(())
 }
-fn projection(p: &Value, row: &Value, composite: bool) -> Result<(), String> {
+fn projection(p: &Value, row: &Value) -> Result<(), String> {
     let value = number(&p["value"])?;
     let lo = number(&p["interval"][0])?;
     let hi = number(&p["interval"][1])?;
@@ -454,22 +430,22 @@ fn projection(p: &Value, row: &Value, composite: bool) -> Result<(), String> {
         _ => false,
     };
     require!(
-        valid && signature(row, composite)?.is_some(),
+        valid && signature(row)?.is_some(),
         "PROJECTION_TYPED_QUANTITY"
     );
     Ok(())
-}
-fn derived(recipe: &Value, row: &Value, inputs: &[&Value]) -> Result<(), String> {
-    derived_in(recipe, row, inputs, false)
 }
 fn derived_in(
     recipe: &Value,
     row: &Value,
     inputs: &[&Value],
-    composite: bool,
 ) -> Result<(), String> {
+    // B4/D1 (b): the composites' only shared non-composite recipe is the
+    // translation norm. The support-norm, straight-stress, stress-summary and
+    // section-property recipes were source-blocks-1's (its preview case rows,
+    // retired with B3), so they are refused as unknown recipes.
     let kind = text(&row["kind"])?;
-    let s = signature(row, composite)?.ok_or("SOURCE_BLOCKS_DERIVED_SIGNATURE")?;
+    signature(row)?.ok_or("SOURCE_BLOCKS_DERIVED_SIGNATURE")?;
     let kinds: Vec<_> = inputs.iter().filter_map(|r| r["kind"].as_str()).collect();
     match text(recipe)? {
         "translation_norm_scaled_v1" => require!(
@@ -483,227 +459,40 @@ fn derived_in(
                     ],
             "TRANSLATION_NORM_INPUTS"
         ),
-        "support_force_norm_scaled_v1" => require!(
-            kind == "reaction_resultant"
-                && inputs.len() == 3
-                && inputs
-                    .iter()
-                    .all(|r| r["kind"] == "support_reaction_component_v2")
-                && inputs
-                    .iter()
-                    .filter_map(|r| r["metadata"]["component"].as_str())
-                    .collect::<Vec<_>>()
-                    == ["Fx", "Fy", "Fz"],
-            "SUPPORT_NORM_INPUTS"
-        ),
-        "straight_open_stress_v1" => require!(
-            inputs.len() == 1
-                && stress_action_kind(kind).is_some_and(|expected| inputs[0]["kind"] == expected),
-            "STRESS_RECIPE_INPUTS"
-        ),
-        "reviewed_stress_summary_v1" => require!(
-            kind == "open_formula_stress_summary" && !inputs.is_empty(),
-            "SUMMARY_RECIPE_INPUTS"
-        ),
-        "section_property_from_source_v1" => require!(
-            s["family"] == "section_property" || kind.starts_with("pipe_section_"),
-            "SECTION_RECIPE_KIND"
-        ),
         _ => return Err("SOURCE_BLOCKS_DERIVED_RECIPE".into()),
     }
     require!(
         inputs.iter().all(|r| r["entity_ref"] == row["entity_ref"]),
         "DERIVED_ENTITY"
     );
-    match recipe.as_str() {
-        Some("straight_open_stress_v1") => stress_observation(row, inputs[0])?,
-        Some("reviewed_stress_summary_v1") => stress_summary_observation(row, inputs)?,
-        _ => (),
+    // E15: the declared recipe is one correctly rounded norm3 of the published
+    // XYZ components. A nonzero result must be finite and normal; the claimed
+    // value is bound to it bit for bit.
+    let mut values = [0.0; 3];
+    for (index, input) in inputs.iter().enumerate() {
+        values[index] = number(&input["value"])?;
     }
-    if matches!(
-        recipe.as_str(),
-        Some("translation_norm_scaled_v1" | "support_force_norm_scaled_v1")
-    ) {
-        // Match the declared producer recipe in XYZ/FxFyFz order. Scaling
-        // keeps the largest normalized component at one, so underflow of a
-        // smaller normalized square cannot erase the norm's leading scale.
-        let mut values = [0.0; 3];
-        for (index, input) in inputs.iter().enumerate() {
-            values[index] = number(&input["value"])?;
-        }
-        let scale = values.iter().fold(0.0_f64, |m, value| m.max(value.abs()));
-        let expected = if scale == 0.0 {
-            0.0
-        } else {
-            let normalized = values.map(|value| value / scale);
-            let squares = normalized.map(|value| value * value);
-            let first_two = squares[0] + squares[1];
-            let squared = first_two + squares[2];
-            let root = squared.sqrt();
-            let value = scale * root;
-            require!(
-                normalized
-                    .iter()
-                    .chain(squares.iter())
-                    .all(|v| v.is_finite())
-                    && first_two.is_finite()
-                    && squared.is_finite()
-                    && root.is_finite()
-                    && value.is_normal(),
-                "DERIVED_NORM_RANGE"
-            );
-            value
-        };
-        require!(
-            number(&row["value"])?.to_bits() == expected.to_bits(),
-            "DERIVED_NORM_VALUE"
-        );
-    }
-    Ok(())
-}
-
-fn stress_action_kind(kind: &str) -> Option<&'static str> {
-    match kind {
-        "element_local_axial_normal_stress" => Some("element_local_axial_force"),
-        "element_local_bending_normal_stress_y" => Some("element_local_bending_moment_y"),
-        "element_local_bending_normal_stress_z" => Some("element_local_bending_moment_z"),
-        "element_local_torsional_shear_stress" => Some("element_local_torsional_moment"),
-        _ => None,
-    }
-}
-fn normal_or_exact_zero(value: f64, logical_zero: bool) -> bool {
-    value.is_finite()
-        && if logical_zero {
-            value == 0.0
-        } else {
-            value.is_normal()
-        }
-}
-fn stress_observation(row: &Value, action: &Value) -> Result<(), String> {
-    // Area/Z/radius/J and actual Pa arithmetic remain in producer custody.
-    let location = text(&row["metadata"]["location"])?;
-    let expected_unit = if row["kind"] == "element_local_axial_normal_stress" {
-        "N"
-    } else {
-        "N*m"
-    };
+    let expected = norm3(values[0], values[1], values[2]);
     require!(
-        row["unit"] == "MPa"
-            && STRESS_LOCATIONS.contains(&location)
-            && action["metadata"]["location"] == location
-            && action["unit"] == expected_unit,
-        "STRESS_ACTION_BINDING"
+        values.iter().all(|v| v.is_finite())
+            && (expected == 0.0 || expected.is_normal()),
+        "DERIVED_NORM_RANGE"
     );
-    let source_action = number(&action["value"])?;
-    let value = number(&row["value"])?;
-    let logical_zero = source_action == 0.0;
     require!(
-        normal_or_exact_zero(value, logical_zero),
-        "STRESS_OUTPUT_RANGE"
-    );
-    let signed_action = if location == "end_i" {
-        -source_action
-    } else {
-        source_action
-    };
-    require!(
-        logical_zero || (value > 0.0) == (signed_action > 0.0),
-        "STRESS_ACTION_SIGN"
-    );
-    // This is an observable round trip, not the private source quotient.
-    require!(
-        normal_or_exact_zero(value * 1_000_000.0, logical_zero),
-        "STRESS_PA_OBSERVATION_RANGE"
-    );
-    Ok(())
-}
-fn stress_summary_observation(row: &Value, inputs: &[&Value]) -> Result<(), String> {
-    require!(
-        row["unit"] == "MPa" && inputs.len() == 20,
-        "SUMMARY_STRESS_COVERAGE"
-    );
-    let mut grouped = HashMap::new();
-    for input in inputs {
-        let location = text(&input["metadata"]["location"])?;
-        let kind = text(&input["kind"])?;
-        require!(
-            STRESS_LOCATIONS.contains(&location)
-                && STRESS_KINDS.contains(&kind)
-                && input["unit"] == "MPa"
-                && !grouped.contains_key(&(location, kind)),
-            "SUMMARY_STRESS_COVERAGE"
-        );
-        let value = number(&input["value"])?;
-        require!(
-            normal_or_exact_zero(value, value == 0.0),
-            "SUMMARY_INPUT_RANGE"
-        );
-        let pa = value * 1_000_000.0;
-        require!(
-            normal_or_exact_zero(pa, value == 0.0),
-            "SUMMARY_PA_OBSERVATION_RANGE"
-        );
-        grouped.insert((location, kind), pa);
-    }
-    let mut any_normal = false;
-    for location in STRESS_LOCATIONS {
-        let axial = grouped[&(location, STRESS_KINDS[0])];
-        let by = grouped[&(location, STRESS_KINDS[1])];
-        let bz = grouped[&(location, STRESS_KINDS[2])];
-        let logical_zero = axial == 0.0 && by == 0.0 && bz == 0.0;
-        any_normal |= !logical_zero;
-        // Preserve the declared order on these observable Pa values. They do
-        // not reproduce the unavailable preconversion Pa operands bitwise.
-        let base_normal = axial + 0.0;
-        let bending_total = by.abs() + bz.abs();
-        let plus = base_normal + bending_total;
-        let minus = base_normal - bending_total;
-        require!(
-            [base_normal, bending_total, plus, minus]
-                .iter()
-                .all(|v| v.is_finite()),
-            "SUMMARY_SUBTOTAL_RANGE"
-        );
-        let subtotal = plus.abs().max(minus.abs());
-        require!(
-            normal_or_exact_zero(subtotal, logical_zero)
-                && normal_or_exact_zero(subtotal / 1_000_000.0, logical_zero),
-            "SUMMARY_SUBTOTAL_RANGE"
-        );
-    }
-    // Torsion does not contribute to this normal-stress summary.
-    let value = number(&row["value"])?;
-    require!(
-        value >= 0.0 && normal_or_exact_zero(value, !any_normal),
-        "SUMMARY_OUTPUT_RANGE"
+        number(&row["value"])?.to_bits() == expected.to_bits(),
+        "DERIVED_NORM_VALUE"
     );
     Ok(())
 }
 
-/// T0R standing (non-composite only): a receipt case that qualified by an
-/// ordinary method keeps the retired precision-1 row semantics. Structural read
-/// of the received receipt; physics-source-1 never reaches this rule.
-pub fn has_ordinary_qualified_case(source: &Value) -> bool {
-    source["producer"]["semantic_contract_id"] == CONTRACT_ID
-        && source["source_block_recovery"]["body"]["cases"]
-            .as_array()
-            .is_some_and(|cases| {
-                cases.iter().any(|case| {
-                    case["outcome"] == "qualified" && case["selected_method"] != EXACT
-                })
-            })
-}
 /// `actual_invocation` is the independent original {request,solver_mode} Value.
 /// Without it, a supported consistent receipt returns false, never admission.
-pub fn validate(source: &Value, actual_invocation: Option<&Value>) -> Result<bool, String> {
-    validate_in(source, actual_invocation, false)
-}
 /// Explicit method context; never alters received bytes to fit another contract.
-pub(crate) fn validate_in(
-    source: &Value,
-    actual_invocation: Option<&Value>,
-    composite: bool,
+pub(crate) fn validate_source_contract_in(
+    source: &Value, actual_invocation: Option<&Value>, contract: crate::physics_source::SourceContract,
 ) -> Result<bool, String> {
+    if let Some(invocation) = actual_invocation { contract.check_invocation(invocation)?; }
+    contract.check_received(source)?;
     require!(
         keys(
             source,
@@ -721,31 +510,23 @@ pub(crate) fn validate_in(
                 "diagnostics",
                 "professional_boundary",
                 "accepted_model_state_mutated",
-                "source_block_recovery"
+                "source_block_recovery",
+                "contract_evidence"
             ]
-            .iter()
-            .copied()
-            .chain(composite.then_some("contract_evidence"))
-            .collect::<Vec<_>>()
-            .as_slice()
         ),
         "RAW_FIELDS"
     );
     require!(
         source["schema_version"] == "0.2.0"
             && source["producer"]
-                == json!({"component_name":"open_pipe_stress_product_physics","component_version":"0.2.0","semantic_contract_id":if composite {crate::physics_source::CONTRACT_ID} else {CONTRACT_ID}}),
+                == json!({"component_name":"open_pipe_stress_product_physics","component_version":"0.2.0","semantic_contract_id":contract.identity()}),
         "PRODUCER"
     );
     let formulation = &source["formulation_basis"];
     require!(
         keys(formulation, &["profile_id", "limitations"])
             && formulation["profile_id"]
-                == if composite {
-                    crate::physics_source::PROFILE
-                } else {
-                    "product_preview_mechanics_v1"
-                }
+                == contract.profile()
             && formulation["limitations"]
                 .as_array()
                 .is_some_and(|a| !a.is_empty()
@@ -753,11 +534,7 @@ pub(crate) fn validate_in(
         "FORMULATION"
     );
     let receipt = &source["source_block_recovery"];
-    if composite {
-        crate::physics_source::validate_receipt_shape(receipt)?;
-    } else {
-        validate_receipt_shape(receipt)?;
-    }
+    crate::physics_source::validate_receipt_shape_in(receipt, contract)?;
     let body = &receipt["body"];
     validate_receipt_hash(receipt)?;
     validate_publication_hash(source)?;
@@ -945,7 +722,7 @@ pub(crate) fn validate_in(
             integer(&work["charged"])?
                 .saturating_add(integer(&work["reserved_unobserved_failure"])?)
                 <= integer(&work["limit"])?
-                && integer(&work["limit"])? <= if composite { 8_000_000 } else { 4_000_000 }
+                && integer(&work["limit"])? <= 8_000_000
                 && ((rejected["kind"] == "overflow" && rejected["amount"].is_null())
                     || (rejected["kind"] == "finite" && !rejected["amount"].is_null())),
             "WORK_LEDGER"
@@ -1038,12 +815,7 @@ pub(crate) fn validate_in(
             ),
             "ROW_IDS"
         );
-        if rows.iter().any(|row| {
-            matches!(
-                row["recipe_id"].as_str(),
-                Some("straight_open_stress_v1" | "reviewed_stress_summary_v1")
-            ) || (composite && row["recipe_id"] == "retained_source_straight_stress_v1")
-        }) {
+        if rows.iter().any(|row| row["recipe_id"] == "retained_source_straight_stress_v1") {
             let relative = ps
                 .iter()
                 .map(|p| number(&p["relative_error_bound"]))
@@ -1075,7 +847,7 @@ pub(crate) fn validate_in(
         for treatment in rows {
             let id = text(&treatment["result_id"])?;
             let row = raw[id];
-            let s = signature(row, composite)?;
+            let s = signature(row)?;
             let inputs = array(&treatment["input_result_ids"])?;
             require!(
                 unique(inputs)
@@ -1097,7 +869,7 @@ pub(crate) fn validate_in(
                             && inputs.is_empty(),
                         "PROJECTION_ROW"
                     );
-                    projection(p, row, composite)?;
+                    projection(p, row)?;
                     used.insert(text(&p["projection_id"])?);
                 }
                 "checked_derived" => {
@@ -1113,9 +885,7 @@ pub(crate) fn validate_in(
                         String,
                     >>(
                     )?;
-                    if composite
-                        && crate::physics_source::is_composite_recipe(&treatment["recipe_id"])
-                    {
+                    if crate::physics_source::is_composite_recipe(&treatment["recipe_id"]) {
                         crate::physics_source::validate_derived(
                             source,
                             case,
@@ -1124,12 +894,9 @@ pub(crate) fn validate_in(
                             &input_rows,
                         )?;
                     } else {
-                        derived_in(&treatment["recipe_id"], row, &input_rows, composite)?;
+                        derived_in(&treatment["recipe_id"], row, &input_rows)?;
                     }
-                    if matches!(
-                        treatment["recipe_id"].as_str(),
-                        Some("translation_norm_scaled_v1" | "support_force_norm_scaled_v1")
-                    ) {
+                    if treatment["recipe_id"] == "translation_norm_scaled_v1" {
                         let mut relative = 0.0_f64;
                         for input in inputs {
                             let input_row = treatments[text(input)?];
@@ -1155,21 +922,13 @@ pub(crate) fn validate_in(
                         "UNQUALIFIED_DERIVED_INPUT"
                     );
                 }
-                token
-                    if token
-                        == if composite {
-                            "ordinary_physics_checked"
-                        } else {
-                            "ordinary_checked"
-                        } =>
-                {
+                "ordinary_physics_checked" => {
                     require!(
                         success
                             && method != Some(EXACT)
                             && treatment["projection_id"].is_null()
                             && treatment["recipe_id"].is_null()
-                            && s.is_some()
-                            && (composite || row["kind"] != "support_reaction_component_v2"),
+                            && s.is_some(),
                         "ORDINARY_ROW"
                     )
                 }
@@ -1207,11 +966,9 @@ pub(crate) fn validate_in(
             done.extend(ready);
         }
         if success && method == Some(EXACT) {
-            supports(case, &raw, ps, model, composite)?;
-            required_affine(case, &raw, ps, model, composite)?;
-            if composite {
-                crate::physics_source::validate_source_case(source, case, actual_invocation)?;
-            }
+            supports(case, &raw, ps, model)?;
+            required_affine(case, &raw, ps, model)?;
+            crate::physics_source::validate_source_case_in(source, case, actual_invocation, contract)?;
         } else {
             require!(
                 array(&case["supports"])?.is_empty(),
@@ -1235,7 +992,7 @@ pub(crate) fn validate_in(
         let row = *raw.get(id).ok_or("SOURCE_BLOCKS_OBSERVATION_REF")?;
         require!(
             row["basis_ref"].is_null()
-                && signature(row, composite)?.is_some_and(|s| s["category"] != "physical_quantity"),
+                && signature(row)?.is_some_and(|s| s["category"] != "physical_quantity"),
             "PHYSICAL_OBSERVATION_ESCAPE"
         );
     }
@@ -1258,7 +1015,7 @@ pub(crate) fn validate_in(
         "unavailable"
     };
     require!(body["status"] == aggregate, "AGGREGATE_STATUS");
-    summary(source, &raw, model, composite)?;
+    summary(source, &raw, model)?;
     if model.is_some_and(|m| m["combinations"].as_array().is_some_and(|a| !a.is_empty())) {
         usable = false;
     }
@@ -1272,7 +1029,6 @@ fn supports(
     raw: &HashMap<&str, &Value>,
     ps: &[Value],
     model: Option<&Value>,
-    composite: bool,
 ) -> Result<(), String> {
     let records = array(&case["supports"])?;
     let plan = &case["source"];
@@ -1349,7 +1105,7 @@ fn supports(
                     && row["basis_ref"] == case["basis_ref"]
                     && row["unit"] == if slot < 3 { "N" } else { "N*m" }
                     && row["metadata"]
-                        == json!({"component":COMPONENTS[slot],"coordinate_system":"global","location":"node","basis":"recovered_from_assembled_support_law","sign_convention":if composite {crate::physics_source::SUPPORT_SIGN} else {SUPPORT_SIGN}}),
+                        == json!({"component":COMPONENTS[slot],"coordinate_system":"global","location":"node","basis":"recovered_from_assembled_support_law","sign_convention":crate::physics_source::SUPPORT_SIGN}),
                 "SUPPORT_ROW_SEMANTICS"
             );
             let terms = array(&component["action_terms"])?;
@@ -1440,7 +1196,6 @@ fn required_affine(
     raw: &HashMap<&str, &Value>,
     ps: &[Value],
     model: Option<&Value>,
-    composite: bool,
 ) -> Result<(), String> {
     let rows = ps
         .iter()
@@ -1505,11 +1260,7 @@ fn required_affine(
                 .iter()
                 .filter(|r| r["entity_ref"] == *member
                     && r["kind"]
-                        == if composite {
-                            "pipe_elastic_normal_stress_maximum_v2"
-                        } else {
-                            "open_formula_stress_summary"
-                        })
+                        == "pipe_elastic_normal_stress_maximum_v2")
                 .count()
                 == 1,
             "MEMBER_SUMMARY_COVERAGE"
@@ -1521,11 +1272,7 @@ fn required_affine(
                 .iter()
                 .filter(|r| r["entity_ref"] == *support
                     && r["kind"]
-                        == if composite {
-                            "support_reaction_force_magnitude_v2"
-                        } else {
-                            "reaction_resultant"
-                        })
+                        == "support_reaction_force_magnitude_v2")
                 .count()
                 == 1,
             "SUPPORT_MAGNITUDE_COVERAGE"
@@ -1568,7 +1315,6 @@ fn summary(
     source: &Value,
     raw: &HashMap<&str, &Value>,
     model: Option<&Value>,
-    composite: bool,
 ) -> Result<(), String> {
     let summary = &source["summary"];
     if let Some(model) = model {
@@ -1588,11 +1334,7 @@ fn summary(
         ("max_displacement", "displacement_magnitude"),
         (
             "max_open_formula_stress",
-            if composite {
-                "pipe_elastic_normal_stress_maximum_v2"
-            } else {
-                "open_formula_stress_summary"
-            },
+            "pipe_elastic_normal_stress_maximum_v2",
         ),
     ] {
         let headline = &summary[field];
@@ -1633,159 +1375,102 @@ fn summary(
 mod norm_tests {
     use super::*;
 
-    fn check(values: [f64; 3], value: f64, support: bool) -> Result<(), String> {
+    fn check(values: [f64; 3], value: f64) -> Result<(), String> {
         let kinds = [
             "global_nodal_displacement_x",
             "global_nodal_displacement_y",
             "global_nodal_displacement_z",
         ];
         let inputs: Vec<Value> = values.into_iter().enumerate().map(|(index, value)| json!({
-            "kind": if support { "support_reaction_component_v2" } else { kinds[index] },
-            "metadata": { "component": COMPONENTS[index] }, "entity_ref": "synthetic-norm-owner", "value": value,
+            "kind": kinds[index], "entity_ref": "synthetic-norm-owner", "value": value,
         })).collect();
-        let row = json!({"kind":if support {"reaction_resultant"}else{"displacement_magnitude"},
-            "unit":if support {"N"}else{"mm"},"entity_ref":"synthetic-norm-owner","value":value});
-        derived(
-            &json!(if support {
-                "support_force_norm_scaled_v1"
-            } else {
-                "translation_norm_scaled_v1"
-            }),
-            &row,
-            &inputs.iter().collect::<Vec<_>>(),
-        )
+        let row = json!({"kind":"displacement_magnitude","unit":"mm","entity_ref":"synthetic-norm-owner","value":value});
+        derived_in(&json!("translation_norm_scaled_v1"), &row, &inputs.iter().collect::<Vec<_>>())
+    }
+
+    /// E15: the receipt recipe binds the exact correctly rounded value. Over the
+    /// published (3,4,0) components the recipe gives exactly 5, so the
+    /// independently single-rounded 5 + 1 ulp that G7 admits is refused here;
+    /// the former max-scaled recipe's value is refused where the two differ.
+    #[test]
+    fn e15_receipt_norm_recipe_binds_the_correctly_rounded_value() {
+        let controls: Value = serde_json::from_str(include_str!(
+            "../../../../fixtures/results/preview_magnitude_controls.json"
+        ))
+        .unwrap();
+        let control = &controls["controls"][0];
+        assert_eq!(control["id"], "independent_single_rounding_one_ulp");
+        let bits = |v: &Value| f64::from_bits(u64::from_str_radix(v.as_str().unwrap(), 16).unwrap());
+        let components = [0, 1, 2].map(|i| bits(&control["component_bits"][i]));
+        assert_eq!(components, [3.0, 4.0, 0.0]);
+        let one_ulp = bits(&control["magnitude_bits"]);
+        assert_eq!(one_ulp.to_bits(), 5.0_f64.to_bits() + 1);
+        let scaled = |v: [f64; 3]| {
+            let m = v.iter().fold(0.0_f64, |m, x| m.max(x.abs()));
+            let [a, b, c] = v.map(|x| x / m);
+            m * ((a * a + b * b) + c * c).sqrt()
+        };
+        let differing = [-1.327, -8.603, -8.186];
+        let correct = f64::from_bits(0x4027_e5fc_308f_80ed);
+        assert_eq!(norm3(differing[0], differing[1], differing[2]).to_bits(), correct.to_bits());
+        assert_eq!(scaled(differing).to_bits(), correct.to_bits() - 1);
+        assert_eq!(check(components, 5.0), Ok(()));
+        assert_eq!(check(components, one_ulp), Err("SOURCE_BLOCKS_DERIVED_NORM_VALUE".into()));
+        assert_eq!(check(differing, correct), Ok(()));
+        assert_eq!(
+            check(differing, scaled(differing)),
+            Err("SOURCE_BLOCKS_DERIVED_NORM_VALUE".into())
+        );
     }
 
     #[test]
-    fn scaled_norm_accepts_small_normal_values_and_harmless_normalized_underflow() {
-        for support in [false, true] {
-            assert_eq!(check([3.0, 4.0, 0.0], 5.0, support), Ok(()));
-            let small = 2.0_f64.powi(-600);
-            assert_eq!(check([small, 0.0, 0.0], small, support), Ok(()));
-            assert_eq!(
-                check([f64::MIN_POSITIVE, 0.0, 0.0], f64::MIN_POSITIVE, support),
-                Ok(())
-            );
-            assert_eq!(check([1.0, f64::from_bits(1), 0.0], 1.0, support), Ok(()));
-        }
+    fn norm_recipe_accepts_small_normal_values_and_tiny_components() {
+        assert_eq!(check([3.0, 4.0, 0.0], 5.0), Ok(()));
+        let small = 2.0_f64.powi(-600);
+        assert_eq!(check([small, 0.0, 0.0], small), Ok(()));
+        assert_eq!(check([f64::MIN_POSITIVE, 0.0, 0.0], f64::MIN_POSITIVE), Ok(()));
+        assert_eq!(check([1.0, f64::from_bits(1), 0.0], 1.0), Ok(()));
     }
 
     #[test]
-    fn scaled_norm_rejects_subnormal_output_overflow_and_one_ulp_value_changes() {
-        for support in [false, true] {
-            assert_eq!(
-                check([f64::from_bits(1), 0.0, 0.0], f64::from_bits(1), support),
-                Err("SOURCE_BLOCKS_DERIVED_NORM_RANGE".into())
-            );
-            assert_eq!(
-                check([f64::MAX, f64::MAX, 0.0], 1.0, support),
-                Err("SOURCE_BLOCKS_DERIVED_NORM_RANGE".into())
-            );
-            assert_eq!(
-                check(
-                    [1.0, 0.0, 0.0],
-                    f64::from_bits(1.0_f64.to_bits() + 1),
-                    support
-                ),
-                Err("SOURCE_BLOCKS_DERIVED_NORM_VALUE".into())
-            );
-            assert_eq!(check([-0.0, 0.0, -0.0], 0.0, support), Ok(()));
-            assert_eq!(
-                check([-0.0, 0.0, -0.0], -0.0, support),
-                Err("SOURCE_BLOCKS_DERIVED_NORM_VALUE".into())
-            );
-            assert!(check([f64::NAN, 0.0, 0.0], 0.0, support).is_err());
-        }
+    fn norm_recipe_rejects_subnormal_output_overflow_and_one_ulp_value_changes() {
+        assert_eq!(
+            check([f64::from_bits(1), 0.0, 0.0], f64::from_bits(1)),
+            Err("SOURCE_BLOCKS_DERIVED_NORM_RANGE".into())
+        );
+        assert_eq!(check([f64::MAX, f64::MAX, 0.0], 1.0), Err("SOURCE_BLOCKS_DERIVED_NORM_RANGE".into()));
+        assert_eq!(
+            check([1.0, 0.0, 0.0], f64::from_bits(1.0_f64.to_bits() + 1)),
+            Err("SOURCE_BLOCKS_DERIVED_NORM_VALUE".into())
+        );
+        assert_eq!(check([-0.0, 0.0, -0.0], 0.0), Ok(()));
+        assert_eq!(check([-0.0, 0.0, -0.0], -0.0), Err("SOURCE_BLOCKS_DERIVED_NORM_VALUE".into()));
+        assert!(check([f64::NAN, 0.0, 0.0], 0.0).is_err());
     }
 }
 
 #[cfg(test)]
-mod stress_range_tests {
+mod retired_recipe_tests {
     use super::*;
 
-    fn scalar(index: usize, action_value: f64, value: f64, location: &str) -> Result<(), String> {
-        let kind = STRESS_KINDS[index];
-        let component = [
-            "axial_normal_stress",
-            "bending_normal_stress_y",
-            "bending_normal_stress_z",
-            "torsional_shear_stress",
-        ][index];
-        let action = json!({"kind":stress_action_kind(kind).unwrap(),"unit":if index==0{"N"}else{"N*m"},"entity_ref":"stress-owner","metadata":{"location":location},"value":action_value});
-        let row = json!({"kind":kind,"unit":"MPa","entity_ref":"stress-owner","metadata":{"component":component,"location":location},"value":value});
-        derived(&json!("straight_open_stress_v1"), &row, &[&action])
-    }
-    fn summary(normal: f64, torsion: f64, value: f64) -> Result<(), String> {
-        let mut inputs = Vec::new();
-        for location in STRESS_LOCATIONS {
-            for (index, kind) in STRESS_KINDS.iter().enumerate() {
-                inputs.push(json!({"kind":kind,"unit":"MPa","entity_ref":"stress-owner","metadata":{"location":location},"value":if index==3{torsion}else{normal}}));
-            }
-        }
-        derived(
-            &json!("reviewed_stress_summary_v1"),
-            &json!({"kind":"open_formula_stress_summary","unit":"MPa","entity_ref":"stress-owner","value":value}),
-            &inputs.iter().collect::<Vec<_>>(),
-        )
-    }
+    /// B4/D1 (b): source-blocks-1's support-norm, straight-stress,
+    /// stress-summary and section-property recipes went with its preview case
+    /// rows; a composite receipt naming one is refused as an unknown recipe.
     #[test]
-    fn normal_stress_and_exact_logical_zero_remain_admitted() {
-        for index in 0..4 {
-            assert_eq!(scalar(index, 1.0, 1e-6, "midspan"), Ok(()));
-            assert_eq!(scalar(index, -1.0, -1e-6, "midspan"), Ok(()));
-            assert_eq!(scalar(index, -1.0, 1e-6, "end_i"), Ok(()));
-            assert_eq!(scalar(index, 0.0, 0.0, "midspan"), Ok(()));
-            assert_eq!(scalar(index, 0.0, -0.0, "midspan"), Ok(()));
+    fn source_blocks_1_recipes_are_unknown() {
+        let row = json!({"kind":"displacement_magnitude","unit":"mm","entity_ref":"owner","value":0.0});
+        for recipe in [
+            "support_force_norm_scaled_v1",
+            "straight_open_stress_v1",
+            "reviewed_stress_summary_v1",
+            "section_property_from_source_v1",
+        ] {
             assert_eq!(
-                scalar(index, 1.0, -1e-6, "midspan"),
-                Err("SOURCE_BLOCKS_STRESS_ACTION_SIGN".into())
+                derived_in(&json!(recipe), &row, &[]),
+                Err("SOURCE_BLOCKS_DERIVED_RECIPE".into()),
+                "{recipe}"
             );
         }
-    }
-    #[test]
-    fn nonzero_action_cannot_become_zero_or_subnormal_mpa() {
-        for index in 0..4 {
-            for value in [0.0, 1.675317e-318] {
-                assert_eq!(
-                    scalar(index, 1e-306, value, "midspan"),
-                    Err("SOURCE_BLOCKS_STRESS_OUTPUT_RANGE".into())
-                );
-            }
-            assert_eq!(
-                scalar(index, 0.0, 1e-6, "midspan"),
-                Err("SOURCE_BLOCKS_STRESS_OUTPUT_RANGE".into())
-            );
-            assert_eq!(
-                scalar(index, 1.0, f64::MAX, "midspan"),
-                Err("SOURCE_BLOCKS_STRESS_PA_OBSERVATION_RANGE".into())
-            );
-        }
-    }
-    #[test]
-    fn summary_excludes_torsion_but_requires_normal_nonzero_result() {
-        assert_eq!(summary(0.0, 1.0, 0.0), Ok(()));
-        assert_eq!(summary(0.0, 0.0, -0.0), Ok(()));
-        assert_eq!(summary(1.0, 0.0, 3.0), Ok(()));
-        assert_eq!(
-            summary(1.0, 0.0, 0.0),
-            Err("SOURCE_BLOCKS_SUMMARY_OUTPUT_RANGE".into())
-        );
-        assert_eq!(
-            summary(1.0, 0.0, 1.675317e-318),
-            Err("SOURCE_BLOCKS_SUMMARY_OUTPUT_RANGE".into())
-        );
-        assert_eq!(
-            summary(0.0, 1.0, 1.0),
-            Err("SOURCE_BLOCKS_SUMMARY_OUTPUT_RANGE".into())
-        );
-        assert_eq!(
-            summary(1.675317e-318, 0.0, 0.0),
-            Err("SOURCE_BLOCKS_SUMMARY_INPUT_RANGE".into())
-        );
-        assert_eq!(
-            summary(1e302, 0.0, 1.0),
-            Err("SOURCE_BLOCKS_SUMMARY_SUBTOTAL_RANGE".into())
-        );
     }
 }
 
@@ -1904,13 +1589,48 @@ mod rv95_n5_integer_tests {
         for key in ["node_count", "segment_count", "support_count", "load_case_count"] {
             let mut source = json!({"summary": {"node_count": 0, "segment_count": 0, "support_count": 0, "load_case_count": 0}});
             source["summary"][key] = json!(TWO_53);
-            assert_eq!(summary(&source, &HashMap::new(), Some(&model), false), Err(INTEGER.into()), "{key}");
+            assert_eq!(summary(&source, &HashMap::new(), Some(&model)), Err(INTEGER.into()), "{key}");
             source["summary"][key] = json!(TWO_53 - 1);
             assert_eq!(
-                summary(&source, &HashMap::new(), Some(&model), false),
+                summary(&source, &HashMap::new(), Some(&model)),
                 Err("SOURCE_BLOCKS_SUMMARY_MODEL_COUNTS".into()),
                 "{key}"
             );
         }
+    }
+}
+
+
+#[cfg(test)]
+mod explicit_resource_tests {
+    use super::{shape_in, shape_in_resources};
+    use serde_json::json;
+
+    #[test]
+    fn explicit_resource_shapes_are_closed_and_resolve_in_the_resource_root() {
+        let root = json!({"$defs":{"Quantity":{"const":"wrong local root"}}});
+        let resource = json!({"$defs":{
+            "Quantity":{"type":"number"},
+            "Record":{"type":"object","additionalProperties":false,"required":["value"],
+                "properties":{"value":{"$ref":"#/$defs/Quantity"}}}
+        }});
+        let shape = json!({"$ref":"load_reference_state.schema.json#/$defs/Record"});
+        let value = json!({"value":2.0});
+        assert!(!shape_in(&value, &shape, &root));
+        assert!(shape_in_resources(&value, &shape, &root, &[("load_reference_state.schema.json", &resource)]));
+        assert!(!shape_in_resources(&json!({"value":2.0,"extra":0}), &shape, &root, &[("load_reference_state.schema.json", &resource)]));
+        assert!(!shape_in_resources(&json!({"value":"2"}), &shape, &root, &[("load_reference_state.schema.json", &resource)]));
+        assert!(!shape_in_resources(&value, &shape, &root, &[("different.schema.json", &resource)]));
+        let missing = json!({"$ref":"load_reference_state.schema.json#/$defs/Missing"});
+        assert!(!shape_in_resources(&value, &missing, &root, &[("load_reference_state.schema.json", &resource)]));
+        let discovery = json!({"$ref":"https://example.invalid/schema.json#/$defs/Record"});
+        assert!(!shape_in_resources(&value, &discovery, &root, &[("load_reference_state.schema.json", &resource)]));
+        let nested = json!({"type":"array","items":{"type":"object","additionalProperties":false,
+            "required":["records"],"properties":{"records":{"type":"array","items":shape}}}});
+        let nested_value = json!([{"records":[{"value":2.0}]}]);
+        assert!(shape_in_resources(&nested_value, &nested, &root, &[("load_reference_state.schema.json", &resource)]));
+        assert!(!shape_in_resources(&nested_value, &nested, &root, &[]));
+        let missing_nested = json!({"type":"array","items":missing});
+        assert!(!shape_in_resources(&json!([value]), &missing_nested, &root, &[("load_reference_state.schema.json", &resource)]));
     }
 }

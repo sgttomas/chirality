@@ -1,74 +1,5 @@
 use super::*;
 #[test]
-fn dense_parity_coverage_is_typed_nonnegative_and_keeps_zero_bits() {
-    for value in [0.0, -0.0, 1e-9] {
-        let row = ProductFinalRow {
-            id: "parity",
-            case_id: "case",
-            value: &value,
-            unit: ProductUnit::Record,
-            body: 0,
-            recipe: ProductRecipe::DenseParityObservation,
-        };
-        let rows = [];
-        let mut spent = ProductCertificateSpent::new(&rows);
-        let mut seen = false;
-        mark_dense_parity(&mut spent, &row, &mut seen).unwrap();
-        assert!(seen);
-        assert_eq!(
-            mark_dense_parity(&mut spent, &row, &mut seen)
-                .unwrap_err()
-                .category(),
-            "association"
-        );
-    }
-    for (value, unit, body) in [
-        (-1.0, ProductUnit::Record, 0),
-        (f64::INFINITY, ProductUnit::Record, 0),
-        (0.0, ProductUnit::Newton, 0),
-        (0.0, ProductUnit::Record, 1),
-    ] {
-        let row = ProductFinalRow {
-            id: "parity",
-            case_id: "case",
-            value: &value,
-            unit,
-            body,
-            recipe: ProductRecipe::DenseParityObservation,
-        };
-        let rows = [];
-        let mut spent = ProductCertificateSpent::new(&rows);
-        let mut seen = false;
-        assert_eq!(
-            mark_dense_parity(&mut spent, &row, &mut seen)
-                .unwrap_err()
-                .category(),
-            "association"
-        );
-        assert!(!seen);
-    }
-    let value = 0.0;
-    let row = ProductFinalRow {
-        id: "parity",
-        case_id: "case",
-        value: &value,
-        unit: ProductUnit::Record,
-        body: 0,
-        recipe: ProductRecipe::DenseParityObservation,
-    };
-    let rows = [];
-    let mut spent = ProductCertificateSpent::new(&rows);
-    spent.visits = WorkTotal::exact_count(u64::MAX);
-    let mut seen = false;
-    assert_eq!(
-        mark_dense_parity(&mut spent, &row, &mut seen)
-            .unwrap_err()
-            .category(),
-        "work_accounting"
-    );
-    assert!(!seen);
-}
-#[test]
 fn support_empty_law_uses_unchanged_mechanical_gate_and_work() {
     let value = -0.0;
     let rows = [ProductFinalRow {
@@ -325,11 +256,9 @@ fn i51_prepared_reserve_and_value_prefixes_are_checked() {
     let mut visits=WorkTotal::exact_count(u64::MAX);
     assert_eq!(values_visit(&mut visits).unwrap_err().category(),"work_accounting");
     assert_eq!(values_visit(&mut visits).unwrap_err().category(),"work_accounting");
-    let specs=[ProductRowSpec::mode("mode","case",0,1).unwrap(),ProductRowSpec::parity("parity","case",0,(-0.0f64).to_bits()).unwrap()];
+    let specs=[ProductRowSpec::mode("mode","case",0,1).unwrap()];
     assert_eq!(specs[0].observed,Some(1f64.to_bits()));
-    assert_eq!(specs[1].observed,Some((-0.0f64).to_bits()));
     assert!(ProductRowSpec::mechanical("mode","case",ProductUnit::Record,0,ProductRecipe::NonQuantity).is_err());
-    assert!(ProductRowSpec::parity("parity","case",0,f64::NAN.to_bits()).is_err());
 }
 
 fn i51_support_specs(order:&[usize])->Vec<ProductRowSpec<'static>> {
@@ -404,7 +333,7 @@ fn i51_seed_is_same_draft_bound_and_prescriptions_are_never_seeded() {
     let mut only_k=ProductCertificateSpent::new(&[]);assert!(only_k.source_correction_calls().is_none());only_k.native_k=Some(post_work);
     assert_eq!(only_k.source_correction_calls().unwrap().exact(),Ok(1));assert!(only_k.native.is_none());
     let (seed,mut kw)=first.into_readouts(&anchor);let mut seed=seed.unwrap();assert_eq!(kw.correction.calls.exact(),Ok(1));
-    let source_run=|seed:&source_residual::LaneReadouts,anchor:&std::sync::Arc<ProofAnchor>|source_residual::source_residual_prepared(owner,owner.source(),&owner.evidence().source_encoding,owner.selected_precision(),&law,anchor,seed);
+    let source_run=|seed:&source_residual::LaneReadouts,anchor:&std::sync::Arc<ProofAnchor>|source_residual::source_residual_prepared(owner,owner.source(),&owner.evidence().source_encoding,owner.selected_precision(),&law,anchor,seed,source_residual::RadiusLaw::Contraction);
     let foreign=source_run(&seed,&foreign_anchor);assert!(foreign.result().is_err());assert_eq!(foreign.work.correction.calls.exact(),Ok(0));
     let stale_run=source_run(&seed,&stale);assert!(stale_run.result().is_err());assert_eq!(stale_run.work.correction.calls.exact(),Ok(0));assert!(stale_run.work.data_capacity>0);
     let last=seed.rows.pop().unwrap();let missing=source_run(&seed,&anchor);assert!(missing.result().is_err());assert_eq!(missing.work.correction.calls.exact(),Ok(0));seed.rows.push(last);
@@ -489,7 +418,7 @@ fn prepared_trace_actual_completed_k_and_failed_source_remain_an_entered_prefix(
     let (result,work)=first.into_readouts(&anchor);let mut proof=ProductCertificateSpent::new(&[]);
     let seed=proof.retain_lane(result,work).unwrap();let mut reads=TraceCopyWork::default();
     {let view=proof.typed_trace(&mut reads);assert!(view.lanes[0].as_ref().unwrap().result.is_ok());assert!(view.lanes[1].is_none());}
-    let second=source_residual::source_residual_prepared(owner,owner.source(),&owner.evidence().source_encoding,owner.selected_precision(),&law,&stale,&seed);
+    let second=source_residual::source_residual_prepared(owner,owner.source(),&owner.evidence().source_encoding,owner.selected_precision(),&law,&stale,&seed,source_residual::RadiusLaw::Contraction);
     let (result,work)=second.into_readouts(&stale);assert!(proof.retain_lane(result,work).is_err());
     let view=proof.typed_trace(&mut reads);assert!(matches!(view.lanes[1].as_ref().unwrap().result,Err(source_residual::BridgeFailure::MemberOwner)));
     assert_eq!(view.lanes[0].as_ref().unwrap().work.correction_calls.exact(),Ok(1));
@@ -1420,11 +1349,10 @@ fn b2k_c05_the_combination_coverage_rule() {
     assert_eq!(begin(&rows), None);
     assert_eq!(begin(&b3k_rows(owner, true, false)), Some("combination row family"), "a maximum");
     assert_eq!(begin(&b3k_rows(owner, false, true)), Some("combination row family"), "a mode record");
-    for recipe in [ProductRecipe::DenseParityObservation, ProductRecipe::ModulusBasisRecord] {
+    for recipe in [ProductRecipe::ModulusBasisRecord] {
         let mut extra = rows.clone();
         extra.push(("record".into(), ProductUnit::Record, 0, recipe));
         let specs: Vec<_> = extra.iter().map(|(id, unit, body, r)| match r {
-            ProductRecipe::DenseParityObservation => ProductRowSpec::parity(id, "C1", *body, 0).unwrap(),
             ProductRecipe::ModulusBasisRecord => ProductRowSpec::material_record(id, "C1", *body),
             _ => ProductRowSpec::mechanical(id, "C1", *unit, *body, *r).unwrap() }).collect();
         let e = s.invocation.begin_prepared_product(run, owner, &facts, &specs).into_ready().err().unwrap();
@@ -1546,13 +1474,14 @@ fn b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_ro
         }
     }
     println!("B2K_CERTIFIED {certified:?}");
-    // RV121 RK-4: the observed certification pattern, pinned. C2, C3, C6, C7 and
-    // C9 certify every row; C1, C4 and C5 each lose two MPa bending rows and C8
-    // one, to DEF-O's projection rounding (the net cases above fail the same rows).
-    let lost: &[&str] = &["z7.I.1", "z7.17.1"];
+    // The owner-approved stress-only SI-first H changes the current pattern:
+    // C1, C4 and C5 retain one sharper-only MPa bending refusal at z7.17.1;
+    // their z7.I.1 and C8's z7.J.1 now pass all four unchanged predicates.
+    // The printed exact enclosures and the net cases above establish that this
+    // is a projection consequence, with unchanged source truth and criteria.
+    let lost: &[&str] = &["z7.17.1"];
     let expected: Vec<(&str, Vec<String>)> = B2K_ALL.iter().map(|&name| (name, match name {
         "C1" | "C4" | "C5" => lost.iter().map(|k| k.to_string()).collect(),
-        "C8" => vec!["z7.J.1".to_string()],
         _ => Vec::new() })).collect();
     assert_eq!(failing, expected);
 }
@@ -1726,4 +1655,168 @@ fn b2k_rn64_norm3_agrees_with_the_oracle_vectors() {
         ties += usize::from(expected.is_some_and(|e| e & 1 == 0) && x & 0xfff != 0);
     }
     assert!(ties > 0);
+}
+
+
+#[test]
+fn w1_si_first_stress_rounding_keeps_nonstress_raw_words() {
+    use super::super::super::wide::multi::Binary64Outcome as B;
+    let interval=Enclosure {lo:lift(f64::from_bits(0x40f8000000000001)).unwrap(),
+        hi:lift(f64::from_bits(0x40f8000000000002)).unwrap()};
+    // Exact dyadic midpoint: ties-to-even SI word ends in 2. Independently
+    // rounded midpoint/1e6 ends ...455; SI-first publication ends ...456.
+    for (unit,word,trace_word,scalars) in [
+        (ProductUnit::Megapascal,0x3fb92a737110e456,0x40f8000000000002,1),
+        // Length is deliberately the prior wide-scale projection, not SI-first.
+        (ProductUnit::Millimetre,0x4197700000000001,0x4197700000000001,0),
+        (ProductUnit::NewtonMetre,0x40f8000000000002,0x40f8000000000002,0),
+        (ProductUnit::Pascal,0x40f8000000000002,0x40f8000000000002,0)] {
+        let mut work=ProductCertificateSpent::new(&[]);
+        work.projection_outcomes=work.prepared_reserve(5,1).unwrap();
+        let value=project_hull(interval,unit,17,&mut work).unwrap();
+        assert_eq!(value.to_bits(),word);
+        assert_eq!(work.projection_conversions.exact(),Ok(1));
+        assert_eq!(work.scalar_operations.exact(),Ok(scalars));
+        assert!(matches!(work.projection_outcomes.as_slice(),[(17,B::Normal(v))] if v.to_bits()==trace_word));
+        if unit==ProductUnit::Megapascal {
+            // The final gate normalizes the actual published value, not the trace.
+            assert_eq!(work.normalize(unit,value).unwrap().to_bits(),0x40f8000000000002);
+            assert_eq!(work.scalar_operations.exact(),Ok(2));
+        }
+        println!("W1_STRESS_PROJECTION unit={unit:?} raw={word:016x} outcome={trace_word:016x} publication_scalar_operations={scalars} conversion_count=1 capacity_bytes={}",work.prepared_capacities[5]);
+    }
+}
+#[test]
+fn w1_si_first_stress_retains_si_class_before_publication() {
+    use super::super::super::wide::multi::Binary64Outcome as B;
+    for negative in [false,true] {
+        for (base,expected) in [(lift(1.).unwrap(),0),(lift(f64::from_bits(1)).unwrap(),1),
+            (shift(&Endpoint::ONE,-1076).unwrap(),2),(shift(&Endpoint::ONE,1024).unwrap(),3)] {
+            let x=if negative {base.neg()} else {base};
+            let mut work=ProductCertificateSpent::new(&[]);
+            work.projection_outcomes=work.prepared_reserve(5,1).unwrap();
+            let value=project_hull(Enclosure::point(x),ProductUnit::Megapascal,17,&mut work);
+            assert_eq!(work.projection_conversions.exact(),Ok(1));
+            assert_eq!(work.projection_outcomes.len(),1);
+            assert_eq!(work.projection_outcomes[0].0,17);
+            match work.projection_outcomes[0].1 {
+                B::Normal(v)=>{assert_eq!(expected,0);assert_eq!(v,if negative {-1.0}else{1.0});assert_eq!(value.unwrap().to_bits(),(v/1_000_000.).to_bits());},
+                B::Subnormal{value:v,relative_precision}=>{assert_eq!(expected,1);assert_eq!(v.to_bits(),if negative {0x8000000000000001}else{1});assert!(relative_precision>0.);assert_eq!(value.unwrap().to_bits(),0);},
+                B::Underflow{negative:sign}=>{assert_eq!(expected,2);assert_eq!(sign,negative);assert_eq!(value.unwrap().to_bits(),0);},
+                B::Overflow{negative:sign}=>{assert_eq!(expected,3);assert_eq!(sign,negative);assert_eq!(value.unwrap_err().category(),"numeric");},
+            }
+            assert_eq!(work.scalar_operations.exact(),Ok(if expected==3 {0}else{1}));
+        }
+    }
+    println!("W1_STRESS_LAYOUT outcome={} align={} tuple={} proof_trace={} certificate_spent={}",
+        std::mem::size_of::<B>(),std::mem::align_of::<B>(),std::mem::size_of::<(usize,B)>(),
+        std::mem::size_of::<ProductProofTrace<'static>>(),std::mem::size_of::<ProductCertificateSpent<'static>>());
+}
+#[test]
+fn w1_si_first_stress_publication_accounting_refusal_keeps_si_outcome() {
+    use super::super::super::wide::multi::Binary64Outcome as B;
+    let mut work=ProductCertificateSpent::new(&[]);
+    work.projection_outcomes=work.prepared_reserve(5,1).unwrap();
+    work.scalar_operations=WorkTotal::exact_count(u64::MAX);
+    let failure=project_hull(Enclosure::point(Endpoint::ONE),ProductUnit::Megapascal,17,&mut work).unwrap_err();
+    assert_eq!(failure.category(),"work_accounting");
+    assert_eq!(work.projection_conversions.exact(),Ok(1));
+    assert!(matches!(work.projection_outcomes.as_slice(),[(17,B::Normal(1.0))]));
+    assert!(work.numeric.wide.checked_lme().exact().unwrap()>0);
+}
+#[test]
+fn w1_si_first_stress_is_admitted_only_with_its_typed_mpa_unit() {
+    let (invocation,case)=b3k_case(80e9);
+    let owner=b3k_owner(&case);
+    let rows=b3k_rows(owner,true,true);
+    let facts=b3k_facts(ProductMaterial::Base {e:B3K_E,g:80e9});
+    for wrong_stress_unit in [ProductUnit::Pascal,ProductUnit::Millimetre] {
+        let mut specs=b3k_specs(&rows,"case");
+        let stress=specs.iter_mut().find(|r|matches!(r.recipe,ProductRecipe::Stress{..})).unwrap();
+        stress.unit=wrong_stress_unit;
+        let failure=match invocation.begin_prepared_product(case.run,owner,&facts,&specs).into_ready() {
+            Err(e)=>e,Ok(_)=>panic!("wrong typed stress unit")};
+        assert_eq!(failure.failure().category(),"association");
+        let mut copies=TraceCopyWork::default();
+        let trace=failure.work().typed_trace(&mut copies);
+        assert!(trace.projection_outcomes.is_empty());
+        assert_eq!(trace.projection_conversions.exact(),Ok(0));
+    }
+    let mut specs=b3k_specs(&rows,"case");
+    let nonstress=specs.iter_mut().find(|r|matches!(r.recipe,ProductRecipe::Native(_))).unwrap();
+    nonstress.unit=ProductUnit::Megapascal;
+    let failure=match invocation.begin_prepared_product(case.run,owner,&facts,&specs).into_ready() {
+        Err(e)=>e,Ok(_)=>panic!("nonstress MPa unit")};
+    assert_eq!(failure.failure().category(),"association");
+    assert!(failure.work().projection_outcomes.is_empty());
+}
+
+/// b7-plan "N06 absorbed-spring certificate extension", on the product's seeded lane order:
+/// admitted_k (alpha = 0), then annular_source seeded by its midpoints. Under the contraction
+/// law alone the annular lane refuses (alpha >= 1); under ContractionOrCongruence it takes the
+/// congruence radius after two corrections, and its rows enclose N06's closed form (root
+/// rotation M/k, end torques -M/+M, spring action -M) with relative width below 2^-80.
+#[test]
+fn n06_seeded_congruence_lane_encloses_the_closed_form() {
+    use super::super::super::origins::*;
+    use super::super::super::source::*;
+    use super::super::super::directed::{div_toward,sub_toward,Toward};
+    use super::super::super::recover::{End,QuantityId};
+    use super::super::super::wide::multi::WideContext;
+    use super::super::super::wide_sum::ExactWideSum;
+    use crate::structural::retained_api::{CaseLimit,ExecutionOutcome};
+    let section=super::super::prepare_product_annulus(0.2,0.01);
+    let [a,i,j,z,_]=section.result().unwrap().section_bits().values();
+    let (spring,torque)=(1e-12,1e-16);
+    for sign in [1.0,-1.0] {
+        let m=sign*torque;
+        let source=PrimitiveSource::new(SourceParts{nodes:vec![[0.;3],[2.,0.,0.]],
+            members:vec![StraightMember{id:7,node_i:0,node_j:1,elastic_modulus:2e11,shear_modulus:8e10,area:a,
+                second_moment_y:i,second_moment_z:i,torsion_constant:j,y_reference:[0.,1.,0.]}],
+            constraints:[Component::Ux,Component::Uy,Component::Uz,Component::Ry,Component::Rz].iter()
+                .map(|&component|Constraint{dof:Dof{node:0,component},value:0.}).collect(),
+            springs:vec![Spring{id:9,dof:Dof{node:0,component:Component::Rx},stiffness:spring}],
+            loads:vec![NodalLoad{dof:Dof{node:1,component:Component::Rx},value:m,source_id:"tip".into()}],
+            stations:vec![Station{id:17,member:7,fraction:0.5}],
+            supports:vec![SupportGroup{id:3,node:0,restrained:[true,true,true,false,true,true],springs:vec![9],directional_springs:vec![]}],
+            ..SourceParts::default()}).unwrap();
+        let mut invocation=RecordedInvocation::new(u64::MAX,OriginCapacity::for_calls(&[1],&[]).unwrap()).unwrap();
+        let cases=invocation.solve_cases(&[source],CaseLimit::new(u64::MAX)).unwrap();
+        let owner=match &cases[0].outcome {ExecutionOutcome::Selected(v)=>v,_=>panic!("N06 native selection")};
+        let anchor=std::sync::Arc::new(ProofAnchor{owner:invocation.product_owner_stamp(cases[0].run,owner).unwrap()});
+        let law=[bridge::ProposedMemberLaw{member:&owner.source().members()[0],diameter:0.2,effective_wall:0.01,
+            material:MaterialOperands::Ordinary{e:2e11,g:8e10},represented_z:z}];
+        let enc=owner.evidence().source_encoding.clone();
+        let kspent=source_residual::source_residual_for_law(owner,owner.source(),&enc,owner.selected_precision(),&law,source_residual::ReadoutLaw::AdmittedK);
+        let (k,_)=kspent.into_readouts(&anchor);let k=k.unwrap();
+        assert!(k.alpha[0].is_zero());
+        let refused=source_residual::source_residual_prepared(owner,owner.source(),&enc,owner.selected_precision(),&law,&anchor,&k,source_residual::RadiusLaw::Contraction);
+        assert!(matches!(refused.result(),Err(bridge::BridgeError::Alpha{block:0,..})));
+        let spent=source_residual::source_residual_prepared(owner,owner.source(),&enc,owner.selected_precision(),&law,&anchor,&k,source_residual::RadiusLaw::ContractionOrCongruence);
+        assert_eq!(spent.work.correction.calls.exact(),Ok(2),"one further correction");
+        let (lane,work)=spent.into_readouts(&anchor);let lane=lane.unwrap_or_else(|e|panic!("{e:?}"));
+        assert!(work.status().is_exact());
+        let one=Endpoint::ONE;
+        assert_ne!(lane.alpha[0].cmp_value(&one),Ordering::Less,"alpha is the existing (failing) value");
+        let quotient=|t:Toward|{let mut c=WideContext::<16>::new(1024).unwrap();let mut s=ExactWideSum::new();
+            div_toward(&mut c,&mut s,&lift(m).unwrap(),&lift(spring).unwrap(),t).unwrap()};
+        let mut checked=0;
+        for (r,row) in owner.publish().rows.iter().enumerate() {
+            let truth=match row.id {
+                QuantityId::Displacement(d) if d.node==0 && d.component==Component::Rx => (quotient(Toward::Down),quotient(Toward::Up)),
+                QuantityId::EndAction{end,component:Component::Rx,..} => {let v=lift(if end==End::I {-m}else{m}).unwrap();(v,v)},
+                // The spring's action on the structure, -k*theta = -M.
+                QuantityId::SpringAction{..} => {let v=lift(-m).unwrap();(v,v)},
+                _ => continue,
+            };
+            let (lo,hi)=lane.rows[r].endpoints();
+            assert_ne!(lo.cmp_value(&truth.0),Ordering::Greater,"{:?} lower",row.id);
+            assert_ne!(hi.cmp_value(&truth.1),Ordering::Less,"{:?} upper",row.id);
+            let mut c=WideContext::<16>::new(1024).unwrap();let mut s=ExactWideSum::new();
+            let width=sub_toward(&mut c,&mut s,hi,lo,Toward::Up).unwrap();
+            assert_ne!(width.cmp_value(&truth.1.abs().mul_pow2(-80).unwrap()),Ordering::Greater,"{:?} width",row.id);
+            checked+=1;
+        }
+        assert_eq!(checked,4);
+    }
 }

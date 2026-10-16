@@ -1,5 +1,6 @@
 import { sourceContract } from "../results/resultReader";
-import { isFreshSemanticResult, N_P1, N_REPORT, REPORT_PACKAGE_FRESH_RESULT_UNAVAILABLE, REPORT_PACKAGE_PRECISION_1_HISTORICAL } from "../results/knownSemanticLimitations";
+import { surfaceRouteRefusal } from "../results/outputPolicy";
+import { isFreshSemanticResult, N_REPORT, REPORT_PACKAGE_FRESH_RESULT_UNAVAILABLE } from "../results/knownSemanticLimitations";
 import { hasNativeMechanicsInvocation } from "../../services/previewService";
 import { analysisResultHashScope } from "../results/analysisResultHashScope";
 import type {
@@ -19,16 +20,16 @@ import { semanticLabels } from "../results/resultSemantics";
 import { buildRenderableReportInput } from "./renderableReportInput";
 import { buildStateComparisonHandoffSections } from "./stateComparisonHandoffSections";
 
-export const SOURCE_BLOCKS_REPORT_PACKAGE_UNAVAILABLE = "REPORT-PACKAGE-SOURCE-BLOCKS-UNAVAILABLE: This report package cannot preserve source-recovery evidence and signed support components. Use the supported result exports; report-package support for this method is unavailable.";
-/** T0R: the report package refuses every fresh identity until T6 (N-REPORT), and
- * precision-1 is historical only (N-P1). The method-specific reasons stay first. */
+/** T0R: the report package refuses every fresh identity until T6 (N-REPORT). The
+ * method-specific reasons stay first: B7b retired the v2 ones (physics-1,
+ * physics-source-1) with their identities, and the exact routes (pressure-1 and the
+ * composite pressure-source-1, which also carry load/reference-state results) refuse
+ * with their output-policy reason, as every other surface does. */
 export function reportPackageUnavailableReason(result: MechanicsResult | null | undefined): string | null {
   if (!result) return null;
   const route = sourceContract(result);
-  if (route === "source_blocks" || route === "physics_source") return `${SOURCE_BLOCKS_REPORT_PACKAGE_UNAVAILABLE} ${N_REPORT}`;
-  if (route === "physics") return `REPORT-PACKAGE-PHYSICS-PROJECTION-UNAVAILABLE: this report transport does not preserve exact physical evidence; use canonical result export. ${N_REPORT}`;
+  if (route === "pressure" || route === "pressure_source") return surfaceRouteRefusal(result, "report-package");
   if (route === "preview_physics" || isFreshSemanticResult(result)) return `${REPORT_PACKAGE_FRESH_RESULT_UNAVAILABLE}: ${N_REPORT}`;
-  if (route === "precision") return `${REPORT_PACKAGE_PRECISION_1_HISTORICAL}: ${N_P1}`;
   return null;
 }
 
@@ -96,27 +97,21 @@ function requireSha256(label: string, value: string): void {
 function reportSolverIdentity(result: MechanicsResult, analysisRun: AnalysisRunEnvelope, inputManifest: CurrentSessionInputManifestEvidence) {
   const manifestSolver = inputManifest.manifest.solver_basis;
   const recordedSolver = analysisRun.analysis_run.solver_version;
-  const precision = analysisRun.schema_version === "0.3.0";
-  if (!precision && (!(result.schema_version === "0.1.0" || result.schema_version === "0.2.0") ||
-    ["producer", "numerical_quality", "formulation_basis", "source_block_recovery"].some(key => Object.hasOwn(result, key)))) {
-    throw new Error("REPORT-PACKAGE-SOURCE-CONTRACT-MISMATCH");
-  }
-  // Legacy 0.1 records may lack a solver-version field; the verified manifest
-  // still supplies recorded identity. Strict records must carry both records.
-  if ((!recordedSolver && analysisRun.schema_version !== "0.1.0") ||
+  // Only a current (0.3.0) record reaches here; it must carry its recorded identity.
+  if (!recordedSolver ||
     (recordedSolver && (recordedSolver.solver_name !== manifestSolver.solver_name ||
       recordedSolver.solver_version !== manifestSolver.solver_version ||
       recordedSolver.build_ref?.ref !== manifestSolver.solver_build_ref))) {
     throw new Error("REPORT-PACKAGE-SOLVER-IDENTITY-MISMATCH: analysis record and verified manifest differ.");
   }
-  if (precision && (sourceContract(result) !== "precision" ||
+  if (sourceContract(result) !== "preview_physics" ||
     result.producer!.component_name !== manifestSolver.solver_name ||
-    result.producer!.component_version !== manifestSolver.solver_version)) {
+    result.producer!.component_version !== manifestSolver.solver_version) {
     throw new Error("REPORT-PACKAGE-SOLVER-IDENTITY-MISMATCH: recorded identity differs from the received producer.");
   }
   return {
-    solver_name: precision ? result.producer!.component_name : manifestSolver.solver_name,
-    solver_version: precision ? result.producer!.component_version : manifestSolver.solver_version,
+    solver_name: result.producer!.component_name,
+    solver_version: result.producer!.component_version,
     solver_build_ref: manifestSolver.solver_build_ref
   };
 }
@@ -221,7 +216,7 @@ type ReportPackageRequestInput = {
   ruleCheckAggregate: string | null;
 };
 
-/** Public entry: the T0R availability gate (N-REPORT / N-P1), then assembly. */
+/** Public entry: the T0R availability gate (N-REPORT), then assembly. */
 export async function buildReportPackageRequest(input: ReportPackageRequestInput) {
   const unavailable = reportPackageUnavailableReason(input.result);
   if (unavailable) throw new Error(unavailable);
@@ -245,10 +240,9 @@ export async function assembleReportPackageRequestBelowAvailabilityGate({
   if (resultHashScope === null) {
     throw new Error("REPORT-PACKAGE-ANALYSIS-VERSION-UNSUPPORTED");
   }
-  if (sourceContract(result) === "physics") {
-    throw new Error("REPORT-PACKAGE-PHYSICS-PROJECTION-UNAVAILABLE: this legacy report transport does not preserve the exact physical metadata/evidence; use canonical result export.");
-  }
-  if (analysisRun.schema_version === "0.3.0" && sourceContract(result) !== "precision") {
+  // Below the gate the strict 0.3.0 assembly reads the ordinary route as data; the
+  // public gate refuses it until T6 (N-REPORT). B1 retired precision-1, its former data.
+  if (analysisRun.schema_version === "0.3.0" && sourceContract(result) !== "preview_physics") {
     throw new Error("REPORT-PACKAGE-SOURCE-CONTRACT-MISMATCH");
   }
   await verifyCurrentSessionInputManifest(inputManifest);

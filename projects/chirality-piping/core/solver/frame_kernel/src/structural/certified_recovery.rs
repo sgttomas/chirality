@@ -322,7 +322,7 @@ fn norm_up(values: impl IntoIterator<Item = f64>) -> f64 {
             norm = if norm == 0.0 {
                 v.abs()
             } else {
-                crate::correct_norm::norm2(norm, v).next_up()
+                open_pipe_stress_correct_norm::norm2(norm, v).next_up()
             };
         }
     }
@@ -375,8 +375,8 @@ pub fn certified_magnitude(rows: &[CertifiedRow]) -> Result<CertifiedRow, Recove
 pub fn certified_group(rows: &[CertifiedRow]) -> Result<CertifiedGroup, RecoveryFailure> {
     let q = match rows {
         [a] => a.published.abs(),
-        [a, b] => crate::correct_norm::norm2(a.published, b.published),
-        [a, b, c] => crate::correct_norm::norm3(a.published, b.published, c.published),
+        [a, b] => open_pipe_stress_correct_norm::norm2(a.published, b.published),
+        [a, b, c] => open_pipe_stress_correct_norm::norm3(a.published, b.published, c.published),
         [] => 0.0,
         _ => return Err(shape("recovery group size")),
     };
@@ -387,7 +387,7 @@ pub fn certified_group(rows: &[CertifiedRow]) -> Result<CertifiedGroup, Recovery
             midpoint_norm = if midpoint_norm == 0.0 {
                 v
             } else {
-                crate::correct_norm::norm2(midpoint_norm, v).next_up()
+                open_pipe_stress_correct_norm::norm2(midpoint_norm, v).next_up()
             };
         }
     }
@@ -551,11 +551,6 @@ pub struct CertifiedMemberRecovery {
     pub sections: [[CertifiedRow; 6]; 5],
 }
 pub const CERTIFIED_SECTION_FRACTIONS: [f64; 5] = [0.0, 0.25, 0.5, 0.75, 1.0];
-/// Transitional staging: preview keeps its reviewed chord convention until
-/// B7a changes the values and their semantic statement together.
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum ArcEndFrame { Chord, Tangent }
-
 /// End axes formed at p from exact binary64 authored operands. These are the
 /// same half-angle operands used by PressureDirection::Tangent; no rounded
 /// binary64 tangent is lifted as an exact coefficient.
@@ -1036,32 +1031,15 @@ fn cross_operators(
 /// Section transfers retain O-13's ball geometry and exact equilibrium recipe.
 pub fn certify_arc_recovery(
     arc: &CurvedFormation,
-    span: &FrameElement,
     loads: &CertifiedMemberLoads,
     u: &[f64],
     bound: &MemberBoundInputs,
-    end_frame: ArcEndFrame,
 ) -> Result<CertifiedMemberRecovery, RecoveryFailure> {
     let mut a = WideArith::new(128)?;
     let matrix = curved_matrix(&mut a, arc)?;
-    let (chord_axes, _) = chord_axes(
-        &mut a,
-        span.node_i.coordinates,
-        span.node_j.coordinates,
-        span.y_reference,
-    )?;
-    let (operator, equivalent, es) = match end_frame {
-        ArcEndFrame::Chord => {
-            let operator = local_operator(&matrix, &chord_axes)?;
-            let (equivalent, es) = local_loads(loads, &chord_axes)?;
-            (operator, equivalent, es)
-        }
-        ArcEndFrame::Tangent => {
-            let mut b = Balls::new()?;
-            let axes = arc_end_axes(&mut b, arc)?;
-            tangent_end_operator_and_loads(&matrix, loads, &axes)?
-        }
-    };
+    let mut b = Balls::new()?;
+    let axes = arc_end_axes(&mut b, arc)?;
+    let (operator, equivalent, es) = tangent_end_operator_and_loads(&matrix, loads, &axes)?;
     let map = element_dof_map(arc.node_i, arc.node_j);
     let ends = evaluate_ends(&operator, &map, &equivalent, &es, u, bound)?;
     let mut b = Balls::new()?;

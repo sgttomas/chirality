@@ -123,10 +123,10 @@ pub(crate) fn refuse_legacy_joints(model: &PreviewModel, diagnostics: &mut Vec<D
     }
 }
 
-/// The annotation disclosure, on the pressure-free route only (model documents
-/// 0.1.0 and 0.2.0): the joint is analysed as the pipe it sits on.
+/// The annotation disclosure, on the pressure-free route only (a model document
+/// without a pressure contract): the joint is analysed as the pipe it sits on.
 pub(crate) fn disclose_annotation_joints(model: &PreviewModel, diagnostics: &mut Vec<Diagnostic>) {
-    if !matches!(model.schema_version.as_str(), "0.1.0" | "0.2.0") {
+    if !crate::model_format::is_pressure_free(model) {
         return;
     }
     for component in &model.components {
@@ -461,13 +461,9 @@ fn model_findings(
             "objective connector {}: hardware {} is not supported; only untied is (ties come with T4-U5)",
             spec.component_id, kind.unwrap_or("(no kind)")))),
     }
-    if model.schema_version == "0.5.0" {
-        if let Err(finding) = pressure_model(connector) {
-            findings.push(finding);
-        }
-    } else if connector.get("pressure_model").and_then(|p| text(p, "kind")) != Some("unpressurized") {
-        findings.push((PRESSURE_INTERFACE_UNRESOLVED, format!(
-            "objective connector {}: only the unpressurized pressure model is supported until T4-U5", spec.component_id)));
+    // Only current 0.5.0 exact documents reach the classifier (`ExactContract::of`).
+    if let Err(finding) = pressure_model(connector) {
+        findings.push(finding);
     }
     findings
 }
@@ -511,20 +507,14 @@ pub(crate) fn classify_connectors(model: &PreviewModel, diagnostics: &mut Vec<Di
         for (code, message) in findings {
             push(diagnostics, code, None, message);
         }
-        for case in &model.load_cases {
-            if model.schema_version != "0.5.0" && case.pressure_regions.as_ref().is_some_and(|regions| !regions.is_empty()) {
-                push(diagnostics, PRESSURE_INTERFACE_UNRESOLVED, Some(&case.id), format!(
-                    "load case {} has pressure regions, and a joint's pressure interface is not resolved until T4-U5; a pressurized model with a joint is refused", case.id));
-            }
-        }
         if span_known {
             refuse_applied_span_loads(model, &spec, diagnostics);
         }
-        if model.schema_version == "0.5.0" && !model_refused {
+        if !model_refused {
             classify_pressure_participation(model, &spec, diagnostics);
         }
     }
-    if model.schema_version == "0.5.0" {
+    {
         // Known means an actual component carrying the interface. A model
         // refusal does not turn that known connector into an unknown ID.
         let connector_ids = model.components.iter().filter(|component| component.kind=="expansion_joint" && component.objective_connector.is_some()).map(|component| component.id.as_str()).collect::<HashSet<_>>();
@@ -534,7 +524,7 @@ pub(crate) fn classify_connectors(model: &PreviewModel, diagnostics: &mut Vec<Di
                 for id in region.member_connector_ids.iter().flatten() {
                     if !connector_ids.contains(id.as_str()) || !seen.insert(id) {
                         pressure_finding(diagnostics, &case.id, region.id.as_deref().unwrap_or_default(), id,
-                            "member_connector_ids must name unique objective connectors of the model");
+                            "member_connector_ids must name unique objective connectors of the model", None);
                     }
                 }
             }
@@ -542,13 +532,19 @@ pub(crate) fn classify_connectors(model: &PreviewModel, diagnostics: &mut Vec<Di
     }
 }
 
-fn pressure_finding(diagnostics: &mut Vec<Diagnostic>, case: &str, region: &str, connector: &str, reason: &str) {
+/// `extra` names the region member the finding is about, when there is one
+/// (the listed replaced span: t4_u5a RV-03 names it).
+fn pressure_finding(diagnostics: &mut Vec<Diagnostic>, case: &str, region: &str, connector: &str, reason: &str, extra: Option<&str>) {
+    let mut refs = vec![case.to_string(), region.to_string(), connector.to_string()];
+    refs.extend(extra.map(str::to_string));
     diagnostics.push(diag(
         &format!("diagnostic:joint:{}:pressure:{}", stable_suffix(connector), stable_suffix(&format!("{case}:{region}"))),
         PRESSURE_INTERFACE_UNRESOLVED, "blocking", format!("load case {case}, region {region}, connector {connector}: {reason}"),
-        vec![case.into(), region.into(), connector.into()],
+        refs,
     ));
 }
+
+const REPLACED_SPAN_LISTED: &str = "the replaced span cannot be a member pipe of the region";
 
 fn classify_pressure_participation(model: &PreviewModel, spec: &ConnectorSpec, diagnostics: &mut Vec<Diagnostic>) {
     let arcs = super::curved_bend_realized_pipe_ids(model);
@@ -567,7 +563,7 @@ fn classify_pressure_participation(model: &PreviewModel, spec: &ConnectorSpec, d
             else if spec.pressure.is_none() { Some("an unpressurized connector cannot be a pressure-region edge") }
             else if spec.pressure.as_ref().is_some_and(|pressure| region.pressure_basis.as_deref() != Some(&pressure.pressure_basis)) { Some("joint and region pressure bases differ") }
             else if terminals.iter().any(|terminal| terminal.node_ref.as_deref().is_some_and(at_end)) { Some("a joint face cannot be a region terminal") }
-            else if members.contains(&spec.span_id) { Some("the replaced span cannot be a member pipe of the region") }
+            else if members.contains(&spec.span_id) { Some(REPLACED_SPAN_LISTED) }
             else if spec.end_i.offset_local.iter().chain(&spec.end_j.offset_local).any(|offset| *offset != 0.0) { Some("pressurized joint attachment offsets must be exactly zero") }
             else if [&spec.node_i, &spec.node_j].iter().any(|node| {
                 let faces = model.pipe_segments.iter().filter(|pipe| pipe.id != spec.span_id && (&pipe.from == *node || &pipe.to == *node)).collect::<Vec<_>>();
@@ -575,36 +571,21 @@ fn classify_pressure_participation(model: &PreviewModel, spec: &ConnectorSpec, d
                     || connector_specs(model).iter().any(|other| other.component_id != spec.component_id && (&other.node_i == *node || &other.node_j == *node))
             }) { Some("each joint face must meet exactly one straight member pipe of the same region") }
             else { None };
-            if let Some(reason) = reason { pressure_finding(diagnostics, &case.id, region.id.as_deref().unwrap_or_default(), &spec.component_id, reason); }
+            let extra = (reason == Some(REPLACED_SPAN_LISTED)).then_some(spec.span_id.as_str());
+            if let Some(reason) = reason { pressure_finding(diagnostics, &case.id, region.id.as_deref().unwrap_or_default(), &spec.component_id, reason, extra); }
         }
     }
 }
 
-/// Authoring validates the new fields only on 0.5.0, without activating a
-/// solve profile. The strict public mechanics decoder continues to refuse
-/// member_connector_ids until B7b; this adapter constructs internal inputs.
+/// Current authoring uses the same canonical decoder as public mechanics.
 pub fn authoring_findings(value: &Value) -> Result<Vec<Diagnostic>, String> {
-    let mut input = value.clone();
-    let current = input["schema_version"] == "0.5.0";
-    let exact = input["pressure_contract"]["version"]=="3.0.0" && input["pressure_contract"]["mode"]=="exact_pressure_v3";
-    let new_model=input["components"].as_array().into_iter().flatten().any(|component|component["objective_connector"]["pressure_model"]["kind"]=="constant_effective_area_reference_v1");
-    if new_model && (!current || !exact) {return Err("JOINT_PRESSURE_INTERFACE_UNRESOLVED: constant_effective_area_reference_v1 requires model 0.5.0 with 3.0.0/exact_pressure_v3".into());}
-    let mut memberships = Vec::new();
-    for case in input["load_cases"].as_array_mut().ok_or("load_cases must be an array")? {
-        let mut regions = Vec::new();
-        for region in case["pressure_regions"].as_array_mut().into_iter().flatten() {
-            let membership = region.as_object_mut().ok_or("pressure region must be an object")?.remove("member_connector_ids");
-            if membership.is_some() && (!current || !exact) { return Err("JOINT_PRESSURE_INTERFACE_UNRESOLVED: member_connector_ids requires model 0.5.0 with 3.0.0/exact_pressure_v3".into()); }
-            regions.push(membership.map(serde_json::from_value::<Vec<String>>).transpose().map_err(|error|error.to_string())?);
-        }
-        memberships.push(regions);
-    }
-    let mut model: PreviewModel = serde_json::from_value(input).map_err(|error|error.to_string())?;
-    for (case,memberships) in model.load_cases.iter_mut().zip(memberships) {
-        for (region,membership) in case.pressure_regions.iter_mut().flatten().zip(memberships) { region.member_connector_ids=membership; }
+    let model: PreviewModel = serde_json::from_value(value.clone()).map_err(|error| error.to_string())?;
+    if model.schema_version != crate::MODEL_SCHEMA_VERSION
+        || super::exact_admission::ExactContract::of(&model).is_none() {
+        return Err("JOINT_PRESSURE_INTERFACE_UNRESOLVED: joint pressure authoring requires current model 0.5.0 with 3.0.0/exact_pressure_v3".into());
     }
     let mut diagnostics = Vec::new();
-    classify_connectors(&model,&mut diagnostics);
+    classify_connectors(&model, &mut diagnostics);
     Ok(diagnostics)
 }
 

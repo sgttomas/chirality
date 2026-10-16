@@ -1,6 +1,8 @@
-"""Versioned analysis-record compatibility and strict 0.2 construction.
+"""The analysis-run record builder and validator (DEL-14-02): 0.3.0 only.
 
-The analysis-run record builder and validator (DEL-14-02). Every reading of a result
+One current record version is kept (b7-plan E1). A saved 0.1.0 or 0.2.0 record is
+refused by name (`ANALYSIS_RUN_SCHEMA_VERSION_RETIRED`; re-run the analysis), and a
+result that no current record contract reads is refused for recording. Every reading of a result
 statement here is the Rust product reader's verdict (b7-plan R1, R2), taken through
 `rust_reader` (`openpipestress-runner read`): the header dispatch and each route's reader
 (`_source_contract`), standing, classification summary and rule binding. Nothing here
@@ -17,19 +19,20 @@ from typing import Any, Callable, Mapping
 from core.serialization.canonical_json.adapter import canonical_json_checked_v1, canonical_sha256_checked_v1
 from . import rust_reader
 
-SCHEMA_VERSION = "0.2.0"
+SCHEMA_VERSION = "0.3.0"
+# Analysis-run versions that are no longer read or written; refused by name.
+RETIRED_SCHEMA_VERSIONS = frozenset({"0.1.0", "0.2.0"})
+ANALYSIS_RUN_SCHEMA_VERSION_RETIRED = "ANALYSIS_RUN_SCHEMA_VERSION_RETIRED"
 PROFILE = "openpipestress_jcs_ijson_v1"
-SEMANTIC_CONTRACT_SHA256 = "4d6886d19e304db897e5e9f8f0054cbee91ba7795868f9698e2bbe070bde94da"
-SEMANTIC_CONTRACT_ID = "openpipestress_result_semantics_v0_2"
-_CONTRACT_PATH = Path(__file__).resolve().parents[2] / "fixtures" / "results" / "semantic_contract_v0_2.json"
+_RESULTS_DIR = Path(__file__).resolve().parents[2] / "fixtures" / "results"
 
 
-def _semantic_rows(path: Path = _CONTRACT_PATH) -> list[dict[str, Any]]:
+def _semantic_rows(path: Path) -> list[dict[str, Any]]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     return payload["rows"]
 
 
-def _semantic(row: Mapping[str, Any], path: Path = _CONTRACT_PATH) -> tuple[dict[str, Any] | None, list[str]]:
+def _semantic(row: Mapping[str, Any], path: Path) -> tuple[dict[str, Any] | None, list[str]]:
     kind = str(row.get("kind", ""))
     unit = str(row.get("unit", ""))
     candidates = [entry for entry in _semantic_rows(path) if entry["kind"] == kind]
@@ -85,20 +88,11 @@ def _build_analysis_run(
     solver_name: str = "unavailable:not-supplied", solver_version: str = "unavailable:not-supplied",
     solver_build_ref: Mapping[str, str] | None = None, settings_ref: Mapping[str, str] | None = None,
     unit_system_ref: Mapping[str, str] | None = None,
-    record_version: str = "0.2.0",
 ) -> dict[str, Any]:
     received = deepcopy(dict(mechanics_result))
-    if record_version == "0.2.0":
-        if any(key in received for key in ("producer", "numerical_quality", "formulation_basis", "contract_evidence", "source_block_recovery", "retained_precision")) or _has_retained_rows(received):
-            raise ValueError("ANALYSIS_LEGACY_SOURCE_DOWNGRADE_FORBIDDEN")
-        source_version = received.get("schema_version")
-        if type(source_version) is not str or source_version not in ("0.1.0", "0.2.0"):
-            raise ValueError("ANALYSIS_LEGACY_SOURCE_VERSION_UNSUPPORTED")
-        contract_id, contract_hash, contract_path = SEMANTIC_CONTRACT_ID, SEMANTIC_CONTRACT_SHA256, _CONTRACT_PATH
-    else:
-        contract_id, contract_hash, contract_path = _source_contract(received)
-        if contract_id not in CURRENT_RECORD_CONTRACT_IDS:
-            raise ValueError("ANALYSIS_SOURCE_CONTRACT_VERSION_MISMATCH")
+    contract_id, contract_hash, contract_path = _source_contract(received)
+    if contract_id not in CURRENT_RECORD_CONTRACT_IDS:
+        raise ValueError("ANALYSIS_SOURCE_CONTRACT_VERSION_MISMATCH")
     run_id = str(received.get("run_id", "run:unknown"))
     rows = [deepcopy(dict(row)) for row in received.get("results", []) if isinstance(row, Mapping)]
     refs = []
@@ -149,13 +143,13 @@ def _build_analysis_run(
         if key not in seen_basis:
             seen_basis.add(key)
             load_basis_refs.append({"object_type": object_type, "ref": str(basis.get("ref_id"))})
-    provenance = {"source_name": f"OpenPipeStress analysis record {record_version[:-2]}", "source_location": f"analysis_run.compatibility.v{record_version[:-2]}", "source_license": "project-governed", "review_status": "pending", "professional_claim": False}
+    provenance = {"source_name": "OpenPipeStress analysis record 0.3", "source_location": "analysis_run.compatibility.v0.3", "source_license": "project-governed", "review_status": "pending", "professional_claim": False}
     determinism_notes = (["created_at_unavailable"] if created_at is None else []) + (["model_state_ref_and_solver_settings_unit_basis_bound_by_input_manifest"] if manifest is not None else ["input_manifest_payload_unavailable_solver_settings_unit_basis_not_independently_verified"])
     for row in refs:
         row["provenance"] = deepcopy(provenance)
     envelope: dict[str, Any] = {
-        "schema_version": record_version, "deliverable_id": "DEL-14-02", "package_id": "PKG-14", "scope_item": "SOW-072", "objectives": ["OBJ-016"],
-        "run_contract_status": {"record_contract": "strict_analysis_run_v0_3" if record_version == "0.3.0" else "strict_analysis_run_v0_2", "result_binding": "received_mechanics_result", "external_validation_boundary": "reference_only_not_determined_by_software"},
+        "schema_version": SCHEMA_VERSION, "deliverable_id": "DEL-14-02", "package_id": "PKG-14", "scope_item": "SOW-072", "objectives": ["OBJ-016"],
+        "run_contract_status": {"record_contract": "strict_analysis_run_v0_3", "result_binding": "received_mechanics_result", "external_validation_boundary": "reference_only_not_determined_by_software"},
         "analysis_run": {
             "run_id": run_id, "run_name": f"{run_id} analysis record", "run_kind": "mechanics_solve", "created_at": created_at,
             "model_state_ref": {"object_type": "ModelState", "ref": f"state:{received.get('model_ref', 'unknown')}:preview"},
@@ -169,9 +163,8 @@ def _build_analysis_run(
             "provenance": provenance,
         },
     }
-    if contract_id in {SOURCE_BLOCKS_CONTRACT_ID, PHYSICS_SOURCE_CONTRACT_ID, LOAD_REFERENCE_SOURCE_CONTRACT_ID}:
+    if contract_id in SOURCE_RECORD_CONTRACT_IDS:
         envelope["analysis_run"]["source_block_recovery"] = deepcopy(received["source_block_recovery"])
-    if contract_id in {PHYSICS_SOURCE_CONTRACT_ID, LOAD_REFERENCE_SOURCE_CONTRACT_ID}:
         envelope["analysis_run"]["contract_evidence"] = deepcopy(received["contract_evidence"])
     # C1:162; D2 4.9.6: the successor's AnalysisRun carries its complete receipt (B3b: either successor).
     if contract_id in RETAINED_CONTRACTS:
@@ -182,9 +175,9 @@ def _build_analysis_run(
 
 def verify_analysis_run_record(envelope: Mapping[str, Any], hash_fn: Callable[[Any], str] = canonical_sha256_checked_v1) -> str:
     version = envelope.get("schema_version")
-    if version not in {SCHEMA_VERSION, "0.3.0"}:
-        if version == "0.1.0":
-            return "unverifiable"
+    if version != SCHEMA_VERSION:
+        if isinstance(version, str) and version in RETIRED_SCHEMA_VERSIONS:
+            raise ValueError(f"{ANALYSIS_RUN_SCHEMA_VERSION_RETIRED}: analysis-run {version} is no longer read; re-run the analysis to record a current {SCHEMA_VERSION} analysis run")
         raise ValueError(f"ANALYSIS-RUN-SCHEMA-VERSION-UNSUPPORTED: {version}")
     matches = [row for row in envelope["analysis_run"]["hashes"] if row.get("payload_scope") == "analysis_run_record"]
     if len(matches) != 1:
@@ -196,49 +189,35 @@ def verify_analysis_run_record(envelope: Mapping[str, Any], hash_fn: Callable[[A
     return "match" if claim.get("value") == hash_fn(analysis_record_projection(envelope)) else "mismatch"
 
 
-PRECISION_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/precision-1"
-PRECISION_CONTRACT_SHA256 = "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e"
-_PRECISION_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_precision_1.json")
-PHYSICS_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/physics-1"
-PHYSICS_CONTRACT_SHA256 = "9a2cf6268b57bd5265a1a115497c07450819dd4d03cd5ab618097bd9d19da8cc"
-_PHYSICS_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_physics_1.json")
-SOURCE_BLOCKS_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/source-blocks-1"
-SOURCE_BLOCKS_CONTRACT_SHA256 = "5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f"
-_SOURCE_BLOCKS_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_source_blocks_1.json")
-PHYSICS_SOURCE_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/physics-source-1"
-PHYSICS_SOURCE_CONTRACT_SHA256 = "ba13f2aefd7a38bd725e5f111e6ec30144bc8776aa957c6278ee7b1178298ba1"
-_PHYSICS_SOURCE_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_physics_source_1.json")
-# Resolved load/reference-state method: one table, one profile; the AnalysisRun
-# record mirrors physics-1 and carries no contract_evidence.
-LOAD_REFERENCE_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/load-reference-1"
-LOAD_REFERENCE_CONTRACT_SHA256 = "44bc41c06f589fab6ce931ac0eaa5344765ff64fd5f880cc2dd69ecb839c4f4d"
-_LOAD_REFERENCE_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_load_reference_1.json")
-LOAD_REFERENCE_PROFILE = "resolved_straight_load_state_v1"
-# Joined load/reference-state method (retained-source receipt required): one
-# table, one profile, one receipt policy. The AnalysisRun record mirrors
-# physics-source-1 and carries source_block_recovery and contract_evidence.
-LOAD_REFERENCE_SOURCE_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/load-reference-source-1"
-LOAD_REFERENCE_SOURCE_CONTRACT_SHA256 = "d1628194a7730f427843b00228dd233cf92b8e7d26f3bc31c660a3ea59e28337"
-_LOAD_REFERENCE_SOURCE_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_load_reference_source_1.json")
-LOAD_REFERENCE_SOURCE_PROFILE = "resolved_straight_load_state_source_v1"
-# pressure-1 (3.0.0/exact_pressure_v3): read only by the Rust reader's own route (`reader_verdict`, "pressure").
+# B7b (A4/A5): the current exact contract is `3.0.0/exact_pressure_v3` only. Its two identities take over the retired
+# v2 identities' product capabilities (physics-1, physics-source-1, load-reference-1, load-reference-source-1, which
+# the Rust reader refuses by name: SOURCE_EXACT_PRESSURE_V2_RETIRED). Rows are interpreted lazily per record, as every
+# DEL-14-02 table is; no additional resident row table is held here.
+# pressure-source-1: the retained-source composite (receipt required); its record carries source_block_recovery and
+# contract_evidence.
+PRESSURE_SOURCE_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/pressure-source-1"
+PRESSURE_SOURCE_CONTRACT_SHA256 = "dec4f4e7af6f60cf5615facc1b1ff11c8d5df5b3907fc28d922d661672383435"
+_PRESSURE_SOURCE_CONTRACT_PATH = _RESULTS_DIR / "semantic_contract_v0_3_pressure_source_1.json"
+# pressure-1: the ordinary exact route (a load/reference-state model publishes it with
+# contract_evidence.load_reference_states). Its record carries neither source_block_recovery nor contract_evidence.
 PRESSURE_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/pressure-1"
-PRESSURE_CONTRACT_SHA256 = "2ff945ac9e4360984f300fcfaaa4c5890bac7797f94fe70f82f9f8a1e1f89af1"
-_PRESSURE_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_pressure_1.json")
+PRESSURE_CONTRACT_SHA256 = "a4e3bf2cfb7e0b3fa84a564cde03545cefafda903c34f4dd6a526fa0be982375"
+_PRESSURE_CONTRACT_PATH = _RESULTS_DIR / "semantic_contract_v0_3_pressure_1.json"
 PREVIEW_PHYSICS_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/preview-physics-1"
-PREVIEW_PHYSICS_CONTRACT_SHA256 = "ac522c1ee0c771ae1e3dc72facfe3e75a8f0b01009075c997658eae50e9bb60c"
-_PREVIEW_PHYSICS_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_preview_physics_1.json")
+PREVIEW_PHYSICS_CONTRACT_SHA256 = "e89312bb5090d05f90da715e097f32f47d9a8d29f3f2eee55a4f38eca4d20f32"
+_PREVIEW_PHYSICS_CONTRACT_PATH = _RESULTS_DIR / "semantic_contract_v0_3_preview_physics_1.json"
 # U6b (D-U6-6; D2 4.7 S-1, 4.9.6): the F2a preview successor. Its statements are
 # checked only by the accepted reader (`retained_precision`), and its standing
 # comes only from that reader's verified receipt (D1 5 item 3).
 PREVIEW_PHYSICS_RETAINED_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/preview-physics-retained-1"
-PREVIEW_PHYSICS_RETAINED_CONTRACT_SHA256 = "7cff3e9fe0c29a5b34d1762662e71ad58f00bb2993e9a3f1893323c0d64161e0"
-_PREVIEW_PHYSICS_RETAINED_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_preview_physics_retained_1.json")
-# B3b (B3-D §2, §6.1): the exact successor over physics-1. As the preview successor, its statements are checked
-# only by the accepted reader, which dispatches on this identity, and its standing comes only from that reader.
+PREVIEW_PHYSICS_RETAINED_CONTRACT_SHA256 = "930535a544aedb3c6eb5dea60c59e617dd609f41c1386d9cf9c7c401b9c531f1"
+_PREVIEW_PHYSICS_RETAINED_CONTRACT_PATH = _RESULTS_DIR / "semantic_contract_v0_3_preview_physics_retained_1.json"
+# B3b (B3-D §2, §6.1): the exact successor, whose base is pressure-1 since B7b D4 (a). As the preview successor, its
+# statements are checked only by the accepted reader, which dispatches on this identity, and its standing comes only
+# from that reader.
 PHYSICS_RETAINED_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/physics-retained-1"
-PHYSICS_RETAINED_CONTRACT_SHA256 = "c4987e874889645ac315b5f55f58690082ad5e7745527f20e3e316efa3e70a3d"
-_PHYSICS_RETAINED_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_physics_retained_1.json")
+PHYSICS_RETAINED_CONTRACT_SHA256 = "695812491aec03b97def5013c5ea2461cb2a0e1f1f25b24c18ad1c9b6beee574"
+_PHYSICS_RETAINED_CONTRACT_PATH = _RESULTS_DIR / "semantic_contract_v0_3_physics_retained_1.json"
 RETAINED_CONTRACTS = {PREVIEW_PHYSICS_RETAINED_CONTRACT_ID: (PREVIEW_PHYSICS_RETAINED_CONTRACT_SHA256, _PREVIEW_PHYSICS_RETAINED_CONTRACT_PATH),
                       PHYSICS_RETAINED_CONTRACT_ID: (PHYSICS_RETAINED_CONTRACT_SHA256, _PHYSICS_RETAINED_CONTRACT_PATH)}
 RETAINED_METHOD = "contribution_preserving_multiprecision_v1"
@@ -247,42 +226,27 @@ ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH = "ANALYSIS_RETAINED_PRECISION_RECE
 ANALYSIS_RETAINED_PRECISION_DOWNGRADE_FORBIDDEN = "ANALYSIS_RETAINED_PRECISION_DOWNGRADE_FORBIDDEN"
 RULE_QUANTITY_BELOW_VERIFIED_FLOOR = "RULE_QUANTITY_BELOW_VERIFIED_FLOOR"
 RULE_QUANTITY_NOT_COVERED = "RULE_QUANTITY_NOT_COVERED"
-# Static fresh-publication identities (S1 §10); no route predicate. T1 added its
-# load-reference identities here on activation.
-FRESH_CONTRACT_IDS = frozenset({PREVIEW_PHYSICS_CONTRACT_ID, SOURCE_BLOCKS_CONTRACT_ID, PHYSICS_CONTRACT_ID, PHYSICS_SOURCE_CONTRACT_ID,
-                                # T1 activation (DESIGN 10.3, SF-4): 0.4.0 exact-route identities only.
-                                LOAD_REFERENCE_CONTRACT_ID, LOAD_REFERENCE_SOURCE_CONTRACT_ID,
+# Static fresh-publication identities (S1 §10; Rust `FRESH_IDENTITIES`); no route predicate.
+FRESH_CONTRACT_IDS = frozenset({PREVIEW_PHYSICS_CONTRACT_ID, PRESSURE_SOURCE_CONTRACT_ID,
+                                # T4-U2: pressure-1 (`3.0.0/exact_pressure_v3`).
+                                PRESSURE_CONTRACT_ID,
                                 # U6b (D-U6-6): membership is not standing.
                                 PREVIEW_PHYSICS_RETAINED_CONTRACT_ID})
-# Every current-record identity, which the 0.3 AnalysisRun builder and validator admit.
-CURRENT_RECORD_CONTRACT_IDS = frozenset({PRECISION_CONTRACT_ID, PHYSICS_CONTRACT_ID, SOURCE_BLOCKS_CONTRACT_ID, PHYSICS_SOURCE_CONTRACT_ID,
-                                         PREVIEW_PHYSICS_CONTRACT_ID, LOAD_REFERENCE_CONTRACT_ID, LOAD_REFERENCE_SOURCE_CONTRACT_ID,
+# Every current-record identity, which the 0.3 AnalysisRun builder and validator admit (B7b: pressure-1 and
+# pressure-source-1 in place of the retired v2 identities).
+CURRENT_RECORD_CONTRACT_IDS = frozenset({PRESSURE_CONTRACT_ID, PRESSURE_SOURCE_CONTRACT_ID, PREVIEW_PHYSICS_CONTRACT_ID,
                                          PREVIEW_PHYSICS_RETAINED_CONTRACT_ID, PHYSICS_RETAINED_CONTRACT_ID})
-PRECISION_1_HISTORICAL_SEMANTICS = "PRECISION_1_HISTORICAL_SEMANTICS"
-SOURCE_BLOCKS_ORDINARY_CASE_LEGACY_SEMANTICS = "SOURCE_BLOCKS_ORDINARY_CASE_LEGACY_SEMANTICS"
-RULE_SOURCE_BLOCKS_SUMMARY_NOT_RELIABLE = "RULE_SOURCE_BLOCKS_SUMMARY_NOT_RELIABLE"
-
+# The identities whose record carries the received source_block_recovery and contract_evidence.
+SOURCE_RECORD_CONTRACT_IDS = frozenset({PRESSURE_SOURCE_CONTRACT_ID})
 
 
 # The members a carrier keeps of a statement: what a transport reading reads.
 _TRANSPORTED = ("schema_version", "producer", "numerical_quality", "formulation_basis", "contract_evidence", "source_block_recovery", "carrier_evidence")
 # Each table a route binds, by identity: the reader's binding `{id, sha256}` must name one of these.
-_TABLES = {PRECISION_CONTRACT_ID: (PRECISION_CONTRACT_SHA256, _PRECISION_CONTRACT_PATH),
-           PHYSICS_CONTRACT_ID: (PHYSICS_CONTRACT_SHA256, _PHYSICS_CONTRACT_PATH),
-           SOURCE_BLOCKS_CONTRACT_ID: (SOURCE_BLOCKS_CONTRACT_SHA256, _SOURCE_BLOCKS_CONTRACT_PATH),
-           PHYSICS_SOURCE_CONTRACT_ID: (PHYSICS_SOURCE_CONTRACT_SHA256, _PHYSICS_SOURCE_CONTRACT_PATH),
+_TABLES = {PRESSURE_SOURCE_CONTRACT_ID: (PRESSURE_SOURCE_CONTRACT_SHA256, _PRESSURE_SOURCE_CONTRACT_PATH),
            PREVIEW_PHYSICS_CONTRACT_ID: (PREVIEW_PHYSICS_CONTRACT_SHA256, _PREVIEW_PHYSICS_CONTRACT_PATH),
-           LOAD_REFERENCE_CONTRACT_ID: (LOAD_REFERENCE_CONTRACT_SHA256, _LOAD_REFERENCE_CONTRACT_PATH),
-           LOAD_REFERENCE_SOURCE_CONTRACT_ID: (LOAD_REFERENCE_SOURCE_CONTRACT_SHA256, _LOAD_REFERENCE_SOURCE_CONTRACT_PATH),
            PRESSURE_CONTRACT_ID: (PRESSURE_CONTRACT_SHA256, _PRESSURE_CONTRACT_PATH),
            **RETAINED_CONTRACTS}
-
-
-def _has_retained_rows(source: Any) -> bool:
-    """F-5 (C1 G6): some raw row carries the W1 method token. The legacy 0.2
-    builder refuses such a source before any reading."""
-    rows = source.get("results") if isinstance(source, Mapping) else None
-    return isinstance(rows, list) and any(isinstance(row, Mapping) and row.get("recovery_method") == RETAINED_METHOD for row in rows)
 
 
 def _same_canonical(a: Any, b: Any) -> bool:
@@ -346,7 +310,9 @@ def _source_contract(source: Mapping[str, Any], *, check_receipt: bool = True) -
 
     A successor goes to the retained reader (R1). Every other statement takes the Rust header
     dispatch (`reader_verdict::dispatch`, b7-plan R2 G5), then its route's reader: the raw
-    validation (`check_receipt`), or the transport checks of a statement without raw rows.
+    validation (`check_receipt`), or the transport checks of a statement without raw rows. A
+    stored v2 result is refused by the header (`SOURCE_EXACT_PRESSURE_V2_RETIRED`), and pressure-1
+    has no transport reader (Rust refuses it by name, `SOURCE_PRESSURE_TRANSPORT_UNSUPPORTED`).
     Interpretation dispatch does not authenticate a producer or qualify Current."""
     if _is_retained(source):
         return _retained_contract(source, check_receipt=check_receipt)
@@ -370,8 +336,6 @@ def _source_contract(source: Mapping[str, Any], *, check_receipt: bool = True) -
                 rust_reader.transport(reader, source)
         except rust_reader.ReaderRefusal as refusal:
             raise _refused(refusal) from refusal
-    if route == "legacy":
-        return SEMANTIC_CONTRACT_ID, SEMANTIC_CONTRACT_SHA256, _CONTRACT_PATH
     binding = verdict["binding"]
     table = _TABLES.get(binding["id"])
     if table is None or table[0] != binding["sha256"]:
@@ -426,20 +390,10 @@ def is_fresh_contract_id(contract_id: Any) -> bool:
 def rule_binding_refusal(envelope: Mapping[str, Any], row: Mapping[str, Any]) -> str | None:
     """The Rust reader's ``semantic_contract::rule_binding_refusal`` (S1 §10; D2 4.9.9).
 
-    A non-composite source-blocks-1 summary stress is an absolute sum, not the
-    circular-section maximum, so no rule may bind to it until T3; a successor row
-    binds only as its validated class allows. A statement that is not JSON is refused
+    A successor row binds only as its validated class allows. A statement that is not JSON is refused
     (ValueError or TypeError): no reader reads it, so no row of it is bound.
     """
     return rust_reader.rule_binding(envelope, row)
-
-
-def build_analysis_run_v0_2(mechanics_result: Mapping[str, Any], **kwargs: Any) -> dict[str, Any]:
-    """Explicit historical construction; includes original synthetic fixture meanings.
-
-    Excluded from current source dispatch and refuses precision metadata.
-    """
-    return _build_analysis_run(mechanics_result, record_version="0.2.0", **kwargs)
 
 
 RULE_STATUSES = {"RULE_INPUTS_INCOMPLETE", "USER_RULE_CHECKED", "USER_RULE_FAILED"}
@@ -495,7 +449,8 @@ def _expected_load_basis(source: Mapping[str, Any], expected_basis_refs: list[Ma
 
 def build_analysis_run_v0_3(mechanics_result: Mapping[str, Any], *, expected_basis_refs: list[Mapping[str, str]] | None = None, **kwargs: Any) -> dict[str, Any]:
     """Strict source-bound 0.3 record; optional basis is independent evidence."""
-    _source_contract(mechanics_result)
+    if _source_contract(mechanics_result)[0] not in CURRENT_RECORD_CONTRACT_IDS:
+        raise ValueError("ANALYSIS_SOURCE_CONTRACT_VERSION_MISMATCH")
     _validate_source_reference_fields(mechanics_result)
     producer = mechanics_result["producer"]
     kwargs.setdefault("solver_name", producer["component_name"])
@@ -508,7 +463,7 @@ def build_analysis_run_v0_3(mechanics_result: Mapping[str, Any], *, expected_bas
     if not isinstance(effective_rule, str) or effective_rule not in RULE_STATUSES:
         raise ValueError("ANALYSIS_RULE_STATUS_INVALID")
     kwargs["rule_check_status"] = effective_rule
-    record = _build_analysis_run(mechanics_result, record_version="0.3.0", **kwargs)
+    record = _build_analysis_run(mechanics_result, **kwargs)
     record["analysis_run"]["load_basis_refs"] = _expected_load_basis(mechanics_result, expected_basis_refs)
     hash_fn = kwargs.get("hash_fn", canonical_sha256_checked_v1)
     record["analysis_run"]["hashes"][0]["value"] = hash_fn(analysis_record_projection(record))
@@ -517,8 +472,10 @@ def build_analysis_run_v0_3(mechanics_result: Mapping[str, Any], *, expected_bas
 
 
 def build_analysis_run(mechanics_result: Mapping[str, Any], **kwargs: Any) -> dict[str, Any]:
-    contract, _, _ = _source_contract(mechanics_result)
-    return build_analysis_run_v0_3(mechanics_result, **kwargs) if contract in CURRENT_RECORD_CONTRACT_IDS else build_analysis_run_v0_2(mechanics_result, **kwargs)
+    """The current (0.3.0) record; a result no current record contract reads is
+    refused (`ANALYSIS_SOURCE_CONTRACT_VERSION_MISMATCH`), never recorded in an
+    older format."""
+    return build_analysis_run_v0_3(mechanics_result, **kwargs)
 
 
 def validate_analysis_run_v0_3(envelope: Mapping[str, Any], source: Mapping[str, Any], *, hash_fn: Callable[[Any], str] = canonical_sha256_checked_v1, expected_basis_refs: list[Mapping[str, str]] | None = None) -> None:
@@ -531,12 +488,12 @@ def validate_analysis_run_v0_3(envelope: Mapping[str, Any], source: Mapping[str,
     if contract_id not in CURRENT_RECORD_CONTRACT_IDS or envelope.get("schema_version") != "0.3.0" or envelope.get("run_contract_status", {}).get("record_contract") != "strict_analysis_run_v0_3":
         raise ValueError("ANALYSIS_SOURCE_CONTRACT_VERSION_MISMATCH")
     run = envelope.get("analysis_run", {})
-    if contract_id in {SOURCE_BLOCKS_CONTRACT_ID, PHYSICS_SOURCE_CONTRACT_ID, LOAD_REFERENCE_SOURCE_CONTRACT_ID}:
+    if contract_id in SOURCE_RECORD_CONTRACT_IDS:
         if not _same_canonical(run.get("source_block_recovery"), source["source_block_recovery"]):
             raise ValueError("ANALYSIS_SOURCE_BLOCK_RECEIPT_MISMATCH")
     elif "source_block_recovery" in run:
-        raise ValueError("SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN")
-    if contract_id in {PHYSICS_SOURCE_CONTRACT_ID, LOAD_REFERENCE_SOURCE_CONTRACT_ID}:
+        raise ValueError("SOURCE_BLOCKS_DOWNGRADE_FORBIDDEN")
+    if contract_id in SOURCE_RECORD_CONTRACT_IDS:
         if not _same_canonical(run.get("contract_evidence"), source["contract_evidence"]):
             raise ValueError("ANALYSIS_PHYSICS_SOURCE_EVIDENCE_MISMATCH")
     elif "contract_evidence" in run:

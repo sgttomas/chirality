@@ -1,15 +1,24 @@
-"""Actual composite producer records and rehashed adversarial copies; no native witness."""
+"""Actual composite producer records and rehashed adversarial copies; no native witness.
+
+B7b (A4/A5): the composite is pressure-source-1 (`3.0.0/exact_pressure_v3`, policy PRESSURE-SOURCE-1, case domain
+`pressure_source_case_evidence_v1`) over the v3 producer twins; the retired physics-source-1 is not read.
+"""
 from copy import deepcopy
 from pathlib import Path
 import hashlib
 import json
+import math
+import struct
+import sys
 import pytest
 from tests.verifiers import physics_source as composite
-from tests.verifiers.physics_evidence import validate_physics_evidence, validate_transport_metadata as physics_transport
-from tests.verifiers.source_blocks import validate_source_blocks, domain_hash, _signature
+from tests.verifiers.physics_evidence import validate_transport_metadata as physics_transport
+from tests.verifiers.pressure_1 import validate_pressure_evidence
+from tests.verifiers.source_blocks import domain_hash, _derived, _signature
 
 ROOT = Path(__file__).resolve().parents[1]
-FIXTURES = ROOT / "fixtures/product_preview/physics_source"
+FIXTURES = ROOT / "fixtures/product_preview/pressure_source/physics_source"
+CASE_DOMAIN = composite.SourceContract.PRESSURE_V3.case_domain
 
 
 def actual(name="n05", mode="sparse_interactive"):
@@ -26,7 +35,7 @@ def reseal_negative(source, invocation=None):
     for record in body["cases"]:
         physical = next(c for c in source["contract_evidence"]["exact_cases"] if c["load_case_id"] == record["basis_ref"]["ref_id"])
         pressure = [p for p in source["contract_evidence"]["pressure"] if p["load_case_id"] == physical["load_case_id"]]
-        record["physical_evidence_sha256"] = domain_hash("physics_source_case_evidence_v1", {"exact_case":physical,"pressure":pressure})
+        record["physical_evidence_sha256"] = domain_hash(CASE_DOMAIN, {"exact_case":physical,"pressure":pressure})
     body["publication_sha256"] = domain_hash("source_blocks_publication_v1", {k:v for k,v in source.items() if k != "source_block_recovery"})
     receipt["receipt_sha256"] = domain_hash("source_blocks_receipt_v1",body)
 
@@ -38,7 +47,7 @@ def test_actual_producer_requires_original_full_invocation(name, mode):
     original = deepcopy(source)
     assert composite.validate_physics_source(source, invocation)
     assert composite.validate_physics_source(source) is False
-    composite.validate_transport_metadata({"contract_evidence":source["contract_evidence"], "source_block_recovery":source["source_block_recovery"]})
+    composite.validate_transport_metadata({key: source[key] for key in ("producer", "formulation_basis", "contract_evidence", "source_block_recovery")})
     assert source == original
     altered = deepcopy(invocation)
     altered["request"]["accepted_unknown_field"] = False
@@ -50,34 +59,40 @@ def test_actual_producer_requires_original_full_invocation(name, mode):
         composite.validate_physics_source(source, altered)
 
 
-def test_previous_three_table_identities_remain_frozen():
-    expected={"precision_1":"d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e", "source_blocks_1":"5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f"}
-    from core.analysis_runs.compatibility import PHYSICS_CONTRACT_SHA256
-    expected["physics_1"]=PHYSICS_CONTRACT_SHA256
+def test_current_table_identities_remain_pinned():
+    # B1 deleted precision-1's table, B4/D1 (b) source-blocks-1's and B7b the v2 tables; the composite's own
+    # current table and the ordinary pressure-1 table stay pinned, each resident on its own.
+    for retired in ("precision_1", "source_blocks_1", "physics_1", "physics_source_1", "load_reference_1", "load_reference_source_1"):
+        assert not (ROOT/f"fixtures/results/semantic_contract_v0_3_{retired}.json").exists()
+    from core.analysis_runs.compatibility import PRESSURE_CONTRACT_SHA256, PRESSURE_SOURCE_CONTRACT_SHA256
+    expected={"pressure_source_1":PRESSURE_SOURCE_CONTRACT_SHA256, "pressure_1":PRESSURE_CONTRACT_SHA256}
     for name,digest in expected.items():
         assert hashlib.sha256((ROOT/f"fixtures/results/semantic_contract_v0_3_{name}.json").read_bytes()).hexdigest()==digest
+    assert composite.PRESSURE_TABLE_SHA256==PRESSURE_SOURCE_CONTRACT_SHA256
+    assert composite.pressure_source_table()["source_block_policy"]=="PRESSURE-SOURCE-1"
 
 
 def test_maximum_basis_is_a_signature_discriminator_only():
     source,_=actual()
     row=deepcopy(next(r for r in source["results"] if r["kind"]=="pipe_elastic_normal_stress_maximum_v2"))
-    exact=_signature(row,composite)
+    exact=_signature(row,composite.SourceContract.PRESSURE_V3)
     assert exact["source_basis"]==composite.MAX_BASIS
     row["metadata"]["basis"]="recovered_from_open_mechanics_stress_components"
-    ordinary=_signature(row,composite)
+    ordinary=_signature(row,composite.SourceContract.PRESSURE_V3)
     assert ordinary["signature_id"]!=exact["signature_id"]
     for basis in [None,"invented"]:
         if basis is None:row["metadata"].pop("basis")
         else:row["metadata"]["basis"]=basis
-        assert _signature(row,composite) is None
+        assert _signature(row,composite.SourceContract.PRESSURE_V3) is None
 
 
-def test_old_method_entrypoints_refuse_composite_and_cross_namespace_sources():
+def test_other_entrypoints_refuse_composite_and_cross_namespace_sources():
     source,invocation=actual()
-    with pytest.raises(ValueError):validate_source_blocks(source,invocation)
-    with pytest.raises(ValueError):validate_physics_evidence(source)
-    for path in [ROOT/"fixtures/results/physics_connected_mechanics_sparse.json",ROOT/"fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json"]:
-        old=json.loads(path.read_text())
+    # The ordinary pressure-1 reader refuses the composite's receipt namespace.
+    with pytest.raises(ValueError):validate_pressure_evidence(source)
+    retired=deepcopy(source);retired["producer"]["semantic_contract_id"]="openpipestress.result_semantics/0.3.0/source-blocks-1"
+    v2=deepcopy(source);v2["producer"]["semantic_contract_id"]="openpipestress.result_semantics/0.3.0/physics-source-1";v2["formulation_basis"]["profile_id"]="exact_straight_pressure_v2"
+    for old in [json.loads((ROOT/"fixtures/results/pressure_connected_mechanics_sparse.json").read_text()),retired,v2]:
         with pytest.raises(ValueError):composite.validate_physics_source(old)
 
 
@@ -127,7 +142,8 @@ def test_rehashed_invalid_composite_claims_are_rejected(mutation):
 
 
 def test_physics_transport_uses_received_evidence_without_raw_reconstruction():
-    for name in ["physics_connected_mechanics_sparse","physics_thermal_ui_mechanics_sparse"]:
+    # The exact successor's G7 transport check (results 0.3 ExactRetainedContractEvidence) over pressure-1 evidence.
+    for name in ["pressure_connected_mechanics_sparse","pressure_thermal_ui_mechanics_sparse"]:
         source=json.loads((ROOT/f"fixtures/results/{name}.json").read_text())
         physics_transport({"contract_evidence":source["contract_evidence"]})
         bad=deepcopy(source["contract_evidence"])
@@ -271,3 +287,75 @@ def test_public_rehashed_copy_cannot_hide_invalid_bracket_pair_behind_finite_sel
     reseal_negative(source,invocation)
     with pytest.raises(ValueError,match="ACTUAL_DERIVED_SHEAR_RANGE:"+("lower_bracket" if bad_endpoint==0 else "upper_bracket")):
         composite.validate_physics_source(source,invocation)
+
+
+def test_e15_composite_norms_are_the_correctly_rounded_value():
+    assert composite._norm([3.0, 4.0, 0.0]) == 5.0
+    assert composite._norm([-1.327, -8.603, -8.186]) == float.fromhex("0x1.7e5fc308f80edp+3")
+    assert composite._norm([7.944, 6.99]) == float.fromhex("0x1.529b4c153125ep+3")
+    with pytest.raises(ValueError):
+        composite._norm([1.0])
+
+
+def translation_norm(values, output):
+    """The composites' shared translation-norm recipe (relocated from the retired
+    source-blocks-1 tests when B4/D1 (b) deleted them)."""
+    kinds = ("global_nodal_displacement_x", "global_nodal_displacement_y", "global_nodal_displacement_z")
+    inputs = [{"kind": kinds[i], "unit": "mm", "entity_ref": "norm-owner", "value": v} for i, v in enumerate(values)]
+    row = {"kind": "displacement_magnitude", "unit": "mm", "entity_ref": "norm-owner", "value": output}
+    return _derived("translation_norm_scaled_v1", row, inputs, composite.SourceContract.PRESSURE_V3)
+
+
+def test_translation_norm_admits_normal_output_and_small_components():
+    translation_norm([3.0, 4.0, 0.0], 5.0)
+    small = math.ldexp(1.0, -600)
+    translation_norm([small, 0.0, 0.0], small)
+    translation_norm([sys.float_info.min, 0.0, 0.0], sys.float_info.min)
+    translation_norm([1.0, math.ulp(0.0), 0.0], 1.0)
+    translation_norm([-0.0, 0.0, -0.0], 0.0)
+
+
+def test_e15_translation_norm_binds_the_correctly_rounded_value():
+    # The published (3,4,0) control: the recipe gives exactly 5, so the independently
+    # single-rounded 5 + 1 ulp that G7 admits is refused by the exact value binding;
+    # where the former max-scaled recipe differs, its value is refused.
+    controls = json.loads((ROOT / "fixtures/results/preview_magnitude_controls.json").read_text())["controls"]
+    control = next(c for c in controls if c["id"] == "independent_single_rounding_one_ulp")
+    unpack = lambda bits: struct.unpack(">d", bytes.fromhex(bits))[0]
+    components = [unpack(b) for b in control["component_bits"]]
+    one_ulp = unpack(control["magnitude_bits"])
+    assert (components, one_ulp) == ([3.0, 4.0, 0.0], math.nextafter(5.0, math.inf))
+    differing = [-1.327, -8.603, -8.186]
+    correct = float.fromhex("0x1.7e5fc308f80edp+3")
+    scale = max(abs(v) for v in differing)
+    n = [v / scale for v in differing]
+    scaled = scale * math.sqrt((n[0] * n[0] + n[1] * n[1]) + n[2] * n[2])
+    assert scaled == math.nextafter(correct, 0.0)
+    translation_norm(components, 5.0)
+    with pytest.raises(ValueError, match="DERIVED_NORM_VALUE"):
+        translation_norm(components, one_ulp)
+    translation_norm(differing, correct)
+    with pytest.raises(ValueError, match="DERIVED_NORM_VALUE"):
+        translation_norm(differing, scaled)
+
+
+def test_translation_norm_range_and_bit_identity_are_enforced():
+    with pytest.raises(ValueError, match="DERIVED_NORM_RANGE"):
+        translation_norm([math.ulp(0.0), 0.0, 0.0], math.ulp(0.0))
+    with pytest.raises(ValueError, match="DERIVED_NORM_RANGE"):
+        translation_norm([sys.float_info.max, sys.float_info.max, 0.0], 1.0)
+    with pytest.raises(ValueError, match="DERIVED_NORM_VALUE"):
+        translation_norm([1.0, 0.0, 0.0], math.nextafter(1.0, math.inf))
+    with pytest.raises(ValueError, match="DERIVED_NORM_VALUE"):
+        translation_norm([-0.0, 0.0, -0.0], -0.0)
+    with pytest.raises(ValueError):
+        translation_norm([math.nan, 0.0, 0.0], 0.0)
+
+
+@pytest.mark.parametrize("recipe", ["support_force_norm_scaled_v1", "straight_open_stress_v1",
+                                    "reviewed_stress_summary_v1", "section_property_from_source_v1"])
+def test_source_blocks_1_recipes_are_unknown(recipe):
+    # B4/D1 (b): these recipes went with source-blocks-1's preview case rows.
+    row = {"kind": "displacement_magnitude", "unit": "mm", "entity_ref": "norm-owner", "value": 0.0}
+    with pytest.raises(ValueError, match="DERIVED_RECIPE"):
+        _derived(recipe, row, [], composite.SourceContract.PRESSURE_V3)

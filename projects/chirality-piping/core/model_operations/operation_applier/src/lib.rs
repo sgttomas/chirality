@@ -31,6 +31,8 @@ mod load_state_authoring;
 mod pressure_authoring;
 mod joint_pressure_authoring;
 mod section_bindings;
+#[cfg(test)]
+mod b7b_transport_tests;
 pub use atomic_batch::{apply_operation_batch, validate_operation_batch};
 pub use display_units::convert_display_quantities;
 
@@ -469,6 +471,13 @@ fn field_rules(object_type: &str) -> &'static [FieldRule] {
                     dimension: "length",
                 },
             },
+            FieldRule {
+                field_path: "section.corrosion_allowance.value",
+                kind: FieldKind::OptionalQuantity {
+                    constraint: ValueConstraint::NonNegative,
+                    dimension: "length",
+                },
+            },
         ],
         "Support" => &[
             FieldRule {
@@ -839,18 +848,20 @@ fn field_rules(object_type: &str) -> &'static [FieldRule] {
     }
 }
 
-/// A document on the exact pressure route: model 0.3.0 or 0.4.0 declaring
-/// `2.0.0/exact_straight_pressure_v2` (existing documents, still solvable) or
-/// `3.0.0/exact_pressure_v3` (all new authoring).
+/// A current model document declaring the closed v3 pressure contract.
 pub(crate) fn is_exact_pressure_document(model: &Value) -> bool {
-    matches!(model.get("schema_version").and_then(Value::as_str), Some("0.3.0" | "0.4.0"))
-        && (is_pressure_v3_contract(model)
-            || model.get("pressure_contract")
-                == Some(&serde_json::json!({"version": "2.0.0", "mode": "exact_straight_pressure_v2"})))
+    model.get("schema_version").and_then(Value::as_str)
+        == Some(open_pipe_stress_product_physics::MODEL_SCHEMA_VERSION)
+        && is_pressure_v3_contract(model)
 }
 /// The current pressure contract, `3.0.0/exact_pressure_v3`.
 pub(crate) fn is_pressure_v3_contract(model: &Value) -> bool {
-    model.get("pressure_contract") == Some(&serde_json::json!({"version": "3.0.0", "mode": "exact_pressure_v3"}))
+    model.get("pressure_contract").and_then(Value::as_object).is_some_and(|contract|
+        contract.len() == 3
+            && contract.get("version").and_then(Value::as_str) == Some("3.0.0")
+            && contract.get("mode").and_then(Value::as_str) == Some("exact_pressure_v3")
+            && matches!(contract.get("shear_model").and_then(Value::as_str),
+                Some("euler_bernoulli" | "timoshenko_annulus_energy_v1")))
 }
 
 fn collection_for(object_type: &str) -> Option<&'static str> {
@@ -2630,9 +2641,7 @@ fn resolve_expansion_joint_creation(
 ) -> Option<Value> {
     let schema = model.get("schema_version").and_then(Value::as_str).unwrap_or("");
     let contract = model.get("pressure_contract");
-    let v3 = matches!(schema, "0.3.0" | "0.4.0")
-        && contract.and_then(|c| c.get("version")).and_then(Value::as_str) == Some("3.0.0")
-        && contract.and_then(|c| c.get("mode")).and_then(Value::as_str) == Some("exact_pressure_v3");
+    let v3 = is_exact_pressure_document(model);
     let legacy = record.get("modifiers").is_some()
         || record
             .get("geometry")
@@ -2643,7 +2652,7 @@ fn resolve_expansion_joint_creation(
             "OP-CREATE-EXPANSION-JOINT-LEGACY-RETIRED",
             "blocking",
             "Legacy four-rate expansion-joint creation (a pipe reference with scalar stiffness rates) is retired: such a joint is neither solved nor converted.".to_string(),
-            "On a 3.0.0/exact_pressure_v3 document author an objective connector (frame, attachments, 6x6 work matrix, replaces_span, hardware and pressure model); on a 0.1.0/0.2.0 document create the annotation mode (not_solver_consumed).",
+            "On a 3.0.0/exact_pressure_v3 document author an objective connector (frame, attachments, 6x6 work matrix, replaces_span, hardware and pressure model); on a pressure-free 0.5.0 document (no pressure contract) create the annotation mode (not_solver_consumed).",
             vec![target_ref.to_string()],
         );
         return None;
@@ -2741,12 +2750,14 @@ fn resolve_expansion_joint_creation(
             "provenance": provenance,
         }));
     }
-    if matches!(schema, "0.1.0" | "0.2.0") {
+    // A pressure-free document: the current version without a pressure contract.
+    // The contract's absence selects the annotation mode, not the version string.
+    if schema == open_pipe_stress_product_physics::MODEL_SCHEMA_VERSION && contract.is_none() {
         if consumption != Some("not_solver_consumed") || record.get("objective_connector").is_some() {
             checker.push(
                 "OP-CREATE-EXPANSION-JOINT-ANNOTATION-ONLY",
                 "blocking",
-                "On a 0.1.0/0.2.0 document an expansion joint is created only as an annotation (solver_consumption=not_solver_consumed): the model is analysed as pipe and the joint is disclosed, not solved.".to_string(),
+                "On a pressure-free 0.5.0 document (no pressure contract) an expansion joint is created only as an annotation (solver_consumption=not_solver_consumed): the model is analysed as pipe and the joint is disclosed, not solved.".to_string(),
                 "Create the annotation, or move the model to a 3.0.0/exact_pressure_v3 document and author an objective connector.",
                 vec![target_ref.to_string()],
             );
@@ -2765,7 +2776,7 @@ fn resolve_expansion_joint_creation(
     checker.push(
         "OP-CREATE-EXPANSION-JOINT-CONTRACT-UNSUPPORTED",
         "blocking",
-        "Expansion joints are created as objective connectors on 3.0.0/exact_pressure_v3 documents or as annotations on 0.1.0/0.2.0 documents; this document's contract admits neither.".to_string(),
+        "Expansion joints are created as objective connectors on 3.0.0/exact_pressure_v3 documents or as annotations on pressure-free 0.5.0 documents (no pressure contract); this document's contract admits neither.".to_string(),
         "Use a 3.0.0/exact_pressure_v3 document for a solved joint.",
         vec![target_ref.to_string()],
     );
@@ -5125,7 +5136,7 @@ fn resolve_create_primitive_load(
             "OP-PRESSURE-PRIMITIVE-RETIRED",
             "blocking",
             "Pressure primitive loads are retired, zero values included; the product refuses them (PRESSURE_MODEL_REAUTHOR_REQUIRED).".to_string(),
-            "Author pressure as exact pressure regions: select the 2.0.0/exact_straight_pressure_v2 profile, then enter the load case's pressure_regions (an explicit [] for an unpressurized case).",
+            "Author pressure as exact pressure regions: on model 0.5.0 select the 3.0.0/exact_pressure_v3 profile (shear_model euler_bernoulli) with an explicit section.corrosion_allowance on every pipe, then enter the load case's pressure_regions (an explicit [] for an unpressurized case).",
             vec![target_ref.to_string()],
         );
         return None;
@@ -8907,7 +8918,7 @@ mod tests {
 
     fn sample_model() -> Value {
         json!({
-            "schema_version": "0.1.0",
+            "schema_version": "0.5.0",
             "document_kind": "openpipestress.product_preview.model",
             "project": { "id": "project:test", "name": "Test", "units": { "length": "m", "force": "N", "angle": "rad", "pressure": "Pa", "temperature": "degC" } },
             "materials": [
@@ -11112,7 +11123,8 @@ mod tests {
             let diagnostic = &refused.diagnostics[0];
             assert_eq!(diagnostic.severity, "blocking");
             assert!(diagnostic.message.contains("PRESSURE_MODEL_REAUTHOR_REQUIRED"));
-            assert!(diagnostic.remediation.contains("2.0.0/exact_straight_pressure_v2"));
+            assert!(diagnostic.remediation.contains("3.0.0/exact_pressure_v3"));
+            assert!(!diagnostic.remediation.contains("exact_straight_pressure_v2"));
         }
 
         let thermal_payload = json!({
@@ -13384,19 +13396,33 @@ mod tests {
         assert_eq!(outcome.validation.application_status, "applied_to_session_model");
         let applied = outcome.applied_model.expect("applied model");
         assert_eq!(applied["components"][1], annotation);
-        // Anything other than the annotation is refused on 0.1.0/0.2.0.
+        // Anything other than the annotation is refused on a pressure-free document.
         let mut not_annotation = annotation.clone();
         not_annotation["mechanics_interface"]["solver_consumption"] = json!("mechanics_geometry_only");
         let outcome = apply_operation(&model, &expansion_joint_intent(&not_annotation), None);
         assert_eq!(codes(&outcome), vec!["OP-CREATE-EXPANSION-JOINT-ANNOTATION-ONLY"]);
+        // B7a: the contract's absence selects the annotation, not the version string. A
+        // 0.5.0 document that declares a contract, and a retired 0.1.0/0.2.0 document,
+        // take neither form.
+        let mut with_contract = model.clone();
+        with_contract["pressure_contract"] = json!({"version": "3.0.0", "mode": "exact_pressure_v3"});
+        let outcome = apply_operation(&with_contract, &expansion_joint_intent(&annotation), None);
+        assert_eq!(codes(&outcome), vec!["OP-CREATE-EXPANSION-JOINT-CONTRACT-UNSUPPORTED"]);
+        for retired in ["0.1.0", "0.2.0"] {
+            let mut retired_model = model.clone();
+            retired_model["schema_version"] = json!(retired);
+            let outcome = apply_operation(&retired_model, &expansion_joint_intent(&annotation), None);
+            assert_eq!(codes(&outcome), vec!["OP-CREATE-EXPANSION-JOINT-CONTRACT-UNSUPPORTED"], "{retired}");
+        }
     }
 
     /// A v3 document: the objective connector for the replaced span between
     /// its end nodes.
     fn v3_model() -> Value {
+        // B7b: the current 0.5.0 exact document (sample_model is already 0.5.0).
         let mut model = sample_model();
-        model["schema_version"] = json!("0.3.0");
-        model["pressure_contract"] = json!({"version": "3.0.0", "mode": "exact_pressure_v3"});
+        model["pressure_contract"] =
+            json!({"version": "3.0.0", "mode": "exact_pressure_v3", "shear_model": "euler_bernoulli"});
         model
     }
 
@@ -13442,7 +13468,7 @@ mod tests {
             assert!(outcome.applied_model.is_none(), "{change:?}");
             assert!(!codes(&outcome).is_empty(), "{change:?}");
         }
-        // A v2 document admits neither form.
+        // A document with the retired 2.0.0 contract admits neither form.
         let mut v2 = v3_model();
         v2["pressure_contract"] = json!({"version": "2.0.0", "mode": "exact_straight_pressure_v2"});
         let outcome = apply_operation(&v2, &expansion_joint_intent(&payload), None);

@@ -83,11 +83,7 @@ pub(super) fn formation_decline_without_attempt() -> RecoveryFailure {
         stage: "formation guard",
         helper_stage: AttemptStage::SourceClosure,
         error: RecoveryError::Unsupported(FORMATION_GUARD_DECLINE),
-        work: exact::WorkReport {
-            charged: 0,
-            rejected: 0,
-            limit: 0,
-        },
+        work: exact::WorkReport::new(0, 0, 0),
     }
 }
 
@@ -106,11 +102,7 @@ pub(super) fn range_formation_decline_without_attempt() -> RecoveryFailure {
         stage: "range formation",
         helper_stage: AttemptStage::SourceClosure,
         error: RecoveryError::Unsupported(RANGE_FORMATION_DECLINE),
-        work: exact::WorkReport {
-            charged: 0,
-            rejected: 0,
-            limit: 0,
-        },
+        work: exact::WorkReport::new(0, 0, 0),
     }
 }
 
@@ -140,6 +132,8 @@ pub(super) fn solve_ordinary(
     solve(input, limits)
 }
 
+/// No longer built: the selection keeps no spring actions. The registered memory
+/// profile still names this type (`s(SpringAction)`) until B7a's D3 re-registration.
 #[derive(Debug, Clone)]
 pub(super) struct SpringAction {
     pub support_id: String,
@@ -194,7 +188,6 @@ pub(super) struct SelectedSourceRecovery {
     published_nodal: Vec<f64>,
     published_nodal_indices: Vec<usize>,
     members: Vec<MemberRecovery>,
-    springs: Vec<SpringAction>,
     supports: Vec<SupportActions>,
     retained: RetainedFunctionalSet,
     summary: RecoverySummary,
@@ -279,11 +272,7 @@ impl SelectedSourceRecovery {
             stage: "captured replay reservation",
             helper_stage: AttemptStage::Replay,
             error: RecoveryError::Exact(exact::Error::Budget),
-            work: exact::WorkReport {
-                charged,
-                rejected: charged,
-                limit,
-            },
+            work: exact::WorkReport::new(charged, charged, limit),
         })
     }
 
@@ -375,7 +364,6 @@ struct Sources {
     spring_ids: Vec<(String, usize)>,
     support_ids: Vec<(String, usize)>,
     nodal_start: usize,
-    spring_start: usize,
     support_start: usize,
 }
 impl Sources {
@@ -596,11 +584,6 @@ fn prepare_sources(
     }
     // Presence is the producer inventory: a zero-valued pressure region is
     // still unsupported. Exact source cases require an explicitly empty list.
-    if !super::exact_admission::joins_retained_source(input.model) {
-        return Err(unsupported(
-            "3.0.0/exact_pressure_v3 is not joined to retained-source recovery",
-        ));
-    }
     if super::pressure_runtime::is_exact(input.model) {
         if !input
             .load_case
@@ -615,11 +598,10 @@ fn prepare_sources(
         if input.built.exact_sections.len() != member_count {
             return Err(mismatch("exact source geometry inventory"));
         }
-    } else if !matches!(input.model.schema_version.as_str(), "0.1.0" | "0.2.0")
-        || input.model.pressure_contract.is_some()
+    } else if !crate::model_format::is_pressure_free(input.model)
         || input.load_case.pressure_regions.is_some()
     {
-        return Err(unsupported("legacy source-blocks namespace requires model0.1/0.2 without pressure contract or regions"));
+        return Err(unsupported("preview source-blocks namespace requires a pressure-free model without pressure contract or regions"));
     }
     if input.load_case.equivalent_static.is_some()
         || !input.load_application.element_uniform_loads.is_empty()
@@ -1174,7 +1156,6 @@ fn prepare_sources(
             });
         }
     }
-    let spring_start = descriptors.len();
     for spring in input.spring_entries {
         let dof = spring.node_dof.global_index();
         descriptors.push(FunctionalDescriptor {
@@ -1253,7 +1234,6 @@ fn prepare_sources(
         spring_ids,
         support_ids,
         nodal_start,
-        spring_start,
         support_start,
     })
 }
@@ -1522,17 +1502,6 @@ pub(super) fn solve(
                 }
             })
             .collect();
-        let springs = source
-            .spring_ids
-            .iter()
-            .enumerate()
-            .map(|(i, (id, dof))| SpringAction {
-                support_id: id.clone(),
-                global_dof: *dof,
-                value: value(source.spring_start + i),
-                functional_index: source.spring_start + i,
-            })
-            .collect();
         let supports = source
             .support_ids
             .iter()
@@ -1582,7 +1551,6 @@ pub(super) fn solve(
             (0..n).map(|i| value(source.nodal_start + i)).collect(),
             (0..n).map(|i| source.nodal_start + i).collect(),
             members,
-            springs,
             supports,
             retained,
             summary,
@@ -1595,7 +1563,6 @@ pub(super) fn solve(
             published_nodal,
             published_nodal_indices,
             members,
-            springs,
             supports,
             retained,
             summary,
@@ -1605,7 +1572,6 @@ pub(super) fn solve(
             published_nodal,
             published_nodal_indices,
             members,
-            springs,
             supports,
             retained,
             summary,
@@ -1619,6 +1585,8 @@ pub(super) fn solve(
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::LinearStaticPreviewRequest;
+    use serde_json::{json, Value};
     struct Fixture {
         model: PreviewModel,
         built: BuiltModel,
@@ -1753,10 +1721,10 @@ mod tests {
             "../../../validation/references/t4_i7/u2_document_sketches.json"
         ))
         .unwrap();
-        let mut model: PreviewModel = serde_json::from_value(
-            documents["sketches"]["U2-L-ANCH-PTW-K2"]["0.3.0"]["document"]["model"].clone(),
-        )
-        .unwrap();
+        // B7b: the frozen sketch's copy is re-authored to the current 0.5.0 form.
+        let mut sketch = documents["sketches"]["U2-L-ANCH-PTW-K2"]["0.3.0"]["document"]["model"].clone();
+        crate::b7b_admission_tests::reauthor_current_model(&mut sketch);
+        let mut model: PreviewModel = serde_json::from_value(sketch).unwrap();
         // The product's own preparation: units, then the exact route's derived G.
         let (mut materials, mut diagnostics) = (model.materials.clone(), Vec::new());
         super::super::normalize_model_units(&mut model, &mut materials, &mut diagnostics);
@@ -1780,10 +1748,10 @@ mod tests {
             "../../../validation/references/t4_i12/u3_reference_cases.json"
         ))
         .unwrap();
-        let mut connector: PreviewModel = serde_json::from_value(
-            references["cases"]["U3-SYS-DEMO-CONNECTOR-001"]["inputs"]["document_v3_0.3.0"]["model"].clone(),
-        )
-        .unwrap();
+        let mut connector_document =
+            references["cases"]["U3-SYS-DEMO-CONNECTOR-001"]["inputs"]["document_v3_0.3.0"]["model"].clone();
+        crate::b7b_admission_tests::reauthor_current_model(&mut connector_document);
+        let mut connector: PreviewModel = serde_json::from_value(connector_document).unwrap();
         let (mut materials, mut diagnostics) = (connector.materials.clone(), Vec::new());
         super::super::normalize_model_units(&mut connector, &mut materials, &mut diagnostics);
         super::super::pressure_material::resolve_base(&connector, &mut materials, &mut diagnostics);
@@ -1795,14 +1763,14 @@ mod tests {
             refuse(&joint),
             Some(RecoveryError::Unsupported("objective connector is not a straight source family"))
         );
-        let mut straight = Fixture::new(Fixture::model());
-        straight.model.pressure_contract = model.pressure_contract.clone();
-        straight.model.schema_version = model.schema_version.clone();
-        straight.model.load_cases[0].pressure_regions = Some(Vec::new());
-        assert_eq!(
-            refuse(&straight),
-            Some(RecoveryError::Unsupported("3.0.0/exact_pressure_v3 is not joined to retained-source recovery"))
-        );
+        // The pressure-source join (b7-plan): a straight v3 model is joined, so
+        // no family decline applies and its sources prepare.
+        let mut straight_model = Fixture::model();
+        straight_model.pressure_contract = model.pressure_contract.clone();
+        straight_model.schema_version = model.schema_version.clone();
+        straight_model.load_cases[0].pressure_regions = Some(Vec::new());
+        let straight = Fixture::new(straight_model);
+        assert_eq!(refuse(&straight), None);
     }
 
     // RV127 N-4: `validate_profile` refuses every one of these documents before
@@ -1810,7 +1778,7 @@ mod tests {
     // it is pinned here at unit level (U3).
     #[test]
     fn non_exact_source_blocks_gate_refuses_a_later_version_a_contract_or_regions() {
-        const GATE: &str = "legacy source-blocks namespace requires model0.1/0.2 without pressure contract or regions";
+        const GATE: &str = "preview source-blocks namespace requires a pressure-free model without pressure contract or regions";
         let refuse = |fixture: &Fixture| {
             prepare_sources(
                 &fixture.input(),
@@ -1819,11 +1787,14 @@ mod tests {
             .err()
         };
         let fixture = Fixture::new(Fixture::model());
-        assert_eq!(fixture.model.schema_version, "0.1.0");
+        assert_eq!(fixture.model.schema_version, crate::MODEL_SCHEMA_VERSION);
         assert_eq!(refuse(&fixture), None);
-        let mut later = Fixture::new(Fixture::model());
-        later.model.schema_version = "0.3.0".into();
-        assert_eq!(refuse(&later), Some(RecoveryError::Unsupported(GATE)));
+        // Another version (an exact one, or a retired one) is outside the pressure-free namespace.
+        for version in ["0.3.0", "0.2.0", "0.1.0"] {
+            let mut later = Fixture::new(Fixture::model());
+            later.model.schema_version = version.into();
+            assert_eq!(refuse(&later), Some(RecoveryError::Unsupported(GATE)), "{version}");
+        }
         for (version, mode) in [
             ("1.0.0", "legacy_pressure_v1"),
             ("2.0.0", "exact_straight_pressure_v2"),
@@ -1832,6 +1803,7 @@ mod tests {
             contract.model.pressure_contract = Some(super::super::PressureContractInput {
                 version: Some(version.into()),
                 mode: Some(mode.into()),
+                shear_model: Some("euler_bernoulli".into()),
             });
             assert_eq!(
                 refuse(&contract),
@@ -1910,7 +1882,54 @@ mod tests {
         .unwrap_err();
         assert_eq!(failure.stage, "source closure");
         assert_eq!(failure.work.charged, 0);
-        assert!(failure.work.rejected > 0);
+        assert!(failure.work.rejected.exact().unwrap() > 0);
+        assert_eq!(failure.error, RecoveryError::Exact(exact::Error::Budget));
+    }
+
+    /// The committed current (0.5.0, v3) n05 source control.
+    fn pressure_source_fixture() -> Fixture {
+        let raw: Value = serde_json::from_str(include_str!(
+            "../../../fixtures/product_preview/pressure_source/physics_source/n05.request.json"
+        )).unwrap();
+        let request: LinearStaticPreviewRequest = serde_json::from_value(raw).unwrap();
+        let mut model = request.model;
+        let mut diagnostics = Vec::new();
+        let mut materials = model.materials.clone();
+        super::super::pressure_material::resolve_base(&model, &mut materials, &mut diagnostics);
+        assert!(!super::super::has_blocking(&diagnostics), "{diagnostics:?}");
+        model.materials = materials;
+        Fixture::new(model)
+    }
+
+    #[test]
+    fn pressure_source_empty_inventory_prepares_without_the_old_v3_gate() {
+        let fixture = pressure_source_fixture();
+        let prepared = prepare_sources(&fixture.input(), &mut AttemptBudget::new(exact::Limits::default()));
+        assert!(prepared.is_ok(), "{:?}", prepared.err());
+    }
+
+    #[test]
+    fn pressure_source_preparation_declines_every_present_pressure_region() {
+        const EMPTY_REQUIRED: &str = "exact source recovery requires explicitly empty pressure regions";
+        for pressure in [0.0, 1.0, -1.0] {
+            let mut fixture = pressure_source_fixture();
+            fixture.model.load_cases[0].pressure_regions = Some(vec![serde_json::from_value(json!({
+                "id":"invented:source-family-region", "pressure":{"value":pressure,"unit":"Pa"}
+            })).unwrap()]);
+            assert_eq!(prepare_sources(&fixture.input(), &mut AttemptBudget::new(exact::Limits::default())).err(), Some(RecoveryError::Unsupported(EMPTY_REQUIRED)));
+        }
+        let mut fixture = pressure_source_fixture();
+        fixture.model.load_cases[0].pressure_regions = None;
+        assert_eq!(prepare_sources(&fixture.input(), &mut AttemptBudget::new(exact::Limits::default())).err(), Some(RecoveryError::Unsupported(EMPTY_REQUIRED)));
+    }
+
+    #[test]
+    fn pressure_source_denied_attempt_keeps_the_existing_work_boundary() {
+        let fixture = pressure_source_fixture();
+        let failure = solve(fixture.input(), exact::Limits { operations: 0, ..exact::Limits::default() }).unwrap_err();
+        assert_eq!(failure.stage, "source closure");
+        assert_eq!(failure.work.charged, 0);
+        assert!(failure.work.rejected.exact().unwrap() > 0);
         assert_eq!(failure.error, RecoveryError::Exact(exact::Error::Budget));
     }
 
@@ -1928,3 +1947,11 @@ mod tests {
         assert!(signed_permutation(&t).is_err());
     }
 }
+
+#[cfg(test)]
+#[path = "source_recovery/j7_t4_consequences.rs"]
+mod j7_t4_consequences;
+
+#[cfg(test)]
+#[path = "source_recovery/j7_rf_census.rs"]
+mod j7_rf_census;

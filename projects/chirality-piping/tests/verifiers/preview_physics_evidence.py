@@ -24,8 +24,6 @@ ROOT = Path(__file__).resolve().parents[2]
 TABLE_PATH = ROOT / "fixtures/results/semantic_contract_v0_3_preview_physics_1.json"
 TABLE = json.loads(TABLE_PATH.read_text(encoding="utf-8"))
 LIMITATIONS = list(TABLE["supported_profile_limitations"])
-RETIRED_KINDS = frozenset(TABLE["retired_source_kinds"])
-RETIRED_CODES = frozenset({"COMPONENT_STRESS_MULTIPLIER_APPLIED", "COMBINATION_STRESS_SUMMARY_SKIPPED"})
 
 MAXIMUM_KIND = "pipe_elastic_normal_stress_maximum_v2"
 INTENSIFIED_KIND = "component_equal_factor_intensified_bending_stress_v1"
@@ -112,10 +110,46 @@ def _row_segments(*parts: str) -> str:
     return ":".join(f"{len(part.encode('utf-8'))}:{part}" for part in parts)
 
 
+def correctly_rounded_norm(components: list[float]) -> float:
+    """RN(sqrt(sum of squares)) of finite binary64 components, ties to even; +inf beyond range.
+
+    Independent exact-integer oracle: align the published binary64 dyadics,
+    square and sum exactly, then round the square root on the binary64 grid.
+    This does not share the Rust implementation's FMA/expansion algorithm.
+    """
+    ratios = [float(value).as_integer_ratio() for value in components]
+    denominator_exponent = max(denominator.bit_length() - 1 for _, denominator in ratios)
+    square_sum = sum((numerator << (denominator_exponent - (denominator.bit_length() - 1))) ** 2
+                     for numerator, denominator in ratios)
+    if square_sum == 0:
+        expected = 0.0
+    else:
+        root_exponent = (square_sum.bit_length() - 1) // 2 - denominator_exponent
+        grid_exponent = max(root_exponent - 52, -1074)
+        shift = denominator_exponent + grid_exponent
+        if shift >= 0:
+            lower = math.isqrt(square_sum) >> shift
+            midpoint_square = (2 * lower + 1) ** 2 << (2 * shift)
+            four_square_sum = 4 * square_sum
+        else:
+            scaled_square_sum = square_sum << (-2 * shift)
+            lower = math.isqrt(scaled_square_sum)
+            midpoint_square = (2 * lower + 1) ** 2
+            four_square_sum = 4 * scaled_square_sum
+        rounded = lower + int(four_square_sum > midpoint_square or (four_square_sum == midpoint_square and lower & 1))
+        try:
+            expected = math.ldexp(float(rounded), grid_exponent)
+        except OverflowError:
+            expected = math.inf
+    return expected
+
+
 def _consistent_norm(magnitude: float, components: list[float]) -> bool:
     x, y, z = components
-    expected = math.hypot(math.hypot(x, y), z)
-    return magnitude >= 0 and abs(magnitude - expected) <= GUARD * max(abs(magnitude), TINY)
+    if magnitude < 0 or not all(math.isfinite(value) for value in (magnitude, x, y, z)):
+        return False
+    expected = correctly_rounded_norm([x, y, z])
+    return math.isfinite(expected) and abs(magnitude - expected) <= GUARD * max(abs(magnitude), TINY)
 
 
 def signature(row: Mapping[str, Any]) -> Mapping[str, Any] | None:
@@ -125,7 +159,6 @@ def signature(row: Mapping[str, Any]) -> Mapping[str, Any] | None:
     this table because arc variants precede their generic variants.
     """
     kind, unit = row.get("kind"), row.get("unit")
-    _require(kind not in RETIRED_KINDS, f"retired kind {kind}")
     candidates = [entry for entry in TABLE["rows"] if entry["kind"] == kind]
     _require(candidates, f"kind without signature {kind}")
     units = [entry for entry in candidates if entry["unit"] == unit]
@@ -234,7 +267,7 @@ def _validate(source: Mapping[str, Any]) -> None:
     rows = {row["id"]: row for row in results}
     _require(len(rows) == len(results), "duplicate result ID")
 
-    # 2. Every row kind has a signature; no retired kind or diagnostic code.
+    # 2. Every row kind has a signature.
     for row in results:
         _require(_number(row.get("value")) and _text(row.get("kind")) and _text(row.get("unit")) and _text(row.get("entity_ref")), "source row fields")
         _require(row.get("metadata") is None or isinstance(row.get("metadata"), Mapping), "source row metadata")
@@ -245,9 +278,6 @@ def _validate(source: Mapping[str, Any]) -> None:
         basis = row.get("basis_ref")
         if basis is not None:
             _shape(basis, {"ref_type", "ref_id"}, "row basis reference")
-    for item in diagnostics:
-        _require(item.get("code") not in RETIRED_CODES, f"retired diagnostic code {item.get('code')}")
-
     # 3. Completeness (F-1): result-namespace references only.
     for item in diagnostics:
         # A1 a / A2 5: the key may be absent; when present it is an array of non-empty strings.

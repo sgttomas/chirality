@@ -131,7 +131,6 @@ function spine(session: WorkspaceSession) {
     projectIndex: project.projectIndex,
     projectMessage: project.projectMessage,
     projectEnvelopeHash: project.projectEnvelopeHash,
-    modelMigrationLedger: project.modelMigrationLedger,
     selection: selection.selection,
     orderedSelection: selection.orderedSelection
   };
@@ -171,7 +170,8 @@ describe("a stage or view switch is a presentation change", () => {
     // bytes are a real supported producer pair; this is not native UI evidence.
     const storage = await getLocalStorageCapability();
     const knowledge = await loadDesignKnowledge();
-    const replay = createNativeMechanicsReplay();
+    // B7b: the Current pair is preview-physics-1's (pressure-1 is recorded but never Current).
+    const replay = createNativeMechanicsReplay({ profile: "preview" });
     (window as unknown as Record<string, unknown>).__TAURI_INTERNALS__ = {};
     invokeMock.mockImplementation((command: string, args: Record<string, unknown>, options?: unknown) => {
       if (command === "get_local_storage_capability") return Promise.resolve(storage);
@@ -267,7 +267,7 @@ describe("a stage or view switch is a presentation change", () => {
     // Exact captured producer pair through simulated native IPC, followed by
     // the real browser persistence adapter. This is no native UI witness.
     const storage = await getLocalStorageCapability(), knowledge = await loadDesignKnowledge();
-    // T0R: the fresh ordinary route is preview-physics-1; precision-1 is never Current.
+    // T0R: the fresh ordinary route is preview-physics-1.
     const replay = createNativeMechanicsReplay({ profile: "preview" });
     (window as unknown as Record<string, unknown>).__TAURI_INTERNALS__ = {};
     invokeMock.mockImplementation((command: string, args: Record<string, unknown>, options?: unknown) => {

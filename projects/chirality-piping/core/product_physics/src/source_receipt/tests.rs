@@ -90,19 +90,19 @@ fn captured_invocation_keeps_unknown_absence_material_and_actual_mode() {
     unsafe_integer["unknown_preparse_marker"] = json!(9_007_199_254_740_992_u64);
     assert!(CapturedInvocation::parse(unsafe_integer, PreviewSolverMode::DenseScrutiny).is_err());
 }
+/// B4/D1 (b): the composite row binding (the only one) on the exact n05 control.
 #[test]
 fn selected_projection_mapping_rejects_value_unit_entity_missing_duplicate() {
-    let (request, _) = CapturedInvocation::parse(raw(), PreviewSolverMode::DenseScrutiny).unwrap();
-    let f = Fixture::new(request.model);
+    let f = exact_fixture(&exact_raw());
     let selected = source_recovery::solve(
         f.input(),
         exact::Limits {
-            operations: SOURCE_BLOCKS_WORK_LIMIT,
+            operations: PHYSICS_SOURCE_WORK_LIMIT,
             ..Default::default()
         },
     )
     .unwrap();
-    let expected = rows::expected_primary(&f.input(), &selected).unwrap();
+    let expected = rows::expected_primary_for(&f.input(), &selected).unwrap();
     let bindings: Vec<_> = expected
         .iter()
         .map(|(i, r)| FunctionalRowBinding {
@@ -112,12 +112,12 @@ fn selected_projection_mapping_rejects_value_unit_entity_missing_duplicate() {
         .collect();
     let mut actual: Vec<_> = expected.values().cloned().collect();
     actual.extend(
-        rows::derived(&f.input(), &selected, &expected)
+        rows::derived_for(&f.input(), &selected, &expected)
             .unwrap()
             .into_iter()
             .map(|d| d.row),
     );
-    assert!(rows::bind(&f.input(), &selected, &actual, &bindings).is_ok());
+    assert!(rows::bind_for(&f.input(), &selected, &actual, &bindings, vec![]).is_ok());
     for mutation in 0..4 {
         let mut bad_rows = actual.clone();
         match mutation {
@@ -128,34 +128,35 @@ fn selected_projection_mapping_rejects_value_unit_entity_missing_duplicate() {
                 bad_rows.remove(0);
             }
         }
-        assert!(rows::bind(&f.input(), &selected, &bad_rows, &bindings).is_err());
+        assert!(rows::bind_for(&f.input(), &selected, &bad_rows, &bindings, vec![]).is_err());
     }
     let mut duplicate = bindings.clone();
     duplicate[1].functional_index = duplicate[0].functional_index;
-    assert!(rows::bind(&f.input(), &selected, &actual, &duplicate).is_err());
+    assert!(rows::bind_for(&f.input(), &selected, &actual, &duplicate, vec![]).is_err());
 }
 #[test]
 fn actual_capture_replay_rejects_changed_material_or_load_source() {
-    let original = raw();
-    let (request, capture) =
+    let original = exact_raw();
+    let (_, capture) =
         CapturedInvocation::parse(original.clone(), PreviewSolverMode::DenseScrutiny).unwrap();
-    let f = Fixture::new(request.model);
+    let f = exact_fixture(&original);
     let mut selected = source_recovery::solve(
         f.input(),
         exact::Limits {
-            operations: SOURCE_BLOCKS_WORK_LIMIT,
+            operations: PHYSICS_SOURCE_WORK_LIMIT,
             ..Default::default()
         },
     )
     .unwrap();
     assert!(capture.check_input(&f.input(), &mut selected).is_ok());
     let mut changed = original;
-    changed["model"]["materials"][0]["shear_modulus"]["value"] = json!(81e9);
+    // The exact contract derives G from E and nu, so the replay is changed through E.
+    changed["model"]["materials"][0]["elastic_modulus"]["value"] = json!(201e9);
     let (_, other) = CapturedInvocation::parse(changed, PreviewSolverMode::DenseScrutiny).unwrap();
     let mut selected = source_recovery::solve(
         f.input(),
         exact::Limits {
-            operations: SOURCE_BLOCKS_WORK_LIMIT,
+            operations: PHYSICS_SOURCE_WORK_LIMIT,
             ..Default::default()
         },
     )
@@ -196,7 +197,7 @@ fn receipt_domain_hashes_are_acyclic_and_distinct() {
 // Append to source_receipt/tests.rs after parent's bounded public run.
 fn exact_raw() -> Value {
     serde_json::from_str(include_str!(
-        "../../../../fixtures/product_preview/physics_source/n05.request.json"
+        "../../../../fixtures/product_preview/pressure_source/physics_source/n05.request.json"
     ))
     .unwrap()
 }
@@ -239,7 +240,7 @@ fn composite_captured_exact_empty_regions_replay_and_overrides() {
     let mut selected = source_recovery::solve(
         f.input(),
         exact::Limits {
-            operations: SOURCE_BLOCKS_WORK_LIMIT,
+            operations: PHYSICS_SOURCE_WORK_LIMIT,
             ..Default::default()
         },
     )
@@ -265,7 +266,7 @@ fn composite_captured_exact_empty_regions_replay_and_overrides() {
     let mut selected = source_recovery::solve(
         f.input(),
         exact::Limits {
-            operations: SOURCE_BLOCKS_WORK_LIMIT,
+            operations: PHYSICS_SOURCE_WORK_LIMIT,
             ..Default::default()
         },
     )
@@ -288,7 +289,7 @@ fn composite_adapter_refuses_missing_zero_and_nonzero_regions() {
         let error = source_recovery::solve(
             f.input(),
             exact::Limits {
-                operations: SOURCE_BLOCKS_WORK_LIMIT,
+                operations: PHYSICS_SOURCE_WORK_LIMIT,
                 ..Default::default()
             },
         )
@@ -306,7 +307,7 @@ fn composite_recipe_reserves_before_failures_and_geometry_changes() {
     let mut selected = source_recovery::solve(
         f.input(),
         exact::Limits {
-            operations: SOURCE_BLOCKS_WORK_LIMIT,
+            operations: PHYSICS_SOURCE_WORK_LIMIT,
             ..Default::default()
         },
     )
@@ -322,7 +323,7 @@ fn composite_recipe_reserves_before_failures_and_geometry_changes() {
     let before = selected.summary().work.charged;
     assert!(composite_support_norms(&f.input(), &mut selected, "missing").is_err());
     assert_eq!(selected.summary().work.charged, before);
-    assert!(selected.summary().work.rejected > 0);
+    assert!(selected.summary().work.rejected.exact().unwrap() > 0);
 }
 
 // Measurement only: explicit command; never a production budget override.
@@ -330,7 +331,7 @@ fn composite_recipe_reserves_before_failures_and_geometry_changes() {
 #[ignore = "bounded resource measurement with private 16M test budget; not public qualification"]
 fn composite_fields_work_measurement() {
     let raw: Value = serde_json::from_str(include_str!(
-        "../../../../fixtures/product_preview/physics_source/fields.request.json"
+        "../../../../fixtures/product_preview/pressure_source/physics_source/fields.request.json"
     ))
     .unwrap();
     for mode in [
@@ -349,14 +350,14 @@ fn composite_fields_work_measurement() {
         let wire = serialized(&envelope).unwrap();
         eprintln!(
             "COMPOSITE_WORK_MEASUREMENT {}",
-            json!({"purpose":"private resource measurement; not public policy or qualification","mode":mode.as_str(),"private_per_case_limit":16_000_000,"public_per_case_limit":SOURCE_BLOCKS_WORK_LIMIT,"stage_trace":trace,"invocation_charged":budget.charged,"publication_charged":budget.publication_charged,"case_work":wire["source_block_recovery"]["body"]["cases"][0]["work"],"receipt_status":wire["source_block_recovery"]["body"]["status"],"diagnostics":wire["diagnostics"].as_array().unwrap().iter().filter(|d|d["severity"]=="blocking").collect::<Vec<_>>()})
+            json!({"purpose":"private resource measurement; not public policy or qualification","mode":mode.as_str(),"private_per_case_limit":16_000_000,"public_per_case_limit":PHYSICS_SOURCE_WORK_LIMIT,"stage_trace":trace,"invocation_charged":budget.charged,"publication_charged":budget.publication_charged,"case_work":wire["source_block_recovery"]["body"]["cases"][0]["work"],"receipt_status":wire["source_block_recovery"]["body"]["status"],"diagnostics":wire["diagnostics"].as_array().unwrap().iter().filter(|d|d["severity"]=="blocking").collect::<Vec<_>>()})
         );
         assert!(
             envelope.source_block_recovery.is_none(),
             "private oversized limit must not create a selected-policy receipt"
         );
         assert!(
-            trace.last().unwrap()["charged"].as_u64().unwrap() > SOURCE_BLOCKS_WORK_LIMIT as u64
+            trace.last().unwrap()["charged"].as_u64().unwrap() > PHYSICS_SOURCE_WORK_LIMIT as u64
         );
         assert!(envelope.diagnostics.iter().any(|d| d
             .message
@@ -386,12 +387,13 @@ fn composite_resource_policy_cannot_promote_old_method_or_refund_failure() {
         );
         (envelope, budget)
     }
-    assert_eq!(SOURCE_BLOCKS_WORK_LIMIT, 4_000_000);
     assert_eq!(PHYSICS_SOURCE_WORK_LIMIT, 8_000_000);
-    for (value, cap) in [
-        (raw(), PHYSICS_SOURCE_WORK_LIMIT),
-        (exact_raw(), PHYSICS_SOURCE_WORK_LIMIT + 1),
-    ] {
+    // B4/D1 (b): the preview route attempts no retained-source recovery at any cap.
+    let (preview, budget) = run(raw(), PHYSICS_SOURCE_WORK_LIMIT + 1, SOURCE_BLOCKS_INVOCATION_WORK_LIMIT);
+    assert!(preview.source_block_recovery.is_none());
+    assert!(!preview.diagnostics.iter().any(|d| d.code.starts_with("SOURCE_BLOCK_RECOVERY")));
+    assert_eq!((budget.attempts, budget.charged, budget.publication_charged), (0, 0, 0));
+    for (value, cap) in [(exact_raw(), PHYSICS_SOURCE_WORK_LIMIT + 1)] {
         let (envelope, budget) = run(value, cap, SOURCE_BLOCKS_INVOCATION_WORK_LIMIT);
         assert!(envelope.source_block_recovery.is_none());
         assert!(envelope.diagnostics.iter().any(|d| d
@@ -423,8 +425,13 @@ fn composite_resource_policy_cannot_promote_old_method_or_refund_failure() {
 /// published and no source blocks are recovered.
 #[test]
 fn retired_legacy_pressure_label_is_refused_on_the_ordinary_route() {
+    // B7b: the retired v2 label is refused by the same name beside the legacy one.
+    for label in [
+        json!({"version":"1.0.0","mode":"legacy_pressure_v1"}),
+        json!({"version":"2.0.0","mode":"exact_straight_pressure_v2"}),
+    ] {
     let mut value = exact_raw();
-    value["model"]["pressure_contract"] = json!({"version":"1.0.0","mode":"legacy_pressure_v1"});
+    value["model"]["pressure_contract"] = label;
     value["model"]["load_cases"][0]
         .as_object_mut()
         .unwrap()
@@ -444,11 +451,14 @@ fn retired_legacy_pressure_label_is_refused_on_the_ordinary_route() {
             .unwrap_or_else(|| panic!("{:?}", envelope.diagnostics));
         assert_eq!(refusal.severity, "blocking");
         assert_eq!(refusal.affected_refs, ["pressure_contract"]);
-        assert!(refusal.message.contains("2.0.0/exact_straight_pressure_v2"));
+        // B7b A5: the re-author diagnostic names the current contract.
+        assert!(refusal.message.contains("3.0.0/exact_pressure_v3"), "{}", refusal.message);
+        assert!(!refusal.message.contains("exact_straight_pressure_v2"));
         assert!(!envelope
             .diagnostics
             .iter()
             .any(|d| d.code == "SOURCE_BLOCK_RECOVERY_SELECTED"));
+    }
     }
 }
 
@@ -478,7 +488,9 @@ fn zero_legacy_pressure_primitive_is_refused_on_the_ordinary_route_and_the_retai
             .find(|d| d.code == "PRESSURE_MODEL_REAUTHOR_REQUIRED")
             .unwrap_or_else(|| panic!("{:?}", envelope.diagnostics));
         assert_eq!(refusal.affected_refs, ["case", "load:zero-pressure"]);
-        assert!(refusal.message.contains("2.0.0/exact_straight_pressure_v2"));
+        // B7b A5: the re-author diagnostic names the current contract.
+        assert!(refusal.message.contains("3.0.0/exact_pressure_v3"), "{}", refusal.message);
+        assert!(!refusal.message.contains("exact_straight_pressure_v2"));
         let ordinary = serde_json::to_vec(&envelope).unwrap();
         let direct = crate::run_linear_static_preview_value_with_retained_direct(value.clone(), mode, RETAINED_LIMIT).unwrap();
         assert!(direct.retained().is_none());
@@ -496,8 +508,13 @@ fn zero_legacy_pressure_primitive_is_refused_on_the_ordinary_route_and_the_retai
 #[test]
 fn retired_legacy_pressure_label_is_refused_on_the_retained_entry() {
     use crate::retained_memory::{AdmissionRefusal, D1Clause};
+    // B7b: the retired v2 label is refused by the same name beside the legacy one.
+    for label in [
+        json!({"version":"1.0.0","mode":"legacy_pressure_v1"}),
+        json!({"version":"2.0.0","mode":"exact_straight_pressure_v2"}),
+    ] {
     let mut value = exact_raw();
-    value["model"]["pressure_contract"] = json!({"version":"1.0.0","mode":"legacy_pressure_v1"});
+    value["model"]["pressure_contract"] = label;
     value["model"]["load_cases"][0]
         .as_object_mut()
         .unwrap()
@@ -524,5 +541,6 @@ fn retired_legacy_pressure_label_is_refused_on_the_retained_entry() {
             }
             crate::RetainedPublication::Successor(_) => panic!("a successor for a refused document"),
         }
+    }
     }
 }

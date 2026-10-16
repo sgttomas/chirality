@@ -1,38 +1,23 @@
 import { describe, expect, it } from "vitest";
 import inventedSparse from "../../../../../fixtures/results/preview_physics_invented_sparse.json";
 import connectedSparse from "../../../../../fixtures/results/preview_physics_connected_sparse.json";
-import precisionSparse from "../../../../../fixtures/results/precision_connected_ui_mechanics_sparse.json";
-import physicsSparse from "../../../../../fixtures/results/physics_connected_ui_mechanics_sparse.json";
-import multicase from "../../../../../fixtures/product_preview/source_blocks/multicase-sparse_interactive.raw.json";
-import physicsSourceMixed from "../../../../../fixtures/product_preview/physics_source/mixed-sparse_interactive.raw.json";
+import { retiredPrecisionStatement } from "../../test-support/retiredPrecision";
+import pressureSparse from "../../../../../fixtures/results/pressure_connected_ui_mechanics_sparse.json";
+import pressureSourceMixed from "../../../../../fixtures/product_preview/pressure_source/physics_source/mixed-sparse_interactive.raw.json";
 import {
-  COMBINATION_GATE_REASONS, FRESH_SEMANTIC_CONTRACT_IDS, N_HEADLINE, N_HEADLINE_WITHHELD, N_INTENSIFIED, N_P1, N_REPORT, N_RULE_RETIRED, N_SB, N_SB_MIXED,
-  PRECISION_1_HISTORICAL_SEMANTICS, RULE_SOURCE_BLOCKS_SUMMARY_NOT_RELIABLE, SOURCE_BLOCKS_ORDINARY_CASE_LEGACY_SEMANTICS,
-  isFreshSemanticResult, isRetiredResultId, knownSemanticNotices, resultRowLabel, ruleBindingRefusal, standingReason,
+  COMBINATION_GATE_REASONS, FRESH_SEMANTIC_CONTRACT_IDS, N_HEADLINE, N_HEADLINE_WITHHELD, N_INTENSIFIED, N_REPORT,
+  isFreshSemanticResult, knownSemanticNotices, resultRowLabel, ruleBindingRefusal, standingReason,
 } from "./knownSemanticLimitations";
 import { numericalResultStanding } from "./resultStanding";
 import { sourceContract } from "./resultReader";
 import type { MechanicsResult } from "../../types";
 
 const clone = (value: unknown) => structuredClone(value) as MechanicsResult;
-/** Receipt-only derivation probe: one case relabelled as an ordinary selection.
- * The hashes are not recomputed; this never claims a validated publication. */
-function mixed(): MechanicsResult {
-  const source = clone(multicase);
-  const receipt = source.source_block_recovery as { body: { cases: { selected_method: string; outcome: string }[] } };
-  receipt.body.cases[1].selected_method = "ordinary_sparse_structural_v1";
-  return source;
-}
-
 describe("frozen T0R texts (S1 §10), verbatim", () => {
   it("pins the notices and gate reasons", () => {
     expect(N_HEADLINE).toBe("maximum elastic normal stress; nominal; no component intensification; not a code stress");
     expect(N_HEADLINE_WITHHELD).toBe("Stress headline withheld: a stress maximum is not available for every member in every load case (arc members have no maximum on this route).");
-    expect(N_P1).toBe("Historical precision-1 result. Its support reactions are force norms only (no moments; constant-effort supports read 0 N), its member stress is the sum of absolute axial and bending components (up to about 1.414 times the circular maximum), its headline covers only the first load case, and its component rows multiply stress by SIF×k and enter combinations. It stays readable but is not Current, rule-, report- or export-eligible. Solve again to obtain preview-physics-1 results.");
-    expect(N_SB).toBe("Summary stress in this retained-source result is the sum of absolute axial and bending components, not the circular-section maximum. The admitted loads are nodal only, so it is conservative and at most √2 (about 1.414) times the maximum. Rule checks cannot bind to it until T3.");
-    expect(N_SB_MIXED).toBe("This retained-source result contains an ordinary load case whose rows keep the retired precision-1 semantics (norm-only reactions and an absolute-sum stress summary). It is not Current, rule- or export-eligible until T3.");
-    expect(N_REPORT).toBe("The report package is unavailable for fresh results until T6 (owner-accepted outage).");
-    expect(N_RULE_RETIRED).toBe("This rule pack binds a result retired by preview-physics-1 (reaction_resultant, open_formula_stress_summary or component_user_stress_multiplier_review). Rebind it to support_reaction_component_v2, pipe_elastic_normal_stress_maximum_v2 or component_equal_factor_intensified_bending_stress_v1 rows; until then it reports RULE_INPUTS_INCOMPLETE.");
+    expect(N_REPORT).toBe("The report package is unavailable for fresh results.");
     expect(N_INTENSIFIED).toBe("equal-factor intensified bending stress i·hypot(My,Mz)/Z; user SIF; member Z; not a code stress; never combined");
     expect(COMBINATION_GATE_REASONS).toEqual({
       NONLINEAR_COMBINATION_REQUIRES_SOLVE: "Combination withheld: the model has nonlinear supports, so superposing case states is not a solved state.",
@@ -43,71 +28,49 @@ describe("frozen T0R texts (S1 §10), verbatim", () => {
 });
 
 describe("static fresh-identity set and standing reasons", () => {
-  it("admits only preview-physics-1, source-blocks-1, physics-1, physics-source-1, T1's load-reference-1 and load-reference-source-1, and U6's preview-physics-retained-1 (D-U6-6)", () => {
+  it("admits only preview-physics-1 and U6's preview-physics-retained-1 (D-U6-6); B7b retired the v2 identities", () => {
     expect([...FRESH_SEMANTIC_CONTRACT_IDS].sort()).toEqual([
-      "openpipestress.result_semantics/0.3.0/load-reference-1", "openpipestress.result_semantics/0.3.0/load-reference-source-1",
-      "openpipestress.result_semantics/0.3.0/physics-1", "openpipestress.result_semantics/0.3.0/physics-source-1",
-      "openpipestress.result_semantics/0.3.0/preview-physics-1", "openpipestress.result_semantics/0.3.0/preview-physics-retained-1",
-      "openpipestress.result_semantics/0.3.0/source-blocks-1"]);
+      "openpipestress.result_semantics/0.3.0/preview-physics-1", "openpipestress.result_semantics/0.3.0/preview-physics-retained-1"]);
     expect(isFreshSemanticResult(clone(connectedSparse))).toBe(true);
-    expect(isFreshSemanticResult(clone(physicsSparse))).toBe(true);
-    expect(isFreshSemanticResult(clone(multicase))).toBe(true);
-    expect(isFreshSemanticResult(clone(precisionSparse))).toBe(false); // precision-1 offered as fresh
-    expect(standingReason(clone(precisionSparse))).toBe(PRECISION_1_HISTORICAL_SEMANTICS);
+    // pressure-1 and pressure-source-1 are read (their own routes) but never desktop-fresh: every output of theirs is refused.
+    expect(sourceContract(clone(pressureSparse))).toBe("pressure");
+    expect(isFreshSemanticResult(clone(pressureSparse))).toBe(false);
+    expect(sourceContract(clone(pressureSourceMixed))).toBe("pressure_source");
+    expect(isFreshSemanticResult(clone(pressureSourceMixed))).toBe(false);
+    // B7b: a stored statement naming a retired v2 identity is refused by name: unsupported, never fresh.
+    for (const [identity, sample] of [["physics-1", pressureSparse], ["physics-source-1", pressureSourceMixed], ["load-reference-1", pressureSparse], ["load-reference-source-1", pressureSourceMixed]] as const) {
+      const retired = clone(sample);
+      retired.producer = { ...retired.producer!, semantic_contract_id: `openpipestress.result_semantics/0.3.0/${identity}` };
+      expect(sourceContract(retired), identity).toBe("unsupported");
+      expect(isFreshSemanticResult(retired), identity).toBe(false);
+      expect(numericalResultStanding(retired, { load_cases: [] }).findings, identity).toEqual(["SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED"]);
+    }
+    // B1: a stored precision-1 statement is refused by name: unsupported, never fresh, no standing reason.
+    expect(sourceContract(retiredPrecisionStatement())).toBe("unsupported");
+    expect(isFreshSemanticResult(retiredPrecisionStatement())).toBe(false);
+    expect(standingReason(retiredPrecisionStatement())).toBeNull();
     expect(standingReason(clone(connectedSparse))).toBeNull();
   });
-  it("derives the mixed source-blocks reason for non-composite source-blocks-1 only", () => {
-    expect(standingReason(clone(multicase))).toBeNull();
-    const probe = mixed();
-    expect(sourceContract(probe)).toBe("source_blocks");
-    expect(standingReason(probe)).toBe(SOURCE_BLOCKS_ORDINARY_CASE_LEGACY_SEMANTICS);
-    // A2 10: standing validates first. This relabelled receipt has no validated
-    // registration, so it is refused on validation alone; the standing reason
-    // is not reached. (No actual producer fixture carries a qualified ordinary
-    // case in a non-composite source-blocks-1 envelope, so the validated-mixed
-    // path is covered by the receipt derivation above.)
-    const standing = numericalResultStanding(probe, { load_cases: [] });
-    expect(standing).toMatchObject({ eligible: false, findings: ["SOURCE_BLOCKS_VALIDATED_INVOCATION_REQUIRED"] });
-    // physics-source-1 legitimately carries ordinary cases under physics-1 semantics.
-    const composite = clone(physicsSourceMixed);
-    expect(sourceContract(composite)).toBe("physics_source");
+  it("reads a stored source-blocks-1 statement as unsupported (B4/D1 (b)); composites carry ordinary cases", () => {
+    const retired = clone(pressureSourceMixed);
+    retired.producer = { ...retired.producer!, semantic_contract_id: "openpipestress.result_semantics/0.3.0/source-blocks-1" };
+    expect(sourceContract(retired)).toBe("unsupported");
+    expect(standingReason(retired)).toBeNull();
+    expect(numericalResultStanding(retired, { load_cases: [] }).eligible).toBe(false);
+    // pressure-source-1 legitimately carries ordinary cases under pressure-1 semantics.
+    const composite = clone(pressureSourceMixed);
+    expect(sourceContract(composite)).toBe("pressure_source");
     expect((composite.source_block_recovery as any).body.cases.some((c: any) => c.selected_method !== "retained_source_blocks_exact_v1")).toBe(true);
     expect(standingReason(composite)).toBeNull();
   });
 });
 
-describe("selected + failed source-blocks-1 (receipt partial)", () => {
-  it("stays not eligible, is not reported as mixed, and keeps the summary notice", () => {
-    // Receipt-derivation probe only; the validator's own partial path adds
-    // SOURCE_BLOCKS_ENVELOPE_UNQUALIFIED for a validated partial receipt.
-    const source = clone(multicase);
-    const body = (source.source_block_recovery as any).body;
-    body.status = "partial";
-    Object.assign(body.cases[1], { outcome: "failed", selected_method: null });
-    expect(standingReason(source)).toBeNull();
-    expect(numericalResultStanding(source, { load_cases: [] }).eligible).toBe(false);
-    expect(knownSemanticNotices(source)).toEqual([{ id: "source-blocks-summary", text: N_SB }]);
-  });
-});
-
 describe("rule binding refusal mirror", () => {
-  it("refuses the all-selected source-blocks-1 summary row and headline ref; a force row still binds", () => {
-    const source = clone(multicase);
-    const summary = source.results.find(r => r.kind === "open_formula_stress_summary")!;
-    expect(ruleBindingRefusal(source, summary)).toBe(RULE_SOURCE_BLOCKS_SUMMARY_NOT_RELIABLE);
-    const headline = source.summary.max_open_formula_stress!;
-    expect(ruleBindingRefusal(source, { id: headline.result_ref, kind: "any" })).toBe(RULE_SOURCE_BLOCKS_SUMMARY_NOT_RELIABLE);
-    const force = source.results.find(r => r.kind === "element_local_axial_force")!;
-    expect(ruleBindingRefusal(source, force)).toBeNull();
+  it("refuses no preview or composite row (the source-blocks-1 summary refusal left with that identity)", () => {
     const preview = clone(inventedSparse);
     expect(ruleBindingRefusal(preview, preview.results.find(r => r.kind === "pipe_elastic_normal_stress_maximum_v2")!)).toBeNull();
-    const composite = clone(physicsSourceMixed);
+    const composite = clone(pressureSourceMixed);
     expect(composite.results.filter(r => ruleBindingRefusal(composite, r))).toEqual([]);
-  });
-  it("recognises retired id shapes, including case and combination qualification", () => {
-    for (const id of ["result:reaction:support-S-100", "result:stress:pipe-P-100", "result:loadcase:load-L-200:stress:pipe-P-100",
-      "result:combination:combination-C-OPER-ALT:reaction:support-S-100", "result:stress:component-C-110:pipe-P-100:end-j:user-multiplier"]) expect(isRetiredResultId(id)).toBe(true);
-    for (const id of ["result:stress:pipe-P-100:end-j:torsional-shear", "result:elastic-maximum:10:load:L-100:10:pipe:P-120", "result:disp:node-N-140"]) expect(isRetiredResultId(id)).toBe(false);
   });
 });
 
@@ -122,18 +85,16 @@ describe("text-only notices", () => {
     const intensified = source.results.find(r => r.kind === "component_equal_factor_intensified_bending_stress_v1")!;
     expect(resultRowLabel(intensified, source)).toBe(N_INTENSIFIED);
     expect(resultRowLabel(source.results.find(r => r.kind === "pipe_elastic_normal_stress_maximum_v2")!, source)).toBe(N_HEADLINE);
-    expect(resultRowLabel(intensified, clone(physicsSparse))).toBeNull();
+    expect(resultRowLabel(intensified, clone(pressureSparse))).toBeNull();
   });
   it("shows the withheld reason when the stress headline is null on a solved preview result", () => {
     const source = clone(connectedSparse);
     source.summary.max_open_formula_stress = null;
     expect(knownSemanticNotices(source)).toEqual([{ id: "headline-withheld", text: N_HEADLINE_WITHHELD }]);
   });
-  it("shows N-P1 on precision-1, N-SB on all-selected and N-SB-MIXED on mixed source-blocks-1", () => {
-    expect(knownSemanticNotices(clone(precisionSparse))).toEqual([{ id: "precision-1", text: N_P1 }]);
-    expect(knownSemanticNotices(clone(multicase))).toEqual([{ id: "source-blocks-summary", text: N_SB }]);
-    expect(knownSemanticNotices(mixed())).toEqual([{ id: "source-blocks-mixed", text: N_SB_MIXED }]);
-    expect(knownSemanticNotices(clone(physicsSparse))).toEqual([]);
-    expect(knownSemanticNotices(clone(physicsSourceMixed))).toEqual([]);
+  it("shows no notice on a retired precision-1 statement, pressure-1 or a composite", () => {
+    expect(knownSemanticNotices(retiredPrecisionStatement())).toEqual([]);
+    expect(knownSemanticNotices(clone(pressureSparse))).toEqual([]);
+    expect(knownSemanticNotices(clone(pressureSourceMixed))).toEqual([]);
   });
 });

@@ -35,7 +35,11 @@ def rs_any(*names, f="core/reporting/result_export/src/retained_precision.rs"):
 # edge; with the function gone the edge has no callee, so this key may stay unmapped (the rule then names nothing).
 # Each entry is (the kind the line map must report, why); rule_ops.carry_decision_keys never allows "replaced".
 KEYMAP_ALLOW = {"lib.rs:13102:append_combination_results": ("deleted",
-    "E13 (#1251): fn append_combination_results is deleted (lib.rs, pre-B7 cleanup); EDGE_ZERO[0]'s callee no longer exists")}
+    "E13 (#1251): fn append_combination_results is deleted (lib.rs, pre-B7 cleanup); EDGE_ZERO[0]'s callee no longer exists"),
+    # B7b-K1: the function-as-value zero edge's callee is deleted with the v2-era readers; the edge names nothing.
+    "load_reference_source.rs:46:code": ("deleted",
+    "B7b (A4/A5, 54018fe688): load_reference_source.rs is reduced to the current pre-pass and its private fn code is "
+    "deleted; preview_case_evidence's `.map(code)` names load_reference.rs's code (EDGE_ZERO[3]) and this callee no longer exists")}
 Z = "D1.4 (B2-A): the model's combinations, z <= 2 (D1.9 row Combinations)"
 T = "D1.4 (B2-A): one combination's terms, repeats counted, <= 3 (D1.9 row CombinationTerms)"
 O = "D1.4 (B2-A): one combination's operand load cases (mechanics terms, a subtraction's two ids, or a range envelope's ids), <= 3 (D1.9 rows CombinationTerms and RangeOperands)"
@@ -184,7 +188,7 @@ IN, ST, RS_, CP, NUM_ = ({"bytes": 128, "source": "IN128"}, {"bytes": 128, "sour
 P_ = "core/product_physics/src/"; A_ = "core/loads/load_case_algebra/src/lib.rs:"
 ID_AUDIT = [
     (P_ + "lib.rs:13054", {"reference.entity_ref": IN, "combination.id": IN}),
-    (P_ + "lib.rs:10246", {"item.entity_ref": IN, "metadata.basis": ST}),
+    (P_ + "lib.rs:10246", {"item.entity_ref": IN, "metadata.basis": {"bytes": 2914, "source": "COMP"}}),
     (P_ + "lib.rs:13070", {"reference.id": RS_, "combination.id": IN}),
     (P_ + "validation.rs:1991", {"load_case_ref": IN, "combination.id": IN}),
     (P_ + "validation.rs:2144", {"operand_id": IN, "combination.id": IN}),
@@ -252,22 +256,36 @@ ID_AUDIT_WHY = ("SQ2 G5 (B2): IN128 = a model id (combination, load case, node, 
 # load_case_algebra (findings exist only on an algebra refusal): per-call counts. The short key lib.rs:179:new is shared
 # with stress_recovery's StressFinding::new, so only (caller, callee) edges, which are unique, are bound.
 _AF = "load_case_algebra AlgebraFinding::new"
+def _algebra_finding_new():
+    """AlgebraFinding::new resolved by name at the snapshot. The basis short key lib.rs:179:new also named a stress_recovery
+    lib.rs line; once that file's lines moved (the pressure-source join removed its #[path] correct_norm module, -4
+    lines) the basis key is ambiguous between the two lib.rs files. load_case_algebra's definition is unchanged."""
+    f = "core/loads/load_case_algebra/src/lib.rs"
+    lines = open(_os.path.join(_SNAP, f), encoding="utf-8").read().split("\n")
+    hits = [i + 1 for i, l in enumerate(lines) if _re.match(r"\s*fn new\(code: FindingCode, subject_id: impl Into<String>, message: impl Into<String>\) -> Self \{$", l)]
+    if len(hits) != 1:
+        raise SystemExit(f"AlgebraFinding::new defined {len(hits)} times in {f}")
+    return Resolved(f"lib.rs:{hits[0]}:new")
+_AFN = _algebra_finding_new()
 EDGE_PER_CALL += [
-    ("lib.rs:292:evaluate_linear_combination", "lib.rs:179:new", "4", _AF + ": one empty-expression finding, then per term (<= 3) at most one of non-finite / duplicate / missing (each `continue`s)"),
+    ("lib.rs:292:evaluate_linear_combination", _AFN, "4", _AF + ": one empty-expression finding, then per term (<= 3) at most one of non-finite / duplicate / missing (each `continue`s)"),
     ("lib.rs:292:evaluate_linear_combination", "lib.rs:546:collect_statuses", "3", "one call per term (<= 3)"),
     ("lib.rs:292:evaluate_linear_combination", "lib.rs:524:same_dimension_or_record", "3", "one call per term (<= 3)"),
-    ("lib.rs:426:evaluate_range_envelope", "lib.rs:179:new", "4", _AF + ": one empty-expression finding, then per operand (<= 3) at most one of duplicate / missing"),
+    ("lib.rs:426:evaluate_range_envelope", _AFN, "4", _AF + ": one empty-expression finding, then per operand (<= 3) at most one of duplicate / missing"),
     ("lib.rs:426:evaluate_range_envelope", "lib.rs:546:collect_statuses", "3", "one call per operand (<= 3)"),
     ("lib.rs:426:evaluate_range_envelope", "lib.rs:524:same_dimension_or_record", "3", "one call per operand (<= 3)"),
-    ("lib.rs:364:evaluate_result_state_subtraction", "lib.rs:179:new", "4", _AF + ": duplicate (1), missing (<= 2, one per distinct id), dimension mismatch (1)"),
+    ("lib.rs:364:evaluate_result_state_subtraction", _AFN, "4", _AF + ": duplicate (1), missing (<= 2, one per distinct id), dimension mismatch (1)"),
     ("lib.rs:364:evaluate_result_state_subtraction", "lib.rs:546:collect_statuses", "2", "the minuend's and the subtrahend's"),
-    ("lib.rs:546:collect_statuses", "lib.rs:179:new", "3", _AF + ": empty statuses (1) or one per status (<= 2, every operand on the graph has two), plus model-incomplete (1)"),
-    ("lib.rs:524:same_dimension_or_record", "lib.rs:179:new", "1", _AF + ": its one site"),
+    ("lib.rs:546:collect_statuses", _AFN, "3", _AF + ": empty statuses (1) or one per status (<= 2, every operand on the graph has two), plus model-incomplete (1)"),
+    ("lib.rs:524:same_dimension_or_record", _AFN, "1", _AF + ": its one site"),
 ]
 PREFIX.update({
     'for r in projected[" "].as_array_mut().ok_or_else(||': ("Pall", "RS retained_precision.rs project (B3b changed its error code by route): the projection's `results` rows, at most the envelope's rows (Pall = C_eq * P_final)"),
 })
 NEW.update({
+    # B7a named bases add groups, not additional batch Calls. This exact
+    # header precedes the historical combined calls/groups regex.
+    "iter:inv.groups().iter().map": ("cases+z", "B7a stage 1: one group per distinct requested basis plus each combination group"),
     "for case in &operands": ("3", "PP preview_physics.rs append_combination_results: the operand case ids of one combination (expression.operand_ids()). " + O),
 })
 # I104 kept three D1-era "one per invocation" rules at 1 (calls, groups, material bases). B2 adds one
@@ -365,3 +383,52 @@ SITE_FROM_REBIND = [("retained_precision.rs:223", "1+4*64*(att+z)", RSR + "g5_na
 # O-10 (T4's heads): rules keyed by name at the snapshot; their arguments are in DEL-05-02's
 # Design/retained-pricing-rules.md.
 exec(open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "o10_rules.py")).read())
+# B7b-VP: model 0.5.0's exact half adds validate_profile's per-pipe corrosion-allowance check (pressure_runtime.rs): on a
+# 0.5.0 document each pipe takes at most one arm of `match (&model.pressure_contract, &pipe.section.corrosion_allowance)`
+# (EXACT_PRESSURE_CORROSION_ALLOWANCE_REQUIRED on E, CORROSION_ALLOWANCE_WITHOUT_PRESSURE_CONTRACT on L): <= m problem()
+# calls per validate_profile call, independent of the per-load arm the base rule bounds by L. Its contract-arm problems
+# cannot fire on admitted inputs (L has no contract; E's namespace requires {3.0.0, exact_pressure_v3, euler_bernoulli});
+# every admitted document is 0.5.0, so neither version arm fires. The base per-call bound is rebound L -> L+m.
+_VP_FILE = "core/product_physics/src/pressure_runtime.rs"
+if fnkey("validate_profile", _VP_FILE) and fnkey("problem", _VP_FILE):
+    _vp_src = open(_os.path.join(_SNAP, _VP_FILE), encoding="utf-8").read()
+    if "match (&model.pressure_contract, &pipe.section.corrosion_allowance) {" in _vp_src:
+        if _vp_src.count("for pipe in &model.pipe_segments {") != 1:
+            raise SystemExit("B7b-VP: validate_profile's per-pipe corrosion loop changed; re-review")
+        EDGE_PER_CALL = list(EDGE_PER_CALL) + [(fnkey("validate_profile", _VP_FILE), fnkey("problem", _VP_FILE), "L+m",
+            "B7b-VP: validate_profile's problem() calls: <= L from the base rule's per-load arm (PRESSURE_MODEL_REAUTHOR_REQUIRED "
+            "or EXACT_PRESSURE_REQUIRES_REGION, one per primitive load) plus <= m from the per-pipe corrosion-allowance match "
+            "(one arm per pipe); the 0.5.0 contract/shear/version arms cannot fire on an admitted document")]
+# B7a E13 leftover: the support-vector reaction arm no longer exists.
+# The complete current lib.rs pin guards this exact ID preimage removal;
+# all surviving displacement and other decision audits continue strict carry.
+ID_AUDIT = _labels_model["retire_combination_reaction_audit"](_SNAP, ID_AUDIT)
+
+# B7a: exact new owner headers and site-local positive metadata classes.
+# Existing O10 match checks, generic strict mapping and all other rules stay.
+_wide_model = __import__("runpy").run_path(_os.path.join(_os.path.dirname(__file__), "..", "base", "b7a_domain_model.py"))
+_wide_loops, _wide_audits, _wide_lex = _wide_model["text_decisions"](_SNAP, Resolved)
+O10_LOOPS_LAST = list(globals().get("O10_LOOPS_LAST", [])) + _wide_loops
+ID_AUDIT = list(ID_AUDIT) + _wide_audits
+LEX_SITE_SIZE = list(LEX_SITE_SIZE) + _wide_lex
+
+# Closed current formed-load premise repair; existing strict carry/O10 remain.
+_formed_model = __import__("runpy").run_path(_os.path.join(_os.path.dirname(__file__), "..", "base", "b7a_formation_model.py"))
+O10_LOOPS_LAST = _formed_model["rebind_o10"](_SNAP, O10_LOOPS_LAST)
+_formed_totals, _formed_audits = _formed_model["decisions"](_SNAP, Resolved)
+LOOP_TOTAL = list(globals().get("LOOP_TOTAL", [])) + _formed_totals
+ID_AUDIT = list(ID_AUDIT) + _formed_audits
+SITE_TOTAL = list(globals().get("SITE_TOTAL", [])) + _formed_model["site_totals"](_SNAP, Resolved)
+LEX_SITE_SIZE = list(LEX_SITE_SIZE) + _formed_model["lex_sizes"](_SNAP, Resolved)
+SITE_FROM = list(globals().get("SITE_FROM", [])) + _formed_model["first_return_rules"](_SNAP, Resolved)
+
+# Five additional immediate-return allocations, with full owned call counts.
+_owned_returns = __import__("runpy").run_path(_os.path.join(_os.path.dirname(__file__), "..", "base", "b7a_returning_errors.py"))
+SITE_FROM = list(SITE_FROM) + _owned_returns["rules"](_SNAP, Resolved)
+
+
+# Exact current producer spellings, applied after ordinary decision carry.
+B7A_SCOPED_TEXT = {"model": _os.path.join(_os.path.dirname(__file__), "..", "base", "b7a_scoped_text_model.py"), "snapshot": _SNAP}
+
+# Exclusive current-owner allocation choices after strict carry.
+B7A_OWNER_CHOICES = True

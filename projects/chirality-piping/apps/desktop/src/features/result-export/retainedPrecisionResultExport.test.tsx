@@ -29,7 +29,7 @@ import { RETAINED_PRECISION_DOWNGRADE_FORBIDDEN } from "../results/numericalResu
 import { numericalResultStanding } from "../results/resultStanding";
 import { RETAINED_PRECISION_NATIVE_CAPTURE_REQUIRED, RETAINED_PRECISION_NOT_NUMERICALLY_ELIGIBLE, RETAINED_PRECISION_VALIDATION_REQUIRED, registerRetainedPrecision } from "../results/retainedPrecisionStanding";
 import { validateRetainedPrecision } from "../results/retainedPrecisionReader";
-import { LOAD_REFERENCE_OUTPUT_REFUSAL, N_OUTPUT_NOT_NUMERICALLY_ELIGIBLE, surfaceOutputRefusal } from "../results/outputPolicy";
+import { N_OUTPUT_NOT_NUMERICALLY_ELIGIBLE, PRESSURE_1_OUTPUT_REFUSAL, PRESSURE_SOURCE_OUTPUT_REFUSAL, surfaceOutputRefusal } from "../results/outputPolicy";
 import { RETAINED_ABSOLUTE_VERIFIED, RETAINED_NOT_COVERED, retainedClassDisclosure } from "../results/retainedPrecisionDisclosure";
 import {
   CURRENT_ORIGIN_LIMIT, buildCurrentResultExport, currentReceivedOrigin, currentResultDocumentBase, deriveResultDocument, validateResultDocument, type JsonObject,
@@ -46,10 +46,10 @@ const caseFile = json("fixtures/results/retained_precision_carrier_cases.json");
 const corpus = readRetainedPrecisionCorpus();
 const MODES = ["sparse_interactive", "dense_scrutiny"] as const;
 
-/** I76's goldens (committed at 055ee0c0bc) and its recorded inputs (R/I76/t6s_01/inputs/). */
+/** Current B7a goldens from the maintained I76 recipe and its fixed base/origin stand-ins. */
 const GOLDEN: Record<PreviewSolverMode, { path: string; sha256: string; base: string; origin: string; rows: number; nonQuantity: number }> = {
-  sparse_interactive: { path: "fixtures/results/retained_precision_successor_derivative_sparse_interactive.json", sha256: "7394d3cb100939a1600a1f54682bb74c1e89b474da7263a10596c78ee571e943", base: "5a48e00d7976ed7e2e34967d023219a7e5e23144b35c680415d1b3786bfc44d8", origin: "99170fb742e65fb00a5d101f2269db7af450cf644908f6e71a3607359513c983", rows: 98, nonQuantity: 1 },
-  dense_scrutiny: { path: "fixtures/results/retained_precision_successor_derivative_dense_scrutiny.json", sha256: "bdc1e4514df54b53b998c777468549a39f21444dfe03cc18ddbae162b9457e51", base: "3f054be38290bf9ae6e6a236c192d6eda8c5a0867367d8a0559509fe6f515e78", origin: "8aabc364c27701133e3574a121b861b90283fff99ad416b30a32d7f1326c5b28", rows: 99, nonQuantity: 2 },
+  sparse_interactive: { path: "fixtures/results/retained_precision_successor_derivative_sparse_interactive.json", sha256: "25aaf1e4f287993d0f153b535fb4c29b8cc61733c80915b76926b363f737d7f9", base: "d795f854f3e6094ceb8ff6a66c558f01a05ed795d471f04a60c44db64d809477", origin: "0a8b9a303aedbd61af5bce058e1e6f4d6b443051932a6b559f14fa748c3fd1ba", rows: 98, nonQuantity: 1 },
+  dense_scrutiny: { path: "fixtures/results/retained_precision_successor_derivative_dense_scrutiny.json", sha256: "7a03587151737440110b4a326b6d13dc67530037d155edb40fa6a459bbb6a066", base: "088d666e55f9e3f8b0a63c288e2c158ce39f7803f1604d03e59449d145b291cb", origin: "ddd0b0597d583533f1dc8be28bb8adb5ba17f9dad6c5737311186efa3b85c3f9", rows: 98, nonQuantity: 1 },
 };
 /** I76's fixed stand-ins (its CHECKPOINT_1 section 2): test values, not a qualified manifest or build. */
 const MANIFEST_REF = "test:t6s-golden-reference-only-manifest";
@@ -73,7 +73,7 @@ function milestone(mode: PreviewSolverMode) {
 async function goldenInputs(source: MechanicsResult, model: PreviewModel) {
   const run = { ...structuredClone(RUN_STAND_IN), run_id: source.run_id, load_basis_refs: modelLoadBasisRefs(model) } as Json;
   const base = currentResultDocumentBase(model, source, run, MANIFEST_REF, { solver_name: source.producer!.component_name, solver_version: source.producer!.component_version, solver_build_ref: SOLVER_BUILD_REF });
-  const origin = await currentReceivedOrigin(model, source, MANIFEST_REF, false, ORIGIN_LIMIT);
+  const origin = await currentReceivedOrigin(model, source, MANIFEST_REF, ORIGIN_LIMIT);
   return { base, origin };
 }
 /** Every object key in a JSON value. */
@@ -230,12 +230,12 @@ describe.each(MODES)("%s: the negative controls refuse with their expected codes
     const relabelled = structuredClone(source) as Json;
     relabelled.producer.semantic_contract_id = "openpipestress.result_semantics/0.3.0/preview-physics-1";
     relabelled.formulation_basis.profile_id = "product_preview_mechanics_v1";
-    await expect(deriveResultDocument(base, model, relabelled, await currentReceivedOrigin(model, relabelled, MANIFEST_REF, false, ORIGIN_LIMIT))).rejects.toThrow("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");
+    await expect(deriveResultDocument(base, model, relabelled, await currentReceivedOrigin(model, relabelled, MANIFEST_REF, ORIGIN_LIMIT))).rejects.toThrow("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");
     await expect(validateResultDocument(doc, relabelled)).rejects.toThrow("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");
     // A statement the reader refuses derives nothing: R2's header dispatch runs the reader's transport checks
     // (G5), so it reads unsupported (TS: the reader's RETAINED_PRECISION_RECEIPT_MISMATCH).
     const unread = structuredClone(source) as Json; unread.retained_precision.receipt_sha256 = "0".repeat(64);
-    await expect(deriveResultDocument(base, model, unread, await currentReceivedOrigin(model, unread, MANIFEST_REF, false, ORIGIN_LIMIT))).rejects.toThrow("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");
+    await expect(deriveResultDocument(base, model, unread, await currentReceivedOrigin(model, unread, MANIFEST_REF, ORIGIN_LIMIT))).rejects.toThrow("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");
     await expect(validateResultDocument(doc, unread)).rejects.toThrow("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");
     // The receipt must bind the source, whole.
     const edit = async (change: (d: Json) => void) => { const d = structuredClone(doc); change(d); return rehashed(d); };
@@ -268,19 +268,23 @@ describe.each(MODES)("%s: the negative controls refuse with their expected codes
     await expect(validateResultDocument(await rehashed(carried), result)).rejects.toThrow(RETAINED_PRECISION_DOWNGRADE_FORBIDDEN);
     const base = currentResultDocumentBase(model, result, analysisRun.analysis_run, inputManifest.manifest_ref.ref, inputManifest.manifest.solver_basis);
     base.result_envelope.retained_precision = structuredClone(receipt);
-    await expect(deriveResultDocument(base, model, result, await currentReceivedOrigin(model, result, inputManifest.manifest_ref.ref, false, CURRENT_ORIGIN_LIMIT))).rejects.toThrow(RETAINED_PRECISION_DOWNGRADE_FORBIDDEN);
+    await expect(deriveResultDocument(base, model, result, await currentReceivedOrigin(model, result, inputManifest.manifest_ref.ref, CURRENT_ORIGIN_LIMIT))).rejects.toThrow(RETAINED_PRECISION_DOWNGRADE_FORBIDDEN);
   });
 });
 
 describe("a load/reference-state result keeps T1's refusal", () => {
-  it("in the Current builder, the derivative and the validator", async () => {
-    const result = json("fixtures/product_preview/load_reference/pressure-sparse_interactive.raw.json") as MechanicsResult;
-    const model = structuredClone(json("fixtures/product_preview/load_reference/pressure.request.json").model) as PreviewModel;
-    expect(surfaceOutputRefusal(result, model, "result-export")).toBe(LOAD_REFERENCE_OUTPUT_REFUSAL);
-    await expect(buildCurrentResultExport({ model, result, analysisRun: {} as Json, inputManifest: null })).rejects.toThrow(LOAD_REFERENCE_OUTPUT_REFUSAL);
-    const origin = await currentReceivedOrigin(model, result, MANIFEST_REF, false, ORIGIN_LIMIT);
-    await expect(deriveResultDocument({ result_envelope: {} }, model, result, origin)).rejects.toThrow(LOAD_REFERENCE_OUTPUT_REFUSAL);
-    await expect(validateResultDocument({ schema_version: "0.3.0", result_envelope: { schema_version: "0.3.0" } }, result)).rejects.toThrow(LOAD_REFERENCE_OUTPUT_REFUSAL);
+  // B7b: published under pressure-1 (ordinary) or pressure-source-1 (joined), each refused by its own reason.
+  it.each([
+    ["fixtures/product_preview/pressure/load_reference/pressure", PRESSURE_1_OUTPUT_REFUSAL],
+    ["fixtures/product_preview/pressure_source/load_reference_source/mixed", PRESSURE_SOURCE_OUTPUT_REFUSAL],
+  ] as const)("%s: in the Current builder, the derivative and the validator", async (stem, reason) => {
+    const result = json(`${stem}-sparse_interactive.raw.json`) as MechanicsResult;
+    const model = structuredClone(json(`${stem}.request.json`).model) as PreviewModel;
+    expect(surfaceOutputRefusal(result, model, "result-export")).toBe(reason);
+    await expect(buildCurrentResultExport({ model, result, analysisRun: {} as Json, inputManifest: null })).rejects.toThrow(reason);
+    const origin = await currentReceivedOrigin(model, result, MANIFEST_REF, ORIGIN_LIMIT);
+    await expect(deriveResultDocument({ result_envelope: {} }, model, result, origin)).rejects.toThrow(reason);
+    await expect(validateResultDocument({ schema_version: "0.3.0", result_envelope: { schema_version: "0.3.0" } }, result)).rejects.toThrow(reason);
   });
 });
 
@@ -322,17 +326,20 @@ describe("the corpus's synthetic two-case bases, read by id", () => {
  * (`retained_precision_derivative_golden.rs`, `B3B_EXACT`), derived from lane P's pinned m3x
  * successors (PP `EXACT_PINNED`) with the same fixed desktop-shaped base and origin. The
  * Current builder is not exercised: physics-retained-1 is outside the static fresh set. */
-const EXACT_GOLDEN: Record<PreviewSolverMode, { successor: string; successorSha256: string; path: string; sha256: string; rows: number }> = {
-  sparse_interactive: { successor: "fixtures/results/retained_precision_exact_successor_sparse_interactive.json", successorSha256: "fd8b1a4dd0b51122fdc39c006d4fd90da4d7ee103e8556694d7c39f567e3af85", path: "fixtures/results/retained_precision_exact_successor_derivative_sparse_interactive.json", sha256: "f13f4f40307abe25c055a622465f4ec60472fb2686894c5d7a175db8c6d9941d", rows: 98 },
-  dense_scrutiny: { successor: "fixtures/results/retained_precision_exact_successor_dense_scrutiny.json", successorSha256: "2fad0a166a565ce0f9390f8f5125a9675ff4ffa4b9532681cd5a960b8c2bd42d", path: "fixtures/results/retained_precision_exact_successor_derivative_dense_scrutiny.json", sha256: "de9f2315a978c70eccaa3b101bde647efcb605474323610e3cac8cdc8eb2d54b", rows: 99 },
+const EXACT_GOLDEN: Record<PreviewSolverMode, { successor: string; successorSha256: string; receiptSha256: string; path: string; sha256: string; rows: number }> = {
+  // B7b D4 (a): the successors regenerated on the registered pressure-1 base (16478cadf4; Rust
+  // `EXACT_PINNED` (file and receipt sha256) and `EXACT_GOLDEN_SHA256` in retained_precision_derivative_golden.rs).
+  sparse_interactive: { successor: "fixtures/results/retained_precision_exact_successor_sparse_interactive.json", successorSha256: "45e14e68249abbeafa358f9e7317e9060da8e59c83db948a8184b98b8859001c", receiptSha256: "f6bb7e7fc74ebce71c67da5da81906fece54e412aa2697d5548eb13f50b67524", path: "fixtures/results/retained_precision_exact_successor_derivative_sparse_interactive.json", sha256: "4af45d2536aad6849c384d271d67b2732654455e88b60411c2a5c8a1adaf2ead", rows: 98 },
+  dense_scrutiny: { successor: "fixtures/results/retained_precision_exact_successor_dense_scrutiny.json", successorSha256: "0f490c22e7b2a25fa5dc1dd3d3a7ae7a701c744bfaac2fc2a2aa8f95f3451259", receiptSha256: "0317aed643760641eec81708a0d5f506963e109a78c97a715617c081c28b7701", path: "fixtures/results/retained_precision_exact_successor_derivative_dense_scrutiny.json", sha256: "9de40cffb951167fd6cedb4ed62dfb1204aeea92194fee22b6848b46bb0c53a8", rows: 98 },
 };
 describe.each(MODES)("%s: byte parity with the exact successor's Rust golden (B3b-T)", (mode) => {
-  it("derives the golden's exact canonical bytes; it validates and carries the receipt and physics-1's evidence", async () => {
+  it("derives the golden's exact canonical bytes; it validates and carries the receipt and pressure-1's evidence", async () => {
     const golden = EXACT_GOLDEN[mode];
     const bytes = readFileSync(resolve(root, golden.successor));
     expect(sha256(bytes)).toBe(golden.successorSha256);
     const pinned = JSON.parse(bytes.toString("utf8"));
     const source = pinned.source as MechanicsResult, model = pinned.invocation.request.model as PreviewModel;
+    expect((source.retained_precision as Json).receipt_sha256).toBe(golden.receiptSha256);
     expect(source.results).toHaveLength(golden.rows);
     const goldenText = readFileSync(resolve(root, golden.path), "utf8");
     expect(sha256(goldenText)).toBe(golden.sha256);

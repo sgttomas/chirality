@@ -140,7 +140,6 @@ export {
   RuleRevisionGenerationGate,
   commitModelAfterSolveInvalidation
 } from "./features/workspace/solveGates";
-export { isSupportedChangedModelPersistenceResponse } from "./features/workspace/projectPersistenceIntegrity";
 export { solveProofStatus } from "./features/workspace/solveProof";
 export type { SolveProofEvidence } from "./features/workspace/solveProof";
 
@@ -242,8 +241,7 @@ function AppSession() {
     modelHashIntegrity,
     projectEnvelopeHash,
     projectEnvelopeHashIntegrity,
-    modelDocumentMigration,
-    modelMigrationLedger,
+    modelDocumentVersion,
     projectMessage,
     projectOperation,
     projectBusy,
@@ -824,7 +822,7 @@ function AppSession() {
           </button>
           <button type="button" data-testid="new-blank-040" onClick={handleCreateBlankLoadStateProject} disabled={projectBusy}>
             <FilePlus size={15} aria-hidden="true" />
-            Blank 0.4.0 model
+            Blank load/reference model
           </button>
           <button data-testid="open-model-document" type="button" onClick={() => void handleOpenModelDocument()} disabled={projectBusy}>
             <FolderOpen size={15} aria-hidden="true" />
@@ -963,8 +961,7 @@ function AppSession() {
                 modelHashIntegrity={modelHashIntegrity}
                 projectEnvelopeHash={projectEnvelopeHash}
                 projectEnvelopeHashIntegrity={projectEnvelopeHashIntegrity}
-                modelDocumentMigration={modelDocumentMigration}
-                modelMigrationLedger={modelMigrationLedger}
+                modelDocumentVersion={modelDocumentVersion}
               />
               </DormantSection>) : null}
             </section>

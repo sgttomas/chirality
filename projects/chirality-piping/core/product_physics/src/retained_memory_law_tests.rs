@@ -120,7 +120,7 @@ pub(super) fn cap_maximal() -> Value {
         .collect();
     json!({
         "model": {
-            "schema_version": "0.1.0",
+            "schema_version": "0.5.0",
             "document_kind": "openpipestress.product_preview.model",
             "analysis_status": {"mechanics": "ready_for_preview_diagnostics", "rule_check": "not_performed_user_rule_inputs_missing", "professional_acceptance": "not_provided"},
             "project": {"id": text("project:", 128), "units": {"length": "m", "force": "N"}},
@@ -300,59 +300,446 @@ fn sha256_matches_the_sha2_dependency() {
     assert_eq!(build_identity::sha256(b"abc")[..4], [0xba, 0x78, 0x16, 0xbf]);
 }
 
+const PRESSURE_SOURCE_BINDING_INPUT: &str =
+    "../../fixtures/results/semantic_contract_v0_3_pressure_source_1.json";
+const PRESSURE_SCHEMA_BINDING_INPUT: &str =
+    "../../schemas/results_pressure_1.v0.3.schema.json";
+const PRESSURE_TABLE_INPUT: &str =
+    "../../fixtures/results/semantic_contract_v0_3_pressure_1.json";
+// B7b (O-10, b7-plan "Join"): the pressure-source table is resident
+// (`pressure_source_contract()`), so its binding is an ordinary include
+// obligation again; the pressure result schema is the one nonresident binding.
+const NONRESIDENT_BINDING_INPUTS: [(usize, &str); 1] = [
+    (10, PRESSURE_SCHEMA_BINDING_INPUT),
+];
+const SEMANTIC_E14_TEST_ITEM: &str = "#[cfg(test)]\nmod e14_tests {";
+const SEMANTIC_B7B_TEST_ITEM: &str = "#[cfg(test)]\nmod b7b_current_table_tests {";
+
+fn reader_include_required(path: &str) -> bool {
+    path != PRESSURE_SCHEMA_BINDING_INPUT
+}
+#[derive(Clone, Copy)]
+struct AuditedTestRegion {
+    first_item: &'static str,
+    complete_suffix_sha256: &'static str,
+    production_resume: Option<&'static str>,
+    /// A closed test item after `production_resume` that runs to the end of the
+    /// file. Its bytes are inside the hashed complete suffix.
+    trailing_test: Option<&'static str>,
+}
+
+fn audited_reader_sources() -> [(&'static str, Option<AuditedTestRegion>); 5] {
+    [
+        (include_str!("../../reporting/result_export/src/retained_precision.rs"), Some(AuditedTestRegion {
+            first_item: "#[cfg(test)]\nmod b3b_table_binding_tests {",
+            // Re-audited on the K-D5 merge: the suffix gained only K-D5's closed
+            // `c7_prescribed_key_controls` test module after the trailing
+            // production functions; it has no include and stays inspected.
+            // Re-audited at B7b D3: only the closed `b7a_preview_namespace_tests`
+            // module changed (a 0.5.0 null-contract expectation and the exact v3
+            // namespace controls); the production after the resume is byte-identical.
+            complete_suffix_sha256: "ed3e8cceb1fff57333ca718b1f7ae98df816d74443335774c3d145b3c105201c",
+            // Only the preceding closed test region is excluded. These two
+            // trailing public functions are production and remain inspected.
+            production_resume: Some("/// The reader's outcome as JSON, for callers outside Rust (the desktop's wasm"),
+            trailing_test: None,
+        })),
+        (include_str!("../../reporting/result_export/src/physics_source.rs"), Some(AuditedTestRegion {
+            first_item: "#[cfg(test)]\nmod review_repair_tests {",
+            // Re-audited at B7b D3 (033626030c): the closed test module's four
+            // include paths moved under fixtures/product_preview/pressure_source/;
+            // nothing else in the suffix changed and it holds no production.
+            complete_suffix_sha256: "179c3dbcddf5ac7f5a51f1b60c1e8a747d669298299e133adcc21c2e660f48c5",
+            production_resume: None,
+            trailing_test: None,
+        })),
+        (include_str!("../../reporting/result_export/src/semantic_contract.rs"), Some(AuditedTestRegion {
+            // B7b D3 audit: the closed `b7b_current_table_tests` module (its own
+            // test-only includes of the two current tables), then production from
+            // `for_source_metadata` on, which stays inspected, then the closed E14
+            // module to the end of the file (its table list changed, test-only).
+            // Re-audited at ccb19ba0bf: only the inspected production between the
+            // regions changed (current_header's load-state carrier guard).
+            first_item: SEMANTIC_B7B_TEST_ITEM,
+            complete_suffix_sha256: "78c770d4a5f38a9362e158ab95103d0ae135d7cf3b8aa0f832b347c702a6a9f5",
+            production_resume: Some("/// Header dispatch only; canonical envelopes have no raw rows. This does not"),
+            trailing_test: Some(SEMANTIC_E14_TEST_ITEM),
+        })),
+        (include_str!("../../reporting/result_export/src/source_blocks.rs"), Some(AuditedTestRegion {
+            first_item: "#[cfg(test)]\nmod norm_tests {",
+            // B4/D1 (b) and E15: the closed test suffix uses the shared
+            // composite helpers and a test-only preview_magnitude_controls include.
+            // The audited suffix contains no ungated production or resident include.
+            complete_suffix_sha256: "4351176434917f137997591b059e6c208eda9905c8c66fd953ba1836edd5b544",
+            production_resume: None,
+            trailing_test: None,
+        })),
+        (include_str!("../../reporting/result_export/src/reader_verdict.rs"), None),
+    ]
+}
+
+/// Fail closed on any changed or unknown test region. The exact current
+/// boundaries and complete suffix bytes have been audited independently; this
+/// is not a parser or a general rule for discarding cfg(test) text.
+fn audited_reader_production(source: &str, region: Option<AuditedTestRegion>) -> Result<String, &'static str> {
+    use sha2::{Digest, Sha256};
+    let Some(region) = region else {
+        return if source.contains("#[cfg(test)]") { Err("UNKNOWN_TEST_MARKER") } else { Ok(source.into()) };
+    };
+    if source.matches(region.first_item).count() != 1 {
+        return Err("MISSING_OR_AMBIGUOUS_TEST_BOUNDARY");
+    }
+    let start = source.find(region.first_item).unwrap();
+    if start != 0 && source.as_bytes()[start-1] != b'\n' {
+        return Err("TEST_BOUNDARY_NOT_ITEM_LINE");
+    }
+    if source.find("#[cfg(test)]") != Some(start) {
+        return Err("EARLIER_TEST_MARKER");
+    }
+    let suffix = &source[start..];
+    // Hash the entire suffix before excluding anything, including production
+    // after the retained reader's test region. Appended production cannot hide.
+    if format!("{:x}", Sha256::digest(suffix.as_bytes())) != region.complete_suffix_sha256 {
+        return Err("CHANGED_AUDITED_SUFFIX");
+    }
+    let resume = match region.production_resume {
+        Some(anchor) => {
+            if suffix.matches(anchor).count() != 1 { return Err("MISSING_OR_AMBIGUOUS_PRODUCTION_RESUME"); }
+            start + suffix.find(anchor).unwrap()
+        }
+        None => source.len(),
+    };
+    // A trailing closed test item ends the resumed production; it was hashed above.
+    let end = match (region.production_resume, region.trailing_test) {
+        (_, None) => source.len(),
+        (None, Some(_)) => return Err("TRAILING_TEST_WITHOUT_RESUME"),
+        (Some(_), Some(item)) => {
+            let resumed = &source[resume..];
+            if resumed.matches(item).count() != 1 { return Err("MISSING_OR_AMBIGUOUS_TRAILING_TEST"); }
+            let at = resume + resumed.find(item).unwrap();
+            if source.as_bytes()[at - 1] != b'\n' { return Err("TRAILING_TEST_NOT_ITEM_LINE"); }
+            at
+        }
+    };
+    Ok(format!("{}{}", &source[..start], &source[resume..end]))
+}
+fn actual_reader_include(reader: &str, input: &str) -> bool {
+    let target = format!("../../{input}");
+    let compact: String = reader.chars().filter(|c| !c.is_ascii_whitespace()).collect();
+    ["include_str!", "include_bytes!"].iter()
+        .any(|kind| compact.contains(&format!("{kind}(\"{target}\"")))
+}
+
+/// The full registration law and the focused pre-registration check share this
+/// guard. Only the exact pressure result schema path is exempt from resident includes.
+fn assert_reviewed_reader_input_bindings() {
+    const CURRENT: [&str; 12] = [
+        "Cargo.lock",
+        "../../schemas/physics_source_recovery.schema.json",
+        "../../schemas/retained_precision_mp_v2.schema.json",
+        "../../fixtures/results/retained_precision_prepared_ordinary_v1.json",
+        "../../fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json",
+        "../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json",
+        "../../fixtures/results/retained_precision_prepared_combination_v1.json",
+        "../../fixtures/results/retained_precision_prepared_exact_v1.json",
+        "../../fixtures/results/semantic_contract_v0_3_physics_retained_1.json",
+        PRESSURE_SOURCE_BINDING_INPUT,
+        PRESSURE_SCHEMA_BINDING_INPUT,
+        PRESSURE_TABLE_INPUT,
+    ];
+    // B7a E2: the retired v0_2 table left; B1: the precision-1 table left;
+    // B4/D1 (b): the source-blocks-1 table and its receipt schema left; B7b
+    // (A4/A5): the physics-1, load-reference-1, load-reference-source-1 and
+    // physics-source-1 tables left with v2, and the resident ordinary pressure
+    // table was appended (O-10). Every other input keeps its order.
+    assert_eq!(build_identity::REVIEWED_INPUTS, CURRENT);
+    let audited = audited_reader_sources();
+    let sources: Vec<_> = audited[..4].iter().map(|(source, region)|
+        audited_reader_production(source, *region).expect("reader test region changed: re-audit before exclusion")
+    ).collect();
+    let reader = sources.concat();
+    let mut exemptions = 0;
+    for (index, path) in build_identity::REVIEWED_INPUTS.iter().enumerate().skip(1) {
+        let name = path.rsplit('/').next().unwrap();
+        if reader_include_required(path) {
+            // Preserve every earlier include obligation and require its actual
+            // source-qualified production macro, rather than a filename mention.
+            assert!(reader.contains(&format!("{name}\"")), "{name} is an included input of the reader");
+            assert!(actual_reader_include(&reader, path), "{path} is a production reader include");
+        } else {
+            exemptions += 1;
+            let expected = NONRESIDENT_BINDING_INPUTS.iter()
+                .find(|(_, binding)| *binding == *path).expect("only the exact closed binding paths are exempt");
+            assert_eq!(index, expected.0);
+            assert!(!actual_reader_include(&reader, path), "the binding is nonresident");
+        }
+    }
+    assert_eq!(exemptions, 1);
+    let semantic = &sources[2];
+    // B7b (O-10): the supplied-byte verifier checks the reviewed digest and the
+    // table's identity and creates nothing resident; the one resident current
+    // source table is that verifier over the reviewed bytes, held once.
+    let verifier = semantic.split("pub fn verify_pressure_source_table(").nth(1).unwrap()
+        .split("pub fn pressure_source_contract(").next().unwrap();
+    for required in ["Sha256::digest(bytes)", "PRESSURE_SOURCE_TABLE_SHA256",
+        "serde_json::from_slice(bytes)", "table[\"semantic_contract_id\"] != PRESSURE_SOURCE_ID",
+        "table[\"source_signature_count\"] != 69", "table[\"source_kind_count\"] != 51"] {
+        assert!(verifier.contains(required), "binding verifier must retain {required}");
+    }
+    for forbidden in ["include_str!", "include_bytes!", "OnceLock", "get_or_init"] {
+        assert!(!verifier.contains(forbidden), "binding verifier creates no resident table: {forbidden}");
+    }
+    let body = |text: &str, item: &str| text.split(item).nth(1).unwrap().split("\n}\n").next().unwrap().to_string();
+    for (item, verify, path) in [("pub fn pressure_source_contract(", "verify_pressure_source_table(include_bytes!(", PRESSURE_SOURCE_BINDING_INPUT),
+        ("pub fn pressure_rows_contract(", "verify_pressure_table(include_bytes!(", PRESSURE_TABLE_INPUT)] {
+        let resident = body(semantic, item);
+        assert!(resident.contains("static CONTRACT: OnceLock<Value> = OnceLock::new();") && resident.contains(verify), "{item}");
+        assert!(actual_reader_include(&resident, path), "{item} holds the reviewed {path}");
+    }
+    let metadata = body(semantic, "fn current_header(");
+    assert!(metadata.contains("Some(PRESSURE_SOURCE_ID) => pressure_source_contract(),"));
+    assert!(metadata.contains("Some(PRESSURE_ID) => pressure_rows_contract(),"));
+    let signature = sources[3].split("fn signature(").nth(1).unwrap().split("fn ").next().unwrap();
+    assert!(signature.contains("crate::semantic_contract::pressure_source_contract()"));
+    let verdict = audited_reader_production(audited[4].0, audited[4].1).expect("verdict has no test region");
+    for (_, path) in NONRESIDENT_BINDING_INPUTS {
+        assert!(!actual_reader_include(&verdict, path), "the verdict has no resident binding include");
+    }
+    let findings = verdict.split("pub fn source_findings(").nth(1).unwrap().split("pub fn ").next().unwrap();
+    assert!(findings.contains("let table = sc::pressure_source_contract();"));
+}
+
+#[test]
+fn pressure_source_reviewed_guard_refuses_hidden_or_changed_production() {
+    fn refuses(source: &str, region: Option<AuditedTestRegion>, expected: &str) {
+        match audited_reader_production(source, region) {
+            Err(error) => assert_eq!(error, expected),
+            Ok(_) => panic!("guard unexpectedly accepted control expecting {expected}"),
+        }
+    }
+    // B7b: the late include names the one nonresident binding (the pressure
+    // result schema); the pressure-source table is resident since O-10.
+    const LATE_PRODUCTION: &str = "\nconst LATE_REVIEWED_TABLE: &str = include_str!(\"../../../../schemas/results_pressure_1.v0.3.schema.json\");\n";
+    let mut unchanged = 0;
+    let mut refused = 0;
+    let mut visible = 0;
+    for (source, region) in audited_reader_sources() {
+        let production = audited_reader_production(source, region).unwrap();
+        unchanged += 1;
+        // Preserve the historical 5/29/2 controls. The semantic marker-free
+        // fixture is now the production projection, only after the full actual
+        // suffix (B7b's table tests, production, E14) passed the exact audit
+        // above; the file itself is not marker-free. Its regions' own controls
+        // are `semantic_e14_reviewed_guard_refuses_changed_or_hidden_production`.
+        if let Some(region) = region.filter(|r| r.trailing_test.is_none()) {
+            let start = source.find(region.first_item).unwrap();
+            let (prefix, suffix) = source.split_at(start);
+            assert!(production.starts_with(prefix));
+            for inserted in ["// #[cfg(test)] in a comment\n",
+                "const EARLY_MARKER: &str = \"#[cfg(test)]\";\n",
+                "#[cfg(test)]\nmod early_test_module {}\n"] {
+                refuses(&format!("{prefix}{inserted}{suffix}"), Some(region), "EARLIER_TEST_MARKER");
+                refused += 1;
+            }
+            // Commenting the known attribute makes its module ungated. A text
+            // occurrence at the same boundary must not pass the item-line check.
+            refuses(&format!("{prefix}// {suffix}"), Some(region), "TEST_BOUNDARY_NOT_ITEM_LINE");
+            refused += 1;
+            let missing = source.replacen(region.first_item, "#[cfg(not(test))]\nmod changed_test_module {", 1);
+            refuses(&missing, Some(region), "MISSING_OR_AMBIGUOUS_TEST_BOUNDARY"); refused += 1;
+            let ambiguous = format!("{prefix}{}\n}}\n{suffix}", region.first_item);
+            refuses(&ambiguous, Some(region), "MISSING_OR_AMBIGUOUS_TEST_BOUNDARY"); refused += 1;
+            refuses(&format!("{source}\n// altered audited suffix\n"), Some(region), "CHANGED_AUDITED_SUFFIX"); refused += 1;
+            refuses(&format!("{source}{LATE_PRODUCTION}"), Some(region), "CHANGED_AUDITED_SUFFIX"); refused += 1;
+            if let Some(anchor) = region.production_resume {
+                // These are actual ungated production callers, following the
+                // audited tests in the current retained reader; neither is hidden.
+                assert!(production.contains("pub fn outcome_json("));
+                assert!(production.contains("pub fn validate_preview_physics_transport_metadata("));
+                let after_tests = source.replacen(anchor, &format!("{LATE_PRODUCTION}{anchor}"), 1);
+                refuses(&after_tests, Some(region), "CHANGED_AUDITED_SUFFIX"); refused += 1;
+            } else {
+                assert_eq!(production.len(), prefix.len());
+            }
+        } else {
+            let marker_free = if region.is_some() { production.as_str() } else { source };
+            assert!(production == marker_free, "the concrete marker-free fixture remains complete production");
+            for inserted in ["// #[cfg(test)] in a comment\n",
+                "const EARLY_MARKER: &str = \"#[cfg(test)]\";\n"] {
+                refuses(&format!("{marker_free}{inserted}"), None, "UNKNOWN_TEST_MARKER"); refused += 1;
+            }
+            let appended = audited_reader_production(&format!("{marker_free}{LATE_PRODUCTION}"), None).unwrap();
+            assert!(actual_reader_include(&appended, PRESSURE_SCHEMA_BINDING_INPUT), "late production remains visible to the real include guard");
+            visible += 1;
+        }
+    }
+    assert_eq!((unchanged, refused, visible), (5, 29, 2));
+    println!("reviewed_reader_guard_controls=5unchanged,29refused,2visible_late_production");
+}
+
+/// The semantic reader's two closed test regions (B7b D3): `b7b_current_table_tests`, then
+/// production from `for_source_metadata` on, then E14 to the end of the file. Only the two
+/// test regions are excluded, after the complete suffix from the first passed the exact audit.
+#[test]
+fn semantic_e14_reviewed_guard_refuses_changed_or_hidden_production() {
+    let (source, region) = audited_reader_sources()[2];
+    let region = region.expect("the exact semantic suffix is audited");
+    assert_eq!(region.first_item, SEMANTIC_B7B_TEST_ITEM);
+    assert_eq!(region.trailing_test, Some(SEMANTIC_E14_TEST_ITEM));
+    let anchor = region.production_resume.expect("production resumes between the test regions");
+    let production = audited_reader_production(source, Some(region)).unwrap();
+    let start = source.find(region.first_item).unwrap();
+    let resume = source.find(anchor).unwrap();
+    let trailing = source.find(SEMANTIC_E14_TEST_ITEM).unwrap();
+    assert!(start < resume && resume < trailing);
+    let (prefix, suffix) = source.split_at(start);
+    assert_eq!(production, format!("{prefix}{}", &source[resume..trailing]));
+    assert!(!production.contains("#[cfg(test)]"));
+    assert!(source[start..resume].contains("fn b7b_current_tables_are_independent_and_bind_their_own_bytes()"));
+    assert!(source[trailing..].contains("fn e14_no_table_carries_the_retired_parity_kind()"));
+    for item in ["pub fn for_source_metadata(", "fn current_header(", "pub fn pressure_source_contract(", "pub fn pressure_rows_contract("] {
+        assert!(production.contains(item), "{item} stays inspected");
+    }
+    let refuses = |candidate: String, region: AuditedTestRegion, expected| {
+        assert_eq!(audited_reader_production(&candidate, Some(region)).unwrap_err(), expected);
+    };
+    let mut refused = 0;
+    for inserted in ["// #[cfg(test)] in a comment\n",
+        "const EARLY_MARKER: &str = \"#[cfg(test)]\";\n",
+        "#[cfg(test)]\nmod early_test_module {}\n"] {
+        refuses(format!("{prefix}{inserted}{suffix}"), region, "EARLIER_TEST_MARKER"); refused += 1;
+    }
+    refuses(format!("{prefix}// {suffix}"), region, "TEST_BOUNDARY_NOT_ITEM_LINE"); refused += 1;
+    refuses(source.replacen(region.first_item, "#[cfg(not(test))]\nmod changed_test_module {", 1), region, "MISSING_OR_AMBIGUOUS_TEST_BOUNDARY"); refused += 1;
+    refuses(format!("{prefix}{}\n}}\n{suffix}", region.first_item), region, "MISSING_OR_AMBIGUOUS_TEST_BOUNDARY"); refused += 1;
+    refuses(format!("{source}\n// altered audited suffix\n"), region, "CHANGED_AUDITED_SUFFIX"); refused += 1;
+    for path in [PRESSURE_SOURCE_BINDING_INPUT, PRESSURE_SCHEMA_BINDING_INPUT] {
+        let late = format!("\nconst LATE_REVIEWED_TABLE: &str = include_str!(\"../../{path}\");\n");
+        // Inside the first excluded region, before the trailing one, or after it.
+        refuses(source.replacen(anchor, &format!("{late}{anchor}"), 1), region, "CHANGED_AUDITED_SUFFIX"); refused += 1;
+        refuses(source.replacen(SEMANTIC_E14_TEST_ITEM, &format!("{late}{SEMANTIC_E14_TEST_ITEM}"), 1), region, "CHANGED_AUDITED_SUFFIX"); refused += 1;
+        refuses(format!("{source}{late}"), region, "CHANGED_AUDITED_SUFFIX"); refused += 1;
+        let visible = audited_reader_production(&format!("{production}{late}"), None).unwrap();
+        assert!(actual_reader_include(&visible, path), "actual late production stays visible");
+    }
+    // The trailing boundary is exact: absent, not an item line, or without a resume.
+    refuses(source.into(), AuditedTestRegion { trailing_test: Some("#[cfg(test)]\nmod absent_tests {"), ..region }, "MISSING_OR_AMBIGUOUS_TRAILING_TEST"); refused += 1;
+    refuses(source.into(), AuditedTestRegion { trailing_test: Some("e14_tests {"), ..region }, "TRAILING_TEST_NOT_ITEM_LINE"); refused += 1;
+    refuses(source.into(), AuditedTestRegion { production_resume: None, ..region }, "TRAILING_TEST_WITHOUT_RESUME"); refused += 1;
+    assert_eq!(refused, 16);
+    println!("semantic_test_region_guard_controls=1unchanged,{refused}refused,2visible_late_production");
+}
+
+/// B7b (O-10): the current pressure-source table is resident, so the pressure result schema is
+/// the one nonresident binding. The source table, the schema and the resident ordinary pressure
+/// table are each bound by their reviewed digest; a missing, removed or changed token refuses.
+#[test]
+fn pressure_schema_is_the_only_nonresident_binding() {
+    use open_pipe_stress_result_export::{reader_verdict, semantic_contract as sc};
+    use sha2::{Digest, Sha256};
+    assert_reviewed_reader_input_bindings();
+    // A same-basename or similar family path does not acquire this exemption, and the
+    // now-resident pressure-source table has none.
+    for path in [PRESSURE_SOURCE_BINDING_INPUT, PRESSURE_TABLE_INPUT,
+        "../../schemas/semantic_contract_v0_3_pressure_source_1.json",
+        "fixtures/results/semantic_contract_v0_3_pressure_source_1.json",
+        "../../fixtures/results/results_pressure_1.v0.3.schema.json",
+        "schemas/results_pressure_1.v0.3.schema.json",
+        "../../schemas/results_pressure_1.v0.3.schema.yaml"] {
+        assert!(reader_include_required(path), "{path}");
+    }
+    let bytes = include_bytes!("../../../fixtures/results/semantic_contract_v0_3_pressure_source_1.json");
+    assert_eq!(format!("{:x}", Sha256::digest(bytes)), sc::PRESSURE_SOURCE_TABLE_SHA256);
+    let table = sc::verify_pressure_source_table(bytes).unwrap();
+    assert_eq!(&table, sc::pressure_source_contract(), "the resident table is the reviewed bytes");
+    assert_eq!(reader_verdict::binding("pressure_source"), json!({"id":sc::PRESSURE_SOURCE_ID,"sha256":sc::PRESSURE_SOURCE_TABLE_SHA256}));
+    let mut edited = bytes.to_vec(); edited.push(b'\n');
+    assert_eq!(sc::verify_pressure_source_table(&edited).unwrap_err(), "SOURCE_PRESSURE_SOURCE_TABLE_HASH");
+    let ordinary = include_bytes!("../../../fixtures/results/semantic_contract_v0_3_pressure_1.json");
+    assert_eq!(format!("{:x}", Sha256::digest(ordinary)), sc::PRESSURE_TABLE_SHA256);
+    assert_eq!(&sc::verify_pressure_table(ordinary).unwrap(), sc::pressure_rows_contract());
+    let schema_bytes = include_bytes!("../../../schemas/results_pressure_1.v0.3.schema.json");
+    let schema_hash = format!("{:x}", Sha256::digest(schema_bytes));
+    // B7b A5: the result schema takes v3 only.
+    assert_eq!(schema_hash, "d1f4df38e32e603a4807afea332b8849142a7d587921f0e14554670b024b2901");
+    let compiled = COMPILED_REVIEWED_INPUTS.expect("build.rs sets all current inputs");
+    let tokens: Vec<_> = compiled.split(';').collect();
+    assert_eq!(tokens.len(), build_identity::REVIEWED_INPUT_COUNT + 1);
+    assert_eq!(tokens[0], "v1");
+    let bound = [(9, PRESSURE_SOURCE_BINDING_INPUT, sc::PRESSURE_SOURCE_TABLE_SHA256),
+        (10, PRESSURE_SCHEMA_BINDING_INPUT, schema_hash.as_str()),
+        (11, PRESSURE_TABLE_INPUT, sc::PRESSURE_TABLE_SHA256)];
+    for (index, path, hash) in bound {
+        assert_eq!(tokens[index + 1], format!("{path}={hash}"));
+    }
+    let digests = [Some([7; 32]); build_identity::REVIEWED_INPUT_COUNT];
+    let read = build_identity::encode_reviewed_inputs(&digests);
+    assert!(bindings_hold(true, Some(&read), &read, &READER_LAYOUTS, &READER_LAYOUTS));
+    for (index, path, _) in bound {
+        let token = read.split(';').nth(index + 1).unwrap();
+        assert_eq!(token, format!("{path}={}", "07".repeat(32)));
+        // Retain the pressure-source 134/81 token-byte proof and each other
+        // path's same wire-byte accounting.
+        let available_bytes = token.len() + 1;
+        assert_eq!(available_bytes, path.len() + 66);
+        let mut unavailable = digests; unavailable[index] = None;
+        let unavailable = build_identity::encode_reviewed_inputs(&unavailable);
+        let unavailable_bytes = unavailable.split(';').nth(index + 1).unwrap().len() + 1;
+        assert_eq!(unavailable_bytes, path.len() + 13);
+        if path == PRESSURE_SOURCE_BINDING_INPUT { assert_eq!((available_bytes, unavailable_bytes), (134, 81)); }
+        assert!(!bindings_hold(true, Some(&unavailable), &read, &READER_LAYOUTS, &READER_LAYOUTS));
+        let removed = read.split(';').enumerate().filter(|(i, _)| *i != index + 1)
+            .map(|(_, token)| token).collect::<Vec<_>>().join(";");
+        assert!(!bindings_hold(true, Some(&removed), &read, &READER_LAYOUTS, &READER_LAYOUTS));
+        let mut changed = digests; changed[index] = Some([8; 32]);
+        let changed = build_identity::encode_reviewed_inputs(&changed);
+        assert!(!bindings_hold(true, Some(&changed), &read, &READER_LAYOUTS, &READER_LAYOUTS));
+        let resident = NONRESIDENT_BINDING_INPUTS.iter().all(|(_, p)| *p != path);
+        println!("pressure_binding_index={index},resident={resident},available_bytes={available_bytes},unavailable_bytes={unavailable_bytes}");
+    }
+}
 #[test]
 fn reviewed_inputs_bind_the_lock_and_the_reader_statics() {
     use sha2::{Digest, Sha256};
-    // The 18 current inputs: the original 17 reader/lock inputs followed by
-    // batch 5's pressure result contract definition. All digests check the
-    // actual bytes. The retained preview table (position 4) is the one bound
-    // to the current inherited preview-physics-1 table (c915605a11).
-    const REVIEWED: [&str; 18] = [
-        "4f494db6d8a6eca87e7a16d8561197f20b1951a033bd3a6c424acfff5613475b",
-        "28c1560596444de7dd5228d5d0c81c3801ee7d1c0ceb66cbb471c856d5bd1123",
-        "abf3225ca431342dd785072a1baad7715b7e8c19afd15b5777feebf06d48669e",
-        "3e0779a45a74cf0bb3a4ed08ed3a6b44347aea8a3c33b59e9dd92130426ee296",
-        "7cff3e9fe0c29a5b34d1762662e71ad58f00bb2993e9a3f1893323c0d64161e0",
-        "4d6886d19e304db897e5e9f8f0054cbee91ba7795868f9698e2bbe070bde94da",
-        "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e",
-        "9a2cf6268b57bd5265a1a115497c07450819dd4d03cd5ab618097bd9d19da8cc",
-        "44bc41c06f589fab6ce931ac0eaa5344765ff64fd5f880cc2dd69ecb839c4f4d",
-        "d1628194a7730f427843b00228dd233cf92b8e7d26f3bc31c660a3ea59e28337",
-        "ac522c1ee0c771ae1e3dc72facfe3e75a8f0b01009075c997658eae50e9bb60c",
-        "ba13f2aefd7a38bd725e5f111e6ec30144bc8776aa957c6278ee7b1178298ba1",
-        "5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f",
-        "544e196d2f7bef27276acc160aa19ab738a4f7949e846d2e8871328d2208129c",
-        "3cebce55d1b31e0031628d7542a33a8debdfa37d2d258cb27dfbdfd1fc28db22",
-        "71f63d3916fa37ad0021ffb6ad993760a274166fe7ef275d7435c6856ed5642e",
-        "c4987e874889645ac315b5f55f58690082ad5e7745527f20e3e316efa3e70a3d",
-        "774dad290e17ece0292b7a6021c59c8067e13aa4267c6bdbb25bb3fb17da75c5",
+    // Current assembled B7b inputs (D3 re-registration): the lock and resident
+    // obligations in their preserved order, then the resident pressure-source
+    // table, the nonresident pressure result schema and the resident ordinary
+    // pressure table. Every digest below checks actual bytes, and the
+    // registered profile's reviewed-input text records exactly these.
+    const REVIEWED: [&str; build_identity::REVIEWED_INPUT_COUNT] = [
+        "e27b28f710ea6b9cc26bb14d0de53c64c2504c5dde17cbf0acc50dfac9220a11",
+        "612c95f28a08dca3bdd0b31ebeb1711a496126bd6359458d31c1575b6e11d434",
+        "f961a56bdd386d26f10ee279b0c5926c7436760c18eee0e3c3c158bd474b42c9",
+        "9be78bef3b340330f06b99966bcc9fd2fdf652f2a54506fc270f6b16588761c6",
+        "930535a544aedb3c6eb5dea60c59e617dd609f41c1386d9cf9c7c401b9c531f1",
+        "e89312bb5090d05f90da715e097f32f47d9a8d29f3f2eee55a4f38eca4d20f32",
+        "8d00e0622777fe01d8886a90371393ee5189c18800adb6d203e60c35f9e2485a",
+        "c9a34a757e4ead7117a7bc3a37373164be190f79df73034aab31cdc608f1b269",
+        "695812491aec03b97def5013c5ea2461cb2a0e1f1f25b24c18ad1c9b6beee574",
+        "dec4f4e7af6f60cf5615facc1b1ff11c8d5df5b3907fc28d922d661672383435",
+        "d1f4df38e32e603a4807afea332b8849142a7d587921f0e14554670b024b2901",
+        "a4e3bf2cfb7e0b3fa84a564cde03545cefafda903c34f4dd6a526fa0be982375",
     ];
     // The same files, read here at compile time (test-only), by the sha2 dependency.
-    let files: [&[u8]; 18] = [
+    let files: [&[u8]; build_identity::REVIEWED_INPUT_COUNT] = [
         include_bytes!("../Cargo.lock"),
         include_bytes!("../../../schemas/physics_source_recovery.schema.json"),
         include_bytes!("../../../schemas/retained_precision_mp_v2.schema.json"),
         include_bytes!("../../../fixtures/results/retained_precision_prepared_ordinary_v1.json"),
         include_bytes!("../../../fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json"),
-        include_bytes!("../../../fixtures/results/semantic_contract_v0_2.json"),
-        include_bytes!("../../../fixtures/results/semantic_contract_v0_3_precision_1.json"),
-        include_bytes!("../../../fixtures/results/semantic_contract_v0_3_physics_1.json"),
-        include_bytes!("../../../fixtures/results/semantic_contract_v0_3_load_reference_1.json"),
-        include_bytes!("../../../fixtures/results/semantic_contract_v0_3_load_reference_source_1.json"),
         include_bytes!("../../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json"),
-        include_bytes!("../../../fixtures/results/semantic_contract_v0_3_physics_source_1.json"),
-        include_bytes!("../../../fixtures/results/semantic_contract_v0_3_source_blocks_1.json"),
-        include_bytes!("../../../schemas/source_block_recovery.schema.json"),
         include_bytes!("../../../fixtures/results/retained_precision_prepared_combination_v1.json"),
         include_bytes!("../../../fixtures/results/retained_precision_prepared_exact_v1.json"),
         include_bytes!("../../../fixtures/results/semantic_contract_v0_3_physics_retained_1.json"),
+        include_bytes!("../../../fixtures/results/semantic_contract_v0_3_pressure_source_1.json"),
         include_bytes!("../../../schemas/results_pressure_1.v0.3.schema.json"),
+        include_bytes!("../../../fixtures/results/semantic_contract_v0_3_pressure_1.json"),
     ];
     let compiled = COMPILED_REVIEWED_INPUTS.expect("build.rs sets the reviewed inputs");
     assert_eq!(option_env!("OPS_RETAINED_REVIEWED_INPUTS"), Some(compiled));
     let mut tokens = compiled.split(';');
     assert_eq!(tokens.next(), Some("v1"));
-    for (i, token) in tokens.by_ref().take(files.len()).enumerate() {
+    for (i, token) in tokens.by_ref().take(build_identity::REVIEWED_INPUT_COUNT).enumerate() {
         let (path, hex) = token.split_once('=').unwrap();
         assert_eq!(path, build_identity::REVIEWED_INPUTS[i]);
         assert_eq!(hex, format!("{:x}", Sha256::digest(files[i])), "{path}: build.rs's digest");
@@ -360,19 +747,7 @@ fn reviewed_inputs_bind_the_lock_and_the_reader_statics() {
     }
     assert_eq!(tokens.next(), None);
     println!("I65_G5_REVIEWED_INPUTS {compiled}");
-    // Each reviewed static is the reader's own input: result_export names it, J1's three
-    // appended statics included (RV122 N-2: RS packages DEF-C, DEF-E and XTABLE as DEF-O).
-    let reader = [
-        include_str!("../../reporting/result_export/src/retained_precision.rs"),
-        include_str!("../../reporting/result_export/src/physics_source.rs"),
-        include_str!("../../reporting/result_export/src/semantic_contract.rs"),
-        include_str!("../../reporting/result_export/src/source_blocks.rs"),
-    ]
-    .concat();
-    for path in &build_identity::REVIEWED_INPUTS[1..17] {
-        let name = path.rsplit('/').next().unwrap();
-        assert!(reader.contains(&format!("{name}\"")), "{name} is an include_str! input of the reader");
-    }
+    assert_reviewed_reader_input_bindings();
 }
 
 #[test]
@@ -395,10 +770,16 @@ fn the_registered_profile_is_the_only_permit_source() {
     refused.law.refusal = Some(AdmissionRefusal::Bound(BoundRefusal::Unpriced));
     refused.law.registered = Some(0);
     assert!(admission(refused).is_err());
-    // This build is the registered one, or Stale: never Missing now.
-    match COMPILED_IDENTITY {
-        Some(id) if id == REGISTERED_PROFILES[0].identity => assert_eq!(build_status(), Ok(0)),
-        _ => assert_eq!(build_status(), Err(ProfileStatus::Stale)),
+    // Toolchain identity alone does not bind changed reviewed inputs or reader layouts.
+    // This build is registered only when that complete binding holds, else Stale.
+    let profile = &REGISTERED_PROFILES[0];
+    let registered = COMPILED_IDENTITY == Some(profile.identity)
+        && bindings_hold(LAYOUT_WITNESSES, COMPILED_REVIEWED_INPUTS, profile.reviewed_inputs,
+            &READER_LAYOUTS, &profile.reader_layouts);
+    if registered {
+        assert_eq!(build_status(), Ok(0));
+    } else {
+        assert_eq!(build_status(), Err(ProfileStatus::Stale));
     }
 }
 
@@ -406,7 +787,10 @@ fn the_registered_profile_is_the_only_permit_source() {
 /// milestone Direct invocation in both modes; Headless and out-of-domain requests stay refused.
 #[test]
 fn admit_grants_a_permit_for_the_milestone_in_the_registered_build() {
-    let registered = COMPILED_IDENTITY == Some(REGISTERED_PROFILES[0].identity);
+    let profile = &REGISTERED_PROFILES[0];
+    let registered = COMPILED_IDENTITY == Some(profile.identity)
+        && bindings_hold(LAYOUT_WITNESSES, COMPILED_REVIEWED_INPUTS, profile.reviewed_inputs,
+            &READER_LAYOUTS, &profile.reader_layouts);
     for mode in MODES {
         let (request, capture) = CapturedInvocation::parse(milestone(), mode).unwrap();
         let admitted = admit(&capture, &request, Entry::Direct, RETAINED_LIMIT);
@@ -520,12 +904,16 @@ fn every_family_clause_refuses_with_its_fact() {
         change(&mut raw);
         domain(raw)
     };
-    // B3-D §4.1: 0.3.0 is a namespace (branch E, B3b) whose contract is required, so 0.3.0
-    // without one refuses with `PressureContract`; a schema in no branch with `SchemaVersion`.
-    assert_eq!(with(&|r| r["model"]["schema_version"] = json!("0.3.0")), family(C::Namespace, F::PressureContract));
+    // B3-D §4.1, after B7b (A4/A5, D4 (a)): branch E is 0.5.0 with the exact v3 contract, so
+    // 0.3.0 is retired with v2 and, like every schema in no branch, refuses with
+    // `SchemaVersion`; any other contract on 0.5.0 with `PressureContract`.
+    assert_eq!(with(&|r| r["model"]["schema_version"] = json!("0.3.0")), family(C::Namespace, F::SchemaVersion), "0.3.0 is retired");
     assert_eq!(with(&|r| r["model"]["schema_version"] = json!("0.4.0")), family(C::Namespace, F::SchemaVersion));
-    assert_eq!(with(&|r| r["model"]["schema_version"] = json!("0.2.0")), None, "0.2.0 is in the namespace");
+    assert_eq!(with(&|r| r["model"]["schema_version"] = json!("0.5.0")), None, "0.5.0 without a contract is in the namespace");
+    assert_eq!(with(&|r| r["model"]["schema_version"] = json!("0.2.0")), family(C::Namespace, F::SchemaVersion), "0.2.0 is retired");
     assert_eq!(with(&|r| r["model"]["pressure_contract"] = json!({})), family(C::Namespace, F::PressureContract));
+    assert_eq!(with(&|r| r["model"]["pressure_contract"] = json!({"version": "3.0.0", "mode": "exact_pressure_v3"})),
+        family(C::Namespace, F::PressureContract), "the exact v3 contract names its shear model");
     assert_eq!(with(&|r| r["model"]["reference_configurations"] = Value::Null), family(C::Namespace, F::ReferenceConfigurations));
     assert_eq!(with(&|r| r["model"]["materials"][0]["expansion_laws"] = Value::Null), family(C::Namespace, F::MaterialExpansionLaw));
     assert_eq!(with(&|r| r["materials"] = json!([{"id": "m", "elastic_modulus": {"value": 1.0, "unit": "Pa"}, "expansion_laws": null}])),
@@ -545,7 +933,9 @@ fn every_family_clause_refuses_with_its_fact() {
     let case = |field: &'static str, value: Value| move |r: &mut Value| r["model"]["load_cases"][0][field] = value.clone();
     assert_eq!(with(&case("pressure_regions", json!([]))), family(C::Case, F::PressureRegions));
     assert_eq!(with(&case("equivalent_static", json!({}))), family(C::Case, F::EquivalentStatic));
-    assert_eq!(with(&case("modulus_basis_ref", json!("T0"))), family(C::Case, F::ModulusBasisRef));
+    // B7a (b) Widen domain, stage 1: a named-point basis is inside D1.5 on branch L; a solve
+    // temperature still refuses.
+    assert_eq!(with(&case("modulus_basis_ref", json!("T0"))), None);
     assert_eq!(with(&case("modulus_basis_temperature", json!({"value": 20.0, "unit": "degC"}))), family(C::Case, F::ModulusBasisTemperature));
     assert_eq!(with(&case("analysis_state", Value::Null)), family(C::Case, F::AnalysisState));
     let support = |field: &'static str, value: Value| move |r: &mut Value| r["model"]["supports"][1][field] = value.clone();
@@ -556,7 +946,34 @@ fn every_family_clause_refuses_with_its_fact() {
         assert_eq!(with(&support("family", json!(family_name))), None, "{family_name}");
     }
     let load = |field: &'static str, value: Value| move |r: &mut Value| r["model"]["load_cases"][0]["primitive_loads"][2][field] = value.clone();
-    assert_eq!(with(&load("target", json!({"type": "element", "pipe": "M1"}))), family(C::Loads, F::LoadTarget));
+    // B7a (b) Widen domain, stage 1: on branch L a full-span uniform member load, an element
+    // `distributed_force` in `force_per_length` along a global axis, is inside D1.7; any other
+    // element form refuses by its fact, and so does the deterministic self-weight id.
+    let element = |direction: &'static str| move |r: &mut Value| {
+        r["model"]["load_cases"][0]["primitive_loads"][2] = json!({"id": "udl", "category": "distributed_force",
+            "target": {"type": "element", "pipe": "M1"}, "direction": direction,
+            "magnitude": {"value": 10.0, "unit": "N/m"}, "dimension": "force_per_length"});
+    };
+    for direction in ["global_x", "global_y", "global_z"] {
+        assert_eq!(with(&element(direction)), None, "{direction}");
+    }
+    for direction in ["RX", "UY", "local_y", "global_y "] {
+        assert_eq!(with(&element(direction)), family(C::Loads, F::LoadDirection), "{direction}");
+    }
+    assert_eq!(with(&load("target", json!({"type": "element", "pipe": "M1"}))), family(C::Loads, F::LoadDimension), "a concentrated element load");
+    // A global_y member load with one field changed.
+    let element_with = |field: &'static str, value: Value| move |r: &mut Value| {
+        element("global_y")(r);
+        r["model"]["load_cases"][0]["primitive_loads"][2][field] = value.clone();
+    };
+    assert_eq!(with(&element_with("dimension", json!("force"))), family(C::Loads, F::LoadDimension));
+    assert_eq!(with(&element_with("category", json!("weight"))), family(C::Loads, F::LoadDimension));
+    let case_id = milestone()["model"]["load_cases"][0]["id"].as_str().unwrap().to_owned();
+    let self_weight = format!("load:self-weight:{}:{case_id}:2:M1", case_id.len());
+    assert_eq!(with(&element_with("id", json!(self_weight))), family(C::Loads, F::GeneratedLoadIdentity));
+    for near in [format!("{self_weight}x"), format!("load:self-weight:{}:{case_id}:3:M1", case_id.len()), "load:self-weight:".to_owned()] {
+        assert_eq!(with(&element_with("id", json!(near))), None, "{near}");
+    }
     assert_eq!(with(&load("dimension", json!("pressure"))), family(C::Loads, F::LoadDimension));
     assert_eq!(with(&load("dimension", json!("force"))), None);
     // D1.10, after D1.9: an object provenance, with or without leading ASCII whitespace.
@@ -577,17 +994,17 @@ fn every_family_clause_refuses_with_its_fact() {
     for (field, value, fact) in [
         ("pressure_regions", json!([]), F::PressureRegions),
         ("equivalent_static", json!({}), F::EquivalentStatic),
-        ("modulus_basis_ref", json!("T0"), F::ModulusBasisRef),
         ("modulus_basis_temperature", json!({"value": 20.0, "unit": "degC"}), F::ModulusBasisTemperature),
         ("analysis_state", Value::Null, F::AnalysisState),
     ] {
         assert_eq!(with(&on_last(field, value)), family(C::Case, fact), "D1.5 on case {last}: {field}");
     }
+    assert_eq!(with(&on_last("modulus_basis_ref", json!("T0"))), None, "B7a (b): a named point on case {last}");
     let load_on_last = |field: &'static str, value: Value| move |r: &mut Value| {
         *r = with_cases(r.clone(), caps::LOAD_CASES);
         r["model"]["load_cases"][last]["primitive_loads"][2][field] = value.clone();
     };
-    assert_eq!(with(&load_on_last("target", json!({"type": "element", "pipe": "M1"}))), family(C::Loads, F::LoadTarget), "D1.7 on case {last}");
+    assert_eq!(with(&load_on_last("target", json!({"type": "element", "pipe": "M1"}))), family(C::Loads, F::LoadDimension), "D1.7 on case {last}");
     assert_eq!(with(&load_on_last("dimension", json!("pressure"))), family(C::Loads, F::LoadDimension), "D1.7 on case {last}");
     assert_eq!(with(&load_on_last("provenance", json!("{"))), family(C::Provenance, F::ObjectProvenance), "D1.10 on case {last}");
     // D1.8 restates D1.4 (straight members only when no components exist).
@@ -986,8 +1403,8 @@ fn every_phase_fact_admits_its_cap_and_refuses_cap_plus_one() {
     let c = caps::LOAD_CASES as u64;
     assert_eq!(caps.complete[2], 2 * c * P_FINAL * text_atoms::ROW, "2·C·P_final·Text(row)");
     assert_eq!(caps.complete[5], 2 * profile::TEXT_TEXT_DIAG_ENV, "2·Text(diag_env) at l ≤ 128 (API_G4.md, S-6(d))");
-    // Current T4 batch-4 TEXT closure at C_eq = 3, maximum over the L/E routes.
-    assert_eq!(profile::TEXT_TEXT_DIAG_ENV, 195_663_556, "current T4 batch-4 text closure at C_eq = 3, maximum over routes");
+    // Current canonical B7b TEXT closure at source 7e63847, C_eq = 3, maximum over the L/E routes.
+    assert_eq!(profile::TEXT_TEXT_DIAG_ENV, 264_366_429, "current text closure at C_eq = 3, maximum over routes");
     assert_eq!((caps.complete[0], caps.complete[1]), (3 * 2_115, 8_192), "C·P_final, PushCap(C·P_final)");
     assert_eq!(caps.complete[4], push_capacity(text_atoms::D_ENV), "PushCap(D_env)");
     assert!(caps.late[LATE_FACTS - 1] > 0 && caps.late[LATE_FACTS - 1] < caps.complete[15], "T11 without its late capture < T11");
@@ -996,7 +1413,7 @@ fn every_phase_fact_admits_its_cap_and_refuses_cap_plus_one() {
     assert_eq!(caps.complete[17], c * (3 * 32 + 1) * text_atoms::ERR, "C·(3m + 1)·Text(err)");
     // Current generated TEXT atoms; their backing and visit counts stay positive.
     assert_eq!((text_atoms::L_PUB, text_atoms::L_DIAGID, text_atoms::ERR, text_atoms::D_ENV, push_capacity(text_atoms::D_ENV)),
-        (2_600_699, 2_330, 16_384, 24_558, 32_768), "current L_PUB, L_DIAGID, Text(err), D_env and PushCap(D_env) at C_eq = 3");
+        (6_139_118, 2_330, 16_384, 25_791, 32_768), "current L_PUB, L_DIAGID, Text(err), D_env and PushCap(D_env) at C_eq = 3");
     assert_eq!(caps.complete[17], 3 * (3 * 32 + 1) * 16_384, "C·(3m + 1)·Text(err) at C = 3");
     let complete_facts: Vec<PhaseFact> = complete_observations_of_milestone().iter().map(|o| o.fact).collect();
     let at: [PhaseObservation; COMPLETE_FACTS] = observed(&complete_facts, &caps.complete).try_into().unwrap();
@@ -1221,14 +1638,15 @@ fn profile_in_build_record() {
 }
 /// The build identity of the pinned profile record (the qualified dev/test build of G6).
 pub(super) const PINNED_RECORD_IDENTITY: &str = "v1;rustc.release=1.97.1;rustc.commit=8bab26f4f68e0e26f0bb7960be334d5b520ea452;rustc.host=aarch64-apple-darwin;rustc.llvm=22.1.6;target=aarch64-apple-darwin;target.arch=aarch64;target.pointer_width=64;target.endian=little;target.os=macos;target.env=;panic=unwind;profile=debug;opt_level=0;debug_assertions=true;rustflags=;pkg=open_pipe_stress_product_physics@0.2.0";
-/// The record priced at source 15d75d7e14 (pressure-only U4a stage 1 and
-/// dormant U5a; DEL-05-02 retained-pricing-rules.md section H):
-/// requested plus moving bytes without R, for the qualified build above. Each phase keeps its actual
-/// positive layout, source and TEXT charges; W3 (publication with the staged
-/// copy) is the maximum in both modes.
+/// B7b D3 record for the actual source 837a04b770 (re-done after the
+/// 7e638477a8 and 1bcc55a80b registrations; the readers' corrosion-allowance
+/// namespace checks add W-phase TEXT). Requested + moving bytes, without R or
+/// the separately upward-rounded TEXT reserve, from the canonical 98-form union
+/// and measured 287-value layout. The unchanged identity/record assertions
+/// verify this candidate in-build.
 pub(super) const PINNED_RECORD: [[u64; 7]; 2] = [
-    [5_229_391_176, 5_552_823_138, 10_228_170_794, 10_004_112_863, 6_161_951_412, 10_026_554_767, 5_926_936_362],
-    [5_288_522_520, 5_611_954_482, 10_287_302_138, 10_063_244_207, 6_221_082_756, 10_085_686_111, 5_986_067_706],
+    [5_328_954_531, 5_652_386_469, 11_249_651_680, 11_020_075_465, 6_263_153_871, 10_331_413_815, 6_069_093_276],
+    [5_388_085_875, 5_711_517_813, 11_308_783_024, 11_079_206_809, 6_322_285_215, 10_390_545_159, 6_128_224_620],
 ];
 
 #[test]
@@ -1347,7 +1765,7 @@ fn profile_laws_hold_in_this_build() {
     assert_eq!((checked_or_zero(None), checked_or_zero(Some(5))), (0, 5));
     // The gate's D_env and text bounds are the profile's text closure.
     let caps = phase_caps();
-    assert_eq!(caps.complete[3], 24_558, "current T4 batch-4 D_env at C_eq = 3");
+    assert_eq!(caps.complete[3], 25_791, "current canonical D_env at C_eq = 3 (B7b source 7e63847)");
     assert_eq!(text_atoms::ROW, 11_474);
     // Every atom is bound; the source-derived and estimate atoms are the recorded ones.
     let count = |b| profile::ATOM_BINDINGS.iter().filter(|x| **x == b).count();
@@ -1479,17 +1897,17 @@ fn gate_sums_saturate_and_the_longest_string_reads_every_diagnostic_field() {
 #[test]
 fn an_unreadable_reviewed_input_never_binds() {
     let layouts = READER_LAYOUTS;
-    let read = build_identity::encode_reviewed_inputs(&[Some([7; 32]); 18]);
+    let read = build_identity::encode_reviewed_inputs(&[Some([7; 32]); build_identity::REVIEWED_INPUT_COUNT]);
     assert!(!read.contains("unavailable"));
     assert!(bindings_hold(true, Some(&read), &read, &layouts, &layouts), "every input read: the record binds");
-    for i in 0..18 {
-        let mut digests = [Some([7u8; 32]); 18];
+    for i in 0..build_identity::REVIEWED_INPUT_COUNT {
+        let mut digests = [Some([7u8; 32]); build_identity::REVIEWED_INPUT_COUNT];
         digests[i] = None;
         let unread = build_identity::encode_reviewed_inputs(&digests);
         assert!(unread.contains("=unavailable"));
         assert!(!bindings_hold(true, Some(&unread), &unread, &layouts, &layouts), "input {i} unreadable");
     }
-    let none = build_identity::encode_reviewed_inputs(&[None; 18]);
+    let none = build_identity::encode_reviewed_inputs(&[None; build_identity::REVIEWED_INPUT_COUNT]);
     assert!(!bindings_hold(true, Some(&none), &none, &layouts, &layouts), "no input read");
     assert_eq!(identity_match(Some(build_identity::IDENTITY_UNAVAILABLE), [build_identity::IDENTITY_UNAVAILABLE].into_iter()),
         Err(ProfileStatus::Stale), "the identity's own unavailable value is Stale");
@@ -1526,11 +1944,20 @@ pub(super) fn attempted_examples() -> Vec<(&'static str, Value)> {
         ("milestone", milestone()),
         ("failed attempt", failed),
         (DEFERRED_FORMATION, k2a_partial_underflow()),
-        ("rejected_stress_range sparse", serde_json::from_str(include_str!(
-            "../../../fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.request.json")).unwrap()),
-        ("rejected_stress_range dense", serde_json::from_str(include_str!(
-            "../../../fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.request.json")).unwrap()),
+        ("rejected_stress_range sparse", current_rejected_stress_range(include_str!(
+            "../../../fixtures/product_preview/w1_controls/rejected_stress_range/sparse_interactive.request.json"))),
+        ("rejected_stress_range dense", current_rejected_stress_range(include_str!(
+            "../../../fixtures/product_preview/w1_controls/rejected_stress_range/dense_scrutiny.request.json"))),
     ]
+}
+/// The rejected_stress_range pair is a pinned historical capture (its CAPTURE/ORACLE records bind
+/// the request and raw bytes), so its request stays the 0.1.0 document it was captured with. B7a
+/// retired 0.1.0: the live examples re-author it to the current version, changing nothing else.
+pub(super) fn current_rejected_stress_range(captured: &str) -> Value {
+    let mut request: Value = serde_json::from_str(captured).unwrap();
+    assert_eq!(request["model"]["schema_version"], json!("0.1.0"), "the historical capture");
+    request["model"]["schema_version"] = json!(crate::MODEL_SCHEMA_VERSION);
+    request
 }
 /// The attempted example whose seed is F1b's deferred formation (`FormationFailure`).
 pub(super) const DEFERRED_FORMATION: &str = "deferred formation (K2a partial underflow)";
@@ -1544,7 +1971,7 @@ pub(super) fn k2a_partial_underflow() -> Value {
     let anchored: Vec<&str> = all.iter().copied().filter(|d| *d != "UY").collect();
     json!({
         "model": {
-            "schema_version": "0.1.0",
+            "schema_version": "0.5.0",
             "document_kind": "openpipestress.product_preview.model",
             "analysis_status": {
                 "mechanics": "ready_for_preview_diagnostics",
@@ -2006,22 +2433,68 @@ fn b1_sa_retained_error_text_reads_every_case_slot() {
 // ---- B3a dropped: D1.3 refuses 0.3.0 `legacy_pressure_v1` (RR "Owner decisions: the legacy ----
 // ---- pressure contract is retired product-wide; …"; formerly B3a-A, I93 PLAN §1.3; B3-D §4.1) ----
 
-/// `raw` authored as 0.3.0 `legacy_pressure_v1` with zero pressure: I99's `legacy3` (B3-W's
-/// `m3l` when `raw` is the milestone): the schema and the contract change, nothing else. B3a is
-/// dropped, so this is a refusal witness.
+/// `raw` carrying the retired `legacy_pressure_v1` label with zero pressure: I99's `legacy3`
+/// (B3-W's `m3l` when `raw` is the milestone): the contract changes, nothing else. B3a is
+/// dropped, so this is a refusal witness. B7b retired 0.3.0 with v2, so the label is authored on
+/// the current 0.5.0 document, the one document it can still appear on (`m3l` at 0.3.0 is
+/// refused by its version first; `b3a_dropped_d1_3_refuses_the_legacy_pressure_contract`).
 fn legacy3(mut raw: Value) -> Value {
-    raw["model"]["schema_version"] = json!("0.3.0");
+    raw["model"]["schema_version"] = json!(crate::MODEL_SCHEMA_VERSION);
     raw["model"]["pressure_contract"] = json!({"version": "1.0.0", "mode": "legacy_pressure_v1"});
     raw
 }
+/// B7b (D4 (a)): branch E's one contract, `3.0.0/exact_pressure_v3` with an Euler-Bernoulli shear model.
+fn exact_contract() -> Value {
+    json!({"version": "3.0.0", "mode": "exact_pressure_v3", "shear_model": "euler_bernoulli"})
+}
 
-/// B3a's drop: 0.3.0 with exactly `{1.0.0, legacy_pressure_v1}` is on no D1.3 branch, so it
-/// refuses with `PressureContract`, alone and with C cases, in both modes, and no build grants
-/// it a permit. Every contract that does not match its schema's branch refuses with
-/// `PressureContract`; a schema in no branch with `SchemaVersion` (B3-D §4.1's refusal map, L
-/// and E). D1.3 refuses the label before D1.5's and D1.7's clauses are read.
+/// B7a (b7-plan "Model format, pressure-free half"): branch L keys on the pressure contract's
+/// absence, not on the version string. A current-version (0.5.0) document is on branch L only
+/// while it carries no contract; B7b: with branch E's exact v3 contract it is on branch E, with
+/// any other contract it is refused by that contract (`PressureContract`), and every retired
+/// version (0.1.0–0.4.0) is on no branch (`SchemaVersion`), with or without a contract. An
+/// explicit null contract is not absence: the presence-keyed parse refuses it. Keying branch L
+/// on the version string alone (`schema == 0.5.0`) or on the retired versions fails this test.
 #[test]
-fn b3a_dropped_d1_3_refuses_the_legacy_pressure_contract_on_0_3_0() {
+fn b7a_branch_l_keys_on_the_contracts_absence_not_the_version() {
+    use FamilyFact as F;
+    let authored = |schema: &str, contract: Option<Value>| {
+        let mut raw = milestone();
+        raw["model"]["schema_version"] = json!(schema);
+        match contract {
+            Some(contract) => raw["model"]["pressure_contract"] = contract,
+            None => { raw["model"].as_object_mut().unwrap().remove("pressure_contract"); }
+        }
+        raw
+    };
+    let branch = |schema: &str, contract: Option<Value>| {
+        let (request, _) = CapturedInvocation::parse(authored(schema, contract), PreviewSolverMode::SparseInteractive).unwrap();
+        namespace_branch(&request.model)
+    };
+    assert_eq!(milestone()["model"]["schema_version"], json!(crate::MODEL_SCHEMA_VERSION), "the milestone is current");
+    assert!(milestone()["model"].get("pressure_contract").is_none(), "the milestone carries no contract");
+    assert_eq!(branch("0.5.0", None), Ok(NamespaceBranch::Preview), "pressure-free 0.5.0");
+    assert_eq!(branch("0.5.0", Some(exact_contract())), Ok(NamespaceBranch::Exact), "0.5.0 with the exact v3 contract");
+    for contract in [json!({"version": "2.0.0", "mode": "exact_straight_pressure_v2"}), json!({"version": "3.0.0", "mode": "exact_pressure_v3"}),
+        json!({"version": "1.0.0", "mode": "legacy_pressure_v1"})] {
+        assert_eq!(branch("0.5.0", Some(contract.clone())), Err(F::PressureContract), "0.5.0 with {contract}: the contract's presence leaves branch L");
+    }
+    for retired in crate::RETIRED_MODEL_SCHEMA_VERSIONS {
+        assert_eq!(branch(retired, None), Err(F::SchemaVersion), "retired {retired} without a contract");
+        assert_eq!(branch(retired, Some(exact_contract())), Err(F::SchemaVersion), "retired {retired} with the exact contract");
+    }
+    assert!(CapturedInvocation::parse(authored("0.5.0", Some(Value::Null)), PreviewSolverMode::SparseInteractive).is_err(),
+        "an explicit null contract is present, and refused at parse");
+}
+
+/// B3a's drop: exactly `{1.0.0, legacy_pressure_v1}` is on no D1.3 branch, so it refuses with
+/// `PressureContract`, alone and with C cases, in both modes, and no build grants it a permit.
+/// Every contract that does not match its schema's branch refuses with `PressureContract`; a
+/// schema in no branch with `SchemaVersion` (B3-D §4.1's refusal map, L and E; B7b: 0.3.0, the
+/// historical `m3l` document, is retired, so the label is witnessed on 0.5.0). D1.3 refuses the
+/// label before D1.5's and D1.7's clauses are read.
+#[test]
+fn b3a_dropped_d1_3_refuses_the_legacy_pressure_contract() {
     use D1Clause as C;
     use FamilyFact as F;
     for raw in [legacy3(milestone()), legacy3(milestone_cases(caps::LOAD_CASES)), legacy3(cap_maximal_cases(caps::LOAD_CASES))] {
@@ -2036,30 +2509,39 @@ fn b3a_dropped_d1_3_refuses_the_legacy_pressure_contract_on_0_3_0() {
             assert!(admitted.is_err(), "{mode:?}: no permit in any build");
         }
     }
+    // `Value::Null` here means the contract is absent (an explicit null is a parse refusal).
     let contract = |schema: &str, contract: Value| {
         let mut raw = milestone();
         raw["model"]["schema_version"] = json!(schema);
-        raw["model"]["pressure_contract"] = contract;
+        if contract.is_null() {
+            raw["model"].as_object_mut().unwrap().remove("pressure_contract");
+        } else {
+            raw["model"]["pressure_contract"] = contract;
+        }
         domain(raw)
     };
     let legacy = json!({"version": "1.0.0", "mode": "legacy_pressure_v1"});
-    assert_eq!(contract("0.3.0", legacy.clone()), family(C::Namespace, F::PressureContract), "0.3.0 with the legacy contract");
-    // B3b: the exact contract is branch E, whose D1.5 needs explicitly empty regions.
-    assert_eq!(contract("0.3.0", json!({"version": "2.0.0", "mode": "exact_straight_pressure_v2"})), family(C::Case, F::PressureRegions));
+    assert_eq!(contract("0.5.0", legacy.clone()), family(C::Namespace, F::PressureContract), "0.5.0 with the legacy contract");
+    // B3b, B7b D4 (a): the exact contract is branch E, whose D1.5 needs explicitly empty regions.
+    assert_eq!(contract("0.5.0", exact_contract()), family(C::Case, F::PressureRegions));
     for (label, schema, value, fact) in [
-        ("0.3.0 with no contract", "0.3.0", Value::Null, F::PressureContract),
-        ("0.3.0, version 1.0.1", "0.3.0", json!({"version": "1.0.1", "mode": "legacy_pressure_v1"}), F::PressureContract),
-        ("0.3.0, version absent", "0.3.0", json!({"mode": "legacy_pressure_v1"}), F::PressureContract),
-        ("0.3.0, mode absent", "0.3.0", json!({"version": "1.0.0"}), F::PressureContract),
-        ("0.3.0, empty contract", "0.3.0", json!({}), F::PressureContract),
-        ("0.3.0, another mode", "0.3.0", json!({"version": "1.0.0", "mode": "exact_straight_pressure_v2"}), F::PressureContract),
-        ("0.3.0, the mode's case", "0.3.0", json!({"version": "1.0.0", "mode": "Legacy_pressure_v1"}), F::PressureContract),
-        ("0.2.0 with the legacy contract", "0.2.0", legacy.clone(), F::PressureContract),
-        ("0.1.0 with the legacy contract", "0.1.0", legacy.clone(), F::PressureContract),
-        ("0.4.0 with the legacy contract", "0.4.0", legacy.clone(), F::SchemaVersion),
-        ("0.3 with the legacy contract", "0.3", legacy.clone(), F::SchemaVersion),
+        ("0.5.0 with no contract", "0.5.0", Value::Null, None),
+        ("0.5.0, version 1.0.1", "0.5.0", json!({"version": "1.0.1", "mode": "legacy_pressure_v1"}), Some(F::PressureContract)),
+        ("0.5.0, version absent", "0.5.0", json!({"mode": "legacy_pressure_v1"}), Some(F::PressureContract)),
+        ("0.5.0, mode absent", "0.5.0", json!({"version": "1.0.0"}), Some(F::PressureContract)),
+        ("0.5.0, empty contract", "0.5.0", json!({}), Some(F::PressureContract)),
+        ("0.5.0, another mode", "0.5.0", json!({"version": "1.0.0", "mode": "exact_straight_pressure_v2"}), Some(F::PressureContract)),
+        ("0.5.0, the mode's case", "0.5.0", json!({"version": "1.0.0", "mode": "Legacy_pressure_v1"}), Some(F::PressureContract)),
+        ("0.5.0 with the retired v2 contract", "0.5.0", json!({"version": "2.0.0", "mode": "exact_straight_pressure_v2"}), Some(F::PressureContract)),
+        ("0.3.0 with the legacy contract (retired: m3l)", "0.3.0", legacy.clone(), Some(F::SchemaVersion)),
+        ("0.3.0 with the v2 contract (retired)", "0.3.0", json!({"version": "2.0.0", "mode": "exact_straight_pressure_v2"}), Some(F::SchemaVersion)),
+        ("0.3.0 with no contract (retired)", "0.3.0", Value::Null, Some(F::SchemaVersion)),
+        ("0.2.0 with the legacy contract (retired)", "0.2.0", legacy.clone(), Some(F::SchemaVersion)),
+        ("0.1.0 with the legacy contract (retired)", "0.1.0", legacy.clone(), Some(F::SchemaVersion)),
+        ("0.4.0 with the legacy contract (retired)", "0.4.0", legacy.clone(), Some(F::SchemaVersion)),
+        ("0.3 with the legacy contract", "0.3", legacy.clone(), Some(F::SchemaVersion)),
     ] {
-        assert_eq!(contract(schema, value), family(C::Namespace, fact), "{label}");
+        assert_eq!(contract(schema, value), fact.and_then(|fact| family(C::Namespace, fact)), "{label}");
     }
     // D1.3 first: the label with an empty region list (D1.5), a zero-magnitude element pressure
     // load (D1.7, formerly N-11's reading on L3) or a nodal force whose free-text category is
@@ -2074,33 +2556,43 @@ fn b3a_dropped_d1_3_refuses_the_legacy_pressure_contract_on_0_3_0() {
     let mut nodal = legacy3(milestone());
     nodal["model"]["load_cases"][0]["primitive_loads"][2]["category"] = json!("pressure");
     assert_eq!(domain(nodal), family(C::Namespace, F::PressureContract), "nodal pressure category");
-    // The census reads a contract's two typed strings whatever its branch (D1.9's typed text
-    // rows). Their capacity is priced on branch E, the one branch that admits a contract.
+    // The census reads a contract's typed strings whatever its branch (D1.9's typed text rows;
+    // B7b: the exact v3 contract's shear model is the third). Their capacity is priced on branch
+    // E, the one branch that admits a contract.
     let base = nested_typed_census(&serde_json::from_value(milestone()).unwrap());
     let l3 = nested_typed_census(&serde_json::from_value(legacy3(milestone())).unwrap());
     assert_eq!(l3.strings, base.strings + 2, "version and mode");
-    for field in ["version", "mode"] {
+    let mut e_free = exact3(milestone());
+    e_free["model"].as_object_mut().unwrap().remove("pressure_contract");
+    let e_free = nested_typed_census(&serde_json::from_value(e_free).unwrap());
+    let e = nested_typed_census(&serde_json::from_value(exact3(milestone())).unwrap());
+    assert_eq!(e.strings, e_free.strings + 3, "version, mode and shear model");
+    for field in ["version", "mode", "shear_model"] {
         let report = admitted_typed(exact3(milestone()), |r| {
             let c = r.model.pressure_contract.as_mut().unwrap();
-            let s = if field == "version" { c.version.as_mut() } else { c.mode.as_mut() };
+            let s = match field { "version" => c.version.as_mut(), "mode" => c.mode.as_mut(), _ => c.shear_model.as_mut() };
             s.unwrap().reserve_exact(200);
         });
         assert!(cap(CapFact::TypedTextCapacity)(report.law().domain), "{field}: {:?}", report.law().domain);
     }
 }
 
-/// B3a's drop on the Direct entry: `m3l`, and a 0.3.0 contract with another version, are
-/// refused at G-A with `PressureContract` and publish the exact ordinary bytes, with no W1 and
-/// no successor, in every build and both modes.
+/// B3a's drop on the Direct entry: `m3l`, and the label with another version, are refused at
+/// G-A with `PressureContract` and publish the exact ordinary bytes, with no W1 and no
+/// successor, in every build and both modes. B7b: the label is on 0.5.0; the historical 0.3.0
+/// `m3l` is refused by its retired version (`SchemaVersion`) with the same exact ordinary bytes.
 #[test]
 fn b3a_dropped_direct_entry_refuses_m3l() {
     for mode in MODES {
         let mut outside = legacy3(milestone());
         outside["model"]["pressure_contract"]["version"] = json!("1.0.1");
-        for (label, raw) in [("version 1.0.1", outside), ("m3l", legacy3(milestone()))] {
+        let mut retired = legacy3(milestone());
+        retired["model"]["schema_version"] = json!("0.3.0");
+        for (label, raw, fact) in [("version 1.0.1", outside, FamilyFact::PressureContract), ("m3l", legacy3(milestone()), FamilyFact::PressureContract),
+            ("m3l at 0.3.0 (retired)", retired, FamilyFact::SchemaVersion)] {
             let plain = serde_json::to_vec(&crate::run_linear_static_preview_value_with_mode(raw.clone(), mode).unwrap()).unwrap();
             let direct = crate::run_linear_static_preview_value_with_retained_direct(raw, mode, RETAINED_LIMIT).unwrap();
-            assert_eq!(direct.admission().unwrap().law().domain, family(D1Clause::Namespace, FamilyFact::PressureContract), "{label} {mode:?}");
+            assert_eq!(direct.admission().unwrap().law().domain, family(D1Clause::Namespace, fact), "{label} {mode:?}");
             assert!(direct.admission().unwrap().law().refusal.is_some(), "{label} {mode:?}: refused");
             assert!(direct.retained().is_none() && direct.successor().is_none(), "{label} {mode:?}: no permit, no W1");
             assert_eq!(serde_json::to_vec(direct.envelope()).unwrap(), plain, "{label} {mode:?}: the exact ordinary bytes");
@@ -2338,17 +2830,22 @@ fn b2_a_admitted_combinations_run_w1_and_publish_the_validated_successor() {
 
 // ---- B3b-A: D1.3, D1.4 and D1.5 for the exact route (B3-D §4.2; provisional on B1's M) ---
 
-/// `raw` authored as 0.3.0 exact: I99's `exact` (B3-W's `m3x` when `raw` is the milestone):
-/// the exact contract, the common E/ν basis with E = 2e11 Pa and ν = 0.25 and no shear
-/// modulus, and explicitly empty pressure regions on every case.
+/// `raw` authored as exact: I99's `exact` (B3-W's `m3x` when `raw` is the milestone): the exact
+/// contract, the common E/ν basis with E = 2e11 Pa and ν = 0.25 and no shear modulus, and
+/// explicitly empty pressure regions on every case. B7b re-authored it once, as
+/// `tests/common/b1_sq_inputs.rs`'s `exact3`: model 0.5.0 with `3.0.0/exact_pressure_v3`,
+/// shear model Euler-Bernoulli and an explicit zero corrosion allowance on every pipe section.
 fn exact3(mut raw: Value) -> Value {
     let m = &mut raw["model"];
-    m["schema_version"] = json!("0.3.0");
-    m["pressure_contract"] = json!({"version": "2.0.0", "mode": "exact_straight_pressure_v2"});
+    m["schema_version"] = json!(crate::MODEL_SCHEMA_VERSION);
+    m["pressure_contract"] = exact_contract();
     for material in m["materials"].as_array_mut().unwrap() {
         material.as_object_mut().unwrap().remove("shear_modulus");
         material["constitutive_basis"] = json!("homogeneous_isotropic_E_nu_v1");
         material["poisson_ratio"] = json!({"value": 0.25, "unit": "1"});
+    }
+    for pipe in m["pipe_segments"].as_array_mut().unwrap() {
+        pipe["section"]["corrosion_allowance"] = json!({"value": 0.0, "unit": "m"});
     }
     for case in m["load_cases"].as_array_mut().unwrap() {
         case["pressure_regions"] = json!([]);
@@ -2356,14 +2853,15 @@ fn exact3(mut raw: Value) -> Value {
     raw
 }
 /// The committed physics-source requests n05 and n06 (B3b's coexistence pins).
-const N05: &str = include_str!("../../../fixtures/product_preview/physics_source/n05.request.json");
-const N06: &str = include_str!("../../../fixtures/product_preview/physics_source/n06.request.json");
+// B7b PP compile fix only: the v2 originals were deleted; their current twins.
+const N05: &str = include_str!("../../../fixtures/product_preview/pressure_source/physics_source/n05.request.json");
+const N06: &str = include_str!("../../../fixtures/product_preview/pressure_source/physics_source/n06.request.json");
 
-/// B3-D §4.2's law tests: 0.3.0 exact with `[]` on every case is inside D1 (alone, with C cases,
-/// and as B3-W's mixed base `m3x_mix_anchor`), with a permit in the registered build; refused:
-/// regions absent or with one region (`PressureRegions`), on any case; one combination
-/// (`Combinations`); 0.4.0 exact (`SchemaVersion`); 0.3.0 without a contract
-/// (`PressureContract`); a point basis (`ModulusBasisRef`).
+/// B3-D §4.2's law tests: exact (B7b: 0.5.0 with the v3 contract) with `[]` on every case is
+/// inside D1 (alone, with C cases, and as B3-W's mixed base `m3x_mix_anchor`), with a permit in
+/// the registered build; refused: regions absent or with one region (`PressureRegions`), on any
+/// case; one combination (`Combinations`); a retired version (`SchemaVersion`); any other
+/// contract (`PressureContract`); a point basis (`ModulusBasisRef`).
 #[test]
 fn b3b_d1_admits_the_exact_route_with_empty_regions() {
     use D1Clause as C;
@@ -2398,17 +2896,29 @@ fn b3b_d1_admits_the_exact_route_with_empty_regions() {
             "pressure_basis": "gauge", "pressure": {"value": 0.0, "unit": "Pa"}}])), family(C::Case, F::PressureRegions), "case {case}: one region");
         assert_eq!(with(&|r| r["model"]["load_cases"][case]["pressure_regions"] = Value::Null), family(C::Case, F::PressureRegions), "case {case}: null");
         assert_eq!(with(&|r| r["model"]["load_cases"][case]["modulus_basis_ref"] = json!("T0")), family(C::Case, F::ModulusBasisRef), "case {case}: a point basis");
+        // B7a (b) Widen domain, stage 1, is branch L only: a member load stays outside branch E.
+        assert_eq!(with(&|r| r["model"]["load_cases"][case]["primitive_loads"][0] = json!({"id": "udl", "category": "distributed_force",
+            "target": {"type": "element", "pipe": "M1"}, "direction": "global_y", "magnitude": {"value": 10.0, "unit": "N/m"},
+            "dimension": "force_per_length"})), family(C::Loads, F::LoadTarget), "case {case}: a member load");
     }
     assert_eq!(with(&|r| r["model"]["combinations"] = json!([{"id": "combination", "basis": "mechanics", "terms": [{"load_case": "case-1", "factor": 1.0}]}])),
         family(C::Invocation, F::Combinations), "ruling 4: no combination on the exact route");
     assert_eq!(with(&|r| r["model"]["combinations"] = json!([{"id": "case-1", "basis": "mechanics", "terms": [{"load_case": "case-1", "factor": 1.0}]}])),
         family(C::Invocation, F::Combinations), "the exact clause first");
     assert_eq!(with(&|r| r["model"]["schema_version"] = json!("0.4.0")), family(C::Namespace, F::SchemaVersion), "0.4.0 stays out");
-    assert_eq!(with(&|r| r["model"]["pressure_contract"] = Value::Null), family(C::Namespace, F::PressureContract));
-    assert_eq!(with(&|r| r["model"]["pressure_contract"]["version"] = json!("2.0.1")), family(C::Namespace, F::PressureContract));
+    assert_eq!(with(&|r| r["model"]["schema_version"] = json!("0.3.0")), family(C::Namespace, F::SchemaVersion), "0.3.0 is retired with v2");
+    assert_eq!(with(&|r| { r["model"].as_object_mut().unwrap().remove("pressure_contract"); }), family(C::Case, F::PressureRegions),
+        "without the contract it is branch L, where a region list refuses");
+    assert_eq!(with(&|r| r["model"]["pressure_contract"]["version"] = json!("3.0.1")), family(C::Namespace, F::PressureContract));
     assert_eq!(with(&|r| r["model"]["pressure_contract"]["mode"] = json!("legacy_pressure_v1")), family(C::Namespace, F::PressureContract),
-        "2.0.0 with the legacy mode");
-    assert_eq!(with(&|r| r["model"]["schema_version"] = json!("0.2.0")), family(C::Namespace, F::PressureContract));
+        "3.0.0 with the legacy mode");
+    assert_eq!(with(&|r| r["model"]["pressure_contract"]["shear_model"] = json!("timoshenko")), family(C::Namespace, F::PressureContract),
+        "another shear model");
+    assert_eq!(with(&|r| { r["model"]["pressure_contract"].as_object_mut().unwrap().remove("shear_model"); }), family(C::Namespace, F::PressureContract),
+        "no shear model");
+    assert_eq!(with(&|r| r["model"]["pressure_contract"] = json!({"version": "2.0.0", "mode": "exact_straight_pressure_v2"})),
+        family(C::Namespace, F::PressureContract), "the retired v2 contract on 0.5.0");
+    assert_eq!(with(&|r| r["model"]["schema_version"] = json!("0.2.0")), family(C::Namespace, F::SchemaVersion), "0.2.0 is retired");
     // A combination on L is still inside D1 (B2-C's clauses apply there only; B3a's L3 is dropped).
     let mut l = milestone();
     l["model"]["combinations"] = json!([{"id": "combination", "basis": "mechanics", "terms": [{"load_case": "case", "factor": 1.0}]}]);
@@ -2416,6 +2926,32 @@ fn b3b_d1_admits_the_exact_route_with_empty_regions() {
     // The committed physics-source requests n05 and n06 (B3b's coexistence pins) are on branch E.
     for (name, text) in [("n05", N05), ("n06", N06)] {
         assert_eq!(domain(serde_json::from_str(text).unwrap()), None, "{name}");
+    }
+}
+
+/// B7a (b), stage 1, is branch L only (review F3a). On the exact route, on the first and the
+/// last of C cases, a full-span global-axis member load (inside D1.7 on L) refuses by D1.7's
+/// target fact, and a named-point basis (inside D1.5 on L) by D1.5's. D1 alone, so this holds
+/// in any build, registered or not.
+#[test]
+fn b7a_d1_exact_route_keeps_member_loads_and_selectors_out() {
+    use D1Clause as C;
+    use FamilyFact as F;
+    let with = |case: usize, change: &dyn Fn(&mut Value)| {
+        let mut raw = exact3(milestone_cases(caps::LOAD_CASES));
+        change(&mut raw["model"]["load_cases"][case]);
+        domain(raw)
+    };
+    for case in [0, caps::LOAD_CASES - 1] {
+        assert_eq!(with(case, &|_| {}), None, "case {case}: the exact request is inside D1");
+        for direction in ["global_x", "global_y", "global_z"] {
+            let udl = json!({"id": "udl", "category": "distributed_force", "target": {"type": "element", "pipe": "M1"},
+                "direction": direction, "magnitude": {"value": 10.0, "unit": "N/m"}, "dimension": "force_per_length"});
+            assert_eq!(with(case, &|c| c["primitive_loads"][0] = udl.clone()), family(C::Loads, F::LoadTarget),
+                "case {case}: a {direction} member load");
+        }
+        assert_eq!(with(case, &|c| c["modulus_basis_ref"] = json!("T0")), family(C::Case, F::ModulusBasisRef),
+            "case {case}: a named-point basis");
     }
 }
 

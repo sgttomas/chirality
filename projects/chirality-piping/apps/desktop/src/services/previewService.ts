@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
-import { isRetainedIdentity, isRetainedRoute } from '../features/results/numericalResultQuality';
+import { isRetainedIdentity, isRetainedRoute, PRESSURE_SOURCE_CONTRACT_ID } from '../features/results/numericalResultQuality';
 import { hasCurrentSourceContract, readerValidate, rememberReceivedText, sourceContract } from '../features/results/resultReader';
-import { registerSourceRecovery, sameModelData, validateLoadReferenceSourceEvidence } from '../features/results/resultStanding';
+import { registerSourceRecovery, sameModelData } from '../features/results/resultStanding';
 import { registerRetainedPrecision } from '../features/results/retainedPrecisionStanding';
 import { invoke } from "@tauri-apps/api/core";
 import { invokeWithIngress } from "./nativeIngress";
@@ -164,19 +164,23 @@ async function validateCapturedSource(source: MechanicsResult, capture: Captured
     // Registration is reachable only after actual direct IPC or a completed
     // known job. Method-specific source-block validation composes here when its
     // separately reviewed join is selected; none is inferred from these bytes.
-    if (sourceContract(source) === "source_blocks" || sourceContract(source) === "physics_source") {
+    const sourceRoute = sourceContract(source);
+    if (sourceRoute === "pressure_source" || source.producer?.semantic_contract_id === PRESSURE_SOURCE_CONTRACT_ID) {
       // G3 (b7-plan R2): the caller's model is the one dispatched to native; a
       // normalization between them registers nothing.
       if (!sameModelData(JSON.parse(checkedJsonText(capture.callerModel)), capture.invocation.request.model)) throw new Error("CALLER_DISPATCH_NORMALIZATION_MISMATCH");
-      await registerSourceRecovery(source, capture.invocation, capture.callerModel);
+      // A claimed pressure-source identity whose Rust header refuses also reaches
+      // this registration boundary, so it cannot acquire native registration unread.
+      await registerSourceRecovery(source, capture.invocation, capture.callerModel,
+        model => hasNativeMechanicsInvocation(source, model as PreviewModel, capture.invocation.solver_mode));
     }
     // A preview-physics-1 source registers only when its closed reader checks pass.
     if (sourceContract(source) === "preview_physics") readerValidate("preview-physics", source, capture.invocation.request.model);
-    // T1: a load/reference-state source registers only when its closed reader
-    // checks pass. The joined reader also records its outcome for standing,
-    // which stays needs_recompute (never numerically eligible in T1).
-    if (sourceContract(source) === "load_reference") readerValidate("load-reference", source, capture.invocation.request.model);
-    if (sourceContract(source) === "load_reference_source") await validateLoadReferenceSourceEvidence(source);
+    // T1, on the current exact route (B7b): a pressure-1 source, with or without the
+    // load/reference-state group, registers only when its reader checks pass with the
+    // captured model. A joined pressure-source-1 source registered above with its
+    // invocation; its standing stays needs_recompute (never numerically eligible in T1).
+    if (sourceContract(source) === "pressure") readerValidate("pressure", source, capture.invocation.request.model);
     // U6d: a preview successor registers only after the accepted reader passes with
     // this captured invocation; its outcome is recorded against the exact bytes.
     // U7 slice T: its standing is bound to this live native capture and the current model.
@@ -573,28 +577,6 @@ export async function buildAnalysisRunPreview(
   return buildAnalysisRunV03(result, inputManifest, effective, modelLoadBasisRefs(inputManifest.manifest.model_basis.model_payload));
 }
 
-export function bindSourceResultDimensions(
-  result: MechanicsResult,
-): MechanicsResult {
-  // Precision carriers and unsupported historical headers retain exact received bytes.
-  if (sourceContract(result) !== "legacy") return result;
-  return {
-    ...result,
-    results: result.results.map((item) => {
-      const declared = declaredSourceResultDimension(item);
-      if (item.dimension && item.dimension !== declared) {
-        throw new Error(
-          `ANALYSIS-RUN-RESULT-DIMENSION-MISMATCH: ${item.id} declares ${item.dimension}; exact kind semantics require ${declared}.`,
-        );
-      }
-      return {
-        ...item,
-        dimension: declared,
-      };
-    }),
-  };
-}
-
 export function declaredSourceResultDimension(
   item: Omit<MechanicsResult["results"][number], "dimension"> &
     Partial<Pick<MechanicsResult["results"][number], "dimension">>,
@@ -606,20 +588,6 @@ export function declaredSourceResultDimension(
     throw new Error("SUPPORT_COMPONENT_UNSUPPORTED");
   }
   const component = item.metadata?.component;
-  if (kind === "component_user_stiffness_macro_element_review") {
-    if (
-      component === "axial_user_stiffness" ||
-      component === "lateral_user_stiffness"
-    ) {
-      return "linear_stiffness";
-    }
-    if (
-      component === "angular_user_stiffness" ||
-      component === "torsional_user_stiffness"
-    ) {
-      return "rotational_stiffness";
-    }
-  }
   if (kind === "constant_effort_user_input_review") {
     if (component === "constant_effort_support_constant_load") return "force";
     if (component === "constant_effort_support_travel_range") return "length";
@@ -649,7 +617,6 @@ export function declaredSourceResultDimension(
     element_local_shear_force_z: "force",
     element_local_torsional_moment: "moment",
     element_local_torsional_shear_stress: "stress",
-    expansion_joint_pressure_thrust_load_review: "force",
     global_nodal_displacement_x: "length",
     global_nodal_displacement_y: "length",
     global_nodal_displacement_z: "length",

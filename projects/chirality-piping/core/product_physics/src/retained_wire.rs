@@ -11,7 +11,6 @@ use super::retained_product as rp;
 use super::retained_receipt as rr;
 use super::*;
 use open_pipe_stress_canonical_json::canonical_json_checked_v1_text;
-use open_pipe_stress_frame_kernel::structural::exact_boundary::functionals::AttemptStage;
 use open_pipe_stress_frame_kernel::structural::retained_api as k;
 use serde_json::{json, Map, Value};
 use sha2::{Digest, Sha256};
@@ -33,7 +32,7 @@ pub(super) const CANONICALIZATION: &str = "openpipestress_jcs_ijson_v1";
 /// definition fixture and to the semantic table's entry by tests.
 pub(super) const DEFINITION_ID: &str = "RP-PREPARED-ORDINARY-DUAL-v1";
 pub(super) const DEFINITION_SHA256: &str =
-    "a7ed7ca0bf0bba6e8b821ca4befa00a0fa9541a83694be8b28ac63e39b1d0349";
+    "c4aebcef3ae3863f9576fb3a7e323e77a91687938f6605a83a2fdc958febb15f";
 /// B3b-P (B3-D P-9): the exact successor's identity and profile (reserved 2026-10-03;
 /// `semantic_contract_v0_3_physics_retained_1.json`), and its formation definition DEF-E with
 /// its H("retained_precision_formation_v1", definition) (B3-D REVISION_01 §1.2). Bound to the
@@ -42,7 +41,7 @@ pub(super) const EXACT_SEMANTIC_ID: &str = "openpipestress.result_semantics/0.3.
 pub(super) const EXACT_PROFILE_ID: &str = "exact_straight_retained_w1a_v2";
 pub(super) const EXACT_DEFINITION_ID: &str = "RP-PREPARED-EXACT-DUAL-v1";
 pub(super) const EXACT_DEFINITION_SHA256: &str =
-    "5a3bac430df9bbc77484d5419c75880ad40ae209b439e5f928374458025281af";
+    "ff28bea4ca9613d689edd1428b07e869a0a3ac824012b49382307b6293819def";
 /// B3b-P (B3-D P-9; REVISION_01 §2, S-1): the route descriptor the serializer takes its
 /// route-specific members from, never a module constant: the successor's identity and profile,
 /// every product attempt's `definition_id`, the preparation payload's `definition_sha256` (C3
@@ -71,7 +70,9 @@ pub(super) const INVOCATION_LIMIT: u64 = 60_000_000_000;
 pub(super) const SELECTED_CODE: &str = "RETAINED_PRECISION_SELECTED";
 pub(super) const SELECTED_MESSAGE: &str = "Retained-precision recovery (contribution_preserving_multiprecision_v1) is selected for this load case. Its published rows carry recovery_method; the retained_precision receipt binds their certified classes, the native attempts and work, and the ordinary-attempt evidence.";
 const MAX_SAFE: u64 = (1 << 53) - 1;
-const LEGACY_CODE: &str = "SOURCE_BLOCK_RECOVERY_UNAVAILABLE";
+/// The ordinary run's retained-source (composite) unavailability disclosure. Since B4/D1 (b)
+/// only route E's composites attempt the method, so only a route-E case can carry one.
+const SOURCE_UNAVAILABLE_CODE: &str = "SOURCE_BLOCK_RECOVERY_UNAVAILABLE";
 
 /// The typed cause of an abandoned projection (C2 `receipt_failure`). Never
 /// serialized: a failure means U3 publishes the ordinary envelope.
@@ -85,8 +86,6 @@ pub(super) enum ReceiptCheck {
     /// An exact amount above 2^53-1.
     WorkCounterRange,
     WorkCounterInconsistent,
-    /// A legacy `rejected` beyond the safe range: only `saturating_add` reaches it.
-    SaturationNotExcluded,
     Association,
     /// Outside the serializer's scope (G-j; coexistence; D9b).
     Scope,
@@ -104,7 +103,6 @@ impl ReceiptCheck {
             Self::WorkCounter(k::WorkFault::Inconsistent | k::WorkFault::Both) => "work_counter_inconsistent",
             Self::WorkCounterRange => "work_counter_range",
             Self::WorkCounterInconsistent => "work_counter_inconsistent",
-            Self::SaturationNotExcluded => "saturation_not_excluded",
             // A candidate outside the invocation it was given is not associated with it.
             Self::Association | Self::Scope => "association",
             // A payload without a closed translation cannot be encoded.
@@ -123,7 +121,7 @@ fn fail(check: ReceiptCheck, field_path: &'static str) -> ReceiptFailure {
 
 /// RV82-N7, the precedence: `Enc` keeps every failure it records and returns the
 /// first of them at `finish`. A structural early return (`?` on a Scope,
-/// Association or Untranslated refusal from a later step, such as `legacy_source`,
+/// Association or Untranslated refusal from a later step, such as
 /// `selected_case_envelope` or `material_basis`) takes precedence over failures the
 /// encoder recorded before it. Either way the cause is typed and maps onto
 /// C1:68's vocabulary; no successor is emitted.
@@ -133,8 +131,24 @@ fn fail(check: ReceiptCheck, field_path: &'static str) -> ReceiptFailure {
 #[derive(Default)]
 struct Enc {
     failures: RefCell<Vec<ReceiptFailure>>,
+    /// B7a (b) Widen domain (RV125 N-2): each requested case's `material_bases` index
+    /// (`case_bases`), set once per serialization; empty where only the base basis exists.
+    basis_refs: Vec<usize>,
 }
 impl Enc {
+    /// A requested case's `material_basis_ref` (0, the base basis, when none was set).
+    fn basis_ref(&self, case_index: usize) -> Value {
+        if self.basis_refs.is_empty() {
+            return json!(0);
+        }
+        match self.basis_refs.get(case_index) {
+            Some(index) => json!(index),
+            None => {
+                self.fail(ReceiptCheck::Association, "material_basis_ref");
+                Value::Null
+            }
+        }
+    }
     fn fail(&self, check: ReceiptCheck, path: &'static str) {
         self.failures.borrow_mut().push(fail(check, path));
     }
@@ -244,18 +258,6 @@ fn comp(c: k::Component) -> &'static str {
 }
 fn dof(d: k::Dof) -> Value {
     json!({"node":d.node,"component":comp(d.component)})
-}
-fn helper_stage(stage: AttemptStage) -> &'static str {
-    match stage {
-        AttemptStage::SourceClosure => "source_closure",
-        AttemptStage::Preparation => "preparation",
-        AttemptStage::Solve => "solve",
-        AttemptStage::Plan => "plan",
-        AttemptStage::Evaluation => "evaluation",
-        AttemptStage::Projection => "projection",
-        AttemptStage::Retention => "retention",
-        AttemptStage::Replay => "replay",
-    }
 }
 /// The 19 native stage slots, emitted only when the `StageWork` itself is
 /// exact: `checked_total` joins its status latch (`set` stores saturated slots).
@@ -758,6 +760,18 @@ fn range_trigger(e: &Enc, trigger: &RangeTrigger) -> Value {
     }
 }
 
+/// B4/D1 ruling (5): K2b's named refusal (schema `ForceRefusal`): its reason and, when the
+/// b-rule ran, its step-1 trigger.
+fn force_refusal(e: &Enc, refusal: &ForceScalingRefusal) -> Value {
+    let reason = match &refusal.reason {
+        ForceScaleReason::SubnormalAtFormation => json!({"tag":"subnormal_at_formation"}),
+        ForceScaleReason::ScaledEvaluation => json!({"tag":"scaled_evaluation"}),
+        ForceScaleReason::InfeasibleWindow { e_min, e_max } => json!({"tag":"infeasible_window","e_min":e_min,"e_max":e_max}),
+        ForceScaleReason::PublicationOutsideBinary64 { global_dof } => json!({"tag":"publication_outside_binary64","global_dof":global_dof}),
+    };
+    let trigger = refusal.trigger.as_ref().map_or(Value::Null, |trigger| range_trigger(e, trigger));
+    json!({"reason":reason,"trigger":trigger})
+}
 /// The successor's identity and profile (G-a), set once per successor: the route's (B3b-P, P-9;
 /// the profile's `limitations` stay the base producer's).
 fn successor_identity(env: &mut Value, route: rp::W1Route) {
@@ -765,9 +779,10 @@ fn successor_identity(env: &mut Value, route: rp::W1Route) {
     env["producer"]["semantic_contract_id"] = json!(wire.semantic_id);
     env["formulation_basis"]["profile_id"] = json!(wire.profile_id);
 }
-/// One selected case's part of G-a with T1 (a): its rows' method token, its omitted legacy
-/// disclosure and its selected-case diagnostic (appended).
-fn selected_case_envelope(env: &mut Value, case_id: &str, omit: Option<&str>) -> Result<String, ReceiptFailure> {
+/// One selected case's part of G-a with T1 (a): its rows' method token, its omitted
+/// retained-source unavailability disclosure (a route-E composite attempt's, at most one; B4/D1
+/// (b) removed its `legacy_source` record) and its selected-case diagnostic (appended).
+fn selected_case_envelope(env: &mut Value, case_id: &str) -> Result<String, ReceiptFailure> {
     let assoc = |p| fail(ReceiptCheck::Association, p);
     for row in env["results"].as_array_mut().ok_or(assoc("results"))? {
         if row["basis_ref"]["ref_id"] == json!(case_id) {
@@ -776,17 +791,13 @@ fn selected_case_envelope(env: &mut Value, case_id: &str, omit: Option<&str>) ->
     }
     let diags = env["diagnostics"].as_array_mut().ok_or(assoc("diagnostics"))?;
     let names = |d: &Value| d["affected_refs"].as_array().is_some_and(|a| a.iter().any(|r| r == case_id));
-    if let Some(id) = omit {
-        let found: Vec<usize> = diags.iter().enumerate().filter(|(_, d)| d["id"] == json!(id)).map(|(i, _)| i).collect();
-        let &[i] = found.as_slice() else { return Err(assoc("diagnostics[-legacy]")) };
-        if diags[i]["code"] != json!(LEGACY_CODE) || !names(&diags[i]) {
-            return Err(assoc("diagnostics[-legacy]"));
-        }
-        diags.remove(i);
-    }
-    // G4: no legacy-unavailable disclosure may still name a selected case.
-    if diags.iter().any(|d| d["code"] == json!(LEGACY_CODE) && names(d)) {
-        return Err(assoc("diagnostics[legacy]"));
+    let found: Vec<usize> = diags.iter().enumerate()
+        .filter(|(_, d)| d["code"] == json!(SOURCE_UNAVAILABLE_CODE) && names(d)).map(|(i, _)| i).collect();
+    match found.as_slice() {
+        [] => {}
+        // G4: no retained-source unavailability disclosure may still name a selected case.
+        &[i] => { diags.remove(i); }
+        _ => return Err(assoc("diagnostics[-source_unavailable]")),
     }
     let id = format!("diagnostic:retained-precision:{case_id}:selected");
     if diags.iter().any(|d| d["id"] == json!(id)) {
@@ -797,49 +808,8 @@ fn selected_case_envelope(env: &mut Value, case_id: &str, omit: Option<&str>) ->
     Ok(id)
 }
 
-/// D39 with T1 (a): the legacy disposition; on the selected case a captured
-/// disclosure is omitted and its actual WorkReport goes to legacy_source_work.
-/// On an unselected (unavailable) case the disclosure is kept and referenced
-/// (C2:160 "the original diagnostic_ref preserves original source failure disclosure").
-fn legacy_source(e: &Enc, seed: Option<&rp::LegacySeed>, case_index: usize, work: &mut Vec<Value>, selected: bool)
-    -> Result<(Value, Option<String>), ReceiptFailure> {
-    let disclosed = |d: &String| if selected { (Value::Null, Some(d.clone())) } else { (json!(d), None) };
-    let entry = |w: &rp::LegacyWork| {
-        // D-4 §3 item 4: `charged` and `limit` are guarded exact; `rejected` is
-        // projected only within the safe range (beyond it only saturation reaches).
-        let beyond = |amount: usize| u64::try_from(amount).map_or(true, |a| a > MAX_SAFE);
-        for (amount, path) in [(w.charged, "legacy_source_work[].charged"), (w.limit, "legacy_source_work[].limit")] {
-            if beyond(amount) {
-                e.fail(ReceiptCheck::WorkCounterRange, path);
-            }
-        }
-        if beyond(w.rejected) {
-            e.fail(ReceiptCheck::SaturationNotExcluded, "legacy_source_work[].rejected");
-        }
-        json!({"case_index":case_index,"stage":w.stage,"helper_stage":helper_stage(w.helper_stage),
-            "charged":w.charged,"rejected":w.rejected,"limit":w.limit,"settlement":"booked"})
-    };
-    Ok(match seed {
-        Some(rp::LegacySeed::NotEligible) => (json!({"disposition":"not_eligible","diagnostic_ref":null,"work_ref":null}), None),
-        Some(rp::LegacySeed::NotRequired) => (json!({"disposition":"not_required","diagnostic_ref":null,"work_ref":null}), None),
-        Some(rp::LegacySeed::DeclinedWithoutAttempt { work: w, diagnostic_ref }) => {
-            work.push(entry(w));
-            let (reference, omit) = disclosed(diagnostic_ref);
-            (json!({"disposition":"declined_without_attempt","diagnostic_ref":reference,"work_ref":work.len()-1}), omit)
-        }
-        Some(rp::LegacySeed::Unavailable { work: w, diagnostic_ref }) => {
-            work.push(entry(w));
-            let (reference, omit) = disclosed(diagnostic_ref);
-            (json!({"disposition":"unavailable","diagnostic_ref":reference,"work_ref":work.len()-1}), omit)
-        }
-        // Coexistence (D-15): exact-block selected, so W1 is not attempted.
-        Some(rp::LegacySeed::ExactSelected) => return Err(fail(ReceiptCheck::Scope, "ordinary_attempts[].legacy_source")),
-        None => { e.untranslated("ordinary_attempts[].legacy_source"); (Value::Null, None) }
-    })
-}
-
 /// G-b (C2 §5): `initial`, `w2` and `formation` from the typed seed.
-fn ordinary_members(e: &Enc, seed: &rp::OrdinarySeed) -> (Value, Value, Value) {
+fn ordinary_members(e: &Enc, seed: &rp::OrdinarySeed, case_index: usize) -> (Value, Value, Value) {
     let initial = match &seed.initial {
         Some(rp::InitialSeed::Report { code, report_diagnostic_ref }) => {
             let outcome = match code.as_str() {
@@ -855,8 +825,12 @@ fn ordinary_members(e: &Enc, seed: &rp::OrdinarySeed) -> (Value, Value, Value) {
         Some(rp::InitialSeed::StructuralFailure { error, diagnostic_ref }) => {
             json!({"kind":"structural_failure","error":structural_error(e,error),"diagnostic_ref":diagnostic_ref})
         }
-        // basis_index is not captured.
-        Some(rp::InitialSeed::FormationFailure { .. }) => e.untranslated("ordinary_attempts[].initial.formation_failure"),
+        // B7a (b) Widen domain (RV125 N-2): a deferred unformed basis is the case's own material
+        // basis, so its index is the case's `material_basis_ref`.
+        Some(rp::InitialSeed::FormationFailure { error: FrameKernelError::NumericalRange { name } }) => {
+            json!({"kind":"formation_failure","error":{"tag":"numerical_range","name":name},"basis_index":e.basis_ref(case_index)})
+        }
+        Some(rp::InitialSeed::FormationFailure { .. }) => e.unencodable("ordinary_attempts[].initial.formation_failure"),
         // The not-attempted cause is not captured.
         None => e.untranslated("ordinary_attempts[].initial.not_attempted"),
     };
@@ -869,7 +843,13 @@ fn ordinary_members(e: &Enc, seed: &rp::OrdinarySeed) -> (Value, Value, Value) {
             e.fail(ReceiptCheck::Association, "ordinary_attempts[].w2.report_diagnostic_ref");
             Value::Null
         }
-        // ForceScalingFailure has no closed translation.
+        // B4/D1 ruling (5): one closed translation, the orchestrator's named refusal with the
+        // outer range trigger, its inner trigger and reason, and the diagnostic reference.
+        rp::W2Seed::Failed { trigger, failure: ForceScalingFailure::Refused(refusal), diagnostic_ref } => {
+            json!({"kind":"failed","trigger":range_trigger(e,trigger),
+                "failure":{"tag":"refused","refusal":force_refusal(e,refusal)},"diagnostic_ref":diagnostic_ref})
+        }
+        // Every other ForceScalingFailure variant has no closed translation.
         rp::W2Seed::Failed { .. } => e.untranslated("ordinary_attempts[].w2.failure"),
     };
     if seed.recovery_demoted {
@@ -882,43 +862,87 @@ fn ordinary_members(e: &Enc, seed: &rp::OrdinarySeed) -> (Value, Value, Value) {
     (initial, w2, formation)
 }
 
-/// The one material basis (D1.5) of the requested cases `0..cases` (B1 SP: every case's base
-/// selector; at c = 1 the one case).
-fn material_basis(e: &Enc, capture: &rp::ProductCapture, raw: &Value, cases: usize) -> Result<Value, ReceiptFailure> {
-    let assoc = |p| fail(ReceiptCheck::Association, p);
+/// One requested case's basis selector as the receipt names it: `{"kind":"base"}` or, B7a (b)
+/// Widen domain, `{"kind":"named","id"}`. A temperature selector is refused (D1.5 keeps it out).
+fn case_selector(case: &Value) -> Result<Value, ReceiptFailure> {
+    if !case.get("modulus_basis_temperature").is_none_or(Value::is_null) {
+        return Err(fail(ReceiptCheck::Untranslated, "material_bases[].selector"));
+    }
+    Ok(match case.get("modulus_basis_ref").filter(|v| !v.is_null()) {
+        Some(id) if id.is_string() => json!({"kind":"named","id":id}),
+        Some(_) => return Err(fail(ReceiptCheck::Untranslated, "material_bases[].selector")),
+        None => json!({"kind":"base"}),
+    })
+}
+/// Each requested case's material basis index: one basis per distinct selector, numbered in
+/// the order the request's cases first name it (RS G8's own order).
+fn case_bases(raw: &Value, cases: usize) -> Result<(Vec<Value>, Vec<usize>), ReceiptFailure> {
+    let (mut selectors, mut of_case) = (Vec::new(), Vec::with_capacity(cases));
     for case_index in 0..cases {
-        let case = &raw["model"]["load_cases"][case_index];
-        // Only the base selector is mapped; a named or temperature basis is refused.
-        if !case.get("modulus_basis_ref").is_none_or(Value::is_null) || !case.get("modulus_basis_temperature").is_none_or(Value::is_null) {
-            return Err(fail(ReceiptCheck::Untranslated, "material_bases[].selector"));
-        }
+        let selector = case_selector(&raw["model"]["load_cases"][case_index])?;
+        let index = match selectors.iter().position(|s| *s == selector) {
+            Some(index) => index,
+            None => {
+                selectors.push(selector);
+                selectors.len() - 1
+            }
+        };
+        of_case.push(index);
     }
-    if !capture.selections.is_empty() || capture.basis_record.is_some() {
-        return Err(fail(ReceiptCheck::Untranslated, "material_bases[].materials[].selection"));
-    }
+    Ok((selectors, of_case))
+}
+/// The requested cases' material bases (D1.5): one per distinct selector (B7a (b) Widen domain;
+/// RV125 N-2), each with its cases. A named basis's materials carry the point's selected E and G
+/// from that basis's own custody (`ProductCapture::bases`).
+fn material_basis(e: &Enc, capture: &rp::ProductCapture, raw: &Value, cases: usize) -> Result<Vec<Value>, ReceiptFailure> {
+    let assoc = |p| fail(ReceiptCheck::Association, p);
+    let (selectors, of_case) = case_bases(raw, cases)?;
     let inputs = match raw.get("materials").and_then(Value::as_array).filter(|m| !m.is_empty()) {
         Some(m) => m,
         None => raw["model"]["materials"].as_array().ok_or(assoc("material_bases[].materials"))?,
     };
-    let mut used: Vec<usize> = capture.members.iter().map(|m| m.material).collect();
-    used.sort_unstable();
-    used.dedup();
-    let mut materials = Vec::with_capacity(used.len());
-    for i in used {
-        let (id, modulus, shear) = capture.materials.get(i).ok_or(assoc("material_bases[].materials[].input_index"))?;
-        let input = inputs.get(i).ok_or(assoc("material_bases[].materials[].input_index"))?;
-        if input["id"].as_str() != Some(id.as_str()) {
-            return Err(assoc("material_bases[].materials[].id"));
-        }
-        const P: &str = "material_bases[].materials[]";
-        let shear_origin = match capture.route() {
-            rp::W1Route::Preview => explicit_g_origin(input)?,
-            rp::W1Route::Exact => derived_e_nu_origin(e, capture, i)?,
+    // The materials the model's members use, in material order (every case's members are the
+    // model's; a member-load case builds no source to read them from).
+    let pipes = raw["model"]["pipe_segments"].as_array().ok_or(assoc("material_bases[].materials"))?;
+    let used: Vec<usize> = (0..capture.materials.len())
+        .filter(|&i| pipes.iter().any(|p| p["material"].as_str() == Some(capture.materials[i].0.as_str())))
+        .collect();
+    let mut bases = Vec::with_capacity(selectors.len());
+    for (index, selector) in selectors.into_iter().enumerate() {
+        let case_indices: Vec<usize> = (0..cases).filter(|&c| of_case[c] == index).collect();
+        let custody = match &selector["id"] {
+            Value::String(id) => Some(capture.bases.iter().find(|b| matches!(&b.selector, rp::MaterialSelector::Point(p) if p == id))
+                .ok_or(assoc("material_bases[].materials[].selection"))?),
+            _ => None,
         };
-        materials.push(json!({"input_index":i,"id":id,"elastic_modulus":e.bits(*modulus,P),"shear_modulus":e.bits(*shear,P),
-            "shear_origin":shear_origin,"selection":{"kind":"base"}}));
+        let mut materials = Vec::with_capacity(used.len());
+        for &i in &used {
+            let (id, modulus, shear) = capture.materials.get(i).ok_or(assoc("material_bases[].materials[].input_index"))?;
+            let input = inputs.get(i).ok_or(assoc("material_bases[].materials[].input_index"))?;
+            if input["id"].as_str() != Some(id.as_str()) {
+                return Err(assoc("material_bases[].materials[].id"));
+            }
+            const P: &str = "material_bases[].materials[]";
+            let shear_origin = match capture.route() {
+                rp::W1Route::Preview => explicit_g_origin(input)?,
+                rp::W1Route::Exact => derived_e_nu_origin(e, capture, i)?,
+            };
+            let (modulus, shear, selection) = match custody {
+                None => (*modulus, *shear, json!({"kind":"base"})),
+                Some(custody) => {
+                    let s = custody.selections.iter().find(|s| s.material == *id).ok_or(assoc("material_bases[].materials[].selection"))?;
+                    match s.selected {
+                        k::ProductMaterial::Point { e: em, g, .. } => (em, g, json!({"kind":"named_point","point_id":selector["id"]})),
+                        _ => return Err(fail(ReceiptCheck::Untranslated, "material_bases[].materials[].selection")),
+                    }
+                }
+            };
+            materials.push(json!({"input_index":i,"id":id,"elastic_modulus":e.bits(modulus,P),"shear_modulus":e.bits(shear,P),
+                "shear_origin":shear_origin,"selection":selection}));
+        }
+        bases.push(json!({"index":index,"selector":selector,"materials":materials,"case_indices":case_indices}));
     }
-    Ok(json!({"index":0,"selector":{"kind":"base"},"materials":materials,"case_indices":(0..cases).collect::<Vec<_>>()}))
+    Ok(bases)
 }
 /// The preview route's shear origin: an explicit G is the request's own member; a derived E/ν
 /// basis there is wider scope.
@@ -1026,7 +1050,7 @@ fn case_source_at(e: &Enc, capture: &rp::ProductCapture, source: &k::PrimitiveSo
             "geometry":{"route":route_wire(capture.route()).geometry_route,"normalized_od":e.bits(f.diameter,P),"effective_wall":e.bits(f.effective_wall,P),"actual_radius":e.bits(f.radius,P),
                 "actual_second_moment":e.bits(f.second_moment,P),"actual_polar_moment":e.bits(f.torsion_constant,P)}}));
     }
-    Ok(json!({"index":source_id,"owner":{"kind":"case","case_index":case_index,"case_id":case_id},"material_basis_ref":0,
+    Ok(json!({"index":source_id,"owner":{"kind":"case","case_index":case_index,"case_id":case_id},"material_basis_ref":e.basis_ref(case_index),
         "kernel_source_sha256":sha_hex(&origin.identity),"stiffness_sha256":sha_hex(&origin.stiffness),
         "id_maps":{"nodes":nodes,"members":members,"springs":springs,"support_ids":support_ids},"body_membership":body_membership,
         "layout":layout,"stations":stations,"supports":supports,"constraints":constraints,"nodal_terms":nodal_terms,"section_terms":section_terms,
@@ -1215,7 +1239,7 @@ fn selection(e: &Enc, owner: &k::RetainedSolve, capture: &rp::ProductCapture,
             Some(k::RowClass::AbsoluteVerified { bound_bits }) => absolute.push(json!({"result_id":row,"bound":e.ubits(bound_bits,P)})),
             Some(k::RowClass::RelativeVerified | k::RowClass::InputDerived) => {}
             Some(k::RowClass::Unpublishable) => return Err(fail(ReceiptCheck::Untranslated, "cases[].selection.unpublishable")),
-            None if matches!(recipe, k::ProductRecipe::NonQuantity | k::ProductRecipe::ModulusBasisRecord | k::ProductRecipe::DenseParityObservation) => {}
+            None if matches!(recipe, k::ProductRecipe::NonQuantity | k::ProductRecipe::ModulusBasisRecord) => {}
             None => not_covered.push(json!(row)),
         }
     }
@@ -1319,6 +1343,7 @@ fn proof_trace(e: &Enc, view: &rr::PreparedAttemptView<'_>, capture: &rp::Produc
     let _ = P;
     json!({"lanes":lanes,"numeric":numeric(e,&p.numeric),"comparisons_lme":e.count(p.comparisons_lme),"visits":e.count(p.visits),"scalar_operations":e.count(p.scalar_operations),
         "projection_conversions":e.count(p.projection_conversions),
+        // The definition binds MPa stress outcomes to SI; all other outcomes remain raw.
         "projection_outcomes":p.projection_outcomes.iter().map(|(r,o)|json!({"row_index":r,"outcome":conversion(e,o)})).collect::<Vec<_>>(),
         "capacities":p.capacities,"prepared_capacity_bytes":p.prepared_capacity_bytes,"completion":completion,
         "checks":{"certificate":check(e,&view.checks[0],capture),"observables":check(e,&view.checks[1],capture),"g5a":check(e,&view.checks[2],capture)},"summary_coverage":coverage})
@@ -1332,7 +1357,7 @@ fn product_attempt(e: &Enc, view: &rr::PreparedAttemptView<'_>, id: usize, case_
     for (n, s) in names.iter().zip(view.stages.iter()) {
         stages_v.insert((*n).into(), stage_name(e, *s));
     }
-    json!({"id":id,"definition_id":route_wire(capture.route()).definition_id,"owner_ref":{"kind":"case","index":case_index},"ordinary_attempt_ref":case_index,"material_basis_ref":0,
+    json!({"id":id,"definition_id":route_wire(capture.route()).definition_id,"owner_ref":{"kind":"case","index":case_index},"ordinary_attempt_ref":case_index,"material_basis_ref":e.basis_ref(case_index),
         "source_ref":source_ref,"run_ref":run_ref,"result":result,"preparation":{"members":members},"stages":stages_v,"proof":proof_trace(e,view,capture),
         "adapter":adapter_value(e,view.adapter),
         "operational":operational_value(e,view.old_coverage,view.operational_old,view.operational_new),
@@ -1528,20 +1553,20 @@ fn invocation_arrays_mapped(e: &Enc, inv: &k::RecordedInvocation, run: &k::RunOr
 }
 /// One requested case's ordinary attempt entry, with its D6a references already collected.
 #[allow(clippy::too_many_arguments)]
-fn ordinary_entry(e: &Enc, env: &Value, case_id: &str, case_index: usize, mode: PreviewSolverMode, seed: &rp::OrdinarySeed, legacy: Value,
+fn ordinary_entry(e: &Enc, env: &Value, case_id: &str, case_index: usize, mode: PreviewSolverMode, seed: &rp::OrdinarySeed,
     diagnostic_refs: Vec<Value>) -> Result<(Value, usize), ReceiptFailure> {
     let assoc = |p| fail(ReceiptCheck::Association, p);
     let quality_index = env["numerical_quality"]["cases"].as_array().and_then(|q| {
         let found: Vec<usize> = q.iter().enumerate().filter(|(_, x)| x["basis_ref"]["ref_id"] == json!(case_id)).map(|(i, _)| i).collect();
         if let &[i] = found.as_slice() { Some(i) } else { None }
     }).ok_or(assoc("cases[].ordinary.quality_binding"))?;
-    let (initial, w2, formation) = ordinary_members(e, seed);
+    let (initial, w2, formation) = ordinary_members(e, seed, case_index);
     // C2 §5: the report's outcome is the case's unchanged assessed quality.
     if initial["kind"] == "report" && env["numerical_quality"]["cases"][quality_index]["solve_quality"] != initial["outcome"] {
         return Err(assoc("ordinary_attempts[].initial.outcome"));
     }
-    Ok((json!({"case_index":case_index,"case_id":case_id,"material_basis_ref":0,"requested_mode":mode.as_str(),
-        "initial":initial,"w2":w2,"formation":formation,"legacy_source":legacy,"diagnostic_refs":diagnostic_refs}), quality_index))
+    Ok((json!({"case_index":case_index,"case_id":case_id,"material_basis_ref":e.basis_ref(case_index),"requested_mode":mode.as_str(),
+        "initial":initial,"w2":w2,"formation":formation,"diagnostic_refs":diagnostic_refs}), quality_index))
 }
 fn case_diagnostic_refs_into(env: &Value, case_ids: &[&str], refs: &mut [Vec<Value>]) -> Result<(), ReceiptFailure> {
     for d in env["diagnostics"].as_array().ok_or(fail(ReceiptCheck::Association, "diagnostics"))? {
@@ -1562,15 +1587,15 @@ fn case_diagnostic_refs_into(env: &Value, case_ids: &[&str], refs: &mut [Vec<Val
 /// combination) and `operand_preparations[]`, present only when non-empty (C-6).
 #[allow(clippy::too_many_arguments)]
 fn finish_with(e: Enc, mut env: Value, invocation: &source_receipt::CapturedInvocation, charged: u64, execution_order: Value, cases: Vec<Value>,
-    sources: Vec<Value>, material: Value, (calls, groups, builds): (Vec<Value>, Vec<Value>, Vec<Value>), ordinary: Vec<Value>, attempts: Vec<Value>,
-    legacy_source_work: Vec<Value>, combinations: Vec<Value>, operand_preparations: Vec<Value>) -> Result<Value, ReceiptFailure> {
+    sources: Vec<Value>, material: Vec<Value>, (calls, groups, builds): (Vec<Value>, Vec<Value>, Vec<Value>), ordinary: Vec<Value>, attempts: Vec<Value>,
+    combinations: Vec<Value>, operand_preparations: Vec<Value>) -> Result<Value, ReceiptFailure> {
     let mut body = json!({"receipt_version":1,"policy":POLICY,"projection_policy":PROJECTION_POLICY,"work_policy":WORK_POLICY,
         "facade_policy":FACADE_POLICY,"canonicalization":CANONICALIZATION,
         "invocation":{"algorithm":"sha256","profile":CANONICALIZATION,"scope":"actual_request_and_solver_mode","domain":"source_blocks_invocation_v1","value":invocation.borrowed_digest()},
         "publication_sha256":"",
         "work":{"case_limit":CASE_LIMIT,"invocation_limit":INVOCATION_LIMIT,"charged":charged,"execution_order":execution_order},
-        "cases":cases,"combinations":combinations,"sources":sources,"material_bases":[material],"calls":calls,"groups":groups,"builds":builds,
-        "ordinary_attempts":ordinary,"product_attempts":attempts,"legacy_source_work":legacy_source_work});
+        "cases":cases,"combinations":combinations,"sources":sources,"material_bases":material,"calls":calls,"groups":groups,"builds":builds,
+        "ordinary_attempts":ordinary,"product_attempts":attempts});
     if !operand_preparations.is_empty() {
         body["operand_preparations"] = json!(operand_preparations);
     }
@@ -1597,8 +1622,8 @@ fn bind_preparation(source: &mut Value, attempt: &Value, attempt_ref: usize, rou
 pub(super) const UNAVAILABLE_CODE: &str = "RETAINED_PRECISION_UNAVAILABLE";
 pub(super) const UNAVAILABLE_MESSAGE: &str = "Retained-precision recovery is unavailable for this load case. Its published rows keep their ordinary values, standing and diagnostics; the retained_precision receipt records the actual attempt and its typed cause.";
 
-/// One unavailable case's part of G-a: its unavailable-case diagnostic (appended); its
-/// legacy disclosure is kept.
+/// One unavailable case's part of G-a: its unavailable-case diagnostic (appended); a
+/// retained-source unavailability disclosure is kept.
 fn unavailable_case_envelope(env: &mut Value, case_id: &str) -> Result<String, ReceiptFailure> {
     let assoc = |p| fail(ReceiptCheck::Association, p);
     let diags = env["diagnostics"].as_array_mut().ok_or(assoc("diagnostics"))?;
@@ -1625,7 +1650,7 @@ fn unavailable_case_envelope(env: &mut Value, case_id: &str) -> Result<String, R
 /// - each attempt's adapter snapshot as its trace recorded it, at its terminal stage.
 ///
 /// The envelope (G-a; T1 (a)): the identity once; each selected case's method token, omitted
-/// legacy disclosure and selected diagnostic, in request order; then each unavailable case's
+/// retained-source unavailability disclosure and selected diagnostic, in request order; then each unavailable case's
 /// diagnostic, in request order. Any refusal abandons the successor (decision 5).
 pub(super) fn serialize_cases(cases: &mut rp::PreparedCases, staged: &MechanicsEnvelope, invocation: &source_receipt::CapturedInvocation)
     -> Result<Value, ReceiptFailure> {
@@ -1652,9 +1677,10 @@ fn serialize_cases_with(pc: &mut rp::ProductCapture, attempts: &[rp::CaseAttempt
     staged: &MechanicsEnvelope, invocation: &source_receipt::CapturedInvocation) -> Result<Value, ReceiptFailure> {
     let assoc = |p| fail(ReceiptCheck::Association, p);
     let scope = |p| fail(ReceiptCheck::Scope, p);
-    let e = Enc::default();
     let mode = invocation.mode();
     let raw = invocation.borrowed_raw();
+    let request_count = raw["model"]["load_cases"].as_array().map_or(0, Vec::len);
+    let e = Enc { basis_refs: case_bases(raw, request_count)?.1, ..Enc::default() };
     // G-j: the invocation this capture observed (RV82-S2), its requested cases, one ordinary
     // seed per case, in request order, and (B2-P) one record per model combination.
     if pc.invocation_mode != Some(mode) || pc.invocation_digest.as_deref() != Some(invocation.borrowed_digest().as_str()) {
@@ -1710,20 +1736,13 @@ fn serialize_cases_with(pc: &mut rp::ProductCapture, attempts: &[rp::CaseAttempt
         return Err(scope("cases[].run"));
     }
     let owners = OwnerMap { requests: &requests, prepared: &prepared_owners, combinations: &called };
-    // D39: each case's legacy disposition, in request order (a selected case's disclosure is
-    // omitted and its work recorded).
-    let mut legacy_source_work = Vec::new();
-    let mut legacy = Vec::with_capacity(count);
-    for (index, seed) in pc.ordinary.iter().enumerate() {
-        legacy.push(legacy_source(&e, seed.legacy.as_ref(), index, &mut legacy_source_work, status[index] == CaseStatus::Selected)?);
-    }
     // The successor envelope (G-a; T1 (a)).
     let mut env = serde_json::to_value(staged).map_err(|_| fail(ReceiptCheck::Encoding, "envelope"))?;
     successor_identity(&mut env, pc.route());
     let mut diagnostic_ids: Vec<Option<String>> = vec![None; count];
-    for (index, (_, omit)) in legacy.iter().enumerate() {
+    for index in 0..count {
         if status[index] == CaseStatus::Selected {
-            diagnostic_ids[index] = Some(selected_case_envelope(&mut env, case_ids[index], omit.as_deref())?);
+            diagnostic_ids[index] = Some(selected_case_envelope(&mut env, case_ids[index])?);
         }
     }
     for index in 0..count {
@@ -1746,8 +1765,8 @@ fn serialize_cases_with(pc: &mut rp::ProductCapture, attempts: &[rp::CaseAttempt
     case_diagnostic_refs_into(&env, &case_ids, &mut diagnostic_refs)?;
     let mut ordinary = Vec::with_capacity(count);
     let mut quality = Vec::with_capacity(count);
-    for (index, ((seed, (legacy_v, _)), refs)) in pc.ordinary.iter().zip(legacy).zip(diagnostic_refs).enumerate() {
-        let (entry, quality_index) = ordinary_entry(&e, &env, case_ids[index], index, mode, seed, legacy_v, refs)?;
+    for (index, (seed, refs)) in pc.ordinary.iter().zip(diagnostic_refs).enumerate() {
+        let (entry, quality_index) = ordinary_entry(&e, &env, case_ids[index], index, mode, seed, refs)?;
         // DESIGN_v2 T-4: a requested case outside A is `not_required` by its published verdict.
         if status[index] == CaseStatus::NotRequired && env["numerical_quality"]["cases"][quality_index]["solve_quality"] != "checks_passed" {
             return Err(assoc("cases[].status"));
@@ -1840,7 +1859,7 @@ fn serialize_cases_with(pc: &mut rp::ProductCapture, attempts: &[rp::CaseAttempt
     let execution_order = inv.runs().iter().map(|run| owners.owner(&run.owner)).collect::<Option<Vec<_>>>().ok_or(assoc("work.execution_order"))?;
     let material = material_basis(&e, pc, raw, count)?;
     finish_with(e, env, invocation, charged, json!(execution_order), cases_v, sources, material, (calls, groups, builds), ordinary,
-        product_attempts, legacy_source_work, combinations_v, operand_preparations)
+        product_attempts, combinations_v, operand_preparations)
 }
 
 /// B2-P (B2-C §2.7): a retained combination's diagnostic, after the case diagnostics: `selected`
@@ -1943,7 +1962,7 @@ fn serialize_operand_preparation(e: &Enc, pc: &rp::ProductCapture, record: &rp::
         json!({"kind":"refused","error":{"kind":"preparation","capture":capture_error(e,capture),"section":record.parts.preparation_error.as_ref().map(|s|section_error(e,s))}})
     };
     let record_v = json!({"id":record.id,"definition_id":DEFINITION_ID,"owner_ref":{"kind":"case","index":record.owner},"ordinary_attempt_ref":record.owner,
-        "material_basis_ref":0,"purpose":"combination_operand","requested_by":record.requested_by,"source_ref":record.source,"result":result,
+        "material_basis_ref":e.basis_ref(record.owner),"purpose":"combination_operand","requested_by":record.requested_by,"source_ref":record.source,"result":result,
         "stage":if prepared {"completed"} else {"failed"},"preparation":{"members":members},"adapter":adapter_value(e, adapter),
         "operational":operational_value(e, record.trace.old_coverage, old, new)});
     let Some(source_id) = record.source.filter(|_| prepared) else { return Ok((record_v, None)) };
@@ -2059,7 +2078,7 @@ fn serialize_combination_attempt(e: &Enc, pc: &rp::ProductCapture, combination: 
         stages_v.insert((*n).into(), stage_name(e, *s));
     }
     let attempt_v = json!({"id":attempt_id,"definition_id":COMBINATION_DEFINITION_ID,"owner_ref":{"kind":"combination","index":combination.index},
-        "material_basis_ref":0,"source_ref":run.source,"run_ref":case.run,"result":result,"stages":stages_v,"proof":proof_trace(e,&view,pc),
+        "material_basis_ref":e.basis_ref(pc.combinations.get(combination.index).and_then(|c| c.terms.first()).map_or(0, |t| t.0)),"source_ref":run.source,"run_ref":case.run,"result":result,"stages":stages_v,"proof":proof_trace(e,&view,pc),
         "adapter":adapter_value(e,view.adapter),"overlay_work":scalar(view.overlay_work),"g5a_work":scalar(view.g5a_work)});
     Ok((attempt_v, (run.source, source_v), part))
 }
@@ -2177,16 +2196,14 @@ fn serialize_attempt(e: &Enc, pc: &rp::ProductCapture, attempt: &rp::CaseAttempt
     }
 }
 
-/// Test access to the D39 mapping with its first-failure encoder.
+/// Test access to the ordinary attempt's `initial`, `w2` and `formation` with its encoder's
+/// failures (B4/D1 ruling (5)'s closed W2 translation).
 #[cfg(test)]
-pub(super) fn test_legacy_source(seed: Option<&rp::LegacySeed>, case_index: usize, work: &mut Vec<Value>)
-    -> Result<(Value, Option<String>), ReceiptFailure> {
+pub(super) fn test_ordinary_members(seed: &rp::OrdinarySeed) -> ((Value, Value, Value), Vec<ReceiptFailure>) {
     let e = Enc::default();
-    let mapped = legacy_source(&e, seed, case_index, work, true)?;
-    e.finish()?;
-    Ok(mapped)
+    let members = ordinary_members(&e, seed, 0);
+    (members, e.failures.into_inner())
 }
-
 /// Test access to the checked record view and its failure paths.
 #[cfg(test)]
 pub(super) fn test_record_work(r: &k::AttemptRecord) -> (Vec<u64>, Vec<ReceiptFailure>) {
@@ -2462,9 +2479,9 @@ pub(super) fn test_kernel_terminal(outcome: &k::ExecutionOutcome) -> (usize, Val
 }
 /// Test access to the structural checks RV82-N1 names.
 #[cfg(test)]
-pub(super) fn test_successor_envelope(env: &mut Value, case_id: &str, omit: Option<&str>) -> Result<String, ReceiptFailure> {
+pub(super) fn test_successor_envelope(env: &mut Value, case_id: &str) -> Result<String, ReceiptFailure> {
     successor_identity(env, rp::W1Route::Preview);
-    selected_case_envelope(env, case_id, omit)
+    selected_case_envelope(env, case_id)
 }
 #[cfg(test)]
 pub(super) fn test_after_conserved(before: u64, increment: u64, after: u64) -> (bool, Vec<ReceiptFailure>) {
@@ -2486,6 +2503,6 @@ pub(super) fn test_ordinary_value(env: &Value, case_id: &str, seed: &rp::Ordinar
     let mut refs = [Vec::new()];
     case_diagnostic_refs_into(env, &[case_id], &mut refs)?;
     let [refs] = refs;
-    let (v, _) = ordinary_entry(&e, env, case_id, 0, PreviewSolverMode::SparseInteractive, seed, Value::Null, refs)?;
+    let (v, _) = ordinary_entry(&e, env, case_id, 0, PreviewSolverMode::SparseInteractive, seed, refs)?;
     Ok(v)
 }

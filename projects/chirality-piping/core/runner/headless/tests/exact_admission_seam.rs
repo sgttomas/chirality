@@ -4,8 +4,8 @@
 //! straight v3 document, and since T4-U2 phase 1 one whose region member is a
 //! realized bend, solves under `pressure-1`; since T4-U2 phase 2 both produce
 //! a pressure-1 export document that the exporter's own check admits.
-//! The input is PP's committed invented X0 fixture with only the contract
-//! identity changed.
+//! The input is PP's committed invented X0 fixture (B7b: already the current
+//! 0.5.0 exact document) with the current contract stated explicitly.
 use open_pipe_stress_headless_runner::{
     run_preview_model_value_with_mode, PrivacyContext, ProfessionalBoundary, Provenance,
     RedistributionStatus, Reference, RunnerOperation, RunnerRequest, TbdDecisions,
@@ -58,7 +58,8 @@ fn request(model: &Value) -> RunnerRequest {
 
 fn v3() -> Value {
     let mut document: Value = serde_json::from_str(X0).unwrap();
-    document["model"]["pressure_contract"] = json!({"version":"3.0.0","mode":"exact_pressure_v3"});
+    document["model"]["pressure_contract"] =
+        json!({"version":"3.0.0","mode":"exact_pressure_v3","shear_model":"euler_bernoulli"});
     document
 }
 
@@ -159,5 +160,37 @@ fn a_straight_v3_document_solves_under_pressure_1_in_both_modes() {
             .unwrap();
         // T4-U2 phase 2: the results 0.3 export schema has its pressure-1 branch.
         assert_pressure_1_document(&output, &raw, &format!("{mode:?}"));
+    }
+}
+
+/// b7-plan MJ8 (D6 lapsed with T4-U2's export, #1314): through the runner's
+/// export chain a selected straight v3 case publishes pressure-source-1, and its
+/// export document carries and binds the received v3 receipt and evidence; a
+/// changed, resealed receipt is refused by that binding.
+#[test]
+fn pressure_source_export_binds_the_v3_receipt_after_u2() {
+    use open_pipe_stress_result_export::{derivative, source_blocks};
+    const N05: &str = include_str!("../../../../fixtures/product_preview/pressure_source/physics_source/n05.request.json");
+    let payload: Value = serde_json::from_str(N05).unwrap();
+    for mode in MODES {
+        let output =
+            run_preview_model_value_with_mode(request(&payload["model"]), payload.clone(), mode)
+                .unwrap();
+        let raw = serde_json::to_value(output.mechanics_envelope.as_ref().unwrap()).unwrap();
+        assert_eq!(raw["producer"]["semantic_contract_id"], "openpipestress.result_semantics/0.3.0/pressure-source-1", "{mode:?}");
+        let document = output
+            .result_envelope_document
+            .as_ref()
+            .unwrap_or_else(|| panic!("{mode:?}: {:?}", output.canonical_export_unavailability));
+        derivative::validate_document(document, &raw).unwrap_or_else(|e| panic!("{mode:?}: {e}"));
+        let envelope = &document["result_envelope"];
+        assert_eq!(envelope["semantic_contract_ref"]["ref_id"], raw["producer"]["semantic_contract_id"], "{mode:?}");
+        assert_eq!(envelope["source_block_recovery"], raw["source_block_recovery"], "{mode:?}");
+        assert_eq!(envelope["contract_evidence"], raw["contract_evidence"], "{mode:?}");
+        let mut changed = document.clone();
+        let receipt = &mut changed["result_envelope"]["source_block_recovery"];
+        receipt["body"]["invocation"]["value"] = json!("0".repeat(64));
+        receipt["receipt_sha256"] = json!(source_blocks::domain_hash("source_blocks_receipt_v1", &receipt["body"]).unwrap());
+        assert_eq!(derivative::validate_document(&changed, &raw).unwrap_err(), "SOURCE_BLOCK_RECEIPT_BINDING_MISMATCH", "{mode:?}");
     }
 }

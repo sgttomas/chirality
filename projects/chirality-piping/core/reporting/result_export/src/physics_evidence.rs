@@ -1,72 +1,19 @@
-//! Admission of the closed physics-1 evidence namespace. These checks establish
+//! Admission of the current closed pressure evidence namespace. These checks establish
 //! internal source consistency, not solver accuracy, origin, or model freshness.
 use serde_json::{json, Value};
 use std::collections::{HashMap, HashSet};
 
 type Check = Result<(), String>;
 
-/// T4-U2a: the exact pressure contract a reader admits. Readers dispatch on
-/// the contract identity and never infer one contract's evidence as the other.
+/// The sole current exact pressure contract; the caller selects its namespace.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum PressureContract {
-    /// `2.0.0/exact_straight_pressure_v2` (physics-1, load-reference-1): p_pa >= 0.
-    StraightV2,
-    /// `3.0.0/exact_pressure_v3` (pressure-1): straight families only, signed p_pa.
     PressureV3,
 }
 impl PressureContract {
-    pub const fn version(self) -> &'static str {
-        match self {
-            PressureContract::StraightV2 => "2.0.0",
-            PressureContract::PressureV3 => "3.0.0",
-        }
-    }
-    pub const fn mode(self) -> &'static str {
-        match self {
-            PressureContract::StraightV2 => "exact_straight_pressure_v2",
-            PressureContract::PressureV3 => "exact_pressure_v3",
-        }
-    }
-    const fn other(self) -> Self {
-        match self {
-            PressureContract::StraightV2 => PressureContract::PressureV3,
-            PressureContract::PressureV3 => PressureContract::StraightV2,
-        }
-    }
-    const fn signed_pressure(self) -> bool {
-        matches!(self, PressureContract::PressureV3)
-    }
-    fn table(self) -> &'static Value {
-        match self {
-            PressureContract::StraightV2 => crate::semantic_contract::physics_contract(),
-            PressureContract::PressureV3 => crate::semantic_contract::pressure_rows_contract(),
-        }
-    }
-}
-/// A v3 result offered to a v2 reader (or the reverse) is refused by name.
-pub const V3_READ_AS_V2: &str = "SOURCE_PHYSICS_EXACT_PRESSURE_V3_READ_AS_V2";
-pub const V2_READ_AS_V3: &str = "SOURCE_PHYSICS_EXACT_STRAIGHT_PRESSURE_V2_READ_AS_V3";
-
-/// Names the other contract's evidence before any shape check, so that the
-/// refusal says which identity was offered to which reader.
-fn contract_identity(evidence: &Value, contract: PressureContract) -> Check {
-    let other = contract.other();
-    let names_other = evidence["exact_cases"]
-        .as_array()
-        .is_some_and(|cases| cases.iter().any(|case| case["profile_mode"] == other.mode()))
-        || evidence["pressure"].as_array().is_some_and(|regions| {
-            regions.iter().any(|region| {
-                region["profile_mode"] == other.mode() || region["profile_version"] == other.version()
-            })
-        });
-    if names_other {
-        return Err(match contract {
-            PressureContract::StraightV2 => V3_READ_AS_V2,
-            PressureContract::PressureV3 => V2_READ_AS_V3,
-        }
-        .into());
-    }
-    Ok(())
+    pub const fn version(self) -> &'static str { "3.0.0" }
+    pub const fn mode(self) -> &'static str { "exact_pressure_v3" }
+    fn table(self) -> &'static Value { crate::semantic_contract::pressure_rows_contract() }
 }
 const MATERIAL_KEYS: &[&str] = &[
     "pipe_id",
@@ -78,6 +25,15 @@ const MATERIAL_KEYS: &[&str] = &[
     "thermal_consumed",
     "alpha_per_kelvin",
     "provenance",
+];
+const RESOLVED_MATERIAL_KEYS: &[&str] = &[
+    "pipe_id", "material_id", "E_pa", "nu", "G_pa", "constitutive_basis",
+    "thermal_consumed", "alpha_per_kelvin", "provenance",
+    "material_selection_kind", "resolved_eigenstrain",
+];
+const EVIDENCE_KEYS: &[&str] = &["pressure", "connector", "exact_cases"];
+const RESOLVED_EVIDENCE_KEYS: &[&str] = &[
+    "pressure", "connector", "exact_cases", "load_reference_states",
 ];
 const GEOMETRY_KEYS: &[&str] = &[
     "pipe_id",
@@ -182,8 +138,10 @@ fn vector(v: &Value, len: usize) -> Check {
     }
     Ok(())
 }
-fn material(v: &Value) -> Check {
-    require(keys(v, MATERIAL_KEYS), "MATERIAL_SHAPE")?;
+fn material(v: &Value) -> Check { material_in(v, false) }
+fn material_in(v: &Value, resolved: bool) -> Check {
+    let fields = if resolved { RESOLVED_MATERIAL_KEYS } else { MATERIAL_KEYS };
+    require(keys(v, fields), "MATERIAL_SHAPE")?;
     for k in ["pipe_id", "material_id", "provenance"] {
         text(&v[k])?;
     }
@@ -414,15 +372,8 @@ fn physical_row(
     )
 }
 
-/// Strict direct-case admission. Combination operands and source-block recovery
-/// require their own semantic contract; no name or accuracy label enables them.
-pub fn validate_physics_evidence(source: &Value) -> Check {
-    validate_physics_evidence_in(source, false, PressureContract::StraightV2)
-}
-/// T4-U2a: the `pressure-1` raw reader (`3.0.0/exact_pressure_v3`). A 0.4.0
-/// envelope carries `load_reference_states` and takes the load/reference
-/// pre-pass first; a 0.3.0 envelope takes the physics checks directly. Only
-/// the straight families are admitted, and p_pa may be negative.
+/// The current ordinary pressure reader. An authored load/reference-state
+/// group receives its closed pre-pass before the pressure evidence checks.
 pub fn validate_pressure_evidence(source: &Value) -> Check {
     if source["contract_evidence"]
         .get("load_reference_states")
@@ -433,18 +384,13 @@ pub fn validate_pressure_evidence(source: &Value) -> Check {
         validate_physics_evidence_in(source, false, PressureContract::PressureV3)
     }
 }
-/// The physics checks under one exact pressure contract (composite readers:
-/// v2 only).
+/// The physics checks under an explicitly selected exact pressure contract.
+/// A v3 source composite reads its received 0.4 resolved state directly.
 pub(crate) fn validate_physics_evidence_in(
     source: &Value,
     composite: bool,
     contract: PressureContract,
 ) -> Check {
-    require(
-        !composite || contract == PressureContract::StraightV2,
-        "CONTRACT_COMPOSITE_UNSUPPORTED",
-    )?;
-    contract_identity(&source["contract_evidence"], contract)?;
     finite_tree(source)?;
     require(
         (composite || source.get("source_block_recovery").is_none())
@@ -452,14 +398,19 @@ pub(crate) fn validate_physics_evidence_in(
         "FOREIGN_METHOD_EVIDENCE",
     )?;
     let evidence = &source["contract_evidence"];
-    require(
-        keys(evidence, &["pressure", "connector", "exact_cases"]),
-        "EVIDENCE_SHAPE",
-    )?;
+    let resolved = composite && contract == PressureContract::PressureV3
+        && evidence.get("load_reference_states").is_some();
+    if resolved {
+        // The direct v3 context binds the received resolved fields. It never
+        // projects them onto the v2 namespace or recomputes a commitment.
+        crate::load_reference::prepass(source, true, crate::load_reference::Method::PressureJoined)?;
+    }
+    let fields = if resolved { RESOLVED_EVIDENCE_KEYS } else { EVIDENCE_KEYS };
+    require(keys(evidence, fields), "EVIDENCE_SHAPE")?;
     // T4-U3: connector records are admitted under pressure-1 only (checked,
     // with their rows, by `connector_evidence` once the cases are read).
     require(
-        contract == PressureContract::PressureV3 || array(&evidence["connector"])?.is_empty(),
+        (!composite && contract == PressureContract::PressureV3) || array(&evidence["connector"])?.is_empty(),
         "CONNECTOR_UNSUPPORTED",
     )?;
     let cases = indexed(&evidence["exact_cases"], "load_case_id")?;
@@ -562,7 +513,7 @@ pub(crate) fn validate_physics_evidence_in(
             all_members = Some(members.clone());
         }
         for m in array(&case["pipe_materials"])? {
-            material(m)?;
+            material_in(m, resolved)?;
         }
         for s in array(&case["pipe_sections"])? {
             geometry(s)?;
@@ -684,7 +635,7 @@ pub(crate) fn validate_physics_evidence_in(
         let kind = text(&row["kind"])?;
         let signature = crate::semantic_contract::signature_in(
             if composite {
-                crate::semantic_contract::physics_source_contract()
+                crate::semantic_contract::pressure_source_contract()
             } else {
                 contract.table()
             },
@@ -791,7 +742,6 @@ pub(crate) fn validate_physics_evidence_in(
             "REGION_PROFILE",
         )?;
         let p = number(&region["p_pa"])?;
-        require(contract.signed_pressure() || p >= 0.0, "PRESSURE_RANGE")?;
         text(&region["provenance"])?;
         require(
             region["geometry_representation_guard"]
@@ -828,11 +778,15 @@ pub(crate) fn validate_physics_evidence_in(
                     vec![extra]
                 };
                 require(
-                    without_all(duplicate, &dropped) == *basis[member],
+                    if resolved && field == "materials" {
+                        MATERIAL_KEYS.iter().all(|key| duplicate[*key] == basis[member][*key])
+                    } else { without_all(duplicate, &dropped) == *basis[member] },
                     "REGION_DUPLICATE_CONTRADICTION",
                 )?;
                 if field == "geometry" {
                     require(duplicate[extra].is_boolean(), "TRAVERSAL_FLAG")?;
+                } else if resolved {
+                    require(duplicate[extra] == crate::load_reference::REGION_TEMPERATURE_BASIS, "TEMPERATURE_CASE_BINDING")?;
                 } else {
                     temperature(
                         &duplicate[extra],
@@ -1272,8 +1226,9 @@ fn assembly(
     Ok(())
 }
 
-/// Retained physical statements without raw rows: shape and internal joins only.
-/// This cannot qualify a result publication or a current invocation.
+/// Current exact-retained G7 transport checks on the receipt's pressure-1
+/// projection. Preserve the member/material/geometry/maximum/region/assembly
+/// checks and their order; this cannot qualify a publication or invocation.
 pub fn validate_transport_metadata(source: &Value) -> Check {
     let schema: Value =
         serde_json::from_str(include_str!("../../../../schemas/results.v0.3.schema.yaml"))
@@ -1282,7 +1237,7 @@ pub fn validate_transport_metadata(source: &Value) -> Check {
     require(
         crate::source_blocks::shape_in(
             evidence,
-            &schema["$defs"]["PhysicsContractEvidence"],
+            &schema["$defs"]["ExactRetainedContractEvidence"],
             &schema,
         ),
         "TRANSPORT_SHAPE",
@@ -1347,7 +1302,7 @@ pub fn validate_transport_metadata(source: &Value) -> Check {
             .filter(|p| p["load_case_id"] == cid)
             .map(|p| Ok(((text(&p["load_case_id"])?, text(&p["region_id"])?), p)))
             .collect::<Result<HashMap<_, _>, String>>()?;
-        assembly(&case["pressure_rhs_assembly"], cid, &regions, PressureContract::StraightV2, &json!([]))?;
+        assembly(&case["pressure_rhs_assembly"], cid, &regions, PressureContract::PressureV3, &json!([]))?;
     }
     let mut regions = HashSet::new();
     for region in array(&evidence["pressure"])? {
@@ -1390,4 +1345,108 @@ pub fn validate_transport_metadata(source: &Value) -> Check {
         }
     }
     Ok(())
+}
+
+
+#[cfg(test)]
+mod b7b_exact_transport_tests {
+    use super::*;
+
+    fn projected(mode: &str) -> Value {
+        // Frozen invented predecessor values; only the declared exact tuple is
+        // re-authored for this isolated transport check. No G0/receipt permit.
+        let fixture: Value = serde_json::from_str(match mode {
+            "sparse_interactive" => include_str!("../../../../fixtures/results/retained_precision_exact_successor_sparse_interactive.json"),
+            _ => include_str!("../../../../fixtures/results/retained_precision_exact_successor_dense_scrutiny.json"),
+        }).unwrap();
+        let mut source = fixture["source"].clone();
+        for case in source["contract_evidence"]["exact_cases"].as_array_mut().unwrap() {
+            case["profile_mode"] = json!("exact_pressure_v3");
+        }
+        source
+    }
+
+    #[test]
+    fn b7b_exact_transport_preserves_closed_shape_and_physical_checks() {
+        for mode in ["sparse_interactive", "dense_scrutiny"] {
+            let source = projected(mode);
+            assert_eq!(validate_transport_metadata(&source), Ok(()), "{mode}");
+            for (pointer, value, code) in [
+                ("/contract_evidence/exact_cases/0/profile_mode", json!("exact_straight_pressure_v2"), "SOURCE_PHYSICS_TRANSPORT_SHAPE"),
+                ("/contract_evidence/exact_cases/0/pipe_materials/0/G_pa", json!(1.0), "SOURCE_PHYSICS_MATERIAL_G_BINDING"),
+                ("/contract_evidence/exact_cases/0/pipe_sections/0/ri_m", json!(0.08), "SOURCE_PHYSICS_GEOMETRY_SOURCE_BINDING"),
+                ("/contract_evidence/exact_cases/0/stress_maximum_coverage/complete", json!(false), "SOURCE_PHYSICS_TRANSPORT_MAXIMUM_COVERAGE"),
+                ("/contract_evidence/exact_cases/0/pipe_stress_extrema", json!([]), "SOURCE_PHYSICS_TRANSPORT_MAXIMUM_MEMBERS"),
+                ("/contract_evidence/exact_cases/0/pressure_rhs_assembly/assembled_pressure_rhs_global/3", json!(1.0), "SOURCE_PHYSICS_RHS_PRESSURE_MOMENT"),
+            ] {
+                let mut changed = source.clone();
+                *changed.pointer_mut(pointer).unwrap() = value;
+                assert_eq!(validate_transport_metadata(&changed).unwrap_err(), code, "{mode} {pointer}");
+            }
+            let mut changed = source.clone();
+            changed["contract_evidence"]["unexpected"] = Value::Null;
+            assert_eq!(validate_transport_metadata(&changed).unwrap_err(), "SOURCE_PHYSICS_TRANSPORT_SHAPE");
+            let mut changed = source.clone();
+            let mut second = changed["contract_evidence"]["exact_cases"][0].clone();
+            second["load_case_id"] = json!("second");
+            second["pressure_rhs_assembly"]["load_case_id"] = json!("second");
+            changed["contract_evidence"]["exact_cases"].as_array_mut().unwrap().push(second);
+            assert_eq!(validate_transport_metadata(&changed).unwrap_err(), "SOURCE_PHYSICS_TRANSPORT_MAXIMUM_RESULT");
+        }
+    }
+}
+
+#[cfg(test)]
+mod static_field_slice_tests {
+    use super::*;
+    fn material(resolved: bool) -> Value {
+        let source: Value=serde_json::from_str(if resolved {
+            include_str!("../../../../fixtures/product_preview/pressure_source/load_reference_source/n06-sparse_interactive.raw.json")
+        } else {
+            include_str!("../../../../fixtures/product_preview/pressure_source/physics_source/n06-sparse_interactive.raw.json")
+        }).unwrap();
+        source["contract_evidence"]["exact_cases"][0]["pipe_materials"][0].clone()
+    }
+    #[test]
+    fn static_material_fields_preserve_exact_shapes_and_first_refusal() {
+        for resolved in [false,true] {
+            let base=material(resolved);
+            assert_eq!(material_in(&base,resolved),Ok(()));
+            let fields=if resolved {RESOLVED_MATERIAL_KEYS} else {MATERIAL_KEYS};
+            assert_eq!(fields.len(),if resolved {11} else {9});
+            for field in fields {
+                let mut missing=base.clone();missing.as_object_mut().unwrap().remove(*field);
+                assert_eq!(material_in(&missing,resolved),Err("SOURCE_PHYSICS_MATERIAL_SHAPE".into()));
+            }
+            let mut extra=base.clone();extra["unexpected"]=Value::Null;extra["E_pa"]=json!(-1.0);
+            assert_eq!(material_in(&extra,resolved),Err("SOURCE_PHYSICS_MATERIAL_SHAPE".into()));
+            assert_eq!(material_in(&base,!resolved),Err("SOURCE_PHYSICS_MATERIAL_SHAPE".into()));
+        }
+        assert_eq!(&RESOLVED_MATERIAL_KEYS[..MATERIAL_KEYS.len()],MATERIAL_KEYS);
+    }
+    #[test]
+    fn static_evidence_fields_preserve_exact_member_sets() {
+        for resolved in [false,true] {
+            let fields=if resolved {RESOLVED_EVIDENCE_KEYS} else {EVIDENCE_KEYS};
+            let mut value=Value::Object(fields.iter().map(|field|((*field).into(),Value::Null)).collect());
+            assert!(keys(&value,fields));
+            for field in fields {
+                let mut missing=value.clone();missing.as_object_mut().unwrap().remove(*field);assert!(!keys(&missing,fields));
+            }
+            value["unexpected"]=Value::Null;assert!(!keys(&value,fields));
+            assert_eq!(fields.len(),if resolved {4} else {3});
+        }
+        assert_eq!(&RESOLVED_EVIDENCE_KEYS[..EVIDENCE_KEYS.len()],EVIDENCE_KEYS);
+    }
+    #[test]
+    fn static_field_slices_have_program_lifetime_and_positive_backing() {
+        use std::mem::{size_of,size_of_val};
+        fn program_lifetime(_: &'static [&'static str]) {}
+        for fields in [MATERIAL_KEYS,RESOLVED_MATERIAL_KEYS,EVIDENCE_KEYS,RESOLVED_EVIDENCE_KEYS] {
+            program_lifetime(fields);
+            assert_eq!(size_of_val(fields),fields.len()*size_of::<&str>());
+            assert!(size_of_val(fields)>0);
+        }
+        println!("static_field_backing={}",json!({"material":size_of_val(MATERIAL_KEYS),"resolved_material":size_of_val(RESOLVED_MATERIAL_KEYS),"evidence":size_of_val(EVIDENCE_KEYS),"resolved_evidence":size_of_val(RESOLVED_EVIDENCE_KEYS),"str_reference":size_of::<&str>(),"slice_reference":size_of::<&[&str]>()}));
+    }
 }

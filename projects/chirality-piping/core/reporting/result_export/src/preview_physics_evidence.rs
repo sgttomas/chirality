@@ -1,6 +1,7 @@
 //! Admission of the closed preview-physics-1 evidence namespace (T0R S1 section 9).
 //! These checks establish internal consistency of a received envelope, not
 //! solver accuracy, origin, model freshness or engineering acceptance.
+use open_pipe_stress_correct_norm::norm3;
 use serde_json::Value;
 use std::cmp::Ordering;
 use std::collections::{HashMap, HashSet};
@@ -47,10 +48,6 @@ const METADATA_KEYS: &[&str] = &[
     "location",
     "basis",
     "sign_convention",
-];
-const RETIRED_CODES: &[&str] = &[
-    "COMPONENT_STRESS_MULTIPLIER_APPLIED",
-    "COMBINATION_STRESS_SUMMARY_SKIPPED",
 ];
 const WITHHELD_REASONS: &[&str] = &[
     "SUPPORT_ACTION_ATTRIBUTION_WITHHELD",
@@ -275,11 +272,9 @@ pub fn validate_preview_physics_evidence(source: &Value) -> Check {
     for diagnostic in diagnostics {
         text(&diagnostic["id"])?;
     }
-    // 2. Kinds from the table only; no retired kind or code.
-    let retired: Vec<&Value> = array(&table["retired_source_kinds"])?.iter().collect();
+    // 2. Kinds from the table only.
     for row in rows_list {
         let kind = text(&row["kind"])?;
-        require(!retired.contains(&&row["kind"]), "RETIRED_KIND")?;
         number(&row["value"])?;
         text(&row["unit"])?;
         text(&row["entity_ref"])?; // A2 item 8
@@ -300,8 +295,6 @@ pub fn validate_preview_physics_evidence(source: &Value) -> Check {
     }
     // 3. Completeness of result-namespace references (F-1).
     for diagnostic in diagnostics {
-        let code = diagnostic["code"].as_str().unwrap_or("");
-        require(!RETIRED_CODES.contains(&code), "RETIRED_CODE")?;
         // A1 a: the key may be absent; A2 item 5: when present, an array of
         // non-empty strings (null is refused).
         let affected = match diagnostic.get("affected_refs") {
@@ -334,7 +327,7 @@ pub fn validate_preview_physics_evidence(source: &Value) -> Check {
         require(integer(count) == Some(intensified as f64), "MODIFIER_COUNT")?;
     }
     // A1 e: a blocked envelope has empty evidence, no rows and null headlines;
-    // items 2-3 above already refused retired codes and any `result:` reference.
+    // item 3 above already refused any `result:` reference.
     if !solved {
         return require(
             preview_cases.is_empty()
@@ -728,14 +721,12 @@ pub fn validate_preview_physics_evidence(source: &Value) -> Check {
 
 fn magnitudes(components: &HashMap<&str, &Value>) -> Check {
     let v = |c: &str| number(&components[c]["value"]);
+    let force = v("force_magnitude")?;
+    let moment = v("moment_magnitude")?;
     require(
-        guarded(
-            v("force_magnitude")?,
-            v("Fx")?.hypot(v("Fy")?).hypot(v("Fz")?),
-        ) && guarded(
-            v("moment_magnitude")?,
-            v("Mx")?.hypot(v("My")?).hypot(v("Mz")?),
-        ),
+        force >= 0.0 && moment >= 0.0
+            && guarded(force, norm3(v("Fx")?, v("Fy")?, v("Fz")?))
+            && guarded(moment, norm3(v("Mx")?, v("My")?, v("Mz")?)),
         "SUPPORT_MAGNITUDE",
     )
 }
@@ -775,19 +766,26 @@ fn combination_magnitudes(rows: &[&Value]) -> Check {
     for row in rows {
         let entity = &row["entity_ref"];
         let recomputed = match row["kind"].as_str() {
-            Some("displacement_magnitude") => find("global_nodal_displacement_x", entity, None)?
-                .hypot(find("global_nodal_displacement_y", entity, None)?)
-                .hypot(find("global_nodal_displacement_z", entity, None)?),
-            Some(SUPPORT_FORCE) => find(SUPPORT_COMPONENT, entity, Some("Fx"))?
-                .hypot(find(SUPPORT_COMPONENT, entity, Some("Fy"))?)
-                .hypot(find(SUPPORT_COMPONENT, entity, Some("Fz"))?),
-            Some(SUPPORT_MOMENT) => find(SUPPORT_COMPONENT, entity, Some("Mx"))?
-                .hypot(find(SUPPORT_COMPONENT, entity, Some("My"))?)
-                .hypot(find(SUPPORT_COMPONENT, entity, Some("Mz"))?),
+            Some("displacement_magnitude") => norm3(
+                find("global_nodal_displacement_x", entity, None)?,
+                find("global_nodal_displacement_y", entity, None)?,
+                find("global_nodal_displacement_z", entity, None)?,
+            ),
+            Some(SUPPORT_FORCE) => norm3(
+                find(SUPPORT_COMPONENT, entity, Some("Fx"))?,
+                find(SUPPORT_COMPONENT, entity, Some("Fy"))?,
+                find(SUPPORT_COMPONENT, entity, Some("Fz"))?,
+            ),
+            Some(SUPPORT_MOMENT) => norm3(
+                find(SUPPORT_COMPONENT, entity, Some("Mx"))?,
+                find(SUPPORT_COMPONENT, entity, Some("My"))?,
+                find(SUPPORT_COMPONENT, entity, Some("Mz"))?,
+            ),
             _ => continue,
         };
+        let magnitude = number(&row["value"])?;
         require(
-            guarded(number(&row["value"])?, recomputed),
+            magnitude >= 0.0 && guarded(magnitude, recomputed),
             "COMBINATION_MAGNITUDE",
         )?;
     }
@@ -822,3 +820,7 @@ fn headline(value: &Value, rows: &[Value], kind: &str, allowed: bool) -> Check {
         }
     }
 }
+
+#[cfg(test)]
+#[path = "preview_magnitude_tests.rs"]
+mod magnitude_tests;

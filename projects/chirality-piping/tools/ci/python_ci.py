@@ -9,7 +9,7 @@ import subprocess
 import sys
 
 PREFIX = 'projects/chirality-piping/'
-BASE = ['tests/security', 'tests/test_constraint_validation.py', 'tests/test_source_blocks_validation.py']
+BASE = ['tests/security', 'tests/test_constraint_validation.py', 'tests/test_source_block_schema_contract.py']
 FAMILIES = {
     'schema': ['tests/test_*schema.py', 'tests/test_*schemas.py'],
     'qualification': ['tests/test_qualification*.py'],
@@ -25,6 +25,18 @@ HELPER_IMPORTS = {
     'tests/schema_validation.py': {'schema_validation', 'tests.schema_validation'},
     'tests/retained_precision_corpus.py': {'retained_precision_corpus', 'tests.retained_precision_corpus'},
     'tools/fixtures/retained_precision_corpus.py': {'retained_precision_corpus', 'tests.retained_precision_corpus'},
+}
+# Path-loaded generator inputs of the J7 RF census fixture check (exact files).
+J7_RF_CENSUS_TEST = 'tests/test_j7_rf_census_inputs.py'
+J7_RF_CENSUS_INPUTS = {
+    'tools/fixtures/j7_rf_census_inputs.py',
+    'tools/fixtures/retained_precision_corpus.py',
+    'fixtures/results/j7_rf_census_inputs.json',
+    'fixtures/results/j7_rf_census_expected.json',
+    'fixtures/product_preview/pressure_source/physics_source/n05.request.json',
+    'validation/benchmarks/numerical_robustness/cases/gen_vk_cases.py',
+    'validation/references/t3_r1/REFERENCES/references.json',
+    'validation/references/t3_r1/REFERENCES/references.py',
 }
 
 
@@ -62,6 +74,8 @@ def select(project, plan):
                 continue
             local = path[len(PREFIX):]
             patterns.extend(helper_consumers(project, local))
+            if local in J7_RF_CENSUS_INPUTS:
+                patterns.append(J7_RF_CENSUS_TEST)
             if local.startswith('core/model_transform/'):
                 patterns.extend(['tests/test_analytical_solver_boundary_adapter.py',
                                  'tests/test_physical_to_analytical_transform.py'])

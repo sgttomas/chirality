@@ -1,6 +1,7 @@
 import { solverDisplayWithToken } from "./features/workspace/statusLabels";
 import { statusChipInputsFromCells, statusChips, statusChipText } from "./features/workspace/shellLayout";
-import historicalMechanicsFixture from "../../../fixtures/product_preview/invented_demo_result_legacy_0_1.json";
+import demoPreviewFixture from "../../../fixtures/product_preview/invented_demo_result_preview_physics_1_sparse.json";
+import { retiredMechanicsResult } from "./test-support/retiredMechanicsResult";
 import refusedPreviewModel from "../../../fixtures/product_preview/invented_preview_model.json";
 import refusedPreviewSparse from "../../../fixtures/product_preview/invented_mechanics_result_preview_physics_1_sparse.json";
 import { PREVIEW_PHYSICS_CONTRACT_ID } from "./features/results/numericalResultQuality";
@@ -9,7 +10,7 @@ import { createNativeMechanicsReplay, nativeMechanicsReplayPair, REPLAY_RESOURCE
 import { N_REPORT } from "./features/results/knownSemanticLimitations";
 import { DisplayUnitsProvider, DisplayUnitSelector } from "./features/display-units";
 import { ComparisonPanel } from "./features/comparison/ComparisonPanel";
-import { analysisRowSemantics, buildAnalysisRunV02, buildAnalysisRunV03, modelLoadBasisRefs } from "./services/analysisRunCompatibility";
+import { analysisRowSemantics, buildAnalysisRunV03, modelLoadBasisRefs } from "./services/analysisRunCompatibility";
 import { changeFormControl, expectFormControlValue, compactOptionRecords } from "./test-support/workspaceTestControls";
 import type { ViewportViewCommand } from "./features/viewport/viewportSelection";
 import {
@@ -31,7 +32,6 @@ import {
   RuleRevisionGenerationGate,
   SolveRunGenerationGate,
   commitModelAfterSolveInvalidation,
-  isSupportedChangedModelPersistenceResponse,
   solveProofStatus,
   type SolveProofEvidence,
 } from "./App";
@@ -224,12 +224,12 @@ async function inspectBundledReference() {
 }
 // Narrow IPC replay for actual captured ordinary model/source pairs. A unit
 // simulation only; never an actual native UI witness or a relabeled old fixture.
-async function installPrecisionReplay() {
+async function installPreviewReplay() {
   // Capture the real browser-side bootstrap records before installing the
   // scoped native transport simulation; never invent storage capabilities.
   const storage = await getLocalStorageCapability();
   const knowledge = await loadDesignKnowledge();
-  // T0R: the fresh ordinary route is preview-physics-1; precision-1 is never Current.
+  // T0R: the fresh ordinary route is preview-physics-1.
   const pair = nativeMechanicsReplayPair("sparse_interactive", { profile: "preview" });
   const mechanics = createNativeMechanicsReplay({ profile: "preview" });
   const invoke = (command: string, args?: unknown, options?: unknown) => {
@@ -250,13 +250,14 @@ async function installPrecisionReplay() {
 // availability gate. To keep the save sequencer (handleSaveReportPackage: busy
 // state, generation/basis checks, stale completion) under test, these helpers
 // (a) assert the gate refusal first, then (b) lift the gate in the test only and
-// route assembly below it with the registered historical precision-1 session as
-// data. Production behaviour is unchanged; nothing here is a native witness.
-async function registeredPrecisionReportData() {
-  const pair = nativeMechanicsReplayPair("sparse_interactive", { profile: "precision" });
-  const precision = createNativeMechanicsReplay({ profile: "precision" });
+// route assembly below it with the registered preview-physics-1 session as data
+// (B1 retired the precision-1 session used before). Production behaviour is
+// unchanged; nothing here is a native witness.
+async function registeredPreviewReportData() {
+  const pair = nativeMechanicsReplayPair("sparse_interactive", { profile: "preview" });
+  const preview = createNativeMechanicsReplay({ profile: "preview" });
   (window as unknown as Record<string, unknown>).__TAURI_INTERNALS__ = {};
-  invokeMock.mockImplementation(precision.invoke);
+  invokeMock.mockImplementation(preview.invoke);
   const result = await runPreviewMechanics(pair.model);
   const inputManifest = await buildCurrentSessionInputManifest({
     model: pair.model,
@@ -275,7 +276,7 @@ async function expectReportPackageGateRefusal() {
   expect(invokeMock.mock.calls.filter(([command]) => command === "save_report_package")).toHaveLength(savesBefore);
   expect(within(report).queryByTestId("report-package-save-status")).not.toBeInTheDocument();
 }
-async function liftReportGateForSequencerTest(data: Awaited<ReturnType<typeof registeredPrecisionReportData>>) {
+async function liftReportGateForSequencerTest(data: Awaited<ReturnType<typeof registeredPreviewReportData>>) {
   const reportPackageModule = await import("./features/report/reportPackageRequest");
   const gateSpy = vi.spyOn(reportPackageModule, "reportPackageUnavailableReason").mockReturnValue(null);
   const buildSpy = vi.spyOn(reportPackageModule, "buildReportPackageRequest").mockImplementation((input) =>
@@ -486,8 +487,7 @@ function inventedOpenEnvelope(model: PreviewModel): LocalProjectEnvelope {
     analysis_run: null,
     model_hash: null,
     project_envelope_hash: null,
-    model_document_migration: null,
-    model_migration_ledger: [],
+    model_document_version: null,
   };
 }
 
@@ -562,7 +562,7 @@ function renderedVendorNameMentions(panel: HTMLElement): string[] {
 describe("SWBPIPE desktop preview", () => {
   it("suppresses solve proof unless the completed job, result, and exact model version remain bound", async () => {
     // Pure proof-format unit simulation using a genuine paired producer record.
-    const { model, source: result } = nativeMechanicsReplayPair("sparse_interactive", { profile: "precision" });
+    const { model, source: result } = nativeMechanicsReplayPair("sparse_interactive", { profile: "preview" });
     const modelHash: ModelHashEvidence = {
       algorithm: "sha256",
       canonicalization: "rfc8785_jcs",
@@ -3834,7 +3834,7 @@ describe("SWBPIPE desktop preview", () => {
     expect(
       within(projectValidation).getByTestId("project-validation-summary")
         .textContent,
-    ).toContain("version=stale");
+    ).toContain("version=current");
     expect(
       within(projectValidation).getByTestId("project-validation-summary")
         .textContent,
@@ -3863,7 +3863,7 @@ describe("SWBPIPE desktop preview", () => {
     expect(
       within(projectValidation).getByTestId("project-validation-schema")
         .textContent,
-    ).toContain("schema_version=0.1.0");
+    ).toContain("schema_version=0.5.0");
     expect(
       within(projectValidation).getByTestId("project-validation-round-trip")
         .textContent,
@@ -3926,7 +3926,7 @@ describe("SWBPIPE desktop preview", () => {
     expect(
       within(projectValidation).getByTestId("project-validation-operations")
         .textContent,
-    ).toContain("version_check=stale");
+    ).toContain("version_check=current");
     expect(
       within(projectValidation).getByTestId("project-validation-boundary")
         .textContent,
@@ -3954,13 +3954,13 @@ describe("SWBPIPE desktop preview", () => {
       "preview_not_persisted",
     );
     expect(validationPacket.summary.version_check_status).toBe(
-      "stale",
+      "current",
     );
     expect(
       validationPacket.diagnostics.map(
         (item: { code: string }) => item.code,
       ),
-    ).toContain("PROJECT-VALIDATION-STALE-SCHEMA");
+    ).not.toContain("PROJECT-VALIDATION-RETIRED-SCHEMA");
     expect(
       validationPacket.diagnostics.map(
         (item: { code: string }) => item.code,
@@ -4021,30 +4021,27 @@ describe("SWBPIPE desktop preview", () => {
     expect(validationPacket.store_migration.migrations_applied_on_open).toEqual(
       [],
     );
-    expect(validationPacket.model_document_migration.status).toBe("migrated");
-    expect(validationPacket.model_document_migration.evidence_source).toBe(
+    expect(validationPacket.model_document_version.status).toBe("current");
+    expect(validationPacket.model_document_version.evidence_source).toBe(
       "session_document_local_evaluation",
     );
-    expect(validationPacket.model_document_migration.version_authority).toBe(
+    expect(validationPacket.model_document_version.version_authority).toBe(
       "in_document_schema_version_semver",
     );
-    expect(validationPacket.model_document_migration.decision_basis).toBe(
-      "DEC-019_model_document_schema_migration_policy",
+    expect(validationPacket.model_document_version.decision_basis).toBe(
+      "DEL-02-05_CLM-003_one_current_model_document_version",
     );
-    expect(validationPacket.model_document_migration.ledger_record_count).toBe(
-      0,
+    expect(validationPacket.model_document_version.migration_performed).toBe(
+      false,
     );
-    expect(
-      validationPacket.model_document_migration.down_migration_performed,
-    ).toBe(false);
     expect(
       validationPacket.service_operations.find(
         (operation: { operation: string }) => operation.operation === "migrate",
       ).operation_status,
     ).toBe("not_run_no_local_snapshot_this_session");
     expect(
-      validationPacket.validation_profile.model_document_migration_status,
-    ).toBe("migrated");
+      validationPacket.validation_profile.model_document_version_status,
+    ).toBe("current");
     expect(validationPacket.summary.round_trip_status).toBe(
       "semantic_categories_declared",
     );
@@ -8979,18 +8976,14 @@ describe("SWBPIPE desktop preview", () => {
     expect(validationPacket.store_migration.migration_scope).toBe(
       "local_store_schema_ddl_only_model_document_schema_tracked_separately_per_dec_019",
     );
-    // DEC-033: the bundled preview model is a 0.1.0-era document; under the
-    // supported 0.2.0 version it carries migrated in-memory evidence and the
-    // browser preview keeps stored bytes unchanged (no ledger exists here).
-    expect(validationPacket.model_document_migration.status).toBe("migrated");
-    expect(validationPacket.model_document_migration.evidence_source).toBe(
+    // DEL-02-05 CLM-003: the bundled preview model is the current 0.5.0
+    // document; the browser preview stores its bytes unchanged.
+    expect(validationPacket.model_document_version.status).toBe("current");
+    expect(validationPacket.model_document_version.evidence_source).toBe(
       "persistence_operation_envelope",
     );
-    expect(validationPacket.model_document_migration.persistence_state).toBe(
-      "in_memory_only_not_yet_saved",
-    );
-    expect(validationPacket.model_document_migration.ledger_record_count).toBe(
-      0,
+    expect(validationPacket.model_document_version.source_schema_version).toBe(
+      "0.5.0",
     );
     expect(validationPacket.store_migration.migrations_applied_on_open).toEqual(
       [],
@@ -9018,7 +9011,7 @@ describe("SWBPIPE desktop preview", () => {
         (operation: { operation: string }) =>
           operation.operation === "version_check",
       ).operation_status,
-    ).toBe("stale");
+    ).toBe("current");
     expect(
       validationPacket.service_operations.find(
         (operation: { operation: string }) => operation.operation === "migrate",
@@ -9297,7 +9290,7 @@ describe("SWBPIPE desktop preview", () => {
     ).toContain("validation=preview_current");
     expect(
       within(projectValidation).getByTestId(
-        "project-validation-model-document-migration",
+        "project-validation-model-document-version",
       ).textContent,
     ).toContain("status=current");
     expect(
@@ -10739,11 +10732,8 @@ describe("SWBPIPE desktop preview", () => {
         }),
       ]),
     );
-    // No joint and no legacy pressure: no user-stiffness element and no thrust.
-    expect(exportPacket.component_user_stiffness_macro_element_count).toBe(0);
-    expect(exportPacket.component_user_stiffness_macro_element_evidence).toEqual([]);
-    expect(exportPacket.component_pressure_thrust_load_count).toBe(0);
-    expect(exportPacket.component_pressure_thrust_evidence).toEqual([]);
+    // H-4: the joint review and thrust row kinds are removed, and so are their packet sections.
+    for (const key of ["component_user_stiffness_macro_element_count", "component_user_stiffness_macro_element_evidence", "component_pressure_thrust_load_count", "component_pressure_thrust_evidence"]) expect(exportPacket).not.toHaveProperty(key);
     expect(exportPacket.spring_hanger_evidence_count).toBe(2);
     expect(exportPacket.spring_hanger_evidence).toEqual(
       expect.arrayContaining([
@@ -10822,7 +10812,7 @@ describe("SWBPIPE desktop preview", () => {
   });
 
   it("qualifies only a matching captured native unit replay and retires it on reference inspection", async () => {
-    const pair = await installPrecisionReplay();
+    const pair = await installPreviewReplay();
     render(<App />);
     fireEvent.click(await runMechanicsButton());
     await waitFor(() => expectStatusChip("status-pill-mechanics", "MECHANICS_SOLVED", "Solver · Mechanics solved"));
@@ -11149,17 +11139,15 @@ describe("SWBPIPE desktop preview", () => {
       ),
     );
 
-    // DEC-019/DEC-033 evidence: the saved (edited) 0.1.0-era model document
-    // carries migrated in-memory schema-version evidence with the in-document
-    // version authority; the browser preview has no migration ledger.
-    const documentMigrationLine = within(
+    // DEL-02-05 CLM-003 evidence: the saved (edited) model document is the
+    // current 0.5.0 version, with the in-document version authority; nothing
+    // is migrated.
+    const documentVersionLine = within(
       openWorkspaceSection("project"),
-    ).getByTestId("project-validation-model-document-migration");
-    expect(documentMigrationLine.textContent).toContain("status=migrated");
-    expect(documentMigrationLine.textContent).toContain(
-      "framework=application_service_separate_db_and_product_schema",
-    );
-    expect(documentMigrationLine.textContent).toContain("ledger_records=0");
+    ).getByTestId("project-validation-model-document-version");
+    expect(documentVersionLine.textContent).toContain("status=current");
+    expect(documentVersionLine.textContent).toContain("source=0.5.0");
+    expect(documentVersionLine.textContent).toContain("target=0.5.0");
   });
 
   it("queues and applies explicit material creation through the structured operation seam", async () => {
@@ -14222,15 +14210,17 @@ describe("persistent modeling workspace", () => {
 async function workflowStoredEnvelope() {
   const model = await loadPreviewModel();
   const envelope = inventedOpenEnvelope(model);
-  const result = structuredClone(historicalMechanicsFixture) as MechanicsResult;
+  // A saved run with a current (0.3.0) record: the demo's preview-physics-1 producer
+  // output, as saved history only (B1 retired the synthetic precision-1 header).
+  const result = structuredClone(demoPreviewFixture) as unknown as MechanicsResult;
   result.model_ref = envelope.model.project.id;
   const inputManifest = await buildCurrentSessionInputManifest({
     model: envelope.model,
-    solver: { solver_name: "open_pipe_stress_product_physics", solver_version: "0.1.0", solver_build_ref: "open_pipe_stress_product_physics@0.1.0", solver_mode: "sparse_interactive", settings: {} },
+    solver: { solver_name: "open_pipe_stress_product_physics", solver_version: "0.2.0", solver_build_ref: "open_pipe_stress_product_physics@0.2.0", solver_mode: "sparse_interactive", settings: {} },
     active_rule_packs: [], external_assets: []
   });
   envelope.mechanics_result = result;
-  envelope.analysis_run = await buildAnalysisRunV02(result, inputManifest);
+  envelope.analysis_run = await buildAnalysisRunV03(result, inputManifest);
   // Deliberately inconsistent saved hash stays evidence, never fresh identity.
   envelope.model_hash = { algorithm: "sha256", canonicalization: "rfc8785_jcs", payload_scope: "model_payload", payload_ref: envelope.model.project.id, value: `sha256:${"f".repeat(64)}`, hash_status: "computed_local_preview" };
   return envelope;
@@ -14358,7 +14348,7 @@ describe("workflow current and historical result boundaries", () => {
   });
 
   it("rejects a delayed rule-check aggregate from a replaced same-ID session basis", async () => {
-    const { model, replay } = await installPrecisionReplay();
+    const { model, replay } = await installPreviewReplay();
     const replacement = inventedOpenEnvelope(model);
     replacement.model = structuredClone(model);
     replacement.summary.project_id = model.project.id;
@@ -14435,10 +14425,10 @@ describe("workflow current and historical result boundaries", () => {
   });
 
   // T0R: (a) the gate refuses the fresh Current result; (b) the save sequencer runs
-  // below the gate with the historical precision-1 session as assembly data.
+  // below the gate with a registered preview-physics-1 session as assembly data.
   it("does not start an obsolete report-package save or publish stale build state", async () => {
-    const precisionData = await registeredPrecisionReportData();
-    const { model, replay } = await installPrecisionReplay();
+    const previewData = await registeredPreviewReportData();
+    const { model, replay } = await installPreviewReplay();
     const replacement = inventedOpenEnvelope(model);
     replacement.model = structuredClone(model);
     replacement.summary.project_id = model.project.id;
@@ -14460,7 +14450,7 @@ describe("workflow current and historical result boundaries", () => {
       const reportPackageModule = await import("./features/report/reportPackageRequest");
       gateSpy = vi.spyOn(reportPackageModule, "reportPackageUnavailableReason").mockReturnValue(null);
       buildSpy = vi.spyOn(reportPackageModule, "buildReportPackageRequest").mockImplementation((input) => {
-        const pendingBuild = reportPackageModule.assembleReportPackageRequestBelowAvailabilityGate({ ...input, result: precisionData.result, analysisRun: precisionData.analysisRun, inputManifest: precisionData.inputManifest });
+        const pendingBuild = reportPackageModule.assembleReportPackageRequestBelowAvailabilityGate({ ...input, result: previewData.result, analysisRun: previewData.analysisRun, inputManifest: previewData.inputManifest });
         outerReportBuild = pendingBuild;
         return pendingBuild;
       });
@@ -14523,8 +14513,8 @@ describe("workflow current and historical result boundaries", () => {
   it.each(["success", "error"] as const)(
     "keeps a newer report-package save busy and rejects stale %s completion state",
     async (staleOutcome) => {
-      const precisionData = await registeredPrecisionReportData();
-      const { model, replay } = await installPrecisionReplay();
+      const previewData = await registeredPreviewReportData();
+      const { model, replay } = await installPreviewReplay();
       const replacement = inventedOpenEnvelope(model);
       replacement.model = structuredClone(model);
       replacement.summary.project_id = model.project.id;
@@ -14548,7 +14538,7 @@ describe("workflow current and historical result boundaries", () => {
       await waitFor(() => expectStatusChip("status-pill-mechanics", "MECHANICS_SOLVED", "Solver · Mechanics solved"));
       await expectReportPackageGateRefusal();
       expect(saveCalls).toBe(0);
-      const lifted = await liftReportGateForSequencerTest(precisionData);
+      const lifted = await liftReportGateForSequencerTest(previewData);
       try {
       let report = openWorkspaceSection("report");
       await waitFor(() => expect(within(report).getByTestId("report-package-private-intent")).toBeInTheDocument());
@@ -14603,7 +14593,7 @@ describe("workflow current and historical result boundaries", () => {
 
   it.each(["MECHANICS_BLOCKED", "MECHANICS_NONCONVERGED"])("retains recorded %s through display-only helpers without fresh admission", async (mechanics) => {
     const model = await loadPreviewModel();
-    const recorded = structuredClone(historicalMechanicsFixture) as MechanicsResult;
+    const recorded = retiredMechanicsResult();
     recorded.status.mechanics = mechanics;
     recorded.diagnostics.push({ id: "diagnostic:recorded-display", code: "RECORDED_DISPLAY_DIAGNOSTIC", severity: "blocking", message: "Recorded display-only outcome retained" });
     // B3A preserves unregistered recorded tokens for presentation. No native job,
@@ -14672,7 +14662,9 @@ describe("workflow current and historical result boundaries", () => {
     // The product's blocking re-author refusal (one text for every legacy pressure primitive) is retained.
     const refusals = screen.getAllByTestId("diagnostic-PRESSURE_MODEL_REAUTHOR_REQUIRED");
     expect(refusals.length).toBeGreaterThan(0);
-    for (const refusal of refusals) expect(refusal).toHaveTextContent("re-author the model to 2.0.0/exact_straight_pressure_v2");
+    // B7b: the producer's remediation names the current contract (core/product_physics
+    // pressure_runtime.rs; the committed refused-preview fixture carries that text).
+    for (const refusal of refusals) expect(refusal).toHaveTextContent("re-author the model with pressure_contract 3.0.0/exact_pressure_v3");
     expect(screen.getByTestId("viewport-deformation-status")).toHaveTextContent(failedSummary);
     expect(screen.getByTestId("viewport-deformation-boundary")).toHaveTextContent("scale=not_generated");
     expect(renderedReportButton()).toBeDisabled();
@@ -14840,7 +14832,7 @@ describe("primitive case selection display", () => {
 
 describe("historical lifecycle history transitions", () => {
   it("cannot publish delayed inactive export or report completions after a project reopen", async () => {
-    const { model, replay } = await installPrecisionReplay();
+    const { model, replay } = await installPreviewReplay();
     const replacement = inventedOpenEnvelope(model);
     const exportHashGate = deferred<void>();
     const reportRender = deferred<unknown>();
@@ -15062,24 +15054,9 @@ describe("historical lifecycle history transitions", () => {
     expect(screen.queryByTestId("comparison-summary")).not.toBeInTheDocument();
   });
 
-  it("refreshes only the still-owned same-model Historical context after a normalization save", async () => {
+  it("refreshes only the still-owned same-model Historical context after a hash-refreshing save", async () => {
     const opened = await workflowStoredEnvelope();
-    opened.model_document_migration = {
-      status: "migrated",
-      source_schema_version: "0.1.0",
-      target_schema_version: "0.2.0",
-      migration_framework: "application_service_separate_db_and_product_schema",
-      db_migration_status: "store_user_version_ledger_separate_ddl_only",
-      product_schema_migration_status: "migrated",
-      applied_migration_ids: ["model-doc-0.1.0-to-0.2.0-additive-combination-shape-noop"],
-      persistence_state: "in_memory_only_not_yet_saved",
-      detail: "Invented open-time normalization",
-    };
     const refreshed = await withCurrentPersistenceHashes(opened);
-    refreshed.model_document_migration = {
-      ...opened.model_document_migration,
-      persistence_state: "persisted_with_ledger_record",
-    };
     const saveRequests: Array<Record<string, unknown>> = [];
     invokeMock.mockImplementation((command: string, args?: { request: Record<string, unknown> }) => {
       if (command === "open_local_project") return Promise.resolve(opened);
@@ -15106,7 +15083,7 @@ describe("historical lifecycle history transitions", () => {
   });
 
   it("lets a fresh same-model solve win against a delayed Historical refresh", async () => {
-    const { model, source: historical, replay } = await installPrecisionReplay();
+    const { model, source: historical, replay } = await installPreviewReplay();
     const opened = inventedOpenEnvelope(model);
     opened.model = structuredClone(model);
     opened.summary.project_id = model.project.id;
@@ -15142,106 +15119,6 @@ describe("historical lifecycle history transitions", () => {
     expectStatusChip("status-pill-mechanics", "MECHANICS_SOLVED", "Solver · Mechanics solved");
   });
 
-  it("adopts a changed native persistence model and retains returned results as Historical", async () => {
-    const opened = await workflowStoredEnvelope();
-    const changed = structuredClone(opened);
-    changed.model.schema_version = "0.2.0";
-    changed.model.project.name = "Normalized returned model";
-    changed.model.nodes[0].label = "Normalized returned node";
-    const normalized = await withCurrentPersistenceHashes(changed);
-    normalized.summary.project_name = changed.model.project.name;
-    normalized.summary.message = "Saved normalized returned model.";
-    normalized.model_document_migration = {
-      status: "migrated",
-      source_schema_version: "0.1.0",
-      target_schema_version: "0.2.0",
-      migration_framework: "application_service_separate_db_and_product_schema",
-      db_migration_status: "store_user_version_ledger_separate_ddl_only",
-      product_schema_migration_status: "migrated",
-      applied_migration_ids: ["model-doc-0.1.0-to-0.2.0-additive-combination-shape-noop"],
-      persistence_state: "persisted_with_ledger_record",
-      detail: "Actual normalization transition persisted",
-    };
-    const requestModelHash = await computeModelHash(opened.model);
-    const currentTransition: LocalProjectEnvelope["model_migration_ledger"][number] = {
-      record_kind: "model_document_migration_ledger_record",
-      recorded_at_unix: 1,
-      source_schema_version: "0.1.0",
-      target_schema_version: "0.2.0",
-      applied_migration_ids: ["model-doc-0.1.0-to-0.2.0-additive-combination-shape-noop"],
-      migration_framework: "application_service_separate_db_and_product_schema",
-      pre_migration_model_hash: requestModelHash!.value,
-      post_migration_model_hash: normalized.model_hash!.value,
-      trigger: "migrate_in_memory_on_open_persisted_on_save",
-      destructive_rewrite: false,
-      professional_boundary: { human_review_required: true, software_makes_compliance_claim: false },
-      hash_evidence: {
-        schema: "model_migration_hash_evidence_v1",
-        source_payload_basis: "incoming_pre_migration_model",
-        received: { model_hash: opened.model_hash, project_envelope_hash: opened.project_envelope_hash },
-        prior_stored: null,
-        computed: {
-          pre_migration_model_hash: requestModelHash!.value,
-          post_migration_model_hash: normalized.model_hash!.value,
-          post_migration_project_envelope_hash: normalized.project_envelope_hash!.value,
-        },
-        received_claim_verification: "not_asserted",
-      },
-    };
-    // A recreated renderer can have no in-session ledger while the fixed native
-    // project already has older records. Admission is bound to the exact final
-    // transition, rather than requiring a globally contiguous session count.
-    normalized.model_migration_ledger = [{
-      ...currentTransition,
-      recorded_at_unix: 0,
-      pre_migration_model_hash: "sha256:prior-source",
-      post_migration_model_hash: "sha256:prior-target",
-      hash_evidence: undefined,
-    }, currentTransition];
-    expect(requestModelHash?.value).not.toBe(normalized.model_hash?.value);
-    const recomputedNormalizedEnvelope = await computeProjectEnvelopeHash({
-      model: normalized.model,
-      editor_intents: normalized.editor_intents,
-      proposal: normalized.proposal,
-      selected_review_target: normalized.selected_review_target,
-      mechanics_result: normalized.mechanics_result,
-      analysis_run: normalized.analysis_run,
-      model_hash: normalized.model_hash,
-    });
-    const selfConsistentButFalseEnvelope = structuredClone(normalized);
-    selfConsistentButFalseEnvelope.project_envelope_hash!.value = "sha256:false-returned-envelope";
-    selfConsistentButFalseEnvelope.model_migration_ledger.at(-1)!.hash_evidence!.computed.post_migration_project_envelope_hash = "sha256:false-returned-envelope";
-    expect(isSupportedChangedModelPersistenceResponse(
-      selfConsistentButFalseEnvelope,
-      requestModelHash,
-      normalized.model_hash,
-      recomputedNormalizedEnvelope,
-      0,
-    )).toBe(false);
-    invokeMock.mockImplementation((command: string) => {
-      if (command === "open_local_project") return Promise.resolve(opened);
-      if (command === "save_local_project") return Promise.resolve(normalized);
-      return Promise.reject(new Error(command));
-    });
-    render(<App />);
-    await screen.findByTestId("desktop-preview-shell");
-    (window as unknown as Record<string, unknown>).__TAURI_INTERNALS__ = {};
-    act(() => nativeMenuCommand("file.open-local"));
-    await screen.findByTestId("historical-run-context");
-    await waitFor(() => expect(screen.getByRole("button", { name: /^Save local$/ })).toBeEnabled());
-    fireEvent.click(screen.getByTestId("viewport-box-select"));
-    expect(screen.getByTestId("viewport-box-select")).toHaveAttribute("aria-pressed", "true");
-    act(() => nativeMenuCommand("file.save-local"));
-    await waitFor(() => expect(invokeMock).toHaveBeenCalledWith("save_local_project", expect.any(Object)));
-    await waitFor(() => expect(screen.getByTestId("local-project-message")).toHaveTextContent("Saved normalized returned model"), { timeout: 10000 });
-    await waitFor(() => expect(screen.getByText("Normalized returned model", { selector: ".titlebar p" })).toBeInTheDocument(), { timeout: 10000 });
-    expect(screen.getByTestId(typedTreeRowTestId("node", changed.model.nodes[0].id))).toHaveTextContent("Normalized returned node");
-    expect(screen.getByTestId("historical-run-context")).toHaveTextContent(normalized.mechanics_result!.run_id);
-    expect(screen.getByTestId("viewport-deformation-status")).toHaveTextContent("result rows=0");
-    expect(reviewControl("undo-session-model-edit")).toBeDisabled();
-    expect(screen.getByTestId("viewport-box-select")).toHaveAttribute("aria-pressed", "true");
-  });
-
   it("rejects an unrelated differing persistence response without accepting its metadata", async () => {
     const opened = await workflowStoredEnvelope();
     const unrelated = structuredClone(opened);
@@ -15269,7 +15146,7 @@ describe("historical lifecycle history transitions", () => {
   });
 
   it("keeps a same-model Current solve Current after native save", async () => {
-    const { replay } = await installPrecisionReplay();
+    const { replay } = await installPreviewReplay();
     render(<App />);
     await screen.findByTestId("desktop-preview-shell");
     openWorkspaceSection("solve");

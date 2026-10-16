@@ -8,21 +8,29 @@ pub const CONTRACT_ID: &str = "openpipestress.result_semantics/0.3.0/preview-phy
 pub const PROFILE: &str = "product_preview_retained_w1a_v2";
 pub const DEFINITION_ID: &str = "RP-PREPARED-ORDINARY-DUAL-v1";
 pub const DEFINITION_HASH: &str =
-    "a7ed7ca0bf0bba6e8b821ca4befa00a0fa9541a83694be8b28ac63e39b1d0349";
+    "c4aebcef3ae3863f9576fb3a7e323e77a91687938f6605a83a2fdc958febb15f";
 pub const METHOD: &str = "contribution_preserving_multiprecision_v1";
 /// B2-C §3 and §8 (REVISION_02): DEF-C's id and H(`retained_precision_formation_v1`, DEF-C).
 pub const COMBINATION_DEFINITION_ID: &str = "RP-PREPARED-COMBINATION-DUAL-v1";
 pub const COMBINATION_DEFINITION_HASH: &str =
-    "d3fde142aff9c05d709b2fc2a04add42e14c66be3e2b2ba82012da57edf3d957";
+    "34ce87e7ad6da457d81a5cbf25a077fb5d08f2960c5fd815e1163646de02d24a";
 /// B3b (B3-D §6 with REVISION_01): the exact successor `<physics-retained>`,
-/// read on its own route (`EXACT`), whose base is physics-1.
+/// read on its own route (`EXACT`), whose base is pressure-1 (B7b D4 (a)).
 pub const EXACT_CONTRACT_ID: &str = "openpipestress.result_semantics/0.3.0/physics-retained-1";
 pub const EXACT_PROFILE: &str = "exact_straight_retained_w1a_v2";
 pub const EXACT_DEFINITION_ID: &str = "RP-PREPARED-EXACT-DUAL-v1";
 /// H(`retained_precision_formation_v1`, DEF-E) (REVISION_01 §1.2).
 pub const EXACT_DEFINITION_HASH: &str =
-    "5a3bac430df9bbc77484d5419c75880ad40ae209b439e5f928374458025281af";
+    "ff28bea4ca9613d689edd1428b07e869a0a3ac824012b49382307b6293819def";
 const MAX_BITS: u64 = 0x7fef_ffff_ffff_ffff;
+/// B4/D1 W1 extension (b7-plan "Failed-ordinary successor rulings" (4)): the requested-mode
+/// basis row of a case whose ordinary attempt genuinely failed. It replaces
+/// `linear_solver_mode_basis` there; the two never coexist in one case.
+pub const REQUESTED_MODE_KIND: &str = "retained_precision_requested_mode_basis";
+const REQUESTED_MODE_ID: &str = "result:retained-precision:requested-mode-basis";
+const REQUESTED_MODE_COMPONENT: &str = "requested_solver_mode";
+const REQUESTED_MODE_COORDINATE: &str = "captured_invocation";
+const REQUESTED_MODE_SIGN: &str = "mode_code 1=sparse_interactive, 2=dense_scrutiny; the captured requested solver mode after a failed ordinary attempt, not an ordinary solve observation";
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ValidationError {
@@ -414,8 +422,8 @@ const PREVIEW: Route = Route {
 const EXACT: Route = Route {
     exact: true,
     definition_hash: EXACT_DEFINITION_HASH,
-    base_id: "openpipestress.result_semantics/0.3.0/physics-1",
-    base_profile: "exact_straight_pressure_v2",
+    base_id: "openpipestress.result_semantics/0.3.0/pressure-1",
+    base_profile: "exact_pressure_v3",
     geometry: "exact",
 };
 fn route(source: &Value) -> &'static Route {
@@ -571,14 +579,14 @@ const TABLE_BYTES: &[u8] = include_bytes!(
 );
 const INHERITED_TABLE_BYTES: &[u8] =
     include_bytes!("../../../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json");
-const TABLE_HASH: &str = "7cff3e9fe0c29a5b34d1762662e71ad58f00bb2993e9a3f1893323c0d64161e0";
-/// The exact successor's table (XTABLE) and its inherited physics-1 table.
+const TABLE_HASH: &str = "930535a544aedb3c6eb5dea60c59e617dd609f41c1386d9cf9c7c401b9c531f1";
+/// The exact successor's table (XTABLE) and its inherited pressure-1 table.
 const EXACT_TABLE_BYTES: &[u8] = include_bytes!(
     "../../../../fixtures/results/semantic_contract_v0_3_physics_retained_1.json"
 );
-const PHYSICS_TABLE_BYTES: &[u8] =
-    include_bytes!("../../../../fixtures/results/semantic_contract_v0_3_physics_1.json");
-const EXACT_TABLE_HASH: &str = "c4987e874889645ac315b5f55f58690082ad5e7745527f20e3e316efa3e70a3d";
+const PRESSURE_TABLE_BYTES: &[u8] =
+    include_bytes!("../../../../fixtures/results/semantic_contract_v0_3_pressure_1.json");
+const EXACT_TABLE_HASH: &str = "695812491aec03b97def5013c5ea2461cb2a0e1f1f25b24c18ad1c9b6beee574";
 /// RV78-N1's policies (B3D-8): the receipt values XTABLE's `receipt_bindings`
 /// binds from version 1, keyed by the receipt body's own paths.
 fn receipt_bindings() -> Value {
@@ -731,10 +739,10 @@ fn g0_exact(source: &Value) -> VResult {
         "G0",
         "FORMATION_MISMATCH",
     )?;
-    // 5. XTABLE's bytes and its inherited physics-1 hash.
+    // 5. XTABLE's bytes and its inherited pressure-1 hash.
     unsupported(
         sha256_hex(EXACT_TABLE_BYTES) == EXACT_TABLE_HASH
-            && t["inherited_semantic_contract_sha256"] == sha256_hex(PHYSICS_TABLE_BYTES),
+            && t["inherited_semantic_contract_sha256"] == sha256_hex(PRESSURE_TABLE_BYTES),
     )?;
     // 6. The table against the reader's constants.
     unsupported(table_binds_reader_constants(t))?;
@@ -911,6 +919,22 @@ fn conversion_kind_ok(o: &Value) -> bool {
         "subnormal" => n != 0.0 && n.abs() < f64::MIN_POSITIVE,
         _ => true,
     }
+}
+/// Current DEF-O/E/C H: only the four typed MPa stress recipes trace the SI
+/// midpoint conversion. All other rows keep the actual raw conversion word.
+fn projection_matches_row(row: &Value, outcome: &Value) -> bool {
+    let value = match text(&outcome["kind"]) {
+        "underflow" => 0.0,
+        "normal" | "subnormal" => f(&outcome["value"]),
+        _ => return false,
+    };
+    let stress_mpa = row["unit"] == "MPa" && matches!(text(&row["kind"]),
+        "element_local_axial_normal_stress" | "element_local_bending_normal_stress_y"
+        | "element_local_bending_normal_stress_z" | "element_local_torsional_shear_stress");
+    let published = if stress_mpa { value / 1_000_000.0 } else { value };
+    published.is_finite() && row["value"].as_f64().is_some_and(|v| {
+        v.to_bits() == (if published == 0.0 { 0.0 } else { published }).to_bits()
+    })
 }
 fn rows_for<'a>(source: &'a Value, case: &Value) -> Vec<&'a Value> {
     list(&source["results"])
@@ -2785,6 +2809,16 @@ fn member_checks(a: &Value, pf: &dyn Fn(bool) -> VResult, wf: &mut dyn FnMut(boo
 /// a combination entry: B2-C §10.1 G5 products, "as C3 without a preparation
 /// stage"): stage progression, lane and check records, projection outcomes over
 /// the owner's rows and, for a Ready attempt, the frozen row values.
+/// The correction calls a completed or failed lane may record. DEF-O's lanes.congruence lets a
+/// preview-route case's annular_source lane (index 1) take one further correction; every other
+/// lane, the exact route (DEF-E) and combinations (DEF-C) keep at most one.
+fn lane_correction_limit(source: &Value, a: &Value, lane: usize) -> u64 {
+    if !route(source).exact && a["owner_ref"]["kind"] == "case" && lane == 1 {
+        2
+    } else {
+        1
+    }
+}
 fn proof_checks(
     source: &Value,
     a: &Value,
@@ -2820,7 +2854,7 @@ fn proof_checks(
                 pf(i + 1 == lanes.len())?;
             }
             if let Some(n) = exact_count(&lane["work"]["correction"]["calls"]) {
-                wf(n <= 1)?;
+                wf(n <= lane_correction_limit(source, a, i))?;
             }
             wf(lane["work"]["data_capacity"] == lane["work"]["view"]["data_capacity"])?;
         }
@@ -2915,14 +2949,7 @@ fn proof_checks(
                 let row = rows[u(&v["row_index"]) as usize];
                 let o = &v["outcome"];
                 pf(o["kind"] != "overflow")?;
-                let value = if o["kind"] == "underflow" {
-                    0.0
-                } else {
-                    f(&o["value"])
-                };
-                pf(row["value"].as_f64().is_some_and(|v| {
-                    v.to_bits() == (if value == 0.0 { 0.0 } else { value }).to_bits()
-                }))?;
+                pf(projection_matches_row(row, o))?;
             }
         }
     }
@@ -3404,7 +3431,7 @@ fn row_kind(r: &Value) -> &'static str {
     let unit = text(&r["unit"]);
     match k {
         "linear_solver_mode_basis"
-        | "sparse_live_path_dense_parity_relative_delta"
+        | REQUESTED_MODE_KIND
         | "modulus_basis_record"
         | "combination_modulus_basis_record" => "non_quantity",
         "pipe_lame_hoop_stress_v2"
@@ -3413,10 +3440,8 @@ fn row_kind(r: &Value) -> &'static str {
         | "pipe_section_pressure_longitudinal_stress"
         | "constant_effort_support_applied_load"
         | "component_user_stress_multiplier_review"
-        | "component_user_stiffness_macro_element_review"
         | "constant_effort_user_input_review"
-        | "spring_hanger_user_input_review"
-        | "expansion_joint_pressure_thrust_load_review" => "input_derived",
+        | "spring_hanger_user_input_review" => "input_derived",
         "global_nodal_displacement_x"
         | "global_nodal_displacement_y"
         | "global_nodal_displacement_z"
@@ -4527,11 +4552,27 @@ fn exact_material(raw: &Value) -> VResult<(f64, f64, f64)> {
     fail(g.is_normal() && g > 0.0)?;
     Ok((e, g, nu))
 }
-/// D1.3 on the exact route (B3b): schema 0.3.0 with exactly
-/// `{"version":"2.0.0","mode":"exact_straight_pressure_v2"}`, type-strict.
+/// D1.3 on the exact route: the current document's three-member v3 contract,
+/// with an explicit zero corrosion allowance on every pipe section (DEF-E G8).
 fn exact_namespace(model: &Value) -> bool {
-    model["schema_version"].as_str() == Some("0.3.0")
-        && pressure_contract_is(&model["pressure_contract"], "2.0.0", "exact_straight_pressure_v2")
+    model["schema_version"].as_str() == Some("0.5.0")
+        && model.as_object().is_some_and(|object| !object.contains_key("shear_model"))
+        && pressure_contract_is(&model["pressure_contract"], "3.0.0", "exact_pressure_v3")
+        && section_allowances(model, true)
+}
+/// b7-plan "Exact-contract fields": an exact document declares an explicit
+/// length-valued zero `corrosion_allowance` on every pipe section (absent,
+/// null, malformed, non-length or nonzero allowances are outside the
+/// contract the producer admits); a pressure-free document declares none.
+fn section_allowances(model: &Value, exact: bool) -> bool {
+    list(&model["pipe_segments"]).iter().all(|pipe| {
+        let section = &pipe["section"];
+        if exact {
+            unit_value(&section["corrosion_allowance"], Dimension::Length).is_ok_and(|v| v == 0.0)
+        } else {
+            section.as_object().is_none_or(|s| !s.contains_key("corrosion_allowance"))
+        }
+    })
 }
 fn normalized_nodes(model: &Value) -> VResult<Vec<Value>> {
     let mut out = Vec::new();
@@ -4572,24 +4613,27 @@ fn dof_index(v: &Value) -> VResult<usize> {
         .position(|d| v == *d)
         .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))
 }
-/// A pressure contract exactly `{"version": version, "mode": mode}`: a JSON
-/// object with those two keys only, each valued with exactly that string.
+/// A current contract with exactly the identity and admitted shear members.
 fn pressure_contract_is(v: &Value, version: &str, mode: &str) -> bool {
     v.as_object().is_some_and(|o| {
-        o.len() == 2
+        o.len() == 3
             && o.get("version").and_then(Value::as_str) == Some(version)
             && o.get("mode").and_then(Value::as_str) == Some(mode)
+            && o.get("shear_model").and_then(Value::as_str) == Some("euler_bernoulli")
     })
 }
 /// D1.3 on the preview branch, type-strict (B3-D REVISION_01 §3, N-4): branch
-/// L, schema 0.1.0 or 0.2.0 with `pressure_contract` absent or JSON null.
-/// Anything else (any 0.3.0 model, the retired `legacy_pressure_v1` contract
-/// included; `{}`, `false`, any contract on 0.1.0 or 0.2.0; 0.4.0) is outside
-/// the namespace. B3a's branch L3 is dropped (the owner retired that contract
-/// product-wide); B3D-10's tightenings stay.
+/// L, a pressure-free document, keyed on the contract's absence (b7-plan
+/// "Model format, pressure-free half"): the current model version 0.5.0 with
+/// `pressure_contract` absent. Anything else (a 0.5.0 model with
+/// any contract, `{}` or `false` included; the retired 0.1.0 and 0.2.0; any
+/// 0.3.0 or 0.4.0 model) is outside the namespace. B3a's branch L3 is dropped
+/// (the owner retired that contract product-wide); B3D-10's tightenings stay.
 fn preview_namespace(model: &Value) -> bool {
-    matches!(model["schema_version"].as_str(), Some("0.1.0" | "0.2.0"))
-        && model["pressure_contract"].is_null()
+    model["schema_version"].as_str() == Some("0.5.0")
+        && model.as_object().is_some_and(|object|
+            !object.contains_key("pressure_contract") && !object.contains_key("shear_model"))
+        && section_allowances(model, false)
 }
 fn g8(source: &Value, inv: &Value, route: &Route) -> VResult {
     let b = &source["retained_precision"]["body"];
@@ -4616,9 +4660,9 @@ fn g8(source: &Value, inv: &Value, route: &Route) -> VResult {
         "INVOCATION_MISMATCH",
     )?;
     need(
-        // D31: the producer treats model 0.1.0 and 0.2.0 on one branch
-        // (pressure_runtime.rs `validate_profile`); 0.4.0 stays excluded.
-        // D1.3's namespace, type-strict (B3-D REVISION_01 §3, N-4; B3a's L3
+        // B7a: the producer's pressure-free branch is the current version
+        // without a contract (`model_format::is_pressure_free`); 0.4.0 stays
+        // excluded. D1.3's namespace, type-strict (B3-D REVISION_01 §3, N-4; B3a's L3
         // dropped); B3b: the exact route's own branch.
         if route.exact { exact_namespace(model) } else { preview_namespace(model) }
             // B1's alignment set, item 2 (g), PP's acceptance: no
@@ -4710,28 +4754,26 @@ fn g8(source: &Value, inv: &Value, route: &Route) -> VResult {
             .iter()
             .filter(|r| r["kind"] == "linear_solver_mode_basis")
             .collect();
-        // P1: exactly one mode row, valued with the mode code (1 sparse, 2 dense).
-        fail(
-            modes.len() == 1
-                && modes[0]["value"].as_f64()
-                    == Some(if mode == "sparse_interactive" {
-                        1.0
-                    } else {
-                        2.0
-                    }),
-        )?;
-        let parity = rows
+        let code = if mode == "sparse_interactive" { 1.0 } else { 2.0 };
+        // B4/D1 ruling (4): a failed ordinary case's requested-mode basis (G5 bound its shape and
+        // owner) binds the actual invocation's mode, and it replaces the ordinary mode row.
+        let requested: Vec<_> = rows
             .iter()
-            .filter(|r| r["kind"] == "sparse_live_path_dense_parity_relative_delta")
-            .count();
-        // P2: at most one parity row. P3: none in sparse_interactive. P4: none
-        // when W2 published (b != 0; OQ5). A dense b = 0 case may lack it (a
-        // failed observation lane); that deletion is the disclosed limit.
-        fail(
-            parity <= 1
-                && (parity == 0 || mode == "dense_scrutiny")
-                && (parity == 0 || o["w2"]["kind"] != "published"),
-        )?;
+            .filter(|r| r["kind"] == REQUESTED_MODE_KIND)
+            .collect();
+        if !requested.is_empty() {
+            // Defence in depth: unreachable while G5 binds the row to the receipt's mode first.
+            need(
+                requested.len() == 1 && modes.is_empty() && requested[0]["value"].as_f64() == Some(code),
+                "G8",
+                "REQUESTED_MODE_MISMATCH",
+            )?;
+            continue;
+        }
+        // P1: exactly one mode row, valued with the mode code (1 sparse, 2 dense).
+        fail(modes.len() == 1 && modes[0]["value"].as_f64() == Some(code))?;
+        // E14: the DEC-050/053 parity observation is retired; no table carries its
+        // kind, so a row of it has no signature and is refused before G8.
     }
     fail(list(&b["material_bases"]).len() == expected_selectors.len())?;
     for (mi, mb) in list(&b["material_bases"]).iter().enumerate() {
@@ -4792,7 +4834,7 @@ fn g8(source: &Value, inv: &Value, route: &Route) -> VResult {
                 .position(|c| c["id"] == entry["load_case_id"])
                 .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))
         };
-        // G8 step 5, S-C (B3D-12): physics-source-1's actual-material binding over
+        // G8 step 5, S-C (B3D-12): the source reader's actual-material binding over
         // every `exact_cases` entry; its own code is detail only (B3D-13).
         for entry in evidence {
             let ci = case_of(entry)?;
@@ -5496,11 +5538,185 @@ fn native_bytes(s: &Value, source: bool) -> VResult<Vec<u8>> {
         Ok(out)
     }
 }
+/// B4/D1 W1 extension: whether a case's ordinary attempt genuinely failed: a structural failure
+/// outside DN §4.3's exclusions (mechanism, asymmetric, invalid input) that W2 did not publish.
+fn failed_ordinary(o: &Value) -> bool {
+    o["initial"]["kind"] == "structural_failure"
+        && !matches!(
+            text(&o["initial"]["error"]["tag"]),
+            "mechanism" | "asymmetric" | "invalid_input"
+        )
+        && matches!(text(&o["w2"]["kind"]), "not_triggered" | "failed")
+}
+/// The requested-mode basis text (b7-plan "Failed-ordinary successor rulings" (4)): the captured
+/// mode token, the failed ordinary attempt and the selected retained owner (the receipt's case
+/// `case_index`) with its certificate (that case's `selection`).
+pub fn requested_mode_basis(mode: &str, case_index: usize) -> String {
+    format!("captured_requested_mode; solver_mode={mode}; ordinary_attempt=failed_without_observation; owner_ref=case:{case_index}; certificate=retained_precision.body.cases[{case_index}].selection")
+}
+/// The integrity code product_physics `integrity_failure_code` publishes for an ordinary attempt's
+/// structural failure, over the receipt's encoding of that error. Never a success code.
+fn initial_failure_code(error: &Value) -> &'static str {
+    let detail = text(&error["detail"]);
+    match text(&error["tag"]) {
+        "mechanism" => "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+        "negative_energy" => "NUMERICAL_INTEGRITY_NEGATIVE_ENERGY",
+        "asymmetric" | "invalid_input" => "NUMERICAL_INTEGRITY_FAILED",
+        "numerically_unresolved" if detail.contains("contribution") || detail.contains("assembly") => {
+            "NUMERICAL_INTEGRITY_ASSEMBLY_UNRESOLVED"
+        }
+        _ => "NUMERICAL_INTEGRITY_UNRESOLVED",
+    }
+}
+/// The case quality tokens (structural_status, solve_quality, model_matrix_fidelity,
+/// accuracy_evidence) product_physics `assessed_numerical_quality` assigns to a failure code.
+fn failure_quality(code: &str) -> [&'static str; 4] {
+    match code {
+        "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM" => ["physical_mechanism_witnessed", "failed", "not_assessed", "not_claimed"],
+        "NUMERICAL_INTEGRITY_NEGATIVE_ENERGY" => ["negative_energy_witnessed", "failed", "not_assessed", "not_claimed"],
+        "NUMERICAL_INTEGRITY_ASSEMBLY_UNRESOLVED" => ["numerically_unresolved", "unresolved", "assembly_loss_detected", "unresolved"],
+        "NUMERICAL_INTEGRITY_FAILED" => ["numerically_unresolved", "failed", "assembly_uncertainty", "unresolved"],
+        _ => ["numerically_unresolved", "unresolved", "assembly_uncertainty", "unresolved"],
+    }
+}
+/// The fixed tail of product_physics' integrity and W2-refusal diagnostic messages.
+const INTEGRITY_MESSAGE_TAIL: &str =
+    "; no structural rejection is bypassed by generic LU or output quantization";
+/// B4/D1 rulings (2)-(4) (G5, before G8's invocation binding): a requested-mode basis row exists
+/// only on a selected case whose ordinary attempt genuinely failed, and such a case has exactly
+/// one; it never coexists with an ordinary mode or parity observation; its value is the code of
+/// the receipt's requested mode and its metadata names the mode, the case's retained owner and
+/// its certificate. That case's quality entry keeps the failed attempt's outcome (never a
+/// success token) and names the certificate's diagnostic and the basis row. A blocking
+/// diagnostic is admitted only as such a case's own failure diagnostic (ruling (3)).
+fn g5_requested_mode(source: &Value) -> VResult {
+    let b = &source["retained_precision"]["body"];
+    let rm = |ok| need(ok, "G5", "REQUESTED_MODE_MISMATCH");
+    let mut bound: Vec<(&Value, &Value)> = Vec::new();
+    for (i, c) in list(&b["cases"]).iter().enumerate() {
+        let o = &b["ordinary_attempts"][i];
+        let cid = &c["basis_ref"]["ref_id"];
+        let rows = rows_for(source, c);
+        let requested: Vec<&Value> = rows
+            .iter()
+            .copied()
+            .filter(|r| r["kind"] == REQUESTED_MODE_KIND)
+            .collect();
+        let observed = rows
+            .iter()
+            .filter(|r| {
+                text(&r["kind"]) == "linear_solver_mode_basis"
+            })
+            .count();
+        let failed = failed_ordinary(o);
+        if requested.is_empty() {
+            rm(!(failed && c["status"] == "selected"))?;
+            continue;
+        }
+        rm(failed && c["status"] == "selected" && requested.len() == 1 && observed == 0)?;
+        let row = requested[0];
+        let mode = text(&o["requested_mode"]);
+        let code: f64 = match mode {
+            "sparse_interactive" => 1.0,
+            "dense_scrutiny" => 2.0,
+            _ => return rm(false),
+        };
+        let m = &row["metadata"];
+        rm(row["id"] == REQUESTED_MODE_ID
+            && row["unit"] == "mode_code"
+            && row["entity_ref"] == "solver:linear_static_preview"
+            && row["value"].as_f64().is_some_and(|v| v.to_bits() == code.to_bits())
+            && list(&row["source_result_refs"]).is_empty()
+            && m["component"] == REQUESTED_MODE_COMPONENT
+            && m["coordinate_system"] == REQUESTED_MODE_COORDINATE
+            && m["location"] == *cid
+            && m["sign_convention"] == REQUESTED_MODE_SIGN
+            && m["basis"] == requested_mode_basis(mode, i))?;
+        let q = &source["numerical_quality"]["cases"][i];
+        let refs = list(&q["evidence_refs"]);
+        let selected = json!(format!("diagnostic:retained-precision:{}:selected", text(cid)));
+        rm(q["basis_ref"] == c["basis_ref"]
+            && matches!(text(&q["solve_quality"]), "unresolved" | "failed")
+            && q["structural_status"] != "passive_model_basis"
+            && q["accuracy_evidence"] != "reference_verified"
+            && refs.contains(&json!(REQUESTED_MODE_ID))
+            && refs.contains(&selected))?;
+        // Ruling (3), reverse binding: each failure diagnostic the attempt names is still that
+        // failure's diagnostic: blocking, naming this case alone, with the non-success code the
+        // recorded failure determines (a failed W2 is ruling (5)'s named refusal). The receipt
+        // records no message, so the message is bound to the producer's template for this case.
+        // Ruling (2): the case's quality keeps that code's outcome tokens and names the diagnostic.
+        let fd = |ok| need(ok, "G5", "FAILURE_DIAGNOSTIC_MISMATCH");
+        let fq = |ok| need(ok, "G5", "FAILURE_QUALITY_MISMATCH");
+        let mut expected: Vec<(&Value, &str, bool)> = Vec::new();
+        if !o["initial"]["diagnostic_ref"].is_null() {
+            let code = initial_failure_code(&o["initial"]["error"]);
+            expected.push((&o["initial"]["diagnostic_ref"], code, false));
+        }
+        if !o["w2"]["diagnostic_ref"].is_null() {
+            fd(o["w2"]["kind"] == "failed")?;
+            expected.push((&o["w2"]["diagnostic_ref"], "NUMERICAL_INTEGRITY_UNRESOLVED", true));
+        }
+        fd(!expected.is_empty())?;
+        let lead = format!("Load case {}: ", text(cid));
+        for (id, code, w2) in expected {
+            let Some(d) = list(&source["diagnostics"]).iter().find(|d| d["id"] == *id) else {
+                return fd(false);
+            };
+            let message = text(&d["message"]);
+            let body = message.strip_prefix(lead.as_str()).unwrap_or("");
+            fd(d["severity"] == "blocking"
+                && d["affected_refs"] == json!([cid])
+                && d["code"] == code
+                && message.ends_with(INTEGRITY_MESSAGE_TAIL)
+                && if w2 {
+                    body.contains("; range_scaling: attempted; step1_trigger=")
+                } else {
+                    body.starts_with("structural integrity: ")
+                })?;
+            let [structural, solve, fidelity, accuracy] = failure_quality(code);
+            fq(refs.contains(id)
+                && q["structural_status"] == structural
+                && q["solve_quality"] == solve
+                && q["model_matrix_fidelity"] == fidelity
+                && q["accuracy_evidence"] == accuracy)?;
+            bound.push((id, cid));
+        }
+        // F2: the envelope status ranks at least this case's failed outcome (product_physics'
+        // maximum), so it is never a success token beside a failed-ordinary case.
+        let status = text(&source["numerical_quality"]["status"]);
+        fq(status == "failed" || (status == "unresolved" && q["solve_quality"] == "unresolved"))?;
+    }
+    // Ruling (5): a failed W2 attempt is only the closed named refusal, whose step-1 trigger, when
+    // recorded, is the outer range trigger.
+    for o in list(&b["ordinary_attempts"]) {
+        if o["w2"]["kind"] == "failed" {
+            let refusal = &o["w2"]["failure"]["refusal"];
+            need(
+                o["w2"]["failure"]["tag"] == "refused"
+                    && (refusal["trigger"].is_null() || refusal["trigger"] == o["w2"]["trigger"]),
+                "G5",
+                "W2_FAILURE_MISMATCH",
+            )?;
+        }
+    }
+    for d in list(&source["diagnostics"]) {
+        if d["severity"] == "blocking" {
+            need(
+                bound
+                    .iter()
+                    .any(|(id, cid)| d["id"] == **id && d["affected_refs"] == json!([cid])),
+                "G5",
+                "BLOCKING_DIAGNOSTIC_UNBOUND",
+            )?;
+        }
+    }
+    Ok(())
+}
 fn g5_ordinary(source: &Value) -> VResult {
     let b = &source["retained_precision"]["body"];
     let fail = |ok| need(ok, "G5", "ATTEMPT_MISMATCH");
     let ds = list(&source["diagnostics"]);
-    let mut work_refs = BTreeSet::new();
     for (i, c) in list(&b["cases"]).iter().enumerate() {
         let o = &b["ordinary_attempts"][i];
         let cid = &c["basis_ref"]["ref_id"];
@@ -5523,6 +5739,17 @@ fn g5_ordinary(source: &Value) -> VResult {
             )
             .is_ok_and(|mb| list(&mb["case_indices"]).iter().any(|x| u(x) == i as u64)),
         )?;
+        // B7a (b), stage 1: a formation failure names the basis whose stiffness
+        // failed to form, which is the failing case's own basis: its basis_index
+        // resolves and equals the attempt's material_basis_ref. PY `_g5_ordinary`
+        // applies the same rule.
+        if o["initial"]["kind"] == "formation_failure" {
+            let index = &o["initial"]["basis_index"];
+            fail(
+                at(&b["material_bases"], index, "G5", "ATTEMPT_MISMATCH").is_ok()
+                    && uint(index) == uint(&o["material_basis_ref"]),
+            )?;
+        }
         // D6a (checkpoint-A ruling): the untyped diagnostic_refs are unique and
         // resolve. Typed references below must be listed and name the case (C2:166).
         let mut refs = BTreeSet::new();
@@ -5546,7 +5773,6 @@ fn g5_ordinary(source: &Value) -> VResult {
             &o["w2"]["report_diagnostic_ref"],
             &o["formation"]["load_row_finding"]["diagnostic_ref"],
             &o["formation"]["d5_diagnostic_ref"],
-            &o["legacy_source"]["diagnostic_ref"],
         ] {
             if !path.is_null() {
                 diag(path)?;
@@ -5591,16 +5817,6 @@ fn g5_ordinary(source: &Value) -> VResult {
                         .is_some_and(|n| n != 0.0),
                 )?;
             }
-        }
-        if !o["legacy_source"]["work_ref"].is_null() {
-            let wi = u(&o["legacy_source"]["work_ref"]);
-            let w = at(
-                &b["legacy_source_work"],
-                &o["legacy_source"]["work_ref"],
-                "G5",
-                "ATTEMPT_MISMATCH",
-            )?;
-            fail(work_refs.insert(wi) && u(&w["case_index"]) == i as u64)?;
         }
         // O5 (C2:115-119; S06:51): a source_decline is an unavailable case with
         // no source or Run, owned by this case and its material basis.
@@ -5693,7 +5909,6 @@ fn g5_ordinary(source: &Value) -> VResult {
             )?;
         }
     }
-    fail(work_refs.len() == list(&b["legacy_source_work"]).len())?;
     // B2-C §10.1 G5 ordinary class: the disposition rule (decision 5, C-1) and
     // D6a's diagnostic rule for each combination entry. D6b stays case-only
     // (REVISION_01 §4.5).
@@ -5785,7 +6000,7 @@ fn r_comb_1(source: &Value) -> Vec<RowClassification> {
 }
 /// G7's projection onto the route's base: remove the receipt and the row
 /// tokens; set the base identity and profile (preview-physics-1 and
-/// `product_preview_mechanics_v1`; physics-1 and `exact_straight_pressure_v2`).
+/// `product_preview_mechanics_v1`; pressure-1 and `exact_pressure_v3`).
 fn project(source: &Value, raw: bool, route: &Route) -> VResult<Value> {
     let mut projected = source.clone();
     projected
@@ -5810,6 +6025,11 @@ fn project(source: &Value, raw: bool, route: &Route) -> VResult<Value> {
                 o.remove("recovery_method");
             }
         }
+        // B4/D1: the requested-mode basis is the successor's own record (G5, G8), not a base row.
+        projected["results"]
+            .as_array_mut()
+            .into_iter()
+            .for_each(|rows| rows.retain(|r| r["kind"] != REQUESTED_MODE_KIND));
     }
     Ok(projected)
 }
@@ -5825,6 +6045,12 @@ pub fn validate(source: &Value, actual_invocation: Option<&Value>) -> VResult<Va
     } else {
         g0(source)?;
     }
+    gates_after_g0(source, actual_invocation, route)
+}
+/// G1-G8, in order, of a statement whose G0 (identity, packaged tables, definitions and bound
+/// receipt values) has passed. `validate` is its only production caller; reader-local tests
+/// also reach the later gates through it directly.
+fn gates_after_g0(source: &Value, actual_invocation: Option<&Value>, route: &Route) -> VResult<Validation> {
     g1(source, true, route)?;
     g2(source)?;
     let normalized = integral_receipt(source);
@@ -5834,6 +6060,7 @@ pub fn validate(source: &Value, actual_invocation: Option<&Value>) -> VResult<Va
     let body = &source["retained_precision"]["body"];
     g5_native(body)?;
     g5_ordinary(source)?;
+    g5_requested_mode(source)?;
     g5_products(source)?;
     let mut cases = numeric_cases(source)?;
     g5a(body, &cases)?;
@@ -5875,7 +6102,7 @@ pub fn validate(source: &Value, actual_invocation: Option<&Value>) -> VResult<Va
     // C1 G7 "existing base failure codes" (06b settlement): each language
     // reports its own unchanged base code, here the Rust base's
     // SOURCE_PREVIEW_PHYSICS_<CODE> (preview) or SOURCE_PHYSICS_<CODE>
-    // (exact: physics-1's unchanged `validate_physics_evidence`); any text
+    // (exact: pressure-1's `validate_pressure_evidence`); any text
     // after the code is detail.
     crate::semantic_contract::for_source(&projected).map_err(base_error)?;
     if let Some(inv) = actual_invocation {
@@ -6210,7 +6437,8 @@ pub fn validate_transport_metadata(source: &Value) -> VResult<Validation> {
         })?;
     // B1's alignment set, item 4: the header check stays at G2; the base's
     // transport metadata check runs at G7, as PY and TS run it: preview-physics-1's
-    // on the preview route, physics-1's unchanged one on the exact route (B3-D §6.2).
+    // on the preview route, the full current exact-retained pressure transport
+    // check on the exact route (B7b D4). No current check is retired with v2.
     if route.exact {
         crate::physics_evidence::validate_transport_metadata(&projected).map_err(base_error)?;
     } else {
@@ -6259,6 +6487,44 @@ mod b3b_table_binding_tests {
             }
         }
         assert!(drifted.is_empty(), "{drifted:?}");
+    }
+}
+
+/// B7a (b7-plan "Model format, pressure-free half"): G8's preview namespace keys
+/// on the pressure contract's absence on the current model version. Keying it on
+/// the version string alone (a 0.5.0 model with a contract would pass) or on the
+/// retired 0.1.0/0.2.0 fails this test.
+#[cfg(test)]
+mod b7a_preview_namespace_tests {
+    use super::*;
+    #[test]
+    fn preview_namespace_keys_on_the_contracts_absence_not_the_version() {
+        let model = |version: &str, contract: Option<Value>| {
+            let mut m = json!({"schema_version": version, "project": {"id": "p"}});
+            if let Some(contract) = contract {
+                m["pressure_contract"] = contract;
+            }
+            m
+        };
+        assert!(preview_namespace(&model("0.5.0", None)));
+        assert!(!preview_namespace(&model("0.5.0", Some(Value::Null))));
+        for contract in [json!({"version": "2.0.0", "mode": "exact_straight_pressure_v2"}), json!({}), json!(false)] {
+            assert!(!preview_namespace(&model("0.5.0", Some(contract.clone()))), "0.5.0 with {contract}");
+        }
+        for version in ["0.1.0", "0.2.0", "0.3.0", "0.4.0", "0.5.1"] {
+            assert!(!preview_namespace(&model(version, None)), "{version}");
+        }
+        assert!(!preview_namespace(&json!({"project": {"id": "p"}})), "a missing version");
+        let exact = json!({"version": "3.0.0", "mode": "exact_pressure_v3", "shear_model": "euler_bernoulli"});
+        assert!(exact_namespace(&model("0.5.0", Some(exact.clone()))));
+        for value in [Value::Null, json!("euler_bernoulli"), json!(false), json!(1), json!([]), json!({})] {
+            let mut preview = model("0.5.0", None);
+            preview["shear_model"] = value.clone();
+            assert!(!preview_namespace(&preview), "top-level shear {value}");
+            let mut pressure = model("0.5.0", Some(exact.clone()));
+            pressure["shear_model"] = value.clone();
+            assert!(!exact_namespace(&pressure), "top-level shear {value}");
+        }
     }
 }
 
@@ -6465,6 +6731,402 @@ pub fn outcome_json(outcome: &VResult<Validation>) -> Value {
 /// header directly. Unchanged; this only makes it reachable.
 pub fn validate_preview_physics_transport_metadata(source: &Value) -> Result<(), String> {
     preview_physics_transport_metadata(source)
+}
+
+#[cfg(test)]
+mod w1_si_first_publication_tests {
+    use super::*;
+    #[test]
+    fn w1_si_first_stress_publication_binds_the_actual_si_word_and_row() {
+        let outcome = json!({"kind":"normal","value":"40f8000000000002"});
+        for kind in ["element_local_axial_normal_stress", "element_local_bending_normal_stress_y",
+            "element_local_bending_normal_stress_z", "element_local_torsional_shear_stress"] {
+            let mut row=json!({"kind":kind,"unit":"MPa","value":f64::from_bits(0x3fb92a737110e456)});
+            assert!(projection_matches_row(&row,&outcome));
+            // Exact dyadic midpoint divided before RN64 is the obsolete other word.
+            row["value"]=json!(f64::from_bits(0x3fb92a737110e455));
+            assert!(!projection_matches_row(&row,&outcome));
+            row["value"]=json!(f64::from_bits(0x3fb92a737110e456));
+            for (field,value) in [("kind",json!("element_local_axial_force")),("unit",json!("Pa"))] {
+                let mut wrong=row.clone();wrong[field]=value;
+                assert!(!projection_matches_row(&wrong,&outcome));
+            }
+            let changed=json!({"kind":"normal","value":"40f8000000000000"});
+            assert!(!projection_matches_row(&row,&changed));
+        }
+    }
+    #[test]
+    fn w1_si_first_other_rows_keep_raw_words_and_stress_zero_is_truthful() {
+        for (kind,unit,word) in [("global_nodal_displacement_x","mm",0x4197700000000001),
+            ("element_local_torsional_moment","N*m",0x40f8000000000002),
+            ("pipe_elastic_normal_stress_maximum_v2","Pa",0x40f8000000000002),
+            ("element_local_axial_force","MPa",0x40f8000000000002)] {
+            let row=json!({"kind":kind,"unit":unit,"value":f64::from_bits(word)});
+            let outcome=json!({"kind":"normal","value":format!("{word:016x}")});
+            assert!(projection_matches_row(&row,&outcome));
+        }
+        let mut row=json!({"kind":"element_local_axial_normal_stress","unit":"MPa","value":0.0});
+        for outcome in [json!({"kind":"underflow","negative":true}),
+            json!({"kind":"subnormal","value":"0000000000000001","relative_precision":"3ff0000000000000"})] {
+            assert!(projection_matches_row(&row,&outcome));
+            row["value"]=json!(-0.0);assert!(!projection_matches_row(&row,&outcome));row["value"]=json!(0.0);
+        }
+        for outcome in [json!({"kind":"overflow","negative":false}),
+            json!({"kind":"normal","value":"7ff0000000000000"}),json!({"kind":"unknown"})] {
+            assert!(!projection_matches_row(&row,&outcome));
+        }
+    }
+}
+
+#[cfg(test)]
+mod b4_failed_ordinary_tests {
+    //! B4/D1 W1 extension (b7-plan "Failed-ordinary successor rulings"): the requested-mode basis,
+    //! the admitted blocking diagnostic and the closed W2 refusal, read below G0. The producer
+    //! asserts that the fixture is its own output. With the table pins on the current reviewed
+    //! bytes (ruling (6)), the full reader gives the same validation as the gates below G0.
+    use super::*;
+    const FIXTURE: &str =
+        include_str!("../../../../fixtures/results/retained_precision_failed_ordinary_cxf.json");
+    /// N06 under b7-plan's "N06 absorbed-spring certificate extension" (four successors).
+    const N06_FIXTURE: &str =
+        include_str!("../../../../fixtures/results/retained_precision_failed_ordinary_n06.json");
+    fn cases() -> Vec<(Value, Value)> {
+        cases_of(FIXTURE)
+    }
+    fn cases_of(text: &str) -> Vec<(Value, Value)> {
+        let fixture: Value = serde_json::from_str(text).unwrap();
+        list(&fixture["cases"])
+            .iter()
+            .map(|c| {
+                (c["successor"].clone(), json!({"request": c["request"], "solver_mode": c["solver_mode"]}))
+            })
+            .collect()
+    }
+    /// Rehash the publication and the receipt (the mutations touch neither sources nor preparations).
+    fn rehash(s: &mut Value) {
+        let mut env = s.clone();
+        env.as_object_mut().unwrap().remove("retained_precision");
+        let publication = hash("retained_precision_publication_mp_v2", &env, "G1", "X").unwrap();
+        s["retained_precision"]["body"]["publication_sha256"] = json!(publication);
+        let receipt = hash("retained_precision_receipt_mp_v2", &s["retained_precision"]["body"], "G1", "X").unwrap();
+        s["retained_precision"]["receipt_sha256"] = json!(receipt);
+    }
+    fn below_g0(s: &Value, inv: Option<&Value>) -> VResult<Validation> {
+        gates_after_g0(s, inv, route(s))
+    }
+    fn refused(s: &Value, inv: &Value) -> (&'static str, String) {
+        match below_g0(s, Some(inv)) {
+            Err(e) => (e.gate, e.code),
+            Ok(_) => ("accepted", String::new()),
+        }
+    }
+    fn requested_index(s: &Value) -> usize {
+        list(&s["results"]).iter().position(|r| r["kind"] == REQUESTED_MODE_KIND).unwrap()
+    }
+    #[test]
+    fn failed_ordinary_successors_pass_g1_to_g8_and_are_eligible() {
+        for (s, inv) in cases() {
+            let mode = inv["solver_mode"].clone();
+            assert_eq!(below_g0(&s, None).map(|v| v.numerical_eligible), Ok(false), "{mode}");
+            let v = below_g0(&s, Some(&inv)).unwrap_or_else(|e| panic!("{mode}: {e:?}"));
+            assert!(v.invocation_bound && v.numerical_eligible, "{mode}");
+            assert!(v.classifications.iter().any(|c| c.result_id == REQUESTED_MODE_ID && c.class == AccuracyClass::NonQuantity), "{mode}");
+        }
+    }
+    /// N06's successors read like CX-F's: G1-G8 pass and the case is eligible with its
+    /// invocation; with the table pins on the current bytes, the full reader gives the same.
+    #[test]
+    fn n06_congruence_successors_pass_g1_to_g8_and_are_eligible() {
+        let cases = cases_of(N06_FIXTURE);
+        assert_eq!(cases.len(), 4);
+        for (s, inv) in cases {
+            let mode = inv["solver_mode"].clone();
+            assert_eq!(below_g0(&s, None).map(|v| v.numerical_eligible), Ok(false), "{mode}");
+            let v = below_g0(&s, Some(&inv)).unwrap_or_else(|e| panic!("{mode}: {e:?}"));
+            assert!(v.invocation_bound && v.numerical_eligible, "{mode}");
+            assert!(v.classifications.iter().any(|c| c.result_id == REQUESTED_MODE_ID && c.class == AccuracyClass::NonQuantity), "{mode}");
+            assert_eq!(validate(&s, Some(&inv)), Ok(v), "{mode}");
+        }
+    }
+    /// DEF-O's lanes.congruence admits one further correction on the annular_source lane only:
+    /// three calls there, or two on the admitted_k lane, refuse as work mismatches.
+    #[test]
+    fn n06_lane_correction_calls_are_bounded_by_lane() {
+        let wm = ("G5", "RETAINED_PRECISION_WORK_MISMATCH".to_string());
+        for (base, inv) in cases_of(N06_FIXTURE) {
+            let mode = text(&inv["solver_mode"]).to_owned();
+            let lanes = &base["retained_precision"]["body"]["product_attempts"][0]["proof"]["lanes"];
+            assert_eq!(lanes[1]["work"]["correction"]["calls"], json!({"kind":"exact","value":2}), "{mode}");
+            assert_eq!(lanes[0]["work"]["correction"]["calls"], json!({"kind":"exact","value":1}), "{mode}");
+            for (lane, calls) in [(1, 3), (0, 2)] {
+                let mut s = base.clone();
+                s["retained_precision"]["body"]["product_attempts"][0]["proof"]["lanes"][lane]["work"]["correction"]["calls"] =
+                    json!({"kind":"exact","value":calls});
+                rehash(&mut s);
+                assert_eq!(refused(&s, &inv), wm, "{mode}: lane {lane} calls {calls}");
+            }
+        }
+    }
+    /// The lane-work check alone (G5's `proof_checks`) on an N06 attempt relabelled as the exact
+    /// route or as a combination: there the annular_source lane keeps at most one correction, so
+    /// its two calls refuse; with one call the same relabelled attempt passes, so nothing else in
+    /// the check depends on the relabelling.
+    #[test]
+    fn exact_route_and_combination_lanes_keep_one_correction() {
+        fn lane_work_ok(s: &Value) -> bool {
+            let b = &s["retained_precision"]["body"];
+            let (a, c) = (&b["product_attempts"][0], &b["cases"][0]);
+            let pf = |ok: bool| if ok { Ok(()) } else { Err(error("G5", "PRODUCT_ATTEMPT_MISMATCH")) };
+            let mut all = true;
+            let mut wf = |ok: bool| -> VResult {
+                all &= ok;
+                Ok(())
+            };
+            proof_checks(s, a, c, &pf, &mut wf).unwrap();
+            all
+        }
+        let calls = |s: &mut Value, lane: usize, n: u64| {
+            s["retained_precision"]["body"]["product_attempts"][0]["proof"]["lanes"][lane]["work"]["correction"]["calls"] =
+                json!({"kind":"exact","value":n});
+        };
+        for (base, inv) in cases_of(N06_FIXTURE) {
+            let mode = text(&inv["solver_mode"]).to_owned();
+            assert!(lane_work_ok(&base), "{mode}: preview case annular lane, two calls");
+            let mut exact = base.clone();
+            exact["producer"]["semantic_contract_id"] = json!(EXACT_CONTRACT_ID);
+            assert!(!lane_work_ok(&exact), "{mode}: exact route refuses two calls");
+            calls(&mut exact, 1, 1);
+            assert!(lane_work_ok(&exact), "{mode}: exact route, one call");
+            let mut combination = base.clone();
+            combination["retained_precision"]["body"]["product_attempts"][0]["owner_ref"]["kind"] = json!("combination");
+            assert!(!lane_work_ok(&combination), "{mode}: combination refuses two calls");
+            calls(&mut combination, 1, 1);
+            assert!(lane_work_ok(&combination), "{mode}: combination, one call");
+            let mut admitted = base.clone();
+            calls(&mut admitted, 0, 2);
+            assert!(!lane_work_ok(&admitted), "{mode}: admitted_k refuses two calls");
+        }
+        for (source, a, lane, limit) in [(CONTRACT_ID, "case", 1, 2), (CONTRACT_ID, "case", 0, 1),
+            (EXACT_CONTRACT_ID, "case", 1, 1), (CONTRACT_ID, "combination", 1, 1), (EXACT_CONTRACT_ID, "combination", 1, 1)] {
+            let s = json!({"producer":{"semantic_contract_id":source}});
+            assert_eq!(lane_correction_limit(&s, &json!({"owner_ref":{"kind":a}}), lane), limit, "{source} {a} {lane}");
+        }
+    }
+    /// A published certified quantity moved by one ulp (receipt and publication rehashed) no
+    /// longer matches its recorded projection outcome and is refused.
+    #[test]
+    fn n06_perturbed_certified_value_refuses() {
+        for (base, inv) in cases_of(N06_FIXTURE) {
+            let mode = text(&inv["solver_mode"]).to_owned();
+            for kind in ["element_local_torsional_moment", "global_nodal_rotation_x", "global_nodal_rotation_y"] {
+                let Some(at) = list(&base["results"]).iter().position(|r| r["kind"] == kind && r["value"].as_f64().is_some_and(|v| v != 0.0)) else { continue };
+                let mut s = base.clone();
+                let v = s["results"][at]["value"].as_f64().unwrap();
+                s["results"][at]["value"] = json!(f64::from_bits(v.to_bits() + 1));
+                rehash(&mut s);
+                let (gate, code) = refused(&s, &inv);
+                assert_ne!(gate, "accepted", "{mode}: {kind}");
+                println!("N06_PERTURBED {mode} {kind} {gate} {code}");
+            }
+        }
+    }
+    #[test]
+    fn failed_ordinary_successors_pass_g0_with_the_current_table_pins() {
+        // Ruling (6): TABLE_HASH and its mirrors follow the reviewed current table bytes, so the
+        // full reader (G0 first) gives the same eligible validation as the gates below G0.
+        for (s, inv) in cases() {
+            let mode = inv["solver_mode"].clone();
+            let v = validate(&s, Some(&inv)).unwrap_or_else(|e| panic!("{mode}: {e:?}"));
+            assert!(v.invocation_bound && v.numerical_eligible, "{mode}");
+            assert_eq!(Ok(v), below_g0(&s, Some(&inv)), "{mode}");
+        }
+    }
+    #[test]
+    fn requested_mode_mutations_refuse_by_name() {
+        let mm = ("G5", "RETAINED_PRECISION_REQUESTED_MODE_MISMATCH".to_string());
+        for (base, inv) in cases() {
+            let mode = text(&inv["solver_mode"]).to_owned();
+            let at = requested_index(&base);
+            let mutate = |f: &dyn Fn(&mut Value)| {
+                let mut s = base.clone();
+                f(&mut s);
+                rehash(&mut s);
+                refused(&s, &inv)
+            };
+            // An ordinary mode observation beside the requested-mode basis (coexistence). Appended,
+            // so that the receipt's row indices still resolve (an inserted row is G3's).
+            assert_eq!(mutate(&|s| {
+                let mut row = s["results"][at].clone();
+                row["id"] = json!("result:solver-mode:linear-solve-basis");
+                row["kind"] = json!("linear_solver_mode_basis");
+                s["results"].as_array_mut().unwrap().push(row);
+            }), mm, "{mode}: coexistence");
+            // A fabricated ordinary observation in place of the basis.
+            assert_eq!(mutate(&|s| {
+                s["results"][at]["id"] = json!("result:solver-mode:linear-solve-basis");
+                s["results"][at]["kind"] = json!("linear_solver_mode_basis");
+            }), mm, "{mode}: fabricated observation");
+            // E14: a row of the retired parity kind has no signature and is refused.
+            let parity = mutate(&|s| {
+                let mut row = s["results"][at].clone();
+                row["id"] = json!("result:sparse-live:dense-parity-relative-delta");
+                row["kind"] = json!("sparse_live_path_dense_parity_relative_delta");
+                s["results"].as_array_mut().unwrap().push(row);
+            });
+            assert_ne!(parity.0, "accepted", "{mode}: retired parity kind {parity:?}");
+            // A mode code other than the captured mode.
+            assert_eq!(mutate(&|s| {
+                let other = if s["results"][at]["value"] == json!(1.0) { 2.0 } else { 1.0 };
+                s["results"][at]["value"] = json!(other);
+            }), mm, "{mode}: other mode");
+            // The owner or certificate named in the basis is another case's.
+            for (from, to) in [("owner_ref=case:0", "owner_ref=case:1"), ("cases[0].selection", "cases[1].selection")] {
+                assert_eq!(mutate(&|s| {
+                    let basis = text(&s["results"][at]["metadata"]["basis"]).replace(from, to);
+                    s["results"][at]["metadata"]["basis"] = json!(basis);
+                }), mm, "{mode}: {to}");
+            }
+            // A success token in the failed case's quality entry, or the basis row unnamed there.
+            assert_eq!(mutate(&|s| s["numerical_quality"]["cases"][0]["solve_quality"] = json!("sensitive")), mm, "{mode}: sensitive");
+            assert_eq!(mutate(&|s| s["numerical_quality"]["cases"][0]["structural_status"] = json!("passive_model_basis")), mm, "{mode}: passive");
+            let mut s = base.clone();
+            s["numerical_quality"]["cases"][0]["solve_quality"] = json!("checks_passed");
+            rehash(&mut s);
+            assert_eq!(refused(&s, &inv).0, "G5", "{mode}: checks_passed");
+            assert_eq!(mutate(&|s| {
+                s["numerical_quality"]["cases"][0]["evidence_refs"].as_array_mut().unwrap().retain(|r| r != REQUESTED_MODE_ID);
+            }), mm, "{mode}: basis unnamed");
+            // A requested-mode basis on a case whose ordinary attempt succeeded.
+            assert_eq!(mutate(&|s| {
+                let o = &mut s["retained_precision"]["body"]["ordinary_attempts"][0];
+                o["initial"] = json!({"kind":"report","report_diagnostic_ref":"diagnostic:numerical-integrity:case","outcome":"sensitive"});
+                o["w2"] = json!({"kind":"not_triggered"});
+                s["numerical_quality"]["cases"][0]["solve_quality"] = json!("sensitive");
+            }), mm, "{mode}: successful ordinary attempt");
+            // The invocation's mode is not the captured mode: G8.
+            let mut other = inv.clone();
+            other["solver_mode"] = json!(if mode == "sparse_interactive" { "dense_scrutiny" } else { "sparse_interactive" });
+            assert_eq!(refused(&base, &other).0, "G8", "{mode}: invocation mode");
+        }
+    }
+    #[test]
+    fn blocking_diagnostics_and_w2_refusal_mutations_refuse_by_name() {
+        let unbound = ("G5", "RETAINED_PRECISION_BLOCKING_DIAGNOSTIC_UNBOUND".to_string());
+        for (base, inv) in cases() {
+            let mode = text(&inv["solver_mode"]).to_owned();
+            let mutate = |f: &dyn Fn(&mut Value)| {
+                let mut s = base.clone();
+                f(&mut s);
+                rehash(&mut s);
+                refused(&s, &inv)
+            };
+            // A blocking diagnostic not bound to a failed case's requested-mode basis.
+            assert_eq!(mutate(&|s| {
+                s["diagnostics"].as_array_mut().unwrap().push(json!({"id":"diagnostic:invented:blocking","code":"SOLVER_SYSTEM_BLOCKED",
+                    "severity":"blocking","message":"invented","source":"core/product_physics","affected_refs":["supports"]}));
+            }), unbound, "{mode}: unbound blocking diagnostic");
+            // The failure diagnostic widened beyond its one case: the reverse binding refuses first.
+            assert_eq!(mutate(&|s| {
+                for d in s["diagnostics"].as_array_mut().unwrap() {
+                    if d["severity"] == "blocking" { d["affected_refs"] = json!(["case", "supports"]); }
+                }
+            }), ("G5", "RETAINED_PRECISION_FAILURE_DIAGNOSTIC_MISMATCH".to_string()), "{mode}: widened blocking diagnostic");
+            // Removing the requested-mode basis shifts the receipt's row indices: G3 refuses it. (In
+            // place, a fabricated observation without the basis is G5's: the other test.)
+            assert_eq!(mutate(&|s| {
+                let at = requested_index(s);
+                s["results"].as_array_mut().unwrap().remove(at);
+            }), ("G3", "RETAINED_PRECISION_COVERAGE_MISMATCH".to_string()), "{mode}: basis removed");
+            // A W2 failure other than the translated named refusal.
+            assert_eq!(mutate(&|s| {
+                s["retained_precision"]["body"]["ordinary_attempts"][0]["w2"]["failure"] = json!({"tag":"not_engaged"});
+            }), ("G5", "RETAINED_PRECISION_W2_FAILURE_MISMATCH".to_string()), "{mode}: untranslated W2 variant");
+            // The inner refusal trigger differs from the outer range trigger.
+            assert_eq!(mutate(&|s| {
+                s["retained_precision"]["body"]["ordinary_attempts"][0]["w2"]["failure"]["refusal"]["trigger"]["error"]["detail"] = json!("another");
+            }), ("G5", "RETAINED_PRECISION_W2_FAILURE_MISMATCH".to_string()), "{mode}: inner trigger");
+        }
+    }
+    /// The failed case's bound failure diagnostic, by the W2 attempt's reference.
+    fn failure_diagnostic(s: &mut Value) -> &mut Value {
+        let id = s["retained_precision"]["body"]["ordinary_attempts"][0]["w2"]["diagnostic_ref"].clone();
+        s["diagnostics"].as_array_mut().unwrap().iter_mut().find(|d| d["id"] == id).unwrap()
+    }
+    #[test]
+    fn reclassified_failure_diagnostics_refuse_by_name() {
+        // Ruling (3)'s reverse binding (g2 review F1): the failure diagnostic the attempt names stays
+        // blocking, names its one case, keeps the code the failure determines and the producer's
+        // message template (the receipt records no message, so no message text is bound beyond it).
+        let fd = ("G5", "RETAINED_PRECISION_FAILURE_DIAGNOSTIC_MISMATCH".to_string());
+        for (base, inv) in cases() {
+            let mode = text(&inv["solver_mode"]).to_owned();
+            let mutate = |f: &dyn Fn(&mut Value)| {
+                let mut s = base.clone();
+                f(&mut s);
+                rehash(&mut s);
+                refused(&s, &inv)
+            };
+            for severity in ["warning", "info"] {
+                assert_eq!(mutate(&|s| failure_diagnostic(s)["severity"] = json!(severity)), fd, "{mode}: {severity}");
+            }
+            for code in ["NUMERICAL_INTEGRITY_CHECKS_PASSED", "NUMERICAL_INTEGRITY_SENSITIVE", "NUMERICAL_INTEGRITY_ASSEMBLY_UNRESOLVED"] {
+                assert_eq!(mutate(&|s| failure_diagnostic(s)["code"] = json!(code)), fd, "{mode}: {code}");
+            }
+            assert_eq!(mutate(&|s| {
+                let d = failure_diagnostic(s);
+                d["severity"] = json!("warning");
+                d["code"] = json!("NUMERICAL_INTEGRITY_CHECKS_PASSED");
+            }), fd, "{mode}: downgraded and recoded");
+            for message in [
+                "Load case case: numerical integrity checks passed",
+                "Load case supports: range: scaled evaluation outside normal range; range_scaling: attempted; step1_trigger=x; no structural rejection is bypassed by generic LU or output quantization",
+                "Load case case: range: scaled evaluation outside normal range; no structural rejection is bypassed by generic LU or output quantization",
+            ] {
+                assert_eq!(mutate(&|s| failure_diagnostic(s)["message"] = json!(message)), fd, "{mode}: message {message}");
+            }
+            // A failed W2 that names no failure diagnostic is already the receipt's (G1).
+            assert_eq!(mutate(&|s| {
+                s["retained_precision"]["body"]["ordinary_attempts"][0]["w2"]["diagnostic_ref"] = Value::Null;
+            }), ("G1", "RETAINED_PRECISION_RECEIPT_MISMATCH".to_string()), "{mode}: failure diagnostic unnamed");
+        }
+    }
+    #[test]
+    fn success_quality_beside_a_failed_ordinary_case_refuses_by_name() {
+        // Rulings (2) and (3) (g2 review F2): the case keeps the bound failure code's outcome tokens and
+        // names its diagnostic; the envelope status is never a success token beside it.
+        let fq = ("G5", "RETAINED_PRECISION_FAILURE_QUALITY_MISMATCH".to_string());
+        for (base, inv) in cases() {
+            let mode = text(&inv["solver_mode"]).to_owned();
+            let mutate = |f: &dyn Fn(&mut Value)| {
+                let mut s = base.clone();
+                f(&mut s);
+                rehash(&mut s);
+                refused(&s, &inv)
+            };
+            for status in ["checks_passed", "sensitive", "not_assessed"] {
+                assert_eq!(mutate(&|s| s["numerical_quality"]["status"] = json!(status)), fq, "{mode}: envelope {status}");
+            }
+            for (field, token) in [("solve_quality", "failed"), ("model_matrix_fidelity", "assembly_loss_detected"),
+                ("model_matrix_fidelity", "represented_equations_retained"), ("accuracy_evidence", "not_claimed"),
+                ("structural_status", "physical_mechanism_witnessed")] {
+                assert_eq!(mutate(&|s| s["numerical_quality"]["cases"][0][field] = json!(token)), fq, "{mode}: {field}={token}");
+            }
+            assert_eq!(mutate(&|s| {
+                s["numerical_quality"]["cases"][0]["evidence_refs"].as_array_mut().unwrap().retain(|r| r != "diagnostic:numerical-integrity:case");
+            }), fq, "{mode}: failure diagnostic unnamed in quality");
+        }
+    }
+    #[test]
+    fn initial_failure_code_follows_the_producer_mapping() {
+        let code = |e: Value| initial_failure_code(&e);
+        assert_eq!(code(json!({"tag":"range","detail":"division overflow or underflow"})), "NUMERICAL_INTEGRITY_UNRESOLVED");
+        assert_eq!(code(json!({"tag":"numerically_unresolved","detail":"positive diagonal contribution absorbed by assembly"})), "NUMERICAL_INTEGRITY_ASSEMBLY_UNRESOLVED");
+        assert_eq!(code(json!({"tag":"numerically_unresolved","detail":"pivot"})), "NUMERICAL_INTEGRITY_UNRESOLVED");
+        assert_eq!(code(json!({"tag":"negative_energy"})), "NUMERICAL_INTEGRITY_NEGATIVE_ENERGY");
+        assert_eq!(code(json!({"tag":"mechanism"})), "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM");
+        assert_eq!(code(json!({"tag":"asymmetric"})), "NUMERICAL_INTEGRITY_FAILED");
+        assert_eq!(code(json!({"tag":"invalid_input"})), "NUMERICAL_INTEGRITY_FAILED");
+    }
 }
 
 #[cfg(test)]

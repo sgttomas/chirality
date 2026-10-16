@@ -2,10 +2,14 @@
 //! identity, through PP's public entries.
 //!
 //! Inputs are the committed invented fixtures patched inline: X0 =
-//! `fixtures/exact_pressure_connected_request.json` (0.3.0), Y0 =
-//! `fixtures/product_preview/load_reference/pressure.request.json` (0.4.0). A v3
-//! twin changes only `pressure_contract`. "Both entries" are the captured
-//! value entry and the typed entry; "both modes" are sparse-interactive and
+//! `fixtures/exact_pressure_connected_request.json` (without the
+//! load/reference-state group), Y0 =
+//! `fixtures/product_preview/pressure/load_reference/pressure.request.json`
+//! (with the group). B7b deleted the v2 contract: both are current model
+//! 0.5.0 documents, re-authored once from their v2 originals to
+//! `3.0.0/exact_pressure_v3` with `shear_model` Euler-Bernoulli and an
+//! explicit zero corrosion allowance. "Both entries" are the captured value
+//! entry and the typed entry; "both modes" are sparse-interactive and
 //! dense-scrutiny.
 
 use open_pipe_stress_product_physics::{
@@ -15,9 +19,12 @@ use open_pipe_stress_product_physics::{
 use open_pipe_stress_result_export::semantic_contract;
 use serde_json::{json, Value};
 
+#[path = "common/current_model.rs"]
+mod current_model;
+
 const X0: &str = include_str!("fixtures/exact_pressure_connected_request.json");
 const Y0: &str =
-    include_str!("../../../fixtures/product_preview/load_reference/pressure.request.json");
+    include_str!("../../../fixtures/product_preview/pressure/load_reference/pressure.request.json");
 const CORPUS: &str =
     include_str!("../../../fixtures/results/pressure_v3_straight_reader_corpus.json");
 const CORPUS_PATH: &str = "../../fixtures/results/pressure_v3_straight_reader_corpus.json";
@@ -40,17 +47,14 @@ enum Base {
 }
 
 impl Base {
-    fn v2(self) -> Value {
-        serde_json::from_str(match self {
+    /// The committed current document (0.5.0, v3, CA 0, Euler-Bernoulli).
+    fn current(self) -> Value {
+        let document: Value = serde_json::from_str(match self {
             Base::X0 => X0,
             Base::Y0 => Y0,
         })
-        .unwrap()
-    }
-    /// The v3 twin: only the contract identity changes.
-    fn v3(self) -> Value {
-        let mut document = self.v2();
-        document["model"]["pressure_contract"] = json!({"version":"3.0.0","mode":"exact_pressure_v3"});
+        .unwrap();
+        current_model::assert_current_exact_request(&document, &format!("{self:?}"));
         document
     }
     fn tip(self) -> &'static str {
@@ -107,7 +111,8 @@ fn case_mut<'a>(document: &'a mut Value, id: &str) -> &'a mut Value {
         .unwrap()
 }
 
-/// 0.4.0 cases declare every support's participation.
+/// Cases of a document with the load/reference-state group declare every
+/// support's participation.
 fn declare_support_state(document: &mut Value, support: &str) {
     for case in document["model"]["load_cases"].as_array_mut().unwrap() {
         if let Some(states) = case
@@ -249,146 +254,64 @@ fn assert_v3_identity(envelope: &Value) {
     }
 }
 
-/// The v3 raw reader admits the envelope; the v2 readers refuse it by name.
-fn assert_readers_dispatch_v3(envelope: &Value, base: Base) {
+/// The current pressure-1 raw reader admits the envelope and its header
+/// dispatches to the resident pressure table.
+fn assert_readers_dispatch_v3(envelope: &Value) {
     semantic_contract::validate_pressure_evidence(envelope).expect("pressure-1 reader");
     let (table, _) = semantic_contract::for_source(envelope).expect("pressure-1 dispatch");
-    // pressure-1 rows resolve against physics-1's resident table (T4-RV14 F1).
     assert!(std::ptr::eq(table, semantic_contract::pressure_rows_contract()));
-    let as_v2 = match base {
-        Base::X0 => semantic_contract::validate_physics_evidence(envelope).unwrap_err(),
-        Base::Y0 => semantic_contract::validate_load_reference_evidence(envelope).unwrap_err(),
-    };
-    assert!(as_v2.ends_with(semantic_contract::V3_READ_AS_V2), "{as_v2}");
+}
+
+/// The retired v2 identity the header of each base's result named before B7b.
+fn retired_identity(base: Base) -> &'static str {
+    match base {
+        Base::X0 => "openpipestress.result_semantics/0.3.0/physics-1",
+        Base::Y0 => "openpipestress.result_semantics/0.3.0/load-reference-1",
+    }
 }
 
 #[test]
 fn v3_straight_documents_publish_under_pressure_1_and_dispatch_in_the_reader() {
     for base in [Base::X0, Base::Y0] {
-        for envelope in run_all(&base.v3()) {
+        for envelope in run_all(&base.current()) {
             assert_eq!(envelope["status"]["mechanics"], "MECHANICS_SOLVED", "{base:?}");
             assert!(!has_code(&envelope, FAMILY));
             assert!(envelope.get("source_block_recovery").is_none());
             assert_v3_identity(&envelope);
-            assert_readers_dispatch_v3(&envelope, base);
+            assert_readers_dispatch_v3(&envelope);
         }
-        // A v2 result is not read as v3.
-        let v2 = &run_all(&base.v2())[0];
-        let as_v3 = semantic_contract::validate_pressure_evidence(v2).unwrap_err();
-        assert!(as_v3.ends_with(semantic_contract::V2_READ_AS_V3), "{as_v3}");
-        // A v3 envelope relabelled with a v2 identity is refused by the v2 dispatch.
-        let mut relabelled = run_all(&base.v3()).swap_remove(0);
-        relabelled["producer"]["semantic_contract_id"] = match base {
-            Base::X0 => json!(semantic_contract::PHYSICS_ID),
-            Base::Y0 => json!(semantic_contract::LOAD_REFERENCE_ID),
-        };
-        assert!(semantic_contract::for_source(&relabelled).is_err());
+        // B7b: a current envelope relabelled with its retired v2 identity is
+        // refused by name at header dispatch, never read.
+        let mut relabelled = run_all(&base.current()).swap_remove(0);
+        relabelled["producer"]["semantic_contract_id"] = json!(retired_identity(base));
+        let refusal = semantic_contract::for_source(&relabelled).unwrap_err();
+        assert!(
+            refusal.starts_with(semantic_contract::SOURCE_EXACT_PRESSURE_V2_RETIRED),
+            "{refusal}"
+        );
     }
 }
 
-/// Every published number of a v3 twin is bit-equal to its v2 original
-/// (SP-1's twin clause), apart from the closed exclusion list.
-#[test]
-fn v3_twin_numbers_are_bit_equal_to_v2() {
-    for base in [Base::X0, Base::Y0] {
-        let (v2, v3) = (run_all(&base.v2()), run_all(&base.v3()));
-        for (original, twin) in v2.iter().zip(&v3) {
-            let mut differences = Vec::new();
-            compare("", original, twin, &mut differences);
-            assert!(differences.is_empty(), "{base:?}: {differences:#?}");
-        }
-    }
-}
-
-const PHYSICS_SOURCE_N05: &str =
-    include_str!("../../../fixtures/product_preview/physics_source/n05.request.json");
-const LOAD_REFERENCE_SOURCE_N05: &str =
-    include_str!("../../../fixtures/product_preview/load_reference_source/n05.request.json");
-
-/// T4-RV13 S-1 with HELP_HUMAN's ruling 3 (SP-1's twin clause covers
-/// ordinary-route publications): a v3 twin of a document whose v2 run selects
-/// retained-source recovery solves on the ordinary route with no source-block
-/// recovery. Its captured envelope equals v2's typed (ordinary-route) envelope
-/// apart from the closed exclusion list and exactly one added diagnostic per
-/// case that v2 routed to recovery, `EXACT_PRESSURE_V3_RETAINED_SOURCE_NOT_JOINED`
-/// (info, refs naming the case); the v3 typed envelope equals v2 typed exactly.
-#[test]
-fn v3_twins_of_retained_source_documents_publish_the_ordinary_route() {
-    for (name, text, v2_source) in [
-        ("physics_source/n05", PHYSICS_SOURCE_N05, semantic_contract::PHYSICS_SOURCE_ID),
-        ("load_reference_source/n05", LOAD_REFERENCE_SOURCE_N05, semantic_contract::LOAD_REFERENCE_SOURCE_ID),
-    ] {
-        let v2: Value = serde_json::from_str(text).unwrap();
-        assert_eq!(v2["model"]["pressure_contract"]["mode"], "exact_straight_pressure_v2", "{name}");
-        let mut v3 = v2.clone();
-        v3["model"]["pressure_contract"] = json!({"version":"3.0.0","mode":"exact_pressure_v3"});
-        for mode in MODES {
-            let captured = |document: &Value| {
-                serde_json::to_value(
-                    run_linear_static_preview_value_with_mode(document.clone(), mode).unwrap(),
-                )
-                .unwrap()
-            };
-            let typed = |document: &Value| {
-                serde_json::to_value(run_linear_static_preview_with_mode(
-                    serde_json::from_value(document.clone()).unwrap(),
-                    mode,
-                ))
-                .unwrap()
-            };
-            // v2 selects retained-source recovery: the fixture exercises the gap.
-            let v2_captured = captured(&v2);
-            assert_eq!(v2_captured["producer"]["semantic_contract_id"], v2_source, "{name} {mode:?}");
-            assert!(v2_captured.get("source_block_recovery").is_some(), "{name} {mode:?}");
-            let (v2_typed, v3_captured, v3_typed) = (typed(&v2), captured(&v3), typed(&v3));
-            assert_eq!(v3_captured["status"]["mechanics"], "MECHANICS_SOLVED", "{name} {mode:?}");
-            assert!(v3_captured.get("source_block_recovery").is_none(), "{name} {mode:?}");
-            assert_eq!(v3_captured["producer"]["semantic_contract_id"], PRESSURE_ID, "{name} {mode:?}");
-            assert_eq!(v3_captured["formulation_basis"]["profile_id"], "exact_pressure_v3", "{name} {mode:?}");
-            semantic_contract::validate_pressure_evidence(&v3_captured)
-                .unwrap_or_else(|e| panic!("{name} {mode:?}: {e}"));
-            assert_eq!(
-                not_joined_cases(&v3_captured),
-                v2_recovery_cases(&v2_captured),
-                "{name} {mode:?}"
-            );
-            assert!(not_joined_cases(&v3_typed).is_empty(), "{name} {mode:?}");
-            for twin in [&without_not_joined(&v3_captured), &v3_typed] {
-                let mut differences = Vec::new();
-                compare("", &v2_typed, twin, &mut differences);
-                assert!(differences.is_empty(), "{name} {mode:?}: {differences:#?}");
-            }
-        }
-    }
-}
-
-const PHYSICS_SOURCE_N06: &str =
-    include_str!("../../../fixtures/product_preview/physics_source/n06.request.json");
-const LOAD_REFERENCE_SOURCE_N06: &str =
-    include_str!("../../../fixtures/product_preview/load_reference_source/n06.request.json");
+/// The source controls of both families (without and with the group).
+const PHYSICS_SOURCE_N05: &str = include_str!(
+    "../../../fixtures/product_preview/pressure_source/physics_source/n05.request.json"
+);
+const LOAD_REFERENCE_SOURCE_N05: &str = include_str!(
+    "../../../fixtures/product_preview/pressure_source/load_reference_source/n05.request.json"
+);
+const PHYSICS_SOURCE_N06: &str = include_str!(
+    "../../../fixtures/product_preview/pressure_source/physics_source/n06.request.json"
+);
+const LOAD_REFERENCE_SOURCE_N06: &str = include_str!(
+    "../../../fixtures/product_preview/pressure_source/load_reference_source/n06.request.json"
+);
+/// The retired ruling-3 diagnostic (T4-I31). The join deleted its producer; no
+/// envelope may carry it.
 const NOT_JOINED: &str = "EXACT_PRESSURE_V3_RETAINED_SOURCE_NOT_JOINED";
-const NOT_JOINED_TEXT: &str = "retained-source recovery is not joined for 3.0.0/exact_pressure_v3: this case's ordinary attempt needed recovery, which 2.0.0/exact_straight_pressure_v2 would attempt on this entry, and only the ordinary structural route is published";
 
-/// The cases named by the ruling-3 diagnostic, each checked for its shape.
-fn not_joined_cases(envelope: &Value) -> Vec<String> {
-    envelope["diagnostics"]
-        .as_array()
-        .unwrap()
-        .iter()
-        .filter(|d| d["code"] == NOT_JOINED)
-        .map(|d| {
-            assert_eq!(d["severity"], "info", "{d}");
-            assert_eq!(d["message"], NOT_JOINED_TEXT, "{d}");
-            let refs = d["affected_refs"].as_array().unwrap();
-            assert_eq!(refs.len(), 1, "{d}");
-            refs[0].as_str().unwrap().to_string()
-        })
-        .collect()
-}
-
-/// The cases v2's captured run routed to retained-source recovery: those it
+/// The cases a captured run routed to retained-source recovery: those it
 /// selected (in the receipt) or attempted without a selection.
-fn v2_recovery_cases(envelope: &Value) -> Vec<String> {
+fn recovery_cases(envelope: &Value) -> Vec<String> {
     let mut cases: Vec<String> = envelope["diagnostics"]
         .as_array()
         .unwrap()
@@ -400,113 +323,94 @@ fn v2_recovery_cases(envelope: &Value) -> Vec<String> {
         .map(|d| d["affected_refs"][0].as_str().unwrap().to_string())
         .collect();
     cases.dedup();
-    assert!(!cases.is_empty(), "the fixture must exercise v2's recovery");
+    assert!(!cases.is_empty(), "the fixture must exercise retained-source recovery");
     cases
 }
 
-fn without_not_joined(envelope: &Value) -> Value {
-    let mut stripped = envelope.clone();
-    stripped["diagnostics"]
-        .as_array_mut()
+fn selected_cases(envelope: &Value) -> Vec<String> {
+    envelope["diagnostics"]
+        .as_array()
         .unwrap()
-        .retain(|d| d["code"] != NOT_JOINED);
-    stripped
+        .iter()
+        .filter(|d| d["code"] == "SOURCE_BLOCK_RECOVERY_SELECTED")
+        .map(|d| d["affected_refs"][0].as_str().unwrap().to_string())
+        .collect()
 }
 
-/// HELP_HUMAN's ruling 3 (c), on the documents v2 rescues: n06 (0.3.0 and
-/// 0.4.0) solves under v2 only through retained-source recovery; its v3 twin is
-/// left `MODEL_INCOMPLETE` and still names the missing join, in both modes, on
-/// the captured entry. The typed entry attempts no retained-source recovery
-/// under either contract and carries no such diagnostic. Making
-/// `joins_retained_source` always true (T4-RV13's mutant M1) removes the
-/// diagnostic and fails this test.
+/// A current source control whose captured run attempts retained-source
+/// recovery, in one mode. The captured run publishes `pressure-source-1` with
+/// a valid receipt, at least one selected case and no missing-join
+/// diagnostic. The typed entry attempts no recovery. Returns the captured
+/// envelope. (Before B7b this compared each v3 twin with its v2 original.)
+fn assert_joined(name: &str, document: &Value, mode: PreviewSolverMode) -> Value {
+    use open_pipe_stress_result_export::physics_source as ps;
+    let label = format!("{name} {mode:?}");
+    current_model::assert_current_exact_request(document, &label);
+    let captured = serde_json::to_value(
+        run_linear_static_preview_value_with_mode(document.clone(), mode).unwrap(),
+    )
+    .unwrap();
+    let typed = serde_json::to_value(run_linear_static_preview_with_mode(
+        serde_json::from_value(document.clone()).unwrap(),
+        mode,
+    ))
+    .unwrap();
+    assert_eq!(captured["producer"]["semantic_contract_id"], ps::PRESSURE_CONTRACT_ID, "{label}");
+    assert_eq!(captured["formulation_basis"]["profile_id"], "exact_pressure_v3", "{label}");
+    assert_eq!(captured["source_block_recovery"]["body"]["policy"], "PRESSURE-SOURCE-1", "{label}");
+    assert_eq!(captured["source_block_recovery"]["body"]["status"], "qualified", "{label}");
+    assert!(!has_code(&captured, NOT_JOINED), "{label}");
+    assert!(!recovery_cases(&captured).is_empty(), "{label}");
+    assert!(!selected_cases(&captured).is_empty(), "{label}");
+    let invocation = json!({"request":document,"solver_mode":mode.as_str()});
+    let eligible = captured["contract_evidence"].get("load_reference_states").is_none();
+    assert_eq!(ps::validate_in(&captured, Some(&invocation), ps::SourceContract::PressureV3), Ok(eligible), "{label}");
+    assert_eq!(ps::validate_transport_metadata_in(&captured, ps::SourceContract::PressureV3), Ok(()), "{label}");
+    assert!(!has_code(&typed, NOT_JOINED), "{label}");
+    assert!(typed.get("source_block_recovery").is_none(), "{label}");
+    assert_ne!(typed["producer"]["semantic_contract_id"], ps::PRESSURE_CONTRACT_ID, "{label}");
+    captured
+}
+
+/// The join's flip of T4-RV13 S-1 (HELP_HUMAN's ruling 3, which lapsed by its
+/// own condition when the join landed; b7-plan D5): a current document whose
+/// captured run selects retained-source recovery publishes `pressure-source-1`
+/// with a valid receipt and no missing-join diagnostic.
 #[test]
-fn v3_twins_that_v2_rescues_name_the_missing_retained_source_join() {
+fn v3_twins_of_retained_source_documents_publish_pressure_source_1() {
+    for (name, text) in [
+        ("physics_source/n05", PHYSICS_SOURCE_N05),
+        ("load_reference_source/n05", LOAD_REFERENCE_SOURCE_N05),
+    ] {
+        let document: Value = serde_json::from_str(text).unwrap();
+        for mode in MODES {
+            let captured = assert_joined(name, &document, mode);
+            assert_eq!(captured["status"]["mechanics"], "MECHANICS_SOLVED", "{name} {mode:?}");
+        }
+    }
+}
+
+/// The join's flip of ruling 3 (c): n06 (without and with the group) solves
+/// only through retained-source recovery. It is rescued in both modes on the
+/// captured entry: solved and published as `pressure-source-1`. The typed entry
+/// attempts no retained-source recovery.
+#[test]
+fn v3_twins_that_v2_rescues_are_rescued_under_pressure_source_1() {
     for (name, text) in [
         ("physics_source/n06", PHYSICS_SOURCE_N06),
         ("load_reference_source/n06", LOAD_REFERENCE_SOURCE_N06),
     ] {
-        let v2: Value = serde_json::from_str(text).unwrap();
-        assert_eq!(v2["model"]["pressure_contract"]["mode"], "exact_straight_pressure_v2", "{name}");
-        let mut v3 = v2.clone();
-        v3["model"]["pressure_contract"] = json!({"version":"3.0.0","mode":"exact_pressure_v3"});
+        let document: Value = serde_json::from_str(text).unwrap();
         for mode in MODES {
-            let captured = |document: &Value| {
-                serde_json::to_value(
-                    run_linear_static_preview_value_with_mode(document.clone(), mode).unwrap(),
-                )
-                .unwrap()
-            };
-            let typed = |document: &Value| {
-                serde_json::to_value(run_linear_static_preview_with_mode(
-                    serde_json::from_value(document.clone()).unwrap(),
-                    mode,
-                ))
-                .unwrap()
-            };
-            // v2 rescues: it solves only through the selected source response.
-            let v2_captured = captured(&v2);
-            assert_eq!(v2_captured["status"]["mechanics"], "MECHANICS_SOLVED", "{name} {mode:?}");
-            assert!(v2_captured.get("source_block_recovery").is_some(), "{name} {mode:?}");
-            assert!(has_code(&v2_captured, "SOURCE_BLOCK_RECOVERY_SELECTED"), "{name} {mode:?}");
-            assert!(not_joined_cases(&v2_captured).is_empty(), "{name} {mode:?}");
-            // v3 does not: MODEL_INCOMPLETE, and the missing join is named.
-            let v3_captured = captured(&v3);
-            assert_eq!(v3_captured["status"]["mechanics"], "MODEL_INCOMPLETE", "{name} {mode:?}");
-            assert!(has_code(&v3_captured, "NUMERICAL_INTEGRITY_ASSEMBLY_UNRESOLVED"), "{name} {mode:?}");
-            assert!(v3_captured.get("source_block_recovery").is_none(), "{name} {mode:?}");
-            assert_eq!(not_joined_cases(&v3_captured), v2_recovery_cases(&v2_captured), "{name} {mode:?}");
-            for document in [&v2, &v3] {
-                assert!(not_joined_cases(&typed(document)).is_empty(), "{name} {mode:?}");
-            }
+            let captured = assert_joined(name, &document, mode);
+            assert_eq!(captured["status"]["mechanics"], "MECHANICS_SOLVED", "{name} {mode:?}");
+            assert!(has_code(&captured, "SOURCE_BLOCK_RECOVERY_SELECTED"), "{name} {mode:?}");
         }
     }
 }
 
-/// The closed exclusion list (T4-I8 /sp1_pair_scope E1-E4): the identity and
-/// semantics strings, the approximation text and the evidence strings naming
-/// the contract. No numeric leaf is excluded.
-fn excluded(path: &str) -> bool {
-    path == "/producer/semantic_contract_id"
-        || path == "/formulation_basis/profile_id"
-        || path.starts_with("/formulation_basis/limitations")
-        || (path.starts_with("/contract_evidence/exact_cases/") && path.ends_with("/profile_mode"))
-        || (path.starts_with("/contract_evidence/pressure/")
-            && (path.ends_with("/profile_mode") || path.ends_with("/profile_version")))
-}
-
-fn compare(path: &str, a: &Value, b: &Value, differences: &mut Vec<String>) {
-    match (a, b) {
-        (Value::Object(x), Value::Object(y)) => {
-            for key in x.keys().chain(y.keys().filter(|k| !x.contains_key(*k))) {
-                let child = format!("{path}/{key}");
-                match (x.get(key), y.get(key)) {
-                    (Some(p), Some(q)) => compare(&child, p, q, differences),
-                    _ if excluded(&child) => {}
-                    _ => differences.push(format!("{child}: key present on one side")),
-                }
-            }
-        }
-        (Value::Array(x), Value::Array(y)) if x.len() == y.len() || excluded(path) => {
-            if !excluded(path) {
-                for (index, (p, q)) in x.iter().zip(y).enumerate() {
-                    compare(&format!("{path}/{index}"), p, q, differences);
-                }
-            }
-        }
-        (Value::Number(x), Value::Number(y)) => {
-            let (p, q) = (x.as_f64().unwrap(), y.as_f64().unwrap());
-            if p.to_bits() != q.to_bits() || x.to_string() != y.to_string() {
-                differences.push(format!("{path}: {x} vs {y}"));
-            }
-        }
-        _ if a == b || excluded(path) => {}
-        _ => differences.push(format!("{path}: {a} vs {b}")),
-    }
-}
-
-/// Every family not yet admitted is refused by name on v3, on 0.3.0 and 0.4.0,
-/// in both entries and both modes; v2 keeps its codes (T4-U0's tests).
+/// Every family not yet admitted is refused by name on v3, without and with
+/// the group, in both entries and both modes.
 #[test]
 fn each_family_not_yet_admitted_is_refused_by_name_on_v3() {
     for base in [Base::X0, Base::Y0] {
@@ -526,24 +430,24 @@ fn each_family_not_yet_admitted_is_refused_by_name_on_v3() {
             .into_iter()
             .map(|(component, name)| {
                 let id = component["id"].as_str().unwrap().to_string();
-                let mut document = base.v3();
+                let mut document = base.current();
                 push(&mut document, "components", component);
                 (document, vec![id], name)
             })
             .collect::<Vec<_>>();
         for (support, name) in [(gap(base), "nonlinear support"), (constant_effort(base), "constant-effort support")] {
             let id = support["id"].as_str().unwrap().to_string();
-            let mut document = base.v3();
+            let mut document = base.current();
             push(&mut document, "supports", support);
             declare_support_state(&mut document, &id);
             cases.push((document, vec![id], name));
         }
         let [first, second] = base.cases();
-        let mut combination = base.v3();
+        let mut combination = base.current();
         combination["model"]["combinations"] = json!([{"id":"combination:sum","basis":"mechanics",
             "terms":[{"load_case":first,"factor":1.0},{"load_case":second,"factor":1.0}],"provenance":PROVENANCE}]);
         cases.push((combination, vec!["combination:sum".into()], "load combination"));
-        let mut equivalent = base.v3();
+        let mut equivalent = base.current();
         case_mut(&mut equivalent, second)["equivalent_static"] = json!({"provenance":PROVENANCE});
         cases.push((equivalent, vec![second.into(), "equivalent_static".into()], "equivalent-static generation"));
         for (document, refs, name) in cases {
@@ -565,38 +469,30 @@ fn each_family_not_yet_admitted_is_refused_by_name_on_v3() {
 }
 
 /// T4-U3 (D-4): a legacy joint takes `LEGACY_FINITE_CONNECTOR_REAUTHOR_REQUIRED`
-/// (refs [component, pipe]) on v2 and v3 alike, first and alone: the seam skips
-/// it, so neither the v2 composition code nor the v3 family code names it. An
-/// explicit annotation is exempt from the legacy code even when it carries a
-/// pipe reference: v2 gives the composition refusal, v3 the seam's.
+/// (refs [component, pipe]) first and alone: the seam skips it, so the v3
+/// family code never names it. An explicit annotation is exempt from the
+/// legacy code even when it carries a pipe reference and takes the seam's
+/// refusal. (B7b deleted the v2 composition side of this test with v2.)
 #[test]
 fn legacy_joints_take_the_legacy_code_and_annotations_the_route_refusal() {
     const LEGACY: &str = "LEGACY_FINITE_CONNECTOR_REAUTHOR_REQUIRED";
     for base in [Base::X0, Base::Y0] {
-        for document in [base.v2(), base.v3()] {
-            let mut document = document;
-            push(&mut document, "components", legacy_joint(base));
-            for envelope in run_all(&document) {
-                assert_eq!(envelope["status"]["mechanics"], "MODEL_INCOMPLETE");
-                let blocking = diagnostics(&envelope)
-                    .iter()
-                    .filter(|d| d["severity"] == "blocking")
-                    .collect::<Vec<_>>();
-                assert_eq!(blocking.len(), 1, "{blocking:#?}");
-                assert_eq!(blocking[0]["code"], LEGACY);
-                assert_eq!(blocking[0]["affected_refs"], json!(["component:joint-legacy", base.region_pipe()]));
-            }
+        let mut document = base.current();
+        push(&mut document, "components", legacy_joint(base));
+        for envelope in run_all(&document) {
+            assert_eq!(envelope["status"]["mechanics"], "MODEL_INCOMPLETE");
+            let blocking = diagnostics(&envelope)
+                .iter()
+                .filter(|d| d["severity"] == "blocking")
+                .collect::<Vec<_>>();
+            assert_eq!(blocking.len(), 1, "{blocking:#?}");
+            assert_eq!(blocking[0]["code"], LEGACY);
+            assert_eq!(blocking[0]["affected_refs"], json!(["component:joint-legacy", base.region_pipe()]));
         }
         let mut annotation_with_pipe = annotation_joint(base);
         annotation_with_pipe["geometry"] = json!({"expansion_joint_pipe_ref": base.region_pipe()});
         for annotation in [annotation_joint(base), annotation_with_pipe] {
-            let mut v2 = base.v2();
-            push(&mut v2, "components", annotation.clone());
-            for envelope in run_all(&v2) {
-                assert!(has_code(&envelope, COMPOSITION));
-                assert!(!has_code(&envelope, LEGACY) && !has_code(&envelope, "EXPANSION_JOINT_ANNOTATION_ONLY"));
-            }
-            let mut v3 = base.v3();
+            let mut v3 = base.current();
             push(&mut v3, "components", annotation);
             for envelope in run_all(&v3) {
                 assert_v3_blocked(&envelope, base);
@@ -611,7 +507,7 @@ fn legacy_joints_take_the_legacy_code_and_annotations_the_route_refusal() {
 /// T4-U3: on v3 the objective connector is admitted at the seam and goes to
 /// its own classifier: an incomplete record, or one with a contradictory
 /// `solver_consumption` (N-6), is `OBJECTIVE_CONNECTOR_INPUT_INCOMPLETE`,
-/// never the seam's family refusal. v2 keeps its connector codes.
+/// never the seam's family refusal.
 #[test]
 fn v3_connectors_reach_their_classifier_not_the_family_refusal() {
     const INCOMPLETE: &str = "OBJECTIVE_CONNECTOR_INPUT_INCOMPLETE";
@@ -619,7 +515,7 @@ fn v3_connectors_reach_their_classifier_not_the_family_refusal() {
         let mut annotated = connector(base);
         annotated["mechanics_interface"] = json!({"solver_consumption": "not_solver_consumed"});
         for component in [connector(base), annotated] {
-            let mut v3 = base.v3();
+            let mut v3 = base.current();
             push(&mut v3, "components", component);
             for envelope in run_all(&v3) {
                 assert_v3_blocked(&envelope, base);
@@ -631,12 +527,6 @@ fn v3_connectors_reach_their_classifier_not_the_family_refusal() {
                 assert_eq!(found.len(), 1, "{:#?}", envelope["diagnostics"]);
                 assert_eq!(found[0]["affected_refs"], json!(["component:connector", "objective_connector"]));
             }
-        }
-        let mut v2 = base.v2();
-        push(&mut v2, "components", connector(base));
-        for envelope in run_all(&v2) {
-            assert!(has_code(&envelope, "OBJECTIVE_CONNECTOR_NOT_IMPLEMENTED") && has_code(&envelope, COMPOSITION));
-            assert!(!has_code(&envelope, INCOMPLETE));
         }
     }
 }
@@ -650,7 +540,7 @@ fn v3_connectors_reach_their_classifier_not_the_family_refusal() {
 #[test]
 fn a3_realized_bend_in_a_v3_exact_region_is_admitted_and_recovered_on_the_arc() {
     for base in [Base::X0, Base::Y0] {
-        let mut document = base.v3();
+        let mut document = base.current();
         let region = &case_mut(&mut document, base.pressurized_case())["pressure_regions"][0];
         assert!(region["member_pipe_ids"].as_array().unwrap().contains(&json!(base.region_pipe())));
         push(&mut document, "components", bend(base, true));
@@ -690,66 +580,60 @@ fn a3_realized_bend_in_a_v3_exact_region_is_admitted_and_recovered_on_the_arc() 
     }
 }
 
+/// Unknown contract identities are refused as unsupported, and the retired v2
+/// contract (B7b) by name with the re-author code, on a current document
+/// without and with the group; nothing falls back to another identity.
 #[test]
 fn unknown_contract_identities_are_refused_on_both_document_versions() {
     for base in [Base::X0, Base::Y0] {
-        for contract in [
-            json!({"version":"3.0.0","mode":"exact_straight_pressure_v2"}),
-            json!({"version":"2.0.0","mode":"exact_pressure_v3"}),
-            json!({"version":"3.0.0","mode":"exact_pressure_v4"}),
-            json!({"version":"3.0.0"}),
+        for (contract, code) in [
+            (json!({"version":"2.0.0","mode":"exact_straight_pressure_v2"}), "PRESSURE_MODEL_REAUTHOR_REQUIRED"),
+            (json!({"version":"2.0.0","mode":"exact_straight_pressure_v2","shear_model":"euler_bernoulli"}), "PRESSURE_MODEL_REAUTHOR_REQUIRED"),
+            (json!({"version":"3.0.0","mode":"exact_straight_pressure_v2"}), "PRESSURE_CONTRACT_UNSUPPORTED"),
+            (json!({"version":"2.0.0","mode":"exact_pressure_v3"}), "PRESSURE_CONTRACT_UNSUPPORTED"),
+            (json!({"version":"3.0.0","mode":"exact_pressure_v4"}), "PRESSURE_CONTRACT_UNSUPPORTED"),
+            (json!({"version":"3.0.0"}), "PRESSURE_CONTRACT_UNSUPPORTED"),
         ] {
-            let mut document = base.v2();
+            let mut document = base.current();
             document["model"]["pressure_contract"] = contract.clone();
             for envelope in run_all(&document) {
                 assert_eq!(envelope["status"]["mechanics"], "MODEL_INCOMPLETE", "{contract}");
-                assert!(has_code(&envelope, "PRESSURE_CONTRACT_UNSUPPORTED"), "{contract}");
+                assert!(has_code(&envelope, code), "{contract}: {code}");
+                let other = if code == "PRESSURE_CONTRACT_UNSUPPORTED" { "PRESSURE_MODEL_REAUTHOR_REQUIRED" } else { "PRESSURE_CONTRACT_UNSUPPORTED" };
+                assert!(!has_code(&envelope, other), "{contract}: not {other}");
                 assert_ne!(envelope["producer"]["semantic_contract_id"], PRESSURE_ID);
             }
         }
     }
 }
 
-/// p < 0 is admitted on v3 (and accepted by its reader) and refused by name on v2.
+/// p < 0 is admitted on v3 and accepted by its reader. (B7b deleted v2's
+/// named refusal of it.)
 #[test]
-fn negative_pressure_is_admitted_on_v3_and_refused_on_v2() {
+fn negative_pressure_is_admitted_on_v3() {
     for base in [Base::X0, Base::Y0] {
-        let mut v3 = base.v3();
-        let mut v2 = base.v2();
-        for document in [&mut v3, &mut v2] {
-            case_mut(document, base.pressurized_case())["pressure_regions"][0]["pressure"] =
-                base.negative_pressure();
-        }
+        let mut v3 = base.current();
+        case_mut(&mut v3, base.pressurized_case())["pressure_regions"][0]["pressure"] =
+            base.negative_pressure();
         for envelope in run_all(&v3) {
             assert_eq!(envelope["status"]["mechanics"], "MECHANICS_SOLVED", "{base:?}");
             assert!(!has_code(&envelope, NEGATIVE));
             let regions = envelope["contract_evidence"]["pressure"].as_array().unwrap();
             assert!(regions.iter().any(|r| r["p_pa"].as_f64().unwrap() < 0.0));
             assert_v3_identity(&envelope);
-            assert_readers_dispatch_v3(&envelope, base);
+            assert_readers_dispatch_v3(&envelope);
         }
-        for envelope in run_all(&v2) {
-            assert_eq!(envelope["status"]["mechanics"], "MODEL_INCOMPLETE");
-            finding(&envelope, NEGATIVE, &[base.pressurized_case(), region_id(base), "pressure"]);
-        }
-    }
-}
-
-fn region_id(base: Base) -> &'static str {
-    match base {
-        Base::X0 => "region:fixture-pressure",
-        Base::Y0 => "region:closed",
     }
 }
 
 /// The shared reader corpus (RE, Python): X0 under v3 with p < 0
-/// and Y0's v3 twin, both modes, captured entry. Regenerate with
+/// and Y0, both modes, captured entry. Regenerate with
 /// `T4_U2A_WRITE_CORPUS=1`; otherwise the committed bytes must be current.
 #[test]
 fn shared_pressure_v3_reader_corpus_is_current() {
     let mut cases = Vec::new();
     for base in [Base::X0, Base::Y0] {
-        let mut document = base.v3();
+        let mut document = base.current();
         if matches!(base, Base::X0) {
             case_mut(&mut document, base.pressurized_case())["pressure_regions"][0]["pressure"] =
                 base.negative_pressure();
@@ -761,15 +645,15 @@ fn shared_pressure_v3_reader_corpus_is_current() {
             .unwrap();
             assert_eq!(envelope["status"]["mechanics"], "MECHANICS_SOLVED");
             semantic_contract::validate_pressure_evidence(&envelope).unwrap();
-            cases.push(json!({"label":format!("{} v3 {name}", match base { Base::X0 => "X0 p<0", Base::Y0 => "Y0 twin" }),
+            cases.push(json!({"label":format!("{} v3 {name}", match base { Base::X0 => "X0 p<0", Base::Y0 => "Y0" }),
                 "document_schema_version":document["model"]["schema_version"],"solver_mode":name,"envelope":envelope}));
         }
     }
     let corpus = json!({
         "corpus":"T4-U2a pressure-1 straight reader corpus",
         "generator":"core/product_physics/tests/exact_admission_seam.rs::shared_pressure_v3_reader_corpus_is_current",
-        "inputs":["core/product_physics/tests/fixtures/exact_pressure_connected_request.json (X0, pressure_contract 3.0.0/exact_pressure_v3, case:closed-pressure p = -2000 kPa)",
-            "fixtures/product_preview/load_reference/pressure.request.json (Y0, pressure_contract 3.0.0/exact_pressure_v3)"],
+        "inputs":["core/product_physics/tests/fixtures/exact_pressure_connected_request.json (X0, model 0.5.0, pressure_contract 3.0.0/exact_pressure_v3, case:closed-pressure p = -2000 kPa)",
+            "fixtures/product_preview/pressure/load_reference/pressure.request.json (Y0, model 0.5.0 with the load/reference-state group, pressure_contract 3.0.0/exact_pressure_v3)"],
         "cases":cases,
     });
     let bytes = serde_json::to_string_pretty(&corpus).unwrap() + "\n";
@@ -780,13 +664,15 @@ fn shared_pressure_v3_reader_corpus_is_current() {
     assert!(CORPUS == bytes, "the shared pressure-1 reader corpus is stale; regenerate it");
 }
 
-/// The ordinary pressure-1 semantic table stays outside the reviewed inputs
-/// (RV130), so no registered profile or build identity depends on that table.
-/// The pressure-1 result schema is a separate reviewed input of batch 5.
+/// B7b (O-10, HELP_HUMAN's technical ruling of 2026-10-13; b7-plan "D2"): the
+/// ordinary pressure-1 table is a resident reviewed input, beside the
+/// pressure-source table and the pressure result schema; the deleted physics-1
+/// table is not. Before B7b this test asserted the opposite (RV130).
 #[test]
-fn the_pressure_1_table_is_not_a_reviewed_input() {
+fn the_pressure_1_table_is_a_reviewed_input() {
     let identity = include_str!("../src/build_identity.rs");
-    assert!(identity.contains("\"../../fixtures/results/semantic_contract_v0_3_physics_1.json\""));
+    assert!(!identity.contains("\"../../fixtures/results/semantic_contract_v0_3_physics_1.json\""));
     assert!(identity.contains("\"../../schemas/results_pressure_1.v0.3.schema.json\""));
-    assert!(!identity.contains("\"../../fixtures/results/semantic_contract_v0_3_pressure_1.json\""));
+    assert!(identity.contains("\"../../fixtures/results/semantic_contract_v0_3_pressure_1.json\""));
+    assert!(identity.contains("\"../../fixtures/results/semantic_contract_v0_3_pressure_source_1.json\""));
 }

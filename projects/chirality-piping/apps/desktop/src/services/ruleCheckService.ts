@@ -1,7 +1,7 @@
 import { isRetainedRoute } from "../features/results/numericalResultQuality";
 import { sourceContract } from "../features/results/resultReader";
-import { numericalResultStanding, retainedSourceRecoveryInvocation } from "../features/results/resultStanding";
-import { isFreshSemanticResult, isRetiredResultId, ruleBindingRefusal, standingReason, retainedRowClassLabel, N_P1, N_RP_UNVALIDATED, N_RULE_RETIRED, N_SB, PRECISION_1_HISTORICAL_SEMANTICS, RULE_BINDS_RETIRED_RESULT, RULE_QUANTITY_BELOW_VERIFIED_FLOOR, RULE_QUANTITY_NOT_COVERED } from "../features/results/knownSemanticLimitations";
+import { numericalResultStanding } from "../features/results/resultStanding";
+import { isFreshSemanticResult, ruleBindingRefusal, retainedRowClassLabel, N_RP_UNVALIDATED } from "../features/results/knownSemanticLimitations";
 import { retainedPrecisionInvocation } from "../features/results/retainedPrecisionStanding";
 import { invokeWithIngress } from "./nativeIngress";
 import type { MechanicsResult, PreviewModel } from "../types";
@@ -134,9 +134,10 @@ async function checkSolvedSource(
   model: PreviewModel
 ): Promise<RuleCheckRunRoute> {
   if (!hasNativeMechanicsInvocation(source, model)) throw new Error("RULE_NATIVE_INVOCATION_REQUIRED: reference or saved data is not a fresh supported solve.");
-  // T0R: only the static fresh-identity set is rule-eligible; precision-1 is historical.
-  if (!isFreshSemanticResult(source)) throw new Error(standingReason(source) === PRECISION_1_HISTORICAL_SEMANTICS ? `${PRECISION_1_HISTORICAL_SEMANTICS}: ${N_P1}` : "RULE_SOURCE_IDENTITY_NOT_FRESH: the result is not a fresh supported publication.");
-  if (["source_blocks", "physics_source"].includes(sourceContract(source)) && !numericalResultStanding(source, model).eligible) throw new Error("SOURCE_BLOCKS_RULE_INPUT_UNQUALIFIED");
+  // T0R: only the static fresh-identity set is rule-eligible.
+  // B7b: the retired physics-source-1 branch went with v2; pressure-source-1 is not in
+  // the desktop's fresh set (every desktop output of it is refused).
+  if (!isFreshSemanticResult(source)) throw new Error("RULE_SOURCE_IDENTITY_NOT_FRESH: the result is not a fresh supported publication.");
   // U6d: a preview successor requires eligible standing, as the receipt routes do;
   // standing comes only from its registered reader validation (never numerical_quality).
   if (isRetainedRoute(sourceContract(source))) {
@@ -144,7 +145,6 @@ async function checkSolvedSource(
     if (!standing.eligible) throw new Error(`${standing.findings[0]}: the retained-precision result is not numerically eligible for rule checks.`);
   }
   const invokeArgs: Record<string, unknown> = { rulePackDocument: args.rulePackDocument, solvedEnvelope: source };
-  if (sourceContract(source) === "source_blocks" || sourceContract(source) === "physics_source") invokeArgs.sourceBlockInvocation = retainedSourceRecoveryInvocation(source, model);
   if (isRetainedRoute(sourceContract(source))) invokeArgs.sourceBlockInvocation = retainedPrecisionInvocation(source, model);
   if (model) invokeArgs.model = model;
   if (args.solverResultBindings && args.solverResultBindings.length > 0) {
@@ -338,20 +338,19 @@ export function ruleBindingPrecheck(
     ...plan.solverInputs.flatMap((input) => input.solver_result_ref ? [{ input_id: input.input_id, result_id: input.solver_result_ref.result_id }] : []),
     ...solverResultBindings.filter((b) => !plan.solverInputs.some((input) => input.input_id === b.input_id && input.solver_result_ref))
   ];
-  let route: ReturnType<typeof sourceContract>;
-  try { route = sourceContract(source); } catch { return []; }
+  // An unreadable source has no bindable rows (B3: a binding to a retired id is a
+  // missing result, refused as any other).
+  try { sourceContract(source); } catch { return []; }
   const findings: RuleBindingPrecheckFinding[] = [];
   for (const binding of bindings) {
     if (!binding.result_id) continue;
     const row = source.results.find((candidate) => candidate.id === binding.result_id);
     if (row) {
       const reason = ruleBindingRefusal(source, row);
-      // U6d: a successor refusal shows its class notice (D2 4.9.9), never N-SB.
-      // Without a validated class (unregistered or refused) the row has no class label.
-      const notice = reason === RULE_QUANTITY_BELOW_VERIFIED_FLOOR || reason === RULE_QUANTITY_NOT_COVERED ? retainedRowClassLabel(row, source) ?? N_RP_UNVALIDATED : N_SB;
+      // U6d: a successor refusal (the only kind since B4/D1 (b)) shows its class notice
+      // (D2 4.9.9). Without a validated class (unregistered or refused) the row has no class label.
+      const notice = retainedRowClassLabel(row, source) ?? N_RP_UNVALIDATED;
       if (reason) findings.push({ ...binding, reason, notice });
-    } else if (route === "preview_physics" && isRetiredResultId(binding.result_id)) {
-      findings.push({ ...binding, reason: RULE_BINDS_RETIRED_RESULT, notice: N_RULE_RETIRED });
     }
   }
   return findings;

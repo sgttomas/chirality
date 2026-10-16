@@ -14,12 +14,6 @@ mod endpoint_maximum;
 mod rows;
 mod source;
 pub(super) use composite::{composite_member_maximum, composite_support_norms};
-pub(super) const COMPOSITE_SEMANTIC_ID: &str =
-    "openpipestress.result_semantics/0.3.0/physics-source-1";
-
-pub(super) const SEMANTIC_ID: &str = "openpipestress.result_semantics/0.3.0/source-blocks-1";
-pub(super) const LOAD_REFERENCE_SOURCE_SEMANTIC_ID: &str =
-    case_state::LOAD_REFERENCE_SOURCE_SEMANTIC_CONTRACT_ID;
 const CRITERION: f64 = 1e-9;
 const MAX_ITEMS: usize = 16_384;
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -41,21 +35,11 @@ fn bits(value: f64) -> String {
 fn same(a: f64, b: f64) -> bool {
     a.to_bits() == b.to_bits()
 }
-/// Fixed arithmetic for the registered scaled norm recipes. The finalizer
-/// separately refuses nonfinite inputs and nonzero subnormal outputs.
-pub(super) fn scaled_norm(values: [f64; 3]) -> f64 {
-    let m = values.iter().map(|v| v.abs()).fold(0.0_f64, f64::max);
-    if m == 0.0 {
-        return 0.0;
-    }
-    let [a, b, c] = values.map(|v| v / m);
-    m * ((a * a + b * b) + c * c).sqrt()
-}
 fn serialized<T: Serialize>(v: &T) -> Result<Value, ReceiptError> {
     serde_json::to_value(v).map_err(|e| bad(e.to_string()))
 }
 
-/// One captured 0.4.0 case re-derived through the product resolver pipeline.
+/// One captured current load/reference-state case re-derived through the product resolver pipeline.
 struct LoadStateReplay {
     model: PreviewModel,
     materials: Vec<MaterialInput>,
@@ -63,38 +47,53 @@ struct LoadStateReplay {
     built: BuiltModel,
 }
 
-/// Closed receipt policies. Each names one semantic identity; none is chosen
-/// from a caller label.
+/// The current exact source receipt policy. Selection remains tied to the
+/// actual captured model contract, never a received envelope label.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum ReceiptPolicy {
-    SourceBlocks,
-    PhysicsSource,
-    LoadReferenceSource,
+    PressureSource,
 }
 impl ReceiptPolicy {
-    fn composite(self) -> bool {
-        self != Self::SourceBlocks
-    }
     fn semantic_id(self) -> &'static str {
-        match self {
-            Self::SourceBlocks => SEMANTIC_ID,
-            Self::PhysicsSource => COMPOSITE_SEMANTIC_ID,
-            Self::LoadReferenceSource => LOAD_REFERENCE_SOURCE_SEMANTIC_ID,
-        }
+        exact_admission::PRESSURE_SOURCE_SEMANTIC_CONTRACT_ID
     }
-    fn name(self) -> &'static str {
-        match self {
-            Self::SourceBlocks => "SOURCE-BLOCKS-1",
-            Self::PhysicsSource => "PHYSICS-SOURCE-1",
-            Self::LoadReferenceSource => "LOAD-REFERENCE-SOURCE-1",
-        }
+    fn name(self) -> &'static str { "PRESSURE-SOURCE-1" }
+    fn case_evidence_domain(self) -> &'static str { "pressure_source_case_evidence_v1" }
+}
+
+/// The source namespace selected from the actual current exact contract.
+/// Resolved-case ownership is checked separately by the source pipeline.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub(super) enum CompositeSourceContext {
+    PressureSource,
+}
+impl CompositeSourceContext {
+    fn from_model(model: &PreviewModel) -> Option<Self> {
+        exact_admission::ExactContract::of(model).map(|_| Self::PressureSource)
     }
-    fn case_evidence_domain(self) -> &'static str {
-        match self {
-            Self::LoadReferenceSource => "load_reference_source_case_evidence_v1",
-            _ => "physics_source_case_evidence_v1",
-        }
+    pub(super) fn for_model(model: &PreviewModel) -> Result<Self, ReceiptError> {
+        Self::from_model(model).ok_or_else(|| bad("composite source requires an actual exact contract"))
     }
+    fn receipt_policy(self) -> ReceiptPolicy { ReceiptPolicy::PressureSource }
+    pub(super) fn semantic_id(self) -> &'static str { self.receipt_policy().semantic_id() }
+    pub(super) fn policy_name(self) -> &'static str { self.receipt_policy().name() }
+    pub(super) fn case_evidence_domain(self) -> &'static str { self.receipt_policy().case_evidence_domain() }
+    pub(super) const fn exact_contract(self) -> exact_admission::ExactContract {
+        exact_admission::ExactContract::PressureV3
+    }
+    pub(super) const fn profile_mode(self) -> &'static str { self.exact_contract().mode() }
+    pub(super) const fn profile_id(self) -> &'static str { exact_admission::PRESSURE_PROFILE_ID }
+}
+
+/// Validate the publication label against the independently selected policy.
+/// This keeps the existing finalizer check at its existing reservation boundary.
+fn validate_publication_identity(publication: &Value, policy: ReceiptPolicy) -> Result<(), ReceiptError> {
+    if publication.get("source_block_recovery").is_some()
+        || publication["producer"]["semantic_contract_id"] != policy.semantic_id()
+    {
+        return Err(bad("publication must have source identity and omit receipt"));
+    }
+    Ok(())
 }
 
 /// Captures the actual raw request before parsing. No parsed/hash constructor.
@@ -104,6 +103,9 @@ pub(super) struct CapturedInvocation {
     mode: PreviewSolverMode,
     digest: String,
     encoded_len: usize,
+    // Derived from the typed half of this same parse. No model/Value owner is
+    // retained here; the scalar context follows the capture's move/borrow life.
+    context: Option<CompositeSourceContext>,
 }
 impl CapturedInvocation {
     pub(super) fn parse(
@@ -115,8 +117,9 @@ impl CapturedInvocation {
             "source_blocks_invocation_v1",
             &json!({"request":&raw,"solver_mode":mode.as_str()}),
         )?;
-        let parsed =
+        let parsed: LinearStaticPreviewRequest =
             serde_json::from_value(raw.clone()).map_err(|e| bad(format!("request: {e}")))?;
+        let context = CompositeSourceContext::from_model(&parsed.model);
         Ok((
             parsed,
             Self {
@@ -124,6 +127,7 @@ impl CapturedInvocation {
                 mode,
                 digest,
                 encoded_len,
+                context,
             },
         ))
     }
@@ -137,8 +141,14 @@ impl CapturedInvocation {
     fn requested(&self) -> Result<LinearStaticPreviewRequest, ReceiptError> {
         serde_json::from_value(self.raw.clone()).map_err(|e| bad(e.to_string()))
     }
+    /// Context derived by the existing custody parse; no later model, envelope
+    /// label, raw clone or reparse is an input to this borrowed accessor.
+    pub(super) fn composite_context(&self) -> Result<CompositeSourceContext, ReceiptError> {
+        self.context.ok_or_else(|| bad("composite source requires an actual exact contract"))
+    }
     /// Reconstruct only the actual product normalization/material selection. Raw
     /// custody/hashing remains the preparse Value, never these typed objects.
+    #[cfg(test)]
     fn check_input(
         &self,
         input: &source_recovery::Input<'_>,
@@ -146,7 +156,7 @@ impl CapturedInvocation {
     ) -> Result<Option<String>, ReceiptError> {
         self.check_input_with_physical(input, selected, None)
     }
-    /// Captured 0.4.0 re-derivation: validation, normalization and per-case
+    /// Captured current load/reference-state re-derivation: validation, normalization and per-case
     /// resolution exactly as the product route performs them, then one
     /// member-pair build. The case-wide base/modulus methods are never used.
     fn captured_load_state_case(&self, case_id: &str) -> Result<LoadStateReplay, ReceiptError> {
@@ -190,7 +200,7 @@ impl CapturedInvocation {
             built,
         })
     }
-    /// Replays the selected response against the captured 0.4.0 invocation's
+    /// Replays the selected response against the captured current load/reference-state invocation's
     /// own resolved case: stiffness from its member pairs, force from its
     /// declared source ledger plus eigen loads, prescribed values from its
     /// support motions.
@@ -392,6 +402,8 @@ fn finalization_size(
     selected: &SelectedSourceRecovery,
     rows: &[ResultItem],
 ) -> usize {
+    #[cfg(test)]
+    pressure_source_context_tests::observe_reservation_inputs(capture, selected, rows);
     let response = selected.retained().response();
     let source = response.source_system();
     let mut n = response
@@ -631,131 +643,6 @@ impl FinalizedSourceBlockCase {
         self.qualified
     }
 
-    pub(super) fn exact(
-        capture: &CapturedInvocation,
-        input: source_recovery::Input<'_>,
-        mut selected: SelectedSourceRecovery,
-        ordinary: OrdinaryAttempt,
-        rows: &[ResultItem],
-        bindings: &[FunctionalRowBinding],
-    ) -> Result<Self, ReceiptError> {
-        if ordinary.mode != capture.mode {
-            return Err(bad("requested mode mismatch"));
-        }
-        let checked_case = (|| {
-            selected
-                .charge_finalization(
-                    1024usize
-                        .saturating_add(rows.len().saturating_mul(32))
-                        .saturating_add(selected.retained().descriptors().len().saturating_mul(32)),
-                )
-                .map_err(|e| bad(format!("finalization reservation: {e:?}")))?;
-            let reservation = finalization_size(capture, &selected, rows);
-            selected
-                .charge_finalization(reservation)
-                .map_err(|e| bad(format!("finalization reservation: {e:?}")))?;
-            let material_basis_record = capture.check_input(&input, &mut selected)?;
-            selected
-                .check_binding_against(source_recovery::Input {
-                    model: input.model,
-                    built: input.built,
-                    stiffness: input.stiffness,
-                    force: input.force,
-                    free: input.free,
-                    prescribed: input.prescribed,
-                    spring_entries: input.spring_entries,
-                    load_case: input.load_case,
-                    load_application: input.load_application,
-                    thermal_loads: input.thermal_loads,
-                    load_state: input.load_state,
-                })
-                .map_err(|e| bad(format!("current source binding: {e:?}")))?;
-            let case_id = input.load_case.id.clone();
-            let ledger = rows::bind(&input, &selected, rows, bindings)?;
-            let source = source::commitment(
-                &input,
-                &selected,
-                bindings,
-                &capture.digest,
-                material_basis_record.as_deref(),
-                &ledger.rows,
-                rows,
-            )?;
-            let qualified = ledger.rows.iter().all(|r| {
-                r.treatment != "inspection_only"
-                    || rows
-                        .iter()
-                        .find(|v| v.id == r.result_id)
-                        .is_some_and(rows::observation)
-            });
-            Ok::<_, ReceiptError>((case_id, ledger, source, qualified, serialized(&rows)?))
-        })();
-        let (case_id, ledger, source, qualified, actual_rows) = checked_case.map_err(|mut e| {
-            e.1 = Some(selected.summary().work);
-            e
-        })?;
-        let work = work_wire(selected.summary().work)?;
-        Ok(Self {
-            invocation: capture.digest.clone(),
-            case_id,
-            ordinary,
-            source: Some(source),
-            projections: ledger.projections,
-            rows: ledger.rows,
-            supports: ledger.supports,
-            failure: None,
-            work,
-            actual_rows,
-            qualified,
-            exact: true,
-            physical_evidence: None,
-            derived_checks: vec![],
-            section_stress_checks: vec![],
-            _selected: Some(selected),
-        })
-    }
-    pub(super) fn ordinary(
-        capture: &CapturedInvocation,
-        case_id: &str,
-        ordinary: OrdinaryAttempt,
-        rows: &[ResultItem],
-    ) -> Result<Self, ReceiptError> {
-        if ordinary.mode != capture.mode || ordinary.outcome != "checks_passed" {
-            return Err(bad("ordinary selection not p1 checks-passed"));
-        }
-        validate_case_rows(case_id, rows)?;
-        Ok(Self {
-            invocation: capture.digest.clone(),
-            case_id: case_id.into(),
-            ordinary,
-            source: None,
-            projections: vec![],
-            rows: rows
-                .iter()
-                .map(|r| RowTreatment {
-                    result_id: r.id.clone(),
-                    treatment: "ordinary_checked",
-                    projection_id: None,
-                    recipe_id: None,
-                    input_result_ids: vec![],
-                })
-                .collect(),
-            supports: json!([]),
-            failure: None,
-            work: work_wire(exact::WorkReport {
-                charged: 0,
-                rejected: 0,
-                limit: 0,
-            })?,
-            actual_rows: serialized(&rows)?,
-            qualified: true,
-            exact: false,
-            physical_evidence: None,
-            derived_checks: vec![],
-            section_stress_checks: vec![],
-            _selected: None,
-        })
-    }
     pub(super) fn failed(
         capture: &CapturedInvocation,
         case_id: &str,
@@ -822,8 +709,17 @@ fn work_wire(work: exact::WorkReport) -> Result<Value, ReceiptError> {
     if work.charged > work.limit || (work.limit as u64) > MAX {
         return Err(bad("invalid work accounting"));
     }
+    // D6: `rejected` is the kernel's checked total. An exact amount within the
+    // JSON-safe range is finite; an overflowed total (or one beyond that range)
+    // is disclosed as overflow, never as a saturated number; an inconsistent
+    // total refuses the receipt.
+    let rejected = match work.rejected.exact() {
+        Ok(amount) if amount <= MAX => json!({"kind":"finite","amount":amount}),
+        Ok(_) | Err(open_pipe_stress_frame_kernel::structural::retained_api::WorkFault::Overflow) => json!({"kind":"overflow","amount":null}),
+        Err(_) => return Err(bad("inconsistent rejected reservation work")),
+    };
     Ok(
-        json!({"limit":work.limit,"charged":work.charged,"reserved_unobserved_failure":0,"rejected_reservation":if work.rejected == usize::MAX || (work.rejected as u64)>MAX{json!({"kind":"overflow","amount":null})}else{json!({"kind":"finite","amount":work.rejected})}}),
+        json!({"limit":work.limit,"charged":work.charged,"reserved_unobserved_failure":0,"rejected_reservation":rejected}),
     )
 }
 
@@ -833,20 +729,6 @@ pub(super) struct FinalizedSourceBlockReceipt {
     receipt_sha256: String,
 }
 impl FinalizedSourceBlockReceipt {
-    pub(super) fn finalize(
-        capture: &CapturedInvocation,
-        envelope: &MechanicsEnvelope,
-        cases: Vec<FinalizedSourceBlockCase>,
-        invocation_budget: &mut SourceRecoveryBudget,
-    ) -> Result<Self, ReceiptError> {
-        Self::finalize_for(
-            capture,
-            envelope,
-            cases,
-            invocation_budget,
-            ReceiptPolicy::SourceBlocks,
-        )
-    }
     pub(super) fn finalize_composite(
         capture: &CapturedInvocation,
         envelope: &MechanicsEnvelope,
@@ -854,11 +736,13 @@ impl FinalizedSourceBlockReceipt {
         invocation_budget: &mut SourceRecoveryBudget,
     ) -> Result<Self, ReceiptError> {
         // The captured invocation, not the envelope label, selects the policy.
-        let policy = if case_state::is_load_state(&capture.requested()?.model) {
-            ReceiptPolicy::LoadReferenceSource
-        } else {
-            ReceiptPolicy::PhysicsSource
-        };
+        let policy = capture.composite_context()?.receipt_policy();
+        #[cfg(test)]
+        let mut cases = cases;
+        #[cfg(test)]
+        if pressure_source_context_tests::intercept_finalizer(capture, envelope, &mut cases, invocation_budget) {
+            return Err(bad("private test captured finalizer inputs"));
+        }
         Self::finalize_for(capture, envelope, cases, invocation_budget, policy)
     }
     fn finalize_for(
@@ -868,12 +752,6 @@ impl FinalizedSourceBlockReceipt {
         invocation_budget: &mut SourceRecoveryBudget,
         policy: ReceiptPolicy,
     ) -> Result<Self, ReceiptError> {
-        let composite = policy.composite();
-        if !composite && case_state::is_load_state(&capture.requested()?.model) {
-            return Err(bad(
-                "load/reference-state invocation requires its joined receipt policy",
-            ));
-        }
         if envelope.results.len() > MAX_ITEMS || envelope.diagnostics.len() > MAX_ITEMS {
             return Err(bad("publication inventory budget"));
         }
@@ -885,11 +763,7 @@ impl FinalizedSourceBlockReceipt {
             .map_err(|work| {
                 ReceiptError("invocation publication reservation".into(), Some(work))
             })?;
-        let policy_limit = if composite {
-            PHYSICS_SOURCE_WORK_LIMIT
-        } else {
-            SOURCE_BLOCKS_WORK_LIMIT
-        };
+        let policy_limit = PHYSICS_SOURCE_WORK_LIMIT;
         if invocation_budget.per_case_limit > policy_limit
             || cases.iter().any(|case| {
                 case.work["limit"]
@@ -899,18 +773,8 @@ impl FinalizedSourceBlockReceipt {
         {
             return Err(ReceiptError(
                 "case budget exceeds selected receipt policy".into(),
-                Some(exact::WorkReport {
-                    charged: invocation_budget.charged,
-                    rejected: 0,
-                    limit: invocation_budget.invocation_limit,
-                }),
+                Some(exact::WorkReport::new(invocation_budget.charged, 0, invocation_budget.invocation_limit)),
             ));
-        }
-        if !composite
-            && (envelope.contract_evidence.is_some()
-                || cases.iter().any(|case| case.physical_evidence.is_some()))
-        {
-            return Err(bad("physical evidence requires composite receipt policy"));
         }
         let size = envelope.diagnostics.iter().fold(0usize, |n, d| {
             n.saturating_add(d.id.len())
@@ -923,7 +787,7 @@ impl FinalizedSourceBlockReceipt {
             .map_err(|work| {
                 ReceiptError("invocation publication reservation".into(), Some(work))
             })?;
-        if composite {
+        {
             // Reserve normalization, source geometry/material comparison, complete
             // physical evidence serialization and recipe statement hashing before
             // performing them. This is the same invocation ledger, never cloned.
@@ -952,13 +816,7 @@ impl FinalizedSourceBlockReceipt {
             composite::validate_publication(capture, envelope, &cases)?;
         }
         let publication = serialized(envelope)?;
-        if publication.get("source_block_recovery").is_some()
-            || envelope.producer.semantic_contract_id != policy.semantic_id()
-        {
-            return Err(bad(
-                "publication must have source identity and omit receipt",
-            ));
-        }
+        validate_publication_identity(&publication, policy)?;
         let request = capture.requested()?;
         if request.model.project.id != envelope.model_ref
             || cases.is_empty()
@@ -1055,7 +913,7 @@ impl FinalizedSourceBlockReceipt {
                 }
             }
             wire.push(json!({"basis_ref":{"ref_type":"load_case","ref_id":case.case_id},"outcome":if eligible{"qualified"}else if failure.as_ref().is_some_and(|f|matches!(f["code"].as_str(),Some("unsupported_family"|"unsupported_block"|"unsupported_source_closure"|"unsupported_derived_quantity"|"support_attribution_ambiguous"))){"unsupported"}else{"failed"},"requested_mode":capture.mode.as_str(),"selected_method":if eligible{Some(if case.exact{"retained_source_blocks_exact_v1"}else if capture.mode==PreviewSolverMode::DenseScrutiny{"ordinary_dense_structural_v1"}else{"ordinary_sparse_structural_v1"})}else{None},"ordinary_attempt":ordinary,"source":case.source,"projections":case.projections,"rows":case.rows,"supports":case.supports,"failure":failure,"work":case.work}));
-            if composite {
+            {
                 let row = wire.last_mut().expect("just appended case");
                 row["physical_evidence_sha256"] = json!(hash(
                     policy.case_evidence_domain(),
@@ -1076,9 +934,6 @@ impl FinalizedSourceBlockReceipt {
                     return Err(bad("unaccounted physical result"));
                 }
             }
-        }
-        if !composite {
-            rows::validate_summary(envelope)?;
         }
         let case_reserved = cases.iter().try_fold(0usize, |sum, case| {
             let charged = case.work["charged"]
@@ -1119,3 +974,7 @@ mod load_state_join_tests;
 mod load_state_tests;
 #[cfg(test)]
 mod tests;
+
+#[cfg(test)]
+#[path = "source_receipt/pressure_source_context_tests.rs"]
+mod pressure_source_context_tests;

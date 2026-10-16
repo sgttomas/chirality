@@ -64,9 +64,9 @@ def test_mechanics_result_keeps_status_boundaries_separate():
     # The demo's mechanics combination is withheld for its nonlinear supports.
     assert "NONLINEAR_COMBINATION_REQUIRES_SOLVE" in {item["code"] for item in result["diagnostics"]}
     assert result["summary"]["load_case_count"] == 2
-    # The demo has no legacy pressure and no expansion joint.
-    assert result["summary"]["component_pressure_thrust_load_count"] == 0
-    assert result["summary"]["component_user_stiffness_macro_element_count"] == 0
+    # The demo has no curved bend macro-element; H-4 removed the retired thrust count.
+    assert "component_pressure_thrust_load_count" not in result["summary"]
+    assert result["summary"]["curved_bend_macro_element_count"] == 0
     assert result["summary"]["max_displacement"]["result_ref"] == "result:disp:node-N-140"
     assert "result:force:pipe-P-120:axial" in result_ids
     assert "result:force:pipe-P-120:axial:end-j" in result_ids
@@ -236,12 +236,15 @@ def test_mechanics_result_keeps_status_boundaries_separate():
 
 
 def test_analysis_run_preview_binds_mechanics_results_to_immutable_run_record():
+    # The current (0.3.0) record of the bundled demo's preview-physics-1 output.
     preview = build_analysis_run_preview()
     run = preview["analysis_run"]
     result_refs = {item["result_ref"]["ref"]: item for item in run["result_refs"]}
     load_basis_refs = {(item["object_type"], item["ref"]) for item in run["load_basis_refs"]}
 
     assert preview["deliverable_id"] == "DEL-14-02"
+    assert preview["schema_version"] == "0.3.0"
+    assert run["reproducibility"]["semantic_contract"]["id"] == "openpipestress.result_semantics/0.3.0/preview-physics-1"
     assert run["run_id"] == "run:preview-linear-static-001"
     assert run["immutability_policy"]["run_record_is_read_only"] is True
     assert "HUMAN_REVIEW_REQUIRED" in run["analysis_status"]
@@ -256,12 +259,12 @@ def test_analysis_run_preview_binds_mechanics_results_to_immutable_run_record():
     assert "result:stress:pipe-P-120:quarter-1:torsional-shear" in result_refs
     assert result_refs["result:force:pipe-P-120:axial"]["result_family"] == "force"
     assert result_refs["result:loadcase:load-L-200:force:pipe-P-120:axial"]["result_family"] == "force"
-    assert result_refs["result:force:pipe-P-120:axial"]["hash_refs"][0]["payload_scope"] == "result_value"
+    assert result_refs["result:force:pipe-P-120:axial"]["hash_refs"][0]["payload_scope"] == "result_row"
     assert (
         result_refs["result:loadcase:load-L-200:force:pipe-P-120:axial"]["hash_refs"][0][
             "payload_scope"
         ]
-        == "result_value"
+        == "result_row"
     )
     assert result_refs["result:force:pipe-P-120:axial:end-j"]["result_family"] == "force"
     assert result_refs["result:stress:pipe-P-120:end-j:torsional-shear"]["result_family"] == "stress"
@@ -288,16 +291,16 @@ def test_report_packet_preview_materializes_read_only_audit_context():
     assert "result:force:pipe-P-120:midspan:axial" in packet["selected_result_refs"]
     assert "result:force:pipe-P-120:quarter-1:shear-y" in packet["selected_result_refs"]
     assert "result:force:pipe-P-120:shear-y" in packet["selected_result_refs"]
-    # The demo's combination is withheld, and its stress headline is not carried
-    # by the historical-format carrier (null): neither is selected.
+    # The demo's combination is withheld (no combination row); its stress
+    # headline row is carried by the current preview-physics-1 result.
     assert not any(ref.startswith("result:combination:") for ref in packet["selected_result_refs"])
-    assert not any(ref.startswith("result:elastic-maximum:") for ref in packet["selected_result_refs"])
+    assert any(ref.startswith("result:elastic-maximum:") for ref in packet["selected_result_refs"])
     assert "result:stress:pipe-P-120:end-j:torsional-shear" in packet["selected_result_refs"]
     assert "result:stress:pipe-P-120:quarter-1:torsional-shear" in packet["selected_result_refs"]
     assert packet["analysis_run_context"]["deliverable_id"] == "DEL-14-02"
     assert packet["analysis_run_context"]["immutability_policy"]["run_record_is_read_only"] is True
     assert packet["analysis_run_context"]["result_value_hash_count"] >= 1
-    assert packet["analysis_run_context"]["result_envelope_hash_refs"][0]["payload_scope"] == "result_envelope"
+    assert packet["analysis_run_context"]["result_envelope_hash_refs"][0]["payload_scope"] == "received_result"
     assert packet["proposal_context"]["application_status"] == "not_applied"
     assert packet["proposal_context"]["accepted_model_state_mutated"] is False
     assert packet["report_packet_status"] == {

@@ -5,7 +5,7 @@
 - The D1.4 combination zero rules are removed; each loop they bounded on the reached graph gets an exact-header rule
   (decisions file NEW, PREFIX), placed first. Further loop, edge and text_args rules come from the decisions file's
   optional lists (LOOPS_FIRST, EDGE_ZERO, EDGE_PER_CALL, FN_CAP, SITE_TOTAL, SITE_FROM, SITE_ZERO, ID_AUDIT, ARGS_FIRST,
-  RECURSION, LOOP_TOTAL, EDGE_ONCE, FN_ZERO, FILE_ZERO_REMOVE, EDGE_ZERO_REMOVE, CG_RULES).
+  RECURSION, LOOP_TOTAL, EDGE_ONCE, FN_ZERO, FILE_ZERO_REMOVE, EDGE_ZERO_REMOVE, CG_RULES, O10_RECURSION_REVIEWED).
 Every action is logged to SQ2_RULES.json in the output chain. Each removed pattern must match exactly one rule.
 Usage: python3 sq2_rules.py <chain in> <chain out> <decisions.py>
 """
@@ -129,6 +129,10 @@ for pat, why in D.get("LOOP_ZERO_RESTATE", []):
     hits = [r for r in LB["loops"] if r["re"] == pat]
     if len(hits) != 1 or str(hits[0]["bound"]) != "0": raise SystemExit(f"LOOP_ZERO_RESTATE {pat}")
     hits[0]["why"] = "SQ2 G5 restated (0 kept): " + why + " | was: " + hits[0]["why"]; LOG["other"].append(["loop zero restated", pat, why])
+# O-10: a reviewed bounded self-recursion whose body moved to a function the basis does not have (o10_rules.py, by name).
+for fn, why in D.get("O10_RECURSION_REVIEWED", []):
+    if any(e["fn"] == fn for e in LB.get("recursion_reviewed", [])): raise SystemExit(f"O10_RECURSION_REVIEWED DUPLICATE {fn}")
+    LB.setdefault("recursion_reviewed", []).append({"fn": fn, "why": "O-10: " + why}); LOG["other"].append(["recursion_reviewed", fn, why])
 json.dump(LB, open(lbp, "w"), indent=1)
 tap = os.path.join(dst, "text_args.g4.json"); TA = json.load(open(tap))
 for key, bytes_, why in D.get("SITE_TOTAL", []):
@@ -143,6 +147,11 @@ for key, per, why in D.get("SITE_FROM_REBIND", []):
 for key, bytes_, why in D.get("O10_SITE_SIZE", []):
     TA["site_size"][key] = {"bytes": bytes_, "why": "O-10: " + why}; LOG["other"].append(["site_size", key, bytes_])
     LOG.setdefault("o10_mult0_sites", []).append(key)
+# B7b-JR: sites whose own multiplicity (no size, zero or other rule) must stay 0; o10_check.py fails the run otherwise.
+for key, why in D.get("O10_MULT0_SITES", []):
+    if not key:
+        raise SystemExit(f"O10_MULT0_SITES: unresolved site ({why[:60]})")
+    LOG.setdefault("o10_mult0_sites", []).append(key); LOG["other"].append(["mult0_guard", key, why])
 for key, why in D.get("SITE_ZERO", []):
     TA["site_zero"][key] = "SQ2 G5: " + why; LOG["other"].append(["site_zero", key])
 for key, value in D.get("ID_AUDIT", []):
@@ -151,6 +160,27 @@ for rule in reversed(D.get("ARGS_FIRST", [])):
     rule = dict(rule); rule["why"] = "SQ2 G5: " + rule["why"]; TA["args"].insert(0, rule); LOG["other"].append(["args", rule])
 for key, value in D.get("LEX_SITE_SIZE", []):
     TA["lex_site_size"][key] = value; LOG["other"].append(["lex_site_size", key, value])
+# B7b-DX: exclusive diagnostic groups (o10_rules.py, by name at the snapshot): text_budget.py counts each group's
+# diagnostics once per owner call and verifies every member against its owner.
+for name, fn, sites, why in D.get("O10_DIAG_EXCLUSIVE", []):
+    if name in TA.setdefault("diag_exclusive", {}) or any(s in g["sites"] for g in TA["diag_exclusive"].values() for s in sites):
+        raise SystemExit(f"O10_DIAG_EXCLUSIVE duplicate group or member: {name}")
+    TA["diag_exclusive"][name] = {"fn": fn, "sites": list(sites), "why": "O-10: " + why}
+    LOG["other"].append(["diag_exclusive", name, fn, list(sites)])
+if D.get("B7A_SCOPED_TEXT"):
+    _scoped = runpy.run_path(D["B7A_SCOPED_TEXT"]["model"])
+    TA, _scope_proof = _scoped["transform"](D["B7A_SCOPED_TEXT"]["snapshot"], LB, TA)
+    LOG["b7a_scoped_text"] = _scope_proof
+if D.get("B7A_OWNER_CHOICES"):
+    _choices = runpy.run_path(os.path.join(dst, "b7a_owner_choices.py"))
+    TA, _choices_proof = _choices["transform"](os.environ["SQ2_SNAP"], TA)
+    LOG["b7a_owner_choices"] = _choices_proof
+if D.get("B7A_STAGE1_ROUTE"):
+    _phase = runpy.run_path(os.path.join(dst, "b7a_phase_model.py"))
+    LB, TA, _phase_proof = _phase["transform"](
+        os.environ["SQ2_SNAP"], D["B7A_STAGE1_ROUTE"], LB, TA)
+    LOG["b7a_stage1_phase"] = _phase_proof
+    json.dump(LB, open(lbp, "w"), indent=1)
 json.dump(TA, open(tap, "w"), indent=1)
 cgp = os.path.join(dst, "callgraph_rules.g4.json"); CG = json.load(open(cgp))
 for r in D.get("CG_RULES", []):

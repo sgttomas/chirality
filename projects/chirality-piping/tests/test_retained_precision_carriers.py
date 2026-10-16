@@ -21,10 +21,10 @@ from tests.verifiers import compatibility as v
 ROOT = Path(__file__).resolve().parents[1]
 SUCC = c.PREVIEW_PHYSICS_RETAINED_CONTRACT_ID
 PINNED = {
-    "sparse_interactive": ("174e17c55eadf69439d21d8809776a0e7d2ba95fa01a4ed0046366fb141a11a6",
-                           "1932f8843dee94baccff7c21ebc01523d8a509919b9a3bbd48e26167ffd1eff4", [25, 69, 3, 1]),
-    "dense_scrutiny": ("ff24764d702080b944dc52dbd46f56380a1e6f7dbceebd364fc4d9419c8f9f55",
-                       "39895d62e38a6bc87242d5591384c23ab274e71832d974f40da915d13a0f7356", [25, 69, 3, 2]),
+    "sparse_interactive": ("e3e0830d34d7403da45cc5900aa40cc42d090478d9c2d3ba57bcecf9b6070d2e",
+                           "bc1e36fac28680a6ad65901b021dbfeb9e3424349ede29ebd8358201839154d1", [25, 69, 3, 1]),
+    "dense_scrutiny": ("c24d4a1cbfb4668fe071fd1b9cc9abed35589c390992ebad33dd0a9159cf3316",
+                       "0712cc45083fddc20f4434ccdf887d2b9c3f46810c579b12c1a8fbde2c34ce79", [25, 69, 3, 1]),
 }
 MODES = sorted(PINNED)
 NOTICE = "Retained-precision recovery is unavailable for this load case. Its published rows keep their ordinary values, standing and diagnostics."
@@ -320,10 +320,10 @@ def test_shared_carrier_cases_python():
         source, context, refs = apply_case(case, docs[case["fixture"]])
         assert c.numerical_use_standing(source, refs, context) == case["expected_standing"], case["id"]
         assert dispatch(source) == case["expected_dispatch"], case["id"]
-    assert len(cases["cases"]) == 20
+    assert len(cases["cases"]) == 17
     # The raw fixtures' guard cases are refused only through their edit.
     raw = [fid for fid, spec in cases["fixtures"].items() if spec["shape"] == "raw"]
-    assert raw == ["legacy_preview_0_1", "preview_physics_1_invented_sparse", "source_blocks_n05_sparse"]
+    assert raw == ["preview_physics_1_invented_sparse"]
     for fid in raw:
         assert dispatch(docs[fid]["source"]) == "ok" and c.numerical_use_standing(docs[fid]["source"], []) == "needs_recompute", fid
 
@@ -352,13 +352,8 @@ def expected_binding(source, expected):
         return want
     rule, code = expected.split(":", 1)
     code = None if code == "none" else code
-    if rule == "every_row":
-        return [code] * len(rows)
-    assert rule == "source_blocks_summary"
-    headline = ((source.get("summary") or {}).get("max_open_formula_stress") or {}).get("result_ref")
-    want = [code if row["kind"] == "open_formula_stress_summary" or row["id"] == headline else None for row in rows]
-    assert code in want and None in want
-    return want
+    assert rule == "every_row"
+    return [code] * len(rows)
 
 
 def test_declared_differences_python():
@@ -511,14 +506,11 @@ def test_downgrades_are_refused(mode):
         one["results"][index]["recovery_method"] = method
         assert dispatch(one) == ("ok" if method == "other_method" else c.RETAINED_PRECISION_DOWNGRADE_FORBIDDEN), index
         assert c.numerical_use_standing(one, refs) == ("needs_recompute" if method == "other_method" else "unsupported"), index
-    # A base record carrying a receipt is refused; the legacy 0.2 builder refuses one too.
+    # A base record carrying a receipt is refused.
     record = build(base)
     c.validate_analysis_run_v0_3(record, base)
     record["analysis_run"]["retained_precision"] = deepcopy(source["retained_precision"])
     raises(c.ANALYSIS_RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, c.validate_analysis_run_v0_3, record, base)
-    legacy = {"schema_version": "0.2.0", "run_id": "run:legacy", "model_ref": base["model_ref"], "results": [], "diagnostics": [],
-              "retained_precision": deepcopy(source["retained_precision"])}
-    raises("ANALYSIS_LEGACY_SOURCE_DOWNGRADE_FORBIDDEN", lambda s: c.build_analysis_run_v0_2(s, input_manifest_ref={"object_type": "InputManifest", "ref": "m"}, input_manifest_hash="1" * 64), legacy)
 
 
 @pytest.mark.parametrize("mode", MODES)
@@ -634,61 +626,40 @@ def test_07j_not_required_case_omitted_or_reordered_is_not_current():
 @pytest.mark.parametrize("mode", MODES)
 def test_stress_neutral_packager_still_refuses_the_successor(mode):
     """T6's refusal stands (D2 4.9.6; C1:162): schema support is shape only."""
-    from core.handoff.stress_neutral import package_v0_3 as sn
+    from core.handoff.stress_neutral import package as sn
     from tests.test_stress_neutral_physics_source import arguments
     source, _ = milestone(mode)
     record = build(source)
-    raises("SN-SOURCE-METHOD-UNSUPPORTED", lambda: sn.build_stress_neutral_export_package_v0_3(source_envelope=source, analysis_record=record, **arguments(source, record)))
+    raises("SN-SOURCE-METHOD-UNSUPPORTED", lambda: sn.build_stress_neutral_export_package(source_envelope=source, analysis_record=record, **arguments(source, record)))
     base = projected(source)
     base_record = build(base)
-    packet = sn.build_stress_neutral_export_package_v0_3(source_envelope=base, analysis_record=base_record, **arguments(base, base_record))
+    packet = sn.build_stress_neutral_export_package(source_envelope=base, analysis_record=base_record, **arguments(base, base_record))
     packet.update(producer=dict(packet["producer"], semantic_contract_id=SUCC), retained_precision=deepcopy(source["retained_precision"]),
                   semantic_contract={"id": SUCC, "sha256": c.PREVIEW_PHYSICS_RETAINED_CONTRACT_SHA256})
-    raises("SOURCE_PRODUCER_CONTRACT_UNSUPPORTED", sn.validate_stress_neutral_export_package_v0_3, packet)
+    raises("SOURCE_PRODUCER_CONTRACT_UNSUPPORTED", sn.validate_stress_neutral_export_package, packet)
 
 
-@pytest.mark.parametrize("mode", MODES)
-def test_legacy_record_wrapper_refuses_a_receipt(mode):
-    """D-U6-9: the historical 0.1.0 wrapper cannot carry a receipt."""
-    from core.analysis_runs.records import build_preview_analysis_run_envelope
-    source, _ = milestone(mode)
-    raises("ANALYSIS_RETAINED_PRECISION_DOWNGRADE_FORBIDDEN", build_preview_analysis_run_envelope, source)
-    # The wrapper's own preview input still builds; the same input carrying a
-    # receipt member (even an empty one) is refused before anything is recorded.
-    preview = json.loads((ROOT / "fixtures/product_preview/invented_demo_result_legacy_0_1.json").read_text())
-    assert build_preview_analysis_run_envelope(preview)["schema_version"] == "0.1.0"
-    for receipt in (deepcopy(source["retained_precision"]), None):
-        raises("ANALYSIS_RETAINED_PRECISION_DOWNGRADE_FORBIDDEN", build_preview_analysis_run_envelope, dict(preview, retained_precision=receipt))
-
-
-def test_legacy_sources_with_a_token_row_are_refused_on_every_python_path():
-    """RV88 U6b S-1: a legacy 0.1.0 source with the W1 token on one row (the last)
-    is refused by the raw dispatch, standing, the AnalysisRun router, the explicit
-    0.2 constructor and the 0.1.0 wrapper, as Rust and TS refuse it. The header-only
-    transport dispatch reads no rows, as Rust's for_source_metadata."""
-    from core.analysis_runs.records import build_preview_analysis_run_envelope
-    legacy = json.loads((ROOT / "fixtures/product_preview/invented_demo_result_legacy_0_1.json").read_text())
-    assert legacy["schema_version"] == "0.1.0"
+def test_retired_sources_with_a_token_row_are_refused_on_every_python_path():
+    """RV88 U6b S-1 on the retired carrier (b7-plan E2): a producer-less 0.1.0 source
+    is refused by name (MECHANICS_RESULT_VERSION_RETIRED) by the raw and header-only
+    dispatch, standing and the AnalysisRun builder. With the W1 token on one row (the
+    last) the raw dispatch refuses it as a downgrade first, as Rust and TS do; a
+    receipt member, empty or null, is refused before the version branch."""
+    retired = json.loads((ROOT / "fixtures/product_preview/invented_demo_result_preview_physics_1_sparse.json").read_text())
+    retired["schema_version"] = "0.1.0"
+    for key in ("producer", "numerical_quality", "formulation_basis", "contract_evidence"):
+        del retired[key]
     manifest = {"input_manifest_ref": {"object_type": "InputManifest", "ref": "manifest:u6b"}, "input_manifest_hash": "1" * 64}
     for method, refused in ((c.RETAINED_METHOD, True), ("other_method", False)):
-        token = deepcopy(legacy)
+        token = deepcopy(retired)
         token["results"][-1]["recovery_method"] = method
-        if refused:
-            raises(c.RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, c._source_contract, token)
-            assert c.numerical_use_standing(token, []) == "unsupported"
-            raises(c.RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, lambda s: c.build_analysis_run(s, **manifest), token)
-            raises("ANALYSIS_LEGACY_SOURCE_DOWNGRADE_FORBIDDEN", lambda s: c.build_analysis_run_v0_2(s, **manifest), token)
-            raises("ANALYSIS_RETAINED_PRECISION_DOWNGRADE_FORBIDDEN", build_preview_analysis_run_envelope, token)
-        else:
-            assert c._source_contract(token)[0] == c.SEMANTIC_CONTRACT_ID
-            assert c.numerical_use_standing(token, []) == "needs_recompute"
-            assert c.build_analysis_run(token, **manifest)["schema_version"] == "0.2.0"
-            assert c.build_analysis_run_v0_2(token, **manifest)["schema_version"] == "0.2.0"
-            assert build_preview_analysis_run_envelope(token)["schema_version"] == "0.1.0"
-        assert c._source_contract(token, check_receipt=False)[0] == c.SEMANTIC_CONTRACT_ID
-    # A legacy receipt member, empty or null, is refused before the version branch.
+        code = c.RETAINED_PRECISION_DOWNGRADE_FORBIDDEN if refused else "MECHANICS_RESULT_VERSION_RETIRED"
+        raises(code, c._source_contract, token)
+        assert c.numerical_use_standing(token, []) == "unsupported"
+        raises(code, lambda s: c.build_analysis_run(s, **manifest), token)
+        raises("MECHANICS_RESULT_VERSION_RETIRED", lambda s: c._source_contract(s, check_receipt=False), token)
     for receipt in ({}, None):
-        raises(c.RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, c._source_contract, dict(legacy, retained_precision=receipt))
+        raises(c.RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, c._source_contract, dict(retired, retained_precision=receipt))
 
 
 def test_private_seams_have_no_product_callers():
@@ -794,16 +765,16 @@ def test_rv108_n1_stress_neutral_packager_validator_refuses_with_a_value_error(m
     """The ValueError-only caller RV108 named: the v0.3 packager's validator on a preview-physics-1
     package view. An unhashable enum is refused with the base header code, a ValueError; before, a
     TypeError escaped it."""
-    from core.handoff.stress_neutral import package_v0_3 as sn
+    from core.handoff.stress_neutral import package as sn
     from tests.test_stress_neutral_physics_source import arguments
     source, _ = milestone(mode)
     base = projected(source)
     record = build(base)
-    packet = sn.build_stress_neutral_export_package_v0_3(source_envelope=base, analysis_record=record, **arguments(base, record))
-    assert value_error_only(sn.validate_stress_neutral_export_package_v0_3, deepcopy(packet)) == "ok"
+    packet = sn.build_stress_neutral_export_package(source_envelope=base, analysis_record=record, **arguments(base, record))
+    assert value_error_only(sn.validate_stress_neutral_export_package, deepcopy(packet)) == "ok"
     for path, code in N1_FIELDS:
         for value in N1_UNHASHABLE:
-            assert value_error_only(sn.validate_stress_neutral_export_package_v0_3, n1_edit(packet, path, value)) == code, (path, value)
+            assert value_error_only(sn.validate_stress_neutral_export_package, n1_edit(packet, path, value)) == code, (path, value)
 
 
 @pytest.mark.parametrize("mode", MODES)

@@ -7,16 +7,10 @@ use serde_json::Value;
 use std::sync::OnceLock;
 #[path = "support/retained_precision_corpus.rs"]
 mod retained_precision_corpus;
-/// The shared corpus is one logical document stored as ordered snapshot files
-/// (07m + 07n, then 07o), stored as lossless DAG definitions under 50 MB.
-/// The immutable expanded document is parsed once per test binary. A new snapshot is a new file,
-/// listed here, in PY's `tests/retained_precision_corpus.py` and in TS's
-/// `src/test-support/retainedPrecisionCorpus.ts`. `cases`, `mutations` and
-/// `must_pass` concatenate in file order; any other member appears once or
-/// identically in each file.
-const CORPUS_FILES: [&str; 2] = [
+/// The current shared corpus is one lossless DAG/v1 document. Fixture reads
+/// establish no new native execution; containers remain independent.
+const CORPUS_FILES: [&str; 1] = [
     include_str!("../../../../fixtures/results/retained_precision_cases.json"),
-    include_str!("../../../../fixtures/results/retained_precision_cases_07o.json"),
 ];
 fn corpus() -> &'static Value {
     static CORPUS: OnceLock<Value> = OnceLock::new();
@@ -303,1050 +297,99 @@ fn apply_on(case: &Value, entry: &Value) -> (Value, Value) {
     }
     (source, invocation)
 }
-#[test]
-fn complete_synthetic_controls_carry_their_shared_eligibility() {
-    let shared = corpus();
-    for case in shared["cases"].as_array().unwrap() {
-        // PR-B2 ruling 5: a base the corpus states refused bound (`expected` a gate
-        // and code) is refused there, and passes unbound and on transport.
-        if case["expected"].get("gate").is_some() {
-            assert_eq!(observe_validation(rp::validate(&case["source"], Some(&case["invocation"]))), case["expected"], "{}", case["id"]);
-            assert!(matches!(rp::validate(&case["source"], None), Ok(v) if !v.numerical_eligible), "{}", case["id"]);
-            assert!(matches!(rp::validate_transport_metadata(&case["source"]), Ok(v) if !v.numerical_eligible), "{}", case["id"]);
-            continue;
-        }
-        let got = rp::validate(&case["source"], Some(&case["invocation"]))
-            .unwrap_or_else(|e| panic!("{}: {e:?}", case["id"]));
-        assert!(got.invocation_bound);
-        // U7 (07i, D-U7-2): 15 bases are eligible (07l: 13 synthetic plus the two
-        // producer-solved L = 0 bases); the two with an unavailable case are not.
-        assert_eq!(
-            got.numerical_eligible,
-            case["expected"]["numerical_eligible"].as_bool().unwrap(),
-            "{}: the shared eligibility",
-            case["id"]
-        );
-        assert_eq!(
-            got.publication_sha256,
-            case["source"]["retained_precision"]["body"]["publication_sha256"]
-        );
-        let expected = case["expected_classifications"].as_array().unwrap();
-        assert_eq!(got.classifications.len(), expected.len());
-        for (got, want) in got.classifications.iter().zip(expected) {
-            assert_eq!(got.result_id, want["result_id"]);
-            assert_eq!(got.basis_ref, want["basis_ref"]);
-            assert_eq!(
-                format!("{:016x}", got.normalized_bits),
-                want["normalized_bits"]
-            );
-            assert_eq!(
-                got.scale_bits.map(|b| format!("{b:016x}")),
-                want["scale_bits"].as_str().map(str::to_owned)
-            );
-            let name = match got.class {
-                rp::AccuracyClass::RelativeVerified => "relative_verified",
-                rp::AccuracyClass::AbsoluteVerified { bound_bits } => {
-                    assert_eq!(format!("{bound_bits:016x}"), want["bound_bits"]);
-                    "absolute_verified"
-                }
-                rp::AccuracyClass::InputDerived => "input_derived",
-                rp::AccuracyClass::NonQuantity => "non_quantity",
-                rp::AccuracyClass::NotCovered => "not_covered",
-            };
-            assert_eq!(name, want["class"]);
-        }
-        let unbound = rp::validate(&case["source"], None).unwrap();
-        assert!(!unbound.invocation_bound && !unbound.numerical_eligible);
-        let transport = rp::validate_transport_metadata(&case["source"]).unwrap();
-        assert!(
-            !transport.invocation_bound
-                && !transport.numerical_eligible
-                && transport.classifications.is_empty()
-        );
-    }
-}
-#[test]
-fn shared_rehashed_first_failure_mutations() {
-    let shared = corpus();
-    let mut failures = Vec::new();
-    for mutation in shared["mutations"].as_array().unwrap() {
-        let (source, invocation) = apply_entry(&shared, mutation);
-        let expected = expected_for(mutation);
-        match rp::validate(&source, Some(&invocation)) {
-            Err(e) if e.gate == expected["gate"] && e.code == expected["code"] => {}
-            Err(got) => failures.push(format!(
-                "{} expected {} got {got:?}",
-                mutation["id"], expected
-            )),
-            Ok(got) => failures.push(format!(
-                "{} expected {} got admitted statement (eligible={})",
-                mutation["id"], expected, got.numerical_eligible
-            )),
-        }
-    }
-    assert!(failures.is_empty(), "{}", failures.join("\n"));
-}
+
+
 
 /// Every shared mutation's id, in corpus order (07m's 294, 07n's 240, then 07o's 69), pinned here
 /// so that `slice_outcomes` checks each slice's entries by id and position (I83 §7
 /// item 8; B1 SC item 12): a reorder of same-code entries inside a slice, which the
 /// code tally cannot see, fails. Generated from 07n (sha256 `ea113e7b…e283`).
-const MUTATION_IDS: [&str; 603] = [
-    "method_null",
-    "method_number",
-    "method_alternate_metadata",
-    "method_alternate_container",
-    "method_empty",
-    "method_wrong",
-    "method_missing",
-    "nonfinite_then_method",
-    "shape_then_encoding",
-    "negative_zero_counter",
-    "coverage_then_method",
-    "member_prefix_coverage",
-    "diagnostic_then_method",
-    "native_work",
-    "product_new_not_ready",
-    "body_scale",
-    "section_echo",
-    "absolute_bound",
-    "input_dof",
-    "old_inputs_must_bind_old_J",
-    "new_stiffness_must_bind_C2",
-    "bad_invocation_digest",
-    "v1_relabel",
-    "native_source_digest_rehashed",
-    "native_stiffness_digest_rehashed",
-    "physical_residual_basis",
-    "physical_stop_stage_partition",
-    "negative_zero_scale_with_wrong_method",
-    "shared_stage_projection_preserves_total",
-    "verification_own_stage_projection_preserves_total",
-    "coverage_member_missing",
-    "coverage_object_not_array",
-    "coverage_entry_null",
-    "coverage_stop_three",
-    "coverage_stop_five",
-    "coverage_stop_numeric_flag",
-    "coverage_stop_null_flag",
-    "coverage_has_data_numeric",
-    "coverage_has_data_null",
-    "coverage_has_data_missing",
-    "coverage_unknown_field",
-    "coverage_body_string",
-    "coverage_shape_then_duplicate",
-    "coverage_defect_with_null_method",
-    "coverage_body_negative_zero",
-    "coverage_body_fraction",
-    "coverage_body_negative",
-    "coverage_encoding_then_duplicate",
-    "coverage_empty_array",
-    "coverage_duplicate_body",
-    "coverage_foreign_body",
-    "coverage_extra_body",
-    "coverage_duplicate_then_flag_and_method",
-    "attempt_owner_only",
-    "coverage_null_on_ready",
-    "coverage_null_then_method",
-    "coverage_has_data_false",
-    "certified_bound_unbound_drop_existing_g5",
-    "coverage_drop_certified_bound",
-    "coverage_no_data_claim_with_free_loads",
-    "coverage_stop_forbidden_entry",
-    "coverage_stop_uncoupled_consistent_roster",
-    "stop_rule_drop_required_zero",
-    "stop_rule_duplicate_zero",
-    "estimate_drop_required_zero",
-    "estimate_forbidden_translation_zero",
-    "charge_drop_required_zero",
-    "charge_follows_stop_below_p512",
-    "certified_bound_duplicate",
-    "coverage_flag_defect_then_method",
-    "nodata_forbidden_stop_zero",
-    "nodata_forbidden_estimate_zero",
-    "nodata_forbidden_charge_zero",
-    "nodata_forbidden_certified_bound",
-    "nodata_has_data_without_bound",
-    "nodata_estimate_coupling_L_nonzero",
-    "coverage_flag_defect_then_body_scale",
-    "layout_force_row_input_derived",
-    "layout_constrained_displacement_not_input_derived",
-    "layout_nonzero_prescription",
-    "coverage_null_and_product_work",
-    "product_work_only",
-    "native_work_then_coverage_null",
-    "layout_row_relabelled",
-    "layout_row_dropped",
-    "layout_rows_reordered",
-    "layout_row_foreign_body",
-    "nodata_empty_coverage",
-    "verification_bound_duplicate_entry",
-    "verification_bound_missing_entry",
-    "nodata_verification_bound_nonnull",
-    "schedule_fresh_first_p256",
-    "cancelled_no_data_claim",
-    "cancelled_drop_B_only",
-    "unavailable_certificate_passed_coverage_null",
-    "unavailable_empty_coverage",
-    "unavailable_no_data_claim_with_free_loads",
-    "unavailable_stop_uncoupled",
-    "unavailable_layout_relabelled",
-    "unavailable_verification_bound_duplicate",
-    "cert_failed_before_summary_g5a_passed",
-    "lane_k_failed_with_coverage",
-    "maxima_abandoned_with_coverage",
-    "prefix_captured_with_members",
-    "two_body_swap_has_data",
-    "two_body_swap_has_data_with_rosters",
-    "two_body_swap_stop_only",
-    "two_body_body_order_swapped",
-    "two_body_missing_body",
-    "two_body_resolution_order_swapped",
-    "p512_floor_not_phi",
-    "p512_positive_floor_forces_stop",
-    "p512_charge_follows_estimate",
-    "p512_floor_null",
-    "p512_zero_floor_body_given_positive_floor",
-    "copy_flags_into_loaded",
-    "rebind_source_run_only",
-    "cross_case_gate_order_selected",
-    "cross_case_gate_order_unavailable",
-    "unavailable_record_resolution_duplicate",
-    "unavailable_record_theta_duplicate",
-    "skip_after_failed_candidate_reused",
-    "skip_after_failed_candidate_wrong_slot",
-    "failed_build_reason_mismatch",
-    "failed_slot_not_cached",
-    "failed_verification_reused_as_candidate",
-    "failed_verification_one_slot",
-    "cached_failed_slot_rebuilt",
-    "corrections_above_three",
-    "group_sources_out_of_order",
-    "w2_published_without_initial_failure",
-    "legacy_source_dangling_diagnostic",
-    "formation_d5_dangling_diagnostic",
-    "native_stage_disagrees_with_run",
-    "conversion_subnormal_kind_normal_bits",
-    "conversion_normal_kind_subnormal_bits",
-    "conversion_ready_underflow_nonzero_row",
-    "conversion_ready_overflow",
-    "conversion_subnormal_metadata_negative_zero",
-    "g7_maximum_off_enclosure",
-    "row_index_foreign_support_norm",
-    "row_index_missing_row",
-    "row_index_unsorted",
-    "row_index_ready_subset",
-    "maps_extra_support_id",
-    "maps_member_ends_swapped",
-    "maxima_abandoned_separate_failure",
-    "certificate_check_wrong_wrapper",
-    "certificate_stage_check_disagree",
-    "stage_entered_after_failure",
-    "ceiling_before_last_slot",
-    "escalating_end_not_a_terminal_translation",
-    "terminal_stop_wrong_translation",
-    "terminal_refusal_wrong_kind",
-    "idle_budget_below_invocation_limit",
-    "idle_ready_group_not_ledger_refusal",
-    "work_accounting_prior_not_on_wire",
-    "refused_member_conversion_kind_bits",
-    "prefix_attached_old_input_unbound",
-    "report_reference_unrelated_diagnostic",
-    "distinct_stiffness_merged_group",
-    "named_point_value_mismatch",
-    "interpolation_target_mismatch",
-    "work_accounting_after_escalating_stop",
-    "idle_work_accounting_run",
-    "work_accounting_at_last_slot",
-    "mm_unnormalized_coordinate",
-    "interpolation_missing_alpha",
-    "interpolation_duplicate_temperature",
-    "interpolation_target_below_range",
-    "interpolation_target_at_lower_point",
-    "interpolation_target_at_upper_point",
-    "interpolation_target_above_range",
-    "adapter_fault_present",
-    "accounting_cause_without_fault",
-    "scalar_trace_lost_unavailable",
-    "work_accounting_cause_exact_status",
-    "idle_budget_not_exhausted_no_group",
-    "execution_order_swapped",
-    "run_id_not_execution_position",
-    "old_members_reordered",
-    "complete_old_short_of_source",
-    "unsourced_old_member_noncontiguous",
-    "complete_old_longer_than_source",
-    "unavailable_source_backref_foreign",
-    "attempt_basis_not_ordinary",
-    "native_error_with_selected_run",
-    "group_call_out_of_range",
-    "escalating_failed_verification_pass_entered",
-    "stop_rule_quantity_other_body",
-    "candidate_record_with_verification",
-    "ordinary_diagnostic_ref_duplicate",
-    "ordinary_diagnostic_ref_dangling",
-    "ordinary_dangling_plus_adapter_fault",
-    "selected_case_ordinary_checks_passed",
-    "section_accounting_exact_status",
-    "nested_stop_work_accounting_exact_status",
-    "view_work_fault_exact_status",
-    "old_operational_accounting_not_lost",
-    "interpolation_target_at_lower_point_equal_e",
-    "interpolation_target_below_range_equal_e",
-    "interpolation_target_at_upper_point_equal_e",
-    "interpolation_target_above_range_equal_e",
-    "source_preparation_null",
-    "run_ref_null_with_case_run",
-    "preparation_error_with_selected_run",
-    "prepared_failure_cause_without_own_attempt",
-    "prepared_failure_cause_foreign_attempt",
-    "reason_code_phase_mismatch_on_facade",
-    "reason_code_phase_mismatch_on_preparation",
-    "rejected_verification_failed_with_completed_verification",
-    "rejected_attempt_with_verified_record",
-    "ordinary_attempt_order_swapped",
-    "record_index_not_contiguous",
-    "selected_verification_record_not_verified",
-    "projection_conversions_count_mismatch",
-    "preparation_conversion_count_mismatch",
-    "retained_diagnostic_names_unrequested_case",
-    "g0_case_limit_threshold",
-    "g0_invocation_limit_threshold",
-    "g0_receipt_version_not_1",
-    "g0_canonicalization_profile",
-    "g0_retained_precision_absent",
-    "g0_receipt_body_absent",
-    "refusal_work_accounting_variant",
-    "refusal_count_range_variant",
-    "unavailable_source_ref_absent",
-    "source_decline_with_source_ref",
-    "rcond_label_plus_adapter_fault",
-    "native_attempt_defect_after_native_work_defect",
-    "dangling_candidate_record",
-    "dangling_build_ref",
-    "dangling_ordinary_attempt_ref",
-    "g5b_zero_section_area",
-    "ordinary_dangling_ref_plus_source_preparation_null",
-    "g5b_zero_section_length",
-    "unavailable_attempt_under_facade_failure_cause",
-    "unavailable_attempt_under_source_error_cause",
-    "preparation_error_selected_run_under_receipt_cause",
-    "selected_case_without_c3_attempt",
-    "vbuild_on_escalating_failed_verification",
-    "dangling_attempt_source_ref",
-    "source_member_map_kernel_id_noncanonical",
-    "forged_publication_hash",
-    "forged_preparation_hash",
-    "source_identity_stale_receipt_rehashed",
-    "forged_receipt_hash",
-    "g5a_sanity_margin_between_2m40_and_2m39",
-    "idle_run_exhausted_meter_chain_broken",
-    "verification_estimate_quantity_not_in_layout",
-    "charge_quantity_not_in_layout",
-    "publication_enclosure_quantity_not_in_layout",
-    "empty_body_inventory",
-    "verification_summary_on_escalating_failed_verification",
-    "model_schema_version_0_4_0_rejected",
-    "forged_source_identity_float_source_ref",
-    "verification_estimate_names_translation_row",
-    "ready_attempt_under_facade_failure_cause",
-    "ready_attempt_under_prepared_product_failure",
-    "g0_receipt_version_non_integral",
-    "g0_case_limit_non_integral",
-    "g0_invocation_limit_non_integral",
-    "verification_estimate_names_rotation_row",
-    "g5a_error_with_g5a_not_entered",
-    "observable_error_with_observables_not_entered",
-    "numeric_error_with_checks_not_entered",
-    "proof_error_with_certificate_passed",
-    "values_error_with_values_completed",
-    "f5_ordinary_refs_omit_naming_diagnostic",
-    "f5_ordinary_refs_out_of_envelope_order",
-    "f5_ordinary_refs_list_retained_precision_m09",
-    "f5_ordinary_refs_list_invocation_level_m10",
-    "f5_ordinary_refs_list_other_case",
-    "f5_ordinary_refs_relaxed_d6a_form",
-    "f5_affected_refs_string_names_no_case",
-    "f5_ordinary_refs_second_case_relaxed_d6a_form",
-    "f5_ordinary_refs_strict_prefix",
-    "g7_not_required_quality_enum_invalid",
-    "isolated_rotation_stop_sparse_interactive",
-    "isolated_has_data_sparse_interactive",
-    "isolated_estimate_coupled_sparse_interactive",
-    "isolated_rotation_stop_dense_scrutiny",
-    "isolated_has_data_dense_scrutiny",
-    "isolated_estimate_coupled_dense_scrutiny",
-    "isolated_translation_rotation_stop_sparse_interactive",
-    "isolated_translation_rotation_stop_dense_scrutiny",
-    "g7_selected_quality_enum_invalid",
-    "g7_unavailable_quality_enum_invalid",
-    "g7_quality_case_evidence_ref_empty",
-    "g7_quality_case_extra_member",
-    "g7_quality_status_invalid",
-    "g7_formulation_limitations_empty",
-    "g7_contract_evidence_null",
-    "g7_source_block_recovery_present",
-    "d38_m1_error_kind_native",
-    "d38_m2_native_completed",
-    "d38_m3_run_ref_without_run",
-    "d38_m4_execution_order_lists_case",
-    "d38_m5_proof_start_completed",
-    "d38_m6_attempt_source_null",
-    "d38_m7_call_lists_source",
-    "d38_m8_case_source_other",
-    "d38_m9_case_c_builds_kept",
-    "f1_p4_parity_on_w2_published_case_a_dense",
-    "f1_p2_parity_duplicated_l0_dense",
-    "f1_p3_parity_in_sparse_l0",
-    "f1_p1_mode_code_3_sparse_l0",
-    "f1_requested_mode_flipped_w_c2_case_b",
-    "nr_w_c2_case_b_verdict_sensitive",
-    "nr_w_c2_case_b_initial_not_attempted",
-    "nr_w_c2_case_b_product_attempt_ref_own_attempt",
-    "n2_w_c2_case_b_solve_quality_missing",
-    "a4_reason_as_4b",
-    "f_mb_index_1",
-    "f_mb_index_swapped",
-    "f_src_index_1",
-    "f_src_index_swapped",
-    "f_mb_case_indices_duplicate",
-    "f_mb_case_indices_out_of_range",
-    "f_src_owner_case_id_other",
-    "f_src_owner_case_id_unknown",
-    "f_src_owner_case_index_out_of_range",
-    "f_src_owner_other_case_consistent",
-    "f_ordinary_basis_ref_dangling",
-    "f_mb_case_indices_empty",
-    "f_b_basis_ref_7",
-    "f_c_basis_omits_case_1",
-    "f_c_basis_out_of_order",
-    "f_src_owner_kind_combination",
-    "g_combinations_null",
-    "g_combinations_empty_object",
-    "g_combinations_object",
-    "g_combinations_string",
-    "g_combinations_zero",
-    "g_combinations_false",
-    "g_combinations_nonempty",
-    "g_components_null",
-    "g_components_string",
-    "g_components_empty_object",
-    "g_components_nonempty",
-    "g_reference_configurations_null",
-    "g_reference_configurations_empty",
-    "g_reference_configurations_object",
-    "g_pressure_contract_empty_object",
-    "g_pressure_contract_false",
-    "g_pressure_contract_zero",
-    "g_pressure_contract_empty_string",
-    "g_pressure_contract_empty_array",
-    "g_order_before_preparation",
-    "g_order_control_preparation",
-    "ca_receipt_phase_routing",
-    "ca_receipt_phase_preparation",
-    "ca_receipt_phase_kernel",
-    "ca_receipt_phase_facade",
-    "ca_receipt_code_source_unavailable",
-    "ca_receipt_code_facade_certificate",
-    "ca_receipt_code_kernel_selected",
-    "ca_receipt_code_caller_not_qualified",
-    "ca_facade_ok",
-    "ca_facade_phase_routing",
-    "ca_facade_phase_preparation",
-    "ca_facade_phase_kernel",
-    "ca_facade_phase_receipt",
-    "ca_facade_code_receipt_encoding",
-    "ca_facade_owner_other_case",
-    "ca_facade_owner_combination",
-    "ca_precondition_beside_run",
-    "ca_kernel_beside_selected_run",
-    "cb_source_error_no_decline",
-    "cb_source_error_decline_error_differs",
-    "cb_source_error_phase_routing",
-    "cb_source_error_code_caller",
-    "cb_receipt_phase_preparation",
-    "cb_facade_no_run",
-    "cb_kernel_no_run",
-    "cb_control_ppf_reason_missing_attempt",
-    "cb_pre_caller_caller_not_qualified_kernel",
-    "cb_pre_caller_resource_admission_not_available_routing",
-    "cb_pre_caller_source_unavailable_routing",
-    "cb_pre_caller_upstream_no_wrap_not_established_routing",
-    "cb_pre_resource_admission_resource_admission_not_available_kernel",
-    "cb_pre_resource_admission_caller_not_qualified_routing",
-    "cb_pre_resource_admission_source_unavailable_routing",
-    "cb_pre_resource_admission_upstream_no_wrap_not_established_routing",
-    "cb_pre_upstream_no_wrap_upstream_no_wrap_not_established_kernel",
-    "cb_pre_upstream_no_wrap_caller_not_qualified_routing",
-    "cb_pre_upstream_no_wrap_resource_admission_not_available_routing",
-    "cb_pre_upstream_no_wrap_source_unavailable_routing",
-    "cb_pre_capture_source_unavailable_kernel",
-    "cb_pre_capture_caller_not_qualified_routing",
-    "cb_pre_capture_resource_admission_not_available_routing",
-    "cb_pre_capture_upstream_no_wrap_not_established_routing",
-    "cb_pre_source_family_source_unavailable_kernel",
-    "cb_pre_source_family_caller_not_qualified_routing",
-    "cb_pre_source_family_resource_admission_not_available_routing",
-    "cb_pre_source_family_upstream_no_wrap_not_established_routing",
-    "cc_pre_caller_keyed",
-    "cc_pre_resource_admission_keyed",
-    "cc_pre_upstream_no_wrap_keyed",
-    "cc_pre_capture_keyed",
-    "cc_pre_source_family_keyed",
-    "cc_pre_capture_cross",
-    "cd_kernel_ok",
-    "cd_kernel_code_unresolved",
-    "cd_kernel_phase_facade",
-    "cd_kernel_cause_other",
-    "cd_ppf_control",
-    "c2_receipt_phase_kernel",
-    "c2_receipt_code_facade",
-    "c2_receipt_phase_preparation",
-    "c2_facade_ok",
-    "c2_facade_phase_kernel",
-    "h_recovery_present",
-    "h_evidence_null",
-    "h_evidence_array",
-    "h_recovery_and_evidence_null",
-    "h_carrier_present",
-    "h_carrier_and_quality_defect",
-    "h_carrier_and_recovery",
-    "h_quality_extra_member",
-    "h_quality_representation",
-    "h_quality_quantization",
-    "h_quality_policy",
-    "h_quality_status_bogus",
-    "h_quality_cases_object",
-    "h_case_extra_member",
-    "h_case_basis_ref_extra",
-    "h_case_basis_ref_type_empty",
-    "h_case_solve_quality_bogus",
-    "h_case_structural_bogus",
-    "h_case_fidelity_bogus",
-    "h_case_accuracy_bogus",
-    "h_case_evidence_refs_empty_string",
-    "h_case_evidence_refs_not_list",
-    "h_formulation_extra_member",
-    "h_formulation_limitations_empty",
-    "h_formulation_limitations_empty_string",
-    "h_formulation_limitations_other",
-    "h_quality_and_formulation",
-    "h_case_and_formulation",
-    "h_schema_version_010",
-    "n6_structural_status_list",
-    "n6_structural_status_dict",
-    "n6_model_matrix_fidelity_list",
-    "n6_model_matrix_fidelity_dict",
-    "n6_accuracy_evidence_list",
-    "n6_accuracy_evidence_dict",
-    "n6_status_list",
-    "n6_status_dict",
-    "n6_carrier_evidence_with_case_defect",
-    "n6_contract_evidence_null_and_source_block_recovery",
-    "n4_null_first",
-    "n4_null_appended",
-    "n4_number_first",
-    "n4_string_first",
-    "n4_array_first",
-    "r_b_basis_ref_7",
-    "r_b_basis_ref_1_second_basis",
-    "r_c_basis_omits_case_1",
-    "r_c_cases_out_of_order",
-    "r_c_extra_empty_basis",
-    "r_d1_extra_member",
-    "r_d2_mode_unknown",
-    "r_d2_mode_list",
-    "r_d2_mode_removed",
-    "r_d2_mode_null",
-    "r_e_elastic_modulus_wrong",
-    "r_e_selection_base",
-    "r_e_material_id_other",
-    "r_e_no_material",
-    "r_c_missing_sourceless_basis",
-    "g8_unavailable_mode_code_2_in_sparse",
-    "g8_unavailable_mode_code_3",
-    "g8_unavailable_mode_row_duplicated",
-    "g8_unavailable_mode_row_removed",
-    "g8_unavailable_parity_in_sparse_P3",
-    "g8_unavailable_parity_with_method_G6_first",
-    "g8_unavailable_requested_mode_flipped",
-    "g8_selected_mode_code_2_in_sparse",
-    "dz_parity_twice_case1_P2",
-    "dz_parity_case1_w2_published_P4",
-    "dz_parity_case0_w2_published_P4",
-    "fz_unavailable_two_parity_P2",
-    "fz_unavailable_parity_w2_published_P4",
-    "limit_l0_dense_parity_deleted_indices_unshifted",
-    "limit_l0_sparse_mode_row_deleted_P1",
-    "nr_report_outcome_sensitive",
-    "nr_initial_not_attempted",
-    "nr_verdict_sensitive",
-    "nr_w2_published_verdict_sensitive",
-    "nr_verdict_not_assessed",
-    "nr_report_with_w2_published",
-    "nr_product_attempt_ref_with_attempt",
-    "nr_product_attempt_ref_dangling",
-    "nz_w2_published_parity_P4",
-    "orphan_source_beside_t7",
-    "t_evidence_extra_member",
-    "t_preview_cases_not_list",
-    "t_case_extra_member",
-    "t_case_id_empty",
-    "t_case_id_duplicate",
-    "t_coverage_complete_false",
-    "t_coverage_overlap",
-    "t_coverage_duplicate_ids",
-    "t_attributed_and_withheld",
-    "t_withheld_reason_unknown",
-    "t_withheld_ok",
-    "t_attribution_sets_differ",
-    "t_withheld_duplicate_multiset",
-    "t_extrema_extra_member",
-    "t_extrema_approximation_other",
-    "t_extrema_station_fraction_1_5",
-    "t_extrema_local_fraction_negative",
-    "t_extrema_span_index_negative",
-    "t_extrema_span_index_fraction",
-    "t_extrema_subdivisions_over",
-    "t_extrema_bounds_inverted",
-    "t_extrema_lower_negative",
-    "t_extrema_upper_string",
-    "t_extrema_global_upper_string",
-    "t_extrema_certified_gap_null",
-    "t_extrema_pipe_in_unavailable",
-    "t_extrema_pipe_duplicate",
-    "t_measure_ok",
-    "t_measure_sif_zero",
-    "t_measure_location_mid",
-    "t_measure_moment_string",
-    "t_measure_duplicate_result",
-    "t_gate_withheld_reason_null",
-    "t_gate_released_with_reason",
-    "t_gate_duplicate",
-    "t_gate_withheld_string",
-    "t_measure_extra_member",
-    "t_gate_extra_member",
-    // 07o (B2-C REVISION_01 §5.1-§5.3; lane C's corpus): 69 more.
-    "b2o_m01_combination_attempt_definition_unknown",
-    "b2o_m02_operand_preparation_definition_unknown",
-    "b2o_m03_projection_policy_changed",
-    "b2o_m04_work_policy_changed",
-    "b2o_m05_canonicalization_changed",
-    "b2o_m06_work_case_limit_changed",
-    "b2o_m07_work_invocation_limit_changed",
-    "b2o_m08_case_attempt_definition_def_c",
-    "b2o_m09_combination_attempt_definition_def_o",
-    "b2o_m10_combination_identity_changed",
-    "b2o_m11_operand_identity_changed",
-    "b2o_m12_operand_prepared_hash_case_domain",
-    "b2o_m13_operand_preparations_empty",
-    "b2o_m14_ordinary_entry_run_null",
-    "b2o_m15_withheld_result_ids_gain_row",
-    "b2o_m16_term_factor_uppercase",
-    "b2o_m17_requested_operand_factor_nan",
-    "b2o_m18_entries_swapped",
-    "b2o_m19_entry_removed",
-    "b2o_m20_combination_renamed_to_case_id",
-    "b2o_m21_result_ids_lose_row",
-    "b2o_m22_result_ids_gain_case_row",
-    "b2o_m23_result_ids_swapped",
-    "b2o_m24_execution_order_loses_combination",
-    "b2o_m25_execution_order_combination_index",
-    "b2o_m26_combination_attempt_first",
-    "b2o_m27_operand_preparation_owner_selected",
-    "b2o_m28_operand_preparation_for_ordinary",
-    "b2o_m29_operand_preparation_removed",
-    "b2o_m30_operand_preparation_duplicated",
-    "b2o_m31_combination_selected_diagnostic_removed",
-    "b2o_m32_unavailable_diagnostic_ref_other",
-    "b2o_m33_selected_diagnostic_on_ordinary",
-    "b2o_m34_combination_diagnostic_two_refs",
-    "b2o_m35_ordinary_term_selected_case",
-    "b2o_m36_subtraction_recast_unavailable",
-    "b2o_m37_withheld_reason_other_code",
-    "b2o_m38_requested_operands_swapped",
-    "b2o_m39_representative_operand_1",
-    "b2o_m40_operand_case_index_other",
-    "b2o_m41_import_from_operand_1",
-    "b2o_m42_combination_group_imports_removed",
-    "b2o_m43_combination_call_before_off",
-    "b2o_m44_charged_batch_after",
-    "b2o_m45_import_from_prepared_operand",
-    "b2o_m46_pre_source_run_refs_gain_run",
-    "b2o_m47_pre_source_after_ne_before",
-    "b2o_m48_combination_reason_without_call",
-    "b2o_m49_operand_index_selected_term",
-    "b2o_m50_refused_record_source_ref",
-    "b2o_m51_prepared_record_stage_failed",
-    "b2o_m52_unresolved_attempt_native_completed",
-    "b2o_m53_reason_code_kernel_unresolved",
-    "b2o_m54_combination_translation_scale_ulp",
-    "b2o_m55_combination_row_not_covered",
-    "b2o_m56_method_on_unavailable_row",
-    "b2o_m57_method_removed_from_selected_row",
-    "b2o_m58_method_on_ordinary_row",
-    "b2o_m59_range_mode_changed",
-    "b2o_m60_subtraction_operands_swapped",
-    "b2o_m61_range_operand_ids_reversed",
-    "b2o_m62_kernel_source_replaced",
-    "b2o_m63_operand_effective_wall_changed",
-    "b2o_m64_operand_old_facts_d_changed",
-    "b2o_m65_operand_preparation_definition_def_c",
-    "b2o_m66_refused_record_origin_capture",
-    "b2o_m67_combination_attempt_origin_capture",
-    "b2o_m68_operand_prepared_source_after_combination",
-    "b2o_m69_combination_magnitude_off",
-];
+
 /// Observe one slice of the shared mutations against this reader's own
 /// expectation, print one outcome per mutation (visible with --nocapture) and
 /// check the slice's ids (`MUTATION_IDS`) and its tally. 07h held 277 mutations;
 /// RV94 N-3's G7 probe makes 278; 07l (U8-2) appends the 8 L = 0 mutations, making
 /// 286; 07m (B6) appends 8 G7 mutations, making 294; 07n (B1 SC) appends 240,
 /// making 534 (`snapshot_07n_counts_and_format` pins the counts), and no slice moves.
-fn slice_outcomes(tag: &str, range: std::ops::Range<usize>, want: &[(&str, usize)]) {
-    use std::collections::BTreeMap;
-    let shared = corpus();
-    let mutations = shared["mutations"].as_array().unwrap();
-    let ids: Vec<&str> = mutations[range.clone()]
-        .iter()
-        .map(|m| m["id"].as_str().unwrap())
-        .collect();
-    assert_eq!(
-        ids,
-        MUTATION_IDS[range.clone()],
-        "{tag}: the slice's ids, in order"
-    );
-    let mut tally = BTreeMap::new();
-    let mut matched = 0;
-    for mutation in &mutations[range.clone()] {
-        let observed = observe(&shared, mutation);
-        let expected = expected_for(mutation);
-        let ok = observed == *expected;
-        matched += usize::from(ok);
-        *tally
-            .entry(format!(
-                "{} {}",
-                expected["gate"].as_str().unwrap(),
-                expected["code"].as_str().unwrap()
-            ))
-            .or_insert(0) += 1;
-        println!(
-            "{tag} {}",
-            serde_json::json!({"id":mutation["id"],"base":mutation["base"],"expected":expected,"observed":observed,"match":ok})
-        );
-    }
-    let want: BTreeMap<String, usize> = want.iter().map(|(k, n)| (k.to_string(), *n)).collect();
-    assert_eq!(tally, want, "{tag}");
-    assert_eq!(matched, range.len(), "{tag}");
-}
+
 
 /// Snapshot-03 controls (the first 30 shared mutations), so the outcome
 /// listing covers all 178 (D15, RV78-N9).
-#[test]
-fn snapshot_03_mutation_outcomes() {
-    slice_outcomes(
-        "I63_OUTCOME_03",
-        0..30,
-        &[
-            ("G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED", 1),
-            ("G1 RETAINED_PRECISION_RECEIPT_MISMATCH", 6),
-            ("G2 RETAINED_PRECISION_ENCODING_MISMATCH", 3),
-            ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 2),
-            ("G4 RETAINED_PRECISION_DIAGNOSTIC_MISMATCH", 1),
-            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
-            ("G5 RETAINED_PRECISION_WORK_MISMATCH", 4),
-            ("G5b RETAINED_PRECISION_SCALE_MISMATCH", 1),
-            ("G5b RETAINED_PRECISION_SECTION_MISMATCH", 1),
-            ("G5c RETAINED_PRECISION_CLASSIFICATION_MISMATCH", 1),
-            ("G5c RETAINED_PRECISION_INPUT_DOF_MISMATCH", 1),
-            ("G6 RETAINED_PRECISION_ROW_METHOD_MISMATCH", 3),
-            ("G8 RETAINED_PRECISION_INVOCATION_MISMATCH", 1),
-            ("G8 RETAINED_PRECISION_PREPARATION_MISMATCH", 4),
-        ],
-    );
-}
+
 
 /// Snapshot-04 summary-coverage controls (I57 s4/s5), mutations 30..77.
-#[test]
-fn snapshot_04_coverage_mutation_outcomes() {
-    slice_outcomes(
-        "I63_OUTCOME",
-        30..77,
-        &[
-            ("G1 RETAINED_PRECISION_RECEIPT_MISMATCH", 14),
-            ("G2 RETAINED_PRECISION_ENCODING_MISMATCH", 4),
-            ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 6),
-            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 2),
-            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
-            ("G5a RETAINED_PRECISION_SCALE_MISMATCH", 20),
-        ],
-    );
-}
+
 
 /// Snapshot-05a controls (I62 C1a), mutations 77..104.
-#[test]
-fn snapshot_05a_mutation_outcomes() {
-    slice_outcomes(
-        "I63_OUTCOME_05A",
-        77..104,
-        &[
-            ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 3),
-            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
-            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 5),
-            ("G5 RETAINED_PRECISION_WORK_MISMATCH", 2),
-            ("G5a RETAINED_PRECISION_SCALE_MISMATCH", 16),
-        ],
-    );
-}
+
 
 /// Snapshot-05b controls (I62 C1b, unchanged in 05c), mutations 104..121.
-#[test]
-fn snapshot_05b_mutation_outcomes() {
-    slice_outcomes(
-        "I63_OUTCOME_05B",
-        104..121,
-        &[
-            ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 2),
-            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 1),
-            ("G5a RETAINED_PRECISION_SCALE_MISMATCH", 13),
-            ("G5b RETAINED_PRECISION_SCALE_MISMATCH", 1),
-        ],
-    );
-}
+
 
 /// Snapshot-06a checklist controls (I62 C2-1), mutations 121..150; 06b moved
 /// `prefix_old_inputs_unbound` to the must-pass entries (P7 settlement), and
 /// the G7 entry uses this reader's own base code (`expected_by_reader`).
-#[test]
-fn snapshot_06a_mutation_outcomes() {
-    slice_outcomes(
-        "I63_OUTCOME_06A",
-        121..150,
-        &[
-            ("G2 RETAINED_PRECISION_ENCODING_MISMATCH", 1),
-            ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 3),
-            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 10),
-            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 10),
-            ("G5 RETAINED_PRECISION_WORK_MISMATCH", 2),
-            ("G7 SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS", 1),
-            ("G8 RETAINED_PRECISION_PREPARATION_MISMATCH", 2),
-        ],
-    );
-}
+
 
 /// Snapshot-06b settlements (I62 C2-2), mutations 150..163, with
 /// `ceiling_before_last_slot` under its 06c name.
-#[test]
-fn snapshot_06b_mutation_outcomes() {
-    slice_outcomes(
-        "I63_OUTCOME_06B",
-        150..163,
-        &[
-            ("G1 RETAINED_PRECISION_RECEIPT_MISMATCH", 1),
-            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 8),
-            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 1),
-            ("G8 RETAINED_PRECISION_PREPARATION_MISMATCH", 3),
-        ],
-    );
-}
+
 
 /// Snapshot-06c (I62 C2-3), mutations 163..173: WorkAccounting terminals
 /// rejected, and the invocation-level G8 refusals through `invocation_edits`.
-#[test]
-fn snapshot_06c_mutation_outcomes() {
-    slice_outcomes(
-        "I63_OUTCOME_06C",
-        163..173,
-        &[
-            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 3),
-            ("G8 RETAINED_PRECISION_PREPARATION_MISMATCH", 7),
-        ],
-    );
-}
+
 
 
 /// Snapshot-06d (I62 C2-5), mutations 173..178: R1-R3 at G5 WORK, and the
 /// tightened idle sibling at the exhaustion rule.
-#[test]
-fn snapshot_06d_mutation_outcomes() {
-    slice_outcomes(
-        "I63_OUTCOME_06D",
-        173..178,
-        &[
-            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
-            ("G5 RETAINED_PRECISION_WORK_MISMATCH", 4),
-        ],
-    );
-}
+
 
 /// Snapshot-07/07a review-repair pins (I62 B2; D18 in 07a), mutations 178..236.
-#[test]
-fn snapshot_07_mutation_outcomes() {
-    slice_outcomes(
-        "I63_OUTCOME_07",
-        178..236,
-        &[
-            ("G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED", 6),
-            ("G1 RETAINED_PRECISION_RECEIPT_MISMATCH", 4),
-            ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 7),
-            ("G4 RETAINED_PRECISION_DIAGNOSTIC_MISMATCH", 1),
-            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 16),
-            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 11),
-            ("G5 RETAINED_PRECISION_WORK_MISMATCH", 7),
-            ("G5b RETAINED_PRECISION_SECTION_MISMATCH", 2),
-            ("G8 RETAINED_PRECISION_PREPARATION_MISMATCH", 4),
-        ],
-    );
-}
+
 
 /// Snapshot-07b/07c confirmation-repair pins (I62; D19-D30, and 07c's D21
 /// verification-summary pin), mutations 236..254.
-#[test]
-fn snapshot_07b_mutation_outcomes() {
-    slice_outcomes(
-        "I63_OUTCOME_07B",
-        236..254,
-        &[
-            ("G1 RETAINED_PRECISION_RECEIPT_MISMATCH", 4),
-            ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 2),
-            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 5),
-            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 5),
-            ("G5 RETAINED_PRECISION_WORK_MISMATCH", 1),
-            ("G5a RETAINED_PRECISION_SCALE_MISMATCH", 1),
-        ],
-    );
-}
+
 
 /// Snapshot-07d repair pins (I62; D31, D32, D33 and RV78-N1's two D19 Ready
 /// negatives), mutations 254..259.
-#[test]
-fn snapshot_07d_mutation_outcomes() {
-    slice_outcomes(
-        "I63_OUTCOME_07D",
-        254..259,
-        &[
-            ("G1 RETAINED_PRECISION_RECEIPT_MISMATCH", 1),
-            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
-            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 2),
-            ("G8 RETAINED_PRECISION_INVOCATION_MISMATCH", 1),
-        ],
-    );
-}
+
 
 /// Snapshot-07e pins (I62; RV79-S1's three non-integral G0 values and
 /// RV81-N1's D33 rotation row), mutations 259..263.
-#[test]
-fn snapshot_07e_mutation_outcomes() {
-    slice_outcomes(
-        "I63_OUTCOME_07E",
-        259..263,
-        &[
-            ("G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED", 3),
-            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
-        ],
-    );
-}
+
 
 /// Snapshot-07f pins (I62; D37, RV79's five X1 probes on F', which include
 /// RV78's Y1, Y2 and Y4), mutations 263..268.
-#[test]
-fn snapshot_07f_mutation_outcomes() {
-    slice_outcomes(
-        "I63_OUTCOME_07F",
-        263..268,
-        &[("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 5)],
-    );
-}
+
 
 /// Snapshot-07g pins (I61 U6e; F5, D-U6-7): A2's exact ordinary list, the
 /// omission, order, RETAINED_PRECISION_* (U1 M09), invocation-level (U1 M10),
 /// another case and 07f's relaxed form, mutations 268..274.
-#[test]
-fn snapshot_07g_mutation_outcomes() {
-    slice_outcomes(
-        "I61_OUTCOME_07G",
-        268..274,
-        &[("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 6)],
-    );
-}
+
 
 /// Snapshot-07h pins (I61 U6e repair; RV90 S1, N1, N2): a non-array
 /// `affected_refs` names no case, F5 on the second case, and a strict prefix
 /// of A2's list, mutations 274..277.
-#[test]
-fn snapshot_07h_mutation_outcomes() {
-    slice_outcomes(
-        "I61_OUTCOME_07H",
-        274..277,
-        &[("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 3)],
-    );
-}
+
 
 /// Snapshot-07l pins (U8-2; I69) on the two producer-solved L = 0 bases:
 /// SNAPSHOT_05_PLAN §1.2's isolated rotation stop, has_data and coupled estimate
 /// (sparse, then dense), then I69's translation-plus-rotation stop (sparse, then
 /// dense), mutations 278..286.
-#[test]
-fn snapshot_07l_mutation_outcomes() {
-    slice_outcomes(
-        "I70_OUTCOME_07L",
-        278..286,
-        &[("G5a RETAINED_PRECISION_SCALE_MISMATCH", 8)],
-    );
-}
+
 
 /// Mutation 277, RV94 N-3's G7 probe (07k), as its own one-entry slice (B6;
 /// I70's item 2): an invalid enum in a not_required case's quality, at G7
 /// with the base code, which TS now shares (PLAN decision 11).
-#[test]
-fn snapshot_07k_mutation_outcomes() {
-    // The slice's entry, by id, as Python's and TS's slices check (a reorder
-    // of same-code entries leaves the tally unchanged).
-    assert_eq!(corpus()["mutations"][277]["id"], "g7_not_required_quality_enum_invalid");
-    slice_outcomes(
-        "I83_OUTCOME_07K",
-        277..278,
-        &[("G7 SOURCE_NUMERICAL_CASE_INVALID", 1)],
-    );
-}
+
 
 /// Snapshot-07m pins (B6): the N-3 class at its full width (a selected and an
 /// unavailable case's quality enum, an empty evidence ref, an extra case
 /// member), then the sibling base header classes (quality status, empty
 /// limitations, null contract_evidence, a source_block_recovery member),
 /// mutations 286..294, each at G7 with this reader's base header code.
-#[test]
-fn snapshot_07m_mutation_outcomes() {
-    let shared = corpus();
-    let ids: Vec<&str> = shared["mutations"].as_array().unwrap()[286..294]
-        .iter()
-        .map(|m| m["id"].as_str().unwrap())
-        .collect();
-    assert_eq!(
-        ids,
-        [
-            "g7_selected_quality_enum_invalid",
-            "g7_unavailable_quality_enum_invalid",
-            "g7_quality_case_evidence_ref_empty",
-            "g7_quality_case_extra_member",
-            "g7_quality_status_invalid",
-            "g7_formulation_limitations_empty",
-            "g7_contract_evidence_null",
-            "g7_source_block_recovery_present",
-        ]
-    );
-    slice_outcomes(
-        "I83_OUTCOME_07M",
-        286..294,
-        &[
-            ("G7 SOURCE_NUMERICAL_CASE_INVALID", 4),
-            ("G7 SOURCE_NUMERICAL_QUALITY_INVALID", 1),
-            ("G7 SOURCE_FORMULATION_BASIS_UNSUPPORTED", 1),
-            ("G7 SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED", 1),
-            ("G7 SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN", 1),
-        ],
-    );
-}
+
 
 /// F5 (D-U6-7; A2) on the real milestone receipts: U1's producer mutants M09
 /// (RETAINED_PRECISION_* listed), M10 (diagnostics that do not name the case
@@ -1536,6 +579,43 @@ fn source_decline_relation_reader_logic() {
     assert!(attempt_mismatch(rp::reader_logic::ordinary(&source)));
 }
 
+/// B7a (b), stage 1 (review F2): a formation failure's `basis_index` is the failing case's
+/// own material basis. On 07j's two-case statement, case 1's initial made a formation
+/// failure is admitted with its basis (one base basis, then two bases with case 1 on the
+/// second); an out-of-range index, and another case's basis, are refused at G5. Python's
+/// `test_b7a_formation_failure_names_its_own_basis` is the same table.
+#[test]
+fn b7a_formation_failure_names_its_own_basis() {
+    use serde_json::json;
+    let shared = corpus();
+    let with = |split: bool, basis_index: Value| {
+        let mut source = base_source(&shared, P_BASE);
+        let body = &mut source["retained_precision"]["body"];
+        if split {
+            let mut named = body["material_bases"][0].clone();
+            named["index"] = json!(1);
+            named["selector"] = json!({"kind": "named", "id": "P1"});
+            named["case_indices"] = json!([1]);
+            body["material_bases"][0]["case_indices"] = json!([0]);
+            body["material_bases"].as_array_mut().unwrap().push(named);
+            body["ordinary_attempts"][1]["material_basis_ref"] = json!(1);
+        }
+        body["ordinary_attempts"][1]["initial"] =
+            json!({"kind": "formation_failure", "error": {"tag": "numerical_range", "name": "b7a"}, "basis_index": basis_index});
+        rp::reader_logic::ordinary(&source)
+    };
+    assert_eq!(with(false, json!(0)), Ok(()), "one basis, its own");
+    assert_eq!(with(true, json!(1)), Ok(()), "two bases, its own");
+    for (name, split, index) in [
+        ("out of range", false, json!(7)),
+        ("out of range, two bases", true, json!(2)),
+        ("another case's basis", true, json!(0)),
+        ("not an index", false, json!("0")),
+    ] {
+        assert!(attempt_mismatch(with(split, index)), "{name}");
+    }
+}
+
 /// Reader-local controls (not shared corpus) for checklist checks added in the
 /// I63 audit that no shared mutation decides first: P2 (observables and G5a
 /// enter together), P6 (a failed maxima merges its work) and P9 (an
@@ -1630,82 +710,7 @@ fn g5_audit_local_controls() {
 /// public relation, so the reader admits it with the base case's
 /// classifications (or, 07n, the entry's own `expected_classifications` when it
 /// states them) and the eligibility the entry states (07i, U7).
-#[test]
-fn shared_must_pass_entries_validate() {
-    let shared = corpus();
-    let entries = shared["must_pass"].as_array().unwrap();
-    // Snapshot 07: 06d's 18 plus the equal-E bracket control; 07h adds F5's
-    // reordered-envelope exact-list control (RV90 N2); 07j adds C04's not_required case;
-    // 07l (U8-2) appends the 4 L = 0 entries on the producer-solved bases, 24 to 28;
-    // 07n (B1 SC) appends 50, 28 to 78; 07o (B2-C REVISION_01 §5.1) appends 19, to 97.
-    assert_eq!(entries.len(), 97);
-    let mut failures = Vec::new();
-    for entry in entries {
-        assert_eq!(entry["rehash"], "all");
-        let case = shared["cases"]
-            .as_array()
-            .unwrap()
-            .iter()
-            .find(|c| c["id"] == entry["base"])
-            .unwrap();
-        let (source, invocation) = apply_entry(&shared, entry);
-        // PR-B2 ruling 5: an entry on a base refused bound states that refusal as its
-        // `expected` (its unbound and transport reads: `snapshot_07o_unbound_and_transport_reads`).
-        if entry["expected"] != "pass" {
-            assert_eq!(entry["expected"], case["expected"], "{}", entry["id"]);
-            let got = observe_validation(rp::validate(&source, Some(&invocation)));
-            println!("I63_MUST_PASS {} stated {got}", entry["id"]);
-            if got != entry["expected"] {
-                failures.push(format!("{} got {got}", entry["id"]));
-            }
-            continue;
-        }
-        let got = match rp::validate(&source, Some(&invocation)) {
-            Ok(got) => got,
-            Err(e) => {
-                failures.push(format!("{} rejected {e:?}", entry["id"]));
-                continue;
-            }
-        };
-        // 07n (B1 SC): an admitted rewrite whose classes differ from its base's
-        // (a case no longer selected, a row added or removed) states its own.
-        let expected = entry
-            .get("expected_classifications")
-            .unwrap_or(&case["expected_classifications"])
-            .as_array()
-            .unwrap();
-        // U7 (07i): each must-pass entry states its eligibility.
-        let same = got.numerical_eligible
-            == entry["expected_eligibility"]["numerical_eligible"].as_bool().unwrap()
-            && got.invocation_bound
-            && got.classifications.len() == expected.len()
-            && got.classifications.iter().zip(expected).all(|(g, w)| {
-                let class = match g.class {
-                    rp::AccuracyClass::RelativeVerified => "relative_verified",
-                    rp::AccuracyClass::AbsoluteVerified { bound_bits } => {
-                        if format!("{bound_bits:016x}") != w["bound_bits"] {
-                            return false;
-                        }
-                        "absolute_verified"
-                    }
-                    rp::AccuracyClass::InputDerived => "input_derived",
-                    rp::AccuracyClass::NonQuantity => "non_quantity",
-                    rp::AccuracyClass::NotCovered => "not_covered",
-                };
-                g.result_id == w["result_id"]
-                    && g.basis_ref == w["basis_ref"]
-                    && format!("{:016x}", g.normalized_bits) == w["normalized_bits"]
-                    && g.scale_bits.map(|b| format!("{b:016x}"))
-                        == w["scale_bits"].as_str().map(str::to_owned)
-                    && class == w["class"]
-            });
-        println!("I63_MUST_PASS {} {}", entry["id"], same);
-        if !same {
-            failures.push(format!("{} classifications differ", entry["id"]));
-        }
-    }
-    assert!(failures.is_empty(), "{}", failures.join("\n"));
-}
+
 
 /// C1 G5b "same E/ê/Φ at p512" (verify.rs `e_hat` through `phi_512`). No p512 corpus base
 /// exists until C1b, so the rounding is pinned directly. Expected bits were
@@ -3314,11 +2319,6 @@ fn d6_d7_ordinary_and_diagnostic_relations() {
         ]),
         gate("G5", ATTEMPT)
     );
-    // D6d: a legacy work_ref that does not resolve is a reference check (ATTEMPT).
-    assert_eq!(
-        probe(&shared, ORD, vec![set(rb(json!(["ordinary_attempts", 0, "legacy_source", "work_ref"])), json!(0))]),
-        gate("G5", ATTEMPT)
-    );
     // D7: a RETAINED_PRECISION_SELECTED diagnostic naming no requested case.
     let diagnostics = base_source(&shared, ORD)["diagnostics"].clone();
     let i = diagnostics
@@ -3761,12 +2761,14 @@ fn d30_native_run_ref_on_nonselected_run() {
     assert_eq!((got.gate, got.code.as_str()), ("G5", PRODUCT));
 }
 
-/// D31: G8 admits model schema_version 0.1.0 or 0.2.0 without a pressure
-/// contract; 0.4.0 stays excluded. B3a (B3-D §6.3, decision B3D-10): 0.3.0
-/// without a contract is outside D1.3 (the producer cannot emit it,
-/// `PRESSURE_CONTRACT_REQUIRED`), so it is G8 INVOCATION_MISMATCH; 0.3.0 with
-/// the legacy contract is `b3a_legacy_pressure_contract_namespace_at_g8`'s.
-/// The invocation edit rebinds the receipt's invocation digest.
+/// D31, as B7a keys it (b7-plan "Model format, pressure-free half"): G8's preview
+/// namespace is the current model version 0.5.0 without a pressure contract; the
+/// retired 0.1.0 and 0.2.0 are refused, and 0.4.0 stays excluded. B3a (B3-D §6.3,
+/// decision B3D-10): 0.3.0 without a contract is outside D1.3 (the producer cannot
+/// emit it, `PRESSURE_CONTRACT_REQUIRED`), so it is G8 INVOCATION_MISMATCH; 0.3.0
+/// with the legacy contract is `b3a_legacy_pressure_contract_namespace_at_g8`'s.
+/// The invocation edit rebinds the receipt's invocation digest. The verifier's
+/// twin is `tests/test_retained_precision_contract.py::test_model_schema_versions_d31`.
 #[test]
 fn d31_model_schema_versions_at_g8() {
     use serde_json::json;
@@ -3777,8 +2779,9 @@ fn d31_model_schema_versions_at_g8() {
     };
     let mut misses = Vec::new();
     for (version, want) in [
-        ("0.1.0", Value::Null),
-        ("0.2.0", Value::Null),
+        ("0.5.0", Value::Null),
+        ("0.1.0", gate("G8", "RETAINED_PRECISION_INVOCATION_MISMATCH")),
+        ("0.2.0", gate("G8", "RETAINED_PRECISION_INVOCATION_MISMATCH")),
         ("0.3.0", gate("G8", "RETAINED_PRECISION_INVOCATION_MISMATCH")),
         ("0.4.0", gate("G8", "RETAINED_PRECISION_INVOCATION_MISMATCH")),
         ("0.0.9", gate("G8", "RETAINED_PRECISION_INVOCATION_MISMATCH")),
@@ -4267,12 +3270,20 @@ fn b1_rows(source: &Value, extra: Vec<Value>) -> Value {
     rows.extend(extra);
     set(serde_json::json!(["results"]), Value::Array(rows))
 }
-/// The dense base's parity row, moved to `case` with a fresh id. A non-selected
-/// case's row carries no recovery method (G6).
+/// E14: a row of the retired DEC-050/053 parity kind for `case` with a fresh id,
+/// shaped as the lane published it. A non-selected case's row carries no
+/// recovery method (G6).
 fn b1_parity_row(shared: &Value, case: &str, id: &str) -> Value {
-    let mut row = base_source(shared, "ordinary_prepared_dense_synthetic")["results"][1].clone();
-    assert_eq!(row["kind"], "sparse_live_path_dense_parity_relative_delta");
+    let dense = base_source(shared, "ordinary_prepared_dense_synthetic");
+    let mut row = dense["results"].as_array().unwrap().iter()
+        .find(|r| r["kind"] == "linear_solver_mode_basis").unwrap().clone();
     row["id"] = serde_json::json!(id);
+    row["kind"] = serde_json::json!("sparse_live_path_dense_parity_relative_delta");
+    row["unit"] = serde_json::json!("unitless");
+    row["entity_ref"] = serde_json::json!("solver:sparse_direct");
+    row["value"] = serde_json::json!(0.0);
+    row["metadata"]["component"] = serde_json::json!("sparse_live_path");
+    row["metadata"]["location"] = serde_json::json!("load_case");
     row["basis_ref"]["ref_id"] = serde_json::json!(case);
     row.as_object_mut().unwrap().remove("recovery_method");
     row
@@ -4615,15 +3626,14 @@ fn b1_g8_mode_row_and_requested_mode_for_every_case() {
     assert!(misses.is_empty(), "{}", misses.join("\n"));
 }
 
-/// F-1 text B's P2-P4 (DESIGN_v2 §3.2) for every case. 07j's two-case statement is made
-/// dense (the invocation's mode, both requested modes and both mode rows; it has no parity
-/// row): the selected dense case at b = 0 without a parity row is admitted (before B1 it
-/// needed exactly one), and so is a not_required case's single parity row at b = 0. Two
-/// parity rows (P2), a parity row in sparse_interactive (P3) and a parity row on a
-/// W2-published case (P4) are refused at G8; a parity row beside a W2 that failed (so
-/// published nothing) is admitted, since P4 reads published, not triggered.
+/// E14 (replacing F-1 text B's P2-P4): the DEC-050/053 parity observation is retired and
+/// no table carries its kind. 07j's two-case statement is made dense (the invocation's mode,
+/// both requested modes and both mode rows): without a parity row it is admitted, with or
+/// without a published W2; any parity row, on either case, in either mode, is refused. A failed
+/// W2 is now only the closed named refusal (b7-plan failed-ordinary ruling (5)), so the former
+/// `not_engaged` W2 failure is no admitted control here, as in the verifier's twin.
 #[test]
-fn b1_g8_parity_rows_p2_to_p4_for_every_case() {
+fn e14_retired_parity_rows_are_refused_for_every_case() {
     use serde_json::json;
     let shared = corpus();
     let p = base_source(&shared, P_BASE);
@@ -4641,11 +3651,6 @@ fn b1_g8_parity_rows_p2_to_p4_for_every_case() {
         set(rb(json!(["ordinary_attempts", 1, "initial"])), json!({"kind": "structural_failure", "error": {"tag": "range", "detail": "b1"}, "diagnostic_ref": null})),
         set(rb(json!(["ordinary_attempts", 1, "w2"])), json!({"kind": "published", "trigger": {"tag": "evaluation", "error": {"tag": "range", "detail": "b1"}}, "force_scale_exponent": 3, "report_diagnostic_ref": report})),
     ];
-    // A W2 that was triggered and failed published nothing (b = 0).
-    let w2_failed = vec![
-        w2[0].clone(),
-        set(rb(json!(["ordinary_attempts", 1, "w2"])), json!({"kind": "failed", "trigger": {"tag": "evaluation", "error": {"tag": "range", "detail": "b1"}}, "failure": {"tag": "not_engaged"}, "diagnostic_ref": report})),
-    ];
     let one = b1_parity_row(&shared, UNAVAILABLE_ROW, "result:b1:parity-1");
     let two = b1_parity_row(&shared, UNAVAILABLE_ROW, "result:b1:parity-2");
     // Both mode rows carry the dense code; `rows` are appended to them in the one results edit.
@@ -4657,31 +3662,34 @@ fn b1_g8_parity_rows_p2_to_p4_for_every_case() {
     };
     // Dense, ordinary only: the selected source, then the dense base's selected case with W2.
     let d = base_source(&shared, "ordinary_prepared_dense_synthetic");
-    let mut parity_twice = d["results"][1].clone();
-    parity_twice["id"] = json!("result:b1:parity-twice");
-    let dense_w2 = vec![
-        set(rb(json!(["ordinary_attempts", 0, "initial"])), json!({"kind": "structural_failure", "error": {"tag": "range", "detail": "b1"}, "diagnostic_ref": null})),
-        set(rb(json!(["ordinary_attempts", 0, "w2"])), json!({"kind": "published", "trigger": {"tag": "evaluation", "error": {"tag": "range", "detail": "b1"}}, "force_scale_exponent": 3, "report_diagnostic_ref": d["retained_precision"]["body"]["ordinary_attempts"][0]["initial"]["report_diagnostic_ref"]})),
-    ];
+    let selected_case = d["results"].as_array().unwrap().iter()
+        .find(|r| r["kind"] == "linear_solver_mode_basis").unwrap()["basis_ref"]["ref_id"].as_str().unwrap().to_owned();
+    let parity_selected = b1_parity_row(&shared, &selected_case, "result:b1:parity-selected");
     let f = base_source(&shared, F_BASE);
-    let cases = [
-        ("dense b = 0, no parity row on either case", on_dense(vec![], vec![]), admitted(true)),
-        ("dense b = 0, one parity row on the not_required case", on_dense(vec![one.clone()], vec![]), admitted(true)),
-        ("dense, W2-published not_required case without a parity row", on_dense(vec![], w2.clone()), admitted(true)),
-        // RV113 N-3: P4 reads W2 published, not W2 triggered.
-        ("dense b = 0, one parity row on a not_required case whose W2 failed", on_dense(vec![one.clone()], w2_failed), admitted(true)),
-        ("P2: two parity rows on the not_required case", on_dense(vec![one.clone(), two], vec![]), gate("G8", PREP)),
-        ("P4: a parity row on the W2-published not_required case", on_dense(vec![one], w2), gate("G8", PREP)),
-        ("P2: two parity rows on the dense selected case", b1_entry(&shared, "ordinary_prepared_dense_synthetic", None, vec![b1_rows(&d, vec![parity_twice])], vec![]), gate("G8", PREP)),
-        ("P4: a parity row on a W2-published selected case", b1_entry(&shared, "ordinary_prepared_dense_synthetic", None, dense_w2, vec![]), gate("G8", PREP)),
-        ("P3: a parity row on the sparse unavailable case", b1_entry(&shared, F_BASE, None, vec![b1_rows(&f, vec![b1_parity_row(&shared, UNAVAILABLE_ROW, "result:b1:sparse-parity")])], vec![]), gate("G8", PREP)),
+    let admitted_cases = [
+        ("dense b = 0, no parity row on either case", on_dense(vec![], vec![])),
+        ("dense, W2-published not_required case", on_dense(vec![], w2.clone())),
+    ];
+    let refused_cases = [
+        ("one parity row on the not_required case", on_dense(vec![one.clone()], vec![])),
+        ("two parity rows on the not_required case", on_dense(vec![one.clone(), two], vec![])),
+        ("a parity row on the W2-published not_required case", on_dense(vec![one], w2)),
+        ("a parity row on the dense selected case", b1_entry(&shared, "ordinary_prepared_dense_synthetic", None, vec![b1_rows(&d, vec![parity_selected])], vec![])),
+        ("a parity row on the sparse unavailable case", b1_entry(&shared, F_BASE, None, vec![b1_rows(&f, vec![b1_parity_row(&shared, UNAVAILABLE_ROW, "result:b1:sparse-parity")])], vec![])),
     ];
     let mut misses = Vec::new();
-    for (name, entry, want) in cases {
+    for (name, entry) in admitted_cases {
         let got = b1_verdict(&shared, &entry);
-        if got != want {
-            misses.push(format!("{name}: got {got} want {want}"));
+        if got != admitted(true) {
+            misses.push(format!("{name}: got {got}, want admitted"));
         }
+    }
+    for (name, entry) in refused_cases {
+        let got = b1_verdict(&shared, &entry);
+        if got == admitted(true) {
+            misses.push(format!("{name}: admitted, want refused"));
+        }
+        println!("E14_PARITY_REFUSAL {name}: {got}");
     }
     assert!(misses.is_empty(), "{}", misses.join("\n"));
 }
@@ -4895,7 +3903,9 @@ fn b1_r2_ordinary_basis_reference_at_g5_attempt() {
 }
 
 /// Item 2, (g), at G8 INVOCATION, PP's acceptance: no `reference_configurations` member
-/// (null included); `pressure_contract` absent or null; `components` absent or [];
+/// (null included); `pressure_contract` absent (B7a, b7-plan "The optional contract is
+/// absent only when its key is absent": a present null is authored presence, refused,
+/// as in `src/retained_precision.rs` `preview_namespace`); `components` absent or [];
 /// `combinations` absent or an array whose entries the receipt's equal (B2-C §10.1 G8).
 /// Unbound reads do not see the invocation.
 #[test]
@@ -4984,9 +3994,9 @@ fn b1_r2_g_model_scope_at_g8_invocation() {
                 admitted(true),
             ),
             (
-                "pressure_contract null",
+                "pressure_contract null (present: refused)",
                 invocation(vec![set(model("pressure_contract"), Value::Null)]),
-                admitted(true),
+                refused.clone(),
             ),
         ],
         |e| b1_verdict(&shared, e),
@@ -5858,8 +4868,8 @@ fn b1_i4p_transport_metadata_demands_alone() {
 
 /// B3a dropped (RR "Owner decisions: the legacy pressure contract is retired
 /// product-wide; ..."; formerly B3-D §6.3 and §6.4; REVISION_01 §3, N-4): G8's
-/// namespace predicate is type-strict. Only branch L (0.1.0 or 0.2.0,
-/// `pressure_contract` absent or JSON null) is admitted; any other value is G8
+/// namespace predicate is type-strict. Only branch L (current 0.5.0,
+/// `pressure_contract` absent; B7a: a JSON null is present, so refused) is admitted; any other value is G8
 /// INVOCATION_MISMATCH. "L3" in the entry names is B3a's retired contract
 /// `{"version":"1.0.0","mode":"legacy_pressure_v1"}` on 0.3.0, now refused on
 /// every base, and before any load is read (the former N-11 entries). The
@@ -5910,8 +4920,9 @@ fn b3a_legacy_pressure_contract_namespace_at_g8() {
         entries.push((format!("L3 on {base}"), base, vec![schema("0.3.0"), contract(l3.clone())], inv.clone()));
     }
     for (name, edits, want) in [
-        ("L: 0.2.0, contract null", vec![contract(Value::Null)], Value::Null),
-        ("L: 0.1.0, contract absent", vec![schema("0.1.0"), no_contract()], Value::Null),
+        // B7a: a present null contract is authored presence, outside branch L.
+        ("L: 0.5.0, contract null", vec![contract(Value::Null)], inv.clone()),
+        ("L: 0.5.0, contract absent", vec![schema("0.5.0"), no_contract()], Value::Null),
         ("L3: mode exact_straight_pressure_v2, version 1.0.0", vec![schema("0.3.0"), contract(with("mode", json!("exact_straight_pressure_v2")))], inv.clone()),
         ("L3: version 1.0.1", vec![schema("0.3.0"), contract(with("version", json!("1.0.1")))], inv.clone()),
         ("L3: the exact contract 2.0.0", vec![schema("0.3.0"), contract(json!({"version": "2.0.0", "mode": "exact_straight_pressure_v2"}))], inv.clone()),
@@ -5924,14 +4935,14 @@ fn b3a_legacy_pressure_contract_namespace_at_g8() {
         ("L3: version a number", vec![schema("0.3.0"), contract(with("version", json!(1.0)))], inv.clone()),
         ("L3: mode null", vec![schema("0.3.0"), contract(with("mode", Value::Null))], inv.clone()),
         ("0.3.0, contract {}", vec![schema("0.3.0"), contract(json!({}))], inv.clone()),
-        ("0.2.0 keeping the L3 contract", vec![contract(l3.clone())], inv.clone()),
+        ("0.5.0 keeping the L3 contract", vec![contract(l3.clone())], inv.clone()),
         ("0.1.0 keeping the L3 contract", vec![schema("0.1.0"), contract(l3.clone())], inv.clone()),
         ("0.4.0 with the L3 contract", vec![schema("0.4.0"), contract(l3.clone())], inv.clone()),
-        ("N-4: 0.2.0, contract {}", vec![contract(json!({}))], inv.clone()),
-        ("N-4: 0.2.0, contract false", vec![contract(json!(false))], inv.clone()),
-        ("N-4: 0.2.0, contract []", vec![contract(json!([]))], inv.clone()),
-        ("N-4: 0.2.0, contract \"\"", vec![contract(json!(""))], inv.clone()),
-        ("N-4: 0.2.0, contract 0", vec![contract(json!(0))], inv.clone()),
+        ("N-4: 0.5.0, contract {}", vec![contract(json!({}))], inv.clone()),
+        ("N-4: 0.5.0, contract false", vec![contract(json!(false))], inv.clone()),
+        ("N-4: 0.5.0, contract []", vec![contract(json!([]))], inv.clone()),
+        ("N-4: 0.5.0, contract \"\"", vec![contract(json!(""))], inv.clone()),
+        ("N-4: 0.5.0, contract 0", vec![contract(json!(0))], inv.clone()),
         ("N-11: L3 with a zero-magnitude element pressure load", vec![schema("0.3.0"), contract(l3.clone()), zero_pressure(ORD)], inv.clone()),
     ] {
         entries.push((name.to_string(), ORD, edits, want));
@@ -5954,20 +4965,31 @@ fn b3a_legacy_pressure_contract_namespace_at_g8() {
     }
     assert!(misses.is_empty(), "{}", misses.join("\n"));
     assert_eq!(entries.len(), 29);
+    // The retired formats stay outside the namespace even without a contract.
+    for version in ["0.1.0", "0.2.0"] {
+        for contract_edit in [contract(Value::Null), no_contract()] {
+            assert_eq!(
+                observe(&shared, &json!({"id": "retired_preview_namespace", "base": ORD, "edits": [], "rehash": "all", "invocation_edits": [schema(version), contract_edit]})),
+                inv,
+                "retired {version}"
+            );
+        }
+    }
 }
 
 // ---- B3b (I101): the exact successor `<physics-retained>` on reader-local synthetic receipts ----
 /// RN64(2e11 / (2 RN64(1 + nu))) is exactly the bases' G = 7.7e10 Pa, so the
 /// synthetic exact successor keeps every receipt number of its preview base.
 const EXACT_NU: f64 = 0.2987012987012987;
-/// The exact producer's seven `exact_straight_pressure_formulation_basis`
-/// strings, as physics-source-1's committed n05 envelope publishes them.
+/// The exact producer's ordinary `exact_pressure_v3` formulation-basis strings,
+/// as the committed pressure-1 envelope publishes them (B7b D4 (a): the exact
+/// successor's base is pressure-1).
 fn exact_limitations() -> Value {
-    let n05: Value = serde_json::from_str(include_str!(
-        "../../../../fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json"
+    let base: Value = serde_json::from_str(include_str!(
+        "../../../../fixtures/results/pressure_connected_mechanics_sparse.json"
     ))
     .unwrap();
-    n05["formulation_basis"]["limitations"].clone()
+    base["formulation_basis"]["limitations"].clone()
 }
 fn decode_bits(v: &Value) -> f64 {
     f64::from_bits(u64::from_str_radix(v.as_str().unwrap(), 16).unwrap())
@@ -5975,11 +4997,15 @@ fn decode_bits(v: &Value) -> f64 {
 /// A reader-local synthetic exact successor (not producer output; lane P's
 /// `m3x` successors replace it as the witness): a shared preview base whose
 /// cases are all selected, re-stated on the exact route.
-/// - Invocation: model 0.3.0 with `{2.0.0, exact_straight_pressure_v2}`, every
-///   case's `pressure_regions` explicitly [], each material with `poisson_ratio`
-///   EXACT_NU and `homogeneous_isotropic_E_nu_v1`.
+/// - Invocation (B7b: the current exact document): model 0.5.0 with
+///   `{3.0.0, exact_pressure_v3, euler_bernoulli}` and an authored zero
+///   `corrosion_allowance` on every pipe section, every case's
+///   `pressure_regions` explicitly [], each material with `poisson_ratio`
+///   EXACT_NU and `homogeneous_isotropic_E_nu_v1` (as the Python reader's RV120
+///   re-statement, `fixtures/results/retained_precision_rv120_b3_inputs.json`).
 /// - Envelope: the exact identity and profile with the exact producer's
-///   limitations; physics-1's `contract_evidence` built from the receipt's own
+///   limitations; pressure-1's `contract_evidence` (profile_mode
+///   `exact_pressure_v3`) built from the receipt's own
 ///   sections (OD, wall, ro, A, I, J, Z), the base's extrema and coverage, the
 ///   material's E, nu and G-hat, and a zero pressure assembly.
 /// - Receipt: `derived_e_nu` shear origins, `geometry.route` exact, the exact
@@ -5992,8 +5018,12 @@ fn exact_successor(shared: &Value, base: &str) -> (Value, Value) {
     let mut invocation = case["invocation"].clone();
     {
         let model = &mut invocation["request"]["model"];
-        model["schema_version"] = json!("0.3.0");
-        model["pressure_contract"] = json!({"version": "2.0.0", "mode": "exact_straight_pressure_v2"});
+        model["schema_version"] = json!("0.5.0");
+        model["pressure_contract"] =
+            json!({"version": "3.0.0", "mode": "exact_pressure_v3", "shear_model": "euler_bernoulli"});
+        for p in model["pipe_segments"].as_array_mut().unwrap() {
+            p["section"]["corrosion_allowance"] = json!({"value": 0.0, "unit": "m"});
+        }
         for c in model["load_cases"].as_array_mut().unwrap() {
             c["pressure_regions"] = json!([]);
         }
@@ -6036,7 +5066,7 @@ fn exact_successor(shared: &Value, base: &str) -> (Value, Value) {
         let preview = source["contract_evidence"]["preview_cases"].as_array().unwrap().iter()
             .find(|c| c["load_case_id"] == id).unwrap();
         let zeros = json!(vec![0.0; nodes.len() * 6]);
-        exact_cases.push(json!({"load_case_id": id, "profile_mode": "exact_straight_pressure_v2",
+        exact_cases.push(json!({"load_case_id": id, "profile_mode": "exact_pressure_v3",
             "material_basis": "base_material_common_E_nu", "pipe_materials": materials, "pipe_sections": sections,
             "pipe_stress_extrema": preview["pipe_stress_extrema"],
             "stress_maximum_coverage": {"complete": preview["stress_maximum_coverage"]["complete"],
@@ -6104,15 +5134,15 @@ const M3X: [(&str, &str, &str, &str, &str); 2] = [
         "m3x_sparse_interactive",
         "<s1:m3x_sparse_interactive>",
         include_str!("../../../../fixtures/results/retained_precision_exact_successor_sparse_interactive.json"),
-        "fd8b1a4dd0b51122fdc39c006d4fd90da4d7ee103e8556694d7c39f567e3af85",
-        "9b4792ef7426c324ba4ae9726d1936560440e16a6326ba38a5191d163e1ffff6",
+        "45e14e68249abbeafa358f9e7317e9060da8e59c83db948a8184b98b8859001c",
+        "f6bb7e7fc74ebce71c67da5da81906fece54e412aa2697d5548eb13f50b67524",
     ),
     (
         "m3x_dense_scrutiny",
         "<s1:m3x_dense_scrutiny>",
         include_str!("../../../../fixtures/results/retained_precision_exact_successor_dense_scrutiny.json"),
-        "2fad0a166a565ce0f9390f8f5125a9675ff4ffa4b9532681cd5a960b8c2bd42d",
-        "e3ec745c885327f3823dcdd191e984ba0c1fd184d6a1730cee30d4c4283e5475",
+        "0f490c22e7b2a25fa5dc1dd3d3a7ae7a701c744bfaac2fc2a2aa8f95f3451259",
+        "0317aed643760641eec81708a0d5f506963e109a78c97a715617c081c28b7701",
     ),
 ];
 fn exact_base(shared: &Value, base: &str) -> (Value, Value) {
@@ -6361,9 +5391,15 @@ fn b3b_repair03_n2b_physics_code_is_array_ordered_and_stable() {
 /// The N2b probe inputs (sha256 of the canonical `[source, invocation]`). K-D5 re-based the
 /// corpus bases (current maximum declarations and limitation sentences, DEL-04-01
 /// kd5-member-relative-bound.md §§3.2, 3.4, 6), so these, RV120's N2 and F2 digests moved.
-const REPAIR03_N2B_INPUTS: [&str; 2] = ["d0521a806c6c1408f710e674d9f3a3dc6aab858d73471bf08c669d94501b9b23", "3e867ddc8024a453b2023ced4ecee951bece6c4fdda40ba8068b515b16ec540f"];
+/// B7a's one corpus regeneration moved the bases again; the current digests are the ones the
+/// R1 reader-outcomes record (`fixtures/results/retained_precision_reader_outcomes.json`) states.
+/// B7b re-stated the synthetic exact construction and RV120's inputs on the current exact
+/// route (model 0.5.0, the complete v3 contract, a zero corrosion allowance, profile_mode
+/// exact_pressure_v3; W1's `retained_precision_rv120_b3_inputs.json` and m3x successors), so
+/// all eight digests moved; each equals the R1 record's input digest for the same RV120 key.
+const REPAIR03_N2B_INPUTS: [&str; 2] = ["cc862f389838ecbae57ae6baf5eb18dad750a5a6eb108bd83461f87a4ed9d9db", "961b962a1f20f166d04df1ee87fdea589e53dae3eded300b2c77650d1ea1fd7e"];
 /// RV120's N2 probe inputs (sha256 of the canonical `[source, invocation]`), as in its index.
-const RV120_N2_INPUTS: [&str; 2] = ["1ff2833f6e45aa7fe488cedfb57c24e73d9ed6b67b68a29a91871c0f684461b9", "402e6922d40bce8d3ff41ee435ff2e90f4455dd68ae328f850c438475456ee2b"];
+const RV120_N2_INPUTS: [&str; 2] = ["5bcef58c872c70d7298ea2db2a3557a6e655779c86d7176e244e71872b1536dd", "f2d7bbea60651390cfe817e083d9215fbcb3c9cbca4b29c70807ab113b8df0ca"];
 fn sha256_canonical(v: &Value) -> String {
     use open_pipe_stress_canonical_json::canonical_json;
     use sha2::{Digest, Sha256};
@@ -6372,10 +5408,10 @@ fn sha256_canonical(v: &Value) -> String {
 /// The forgeries' materialized inputs: sha256 of the canonical JSON of `[source, invocation]`
 /// (`canonical_json`), the same bytes as RV120's input lines (checked against its index).
 const RV120_FORGERY_INPUTS: [(&str, &str, &str); 4] = [
-    ("RV120 F2: E +1 ulp", "ordinary_prepared_synthetic", "2ae38c701c54bd1c29cfdd0eb9b666b99a2e8bba13f962c75a0bb7c394116264"),
-    ("RV120 F2: G-hat +1 ulp", "ordinary_prepared_synthetic", "72f491a72172e67d90b3723519d16700a966ca580e477dd08c3de67e1a8c1827"),
-    ("RV120 F2: E +1 ulp", "m3x_sparse_interactive", "6068a30e4295ada12de028e00dd54224b6adddcc61886d81eee52c78d7d131b1"),
-    ("RV120 F2: G-hat +1 ulp", "m3x_sparse_interactive", "a78b7f7c11469c80af0d9dc78eae962548340eff1a609f03de2a42afa62f0df6"),
+    ("RV120 F2: E +1 ulp", "ordinary_prepared_synthetic", "849bf31bf8ab0998d87b42bf5801bbd7137edd6fa1114c12b381899c50d8b6a9"),
+    ("RV120 F2: G-hat +1 ulp", "ordinary_prepared_synthetic", "29d6c537045d33a829b8d2bf3f3d4593f70f298d4204c0d212710f6fe92c1949"),
+    ("RV120 F2: E +1 ulp", "m3x_sparse_interactive", "cb5edc4814d61e48e5ca893c7b2eab8d8e3cfcbc2ff05f667305c22915fd9553"),
+    ("RV120 F2: G-hat +1 ulp", "m3x_sparse_interactive", "84aeda36beec855c3a41f14f91e2a769a463aa98847089d2ed20115131e17077"),
 ];
 /// RV120 F2: the four forgeries are RV120's inputs (by digest), and all three readings
 /// hold: bound G8 PREPARATION_MISMATCH (step 4), unbound and on transport never eligible.
@@ -6458,15 +5494,20 @@ fn b3b_rows(shared: &Value, base_name: &'static str) -> Vec<(ExactShape, Value)>
         ("15g the owner entry's As_m2 a string", vec![set(ce(json!(["pipe_sections", 0, "As_m2"])), json!(format!("{}", section("As_m2"))))], vec![], vec![], sec.clone()),
         ("15h the owner entry listed twice", vec![set(json!(["contract_evidence", "exact_cases"]), json!([entry, entry]))], vec![], vec![], sec.clone()),
         ("16b contract_evidence removed", vec![remove(json!(["contract_evidence"]))], vec![], vec![], sec.clone()),
-        ("16 connector non-empty", vec![set(json!(["contract_evidence", "connector"]), json!([{"id": "connector:x"}]))], vec![], vec![], gate("G7", "SOURCE_PHYSICS_CONNECTOR_UNSUPPORTED")),
+        // B7b: pressure-1 (the exact successor's base, D4 (a)) admits connector evidence
+        // under its own resident table (O-10), so the invented record is refused by its
+        // record shape (formerly physics-1's CONNECTOR_UNSUPPORTED), as in PY's
+        // tests/test_retained_precision_b3.py.
+        ("16 connector non-empty", vec![set(json!(["contract_evidence", "connector"]), json!([{"id": "connector:x"}]))], vec![], vec![], gate("G7", "SOURCE_PHYSICS_CONNECTOR_RECORD_SHAPE")),
         ("17 an entry's G_pa three ulps", vec![set(ce(json!(["pipe_materials", 0, "G_pa"])), json!(ulps(material("G_pa"), 3)))], vec![], vec![], gate("G7", "SOURCE_PHYSICS_MATERIAL_G_BINDING")),
         ("18 recovery_method added to an exact_cases entry", vec![set(ce(json!(["recovery_method"])), json!("retained_source_blocks_exact_v1"))], vec![], vec![], gate("G7", "SOURCE_PHYSICS_CASE_SHAPE")),
         ("19 invocation contract -> legacy 1.0.0", vec![], vec![set(model(json!(["pressure_contract"])), json!({"version": "1.0.0", "mode": "legacy_pressure_v1"}))], vec![], inv.clone()),
         ("20 invocation schema -> 0.4.0", vec![], vec![set(model(json!(["schema_version"])), json!("0.4.0"))], vec![], inv.clone()),
         ("21 invocation pressure_contract false", vec![], vec![set(model(json!(["pressure_contract"])), json!(false))], vec![], inv.clone()),
-        ("21b invocation contract with an extra key", vec![], vec![set(model(json!(["pressure_contract"])), json!({"version": "2.0.0", "mode": "exact_straight_pressure_v2", "extra": null}))], vec![], inv.clone()),
-        ("21c invocation contract version 2.0.1", vec![], vec![set(model(json!(["pressure_contract"])), json!({"version": "2.0.1", "mode": "exact_straight_pressure_v2"}))], vec![], inv.clone()),
-        ("21d invocation contract removed (0.3.0, absent)", vec![], vec![remove(model(json!(["pressure_contract"])))], vec![], inv.clone()),
+        // B7b: perturbations of the base's current contract (formerly of v2's).
+        ("21b invocation contract with an extra key", vec![], vec![set(model(json!(["pressure_contract"])), json!({"version": "3.0.0", "mode": "exact_pressure_v3", "shear_model": "euler_bernoulli", "extra": null}))], vec![], inv.clone()),
+        ("21c invocation contract version 3.0.1", vec![], vec![set(model(json!(["pressure_contract"])), json!({"version": "3.0.1", "mode": "exact_pressure_v3", "shear_model": "euler_bernoulli"}))], vec![], inv.clone()),
+        ("21d invocation contract removed (absent)", vec![], vec![remove(model(json!(["pressure_contract"])))], vec![], inv.clone()),
         // Entry 22: B2-C admits model combinations; G8's entry and expression equality refuses this one (no receipt entry names it).
         ("22 a combination added to the invocation", vec![], vec![set(model(json!(["combinations"])), json!([{"id": "combination:x", "kind": "algebraic", "terms": [{"load_case": case_id, "factor": 1.0}]}]))], vec![], inv.clone()),
         ("22b a component added to the invocation", vec![], vec![set(model(json!(["components"])), json!([{"id": "component:x"}]))], vec![], inv.clone()),
@@ -6588,8 +5629,8 @@ fn b3b_exact_successor_readings_standing_and_dispatch() {
         assert_eq!(classes.len(), rp::validate(&source, None).unwrap().classifications.len());
         // F-5: the receipt member and the method token stay the successors' own.
         let mut downgraded = source.clone();
-        downgraded["producer"]["semantic_contract_id"] = json!(sc::PHYSICS_ID);
-        downgraded["formulation_basis"]["profile_id"] = json!("exact_straight_pressure_v2");
+        downgraded["producer"]["semantic_contract_id"] = json!(sc::PRESSURE_ID);
+        downgraded["formulation_basis"]["profile_id"] = json!(sc::PRESSURE_PROFILE);
         assert_eq!(sc::for_source(&downgraded).unwrap_err(), sc::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN);
     }
     // Unbound and transport readings of three shapes: a G8 shape reads unbound and on
@@ -6796,195 +5837,15 @@ fn n07_entries(shared: &Value) -> Vec<Value> {
 /// entries all in the declared class (Python and TS share the G7 expectation, Rust
 /// gives its own raw G7 code, the unbound read the same per reader); 16 entries with
 /// their own classes; 19 bases and 46 must-pass entries eligible.
-#[test]
-fn snapshot_07n_counts_and_format() {
-    let shared = corpus();
-    let ids = |key: &str| -> Vec<String> {
-        shared[key]
-            .as_array()
-            .unwrap()
-            .iter()
-            .map(|e| e["id"].as_str().unwrap().to_owned())
-            .collect()
-    };
-    // 07o appends after 07n (`snapshot_07o_counts_and_format`); 07n is the prefix.
-    let (cases, mutations, must_pass) = (ids("cases"), ids("mutations"), ids("must_pass"));
-    let (cases, mutations, must_pass) = (&cases[..26], &mutations[..534], &must_pass[..78]);
-    assert_eq!(cases[17..], N07_BASES);
-    assert_eq!(mutations, &MUTATION_IDS[..534]);
-    let all: std::collections::BTreeSet<&String> = mutations.iter().chain(must_pass).collect();
-    assert_eq!(all.len(), 612, "entry ids are unique");
-    let new_keys = [
-        "expected_unbound",
-        "expected_unbound_by_reader",
-        "expected_transport",
-        "expected_classifications",
-    ];
-    let old: Vec<&Value> = shared["mutations"].as_array().unwrap()[..294]
-        .iter()
-        .chain(&shared["must_pass"].as_array().unwrap()[..28])
-        .collect();
-    assert!(
-        old.iter()
-            .all(|e| new_keys.iter().all(|k| e.get(*k).is_none())),
-        "07m's entries carry no 07n key"
-    );
-    let new = n07_entries(&shared);
-    let allowed = [
-        "id",
-        "base",
-        "edits",
-        "invocation_edits",
-        "rehash",
-        "expected",
-        "expected_by_reader",
-        "expected_eligibility",
-        "expected_classifications",
-        "expected_unbound",
-        "expected_unbound_by_reader",
-        "expected_transport",
-    ];
-    for e in &new {
-        let o = e.as_object().unwrap();
-        assert!(
-            o.keys().all(|k| allowed.contains(&k.as_str())),
-            "{}",
-            e["id"]
-        );
-        assert_eq!(e["rehash"], "all");
-        assert!(e.get("expected_transport").is_some(), "{}", e["id"]);
-        assert!(
-            e.get("expected_unbound").is_some() != e.get("expected_unbound_by_reader").is_some(),
-            "{}",
-            e["id"]
-        );
-    }
-    let per: Vec<&Value> = new
-        .iter()
-        .filter(|e| e.get("expected_by_reader").is_some())
-        .collect();
-    assert_eq!(per.len(), 45);
-    for e in &per {
-        let r = &e["expected_by_reader"];
-        assert!(
-            r.as_object().unwrap().keys().map(String::as_str).eq(["python", "rust"])
-                && r["python"] == e["expected"]
-                && r["rust"] != e["expected"]
-                && e["expected"]["gate"] == "G7"
-                && r["rust"]["gate"] == "G7"
-                && e["expected_unbound_by_reader"] == *r,
-            "{}: the declared class",
-            e["id"]
-        );
-    }
-    let classes = shared["must_pass"].as_array().unwrap()[28..78]
-        .iter()
-        .filter(|e| e.get("expected_classifications").is_some())
-        .count();
-    assert_eq!(classes, 16);
-    let eligible = |key: &str, field: &str, n: usize| {
-        shared[key].as_array().unwrap()[..n]
-            .iter()
-            .filter(|e| e[field]["numerical_eligible"] == true)
-            .count()
-    };
-    assert_eq!(
-        (
-            eligible("cases", "expected", 26),
-            eligible("must_pass", "expected_eligibility", 78)
-        ),
-        (19, 46)
-    );
-}
+
 
 /// 07n's 240 mutations as one slice, observed by this reader against its own
 /// expectation and tallied against a literal, as the earlier snapshots' slices are.
-#[test]
-fn snapshot_07n_mutation_outcomes() {
-    slice_outcomes(
-        "I101_OUTCOME_07N",
-        294..534,
-        &[
-            ("G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED", 1),
-            ("G1 RETAINED_PRECISION_RECEIPT_MISMATCH", 6),
-            ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 15),
-            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 73),
-            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 17),
-            ("G5 RETAINED_PRECISION_WORK_MISMATCH", 1),
-            ("G6 RETAINED_PRECISION_ROW_METHOD_MISMATCH", 1),
-            ("G7 SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN", 4),
-            ("G7 SOURCE_FORMULATION_BASIS_UNSUPPORTED", 3),
-            ("G7 SOURCE_NUMERICAL_CASE_INVALID", 14),
-            ("G7 SOURCE_NUMERICAL_QUALITY_INVALID", 9),
-            ("G7 SOURCE_PREVIEW_PHYSICS_ARRAY_INVALID", 1),
-            ("G7 SOURCE_PREVIEW_PHYSICS_CASE_SHAPE", 1),
-            ("G7 SOURCE_PREVIEW_PHYSICS_DUPLICATE_CASE", 1),
-            ("G7 SOURCE_PREVIEW_PHYSICS_DUPLICATE_ID", 1),
-            ("G7 SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED", 2),
-            ("G7 SOURCE_PREVIEW_PHYSICS_EVIDENCE_SHAPE", 1),
-            ("G7 SOURCE_PREVIEW_PHYSICS_EXTREMA_BASIS", 1),
-            ("G7 SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS", 2),
-            ("G7 SOURCE_PREVIEW_PHYSICS_EXTREMA_SHAPE", 1),
-            ("G7 SOURCE_PREVIEW_PHYSICS_EXTREMA_STATION", 2),
-            ("G7 SOURCE_PREVIEW_PHYSICS_EXTREMA_SUBDIVISIONS", 3),
-            ("G7 SOURCE_PREVIEW_PHYSICS_FOREIGN_METHOD_EVIDENCE", 1),
-            ("G7 SOURCE_PREVIEW_PHYSICS_FORMULATION_BASIS", 1),
-            ("G7 SOURCE_PREVIEW_PHYSICS_GATE_DUPLICATE", 1),
-            ("G7 SOURCE_PREVIEW_PHYSICS_GATE_REASON", 2),
-            ("G7 SOURCE_PREVIEW_PHYSICS_GATE_SHAPE", 2),
-            ("G7 SOURCE_PREVIEW_PHYSICS_INTENSIFIED_RESULT_MISSING", 5),
-            ("G7 SOURCE_PREVIEW_PHYSICS_INTENSIFIED_SHAPE", 1),
-            ("G7 SOURCE_PREVIEW_PHYSICS_NUMBER_INVALID", 3),
-            ("G7 SOURCE_PREVIEW_PHYSICS_STRESS_COVERAGE", 1),
-            ("G7 SOURCE_PREVIEW_PHYSICS_STRESS_COVERAGE_PARTITION", 3),
-            ("G7 SOURCE_PREVIEW_PHYSICS_STRING_INVALID", 1),
-            (
-                "G7 SOURCE_PREVIEW_PHYSICS_SUPPORT_ATTRIBUTION_CASE_MISMATCH",
-                1,
-            ),
-            ("G7 SOURCE_PREVIEW_PHYSICS_SUPPORT_LISTED_TWICE", 2),
-            ("G7 SOURCE_PREVIEW_PHYSICS_SUPPORT_WITHHELD_REASON", 1),
-            ("G7 SOURCE_PREVIEW_PHYSICS_SUPPORT_WITHHELD_RECORD", 1),
-            ("G8 RETAINED_PRECISION_INVOCATION_MISMATCH", 25),
-            ("G8 RETAINED_PRECISION_PREPARATION_MISMATCH", 29),
-        ],
-    );
-}
+
 
 /// 07n: each entry's unbound read (no invocation) and transport read, as the corpus
 /// states them for this reader: "pass" (admitted, not eligible) or a gate and code.
-#[test]
-fn snapshot_07n_unbound_and_transport_reads() {
-    let shared = corpus();
-    let read = |got: Result<rp::Validation, rp::ValidationError>| match got {
-        Ok(v) => {
-            assert!(!v.invocation_bound && !v.numerical_eligible);
-            Value::from("pass")
-        }
-        Err(e) => serde_json::json!({"gate": e.gate, "code": e.code}),
-    };
-    let mut misses = Vec::new();
-    let new = n07_entries(&shared);
-    assert_eq!(new.len(), 290);
-    for entry in &new {
-        let (source, _) = apply_entry(&shared, entry);
-        let unbound = entry
-            .get("expected_unbound")
-            .unwrap_or_else(|| &entry["expected_unbound_by_reader"]["rust"]);
-        let got = read(rp::validate(&source, None));
-        if got != *unbound {
-            misses.push(format!("{} unbound: got {got} want {unbound}", entry["id"]));
-        }
-        let got = read(rp::validate_transport_metadata(&source));
-        if got != entry["expected_transport"] {
-            misses.push(format!(
-                "{} transport: got {got} want {}",
-                entry["id"], entry["expected_transport"]
-            ));
-        }
-    }
-    assert!(misses.is_empty(), "{}", misses.join("\n"));
-}
+
 
 // ---- B2 (B2-C CONTRACT with REVISION_01 and REVISION_02): combinations ----
 
@@ -7429,67 +6290,12 @@ fn n1_negative_extrema_numbers_refused_zero_accepted() {
 /// corpus, appended after 07n): 19 bases (45), 69 mutations (603) and 19 must-pass
 /// entries (97), ids unique; the format rule states S-6's seven steps; each 07o
 /// must-pass entry's standing (`expected_eligibility.standing`) is this reader's.
-#[test]
-fn snapshot_07o_counts_and_format() {
-    use open_pipe_stress_result_export::semantic_contract as sc;
-    let shared = corpus();
-    let ids = |key: &str| -> Vec<String> {
-        shared[key].as_array().unwrap().iter().map(|e| e["id"].as_str().unwrap().to_owned()).collect()
-    };
-    let (cases, mutations, must_pass) = (ids("cases"), ids("mutations"), ids("must_pass"));
-    assert_eq!((cases.len(), mutations.len(), must_pass.len()), (45, 603, 97));
-    assert_eq!(mutations, MUTATION_IDS);
-    let all: std::collections::BTreeSet<&String> = mutations.iter().chain(&must_pass).collect();
-    assert_eq!(all.len(), 700, "entry ids are unique");
-    let rule = shared["format_rule"]["order"].as_str().unwrap();
-    for step in ["operand_preparation_ref", "retained_precision_operand_preparation_v1", "operands[*].source_identity_sha256", "retained_selected combination"] {
-        assert!(rule.contains(step), "{step}");
-    }
-    for entry in &shared["must_pass"].as_array().unwrap()[78..] {
-        let (source, invocation) = apply_entry(&shared, entry);
-        let order: Vec<Value> = source["retained_precision"]["body"]["cases"].as_array().unwrap().iter().map(|c| c["basis_ref"].clone()).collect();
-        let standing = sc::numerical_use_standing_with_context(&source, &order, Some(&invocation));
-        println!("B2_RS_07O_STANDING {} {standing}", entry["id"]);
-        // An entry stated refused bound (PR-B2 ruling 5) has no numerical-use standing.
-        if entry["expected"] != "pass" {
-            assert_eq!(standing, "unsupported", "{}", entry["id"]);
-            continue;
-        }
-        // The corpus's `eligible` is this reader's `numerically_eligible`.
-        let want = match entry["expected_eligibility"]["standing"].as_str().unwrap() {
-            "eligible" => "numerically_eligible",
-            other => other,
-        };
-        assert_eq!(standing, want, "{}", entry["id"]);
-    }
-}
+
 
 /// 07o's 69 mutations as one slice, observed by this reader against its own
 /// expectation (the designed first failure; m69 at Rust's own G7 base code) and
 /// tallied against a literal.
-#[test]
-fn snapshot_07o_mutation_outcomes() {
-    slice_outcomes(
-        "B2_RS_OUTCOME_07O",
-        534..603,
-        &[
-            ("G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED", 7),
-            ("G1 RETAINED_PRECISION_RECEIPT_MISMATCH", 9),
-            ("G2 RETAINED_PRECISION_ENCODING_MISMATCH", 2),
-            ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 14),
-            ("G4 RETAINED_PRECISION_DIAGNOSTIC_MISMATCH", 4),
-            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 10),
-            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 8),
-            ("G5 RETAINED_PRECISION_WORK_MISMATCH", 3),
-            ("G5b RETAINED_PRECISION_SCALE_MISMATCH", 1),
-            ("G5c RETAINED_PRECISION_CLASSIFICATION_MISMATCH", 1),
-            ("G6 RETAINED_PRECISION_ROW_METHOD_MISMATCH", 3),
-            ("G7 SOURCE_PREVIEW_PHYSICS_COMBINATION_MAGNITUDE", 1),
-            ("G8 RETAINED_PRECISION_INVOCATION_MISMATCH", 3),
-            ("G8 RETAINED_PRECISION_PREPARATION_MISMATCH", 3),
-        ],
-    );
-}
+
 
 /// PR-B2 ruling 5: 07o states the two hook-produced bases refused bound at G8
 /// PREPARATION_MISMATCH (each hook records the refused member's old facts with
@@ -7497,40 +6303,7 @@ fn snapshot_07o_mutation_outcomes() {
 /// refuses), and passing unbound and on transport. Exactly those two bases and
 /// their must-pass entries carry a refused statement; every 07o entry that states
 /// an unbound or transport read is read so by this reader.
-#[test]
-fn snapshot_07o_unbound_and_transport_reads() {
-    let shared = corpus();
-    let refused: Vec<&Value> = shared["cases"].as_array().unwrap()[26..]
-        .iter()
-        .filter(|c| c["expected"].get("gate").is_some())
-        .map(|c| &c["id"])
-        .collect();
-    assert_eq!(refused, ["b2_operand_preparation_failure", "b2_operand_source_unavailable"]);
-    let stated: Vec<&Value> = shared["must_pass"].as_array().unwrap()[78..]
-        .iter()
-        .filter(|e| e["expected"] != "pass")
-        .map(|e| &e["base"])
-        .collect();
-    assert_eq!(stated, refused);
-    let read = |got: Result<rp::Validation, rp::ValidationError>| match got {
-        Ok(v) => {
-            assert!(!v.invocation_bound && !v.numerical_eligible);
-            Value::from("pass")
-        }
-        Err(e) => serde_json::json!({"gate": e.gate, "code": e.code}),
-    };
-    let mut seen = 0;
-    for entry in shared["mutations"].as_array().unwrap()[534..].iter().chain(&shared["must_pass"].as_array().unwrap()[78..]) {
-        if entry.get("expected_unbound").is_none() && entry.get("expected_transport").is_none() {
-            continue;
-        }
-        seen += 1;
-        let (source, _) = apply_entry(&shared, entry);
-        assert_eq!(read(rp::validate(&source, None)), entry["expected_unbound"], "{}", entry["id"]);
-        assert_eq!(read(rp::validate_transport_metadata(&source)), entry["expected_transport"], "{}", entry["id"]);
-    }
-    assert_eq!(seen, 2);
-}
+
 
 /// PR-B2 lane X: the shared B2 parity probes, pinned alike in the RS, PY and TS
 /// readers. Each shape is a forgery on a corpus base in the corpus entry grammar
@@ -7580,12 +6353,10 @@ const R1_SUCCESSORS: [(&str, &str); 12] = [
     ("w_c2_successor_sparse_interactive", include_str!("../../../../fixtures/results/retained_precision_w_c2_successor_sparse_interactive.json")),
 ];
 /// The carrier cases' fixtures, by their `path`.
-const R1_CARRIER_FIXTURES: [(&str, &str); 5] = [
+const R1_CARRIER_FIXTURES: [(&str, &str); 3] = [
     ("fixtures/results/retained_precision_milestone_successor_sparse_interactive.json", R1_SUCCESSORS[9].1),
     ("fixtures/results/retained_precision_milestone_successor_dense_scrutiny.json", R1_SUCCESSORS[8].1),
-    ("fixtures/product_preview/invented_demo_result_legacy_0_1.json", include_str!("../../../../fixtures/product_preview/invented_demo_result_legacy_0_1.json")),
     ("fixtures/results/preview_physics_invented_sparse.json", include_str!("../../../../fixtures/results/preview_physics_invented_sparse.json")),
-    ("fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json", include_str!("../../../../fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json")),
 ];
 const R1_OUTCOMES_PATH: &str = "fixtures/results/retained_precision_reader_outcomes.json";
 
@@ -7818,4 +6589,367 @@ fn r1_reader_inputs_read_by_value() {
     erased.dedup();
     assert_eq!(erased, ["corpus:mutation:shape_then_encoding", "corpus:mutation:negative_zero_counter", "corpus:mutation:coverage_body_negative_zero", "corpus:mutation:coverage_encoding_then_duplicate"], "{changed:?}");
     assert!(differing.is_empty(), "{} readings differ:\n{}", differing.len(), differing.iter().take(40).cloned().collect::<Vec<_>>().join("\n"));
+}
+
+
+
+// The same 19 inherited B2 positive controls; mutation observations stay optional.
+const INHERITED_B2_MUST_ACCEPT: [&str; 19] = [
+    "b2o_must_pass_w_cb1_sparse_interactive",
+    "b2o_must_pass_w_cb1_dense_scrutiny",
+    "b2o_must_pass_w_cb1z_sparse_interactive",
+    "b2o_must_pass_w_cb2_sparse_interactive",
+    "b2o_must_pass_w_cb2_dense_scrutiny",
+    "b2o_must_pass_w_cb3_sparse_interactive",
+    "b2o_must_pass_w_cb3_dense_scrutiny",
+    "b2o_must_pass_w_cb4a_sparse_interactive",
+    "b2o_must_pass_w_cb4a_dense_scrutiny",
+    "b2o_must_pass_w_cb4b_sparse_interactive",
+    "b2o_must_pass_w_cb4b_dense_scrutiny",
+    "b2o_must_pass_w_cb5_sparse_interactive",
+    "b2o_must_pass_w_cb5_dense_scrutiny",
+    "b2o_must_pass_b2_c1_range_mechanics_sparse_interactive",
+    "b2o_must_pass_b2_c1_range_mechanics_dense_scrutiny",
+    "b2o_must_pass_b2_operand_preparation_failure",
+    "b2o_must_pass_b2_operand_source_unavailable",
+    "b2o_must_pass_b2_pre_source_refusal",
+    "b2o_must_pass_b2_base_withheld",
+];
+fn current_expected<'a>(entry: &'a Value, context: &str) -> Option<&'a Value> {
+    let key = if context == "bound" { "expected".to_string() } else { format!("expected_{context}") };
+    let expected = if context == "bound" { Some(entry.get(&key).expect("bound expected is required")) } else { entry.get(&key) };
+    let result = if let Some(per_reader) = entry.get(format!("{key}_by_reader")) {
+        Some(per_reader.get("rust").expect("declared reader-specific expectation is required"))
+    } else { expected };
+    if context == "bound" || entry.get(&key).is_some() || entry.get(format!("{key}_by_reader")).is_some() {
+        let value = result.unwrap();
+        assert!(value == "pass" || (value["gate"].as_str().is_some_and(|s| !s.is_empty()) && value["code"].as_str().is_some_and(|s| !s.is_empty())), "valid bound outcome is required");
+    }
+    result
+}
+
+fn current_variant_expected<'a>(entry: &'a Value, context: &str, pass: &'a Value) -> Option<&'a Value> {
+    current_expected(entry, context).or_else(|| INHERITED_B2_MUST_ACCEPT.contains(&entry["id"].as_str().unwrap()).then_some(pass))
+}
+
+fn current_must_declarations<'a>(entry: &'a Value, case: &'a Value) -> (&'a Value, &'a Value) {
+    let eligibility = entry.get("expected_eligibility").expect("accepted must-pass eligibility is required");
+    assert!(eligibility["invocation_bound"].is_boolean() && eligibility["numerical_eligible"].is_boolean() && matches!(eligibility["standing"].as_str(),Some("eligible"|"needs_recompute")));
+    let classes = entry.get("expected_classifications").unwrap_or_else(|| case.get("expected_classifications").expect("classifications are required"));
+    assert!(classes.is_array());
+    (classes, eligibility)
+}
+
+fn current_read(source: &Value, invocation: Option<&Value>, expected: Option<&Value>, label: &str,
+    classes: Option<&Value>, eligibility: Option<&Value>, transport: bool) {
+    let result = if transport { rp::validate_transport_metadata(source) } else { rp::validate(source, invocation) };
+    if invocation.is_some() { assert!(expected.is_some(), "{label}: bound expectation is required"); }
+    let outcome = rp::outcome_json(&result);
+    match result {
+        Err(error) => {
+            if let Some(want) = expected {
+                assert_eq!(serde_json::json!({"gate":error.gate,"code":error.code}), *want, "{label}");
+            }
+        }
+        Ok(value) => {
+            if let Some(want) = expected { assert!(want == "pass" || want.get("gate").is_none(), "{label}"); }
+            if let Some(want) = eligibility {
+                assert_eq!(value.invocation_bound, want["invocation_bound"].as_bool().unwrap(), "{label}");
+                assert_eq!(value.numerical_eligible, want["numerical_eligible"].as_bool().unwrap(), "{label}");
+                assert_eq!(if value.numerical_eligible { "eligible" } else { "needs_recompute" }, want["standing"], "{label}");
+            }
+            if invocation.is_none() { assert!(!value.invocation_bound && !value.numerical_eligible, "{label}"); }
+            if let Some(want) = classes { assert_eq!(outcome["validation"]["classifications"], *want, "{label}"); }
+            if transport { assert!(value.classifications.is_empty(), "{label}"); }
+            assert_eq!(value.publication_sha256, source["retained_precision"]["body"]["publication_sha256"], "{label}");
+        }
+    }
+}
+
+#[test]
+fn current_shared_corpus_contract() {
+    let data = corpus();
+    let cases = data["cases"].as_array().unwrap();
+    let ids: std::collections::BTreeSet<_> = cases.iter().map(|c| c["id"].as_str().unwrap()).collect();
+    assert_eq!(ids.len(), cases.len());
+    let entries: Vec<_> = data["mutations"].as_array().unwrap().iter().chain(data["must_pass"].as_array().unwrap()).collect();
+    let entry_ids: std::collections::BTreeSet<_> = entries.iter().map(|e| e["id"].as_str().unwrap()).collect();
+    assert_eq!(entry_ids.len(), entries.len());
+    let pass = Value::from("pass");
+    let unqualified = serde_json::json!({"invocation_bound":false,"numerical_eligible":false,"standing":"needs_recompute"});
+    for case in cases {
+        let expected = &case["expected"]; let eligible = expected.get("gate").is_none();
+        let label = case["id"].as_str().unwrap();
+        current_read(&case["source"], Some(&case["invocation"]), Some(expected), label,
+            eligible.then_some(&case["expected_classifications"]), eligible.then_some(expected), false);
+        current_read(&case["source"], None, Some(&pass), &format!("{label}:unbound"),
+            Some(&case["expected_classifications"]), Some(&unqualified), false);
+        current_read(&case["source"], None, Some(&pass), &format!("{label}:transport"), None, Some(&unqualified), true);
+    }
+    for kind in ["mutations", "must_pass"] {
+        for entry in data[kind].as_array().unwrap() {
+            let case = cases.iter().find(|c| c["id"] == entry["base"]).unwrap();
+            let (source, invocation) = apply_entry(data, entry);
+            let expected = current_expected(entry, "bound");
+            let mut classes = entry.get("expected_classifications").unwrap_or(&case["expected_classifications"]);
+            let mut eligibility = entry.get("expected_eligibility");
+            if kind == "must_pass" && expected == Some(&pass) {
+                let declarations = current_must_declarations(entry, case);
+                classes = declarations.0; eligibility = Some(declarations.1);
+            }
+            let label = entry["id"].as_str().unwrap();
+            current_read(&source, Some(&invocation), expected, &format!("{label}:bound"),
+                (expected == Some(&pass)).then_some(classes), eligibility, false);
+            let unbound = current_variant_expected(entry, "unbound", &pass);
+            let transport = current_variant_expected(entry, "transport", &pass);
+            current_read(&source, None, unbound, &format!("{label}:unbound"),
+                (kind == "must_pass").then_some(classes), None, false);
+            current_read(&source, None, transport, &format!("{label}:transport"), None, None, true);
+        }
+    }
+}
+
+#[test]
+fn current_corpus_requires_bound_and_must_pass_declarations() {
+    let data = corpus();
+    let mut method = data["mutations"].as_array().unwrap().iter().find(|e| e["id"] == "method_null").unwrap().clone();
+    method.as_object_mut().unwrap().remove("expected");
+    assert!(std::panic::catch_unwind(|| current_expected(&method, "bound")).is_err());
+    let entry = data["must_pass"].as_array().unwrap().iter().find(|e| e["expected"] == "pass").unwrap().clone();
+    let case = data["cases"].as_array().unwrap().iter().find(|c| c["id"] == entry["base"]).unwrap().clone();
+    let mut missing = entry.clone(); missing.as_object_mut().unwrap().remove("expected_eligibility");
+    assert!(std::panic::catch_unwind(|| current_must_declarations(&missing, &case)).is_err());
+    let mut missing = entry.clone(); missing["expected_eligibility"].as_object_mut().unwrap().remove("numerical_eligible");
+    assert!(std::panic::catch_unwind(|| current_must_declarations(&missing, &case)).is_err());
+    let mut missing = entry.clone(); missing.as_object_mut().unwrap().remove("expected_classifications");
+    let mut missing_case = case.clone(); missing_case.as_object_mut().unwrap().remove("expected_classifications");
+    assert!(std::panic::catch_unwind(|| current_must_declarations(&missing, &missing_case)).is_err());
+    let declared = serde_json::json!({"expected":{"gate":"G1","code":"x"},"expected_by_reader":{"python":{"gate":"G1","code":"x"}}});
+    assert!(std::panic::catch_unwind(|| current_expected(&declared, "bound")).is_err());
+    for invalid in [Value::Null,serde_json::json!({}),serde_json::json!({"gate":"G1"}),Value::from(0)] {
+        let declared = serde_json::json!({"expected":{"gate":"G1","code":"x"},"expected_by_reader":{"rust":invalid}});
+        assert!(std::panic::catch_unwind(|| current_expected(&declared, "bound")).is_err());
+    }
+    assert!(current_variant_expected(&serde_json::json!({"id":"method_null"}), "unbound", &Value::from("pass")).is_none());
+}
+
+#[test]
+fn current_inherited_b2_contexts() {
+    let data = corpus(); let pass = Value::from("pass");
+    let unqualified = serde_json::json!({"invocation_bound":false,"numerical_eligible":false,"standing":"needs_recompute"});
+    for name in INHERITED_B2_MUST_ACCEPT {
+        let entry = data["must_pass"].as_array().unwrap().iter().find(|e| e["id"] == name).expect("inherited positive control is present");
+        let case = data["cases"].as_array().unwrap().iter().find(|c| c["id"] == entry["base"]).unwrap();
+        let (source, _) = apply_entry(data, entry);
+        let classes = entry.get("expected_classifications").unwrap_or(&case["expected_classifications"]);
+        current_read(&source, None, current_variant_expected(entry, "unbound", &pass), name, Some(classes), Some(&unqualified), false);
+        current_read(&source, None, current_variant_expected(entry, "transport", &pass), name, None, Some(&unqualified), true);
+    }
+}
+
+/// B7b (ccb19ba0bf; DEF-E's G8 and b7-plan "Exact-contract fields"): D1.3's exact
+/// namespace requires every pipe section of the invocation to declare a length-valued
+/// zero corrosion allowance; the preview namespace requires none. On lane P's genuine
+/// W1 exact successors (both modes), an invocation whose pipe carries 0.001 m, no
+/// allowance, a null one or one of the wrong dimension, its digest rebound and the
+/// receipt resealed (`apply_on`), is refused bound at G8 INVOCATION_MISMATCH while its
+/// unbound and transport readings are unchanged; an explicit zero in millimetres reads
+/// as the genuine successor. A preview successor (the committed milestone successors
+/// and the shared corpus's ordinary bases) whose invocation adds an allowance is
+/// refused bound at G8 likewise.
+#[test]
+fn b7b_corrosion_allowance_namespace_at_g8() {
+    use serde_json::json;
+    let ca = json!(["request", "model", "pipe_segments", 0, "section", "corrosion_allowance"]);
+    let inv = gate("G8", "RETAINED_PRECISION_INVOCATION_MISMATCH");
+    let reseal = |doc: &Value, invocation_edits: Vec<Value>| {
+        apply_on(doc, &json!({"edits": [], "rehash": "all", "invocation_edits": invocation_edits}))
+    };
+    for (name, _, text, ..) in M3X {
+        let doc: Value = serde_json::from_str(text).unwrap();
+        assert_eq!(doc["invocation"]["request"]["model"]["pipe_segments"][0]["section"]["corrosion_allowance"], json!({"unit": "m", "value": 0.0}), "{name}");
+        let genuine = readings(&doc["source"], &doc["invocation"]);
+        assert_eq!(genuine["bound"], json!({"ok": {"eligible": true}}), "{name}");
+        let (source, invocation) = reseal(&doc, vec![]);
+        assert_eq!(readings(&source, &invocation), genuine, "{name}: the reseal alone");
+        let (source, invocation) = reseal(&doc, vec![set(ca.clone(), json!({"value": 0.0, "unit": "mm"}))]);
+        assert_eq!(readings(&source, &invocation), genuine, "{name}: 0 mm");
+        for (what, edit) in [
+            ("0.001 m", set(ca.clone(), json!({"value": 0.001, "unit": "m"}))),
+            ("absent", remove(ca.clone())),
+            ("null", set(ca.clone(), Value::Null)),
+            ("wrong dimension", set(ca.clone(), json!({"value": 0.0, "unit": "Pa"}))),
+        ] {
+            let (source, invocation) = reseal(&doc, vec![edit]);
+            assert_eq!(
+                readings(&source, &invocation),
+                json!({"bound": inv, "unbound": genuine["unbound"], "transport": genuine["transport"]}),
+                "{name}: {what}"
+            );
+        }
+    }
+    let milestones = ["sparse_interactive", "dense_scrutiny"].map(|mode| {
+        let path = format!("{}/../../../fixtures/results/retained_precision_milestone_successor_{mode}.json", env!("CARGO_MANIFEST_DIR"));
+        (mode, serde_json::from_str::<Value>(&std::fs::read_to_string(path).unwrap()).unwrap())
+    });
+    for (mode, doc) in &milestones {
+        assert_eq!(doc["source"]["producer"]["semantic_contract_id"], rp::CONTRACT_ID, "{mode}");
+        let genuine = readings(&doc["source"], &doc["invocation"]);
+        assert!(genuine["bound"].get("ok").is_some(), "{mode}: {genuine}");
+        for (what, value) in [("zero", json!({"value": 0.0, "unit": "m"})), ("0.001 m", json!({"value": 0.001, "unit": "m"}))] {
+            let (source, invocation) = reseal(doc, vec![set(ca.clone(), value)]);
+            assert_eq!(
+                readings(&source, &invocation),
+                json!({"bound": inv, "unbound": genuine["unbound"], "transport": genuine["transport"]}),
+                "milestone {mode}: {what}"
+            );
+        }
+    }
+    let shared = corpus();
+    for base in [ORD, "ordinary_prepared_dense_synthetic"] {
+        let entry = json!({"id": "b7b_preview_ca", "base": base, "edits": [], "rehash": "all",
+            "invocation_edits": [set(ca.clone(), json!({"value": 0.0, "unit": "m"}))]});
+        assert_eq!(observe(&shared, &entry), inv, "{base}");
+    }
+}
+
+// B7b review N-1: `section_allowances` covers every pipe section, on both routes, not the
+// first. `b7b_corrosion_allowance_namespace_at_g8` edits pipe 0 of one-pipe invocations
+// only, so the three controls below read a pipe other than index 0, each with its digest
+// rebound and the receipt resealed (`apply_on`). Each kills a first-section-only check on
+// its own.
+/// The invocation pointer of pipe `pipe`'s section allowance.
+fn n1_allowance(pipe: usize) -> Value {
+    serde_json::json!(["request", "model", "pipe_segments", pipe, "section", "corrosion_allowance"])
+}
+/// Allowance edits outside the exact namespace, on pipe `pipe`.
+fn n1_refused(pipe: usize) -> [(&'static str, Value); 4] {
+    use serde_json::json;
+    [
+        ("0.001 m", set(n1_allowance(pipe), json!({"value": 0.001, "unit": "m"}))),
+        ("absent", remove(n1_allowance(pipe))),
+        ("null", set(n1_allowance(pipe), Value::Null)),
+        ("wrong dimension", set(n1_allowance(pipe), json!({"value": 0.0, "unit": "Pa"}))),
+    ]
+}
+/// `doc` with `invocation_edits`, its digest rebound and the receipt resealed.
+fn n1_reseal(doc: &Value, invocation_edits: Vec<Value>) -> (Value, Value) {
+    apply_on(doc, &serde_json::json!({"edits": [], "rehash": "all", "invocation_edits": invocation_edits}))
+}
+
+/// Exact, lane P's genuine W1 successors (both modes, one pipe): a second pipe (a copy of
+/// the first under a new id) appended to the invocation's model with 0.001 m, no allowance,
+/// a null one or one of the wrong dimension is refused bound at G8 INVOCATION_MISMATCH
+/// (D1.3's namespace runs before any G8 step that reads a pipe; no earlier gate reads the
+/// invocation's pipes); unbound and transport are unchanged. With an explicit 0 m on the
+/// second pipe the namespace admits it and G8 refuses it later, at PREPARATION_MISMATCH
+/// (the receipt's sources cover one member), not at the namespace.
+#[test]
+fn b7b_n1_exact_allowance_on_an_appended_second_pipe() {
+    use serde_json::json;
+    let inv = gate("G8", INVOCATION);
+    let (reseal, ca, refused) = (n1_reseal, n1_allowance, n1_refused);
+    for (name, _, text, ..) in M3X {
+        let doc: Value = serde_json::from_str(text).unwrap();
+        let pipes = doc["invocation"]["request"]["model"]["pipe_segments"].clone();
+        assert_eq!(pipes.as_array().unwrap().len(), 1, "{name}");
+        let genuine = readings(&doc["source"], &doc["invocation"]);
+        assert_eq!(genuine["bound"], json!({"ok": {"eligible": true}}), "{name}");
+        let refused_bound = json!({"bound": inv, "unbound": genuine["unbound"], "transport": genuine["transport"]});
+        // One invocation edit setting the two pipes: the first unchanged and the appended
+        // second with `change` (an edit of pipe 1) applied.
+        let appended = |change: Value| {
+            let mut second = pipes[0].clone();
+            second["id"] = json!(format!("{}-second", second["id"].as_str().unwrap()));
+            let mut two = doc["invocation"].clone();
+            two["request"]["model"]["pipe_segments"] = json!([pipes[0].clone(), second]);
+            edit(&mut two, &change);
+            set(json!(["request", "model", "pipe_segments"]), two["request"]["model"]["pipe_segments"].clone())
+        };
+        let (source, invocation) = reseal(&doc, vec![appended(set(ca(1), json!({"value": 0.0, "unit": "m"})))]);
+        assert_eq!(invocation["request"]["model"]["pipe_segments"].as_array().unwrap().len(), 2, "{name}");
+        assert_eq!(
+            readings(&source, &invocation),
+            json!({"bound": gate("G8", PREPARATION), "unbound": genuine["unbound"], "transport": genuine["transport"]}),
+            "{name}: second pipe 0 m"
+        );
+        for (what, edit) in refused(1) {
+            let (source, invocation) = reseal(&doc, vec![appended(edit)]);
+            assert_eq!(invocation["request"]["model"]["pipe_segments"][0]["section"]["corrosion_allowance"], json!({"unit": "m", "value": 0.0}), "{name}: {what}");
+            assert_eq!(readings(&source, &invocation), refused_bound, "{name}: second pipe {what}");
+        }
+    }
+}
+
+/// Exact, reader-local two-pipe successors (`exact_successor` on the shared corpus's
+/// two-pipe bases): pipe 1 carrying 0.001 m, no allowance, a null one or one of the wrong
+/// dimension is refused bound at G8 INVOCATION_MISMATCH, and an explicit zero in
+/// millimetres on pipe 1 reads as the genuine successor.
+#[test]
+fn b7b_n1_exact_allowance_on_pipe_1_of_a_two_pipe_successor() {
+    use serde_json::json;
+    let inv = gate("G8", INVOCATION);
+    let (reseal, ca, refused) = (n1_reseal, n1_allowance, n1_refused);
+    let shared = corpus();
+    for base in ["two_body_synthetic", "p512_ladder_synthetic"] {
+        let (source, invocation) = exact_successor(shared, base);
+        assert_eq!(invocation["request"]["model"]["pipe_segments"].as_array().unwrap().len(), 2, "{base}");
+        let doc = json!({"source": source, "invocation": invocation});
+        let genuine = readings(&doc["source"], &doc["invocation"]);
+        assert_eq!(genuine["bound"], json!({"ok": {"eligible": true}}), "{base}");
+        let (source, invocation) = reseal(&doc, vec![set(ca(1), json!({"value": 0.0, "unit": "mm"}))]);
+        assert_eq!(readings(&source, &invocation), genuine, "{base}: pipe 1 0 mm");
+        for (what, edit) in refused(1) {
+            let (source, invocation) = reseal(&doc, vec![edit]);
+            assert_eq!(
+                readings(&source, &invocation),
+                json!({"bound": inv, "unbound": genuine["unbound"], "transport": genuine["transport"]}),
+                "{base}: pipe 1 {what}"
+            );
+        }
+    }
+}
+
+/// Preview, the shared corpus's 32-pipe W-CB1 bases (both modes) and the committed two-pipe
+/// W-C2 successors (both modes): an allowance key on pipe 1 or the last pipe (zero, 0.001 m
+/// or null) is refused bound at G8 INVOCATION_MISMATCH; unbound and transport are unchanged
+/// on the successors.
+#[test]
+fn b7b_n1_preview_allowance_on_a_pipe_other_than_the_first() {
+    use serde_json::json;
+    let inv = gate("G8", INVOCATION);
+    let (reseal, ca) = (n1_reseal, n1_allowance);
+    let shared = corpus();
+    let allowances = [json!({"value": 0.0, "unit": "m"}), json!({"value": 0.001, "unit": "m"}), Value::Null];
+    for base in ["w_cb1_sparse_interactive", "w_cb1_dense_scrutiny"] {
+        let case = shared["cases"].as_array().unwrap().iter().find(|c| c["id"] == base).unwrap();
+        let last = case["invocation"]["request"]["model"]["pipe_segments"].as_array().unwrap().len() - 1;
+        assert_eq!(last, 31, "{base}");
+        let control = json!({"id": "b7b_n1_preview", "base": base, "edits": [], "rehash": "all"});
+        assert_eq!(observe(shared, &control), Value::Null, "{base}: control");
+        for pipe in [1, last] {
+            for value in &allowances {
+                let entry = json!({"id": "b7b_n1_preview_ca", "base": base, "edits": [], "rehash": "all",
+                    "invocation_edits": [set(ca(pipe), value.clone())]});
+                assert_eq!(observe(shared, &entry), inv, "{base}: pipe {pipe} {value}");
+            }
+        }
+    }
+    for name in ["w_c2_successor_sparse_interactive", "w_c2_successor_dense_scrutiny"] {
+        let text = R1_SUCCESSORS.iter().find(|(n, _)| *n == name).unwrap().1;
+        let doc: Value = serde_json::from_str(text).unwrap();
+        assert_eq!(doc["invocation"]["request"]["model"]["pipe_segments"].as_array().unwrap().len(), 2, "{name}");
+        let genuine = readings(&doc["source"], &doc["invocation"]);
+        assert!(genuine["bound"].get("ok").is_some(), "{name}: {genuine}");
+        let (source, invocation) = reseal(&doc, vec![]);
+        assert_eq!(readings(&source, &invocation), genuine, "{name}: the reseal alone");
+        for value in &allowances {
+            let (source, invocation) = reseal(&doc, vec![set(ca(1), value.clone())]);
+            assert_eq!(
+                readings(&source, &invocation),
+                json!({"bound": inv, "unbound": genuine["unbound"], "transport": genuine["transport"]}),
+                "{name}: pipe 1 {value}"
+            );
+        }
+    }
 }

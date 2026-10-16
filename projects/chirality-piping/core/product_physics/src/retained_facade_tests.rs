@@ -17,8 +17,8 @@ const MODES: [PreviewSolverMode; 2] = [PreviewSolverMode::SparseInteractive, Pre
 /// cases' certified rows (exactly-zero rows publish +0), the nonlinear-route fail-closed sentence,
 /// and the receipt and publication hashes that bind them. No verdict changes otherwise.
 const PINNED: [(&str, &str, &str); 2] = [
-    ("sparse_interactive", "174e17c55eadf69439d21d8809776a0e7d2ba95fa01a4ed0046366fb141a11a6", "1932f8843dee94baccff7c21ebc01523d8a509919b9a3bbd48e26167ffd1eff4"),
-    ("dense_scrutiny", "ff24764d702080b944dc52dbd46f56380a1e6f7dbceebd364fc4d9419c8f9f55", "39895d62e38a6bc87242d5591384c23ab274e71832d974f40da915d13a0f7356"),
+    ("sparse_interactive", "e3e0830d34d7403da45cc5900aa40cc42d090478d9c2d3ba57bcecf9b6070d2e", "bc1e36fac28680a6ad65901b021dbfeb9e3424349ede29ebd8358201839154d1"),
+    ("dense_scrutiny", "c24d4a1cbfb4668fe071fd1b9cc9abed35589c390992ebad33dd0a9159cf3316", "0712cc45083fddc20f4434ccdf887d2b9c3f46810c579b12c1a8fbde2c34ce79"),
 ];
 
 fn sha(bytes: &[u8]) -> String {
@@ -155,7 +155,7 @@ fn u3_each_stage_fault_falls_back_to_the_ordinary_bytes() {
     check(&envelope, &noticed(None), "serializer association");
     // Serializer receipt-encoding refusals carry C1:68's reason and detail token.
     for (fault, detail) in [(C::WorkCounterRange, Some("work_counter_range")), (C::WorkCounterInconsistent, Some("work_counter_inconsistent")),
-        (C::SaturationNotExcluded, Some("saturation_not_excluded")), (C::PublicationHashRange, Some("publication_hash_range")),
+        (C::PublicationHashRange, Some("publication_hash_range")),
         (C::WorkCounter(k::WorkFault::Overflow), Some("work_counter_range")), (C::WorkCounter(k::WorkFault::Both), Some("work_counter_inconsistent")),
         (C::Encoding, None), (C::Untranslated, None), (C::Scope, None)] {
         let (capture, observer, ordinary) = observed(mode, &raw);
@@ -219,13 +219,13 @@ fn u3_each_stage_fault_falls_back_to_the_ordinary_bytes() {
 fn u3_r2_notice_bytes_are_pinned() {
     assert_eq!(RETAINED_UNAVAILABLE_NOTICE, "Retained-precision recovery is unavailable for this load case. Its published rows keep their ordinary values, standing and diagnostics.");
     assert!(!RETAINED_UNAVAILABLE_NOTICE.contains("receipt"), "no receipt reference");
-    let longest = ["work_counter_range", "work_counter_inconsistent", "saturation_not_excluded", "publication_hash_range"].map(str::len).into_iter().max();
+    let longest = ["work_counter_range", "work_counter_inconsistent", "publication_hash_range"].map(str::len).into_iter().max();
     assert_eq!(longest, Some(25), "the reserved message capacity covers every detail token");
     // RV85 T1: the constant the reservation uses is the longest detail
     // `receipt_encoding_detail` can return, over every typed check.
     use super::retained_wire::ReceiptCheck as C;
     let every = [C::Encoding, C::PublicationHashRange, C::WorkCounter(k::WorkFault::Overflow), C::WorkCounter(k::WorkFault::Inconsistent),
-        C::WorkCounter(k::WorkFault::Both), C::WorkCounterRange, C::WorkCounterInconsistent, C::SaturationNotExcluded, C::Association, C::Scope, C::Untranslated];
+        C::WorkCounter(k::WorkFault::Both), C::WorkCounterRange, C::WorkCounterInconsistent, C::Association, C::Scope, C::Untranslated];
     assert_eq!(every.iter().filter_map(|c| receipt_encoding_detail(*c)).map(str::len).max(), Some(RECEIPT_ENCODING_DETAIL_MAX));
     assert_eq!(RETAINED_UNAVAILABLE_NOTICE.len() + RECEIPT_ENCODING_REASON.len() + RECEIPT_ENCODING_DETAIL_MAX + 1, 196, "the reserved message bytes");
 }
@@ -568,8 +568,9 @@ fn u3_r2_base_readers_accept_the_unavailable_notice() {
 use super::retained_tests_hooks::{self as hooks, Counts};
 
 /// The registered dev/test identity (R/I65/u4_g6_01/QUALIFICATION.md; the admission test's).
-const REGISTERED_IDENTITY: &str = "v1;rustc.release=1.97.1;rustc.commit=8bab26f4f68e0e26f0bb7960be334d5b520ea452;rustc.host=aarch64-apple-darwin;rustc.llvm=22.1.6;target=aarch64-apple-darwin;target.arch=aarch64;target.pointer_width=64;target.endian=little;target.os=macos;target.env=;panic=unwind;profile=debug;opt_level=0;debug_assertions=true;rustflags=;pkg=open_pipe_stress_product_physics@0.2.0";
-fn registered() -> bool {
+/// Shared with `b7b_admission_tests`, which follows the same two-build convention.
+pub(super) const REGISTERED_IDENTITY: &str = "v1;rustc.release=1.97.1;rustc.commit=8bab26f4f68e0e26f0bb7960be334d5b520ea452;rustc.host=aarch64-apple-darwin;rustc.llvm=22.1.6;target=aarch64-apple-darwin;target.arch=aarch64;target.pointer_width=64;target.endian=little;target.os=macos;target.env=;panic=unwind;profile=debug;opt_level=0;debug_assertions=true;rustflags=;pkg=open_pipe_stress_product_physics@0.2.0";
+pub(super) fn registered() -> bool {
     option_env!("OPS_RETAINED_BUILD_IDENTITY") == Some(REGISTERED_IDENTITY)
 }
 /// One actual Direct invocation, counted: its output and the runs and G-C consultations.
@@ -588,7 +589,7 @@ fn published(output: RetainedPreviewOutput) -> Vec<u8> {
     }
 }
 /// The owner-adopted per-invocation default, 12 GiB: the registered profile's qualified M.
-const RETAINED_LIMIT: RetainedByteLimit = RetainedByteLimit::new(12_884_901_888);
+pub(super) const RETAINED_LIMIT: RetainedByteLimit = RetainedByteLimit::new(12_884_901_888);
 const ONE_RUN: Counts = Counts { runs: 1, complete_gates: 0 };
 const ONE_RUN_THROUGH_G_C: Counts = Counts { runs: 1, complete_gates: 1 };
 fn notices(bytes: &[u8]) -> usize {
@@ -682,8 +683,8 @@ fn u3g2_direct_entry_w1_fallbacks_append_one_notice() {
 }
 
 /// Deliverable 1: every refusal before W1 work (G-A, G-C including OrdinarySolveNotAttempted,
-/// the reserved stack, coexistence; G-B in the next test) publishes exactly the ordinary
-/// bytes, with no notice, from one ordinary run.
+/// the reserved stack; G-B in the next test) publishes exactly the ordinary bytes, with no
+/// notice, from one ordinary run. B4/D1 (b): the preview route has no coexistence refusal.
 #[test]
 fn u3g2_direct_entry_no_w1_refusals_keep_exact_bytes() {
     use super::retained_memory::{D1Clause, PhaseFact, PhaseGate};
@@ -762,19 +763,14 @@ fn u3g2_direct_entry_no_w1_refusals_keep_exact_bytes() {
         }
         assert_eq!(counts, ONE_RUN, "stack {mode:?}");
         assert_eq!(published(output), plain_milestone, "stack {mode:?}");
-        // Coexistence (D-15): an admitted source-block request whose ordinary run settled by
-        // exact selection is published as it is, before G-B's outcome and G-C are consulted
-        // (RV85 N1).
-        let exact: Value = serde_json::from_str(include_str!("../../../fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json")).unwrap();
-        let plain_exact = plain(mode, &exact);
-        assert!(serde_json::from_slice::<Value>(&plain_exact).unwrap()["source_block_recovery"].is_object(), "exact blocks selected");
-        let (output, counts) = direct(&exact, mode);
-        if registered() {
-            assert_eq!(output.admission().unwrap().law().refusal, None, "admitted");
-            assert_eq!(output.retained().and_then(|r| r.as_ref().err()), Some(&W1Fallback::Coexistence), "{mode:?}");
-        }
-        assert_eq!(counts, ONE_RUN, "coexistence {mode:?}: G-C not consulted");
-        assert_eq!(published(output), plain_exact, "coexistence {mode:?}");
+        // B4/D1 (b): the preview route selects no source blocks, so D-15's coexistence is gone
+        // there; n05's formerly exact-selected request publishes no source-block receipt and W1
+        // is never refused by coexistence.
+        let formerly_exact: Value = serde_json::from_str(include_str!("../../../fixtures/product_preview/w1_controls/n05-sparse_interactive.request.json")).unwrap();
+        let plain_formerly_exact = plain(mode, &formerly_exact);
+        assert!(serde_json::from_slice::<Value>(&plain_formerly_exact).unwrap().get("source_block_recovery").is_none(), "no source blocks");
+        let (output, _) = direct(&formerly_exact, mode);
+        assert_ne!(output.retained().and_then(|r| r.as_ref().err()), Some(&W1Fallback::Coexistence), "{mode:?}");
     }
 }
 
@@ -879,8 +875,11 @@ fn u8_first_load_only() -> Value {
     raw["model"]["load_cases"][0]["primitive_loads"] = json!([first]);
     raw
 }
-/// RV93's Preparation sibling: support 1's spring stiffness set to 1e-300. The ordinary run does
-/// not solve (MODEL_INCOMPLETE), so preparation's MECHANICS_SOLVED requirement refuses.
+/// RV93's former Preparation sibling: support 1's spring stiffness set to 1e-300. The ordinary
+/// run does not solve (MODEL_INCOMPLETE). Under B4/D1's failed-ordinary successor rulings
+/// (b7-plan, group 2) this genuine ordinary failure passes failed-ordinary custody instead of
+/// preparation's former MECHANICS_SOLVED requirement, and the retained native run stops at a
+/// pivot on the spring's RX DOF (unresolved): the Native fallback, with the same bytes and notice.
 fn u8_tiny_spring() -> Value {
     let mut raw = raw();
     raw["model"]["supports"][1]["stiffness"]["value"]["value"] = json!(1e-300);
@@ -930,8 +929,8 @@ pub(super) fn w_c2_case_c() -> Value {
     raw
 }
 /// PROBE §4's input sha256 of case C, and PROBE §2.3's of two-body case B (`serde_json::to_vec`).
-pub(super) const W_C2_CASE_C_INPUT_SHA256: &str = "3649b4dcb96ecb9e8a32ee9ae95bddea65648d3d6aff10860785cb95f73306b3";
-const TWO_BODY_B_INPUT_SHA256: &str = "cf688351686bbaff9843052438479a9b5410d0e722245375b1d2aa729f21a406";
+pub(super) const W_C2_CASE_C_INPUT_SHA256: &str = "9389f2367470eb005618aed46918490f38d458d00959e3e2b3b8ba97cc5cacd5";
+const TWO_BODY_B_INPUT_SHA256: &str = "e14a8278ce227c2ce68ef662218f38755d5e8682d9c2fca8e1d5b5a10506d973";
 /// The L = 0 base (PLAN §1.2): the milestone plus node N2 at (3, 0, 0), which no member
 /// references, with one rigid support restraining all six DOFs (the milestone's rigid-support
 /// shape, no family). Body 1 is a single node: extent 0.
@@ -943,18 +942,20 @@ fn u8_l0_isolated_node() -> Value {
     raw
 }
 
-/// U8 (RV93 N-5; W-C1): real D1 inputs reach the Candidate, Preparation and Native fallbacks on
-/// the actual Direct entry, with no fault hook. In the registered build each publishes the plain
-/// bytes plus exactly one N1 notice, from one ordinary run that reached G-C once. In any other
-/// build each publishes the plain bytes from one run. B1 (T-4; RR "I81's B1-0 probe verified…",
-/// ruling 3): W-C1's variant is case C alone, since two-body case B is now `not_required`.
+/// U8 (RV93 N-5; W-C1): real D1 inputs reach the Candidate and Native fallbacks on the actual
+/// Direct entry, with no fault hook. In the registered build each publishes the plain bytes plus
+/// exactly one N1 notice, from one ordinary run that reached G-C once. In any other build each
+/// publishes the plain bytes from one run. B1 (T-4; RR "I81's B1-0 probe verified…", ruling 3):
+/// W-C1's variant is case C alone, since two-body case B is now `not_required`. B4/D1 group 2:
+/// tiny_spring's genuine ordinary failure now reaches the Native fallback (`u8_tiny_spring`);
+/// the Preparation fallback stays covered by the stage-fault and custody-tamper controls.
 #[test]
 fn u8_real_input_fallbacks_append_one_notice() {
     let case_c = w_c2_case_c();
     assert_eq!(sha(&serde_json::to_vec(&case_c).unwrap()), W_C2_CASE_C_INPUT_SHA256, "PROBE §4's case C");
     let variants = [
         ("first_load_only", u8_first_load_only(), W1Fallback::Candidate),
-        ("tiny_spring", u8_tiny_spring(), W1Fallback::Preparation),
+        ("tiny_spring", u8_tiny_spring(), W1Fallback::Native),
         ("w_c1_case_c", case_c, W1Fallback::Native),
     ];
     for mode in MODES {
@@ -991,10 +992,10 @@ fn u8_real_input_fallbacks_append_one_notice() {
 /// cases' certified rows (exactly-zero rows publish +0), the nonlinear-route fail-closed sentence,
 /// and the receipt and publication hashes that bind them. No verdict changes otherwise.
 const U8_L0_PINNED: [(&str, &str, &str, &str); 2] = [
-    ("sparse_interactive", "57951028f52124e04d83d16585564513dfbd69df6819264de6e2eb361d181c7f", "4d509cd499166bd885549213d03374dd41041cb80acacb41df4170f42c59be24",
-        "de9e67561d105541466f5ec7210d5e31f6e5d652fe4ab73151c27dc1d51cb53b"),
-    ("dense_scrutiny", "e8dd5f584948a469de58490ff8da09ab95f33de0605ada60334e885589b74ce0", "1d4e615e64fd219d976f4bc492c90cbab414e9d838e9fe8917bf1e01254cf671",
-        "55a2c2b119681b7e7ff3cc90ffdb2e4b8e0685598219df0199d04d0127727aca"),
+    ("sparse_interactive", "67e65da7cdc6c6a5e150505981fee087cfe6d7c9bf4bd6e0c545013d3e346d6d", "08af743f21c921308a69767ba91660ce361685828f524863efb9f6970fd3c254",
+        "b641590e40c50ce8bc3232773be00daedce13b13a39729b0fb6c66dea21ba1ad"),
+    ("dense_scrutiny", "08cf81a1f252e503c0b45c915caa573abe1263183c835b62bc4454cd8696eb64", "86e77dc6c1998d760f798997fd5942783f7182ce201a1e369b0171e3da71e5cd",
+        "8adb3ad3e1b80aaf5aff1b99d6e63d3b77fd2b691b61e777904762da47da28f0"),
 ];
 /// The milestone's pinned successor documents (U1; the U5-verified reference rows for body 0).
 const U8_MILESTONE_DOCUMENTS: [&str; 2] = [
@@ -1152,7 +1153,7 @@ fn quality_of(entries: Vec<NumericalCaseQuality>) -> NumericalQuality {
     NumericalQuality { cases: entries, ..unassessed_numerical_quality() }
 }
 fn seed_of(case: &str, initial: Option<rp::InitialSeed>, w2: rp::W2Seed) -> rp::OrdinarySeed {
-    rp::OrdinarySeed { case: case.into(), initial, w2, load_row_finding: None, d5_diagnostic_ref: None, recovery_demoted: false, legacy: None }
+    rp::OrdinarySeed { case: case.into(), initial, w2, load_row_finding: None, d5_diagnostic_ref: None, recovery_demoted: false }
 }
 fn report_seed(code: &str) -> Option<rp::InitialSeed> {
     Some(rp::InitialSeed::Report { code: code.into(), report_diagnostic_ref: "diagnostic:numerical-integrity:case".into() })
@@ -1838,7 +1839,7 @@ fn b1_sp_w_c2_transaction_faults_and_abandonment() {
     assert_eq!(run(&|_| ()).0, (W1Fallback::Native, 0), "a T-8 call failure");
     hooks::break_next_staging();
     assert_eq!(run(&|_| ()).0, (W1Fallback::Staging(rp::StagingFault("pipe_stress_extrema[]")), 0b01), "staging");
-    for check in [C::WorkCounterRange, C::WorkCounterInconsistent, C::SaturationNotExcluded, C::PublicationHashRange, C::Encoding, C::Untranslated, C::Scope, C::Association] {
+    for check in [C::WorkCounterRange, C::WorkCounterInconsistent, C::PublicationHashRange, C::Encoding, C::Untranslated, C::Scope, C::Association] {
         hooks::fail_next_serializer(check);
         assert_eq!(run(&|_| ()).0, (W1Fallback::Serializer(ReceiptFailure { check, field_path: "cases[].run.invocation_after" }), 0b01), "serializer {check:?}");
     }
@@ -1897,8 +1898,8 @@ fn b1_sp_w_c2_through_retained_w1_publishes_t12() {
 /// cases' certified rows (exactly-zero rows publish +0), the nonlinear-route fail-closed sentence,
 /// and the receipt and publication hashes that bind them. No verdict changes otherwise.
 const W_C2_PINNED: [(&str, &str, &str, &str); 2] = [
-    ("sparse_interactive", "c653b8767e3b9ccb5f3e19e44953e65250b7c4e0ee2ffb27f21a5ba0f9abe5e4", "f9a99e3e24cb3a813143af49f4b4d535f7380d24db8fbe5e47adc07b34355f43", "110778c674a6ec365a081092d30934c3c557c03fca99495206692819877ac9e2"),
-    ("dense_scrutiny", "9e7fffa1b9cfc22549b250a6896aaec2ed05c4a644fd5fb9640cb94d38acec4a", "a5b6ff1b436121d830bd7b34608bacf758608ebac2bbfbf80f48405c3df69e7d", "90b55f2dad8a2a51516241a291df6dc2a4ad7e74ec77187071eff2e27fd5b3d8"),
+    ("sparse_interactive", "1a9fee6115140a843cdca6ae78f50223421285126356fbc4a064ed6525288535", "52bec4cd76d819c4848fd773850f571aefa98f1e1cb55075bd29cfc705b72e38", "5795508cf6ae7f521c01edd8d2546ddc2a7372b6334ffaca927f335ec72426dd"),
+    ("dense_scrutiny", "12d6696340acb1a772e2b666365bdea329dc78aca45b40756ede820dc13ea4c8", "83cdc160c391fced072af2baf025ea4ab990c8ceeb58b75a442a358ed24901be", "c33e73ac21b39ba902f07aa6acc3dfa6b97c994f6fdd5a1d7e443933718a612f"),
 ];
 /// The W-C2 successor document, in U1's form.
 fn w_c2_document(name: &str, raw: &Value, successor: &Value) -> String {
@@ -1954,10 +1955,10 @@ fn b1_sp_w_c2_direct_entry_publishes_the_pinned_successor() {
     }
 }
 
-/// Multi-case coexistence (PLAN_v2 §2.2, N-5; decision 26, RV107 A1-N-7): n05's source-block
-/// request with a second case (a copy of its one case, `case-2`, its load id suffixed `:2`).
+/// n05's formerly source-block request with a second case (a copy of its one case, `case-2`, its
+/// load id suffixed `:2`; PLAN_v2 §2.2, N-5; decision 26, RV107 A1-N-7).
 fn n05_two_cases() -> Value {
-    let mut raw: Value = serde_json::from_str(include_str!("../../../fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json")).unwrap();
+    let mut raw: Value = serde_json::from_str(include_str!("../../../fixtures/product_preview/w1_controls/n05-sparse_interactive.request.json")).unwrap();
     let mut second = raw["model"]["load_cases"][0].clone();
     second["id"] = json!("case-2");
     for load in second["primitive_loads"].as_array_mut().unwrap() {
@@ -1967,36 +1968,21 @@ fn n05_two_cases() -> Value {
     raw
 }
 
-/// The multi-case coexistence pin, both modes: exact-block selection settles n05 with two cases,
-/// so W1 is not attempted for any case (T-3 (c)): `Coexistence`, exactly the ordinary bytes, no
-/// notice and no reservation, on the private driver; and on the actual Direct entry one ordinary
-/// run with G-C not consulted (`{runs: 1, complete_gates: 0}`), exactly the ordinary bytes (since
-/// I2, C = 3, G-A admits it; in Stale, the same bytes and count without a permit).
+/// B4/D1 (b): the multi-case preview request formerly settled by exact-block selection (T-3 (c)'s
+/// coexistence pin) now selects no source blocks, in both modes, and W1 is never refused by
+/// coexistence through the private driver: the ordinary run reaches W1's own phases.
 #[test]
-fn b1_sp_multi_case_coexistence_pin() {
+fn b1_sp_multi_case_no_preview_coexistence() {
     let raw = n05_two_cases();
     for mode in MODES {
         let plain = plain(mode, &raw);
         let value: Value = serde_json::from_slice(&plain).unwrap();
-        assert!(value["source_block_recovery"].is_object(), "{mode:?}: exact blocks selected: {}", value["status"]);
+        assert!(value.get("source_block_recovery").is_none(), "{mode:?}: no source blocks: {}", value["status"]);
         assert_eq!(value["summary"]["load_case_count"], 2, "{mode:?}");
         let (capture, observer, ordinary) = observed(mode, &raw);
-        let capacity = ordinary.diagnostics.capacity();
-        let (envelope, retained) = retained_w1(observer, ordinary, &capture);
-        assert_eq!(retained.err(), Some(W1Fallback::Coexistence), "{mode:?}: private driver");
-        assert_eq!(envelope.diagnostics.capacity(), capacity, "{mode:?}: no reservation");
-        assert_eq!(serde_json::to_vec(&envelope).unwrap(), plain, "{mode:?}: exact bytes, no notice");
-        let (output, counts) = direct(&raw, mode);
-        if registered() {
-            assert_eq!(output.admission().unwrap().law().refusal, None, "{mode:?}: admitted");
-            assert_eq!(output.retained().and_then(|r| r.as_ref().err()), Some(&W1Fallback::Coexistence), "{mode:?}");
-        } else {
-            assert!(output.retained().is_none(), "{mode:?}: Stale, no W1");
-        }
-        assert_eq!(counts, ONE_RUN, "{mode:?}: G-C not consulted");
-        let bytes = published(output);
-        assert_eq!(notices(&bytes), 0, "{mode:?}");
-        assert_eq!(bytes, plain, "{mode:?}: exactly the ordinary bytes");
+        let (_, retained) = retained_w1(observer, ordinary, &capture);
+        assert_ne!(retained.as_ref().err(), Some(&W1Fallback::Coexistence), "{mode:?}: private driver");
+        println!("B4_MULTI_CASE {mode:?} retained={:?}", retained.as_ref().map(|_| "successor"));
     }
 }
 
@@ -2170,9 +2156,11 @@ fn b1_sp_seam_overflow_is_a_typed_g_b_refusal() {
 
 /// RV112 N-4: at c ≥ 2 the first G-B refusal stands, and no later case's late hook runs (no later
 /// G-B check, running total or late capture). Registered build, W-C2, both modes, with G-B's
-/// fault armed (consumed at case A's late hook): the refusal is A's, the running total holds A's
-/// three loads only (not 3 + 2 + 5), and no case has a late capture. The Direct entry publishes
-/// exactly the ordinary bytes (`LateGate`), with G-C not consulted.
+/// fault armed: the refusal is A's, the running total holds A's three loads only (not 3 + 2 + 5),
+/// and no case has a late capture. The Direct entry publishes exactly the ordinary bytes
+/// (`LateGate`), with G-C not consulted. B4/D1 W1 extension (b7-plan, T3 2026-10-11: "Validate
+/// the existing G-B gate before early allocation and G-C after terminal capture"): the fault is
+/// consumed at case A's early G-B check, so A's late hook does not run either.
 #[test]
 fn b1_sp_first_g_b_refusal_stands_and_stops_later_late_hooks() {
     use super::retained_memory::{admit, Entry};
@@ -2194,7 +2182,7 @@ fn b1_sp_first_g_b_refusal_stands_and_stops_later_late_hooks() {
         for index in 0..3 {
             let (late_calls, entries, source) = observer.with_case(index, |c| (c.prepared_late_calls, c.source_capture_entries, c.source.is_some()));
             assert_eq!((entries, source), (0, false), "{mode:?} case {index}: no late capture");
-            assert_eq!(late_calls, usize::from(index == 0), "{mode:?} case {index}: only A's late hook ran");
+            assert_eq!(late_calls, 0, "{mode:?} case {index}: G-B refused at A's early check, so no late hook ran");
         }
         assert_eq!(serde_json::to_vec(&ordinary).unwrap(), plain, "{mode:?}: the ordinary run is untouched");
         hooks::fail_next_late_gate();
@@ -2258,9 +2246,9 @@ fn w_c2_plus_a2(ids: &[&str]) -> Value {
 /// cases' certified rows (exactly-zero rows publish +0), the nonlinear-route fail-closed sentence,
 /// and the receipt and publication hashes that bind them. No verdict changes otherwise.
 const CBA_PINNED: [(&str, &str, &str); 2] = [
-    ("sparse_interactive", "8f50bc11b4460c42167e9d3446d73a6fbbf1d1f7d231fb60b8e484751d3e5342", "f13bc5399f10281a32cf9a7270125dda8344a10679d2643770e31b3705777f25"),
+    ("sparse_interactive", "623bef4858f637a1505c65014b95dbb9189fe19ff2ae608d40f4f004016df562", "48f33043a8216f08171efbcabbf391ba81b3332ae9b0149a0a41604100899593"),
     // Re-pinned by I109 (PR-N): W-C2 case C's correctly rounded `rigid:N0` magnitude; every platform.
-    ("dense_scrutiny", "c07795bf74a5ca34b26707b862b3026763ee351b5655591006e0b1b13e90cf0f", "47caff74691b99889a0440b7e1cd2b24cdc5c47abf14888592d2928802c7a8d8"),
+    ("dense_scrutiny", "80ce2e742c09214194678065c17a1f99d0d0dcabf8679188adf49e5b3f02c6e9", "17b2f1e60618a89a0efae35646b30126f215eac98641760fbdc7430d7b5d718d"),
 ];
 /// K-D5 re-pin (DEL-04-01 kd5-member-relative-bound.md §§3.2, 3.4, 5, 6): read from the producer
 /// at the K-D5 head; against main the successors differ only by the current maximum declaration
@@ -2268,8 +2256,8 @@ const CBA_PINNED: [(&str, &str, &str); 2] = [
 /// cases' certified rows (exactly-zero rows publish +0), the nonlinear-route fail-closed sentence,
 /// and the receipt and publication hashes that bind them. No verdict changes otherwise.
 const AA2_PINNED: [(&str, &str, &str); 2] = [
-    ("sparse_interactive", "fb41aa63728bb774876d689b21118bbd1747b109d694311b10532d73ab2d45c7", "4b47ca8edcfd89eb23d60b1f4a2122cf28cc18feb34491f61b1ce4e2226a90ee"),
-    ("dense_scrutiny", "e69dd41f2842c2198f96b47b42f9e055c68a49b8fd73267a61ee827045e832eb", "bbd4fb5c901f3cab3615e4a1520bfa178d364964c20d67f1eb11d015ff281fb5"),
+    ("sparse_interactive", "36dd81d88c83698f4c61249852c7f18006464dea7766326f2a01c51e6f853338", "fa5ee27d17c062baaa4b1c5a15505d29ff9e1e482fd9a1931830cc5cb2028547"),
+    ("dense_scrutiny", "add882b91eae4004b3bcca26a34ccc0a7f038a50a450e010286d28b1e271466f", "46a25c19585342ae47dce33085c110da34aa59d6bedea7290955b67c8425feda"),
 ];
 
 /// RV109's SF-2 (RR "RV109 passes SP in RV-P round 2; …", ruling 2): two successors pinned in both
@@ -2369,8 +2357,8 @@ fn milestone_reversed() -> Value {
 /// cases' certified rows (exactly-zero rows publish +0), the nonlinear-route fail-closed sentence,
 /// and the receipt and publication hashes that bind them. No verdict changes otherwise.
 const REVERSED_PINNED: [(&str, &str, &str); 2] = [
-    ("sparse_interactive", "452057c5f8c278b0e81b8d9555dd9f9ed80f53790fb003e1d9f3b81fb03bfaa3", "80faccc913f44fe1f9a273c519c1b2e3da3fe37c51f396f6c4fdf84688f517f5"),
-    ("dense_scrutiny", "79455f17810c19c227f9304af74d7f7b1e5c2198544433bd2554e8c844af7266", "2dbc7fc5ae0e1da4e86b4d3525212018fc062b590110090f77f4cd2e2377c013"),
+    ("sparse_interactive", "68b76cbf32b6b6b114d486fa94b952abe27999e55d811f1f3b2803cbe7b9ee01", "ae199588e10ec046916d3db9a66b907412be2fc1ae95badad507549e32d8457c"),
+    ("dense_scrutiny", "754931b5c5639e92800c1344825b41773ed044e87137d944b3d4444695764be6", "c0513c0d6804f19ee2245a74f1342bcbff24082bdab0004c736fc53f4dae7f5b"),
 ];
 
 /// The nodal-term ordinal (C2 `CONTRACT_DELTA`:104; RR "I98's B2-W verified; …"): a CaseSource's
@@ -2415,17 +2403,22 @@ fn b1_sp_constructor_ordinal_is_the_authored_index() {
 // milestone authored as 0.3.0 exact), the coexistence pins are n05 and n06 (with `fields` for
 // P-2), and the mixed exact base is `m3x_mix_anchor`. B3a is dropped; `m3l` is its refusal witness.
 
-/// `raw` authored as 0.3.0 exact (I99's `gen_inputs.py`, item 1): the exact contract; each
-/// material's shear modulus removed, with the common E/ν basis and ν = 0.25; explicitly empty
-/// pressure regions on every case. On the milestone this is B3-W's `m3x`.
+/// `raw` authored as exact (I99's `gen_inputs.py`, item 1; B7b: re-authored once to model 0.5.0
+/// with the current `3.0.0/exact_pressure_v3` contract, `shear_model` Euler-Bernoulli and an
+/// explicit zero corrosion allowance on every pipe section): each material's shear modulus
+/// removed, with the common E/ν basis and ν = 0.25; explicitly empty pressure regions on every
+/// case. On the milestone this is B3-W's `m3x`. `tests/common/b1_sq_inputs.rs` transcribes it.
 fn exact3(mut raw: Value) -> Value {
     let m = &mut raw["model"];
-    m["schema_version"] = json!("0.3.0");
-    m["pressure_contract"] = json!({"version": "2.0.0", "mode": "exact_straight_pressure_v2"});
+    m["schema_version"] = json!("0.5.0");
+    m["pressure_contract"] = json!({"version": "3.0.0", "mode": "exact_pressure_v3", "shear_model": "euler_bernoulli"});
     for material in m["materials"].as_array_mut().unwrap() {
         material.as_object_mut().unwrap().remove("shear_modulus");
         material["constitutive_basis"] = json!("homogeneous_isotropic_E_nu_v1");
         material["poisson_ratio"] = json!({"value": 0.25, "unit": "1"});
+    }
+    for pipe in m["pipe_segments"].as_array_mut().unwrap() {
+        pipe["section"]["corrosion_allowance"] = json!({"value": 0.0, "unit": "m"});
     }
     for case in m["load_cases"].as_array_mut().unwrap() {
         case["pressure_regions"] = json!([]);
@@ -2456,9 +2449,10 @@ fn m3l() -> Value {
 }
 /// The committed physics-source requests: B3b's coexistence pins n05 and n06, and P-2's
 /// selection discriminator `fields` (RR "I99's B3-W verified; …", rulings 1 and 2).
-const N05_EXACT: &str = include_str!("../../../fixtures/product_preview/physics_source/n05.request.json");
-const N06_EXACT: &str = include_str!("../../../fixtures/product_preview/physics_source/n06.request.json");
-const FIELDS_EXACT: &str = include_str!("../../../fixtures/product_preview/physics_source/fields.request.json");
+/// B7b: the current (0.5.0, v3) twins of the deleted v2 originals.
+const N05_EXACT: &str = include_str!("../../../fixtures/product_preview/pressure_source/physics_source/n05.request.json");
+const N06_EXACT: &str = include_str!("../../../fixtures/product_preview/pressure_source/physics_source/n06.request.json");
+const FIELDS_EXACT: &str = include_str!("../../../fixtures/product_preview/pressure_source/physics_source/fields.request.json");
 fn model_of(raw: &Value) -> PreviewModel {
     source_receipt::CapturedInvocation::parse(raw.clone(), PreviewSolverMode::SparseInteractive).unwrap().0.model
 }
@@ -2471,12 +2465,15 @@ fn model_of(raw: &Value) -> PreviewModel {
 fn b3b_witness_inputs_and_routes() {
     use rp::W1Route as R;
     let value_sha = |v: &Value| sha(&serde_json::to_vec(v).unwrap());
-    assert_eq!(value_sha(&m3x()), "c920a96dc542c3ecadb63f724cfcf243d73d5dd71692e4f48827a620bb0e5497", "m3x");
-    assert_eq!(value_sha(&m3x_mix_anchor()), "6ca777a6e3ed658bcf58813d277e839033ac07f0b84efb8526351a20c67d1ee0", "m3x_mix_anchor");
+    // B7b re-pinned the exact witnesses after their one re-authoring to 0.5.0
+    // (v3, Euler-Bernoulli, zero corrosion allowance); `m3l` is a refusal
+    // control in its retired form and keeps its pin.
+    assert_eq!(value_sha(&m3x()), "71be3e9c0d05c7a5e050e63a285b5239769274dfe418002ac28df15299eb9c46", "m3x");
+    assert_eq!(value_sha(&m3x_mix_anchor()), "b91da678f65cc5809072fc699055b9dab053bc42c9a5cb494aa6a65814a1467d", "m3x_mix_anchor");
     assert_eq!(value_sha(&m3l()), "2f5ff465bfa97005a581d88e02c0a5478ea24da3bdc1c2eb9fcda491803fc0c3", "m3l");
-    for (name, text, file_sha) in [("n05", N05_EXACT, "332319ee6f47870a074a6c16fbf2f43c0171e376a0b4cd1cb7f7ad8b59254b00"),
-        ("n06", N06_EXACT, "5551f164b9e8ab88f04f3abce810e1e1b1ff47236bba6a296e32905f628be931"),
-        ("fields", FIELDS_EXACT, "7f8ff9d5e23712cedd6ca58a86a690517a8e820b9b072962ca43ad60be286002")] {
+    for (name, text, file_sha) in [("n05", N05_EXACT, "e01b5880a62454cc7dc295fe231b61e5c97e10367962fe18ac3cd5298887124b"),
+        ("n06", N06_EXACT, "35c17e4497ed98dbdd44f656fd886a9d98dc609ed646684ac1c05652dbdda6d1"),
+        ("fields", FIELDS_EXACT, "67ac4067d5b98063f591138af4d2e220e1f34c366b61bc4acd09c90acd41b199")] {
         assert_eq!(sha(text.as_bytes()), file_sha, "{name}");
         assert_eq!(w1_route(&model_of(&serde_json::from_str(text).unwrap())), Some(R::Exact), "{name}");
     }
@@ -2486,10 +2483,16 @@ fn b3b_witness_inputs_and_routes() {
     assert_eq!(w1_route(&model_of(&m3x_mix_anchor())), Some(R::Exact), "E, two cases");
     let mut four = m3x();
     four["model"]["schema_version"] = json!("0.4.0");
-    assert_eq!(w1_route(&model_of(&four)), None, "0.4.0 (a load-state document): no W1 route");
+    assert_eq!(w1_route(&model_of(&four)), None, "retired 0.4.0: no W1 route");
+    // B7b: a present null contract fails decoding, so the contract-absent control omits the
+    // key. Model 0.5.0 keys on what the document carries: without a contract it is
+    // pressure-free (`model_format::is_pressure_free`), so its namespace branch is L; the
+    // retired 0.3.0 form keeps HEAD's "no branch".
     let mut contractless = m3x();
-    contractless["model"]["pressure_contract"] = Value::Null;
-    assert_eq!(w1_route(&model_of(&contractless)), None, "0.3.0 without a contract: no branch");
+    contractless["model"].as_object_mut().unwrap().remove("pressure_contract");
+    assert_eq!(w1_route(&model_of(&contractless)), Some(R::Preview), "0.5.0 without a contract: pressure-free, branch L");
+    contractless["model"]["schema_version"] = json!("0.3.0");
+    assert_eq!(w1_route(&model_of(&contractless)), None, "retired 0.3.0 without a contract: no branch");
     // P-2: the exact route's budget is the ordinary route's.
     assert_eq!(w1_budget(R::Exact).per_case_limit, PHYSICS_SOURCE_WORK_LIMIT);
     assert_eq!(w1_budget(R::Preview).per_case_limit, SourceRecoveryBudget::default().per_case_limit);
@@ -2504,12 +2507,22 @@ fn b3b_witness_inputs_and_routes() {
 /// literals and fallback enclosures, the two linear limitation sentences, the CHECKS_PASSED base
 /// cases' certified rows (exactly-zero rows publish +0), the nonlinear-route fail-closed sentence,
 /// and the receipt and publication hashes that bind them. No verdict changes otherwise.
+/// B7b re-pin (D4 (a)/A6, registered at D3 3ce082a9bb): against the pre-B7b fixtures only the
+/// re-authored request (0.5.0, v3, Euler-Bernoulli, CA 0 m), the pressure-1 base's
+/// limitations and `profile_mode`, DEF-E's H in the preparation hash, the identity-byte
+/// counter that follows the compared profile text, and the hashes that bind them changed
+/// (B7b evidence `w1/evidence-exact-successors.txt`); every physical and certificate value is
+/// bit-identical.
 const EXACT_PINNED: [(&str, &str, &str, &str); 2] = [
-    ("sparse_interactive", "9b4792ef7426c324ba4ae9726d1936560440e16a6326ba38a5191d163e1ffff6", "8b6f6980da97feb38de70dcdf52becf12c3a89de6de0acab56233f92f85fd575", "fd8b1a4dd0b51122fdc39c006d4fd90da4d7ee103e8556694d7c39f567e3af85"),
-    ("dense_scrutiny", "e3ec745c885327f3823dcdd191e984ba0c1fd184d6a1730cee30d4c4283e5475", "88a3ea6611f5cfaa63aa0d2165a9da99a1df436fce8e9f4d943f8e2cc583a2e8", "2fad0a166a565ce0f9390f8f5125a9675ff4ffa4b9532681cd5a960b8c2bd42d"),
+    ("sparse_interactive", "f6bb7e7fc74ebce71c67da5da81906fece54e412aa2697d5548eb13f50b67524", "25d5b9ca60401f844b0e50bbf8918ee38ff50e598603163a470faa94cc372d3e", "45e14e68249abbeafa358f9e7317e9060da8e59c83db948a8184b98b8859001c"),
+    ("dense_scrutiny", "0317aed643760641eec81708a0d5f506963e109a78c97a715617c081c28b7701", "d7caf7bb6362e66801857191c2823174d7c80f7b3f6cf1e4da104ea6e930a463", "0f490c22e7b2a25fa5dc1dd3d3a7ae7a701c744bfaac2fc2a2aa8f95f3451259"),
 ];
 /// The mixed exact base's pinned successor: (mode, receipt sha256, successor bytes sha256).
-const MIX_PINNED: [(&str, &str, &str); 2] = [("sparse_interactive", "7e7ab4450b19d45826128a178941e8a6f71bbc9770dd0a3ec989d707899f49ef", "83a6275589ec2b999a43f195e006989bc8b9da1134b74ec08b8a571ff0b8565c"), ("dense_scrutiny", "4c3a80002488e76939f5e7b965110da9a13ed37f8cca90f1727fce7a2e1b8484", "34bbd776db77e64f6d223918ad957a73b408cd752b89370649afcb06a3b41da8")];
+/// Current B7a pins follow genuine public Direct outputs after H4/E14/E15 and
+/// reviewed retained-owner changes; the independent controls below remain unchanged.
+/// B7b re-pin: read from the producer after the one re-authoring of `m3x_mix_anchor` and D3's
+/// registration, on the same route and value classes as `EXACT_PINNED`.
+const MIX_PINNED: [(&str, &str, &str); 2] = [("sparse_interactive", "b571d188dd19c47efa15285d7f09d31a78c33284a17bbf593b42cff8e7f23bab", "d71b9da9ec787bf109fc2476214c2a1c562674701faa337b3a29e147b9c223bf"), ("dense_scrutiny", "13e5dc135cc0f1a6a9c8842d45616be214d7f91d5e77abec108a37e999ac13d5", "c15296ebd2160d22d489840abe0f0b3eda7712479a715d10ae55d5a2022e6dbe")];
 /// The exact successor's fixture document (D-U6-5's form).
 fn exact_document(raw: &Value, mode: PreviewSolverMode, successor: &Value) -> String {
     serde_json::to_string_pretty(&json!({"id":format!("b3b_m3x_{}", mode.as_str()),"source":successor,
@@ -2587,10 +2600,8 @@ fn assert_exact_successor(label: &str, successor: &Value, plain: &Value, statuse
             "constitutive_basis":"homogeneous_isotropic_E_nu_v1"}), "{label}");
         assert_eq!(m["selection"], json!({"kind":"base"}), "{label}");
     }
-    // P-11 (and C2 D39): every legacy exact-block attempt is physics-source-1's, under P-2's budget.
-    for work in body["legacy_source_work"].as_array().unwrap() {
-        assert_eq!(work["limit"], json!(PHYSICS_SOURCE_WORK_LIMIT), "{label}: P-2's limit in the receipt");
-    }
+    // B4/D1 (b): the successor carries no legacy source record.
+    assert!(body.get("legacy_source_work").is_none(), "{label}");
     // The evidence (B3D-4, S-2): pressure and connector unchanged; each case's entry, located by
     // its load case id.
     let (ev, base) = (&successor["contract_evidence"], &plain["contract_evidence"]);
@@ -2677,13 +2688,13 @@ fn b3b_exact_successor_is_pinned_in_both_modes() {
         let raw = m3x();
         let plain = plain(mode, &raw);
         let plain_value: Value = serde_json::from_slice(&plain).unwrap();
-        assert_eq!(plain_value["producer"]["semantic_contract_id"], json!(PHYSICS_SEMANTIC_CONTRACT_ID), "{name}: the physics-1 base");
+        assert_eq!(plain_value["producer"]["semantic_contract_id"], json!(exact_admission::PRESSURE_SEMANTIC_CONTRACT_ID), "{name}: the pressure-1 base (B7b D4 (a))");
         assert!(plain_value["source_block_recovery"].is_null(), "{name}: no exact-block selection (T-3 (c) does not fire)");
         let (envelope, retained, captured) = exact_w1(&raw, mode);
         let successor = captured.unwrap_or_else(|| panic!("{name}: {retained:?}"));
         exact_outcome(name, &retained, &successor, &envelope, &plain, &["case"]);
         assert_exact_successor(name, &successor, &plain_value, &["selected"]);
-        assert_eq!(successor["results"].as_array().unwrap().len(), if mode == PreviewSolverMode::DenseScrutiny { 99 } else { 98 }, "{name}: I96 §3's rows");
+        assert_eq!(successor["results"].as_array().unwrap().len(), 98, "{name}: current rows after E14 observation retirement");
         let bytes = serde_json::to_vec(&successor).unwrap();
         let document = exact_document(&raw, mode, &successor);
         println!("B3B_EXACT_PIN {name} {} {} {}", successor["retained_precision"]["receipt_sha256"].as_str().unwrap(), sha(&bytes), sha(document.as_bytes()));
@@ -2748,7 +2759,7 @@ fn b3b_direct_entry_runs_the_exact_route() {
 fn n11_base_readers_accept(raw: &Value, mode: PreviewSolverMode, plain: &[u8], noticed: &[u8], label: &str) {
     use open_pipe_stress_result_export::semantic_contract as sc;
     let (base, noticed): (Value, Value) = (serde_json::from_slice(plain).unwrap(), serde_json::from_slice(noticed).unwrap());
-    assert_eq!(base["producer"]["semantic_contract_id"], json!(PHYSICS_SEMANTIC_CONTRACT_ID), "{label}");
+    assert_eq!(base["producer"]["semantic_contract_id"], json!(exact_admission::PRESSURE_SEMANTIC_CONTRACT_ID), "{label}");
     assert!(sc::for_source(&base).is_ok(), "{label}: precondition, the base is admitted");
     assert_eq!(sc::for_source(&noticed), sc::for_source(&base), "{label}: admitted with the same contract");
     assert_eq!(sc::standing_reason(&noticed), sc::standing_reason(&base), "{label}");
@@ -2810,9 +2821,9 @@ fn b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice() {
     }
 }
 
-/// P-2 and the coexistence pins (P-13; RR "I99's B3-W verified; …", rulings 1 and 2): n05 and n06
-/// select exact blocks under physics-source-1, and so does `fields` under the exact route's
-/// 8,000,000 budget (not under the default 4,000,000). Through the private driver W1 is never
+/// P-2 and the coexistence pins (P-13; RR "I99's B3-W verified; …", rulings 1 and 2): n05, n06
+/// and `fields` select exact blocks under physics-source-1's 8,000,000 budget (B4/D1 (b): the
+/// only source budget, so also the default). Through the private driver W1 is never
 /// attempted (`Coexistence`) and the ordinary owner is the ordinary route's bytes; through the
 /// registered Direct entry the publication is exactly the ordinary route's bytes, from one run with
 /// G-C not consulted (Stale: the same bytes, one run).
@@ -2825,12 +2836,12 @@ fn b3b_coexistence_publishes_the_exact_ordinary_bytes_under_p2() {
             let plain = plain(mode, &raw);
             let value: Value = serde_json::from_slice(&plain).unwrap();
             assert!(value["source_block_recovery"].is_object(), "{label}: exact blocks selected (physics-source-1)");
-            // The discriminator: the default budget does not select `fields` (its finalization
-            // replay exceeds it), so a W1 budget other than the ordinary route's would lose T-3 (c).
+            // B4/D1 (b): one source budget remains, physics-source-1's 8,000,000, so the default
+            // budget is the route's and selects `fields` too, with the route's bytes.
             let (request, capture) = source_receipt::CapturedInvocation::parse(raw.clone(), mode).unwrap();
             let at_default = run_linear_static_preview_observed(request, mode, Some(&capture), &mut SourceRecoveryBudget::default(), None);
-            assert_eq!(at_default.source_block_recovery.is_some(), name != "fields", "{label}: selection at 4,000,000");
-            assert_ne!(serde_json::to_vec(&at_default).unwrap(), plain, "{label}: the default budget's bytes differ (work.limit at least)");
+            assert!(at_default.source_block_recovery.is_some(), "{label}: selection at the one budget");
+            assert_eq!(serde_json::to_vec(&at_default).unwrap(), plain, "{label}: the default budget is the route's");
             let (capture, observer, ordinary) = observed(mode, &raw);
             assert_eq!(serde_json::to_vec(&ordinary).unwrap(), plain, "{label}: the private driver's run is the ordinary route's (P-2)");
             let (envelope, retained) = retained_w1(observer, ordinary, &capture);
@@ -2986,20 +2997,26 @@ fn b3b_exact_observables_refuse_each_evidence_defect() {
 /// B3a is dropped (RR "Owner decisions: the legacy pressure contract is retired product-wide;
 /// …"): `m3l`, B3a's former witness, is now its refusal witness. G-A refuses it at D1.3 with
 /// `PressureContract`, so it takes the ordinary route: the plain bytes, no W1, one run, in both
-/// modes and every build.
+/// modes and every build. B7b: model document 0.3.0 is retired, so the label is carried by
+/// `m3l`'s copy re-authored to 0.5.0 (the legacy label kept; it is not an exact contract, so no
+/// allowance is added); the frozen 0.3.0 `m3l` itself is refused earlier, by `SchemaVersion`.
 #[test]
 fn b3a_dropped_m3l_takes_the_ordinary_route() {
     use super::retained_memory::{AdmissionRefusal, D1Clause, FamilyFact};
-    for mode in MODES {
-        let raw = m3l();
-        let plain = plain(mode, &raw);
-        let (output, counts) = direct(&raw, mode);
-        assert_eq!(output.admission().unwrap().law().domain, Some(AdmissionRefusal::Family(D1Clause::Namespace, FamilyFact::PressureContract)),
-            "{mode:?}: D1.3 refuses the label");
-        assert!(output.admission().unwrap().law().refusal.is_some(), "{mode:?}: G-A refuses");
-        assert!(output.retained().is_none() && output.successor().is_none(), "{mode:?}: no W1");
-        assert_eq!(counts, ONE_RUN, "{mode:?}");
-        assert_eq!(published(output), plain, "{mode:?}: the ordinary route's bytes");
+    let current = crate::b7b_admission_tests::reauthor_current_request(m3l());
+    assert_eq!(current["model"]["schema_version"], json!("0.5.0"));
+    assert_eq!(current["model"]["pressure_contract"], json!({"version": "1.0.0", "mode": "legacy_pressure_v1"}));
+    for (raw, fact) in [(current, FamilyFact::PressureContract), (m3l(), FamilyFact::SchemaVersion)] {
+        for mode in MODES {
+            let plain = plain(mode, &raw);
+            let (output, counts) = direct(&raw, mode);
+            assert_eq!(output.admission().unwrap().law().domain, Some(AdmissionRefusal::Family(D1Clause::Namespace, fact)),
+                "{mode:?}: D1.3 refuses the {fact:?}");
+            assert!(output.admission().unwrap().law().refusal.is_some(), "{mode:?}: G-A refuses");
+            assert!(output.retained().is_none() && output.successor().is_none(), "{mode:?}: no W1");
+            assert_eq!(counts, ONE_RUN, "{mode:?}");
+            assert_eq!(published(output), plain, "{mode:?}: the ordinary route's bytes");
+        }
     }
 }
 
@@ -3111,7 +3128,9 @@ fn two_member_exact(reversed: bool) -> Value {
     let p = "invented_t3_p1_detection_input_no_library_data";
     raw["model"]["nodes"].as_array_mut().unwrap().push(json!({"id": "N2", "position": {"x": 2.0, "y": 4.0, "z": 4.0}, "provenance": p}));
     raw["model"]["pipe_segments"].as_array_mut().unwrap().push(json!({"id": "M2", "from": "N1", "to": "N2", "material": "mat:N",
-        "y_reference": {"x": 1, "y": 0, "z": 0}, "section": {"outside_diameter": {"value": 0.15, "unit": "m"}, "wall_thickness": {"value": 0.008, "unit": "m"}}, "provenance": p}));
+        "y_reference": {"x": 1, "y": 0, "z": 0}, "section": {"outside_diameter": {"value": 0.15, "unit": "m"}, "wall_thickness": {"value": 0.008, "unit": "m"},
+            // B7b: the current exact contract requires an authored allowance (0 m, as m3x's).
+            "corrosion_allowance": {"value": 0.0, "unit": "m"}}, "provenance": p}));
     if reversed {
         raw["model"]["pipe_segments"].as_array_mut().unwrap().reverse();
     }
@@ -3123,11 +3142,15 @@ fn two_member_exact(reversed: bool) -> Value {
 /// literals and fallback enclosures, the two linear limitation sentences, the CHECKS_PASSED base
 /// cases' certified rows (exactly-zero rows publish +0), the nonlinear-route fail-closed sentence,
 /// and the receipt and publication hashes that bind them. No verdict changes otherwise.
+/// Current B7a pins follow genuine public Direct outputs after H4/E14/E15 and
+/// reviewed retained-owner changes; the independent controls below remain unchanged.
+/// B7b re-pin: read from the producer after the one re-authoring (M2's authored zero allowance
+/// included) and D3's registration, on the same route and value classes as `EXACT_PINNED`.
 const TWO_MEMBER_PINNED: [(bool, &str, &str); 4] = [
-    (false, "sparse_interactive", "57cb1e0df4f5c419d55d9f01466f5fdf257ba7e057ffe6e62b780cd5a9f367e1"),
-    (false, "dense_scrutiny", "b6d7cc7e2670276c298a5b35b74a61090695ebc63fc1d66e1787d506288086f1"),
-    (true, "sparse_interactive", "b3a470a4d9477edcfd399d8dbfb5f95d9e0c11b7cceaf9d5c9cf6c5d262d4555"),
-    (true, "dense_scrutiny", "065e7c0e7302f42136b3c1b1f5d3fc89da02fb6b85876583b459a78052ea2567")];
+    (false, "sparse_interactive", "64e5aa3552151fda1e88c57eeb76cf83e53004dd5f3d61c9b64141b376d63676"),
+    (false, "dense_scrutiny", "43307db54dcb7cf976d7d97447668d64ca3283ec94955d6553a6cd3efc6060fe"),
+    (true, "sparse_interactive", "4952144457d1ba23330e5c389d4f9d646c82d89d0a8855b793dc67cf50b84107"),
+    (true, "dense_scrutiny", "66c8d4ff9da1704b2041f97d3a48aa24ddfc4606d13c8462b8748624cf369f4d")];
 /// RV123 S-1: a two-member exact successor, in both authored member orders and both modes: each
 /// member's `pipe_sections` entry takes its own prepared A, I, J and Z (`assert_exact_successor`),
 /// and M2's prepared section differs from its source annulus's in at least one value, so the
@@ -3155,8 +3178,12 @@ fn b3b_rv123_s1_two_member_exact_overlays_each_member() {
     }
 }
 /// RV123 S-2's pins: (mode, sha256 of the successor's bytes).
-const UNAVAILABLE_EXACT_PINNED: [(&str, &str); 2] = [("sparse_interactive", "2c78cdfa0d720d093e88df0345ccc1be996714c165e4f0de4d0104da7b59a9f8"),
-    ("dense_scrutiny", "5e13a60e12e3a5714d89e82ec6227a11a43a604818e6ad2954a04dda6e816f66")];
+/// Current B7a pins follow genuine public Direct outputs after H4/E14/E15 and
+/// reviewed retained-owner changes; the independent controls below remain unchanged.
+/// B7b re-pin: read from the producer after the one re-authoring and D3's registration, on the
+/// same route and value classes as `EXACT_PINNED`.
+const UNAVAILABLE_EXACT_PINNED: [(&str, &str); 2] = [("sparse_interactive", "bfdce6d2f065ba1239fe2c347941102004e25952544da25f2ec6ecd8038709ff"),
+    ("dense_scrutiny", "a503732194b03d48c98b6af621a20a96e1bd6557144dd03c37d947b924bb3a9b")];
 /// RV123 S-2: an exact successor with an `unavailable` prepared case, at the n-case serializer's
 /// unavailable branch: the two-case exact input with case-2's freeze refused after its selected
 /// Run (`fail_freeze_of_case`). Case-2 is `unavailable` (`facade_certificate`, phase `facade`),
@@ -3799,46 +3826,46 @@ fn b2p_dispositions(name: &str) -> &'static [&'static str] {
 /// cases' certified rows (exactly-zero rows publish +0), the nonlinear-route fail-closed sentence,
 /// and the receipt and publication hashes that bind them. No verdict changes otherwise.
 const B2P_PINNED: [(&str, &str, &str, &str); 20] = [
-    ("w_cb1", "sparse_interactive", "e77ab66880490cecceec490cca2984b59badfe34c5bd6bf6d42a89d25cc75497",
-        "416ffa9c6fb0df0a0d3a617862873c1dc2dee07b33cf5acfd108fb240f890667"),
-    ("w_cb1", "dense_scrutiny", "8f2df2825cf39775e081fd63eeca3de58622006f765cf6b04c24c0b6c88e6796",
-        "5b83f16927bf46df2d02f2159fcdf73886b1862a622442de3c7a6abf6019ee5d"),
-    ("w_cb1z", "sparse_interactive", "78c93f800eeff167bc5aeb1504ccb5663dbe2aa231fd9898be64600c91a69800",
-        "b0a57154ba34bcdc9e01f01d9848b2c30db6706117573fffeed773902ff79913"),
-    ("w_cb1z", "dense_scrutiny", "e84147d0bd439a38943cfd27abb1e6f7e4fb81fa8425e2a7ef619776f2945b59",
-        "976a67208b71279fe0aa6ce87bc47fbeea6106c0323c67d563aa36c131c6c8af"),
-    ("w_cb2", "sparse_interactive", "1b192257f1990b96c3ba45bb8d2f903947e7717cef7ccbcaeb42493d494a8974",
-        "7fe73d20fade61b8b0a53aad7f88baa9d7a314462d77c47b53b63a24e2aa2a05"),
-    ("w_cb2", "dense_scrutiny", "1f03c0f481e937985428c21368b1e983cf7c98f00080f78b54152dcb34e7151a",
-        "8c6d0b1cad0c4960d2f927d1a0da15581425ecae2735afbe39a05c3f099fdc48"),
-    ("w_cb3", "sparse_interactive", "3e4d480a057bff394e0a93e567f3b9be4c1df1f1562ad337625166273c3dcb8f",
-        "42cd15793b65591dfe428b0985f8d5aadd9cd743651be3528eec49708a3db95e"),
-    ("w_cb3", "dense_scrutiny", "3293d2793dbcfd60d3ead11a912ae318fbe40ebd569ca873a4789e73f2b65d48",
-        "c3842d74f6aab3787a1027298413ba0233125e3a2c85ddab19d961abd5d88f67"),
-    ("w_cb4a", "sparse_interactive", "ae2de5572ecccaacc6a1db45ef18e9a824393d816e517c98b79a0e0e2031b5fd",
-        "500d4b22b0b5f09d504b3cdea692215726fd46f39b970c06ad56523f6fd713fe"),
-    ("w_cb4a", "dense_scrutiny", "a54e755f40218126ba0b33122b1d4ba7853b5fbf412396f2ccec25a2b4de2f3d",
-        "8b9053361deb4bf122b37911f579a4bcca011da523084f4ef6ebbaaf8de064be"),
-    ("w_cb4b", "sparse_interactive", "9e8e24033ba0469bb44b9d9c94821fb0b1682e9a8aefd399fe2e25ab5c8460ca",
-        "1fee40021596875ea780427f7cee64d9be4b675258b620a566d8cee6853a6697"),
-    ("w_cb4b", "dense_scrutiny", "de1d2c62e95f83b08c797c0149484768bd07cefde4028e9dbf6146179fb63fcd",
-        "bf14ad6c68da091f949b30d77644f36eea9242f5135206062e8ce5c684dcab7a"),
-    ("w_cb5", "sparse_interactive", "57d749823d149ee0eb09d250ef589dad6164220cf69fae7a57efe3cbf242084b",
-        "3c9755e1069be458802923ba1569188777dc465d024e1dc20730e1ec510f8656"),
-    ("w_cb5", "dense_scrutiny", "d49a41de8d8f1e6c78972f94c838812f6017a99df840b16cb5d91ad5b2fdd427",
-        "c64889ca3477056c73037de3072c59ad0fbd0418862ac95699840ad010d71513"),
-    ("c1_range_mechanics", "sparse_interactive", "a1e3daa03c059c9a5c5f1b8e334233db138d599403a1ba20f9ca9d46e92c3e43",
-        "de77d89e254d1f950461795af1f853139fe57b7783dec96d68ab380309b42c99"),
-    ("c1_range_mechanics", "dense_scrutiny", "674659067e1a549e1588f4f8209359c949291e3684d2ee3037acef2a41330677",
-        "070c45afd4658e24b38819cbc292ace50b8b459fd59fe2ea793cccc24f4a4564"),
-    ("rv123_w_cb3_ba", "sparse_interactive", "8b28de5de556ada431a662e9637e93de7006e6069cfe86efb9d5799a69792599",
-        "b33bb6802ff362b1b2959bd155d7212a1a1f0ce21b34d36a84f0b2aa6fde29aa"),
-    ("rv123_w_cb3_ba", "dense_scrutiny", "ecaae2f332e1fd4218bdaca4e57fe7a6e811a578cfe525ca0f8e7c487c970d76",
-        "8e76378baad983759df254149356359ed14f48853c46bd94bddea2567e9834df"),
-    ("rv123_c1_two_mechanics", "sparse_interactive", "55fb93d48f2bf2da3daa9b1ce22df8d2c11de42c4b5ca4ce62dc79aa859f6097",
-        "1f8b3980b7be95f871b6c471e5578010330c53a9b6dfe41acf93c3bbf0afcd6d"),
-    ("rv123_c1_two_mechanics", "dense_scrutiny", "107ac51b7155aa4aa0809c26807d65c843a3487042a78c8c8af8981df85e6ddb",
-        "afa80ae05ffcce1eccbe99ee546dc79d71f8a9cb710839a3cec7005aba1828e1"),
+    ("w_cb1", "sparse_interactive", "e8d0e8cdc9e577181f419bb5552ddd91cbd47dca27120f0ce116332b6d5bfdba",
+        "ebb4d095a13babadd98b147bfd5544a205f27c0040ede55711f03c69949f22e2"),
+    ("w_cb1", "dense_scrutiny", "a302b77907860981383db9eedb4e8aca33f350ac1c84be371f386a396bfcfd13",
+        "a8f4e1c22a26b1951e83b4582a8218d35595548f0559993c9ec241df508a2011"),
+    ("w_cb1z", "sparse_interactive", "c196c146e3e0bc453df032668ebb4950142c80ccd186c11f3210e3682cd777f7",
+        "f2fd5fbbe4266efaaa0fc01cece7423603b4731f0cbc19587e6a097ba240202f"),
+    ("w_cb1z", "dense_scrutiny", "14756090b4d7a2e7686c6bb9eba415816ee07119278cd4f1ece80e692a92f837",
+        "4ac518ac9b670447c5658ab1ba537848ea68506a6859a4fe8baaab3fd8024af5"),
+    ("w_cb2", "sparse_interactive", "73726c21bc3a242b625f853d16d473d65f5590e270457d00940742da25890401",
+        "00e07bdc6d944f5809e7c236c74a497d40a6187a9626c1ed3f880d1948feb259"),
+    ("w_cb2", "dense_scrutiny", "0bc43bab06757abbb0711e8f608f6cdf34e2d4a8836eb96dbc9ff3584c4aac40",
+        "057eeac9a792cadcde0ecbbeb03ad45f8155a3c95521fb3513e4cf3d7216fde4"),
+    ("w_cb3", "sparse_interactive", "6dc0f189837231daf6f1073a363723ac554729b1548ad52996f2c54bf3d202fb",
+        "5d4b65184e6974d78334e72a042b98f20532432f4464933dd4e3e475aa70feb6"),
+    ("w_cb3", "dense_scrutiny", "02388ca62986d3fe5fee32132904d439653601632174b45e7354b7f22f878b1a",
+        "31012df46c7aa5cec4f4b1e9eabc0f5765e03a2ea50cfab9a9cc5a9e2d8702ca"),
+    ("w_cb4a", "sparse_interactive", "880329c1a154a6836fe2a2bc0c26213cfd7cb0c20bb19042666c24da0755b48f",
+        "4708f373cd2339db8cd887ab0bcd04a5a2a8e52eedd9953af5b61af68b8af26c"),
+    ("w_cb4a", "dense_scrutiny", "a80798f9a956cfcb869e912c913b05b018cece665cd51b7ae44334a6f3abdfcf",
+        "08a6bee6e7d583df05c53a4484fbdd2c330f88ecba0c3bb6f088afb4616d0c61"),
+    ("w_cb4b", "sparse_interactive", "2427cd26592d26431e1283dbec3e9477c63ca734468ed2248d115c0ea54b8380",
+        "dd2130d5c633e553862aaccff01f21984f5ea7a40a1518767d70435484939a1e"),
+    ("w_cb4b", "dense_scrutiny", "f0d0d8a66e077e1092bd4a1a4f3ba253e72ba738bdbb8dc5d2a6c5f30a608fb9",
+        "34ee24cbe5f50b629242e902088f3ca78e5e89dd772617bc6b8c72188b1e633d"),
+    ("w_cb5", "sparse_interactive", "a94cff180519518e770e5e2f0d24d4178713a8218cb077dc8ef05d305b917af3",
+        "9350cb64a9408b392b073d6b0daf43828132fe16b3d17d2723ccdaf631df77c9"),
+    ("w_cb5", "dense_scrutiny", "8aab700c9ffc7da14dbaba2b33860949f3d2e71312a26725349852d177ba6654",
+        "7676558fc14737235340a113b37ab437b410797c0e043589a517100a2d4932b2"),
+    ("c1_range_mechanics", "sparse_interactive", "73ccdae75b710888668439b77eb56f348336dd24f8294f4dc840fc03dd38642e",
+        "bbc5e14430ef45ef25c0633db08a0fff438690873249ee775d2b62990d9ba9f9"),
+    ("c1_range_mechanics", "dense_scrutiny", "439567e11b0a73623e39e8bf6b35fd985554dc0fc6747efabc022dbf6611f2cd",
+        "cc05b8d60166da722bdbf01c4ec9b498119ded48e441b69cfa532294917e4681"),
+    ("rv123_w_cb3_ba", "sparse_interactive", "f06a81831041f76221a363177d4c41c054ec560d5414812250c67ffaa2d3975e",
+        "797cf7afe74f950eb548c401f848b3374c45f57cadf89799b09611ef3dbd0413"),
+    ("rv123_w_cb3_ba", "dense_scrutiny", "8da2f36f15eac983938967285c7760e54f9ad1f28d35ef11767679f6d5f38235",
+        "072eddd3b44b200e156234a83ab221ca41217251e0ec6e3112a5fb6df0b00f9e"),
+    ("rv123_c1_two_mechanics", "sparse_interactive", "f9095d92f83ecdf6f05da66bbac29f97d64daa8e4c0d13a0cc4a54c69e09566c",
+        "3617610f57418cc8b264f50cb5b59697dac1ae68c5c3156871251cec3cf50520"),
+    ("rv123_c1_two_mechanics", "dense_scrutiny", "6eab19b39c18e8d70f07b449b74a9db772d2ca8afcd9c8558223ca3129079525",
+        "55371dcf2bdce6b6a31ca75338477db945832019d51f6415cd9c72c42463dd49"),
 ];
 /// B2-P's small witnesses: (name, request).
 fn b2p_witnesses() -> Vec<(&'static str, Value)> {
@@ -3860,9 +3887,10 @@ fn combination_document(raw: &Value, mode: PreviewSolverMode, successor: &Value)
         "invocation": {"request": raw, "solver_mode": mode.as_str()}})).unwrap()
 }
 /// W-CB1's and W-CB1z's request Value sha256s (`w_cb1`, `w_cb1z`; JSON-equal to I98's
-/// `r7_cb1_halfb` and `r7_cb1`, checked on the records).
-const W_CB1_INPUT_SHA256: &str = "c1b85bd47605ca0df6f847be1b2b23b91c544d6981c4208f68b67d2c499a7ceb";
-const W_CB1Z_INPUT_SHA256: &str = "9c21d45e0ee9314946a7f2a7e88e55f73488d8cb1af0efd4912eb0a07399d3c1";
+/// `r7_cb1_halfb` and `r7_cb1`, checked on the records, apart from the model version: B7a
+/// re-authored the witnesses' model to 0.5.0, which moved all four input pins).
+const W_CB1_INPUT_SHA256: &str = "1fbcb0d606901d123ddac189483203a6598175281a4fae058d0aac80af0dd2ae";
+const W_CB1Z_INPUT_SHA256: &str = "7aa1a3273940d5cc694a0faaf1d0f4a1a3619b202741fbd6b1594495e6ae261d";
 /// The B2-P witnesses' inputs: W-CB2 and W-CB3 are I98's `r7_cb2` and `r7_cb3_v1`, W-CB1 and
 /// W-CB1z its `r7_cb1_halfb` and `r7_cb1` (JSON-equal, checked on the records); their Value
 /// sha256s. With `I105_B2P_OUT` set, W-CB1's and W-CB1z's requests are written there.
@@ -3871,8 +3899,8 @@ fn b2p_witness_inputs() {
     let out = std::env::var("I105_B2P_OUT").ok();
     let mut got = Vec::new();
     for (name, raw, expected) in [("w_cb1", w_cb1(), W_CB1_INPUT_SHA256), ("w_cb1z", w_cb1z(), W_CB1Z_INPUT_SHA256),
-        ("w_cb2", w_cb2(), "7f07d08e694947addf9e90f023fee9080b8b2a71d647260d528ce01c44c509a0"),
-        ("w_cb3", w_cb3(), "05e9ae15f4b6155b5907dec9ed6a56084b511d26777cfd6c7e2ea8ebe998d28d")] {
+        ("w_cb2", w_cb2(), "8638db6e126abd7da0f0449f5993879a803e91c08af5fa9806e58b101f916622"),
+        ("w_cb3", w_cb3(), "4e0fc2363b3f9a11af5830ba896c773d1e26ca65f95d9549b60805dab5fbd994")] {
         let value_sha = sha(&serde_json::to_vec(&raw).unwrap());
         println!("B2P_INPUT {name} value_sha={value_sha}");
         if let (Some(dir), true) = (&out, name.starts_with("w_cb1")) {
@@ -3897,7 +3925,7 @@ fn b2p_constants_bound_to_in_tree_fixtures() {
     let table: Value = serde_json::from_str(include_str!("../../../fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json")).unwrap();
     let h = wire::domain_hash("retained_precision_formation_v1", &definition).unwrap();
     assert_eq!(definition["id"], json!(wire::COMBINATION_DEFINITION_ID));
-    assert_eq!(h, "d3fde142aff9c05d709b2fc2a04add42e14c66be3e2b2ba82012da57edf3d957");
+    assert_eq!(h, "34ce87e7ad6da457d81a5cbf25a077fb5d08f2960c5fd815e1163646de02d24a");
     assert!(table["product_formation_definitions"].as_array().unwrap().contains(&json!({"id": wire::COMBINATION_DEFINITION_ID, "sha256": h})));
 }
 
@@ -4095,20 +4123,18 @@ fn b2p_direct(witnesses: Vec<(&'static str, Value)>) {
     }
 }
 
-/// RV125 N-2 (a forward constraint on lane P): the capture's modulus-basis custody
-/// (`selections`, `basis_record`, `basis_record_calls`, `basis_expected`) is the invocation's,
-/// not a case's. No B2-P or B3b-P path admits a material selector at c ≥ 2, so it stays there:
-/// - on the Direct entry, G-A refuses a selector on any case (D1.5, `ModulusBasisRef`): no W1,
-///   one run, the plain bytes;
-/// - on the private driver (no G-A), the preview route's capture refuses it, so no successor
-///   reaches precommit: a selector on case 0 fails the custody (`Preparation`), and one on case 1
-///   only fails every attempted case's freeze (`Candidate`). The exact route refuses any
-///   selector (P-5).
+/// RV125 N-2, met by B7a (b) Widen domain, stage 1: the capture's modulus-basis custody is per
+/// basis (`bases`) and each case binds its own (`basis_expected`, `basis`), so G-A admits a
+/// named-point selector on any case of branch L (D1.5), and on the private driver neither the
+/// custody (`Preparation`) nor any attempted case's freeze (`Candidate`) refuses it: W1 publishes
+/// its successor (b7-plan ruling (6) moved the table pins, so precommit's G0 accepts it), which
+/// is precommit's copy, and the full Rust reader, G0 first, finds it bound and numerically
+/// eligible with the invocation. The exact route still refuses any selector (P-5;
+/// `b3b_exact_capture_refuses_a_selected_basis`).
 ///
 /// Pinned for c = 2 without and with a combination, a point basis on either case or both.
 #[test]
-fn b2p_selectors_at_two_cases_are_refused() {
-    use super::retained_memory::{AdmissionRefusal, D1Clause, FamilyFact};
+fn b2p_selectors_at_two_cases_bind_their_own_basis() {
     let mut no_combination = b2p_two_cases();
     no_combination["model"]["combinations"] = json!([]);
     for (base, raw) in [("c = 2", no_combination), ("c = 2, z = 1", b2p_two_cases())] {
@@ -4125,20 +4151,22 @@ fn b2p_selectors_at_two_cases_are_refused() {
                 let plain_value: Value = serde_json::from_slice(&plain).unwrap();
                 assert_eq!(plain_value["status"]["mechanics"], json!("MECHANICS_SOLVED"), "{label}: the ordinary route solves it");
                 assert_eq!(plain_value["results"].as_array().unwrap().iter().filter(|r| r["kind"] == "modulus_basis_record").count(), selected.len(), "{label}");
-                // The Direct entry: G-A refuses (D1.5), whatever the build.
-                let (output, counts) = direct(&raw, mode);
-                assert_eq!(output.admission().unwrap().law().domain, Some(AdmissionRefusal::Family(D1Clause::Case, FamilyFact::ModulusBasisRef)), "{label}");
-                assert!(output.retained().is_none(), "{label}: no W1");
-                assert_eq!(counts, ONE_RUN, "{label}");
-                assert_eq!(published(output), plain, "{label}: the plain bytes");
-                // The private driver: the capture's custody refuses, so no successor.
+                // G-A's domain admits it (D1.5 on branch L).
+                let (request, captured_invocation) = source_receipt::CapturedInvocation::parse(raw.clone(), mode).unwrap();
+                assert_eq!(super::retained_memory::assess(&captured_invocation, &request, super::retained_memory::Entry::Direct, RETAINED_LIMIT).law().domain,
+                    None, "{label}");
+                // The private driver: custody and freeze pass, and the successor publishes.
                 let (capture, observer, ordinary) = observed(mode, &raw);
-                let ((_, retained), _, captured) = hooks::counted_with_successor(|| retained_w1(observer, ordinary, &capture));
-                // A selector on case 0 fails the custody (`Preparation`); on case 1 only, every
-                // attempted case's freeze refuses (`Candidate`).
-                let expected = if selected.contains(&0) { W1Fallback::Preparation } else { W1Fallback::Candidate };
-                assert_eq!(retained.err(), Some(expected), "{label}");
-                assert!(captured.is_none(), "{label}: no successor reaches precommit");
+                let ((_, retained), _, precommit) = hooks::counted_with_successor(|| retained_w1(observer, ordinary, &capture));
+                let successor = match retained {
+                    Ok(successor) => successor.value().clone(),
+                    Err(fallback) => panic!("{label}: W1 fell back: {fallback:?}"),
+                };
+                assert_eq!(precommit.as_ref(), Some(&successor), "{label}: the published successor is precommit's copy");
+                let invocation = json!({"request": raw, "solver_mode": mode.as_str()});
+                let verdict = open_pipe_stress_result_export::retained_precision::validate(&successor, Some(&invocation))
+                    .unwrap_or_else(|e| panic!("{label}: reader: {e:?}"));
+                assert!(verdict.invocation_bound && verdict.numerical_eligible, "{label}: bound and eligible");
             }
         }
     }
@@ -4271,3 +4299,7 @@ fn b2p_ledger_unavailable_operand_has_no_source() {
         assert!(b.get("operand_preparations").is_none(), "{mode:?}: no operand preparation");
     }
 }
+
+// B4/D1 maintained-source census; separate from the native G10 witness.
+#[path = "w1_source_census_tests.rs"]
+mod w1_source_census_tests;

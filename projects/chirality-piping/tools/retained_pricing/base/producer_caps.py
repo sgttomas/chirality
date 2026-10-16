@@ -40,6 +40,10 @@ Q = 7 * n + 30 * m + sp + k + 2 * g
 P_final = 7 * n + 51 * m + 8 * g + 3
 Cs = sp; Ca = r
 ID, RID = 128, 1024
+if os.environ.get("RP_SNAPSHOT"):
+    import b7a_phase_model as _phase_model
+    _phase_context = _phase_model.consumer_context(os.environ["RP_SNAPSHOT"], H_)
+    _phase_success = _phase_model.successful_counts(_phase_context, _c.get("lc", _c["c"]) if which == "caps" else 1, CC, l)
 I_src = l * ID
 E_src = 38 + 24 * n + 84 * m + 17 * sp + 13 * k + 17 * l + I_src + 16 * t + 22 * g + 4 * Cs
 E_stf = 26 + 24 * n + 84 * m + 17 * sp + 5 * k
@@ -75,6 +79,21 @@ rows["T11.6 operational records, case id, error, census arrays"] = V("Operationa
 # gains `invocation_digest: Option<String>`, a clone of the 64-byte hex invocation digest
 # (retained_product.rs, RV82-S2); ProductProofWork's new `anchor` is an Arc::clone (no new heap).
 rows["T11.7 U1 grant 2 delta: invocation_digest clone"] = B(64)
+# B7a: bases belong to the invocation, not to a swapped CaseSlot.
+if os.environ.get("RP_SNAPSHOT"):
+    import b7a_domain_model as _wide_model
+    _wide_model.inspect(os.environ["RP_SNAPSHOT"])
+    _phase_ordinary = _phase_model.ordinary_counts(_phase_context,
+        _c.get("lc", _c["c"]) if which == "caps" else 1, CC, l)
+    _custody_req, _custody_mov = _wide_model.custody(_phase_ordinary["named"], ID)
+    # Retain the original T11.1 allocation in full. Summing this positive
+    # exact-growth moving backing with requested storage is conservative.
+    rows["T11.10 invocation named-basis custody and moving storage (B7a stage 1)"] = _custody_req + _custody_mov
+    import b7a_formation_model as _formed_model
+    _formed_model.inspect(os.environ["RP_SNAPSHOT"])
+    _finding_cases = (_phase_success["finding_cases"] if _phase_context["branch"] == "success"
+                      else _phase_ordinary["finding_cases"])
+    rows["T11.11 persistent FindingSeed full fired-list and sentence copies (B7a)"] = _formed_model.finding_capture(_finding_cases, n, l, ID)
 # ------------------------------------------------------------------ T12 preparation (P1 section 5)
 maps = (V("NodeMapE", n) + V("MemberMapE", m) + V("SpringMapE", sp) + V("SupportMapE", g) + V("ConstraintMapE", r)
         + Cv("usize", Ca, r) + V("NodalMapE", l) + V("StationMapE", t) + V("SectionMapE", m)
@@ -210,7 +229,8 @@ if CC > 1:
     rows["T11.9 SP per-case observation counters (bind_observations_by_case, finish and custody: 2 x c [usize;2])"] = s("[usize;2]") * (2 * CC)
 if AA > 1:
     rows["T13.3 SP batch native sources (native_call: |A| PrimitiveSource, one adapter reservation)"] = s("PrimitiveSource") * AA
-ASM.update({"s(CaseSlot)": 1560, "s([usize;2])": 16, "s(PrimitiveSource)": 1024})
+ASM.update({"s(CaseSlot)": 1560, "s([usize;2])": 16, "s(PrimitiveSource)": 1024,
+            "s(BasisCustody)": 512})  # illustrative only; G5 binds the actual private type
 out = {"which": which, "counts": dict(n=n, m=m, s=sp, r=r, l=l, g=g, N=N, F=F, k=k, Q=Q, U=U, P=P, Zu=Zu, H=Hp,
                                       P_final=P_final, E_src=E_src, E_stf=E_stf, E_led=E_led, O=O, Kt=Kt)}
 missing = sorted({a for x in rows.values() for a in x if a != "1" and a not in ASM})

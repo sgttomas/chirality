@@ -1,14 +1,13 @@
-import historicalMechanicsFixture from "../../../../fixtures/product_preview/invented_demo_result_legacy_0_1.json";
+import { retiredMechanicsResult } from "../test-support/retiredMechanicsResult";
 // The bundled producer results as their bytes read (signed zeros kept), as previewService reads them (b7-plan R2).
 import sparseMechanicsFixtureText from "../../../../fixtures/product_preview/invented_demo_result_preview_physics_1_sparse.json?raw";
 import denseMechanicsFixtureText from "../../../../fixtures/product_preview/invented_demo_result_preview_physics_1_dense.json?raw";
 const sparseMechanicsFixture = JSON.parse(sparseMechanicsFixtureText), denseMechanicsFixture = JSON.parse(denseMechanicsFixtureText);
 import inventedPreviewModel from "../../../../fixtures/product_preview/invented_preview_model.json";
 import { createNativeMechanicsReplay, createSolveJobTransport, nativeMechanicsReplayPair, resultArrayBuffer, solveBytes } from "../test/nativeMechanicsReplay";
+import { minimalPreviewStatement } from "../test-support/retiredPrecision";
 import { checkedJsonText } from "./hashService";
 import { ResourceUnavailableError } from "./memoryPool";
-import { buildAnalysisRunV02 } from "./analysisRunCompatibility";
-import { PRECISION_CONTRACT_ID } from "../features/results/numericalResultQuality";
 import { sourceContract } from "../features/results/resultReader";
 import { numericalResultStanding } from "../features/results/resultStanding";
 import { afterEach, describe, expect, it, vi } from "vitest";
@@ -23,7 +22,6 @@ afterEach(() => {
 import type { MechanicsResult, PreviewModel } from "../types";
 import {
   appliedRuleCheckStatus,
-  bindSourceResultDimensions,
   buildAnalysisRunPreview,
   loadDesignKnowledge,
   loadPreviewModel,
@@ -57,23 +55,8 @@ function cloneModel(model: PreviewModel): PreviewModel {
 // Minimal solved envelope whose plain solve leaves rule_check incomplete (the
 // solve runs no user rule checks), so the aggregate-threading behavior is
 // isolated from any fixture content.
-const solvedResultStub = {
-  schema_version: "0.2.0",
-  producer: {component_name:"open_pipe_stress_product_physics", component_version:"0.2.0", semantic_contract_id:PRECISION_CONTRACT_ID},
-  numerical_quality: {value_representation:"finite_binary64",publication_quantization:"none",integrity_policy:"M03-INTEGRITY-v1",status:"not_assessed",cases:[]},
-  formulation_basis: {profile_id:"product_preview_mechanics_v1", limitations:["Synthetic consumer test; no physics proof"]},
-  document_kind: "openpipestress.product_preview.mechanics_result",
-  run_id: "run:appagg-test",
-  model_ref: "project:appagg-test",
-  status: {
-    mechanics: "MECHANICS_SOLVED",
-    rule_check: "RULE_INPUTS_INCOMPLETE",
-    professional_acceptance: "NOT_PROVIDED",
-  },
-  summary: {},
-  results: [],
-  diagnostics: [],
-} as unknown as MechanicsResult;
+// B1: the minimal preview-physics-1 statement (no rows) replaces the retired precision-1 header.
+const solvedResultStub = minimalPreviewStatement({ run_id: "run:appagg-test", model_ref: "project:appagg-test", rows: [], cases: [] });
 
 async function manifestFor(
   result: MechanicsResult,
@@ -142,8 +125,7 @@ describe("previewService explicit reference inspection and browser refusal", () 
   });
 
   it("preserves the historical-format carrier's nonlinear evidence without calling it a fresh solve", async () => {
-    const result = structuredClone(historicalMechanicsFixture) as MechanicsResult;
-    const run = await buildAnalysisRunV02(result, await manifestFor(result));
+    const result = retiredMechanicsResult();
 
     expect(
       result.results.find(
@@ -230,12 +212,6 @@ describe("previewService explicit reference inspection and browser refusal", () 
         (item) => item.code === "NONLINEAR_SUPPORT_LOOP_CONVERGED",
       ),
     ).toBe(true);
-    expect(
-      run.analysis_run.result_refs.find(
-        (item) =>
-          item.result_ref.ref === "result:nonlinear-support:iteration-count",
-      )?.result_family,
-    ).toBeNull();
   });
 
   it("throws the specific edited-model backend error before creating a raw result", async () => {
@@ -327,7 +303,7 @@ describe("previewService explicit reference inspection and browser refusal", () 
       mutate(changed);
       expect(() => validateBrowserMechanicsFixture(changed, "sparse_interactive", model)).toThrow("BROWSER_FIXTURE_SOLVER_MODE_BINDING_MISMATCH");
     }
-    expect(() => validateBrowserMechanicsFixture(structuredClone(historicalMechanicsFixture) as MechanicsResult, "sparse_interactive", model))
+    expect(() => validateBrowserMechanicsFixture(retiredMechanicsResult(), "sparse_interactive", model))
       .toThrow("BROWSER_FIXTURE_PRODUCER_CONTRACT_UNSUPPORTED");
   });
 
@@ -502,8 +478,7 @@ describe("reference analysis-run input-manifest and source-dimension binding", (
     expect(target).toBeDefined();
     target!.unit = "MPa";
     // The bundled reference is preview-physics-1, so its reader refuses the
-    // changed unit before the kind-semantics check (SOURCE_UNIT_CONTRADICTION,
-    // still pinned on a precision-1 source in reportPackageRequest.test.ts).
+    // changed unit before the kind-semantics check.
     // R2: the Rust reader's code (TS: SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID).
     await expect(buildAnalysisRunPreview(result, {
       inputManifest: await manifestFor(result),
@@ -834,18 +809,11 @@ describe("session-start release of earlier native custody", () => {
   });
 });
 
-it("does not enrich precision or unsupported raw0.2 carriers while reading history", () => {
- const raw = {schema_version:"0.2.0",results:[{id:"tiny",kind:"global_nodal_rotation_x",value:-1e-12,unit:"rad",entity_ref:"n"}]} as MechanicsResult;
- expect(bindSourceResultDimensions(raw)).toBe(raw);
- expect(Object.hasOwn(raw.results[0], "dimension")).toBe(false);
- expect(raw.results[0].value).toBe(-1e-12);
-});
-
 async function referenceFixtureSource(): Promise<MechanicsResult> {
  return (await loadBundledMechanicsReference()).source;
 }
-it("analysis composition refuses legacy and unknown raw without a historical fallback",async()=>{
- const legacy=structuredClone(historicalMechanicsFixture) as MechanicsResult, before=JSON.stringify(legacy);
+it("analysis composition refuses the retired 0.1.0 carrier and unknown raw without a historical fallback",async()=>{
+ const legacy=retiredMechanicsResult(), before=JSON.stringify(legacy);
  await expect(buildAnalysisRunPreview(legacy,{inputManifest:await manifestFor(legacy)})).rejects.toThrow("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");
  const unknown={...legacy,schema_version:"0.2.0"};
  await expect(buildAnalysisRunPreview(unknown,{inputManifest:await manifestFor(unknown)})).rejects.toThrow("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");
@@ -1055,20 +1023,6 @@ describe("native invocation provenance under bounded unit transport replay", () 
   });
 });
 
-
-it.each(["sparse_interactive", "dense_scrutiny"] as const)("explicit ordinary precision replay keeps its captured %s source and rejects the physics model", async mode => {
-  const pair = nativeMechanicsReplayPair(mode, { profile: "precision" });
-  expect(pair.provenance.capture_ref).toContain("PRECISION_UI_COMPANION.json");
-  expect(pair.source.producer!.semantic_contract_id).toBe(PRECISION_CONTRACT_ID);
-  expect(pair.source.results).toHaveLength(mode === "sparse_interactive" ? 67 : 68);
-  (window as unknown as Record<string, unknown>).__TAURI_INTERNALS__ = {};
-  const replay = createNativeMechanicsReplay({ profile: "precision" });
-  invokeMock.mockImplementation(replay.invoke);
-  const received = await runPreviewMechanics(pair.model, mode);
-  expect(received).toEqual(pair.source);
-  expect(hasNativeMechanicsInvocation(received, pair.model, mode)).toBe(true);
-  await expect(runPreviewMechanics(nativeMechanicsReplayPair(mode).model, mode)).rejects.toThrow("NATIVE_REPLAY_MODEL_MISMATCH");
-});
 
 it.each(["sparse_interactive", "dense_scrutiny"] as const)("preview-physics-1 replay registers its %s source only when the closed reader checks pass", async mode => {
   const pair = nativeMechanicsReplayPair(mode, { profile: "preview" });

@@ -81,6 +81,27 @@ fn geometry(section: &Value) -> BindingResult<()> {
             );
         }
     }
+    validate_corrosion_allowance(section)
+}
+
+/// Validate only the new local supplement, without introducing shared values
+/// or making unrelated incomplete section fields an authoring gate.
+pub(super) fn validate_corrosion_allowance(section: &Value) -> BindingResult<()> {
+    if section.get("corrosion_allowance").is_some() {
+        let allowance = length(section, "corrosion_allowance")?;
+        let wall = length(section, "wall_thickness")?;
+        let mill = if section.get("mill_tolerance").is_some_and(|value| !value.is_null()) {
+            length(section, "mill_tolerance")?
+        } else {
+            0.0
+        };
+        if mill < 0.0 || mill >= wall {
+            return Err("Mill tolerance must be nonnegative and leave a positive effective wall".into());
+        }
+        if allowance < 0.0 || mill + allowance >= wall {
+            return Err("Corrosion allowance must be nonnegative and leave a positive wall after mill tolerance".into());
+        }
+    }
     Ok(())
 }
 
@@ -218,6 +239,9 @@ pub(super) fn validate_local(
     path: &str,
 ) -> BindingResult<()> {
     let old = unique(model, "pipe_segments", id)?;
+    if path.starts_with("section.corrosion_allowance.") {
+        validate_corrosion_allowance(&unique(candidate, "pipe_segments", id)?["section"])?;
+    }
     if let Some(reference) = binding_ref(old)? {
         if matches!(
             path,

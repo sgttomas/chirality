@@ -15,7 +15,8 @@ import math
 from pathlib import Path
 from typing import Any, Mapping
 
-from core.analysis_runs import build_preview_analysis_run_envelope
+from core.analysis_runs import build_analysis_run
+from core.serialization.canonical_json.adapter import canonical_sha256_checked_v1
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -61,17 +62,14 @@ def run_preview_mechanics(model: Mapping[str, Any] | None = None) -> dict[str, A
     """Return a deterministic mechanics/status envelope for the preview.
 
     The current technical preview returns a frozen invented result fixture,
-    ``invented_demo_result_legacy_0_1.json``: a carrier derived from the product's
-    sparse output for the demo model in the historical 0.1.0 result format this
-    service has always returned. Rows of kinds the 0.1.0 semantics do not define
-    are removed, and the summary members that describe them are withheld (see
-    ``fixtures/product_preview/DEMO_FIXTURES.md``). It is not a solve of the given
-    model, and it does not perform external solver/prover execution or rule-pack
-    checking.
+    ``invented_demo_result_preview_physics_1_sparse.json``: the product's own
+    preview-physics-1 output for the demo model (one current mechanics-result
+    version, b7-plan E2). It is not a solve of the given model, and it does not
+    perform external solver/prover execution or rule-pack checking.
     """
 
     model_record = deepcopy(dict(model or load_preview_model()))
-    result = _read_json(FIXTURE_DIR / "invented_demo_result_legacy_0_1.json")
+    result = _read_json(FIXTURE_DIR / "invented_demo_result_preview_physics_1_sparse.json")
     diagnostics = list(result.get("diagnostics", []))
     diagnostics.extend(validate_preview_model(model_record)["diagnostics"])
     result["diagnostics"] = _stable(diagnostics)
@@ -81,25 +79,37 @@ def run_preview_mechanics(model: Mapping[str, Any] | None = None) -> dict[str, A
 
 
 def build_analysis_run_preview(model: Mapping[str, Any] | None = None) -> dict[str, Any]:
-    """Build an immutable analysis-run record from the preview mechanics result."""
+    """Build the current (0.3.0) analysis-run record of the bundled demo's result.
+
+    Analysis runs keep one current version, so the record binds the product's
+    verbatim preview-physics-1 output for the bundled demo model
+    (``invented_demo_result_preview_physics_1_sparse.json``), the statement
+    ``run_preview_mechanics`` returns. Like that result, it is frozen and not a
+    solve of the given model. Its input manifest states the demo
+    model and the result's producer, and is hashed with the checked profile.
+    """
 
     model_record = deepcopy(dict(model or load_preview_model()))
-    mechanics_result = run_preview_mechanics(model_record)
-    return build_preview_analysis_run_envelope(
+    mechanics_result = _read_json(FIXTURE_DIR / "invented_demo_result_preview_physics_1_sparse.json")
+    producer = mechanics_result["producer"]
+    manifest = {
+        "document_kind": "openpipestress.product_preview.input_manifest",
+        "model_basis": {"model_ref": mechanics_result["model_ref"]},
+        "solver_basis": {
+            "solver_name": producer["component_name"],
+            "solver_version": producer["component_version"],
+        },
+    }
+    manifest_hash = canonical_sha256_checked_v1(manifest)
+    return build_analysis_run(
         mechanics_result,
-        model_state_ref={
-            "object_type": "ModelState",
-            "ref": f"state:{mechanics_result['model_ref']}:preview",
+        input_manifest_ref={
+            "object_type": "InputManifest",
+            "ref": f"input-manifest:{mechanics_result['model_ref']}:{manifest_hash}",
         },
-        settings_ref={
-            "object_type": "SolverSettings",
-            "ref": "settings:preview-linear-static",
-        },
-        unit_system_ref={
-            "object_type": "UnitSystem",
-            "ref": "SI-preview-units",
-        },
-        load_basis_refs=_load_basis_refs(model_record),
+        input_manifest_hash=manifest_hash,
+        input_manifest=manifest,
+        expected_basis_refs=_load_basis_refs(model_record),
     )
 
 
@@ -157,7 +167,7 @@ def build_report_packet_preview(model: Mapping[str, Any] | None = None) -> dict[
             "result_envelope_hash_refs": [
                 deepcopy(item)
                 for item in analysis_run["analysis_run"]["hashes"]
-                if item.get("payload_scope") == "result_envelope"
+                if item.get("payload_scope") == "received_result"
             ],
             "reproducibility_notes": deepcopy(
                 analysis_run["analysis_run"]["reproducibility"]["determinism_notes"]

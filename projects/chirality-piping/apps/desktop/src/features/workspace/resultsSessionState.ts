@@ -1,5 +1,5 @@
-import { currentSemanticContract, sourceContract } from "../results/resultReader";
-import { numericalResultStanding, sourceRecoveryModeMatches } from "../results/resultStanding";
+import { currentSemanticContract } from "../results/resultReader";
+import { numericalResultStanding } from "../results/resultStanding";
 import { isFreshSemanticResult } from "../results/knownSemanticLimitations";
 import { useMemo, useRef, useState } from "react";
 import type { CurrentSessionInputManifestEvidence } from "../../services/inputManifestService";
@@ -54,7 +54,7 @@ export function useResultsSessionState() {
   try { numericallyEligible = !!result && numericalResultStanding(result, inputManifest?.manifest.model_basis.model_payload).eligible; }
   catch { /* Malformed retained carriers remain inspectable, never Current. */ }
   // T0R: Current only for the static fresh-identity set with Current standing;
-  // precision-1 and other historical identities stay readable, never Current.
+  // other identities stay readable, never Current.
   const currentSolvedResult = result && currentContract && isFreshSemanticResult(result) && analysisRun?.schema_version === "0.3.0"
     && currentRecord?.run_id === result.run_id
     && inputManifest?.manifest.model_basis.model_ref === result.model_ref
@@ -70,7 +70,6 @@ export function useResultsSessionState() {
     && currentRecord.solver_version?.solver_version === currentSolver?.solver_version
     && currentRecord.solver_version?.build_ref.ref === currentSolver?.solver_build_ref
     && numericallyEligible
-    && (!["physics_source", "source_blocks"].includes(sourceContract(result)) || (!!inputManifest && sourceRecoveryModeMatches(result, inputManifest.manifest.model_basis.model_payload, currentSolver!.solver_mode)))
     && hasNativeMechanicsInvocation(result, inputManifest?.manifest.model_basis.model_payload, currentSolver?.solver_mode) ? result : null;
   // Worst-of rule-check aggregate from the GUI run panel, lifted so it can be
   // recorded in the app-held analysis-run envelope (TP-C4-APPAGG-001).

@@ -8,7 +8,7 @@
 //! rounded norm the product uses, verified against an exact oracle (I109, RV126).
 //! Every model goes through the captured value entry the desktop uses. Criterion:
 //! |observed - expected| <= 1e-9 * max(|expected|, zero scale). No new tolerance.
-use open_pipe_stress_frame_kernel::correct_norm::norm2;
+use open_pipe_stress_correct_norm::norm2;
 use open_pipe_stress_product_physics::{run_linear_static_preview_value_with_mode, PreviewSolverMode};
 use serde_json::{json, Value};
 use std::collections::HashSet;
@@ -66,7 +66,7 @@ fn vec3(v: &Value) -> Vec<f64> {
 
 // ------------------------------------------------------------------ model builders
 fn base(nodes: Value, pipes: Value, supports: Value, components: Value, cases: Value, combinations: Value) -> Value {
-    json!({"model":{"schema_version":"0.2.0","document_kind":"openpipestress.product_preview.model",
+    json!({"model":{"schema_version":"0.5.0","document_kind":"openpipestress.product_preview.model",
         "project":{"id":"project:t0r","units":{"length":"m","force":"N","angle":"rad","pressure":"Pa","stress":"Pa","temperature":"degC"}},
         "analysis_status":{"mechanics":"ready_for_preview_diagnostics","rule_check":"not_performed_user_rule_inputs_missing","professional_acceptance":"not_provided"},
         "nodes":nodes,"pipe_segments":pipes,"supports":supports,"components":components,
@@ -867,6 +867,7 @@ fn arc_model(k: f64, yref_bc: [f64; 3], sif_value: Option<f64>) -> Value {
 
 #[test]
 fn b1_arc_signed_rows_frames_and_withheld_maximum() {
+    let u4a: Value = serde_json::from_str(include_str!("../../../validation/references/t4_u4a/oracle.json")).unwrap();
     let r = r2();
     let b1 = &r["REF-B1-SIGNED"];
     let (fs, ms) = (num(&b1["zero_scale"]["force_N"]), num(&b1["zero_scale"]["moment_Nm"]));
@@ -883,12 +884,20 @@ fn b1_arc_signed_rows_frames_and_withheld_maximum() {
                 }
             }
             for (location, key) in [("end_i", "product_end_i_rows_node_on_element"), ("end_j", "product_end_j_rows_node_on_element")] {
-                let expected = vec3(&b1["chord_frame"][key]);
+                let chord = vec3(&b1["chord_frame"][key]);
+                let oracle = &u4a["cases"][format!("U4A-PP1-T0R-B1-K{}", k as u32)]["members"]["pipe:b-c"]["end_rows_node_on_element_elastic"][location]["tangent_frame"];
+                let expected = ["F_x", "F_y", "F_z", "M_x", "M_y", "M_z"].map(|name|oracle[name].as_str().unwrap().parse::<f64>().unwrap());
+                let mut chord_discriminated = false;
                 for (idx, (component, _)) in names.iter().enumerate() {
                     let row = results(&v).iter().find(|r| r["kind"] == kinds[idx] && r["entity_ref"] == "pipe:b-c" && r["metadata"]["location"] == location && r["metadata"]["component"] == *component).unwrap();
-                    assert_eq!(row["metadata"]["coordinate_system"], "arc_chord_frame");
-                    close(num(&row["value"]), expected[idx], if idx < 3 { fs } else { ms }, &format!("chord {location} {component}"));
+                    assert_eq!(row["metadata"]["coordinate_system"], "element_local");
+                    assert!(row["metadata"]["sign_convention"].as_str().unwrap().contains("in the arc tangent frame at end"));
+                    // These expectations use U4a's member-family criterion;
+                    // the unchanged T0R criterion still governs its own rows.
+                    assert!((num(&row["value"]) - expected[idx]).abs() <= 1e-9 * expected[idx].abs().max(if idx < 3 { fs } else { ms }), "tangent {location} {component}");
+                    chord_discriminated |= (num(&row["value"]) - chord[idx]).abs() > 1e3 * 1e-9 * expected[idx].abs().max(if idx < 3 { fs } else { ms });
                 }
+                assert!(chord_discriminated, "the frozen chord block is a negative control");
             }
             let es = &b1["endpoint_stress_rows_tangent_frame"];
             let stress = |kind: &str, location: &str| {
@@ -951,11 +960,28 @@ fn b2_indeterminate_arc_resultants_depend_on_k() {
         let expected = &b2[key];
         close(case_action(&v, "support:roller", "case:y")[0], num(&expected["roller_on_pipe_Fx_N"]), NO_FROZEN_SCALE, "roller");
         close6(case_action(&v, "support:a", "case:y"), &vec3(&expected["anchor_on_pipe"]), NO_FROZEN_SCALE, NO_FROZEN_SCALE, "B2 anchor");
-        let rows = vec3(&expected["product_end_i_rows_node_on_element"]);
+        // C5 (b7-plan H-4 C4–C6; DEL-04-07 Design arc-frames-and-signs.md §§2–3): arc end rows
+        // are node-on-element actions in the tangent frame at their end. The frozen chord-frame
+        // block maps there by §3's R_i (s = sin(φ/2), c = cos(φ/2), φ = π/2 here); the frozen
+        // tangent-frame section at b cross-checks it (end_i = −cut(0), y toward the centre), and
+        // the frozen chord block stays a negative control. No reference value is changed.
+        let chord = vec3(&expected["product_end_i_rows_node_on_element"]);
+        let (s, c) = (SQRT1_2, SQRT1_2);
+        let r_i = |v: &[f64]| [c * v[0] + s * v[1], s * v[0] - c * v[1], -v[2]];
+        let (f, m) = (r_i(&chord[0..3]), r_i(&chord[3..6]));
+        let rows = [f[0], f[1], f[2], m[0], m[1], m[2]];
+        let section = &expected["section_at_b_tangent_frame_for_information"];
+        close(rows[0], -num(&section["N"]), NO_FROZEN_SCALE, "B2 R_i end_i F_x against the frozen tangent N");
+        close(rows[1], -num(&section["Vy_inward"]), NO_FROZEN_SCALE, "B2 R_i end_i F_y against the frozen tangent V_y");
+        close(rows[5], -num(&section["Mz_in_plane"]), NO_FROZEN_SCALE, "B2 R_i end_i M_z against the frozen tangent M_z");
         let kinds = ["element_local_axial_force", "element_local_shear_force_y", "element_local_shear_force_z", "element_local_torsional_moment", "element_local_bending_moment_y", "element_local_bending_moment_z"];
+        let mut chord_discriminated = false;
         for (idx, kind) in kinds.iter().enumerate() {
-            close(row_value(&v, kind, "pipe:b-c", None, Some("end_i"), "load_case", "case:y"), rows[idx], NO_FROZEN_SCALE, &format!("B2 end_i {kind}"));
+            let observed = row_value(&v, kind, "pipe:b-c", None, Some("end_i"), "load_case", "case:y");
+            close(observed, rows[idx], NO_FROZEN_SCALE, &format!("B2 end_i {kind}"));
+            chord_discriminated |= (observed - chord[idx]).abs() > 1e3 * 1e-9 * chord[idx].abs();
         }
+        assert!(chord_discriminated, "the frozen chord block is a negative control");
     }
 }
 

@@ -17,6 +17,7 @@
  * and gates' not-eligible branches stay exercised. With both false the wrapper
  * returns the reader's own frozen result unchanged.
  */
+import { retiredMechanicsResult } from "../../test-support/retiredMechanicsResult";
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { createSolveJobTransport, resultArrayBuffer, solveBytes } from "../../test/nativeMechanicsReplay";
 import { cleanup, render, screen } from "@testing-library/react";
@@ -77,7 +78,7 @@ import {
   registerRetainedPrecision, retainedPrecisionInvocation, retainedPrecisionRegistration, retainedPrecisionStanding, retainedPrecisionStandingText, retainedRowClasses, retainedStandingFrom,
 } from "./retainedPrecisionStanding";
 import {
-  FRESH_SEMANTIC_CONTRACT_IDS, N_HEADLINE, N_RP_ABSOLUTE, N_RP_NOT_COVERED, N_RP_UNVALIDATED, N_SB, RULE_QUANTITY_BELOW_VERIFIED_FLOOR, RULE_QUANTITY_NOT_COVERED,
+  FRESH_SEMANTIC_CONTRACT_IDS, N_HEADLINE, N_RP_ABSOLUTE, N_RP_NOT_COVERED, N_RP_UNVALIDATED, RULE_QUANTITY_BELOW_VERIFIED_FLOOR, RULE_QUANTITY_NOT_COVERED,
   classBindingRefusal, isFreshSemanticResult, knownSemanticNotices, resultRowLabel, retainedAbsoluteNotice, ruleBindingRefusal, standingReason, upwardBoundText,
 } from "./knownSemanticLimitations";
 import previewPhysicsSemanticContract from "../../../../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json";
@@ -227,12 +228,12 @@ afterEach(() => {
 describe("the inputs and the pinned identity", () => {
   it("uses PP's byte-identical successors and the shared 20-case file (format v4)", () => {
     expect(caseFile.format).toBe("I66-U6-CARRIER-CASES-v4");
-    expect(caseFile.cases).toHaveLength(20);
-    expect(Object.keys(caseFile.fixtures).sort()).toStrictEqual(["legacy_preview_0_1", "milestone_dense_scrutiny", "milestone_sparse_interactive", "preview_physics_1_invented_sparse", "source_blocks_n05_sparse"]);
+    expect(caseFile.cases).toHaveLength(17);
+    expect(Object.keys(caseFile.fixtures).sort()).toStrictEqual(["milestone_dense_scrutiny", "milestone_sparse_interactive", "preview_physics_1_invented_sparse"]);
     for (const mode of MODES) expect(milestone(mode).source.producer!.semantic_contract_id).toBe(RETAINED_PRECISION_ID);
   });
   it("the raw fixtures' guard cases are refused only through their edit (as Rust asserts)", () => {
-    for (const [id, route] of [["legacy_preview_0_1", "legacy"], ["preview_physics_1_invented_sparse", "preview_physics"], ["source_blocks_n05_sparse", "source_blocks"]] as const) {
+    for (const [id, route] of [["preview_physics_1_invented_sparse", "preview_physics"]] as const) {
       const { source, invocation } = sharedFixture(id);
       expect(invocation).toBeNull();
       expect(sourceContract(source)).toBe(route);
@@ -249,7 +250,8 @@ describe("the inputs and the pinned identity", () => {
     const { source } = milestone("sparse_interactive");
     const table = previewPhysicsRetainedSemanticContract as Json;
     expect(table.semantic_contract_id).toBe(RETAINED_PRECISION_ID);
-    expect(table.rows).toStrictEqual(previewPhysicsSemanticContract.rows);
+    // B4/D1: failed ordinary attempts add one distinct requested-mode signature.
+    expect(table.rows).toStrictEqual([...previewPhysicsSemanticContract.rows, {"signature_id":"preview-physics-retained-requested-mode-basis","kind":"retained_precision_requested_mode_basis","unit":"mode_code","component":"requested_solver_mode","source_physical_semantic_dimension":"dimensionless","derivative_target_dimension":"dimensionless","category":"solver_mode","family":null,"canonical_disposition":"disclosed","legacy_declared_dimension":"dimensionless","legacy_run_creation_admission":"accepts_with_legacy_dimension_equal_new_semantics","governing_ratio_eligible":false}]);
     // The Rust reader reads the successor's rows by this table.
     const rows = readerRowSemantics(source);
     for (const row of source.results) { const signature = rows(row).signature; if (signature) expect(table.rows).toContainEqual(signature); }
@@ -577,7 +579,6 @@ describe.each(MODES)("%s: the rule-check gate and binding refusals", (mode) => {
     const findings = ruleBindingPrecheck(received, plan, [{ input_id: "relative", result_id: relative.id }]);
     const label = retainedAbsoluteNotice(classes.get(headline)!.bound_bits!, "Pa");
     expect(findings).toStrictEqual([{ input_id: "headline", result_id: headline, reason: RULE_QUANTITY_BELOW_VERIFIED_FLOOR, notice: label }]);
-    expect(label).not.toBe(N_SB);
     const copy = structuredClone(received);
     expect(ruleBindingRefusal(copy, relative)).toBe(RULE_QUANTITY_NOT_COVERED);
     expect(ruleBindingPrecheck(copy, plan, [{ input_id: "relative", result_id: relative.id }]).map(f => [f.reason, f.notice])).toStrictEqual([[RULE_QUANTITY_NOT_COVERED, N_RP_UNVALIDATED], [RULE_QUANTITY_NOT_COVERED, N_RP_UNVALIDATED]]);
@@ -589,7 +590,7 @@ describe.each(MODES)("%s: the rule-check gate and binding refusals", (mode) => {
     const { source, model } = milestone(mode);
     const received = await deliverDirect(source, model, mode);
     // U7: Current for the captured model, so only the absolute rows are withheld.
-    expect(classificationSummary(received, model)).toStrictEqual([{ case_id: "case", relative_verified: 25, absolute_verified: 69, interval_bindable: 0, not_covered: 0, input_derived: 3, non_quantity: mode === "sparse_interactive" ? 1 : 2, withheld: 69 }]);
+    expect(classificationSummary(received, model)).toStrictEqual([{ case_id: "case", relative_verified: 25, absolute_verified: 69, interval_bindable: 0, not_covered: 0, input_derived: 3, non_quantity: 1, withheld: 69 }]);
     expect(classificationSummary(structuredClone(received), model)).toStrictEqual([]);
     expect(classificationSummary(null)).toStrictEqual([]);
   });
@@ -621,9 +622,9 @@ describe("the downgrade guard (F-5)", () => {
     s.results[0].recovery_method = "some_other_method";
     expect(retainedPrecisionDowngrade(s)).toBe(false);
   });
-  it("applies to every other identity, including legacy 0.1.0 and an unparseable header", () => {
-    const legacy = JSON.parse(readFileSync(resolve(root, "fixtures/product_preview/invented_demo_result_legacy_0_1.json"), "utf8"));
-    expect(sourceContract(legacy)).toBe("legacy");
+  it("applies to every other identity, including the retired 0.1.0 carrier and an unparseable header", () => {
+    const legacy: Json = retiredMechanicsResult();
+    expect(sourceContract(legacy)).toBe("unsupported");
     expect(sourceContract({ ...legacy, retained_precision: {} })).toBe("unsupported");
     expect(numericalResultStanding({ ...legacy, retained_precision: {} }, null).findings).toStrictEqual([RETAINED_PRECISION_DOWNGRADE_FORBIDDEN]);
     const preview = JSON.parse(readFileSync(resolve(root, "fixtures/results/preview_physics_connected_sparse.json"), "utf8"));
@@ -632,24 +633,26 @@ describe("the downgrade guard (F-5)", () => {
     expect(sourceContract({ ...preview, results: preview.results.map((row: Json, i: number) => i ? row : { ...row, recovery_method: RETAINED_METHOD }) })).toBe("unsupported");
     expect(retainedPrecisionDowngrade({ ...legacy, results: [null, 3] })).toBe(false);
     expect(retainedPrecisionDowngrade({ ...legacy, results: "rows" })).toBe(false);
-    expect(numericalResultStanding({ ...legacy, producer: { semantic_contract_id: "unknown" } } as MechanicsResult, null).findings).toStrictEqual(["SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED"]);
+    expect(numericalResultStanding({ ...legacy, producer: { semantic_contract_id: "unknown" } } as MechanicsResult, null).findings).toStrictEqual(["MECHANICS_RESULT_VERSION_RETIRED"]);
   });
   it("the successor's own header requires its profile, its contract evidence and a receipt object, and no other receipt", () => {
     expect(sourceContract(source)).toBe("retained_preview_physics");
-    for (const edit of [
-      (s: Json) => { s.formulation_basis.profile_id = "product_preview_mechanics_v1"; },
-      (s: Json) => { delete s.contract_evidence; },
-      (s: Json) => { s.retained_precision = null; },
-      (s: Json) => { s.retained_precision = [s.retained_precision]; },
-      (s: Json) => { s.retained_precision = "receipt"; },
-      (s: Json) => { delete s.retained_precision; },
-      (s: Json) => { s.source_block_recovery = {}; },
-      (s: Json) => { s.carrier_evidence = {}; },
-      (s: Json) => { s.producer.component_version = "0.1.0"; },
-    ]) {
+    // The pressure-source join's Rust standing names a source-block receipt on a
+    // non-source identity (SOURCE_BLOCKS_DOWNGRADE_FORBIDDEN, B6's name) instead of the generic code.
+    for (const [edit, finding] of [
+      [(s: Json) => { s.formulation_basis.profile_id = "product_preview_mechanics_v1"; }, "SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED"],
+      [(s: Json) => { delete s.contract_evidence; }, "SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED"],
+      [(s: Json) => { s.retained_precision = null; }, "SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED"],
+      [(s: Json) => { s.retained_precision = [s.retained_precision]; }, "SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED"],
+      [(s: Json) => { s.retained_precision = "receipt"; }, "SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED"],
+      [(s: Json) => { delete s.retained_precision; }, "SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED"],
+      [(s: Json) => { s.source_block_recovery = {}; }, "SOURCE_BLOCKS_DOWNGRADE_FORBIDDEN"],
+      [(s: Json) => { s.carrier_evidence = {}; }, "SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED"],
+      [(s: Json) => { s.producer.component_version = "0.1.0"; }, "SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED"],
+    ] as const) {
       const s = structuredClone(source) as Json; edit(s);
       expect(sourceContract(s)).toBe("unsupported");
-      expect(numericalResultStanding(s, null).findings).toStrictEqual(["SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED"]);
+      expect(numericalResultStanding(s, null).findings).toStrictEqual([finding]);
       // RV91 N-3 (RV08): binding selects the successor by producer id, as Rust does,
       // so a header-broken successor still has no validated class and every row is refused.
       for (const row of s.results.slice(0, 3)) expect(ruleBindingRefusal(s, row)).toBe(RULE_QUANTITY_NOT_COVERED);
@@ -673,7 +676,6 @@ const expectedSummary = (classes: readonly RowClassification[], source: Json, cu
   return { case_id: c.basis_ref.ref_id, relative_verified: n("relative_verified"), absolute_verified: n("absolute_verified"), interval_bindable: 0, not_covered: n("not_covered"), input_derived: n("input_derived"), non_quantity: n("non_quantity"),
     withheld: current ? n("absolute_verified") + n("not_covered") : n("relative_verified") + n("absolute_verified") + n("not_covered") + n("input_derived") };
 });
-const SUMMARY_KIND = "open_formula_stress_summary";
 const declaredForms = (caseFile.declared_differences as Json[]).flatMap(e => (e.forms as Json[]).flatMap(form => (form.fixtures as string[]).map(f => [`${e.id} / ${form.label}`, f, form] as [string, string, Json])));
 describe("the declared differences, with TypeScript's expectations", () => {
   it("are exactly the five ruled entries, each with a ruling, forms and one expectation per language, in closed field sets", () => {
@@ -749,9 +751,6 @@ describe("the declared differences, with TypeScript's expectations", () => {
       if (rule === "by_validated_class") {
         const classes = new Map((await validateRetainedPrecision(received)).classifications.map(c => [c.result_id, c.class]));
         expect(got).toStrictEqual(rows.map(row => classBindingRefusal(classes.get(row.id))));
-      } else if (rule === "source_blocks_summary") {
-        const headline = received.summary.max_open_formula_stress?.result_ref;
-        expect(got).toStrictEqual(rows.map(row => row.kind === SUMMARY_KIND || row.id === headline ? code : null));
       } else {
         expect(rule).toBe("every_row");
         expect(got).toStrictEqual(rows.map(() => code === "none" ? null : code));
@@ -829,10 +828,12 @@ describe.each(MODES)("%s: the carrier transport route runs the reader's transpor
 });
 describe("the carrier transport route on other identities is the header route", () => {
   it("resolves each existing route, and refuses an unsupported or downgraded header with its standing code", async () => {
-    const legacy = sharedFixture("legacy_preview_0_1").source, preview = sharedFixture("preview_physics_1_invented_sparse").source, blocks = sharedFixture("source_blocks_n05_sparse").source;
-    expect(readerDispatch(structuredClone(legacy)).route).toBe("legacy");
+    const legacy = retiredMechanicsResult(), preview = sharedFixture("preview_physics_1_invented_sparse").source;
+    expect(readerDispatch(structuredClone(legacy))).toMatchObject({ route: "unsupported", error: { code: "MECHANICS_RESULT_VERSION_RETIRED" } });
     expect(readerDispatch(structuredClone(preview)).route).toBe("preview_physics");
-    expect(readerDispatch(structuredClone(blocks)).route).toBe("source_blocks");
+    // B4/D1 (b): a stored source-blocks-1 statement is refused by name.
+    const blocks = { ...structuredClone(preview), producer: { ...preview.producer!, semantic_contract_id: "openpipestress.result_semantics/0.3.0/source-blocks-1" } } as MechanicsResult;
+    expect(readerDispatch(blocks)).toMatchObject({ route: "unsupported", error: { code: "SOURCE_BLOCKS_1_RETIRED" } });
     expect(readerDispatch({ ...structuredClone(preview), retained_precision: null } as MechanicsResult)).toMatchObject({ route: "unsupported", error: { code: RETAINED_PRECISION_DOWNGRADE_FORBIDDEN } });
     expect(readerDispatch({ ...structuredClone(preview), carrier_evidence: {} } as MechanicsResult)).toMatchObject({ route: "unsupported", error: { code: "SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED" } });
   });
@@ -1089,8 +1090,10 @@ describe("notices, labels and the results-panel standing text", () => {
     expect(retainedPrecisionStandingText(refused)).not.toContain("Selected cases");
     expect(retainedPrecisionStandingText(structuredClone(received))).not.toContain("Selected cases");
     // D-U7-6 (I61 slice A 1.5): every standing text says the reader does not establish producer origin.
+    // DEL-07-04: validated, refused and unregistered, each shows the published limitations once, in order.
     for (const s of [received, refused, structuredClone(received)]) {
       expect(retainedPrecisionStandingText(s)).toContain("against the actual invocation and the requested cases. The reader checks these bytes and their invocation; it does not establish which producer made them. Numerical checks do not establish engineering correctness.");
+      expect(retainedPrecisionStandingText(s).split(s.formulation_basis!.limitations.join(" ")).length - 1).toBe(1);
     }
   });
   it("the case count is the validated receipt's selected cases over all its cases (RV91 N-4)", async () => {

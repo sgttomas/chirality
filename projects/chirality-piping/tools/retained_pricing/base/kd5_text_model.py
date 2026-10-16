@@ -7,9 +7,9 @@ no field is presumed fixed merely because a fixture showed it.
 """
 import hashlib, os, re
 
-PINS = {'core/product_physics/src/certified_publication.rs': {'group': 'ec5db3c8e95c345590bf4472a4310f155259cb9ced56b58da3c0316b62b0f394', 'magnitude_group': '600d0d42c5dbb53c489b4bf86a1fba82fdcc8d00440e4f86a2cfb6e6d7bfd953', 'member_record': '201b9a9c9390794c15207731efe9f524d1c14f0c80a15afa02b1e3b601580547', 'support_record': '1b5b46b845578a05a14879b1bae657f832f48a5b2122b404350588490571fd44', 'unavailable_record': '79931f5662ae9277f7ddbc008799340757f0e581e29a053cbdd90ff7a0eaf1a6', 'connector_record': '9b6c0a2a68029af3f190eaa905693d0ad7b9f2bfd62ba19671921f16d9fe9674', 'straight_stress_spans': 'ab6bb7b081a367e4782fdb07fb115e587184e7468b3a310e8dbf38c76fa0ba61', 'fallback_circular_maximum': 'fc6978a4f0f6b82e4348388f34715c311ecccdb7e8b01537711cbd282e207ff2', 'fallback_product_up': '5476bd4c93f66d5aee68c465b7da0ee39ab1d123dc75825931f2502cf0b607bb'}, 'core/product_physics/src/formation_guard.rs': {'recovery_finding': 'c499ed59986310186a5825c2043363ca131a5b44d41755a7700e1f7d6c1f5f9b', 'member_group_decision': '76a37c824097b528c638214d913166d24ffa81698222ad9199a511f32f0d5e59'}, 'core/product_physics/src/preview_physics.rs': {'extrema_evidence': 'ac7bcd693cb6d4d4b41f8bbdc8f945b4e76fddc5362e74eb30b51c2785daf825'}, 'core/product_physics/src/lib.rs': {'solve_load_case_observed': '5a70782515a2e66790c8d570cc13d49ead9d22614e0f99b288d2632e8fc4e061', 'solve_prepared_load_case': 'b8aaad6f6965068f336453331e20c97ffc9514524eb388b828b01d7ee4c67745'}}
+PINS = {'core/product_physics/src/certified_publication.rs': {'group': 'ec5db3c8e95c345590bf4472a4310f155259cb9ced56b58da3c0316b62b0f394', 'magnitude_group': '600d0d42c5dbb53c489b4bf86a1fba82fdcc8d00440e4f86a2cfb6e6d7bfd953', 'member_record': '201b9a9c9390794c15207731efe9f524d1c14f0c80a15afa02b1e3b601580547', 'support_record': '1b5b46b845578a05a14879b1bae657f832f48a5b2122b404350588490571fd44', 'unavailable_record': '79931f5662ae9277f7ddbc008799340757f0e581e29a053cbdd90ff7a0eaf1a6', 'connector_record': '9b6c0a2a68029af3f190eaa905693d0ad7b9f2bfd62ba19671921f16d9fe9674', 'straight_stress_spans': 'ab6bb7b081a367e4782fdb07fb115e587184e7468b3a310e8dbf38c76fa0ba61', 'fallback_circular_maximum': 'fc6978a4f0f6b82e4348388f34715c311ecccdb7e8b01537711cbd282e207ff2', 'fallback_product_up': '5476bd4c93f66d5aee68c465b7da0ee39ab1d123dc75825931f2502cf0b607bb'}, 'core/product_physics/src/formation_guard.rs': {'recovery_finding': 'c499ed59986310186a5825c2043363ca131a5b44d41755a7700e1f7d6c1f5f9b', 'member_group_decision': '76a37c824097b528c638214d913166d24ffa81698222ad9199a511f32f0d5e59'}, 'core/product_physics/src/preview_physics.rs': {'extrema_evidence': 'ac7bcd693cb6d4d4b41f8bbdc8f945b4e76fddc5362e74eb30b51c2785daf825'}, 'core/product_physics/src/lib.rs': {'solve_load_case_observed': '5a70782515a2e66790c8d570cc13d49ead9d22614e0f99b288d2632e8fc4e061', 'solve_prepared_load_case': 'ec460ec2eb0e06a2e35fba545ad93656d16099974250a664397d63b7f27edae0'}}
 
-PRODUCTION_PINS = {'core/product_physics/src/certified_publication.rs': '972f34be51b7cfaa7ffc4a2c7e0f4dab1c6a654ff7e49f0aab06af813231e376', 'core/solver/frame_kernel/src/structural/certified_recovery.rs': '720f0467cea8ab467c9aedda1af8271bc275ee540cee9ed133632003e9c023e7', 'core/solver/frame_kernel/src/exact_sum.rs': '35ae1c71195a95d88669c658965198e7dc2476cf32d948e4bfc62ef184e1051c'}
+PRODUCTION_PINS = {'core/product_physics/src/certified_publication.rs': '965647cc57fbbc336dc380d0f942222c9c636bc62048d91a59dee740575bd9a9', 'core/solver/frame_kernel/src/structural/certified_recovery.rs': '473277410897bbf21565d1a5e0134ea0be0f4b61c2c9a69d99b2e342f820c62c', 'core/solver/frame_kernel/src/exact_sum.rs': '35ae1c71195a95d88669c658965198e7dc2476cf32d948e4bfc62ef184e1051c'}
 
 def function_body(text, name):
     hits = list(re.finditer(r"^(?:pub(?:\([a-z]+\))?\s+)?fn\s+" + re.escape(name) + r"\b", text, re.M))
@@ -85,7 +85,7 @@ def inspect(snapshot):
 
 # KD5T3: this is one closed private constructor's allocation site, not
 # a type-wide claim about the public StressFinding.subject_id field.
-STRESS_SUBJECT_SOURCE_PIN = "4526e43a3dca37a265516ad5556a07efb9f25693fca6ee8e065a8211637c47c1"
+STRESS_SUBJECT_SOURCE_PIN = "7df37b7604d7f201a265a2d4d6d0772c8e31b757ff1130d17ce8a17df70b87ff"
 STRESS_SUBJECTS = ("analysis_status", "area", "axial_force", "axial_normal_range",
     "bending_moment_y", "bending_moment_z", "bending_normal_y_range", "bending_normal_z_range",
     "first_state", "second_state", "section_modulus_y", "section_modulus_z",
@@ -137,6 +137,38 @@ def inspect_directed_helpers(snapshot):
             raise ValueError(f"KD5O13: directed helper source changed: {name}; re-review the three-frame slot census")
     return True
 
+# B7a E14: this exact full-file source deletes the DEC-050/053 observation
+# lane and its sole guard caller. No successor replaces its Iterator<usize>::max.
+# B7b: re-bound to the current lib.rs; v2's deletion and the 0.5.0 exact
+# fields add or remove no `.min(`/`.max(` call (the production lib.rs
+# callers are the same five functions as at B7a's 3e89c23ea1).
+B7A_PRIMITIVE_LIB_SOURCE_PIN = "650be7f49cd69e837caf641c925c801b4bf60fa4d2a7282c2e6edd9fd24492db"
+
+
+def primitive_lib_minmax_callers(snapshot):
+    with open(os.path.join(snapshot, "core/product_physics/src/lib.rs"), "rb") as stream:
+        raw = stream.read()
+    if hashlib.sha256(raw).hexdigest() != B7A_PRIMITIVE_LIB_SOURCE_PIN:
+        raise ValueError("KD5C4: B7a E14 full-file source changed; re-audit retired lane and current primitive owners")
+    source = raw.decode("utf-8")
+    if re.search(r"^\s*(?:pub(?:\([a-z]+\))?\s+)?(?:const\s+)?fn\s+observation_lane_profile\b", source, re.M):
+        raise ValueError("KD5C4: the retired observation lane definition returned")
+    return ["build_curved_bend_macro_elements", "straight_summary_extrema"]
+
+
+# E13 uses the same exact current lib.rs binding as C4; remove one
+# complete decision preimage, never permit an arbitrary replaced key.
+def retire_combination_reaction_audit(snapshot, audits):
+    primitive_lib_minmax_callers(snapshot)
+    retired = ("core/product_physics/src/lib.rs:13085",
+               {"row.id": {"bytes": 1024, "source": "RES"}})
+    if audits.count(retired) != 1:
+        raise ValueError("B7a E13: exact retired reaction audit preimage changed")
+    current = list(audits)
+    current.remove(retired)
+    return current
+
+
 # KD5C5: only exact outside-caller candidates into the private non-escaping
 # FallbackError owner are removed; every other resolver candidate is retained.
 FALLBACK_METHOD_PINS = {
@@ -151,16 +183,23 @@ FALLBACK_OUTSIDE_CALLERS = (
     ("lib.rs", "exact_straight_summary_extrema", ("add",), "c1905b2780be30a7d74ef74e2f5826c02f01ed9b6c92908bfe0a5e36d3f120e1"),
     ("lib.rs", "append_exact_pressure_results", ("divided",), "c65eecfd90235e5adf464f7149a377ac79ae9474cd99a2933405120b4b9d5f77"),
     ("pressure_exact.rs", "from_radii", ("mul",), "30bf50858d1c5a2223b5fa9c4f5a4d2643c87d26875e394770b6d69d89230340"),
-    ("pressure_exact.rs", "lame_at_radius", ("mul",), "4cc46083ebb6e0a4ae0b1fdd58b9219cefd77f44ac81ca6021b77845c7cded64"),
     ("pressure_exact.rs", "eigenload_pair", ("mul",), "ce624c341c68c90e445856b617fe49fbcb81c7e5591c95e8e174f1d9a94413e9"),
-    ("preview_physics.rs", "render", ("divided",), "eb43e10bf8292eaf21706a887b4b28d6d616fc9216ef29ef86339dfad0a3f4db"),
+    # B7a E14/C5: row slots and arc metadata changed; the sole divided
+    # receiver remains frame_kernel::CertifiedRow, not FallbackError.
+    ("preview_physics.rs", "render", ("divided",), "1a0bdf5476a3d20f0fcf6a46a992725b6c49205a859b2b89fbb303a22e06da5f"),
     ("retained_memory.rs", "strings", ("add",), "b34bc5c8a6f6863d21fd93b87baae4f33e47467d1f639086650fe6a22bd1a585"),
-    ("retained_memory.rs", "retained_error_text", ("add",), "f50e721160819efd5fc3c5b4fb3dae56c70989cf4cea9d3dd75f6a546507a666"),
+    # The N06 capture adds pending error capacity positively. Every add
+    # receiver remains this module's Bytes accumulator, not FallbackError.
+    ("retained_memory.rs", "retained_error_text", ("add",), "9f62063575e9e1eb566d12bb66b0601b4a9f39fd37c552cb0ec721168082f3e9"),
     ("retained_memory.rs", "complete_observations", ("add",), "8f65af0bdd6c83d559966214eb77b308bea940f917ebb210e70d27e9bfef2fc2"),
     ("pressure_exact/source_geometry.rs", "from_od_wall", ("add", "mul"), "0c2ac197402cbbfb8ceae54cb1c18acaefbcb1a26f658c11f88b88d33e1e1df9"),
     ("pressure_exact/source_geometry.rs", "pressure_group_value", ("mul",), "ed2e3f79a1b883da9a7b6e9ff6a5cf05c03937b6a89a77ec681c40594e6689e5"),
     ("pressure_exact/source_geometry.rs", "surface_stresses", ("add",), "98a1e66fcdfeea1249ec0ed2d6aaaf28cacb8708761aa7a723500d67bf8765a9"),
     ("case_state/temperature.rs", "exact_kelvin", ("mul",), "4b7c432e3c502bfd1fd0f32a43e73a93c1bed6710bd44e2958ee497d10afa02d"),
+    # The join's J7 census (#[cfg(test)] only): both `.mul(` receivers are the
+    # validation crate's exact rational `Exact` (`e`, and `r1_exact::tolerance`'s
+    # result), whose own `Exact::mul` is called; never FallbackError::mul.
+    ("source_recovery/j7_rf_census.rs", "method_row_holds", ("mul",), "0b2cf6a2031afa16a70e0842301a52b87b88cdcf60c61a5dc83b1f0788d407b8"),
 )
 # KD5C5b (T4 batch 4, U2 H-2): the realized-arc pressure callers. Their
 # receivers are FK's CertifiedRow (`wall_row.divided`) and Scaled
@@ -187,6 +226,36 @@ def _indented_function(text, name):
         raise ValueError(f"KD5C5: no same-indent end of fn {name}")
     return text[hit.start():hit.end() + end.end()], text.count("\n", 0, hit.start()) + 1
 
+# E11 made only this constructor test-only. Bind the actual raw file and
+# its exact attribute, body and production projection before omitting a
+# now-unwitnessable exclusion; never skip an arbitrary missing caller.
+B7A_PRESSURE_EXACT_SOURCE_PIN = "19d1aa0893b1b71316fc35c8d243d8b5a8de26050f8d03db1ff62baa802c189e"
+
+
+def test_only_from_radii(snapshot):
+    file = os.path.join(snapshot, "core/product_physics/src/pressure_exact.rs")
+    with open(file, "rb") as stream:
+        raw = stream.read()
+    if hashlib.sha256(raw).hexdigest() != B7A_PRESSURE_EXACT_SOURCE_PIN:
+        raise ValueError("KD5C5: from_radii test-only source drift")
+    source = raw.decode("utf-8")
+    body, line = _indented_function(source, "from_radii")
+    if hashlib.sha256(body.encode()).hexdigest() != "30bf50858d1c5a2223b5fa9c4f5a4d2643c87d26875e394770b6d69d89230340":
+        raise ValueError("KD5C5: from_radii test-only body drift")
+    if source.splitlines()[line - 2] != "    #[cfg(test)]":
+        raise ValueError("KD5C5: from_radii test-only attribute changed")
+    # Use the same existing R1k projection as the actual callgraph. Production
+    # resumes after the one method; its following methods cannot disappear.
+    import runpy
+    loopscan = runpy.run_path(os.path.join(os.path.dirname(__file__), "loopscan.py"))
+    production = loopscan["blank_test_items"](loopscan["blank_rust"](source))
+    if re.search(r"\bfn\s+from_radii\b", production):
+        raise ValueError("KD5C5: from_radii is production-visible")
+    for name in ("inner_radius_m", "outer_radius_m"):
+        _indented_function(production, name)
+    return True
+
+
 def inspect_fallback_boundary(snapshot):
     file = "core/product_physics/src/certified_publication.rs"
     with open(os.path.join(snapshot, file), encoding="utf-8") as stream:
@@ -202,6 +271,9 @@ def inspect_fallback_boundary(snapshot):
             raise ValueError(f"KD5C5: private method/body changed: {name}")
         targets[name] = f"{file}:{line}:{name}"
     inventory = []
+    # B7a E11 retired the unused interior Lamé caller; its product surface
+    # stress path is already the separately pinned source_geometry caller.
+    # 16 surviving K-D5 pairs and the join's J7 census caller.
     callers, expected = FALLBACK_OUTSIDE_CALLERS, 17
     bend_pressure = os.path.join(snapshot, "core/product_physics/src/bend_pressure.rs")
     if os.path.exists(bend_pressure):
@@ -222,6 +294,10 @@ def inspect_fallback_boundary(snapshot):
             raise ValueError(f"KD5C5: outside caller/receiver body changed: {caller_file}:{name}")
         if caller_file == file:
             raise ValueError("KD5C5: an inside-owner caller cannot be excluded")
+        if (relative, name) == ("pressure_exact.rs", "from_radii"):
+            test_only_from_radii(snapshot)
+            expected -= len(methods)
+            continue
         inventory.extend({"caller": f"{caller_file}:{line}:{name}", "name": method,
                           "exclude_targets": [targets[method]]} for method in methods)
     if len(inventory) != expected or len({(r["caller"], r["name"]) for r in inventory}) != expected:

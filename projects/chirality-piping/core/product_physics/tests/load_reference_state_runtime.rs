@@ -34,8 +34,10 @@ const MODES: [PreviewSolverMode; 2] = [
 ];
 /// Protected relative criterion; never loosened.
 const RELATIVE: f64 = 1.0e-9;
-const SEMANTICS: &str = "openpipestress.result_semantics/0.3.0/load-reference-1";
-const PROFILE: &str = "resolved_straight_load_state_v1";
+// B7b: a model with the load/reference-state group publishes pressure-1 under
+// exact_pressure_v3; its records keep resolved_straight_load_state_v1.
+const SEMANTICS: &str = "openpipestress.result_semantics/0.3.0/pressure-1";
+const PROFILE: &str = "exact_pressure_v3";
 const STATE_CONTRACT: &str = "openpipestress.load_reference_state/1.0.0";
 const REFERENCE: &str = "reference:installed";
 const NOT_JOINED: &str = "LOAD_STATE_SOURCE_RECOVERY_NOT_JOINED";
@@ -335,7 +337,8 @@ impl Model {
     ) -> Self {
         let a = annulus();
         self.pipes.push(json!({"id": id, "from": from, "to": to,
-            "section": {"outside_diameter": qv(a.od, "m"), "wall_thickness": qv(a.wall, "m")},
+            "section": {"outside_diameter": qv(a.od, "m"), "wall_thickness": qv(a.wall, "m"),
+                "corrosion_allowance": qv(0.0, "m")},
             "material": material, "y_reference": {"x": 0.0, "y": 1.0, "z": 0.0}, "provenance": PROV}));
         self.members
             .push(json!({"pipe_ref": id, "basis": basis, "fit": fit, "provenance": PROV}));
@@ -361,9 +364,9 @@ impl Model {
 
     fn request(&self) -> Value {
         json!({"model": {
-            "schema_version": "0.4.0",
+            "schema_version": "0.5.0",
             "document_kind": "openpipestress.product_preview.model",
-            "pressure_contract": {"version": "2.0.0", "mode": "exact_straight_pressure_v2"},
+            "pressure_contract": {"version": "3.0.0", "mode": "exact_pressure_v3", "shear_model": "euler_bernoulli"},
             "project": {"id": self.id, "units": {"length": "m", "force": "N", "angle": "rad",
                 "pressure": "Pa", "stress": "Pa", "temperature": "degC"}},
             "analysis_status": {"mechanics": "ready_for_preview_diagnostics",
@@ -2707,17 +2710,25 @@ fn negative_legacy_version_documents_carrying_load_state_block() {
     strip_cases(&mut only_laws);
     strip_configurations(&mut only_laws);
     blocked_with(&only_laws, "0.3.0_with_expansion_laws", VERSION_MISMATCH);
-    let mut legacy_020 = only_state.clone();
-    legacy_020["model"]["schema_version"] = json!("0.2.0");
-    legacy_020["model"]
+    let mut pressure_free = only_state.clone();
+    pressure_free["model"]["schema_version"] = json!("0.5.0");
+    pressure_free["model"]
         .as_object_mut()
         .unwrap()
         .remove("pressure_contract");
-    legacy_020["model"]["load_cases"][0]
+    pressure_free["model"]["load_cases"][0]
         .as_object_mut()
         .unwrap()
         .remove("pressure_regions");
-    blocked_with(&legacy_020, "0.2.0_with_analysis_state", VERSION_MISMATCH);
+    // B7b: the corrosion allowance belongs to the exact contract; a pressure-free
+    // document carries none.
+    for pipe in pressure_free["model"]["pipe_segments"].as_array_mut().unwrap() {
+        pipe["section"]
+            .as_object_mut()
+            .unwrap()
+            .remove("corrosion_allowance");
+    }
+    blocked_with(&pressure_free, "0.5.0_with_analysis_state", VERSION_MISMATCH);
 }
 
 #[test]

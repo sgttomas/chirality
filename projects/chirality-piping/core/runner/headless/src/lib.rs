@@ -610,18 +610,13 @@ fn validate_result_envelope_payload(
         return;
     };
 
+    // b7-plan E2: one result-export version. The copied producer header is read
+    // as a current mechanics header and must bind the export's semantic contract.
     let version=root.get("schema_version").and_then(Value::as_str);
-    if !matches!(version,Some("0.1.0"|"0.2.0"|"0.3.0")) || envelope.get("schema_version").and_then(Value::as_str)!=version {
-        diagnostics.push(Diagnostic::runner_blocking("HEADLESS_RUNNER_RESULT_ENVELOPE_VERSION_UNSUPPORTED",Reference::new("result_envelope",&result.result_envelope_ref.envelope_ref.ref_id),"only matching 0.1.0, 0.2.0 or recognized source-bound 0.3.0 result contract versions are supported"));
-    }
-
-    if version == Some("0.3.0") {
-        let mut metadata_source = Value::Object(envelope.clone());
-        metadata_source["schema_version"] = serde_json::json!("0.2.0");
-        if open_pipe_stress_result_export::semantic_contract::for_source_metadata(&metadata_source).is_err()
-            || metadata_source["semantic_contract_ref"] != serde_json::json!({"ref_type":"semantic_contract", "ref_id":metadata_source["producer"]["semantic_contract_id"]}) {
-            diagnostics.push(Diagnostic::runner_blocking("HEADLESS_RUNNER_RESULT_CONTRACT_UNSUPPORTED",Reference::new("result_envelope",&result.result_envelope_ref.envelope_ref.ref_id),"derivative metadata must bind the recognized source producer and semantic contract"));
-        }
+    if version!=Some(open_pipe_stress_result_export::semantic_contract::RESULT_EXPORT_VERSION) || envelope.get("schema_version").and_then(Value::as_str)!=version {
+        diagnostics.push(Diagnostic::runner_blocking("HEADLESS_RUNNER_RESULT_ENVELOPE_VERSION_UNSUPPORTED",Reference::new("result_envelope",&result.result_envelope_ref.envelope_ref.ref_id),"only the current 0.3.0 result contract version is supported"));
+    } else if open_pipe_stress_result_export::semantic_contract::for_export_metadata(&Value::Object(envelope.clone())).is_err() {
+        diagnostics.push(Diagnostic::runner_blocking("HEADLESS_RUNNER_RESULT_CONTRACT_UNSUPPORTED",Reference::new("result_envelope",&result.result_envelope_ref.envelope_ref.ref_id),"derivative metadata must bind the recognized source producer and semantic contract"));
     }
 
     let expected_envelope_id = result.result_envelope_ref.envelope_ref.ref_id.as_str();
@@ -1297,15 +1292,22 @@ mod tests {
         assert!(codes.contains(&"HEADLESS_RUNNER_RESULT_ENVELOPE_CHECKSUM_MISSING"));
     }
 
+    /// b7-plan E2: one result-export version. The TP-PHYS-015 typed base document
+    /// carries the retired 0.1.0 export label, so its payload is refused by name.
     #[test]
-    fn tp_phys_015_result_envelope_payload_validates_when_supplied() {
+    fn tp_phys_015_retired_export_version_payload_is_refused() {
         let payload: Value = serde_json::from_str(TP_PHYS_015_RESULT_ENVELOPE)
             .expect("TP-PHYS-015 result envelope fixture parses");
         let result = tp_phys_015_runner_result();
 
         let validation = validate_result_with_optional_envelope_payload(&result, Some(&payload));
+        let codes: Vec<_> = validation
+            .diagnostics
+            .iter()
+            .map(|diagnostic| diagnostic.code.as_str())
+            .collect();
 
-        assert!(!validation.has_blocking_diagnostics(), "{validation:?}");
+        assert_eq!(codes, vec!["HEADLESS_RUNNER_RESULT_ENVELOPE_VERSION_UNSUPPORTED"], "{validation:?}");
         assert!(result
             .result_refs
             .iter()
@@ -1513,9 +1515,10 @@ mod tests {
         for case in ordinary["model"]["load_cases"].as_array_mut().unwrap() {
             case["primitive_loads"].as_array_mut().unwrap().retain(|load| !(load["category"] == "pressure" || load["dimension"] == "pressure"));
         }
-        // T0R: a fresh non-exact solve publishes preview-physics-1, never precision-1.
+        // A fresh non-exact solve publishes preview-physics-1, its route's identity;
+        // the exact solve publishes the current exact contract's pressure-1 (B7b).
         for (payload, contract) in [(ordinary, open_pipe_stress_result_export::semantic_contract::PREVIEW_PHYSICS_ID),
-            (exact, open_pipe_stress_result_export::semantic_contract::PHYSICS_ID)] {
+            (exact, open_pipe_stress_result_export::semantic_contract::PRESSURE_ID)] {
             for mode in [PreviewSolverMode::SparseInteractive, PreviewSolverMode::DenseScrutiny] {
                 let baseline = run_preview_model_value_mode(request(), payload.clone(), None, mode).unwrap();
                 let raw = serde_json::to_value(baseline.mechanics_envelope.as_ref().unwrap()).unwrap();
@@ -1567,7 +1570,7 @@ mod tests {
             assert_eq!(raw["contract_evidence"], serde_json::json!({"pressure":[],"connector":[],"exact_cases":[]}));
             assert!(raw["results"].as_array().unwrap().is_empty());
             assert!(raw["diagnostics"].as_array().unwrap().iter().any(|d| d["code"] == diagnostic));
-            assert_eq!(semantic_contract::for_source(&raw).unwrap().0["semantic_contract_id"], semantic_contract::PHYSICS_ID);
+            assert_eq!(semantic_contract::for_source(&raw).unwrap().0["semantic_contract_id"], semantic_contract::PRESSURE_ID);
             let requested = payload["model"]["load_cases"].as_array().unwrap().iter().map(|c|
                 serde_json::json!({"ref_type":"load_case","ref_id":c["id"]})).collect::<Vec<_>>();
             assert_eq!(semantic_contract::numerical_use_standing(&raw, &requested), "needs_recompute");

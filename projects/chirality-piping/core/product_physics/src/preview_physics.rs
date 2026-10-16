@@ -1,8 +1,9 @@
 //! preview-physics-1: the ordinary route's repaired and withheld quantities.
 //!
-//! The case loop keeps producing its historical rows plus a side record. Once
-//! every case has solved and no case was source-selected, `render` replaces the
-//! retired rows, sets the per-case headline inputs and edits the diagnostics.
+//! The case loop produces the current rows plus a side record that marks where
+//! the support and maximum rows go. Once every case has solved and no case was
+//! source-selected, `render` places them, sets the per-case headline inputs and
+//! edits the diagnostics.
 //! Everything downstream (headlines, the high-displacement review, the
 //! modifier count, combinations and the finite check) is then built once from
 //! the rendered rows. Contract: T0R S1_INTERFACE.md.
@@ -11,18 +12,8 @@ use super::*;
 use open_pipe_stress_stress_recovery::elastic_extrema::CertifiedStressMaximum;
 
 pub(crate) const ID: &str = "openpipestress.result_semantics/0.3.0/preview-physics-1";
-pub(crate) const RETIRED_KINDS: [&str; 3] = [
-    "reaction_resultant",
-    "open_formula_stress_summary",
-    "component_user_stress_multiplier_review",
-];
-pub(crate) const RETIRED_CODES: [&str; 2] = [
-    "COMPONENT_STRESS_MULTIPLIER_APPLIED",
-    "COMBINATION_STRESS_SUMMARY_SKIPPED",
-];
 pub(crate) const INTENSIFIED_KIND: &str = "component_equal_factor_intensified_bending_stress_v1";
 const ARC_BASIS: &str = "nominal_straight_beam_formula_on_arc_resultants";
-const ARC_COORDINATE: &str = "arc_chord_frame";
 const MAXIMUM_SIGN: &str = "nonnegative circumferential maximum |Nw/As|+hypot(My,Mz)/Z; bounded over all straight statics intervals; torsional shear remains separate; no code stress or equivalent stress claim";
 const SUBTRACTION_SIGN: &str = "positive value follows explicit user result-state subtraction (minuend minus subtrahend) of matching source result sign conventions; a signed difference of solved states, not an equilibrium state";
 const WITHHELD_ATTRIBUTION: &str = "SUPPORT_ACTION_ATTRIBUTION_WITHHELD";
@@ -61,20 +52,12 @@ const ARC_STRESS_KINDS: [&str; 6] = [
     "pipe_section_pressure_hoop_stress",
     "pipe_section_pressure_longitudinal_stress",
 ];
-const END_FORCE_KINDS: [&str; 6] = [
-    "element_local_axial_force",
-    "element_local_shear_force_y",
-    "element_local_shear_force_z",
-    "element_local_torsional_moment",
-    "element_local_bending_moment_y",
-    "element_local_bending_moment_z",
-];
 
 pub(crate) const LIMITATIONS: [&str; 7] = [
     "Small-displacement, linear-elastic Euler-Bernoulli frame preview; numerical integrity does not establish physical correctness.",
-    "Nonzero pressure is refused on this route, and so is legacy imposed_displacement.",
+    "Nonzero pressure is refused on this route, and so is a support displacement imposed outside a load-state model.",
     "On straight members the normal-stress maximum is |N/A| + hypot(My,Mz)/Z, bounded over all statics intervals. Torsional shear is separate. No transverse shear, equivalent stress or code stress.",
-    "On arcs: signed tangent-frame resultants and nominal stress components. Endpoint force rows are in the chord frame. No maximum, and no stress headline for a model containing an arc.",
+    "On arcs: signed tangent-frame resultants and nominal stress components; endpoint force rows are node-on-element actions in the tangent frame at their end. No maximum, and no stress headline for a model containing an arc.",
     "Intensified measures are i*hypot(My,Mz)/Z with the user's scalar SIF at member ends adjacent to markers and branches, using member Z. They are not code stresses and are never combined. A flexibility factor never multiplies stress.",
     "Signed support actions for rigid restraints, springs, consuming constant effort and attributable nonlinear supports. Ambiguous attribution is withheld.",
     "Headlines cover all load cases. Mechanics combinations are withheld for nonlinear supports, constant effort with sum of factors other than 1, or mixed moduli. Subtraction is a labelled difference. No combination maxima and no code compliance.",
@@ -91,15 +74,14 @@ pub(crate) fn formulation_basis() -> FormulationBasis {
 }
 
 /// A blocked envelope has no rows. Diagnostics pushed before the block keep
-/// their meaning, but retired codes go and `result:` refs that can no longer
-/// resolve are stripped, so the envelope still satisfies S1 §9 (R1 SF-1).
+/// their meaning, but `result:` refs that can no longer resolve are stripped,
+/// so the envelope still satisfies S1 §9 (R1 SF-1).
 pub(crate) fn sanitize_blocked_diagnostics(diagnostics: &mut Vec<Diagnostic>) {
-    // Retired codes and non-blocking diagnostics that name a (now absent) row
-    // are dropped. A blocking diagnostic always stays, so the blocking reason
-    // is never lost; only its unresolvable `result:` refs are stripped.
+    // Non-blocking diagnostics that name a (now absent) row are dropped. A
+    // blocking diagnostic always stays, so the blocking reason is never lost;
+    // only its unresolvable `result:` refs are stripped.
     diagnostics.retain(|d| {
-        !RETIRED_CODES.contains(&d.code.as_str())
-            && (d.severity == "blocking" || !d.affected_refs.iter().any(|r| r.starts_with("result:")))
+        d.severity == "blocking" || !d.affected_refs.iter().any(|r| r.starts_with("result:"))
     });
     for d in diagnostics.iter_mut() {
         d.affected_refs.retain(|r| !r.starts_with("result:"));
@@ -123,6 +105,14 @@ pub(crate) struct MemberRecord {
     pub certified_end_bending: Option<[open_pipe_stress_frame_kernel::structural::CertifiedRow;2]>,
 }
 
+/// Where `render` places a support's signed actions or a member's maximum:
+/// the position among the case's rows at which the case loop reached them.
+#[derive(Debug, Clone)]
+pub(crate) enum Slot {
+    Support(String),
+    Maximum(String),
+}
+
 /// Side record of one solved ordinary case.
 #[derive(Debug, Clone, Default)]
 pub(crate) struct CaseRecord {
@@ -130,6 +120,8 @@ pub(crate) struct CaseRecord {
     pub support_vectors: Vec<(String, [f64; 6])>,
     pub certified_support_norms: Vec<(String,[f64;2])>,
     pub members: Vec<MemberRecord>,
+    /// (position among the case's rows, slot), in the case loop's order.
+    pub slots: Vec<(usize, Slot)>,
 }
 
 /// Model facts that gate `mechanics` combinations.
@@ -517,8 +509,8 @@ pub(crate) mod witness_hook {
     }
 }
 
-/// Replace the retired rows of every case, set the per-case headline inputs
-/// and edit the diagnostics (S1 §3-§8). Pure over the solved cases.
+/// Place the support and maximum rows of every case, set the per-case headline
+/// inputs and edit the diagnostics (S1 §3-§8). Pure over the solved cases.
 pub(crate) fn render(
     model: &PreviewModel,
     built: &BuiltModel,
@@ -541,7 +533,8 @@ pub(crate) fn render(
             .iter()
             .find(|case| case.id == case_id)
             .expect("solved case belongs to the model");
-        let record = solve.preview.take().unwrap_or_default();
+        let mut record = solve.preview.take().unwrap_or_default();
+        let slots = std::mem::take(&mut record.slots);
 
         // Supports.
         let dispositions = support_dispositions(model, &ambiguous, &record);
@@ -582,38 +575,36 @@ pub(crate) fn render(
             incomplete_pipes.insert(pipe.clone(), ());
         }
 
-        // Rebuild the rows: support and maximum rows take the place of the
-        // retired rows; withheld nonlinear reactions are removed.
+        // Place the support and maximum rows at their slots; withheld
+        // nonlinear reactions are removed.
         let old = std::mem::take(&mut solve.results);
         let mut rows = Vec::with_capacity(old.len());
-        for mut row in old {
-            let retired = RETIRED_KINDS.contains(&row.kind.as_str())
-                || (row.kind == "nonlinear_support_final_reaction" && withheld_nonlinear.contains(row.entity_ref.as_str()));
-            if retired {
+        let mut slots = slots.into_iter().peekable();
+        let mut place = |slot: Slot, rows: &mut Vec<ResultItem>| match slot {
+            Slot::Support(id) => rows.extend(support_rows.remove(&id).unwrap_or_default()),
+            Slot::Maximum(pipe) => rows.extend(maximum_rows.remove(&pipe)),
+        };
+        for (index, mut row) in old.into_iter().enumerate() {
+            while let Some((_, slot)) = slots.next_if(|(at, _)| *at == index) {
+                place(slot, &mut rows);
+            }
+            if row.kind == "nonlinear_support_final_reaction" && withheld_nonlinear.contains(row.entity_ref.as_str()) {
                 removed_ids.insert(final_id(case_index, &case_id, &row));
-                if row.kind == "reaction_resultant" {
-                    rows.extend(support_rows.remove(&row.entity_ref).unwrap_or_default());
-                } else if row.kind == "open_formula_stress_summary" {
-                    rows.extend(maximum_rows.remove(&row.entity_ref));
-                }
                 continue;
             }
             if arc_pipes.contains(row.entity_ref.as_str()) {
                 if let Some(metadata) = row.metadata.as_mut() {
                     if ARC_STRESS_KINDS.contains(&row.kind.as_str()) {
                         metadata.basis = ARC_BASIS.to_string();
-                    } else if END_FORCE_KINDS.contains(&row.kind.as_str())
-                        && matches!(metadata.location.as_str(), "end_i" | "end_j")
-                        && metadata.basis == SECTION_RESULTANT_BASIS
-                        && metadata.coordinate_system == "element_local"
-                        && metadata.sign_convention.starts_with("positive value follows the element-local DOF at the")
-                    {
-                        metadata.coordinate_system = ARC_COORDINATE.to_string();
                     }
                 }
             }
             rows.push(row);
         }
+        for (_, slot) in slots {
+            place(slot, &mut rows);
+        }
+        drop(place);
         for (_, remaining) in support_rows.into_iter().collect::<BTreeMap<_, _>>() {
             rows.extend(remaining);
         }
@@ -707,10 +698,8 @@ pub(crate) fn render(
         }));
     }
 
-    // Diagnostics: retired codes and anything naming a removed row go.
-    diagnostics.retain(|d| {
-        !RETIRED_CODES.contains(&d.code.as_str()) && !d.affected_refs.iter().any(|r| removed_ids.contains(r))
-    });
+    // Diagnostics: anything naming a removed row goes.
+    diagnostics.retain(|d| !d.affected_refs.iter().any(|r| removed_ids.contains(r)));
     for support in &model.supports {
         match withheld_once.get(&support.id).copied() {
             Some(WITHHELD_ATTRIBUTION) => diagnostics.push(diag(
@@ -901,7 +890,7 @@ pub(crate) fn append_combination_results(
                 continue;
             }
             if kind == "displacement_magnitude" && !range {
-                append_combined_vector_magnitude(combination, &expression, base_id, reference, rows_by_base_id, &HashMap::new(), results, diagnostics);
+                append_combined_vector_magnitude(combination, &expression, base_id, reference, rows_by_base_id, results, diagnostics);
                 continue;
             }
             if !(LINEAR_STATE_KINDS.contains(&kind) || (range && kind == "displacement_magnitude")) {
@@ -1020,7 +1009,10 @@ pub(crate) fn imposed_displacement_refusal(
     actual_request: &serde_json::Value,
 ) -> Option<Result<MechanicsEnvelope, String>> {
     let model = actual_request.get("model")?;
-    if model.get("schema_version").and_then(|v| v.as_str()) == Some("0.4.0") {
+    if crate::carries_load_reference_state(model)
+        || actual_request.get("materials").and_then(serde_json::Value::as_array)
+            .is_some_and(|materials| materials.iter().any(|material|
+                material.as_object().is_some_and(|record| record.contains_key("expansion_laws")))) {
         return None;
     }
     let mut offending = Vec::new();
@@ -1131,8 +1123,7 @@ mod tests {
         assert_eq!(table["semantic_contract_id"], ID);
         let frozen: Vec<&str> = table["supported_profile_limitations"].as_array().unwrap().iter().map(|v| v.as_str().unwrap()).collect();
         assert_eq!(frozen, formulation_basis().limitations);
-        let retired: Vec<&str> = table["retired_source_kinds"].as_array().unwrap().iter().map(|v| v.as_str().unwrap()).collect();
-        assert_eq!(retired, RETIRED_KINDS.to_vec());
+        assert!(table.get("retired_source_kinds").is_none());
         let linear: Vec<&str> = table["combination_policy"]["linear_state_kinds"].as_array().unwrap().iter().map(|v| v.as_str().unwrap()).collect();
         assert_eq!(linear, LINEAR_STATE_KINDS.to_vec());
         assert!(table["rows"].as_array().unwrap().iter().any(|r| r["kind"] == INTENSIFIED_KIND));

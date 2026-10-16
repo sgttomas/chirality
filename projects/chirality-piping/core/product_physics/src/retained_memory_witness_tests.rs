@@ -3,8 +3,9 @@
 //! Each witness runs, on one thread with R/k = 4 MiB of reserved stack (the
 //! `on_reserved_stack` the permitted dispatch uses), the work the permitted path
 //! runs there: the single observed ordinary run with capture installed, then the
-//! W1 phases (`retained_w1`). The witnesses mint no permit (decision 7): the private driver
-//! enters `retained_w1` directly, as the facade tests do; G-B and G-C are not
+//! W1 phases (`retained_w1`). The private driver enters `retained_w1` directly, as the
+//! facade tests do. W3 first asserts genuine G0 admission of its E counterpart; it does not
+//! pass that permit into the private measured work. G-B and G-C are not
 //! consulted. The witness is measured evidence for this build and these inputs,
 //! not a proof (D-3 = S1). A stack overflow aborts the test process, so the
 //! witnesses are `#[ignore]` and run explicitly, one invocation each; G6 records them per
@@ -223,18 +224,86 @@ fn w2b_input() -> Value {
     raw
 }
 /// The PROBE pins (R/I81/b1_probe_01, `input_sha` lines) of W2b's and W6's PHYS-R4 inputs.
-const W2B_INPUT_SHA256: &str = "d74d01ce1bc33244796877890ad134dd8476beb059bd82f26f2e004f8af619cb";
-const W6_PHYS_R4_INPUT_SHA256: &str = "19a424c5ff064fa0010bcbb95b437e87092605e322f405e8252066995795e8f5";
+const W2B_INPUT_SHA256: &str = "c7bbf1727f1a73927c47a9ae15af1aeb60813476ffabf6f01e81e046a346f79a";
+const W6_PHYS_R4_INPUT_SHA256: &str = "b70cd154f1558fc562eec79525291ac1755f774bc3f0e9f157ad20988c74e89b";
 
 per_mode! {
     /// W3: an in-domain request whose legacy exact recovery selects (the X branch: T25's
     /// requested() calls, the commitment, the publication and body hashes).
     witness_w3_exact_selected, |mode| {
         let file = match mode {
-            PreviewSolverMode::SparseInteractive => include_str!("../../../fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json"),
-            _ => include_str!("../../../fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json"),
+            PreviewSolverMode::SparseInteractive => include_str!("../../../fixtures/product_preview/w1_controls/n05-sparse_interactive.request.json"),
+            _ => include_str!("../../../fixtures/product_preview/w1_controls/n05-dense_scrutiny.request.json"),
         };
-        let raw: Value = serde_json::from_str(file).unwrap();
+        use sha2::Digest;
+        // Selected source blocks require admitted E. Keep N05's physical
+        // request frozen, and exercise the governed E counterpart.
+        assert_eq!(format!("{:x}", sha2::Sha256::digest(file.as_bytes())),
+            "1426c5a0cdac16e10ed6b2e919bfa09135136d6877088aaa00c586955f97583f");
+        let original: Value = serde_json::from_str(file).unwrap();
+        assert_eq!(original["model"]["schema_version"], json!("0.5.0"));
+        let (original_request, _) = CapturedInvocation::parse(original.clone(), mode).unwrap();
+        assert_eq!(namespace_branch(&original_request.model), Ok(NamespaceBranch::Preview));
+        let original_control = original.clone();
+        assert_eq!(witness(&format!("W3 original L {mode:?}"), WITNESS_STACK,
+            move || permitted_work(original_control, mode, |_| {})), Ran::Successor);
+        // B7b D3 re-authored the E counterpart once from the retired 0.3.0/v2 declaration to the
+        // current one (D4 (a)): the same 0.5.0 document with `3.0.0/exact_pressure_v3`, shear
+        // model Euler-Bernoulli and an explicit zero corrosion allowance on each pipe section.
+        let mut raw = original.clone();
+        raw["model"]["pressure_contract"] = json!({"version":"3.0.0","mode":"exact_pressure_v3","shear_model":"euler_bernoulli"});
+        for pipe in raw["model"]["pipe_segments"].as_array_mut().unwrap() {
+            assert!(pipe["section"].get("corrosion_allowance").is_none(), "N05 declares no allowance");
+            pipe["section"]["corrosion_allowance"] = json!({"value":0.0,"unit":"m"});
+        }
+        for material in raw["model"]["materials"].as_array_mut().unwrap() {
+            let e = material["elastic_modulus"]["value"].as_f64().unwrap();
+            let g = material["shear_modulus"]["value"].as_f64().unwrap();
+            let nu = e / (2.0 * g) - 1.0;
+            assert_eq!(nu.to_bits(), 0.25f64.to_bits());
+            material["constitutive_basis"] = json!("homogeneous_isotropic_E_nu_v1");
+            material["poisson_ratio"] = json!({"value":nu,"unit":"1"});
+        }
+        for case in raw["model"]["load_cases"].as_array_mut().unwrap() {
+            case["pressure_regions"] = json!([]);
+        }
+        let physical = |mut value: Value| {
+            let model = value["model"].as_object_mut().unwrap();
+            model.remove("schema_version");
+            model.remove("pressure_contract");
+            for pipe in model["pipe_segments"].as_array_mut().unwrap() {
+                pipe["section"].as_object_mut().unwrap().remove("corrosion_allowance");
+            }
+            for material in model["materials"].as_array_mut().unwrap() {
+                material.as_object_mut().unwrap().remove("constitutive_basis");
+                material.as_object_mut().unwrap().remove("poisson_ratio");
+            }
+            for case in model["load_cases"].as_array_mut().unwrap() {
+                case.as_object_mut().unwrap().remove("pressure_regions");
+            }
+            value
+        };
+        assert_eq!(raw["model"]["schema_version"], original["model"]["schema_version"], "the current document version stays");
+        assert_eq!(physical(raw.clone()), physical(original.clone()),
+            "only the exact declaration, the zero allowance and the analytically equivalent material basis move");
+        let (request, capture) = CapturedInvocation::parse(raw.clone(), mode).unwrap();
+        let mut normalized = request.model.materials.clone();
+        let mut material_diagnostics = Vec::new();
+        crate::pressure_material::resolve_base(&request.model, &mut normalized, &mut material_diagnostics);
+        assert!(!material_diagnostics.iter().any(|d| d.severity == "blocking"));
+        assert_eq!(normalized.len(), original_request.model.materials.len());
+        for (actual, frozen) in normalized.iter().zip(&original_request.model.materials) {
+            assert_eq!(actual.id, frozen.id);
+            assert_eq!(actual.elastic_modulus.value.to_bits(), frozen.elastic_modulus.value.to_bits());
+            assert_eq!(actual.shear_modulus.as_ref().unwrap().value.to_bits(),
+                frozen.shear_modulus.as_ref().unwrap().value.to_bits());
+        }
+        assert_eq!(namespace_branch(&request.model), Ok(NamespaceBranch::Exact));
+        assert_eq!(crate::w1_route(&request.model), Some(crate::retained_product::W1Route::Exact));
+        let (_permit, report) = admit(&capture, &request, Entry::Direct, RETAINED_LIMIT)
+            .unwrap_or_else(|r| panic!("E counterpart refused: {:?}", r.law().refusal));
+        assert_eq!(report.law().domain, None);
+        assert_eq!(report.law().registered, Some(0), "the genuine audited profile grants G0");
         let ran = witness(&format!("W3 {mode:?}"), WITNESS_STACK, move || permitted_work(raw, mode, |_| {}));
         assert_eq!(ran, Ran::ExactSelected, "the exact-block selection ran");
     }
@@ -258,7 +327,7 @@ pub(super) fn w6_input() -> Value {
     let tip = f64::from_bits(0x0031fa182c40c60d);
     let p = "invented_t3_g5_witness_input_no_library_data";
     let raw = json!({"model": {
-        "schema_version": "0.1.0", "document_kind": "openpipestress.product_preview.model",
+        "schema_version": "0.5.0", "document_kind": "openpipestress.product_preview.model",
         "project": {"id": "project:section-oracle", "units": {"length": "m", "force": "N"}},
         "analysis_status": {"mechanics": "ready_for_preview_diagnostics", "rule_check": "not_performed", "professional_acceptance": "not_provided"},
         "nodes": [{"id": a, "position": {"x": 0.0, "y": 0.0, "z": 0.0}, "provenance": p},
@@ -443,7 +512,8 @@ per_mode! {
 }
 
 per_mode! {
-    /// The exact successor (B3-W's `m3x`): the milestone authored as 0.3.0 exact. A successor.
+    /// The exact successor (B3-W's `m3x`): the milestone authored as exact (B7b: 0.5.0 with the
+    /// v3 contract and a zero allowance). A successor.
     witness_m3x, |mode| {
         let raw = inputs::m3x();
         inside_d1("m3x", &raw, mode, 1, 0, true);
@@ -454,7 +524,7 @@ per_mode! {
 
 per_mode! {
     /// The cap-maximal exact input: the cap-maximal three-case input (`i3_three_case`) authored as
-    /// 0.3.0 exact, route E's priced shape (c = 3, z = 0) at the count caps.
+    /// exact (B7b: 0.5.0, v3), route E's priced shape (c = 3, z = 0) at the count caps.
     witness_exact_cap_maximal, |mode| {
         let raw = inputs::exact_cap_maximal();
         inside_d1("exact cap-maximal", &raw, mode, 3, 0, true);

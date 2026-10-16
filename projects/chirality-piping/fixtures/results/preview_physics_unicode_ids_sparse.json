@@ -208,9 +208,9 @@
     "profile_id": "product_preview_mechanics_v1",
     "limitations": [
       "Small-displacement, linear-elastic Euler-Bernoulli frame preview; numerical integrity does not establish physical correctness.",
-      "Nonzero pressure is refused on this route, and so is legacy imposed_displacement.",
+      "Nonzero pressure is refused on this route, and so is a support displacement imposed outside a load-state model.",
       "On straight members the normal-stress maximum is |N/A| + hypot(My,Mz)/Z, bounded over all statics intervals. Torsional shear is separate. No transverse shear, equivalent stress or code stress.",
-      "On arcs: signed tangent-frame resultants and nominal stress components. Endpoint force rows are in the chord frame. No maximum, and no stress headline for a model containing an arc.",
+      "On arcs: signed tangent-frame resultants and nominal stress components; endpoint force rows are node-on-element actions in the tangent frame at their end. No maximum, and no stress headline for a model containing an arc.",
       "Intensified measures are i*hypot(My,Mz)/Z with the user's scalar SIF at member ends adjacent to markers and branches, using member Z. They are not code stresses and are never combined. A flexibility factor never multiplies stress.",
       "Signed support actions for rigid restraints, springs, consuming constant effort and attributable nonlinear supports. Ambiguous attribution is withheld.",
       "Headlines cover all load cases. Mechanics combinations are withheld for nonlinear supports, constant effort with sum of factors other than 1, or mixed moduli. Subtraction is a labelled difference. No combination maxima and no code compliance.",
@@ -232,8 +232,7 @@
     "support_count": 2,
     "load_case_count": 2,
     "component_stress_modifier_count": 4,
-    "component_user_stiffness_macro_element_count": 0,
-    "component_pressure_thrust_load_count": 0,
+    "curved_bend_macro_element_count": 0,
     "spring_hanger_user_input_count": 2,
     "max_displacement": {
       "value": 1.8658999786245456,
@@ -263,7 +262,7 @@
         "component": "linear_solver_mode",
         "coordinate_system": "reduced_system",
         "location": "load:é",
-        "basis": "DEC-053 sparse_default_promotion; solver_mode=sparse_interactive; solution_basis=sparse_structural_integrity_primary; structural_policy=M03-INTEGRITY-v1; profile_pivot_residual_observation_basis=legacy_unscaled_DEC050_DEC053;  default_sparse_promotion=interactive_default; dense_scrutiny_available=true; sparse_entry_count=34; original_profile_entries=62; ordered_profile_entries=28; original_half_bandwidth=11; ordered_half_bandwidth=3; nonpositive_pivots=0; pivot_condition_ratio_proxy=1515.096721312331; max_abs_sparse_residual=0.0000000000018189894035458565; dense_fallback=false; dense_fallback_message=none",
+        "basis": "DEC-053 sparse_default_promotion; solver_mode=sparse_interactive; solution_basis=sparse_structural_integrity_primary; structural_policy=M03-INTEGRITY-v1; default_sparse_promotion=interactive_default; dense_scrutiny_available=true; dense_fallback=false; dense_fallback_message=none",
         "sign_convention": "mode_code 1=sparse_interactive, 2=dense_scrutiny, 3=dense_fallback_after_sparse_failure"
       }
     },
@@ -2662,7 +2661,7 @@
         "component": "linear_solver_mode",
         "coordinate_system": "reduced_system",
         "location": "load:𝔫",
-        "basis": "DEC-053 sparse_default_promotion; solver_mode=sparse_interactive; solution_basis=sparse_structural_integrity_primary; structural_policy=M03-INTEGRITY-v1; profile_pivot_residual_observation_basis=legacy_unscaled_DEC050_DEC053;  default_sparse_promotion=interactive_default; dense_scrutiny_available=true; sparse_entry_count=34; original_profile_entries=62; ordered_profile_entries=28; original_half_bandwidth=11; ordered_half_bandwidth=3; nonpositive_pivots=0; pivot_condition_ratio_proxy=1515.096721312331; max_abs_sparse_residual=0.0000000000009094947017729282; dense_fallback=false; dense_fallback_message=none",
+        "basis": "DEC-053 sparse_default_promotion; solver_mode=sparse_interactive; solution_basis=sparse_structural_integrity_primary; structural_policy=M03-INTEGRITY-v1; default_sparse_promotion=interactive_default; dense_scrutiny_available=true; dense_fallback=false; dense_fallback_message=none",
         "sign_convention": "mode_code 1=sparse_interactive, 2=dense_scrutiny, 3=dense_fallback_after_sparse_failure"
       }
     },
@@ -2680,7 +2679,7 @@
     {
       "id": "result:loadcase:load-𝔫:disp:node-β",
       "kind": "displacement_magnitude",
-      "value": 0.2371917784792895,
+      "value": 0.23719177847928946,
       "unit": "mm",
       "entity_ref": "node:β",
       "basis_ref": {

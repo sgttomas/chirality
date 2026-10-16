@@ -3,8 +3,11 @@
 
 Records observed assertion outcomes, never app Current, independent reference
 approval, physical validation, professional acceptance or release qualification.
-Closed dispatch covers legacy sparse raw0.1 and the selected two-case ordinary
-physics-1 raw0.2 profile. No source/composite or future-profile fallback occurs.
+Closed dispatch covers the current sparse preview-physics-1 raw0.2 carrier and the
+selected two-case ordinary pressure-1 raw0.2 profile (b7-plan E2 retired the raw0.1
+carrier and its v0_2 table; B7b retired physics-1, so the two first-static cases run
+on a declared re-authored copy of their frozen 0.3.0 inputs as pressure-1 on model
+0.5.0). No source/composite or future-profile fallback occurs.
 """
 from __future__ import annotations
 import argparse
@@ -30,14 +33,16 @@ except ImportError:
     from qualification_process import capture, sha256_bytes, file_sha256
     import qualification_physics as physics
 
-TRANSPORT = 'main_sparse_cli_1.0_raw0.1'
+TRANSPORT = 'preview_physics_1_cli_1.0_raw0.2'
+PREVIEW_PHYSICS_ID = 'openpipestress.result_semantics/0.3.0/preview-physics-1'
 MANIFEST_FORMAT = 'openpipestress.qualification_selection/1'
 REFERENCE_FORMAT = 'openpipestress.qualification_reference_values/1'
 MAX_INPUT_BYTES = 8 * 1024 * 1024
 MAX_CASES = 256
 MAX_ASSERTIONS = 65536
-SEMANTICS = PROJECT / 'fixtures/results/semantic_contract_v0_2.json'
-SEMANTICS_SHA256 = '4d6886d19e304db897e5e9f8f0054cbee91ba7795868f9698e2bbe070bde94da'
+SEMANTICS = PROJECT / 'fixtures/results/semantic_contract_v0_3_preview_physics_1.json'
+# B7b (a43583c625): pressure-1 left the table's reserved_inactive_successors (now []); its rows are unchanged.
+SEMANTICS_SHA256 = 'e89312bb5090d05f90da715e097f32f47d9a8d29f3f2eee55a4f38eca4d20f32'
 CLASSIFIER = PROJECT / 'core/comparison/analysis_run/engine.py'
 CLASSIFIER_SHA256 = '14aada4049fde08c6f68a99a844f84e73b16fd8b6e4bb2a91cb7e4c8f63b7f2c'
 META = ('component', 'coordinate_system', 'location', 'basis', 'sign_convention')
@@ -291,10 +296,13 @@ def unwrap(raw: bytes, request: dict, mode: str, *, transport: str = TRANSPORT) 
     mechanics = payload.get('mechanics_envelope')
     require(type(mechanics) is dict and mechanics.get('document_kind') == 'openpipestress.product_preview.mechanics_result', 'unsupported raw mechanics document')
     if transport == TRANSPORT:
-        require(mechanics.get('schema_version') == '0.1.0', 'unsupported raw mechanics version')
-        require(not any(key in mechanics for key in ('producer', 'numerical_quality', 'formulation_basis',
-                    'contract_evidence', 'source_block_recovery', 'carrier_evidence')),
-                'newer method identity/evidence is not legacy raw0.1')
+        require(mechanics.get('schema_version') == '0.2.0', 'unsupported raw mechanics version')
+        require(mechanics.get('producer') == {'component_name': 'open_pipe_stress_product_physics', 'component_version': '0.2.0',
+                                              'semantic_contract_id': PREVIEW_PHYSICS_ID}, 'raw producer is not preview-physics-1')
+        require(all(type(mechanics.get(key)) is dict for key in ('numerical_quality', 'formulation_basis', 'contract_evidence')),
+                'preview-physics-1 header members missing')
+        require(not any(key in mechanics for key in ('source_block_recovery', 'carrier_evidence', 'retained_precision')),
+                'other method identity/evidence is not preview-physics-1 raw0.2')
     elif transport == physics.TRANSPORT:
         physics.ordinary_header_and_standing(mechanics, request, mode)
     else:
@@ -397,7 +405,12 @@ def prepare_case(case: dict, base: Path, purpose: str, semantic_rows: list[dict]
         require(value.get('unit') == selector['unit'], 'reference unit mismatch')
         selected.append({'assertion': assertion, 'expected': finite(value.get('value')), 'rule': rule})
     structural = None
+    runner_input, reauthoring = input_bytes, None
     if transport == physics.TRANSPORT:
+        # The frozen input stays bound by its own bytes (and selection check); the runner receives the declared
+        # re-authored copy, which is what the raw is checked against.
+        runner_input, reauthoring = physics.reauthor_runner_input(input_bytes)
+        request = strict_json(runner_input)
         require(len(selected) == 73, 'first-static profile requires all 73 scalar obligations')
         require(type(case['structural']) is dict and set(case['structural']) == {'obligations', 'section_reference', 'section_criteria'}, 'closed first-static structural binding required')
         structural = {}
@@ -406,7 +419,8 @@ def prepare_case(case: dict, base: Path, purpose: str, semantic_rows: list[dict]
             structural[role] = {'value': strict_json(data), 'bytes': data, 'path': path, 'sha256': sha256_bytes(data)}
         obligations = structural['obligations']['value']
         require([row['id'] for row in obligations['required_checks']] == list(physics.REQUIRED_STRUCTURAL_CHECKS), 'complete selected structural denominator required')
-    return {'input': input_bytes, 'reference_bytes': ref_bytes, 'criterion_bytes': criterion_bytes,
+    return {'input': input_bytes, 'runner_input': runner_input, 'reauthoring': reauthoring,
+            'reference_bytes': ref_bytes, 'criterion_bytes': criterion_bytes,
             'request': request, 'selected': selected, 'profile': profile, 'structural': structural,
             'bindings': [{'role': role, 'path': str(path), 'sha256': sha256_bytes(data)} for role, path, data in
                          [('input', input_path, input_bytes), ('reference', ref_path, ref_bytes), ('criterion', criterion_path, criterion_bytes)]],
@@ -536,7 +550,7 @@ def run_selection(manifest_path: Path, executable: Path, source_root: Path, outp
             'process_supervisor_sha256': sha256_bytes(Path(__file__).with_name('qualification_process.py').read_bytes()),
             'python': sys.version, 'platform': platform.platform(),
             'source_artifact_association': 'selected checkout and executable identities; not independent build-source attestation',
-            'producer_precision': 'ordinary physics-1 raw0.2 finite binary64 without publication quantization' if physical_binding else 'legacy raw0.1 six-decimal publication; not unmerged precise producer'}
+            'producer_precision': 'ordinary pressure-1 raw0.2 finite binary64 without publication quantization' if physical_binding else 'preview-physics-1 raw0.2 finite binary64 without publication quantization'}
         if physical_binding:
             ledger['execution_basis']['physics_binding_sha256'] = physical_binding['binding_sha256']
             ledger['execution_basis']['physics_validator_source_root'] = str(physical_binding['source_root'])
@@ -578,6 +592,8 @@ def run_selection(manifest_path: Path, executable: Path, source_root: Path, outp
                     (output_dir / name).write_bytes(value['bytes'])
                     case_artifacts[case['id']].append(artifact_binding(role, name, value['bytes']))
                     original_bindings[case['id']].append({'role': role, 'path': str(value['path']), 'sha256': value['sha256']})
+            if prepared['reauthoring']:
+                case_ledger['runner_input_reauthoring'] = prepared['reauthoring']
             case_ledger['retained_artifacts'] = case_artifacts[case['id']]
             case_ledger['reason'] = 'admitted, process pending'
             atomic_record(output_dir / 'ledger.json', ledger)
@@ -586,9 +602,9 @@ def run_selection(manifest_path: Path, executable: Path, source_root: Path, outp
                 arguments += ['--input', '-', '--solver-mode', runner['solver_mode']]
                 if runner['explicit_local_private_intent']:
                     arguments.append('--explicit-local-private-intent')
-            process = capture(executable, arguments, prepared['input'], output_dir / f'case-{index:04}', timeout_seconds, output_limit_bytes, expected_executable_sha256=runner['executable_sha256'])
+            process = capture(executable, arguments, prepared['runner_input'], output_dir / f'case-{index:04}', timeout_seconds, output_limit_bytes, expected_executable_sha256=runner['executable_sha256'])
             case_ledger['process'] = process
-            case_artifacts[case['id']].append(artifact_binding('input', f'case-{index:04}/stdin.bin', prepared['input']))
+            case_artifacts[case['id']].append(artifact_binding('input', f'case-{index:04}/stdin.bin', prepared['runner_input']))
             for stream_name in ('stdout', 'stderr'):
                 case_artifacts[case['id']].append({'role': stream_name, 'path': f'case-{index:04}/{stream_name}.bin',
                     'sha256': process[stream_name + '_sha256'], 'byte_length': process[stream_name + '_bytes'],
