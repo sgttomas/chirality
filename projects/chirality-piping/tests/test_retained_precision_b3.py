@@ -591,9 +591,10 @@ B3B_PASSES = {
 # Lane P's producer-solved m3x successors (B3b-P, b2 8d3419b542; PP retained_facade_tests.rs `EXACT_PINNED`):
 # document and receipt sha256, as RS pins them. Every B3b shape is also read on each. B7b's W1 regeneration (the
 # current 0.5.0 exact document; PP retained_facade_tests.rs and RS retained_precision_contract.rs `M3X` pin the same
-# bytes) replaced 5ef83dd9.../57114af4... and ee20a337.../3b92b6ce....
-EXACT_PINNED = {"sparse_interactive": ("45e14e68249abbeafa358f9e7317e9060da8e59c83db948a8184b98b8859001c", "f6bb7e7fc74ebce71c67da5da81906fece54e412aa2697d5548eb13f50b67524"),
-                "dense_scrutiny": ("0f490c22e7b2a25fa5dc1dd3d3a7ae7a701c744bfaac2fc2a2aa8f95f3451259", "0317aed643760641eec81708a0d5f506963e109a78c97a715617c081c28b7701")}
+# bytes) replaced 5ef83dd9.../57114af4... and ee20a337.../3b92b6ce.... T4-U6's regeneration on the D-5 producer
+# (reduced stress twins, per-basis headlines and evidence) replaced 45e14e68.../f6bb7e7f... and 0f490c22.../0317aed6....
+EXACT_PINNED = {"sparse_interactive": ("79d40f1a67c74efa911e408fca9c19c45ea9b6d9de7f60de97973fa66e798b1f", "d231b6ee48ed52f7accef419e25d631d4b4d0971940431aa2ca91f3eaeb1c75c"),
+                "dense_scrutiny": ("c9336f5155e654f67958d932d974cecb54423d80cd72c14fc868a15cb7791b3b", "07742144211b669b283ee455afa739511b4ba0cd1ec4bdbcdadf47fe9ae0ae46")}
 KINDS = ("synthetic", "producer")
 
 
@@ -828,7 +829,9 @@ def test_b3b_producer_m3x_successor_pins(mode):
     assert outcome(source, None, transport=True) == ("pass", False, "needs_recompute")
     got = rp.validate_retained_precision(source, invocation)["classifications"]
     counts = [sum(1 for c in got if c["class"] == k) for k in ("relative_verified", "absolute_verified", "input_derived", "non_quantity")]
-    assert counts == [25, 69, 3, 1]
+    # T4-U6 (D-5 §2.5): each of the member's 21 reduced stress twins takes its nominal row's class (5 relative,
+    # 16 absolute), beside the milestone's 25, 69, 3 and 1.
+    assert counts == [25 + 5, 69 + 16, 3, 1]
     # Every quantity row as the synthetic base classes it, bit for bit. E14 removed
     # the separate dense parity observation; the current mode header is non_quantity.
     synthetic = rp.validate_retained_precision(*m3x(mode))["classifications"]
@@ -1107,16 +1110,19 @@ RV120 = json.loads((ROOT / "fixtures/results/retained_precision_rv120_b3_inputs.
 _RV120_CORPUS = {}
 
 
-def rv120_input(shape):
+def _rv120_base(shape):
     kind, key = shape["base"]
     if kind == "corpus":
         if not _RV120_CORPUS:
             cases = load_corpus()["cases"]
             _RV120_CORPUS.update((c["id"], c) for c in cases)
-        source, invocation = deepcopy(_RV120_CORPUS[key]["source"]), deepcopy(_RV120_CORPUS[key]["invocation"])
-    else:
-        assert kind == "m3x_producer"
-        source, invocation = m3x_producer(key)
+        return deepcopy(_RV120_CORPUS[key]["source"]), deepcopy(_RV120_CORPUS[key]["invocation"])
+    assert kind == "m3x_producer"
+    return m3x_producer(key)
+
+
+def _rv120_materialized(shape):
+    source, invocation = _rv120_base(shape)
     for value, edits in ((source, shape["edits"]), (invocation, shape["invocation_edits"])):
         for edit in edits:
             at = value
@@ -1126,10 +1132,93 @@ def rv120_input(shape):
                 del at[edit["path"][-1]]
             else:
                 at[edit["path"][-1]] = deepcopy(edit["value"])
-    source = reseal(source, invocation, rp.EXACT_DEFINITION_HASH)
-    raw = json.dumps([source, invocation], sort_keys=True, separators=(",", ":")).encode()
-    assert hashlib.sha256(raw).hexdigest() == shape["input_sha256"], shape["name"]
+    return reseal(source, invocation, rp.EXACT_DEFINITION_HASH), invocation
+
+
+def _rv120_digest(source, invocation):
+    return hashlib.sha256(json.dumps([source, invocation], sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+
+
+def rv120_input(shape):
+    source, invocation = _rv120_materialized(shape)
+    assert _rv120_digest(source, invocation) == shape["input_sha256"], shape["name"]
     return source, invocation
+
+
+# T4-U6: RV120's shapes are the Rust reader's B3b shapes (`retained_precision_contract.rs` `rv120_forgeries`,
+# `rv120_probes`, `repair03_probes`) stated as edits from this file's bases. Regeneration only:
+# `RV120_INPUTS_WRITE=<B3B_INPUTS_OUT's JSON lines>` re-derives each shape's edits from that materialization, checks that
+# the edits rebuild it exactly through `_rv120_materialized` and that the Rust shape's expected first failure is the
+# shape's documented gate, and rewrites the file (names, wants and bases unchanged); otherwise a no-op.
+RV120_RUST_SHAPES = {
+    "X G5b control: case 0's evidence As_m2 one ulp [two_case_synthetic]": ("RV120 F1 control: case 0's evidence As_m2 one ulp", "two_case_synthetic"),
+    "X G5b control: case 1's body_scales force one ulp [two_case_synthetic]": ("RV120 F1 control: case 1's body_scales force one ulp", "two_case_synthetic"),
+    "X G5b order: case 0's evidence As_m2 and case 1's body_scales force [two_case_synthetic]": ("RV120 F1 order: case 0's evidence As_m2 and case 1's body_scales force", "two_case_synthetic"),
+    "X G5b order: case 0's evidence As_m2 and case 1's section term area [two_case_synthetic]": ("RV120 F1 order: case 0's evidence As_m2 and case 1's section term area", "two_case_synthetic"),
+    "forge E-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic]": ("RV120 F2: E +1 ulp in every receipt copy, stiffness and native hashes resealed", "ordinary_prepared_synthetic"),
+    "forge G-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic]": ("RV120 F2: G-hat +1 ulp in every receipt copy, stiffness and native hashes resealed", "ordinary_prepared_synthetic"),
+    "forge E-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive]": ("RV120 F2: E +1 ulp in every receipt copy, stiffness and native hashes resealed", "m3x_sparse_interactive"),
+    "forge G-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive]": ("RV120 F2: G-hat +1 ulp in every receipt copy, stiffness and native hashes resealed", "m3x_sparse_interactive"),
+    "X G8: an exact_cases entry for a case not in the invocation [ordinary_prepared_synthetic]": ("RV120 N2: an exact_cases entry for a case not in the invocation", "ordinary_prepared_synthetic"),
+    "X G8: an exact_cases entry for a case not in the invocation [m3x_sparse_interactive]": ("RV120 N2: an exact_cases entry for a case not in the invocation", "m3x_sparse_interactive"),
+    "N2b: entry 0's profile_mode and entry 1's material_basis [two_case_synthetic]": ("N2b: entry 0's profile_mode and entry 1's material_basis", "two_case_synthetic"),
+    "N2b: entry 0's material_basis and entry 1's profile_mode [two_case_synthetic]": ("N2b: entry 0's material_basis and entry 1's profile_mode", "two_case_synthetic"),
+}
+# The 07e rule recomputes these members; edits leave them to it.
+_RV120_RESEALED = (("retained_precision", "receipt_sha256"), ("retained_precision", "body", "publication_sha256"),
+                   ("retained_precision", "body", "invocation", "value"))
+
+
+def _rv120_edits(base, target, path, out):
+    """Edits in this file's grammar turning `base` into `target`: removed and added keys, changed members of objects
+    and of equal-length arrays, any other change set whole."""
+    canonical = lambda v: json.dumps(v, sort_keys=True)  # noqa: E731
+    if isinstance(base, dict) and isinstance(target, dict):
+        out.extend({"op": "remove", "path": path + [k]} for k in base if k not in target)
+        for k, v in target.items():
+            if k not in base:
+                out.append({"op": "set", "path": path + [k], "value": v})
+            elif canonical(base[k]) != canonical(v):
+                _rv120_edits(base[k], v, path + [k], out)
+    elif isinstance(base, list) and isinstance(target, list) and len(base) == len(target):
+        for i, (x, y) in enumerate(zip(base, target)):
+            if canonical(x) != canonical(y):
+                _rv120_edits(x, y, path + [i], out)
+    else:
+        out.append({"op": "set", "path": path, "value": target})
+
+
+def _rv120_resealed(path):
+    return (tuple(path) in _RV120_RESEALED
+            or (len(path) == 6 and path[:3] == ["retained_precision", "body", "cases"] and path[4:] == ["source_identity_sha256"])
+            or (len(path) == 6 and path[:3] == ["retained_precision", "body", "sources"] and path[4:] == ["preparation", "sha256"]))
+
+
+def test_rv120_inputs_write():
+    import os
+    inputs_path = os.environ.get("RV120_INPUTS_WRITE")
+    if not inputs_path:
+        return
+    rust = {}
+    for line in Path(inputs_path).read_text().splitlines():
+        entry = json.loads(line)
+        rust[(entry["name"], entry["base"])] = entry
+    path = ROOT / "fixtures/results/retained_precision_rv120_b3_inputs.json"
+    document = json.loads(path.read_text())
+    assert sorted(s["name"] for s in document["shapes"]) == sorted(RV120_RUST_SHAPES)
+    for shape in document["shapes"]:
+        target = rust[RV120_RUST_SHAPES[shape["name"]]]
+        assert shape["want"].split()[0] == target["expected_bound"]["gate"], shape["name"]
+        base_source, base_invocation = _rv120_base(shape)
+        edits, invocation_edits = [], []
+        _rv120_edits(base_source, target["source"], [], edits)
+        _rv120_edits(base_invocation, target["invocation"], [], invocation_edits)
+        shape["edits"] = [e for e in edits if not _rv120_resealed(e["path"])]
+        shape["invocation_edits"] = invocation_edits
+        source, invocation = _rv120_materialized(shape)
+        assert (source, invocation) == (target["source"], target["invocation"]), shape["name"]
+        shape["input_sha256"] = _rv120_digest(source, invocation)
+    path.write_text(json.dumps(document, indent=1) + "\n")
 
 
 def _rv120_want(text):
@@ -1151,7 +1240,12 @@ def test_repair01_g5b_shared_checks_precede_the_exact_evidence(shape):
     source, invocation = rv120_input(shape)
     assert outcome(source, invocation) == _rv120_want(shape["want"])
     assert outcome(source, None) == _rv120_want(shape["want"])
-    assert outcome(source, None, transport=True) == ("pass", False, "needs_recompute")
+    # T4-U6 (D-5 §2.3, §5): case 0's evidence As_m2 is now its nominal section's leaf; with coincident walls the
+    # reduced leaf no longer equals it, a section stated twice, so transport refuses the statement too (RS:
+    # G7 SOURCE_PHYSICS_SECTION_BASES); the force-only control still reads as its base.
+    as_edit = "case 0's evidence As_m2" in shape["name"]
+    expected = BASE_G7 if as_edit else ("pass", False, "needs_recompute")
+    assert outcome(source, None, transport=True) == expected
 
 
 @pytest.mark.parametrize("shape", RV120_FORGERIES, ids=[s["name"] for s in RV120_FORGERIES])
