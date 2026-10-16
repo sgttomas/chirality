@@ -271,6 +271,19 @@ def _same(a: Any, b: Any) -> bool:
     return blocks._bits(a) == blocks._bits(b)
 
 
+def _bit_equal(a: Any, b: Any) -> bool:
+    """T4-U6 (§2.5, A2): structural equality whose numbers compare by their binary64 bits (`_same`), as the twins'
+    values do: -0.0 is not 0.0, and a number's JSON form (`1e6` or `1000000`) does not matter."""
+    numbers = (int, float)
+    if type(a) in numbers and type(b) in numbers:
+        return math.isfinite(a) and math.isfinite(b) and _same(a, b)
+    if type(a) is list and type(b) is list:
+        return len(a) == len(b) and all(_bit_equal(x, y) for x, y in zip(a, b))
+    if isinstance(a, Mapping) and isinstance(b, Mapping):
+        return a.keys() == b.keys() and all(_bit_equal(a[k], b[k]) for k in a)
+    return type(a) is type(b) and a == b
+
+
 def _finite(value: float) -> float:
     _require(math.isfinite(value), "ARITHMETIC_RANGE")
     return value
@@ -476,7 +489,8 @@ def validate_stress(source: Mapping[str, Any], case: Mapping[str, Any], row: Map
         twin = next((r for r in source["results"] if r["id"] == twin_id), None)
         twins = [c for c in case["section_stress_checks"] if c["result_id"] == twin_id]
         _require(twin is not None and len(twins) == 1 and sb.split_token(twin["metadata"].get("basis")) == (token[0], sb.NOMINAL)
-                 and all(twins[0][k] == check[k] for k in ("recipe_id", "pipe_id", "location", "component", "functional_index", "functional_id", "action", "parameters"))
+                 and all(twins[0][k] == check[k] for k in ("recipe_id", "pipe_id", "location", "component", "functional_index", "functional_id"))
+                 and all(_bit_equal(twins[0][k], check[k]) for k in ("action", "parameters"))
                  and _same(row["value"], twin["value"]), "STRESS_BASIS_TWIN")
     action = check["action"]["value"]
     if component == 3 and action != 0:
@@ -623,6 +637,11 @@ def _actual_materials(invocation, actual, exact, canonical):
     model = invocation["request"]["model"]
     materials = {m["id"]:m for m in (invocation["request"].get("materials") or model.get("materials", []))}
     _require(len(model["pipe_segments"]) == len(exact["pipe_sections"]) == len(exact["pipe_materials"]),"ACTUAL_MATERIAL_COVERAGE")
+    # T4-U8 (§3.6, §5): each section states the beam theory the captured contract selects for its member. Both callers
+    # admit only euler_bernoulli contracts (`SourceContract.from_invocation`, G8's exact namespace), which select
+    # Euler-Bernoulli for a realized arc and a straight member alike (`section_basis.selected_model`); any other
+    # contract fails closed.
+    shear_model = _get(_get(model, "pressure_contract"), "shear_model")
     for pipe,section,material in zip(model["pipe_segments"],exact["pipe_sections"],exact["pipe_materials"]):
         _require(pipe["id"] == section["pipe_id"] == material["pipe_id"] and pipe["material"] == material["material_id"],"ACTUAL_MATERIAL_MEMBER")
         authored_section = pipe["section"]
@@ -634,6 +653,7 @@ def _actual_materials(invocation, actual, exact, canonical):
         by_value = lambda a, b: type(b) in (int, float) and math.isfinite(b) and a == b
         _require(_same(canonical(authored_section["outside_diameter"],"length"),section["outside_diameter_m"]) and _same(canonical(authored_section["wall_thickness"],"length"),section["wall_thickness_m"])
                  and by_value(tolerance,section["mill_tolerance_m"]) and allowance is not None and by_value(allowance,section["corrosion_allowance_m"]),"ACTUAL_SOURCE_GEOMETRY")
+        _require(shear_model == sb.EULER_BERNOULLI and _get(section.get("beam_theory"), "model") == shear_model,"ACTUAL_SHEAR_MODEL")
         authored = materials[pipe["material"]]
         _require(authored.get("constitutive_basis") == material["constitutive_basis"],"ACTUAL_CONSTITUTIVE_BASIS")
         e,nu,alpha = _selected_material(authored,actual,canonical)

@@ -13,7 +13,9 @@ Basis (read, not imported):
 - SHEAR_REFERENCE CONTRACT.md sections 1, 3 and 4 and its reference arithmetic (archive f2211ecef6):
   the energy-matched annular factor and the exact static Timoshenko element;
 - the repaired T4-I8 freeze (5b07d85cf3; validation/references/t4_i8/) for the row shape, stations,
-  sign conventions and the criterion.
+  sign conventions and the criterion;
+- a prepared exact 0.5.0 self-weight input document (read as data) for the generated self-weight's request
+  spelling only; no frozen value depends on it.
 
 Every value is exact: a finite sum of rational * pi**k, or a square root of one (support norms and
 member maxima), evaluated in 130-digit Decimal. Closed forms are cross-checked by an exact
@@ -23,6 +25,7 @@ end-row identities, the general Lame family and the axial compliance identity.
 
 import hashlib
 import json
+import math
 import sys
 from decimal import Decimal, getcontext
 from fractions import Fraction as F
@@ -250,6 +253,14 @@ AXIAL_FORCE = F(20000)                 # N at node B in the unpressurized load c
 BASES = ("nominal_section", "reduced_section")
 STATIONS = [("end_i", F(0)), ("quarter_1", F(1, 4)), ("midspan", F(1, 2)), ("quarter_3", F(3, 4)), ("end_j", F(1))]
 EB, TIMO = "euler_bernoulli", "timoshenko_annulus_energy_v1"
+# The generated self-weight as the 0.5.0 model format records it: the section carries material_density and
+# contents_density; the load case carries a distributed_force primitive whose provenance is the generation record
+# (method ids, gravity, mass inputs, mass per length and the generated payload). The spelling follows a prepared
+# exact 0.5.0 self-weight input document supplied by the epoch manager (read as data; README, generated self-weight).
+SELF_WEIGHT_METHOD = "pipe_mass_per_length_times_explicit_axis_acceleration/v2"
+SELF_WEIGHT_MASS_METHOD = "source_od_nominal_wall_pressure_bore_areas/v1"
+GRAVITY_AXIS = "global_z"
+UNBOUND_MODEL_HASH = "sha256:" + "0" * 64
 
 
 # ---------------------------------------------------------------- section geometry (Design section 1)
@@ -806,26 +817,74 @@ def anchor(id_, node_ref):
     return {"id": id_, "node": node_ref, "family": "anchor", "restraints": ["UX", "UY", "UZ", "RX", "RY", "RZ"], "provenance": PROV}
 
 
-def section_doc(coincident):
+def section_doc(coincident, densities=False):
     sec = {"outside_diameter": {"value": float(OD), "unit": "m"}, "wall_thickness": {"value": float(WALL), "unit": "m"}}
     if not coincident:
         sec["mill_tolerance"] = {"value": float(MILL), "unit": "m"}
     sec["corrosion_allowance"] = {"value": 0.0 if coincident else float(ALLOWANCE), "unit": "m"}
+    if densities:
+        sec["material_density"] = {"value": float(RHO_PIPE), "unit": "kg/m^3"}
+        sec["contents_density"] = {"value": float(RHO_CONTENTS), "unit": "kg/m^3"}
     return sec
 
 
-def load_case_doc(cid, lc):
+def self_weight_binary64(coincident):
+    """The authored generation record's binary64 operands: the D-5 rule (Design section 1) in its natural
+    order from the binary64 leaves, metal pi*t*(OD - t) on the nominal wall and contents pi*r_i,r*r_i,r on the
+    pressure bore (r_i,r in Design section 1's order); mass = rho_pipe*A_metal + rho_contents*A_contents;
+    magnitude = mass*g with g signed along global Z. These are request inputs, not frozen values: the frozen rows
+    use the exact intensity w, and the binary64 rounding of the inputs is absorbed by the criterion."""
+    D, t = float(OD), float(WALL)
+    m_, a_ = (0.0, 0.0) if coincident else (float(MILL), float(ALLOWANCE))
+    ri_r = D / 2 - ((t - m_) - a_)
+    metal = math.pi * t * (D - t)
+    contents = math.pi * ri_r * ri_r
+    mass = float(RHO_PIPE) * metal + float(RHO_CONTENTS) * contents
+    return mass, mass * -float(GRAVITY)
+
+
+def self_weight_load(cid, coincident):
+    """One generated self-weight primitive on the pipe in load case cid, in the model format's spelling."""
+    mass, magnitude = self_weight_binary64(coincident)
+    lid = f"load:self-weight:{len(cid)}:{cid}:{len(PIPE)}:{PIPE}"
+    payload = {"id": lid, "category": "distributed_force", "target": {"type": "element", "pipe": PIPE}, "direction": GRAVITY_AXIS,
+               "magnitude": {"value": magnitude, "unit": "N/m"}, "dimension": "force_per_length"}
+    sec = section_doc(coincident, densities=True)
+    inputs = {"outside_diameter": sec["outside_diameter"], "wall_thickness": sec["wall_thickness"], "mill_tolerance": sec.get("mill_tolerance"),
+              "material_density": sec["material_density"], "contents_density": sec["contents_density"],
+              "insulation_thickness": None, "insulation_density": None, "corrosion_allowance": sec["corrosion_allowance"]}
+    record = {"method": SELF_WEIGHT_METHOD, "mass_method": SELF_WEIGHT_MASS_METHOD,
+              "gravity": {"value": -float(GRAVITY), "unit": "m/s^2", "axis": GRAVITY_AXIS}, "normalized_acceleration_m_per_s2": -float(GRAVITY),
+              "request_provenance": PROV, "pipe_id": PIPE, "pipe_provenance": PROV, "section_ref": None, "referenced_section": None,
+              "mass_inputs": inputs, "mass_kg_per_m": mass, "contents_absent": False, "insulation_absent": True,
+              "source_model_hash": UNBOUND_MODEL_HASH, "normalized_dependencies": dict({"section_ref": None}, **inputs),
+              "generated_payload": payload}
+    load = dict(payload)
+    load["provenance"] = json.dumps(record, separators=(",", ":"), ensure_ascii=False, allow_nan=False)
+    return load
+
+
+def case_slug(cid):
+    return cid[len("case:"):]
+
+
+def load_case_doc(cid, lc, coincident=False):
+    """Every primitive-load id names its load case (load:<kind>:<case slug>:<axis or pipe>; the generated self-weight's
+    own spelling names it too), so the ids are unique across the whole model, as the product requires."""
     loads = []
+    slug = case_slug(cid)
     if lc["tip"]:
         comps = [(AXIAL_FORCE if lc["axial"] else F(0)), TIP_FORCE[1], TIP_FORCE[2]]
         for axis, v in zip(("global_x", "global_y", "global_z"), comps):
             if v != 0:
-                loads.append({"id": f"load:tip-force:{axis}", "category": "concentrated_force", "target": {"type": "node", "node": "node:B"},
+                loads.append({"id": f"load:tip-force:{slug}:{axis}", "category": "concentrated_force", "target": {"type": "node", "node": "node:B"},
                               "direction": axis, "magnitude": {"value": float(v), "unit": "N"}, "dimension": "force", "provenance": PROV})
-        loads.append({"id": "load:tip-torque:rotation_x", "category": "concentrated_moment", "target": {"type": "node", "node": "node:B"},
+        loads.append({"id": f"load:tip-torque:{slug}:rotation_x", "category": "concentrated_moment", "target": {"type": "node", "node": "node:B"},
                       "direction": "rotation_x", "magnitude": {"value": float(TIP_MOMENT[0]), "unit": "N*m"}, "dimension": "moment", "provenance": PROV})
+    if lc["weight"]:
+        loads.append(self_weight_load(cid, coincident))
     if lc["thermal"]:
-        loads.append({"id": f"load:thermal:{PIPE}", "category": "thermal", "target": {"type": "element", "pipe": PIPE}, "direction": "global_x",
+        loads.append({"id": f"load:thermal:{slug}:{PIPE}", "category": "thermal", "target": {"type": "element", "pipe": PIPE}, "direction": "global_x",
                       "magnitude": {"value": float(DELTA_T), "unit": "degC"}, "dimension": "temperature_interval", "provenance": PROV})
     regions = []
     if lc["pressure"]:
@@ -837,7 +896,7 @@ def load_case_doc(cid, lc):
     return {"id": cid, "primitive_loads": loads, "pressure_regions": regions, "provenance": PROV}
 
 
-def request_doc(project, coincident, shear, restrained, thermal, cases):
+def request_doc(project, coincident, shear, restrained, thermal, cases, densities=False):
     material = {"id": "material:u6", "constitutive_basis": "homogeneous_isotropic_E_nu_v1",
                 "elastic_modulus": {"value": float(E_MOD), "unit": "Pa"}, "poisson_ratio": {"value": float(NU), "unit": "1"}}
     if thermal:
@@ -850,11 +909,81 @@ def request_doc(project, coincident, shear, restrained, thermal, cases):
              "analysis_status": {"mechanics": "ready_for_preview_diagnostics", "rule_check": "not_performed_user_rule_inputs_missing",
                                  "professional_acceptance": "not_provided"},
              "nodes": [node("node:A", 0), node("node:B", LENGTH)],
-             "pipe_segments": [{"id": PIPE, "from": "node:A", "to": "node:B", "section": section_doc(coincident), "material": "material:u6",
+             "pipe_segments": [{"id": PIPE, "from": "node:A", "to": "node:B", "section": section_doc(coincident, densities), "material": "material:u6",
                                 "y_reference": {"x": 0.0, "y": 1.0, "z": 0.0}, "provenance": PROV}],
              "supports": supports, "components": [], "materials": [material],
-             "load_cases": [load_case_doc(cid, LOAD_CASES[cid]) for cid in cases], "combinations": []}
+             "load_cases": [load_case_doc(cid, LOAD_CASES[cid], coincident) for cid in cases], "combinations": []}
     return {"model": model, "materials": []}
+
+
+def without_ids(items):
+    return [{k: v for k, v in item.items() if k != "id"} for item in items]
+
+
+def check_primitive_load_ids(name, doc):
+    """The product requires primitive-load ids unique across the whole model; each authored id names its case."""
+    ids = [l["id"] for c in doc["model"]["load_cases"] for l in c["primitive_loads"]]
+    check(f"{name}: primitive-load ids unique across the whole model", len(ids) == len(set(ids)))
+    check(f"{name}: every primitive-load id names its load case",
+          all(l["id"].startswith(("load:tip-force:" + case_slug(c["id"]) + ":", "load:tip-torque:" + case_slug(c["id"]) + ":",
+                                  "load:thermal:" + case_slug(c["id"]) + ":",
+                                  f"load:self-weight:{len(c['id'])}:{c['id']}:"))
+              for c in doc["model"]["load_cases"] for l in c["primitive_loads"]))
+    sources = [s["source_ref"] for c in doc["model"]["load_cases"] for s in c.get("analysis_state", {}).get("load_sources", [])]
+    check(f"{name}: every load_sources entry names a primitive load of its own case",
+          all({s["source_ref"] for s in c.get("analysis_state", {}).get("load_sources", [])} <= {l["id"] for l in c["primitive_loads"]}
+              for c in doc["model"]["load_cases"]) and len(sources) == len(set(sources)))
+
+
+def check_self_weight_request(plain, weighted, coincident, w_exact):
+    """The generated-self-weight request is the variant's request with the densities on its section and the
+    generated load: same geometry, material, supports and contract; case:combined is case:pressure-tip plus the
+    generated load; the generation record is self-consistent and its intensity is the frozen w to binary64."""
+    p0, g0 = plain["model"], weighted["model"]
+    check("self-weight request: same contract, nodes, supports, materials and status as the variant's request",
+          all(p0[k] == g0[k] for k in ("schema_version", "document_kind", "pressure_contract", "analysis_status", "nodes", "supports", "components",
+                                         "materials", "combinations")))
+    ps, gs = p0["pipe_segments"][0], g0["pipe_segments"][0]
+    check("self-weight request: the section is the variant's section plus material_density and contents_density",
+          {k: v for k, v in gs.items() if k != "section"} == {k: v for k, v in ps.items() if k != "section"}
+          and {k: v for k, v in gs["section"].items() if k not in ("material_density", "contents_density")} == ps["section"]
+          and gs["section"]["material_density"] == {"value": float(RHO_PIPE), "unit": "kg/m^3"}
+          and gs["section"]["contents_density"] == {"value": float(RHO_CONTENTS), "unit": "kg/m^3"})
+    cases = {c["id"]: c for c in g0["load_cases"]}
+    plain_cases = {c["id"]: c for c in p0["load_cases"]}
+    for cid, case in cases.items():
+        generated = [l for l in case["primitive_loads"] if l["id"].startswith("load:self-weight:")]
+        check(f"self-weight request {cid}: exactly one generated self-weight load", len(generated) == 1)
+        load = generated[0]
+        record = json.loads(load["provenance"])
+        sec = gs["section"]
+        check(f"self-weight request {cid}: load id is load:self-weight:<len>:<case>:<len>:<pipe>",
+              load["id"] == f"load:self-weight:{len(cid)}:{cid}:{len(PIPE)}:{PIPE}")
+        check(f"self-weight request {cid}: the generated payload is the load itself",
+              record["generated_payload"] == {k: v for k, v in load.items() if k != "provenance"})
+        check(f"self-weight request {cid}: mass inputs and dependencies are the section's fields",
+              all(record["mass_inputs"][k] == sec.get(k) for k in ("outside_diameter", "wall_thickness", "mill_tolerance", "material_density",
+                                                                   "contents_density", "corrosion_allowance"))
+              and record["mass_inputs"]["insulation_thickness"] is None and record["mass_inputs"]["insulation_density"] is None
+              and record["normalized_dependencies"] == dict({"section_ref": None}, **record["mass_inputs"]))
+        check(f"self-weight request {cid}: gravity -g along global Z; magnitude = mass * g in binary64",
+              record["gravity"] == {"value": -float(GRAVITY), "unit": "m/s^2", "axis": "global_z"} and load["direction"] == "global_z"
+              and record["normalized_acceleration_m_per_s2"] == -float(GRAVITY)
+              and load["magnitude"]["value"] == record["mass_kg_per_m"] * -float(GRAVITY))
+        rel = abs(Decimal(-load["magnitude"]["value"]) - w_exact.dec()) / w_exact.dec()
+        check(f"self-weight request {cid}: the authored intensity is the frozen w within 2^-50 relative", rel < Decimal(2) ** -50)
+        mass_exact = RHO_PIPE * annulus(OD, WALL)["As"] + RHO_CONTENTS * d5_sections(*((F(0), F(0)) if coincident else (MILL, ALLOWANCE)))[1]["Ai"]
+        check(f"self-weight request {cid}: frozen w == g (rho_pipe As,n + rho_contents pi r_i,r^2)", mass_exact * GRAVITY == w_exact)
+        rest = [l for l in case["primitive_loads"] if l is not load]
+        if cid == "case:combined":
+            ref = plain_cases.get("case:pressure-tip")
+            check("self-weight request case:combined: the tip loads (each under its own case's id) and the pressure region of case:pressure-tip",
+                  ref is not None and without_ids(rest) == without_ids(ref["primitive_loads"])
+                  and [l["id"] for l in rest] == [l["id"].replace(":pressure-tip:", ":combined:", 1) for l in ref["primitive_loads"]]
+                  and without_ids(case["pressure_regions"]) == without_ids(ref["pressure_regions"]))
+        else:
+            check(f"self-weight request {cid}: the generated load alone, pressure regions explicitly empty",
+                  rest == [] and case["pressure_regions"] == [])
 
 
 def request_doc_load_state_group(plain):
@@ -909,15 +1038,17 @@ def dump(value):
 
 # ---------------------------------------------------------------- the cases
 CASES = [
-    # (case id, coincident, restrained, variants: [(shear model, request, load/reference-state-group twin or None)],
-    #  runnable load cases, pending load cases)
-    ("U6-BASES-001", False, False, [(EB, "U6-BASES-001-EB", None), (TIMO, "U6-BASES-001-TIMO", None)], ["case:pressure-tip", "case:axial-tip"],
-     ["case:self-weight", "case:combined"]),
-    ("U6-BASES-002", False, True, [(EB, "U6-BASES-002", "U6-BASES-002-GROUP")], ["case:restrained-pressure", "case:restrained-pressure-thermal"], []),
-    ("U6-BASES-COINCIDENT", True, False, [(EB, "U6-BASES-COINCIDENT", None)], ["case:pressure-tip", "case:axial-tip"], []),
+    # (case id, coincident, restrained, variants: [(shear model, request, load/reference-state-group twin or None,
+    #  generated-self-weight request or None)], the request's load cases, the generated-self-weight request's load cases)
+    ("U6-BASES-001", False, False, [(EB, "U6-BASES-001-EB", None, "U6-BASES-001-EB-SELF-WEIGHT"),
+                                    (TIMO, "U6-BASES-001-TIMO", None, "U6-BASES-001-TIMO-SELF-WEIGHT")],
+     ["case:pressure-tip", "case:axial-tip"], ["case:self-weight", "case:combined"]),
+    ("U6-BASES-002", False, True, [(EB, "U6-BASES-002", "U6-BASES-002-GROUP", None), (TIMO, "U6-BASES-002-TIMO", None, None)],
+     ["case:restrained-pressure", "case:restrained-pressure-thermal"], []),
+    ("U6-BASES-COINCIDENT", True, False, [(EB, "U6-BASES-COINCIDENT", None, None)], ["case:pressure-tip", "case:axial-tip"], []),
 ]
 DESCRIPTION = {
-    "U6-BASES-001": "A pressurized straight cantilever (anchored at A, free at B, L = 2 m) with mill tolerance 0.00125 m and corrosion allowance 0.002 m on OD 0.2 m, wall 0.01 m: the same model on each basis. Displacements on the nominal stiffness; reactions; the pressure thrust on the pressure bore; every stress row on the nominal and the reduced section with per-basis maxima. Euler-Bernoulli and Timoshenko (timoshenko_annulus_energy_v1, kappa_E from the nominal annulus) documents. The self-weight load cases are frozen, but their request entry is pending (README, open items).",
+    "U6-BASES-001": "A pressurized straight cantilever (anchored at A, free at B, L = 2 m) with mill tolerance 0.00125 m and corrosion allowance 0.002 m on OD 0.2 m, wall 0.01 m: the same model on each basis. Displacements on the nominal stiffness; reactions; the pressure thrust on the pressure bore; every stress row on the nominal and the reduced section with per-basis maxima. Euler-Bernoulli and Timoshenko (timoshenko_annulus_energy_v1, kappa_E from the nominal annulus) documents. The self-weight load cases are in a second request per variant, whose section carries the pipe metal and contents densities and whose load cases carry the generated self-weight.",
     "U6-BASES-002": "The same pipe anchored at both ends: the restrained wall force Nw = 2 nu P - E As alpha dT exercises the eps_p area as the stiffness As (Nw does not depend on As under pressure alone) and the thermal eigenload on the nominal A. No transverse response, so the rows are the same under timoshenko_annulus_energy_v1.",
     "U6-BASES-COINCIDENT": "U6-BASES-001's Euler-Bernoulli runnable load cases with c_m = c_a = 0 (mill tolerance absent, corrosion allowance 0): the two families coincide and both are published (H4), with one expected value per row.",
 }
@@ -951,11 +1082,12 @@ EVIDENCE_KEYS = ["pipe_id", "geometry_basis", "outside_diameter_m", "ro_m", "wal
 
 def build():
     files = {}
+    docs = {}
     oracle_cases = {}
     disc_count = 0
-    for case_id, coincident, restrained, variants, runnable, pending in CASES:
+    for case_id, coincident, restrained, variants, runnable, weighted in CASES:
         case_out = {"description": DESCRIPTION[case_id], "variants": {}, "wrong_result_discriminators": []}
-        for shear, request, group_request in variants:
+        for shear, request, group_request, weight_request in variants:
             phys = physics(coincident, shear)
             base = f"/cases/{case_id}/variants/{shear}"
             evidence = section_evidence(phys)
@@ -969,18 +1101,46 @@ def build():
             if request:
                 doc = request_doc(f"project:invented-t4-u6-{request.lower()}", coincident, shear, restrained,
                                   any(LOAD_CASES[c]["thermal"] for c in runnable), runnable)
+                check_primitive_load_ids(request, doc)
+                docs[request] = doc
                 data = dump(doc)
                 files[f"requests/{request}.request.json"] = data
                 var["request"] = {"path": f"requests/{request}.request.json", "sha256": hashlib.sha256(data).hexdigest(), "load_cases": list(runnable)}
+                if restrained and shear == TIMO:
+                    var["request"]["note"] = ("the euler_bernoulli request with shear_model timoshenko_annulus_energy_v1 (see shear_model_note): "
+                                              "its rows, zero scales and discriminators equal the euler_bernoulli variant's, and its "
+                                              "pipe_sections evidence equals U6-BASES-001's timoshenko_annulus_energy_v1 evidence (checked)")
             if group_request:
                 gdoc = request_doc_load_state_group(doc)
                 gdoc["model"]["project"]["id"] = f"project:invented-t4-u6-{group_request.lower()}"
+                check_primitive_load_ids(group_request, gdoc)
                 gdata = dump(gdoc)
                 files[f"requests/{group_request}.request.json"] = gdata
                 var["request_load_state_group"] = {
                     "path": f"requests/{group_request}.request.json", "sha256": hashlib.sha256(gdata).hexdigest(), "load_cases": list(runnable),
                     "note": "the same physical inputs with the load/reference-state group (thermal as each case's element thermal_state); judged against the same rows"}
-            for cid in runnable + pending:
+            if weight_request:
+                wdoc = request_doc(f"project:invented-t4-u6-{weight_request.lower()}", coincident, shear, restrained,
+                                   any(LOAD_CASES[c]["thermal"] for c in weighted), weighted, densities=True)
+                check_self_weight_request(doc, wdoc, coincident, phys["w"])
+                check_primitive_load_ids(weight_request, wdoc)
+                wdata = dump(wdoc)
+                files[f"requests/{weight_request}.request.json"] = wdata
+                mass, magnitude = self_weight_binary64(coincident)
+                var["request_self_weight"] = {
+                    "path": f"requests/{weight_request}.request.json", "sha256": hashlib.sha256(wdata).hexdigest(), "load_cases": list(weighted),
+                    "note": ("the variant's request with material_density and contents_density on the section and, in each load case, the generated "
+                             "self-weight as a distributed_force primitive whose provenance is the generation record; case:combined is "
+                             "case:pressure-tip plus that load"),
+                    "generated_self_weight": {
+                        "method": SELF_WEIGHT_METHOD, "mass_method": SELF_WEIGHT_MASS_METHOD,
+                        "binary64_order": ("metal pi*t*(OD - t) on the nominal wall; contents pi*r_i,r*r_i,r on the pressure bore, "
+                                          "r_i,r = OD/2 - ((t - c_m) - c_a); mass = rho_pipe*metal + rho_contents*contents; magnitude = mass*g, g = -9.80665 along global Z"),
+                        "mass_kg_per_m": mass, "magnitude_n_per_m": magnitude,
+                        "relative_difference_from_exact_w": format(float(abs(Decimal(-magnitude) - phys["w"].dec()) / phys["w"].dec()), ".3e"),
+                        "source_model_hash": "all zeros, as in the prepared example document: the authored record binds no source model hash",
+                        "spelling": "from a prepared exact 0.5.0 self-weight input document (README, generated self-weight)"}}
+            for cid in runnable + weighted:
                 lc = LOAD_CASES[cid]
                 rows, evidence, r, cuts = rows_of(phys, lc)
                 second_method_checks(phys, lc, r, cuts)
@@ -992,7 +1152,7 @@ def build():
                     if "zero_scale" in row["reference_origin"]:
                         assert row["reference_origin"]["zero_scale"]["tag"] in led["zero_scales"]
                 entry = {"description": lc["description"],
-                         "request_status": "authored" if cid in runnable else "pending: the generated self-weight's input spelling (README, open items)",
+                         "request_status": "authored" if cid in runnable else "authored in the generated-self-weight request (request_self_weight)",
                          "absent_row_kinds": (["element_local_axial_force", "element_local_axial_normal_stress", "pipe_section_pressure_hoop_stress",
                                                "pipe_section_pressure_longitudinal_stress"] if lc["pressure"] else
                                               ["pipe_wall_axial_force_v2", "pipe_effective_axial_force_v2", "pipe_axial_membrane_stress_v2",
@@ -1037,6 +1197,24 @@ def build():
           {"eps_p_area_on_reduced_section", "poisson_eigenstrain_area_on_reduced_section"} <= {d["id"] for d in d002})
     check("U6 kappa_E of the nominal annulus is SHEAR_REFERENCE S-B's 33.219654/66.137512",
           physics(False, TIMO)["kappa"] == F("33.219654") / F("66.137512"))
+    # U6-BASES-002-TIMO binds the restrained case's frozen rows under Timoshenko: no new value
+    c002, c001 = oracle_cases["U6-BASES-002"], oracle_cases["U6-BASES-001"]
+    v_eb, v_timo = c002["variants"][EB], c002["variants"][TIMO]
+    eb_base, timo_base = f"/cases/U6-BASES-002/variants/{EB}/", f"/cases/U6-BASES-002/variants/{TIMO}/"
+    check("U6-BASES-002-TIMO: its load cases (rows, expected values, zero scales, terminal evidence) are the euler_bernoulli variant's",
+          json.dumps(v_timo["load_cases"]) == json.dumps(v_eb["load_cases"]).replace(eb_base, timo_base))
+    check("U6-BASES-002-TIMO: its pipe_sections evidence and binary64 exhibit are U6-BASES-001's timoshenko variant's",
+          v_timo["pipe_sections_evidence"] == c001["variants"][TIMO]["pipe_sections_evidence"]
+          and v_timo["binary64_exhibits"] == c001["variants"][TIMO]["binary64_exhibits"])
+    d_eb = [d for d in c002["wrong_result_discriminators"] if d["variant"] == EB]
+    d_timo = [d for d in c002["wrong_result_discriminators"] if d["variant"] == TIMO]
+    check("U6-BASES-002-TIMO: its discriminators are the euler_bernoulli variant's, entry for entry",
+          bool(d_eb) and [dict(d, variant=EB) for d in d_timo] == d_eb)
+    p_eb, p_timo = docs["U6-BASES-002"]["model"], docs["U6-BASES-002-TIMO"]["model"]
+    check("U6-BASES-002-TIMO: the U6-BASES-002 document apart from shear_model and the project id",
+          {k: v for k, v in p_timo.items() if k not in ("pressure_contract", "project")} == {k: v for k, v in p_eb.items() if k not in ("pressure_contract", "project")}
+          and dict(p_timo["pressure_contract"], shear_model=EB) == p_eb["pressure_contract"] and p_timo["pressure_contract"]["shear_model"] == TIMO
+          and dict(p_timo["project"], id=p_eb["project"]["id"]) == p_eb["project"])
     oracle = header()
     oracle["section_geometry"] = {
         "dual": geometry_block(False), "coincident": geometry_block(True)}
@@ -1063,7 +1241,19 @@ def header():
     return {
         "schema_version": "independent.section_bases_reference/1.0.0",
         "purpose": "Independent analytical references for T4-U6 (D-5 section bases) and the Timoshenko variant shared with T4-U8: one straight pipe, frozen before any product implementation; not product requests and not observed solver outputs.",
-        "status": "frozen by the T4-U6/T4-U8 independent reference TASK; awaiting independent refutation before any product output is compared with it",
+        "status": ("frozen by the T4-U6/T4-U8 independent reference TASK and refuted independently; the refutation's four findings were repaired "
+                   "in 6817b72ca9 without a value change, and an independent refuter confirmed all four repairs on 2026-10-16. An "
+                   "independent refuter also confirmed the three later changes on 2026-10-16: (a) the primitive-load id repair "
+                   "a2d3f27020 (every primitive-load id names its load case; U6-BASES-001-EB, U6-BASES-001-TIMO and U6-BASES-COINCIDENT "
+                   "had reused their tip load ids in case:pressure-tip and case:axial-tip, which the product refuses as DUPLICATE_ID) is "
+                   "id-only: reverting the new ids gives the old request bytes exactly, and oracle.json changed only in its status and "
+                   "six request sha256 bindings; (b) U6-BASES-002-TIMO (2621c1c783), which binds U6-BASES-002's frozen rows to a "
+                   "timoshenko_annulus_energy_v1 request, repeats the euler_bernoulli variant's rows, zero scales, evidence rows and 17 "
+                   "discriminators, and the case is shear-model independent (both nodes fully anchored, axial loads only); (c) the two "
+                   "generated-self-weight requests (request_self_weight) are faithful to the frozen case:self-weight and case:combined "
+                   "definitions (densities, metal on the nominal wall, contents on the pressure bore, the authored binary64 order), and "
+                   "an independent recomputation of the support reactions, node B u_z and r_y, and root V_z and M_y matches the frozen "
+                   "rows to within 1.5e-40 relative. No primitive-load id is duplicated in any request"),
         "basis": {"design": "DEL-05-03 Design section-bases-and-timoshenko.md sections 1, 2.1, 2.5, 3.1, 7 and 8, and section-and-shear-decisions.md (D-5, H4), at b3f4da7661",
                   "shear": "SHEAR_REFERENCE CONTRACT.md sections 1, 3 and 4 and its reference arithmetic (archive f2211ecef6)",
                   "conventions": "validation/references/t4_i8 (the repaired T4-I8 freeze, 5b07d85cf3): row shape, stations, signs, criteria",
