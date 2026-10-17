@@ -45,8 +45,8 @@ const ORDINARY_SHA256: [(&str, usize, &str); 2] = [
 /// successor differs only by the current maximum declaration and fallback enclosure, the two
 /// linear limitation sentences, and the receipt and publication hashes that bind them.
 const SUCCESSOR_SHA256: [(&str, &str, &str); 2] = [
-    ("sparse_interactive", "e3e0830d34d7403da45cc5900aa40cc42d090478d9c2d3ba57bcecf9b6070d2e", "bc1e36fac28680a6ad65901b021dbfeb9e3424349ede29ebd8358201839154d1"),
-    ("dense_scrutiny", "c24d4a1cbfb4668fe071fd1b9cc9abed35589c390992ebad33dd0a9159cf3316", "0712cc45083fddc20f4434ccdf887d2b9c3f46810c579b12c1a8fbde2c34ce79"),
+    ("sparse_interactive", "032630ba2f80a80361be3ce60e1d27821d47e1161cdf750566640552de3edd2e", "835205890be3f58565bdba65cb781040372af9bafc72ecf168e60fb360bb835c"),
+    ("dense_scrutiny", "0db162eb507060ec2a5bf6d78d7f1ab43fd868f2e085c9395832d7b282cbfda0", "6e5123ba864e319b8d07a1581e1d10b165ce208ac75e255d9c66e2640215dad0"),
 ];
 
 fn sha(bytes: &[u8]) -> String {
@@ -407,13 +407,46 @@ fn u6_dh_borrowed_wrapper_text_and_hash_are_the_former_objects() {
     assert_eq!(wire::domain_hash("retained_precision_formation_v1", &payloads[0]).as_deref(), Some(wire::DEFINITION_SHA256));
 }
 
+/// L3: exercise both moved Values through the real entry serializer and
+/// compare compact/pretty text and receipt-domain hashes with the former json! copies.
+#[test]
+fn ordinary_formation_value_move_is_byte_identical() {
+    for mode in MODES {
+        for raw in [milestone_raw(), crate::f1a_tests::udl_w1e8_with_soft_branch()] {
+            let (request, capture) = source_receipt::CapturedInvocation::parse(raw, mode).unwrap();
+            let mut observer = rp::ProductCapture::prepared_probe();
+            let observed = run_linear_static_preview_observed(request, mode, Some(&capture), &mut SourceRecoveryBudget::default(), Some(&mut observer));
+            let env = serde_json::to_value(&observed).unwrap();
+            let [captured] = &observer.ordinary[..] else { panic!("one ordinary seed") };
+            let mut adversarial = captured.clone();
+            adversarial.load_row_finding = Some(rp::FindingSeed {
+                sentence: "quote \" slash \\ newline\n é 😀".into(),
+                fired: vec!["z".into(), "a".into(), "\u{0}".into()], diagnostic_ref: None,
+            });
+            for seed in [captured, &adversarial] {
+                let actual = wire::test_ordinary_value(&env, &seed.case, seed).unwrap();
+                let ((initial, w2, _), failures) = wire::test_ordinary_members(seed);
+                assert!(failures.is_empty(), "{failures:?}");
+                let finding = seed.load_row_finding.as_ref().map(|f| json!({
+                    "guard":"load_row","sentence":f.sentence,"fired":f.fired,"diagnostic_ref":f.diagnostic_ref}));
+                let formation = json!({"load_row_finding":finding,"d5_diagnostic_ref":seed.d5_diagnostic_ref});
+                let former = json!({"case_index":0,"case_id":seed.case,"material_basis_ref":0,"requested_mode":"sparse_interactive",
+                    "initial":initial,"w2":w2,"formation":formation,"diagnostic_refs":actual["diagnostic_refs"]});
+                assert_eq!(serde_json::to_vec(&actual).unwrap(), serde_json::to_vec(&former).unwrap());
+                assert_eq!(pretty(&actual), pretty(&former));
+                assert_eq!(wire::domain_hash("retained_precision_receipt_mp_v2", &actual), wire::domain_hash("retained_precision_receipt_mp_v2", &former));
+            }
+        }
+    }
+}
+
 /// The in-tree fixtures bind the serializer's constants (A4 closed by the fan-in).
 #[test]
 fn u1_constants_bound_to_in_tree_fixtures() {
     let definition: Value = serde_json::from_str(DEFINITION).unwrap();
     let table: Value = serde_json::from_str(TABLE).unwrap();
     assert_eq!(wire::domain_hash("retained_precision_formation_v1", &definition).as_deref(), Some(wire::DEFINITION_SHA256));
-    assert_eq!(table["product_formation_definitions"], json!([{"id":wire::DEFINITION_ID,"sha256":wire::DEFINITION_SHA256},{"id":"RP-PREPARED-COMBINATION-DUAL-v1","sha256":"34ce87e7ad6da457d81a5cbf25a077fb5d08f2960c5fd815e1163646de02d24a"}]));
+    assert_eq!(table["product_formation_definitions"], json!([{"id":wire::DEFINITION_ID,"sha256":wire::DEFINITION_SHA256},{"id":"RP-PREPARED-COMBINATION-DUAL-v1","sha256":"75b9414df919fb4e181aa06030249289b70f0518023afbe241f72e31b8b60f31"}]));
     assert_eq!(table["semantic_contract_id"], json!(wire::RETAINED_SEMANTIC_ID));
     assert_eq!(table["formulation_profile_id"], json!(wire::RETAINED_PROFILE_ID));
     assert_eq!(table["receipt_policy"], json!(wire::POLICY));

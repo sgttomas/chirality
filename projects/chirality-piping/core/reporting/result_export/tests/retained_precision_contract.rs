@@ -1,7 +1,7 @@
-//! Shared statement controls: synthetic bases, plus the two listed producer-solved L = 0
-//! bases (07l), which the Direct entry published in the registered dev/test build (their own
-//! `provenance` and `qualification` say so), and B1's reader-local n-case receipts derived
-//! from the synthetic bases. Reading them establishes no execution; no native Current evidence.
+//! Shared retained statements and intentional mutations. Each case's provenance
+//! distinguishes maintained producer outputs, controlled hooks and synthetic
+//! reader attestations. Fixture reads establish no new execution or native
+//! Current qualification; the corpus declares each input's expected reader result.
 use open_pipe_stress_result_export::retained_precision as rp;
 use open_pipe_stress_result_export::section_basis;
 use serde_json::Value;
@@ -4978,6 +4978,31 @@ fn b3a_legacy_pressure_contract_namespace_at_g8() {
     }
 }
 
+#[test]
+fn b3a_malformed_invocation_keeps_existing_gate_precedence() {
+    use serde_json::json;
+    let shared=corpus();
+    for id in [ORD,"w1_member_load_sparse_interactive"] {
+        let base=shared["cases"].as_array().unwrap().iter().find(|c|c["id"]==id).unwrap();
+        for (path,value,want) in [
+            (json!([]),json!([]),"G3"),(json!(["request"]),Value::Null,"G3"),
+            (json!(["request","model"]),Value::Null,"G3"),
+            (json!(["request","model","load_cases"]),Value::Null,"G3"),
+            (json!(["request","model","load_cases"]),json!([null]),"G3"),
+            (json!(["request","model","load_cases",0,"primitive_loads"]),Value::Null,"G8"),
+            (json!(["request","model","load_cases",0,"primitive_loads"]),json!([null]),"G8"),
+            (json!(["request","model","load_cases",0,"primitive_loads",0,"target"]),Value::Null,"G8"),
+            (json!(["request","model","load_cases",0,"primitive_loads",0,"target"]),json!([]),"G8"),
+        ] {
+            let mut invocation=base["invocation"].clone();
+            if path.as_array().unwrap().is_empty(){invocation=value;}else{edit(&mut invocation,&set(path.clone(),value));}
+            let error=rp::validate(&base["source"],Some(&invocation)).unwrap_err();
+            assert_eq!(error.gate,want,"{id} {path}");
+            assert_eq!(error.code,if want=="G3"{"RETAINED_PRECISION_COVERAGE_MISMATCH"}else{"RETAINED_PRECISION_INVOCATION_MISMATCH"},"{id} {path}");
+        }
+    }
+}
+
 // ---- B3b (I101): the exact successor `<physics-retained>` on reader-local synthetic receipts ----
 /// RN64(2e11 / (2 RN64(1 + nu))) is exactly the bases' G = 7.7e10 Pa, so the
 /// synthetic exact successor keeps every receipt number of its preview base.
@@ -6809,6 +6834,50 @@ fn current_shared_corpus_contract() {
             current_read(&source, None, unbound, &format!("{label}:unbound"),
                 (kind == "must_pass").then_some(classes), None, false);
             current_read(&source, None, transport, &format!("{label}:transport"), None, None, true);
+        }
+    }
+}
+
+#[test]
+fn member_data_corpus_pair_is_explicitly_synthetic() {
+    let data = corpus();
+    let positive = data["must_pass"].as_array().unwrap().iter().find(|e| e["id"] == "member_load_data_from_declared_entries").unwrap();
+    let negative = data["mutations"].as_array().unwrap().iter().find(|e| e["id"] == "member_load_body_has_data_false").unwrap();
+    assert_eq!(positive["base"], negative["base"]);
+    assert_eq!(positive["provenance"], negative["provenance"]);
+    assert_eq!(positive["provenance"]["kind"], "synthetic_reader_attestation_only");
+    assert_eq!(positive["provenance"]["not_a_genuine_solve"], true);
+    assert_eq!(positive["provenance"]["not_a_physics_reference"], true);
+    let (source, invocation) = apply_entry(data, positive);
+    assert!(rp::validate(&source, Some(&invocation)).unwrap().numerical_eligible);
+    let (source, invocation) = apply_entry(data, negative);
+    let error = rp::validate(&source, Some(&invocation)).unwrap_err();
+    assert_eq!((error.gate, error.code.as_str()), ("G5a", "RETAINED_PRECISION_SCALE_MISMATCH"));
+}
+
+#[test]
+fn w1_interior_corpus_controls_bind_actual_span_maxima() {
+    let data=corpus();
+    let cases:Vec<_>=data["cases"].as_array().unwrap().iter()
+        .filter(|case|case["id"].as_str().unwrap().starts_with("w1_member_interior_")).collect();
+    assert_eq!(cases.len(),4);
+    let pass=Value::from("pass");
+    let unqualified=serde_json::json!({"invocation_bound":false,"numerical_eligible":false,"standing":"needs_recompute"});
+    for case in cases {
+        assert_eq!(case["provenance"]["generation_profile"],"registered_direct");
+        let id=case["id"].as_str().unwrap();
+        let maxima:Vec<_>=case["source"]["results"].as_array().unwrap().iter()
+            .filter(|row|row["kind"]=="pipe_elastic_normal_stress_maximum_v2"&&row["entity_ref"]=="ss:pipe").collect();
+        assert_eq!(maxima.len(),1);
+        assert_eq!(maxima[0]["value"].as_f64().unwrap().to_bits(),
+            if id.contains("_asymmetric_"){0x400d555555555555}else{0x3ff8000000000000});
+        let entry=data["must_pass"].as_array().unwrap().iter().find(|entry|entry["base"]==case["id"]).unwrap();
+        let (changed,invocation)=apply_entry(data,entry);
+        for (label,source,invocation) in [(id,&case["source"],&case["invocation"]),
+            (entry["id"].as_str().unwrap(),&changed,&invocation)] {
+            current_read(source,Some(invocation),Some(&pass),label,Some(&case["expected_classifications"]),Some(&case["expected"]),false);
+            current_read(source,None,Some(&pass),label,Some(&case["expected_classifications"]),Some(&unqualified),false);
+            current_read(source,None,Some(&pass),label,None,Some(&unqualified),true);
         }
     }
 }

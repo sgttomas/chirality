@@ -7,6 +7,9 @@ use crate::source_receipt::CapturedInvocation;
 use crate::PreviewSolverMode;
 use serde_json::json;
 
+#[path = "../tests/common/w1_member_load_inputs.rs"]
+mod w1_member_load_inputs;
+
 const MILESTONE: &str = include_str!("../../../fixtures/product_preview/rf_skew_t_cant_off_122_r1e-04.request.json");
 const MODES: [PreviewSolverMode; 2] = [PreviewSolverMode::SparseInteractive, PreviewSolverMode::DenseScrutiny];
 /// The owner-selected current product budget: 12 GiB.
@@ -279,9 +282,11 @@ fn bindings_need_witnesses_inputs_and_reader_layouts() {
     assert!(!bindings_hold(false, Some("v1;x"), "v1;x", &layouts, &layouts), "a false layout witness");
     assert!(!bindings_hold(true, None, "v1;x", &layouts, &layouts), "no reviewed-input record");
     assert!(!bindings_hold(true, Some("v1;y"), "v1;x", &layouts, &layouts), "a changed lock or static");
-    let mut moved = layouts;
-    moved[2].size += 8;
-    assert!(!bindings_hold(true, Some("v1;x"), "v1;x", &layouts, &moved), "a changed reader layout");
+    for index in 0..layouts.len() {
+        let mut moved = layouts;
+        moved[index].size += 8;
+        assert!(!bindings_hold(true, Some("v1;x"), "v1;x", &layouts, &moved), "changed reader layout {}",READER_LAYOUT_NAMES[index]);
+    }
     assert!(LAYOUT_WITNESSES, "this build's std and serde_json layouts are the ones the formulas assume");
     for (name, layout) in READER_LAYOUT_NAMES.iter().zip(READER_LAYOUTS) {
         println!("I65_G5_READER_LAYOUT {name} size={} align={}", layout.size, layout.align);
@@ -343,7 +348,12 @@ fn audited_reader_sources() -> [(&'static str, Option<AuditedTestRegion>); 5] {
             // decline; its one include is a request fixture, not a reviewed input), and
             // it stays inspected with the production after the resume, which is
             // byte-identical.
-            complete_suffix_sha256: "3441631b726908b52967119ffba1d0496688efd5da137d4f5dbcd14383115cdc",
+            // W1 independent re-audit: the complete RF suffix is byte-identical,
+            // followed only by the closed `w1_member_reader_gate_tests` module
+            // (no includes, path modules or statics). It stays inspected after
+            // the unchanged production resume; no exclusion boundary changes.
+            // The G8 scope repair adds controls only inside that closed module.
+            complete_suffix_sha256: "b042180e6b48932a395a4dd2323e69191e1933af0ef9ff261854f3dfb9b43b23",
             // Only the preceding closed test region is excluded. These two
             // trailing public functions are production and remain inspected.
             production_resume: Some("/// The reader's outcome as JSON, for callers outside Rust (the desktop's wasm"),
@@ -736,11 +746,11 @@ fn reviewed_inputs_bind_the_lock_and_the_reader_statics() {
     const REVIEWED: [&str; build_identity::REVIEWED_INPUT_COUNT] = [
         "e27b28f710ea6b9cc26bb14d0de53c64c2504c5dde17cbf0acc50dfac9220a11",
         "6efefc4ff68fc516756ea52aeb9b96d293a570a28d591964a4994602ede51ac2",
-        "f961a56bdd386d26f10ee279b0c5926c7436760c18eee0e3c3c158bd474b42c9",
-        "9be78bef3b340330f06b99966bcc9fd2fdf652f2a54506fc270f6b16588761c6",
-        "930535a544aedb3c6eb5dea60c59e617dd609f41c1386d9cf9c7c401b9c531f1",
+        "8a4273dcd55e827aa0494c28f535bad01089af2e754448e99d1a18118482ef05",
+        "06e601884baf96c7573eaaafa3f998d5738c6e273fbb254a37a9a09f56ef146e",
+        "842a011601ea5049c6e89abbd73a24176966ca23c9a8cf9c89336341f608f3ad",
         "e89312bb5090d05f90da715e097f32f47d9a8d29f3f2eee55a4f38eca4d20f32",
-        "8d00e0622777fe01d8886a90371393ee5189c18800adb6d203e60c35f9e2485a",
+        "2a2de90ff36dcfcaedbe47e77fb96c2a68f9991e17993440a9f7cfa60f80cd2a",
         "461df8cb9cc989522cdba3a50124dab123e4e09af9912285b8ad111b6fdfea40",
         "775ae70ce0cdd0ee0bc71f7469e20cc03e4b98b8d160c947ab5740c520359cb6",
         "f0daf3e22ce844e51f628e06730a907bda7d79e68f7e9dcc674abb4e3ba65d53",
@@ -919,6 +929,51 @@ fn milestone_and_cap_maximal_inputs_are_inside_d1() {
             assert_eq!(headless.law().refusal, Some(AdmissionRefusal::Caller(RetainedCaller::Headless)), "D1.0 first: Headless is refused");
             assert_eq!(headless.law().refusal.unwrap().precondition().as_str(), "caller");
         }
+    }
+}
+
+/// Stage 2's widened count boundary: preserve the nodal cap helper and replace
+/// only this additive input's leaves. This is an admission-law control, not a
+/// claim that the fully restrained ring publishes a retained successor.
+#[test]
+fn w1_three_basis_member_cap_input_is_inside_d1_and_refuses_129th_term() {
+    use w1_member_load_inputs as member;
+    let raw = member::three_basis_member_cases(cap_maximal_cases(3));
+    for mode in MODES {
+        let (request, capture) = CapturedInvocation::parse(raw.clone(), mode).unwrap();
+        let report = assess(&capture, &request, Entry::Direct, RETAINED_LIMIT);
+        let law = report.law();
+        assert_eq!(law.domain, None, "{mode:?}: widened input is inside D1");
+        assert_eq!(law.refusal, d1_1_refusal(), "registration remains build-specific");
+        assert_eq!(report.profile, build_profile());
+        assert_eq!((request.model.nodes.len(), request.model.pipe_segments.len(), request.model.supports.len()), (32, 32, 32));
+        assert_eq!((request.model.materials.len(), request.materials.len()), (4, 4));
+        assert_eq!((law.nested.restraints, law.nested.springs, law.nested.max_temperature_points.length), (192, 32, 16));
+        assert_eq!((report.typed.load_cases.length, law.nested.primitive_loads.length,
+            law.nested.primitive_loads.capacity, law.nested.total_loads), (3, 128, 128, 384));
+        for (case, authored) in request.model.load_cases.iter().enumerate() {
+            assert_eq!(authored.modulus_basis_ref, Some(member::basis_id(case)));
+            assert_eq!(authored.primitive_loads.len(), 128);
+            assert!(authored.primitive_loads.iter().all(|load| matches!(load.target, crate::LoadTargetInput::Element { .. })));
+            for material in &request.model.materials {
+                let point = material.temperature_points.iter().find(|point| point.id == member::basis_id(case)).unwrap();
+                assert_eq!(point.elastic_modulus.as_ref().unwrap().value,
+                    material.elastic_modulus.value * member::BASIS_SCALES[case]);
+                assert_eq!(point.shear_modulus.as_ref().unwrap().value,
+                    material.shear_modulus.as_ref().unwrap().value * member::BASIS_SCALES[case]);
+            }
+        }
+        let mut over = raw.clone();
+        let mut extra = over["model"]["load_cases"][2]["primitive_loads"][127].clone();
+        extra["id"] = json!("w1-member:2:128");
+        over["model"]["load_cases"][2]["primitive_loads"].as_array_mut().unwrap().push(extra);
+        let (request, capture) = CapturedInvocation::parse(over, mode).unwrap();
+        let over = assess(&capture, &request, Entry::Direct, RETAINED_LIMIT);
+        assert_eq!(over.law().nested.total_loads, 385);
+        let expected = Some(AdmissionRefusal::Cap { fact: CapFact::Loads, observed: 129, cap: 128 });
+        assert_eq!(over.law().domain, expected, "{mode:?}: member and nodal terms share l=128");
+        assert_eq!(over.law().refusal, d1_1_refusal().or(expected));
+        println!("W1_MEMBER_CAP_LAW {mode:?} profile={:?} nodes=32 members=32 supports=32 bases=3 cases=3 terms=384 member_129_refused=true", report.profile);
     }
 }
 
@@ -1674,15 +1729,13 @@ fn profile_in_build_record() {
 }
 /// The build identity of the pinned profile record (the qualified dev/test build of G6).
 pub(super) const PINNED_RECORD_IDENTITY: &str = "v1;rustc.release=1.97.1;rustc.commit=8bab26f4f68e0e26f0bb7960be334d5b520ea452;rustc.host=aarch64-apple-darwin;rustc.llvm=22.1.6;target=aarch64-apple-darwin;target.arch=aarch64;target.pointer_width=64;target.endian=little;target.os=macos;target.env=;panic=unwind;profile=debug;opt_level=0;debug_assertions=true;rustflags=;pkg=open_pipe_stress_product_physics@0.2.0";
-/// RF D3 record for source 677f11b674: requested + moving bytes, without R or
-/// the separately upward-rounded TEXT reserve, from the canonical 98-form
-/// union and 289 measured native/text values. The RF owned-memory bounds and
-/// enlarged native BlockWitness/retained carrier add 16,361,805 bytes in every
-/// phase against T4-U6/U8's 588de796a4 record. The unchanged identity/record
-/// assertions verify this candidate in-build (retained-pricing-rules.md, RF).
+/// W1 actual-source candidate at 32bfb4d441: requested + moving bytes, without R
+/// or the separately upward-rounded TEXT reserve, from the canonical 100-form
+/// union. This record binds the unchanged build identity and actual native
+/// values; reviewed-input registration is a separate binding below.
 pub(super) const PINNED_RECORD: [[u64; 7]; 2] = [
-    [5_484_138_807, 5_809_635_129, 11_020_091_118, 11_232_567_882, 6_444_913_488, 11_163_932_989, 6_640_058_395],
-    [5_543_270_151, 5_868_766_473, 11_079_222_462, 11_291_699_226, 6_504_044_832, 11_223_064_333, 6_699_189_739],
+    [5_322_735_619, 5_654_126_437, 10_948_848_705, 11_154_197_917, 6_366_535_996, 10_991_385_601, 6_468_347_231],
+    [5_381_866_963, 5_713_257_781, 11_007_980_049, 11_213_329_261, 6_425_667_340, 11_050_516_945, 6_527_478_575],
 ];
 
 #[test]

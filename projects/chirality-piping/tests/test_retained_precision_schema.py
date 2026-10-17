@@ -95,7 +95,7 @@ PREVIEW = "openpipestress.result_semantics/0.3.0/preview-physics-1"
 # left preview-physics-1's reserved successors (36064ef3... and f675693b... before), the preview successor inherits
 # the new preview hash, the exact successor (D4 (a)) inherits pressure-1's, and pressure-source-1 is the current
 # PRESSURE-SOURCE-1 table (4a1873e7... before).
-SUCC_SHA = "930535a544aedb3c6eb5dea60c59e617dd609f41c1386d9cf9c7c401b9c531f1"
+SUCC_SHA = "842a011601ea5049c6e89abbd73a24176966ca23c9a8cf9c89336341f608f3ad"
 PREVIEW_SHA = "e89312bb5090d05f90da715e097f32f47d9a8d29f3f2eee55a4f38eca4d20f32"
 PROFILE = "product_preview_retained_w1a_v2"
 CODES = ["retained_precision_absolute_verified", "retained_precision_not_covered"]
@@ -113,8 +113,8 @@ PRESSURE_SOURCE_SHA = "f0daf3e22ce844e51f628e06730a907bda7d79e68f7e9dcc674abb4e3
 # B7b: the composite source statement is pressure-source-1's (physics-source-1 is retired).
 SOURCE_RAW = "pressure_source/physics_source/n05-sparse_interactive.raw.json"
 MILESTONES = {
-    "sparse_interactive": "e3e0830d34d7403da45cc5900aa40cc42d090478d9c2d3ba57bcecf9b6070d2e",
-    "dense_scrutiny": "c24d4a1cbfb4668fe071fd1b9cc9abed35589c390992ebad33dd0a9159cf3316",
+    "sparse_interactive": "032630ba2f80a80361be3ce60e1d27821d47e1161cdf750566640552de3edd2e",
+    "dense_scrutiny": "0db162eb507060ec2a5bf6d78d7f1ab43fd868f2e085c9395832d7b282cbfda0",
 }
 
 
@@ -141,7 +141,7 @@ def milestone(mode):
 
 
 def successors():
-    """Every successor statement on hand: the 15 shared-corpus bases and both milestones."""
+    """Every current shared-corpus successor and both preview milestones."""
     sources = [(case["id"], case["source"]) for case in CORPUS["cases"]]
     return sources + [(f"milestone_{mode}", milestone(mode)) for mode in sorted(MILESTONES)]
 
@@ -158,8 +158,9 @@ def projected(source):
     """The reader's G7 projection: the same statement under the base identity."""
     base = deepcopy(source)
     del base["retained_precision"]
-    base["producer"]["semantic_contract_id"] = PREVIEW
-    base["formulation_basis"]["profile_id"] = "product_preview_mechanics_v1"
+    exact = source["producer"]["semantic_contract_id"] == EXACT
+    base["producer"]["semantic_contract_id"] = "openpipestress.result_semantics/0.3.0/pressure-1" if exact else PREVIEW
+    base["formulation_basis"]["profile_id"] = "exact_pressure_v3" if exact else "product_preview_mechanics_v1"
     for row in base["results"]:
         row.pop("recovery_method", None)
     return base

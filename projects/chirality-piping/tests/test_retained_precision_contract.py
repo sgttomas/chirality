@@ -118,6 +118,9 @@ def apply_mutation(base, mutation):
     receipt = value.get("retained_precision")
     if isinstance(receipt, dict) and isinstance(receipt.get("body"), dict):
         body = receipt["body"]
+        # W1 stage2 adds byte-identical exact nodal baselines to isolate the
+        # exact route's member-load decline. Preview remains the default.
+        definition_hash = rp.EXACT_DEFINITION_HASH if value.get("producer", {}).get("semantic_contract_id") == rp.EXACT_CONTRACT_ID else rp.DEFINITION_HASH
         records = body.get("operand_preparations") if isinstance(body.get("operand_preparations"), list) else []
         # B2-C REVISION_01 §5.2 (S-6), steps 1 and 2: the CaseSource preparation hashes. A CombinationSource has no
         # `preparation`, and an operand-prepared CaseSource's names its record, so both reads are guarded.
@@ -128,8 +131,8 @@ def apply_mutation(base, mutation):
             # Step 1: through `attempt_ref`, when every member of that attempt is prepared.
             attempt = _rehash_ref(body["product_attempts"], preparation.get("attempt_ref"))
             if isinstance(attempt, dict) and isinstance(attempt.get("preparation"), dict) and all(m["result"]["kind"] == "prepared" for m in attempt["preparation"]["members"]):
-                # The shared corpus is on the preview route: DEF-O's H (S-1; the reader's payload has no default).
-                preparation["sha256"] = rp._hash("retained_precision_preparation_v1", rp._preparation_payload(attempt, rp.DEFINITION_HASH))
+                # S-1 binds the case's own route definition; the payload has no default.
+                preparation["sha256"] = rp._hash("retained_precision_preparation_v1", rp._preparation_payload(attempt, definition_hash))
             # Step 2: through `operand_preparation_ref`, when that record and every member are prepared: C3a-5's
             # payload (with `purpose`), under the same DEF-O H.
             record = _rehash_ref(records, preparation.get("operand_preparation_ref"))
@@ -200,8 +203,8 @@ def _corpus_entries():
 
 
 MILESTONE_PINS = {
-    "sparse_interactive": ("e3e0830d34d7403da45cc5900aa40cc42d090478d9c2d3ba57bcecf9b6070d2e", [25, 69, 3, 1]),
-    "dense_scrutiny": ("c24d4a1cbfb4668fe071fd1b9cc9abed35589c390992ebad33dd0a9159cf3316", [25, 69, 3, 1]),
+    "sparse_interactive": ("032630ba2f80a80361be3ce60e1d27821d47e1161cdf750566640552de3edd2e", [25, 69, 3, 1]),
+    "dense_scrutiny": ("0db162eb507060ec2a5bf6d78d7f1ab43fd868f2e085c9395832d7b282cbfda0", [25, 69, 3, 1]),
 }
 
 
@@ -767,6 +770,66 @@ def test_model_schema_versions_d31():
     _raises(lambda: _validate_entry(O_BASE, [], [version_edit("0.4.0")]), "G8", "INVOCATION_MISMATCH")
 
 
+def test_b3a_legacy_pressure_namespace_29_controls_match_existing_rust_controls():
+    """The unchanged Rust B3a table, including both N11 zero-pressure cases."""
+    legacy={"version":"1.0.0","mode":"legacy_pressure_v1"}
+    root=["request","model"]
+    version=lambda value:_set(root+["schema_version"],value)
+    contract=lambda value:_set(root+["pressure_contract"],value)
+    absent=lambda:{"path":root+["pressure_contract"],"op":"remove"}
+    changed=lambda key,value:dict(legacy,**{key:value})
+    def zero_pressure(base):
+        loads=deepcopy(_cases()[base]["invocation"]["request"]["model"]["load_cases"][0]["primitive_loads"])
+        loads.append({"id":"load:b3a-zero-pressure","category":"pressure","target":{"type":"element","pipe":"pipe:fixture-span"},
+                      "magnitude":{"value":0,"unit":"Pa"},"dimension":"pressure","provenance":"synthetic_integration_input_not_library_data"})
+        return _set(root+["load_cases",0,"primitive_loads"],loads)
+    entries=[(base,[version("0.3.0"),contract(legacy)],False) for base in
+             (O_BASE,"ordinary_prepared_dense_synthetic","two_case_synthetic","u8_l0_isolated_node_sparse_interactive","u8_l0_isolated_node_dense_scrutiny")]
+    entries.extend((O_BASE,edits,admitted) for edits,admitted in (
+        ([contract(None)],False),([version("0.5.0"),absent()],True),
+        ([version("0.3.0"),contract(changed("mode","exact_straight_pressure_v2"))],False),
+        ([version("0.3.0"),contract(changed("version","1.0.1"))],False),
+        ([version("0.3.0"),contract({"version":"2.0.0","mode":"exact_straight_pressure_v2"})],False),
+        ([version("0.3.0"),contract(None)],False),([version("0.3.0"),absent()],False),
+        ([version("0.3.0"),contract(changed("extra","x"))],False),([version("0.3.0"),contract(changed("extra",None))],False),
+        ([version("0.3.0"),contract({"version":"1.0.0"})],False),([version("0.3.0"),contract({"mode":"legacy_pressure_v1"})],False),
+        ([version("0.3.0"),contract(changed("version",1.0))],False),([version("0.3.0"),contract(changed("mode",None))],False),
+        ([version("0.3.0"),contract({})],False),([contract(legacy)],False),
+        ([version("0.1.0"),contract(legacy)],False),([version("0.4.0"),contract(legacy)],False),
+        ([contract({})],False),([contract(False)],False),([contract([])],False),([contract("")],False),([contract(0)],False),
+        ([version("0.3.0"),contract(legacy),zero_pressure(O_BASE)],False),
+    ))
+    dense="ordinary_prepared_dense_synthetic"
+    entries.append((dense,[version("0.3.0"),contract(legacy),zero_pressure(dense)],False))
+    assert len(entries)==29
+    for base,edits,admitted in entries:
+        # Rust's remove of an absent object key is a no-op; this Python edit
+        # grammar deletes an existing key. Preserve the same final invocation.
+        if "pressure_contract" not in _cases()[base]["invocation"]["request"]["model"]:
+            edits=[edit for edit in edits if edit["op"]!="remove"]
+        if admitted:assert _validate_entry(base,[],edits)["classifications"]==_cases()[base]["expected_classifications"]
+        else:_raises(lambda:_validate_entry(base,[],edits),"G8","INVOCATION_MISMATCH")
+
+
+def test_w1_guard_keeps_malformed_invocation_gate_precedence():
+    """Malformed rosters keep G3; later malformed leaves keep the old hash gate."""
+    for base in (O_BASE,"w1_member_load_sparse_interactive"):
+        fixture=_cases()[base]
+        for path,value,gate in (
+            ([],[],"G3"),(["request"],None,"G3"),(["request","model"],None,"G3"),
+            (["request","model","load_cases"],None,"G3"),(["request","model","load_cases"],[None],"G3"),
+            (["request","model","load_cases",0,"primitive_loads"],None,"G8"),
+            (["request","model","load_cases",0,"primitive_loads"],[None],"G8"),
+            (["request","model","load_cases",0,"primitive_loads",0,"target"],None,"G8"),
+            (["request","model","load_cases",0,"primitive_loads",0,"target"],[],"G8"),
+        ):
+            invocation=deepcopy(fixture["invocation"])
+            if path:_apply_edits(invocation,[_set(path,value)])
+            else:invocation=deepcopy(value)
+            code="COVERAGE_MISMATCH" if gate=="G3" else "INVOCATION_MISMATCH"
+            _raises(lambda:rp.validate_retained_precision(deepcopy(fixture["source"]),invocation),gate,code)
+
+
 def test_verification_estimate_names_force_or_moment_d33():
     """D33 (verify.rs `verify_state`): an estimate rejection naming a translation or rotation row fails G5 ATTEMPT."""
     reason = {"space": "attempt", "tag": "verification_estimate", "quantity": {"tag": "displacement", "dof": {"node": 1, "component": "UX"}}, "body": 0, "kind": "translation"}
@@ -909,10 +972,10 @@ def test_rv80_n2_integral_normalization_touches_only_the_receipt(monkeypatch):
 # PP's pinned L = 0 successor files (U8-1, `u8_l0_isolated_node_publishes_pinned_successor` at the U8
 # head): (file sha256, receipt sha256, class counts), the counts as all three readers observed them (I68).
 L0_PINS = {
-    "sparse_interactive": ("67e65da7cdc6c6a5e150505981fee087cfe6d7c9bf4bd6e0c545013d3e346d6d",
-                           "08af743f21c921308a69767ba91660ce361685828f524863efb9f6970fd3c254", [25, 78, 9, 1]),
-    "dense_scrutiny": ("08cf81a1f252e503c0b45c915caa573abe1263183c835b62bc4454cd8696eb64",
-                       "86e77dc6c1998d760f798997fd5942783f7182ce201a1e369b0171e3da71e5cd", [25, 78, 9, 1]),
+    "sparse_interactive": ("9892d97327d0e076ce06762a985fd7e1dc2a55ab51bbad8abee1a953c202ede0",
+                           "6f61dd02966787ed957081a49184c863c11ab3f8759480fa784aed9c0f7ada4a", [25, 78, 9, 1]),
+    "dense_scrutiny": ("d20a3d5af1a356f0d76ebe41c5e50d8d8579700325911e12dacbca23dbda3f33",
+                       "88c8de70b406f7e9cb7802185f317bbc15cd5eee599ebd3cec73a0946dda29de", [25, 78, 9, 1]),
 }
 # The registered dev/test build that published them (PP `REGISTERED_PROFILES` at the U8 head).
 L0_BUILD_IDENTITY = ("v1;rustc.release=1.97.1;rustc.commit=8bab26f4f68e0e26f0bb7960be334d5b520ea452;rustc.host=aarch64-apple-darwin;"
@@ -930,7 +993,7 @@ def test_producer_solved_bases_are_the_pinned_live_successors_d_u6_5():
     the class counts all three readers observed; without, it is not."""
     import hashlib
     c = corpus()
-    assert c["provenance"] == {"kind": "synthetic_control", "claim": "18 synthetic reader controls, 25 current public Direct publications and two declared hook-produced precommit refusal controls; no native Current evidence.", "producer_source": "1b24b01bd32fbaac1eeeac1487feee5da483ff69"}
+    assert c["provenance"] == {"kind": "synthetic_control", "claim": "The historical original 45 bases comprise 18 synthetic reader controls, 25 public Direct publications and two declared hook-produced precommit refusal controls. Appended bases have their own provenance and qualification; fixture reads establish no new execution or native Current evidence.", "producer_source": "1b24b01bd32fbaac1eeeac1487feee5da483ff69"}
     assert [f["id"] for f in c["cases"][:17] if f["provenance"] != SYNTHETIC_PROVENANCE] == [f"u8_l0_isolated_node_{mode}" for mode in L0_PINS]
     for mode, (file_sha, receipt_sha, counts) in L0_PINS.items():
         base = _cases()[f"u8_l0_isolated_node_{mode}"]
@@ -956,24 +1019,54 @@ def test_producer_solved_bases_are_the_pinned_live_successors_d_u6_5():
         assert [sum(1 for x in public["classifications"] if x["class"] == k) for k in ("relative_verified", "absolute_verified", "input_derived", "non_quantity")] == counts
 
 
+EXACT_FIXTURE_ALIASES = {
+    f"w1_member_route_e_baseline_{mode}": (
+        f"fixtures/results/retained_precision_exact_successor_{mode}.json", f"b3b_m3x_{mode}")
+    for mode in ("sparse_interactive", "dense_scrutiny")
+}
+
+
+def _check_corpus_fixture_provenance(base):
+    import hashlib
+    provenance = base["provenance"]
+    path = (ROOT / provenance["fixture"]).resolve()
+    assert path.is_relative_to(ROOT.resolve()), base["id"]
+    raw = path.read_bytes()
+    assert hashlib.sha256(raw).hexdigest() == provenance["fixture_sha256"], base["id"]
+    doc = json.loads(raw)
+    assert set(doc) == {"id", "source", "invocation"}
+    alias = EXACT_FIXTURE_ALIASES.get(base["id"])
+    if alias is None:
+        assert "fixture_case_id" not in provenance
+        assert doc["id"] == base["id"]
+    else:
+        assert (provenance["fixture"], provenance["fixture_case_id"]) == alias
+        assert doc["id"] == provenance["fixture_case_id"]
+    for key in ("source", "invocation"):
+        assert json.dumps(doc[key]) == json.dumps(base[key]), (base["id"], key)
+
+
 def test_current_corpus_fixture_provenance_links():
     """Every corpus file link names the actual bytes and the same source/invocation.
 
     This checks stored provenance, not new producer execution or native standing.
     """
-    import hashlib
     for base in corpus()["cases"]:
         provenance = base["provenance"]
         if not isinstance(provenance, dict) or "fixture" not in provenance:
             continue
-        path = (ROOT / provenance["fixture"]).resolve()
-        assert path.is_relative_to(ROOT.resolve()), base["id"]
-        raw = path.read_bytes()
-        assert hashlib.sha256(raw).hexdigest() == provenance["fixture_sha256"], base["id"]
-        doc = json.loads(raw)
-        assert set(doc) == {"id", "source", "invocation"} and doc["id"] == base["id"]
-        for key in ("source", "invocation"):
-            assert json.dumps(doc[key]) == json.dumps(base[key]), (base["id"], key)
+        _check_corpus_fixture_provenance(base)
+
+
+def test_exact_baseline_fixture_alias_is_explicit_and_rejects_a_changed_id():
+    for ident in EXACT_FIXTURE_ALIASES:
+        original = next(case for case in corpus()["cases"] if case["id"] == ident)
+        _check_corpus_fixture_provenance(original)
+        altered = deepcopy(original)
+        altered["provenance"]["fixture_case_id"] = "unrelated:fixture"
+        with pytest.raises(AssertionError):
+            _check_corpus_fixture_provenance(altered)
+        assert altered["source"] == original["source"] and altered["invocation"] == original["invocation"]
 
 
 # ---------------------------------------------------------------------------------------------
@@ -1738,18 +1831,18 @@ def test_i4p_ruling5_kernel_reason_without_a_run_is_g5_attempt_in_the_reader():
 # (admitted, not eligible) or a gate and code. An admitted rewrite that changes the classes states its own
 # `expected_classifications`. Detail texts are not pinned.
 # ---------------------------------------------------------------------------------------------
-N07_W_C2 = {"sparse_interactive": ("1a9fee6115140a843cdca6ae78f50223421285126356fbc4a064ed6525288535", "52bec4cd76d819c4848fd773850f571aefa98f1e1cb55075bd29cfc705b72e38"),
-            "dense_scrutiny": ("12d6696340acb1a772e2b666365bdea329dc78aca45b40756ede820dc13ea4c8", "83cdc160c391fced072af2baf025ea4ab990c8ceeb58b75a442a358ed24901be")}
+N07_W_C2 = {"sparse_interactive": ("61d0b0a45492f6e73089dcbe96cac7e7ee0d2f4acc9d901ead79eeb48eef084c", "7a6fdcc4d300718e8ea7d91642977928d8e33bd27fc53746a0664cf8bb892122"),
+            "dense_scrutiny": ("491e836dfbe4356d831f611ae6ffefd984611cecf7f336ce49838537a1475e14", "7c5c7414b090c38f7a04cf129407db305cf4fcf21d872f4e5df1328e5a16f73d")}
 # PR-N (I109): the dense W-C2 and (C, B, A) successors re-pinned at the correctly rounded `rigid:N0`
 # support force magnitude (one ulp above macOS libm's hypot chain), one pin for every platform.
 # PP `retained_facade_tests.rs` REVERSED_PINNED, CBA_PINNED and AA2_PINNED: (receipt sha256, successor bytes sha256).
 N07_PP_PINNED = {
-    "cause_milestone_reversed_sparse_interactive": ("68b76cbf32b6b6b114d486fa94b952abe27999e55d811f1f3b2803cbe7b9ee01", "ae199588e10ec046916d3db9a66b907412be2fc1ae95badad507549e32d8457c"),
-    "cause_milestone_reversed_dense_scrutiny": ("754931b5c5639e92800c1344825b41773ed044e87137d944b3d4444695764be6", "c0513c0d6804f19ee2245a74f1342bcbff24082bdab0004c736fc53f4dae7f5b"),
-    "sf2_c_b_a_sparse_interactive": ("623bef4858f637a1505c65014b95dbb9189fe19ff2ae608d40f4f004016df562", "48f33043a8216f08171efbcabbf391ba81b3332ae9b0149a0a41604100899593"),
-    "sf2_c_b_a_dense_scrutiny": ("80ce2e742c09214194678065c17a1f99d0d0dcabf8679188adf49e5b3f02c6e9", "17b2f1e60618a89a0efae35646b30126f215eac98641760fbdc7430d7b5d718d"),
-    "sf2_a_a2_sparse_interactive": ("36dd81d88c83698f4c61249852c7f18006464dea7766326f2a01c51e6f853338", "fa5ee27d17c062baaa4b1c5a15505d29ff9e1e482fd9a1931830cc5cb2028547"),
-    "sf2_a_a2_dense_scrutiny": ("add882b91eae4004b3bcca26a34ccc0a7f038a50a450e010286d28b1e271466f", "46a25c19585342ae47dce33085c110da34aa59d6bedea7290955b67c8425feda"),
+    "cause_milestone_reversed_sparse_interactive": ("412b87a85ee73597bfc374aefb3f281e40a0355d611c4f5d25c2a1b08e3a5cab", "3b9a649c1e76b89253f80ee51d240ff9eb9f535575fb75708cfcbbb5ca6e85a4"),
+    "cause_milestone_reversed_dense_scrutiny": ("e61c6c98f69ac615c8cba42004bf122f2ca4bebb3fa532d6c4897a64d779c28f", "41988f39f892d0e566536f65368069efa2ed91924be342510620aa934edcd5e1"),
+    "sf2_c_b_a_sparse_interactive": ("b7510959e46f8dfc144dfc864127b395dc0c263d88d11ed137b823619aeb5002", "5060b69a6bc1ce4bec2099ae914a0d9999b41f5caae145ab0571d91dadf11066"),
+    "sf2_c_b_a_dense_scrutiny": ("278a438342408771436e95f9cbfbd44acb04d7f86245a4cfd8f80e39ba4c564b", "32c628235fe54e2135cb233cb29fdb180ce2a3c1f6fb11ed040ba32e01ef9c4b"),
+    "sf2_a_a2_sparse_interactive": ("8c6b058d4313dd35192cf2143127a496bdbc9ef4a41f53de43427e12cede73e4", "af7de55c636cd25e34c2f627e4fdb1456fdac7fa2293dfb32eaa396aa46ed55a"),
+    "sf2_a_a2_dense_scrutiny": ("002deb4e1efd6bf4ee61fd1e72bb952e201654b36c45ed2b6ecefe7014e7ab9a", "a8061555fc0477010cdd85f39325c6ed77e6c569a9a09cff1f36890f0e58e608"),
 }
 N07_BASES = ["w_c2_sparse_interactive", "w_c2_dense_scrutiny", "d38_beside_selected"] + list(N07_PP_PINNED)
 N07_KEYS = {"id", "base", "edits", "invocation_edits", "after_rehash", "rehash", "expected", "expected_by_reader", "expected_eligibility",
@@ -1924,6 +2017,75 @@ def test_current_shared_corpus_contract():
                           classes=classes if kind == "must_pass" else None)
             _current_read(source, None, transport, entry["id"] + ":transport",
                           transport=True)
+
+
+def test_w1_interior_corpus_controls_bind_actual_span_maxima():
+    """Consume the four current writer outputs without repeating the old cohort."""
+    data = corpus()
+    cases = [case for case in data["cases"] if case["id"].startswith("w1_member_interior_")]
+    assert len(cases) == 4
+    for case in cases:
+        assert case["provenance"]["generation_profile"] == "registered_direct"
+        maxima = [row for row in case["source"]["results"]
+                  if row.get("kind") == "pipe_elastic_normal_stress_maximum_v2" and row.get("entity_ref") == "ss:pipe"]
+        assert len(maxima) == 1
+        assert rp.bits(maxima[0]["value"]) == ("400d555555555555" if "_asymmetric_" in case["id"] else "3ff8000000000000")
+        entry = next(entry for entry in data["must_pass"] if entry["base"] == case["id"])
+        for label, source, invocation in [(case["id"], case["source"], case["invocation"]),
+                                           (entry["id"], *apply_entry(case, entry))]:
+            _current_read(source, invocation, "pass", label, classes=case["expected_classifications"], eligibility=case["expected"])
+            _current_read(source, None, "pass", label + ":unbound", classes=case["expected_classifications"], eligibility=NOT_ELIGIBLE)
+            _current_read(source, None, "pass", label + ":transport", eligibility=NOT_ELIGIBLE, transport=True)
+
+
+def test_member_data_corpus_pair_is_synthetic_and_decisive(monkeypatch):
+    """Only declared member entries establish data in the zeroed-nodal pair.
+
+    This is a resealed reader-attestation control, not another genuine solve.
+    Removing just the independent member-data fact must make its false flag
+    survive; both native and wasm consume the same explicit corpus pair.
+    """
+    data = corpus()
+    positive = next(e for e in data["must_pass"] if e["id"] == "member_load_data_from_declared_entries")
+    negative = next(e for e in data["mutations"] if e["id"] == "member_load_body_has_data_false")
+    assert positive["base"] == negative["base"]
+    assert positive["provenance"] == negative["provenance"]
+    assert positive["provenance"]["kind"] == "synthetic_reader_attestation_only"
+    assert positive["provenance"]["not_a_genuine_solve"] and positive["provenance"]["not_a_physics_reference"]
+    base = next(c for c in data["cases"] if c["id"] == positive["base"])
+    valid, invocation = apply_entry(base, positive)
+    false_data, false_invocation = apply_entry(base, negative)
+    assert rp.validate_retained_precision(valid, invocation)["numerical_eligible"]
+    with pytest.raises(rp.RetainedPrecisionError) as error:
+        rp.validate_retained_precision(false_data, false_invocation)
+    assert (error.value.gate, error.value.code) == ("G5a", "RETAINED_PRECISION_SCALE_MISMATCH")
+    independent = rp.dml.recompute
+    monkeypatch.setattr(rp.dml, "recompute", lambda source: (independent(source)[0], set()))
+    # The complete independent digest remains intact; only the new data fact
+    # is disabled. This verifies that no earlier parity check masks the rule.
+    assert rp.validate_retained_precision(false_data, false_invocation)["numerical_eligible"]
+
+
+def test_member_combination_witness_preserves_old_string_reasons():
+    """A new dictionary cause must not reinterpret nodal base-withheld strings."""
+    data = corpus()
+    for mode in ("sparse_interactive", "dense_scrutiny"):
+        base = next(c for c in data["cases"] if c["id"] == f"w_cb4a_{mode}")
+        assert any(isinstance(c.get("reason"), str) for c in base["source"]["retained_precision"]["body"]["combinations"])
+        result = rp.validate_retained_precision(deepcopy(base["source"]), deepcopy(base["invocation"]))
+        assert {k: result[k] for k in ("invocation_bound", "numerical_eligible", "standing")} == base["expected"]
+    for ident, section in (("w1_member_combination_sparse_interactive", "cases"),
+                           ("operand_member_loads_without_member_operand", "mutations"),
+                           ("combination_with_member_load_operand_selected", "mutations")):
+        entry = next(e for e in data[section] if e["id"] == ident)
+        if section == "cases":
+            assert rp.validate_retained_precision(deepcopy(entry["source"]), deepcopy(entry["invocation"]))["numerical_eligible"]
+        else:
+            base = next(c for c in data["cases"] if c["id"] == entry["base"])
+            source, invocation = apply_entry(base, entry)
+            with pytest.raises(rp.RetainedPrecisionError) as error:
+                rp.validate_retained_precision(source, invocation)
+            assert (error.value.gate, error.value.code) == ("G8", "RETAINED_PRECISION_PREPARATION_MISMATCH")
 
 
 def test_current_corpus_requires_bound_and_must_pass_declarations():

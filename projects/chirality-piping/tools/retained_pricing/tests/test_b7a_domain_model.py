@@ -1,6 +1,7 @@
 """Source/admission drift, immutable positive transformations and owner closure."""
 from copy import deepcopy
 import hashlib
+import os
 from pathlib import Path
 import runpy
 import shutil
@@ -9,7 +10,7 @@ import sys
 import pytest
 
 PRICING = Path(__file__).resolve().parents[1]
-SOURCE = PRICING.parents[1]
+SOURCE = Path(os.environ.get("B7A_PHASE_TEST_SOURCE", str(PRICING.parents[1])))
 MODEL = runpy.run_path(str(PRICING / "base/b7a_domain_model.py"))
 RETIRED = runpy.run_path(str(PRICING / "lib/b7a_retired_carry.py"))
 
@@ -95,6 +96,27 @@ def test_generated_record_bytes_are_not_a_circular_source_premise(tmp_path):
     MODEL["inspect"](snapshot)
 
 
+def test_reader_identifier_audits_bind_actual_format_sites():
+    # Derive coordinates from the real formats: a source move must not leave
+    # a seemingly valid audit at a stale line until the full pricing replay.
+    relative = "core/reporting/result_export/src/retained_precision.rs"
+    lines = (SOURCE / relative).read_text().splitlines()
+    _, audits, _ = MODEL["text_decisions"](SOURCE, lambda key: key)
+    actual = {key: value for key, value in audits if key.startswith(relative + ":")}
+    expected = {}
+    for needle, classification in (
+        ('format!("captured_requested_mode;', {"mode": {"bytes": 64, "source": "STATIC"}}),
+        ('let selected = json!(format!("diagnostic:retained-precision:{}:selected", text(cid)))',
+         {"text(cid)": {"bytes": 128, "source": "IN128"}}),
+        ('let lead = format!("Load case {}: ", text(cid))',
+         {"text(cid)": {"bytes": 128, "source": "IN128"}}),
+    ):
+        positions = [index + 1 for index, line in enumerate(lines) if needle in line]
+        assert len(positions) == 1
+        expected[f"{relative}:{positions[0]}"] = classification
+    assert actual == expected
+
+
 def test_prepare_preserves_all_unrelated_positive_rules_and_base_bytes(tmp_path):
     import json
     before = {name: (PRICING / "base" / name).read_bytes()
@@ -112,6 +134,7 @@ def test_prepare_preserves_all_unrelated_positive_rules_and_base_bytes(tmp_path)
     assert actual_loop == expected_loop
     actual_text = json.loads(Path(paths["text_args.g4.json"]).read_text())
     expected_text = deepcopy(old_text)
+    expected_text["id_audit"].pop("core/solver/frame_kernel/src/structural/retained/adaptive.rs:5082")
     expected_text["id_audit"]["core/product_physics/src/lib.rs:10230"]["basis_record"] = {"bytes": 2914, "source": "COMP"}
     old_join = MODEL["BASE_PREIMAGES"]["provenance_join"]
     expected_text["join_rules"][expected_text["join_rules"].index(old_join)] = next(
@@ -177,21 +200,21 @@ def test_new_uniform_identifier_classes_are_site_specific_input_bounds():
     # T4-U6/U8: the same sites on the priced source's unchanged lines (B7b's 10632.. + 359; certified_loads + 3;
     # the final source 588de796a4: lib.rs + 5 more).
     sites = {
-        "lib.rs:10996": {"load_case_id"},
-        "lib.rs:11010": {"stable_suffix(load_case_id)", "stable_suffix(&load.load_id)"},
-        "lib.rs:11017": {"load.load_id", "bend.pipe_id"},
-        "lib.rs:11022": {"load.load_id"},
-        "lib.rs:11023": {"bend.pipe_id"},
-        "lib.rs:11024": {"bend.component_id"},
-        "lib.rs:11025": {"load_case_id"},
-        "lib.rs:11084": {"stable_suffix(load_case_id)", "stable_suffix(&load.load_id)"},
-        "lib.rs:11091": {"load.load_id", "bend.pipe_id"},
-        "lib.rs:11096": {"load.load_id"},
-        "lib.rs:11097": {"bend.pipe_id"},
-        "lib.rs:11098": {"bend.component_id"},
-        "lib.rs:11099": {"load_case_id"},
-        "lib.rs:11138": {"stable_suffix(&load.load_id)"},
-        "lib.rs:11145": {"load.load_id", "load_case_id"},
+        "lib.rs:10998": {"load_case_id"},
+        "lib.rs:11012": {"stable_suffix(load_case_id)", "stable_suffix(&load.load_id)"},
+        "lib.rs:11019": {"load.load_id", "bend.pipe_id"},
+        "lib.rs:11024": {"load.load_id"},
+        "lib.rs:11025": {"bend.pipe_id"},
+        "lib.rs:11026": {"bend.component_id"},
+        "lib.rs:11027": {"load_case_id"},
+        "lib.rs:11086": {"stable_suffix(load_case_id)", "stable_suffix(&load.load_id)"},
+        "lib.rs:11093": {"load.load_id", "bend.pipe_id"},
+        "lib.rs:11098": {"load.load_id"},
+        "lib.rs:11099": {"bend.pipe_id"},
+        "lib.rs:11100": {"bend.component_id"},
+        "lib.rs:11101": {"load_case_id"},
+        "lib.rs:11140": {"stable_suffix(&load.load_id)"},
+        "lib.rs:11147": {"load.load_id", "load_case_id"},
         "certified_loads.rs:236": {"case_id"},
         "certified_loads.rs:259": {"case_id"},
     }

@@ -13,7 +13,7 @@ import sys
 import pytest
 
 PRICING = Path(__file__).resolve().parents[1]
-SOURCE = PRICING.parents[1]
+SOURCE = Path(os.environ.get("B7A_PHASE_TEST_SOURCE", str(PRICING.parents[1])))
 MODEL = runpy.run_path(str(PRICING / "base/b7a_formation_model.py"))
 DOMAIN = runpy.run_path(str(PRICING / "base/b7a_domain_model.py"))
 RETIRED = runpy.run_path(str(PRICING / "lib/b7a_retired_carry.py"))
@@ -73,7 +73,7 @@ def test_raw_formation_owners_crlf_and_missing_refuse(tmp_path, file):
     ("core/product_physics/src/formation_guard.rs", "for row in &rows"),
     ("core/product_physics/src/self_weight.rs", "if !recognized && !looks_generated"),
     ("core/product_physics/src/retained_memory.rs", "fn domain_clauses("),
-    ("core/solver/frame_kernel/src/structural/formation_check.rs", "for p in &source.loads"),
+    ("core/solver/frame_kernel/src/structural/formation_check.rs", "for p in source.loads.iter()"),
 ])
 def test_constructor_census_guard_and_current_owner_drift_refuses(tmp_path, file, fragment):
     snapshot = source_copy(tmp_path)
@@ -187,8 +187,12 @@ def test_real_prepared_rule_priority_keeps_q_and_function_qualified_n(tmp_path, 
     prepared = inherited
     # Carry the actual base rules before SQ2, as the canonical driver does.
     # The source-local TEXT guards require current authoritative keys.
-    repo = SOURCE.parents[1]
-    target = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo, text=True).strip()
+    repo = PRICING.parents[3]
+    revision = os.environ.get("B7A_PHASE_TEST_REV")
+    if SOURCE != PRICING.parents[1] and not revision:
+        raise ValueError("archived test source requires B7A_PHASE_TEST_REV")
+    target = subprocess.check_output(["git", "rev-parse", "--verify", (revision or "HEAD") + "^{commit}"],
+                                     cwd=repo, text=True).strip()
     rule_files = ("callgraph_rules.g4.json", "loop_bounds.g4.json",
                   "text_args.g4.json", "sens.py", "premise_pins.json")
     mapped_rules = tmp_path / "map"
@@ -229,7 +233,8 @@ def test_real_prepared_rule_priority_keeps_q_and_function_qualified_n(tmp_path, 
     for header, _, _, _ in MODEL["O10_PREIMAGES"]:
         inner = header in ("for (j, expected) in manifest.iter().enumerate()",
                            "for p in source.loads.iter().filter(|p| p.term_index == i)")
-        assert first(header)["bound"] == ("1" if inner else "12*l"), (route, header, first(header))
+        current_header = "for p in source.loads.iter()" if header == "for p in &source.loads" else header
+        assert first(current_header)["bound"] == ("1" if inner else "12*l"), (route, current_header, first(current_header))
     for index, _, _, _, wanted in MODEL["BASE_LOOP_PREIMAGES"]:
         # Use actual representative headers, not a claim of rule presence.
         header = {211:"iter:terms.iter().map",225:"for t in &d.terms",
@@ -251,7 +256,7 @@ def test_real_prepared_rule_priority_keeps_q_and_function_qualified_n(tmp_path, 
     for key in ("formation_guard.rs:239", "formation_guard.rs:241", "formation_guard.rs:251", "formation_guard.rs:322"):
         assert key in text["site_total"]
     assert text["lex_site_size"]["formation_guard.rs:330"]["class"] == 993964
-    assert text["lex_site_size"]["retained_product.rs:545"]["class"] == 994321
+    assert text["lex_site_size"]["retained_product.rs:611"]["class"] == 994321
     assert text["site_total"][current("load_ledger.rs:133")]["bytes"] == "5*cases*(12*l)*2*128"
     assert text["site_total"][current("load_ledger.rs:408")]["bytes"] == "4*cases*(12*l)*2*128"
     # Two independent lists are an occurrence multiplier; the final2 is
@@ -314,7 +319,21 @@ def test_retained_and_independent_value_copies_are_consumed_in_actual_models():
     assert 'finding_capture(_finding_cases, n, l, ID)' in producer
     g4 = (PRICING / "base/g4_caps.py").read_text()
     assert 'ORDINARY += FINDING_VALUE' in g4
-    assert 'FINDING_VALUE_BUILD = FINDING_VALUE.tree() * 2' in g4
+    # L3 removes only the independently built transient; the body owner and
+    # named form remain. Both source cohorts execute the actual expression.
+    import ast
+    from types import SimpleNamespace
+    import sys
+    sys.path.insert(0, str(PRICING / "base"))
+    from g3lib import X
+    assignment = next(node for node in ast.parse(g4).body if isinstance(node, ast.Assign)
+        and any(isinstance(t, ast.Name) and t.id == "FINDING_VALUE_BUILD" for t in node.targets))
+    for reduced, expected in [(False, {"1": 22}), (True, {})]:
+        scope = {"X": X, "SNAP": str(SOURCE),
+                 "_w1_reductions_model": SimpleNamespace(inspect=lambda _: reduced),
+                 "FINDING_VALUE": SimpleNamespace(tree=lambda: X({"1": 11}))}
+        exec(compile(ast.Module(body=[assignment], type_ignores=[]), "actual L3 owner", "exec"), scope)
+        assert scope["FINDING_VALUE_BUILD"] == expected
     assert 'form("FORMATION_VALUE_BUILD", FINDING_VALUE_BUILD)' in g4
     namespace = {}
     import ast
@@ -362,10 +381,10 @@ def test_newly_reached_identifier_audits_bind_exact_production_expressions():
         "pipe.len()":{"bytes":20,"source":"NUM"},
     }
     fc = "core/solver/frame_kernel/src/structural/formation_check.rs:"
-    for line in (508,514,524,574,587,594):
+    for line in (509,515,525,575,588,595):
         assert table[fc+str(line)] == {
             "terms[p.term_index].source":{"bytes":128,"source":"IN128"}}
-    for line in (626,636,642,648,MODEL["FIRST_RETURN_LINE"]):
+    for line in (627,637,643,649,MODEL["FIRST_RETURN_LINE"]):
         assert table[fc+str(line)] == {
             "term.source":{"bytes":128,"source":"IN128"}}
     # These are literal producer/source edges under the existing raw guards,

@@ -1,6 +1,6 @@
-"""Current B7a stage-1 route and successor premises.
+"""Current W1 stage-2 route and successor premises.
 
-Draft consumer interface. Refused/foreign ordinary paths keep their full
+Refused/foreign ordinary paths keep their full
 candidate; this helper does not admit a request or construct a permit.
 """
 from pathlib import Path
@@ -11,16 +11,16 @@ import re
 from collections import Counter
 from copy import deepcopy
 
-VERSION = "b7a-stage1-v1"
-MARKER = "b7a_stage1_phase"
-CONTEXT_FILE = "b7a_stage1_phase.g4.json"
+VERSION = "w1-stage2-v1"
+MARKER = "w1_stage2_phase"
+CONTEXT_FILE = "w1_stage2_phase.g4.json"
 COUNT_ROLES = {"actual_authored_cases": "lc", "typed_storage_ceiling": "C_eq",
                "caps_storage_key": "c",
                "combination_slots": "z", "per_authored_case_inputs": "l"}
 COUNTS = {
     "L": {"force_per_case": "12*l", "formed_per_case": "12*l",
           "named": "C_eq", "states": "1+C_eq", "ordinary_findings": "C_eq",
-          "success_findings": "max(lc-1,0)"},
+          "success_findings": "lc"},
     "E": {"force_per_case": "l", "formed_per_case": "0",
           "named": "0", "states": "1", "ordinary_findings": "0",
           "success_findings": "0"},
@@ -29,14 +29,13 @@ FAILED = {"route": "L", "cases": 1, "force_per_case": "l",
           "formed_per_case": 0, "named": 0, "states": 1, "findings": 0,
           "held": ["blocked_original", "failed_manifest"],
           "during_T16": ["blocked_original", "failed_manifest", "staged_manifest"]}
-INVALIDATION = (
-    "Making member cases preparable or Frozen in W1 stage 2 invalidates this "
-    "source warrant and requires actual repricing and re-registration."
-)
+INVALIDATION = ("The stage-1 lc-1 preparation-refusal credit is retired. Every authored "
+                "route-L case can carry formed member loads; ordinary and successful "
+                "formation owners therefore both keep the full authored-case count.")
 FG_FILE = "core/product_physics/src/formation_guard.rs"
 FG = FG_FILE + ":304:load_row_finding"
 DECIDE = FG_FILE + ":223:decide_row"
-SOLVE = "core/product_physics/src/lib.rs:4505:solve_prepared_load_case"   # final source 588de796a4 (PP: 4500; B7b: 4427; B7a: 4442)
+SOLVE = "core/product_physics/src/lib.rs:4507:solve_prepared_load_case"   # final source 588de796a4 (PP: 4500; B7b: 4427; B7a: 4442)
 ROW_LOOP = "for row in &rows"
 LOOP_RULE = {
     "fn": "formation_guard.rs:304:load_row_finding",
@@ -77,11 +76,16 @@ def adjacent(name):
 
 def inspect(snapshot):
     # This binds all current source producers, the full non-generated
-    # admission prefix and sole permit/law bodies, including stage-1 member
-    # refusal, failed custody, same-request preparation and publication.
+    # admission prefix and sole permit/law bodies, failed custody,
+    # same-request preparation/publication and the stage-2 member path.
     proof = adjacent("b7a_scoped_text_model.py")["inspect"](snapshot)
-    proof["stage1_phase_model_sha256"] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
-    proof["stage1_phase_count_roles"] = deepcopy(COUNT_ROLES)
+    proof["w1_stage2_phase_model_sha256"] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    proof["w1_stage2_phase_count_roles"] = deepcopy(COUNT_ROLES)
+    reduction = adjacent("w1_reductions_model.py")
+    reduced = reduction["inspect"](snapshot)
+    proof["w1_reductions"] = {"reduced": reduced,
+        "source_sha256": deepcopy(reduction["REDUCED_PINS"] if reduced else reduction["RF_PINS"])}
+    proof["w1_member_loads"] = adjacent("w1_member_load_model.py")["inspect"](snapshot)
     return proof
 
 
@@ -94,7 +98,7 @@ def transform(snapshot, route, loops, text):
     context = {"version": VERSION, "route": route, "branch": "ordinary",
                "counts": deepcopy(COUNTS[route]),
                "count_roles": deepcopy(COUNT_ROLES),
-               "failed_preview": deepcopy(FAILED), "stage2_invalidates": True}
+               "failed_preview": deepcopy(FAILED), "member_loads_preparable": True}
     result_loop, result_text = deepcopy(loops), deepcopy(text)
     result_loop[MARKER] = deepcopy(context)
     result_text[MARKER] = deepcopy(context)
@@ -116,7 +120,7 @@ def state(snapshot, loops, text, graph=None, formats=None, lexical=None,
     expected = {"version": VERSION, "route": route, "branch": branch,
                 "counts": deepcopy(COUNTS[route]),
                 "count_roles": deepcopy(COUNT_ROLES),
-                "failed_preview": deepcopy(FAILED), "stage2_invalidates": True}
+                "failed_preview": deepcopy(FAILED), "member_loads_preparable": True}
     if context != expected or text.get(MARKER) != expected:
         raise ValueError("B7a phase: context/route/count drift")
     verify_rules(loops, text)
@@ -307,7 +311,7 @@ def ordinary_counts(context, actual_cases, storage_cases, loads):
 
 def successful_counts(context, actual_cases, storage_cases, loads):
     ordinary = ordinary_counts(context, actual_cases, storage_cases, loads)
-    formed_cases = 0 if context["route"] == "E" else max(actual_cases - 1, 0)
+    formed_cases = 0 if context["route"] == "E" else actual_cases
     return dict(ordinary, formed_cases=formed_cases, finding_cases=formed_cases,
                 force_total=12 * loads * formed_cases + loads * (actual_cases - formed_cases),
                 formed_total=12 * loads * formed_cases, storage_cases=storage_cases)
@@ -329,15 +333,28 @@ def formed_owner(context, actual_cases, storage_cases, loads, ident, *, owner, b
     from g3lib import X, V, B
     wide = adjacent("b7a_domain_model.py")
     q = 12 * loads
+    # W1-L1a/b/L2: the source pin covers producer, comparison and consuming paths.
+    # Mathematical callers with no snapshot keep the historical owner factory;
+    # every production pricing invocation supplies RP_SNAPSHOT.
+    import os
+    snapshot = os.environ.get("RP_SNAPSHOT")
+    reduced = adjacent("w1_reductions_model.py")["inspect"](snapshot) if snapshot else False
     if owner == "assembled_children":
         value = wide["primitive_copy"](q) + wide["manifest_copy"](q) + wide["formation_children"](q)
-    elif owner in ("typed_source_children", "scaled_force_children"):
+    elif owner == "typed_source_children":
+        # L1a borrows primitives; L1b compares one temporary closure entry.
+        value = wide["manifest_copy"](1) if reduced and loads else (
+            X() if reduced else wide["primitive_copy"](q) + wide["manifest_copy"](q))
+    elif owner == "scaled_force_children":
         value = wide["primitive_copy"](q) + wide["manifest_copy"](q)
     elif owner == "recovery_source_children":
-        value = wide["primitive_copy"](q)
+        value = X() if reduced else wide["primitive_copy"](q)
     elif owner == "uniform_constructor":
         requested, _ = wide["formation_constructor"]()
-        value = wide["formed_constructor"](q) + requested * loads
+        # L2: one straight constructor call and one attach-last staging term
+        # coexist at most; moved returned rows remain separately resident.
+        value = (wide["formed_constructor"](1) + requested if loads else X()) if reduced else (
+            wide["formed_constructor"](q) + requested * loads)
     elif owner == "element_application":
         value = V("ElementUniformLoadContribution", loads) + B(loads * ident)
     else:
