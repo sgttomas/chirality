@@ -178,10 +178,24 @@ def semantic_edges(documents):
 
 
 def changed_paths(repo, value):
+    selection = {}
     if value.startswith('PR:') or value.startswith('https://github.com/'):
         pr = value[3:] if value.startswith('PR:') else value
-        data = json.loads(run(['gh', 'pr', 'view', pr, '--json', 'files,headRefOid,baseRefOid,url'], repo))
-        return [item['path'] for item in data['files']], {'pr': data['url'], 'head': data['headRefOid'], 'base': data['baseRefOid']}
+        # GitHub's file list is truncated (gh returns at most 100 files), so
+        # diff the PR's base and head locally: complete, or an explicit error.
+        data = json.loads(run(['gh', 'pr', 'view', pr, '--json', 'baseRefOid,headRefOid,url'], repo))
+        url = data.get('url', pr) if isinstance(data, dict) else pr
+        for role in ('base', 'head'):
+            oid = data.get(role + 'RefOid') if isinstance(data, dict) else None
+            if not isinstance(oid, str) or not re.fullmatch(r'[0-9a-f]{40,64}', oid):
+                raise Invalid(f'{url}: gh returned no {role} commit')
+            try:
+                selection[role] = revision(repo, oid)
+            except Invalid:
+                raise Invalid(f'{url}: {role} commit {oid} is not in this repository; '
+                              f'fetch it (for example `git fetch origin {oid}`) and retry') from None
+        selection['pr'] = url
+        value = f'{selection["base"]}...{selection["head"]}'
     if value.startswith('-'):
         raise Invalid('diff must be a revision or revision range')
     # A single revision means that commit's change, never the working tree.
@@ -195,7 +209,7 @@ def changed_paths(repo, value):
         selection = {'commit': commit, 'parent': parents[0] if parents else None}
     else:
         args = ['git', 'diff', '--no-renames', '--name-only', '-z', value, '--']
-        selection = {'diff': value}
+        selection['diff'] = value
     paths = run(args, repo).split('\0')
     return sorted(filter(None, paths)), selection
 
