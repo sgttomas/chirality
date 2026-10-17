@@ -1,13 +1,21 @@
 //! Bounded exact predicates for the declared, represented source equations.
 //!
 //! This is not the ordinary structural gate, a primitive-engineering certificate,
-//! or a replacement for it. All free connected components must have order <= 2.
+//! or a replacement for it. Every free connected component must have order at
+//! most its entry's cap: 4 on the functional entry and its replay, 2 on the
+//! legacy entries (RF source-method design §2.1). On the functional entry, a
+//! declared congruence member's exact entries are Tᵀ·K_local·T, formed exactly
+//! from its declared binary64 operands, in place of its rounded global
+//! contributions (RF design §3.3, [`CongruenceMember`]).
 //! Private owned source and private response construction prevent caller-supplied
 //! reports from serving as proofs. Projection is explicitly distinct from proof.
 use super::retained::work::WorkTotal;
 use super::{Expansion, StiffnessContribution, StructuralError, StructuralSystem};
+use crate::Matrix12;
 
 pub mod functionals;
+#[cfg(any(test, feature = "exact-operation-count"))]
+pub mod exact_operation_count;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Sign {
@@ -54,6 +62,168 @@ pub enum ForceLevel {
     DeclaredVector,
     IdentifiedRepresentedContributions,
 }
+/// RF source-method design §3.1 and §3.3: one member of the functional
+/// entry's exact-congruence list. A member whose transform is not a signed
+/// permutation has no exactly declared global entries: its rounded global
+/// contributions fl(Tᵀ·fl(K_local·T)) stay in `StructuralSystem::contributions`,
+/// where the coverage check binds them to the aggregate (through its ordered
+/// fold, which is how the aggregate was formed), but they do not enter the
+/// exact matrix. Its exact entries are instead G = Tᵀ·K_local·T, formed exactly
+/// from these declared binary64 operands and scattered at `dofs`. The legacy
+/// entries take no such list.
+#[derive(Debug, Clone, PartialEq)]
+pub struct CongruenceMember {
+    /// The member's 12 global DOFs, in local order (its element DOF map).
+    pub dofs: [usize; 12],
+    /// The declared binary64 K_local (`FrameElement::local_stiffness`).
+    pub local_stiffness: Matrix12,
+    /// The declared binary64 T (`FrameOrientation::transformation_matrix`).
+    pub transform: Matrix12,
+    /// The index range of the member's 144 rounded contributions in
+    /// `StructuralSystem::contributions`: contribution `start + 12·p + q` is
+    /// at (`dofs[p]`, `dofs[q]`).
+    pub contributions: std::ops::Range<usize>,
+}
+impl CongruenceMember {
+    fn operands(&self) -> impl Iterator<Item = &f64> {
+        self.local_stiffness.iter().chain(&self.transform).flatten()
+    }
+    fn same_bits(&self, other: &Self) -> bool {
+        self.dofs == other.dofs
+            && self.contributions == other.contributions
+            && self
+                .operands()
+                .zip(other.operands())
+                .all(|(a, b)| a.to_bits() == b.to_bits())
+    }
+}
+/// The source terms one congruence member adds to the source count, beside its
+/// 144 rounded contributions (which stay counted): K_local's and T's values.
+const CONGRUENCE_VALUES: usize = 288;
+/// The scalars inspected and copied per congruence member: its 288 operand
+/// values, its 12 DOF map entries and its contribution range's 2 bounds.
+const CONGRUENCE_SCALARS: usize = 302;
+/// RF design §3.3: refuses a malformed congruence list (`Invalid`) before any
+/// formation: a DOF map entry outside the source, a non-finite operand, a
+/// contribution range that is out of bounds, not 144 long, overlapping
+/// another's or not at its map's (row, column) pairs in local row-major
+/// order. Returns the members' indices in contribution order. Charged per
+/// member before inspection: at most two checks per scalar, and the members'
+/// pairwise count for the ordering and disjointness scan. An empty list is
+/// free.
+fn congruence_order(
+    members: &[CongruenceMember],
+    contributions: &[StiffnessContribution],
+    n: usize,
+    w: &mut Work,
+) -> Result<Vec<usize>, Error> {
+    let m = members.len();
+    if m == 0 {
+        return Ok(Vec::new());
+    }
+    w.charge(
+        m.saturating_mul(2 * CONGRUENCE_SCALARS)
+            .saturating_add(m.saturating_mul(m)),
+    )?;
+    for member in members {
+        if member.dofs.iter().any(|&d| d >= n) {
+            return Err(Error::Invalid("congruence member map"));
+        }
+        if member.operands().any(|x| !x.is_finite()) {
+            return Err(Error::Invalid("congruence member operands"));
+        }
+        let range = &member.contributions;
+        if range.len() != 144
+            || range.end > contributions.len()
+            || contributions[range.clone()].iter().enumerate().any(|(e, c)| {
+                c.row != member.dofs[e / 12] || c.col != member.dofs[e % 12]
+            })
+        {
+            return Err(Error::Invalid("congruence member contributions"));
+        }
+    }
+    let mut order: Vec<usize> = (0..m).collect();
+    order.sort_unstable_by_key(|&i| members[i].contributions.start);
+    if order
+        .windows(2)
+        .any(|p| members[p[0]].contributions.end > members[p[1]].contributions.start)
+    {
+        return Err(Error::Invalid("congruence member contributions"));
+    }
+    Ok(order)
+}
+/// RF source-method design §3.3 and §3.5: the exact congruence
+/// G[i][j] = Σ_k Σ_l T[k][i]·K[k][l]·T[l][j] of the declared binary64 K and T,
+/// through `Work` (metered), in the two-stage order Tᵀ·(K·T): first
+/// KT[k][j] = Σ_l K[k][l]·T[l][j], then G[i][j] = Σ_k T[k][i]·KT[k][j]. Every
+/// product with a zero factor is skipped, each sum runs in ascending index
+/// order and starts from its first product. Values equal the direct triple
+/// sum's (§3.5); the work is the specified form's. G is exactly symmetric
+/// when K is (the Context's exact symmetry check decides).
+fn congruence_entries(
+    k: &Matrix12,
+    t: &Matrix12,
+    w: &mut Work,
+) -> Result<Vec<Vec<Expansion>>, Error> {
+    // The K·T and G buffers.
+    w.charge(2 * 144)?;
+    let mut kt = vec![vec![Expansion::default(); 12]; 12];
+    for (r, row) in kt.iter_mut().enumerate() {
+        for (j, entry) in row.iter_mut().enumerate() {
+            let mut sum: Option<Expansion> = None;
+            for l in 0..12 {
+                if k[r][l] == 0.0 || t[l][j] == 0.0 {
+                    continue;
+                }
+                let a = w.scalar(k[r][l])?;
+                let b = w.scalar(t[l][j])?;
+                let product = w.mul(&a, &b)?;
+                sum = Some(match sum {
+                    None => product,
+                    Some(s) => w.sum(&s, &product, 1.0)?,
+                });
+            }
+            *entry = sum.unwrap_or_default();
+        }
+    }
+    let mut g = vec![vec![Expansion::default(); 12]; 12];
+    for (i, row) in g.iter_mut().enumerate() {
+        for (j, entry) in row.iter_mut().enumerate() {
+            let mut sum: Option<Expansion> = None;
+            for r in 0..12 {
+                if t[r][i] == 0.0 || kt[r][j].is_zero() {
+                    continue;
+                }
+                let a = w.scalar(t[r][i])?;
+                let product = w.mul(&a, &kt[r][j])?;
+                sum = Some(match sum {
+                    None => product,
+                    Some(s) => w.sum(&s, &product, 1.0)?,
+                });
+            }
+            *entry = sum.unwrap_or_default();
+        }
+    }
+    Ok(g)
+}
+/// RF design §3.3: adds a congruence member's exact entries into k at its DOF
+/// map, entry by entry in local row-major order (its contributions' order).
+fn add_congruence(
+    k: &mut [Vec<Expansion>],
+    member: &CongruenceMember,
+    w: &mut Work,
+) -> Result<(), Error> {
+    let g = congruence_entries(&member.local_stiffness, &member.transform, w)?;
+    for (p, row) in g.iter().enumerate() {
+        for (q, entry) in row.iter().enumerate() {
+            let target = &mut k[member.dofs[p]][member.dofs[q]];
+            for &term in &entry.terms {
+                w.add(target, term)?;
+            }
+        }
+    }
+    Ok(())
+}
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Limits {
     pub dofs: usize,
@@ -71,6 +241,30 @@ impl Default for Limits {
         }
     }
 }
+/// The per-pair constant C₂ of the metered `Work::mul` (RF source-method
+/// design §5.3). It covers one two-product of `add_product_charged` under the
+/// declared cost model, whose unit is one floating-point +, −, ×, fused
+/// multiply-add or `powi` (comparisons, clamps and integer exponent arithmetic
+/// are free): two exponent reads (0); four `exact_radix` scalings, at most 3
+/// iterations each for the operands (|ea|, |eb| ≤ 1074) and at most 5 each for
+/// lo and hi (|ea + eb| ≤ 2148), 4 per iteration; and the product with its
+/// fused residual (2). That is at most 66, leaving a margin of 30.
+const PAIR_CHARGE: usize = 96;
+/// RF source-method design §2.1: the largest free block order each Context
+/// entry admits. The functional entry (`Context::prepare_with_budget`) and its
+/// replay (`RetainedFunctionalSet::replay_against`) admit 4. The legacy entries
+/// (`Context::new` and the legacy `RetainedResponse::replay_against`, which the
+/// strict-gap qualification uses) keep 2, so its block scope does not widen.
+/// A replayed Context uses its producing entry's cap.
+const FUNCTIONAL_ORDER_CAP: usize = 4;
+const LEGACY_ORDER_CAP: usize = 2;
+/// `Work::add`'s grow-expansion charge on the current length `len`: `len`
+/// two-sum steps of 6 operations, plus the final term.
+fn grow_charge(len: usize) -> Result<usize, Error> {
+    len.checked_mul(6)
+        .and_then(|n| n.checked_add(1))
+        .ok_or(Error::Budget)
+}
 #[derive(Debug)]
 struct Work {
     limits: Limits,
@@ -83,23 +277,33 @@ impl Work {
         let next = self.used.checked_add(n);
         if next.is_none() || next.is_some_and(|x| x > self.limits.operations) {
             self.rejected = self.rejected.add(WorkTotal::exact_count(n as u64));
+            #[cfg(test)]
+            metered_tests::trace::charge(n, false);
             return Err(Error::Budget);
         }
         self.used = next.unwrap();
+        #[cfg(test)]
+        metered_tests::trace::charge(n, true);
         Ok(())
     }
     fn add(&mut self, a: &mut Expansion, b: f64) -> Result<(), Error> {
+        #[cfg(any(test, feature = "exact-operation-count"))]
+        let probe = exact_operation_count::Probe::start(self.used);
+        #[cfg(test)]
+        let trace = metered_tests::trace::begin_add(self, a);
+        let result = self.grow(a, b);
+        #[cfg(test)]
+        metered_tests::trace::end_add(trace, self, &result);
+        #[cfg(any(test, feature = "exact-operation-count"))]
+        probe.finish_add(self.used);
+        result
+    }
+    fn grow(&mut self, a: &mut Expansion, b: f64) -> Result<(), Error> {
         // Bound the worst next expansion size and operation count before work.
         if a.terms.len() >= self.limits.expansion_terms {
             return Err(Error::Budget);
         }
-        self.charge(
-            a.terms
-                .len()
-                .checked_mul(6)
-                .and_then(|n| n.checked_add(1))
-                .ok_or(Error::Budget)?,
-        )?;
+        self.charge(grow_charge(a.terms.len())?)?;
         a.add(b)?;
         Ok(())
     }
@@ -115,18 +319,48 @@ impl Work {
         self.add(&mut x, v)?;
         Ok(x)
     }
+    /// Metered multiplication, the single work-charging rule of every exact
+    /// attempt (RF source-method design §5; HELP_HUMAN ruling 2026-10-16).
+    /// Both Context entries, every `Response` and `RetainedResponse` method and
+    /// the functional set multiply here: there is no flag and no second regime.
+    ///
+    /// For each term pair, in order: refuse with `Budget` if the output could
+    /// pass `expansion_terms` (E); charge `PAIR_CHARGE` (C₂ = 96) for the
+    /// two-product; then run `add_product`'s sequence unreordered, charging
+    /// `grow_charge` (6·len + 1, `Work::add`'s formula) on the output's current
+    /// length immediately before each of its two grow-expansion adds.
+    ///
+    /// Soundness (§5.2), scoped to arithmetic performed through `Work`:
+    /// every Work step is charged before it executes, by at least its
+    /// operations under §5.3's model, and `charge` refuses before the total
+    /// would pass the limit, so those operations never exceed the charged total
+    /// and the charged total never exceeds the limit. A refusal records its
+    /// amount in `rejected` and returns `Budget`; the partial product is a
+    /// dropped local, so nothing partial escapes. A pair proceeds only at
+    /// len ≤ E − 2, so it charges at most C₂ + (6(E − 2) + 1) + (6(E − 1) + 1)
+    /// = 12E + 80, below the 12E + 128 per pair the replaced up-front precharge
+    /// took (at E = 256: 2·(6·256 + 1) + 96 = 3,170 ≤ 3,200). The arithmetic is
+    /// unchanged, so within one attempt the running total never exceeds the
+    /// replaced rule's for the same executed prefix: a `Budget` refusal can
+    /// only disappear. Across attempts sharing one ledger, an earlier attempt
+    /// that now runs further can leave a later one less. This fails closed as
+    /// a typed `Budget` decline and ordinary publication, or at the composite's
+    /// `reserve_publication`: the pre-0.4 blocking
+    /// `SOURCE_BLOCK_RECOVERY_FINALIZATION_FAILED` refusal (the 0.4 route
+    /// republishes ordinarily). Strict-gap budget exhaustion is `Unsupported`.
     fn mul(&mut self, a: &Expansion, b: &Expansion) -> Result<Expansion, Error> {
-        let pairs = a
-            .terms
-            .len()
-            .checked_mul(b.terms.len())
-            .ok_or(Error::Budget)?;
-        // Reserve a conservative full product workload before any product.
-        self.charge(
-            pairs
-                .checked_mul(12 * self.limits.expansion_terms + 128)
-                .ok_or(Error::Budget)?,
-        )?;
+        #[cfg(any(test, feature = "exact-operation-count"))]
+        let probe = exact_operation_count::Probe::start(self.used);
+        #[cfg(test)]
+        let trace = metered_tests::trace::begin_mul(self, a, b);
+        let result = self.metered_product(a, b);
+        #[cfg(test)]
+        metered_tests::trace::end_mul(trace, self, &result);
+        #[cfg(any(test, feature = "exact-operation-count"))]
+        probe.finish_mul(self.used);
+        result
+    }
+    fn metered_product(&mut self, a: &Expansion, b: &Expansion) -> Result<Expansion, Error> {
         let mut out = Expansion::default();
         for &x in &a.terms {
             for &y in &b.terms {
@@ -135,7 +369,15 @@ impl Work {
                 {
                     return Err(Error::Budget);
                 }
-                out.add_product(x, y, 0)?;
+                #[cfg(any(test, feature = "exact-operation-count"))]
+                let pair = exact_operation_count::Probe::start(self.used);
+                self.charge(PAIR_CHARGE)?;
+                let step = out.add_product_charged(x, y, 0, |len| -> Result<(), Error> {
+                    self.charge(grow_charge(len)?)
+                });
+                #[cfg(any(test, feature = "exact-operation-count"))]
+                pair.finish_pair(self.used);
+                step?;
             }
         }
         Ok(out)
@@ -174,10 +416,24 @@ pub struct BlockWitness {
     b: Option<Vec<f64>>,
     c: Option<Vec<f64>>,
     determinant: Option<Vec<f64>>,
+    /// Orders 3 and 4 only (RF design §2.6): the terms of the o(o+1)/2
+    /// upper-triangle entries a[p][q], p <= q, row-major.
+    upper: Option<Vec<Vec<f64>>>,
+    /// Orders 3 and 4 only: the terms of the leading principal minors
+    /// Δ2 … Δo; the last is the block's shared denominator.
+    minors: Option<Vec<Vec<f64>>>,
 }
 impl BlockWitness {
     pub fn dofs(&self) -> &[usize] {
         &self.dofs
+    }
+    /// Orders 3 and 4: the upper-triangle entries, row-major.
+    pub fn upper_terms(&self) -> Option<&[Vec<f64>]> {
+        self.upper.as_deref()
+    }
+    /// Orders 3 and 4: the leading principal minors Δ2 … Δo.
+    pub fn minor_terms(&self) -> Option<&[Vec<f64>]> {
+        self.minors.as_deref()
     }
     pub fn a_terms(&self) -> &[f64] {
         &self.a
@@ -192,11 +448,14 @@ impl BlockWitness {
         self.determinant.as_deref()
     }
     fn scalar_count(&self) -> usize {
+        let many = |v: &Option<Vec<Vec<f64>>>| v.as_ref().map_or(0, |v| v.iter().map(Vec::len).sum());
         self.dofs.len()
             + self.a.len()
             + self.b.as_ref().map_or(0, Vec::len)
             + self.c.as_ref().map_or(0, Vec::len)
             + self.determinant.as_ref().map_or(0, Vec::len)
+            + many(&self.upper)
+            + many(&self.minors)
     }
     fn same_bits(&self, b: &Self) -> bool {
         let opt = |a: &Option<Vec<f64>>, b: &Option<Vec<f64>>| match (a, b) {
@@ -204,11 +463,31 @@ impl BlockWitness {
             (Some(a), Some(b)) => same_terms(a, b),
             _ => false,
         };
+        let many = |a: &Option<Vec<Vec<f64>>>, b: &Option<Vec<Vec<f64>>>| match (a, b) {
+            (None, None) => true,
+            (Some(a), Some(b)) => a.len() == b.len() && a.iter().zip(b).all(|(x, y)| same_terms(x, y)),
+            _ => false,
+        };
         self.dofs == b.dofs
             && same_terms(&self.a, &b.a)
             && opt(&self.b, &b.b)
             && opt(&self.c, &b.c)
             && opt(&self.determinant, &b.determinant)
+            && many(&self.upper, &b.upper)
+            && many(&self.minors, &b.minors)
+    }
+    /// The retained-witness size bound for a block of `order` DOFs (RF design
+    /// §2.6), E = `expansion_terms`: 4E + 2 for orders 1 and 2 (a, b, c and
+    /// the determinant, two DOFs); (o(o+1)/2 + o)·E + o for o >= 3 (a, the
+    /// o(o+1)/2 upper entries and the o - 1 minors, o DOFs).
+    fn size_bound(order: usize, expansion_terms: usize) -> usize {
+        if order <= 2 {
+            expansion_terms.saturating_mul(4).saturating_add(2)
+        } else {
+            (order * (order + 1) / 2 + order)
+                .saturating_mul(expansion_terms)
+                .saturating_add(order)
+        }
     }
 }
 impl Ratio {
@@ -249,6 +528,147 @@ fn constant(w: &mut Work, x: Expansion) -> Result<Ratio, Error> {
         denominator: w.scalar(1.0)?,
     })
 }
+
+/// The index pairs r1 < r2 of a block of order at most 4, in a fixed order.
+const PAIRS: [(usize, usize); 6] = [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)];
+/// The ascending block indices 0..order without `x` (order <= 4).
+fn without(order: usize, x: usize) -> [usize; 3] {
+    let mut out = [0; 3];
+    let mut n = 0;
+    for i in (0..order).filter(|&i| i != x) {
+        out[n] = i;
+        n += 1;
+    }
+    out
+}
+/// The position of a[p][q], p <= q, in a row-major upper triangle of `order`.
+fn upper_index(order: usize, p: usize, q: usize) -> usize {
+    p * order - p * p.saturating_sub(1) / 2 + (q - p)
+}
+/// The cofactor sign (-1)^(p+q).
+fn cofactor_sign(p: usize, q: usize) -> f64 {
+    if (p + q) % 2 == 0 {
+        1.0
+    } else {
+        -1.0
+    }
+}
+/// RF source-method design §2.3–2.4: exact arithmetic over one free block of
+/// order 3 or 4, all through `Work` and without division. Every entry
+/// a[p][q] = k[block[p]][block[q]] is read from the upper triangle (p <= q):
+/// the Context's exact symmetry check makes a[p][q] = a[q][p], so a 2×2 minor
+/// and its transpose are one computation, cached once (6 distinct minors for
+/// order 3, 18 for order 4). The cache is a Preparation transient.
+struct BlockMinors<'k> {
+    k: &'k [Vec<Expansion>],
+    block: &'k [usize],
+    /// M(rows; cols), keyed by the unordered pair of `PAIRS` indices.
+    cache: Vec<Option<Expansion>>,
+}
+impl<'k> BlockMinors<'k> {
+    fn new(k: &'k [Vec<Expansion>], block: &'k [usize]) -> Self {
+        Self {
+            k,
+            block,
+            cache: vec![None; PAIRS.len() * PAIRS.len()],
+        }
+    }
+    fn a(&self, p: usize, q: usize) -> &'k Expansion {
+        &self.k[self.block[p.min(q)]][self.block[p.max(q)]]
+    }
+    /// Computes M(r1,r2; c1,c2) = a[r1][c1]·a[r2][c2] - a[r1][c2]·a[r2][c1]
+    /// unless cached, and returns its key. A minor and its transpose share
+    /// the key, and the smaller pair index is always the row pair.
+    fn ensure(&mut self, w: &mut Work, rows: (usize, usize), cols: (usize, usize)) -> Result<usize, Error> {
+        let index = |pair| {
+            PAIRS
+                .iter()
+                .position(|&x| x == pair)
+                .expect("an ascending index pair of a block of order at most 4")
+        };
+        let (x, y) = (index(rows), index(cols));
+        let key = x.min(y) * PAIRS.len() + x.max(y);
+        if self.cache[key].is_none() {
+            let ((r1, r2), (c1, c2)) = (PAIRS[x.min(y)], PAIRS[x.max(y)]);
+            let first = w.mul(self.a(r1, c1), self.a(r2, c2))?;
+            let second = w.mul(self.a(r1, c2), self.a(r2, c1))?;
+            self.cache[key] = Some(w.sum(&first, &second, -1.0)?);
+        }
+        Ok(key)
+    }
+    fn cached(&self, key: usize) -> &Expansion {
+        self.cache[key].as_ref().expect("an ensured block minor")
+    }
+    /// The 3×3 determinant of ascending rows `r` and columns `c`, by cofactor
+    /// expansion along its first row over cached minors of its other two rows.
+    fn det3(&mut self, w: &mut Work, r: [usize; 3], c: [usize; 3]) -> Result<Expansion, Error> {
+        let mut det = Expansion::default();
+        for (j, rest) in [(0, (c[1], c[2])), (1, (c[0], c[2])), (2, (c[0], c[1]))] {
+            let key = self.ensure(w, (r[1], r[2]), rest)?;
+            let product = w.mul(self.a(r[0], c[j]), self.cached(key))?;
+            det = w.sum(&det, &product, cofactor_sign(0, j))?;
+        }
+        Ok(det)
+    }
+    /// Δ4 by Laplace expansion along rows {0, 1}: the sum over column pairs
+    /// c < d of (-1)^(1+c+d)·M(0,1; c,d)·M(2,3; the other two columns).
+    fn det4(&mut self, w: &mut Work) -> Result<Expansion, Error> {
+        let mut det = Expansion::default();
+        for (c, d) in PAIRS {
+            let rest: Vec<usize> = (0..4).filter(|&x| x != c && x != d).collect();
+            let top = self.ensure(w, (0, 1), (c, d))?;
+            let bottom = self.ensure(w, (2, 3), (rest[0], rest[1]))?;
+            let product = w.mul(self.cached(top), self.cached(bottom))?;
+            det = w.sum(&det, &product, cofactor_sign(1 + c, d))?;
+        }
+        Ok(det)
+    }
+    /// The positive-definiteness warrant beyond `sign(a00) == Positive`, which
+    /// the caller has checked: Δ2, Δ3 and (order 4) Δ4 must each be exactly
+    /// positive (Sylvester's criterion for a symmetric matrix; a positive
+    /// det A alone is not enough). Returns Δ2 … Δo.
+    fn leading_minors(&mut self, w: &mut Work) -> Result<Vec<Expansion>, Error> {
+        let positive = |m: Expansion| {
+            if sign(&m) == Sign::Positive {
+                Ok(m)
+            } else {
+                Err(Error::NotPositiveDefinite)
+            }
+        };
+        let d2 = self.ensure(w, (0, 1), (0, 1))?;
+        let mut minors = vec![positive(self.cached(d2).clone())?];
+        minors.push(positive(self.det3(w, [0, 1, 2], [0, 1, 2])?)?);
+        if self.block.len() == 4 {
+            minors.push(positive(self.det4(w)?)?);
+        }
+        Ok(minors)
+    }
+    /// The adjugate's upper triangle, row-major: for p <= q the minor of A
+    /// that deletes row q and column p, without its cofactor sign
+    /// (-1)^(p+q), which Solve applies as the sign of the summed product
+    /// adj[p][q]·h_q (no separate negation); adj[q][p] = adj[p][q]. Order 3:
+    /// a cached 2×2 minor, each used once. Order 4: a 3×3 determinant along
+    /// its first remaining row over cached minors, with adj[3][3] = Δ3.
+    fn adjugate(&mut self, w: &mut Work, delta3: Expansion) -> Result<Vec<Expansion>, Error> {
+        let order = self.block.len();
+        let mut delta3 = Some(delta3);
+        let mut adjugate = Vec::with_capacity(order * (order + 1) / 2);
+        for p in 0..order {
+            for q in p..order {
+                let (rows, cols) = (without(order, q), without(order, p));
+                adjugate.push(if order == 3 {
+                    let key = self.ensure(w, (rows[0], rows[1]), (cols[0], cols[1]))?;
+                    self.cache[key].take().expect("an ensured block minor")
+                } else if p == 3 {
+                    delta3.take().expect("adj[3][3] is Δ3")
+                } else {
+                    self.det3(w, rows, cols)?
+                });
+            }
+        }
+        Ok(adjugate)
+    }
+}
 #[derive(Debug, Clone, PartialEq)]
 struct Snapshot {
     identity: String,
@@ -257,6 +677,9 @@ struct Snapshot {
     free: Vec<usize>,
     prescribed: Vec<(usize, f64)>,
     contributions: Vec<StiffnessContribution>,
+    /// RF design §3.3: the functional entry's congruence members (their
+    /// operands, maps and contribution ranges); empty on the legacy entries.
+    congruence: Vec<CongruenceMember>,
     force_terms: Option<Vec<ForceContribution>>,
     symmetry: Option<(Vec<Vec<f64>>, Vec<Vec<usize>>, String)>,
 }
@@ -269,6 +692,13 @@ pub struct Context {
     f: Vec<Expansion>,
     blocks: Vec<Vec<usize>>,
     witnesses: Vec<BlockWitness>,
+    /// RF design §2.4, per block: an order-3/4 block's adjugate upper
+    /// triangle (`BlockMinors::adjugate`), computed once in Preparation;
+    /// empty for orders 1 and 2. Its denominator Δo is the witness's last
+    /// minor.
+    adjugates: Vec<Vec<Expansion>>,
+    /// RF design §2.1: the largest free block order its entry admitted.
+    order_cap: usize,
     limits: Limits,
     preparation_operations: usize,
     functional_attempt: Option<std::sync::Arc<()>>,
@@ -285,14 +715,20 @@ impl Context {
             used: 0,
             rejected: WorkTotal::zero(),
         };
-        Self::new_charged(system, identity, force_basis, limits, &mut w)
+        Self::new_charged(system, identity, force_basis, &[], limits, &mut w, LEGACY_ORDER_CAP)
     }
+    /// `order_cap` is the entry's block-order cap (RF design §2.1): the first
+    /// free component above it is refused as `UnsupportedBlock`. `congruence`
+    /// is the functional entry's congruence list (RF design §3.3); the legacy
+    /// entries pass none.
     fn new_charged(
         system: &StructuralSystem<'_>,
         identity: &str,
         force_basis: ForceBasis<'_>,
+        congruence: &[CongruenceMember],
         limits: Limits,
         w: &mut Work,
+        order_cap: usize,
     ) -> Result<Self, Error> {
         let start = w.used;
         w.charge(8)?;
@@ -345,18 +781,32 @@ impl Context {
         let count = contributions
             .len()
             .checked_add(force_terms.map_or(n, |t| t.len()))
+            .and_then(|c| c.checked_add(congruence.len().checked_mul(CONGRUENCE_VALUES)?))
             .ok_or(Error::Budget)?;
         if count > 16_384 || count > limits.source_terms {
             return Err(Error::Budget);
         }
+        let order = congruence_order(congruence, contributions, n, w)?;
         w.charge(n.checked_mul(n).ok_or(Error::Budget)?)?;
         let mut k = vec![vec![Expansion::default(); n]; n];
         let mut ordered_k = vec![vec![0.0_f64; n]; n];
-        for c in contributions {
+        let mut members = order.iter().map(|&m| &congruence[m]).peekable();
+        let mut exact_from = 0;
+        for (index, c) in contributions.iter().enumerate() {
             if c.row >= n || c.col >= n || !c.value.is_finite() {
                 return Err(Error::Invalid("stiffness contribution"));
             }
-            w.add(&mut k[c.row][c.col], c.value)?;
+            // RF design §3.3: a congruence member's rounded contributions stay
+            // in the ordered fold, which the coverage check below compares
+            // with the aggregate, but not in k: its exact entries enter k at
+            // the position of its first contribution instead.
+            if let Some(member) = members.next_if(|m| m.contributions.start == index) {
+                add_congruence(&mut k, member, w)?;
+                exact_from = member.contributions.end;
+            }
+            if index >= exact_from {
+                w.add(&mut k[c.row][c.col], c.value)?;
+            }
             ordered_k[c.row][c.col] += c.value;
             if !ordered_k[c.row][c.col].is_finite() {
                 return Err(Error::Invalid("nonfinite ordered assembly"));
@@ -410,6 +860,7 @@ impl Context {
         let mut visited = vec![false; n];
         let mut blocks = Vec::new();
         let mut witnesses = Vec::new();
+        let mut adjugates = Vec::new();
         for &i in system.free_dofs {
             if visited[i] {
                 continue;
@@ -427,7 +878,7 @@ impl Context {
                     }
                 }
             }
-            if block.len() > 2 {
+            if block.len() > order_cap {
                 return Err(Error::UnsupportedBlock { order: block.len() });
             }
             if sign(&k[i][i]) != Sign::Positive {
@@ -440,7 +891,10 @@ impl Context {
                 b: None,
                 c: None,
                 determinant: None,
+                upper: None,
+                minors: None,
             };
+            let mut adjugate = Vec::new();
             if block.len() == 2 {
                 let j = block[1];
                 let ac = w.mul(&k[i][i], &k[j][j])?;
@@ -459,9 +913,32 @@ impl Context {
                 witness.b = Some(k[i][j].terms.clone());
                 witness.c = Some(k[j][j].terms.clone());
                 witness.determinant = Some(determinant.terms);
+            } else if block.len() > 2 {
+                // RF design §2.3–2.6, orders 3 and 4 (the cap admits no more).
+                assert!(block.len() <= FUNCTIONAL_ORDER_CAP, "exact block order cap");
+                let order = block.len();
+                let mut m = BlockMinors::new(&k, &block);
+                let mut minors = m.leading_minors(w)?;
+                let upper: Vec<&Expansion> = (0..order)
+                    .flat_map(|p| (p..order).map(move |q| (p, q)))
+                    .map(|(p, q)| m.a(p, q))
+                    .collect();
+                // Precharge the witness's scalar copies, as order 2 does.
+                w.charge(
+                    upper
+                        .iter()
+                        .copied()
+                        .chain(&minors)
+                        .fold(0usize, |n, e| n.saturating_add(e.terms.len())),
+                )?;
+                witness.upper = Some(upper.iter().map(|e| e.terms.clone()).collect());
+                witness.minors = Some(minors.iter().map(|e| e.terms.clone()).collect());
+                let delta3 = std::mem::take(&mut minors[1]);
+                adjugate = m.adjugate(w, delta3)?;
             }
             witnesses.push(witness);
             blocks.push(block);
+            adjugates.push(adjugate);
         }
         Ok(Self {
             source: Snapshot {
@@ -471,6 +948,7 @@ impl Context {
                 free: system.free_dofs.to_vec(),
                 prescribed: system.prescribed.to_vec(),
                 contributions: contributions.to_vec(),
+                congruence: congruence.to_vec(),
                 force_terms: force_terms.map(|x| x.to_vec()),
                 symmetry: system.symmetry.as_ref().map(|s| {
                     (
@@ -484,6 +962,8 @@ impl Context {
             f,
             blocks,
             witnesses,
+            adjugates,
+            order_cap,
             limits,
             preparation_operations: w.used - start,
             functional_attempt: None,
@@ -510,13 +990,15 @@ impl Context {
     }
     /// Ordered identity check: any changed stiffness/source spring, load, map,
     /// contribution order, or caller source identity invalidates this context.
+    /// The legacy expected source has no congruence member, so a Context
+    /// prepared with one never matches here.
     pub fn matches(
         &self,
         system: &StructuralSystem<'_>,
         identity: &str,
         force_basis: ForceBasis<'_>,
     ) -> bool {
-        self.source.matches(system, identity, force_basis)
+        self.source.matches(system, identity, force_basis, &[])
     }
     pub fn solve(&self) -> Result<Response<'_>, Error> {
         let mut w = Work {
@@ -534,7 +1016,7 @@ impl Context {
             let value = w.scalar(v)?;
             u[i] = constant(w, value)?;
         }
-        for block in &self.blocks {
+        for (b, block) in self.blocks.iter().enumerate() {
             let mut h = Vec::new();
             for &i in block {
                 let mut hi = self.f[i].clone();
@@ -551,6 +1033,23 @@ impl Context {
                     numerator: h.remove(0),
                     denominator: self.k[i][i].clone(),
                 };
+            } else if block.len() > 2 {
+                // RF design §2.4: num_p = Σ_q adj[p][q]·h_q, each product summed
+                // with its cofactor sign; every DOF takes a clone of the same Δo.
+                let order = block.len();
+                let delta = self.block_denominator(b)?;
+                for (p, &dof) in block.iter().enumerate() {
+                    let mut numerator = Expansion::default();
+                    for (q, hq) in h.iter().enumerate() {
+                        let entry = &self.adjugates[b][upper_index(order, p.min(q), p.max(q))];
+                        let product = w.mul(entry, hq)?;
+                        numerator = w.sum(&numerator, &product, cofactor_sign(p, q))?;
+                    }
+                    u[dof] = Ratio {
+                        numerator,
+                        denominator: delta.clone(),
+                    };
+                }
             } else {
                 let j = block[1];
                 let ac = w.mul(&self.k[i][i], &self.k[j][j])?;
@@ -570,13 +1069,34 @@ impl Context {
                 };
             }
         }
+        // RF design §2.4: a column in a block of order 3 or 4 is grouped by
+        // its block, so that the block's shared Δo enters each reaction once
+        // rather than once per DOF. Columns in blocks of order 1 or 2 keep the
+        // per-DOF loop, in the same order.
+        let grouped: Vec<usize> = (0..self.blocks.len())
+            .filter(|&b| self.blocks[b].len() > 2)
+            .collect();
+        let mut group = vec![None; n];
+        for (g, &b) in grouped.iter().enumerate() {
+            for &j in &self.blocks[b] {
+                group[j] = Some(g);
+            }
+        }
         let mut reactions = Vec::with_capacity(n);
         for i in 0..n {
             let empty = Expansion::default();
             let negf = w.sum(&empty, &self.f[i], -1.0)?;
             let mut r = constant(w, negf)?;
+            let mut block_numerators: Vec<Option<Expansion>> = vec![None; grouped.len()];
             for (j, uj) in u.iter().enumerate() {
                 if self.k[i][j].is_zero() {
+                    continue;
+                }
+                if let Some(g) = group[j] {
+                    // Σ_{j∈block} k_ij·num_j, exactly, over the block's Δo.
+                    let product = w.mul(&self.k[i][j], &uj.numerator)?;
+                    let sum = block_numerators[g].get_or_insert_with(Expansion::default);
+                    *sum = w.sum(sum, &product, 1.0)?;
                     continue;
                 }
                 let term = Ratio {
@@ -584,6 +1104,16 @@ impl Context {
                     denominator: uj.denominator.clone(),
                 };
                 r = ratio_add(w, &r, &term)?;
+            }
+            // One ratio sum per coupled order-3/4 block, in block order.
+            for (g, numerator) in block_numerators.into_iter().enumerate() {
+                if let Some(numerator) = numerator {
+                    let term = Ratio {
+                        numerator,
+                        denominator: self.block_denominator(grouped[g])?,
+                    };
+                    r = ratio_add(w, &r, &term)?;
+                }
             }
             reactions.push(r);
         }
@@ -604,6 +1134,19 @@ impl Context {
             functional_solve: false,
         })
     }
+    /// An order-3/4 block's shared denominator Δo: its witness's last
+    /// leading principal minor, kept privately in this Context (RF §2.4).
+    fn block_denominator(&self, b: usize) -> Result<Expansion, Error> {
+        let terms = self.witnesses[b]
+            .minors
+            .as_ref()
+            .and_then(|m| m.last())
+            .ok_or(Error::Invalid("exact block denominator"))?;
+        Ok(Expansion {
+            terms: terms.clone(),
+            ..Expansion::default()
+        })
+    }
 }
 #[derive(Debug)]
 pub struct Response<'a> {
@@ -617,7 +1160,7 @@ pub struct Response<'a> {
 /// counts. Charges include bounded scalar checks, loops and exact arithmetic.
 /// `rejected` is the checked total of attempted budget reservations that were
 /// NOT executed (D6: unavailable on overflow, never saturated). A range
-/// failure retains its accepted precharge, even if arithmetic stopped early.
+/// failure retains the charges it accepted, even if arithmetic stopped early.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct WorkReport {
     pub charged: usize,
@@ -1197,11 +1740,14 @@ impl ReplayCheck {
     }
 }
 impl Snapshot {
+    /// Bit-for-bit equality with an expected source, including the congruence
+    /// members' operands, maps and contribution ranges, in order (RF §3.3).
     fn matches(
         &self,
         system: &StructuralSystem<'_>,
         identity: &str,
         force_basis: ForceBasis<'_>,
+        congruence: &[CongruenceMember],
     ) -> bool {
         let same = |a: f64, b: f64| a.to_bits() == b.to_bits();
         self.identity == identity
@@ -1231,6 +1777,12 @@ impl Snapshot {
                         .zip(&self.contributions)
                         .all(|(a, b)| a.row == b.row && a.col == b.col && same(a.value, b.value))
             })
+            && self.congruence.len() == congruence.len()
+            && self
+                .congruence
+                .iter()
+                .zip(congruence)
+                .all(|(a, b)| a.same_bits(b))
             && match (&self.symmetry, &system.symmetry) {
                 (None, None) => true,
                 (Some((a, counts, basis)), Some(b)) => {
@@ -1290,6 +1842,8 @@ impl Snapshot {
             n = n.saturating_add(row.len());
         }
         n = n.saturating_add(self.contributions.len().saturating_mul(3));
+        // RF design §3.3: each congruence member's operands, map and range.
+        n = n.saturating_add(self.congruence.len().saturating_mul(CONGRUENCE_SCALARS));
         if let Some(t) = &self.force_terms {
             for x in t {
                 n = n.saturating_add(x.source.len()).saturating_add(2);
@@ -1467,6 +2021,12 @@ impl RetainedResponse {
     pub fn force_basis(&self) -> ForceBasis<'_> {
         self.source.force_basis()
     }
+    /// RF design §3.3: the congruence members of the retained source, whose
+    /// exact entries replaced their rounded contributions; empty unless the
+    /// functional entry was given some.
+    pub fn congruence_members(&self) -> &[CongruenceMember] {
+        &self.source.congruence
+    }
     pub fn limits(&self) -> Limits {
         self.limits
     }
@@ -1532,6 +2092,12 @@ impl RetainedResponse {
                     .is_some_and(|t| t.len() > 16_384)
             {
                 return Err(Error::Invalid("retained source count"));
+            }
+            // RF design §3.3: the legacy entries take no congruence list, so a
+            // source retained with congruence members cannot bind to the
+            // legacy expected source. Refused before any copy or arithmetic.
+            if !self.source.congruence.is_empty() {
+                return Err(Error::Invalid("retained expected-source binding"));
             }
             w.charge(
                 n.saturating_mul(n)
@@ -1608,8 +2174,10 @@ impl RetainedResponse {
                 &source,
                 &self.source.identity,
                 self.source.force_basis(),
+                &[],
                 self.limits,
                 w,
+                LEGACY_ORDER_CAP,
             )?;
             if !context.matches(expected, identity, force_basis) {
                 return Err(Error::Invalid("retained expected-source binding"));
@@ -1670,6 +2238,8 @@ impl RetainedResponse {
 
 #[cfg(test)]
 mod s11k_tests;
+#[cfg(test)]
+mod metered_tests;
 #[cfg(test)]
 mod tests {
     use super::*;
