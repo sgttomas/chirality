@@ -154,8 +154,8 @@ jobs:
           fi
       - name: Role history and portable export verification
         run: node --test tests/conversation-roles.test.mjs tests/verify-records-bag.test.mjs tests/process-group-custody.test.mjs tests/access-provider.test.mjs
-      - name: Workflow selection and run presentation
-        run: node --test tests/workflow-selection.test.mjs tests/run-panel.test.mjs tests/workflow-library.test.mjs
+      - name: Workflow and fleet presentation
+        run: node --test tests/workflow-selection.test.mjs tests/run-panel.test.mjs tests/workflow-library.test.mjs tests/fleet-records.test.mjs
       - name: Node schemas and presentation with mandatory supplier
         if: github.event_name == 'workflow_dispatch'
         run: |
