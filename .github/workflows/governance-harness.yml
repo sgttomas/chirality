@@ -91,6 +91,84 @@ jobs:
           for project in sorted(projects):
               subprocess.run([sys.executable, '-m', 'tools.deliverables', '--project', project, 'check'], check=True)
           PYTHON
+      # Owner direction 2026-10-17: implementation returns reconcile their
+      # affected ScopeOfWork, Design and dependency conditions before
+      # integration. This lists each PR's changed project paths that no
+      # deliverable folder or code_paths entry maps, in the job summary. It is
+      # a report only: it runs on every PR and can never fail the job. The
+      # full-history checkout above supplies the range.
+      - name: Deliverable mapping report (report only)
+        if: ${{ !cancelled() && github.event_name == 'pull_request' }}
+        continue-on-error: true
+        timeout-minutes: 3
+        env:
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          python3 -m pip install --quiet pyyaml || true
+          python3 - <<'PYTHON' || true
+          import json, os, subprocess, sys
+          from pathlib import PurePosixPath
+          LIMIT = 50
+          lines = ['### Deliverable mapping (report only)', '']
+          def commit(ref):
+              done = subprocess.run(['git', 'rev-parse', '--verify', '--quiet', '--end-of-options', f'{ref}^{{commit}}'], capture_output=True, text=True)
+              return done.stdout.strip() if ref and done.returncode == 0 else ''
+          try:
+              # The PR checkout is GitHub's merge commit: first parent is the base
+              # as merged (the event's base can be stale), second is the PR head.
+              base, head = commit('HEAD^1'), commit('HEAD^2')
+              if not head:
+                  base, head = commit(os.environ.get('PR_BASE', '')), commit(os.environ.get('PR_HEAD', ''))
+              if not (base and head):
+                  raise RuntimeError('pull request base or head commit is not in this checkout')
+              paths = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+              projects = set()
+              for path in paths:
+                  parts = PurePosixPath(path).parts
+                  if parts and parts[-1] == 'deliverable.yaml' and 'execution' in parts:
+                      projects.add('/'.join(parts[:parts.index('execution')]) or '.')
+              lines.append(f'Changed paths in `{base[:10]}...{head[:10]}` matched against each deliverable folder and its `code_paths` '
+                           '(`python3 -m tools.deliverables --project <project> touches <base>...<head>`). '
+                           'An unmapped path may need a `deliverable.yaml` pointer, or may belong to no deliverable.')
+              for project in sorted(projects):
+                  lines.append('')
+                  try:
+                      done = subprocess.run([sys.executable, '-m', 'tools.deliverables', '--project', project, 'touches', f'{base}...{head}'],
+                                            capture_output=True, text=True, timeout=120)
+                      result = (json.loads(done.stdout) if done.stdout.strip()
+                                else {'errors': [(done.stderr.strip().splitlines() or [f'exit {done.returncode}'])[-1]]})
+                  except Exception as exc:
+                      result = {'errors': [f'{type(exc).__name__}: {exc}']}
+                  if 'unmapped_paths' not in result:
+                      detail = '; '.join(map(str, result.get('errors') or ['no result']))
+                      lines.append(f'**`{project}`**: report unavailable: {detail[:500]}')
+                      continue
+                  prefix = '' if project == '.' else project + '/'
+                  unmapped = [path for path in result['unmapped_paths'] if path.startswith(prefix)]
+                  relevant = result.get('relevant', {})
+                  changed = len({path for hits in relevant.values() for path in hits} | set(unmapped))
+                  if not changed:
+                      lines.append(f'**`{project}`**: no changed paths.')
+                      continue
+                  lines.append(f'**`{project}`**: {changed} changed, {len(unmapped)} unmapped.')
+                  if relevant:
+                      lines.append('Relevant deliverables: ' + ', '.join(f'`{key}` ({len(hits)})' for key, hits in sorted(relevant.items())))
+                  if result.get('errors'):
+                      lines.append('Tool errors: ' + '; '.join(map(str, result['errors']))[:500])
+                  if unmapped:
+                      lines.append('')
+                      lines.extend(f'- `{path}`' for path in unmapped[:LIMIT])
+                      if len(unmapped) > LIMIT:
+                          lines.append(f'- ... and {len(unmapped) - LIMIT} more')
+          except Exception as exc:
+              lines.append(f'Report unavailable: {exc}')
+          text = '\n'.join(lines) + '\n'
+          print(text)
+          if os.environ.get('GITHUB_STEP_SUMMARY'):
+              with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+                  summary.write(text + '\n')
+          PYTHON
       - name: Configure canonical Ubuntu package sources
         if: steps.selection.outputs.has_tests == 'true'
         shell: bash
