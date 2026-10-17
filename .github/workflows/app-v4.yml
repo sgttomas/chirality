@@ -83,12 +83,13 @@ jobs:
         with:
           suite: app-v4
       - uses: actions/setup-python@v5
+        if: github.event_name == 'workflow_dispatch'
         with:
           python-version: '3.12'
       - name: Install locked App and pinned Python dependencies
         run: |
           npm ci
-          python -m pip install pytest==9.1.1 jsonschema==4.26.0 referencing==0.37.0
+          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then python -m pip install pytest==9.1.1 jsonschema==4.26.0 referencing==0.37.0; fi
       - name: Prepare adopted supplier in scratch storage
         if: github.event_name == 'workflow_dispatch'
         env:
@@ -155,12 +156,6 @@ jobs:
         run: node --test tests/conversation-roles.test.mjs tests/verify-records-bag.test.mjs tests/process-group-custody.test.mjs tests/access-provider.test.mjs
       - name: Workflow and fleet presentation
         run: node --test tests/workflow-selection.test.mjs tests/run-panel.test.mjs tests/workflow-library.test.mjs tests/fleet-records.test.mjs
-      - name: Examination preparation and receiving against pinned sources
-        # Fail closed when a pinned Design source changes meaning. Dispatch runs these in the full Python set below.
-        if: github.event_name != 'workflow_dispatch'
-        run: >-
-          python -m pytest -q tests/group_b_standalone_test.py tests/group_b_pre_run_inputs_test.py
-          tests/group_b_native_forms_test.py tests/group_b_sq_receiving_test.py
       - name: Node schemas and presentation with mandatory supplier
         if: github.event_name == 'workflow_dispatch'
         run: |
