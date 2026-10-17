@@ -39,6 +39,10 @@ mod source_budget_tests;
 #[cfg(test)]
 mod kd5_pressure_closure_tests;
 #[cfg(test)]
+mod timoshenko_product_tests;
+#[cfg(test)]
+mod d5_mass_product_tests;
+#[cfg(test)]
 mod kd5_nonlinear_tests;
 #[cfg(test)]
 mod u4a_tests;
@@ -1614,9 +1618,11 @@ fn force_scaling_attempt(
         PreviewSolverMode::DenseScrutiny => LinearSolveMode::DenseScrutiny,
         PreviewSolverMode::SparseInteractive => LinearSolveMode::SparseInteractive,
     };
+    let frame_members = frame_member_identities(built);
     let case = ForceScalingCase {
         node_count: built.nodes.len(),
         frames: &built.frame_elements,
+        frame_members: &frame_members,
         connectors: &built.connectors,
         curved: &curved,
         curved_sources: &curved_sources,
@@ -2118,7 +2124,16 @@ pub struct Summary {
     pub curved_bend_macro_element_count: usize,
     pub spring_hanger_user_input_count: usize,
     pub max_displacement: Option<LocatedQuantity>,
+    /// `null` on an exact-contract envelope (D-5): the product chooses no
+    /// governing section basis.
     pub max_open_formula_stress: Option<LocatedQuantity>,
+    /// D-5 (DEL-05-03 Design §2.2, §2.5): each section basis's own headline,
+    /// present (a quantity or `null`) on every exact-contract envelope and
+    /// absent on a pressure-free one.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub max_open_formula_stress_nominal_section: Option<Option<LocatedQuantity>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub max_open_formula_stress_reduced_section: Option<Option<LocatedQuantity>>,
 }
 
 #[derive(Debug, Clone, Serialize)]
@@ -2198,7 +2213,9 @@ pub struct ProfessionalBoundary {
 
 #[derive(Debug)]
 struct BuiltModel {
-    exact_sections: HashMap<String, pressure_exact::SourceAnnulus>,
+    /// D-5: each exact-contract pipe's nominal and reduced sections and its
+    /// pressure bore (empty on the preview route).
+    exact_sections: HashMap<String, pressure_exact::ExactSectionBases>,
     nodes: Vec<FrameNode>,
     pipes: Vec<StraightPipeElement>,
     frame_elements: Vec<FrameElement>,
@@ -2226,7 +2243,11 @@ struct LoadCaseSolve {
     load_case_id: String,
     results: Vec<ResultItem>,
     max_displacement: Option<LocatedQuantity>,
+    /// The case maximum: on the exact route the nominal basis's (D-5).
     max_stress: Option<LocatedQuantity>,
+    /// D-5: the exact route's reduced-basis case maximum (`None` on the
+    /// preview route).
+    max_stress_reduced: Option<LocatedQuantity>,
     component_stress_modifier_count: usize,
     preview: Option<preview_physics::CaseRecord>,
     /// K-D5 (DEL-04-01 kd5-member-relative-bound.md §3.2): the named warning
@@ -2895,7 +2916,12 @@ fn run_linear_static_preview_observed_inner(
         withhold_certified_summaries(&mut load_case_solves, &mut diagnostics);
     }
     let max_displacement = maximum_across_cases(&load_case_solves, false);
-    let max_stress = maximum_across_cases(&load_case_solves, true);
+    // D-5 (§2.2): on an exact-contract document each basis has its own
+    // headline and `max_open_formula_stress` is null.
+    let exact_headlines = pressure_runtime::is_exact(&model);
+    let max_stress = (!exact_headlines).then(|| maximum_across_cases(&load_case_solves, true)).flatten();
+    let max_stress_nominal = exact_headlines.then(|| maximum_across_cases_of(&load_case_solves, |case| case.max_stress.as_ref()));
+    let max_stress_reduced = exact_headlines.then(|| maximum_across_cases_of(&load_case_solves, |case| case.max_stress_reduced.as_ref()));
     let component_stress_modifier_count = load_case_solves
         .iter()
         .map(|solve| solve.component_stress_modifier_count)
@@ -2948,10 +2974,16 @@ fn run_linear_static_preview_observed_inner(
                     *source_ref = qualified.clone();
                 }
             }
-            rows_by_base_id
-                .entry(base_id)
-                .or_default()
-                .insert(load_case_id.clone(), result.clone());
+            // U6-RB (DEL-05-03 Design §9): the combination index is read only by
+            // `append_combination_results`, which runs only with the preview
+            // (below), so its row clones are made only then; the published rows
+            // are the same either way.
+            if preview.is_some() {
+                rows_by_base_id
+                    .entry(base_id)
+                    .or_default()
+                    .insert(load_case_id.clone(), result.clone());
+            }
             results.push(result);
         }
     }
@@ -2995,7 +3027,9 @@ fn run_linear_static_preview_observed_inner(
             .iter()
             .map(|row| row.value)
             .chain(max_displacement.iter().map(|q| q.value))
-            .chain(max_stress.iter().map(|q| q.value)),
+            .chain(max_stress.iter().map(|q| q.value))
+            .chain(max_stress_nominal.iter().flatten().map(|q| q.value))
+            .chain(max_stress_reduced.iter().flatten().map(|q| q.value)),
     ) {
         return solver_blocked(model, diagnostics, error);
     }
@@ -3048,6 +3082,8 @@ fn run_linear_static_preview_observed_inner(
             spring_hanger_user_input_count,
             max_displacement,
             max_open_formula_stress: max_stress,
+            max_open_formula_stress_nominal_section: max_stress_nominal,
+            max_open_formula_stress_reduced_section: max_stress_reduced,
         },
         results,
         diagnostics,
@@ -3981,36 +4017,46 @@ fn assemble_case_stiffness(
 /// member whose open-formula summary is unavailable keeps its signed rows, its
 /// withheld summary row is named, and its case's stress maximum covers an
 /// incomplete member domain, so it is withheld (as on the exact route and in
-/// preview-physics), which also withholds the invocation's headline.
+/// preview-physics), which also withholds the invocation's headline. D-5
+/// (section-bases-and-timoshenko.md §2.2): the withholding applies per basis,
+/// so both case maxima (nominal `max_stress` and `max_stress_reduced`) are
+/// withheld, and with them both per-basis headlines; the invariant does not
+/// depend on withheld summaries arising only off the exact route.
 fn withhold_certified_summaries(solves: &mut [LoadCaseSolve], diagnostics: &mut Vec<Diagnostic>) {
     for solve in solves {
         if !solve.withheld_summaries.is_empty() {
             diagnostics.append(&mut solve.withheld_summaries);
             solve.max_stress = None;
+            solve.max_stress_reduced = None;
         }
     }
 }
 
 fn maximum_across_cases(cases: &[LoadCaseSolve], stress: bool) -> Option<LocatedQuantity> {
-    // A headline covers the complete requested domain, never only available members.
-    if cases.iter().any(|case| {
+    maximum_across_cases_of(cases, |case| {
         if stress {
-            case.max_stress.is_none()
+            case.max_stress.as_ref()
         } else {
-            case.max_displacement.is_none()
+            case.max_displacement.as_ref()
         }
-    }) {
+    })
+}
+
+/// The headline of one case maximum (`select`) across the cases; D-5 runs it
+/// once per section basis on the exact route.
+fn maximum_across_cases_of(
+    cases: &[LoadCaseSolve],
+    select: impl Fn(&LoadCaseSolve) -> Option<&LocatedQuantity>,
+) -> Option<LocatedQuantity> {
+    // A headline covers the complete requested domain, never only available members.
+    if cases.iter().any(|case| select(case).is_none()) {
         return None;
     }
     cases
         .iter()
         .enumerate()
         .filter_map(|(index, case)| {
-            let mut q = if stress {
-                case.max_stress.clone()
-            } else {
-                case.max_displacement.clone()
-            }?;
+            let mut q = select(case).cloned()?;
             let already_qualified = case
                 .results
                 .iter()
@@ -4124,6 +4170,38 @@ pub(crate) fn nodal_and_eigen_case_force(
 /// The replaced spans of a built model (S20/S21 lookup set), by pipe ID.
 fn replaced_span_ids_of(built: &BuiltModel) -> HashSet<&str> {
     built.connector_records.iter().map(|r| r.span_id.as_str()).collect()
+}
+
+/// The source prefix of a member's load primitives (`certified_loads::member_source`).
+fn member_prefix(member: &str) -> String {
+    format!("member:{}:{member}:", member.len())
+}
+
+/// T4-U8 (DEL-05-03 Design §4 item 2): each of `built.frame_elements`' member
+/// identity, in order: the source prefix of its member's load primitives.
+/// `build_model_for_members` pushes one frame per pipe that is neither a
+/// realized arc nor a connector-replaced span, in pipe order; each identity
+/// is checked against its pipe's own frame. Derived on demand (nothing is
+/// kept resident). If the frames do not follow the pipes so, the list is
+/// empty, and K-D5 then fails closed on any straight load primitive.
+fn frame_member_identities(built: &BuiltModel) -> Vec<String> {
+    let arcs: HashSet<usize> = built.curved_bend_elements.iter().map(|bend| bend.pipe_index).collect();
+    let replaced: HashSet<usize> = built.connector_records.iter().map(|record| record.span_index).collect();
+    let mut frames = built.frame_elements.iter();
+    let mut members = Vec::with_capacity(built.frame_elements.len());
+    for (index, pipe) in built.pipes.iter().enumerate() {
+        if arcs.contains(&index) || replaced.contains(&index) {
+            continue;
+        }
+        match (frames.next(), pipe.frame_element()) {
+            (Some(frame), Ok(own)) if *frame == own => members.push(member_prefix(&pipe.element_id)),
+            _ => return Vec::new(),
+        }
+    }
+    if frames.next().is_some() {
+        return Vec::new();
+    }
+    members
 }
 
 /// T4-U3 (S14): each connector's recovered rows for one case, from the solved
@@ -4463,6 +4541,7 @@ fn solve_prepared_load_case(
             results: Vec::new(),
             max_displacement: None,
             max_stress: None,
+            max_stress_reduced: None,
             component_stress_modifier_count: 0,
             preview: None,
             withheld_summaries: Vec::new(),
@@ -4498,6 +4577,7 @@ fn solve_prepared_load_case(
                 results: Vec::new(),
                 max_displacement: None,
                 max_stress: None,
+                max_stress_reduced: None,
                 component_stress_modifier_count: 0,
                 preview: None,
                 withheld_summaries: Vec::new(),
@@ -4604,6 +4684,7 @@ fn solve_prepared_load_case(
                 results: Vec::new(),
                 max_displacement: None,
                 max_stress: None,
+                max_stress_reduced: None,
                 component_stress_modifier_count: 0,
                 preview: None,
                 withheld_summaries: Vec::new(),
@@ -4860,6 +4941,7 @@ fn solve_prepared_load_case(
                 results: Vec::new(),
                 max_displacement: None,
                 max_stress: None,
+                max_stress_reduced: None,
                 component_stress_modifier_count: 0,
                 preview: None,
                 withheld_summaries: Vec::new(),
@@ -4891,6 +4973,7 @@ fn solve_prepared_load_case(
                 results: Vec::new(),
                 max_displacement: None,
                 max_stress: None,
+                max_stress_reduced: None,
                 component_stress_modifier_count: 0,
                 preview: None,
                 withheld_summaries: Vec::new(),
@@ -4982,6 +5065,7 @@ fn solve_prepared_load_case(
                     results: Vec::new(),
                     max_displacement: None,
                     max_stress: None,
+                    max_stress_reduced: None,
                     component_stress_modifier_count: 0,
                     preview: None,
                     withheld_summaries: Vec::new(),
@@ -5313,9 +5397,13 @@ fn solve_prepared_load_case(
 
     // S11-G R-b' (section 4): (member, end, q, B) of each straight member end
     // published from the formed K_e * u, decided after the loop.
+    // D-5 (§2.2): on the exact route `max_stress` and its coverage are the
+    // nominal basis's, and the reduced basis has its own.
     let mut max_stress = None;
+    let mut max_stress_reduced = None;
     let mut pipe_stress_extrema = Vec::new();
     let mut unavailable_stress_maximum_members = Vec::new();
+    let mut unavailable_reduced_maximum_members = Vec::new();
     let mut withheld_summaries = Vec::new();
     let mut component_stress_modifier_count = 0;
     for (pipe_index, pipe) in built.pipes.iter().enumerate() {
@@ -5427,22 +5515,21 @@ fn solve_prepared_load_case(
                 .and_then(|case| case.pipe_states.get(&pipe_index))
             {
                 exact_mechanical_local_forces = Some(wall.clone());
-                let ends = (
-                    state.annulus.recover_wall_effective_membrane(
-                        -wall[UX],
-                        state.material,
-                        state.pressure,
-                    ),
-                    state.annulus.recover_wall_effective_membrane(
-                        wall[DOF_PER_NODE + UX],
-                        state.material,
-                        state.pressure,
-                    ),
-                );
+                // D-5: the wall force on the pressure bore; the end action is
+                // basis-independent (each basis's membrane is the forces' own).
+                let end = |mechanical: f64| {
+                    state.sections.recover_wall_effective(mechanical, state.material, state.pressure).and_then(|forces| {
+                        for basis in pressure_exact::SectionBasis::BOTH {
+                            state.sections.membrane(basis, forces)?;
+                        }
+                        Ok(forces)
+                    })
+                };
+                let ends = (end(-wall[UX]), end(wall[DOF_PER_NODE + UX]));
                 match ends {
                     (Ok(i), Ok(j)) => {
-                        wall[UX] = -i.0;
-                        wall[DOF_PER_NODE + UX] = j.0;
+                        wall[UX] = -i.wall_n;
+                        wall[DOF_PER_NODE + UX] = j.wall_n;
                     }
                     _ => {
                         diagnostics.push(diag(
@@ -5466,7 +5553,8 @@ fn solve_prepared_load_case(
         let mut certified_wall = None;
         if let Some(bound) = member_bound {
             let pressure_state = exact_pressure.as_ref().and_then(|case| case.pipe_states.get(&pipe_index));
-            let certificate = certified_publication::member(pipe, macro_bend, &force, &displacements, bound).and_then(|mechanical| {
+            let source = certified_source.as_ref().expect("a certified source with the member bound");
+            let certificate = certified_publication::member(pipe, macro_bend, &force, source, &displacements, bound).and_then(|mechanical| {
                 match pressure_state {
                     // T4-U2 (H-2) on a realized arc: the published member rows
                     // are elastic (S = N_el); the wall rows are N_w = N_el + pAi
@@ -5664,7 +5752,7 @@ fn solve_prepared_load_case(
         // One same-source coefficient enclosure serves the two distinct
         // maximum laws; it never repairs a case demoted by a prior guard.
         let certified_spans=if macro_bend.is_none() {
-            certified_member.as_ref().and(member_bound).map(|bound| certified_publication::straight_stress_spans(pipe,&force,&displacements,bound,section,exact_pressure.as_ref().and_then(|case|case.pipe_states.get(&pipe_index))))
+            certified_member.as_ref().and(member_bound).map(|bound| certified_publication::straight_stress_spans(pipe,&force,certified_source.as_ref().expect("a certified source with the member bound"),&displacements,bound,section,exact_pressure.as_ref().and_then(|case|case.pipe_states.get(&pipe_index))))
         } else {None};
         if let Some(record) = preview_record.as_mut() {
             record.members.push(preview_physics::MemberRecord {
@@ -5706,88 +5794,102 @@ fn solve_prepared_load_case(
                 .flatten(),
             )?;
         }
-        for (location, stress) in [("end_i", &end_i_stress), ("end_j", &end_j_stress)] {
-            for finding in &stress.findings {
-                diagnostics.push(diag(
-                    &format!(
+        // D-5 (DEL-05-03 Design §2.1, §2.5): on an exact-contract document every
+        // element-local stress row is published on the nominal section (the
+        // built `section`) and on the reduced section, each nominal row
+        // immediately followed by its reduced twin, both from the same section
+        // actions. The preview route keeps its single basis and bytes.
+        let exact_bases = built.exact_sections.get(&pipe.element_id).copied();
+        let reduced_section = exact_bases.map(|bases| exact_basis_section(bases, pressure_exact::SectionBasis::Reduced));
+        let reduced_stresses = match &reduced_section {
+            None => None,
+            Some(reduced) => {
+                let at = |index: usize, resultants: &[f64; 6], name: &'static str| match &certified_member {
+                    Some(member) => certified_publication::stress(&member.sections[index], reduced)
+                        .map_err(|_| FrameKernelError::NonFiniteInput { name, value: f64::NAN }),
+                    None => Ok(recover_section_stress(resultants, reduced)),
+                };
+                let end_i = at(0, &endpoint_resultants[0], "certified endpoint stress")?;
+                let end_j = at(4, &endpoint_resultants[1], "certified endpoint stress")?;
+                let stations = station_resultants
+                    .iter()
+                    .enumerate()
+                    .map(|(index, station)| at(index + 1, &station.resultants, "certified station stress"))
+                    .collect::<Result<Vec<_>, FrameKernelError>>()?;
+                for stress in std::iter::once(&end_i).chain(std::iter::once(&end_j)).chain(stations.iter()) {
+                    let c = &stress.components;
+                    require_finite_mechanics(
+                        [c.axial_normal, c.bending_normal_y, c.bending_normal_z, c.torsional_shear].into_iter().flatten(),
+                    )?;
+                }
+                Some((end_i, end_j, stations))
+            }
+        };
+        let endpoint_sign = if macro_bend.is_some() { CURVED_BEND_SECTION_SIGN_CONVENTION } else { STRAIGHT_ENDPOINT_SECTION_SIGN_CONVENTION };
+        let station_row_basis = if macro_bend.is_some() { station_basis } else { "recovered_from_open_mechanics_stress_components" };
+        // (location, certified section index, endpoint, nominal stress, reduced stress)
+        let mut stress_sites = vec![
+            ("end_i", 0usize, true, &end_i_stress, reduced_stresses.as_ref().map(|stresses| &stresses.0)),
+            ("end_j", 4, true, &end_j_stress, reduced_stresses.as_ref().map(|stresses| &stresses.1)),
+        ];
+        for (index, (location, stress)) in station_stresses.iter().enumerate() {
+            stress_sites.push((*location, index + 1, false, stress, reduced_stresses.as_ref().map(|stresses| &stresses.2[index])));
+        }
+        for &(location, _, _, stress, reduced) in &stress_sites {
+            // The stress-finding warning, once per basis on the exact route.
+            let bases = match reduced {
+                None => vec![(stress, None)],
+                Some(reduced) => vec![(stress, Some(pressure_exact::SectionBasis::Nominal)), (reduced, Some(pressure_exact::SectionBasis::Reduced))],
+            };
+            for (stress, basis) in bases {
+                for finding in &stress.findings {
+                    let id = format!(
                         "diagnostic:stress:{}:{}:{:?}",
                         stable_suffix(&pipe.element_id),
                         location.replace('_', "-"),
                         finding.code
-                    ),
-                    "STRESS_RECOVERY_LIMITED",
-                    "warning",
-                    finding.message.clone(),
-                    vec![pipe.element_id.clone()],
-                ));
+                    );
+                    diagnostics.push(diag(
+                        &basis.map_or_else(|| id.clone(), |basis| format!("{id}:{}", basis.hyphen())),
+                        "STRESS_RECOVERY_LIMITED",
+                        "warning",
+                        finding.message.clone(),
+                        vec![pipe.element_id.clone()],
+                    ));
+                }
             }
         }
-        for (location, stress) in &station_stresses {
-            for finding in &stress.findings {
-                diagnostics.push(diag(
-                    &format!(
-                        "diagnostic:stress:{}:{}:{:?}",
-                        stable_suffix(&pipe.element_id),
-                        location.replace('_', "-"),
-                        finding.code
-                    ),
-                    "STRESS_RECOVERY_LIMITED",
-                    "warning",
-                    finding.message.clone(),
-                    vec![pipe.element_id.clone()],
-                ));
+        for &(location, index, endpoint, stress, reduced) in &stress_sites {
+            let publish = |rows: &mut Vec<ResultItem>, section: &DerivedSection, stress: &open_pipe_stress_stress_recovery::StressRecoveryResult| -> Result<(), FrameKernelError> {
+                if let Some(member) = &certified_member {
+                    let basis = if endpoint { SECTION_RESULTANT_BASIS } else { station_row_basis };
+                    let sign = if endpoint { Some(endpoint_sign) } else { macro_bend.is_some().then_some(CURVED_BEND_SECTION_SIGN_CONVENTION) };
+                    certified_publication::append_stress_mpa(rows, &pipe.element_id, location, &member.sections[index], section, endpoint, basis, sign)
+                        .map_err(|_| FrameKernelError::NonFiniteInput { name: if endpoint { "certified endpoint MPa" } else { "certified station MPa" }, value: f64::NAN })
+                } else if endpoint {
+                    append_endpoint_stress_results(rows, &pipe.element_id, location, &stress.components, endpoint_sign);
+                    Ok(())
+                } else {
+                    append_station_stress_results(rows, &pipe.element_id, location, &stress.components, station_row_basis,
+                        macro_bend.is_some().then_some(CURVED_BEND_SECTION_SIGN_CONVENTION));
+                    Ok(())
+                }
+            };
+            match (reduced, reduced_section.as_ref()) {
+                (Some(reduced), Some(reduced_section)) => {
+                    if stress.findings.is_empty() && reduced.findings.is_empty() {
+                        push_basis_twins(&mut results, true, FrameKernelError::NonFiniteInput { name: "section basis twin rows", value: f64::NAN }, |rows, basis| match basis {
+                            pressure_exact::SectionBasis::Nominal => publish(rows, section, stress),
+                            pressure_exact::SectionBasis::Reduced => publish(rows, reduced_section, reduced),
+                        })?;
+                    }
+                }
+                _ => {
+                    if stress.findings.is_empty() {
+                        publish(&mut results, section, stress)?;
+                    }
+                }
             }
-        }
-        if end_i_stress.findings.is_empty() {
-            if let Some(member)=&certified_member {
-                certified_publication::append_stress_mpa(&mut results,&pipe.element_id,"end_i",&member.sections[0],section,true,SECTION_RESULTANT_BASIS,Some(if macro_bend.is_some() {CURVED_BEND_SECTION_SIGN_CONVENTION} else {STRAIGHT_ENDPOINT_SECTION_SIGN_CONVENTION})).map_err(|_|FrameKernelError::NonFiniteInput {name:"certified endpoint MPa",value:f64::NAN})?;
-            } else { append_endpoint_stress_results(
-                &mut results,
-                &pipe.element_id,
-                "end_i",
-                &end_i_stress.components,
-                if macro_bend.is_some() {
-                    CURVED_BEND_SECTION_SIGN_CONVENTION
-                } else {
-                    STRAIGHT_ENDPOINT_SECTION_SIGN_CONVENTION
-                },
-            ); }
-        }
-        if end_j_stress.findings.is_empty() {
-            if let Some(member)=&certified_member {
-                certified_publication::append_stress_mpa(&mut results,&pipe.element_id,"end_j",&member.sections[4],section,true,SECTION_RESULTANT_BASIS,Some(if macro_bend.is_some() {CURVED_BEND_SECTION_SIGN_CONVENTION} else {STRAIGHT_ENDPOINT_SECTION_SIGN_CONVENTION})).map_err(|_|FrameKernelError::NonFiniteInput {name:"certified endpoint MPa",value:f64::NAN})?;
-            } else { append_endpoint_stress_results(
-                &mut results,
-                &pipe.element_id,
-                "end_j",
-                &end_j_stress.components,
-                if macro_bend.is_some() {
-                    CURVED_BEND_SECTION_SIGN_CONVENTION
-                } else {
-                    STRAIGHT_ENDPOINT_SECTION_SIGN_CONVENTION
-                },
-            ); }
-        }
-        for (index,(location, stress)) in station_stresses.iter().enumerate() {
-            if !stress.findings.is_empty() {
-                continue;
-            }
-            if let Some(member)=&certified_member {
-                certified_publication::append_stress_mpa(&mut results,&pipe.element_id,location,&member.sections[index+1],section,false,if macro_bend.is_some() {station_basis} else {"recovered_from_open_mechanics_stress_components"},macro_bend.is_some().then_some(CURVED_BEND_SECTION_SIGN_CONVENTION)).map_err(|_|FrameKernelError::NonFiniteInput {name:"certified station MPa",value:f64::NAN})?;
-            } else { append_station_stress_results(
-                &mut results,
-                &pipe.element_id,
-                location,
-                &stress.components,
-                if macro_bend.is_some() {
-                    station_basis
-                } else {
-                    "recovered_from_open_mechanics_stress_components"
-                },
-                macro_bend
-                    .is_some()
-                    .then_some(CURVED_BEND_SECTION_SIGN_CONVENTION),
-            ); }
         }
         let mut summary_values = [
             open_formula_summary_mpa(&end_i_stress),
@@ -5857,82 +5959,137 @@ fn solve_prepared_load_case(
                     &recovery_input(), selected_source.as_mut().expect("selected source"), &pipe.element_id,
                 ).map_err(|error| (std::borrow::Cow::Owned(error.0),)),
             };
-            match maximum {
-                Ok(maximum) => {
-                    let value = maximum.value_pa();
-                    let result_id = format!("result:elastic-maximum:{}:{}:{}:{}", load_case.id.len(), load_case.id, pipe.element_id.len(), pipe.element_id);
-                    results.push(ResultItem { id: result_id.clone(), kind: "pipe_elastic_normal_stress_maximum_v2".into(), value, unit: "Pa".into(), entity_ref: pipe.element_id.clone(), basis_ref: None, source_result_refs: Vec::new(), metadata: Some(ResultMetadata {
-                        component: "maximum_absolute_normal_stress".into(), coordinate_system: "pipe_section".into(), location: "governing_station".into(), basis: "retained_source_endpoint_normal_max_v1".into(),
-                        sign_convention: "nonnegative maximum absolute axial-plus-bending normal stress over an unloaded circular straight span; retained endpoint actions with projected-action and arithmetic bounds; endpoint witness does not imply uniqueness; torsional shear separate".into(),
-                    }) });
-                    if max_stress.as_ref().is_none_or(|q: &LocatedQuantity| value > q.value || (value == q.value && pipe.element_id < q.location_ref)) {
-                        max_stress = Some(LocatedQuantity { value, unit: "Pa".into(), location_ref: pipe.element_id.clone(), result_ref: result_id.clone() });
+            // D-5 (§2.2): one maximum per basis. A selected case's bases
+            // coincide (`prepare_sources` declines nonzero mill tolerance and
+            // allowance), so the reduced maximum is the nominal one, bound to its
+            // own reduced row; it is withheld by name if the two sections are not
+            // bit-equal.
+            let coincident = reduced_section.as_ref().is_some_and(|reduced| same_stress_section(reduced, section));
+            for basis in pressure_exact::SectionBasis::BOTH {
+                let outcome = match (&maximum, basis) {
+                    (Ok(_), pressure_exact::SectionBasis::Reduced) if !coincident => {
+                        Err(std::borrow::Cow::Borrowed(SOURCE_MAXIMUM_BASES_DISTINCT))
                     }
-                    pipe_stress_extrema.push(maximum.evidence(&result_id));
-                }
-                Err(error) => {
-                    unavailable_stress_maximum_members.push(pipe.element_id.clone());
-                    diagnostics.push(diag(&format!("diagnostic:source-recovery:{}:{}:maximum",load_case.id,pipe.element_id), "SOURCE_ENDPOINT_MAXIMUM_UNAVAILABLE", "warning", error.0, vec![load_case.id.clone(),pipe.element_id.clone()]));
+                    (Ok(maximum), _) => Ok(maximum),
+                    (Err(error), _) => Err(error.0.clone()),
+                };
+                match outcome {
+                    Ok(maximum) => {
+                        let value = maximum.value_pa();
+                        let row = section_basis_row(ResultItem { id: format!("result:elastic-maximum:{}:{}:{}:{}", load_case.id.len(), load_case.id, pipe.element_id.len(), pipe.element_id), kind: "pipe_elastic_normal_stress_maximum_v2".into(), value, unit: "Pa".into(), entity_ref: pipe.element_id.clone(), basis_ref: None, source_result_refs: Vec::new(), metadata: Some(ResultMetadata {
+                            component: "maximum_absolute_normal_stress".into(), coordinate_system: "pipe_section".into(), location: "governing_station".into(), basis: "retained_source_endpoint_normal_max_v1".into(),
+                            sign_convention: "nonnegative maximum absolute axial-plus-bending normal stress over an unloaded circular straight span; retained endpoint actions with projected-action and arithmetic bounds; endpoint witness does not imply uniqueness; torsional shear separate".into(),
+                        }) }, basis, false);
+                        let result_id = row.id.clone();
+                        results.push(row);
+                        let headline = match basis {
+                            pressure_exact::SectionBasis::Nominal => &mut max_stress,
+                            pressure_exact::SectionBasis::Reduced => &mut max_stress_reduced,
+                        };
+                        if headline.as_ref().is_none_or(|q: &LocatedQuantity| value > q.value || (value == q.value && pipe.element_id < q.location_ref)) {
+                            *headline = Some(LocatedQuantity { value, unit: "Pa".into(), location_ref: pipe.element_id.clone(), result_ref: result_id.clone() });
+                        }
+                        let mut evidence = maximum.evidence(&result_id);
+                        evidence["section_basis"] = serde_json::json!(basis.token());
+                        pipe_stress_extrema.push(evidence);
+                    }
+                    Err(error) => {
+                        match basis {
+                            pressure_exact::SectionBasis::Nominal => unavailable_stress_maximum_members.push(pipe.element_id.clone()),
+                            pressure_exact::SectionBasis::Reduced => unavailable_reduced_maximum_members.push(pipe.element_id.clone()),
+                        }
+                        diagnostics.push(diag(&format!("diagnostic:source-recovery:{}:{}:maximum:{}",load_case.id,pipe.element_id,basis.hyphen()), "SOURCE_ENDPOINT_MAXIMUM_UNAVAILABLE", "warning", error, vec![load_case.id.clone(),pipe.element_id.clone()]));
+                    }
                 }
             }
             None
         } else if pressure_runtime::is_exact(model) {
-            let extrema = match pressure_runtime::exact_member_maximum_policy(macro_bend.is_some()) {
-                // T4-U0 (O-10): the withheld reason is a static text borrowed, not
-                // formatted, inside the per-pipe loop; the warning below formats it.
-                pressure_runtime::ExactMemberMaximumPolicy::Withhold(reason) => {
-                    Err(std::borrow::Cow::Borrowed(reason))
-                }
-                pressure_runtime::ExactMemberMaximumPolicy::Compute => {
-                    if let Some(spans)=&certified_spans {
-                        spans.as_ref().map_err(Clone::clone).and_then(|spans|certified_publication::circular_maximum(spans,certified_member.as_ref().expect("certified coefficient source"),section))
-                    } else {exact_straight_summary_extrema(pipe,exact_mechanical_local_forces.as_ref().map(Vec::as_slice).unwrap_or(&corrected_local_forces),&straight_loads,section,exact_pressure.as_ref().and_then(|case|case.pipe_states.get(&pipe_index)))}
-                }.map_err(std::borrow::Cow::Owned),
-            };
-            match extrema {
-                Ok(maximum) => {
-                    let public_upper=maximum.upper_bound;
-                    let value=maximum.value_lower+0.5*(public_upper-maximum.value_lower);
-                    let result_id = format!(
-                        "result:elastic-maximum:{}:{}:{}:{}",
-                        load_case.id.len(),
-                        load_case.id,
-                        pipe.element_id.len(),
-                        pipe.element_id
-                    );
-                    results.push(ResultItem { id:result_id.clone(),kind:"pipe_elastic_normal_stress_maximum_v2".to_string(),value,unit:"Pa".to_string(),entity_ref:pipe.element_id.clone(),basis_ref:None,source_result_refs:Vec::new(),metadata:Some(ResultMetadata {
-                        component:"maximum_absolute_normal_stress".to_string(),coordinate_system:"pipe_section".to_string(),location:"governing_station".to_string(),basis:"recovered_from_open_mechanics_stress_components".to_string(),
-                        sign_convention:"nonnegative circumferential maximum |Nw/As|+hypot(My,Mz)/Z; bounded over all straight statics intervals; torsional shear remains separate; no code stress or equivalent stress claim".to_string() }) });
-                    if max_stress
-                        .as_ref()
-                        .map(|q: &LocatedQuantity| {
-                            value > q.value
-                                || (value == q.value && pipe.element_id < q.location_ref)
-                        })
-                        .unwrap_or(true)
-                    {
-                        max_stress = Some(LocatedQuantity {
-                            value,
-                            unit: "Pa".to_string(),
-                            location_ref: pipe.element_id.clone(),
-                            result_ref: result_id.clone(),
-                        });
+            // D-5 (§2.1, §2.2): the member maximum max |N_w/A_b| + hypot(M_y,
+            // M_z)/Z_b once per basis, through the same certified or fallback
+            // circular-maximum machinery with that basis's A_b and Z_b; withheld
+            // on realized arcs on both bases, with the warning once per basis.
+            let pressure_state = exact_pressure.as_ref().and_then(|case| case.pipe_states.get(&pipe_index));
+            let reduced_section = reduced_section.as_ref().expect("an exact member has its reduced section");
+            for basis in pressure_exact::SectionBasis::BOTH {
+                let basis_section = match basis {
+                    pressure_exact::SectionBasis::Nominal => section,
+                    pressure_exact::SectionBasis::Reduced => reduced_section,
+                };
+                let extrema = match pressure_runtime::exact_member_maximum_policy(macro_bend.is_some()) {
+                    // T4-U0 (O-10): the withheld reason is a static text borrowed, not
+                    // formatted, inside the per-pipe loop; the warning below formats it.
+                    pressure_runtime::ExactMemberMaximumPolicy::Withhold(reason) => {
+                        Err(std::borrow::Cow::Borrowed(reason))
                     }
-                    pipe_stress_extrema.push(serde_json::json!({"pipe_id":pipe.element_id,"result_id":result_id,
-                        "station_fraction":maximum.station,"span_index":maximum.span_index,"local_fraction":maximum.local_fraction,
-                        "value_lower_pa":maximum.value_lower,"value_upper_pa":maximum.upper_bound,"global_upper_bound_pa":maximum.upper_bound,
-                        "certified_gap_pa":maximum.certified_gap,"subdivisions":maximum.subdivisions,
-                        "approximation":"piecewise_quadratic_straight_section_statics","coefficient_basis":"j_side_section_equilibrium_binary64_enclosures",
-                        "enclosure_scope":"supplied_binary64_polynomial_coefficient_enclosures; solution error is separate"}));
-                }
-                Err(error) => {
-                    unavailable_stress_maximum_members.push(pipe.element_id.clone());
-                    diagnostics.push(diag(&format!("diagnostic:exact-stress:{}:extrema",stable_suffix(&pipe.element_id)),"EXACT_STRESS_GOVERNING_MAXIMUM_UNAVAILABLE","warning",format!("signed physical rows remain available; governing circular-normal-stress maximum is unavailable: {error}"),vec![load_case.id.clone(),pipe.element_id.clone()]));
-                    // T4-U2: an arc's withheld maximum recurs in every case, so
-                    // its id is case-qualified on the arc branch; the straight
-                    // site above keeps its text and bytes (SP-1).
-                    if let (Some(_), Some(last)) = (macro_bend, diagnostics.last_mut()) {
-                        last.id = format!("diagnostic:exact-stress:{}:{}:extrema", stable_suffix(&load_case.id), stable_suffix(&pipe.element_id));
+                    pressure_runtime::ExactMemberMaximumPolicy::Compute => {
+                        if let Some(spans)=&certified_spans {
+                            let reduced_spans;
+                            let spans = match basis {
+                                pressure_exact::SectionBasis::Nominal => spans,
+                                pressure_exact::SectionBasis::Reduced => {
+                                    reduced_spans = certified_publication::straight_stress_spans(pipe,&force,certified_source.as_ref().expect("certified spans have a source"),&displacements,member_bound.expect("certified spans have a bound"),basis_section,pressure_state);
+                                    &reduced_spans
+                                }
+                            };
+                            spans.as_ref().map_err(Clone::clone).and_then(|spans|certified_publication::circular_maximum(spans,certified_member.as_ref().expect("certified coefficient source"),basis_section))
+                        } else {exact_straight_summary_extrema(pipe,exact_mechanical_local_forces.as_ref().map(Vec::as_slice).unwrap_or(&corrected_local_forces),&straight_loads,basis_section,pressure_state.map(|state| (state, basis)))}
+                    }.map_err(std::borrow::Cow::Owned),
+                };
+                match extrema {
+                    Ok(maximum) => {
+                        let public_upper=maximum.upper_bound;
+                        let value=maximum.value_lower+0.5*(public_upper-maximum.value_lower);
+                        let row = section_basis_row(ResultItem { id:format!(
+                            "result:elastic-maximum:{}:{}:{}:{}",
+                            load_case.id.len(),
+                            load_case.id,
+                            pipe.element_id.len(),
+                            pipe.element_id
+                        ),kind:"pipe_elastic_normal_stress_maximum_v2".to_string(),value,unit:"Pa".to_string(),entity_ref:pipe.element_id.clone(),basis_ref:None,source_result_refs:Vec::new(),metadata:Some(ResultMetadata {
+                            component:"maximum_absolute_normal_stress".to_string(),coordinate_system:"pipe_section".to_string(),location:"governing_station".to_string(),basis:"recovered_from_open_mechanics_stress_components".to_string(),
+                            sign_convention:"nonnegative circumferential maximum |Nw/As|+hypot(My,Mz)/Z; bounded over all straight statics intervals; torsional shear remains separate; no code stress or equivalent stress claim".to_string() }) }, basis, false);
+                        let result_id = row.id.clone();
+                        results.push(row);
+                        let headline = match basis {
+                            pressure_exact::SectionBasis::Nominal => &mut max_stress,
+                            pressure_exact::SectionBasis::Reduced => &mut max_stress_reduced,
+                        };
+                        if headline
+                            .as_ref()
+                            .map(|q: &LocatedQuantity| {
+                                value > q.value
+                                    || (value == q.value && pipe.element_id < q.location_ref)
+                            })
+                            .unwrap_or(true)
+                        {
+                            *headline = Some(LocatedQuantity {
+                                value,
+                                unit: "Pa".to_string(),
+                                location_ref: pipe.element_id.clone(),
+                                result_ref: result_id.clone(),
+                            });
+                        }
+                        pipe_stress_extrema.push(serde_json::json!({"pipe_id":pipe.element_id,"result_id":result_id,
+                            "station_fraction":maximum.station,"span_index":maximum.span_index,"local_fraction":maximum.local_fraction,
+                            "value_lower_pa":maximum.value_lower,"value_upper_pa":maximum.upper_bound,"global_upper_bound_pa":maximum.upper_bound,
+                            "certified_gap_pa":maximum.certified_gap,"subdivisions":maximum.subdivisions,
+                            "approximation":"piecewise_quadratic_straight_section_statics","coefficient_basis":"j_side_section_equilibrium_binary64_enclosures",
+                            "enclosure_scope":"supplied_binary64_polynomial_coefficient_enclosures; solution error is separate",
+                            "section_basis":basis.token()}));
+                    }
+                    Err(error) => {
+                        match basis {
+                            pressure_exact::SectionBasis::Nominal => unavailable_stress_maximum_members.push(pipe.element_id.clone()),
+                            pressure_exact::SectionBasis::Reduced => unavailable_reduced_maximum_members.push(pipe.element_id.clone()),
+                        }
+                        // T4-U2: an arc's withheld maximum recurs in every case, so
+                        // its id is case-qualified on the arc branch; D-5 names the
+                        // basis in each warning's final id segment.
+                        let id = match macro_bend {
+                            Some(_) => format!("diagnostic:exact-stress:{}:{}:extrema:{}", stable_suffix(&load_case.id), stable_suffix(&pipe.element_id), basis.hyphen()),
+                            None => format!("diagnostic:exact-stress:{}:extrema:{}",stable_suffix(&pipe.element_id), basis.hyphen()),
+                        };
+                        diagnostics.push(diag(&id,"EXACT_STRESS_GOVERNING_MAXIMUM_UNAVAILABLE","warning",format!("signed physical rows remain available; governing circular-normal-stress maximum is unavailable: {error}"),vec![load_case.id.clone(),pipe.element_id.clone()]));
                     }
                 }
             }
@@ -6075,17 +6232,23 @@ fn solve_prepared_load_case(
             p.evidence
         })
         .unwrap_or_default();
+    // D-5: each basis's headline is withheld when its own coverage is incomplete.
     if pressure_runtime::is_exact(model) && !unavailable_stress_maximum_members.is_empty() {
         max_stress = None;
+    }
+    if pressure_runtime::is_exact(model) && !unavailable_reduced_maximum_members.is_empty() {
+        max_stress_reduced = None;
     }
     let exact_case_evidence = pressure_runtime::is_exact(model).then(|| {
         let mut evidence = serde_json::json!({
         "load_case_id":load_case.id,"profile_mode":pressure_runtime::exact_contract(model).map(|c| c.mode()),
         "material_basis":modulus_basis_record.unwrap_or("base_material_common_E_nu"),
         "pressure_rhs_assembly":pressure_assembly_evidence,
-        "pipe_sections":built.pipes.iter().map(|pipe| exact_section_evidence(&pipe.element_id,*built.exact_sections.get(&pipe.element_id).expect("every built exact member has source geometry"))).collect::<Vec<_>>(),
+        "pipe_sections":exact_pipe_sections(built),
         "pipe_stress_extrema":pipe_stress_extrema,
-        "stress_maximum_coverage":{"complete":unavailable_stress_maximum_members.is_empty(),"unavailable_pipe_ids":unavailable_stress_maximum_members},
+        "stress_maximum_coverage":[
+            {"section_basis":pressure_exact::SectionBasis::Nominal.token(),"complete":unavailable_stress_maximum_members.is_empty(),"unavailable_pipe_ids":unavailable_stress_maximum_members},
+            {"section_basis":pressure_exact::SectionBasis::Reduced.token(),"complete":unavailable_reduced_maximum_members.is_empty(),"unavailable_pipe_ids":unavailable_reduced_maximum_members}],
         "pipe_materials":if load_state.is_some() { Vec::new() } else { model.pipe_segments.iter().map(|pipe| {
             let material=materials.iter().find(|m| m.id==pipe.material).expect("built exact member material is validated");
             let thermal_consumed=load_case.primitive_loads.iter().any(|load| load.category=="thermal" && is_temperature_change_dimension(&load.dimension) && matches!(&load.target,LoadTargetInput::Element{pipe:target} if target==&pipe.id));
@@ -6173,6 +6336,7 @@ fn solve_prepared_load_case(
         results,
         max_displacement,
         max_stress,
+        max_stress_reduced,
         component_stress_modifier_count,
         preview: preview_record,
         withheld_summaries,
@@ -6329,6 +6493,7 @@ fn append_nonlinear_support_loop_results(
                                     &solve,
                                     force,
                                     &curved_sources,
+                                    &frame_member_identities(built),
                                     solver_mode.nonlinear_mode(),
                                 )
                                 .unwrap_or_else(|error| Confirmation::NotEstablished {
@@ -6657,6 +6822,8 @@ fn solve_preview_reduced_system(
     // scrutiny SA materializes the dense view of the same values and runs
     // today's dense Cholesky path (K1: the `StructuralSolution` is
     // byte-identical in `Debug` to the dense evidence's).
+    // T4-U8 (DEL-05-03 Design §4 item 2): K-D5's source keys each straight
+    // load primitive to its own member's frame.
     let assembly = SparseAssemblyEvidence::new(
         stiffness.pattern(),
         built.nodes.len(),
@@ -6664,7 +6831,8 @@ fn solve_preview_reduced_system(
         &built.connectors,
         &curved,
         &springs,
-    )?;
+    )?
+    .with_frame_members(&frame_member_identities(built));
     let free = (0..global_force.len())
         .filter(|i| !restrained_dofs.contains(i))
         .collect::<Vec<_>>();
@@ -7422,21 +7590,49 @@ fn build_model_for_members(
             continue;
         };
         if pressure_runtime::is_exact(model) {
-            let geometry = match pressure_exact::SourceAnnulus::from_od_wall(
+            // D-5 (DEL-05-03 Design `section-bases-and-timoshenko.md` §1): the
+            // nominal section (wall t), the reduced section (t_r = (t - c_m) - c_a,
+            // with derive_pipe_section's t - c_m, in that binary64 order) and the
+            // pressure bore D/2 - t_r, derived once here and threaded by name.
+            // The built section below is the nominal one: it carries stiffness
+            // (frames, realized arcs) and the thermal/fit eigenloads.
+            // `validate_profile` requires the explicit allowance
+            // (EXACT_PRESSURE_CORROSION_ALLOWANCE_REQUIRED) before any public
+            // build; a direct build of an allowance-free section keeps the
+            // former single t - c_m section, as before D-5.
+            let allowance = pipe.section.corrosion_allowance.as_ref().map_or(0.0, |q| q.value);
+            let mill_tolerance = pipe.section.mill_tolerance.as_ref().map_or(0.0, |q| q.value);
+            let nominal_wall = pipe.section.wall_thickness.value;
+            let reduced_wall = derived.wall_thickness - allowance;
+            let geometry = pressure_exact::ExactSectionBases::derive(
                 pipe.section.outside_diameter.value,
-                derived.wall_thickness,
-            ) {
+                nominal_wall,
+                mill_tolerance,
+                allowance,
+            )
+            .and_then(|geometry| {
+                // The mill-reduced wall above is derive_pipe_section's t - c_m; the
+                // bases recompute (t - c_m) - c_a, so both name one t_r.
+                if geometry.pressure_wall_m().to_bits() == reduced_wall.to_bits() {
+                    Ok(geometry)
+                } else {
+                    Err(pressure_exact::ExactPressureError::InvalidGeometry)
+                }
+            });
+            let geometry = match geometry {
                 Ok(geometry) => geometry,
                 Err(error) => {
                     diagnostics.push(diag(&format!("diagnostic:exact-section:{}",stable_suffix(&pipe.id)),"EXACT_SECTION_GEOMETRY_UNREPRESENTABLE","blocking",format!("source OD/effective-wall annulus requires distinct positive represented radii and finite positive area/I/J/Z: {error:?}"),vec![pipe.id.clone()]));
                     continue;
                 }
             };
-            derived.area = geometry.wall_area_m2();
-            derived.internal_area = geometry.internal_area_m2();
-            derived.second_moment = geometry.second_moment_m4();
-            derived.torsion_constant = geometry.polar_moment_m4();
-            derived.section_modulus = geometry.section_modulus_m3();
+            let nominal = geometry.nominal();
+            derived.area = nominal.wall_area_m2();
+            derived.internal_area = nominal.internal_area_m2();
+            derived.second_moment = nominal.second_moment_m4();
+            derived.torsion_constant = nominal.polar_moment_m4();
+            derived.section_modulus = nominal.section_modulus_m3();
+            derived.wall_thickness = nominal_wall;
             exact_sections.insert(pipe.id.clone(), geometry);
         }
         let Some(y_reference) = pipe.y_reference else {
@@ -7467,7 +7663,41 @@ fn build_model_for_members(
                     .value,
             ),
         };
-        let section = match StraightPipeSectionProperties::new(
+        // T4-U8 (DEL-05-03 Design §3.1, §3.6): on a document selecting
+        // timoshenko_annulus_energy_v1 every straight member carries the shear
+        // area A_s = kappa_E * A_n, with kappa_E (FK `shear`) from the nominal
+        // annulus's binary64 leaves and the member's selected nu, the E/nu basis
+        // that gives its G (per resolved case on a load-state document). A
+        // realized arc stays Euler-Bernoulli. A missing basis or a factor out of
+        // range blocks by name; no default factor exists.
+        let shear_area = if pressure_runtime::selects_timoshenko(model) && !curved_bend_pipe_ids.contains(pipe.id.as_str()) {
+            let nu = match member_pairs {
+                Some(pairs) => pairs.get(&pipe.id).map(|pair| pair.poisson_ratio()),
+                None => material.poisson_ratio.as_ref().map(|nu| nu.value),
+            };
+            let factor = exact_sections.get(&pipe.id).copied().ok_or("the nominal annulus").and_then(|bases| {
+                let nu = nu.ok_or("the member's selected Poisson ratio")?;
+                let nominal = bases.nominal();
+                let kappa = open_pipe_stress_frame_kernel::shear::annulus_energy_shear_factor(nominal.inner_radius_m(), nominal.outer_radius_m(), nu)
+                    .map_err(|_| "the energy-matched annular shear factor")?;
+                let shear_area = open_pipe_stress_frame_kernel::shear::shear_area(kappa, derived.area).map_err(|_| "the shear area")?;
+                Ok((bases, kappa, shear_area))
+            });
+            match factor {
+                Ok((bases, kappa, shear_area)) => {
+                    exact_sections.insert(pipe.id.clone(), bases.with_timoshenko(kappa, shear_area));
+                    Some(shear_area)
+                }
+                Err(missing) => {
+                    diagnostics.push(diag(&format!("diagnostic:exact-section:{}:shear", stable_suffix(&pipe.id)), "EXACT_PRESSURE_SHEAR_FACTOR_UNAVAILABLE", "blocking",
+                        format!("a timoshenko_annulus_energy_v1 member requires {missing}; no default shear factor is used"), vec![pipe.id.clone()]));
+                    continue;
+                }
+            }
+        } else {
+            None
+        };
+        let section = match shear_area.map_or_else(|| StraightPipeSectionProperties::new(
             elastic_modulus,
             shear_modulus,
             derived.area,
@@ -7475,7 +7705,16 @@ fn build_model_for_members(
             derived.second_moment,
             derived.torsion_constant,
             None,
-        ) {
+        ), |shear_area| StraightPipeSectionProperties::timoshenko(
+            elastic_modulus,
+            shear_modulus,
+            derived.area,
+            derived.second_moment,
+            derived.second_moment,
+            derived.torsion_constant,
+            shear_area,
+            None,
+        )) {
             Ok(section) => section,
             Err(error) => {
                 diagnostics.push(diag(
@@ -10313,21 +10552,15 @@ fn derive_pipe_section(
             effective
         }
     };
+    // D-5 (T4-U6): a nonzero allowance is admitted; the exact route's reduced
+    // wall is (t - c_m) - c_a (`build_model_for_members`). The section-sum
+    // check c_m + c_a < t stays, as c_a < t - c_m on the mill-reduced wall.
     if let Some(allowance) = &input.corrosion_allowance {
         if !allowance.value.is_finite() || allowance.value < 0.0 || allowance.value >= thickness {
             diagnostics.push(diag(
                 &format!("diagnostic:section:{}:corrosion-allowance", stable_suffix(pipe_id)),
                 "PIPE_DIMENSION_INVALID", "blocking",
                 "corrosion allowance must be a finite non-negative length that leaves a positive wall after mill tolerance",
-                vec![pipe_id.to_string(), "corrosion_allowance".to_string()],
-            ));
-            return None;
-        }
-        if allowance.value != 0.0 {
-            diagnostics.push(diag(
-                &format!("diagnostic:section:{}:corrosion-allowance", stable_suffix(pipe_id)),
-                "EXACT_PRESSURE_CORROSION_ALLOWANCE_UNSUPPORTED", "blocking",
-                "nonzero corrosion allowance is not yet supported",
                 vec![pipe_id.to_string(), "corrosion_allowance".to_string()],
             ));
             return None;
@@ -10436,11 +10669,141 @@ fn straight_section_resultants(
     ])
 }
 
-fn exact_section_evidence(pipe_id: &str, g: pressure_exact::SourceAnnulus) -> serde_json::Value {
-    serde_json::json!({"pipe_id":pipe_id,"geometry_basis":"authored_normalized_od_wall_v1",
-        "outside_diameter_m":g.outside_diameter_m(),"effective_wall_thickness_m":g.effective_wall_thickness_m(),
-        "ri_m":g.inner_radius_m(),"ro_m":g.outer_radius_m(),"Ai_m2":g.internal_area_m2(),"As_m2":g.wall_area_m2(),
-        "I_m4":g.second_moment_m4(),"J_m4":g.polar_moment_m4(),"Z_m3":g.section_modulus_m3()})
+/// T4-U8 (DEL-05-03 Design §2.5): an exact case's `pipe_sections`, one entry
+/// per built member in pipe order. A realized arc's entry carries the region
+/// geometry's marker (`mark_realized_arc`), arc membership decided as the
+/// region geometry decides it (`realized_arc`), so a reader without the model
+/// knows every arc, including arcs outside every pressure region. A straight
+/// member's entry keeps exactly the `exact_section_evidence` keys.
+fn exact_pipe_sections(built: &BuiltModel) -> Vec<serde_json::Value> {
+    built
+        .pipes
+        .iter()
+        .enumerate()
+        .map(|(index, pipe)| {
+            let sections = *built.exact_sections.get(&pipe.element_id).expect("every built exact member has source geometry");
+            let mut entry = exact_section_evidence(&pipe.element_id, sections);
+            if realized_arc(built, index).is_some() {
+                mark_realized_arc(&mut entry);
+            }
+            entry
+        })
+        .collect()
+}
+
+/// The realized arc built on `built.pipes[pipe_index]`, if that pipe is one:
+/// the curved bend macro element realized on it. The one arc membership of
+/// the region geometry and of `pipe_sections`.
+fn realized_arc(built: &BuiltModel, pipe_index: usize) -> Option<&CurvedBendMacroBuild> {
+    built.curved_bend_elements.iter().find(|bend| bend.pipe_index == pipe_index)
+}
+
+/// The realized-arc marker `member_kind = "realized_arc"` of a section record
+/// (region geometry and `pipe_sections`, §2.5).
+fn mark_realized_arc(entry: &mut serde_json::Value) {
+    entry["member_kind"] = serde_json::json!("realized_arc");
+}
+
+/// D-5 (DEL-05-03 Design `section-bases-and-timoshenko.md` §2.3, §2.5): one
+/// pipe's `pipe_sections` entry, the one shape of every identity's section
+/// evidence and of the realized-arc geometry record: the authored OD, wall,
+/// mill tolerance (absent = 0) and allowance, both sections, the pressure bore
+/// and the beam theory (a realized arc's sections carry no shear leaf, so it
+/// is Euler-Bernoulli under either selection). Callers add the realized-arc
+/// marker.
+fn exact_section_evidence(pipe_id: &str, g: pressure_exact::ExactSectionBases) -> serde_json::Value {
+    let section = |s: pressure_exact::SourceAnnulus| serde_json::json!({"wall_m":s.effective_wall_thickness_m(),
+        "ri_m":s.inner_radius_m(),"As_m2":s.wall_area_m2(),"I_m4":s.second_moment_m4(),"J_m4":s.polar_moment_m4(),"Z_m3":s.section_modulus_m3()});
+    serde_json::json!({"pipe_id":pipe_id,"geometry_basis":"authored_od_wall_d5_sections_v1",
+        "outside_diameter_m":g.outside_diameter_m(),"ro_m":g.nominal().outer_radius_m(),
+        "wall_thickness_m":g.nominal_wall_m(),"mill_tolerance_m":g.mill_tolerance_m(),"corrosion_allowance_m":g.corrosion_allowance_m(),
+        "nominal_section":section(g.nominal()),"reduced_section":section(g.reduced()),
+        "pressure_bore":{"ri_m":g.pressure_bore_radius_m(),"Ai_m2":g.pressure_bore_area_m2()},
+        // T4-U8 (§2.3): a Timoshenko straight member's kappa_E and A_s; every
+        // other member, realized arcs included, is Euler-Bernoulli.
+        "beam_theory":match g.timoshenko() {
+            Some((shear_factor, shear_area)) => serde_json::json!({"model":pressure_runtime::TIMOSHENKO_ANNULUS_ENERGY,
+                "shear_factor":shear_factor,"shear_area_m2":shear_area}),
+            None => serde_json::json!({"model":pressure_runtime::EULER_BERNOULLI}),
+        }})
+}
+
+/// D-5 (§2.1, §2.5): a stress row named for its section basis: its id gains
+/// the final segment `:nominal_section`/`:reduced_section` (underscore-style
+/// ids) or `:nominal-section`/`:reduced-section` (hyphen-style ids), and its
+/// recovery token the suffix `; section_basis=…`.
+fn section_basis_row(mut row: ResultItem, basis: pressure_exact::SectionBasis, hyphen_id: bool) -> ResultItem {
+    row.id.push(':');
+    row.id.push_str(if hyphen_id { basis.hyphen() } else { basis.token() });
+    if let Some(metadata) = row.metadata.as_mut() {
+        metadata.basis.push_str(basis.basis_suffix());
+    }
+    row
+}
+
+/// D-5 (§2.1, §2.5): one push site's stress rows on both section bases.
+/// `push` appends the site's rows for one basis through the shared helpers
+/// (whose arguments and bytes are the preview route's); each nominal row is
+/// then immediately followed by its reduced twin. The two families must
+/// agree row for row (kind, entity, unit, metadata other than the value),
+/// else `mismatch` is returned and nothing is published.
+fn push_basis_twins<E>(
+    results: &mut Vec<ResultItem>,
+    hyphen_ids: bool,
+    mismatch: E,
+    mut push: impl FnMut(&mut Vec<ResultItem>, pressure_exact::SectionBasis) -> Result<(), E>,
+) -> Result<(), E> {
+    use pressure_exact::SectionBasis;
+    let mut nominal = Vec::new();
+    push(&mut nominal, SectionBasis::Nominal)?;
+    let mut reduced = Vec::new();
+    push(&mut reduced, SectionBasis::Reduced)?;
+    let twins = nominal.len() == reduced.len()
+        && nominal.iter().zip(&reduced).all(|(n, r)| {
+            n.id == r.id
+                && n.kind == r.kind
+                && n.unit == r.unit
+                && n.entity_ref == r.entity_ref
+                && n.basis_ref == r.basis_ref
+                && n.source_result_refs == r.source_result_refs
+                && n.metadata == r.metadata
+        });
+    if !twins {
+        return Err(mismatch);
+    }
+    results.reserve(nominal.len() + reduced.len());
+    for (n, r) in nominal.into_iter().zip(reduced) {
+        results.push(section_basis_row(n, SectionBasis::Nominal, hyphen_ids));
+        results.push(section_basis_row(r, SectionBasis::Reduced, hyphen_ids));
+    }
+    Ok(())
+}
+
+/// D-5: whether two stress-recovery sections are bit-equal (the bases coincide).
+fn same_stress_section(a: &DerivedSection, b: &DerivedSection) -> bool {
+    [a.area, a.section_modulus, a.torsion_constant, a.torsion_radius]
+        .iter()
+        .zip([b.area, b.section_modulus, b.torsion_constant, b.torsion_radius])
+        .all(|(x, y)| x.to_bits() == y.to_bits())
+}
+
+/// D-5: the reduced basis of a selected retained-source maximum binds the
+/// nominal maximum only where the two sections coincide (static text, O-10).
+const SOURCE_MAXIMUM_BASES_DISTINCT: &str = "the retained-source maximum binds coincident section bases only; the reduced section differs from the nominal section";
+
+/// D-5: a basis's stress-recovery section (A, Z, J and r_o of that annulus),
+/// the nominal one being the built section itself.
+fn exact_basis_section(g: pressure_exact::ExactSectionBases, basis: pressure_exact::SectionBasis) -> DerivedSection {
+    let s = g.basis(basis);
+    DerivedSection {
+        area: s.wall_area_m2(),
+        internal_area: s.internal_area_m2(),
+        second_moment: s.second_moment_m4(),
+        torsion_constant: s.polar_moment_m4(),
+        section_modulus: s.section_modulus_m3(),
+        torsion_radius: g.outside_diameter_m() / 2.0,
+        wall_thickness: s.effective_wall_thickness_m(),
+    }
 }
 
 fn exact_straight_summary_extrema(
@@ -10448,7 +10811,8 @@ fn exact_straight_summary_extrema(
     end_forces: &[f64],
     loads: &[SpannedUniformLocalLoad],
     section: &DerivedSection,
-    pressure_state: Option<&pressure_runtime::ExactPressurePipeState>,
+    // D-5: a pressure member's state and the basis whose section `section` is.
+    pressure_state: Option<(&pressure_runtime::ExactPressurePipeState, pressure_exact::SectionBasis)>,
 ) -> Result<open_pipe_stress_stress_recovery::elastic_extrema::CertifiedStressMaximum, String> {
     use open_pipe_stress_stress_recovery::elastic_extrema::{
         QuadraticStressSpan,
@@ -10500,12 +10864,12 @@ fn exact_straight_summary_extrema(
         // a subnormal force can still carry a normal representable stress.
         // Uniform pressure is constant on the member, so the axial slope and
         // the unchanged nonaxial section statics retain their original basis.
-        let axial = if let Some(state) = pressure_state {
+        let axial = if let Some((state, basis)) = pressure_state {
             state
-                .annulus
-                .recover_wall_effective_membrane(r[0], state.material, state.pressure)
+                .sections
+                .recover_wall_effective(r[0], state.material, state.pressure)
+                .and_then(|forces| state.sections.membrane(basis, forces))
                 .map_err(|e| format!("source pressure membrane is unrepresentable: {e:?}"))?
-                .2
         } else {
             r[0] / section.area
         };
@@ -11002,10 +11366,12 @@ fn add_curved_bend_pressure_equivalent_load(
                         local_row * 12 + local_col,
                         local_row,
                         LoadFormula::PressureFreeStrainCurved {
+                            // D-5: Ai on the pressure bore (D/2 - t_r); As is the
+                            // arc's own nominal area in `arc` (N-3).
                             arc: curved_formation_of(bend),
                             pressure: state.pressure.pressure_pa(),
-                            outer_diameter: state.annulus.outside_diameter_m(),
-                            wall_thickness: state.annulus.effective_wall_thickness_m(),
+                            outer_diameter: state.sections.outside_diameter_m(),
+                            wall_thickness: state.sections.pressure_wall_m(),
                             poisson_ratio: state.material.poisson_ratio(),
                             column: Some(local_col),
                         },
@@ -11700,9 +12066,12 @@ fn append_exact_pressure_results(
     ) else {
         return;
     };
-    let (Ok([inner, outer]), Ok(_caps)) = (
-        state.annulus.surface_stresses(state.pressure),
-        state.annulus.cap_pair(state.pressure),
+    // D-5 (§2.1): each basis's own closed-annulus Lamé solution.
+    use pressure_exact::SectionBasis;
+    let (Ok([nominal_inner, nominal_outer]), Ok([reduced_inner, reduced_outer]), Ok(_caps)) = (
+        state.sections.surface_stresses(SectionBasis::Nominal, state.pressure),
+        state.sections.surface_stresses(SectionBasis::Reduced, state.pressure),
+        state.sections.cap_pair(state.pressure),
     ) else {
         diagnostics.push(diag(
             "diagnostic:exact-pressure:surface",
@@ -11723,9 +12092,11 @@ fn append_exact_pressure_results(
                     | "pipe_section_pressure_longitudinal_stress"
             )
     });
+    // `basis` names a stress row's section basis (D-5): each nominal stress row
+    // is immediately followed by its reduced twin; force rows are published once.
     let mut append =
-        |kind: &str, component: &str, location: &str, value: f64, stress: bool, sign: &str| {
-            results.push(ResultItem {
+        |kind: &str, component: &str, location: &str, value: f64, stress: Option<SectionBasis>, sign: &str| {
+            let row = ResultItem {
                 id: format!(
                     "result:pressure-exact:{}:{}:{}:{}:{}:{}",
                     case.id.len(),
@@ -11737,7 +12108,7 @@ fn append_exact_pressure_results(
                 ),
                 kind: kind.to_string(),
                 value,
-                unit: if stress { "Pa" } else { "N" }.to_string(),
+                unit: if stress.is_some() { "Pa" } else { "N" }.to_string(),
                 entity_ref: pipe_id.to_string(),
                 basis_ref: Some(ResultBasisRef {
                     ref_type: "load_case".to_string(),
@@ -11746,14 +12117,14 @@ fn append_exact_pressure_results(
                 source_result_refs: Vec::new(),
                 metadata: Some(ResultMetadata {
                     component: component.to_string(),
-                    coordinate_system: if stress {
+                    coordinate_system: if stress.is_some() {
                         "pipe_section"
                     } else {
                         "element_local"
                     }
                     .to_string(),
                     location: location.to_string(),
-                    basis: if stress {
+                    basis: if stress.is_some() {
                         "recovered_from_open_mechanics_stress_components"
                     } else {
                         "recovered_from_local_element_stiffness"
@@ -11761,13 +12132,17 @@ fn append_exact_pressure_results(
                     .to_string(),
                     sign_convention: sign.to_string(),
                 }),
+            };
+            results.push(match stress {
+                Some(basis) => section_basis_row(row, basis, false),
+                None => row,
             });
         };
     for (location, value) in [
         ("end_i", actions[UX]),
         ("end_j", actions[DOF_PER_NODE + UX]),
     ] {
-        append("pipe_wall_endpoint_action_v2", "wall_axial_end_action", location, value, false, "node-on-element wall action, positive along authored local x toward end j; cap transfer is not subtracted from wall recovery");
+        append("pipe_wall_endpoint_action_v2", "wall_axial_end_action", location, value, None, "node-on-element wall action, positive along authored local x toward end j; cap transfer is not subtracted from wall recovery");
     }
     for (location, fraction) in [
         ("end_i", 0.0),
@@ -11790,18 +12165,24 @@ fn append_exact_pressure_results(
                     return;
                 }
             };
-        let (wall, effective, membrane) = if let (Some(wall),Some(effective)) = (certified_wall,certified_effective) {
+        // D-5 (§1): N_w and S once on the pressure bore, then σ_m = N_w/A_b
+        // per basis.
+        let (wall, effective, membranes) = if let (Some(wall),Some(effective)) = (certified_wall,certified_effective) {
             let index = if fraction == 0.0 {0} else if fraction == 1.0 {4} else if fraction == 0.25 {1} else if fraction == 0.5 {2} else {3};
-            let membrane = match wall.sections[index][0].divided(state.annulus.wall_area_m2()) {
-                Ok(row) => row.published,
-                Err(error) => { diagnostics.push(diag("diagnostic:exact-pressure:certified-membrane", "EXACT_PRESSURE_RECOVERY_FAILED", "blocking",format!("certified membrane stress unavailable: {error:?}"),vec![case.id.clone(),pipe_id.to_string()])); return; }
+            let membrane = |basis: SectionBasis| wall.sections[index][0].divided(state.sections.basis(basis).wall_area_m2()).map(|row| row.published);
+            let membranes = match (membrane(SectionBasis::Nominal), membrane(SectionBasis::Reduced)) {
+                (Ok(nominal), Ok(reduced)) => [nominal, reduced],
+                (Err(error), _) | (_, Err(error)) => { diagnostics.push(diag("diagnostic:exact-pressure:certified-membrane", "EXACT_PRESSURE_RECOVERY_FAILED", "blocking",format!("certified membrane stress unavailable: {error:?}"),vec![case.id.clone(),pipe_id.to_string()])); return; }
             };
-            (wall.sections[index][0].published,effective.sections[index][0].published,membrane)
-        } else { match state.annulus.recover_wall_effective_membrane(
+            (wall.sections[index][0].published,effective.sections[index][0].published,membranes)
+        } else { match state.sections.recover_wall_effective(
             mechanical[0],
             state.material,
             state.pressure,
-        ) {
+        ).and_then(|forces| Ok((forces.wall_n, forces.effective_n, [
+            state.sections.membrane(SectionBasis::Nominal, forces)?,
+            state.sections.membrane(SectionBasis::Reduced, forces)?,
+        ]))) {
             Ok(value) => value,
             Err(error) => {
                 diagnostics.push(diag(
@@ -11819,7 +12200,7 @@ fn append_exact_pressure_results(
             "wall_axial_force",
             location,
             wall,
-            false,
+            None,
             "tension-positive material wall section resultant Nw",
         );
         append(
@@ -11827,21 +12208,24 @@ fn append_exact_pressure_results(
             "effective_axial_force",
             location,
             effective,
-            false,
+            None,
             "effective wall-fluid resultant S=Nw-pAi; not material stress or a support reaction",
         );
-        append("pipe_axial_membrane_stress_v2", "axial_membrane_stress", location, membrane, true, "tension-positive axial wall membrane stress Nw/As; no added longitudinal pressure scalar");
-        for (component, stress) in [
-            ("lame_inner_radial_stress", inner.radial_pa()),
-            ("lame_outer_radial_stress", outer.radial_pa()),
-        ] {
-            append("pipe_lame_radial_stress_v2",component,location,stress,true,"tension-positive radial stress at named surface, inner traction -p and zero external pressure increment");
+        for (basis, membrane) in SectionBasis::BOTH.into_iter().zip(membranes) {
+            append("pipe_axial_membrane_stress_v2", "axial_membrane_stress", location, membrane, Some(basis), "tension-positive axial wall membrane stress Nw/As; no added longitudinal pressure scalar");
         }
-        for (component, stress) in [
-            ("lame_inner_hoop_stress", inner.hoop_pa()),
-            ("lame_outer_hoop_stress", outer.hoop_pa()),
-        ] {
-            append("pipe_lame_hoop_stress_v2",component,location,stress,true,"tension-positive circumferential stress at named surface for long straight annulus, zero external pressure increment");
+        let lame = [(SectionBasis::Nominal, nominal_inner, nominal_outer), (SectionBasis::Reduced, reduced_inner, reduced_outer)];
+        for (component, inner_surface) in [("lame_inner_radial_stress", true), ("lame_outer_radial_stress", false)] {
+            for (basis, inner, outer) in lame {
+                let stress = if inner_surface { inner.radial_pa() } else { outer.radial_pa() };
+                append("pipe_lame_radial_stress_v2",component,location,stress,Some(basis),"tension-positive radial stress at named surface, inner traction -p and zero external pressure increment");
+            }
+        }
+        for (component, inner_surface) in [("lame_inner_hoop_stress", true), ("lame_outer_hoop_stress", false)] {
+            for (basis, inner, outer) in lame {
+                let stress = if inner_surface { inner.hoop_pa() } else { outer.hoop_pa() };
+                append("pipe_lame_hoop_stress_v2",component,location,stress,Some(basis),"tension-positive circumferential stress at named surface for long straight annulus, zero external pressure increment");
+            }
         }
     }
 }
@@ -13265,6 +13649,8 @@ fn blocked_envelope(model: PreviewModel, diagnostics: Vec<Diagnostic>) -> Mechan
     // exact-route only); it never publishes preview-physics-1.
     let exact_namespace = pressure_runtime::is_exact(&model) || case_state::is_load_state(&model);
     let preview = !exact_namespace;
+    // D-5: an exact-contract envelope always names both basis headlines.
+    let basis_headlines = pressure_runtime::is_exact(&model).then_some(None);
     let mut envelope = MechanicsEnvelope {
         // An admitted exact namespace with blocked inputs has no recovered
         // physical evidence. Retain the empty namespace for truthful inspection;
@@ -13299,6 +13685,8 @@ fn blocked_envelope(model: PreviewModel, diagnostics: Vec<Diagnostic>) -> Mechan
             spring_hanger_user_input_count: 0,
             max_displacement: None,
             max_open_formula_stress: None,
+            max_open_formula_stress_nominal_section: basis_headlines.clone(),
+            max_open_formula_stress_reduced_section: basis_headlines,
         },
         results: vec![],
         diagnostics,
@@ -13734,6 +14122,7 @@ mod kd5_withheld_summary_tests {
                 location_ref: member.to_string(),
                 result_ref: format!("result:stress:{member}"),
             }),
+            max_stress_reduced: None,
             component_stress_modifier_count: 0,
             preview: None,
             withheld_summaries: if withheld {
@@ -13771,6 +14160,39 @@ mod kd5_withheld_summary_tests {
         let code = include_str!("lib.rs");
         assert!(code.contains("    if preview.is_none() {\n        withhold_certified_summaries(&mut load_case_solves, &mut diagnostics);\n    }"));
         assert!(code.contains("                    withheld_summaries.push(diag(\n"));
+    }
+
+    /// Final review FINAL-B (section-bases-and-timoshenko.md §2.2): the
+    /// withholding applies per basis, so an incomplete case withholds both
+    /// its nominal and its reduced maximum and both per-basis headlines,
+    /// whatever route produced the case.
+    #[test]
+    fn kd5_withheld_summary_withholds_both_basis_headlines() {
+        let reduced = |solve: &mut LoadCaseSolve, value: f64| {
+            let mut quantity = solve.max_stress.clone().unwrap();
+            quantity.value = value;
+            quantity.result_ref.push_str(":reduced");
+            solve.max_stress_reduced = Some(quantity);
+        };
+        let mut solves = vec![solve("case", "a", false), solve("case-b", "b", true)];
+        reduced(&mut solves[0], 2.0);
+        reduced(&mut solves[1], 3.0);
+        let nominal = |cases: &[LoadCaseSolve]| maximum_across_cases_of(cases, |case| case.max_stress.as_ref());
+        let reduced_headline =
+            |cases: &[LoadCaseSolve]| maximum_across_cases_of(cases, |case| case.max_stress_reduced.as_ref());
+        // Precondition: without the disposition each basis would publish the
+        // other members' maximum.
+        assert!(nominal(&solves).is_some());
+        assert_eq!(reduced_headline(&solves).map(|q| q.value), Some(3.0));
+        let mut diagnostics = Vec::new();
+        withhold_certified_summaries(&mut solves, &mut diagnostics);
+        assert_eq!(diagnostics.len(), 1);
+        assert_eq!(diagnostics[0].affected_refs, vec!["b".to_string()]);
+        assert!(solves[0].max_stress.is_some() && solves[0].max_stress_reduced.is_some(), "a complete case keeps both");
+        assert!(solves[1].max_stress.is_none(), "the incomplete case withholds its nominal maximum");
+        assert!(solves[1].max_stress_reduced.is_none(), "the incomplete case withholds its reduced maximum");
+        assert!(nominal(&solves).is_none(), "the nominal headline is withheld");
+        assert!(reduced_headline(&solves).is_none(), "the reduced headline is withheld");
     }
 }
 
@@ -13874,7 +14296,7 @@ mod tests {
             let boundary=prepare_boundary(2,&built.supports);
             assert!(formation_guard::load_row_finding(&force,&formation_bodies(&built),&boundary.restrained_dofs,|d|d.to_string(),&case.id).is_some());
             let curved=vec![CurvedBendStiffnessElement::from_macro_element(bend.component_id.clone(),&bend.macro_element).unwrap()];
-            let assembly=AssemblyEvidence::new(2,&built.frame_elements,&[],&curved,&[]).unwrap();
+            let assembly=AssemblyEvidence::new(2,&built.frame_elements,&[],&curved,&[]).unwrap().with_frame_members(&frame_member_identities(&built));
             let formed=form_basis_stiffness(&built,&[],true).unwrap();let BasisStiffness::Formed(formed)=formed else {panic!("formed fixture")};
             let free=(0..12).filter(|d|!boundary.restrained_dofs.contains(d)).collect::<Vec<_>>();let prescribed=boundary.restrained_dofs.iter().map(|&d|(d,0.0)).collect::<Vec<_>>();
             let solver_mode=if mode==PreviewSolverMode::DenseScrutiny {LinearSolveMode::DenseScrutiny} else {LinearSolveMode::SparseInteractive};
@@ -14054,7 +14476,7 @@ mod tests {
         let evidence=serde_json::json!({"method":self_weight::GENERATED_METHOD,"normalized_acceleration_m_per_s2":-9.81,"mass_inputs":{"outside_diameter":{"value":0.2},"wall_thickness":{"value":0.01},"material_density":{"value":7800.0}}});
         model.load_cases[0].primitive_loads[0].provenance=Some(evidence.to_string());
         assert_eq!(certified_loads::intensity(&model,uniform,&case_id),IntensityPrimitive::Seismic {
-            mass:MassPrimitive {outer_diameter:0.2,wall_thickness:0.01,mill_tolerance:0.0,pipe_density:7800.0,contents_density:0.0,insulation_thickness:0.0,insulation_density:0.0},coefficient:1.1,gravity:-9.81,direction:[0.0,1.0,0.0] });
+            mass:MassPrimitive {outer_diameter:0.2,wall_thickness:0.01,mill_tolerance:0.0,pipe_density:7800.0,contents_density:0.0,insulation_thickness:0.0,insulation_density:0.0,corrosion_allowance:None},coefficient:1.1,gravity:-9.81,direction:[0.0,1.0,0.0] });
         let mut ledger=LoadLedger::new();
         let mut nodal=LoadApplication {nodal_loads:vec![open_pipe_stress_primitive_loads::NodalLoadContribution {load_id:"factor:load".into(),node_index:1,global_dof:7,value:0.1*1.1}],..application};
         certified_loads::nodal(&mut ledger,&model,&nodal,&case_id,model.nodes.len());
@@ -14214,7 +14636,9 @@ mod tests {
         assert!(force.values().iter().all(|value|*value==0.0));
         assert_eq!(force.load_primitives().len(),6);
         let source_prefix=certified_loads::member_source(&built.pipes[0].element_id,"");
-        let loads=open_pipe_stress_frame_kernel::structural::CertifiedMemberLoads::from_member_primitives(0,1,force.load_primitives(),&source_prefix).unwrap();
+        // T4-U8: the recovery is bound to the member's frame in the case's certified source.
+        let source=certified_publication::source(&built,&force,&[]);
+        let loads=open_pipe_stress_frame_kernel::structural::CertifiedMemberLoads::from_member_primitives(0,1,force.load_primitives(),&source_prefix).unwrap().with_member_source(&source,&source_prefix);
         let bound=MemberBoundInputs { w:vec![0.0;12],w2:vec![0.0;12],exponents:vec![i32::MIN;12],lambda_sigma:0.0 };
         let recovered=open_pipe_stress_frame_kernel::structural::certify_straight_recovery(&frame,&loads,&[0.0;12],&bound).unwrap();
         let expected=frame.section.elastic_modulus*frame.section.area*2f64.powi(-55);

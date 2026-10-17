@@ -174,25 +174,26 @@ def test_new_uniform_identifier_classes_are_site_specific_input_bounds():
     _, audits, _ = MODEL["text_decisions"](SOURCE, lambda key: key)
     actual = dict(audits)
     pp = "core/product_physics/src/"
-    # B7b: the same sites on B7b's unchanged lines (B7a's 10627.. + 5).
+    # T4-U6/U8: the same sites on the priced source's unchanged lines (B7b's 10632.. + 359; certified_loads + 3;
+    # the final source 588de796a4: lib.rs + 5 more).
     sites = {
-        "lib.rs:10632": {"load_case_id"},
-        "lib.rs:10646": {"stable_suffix(load_case_id)", "stable_suffix(&load.load_id)"},
-        "lib.rs:10653": {"load.load_id", "bend.pipe_id"},
-        "lib.rs:10658": {"load.load_id"},
-        "lib.rs:10659": {"bend.pipe_id"},
-        "lib.rs:10660": {"bend.component_id"},
-        "lib.rs:10661": {"load_case_id"},
-        "lib.rs:10720": {"stable_suffix(load_case_id)", "stable_suffix(&load.load_id)"},
-        "lib.rs:10727": {"load.load_id", "bend.pipe_id"},
-        "lib.rs:10732": {"load.load_id"},
-        "lib.rs:10733": {"bend.pipe_id"},
-        "lib.rs:10734": {"bend.component_id"},
-        "lib.rs:10735": {"load_case_id"},
-        "lib.rs:10774": {"stable_suffix(&load.load_id)"},
-        "lib.rs:10781": {"load.load_id", "load_case_id"},
-        "certified_loads.rs:233": {"case_id"},
-        "certified_loads.rs:256": {"case_id"},
+        "lib.rs:10996": {"load_case_id"},
+        "lib.rs:11010": {"stable_suffix(load_case_id)", "stable_suffix(&load.load_id)"},
+        "lib.rs:11017": {"load.load_id", "bend.pipe_id"},
+        "lib.rs:11022": {"load.load_id"},
+        "lib.rs:11023": {"bend.pipe_id"},
+        "lib.rs:11024": {"bend.component_id"},
+        "lib.rs:11025": {"load_case_id"},
+        "lib.rs:11084": {"stable_suffix(load_case_id)", "stable_suffix(&load.load_id)"},
+        "lib.rs:11091": {"load.load_id", "bend.pipe_id"},
+        "lib.rs:11096": {"load.load_id"},
+        "lib.rs:11097": {"bend.pipe_id"},
+        "lib.rs:11098": {"bend.component_id"},
+        "lib.rs:11099": {"load_case_id"},
+        "lib.rs:11138": {"stable_suffix(&load.load_id)"},
+        "lib.rs:11145": {"load.load_id", "load_case_id"},
+        "certified_loads.rs:236": {"case_id"},
+        "certified_loads.rs:259": {"case_id"},
     }
     assert sum(map(len, sites.values())) == 22
     for key, args in sites.items():

@@ -12,6 +12,7 @@ import struct
 import sys
 import pytest
 from tests.verifiers import physics_source as composite
+from tests.verifiers import section_basis as sb
 from tests.verifiers.physics_evidence import validate_transport_metadata as physics_transport
 from tests.verifiers.pressure_1 import validate_pressure_evidence
 from tests.verifiers.source_blocks import domain_hash, _derived, _signature
@@ -76,11 +77,17 @@ def test_maximum_basis_is_a_signature_discriminator_only():
     source,_=actual()
     row=deepcopy(next(r for r in source["results"] if r["kind"]=="pipe_elastic_normal_stress_maximum_v2"))
     exact=_signature(row,composite.SourceContract.PRESSURE_V3)
-    assert exact["source_basis"]==composite.MAX_BASIS
-    row["metadata"]["basis"]="recovered_from_open_mechanics_stress_components"
+    # T4-U6 (D-5, §2.4): the source maximum names its section basis.
+    token,section=sb.split_token(exact["source_basis"])
+    assert token==composite.MAX_BASIS and row["metadata"]["basis"]==exact["source_basis"]
+    row["metadata"]["basis"]=f"{token}{sb.SEPARATOR}{sb.other(section)}"
+    twin=_signature(row,composite.SourceContract.PRESSURE_V3)
+    assert twin["signature_id"]!=exact["signature_id"]
+    row["metadata"]["basis"]=f"recovered_from_open_mechanics_stress_components{sb.SEPARATOR}{section}"
     ordinary=_signature(row,composite.SourceContract.PRESSURE_V3)
     assert ordinary["signature_id"]!=exact["signature_id"]
-    for basis in [None,"invented"]:
+    # A basis-less token no longer names a signature of a stress kind.
+    for basis in [None,"invented",composite.MAX_BASIS,"recovered_from_open_mechanics_stress_components"]:
         if basis is None:row["metadata"].pop("basis")
         else:row["metadata"]["basis"]=basis
         assert _signature(row,composite.SourceContract.PRESSURE_V3) is None
@@ -141,6 +148,90 @@ def test_rehashed_invalid_composite_claims_are_rejected(mutation):
     with pytest.raises(ValueError):composite.validate_physics_source(source,invocation)
 
 
+def _zero_action_twins(source):
+    """The first reduced section-stress check whose action is an exact positive zero, and its nominal twin before it."""
+    checks=source["source_block_recovery"]["body"]["cases"][0]["section_stress_checks"]
+    reduced=next(i for i,c in enumerate(checks) if c["result_id"].endswith(":reduced-section") and struct.pack(">d",c["action"]["value"])==bytes(8))
+    nominal=reduced-1
+    assert checks[reduced]["result_id"]==checks[nominal]["result_id"].replace(":nominal-section",":reduced-section")
+    assert checks[reduced]["action"]==checks[nominal]["action"]=={"interval":[0.0,0.0],"value":0.0}
+    return checks,nominal,reduced
+
+
+@pytest.mark.parametrize("twin", ["nominal", "reduced"])
+@pytest.mark.parametrize("member", ["interval0", "interval1", "value"])
+def test_reduced_stress_check_refuses_a_signed_zero_twin(twin, member):
+    # T4-U6 (D-5 §2.5, §5; b7-plan R2 A2): the reduced twin's check binds its nominal twin's action bit for bit;
+    # -0.0 equals 0.0 by value, not by bits. Each twin's action is also its station's, bit for bit
+    # (STRESS_FUNCTIONAL_LINK, read first), so a signed-zero action is refused there on either twin; written `0` it is
+    # the same binary64 number and is accepted (Rust's twin: reduced_stress_check_binds_its_nominal_twin_bit_for_bit).
+    for value, code in ((-0.0, "STRESS_FUNCTIONAL_LINK"), (0, None)):
+        source,invocation=actual()
+        checks,nominal,reduced=_zero_action_twins(source)
+        action=checks[nominal if twin=="nominal" else reduced]["action"]
+        if member=="value":action["value"]=value
+        else:action["interval"][int(member[-1])]=value
+        reseal_negative(source)
+        if code is None:
+            assert composite.validate_physics_source(source,invocation)
+        else:
+            with pytest.raises(ValueError,match=f"^PHYSICS_SOURCE_{code}$"):composite.validate_physics_source(source,invocation)
+
+
+def _zero_links(source):
+    """Rust `retained_source_links_compare_numbers_by_bits`'s sites: each an exact positive zero on one side of a link
+    (path from the document root, its refusal code)."""
+    record=source["source_block_recovery"]["body"]["cases"][0]
+    zero=lambda v: type(v) in (int,float) and struct.pack(">d",v)==bytes(8)
+    # A midspan station action of a stress component (axial 0, torsion 3, bending 4 and 5) with an exact positive zero:
+    # stress checks link it, no endpoint section does.
+    station=record["source"]["section_functionals"][0]["stations"][2]
+    component=next(c for c in (0,3,4,5) if zero(station["actions"][c]["value"]))
+    assert sum(c["functional_index"]==station["functional_indices"][component] for c in record["section_stress_checks"])==2
+    extremum=next(i for i,e in enumerate(source["contract_evidence"]["exact_cases"][0]["pipe_stress_extrema"]) if e["section_basis"]==sb.NOMINAL)
+    norm=next(i for i,c in enumerate(record["derived_checks"]) if all(zero(v) for v in c["intervals"][0]))
+    receipt=("source_block_recovery","body","cases",0)
+    sites=[(receipt+("source","section_functionals",0,"stations",2,"actions",component,"value"),"STRESS_FUNCTIONAL_LINK"),
+           (receipt+("source","endpoint_sections",0,"endpoints",0,"actions",0,"value"),"ENDPOINT_SECTION_LINK"),
+           (("contract_evidence","exact_cases",0,"pipe_stress_extrema",extremum,"endpoints",0,"actions",0,"value"),"MAXIMUM_ENDPOINT_SOURCE"),
+           (receipt+("derived_checks",norm,"intervals",0,0),"NORM_PROJECTION_BINDING")]
+    for path,_ in sites:
+        target=source
+        for key in path:target=target[key]
+        assert zero(target),path
+    return sites
+
+
+@pytest.mark.parametrize("site", range(4))
+@pytest.mark.parametrize("value", [-0.0, 0])
+def test_retained_source_links_compare_numbers_by_bits(site, value):
+    # T4-U6 (A2): every link of the retained-source receipt compares its numbers by their binary64 bits, as the Rust
+    # reader does: an exact positive zero on one side of a link written -0.0 is refused by name; written `0` it is the
+    # same binary64 number and is accepted.
+    source,invocation=actual()
+    path,code=_zero_links(source)[site]
+    target=source
+    for key in path[:-1]:target=target[key]
+    target[path[-1]]=value
+    reseal_negative(source)
+    if value==0 and type(value) is int:
+        assert composite.validate_physics_source(source,invocation)
+    else:
+        with pytest.raises(ValueError,match=f"^PHYSICS_SOURCE_{code}$"):composite.validate_physics_source(source,invocation)
+
+
+@pytest.mark.parametrize("twin", ["nominal", "reduced"])
+def test_reduced_stress_check_reads_its_twin_by_bits_not_form(twin):
+    # The same binary64 number in another JSON form (JCS writes 1e6 as 1000000) on either twin alone.
+    source,invocation=actual()
+    checks,nominal,reduced=_zero_action_twins(source)
+    parameters=checks[nominal if twin=="nominal" else reduced]["parameters"]
+    assert type(parameters["pa_per_mpa"]) is float
+    parameters["pa_per_mpa"]=1_000_000
+    reseal_negative(source)
+    assert composite.validate_physics_source(source,invocation)
+
+
 def test_physics_transport_uses_received_evidence_without_raw_reconstruction():
     # The exact successor's G7 transport check (results 0.3 ExactRetainedContractEvidence) over pressure-1 evidence.
     for name in ["pressure_connected_mechanics_sparse","pressure_thermal_ui_mechanics_sparse"]:
@@ -173,7 +264,9 @@ def isolated_torsion_recipe(action, radius, constant):
     station=member["stations"][["end_i","quarter_1","midspan","quarter_3","end_j"].index(row["metadata"]["location"])]
     station["actions"][3]={"value":action,"interval":[action,action]}
     check["action"]=station["actions"][3]
-    section.update(ro_m=radius,J_m4=constant)
+    section.update(ro_m=radius)
+    for basis in sb.BASES:  # T4-U6 (§2.3): the one source section binds both bases
+        section[basis]["J_m4"]=constant
     check["parameters"].update(torsion_radius_m=radius,torsion_constant_m4=constant)
     row["value"]=action*radius/constant/1e6
     return source,case,row

@@ -560,6 +560,13 @@ const FORCE_FUNCTIONS: &[(&str, &str, &str)] = &[
     ("FK/structural/formation_check.rs", "mass_binding", "K-D5 §1: exact operand bits of a mass primitive; read-only"),
     ("FK/structural/formation_check.rs", "points_binding", "K-D5 §1: exact operand bits of a thermal table; read-only"),
     ("FK/structural/formation_check.rs", "strain_binding", "K-D5 §1: exact operand bits of an eigenstrain; read-only"),
+    // T4-U8 (DEL-05-03 Design §4 item 2): the frame-binding check of the
+    // closure. Each names a load primitive or formula in its signature and
+    // reads only its frame's bits and its source identity; none forms, folds or
+    // reads a force value.
+    ("FK/structural/formation_check.rs", "straight_primitive_frame", "T4-U8 §4 item 2: a straight primitive's frame (uniform, free strain, straight pressure operand); read-only"),
+    ("FK/structural/formation_check.rs", "unbound_straight_primitive", "T4-U8 §4 item 2: the first straight primitive whose frame is not its member's FormationSource frame; read-only"),
+    ("FK/structural/formation_check.rs", "primitive_frame_bound", "T4-U8 §4 item 2: a straight primitive's frame bit-equal, beam-theory leaf included, to its own member's source frame at its force exponent (keyed by FormationSource::frame_members); read-only"),
     (
         "FK/structural/formation_check.rs",
         "binding",
@@ -622,6 +629,7 @@ const FORCE_FUNCTIONS: &[(&str, &str, &str)] = &[
     ("FK/structural/certified_recovery.rs", "certify_arc_recovery", "K-D5 §3.1: arc end and station rows through K_int,arc"),
     ("FK/structural/certified_recovery.rs", "tangent_end_operator_and_loads", "U4a: rotate intended end loads in ball arithmetic before evaluating and publishing the certified tangent rows"),
     ("FK/structural/certified_recovery.rs", "certify_connector_recovery", "K-D5 §3.1: connector rows through connector_matrix"),
+    ("FK/structural/certified_recovery.rs", "straight_member_frames_bound", "T4-U8 §4 item 2: the straight recovery frame bit-equal to its member's FormationSource frame (CertifiedMemberLoads::with_member_source) and to every straight primitive frame of the member; reads frame bits and source identities only; read-only"),
     (
         "FK/structural/certified_recovery.rs",
         "certify_support_reaction",
@@ -755,6 +763,10 @@ const TABLE: &[(&str, &str, usize, &str)] = &[
     // B2-P's combination Call (lane P), met by B1 SQ's table at J0a's merge.
     ("PP/retained_product.rs", "combination_call", 1, "integer: the next attempt ordinal"),
     ("PP/retained_product.rs", "selected_attempts", 1, "integer: the selected attempts' bit set (T-12's detail)"),
+    // T4-U6 (D-5): W1-E binds nominal rows only; these count the reduced twins
+    // passed, mapping a published row to its bound row index.
+    ("PP/retained_product.rs", "bound_row_indices", 1, "integer: the reduced twins passed (D-5 published-to-bound row index)"),
+    ("PP/retained_product.rs", "apply_prepared_overlay", 1, "integer: the reduced twins passed (D-5 published-to-bound row index)"),
     // ---- PP/self_weight.rs
     ("PP/self_weight.rs", "stable_mass_per_length", 2, "declared formation: same-sign mass (section 2.2)"),
     // ---- PP/source_recovery.rs

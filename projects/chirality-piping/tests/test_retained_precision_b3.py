@@ -18,6 +18,7 @@ import pytest
 
 from tests.verifiers import retained_precision as rp
 from tests.verifiers import compatibility as compatibility_verifier
+from tests.verifiers import section_basis as sb
 
 if str(Path(__file__).resolve().parent) not in sys.path:
     sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -265,9 +266,62 @@ def m3x_invocation(invocation, nu=NU):
     return edited_invocation(invocation, change)
 
 
+def _d5_id(row_id, basis):
+    """§2.5 ids: `result:elastic-maximum:…` and `result:pressure-exact:…` end in the underscore basis, others in the
+    hyphenated one."""
+    underscore = row_id.startswith(("result:elastic-maximum:", "result:pressure-exact:"))
+    return row_id + ":" + (basis if underscore else sb.hyphenated(basis))
+
+
+def d5_rows(source):
+    """T4-U6 (D-5, §2.2 and §2.5) on a preview base re-stated on the exact route, in place: each stress row is
+    published on the nominal section and immediately followed by its reduced twin, with the same value (the bases
+    coincide on this route); the receipt's references follow the nominal row (a reduced twin is outside the receipt's
+    row universe, as W1-E stages it); the basis-free headline is null and each basis has its own."""
+    renamed, rows = {}, []
+    for row in source["results"]:
+        if row["kind"] not in sb.STRESS_KINDS:
+            rows.append(row)
+            continue
+        for basis in sb.BASES:
+            twin = deepcopy(row)
+            twin["id"] = _d5_id(row["id"], basis)
+            twin["metadata"]["basis"] = row["metadata"]["basis"] + sb.SEPARATOR + basis
+            rows.append(twin)
+        renamed[row["id"]] = _d5_id(row["id"], sb.NOMINAL)
+
+    def rename(value):
+        if isinstance(value, dict):
+            return {key: rename(item) for key, item in value.items()}
+        if isinstance(value, list):
+            return [rename(item) for item in value]
+        return renamed.get(value, value) if isinstance(value, str) else value
+
+    source["results"] = rows
+    source["retained_precision"]["body"] = rename(source["retained_precision"]["body"])
+    summary = {}
+    for key, value in source["summary"].items():
+        summary[key] = None if key == "max_open_formula_stress" else value
+        if key == "max_open_formula_stress":
+            for basis in sb.BASES:
+                summary["max_open_formula_stress_" + basis] = None if value is None else dict(value, result_ref=_d5_id(value["result_ref"], basis))
+    source["summary"] = summary
+
+
+def d5_extrema(extrema):
+    """Each preview extremum on both coincident bases, nominal then reduced (§2.5)."""
+    out = []
+    for extremum in extrema:
+        for basis in sb.BASES:
+            out.append(dict(extremum, section_basis=basis, result_id=_d5_id(extremum["result_id"], basis)))
+    return out
+
+
 def exact_evidence(source, invocation, nu=NU):
     """pressure-1's closed contract_evidence for the synthetic base (D4 (a)): per case, the prepared section (B3D-4), E,
-    nu and G_hat, the preview successor's regenerated extrema, complete coverage and the all-zero pressure RHS."""
+    nu and G_hat, the preview successor's regenerated extrema, complete coverage and the all-zero pressure RHS.
+    T4-U6 (D-5): the section on both coincident bases with zero mill tolerance and allowance and Euler-Bernoulli, and
+    the extrema and coverage per basis."""
     body = source["retained_precision"]["body"]
     model = invocation["request"]["model"]
     preview = {case["load_case_id"]: case for case in source["contract_evidence"]["preview_cases"]}
@@ -282,10 +336,12 @@ def exact_evidence(source, invocation, nu=NU):
             g = term["geometry"]
             od, wall = rp.from_bits(g["normalized_od"]), rp.from_bits(g["effective_wall"])
             ri = od * 0.5 - wall
-            sections.append({"pipe_id": pipe["id"], "geometry_basis": "authored_normalized_od_wall_v1", "outside_diameter_m": od,
-                             "effective_wall_thickness_m": wall, "ro_m": rp.from_bits(g["actual_radius"]), "ri_m": ri, "Ai_m2": 3.141592653589793 * ri * ri,
-                             "As_m2": rp.from_bits(term["area"]), "I_m4": rp.from_bits(g["actual_second_moment"]),
-                             "J_m4": rp.from_bits(g["actual_polar_moment"]), "Z_m3": rp.from_bits(term["section_modulus"])})
+            annulus = {"wall_m": wall, "ri_m": ri, "As_m2": rp.from_bits(term["area"]), "I_m4": rp.from_bits(g["actual_second_moment"]),
+                       "J_m4": rp.from_bits(g["actual_polar_moment"]), "Z_m3": rp.from_bits(term["section_modulus"])}
+            sections.append({"pipe_id": pipe["id"], "geometry_basis": sb.GEOMETRY_BASIS, "outside_diameter_m": od,
+                             "ro_m": rp.from_bits(g["actual_radius"]), "wall_thickness_m": wall, "mill_tolerance_m": 0.0,
+                             "corrosion_allowance_m": 0.0, "nominal_section": dict(annulus), "reduced_section": dict(annulus),
+                             "pressure_bore": {"ri_m": ri, "Ai_m2": 3.141592653589793 * ri * ri}, "beam_theory": {"model": sb.EULER_BERNOULLI}})
             material = materials[pipe["material"]]
             e = material["elastic_modulus"]["value"]
             published.append({"pipe_id": pipe["id"], "material_id": material["id"], "E_pa": e, "nu": nu, "G_pa": e / (2.0 * (1.0 + nu)),
@@ -293,8 +349,8 @@ def exact_evidence(source, invocation, nu=NU):
                               "provenance": material["provenance"]})
         zero = [0.0] * (6 * len(nodes))
         entries.append({"load_case_id": cid, "profile_mode": "exact_pressure_v3", "material_basis": "base_material_common_E_nu",
-                        "pipe_materials": published, "pipe_sections": sections, "pipe_stress_extrema": deepcopy(preview[cid]["pipe_stress_extrema"]),
-                        "stress_maximum_coverage": {"complete": True, "unavailable_pipe_ids": []},
+                        "pipe_materials": published, "pipe_sections": sections, "pipe_stress_extrema": d5_extrema(deepcopy(preview[cid]["pipe_stress_extrema"])),
+                        "stress_maximum_coverage": [{"section_basis": basis, "complete": True, "unavailable_pipe_ids": []} for basis in sb.BASES],
                         "pressure_rhs_assembly": {"method": "source_factor_grouped_pressure_rhs_v1", "load_case_id": cid, "node_order": nodes,
                                                   "dof_order": ["Fx", "Fy", "Fz", "Mx", "My", "Mz"], "dof_units": ["N", "N", "N", "N*m", "N*m", "N*m"],
                                                   "assembled_pressure_rhs_global": list(zero), "groups": [], "rounded_cap_rhs_global": list(zero),
@@ -315,6 +371,7 @@ def exact_successor(source, invocation, nu=NU):
     source["producer"]["semantic_contract_id"] = rp.EXACT_CONTRACT_ID
     source["formulation_basis"] = {"limitations": list(PRESSURE_1_LIMITATIONS), "profile_id": rp.EXACT_PROFILE}
     source["contract_evidence"] = exact_evidence(source, invocation, nu)
+    d5_rows(source)
     body = source["retained_precision"]["body"]
     for basis in body["material_bases"]:
         for material in basis["materials"]:
@@ -383,7 +440,9 @@ CA_ADMITTED = {
 
 
 def _section(key, steps=1):
-    return _evidence(["exact_cases", 0, "pipe_sections", 0, lambda p: p.update({key: ulp(p[key], steps)})])
+    """One ulp on the owner entry's first pipe section; a dotted key names a nested D-5 leaf (T4-U6)."""
+    *nested, leaf = key.split(".")
+    return _evidence(["exact_cases", 0, "pipe_sections", 0, *nested, lambda p: p.update({leaf: ulp(p[leaf], steps)})])
 
 
 def _material(key, value):
@@ -405,9 +464,10 @@ B3B_REFUSALS = {
     "06 canonicalization changed": (_set_body("canonicalization", "openpipestress_jcs_ijson_v2"), UNSUPPORTED),
     "07 work.case_limit changed": (_receipt(lambda b: b["work"].update(case_limit=20_000_000_001)), UNSUPPORTED),
     "08 work.invocation_limit changed": (_receipt(lambda b: b["work"].update(invocation_limit=60_000_000_001)), UNSUPPORTED),
-    "12 owner pipe_sections As_m2 one ulp": (_section("As_m2"), SECTION),
-    "13 owner pipe_sections Z_m3 one ulp": (_section("Z_m3"), SECTION),
-    "14 owner pipe_sections I_m4 one ulp": (_section("I_m4"), SECTION),
+    # T4-U6 (D-5): the leaves sit in the section bases; the shapes keep their names across the readers.
+    "12 owner pipe_sections As_m2 one ulp": (_section("nominal_section.As_m2"), SECTION),
+    "13 owner pipe_sections Z_m3 one ulp": (_section("nominal_section.Z_m3"), SECTION),
+    "14 owner pipe_sections I_m4 one ulp": (_section("nominal_section.I_m4"), SECTION),
     "15 owner pipe_sections ro_m one ulp": (_section("ro_m"), SECTION),
     "16 connector non-empty": (_evidence([lambda e: e.update(connector=[{"id": "connector:x"}])]), BASE_G7),
     "17 pipe_materials G_pa three ulps": (_material("G_pa", lambda v: ulp(v, 3)), BASE_G7),
@@ -428,9 +488,10 @@ B3B_REFUSALS = {
     "30 a case's pressure_regions null": (_model(lambda m: m["load_cases"][0].update(pressure_regions=None)), PREPARATION),
     "31 a case's pressure_regions with one region": (_model(lambda m: m["load_cases"][0].update(pressure_regions=[{"id": "region:x", "members": ["M1"], "pressure": {"value": 0.0, "unit": "Pa"}}])), PREPARATION),
     "32 a member's geometry.route preview": (_receipt(lambda b: b["sources"][0]["section_terms"][0]["geometry"].update(route="preview")), PREPARATION),
-    "x01 owner pipe_sections J_m4 one ulp": (_section("J_m4"), SECTION),
+    "x01 owner pipe_sections J_m4 one ulp": (_section("nominal_section.J_m4"), SECTION),
     "x02 owner pipe_sections outside_diameter_m one ulp": (_section("outside_diameter_m"), SECTION),
-    "x03 owner pipe_sections effective_wall_thickness_m one ulp": (_section("effective_wall_thickness_m"), SECTION),
+    # The effective wall (t - c_m, with zero allowance) is the reduced section's wall on this route.
+    "x03 owner pipe_sections effective_wall_thickness_m one ulp": (_section("reduced_section.wall_m"), SECTION),
     "x04 the owner entry's load_case_id renamed": (_evidence(["exact_cases", 0, lambda e: e.update(load_case_id="case:other")]), SECTION),
     "x05 exact_cases empty": (_evidence([lambda e: e.update(exact_cases=[])]), SECTION),
     "x06 contract_evidence removed": (_envelope(lambda s: s.pop("contract_evidence")), SECTION),
@@ -446,7 +507,7 @@ B3B_REFUSALS = {
     "x16 invocation schema 0.2.0": (_model(lambda m: m.update(schema_version="0.2.0")), INVOCATION),
     "x18 a named point basis equal to the base, named in the receipt": (lambda s, i: _named_point(s, i), PREPARATION),
     "x19 the owner entry's pipe section listed twice": (_evidence(["exact_cases", 0, lambda e: e.update(pipe_sections=[e["pipe_sections"][0], deepcopy(e["pipe_sections"][0])])]), SECTION),
-    "x20 the owner entry's As_m2 a string": (_evidence(["exact_cases", 0, "pipe_sections", 0, lambda p: p.update(As_m2=repr(p["As_m2"]))]), SECTION),
+    "x20 the owner entry's As_m2 a string": (_evidence(["exact_cases", 0, "pipe_sections", 0, "nominal_section", lambda p: p.update(As_m2=repr(p["As_m2"]))]), SECTION),
     "x21 invocation contract version 3.0.1": (_model(lambda m: m["pressure_contract"].update(version="3.0.1")), INVOCATION),
     # B7b: the retired v2 contract and a current contract without its shear model are outside the exact namespace.
     "x33 invocation contract the retired v2": (_model(lambda m: m.update(pressure_contract={"version": "2.0.0", "mode": "exact_straight_pressure_v2"})), INVOCATION),
@@ -468,7 +529,7 @@ B3B_REFUSALS = {
     "x31 producer component_version 0.2.1": (_envelope(lambda s: s["producer"].update(component_version="0.2.1")), UNSUPPORTED),
     "x32 a material's selection named_point": (_receipt_material(lambda m: m.update(selection={"kind": "named_point", "point_id": "point:x"})), PREPARATION),
     "x26 G_hat one ulp high, every copy consistent": (lambda s, i: _g_hat_forged(s, i), PREPARATION),
-    "x17 pressure-1 headline altered": (_envelope(lambda s: s["summary"]["max_open_formula_stress"].update(value=ulp(s["summary"]["max_open_formula_stress"]["value"]))), BASE_G7),
+    "x17 pressure-1 headline altered": (_envelope(lambda s: s["summary"]["max_open_formula_stress_nominal_section"].update(value=ulp(s["summary"]["max_open_formula_stress_nominal_section"]["value"]))), BASE_G7),
 }
 def _named_point(source, invocation):
     """Kills the base-only selection guards: a case naming a temperature point whose E and nu equal the base's, with the
@@ -530,9 +591,10 @@ B3B_PASSES = {
 # Lane P's producer-solved m3x successors (B3b-P, b2 8d3419b542; PP retained_facade_tests.rs `EXACT_PINNED`):
 # document and receipt sha256, as RS pins them. Every B3b shape is also read on each. B7b's W1 regeneration (the
 # current 0.5.0 exact document; PP retained_facade_tests.rs and RS retained_precision_contract.rs `M3X` pin the same
-# bytes) replaced 5ef83dd9.../57114af4... and ee20a337.../3b92b6ce....
-EXACT_PINNED = {"sparse_interactive": ("45e14e68249abbeafa358f9e7317e9060da8e59c83db948a8184b98b8859001c", "f6bb7e7fc74ebce71c67da5da81906fece54e412aa2697d5548eb13f50b67524"),
-                "dense_scrutiny": ("0f490c22e7b2a25fa5dc1dd3d3a7ae7a701c744bfaac2fc2a2aa8f95f3451259", "0317aed643760641eec81708a0d5f506963e109a78c97a715617c081c28b7701")}
+# bytes) replaced 5ef83dd9.../57114af4... and ee20a337.../3b92b6ce.... T4-U6's regeneration on the D-5 producer
+# (reduced stress twins, per-basis headlines and evidence) replaced 45e14e68.../f6bb7e7f... and 0f490c22.../0317aed6....
+EXACT_PINNED = {"sparse_interactive": ("79d40f1a67c74efa911e408fca9c19c45ea9b6d9de7f60de97973fa66e798b1f", "d231b6ee48ed52f7accef419e25d631d4b4d0971940431aa2ca91f3eaeb1c75c"),
+                "dense_scrutiny": ("c9336f5155e654f67958d932d974cecb54423d80cd72c14fc868a15cb7791b3b", "07742144211b669b283ee455afa739511b4ba0cd1ec4bdbcdadf47fe9ae0ae46")}
 KINDS = ("synthetic", "producer")
 
 
@@ -584,7 +646,15 @@ def test_b3b_m3x_synthetic_base_is_eligible_and_classified_as_the_milestone(mode
     base_source, base_invocation = milestone(mode)
     want = rp.validate_retained_precision(base_source, base_invocation)
     assert got["numerical_eligible"] is True and got["standing"] == "eligible" and got["invocation_bound"] is True
-    assert got["classifications"] == want["classifications"]
+    # T4-U6 (D-5): a stress row is classified on its nominal id, and its reduced twin takes the same class.
+    stress = {row["id"] for row in base_source["results"] if row["kind"] in sb.STRESS_KINDS}
+    expected = []
+    for cls in want["classifications"]:
+        if cls["result_id"] not in stress:
+            expected.append(cls)
+            continue
+        expected += [dict(cls, result_id=_d5_id(cls["result_id"], basis)) for basis in sb.BASES]
+    assert got["classifications"] == expected
     unbound = rp.validate_retained_precision(source)
     assert (unbound["invocation_bound"], unbound["numerical_eligible"]) == (False, False)
     transport = rp.validate_retained_precision_transport(source)
@@ -759,7 +829,9 @@ def test_b3b_producer_m3x_successor_pins(mode):
     assert outcome(source, None, transport=True) == ("pass", False, "needs_recompute")
     got = rp.validate_retained_precision(source, invocation)["classifications"]
     counts = [sum(1 for c in got if c["class"] == k) for k in ("relative_verified", "absolute_verified", "input_derived", "non_quantity")]
-    assert counts == [25, 69, 3, 1]
+    # T4-U6 (D-5 §2.5): each of the member's 21 reduced stress twins takes its nominal row's class (5 relative,
+    # 16 absolute), beside the milestone's 25, 69, 3 and 1.
+    assert counts == [25 + 5, 69 + 16, 3, 1]
     # Every quantity row as the synthetic base classes it, bit for bit. E14 removed
     # the separate dense parity observation; the current mode header is non_quantity.
     synthetic = rp.validate_retained_precision(*m3x(mode))["classifications"]
@@ -1038,16 +1110,19 @@ RV120 = json.loads((ROOT / "fixtures/results/retained_precision_rv120_b3_inputs.
 _RV120_CORPUS = {}
 
 
-def rv120_input(shape):
+def _rv120_base(shape):
     kind, key = shape["base"]
     if kind == "corpus":
         if not _RV120_CORPUS:
             cases = load_corpus()["cases"]
             _RV120_CORPUS.update((c["id"], c) for c in cases)
-        source, invocation = deepcopy(_RV120_CORPUS[key]["source"]), deepcopy(_RV120_CORPUS[key]["invocation"])
-    else:
-        assert kind == "m3x_producer"
-        source, invocation = m3x_producer(key)
+        return deepcopy(_RV120_CORPUS[key]["source"]), deepcopy(_RV120_CORPUS[key]["invocation"])
+    assert kind == "m3x_producer"
+    return m3x_producer(key)
+
+
+def _rv120_materialized(shape):
+    source, invocation = _rv120_base(shape)
     for value, edits in ((source, shape["edits"]), (invocation, shape["invocation_edits"])):
         for edit in edits:
             at = value
@@ -1057,10 +1132,93 @@ def rv120_input(shape):
                 del at[edit["path"][-1]]
             else:
                 at[edit["path"][-1]] = deepcopy(edit["value"])
-    source = reseal(source, invocation, rp.EXACT_DEFINITION_HASH)
-    raw = json.dumps([source, invocation], sort_keys=True, separators=(",", ":")).encode()
-    assert hashlib.sha256(raw).hexdigest() == shape["input_sha256"], shape["name"]
+    return reseal(source, invocation, rp.EXACT_DEFINITION_HASH), invocation
+
+
+def _rv120_digest(source, invocation):
+    return hashlib.sha256(json.dumps([source, invocation], sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+
+
+def rv120_input(shape):
+    source, invocation = _rv120_materialized(shape)
+    assert _rv120_digest(source, invocation) == shape["input_sha256"], shape["name"]
     return source, invocation
+
+
+# T4-U6: RV120's shapes are the Rust reader's B3b shapes (`retained_precision_contract.rs` `rv120_forgeries`,
+# `rv120_probes`, `repair03_probes`) stated as edits from this file's bases. Regeneration only:
+# `RV120_INPUTS_WRITE=<B3B_INPUTS_OUT's JSON lines>` re-derives each shape's edits from that materialization, checks that
+# the edits rebuild it exactly through `_rv120_materialized` and that the Rust shape's expected first failure is the
+# shape's documented gate, and rewrites the file (names, wants and bases unchanged); otherwise a no-op.
+RV120_RUST_SHAPES = {
+    "X G5b control: case 0's evidence As_m2 one ulp [two_case_synthetic]": ("RV120 F1 control: case 0's evidence As_m2 one ulp", "two_case_synthetic"),
+    "X G5b control: case 1's body_scales force one ulp [two_case_synthetic]": ("RV120 F1 control: case 1's body_scales force one ulp", "two_case_synthetic"),
+    "X G5b order: case 0's evidence As_m2 and case 1's body_scales force [two_case_synthetic]": ("RV120 F1 order: case 0's evidence As_m2 and case 1's body_scales force", "two_case_synthetic"),
+    "X G5b order: case 0's evidence As_m2 and case 1's section term area [two_case_synthetic]": ("RV120 F1 order: case 0's evidence As_m2 and case 1's section term area", "two_case_synthetic"),
+    "forge E-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic]": ("RV120 F2: E +1 ulp in every receipt copy, stiffness and native hashes resealed", "ordinary_prepared_synthetic"),
+    "forge G-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic]": ("RV120 F2: G-hat +1 ulp in every receipt copy, stiffness and native hashes resealed", "ordinary_prepared_synthetic"),
+    "forge E-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive]": ("RV120 F2: E +1 ulp in every receipt copy, stiffness and native hashes resealed", "m3x_sparse_interactive"),
+    "forge G-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive]": ("RV120 F2: G-hat +1 ulp in every receipt copy, stiffness and native hashes resealed", "m3x_sparse_interactive"),
+    "X G8: an exact_cases entry for a case not in the invocation [ordinary_prepared_synthetic]": ("RV120 N2: an exact_cases entry for a case not in the invocation", "ordinary_prepared_synthetic"),
+    "X G8: an exact_cases entry for a case not in the invocation [m3x_sparse_interactive]": ("RV120 N2: an exact_cases entry for a case not in the invocation", "m3x_sparse_interactive"),
+    "N2b: entry 0's profile_mode and entry 1's material_basis [two_case_synthetic]": ("N2b: entry 0's profile_mode and entry 1's material_basis", "two_case_synthetic"),
+    "N2b: entry 0's material_basis and entry 1's profile_mode [two_case_synthetic]": ("N2b: entry 0's material_basis and entry 1's profile_mode", "two_case_synthetic"),
+}
+# The 07e rule recomputes these members; edits leave them to it.
+_RV120_RESEALED = (("retained_precision", "receipt_sha256"), ("retained_precision", "body", "publication_sha256"),
+                   ("retained_precision", "body", "invocation", "value"))
+
+
+def _rv120_edits(base, target, path, out):
+    """Edits in this file's grammar turning `base` into `target`: removed and added keys, changed members of objects
+    and of equal-length arrays, any other change set whole."""
+    canonical = lambda v: json.dumps(v, sort_keys=True)  # noqa: E731
+    if isinstance(base, dict) and isinstance(target, dict):
+        out.extend({"op": "remove", "path": path + [k]} for k in base if k not in target)
+        for k, v in target.items():
+            if k not in base:
+                out.append({"op": "set", "path": path + [k], "value": v})
+            elif canonical(base[k]) != canonical(v):
+                _rv120_edits(base[k], v, path + [k], out)
+    elif isinstance(base, list) and isinstance(target, list) and len(base) == len(target):
+        for i, (x, y) in enumerate(zip(base, target)):
+            if canonical(x) != canonical(y):
+                _rv120_edits(x, y, path + [i], out)
+    else:
+        out.append({"op": "set", "path": path, "value": target})
+
+
+def _rv120_resealed(path):
+    return (tuple(path) in _RV120_RESEALED
+            or (len(path) == 6 and path[:3] == ["retained_precision", "body", "cases"] and path[4:] == ["source_identity_sha256"])
+            or (len(path) == 6 and path[:3] == ["retained_precision", "body", "sources"] and path[4:] == ["preparation", "sha256"]))
+
+
+def test_rv120_inputs_write():
+    import os
+    inputs_path = os.environ.get("RV120_INPUTS_WRITE")
+    if not inputs_path:
+        return
+    rust = {}
+    for line in Path(inputs_path).read_text().splitlines():
+        entry = json.loads(line)
+        rust[(entry["name"], entry["base"])] = entry
+    path = ROOT / "fixtures/results/retained_precision_rv120_b3_inputs.json"
+    document = json.loads(path.read_text())
+    assert sorted(s["name"] for s in document["shapes"]) == sorted(RV120_RUST_SHAPES)
+    for shape in document["shapes"]:
+        target = rust[RV120_RUST_SHAPES[shape["name"]]]
+        assert shape["want"].split()[0] == target["expected_bound"]["gate"], shape["name"]
+        base_source, base_invocation = _rv120_base(shape)
+        edits, invocation_edits = [], []
+        _rv120_edits(base_source, target["source"], [], edits)
+        _rv120_edits(base_invocation, target["invocation"], [], invocation_edits)
+        shape["edits"] = [e for e in edits if not _rv120_resealed(e["path"])]
+        shape["invocation_edits"] = invocation_edits
+        source, invocation = _rv120_materialized(shape)
+        assert (source, invocation) == (target["source"], target["invocation"]), shape["name"]
+        shape["input_sha256"] = _rv120_digest(source, invocation)
+    path.write_text(json.dumps(document, indent=1) + "\n")
 
 
 def _rv120_want(text):
@@ -1082,7 +1240,12 @@ def test_repair01_g5b_shared_checks_precede_the_exact_evidence(shape):
     source, invocation = rv120_input(shape)
     assert outcome(source, invocation) == _rv120_want(shape["want"])
     assert outcome(source, None) == _rv120_want(shape["want"])
-    assert outcome(source, None, transport=True) == ("pass", False, "needs_recompute")
+    # T4-U6 (D-5 §2.3, §5): case 0's evidence As_m2 is now its nominal section's leaf; with coincident walls the
+    # reduced leaf no longer equals it, a section stated twice, so transport refuses the statement too (RS:
+    # G7 SOURCE_PHYSICS_SECTION_BASES); the force-only control still reads as its base.
+    as_edit = "case 0's evidence As_m2" in shape["name"]
+    expected = BASE_G7 if as_edit else ("pass", False, "needs_recompute")
+    assert outcome(source, None, transport=True) == expected
 
 
 @pytest.mark.parametrize("shape", RV120_FORGERIES, ids=[s["name"] for s in RV120_FORGERIES])

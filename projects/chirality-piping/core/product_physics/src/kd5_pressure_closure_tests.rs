@@ -320,15 +320,21 @@ fn checked_solves(case: &Case, b: i32) -> Vec<(String, SolveQuality, String, boo
         .collect::<Vec<_>>();
     let macros = built.curved_bend_elements.iter().map(|e| e.macro_element).collect::<Vec<_>>();
     let mut out = Vec::new();
+    // T4-U8 (Design §4 item 2): the product's source names each frame's member.
+    let members = crate::frame_member_identities(built);
     for mode in MODES {
-        let assembly = AssemblyEvidence::new(built.nodes.len(), &built.frame_elements, &built.connectors, &curved, &[]).unwrap();
+        let assembly = AssemblyEvidence::new(built.nodes.len(), &built.frame_elements, &built.connectors, &curved, &[])
+            .unwrap()
+            .with_frame_members(&members);
         let ordinary = assembly.solve_assembled_with_formation_check(&dense, &case.force, &free, &prescribed, mode, &macros, true).unwrap();
         out.push((format!("ordinary {mode:?}"), ordinary.report.quality, format!("{:?}", ordinary.formation_check), ordinary.member_bound.is_some()));
         let scale = ForceScale::new(b).unwrap();
         let factor = 2f64.powi(b);
         let scaled = dense.iter().map(|row| row.iter().map(|v| v * factor).collect()).collect::<Vec<Vec<f64>>>();
-        let assembly = AssemblyEvidence::new_force_scaled(built.nodes.len(), &built.frame_elements, &built.connectors, &curved, &[], scale).unwrap();
-        let w2 = assembly.solve_force_scaled_with_formation_check(&scaled, &case.force, &free, &prescribed, mode, &macros, true).unwrap();
+        let assembly = AssemblyEvidence::new_force_scaled(built.nodes.len(), &built.frame_elements, &built.connectors, &curved, &[], scale)
+            .unwrap()
+            .with_frame_members(&members);
+        let w2 =assembly.solve_force_scaled_with_formation_check(&scaled, &case.force, &free, &prescribed, mode, &macros, true).unwrap();
         out.push((format!("W2 2^{b} {mode:?}"), w2.solution.report.quality, format!("{:?}", w2.solution.formation_check), w2.solution.member_bound.is_some()));
     }
     out
@@ -460,7 +466,7 @@ fn kd5_u2_arc_wall_rows_keep_nw_equal_s_plus_p_ai() {
         let request = sketch("U2-L-ANCH-PTW-K2");
         let control = case(&request);
         let state = control.exact.pipe_states.values().find(|s| s.arc.is_some()).unwrap();
-        let p_ai = state.pressure.pressure_pa() * state.annulus.internal_area_m2();
+        let p_ai = state.pressure.pressure_pa() * state.sections.pressure_bore_area_m2();
         let output = run_linear_static_preview_value_with_mode(request.clone(), mode).unwrap();
         let case_id = &control.model.load_cases[0].id;
         let report = output.diagnostics.iter().find(|d| d.id == integrity_diagnostic_id(case_id)).unwrap();
@@ -507,7 +513,11 @@ fn kd5_u2_arc_wall_rows_refuse_an_unknown_section_location() {
     };
     let (results, diagnostics) = run(["quarter_1", "midspan", "quarter_3"]);
     assert!(diagnostics.is_empty(), "{diagnostics:?}");
-    assert_eq!(results.len(), 2 + 3 * 5);
+    // Two wall end actions, then at each of the five locations the wall and
+    // effective forces and the membrane stress, which D-5 (DEL-05-03 Design
+    // §2.1) publishes on the nominal section and then on the reduced one.
+    assert_eq!(results.len(), 2 + 5 * (2 + 2));
+    assert_eq!(results.iter().filter(|r| r.kind == "pipe_axial_membrane_stress_v2").count(), 5 * 2);
     let (results, diagnostics) = run(["quarter_1", "quarter_2", "quarter_3"]);
     assert!(results.is_empty(), "no row is published from an unknown section");
     assert_eq!(diagnostics.len(), 1);

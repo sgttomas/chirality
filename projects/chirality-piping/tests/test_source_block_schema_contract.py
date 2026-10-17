@@ -61,7 +61,7 @@ def test_composite_schema_is_the_only_source_block_receipt_schema():
         text = (PROJECT / "schemas" / name).read_text()
         assert RETIRED_SOURCE_BLOCKS_ID not in text and "source_block_recovery.schema.json" not in text, name
         assert not any(identity in text for identity in RETIRED_V2_IDS), name
-    assert COMPOSITE_SHA256 == "dec4f4e7af6f60cf5615facc1b1ff11c8d5df5b3907fc28d922d661672383435"
+    assert COMPOSITE_SHA256 == "f0daf3e22ce844e51f628e06730a907bda7d79e68f7e9dcc674abb4e3ba65d53"
     assert hashlib.sha256((PROJECT / "fixtures/results/semantic_contract_v0_3_pressure_source_1.json").read_bytes()).hexdigest() == COMPOSITE_SHA256
     for retired in ("physics_1", "physics_source_1", "load_reference_1", "load_reference_source_1"):
         assert not (PROJECT / f"fixtures/results/semantic_contract_v0_3_{retired}.json").exists(), retired
@@ -173,8 +173,9 @@ def test_composite_work_limit_is_its_policy_bound():
 
 def test_actual_composite_maximum_metadata_has_a_method_scoped_canonical_route():
     source = read_received(COMPOSITE_ROOT / "n05-sparse_interactive.raw.json")
+    # T4-U6 (D-5 §2.1): the retained-source maximum's token names its section basis.
     actual = next(row["metadata"] for row in source["results"]
-                  if row.get("metadata", {}).get("basis") == "retained_source_endpoint_normal_max_v1")
+                  if row.get("metadata", {}).get("basis") == "retained_source_endpoint_normal_max_v1; section_basis=nominal_section")
     results = schema("results.v0.3.schema.yaml")
     validate_instance(schema_for_definition(results, "PhysicsSourceMaximumMetadata"), actual)
     with pytest.raises(AssertionError): validate_instance(schema_for_definition(results, "ResultMetadata"), actual)

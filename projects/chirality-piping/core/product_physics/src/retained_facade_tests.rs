@@ -2513,16 +2513,21 @@ fn b3b_witness_inputs_and_routes() {
 /// counter that follows the compared profile text, and the hashes that bind them changed
 /// (B7b evidence `w1/evidence-exact-successors.txt`); every physical and certificate value is
 /// bit-identical.
+/// T4-U6 re-pin (D-5, DEL-05-03 Design §2.6), read from the producer through the private
+/// driver: the reduced stress twins, basis tokens and id segments, per-basis headlines, extrema
+/// and coverage, the D-5 section evidence and limitations, and the hashes that bind them.
 const EXACT_PINNED: [(&str, &str, &str, &str); 2] = [
-    ("sparse_interactive", "f6bb7e7fc74ebce71c67da5da81906fece54e412aa2697d5548eb13f50b67524", "25d5b9ca60401f844b0e50bbf8918ee38ff50e598603163a470faa94cc372d3e", "45e14e68249abbeafa358f9e7317e9060da8e59c83db948a8184b98b8859001c"),
-    ("dense_scrutiny", "0317aed643760641eec81708a0d5f506963e109a78c97a715617c081c28b7701", "d7caf7bb6362e66801857191c2823174d7c80f7b3f6cf1e4da104ea6e930a463", "0f490c22e7b2a25fa5dc1dd3d3a7ae7a701c744bfaac2fc2a2aa8f95f3451259"),
+    ("sparse_interactive", "d231b6ee48ed52f7accef419e25d631d4b4d0971940431aa2ca91f3eaeb1c75c", "bd632df2ecb5c1b0f8ae6c7e55cab0d61890d1036e4fdf67ecff01a1a1a8ad2b", "79d40f1a67c74efa911e408fca9c19c45ea9b6d9de7f60de97973fa66e798b1f"),
+    ("dense_scrutiny", "07742144211b669b283ee455afa739511b4ba0cd1ec4bdbcdadf47fe9ae0ae46", "d2b72e38c41120b427bc4e0d586f28bbabb2ac4ba4d41b28b16426142849ceae", "c9336f5155e654f67958d932d974cecb54423d80cd72c14fc868a15cb7791b3b"),
 ];
 /// The mixed exact base's pinned successor: (mode, receipt sha256, successor bytes sha256).
 /// Current B7a pins follow genuine public Direct outputs after H4/E14/E15 and
 /// reviewed retained-owner changes; the independent controls below remain unchanged.
 /// B7b re-pin: read from the producer after the one re-authoring of `m3x_mix_anchor` and D3's
 /// registration, on the same route and value classes as `EXACT_PINNED`.
-const MIX_PINNED: [(&str, &str, &str); 2] = [("sparse_interactive", "b571d188dd19c47efa15285d7f09d31a78c33284a17bbf593b42cff8e7f23bab", "d71b9da9ec787bf109fc2476214c2a1c562674701faa337b3a29e147b9c223bf"), ("dense_scrutiny", "13e5dc135cc0f1a6a9c8842d45616be214d7f91d5e77abec108a37e999ac13d5", "c15296ebd2160d22d489840abe0f0b3eda7712479a715d10ae55d5a2022e6dbe")];
+/// T4-U6 re-pin (D-5): read from the producer through the private driver, on the same D-5
+/// classes as `EXACT_PINNED`'s T4-U6 re-pin.
+const MIX_PINNED: [(&str, &str, &str); 2] = [("sparse_interactive", "5fbca7c5f5fbc5b553cd797b893bd46a352d0ef4f146b8656505396a3f32d3ae", "0299b23845a4abb698337a9ecd6ac14262b95ca2311ac8490b5f8b7ba313ca3c"),("dense_scrutiny", "dbc18a86fdccc6ec3efd35b576fc51ed596a434079f25153ba7777c876c1f543", "20b1bc2218d45ca9459378b48f7a5a71c8810def986d6352e12ec0593dcfc633")];
 /// The exact successor's fixture document (D-U6-5's form).
 fn exact_document(raw: &Value, mode: PreviewSolverMode, successor: &Value) -> String {
     serde_json::to_string_pretty(&json!({"id":format!("b3b_m3x_{}", mode.as_str()),"source":successor,
@@ -2631,27 +2636,42 @@ fn assert_exact_successor(label: &str, successor: &Value, plain: &Value, statuse
         let attempt = &body["product_attempts"][case["product_attempt_ref"].as_u64().unwrap() as usize];
         let (sections, old) = (now["pipe_sections"].as_array().unwrap(), was["pipe_sections"].as_array().unwrap());
         assert_eq!(sections.len(), old.len(), "{label}");
+        // D-5 (DEL-05-03 Design §2.3, §2.5): W1-E's one section (its admitted documents have
+        // coincident bases) is written to both nested sections, nominal and reduced.
+        const BASES: [&str; 2] = ["nominal_section", "reduced_section"];
         for (s, o) in sections.iter().zip(old) {
-            for key in o.as_object().unwrap().keys().filter(|k| !["As_m2", "I_m4", "J_m4", "Z_m3"].contains(&k.as_str())) {
+            for key in o.as_object().unwrap().keys().filter(|k| !BASES.contains(&k.as_str())) {
                 assert_eq!(s[key], o[key], "{label} {id}: pipe_sections `{key}` unchanged");
+            }
+            for basis in BASES {
+                for key in o[basis].as_object().unwrap().keys().filter(|k| !["As_m2", "I_m4", "J_m4", "Z_m3"].contains(&k.as_str())) {
+                    assert_eq!(s[basis][key], o[basis][key], "{label} {id}: pipe_sections `{basis}.{key}` unchanged");
+                }
             }
             let member = source["id_maps"]["members"].as_array().unwrap().iter().find(|m| m["id"] == s["pipe_id"]).unwrap()["kernel_member"].as_u64().unwrap();
             let term = &source["section_terms"][member as usize];
             let prepared = &attempt["preparation"]["members"].as_array().unwrap().iter().find(|m| m["member"] == json!(member)).unwrap()["result"]["section"];
             let g = &term["geometry"];
-            for (key, bits) in [("As_m2", hex_bits(&term["area"])), ("Z_m3", hex_bits(&term["section_modulus"])), ("I_m4", hex_bits(&g["actual_second_moment"])),
-                ("J_m4", hex_bits(&g["actual_polar_moment"])), ("outside_diameter_m", hex_bits(&g["normalized_od"])),
-                ("effective_wall_thickness_m", hex_bits(&g["effective_wall"])), ("ro_m", hex_bits(&g["actual_radius"]))] {
+            for (key, bits) in [("outside_diameter_m", hex_bits(&g["normalized_od"])), ("wall_thickness_m", hex_bits(&g["effective_wall"])),
+                ("ro_m", hex_bits(&g["actual_radius"]))] {
                 assert_eq!(num_bits(&s[key]), bits, "{label} {id}: G5b `{key}`");
             }
-            for (k, key) in ["As_m2", "I_m4", "J_m4", "Z_m3"].into_iter().enumerate() {
-                assert_eq!(num_bits(&s[key]), hex_bits(&prepared[k]), "{label} {id}: `{key}` is the prepared value");
+            for basis in BASES {
+                for (key, bits) in [("As_m2", hex_bits(&term["area"])), ("Z_m3", hex_bits(&term["section_modulus"])), ("I_m4", hex_bits(&g["actual_second_moment"])),
+                    ("J_m4", hex_bits(&g["actual_polar_moment"])), ("wall_m", hex_bits(&g["effective_wall"]))] {
+                    assert_eq!(num_bits(&s[basis][key]), bits, "{label} {id}: G5b `{basis}.{key}`");
+                }
+                for (k, key) in ["As_m2", "I_m4", "J_m4", "Z_m3"].into_iter().enumerate() {
+                    assert_eq!(num_bits(&s[basis][key]), hex_bits(&prepared[k]), "{label} {id}: `{basis}.{key}` is the prepared value");
+                }
             }
+            let (o, n) = (&o["nominal_section"], &s["nominal_section"]);
             println!("B3B_SECTION {label} {id} {} old=[{:016x},{:016x},{:016x},{:016x}] prepared=[{:016x},{:016x},{:016x},{:016x}]", s["pipe_id"],
                 num_bits(&o["As_m2"]), num_bits(&o["I_m4"]), num_bits(&o["J_m4"]), num_bits(&o["Z_m3"]),
-                num_bits(&s["As_m2"]), num_bits(&s["I_m4"]), num_bits(&s["J_m4"]), num_bits(&s["Z_m3"]));
+                num_bits(&n["As_m2"]), num_bits(&n["I_m4"]), num_bits(&n["J_m4"]), num_bits(&n["Z_m3"]));
         }
-        // P-7: one extremum per member, its other keys unchanged; its row's value is the midpoint.
+        // P-7: one extremum per member and section basis (D-5), its other keys unchanged; its
+        // row's value is the midpoint.
         let (extrema, old) = (now["pipe_stress_extrema"].as_array().unwrap(), was["pipe_stress_extrema"].as_array().unwrap());
         assert_eq!(extrema.len(), old.len(), "{label}");
         for (x, o) in extrema.iter().zip(old) {
@@ -2694,7 +2714,12 @@ fn b3b_exact_successor_is_pinned_in_both_modes() {
         let successor = captured.unwrap_or_else(|| panic!("{name}: {retained:?}"));
         exact_outcome(name, &retained, &successor, &envelope, &plain, &["case"]);
         assert_exact_successor(name, &successor, &plain_value, &["selected"]);
-        assert_eq!(successor["results"].as_array().unwrap().len(), 98, "{name}: current rows after E14 observation retirement");
+        // T4-U6 (D-5 §2.1, §2.5): the 98 current rows after E14's observation retirement, plus
+        // the reduced twin of each of the member's 21 stress rows (20 element-local stress rows
+        // and its maximum).
+        let rows = successor["results"].as_array().unwrap();
+        let reduced = rows.iter().filter(|r| r["metadata"]["basis"].as_str().is_some_and(|b| b.ends_with("; section_basis=reduced_section"))).count();
+        assert_eq!((rows.len(), reduced), (98 + 21, 21), "{name}: current rows after E14 observation retirement, and the reduced twins");
         let bytes = serde_json::to_vec(&successor).unwrap();
         let document = exact_document(&raw, mode, &successor);
         println!("B3B_EXACT_PIN {name} {} {} {}", successor["retained_precision"]["receipt_sha256"].as_str().unwrap(), sha(&bytes), sha(document.as_bytes()));
@@ -2971,23 +2996,30 @@ fn b3b_exact_observables_refuse_each_evidence_defect() {
         ("load case id", Box::new(|e: &mut Value| { e["exact_cases"][0]["load_case_id"] = json!("other"); }), "observable: evidence case"),
         ("profile mode", Box::new(|e: &mut Value| { e["exact_cases"][0]["profile_mode"] = json!("legacy_pressure_v1"); }), "observable: exact profile/material basis"),
         ("material basis", Box::new(|e: &mut Value| { e["exact_cases"][0]["material_basis"] = json!("resolved_per_member_load_reference_state_v1"); }), "observable: exact profile/material basis"),
-        ("incomplete coverage", Box::new(|e: &mut Value| { e["exact_cases"][0]["stress_maximum_coverage"]["complete"] = json!(false); }), "observable: maximum coverage"),
-        ("an unavailable pipe", Box::new(|e: &mut Value| { e["exact_cases"][0]["stress_maximum_coverage"]["unavailable_pipe_ids"] = json!(["M1"]); }), "observable: maximum coverage"),
-        ("a coverage member", Box::new(|e: &mut Value| { e["exact_cases"][0]["stress_maximum_coverage"]["outside_domain_pipe_ids"] = json!([]); }), "observable: stress coverage shape"),
+        // D-5 (§2.5): one coverage record per section basis, nominal then reduced.
+        ("incomplete coverage", Box::new(|e: &mut Value| { e["exact_cases"][0]["stress_maximum_coverage"][0]["complete"] = json!(false); }), "observable: maximum coverage"),
+        ("incomplete reduced coverage", Box::new(|e: &mut Value| { e["exact_cases"][0]["stress_maximum_coverage"][1]["complete"] = json!(false); }), "observable: maximum coverage"),
+        ("an unavailable pipe", Box::new(|e: &mut Value| { e["exact_cases"][0]["stress_maximum_coverage"][1]["unavailable_pipe_ids"] = json!(["M1"]); }), "observable: maximum coverage"),
+        ("a coverage member", Box::new(|e: &mut Value| { e["exact_cases"][0]["stress_maximum_coverage"][0]["outside_domain_pipe_ids"] = json!([]); }), "observable: stress coverage shape"),
+        ("swapped coverage bases", Box::new(|e: &mut Value| { e["exact_cases"][0]["stress_maximum_coverage"].as_array_mut().unwrap().swap(0, 1); }), "observable: maximum coverage"),
+        ("one coverage record", Box::new(|e: &mut Value| { e["exact_cases"][0]["stress_maximum_coverage"].as_array_mut().unwrap().pop(); }), "observable: stress coverage shape"),
         ("an assembly group", Box::new(|e: &mut Value| { e["exact_cases"][0]["pressure_rhs_assembly"]["groups"] = json!([{}]); }), "observable: exact pressure assembly groups"),
         ("a nonzero assembled entry", Box::new(|e: &mut Value| { e["exact_cases"][0]["pressure_rhs_assembly"]["assembled_pressure_rhs_global"][3] = json!(1.0); }), "observable: exact pressure assembly vector"),
         ("a nonzero cap entry", Box::new(|e: &mut Value| { e["exact_cases"][0]["pressure_rhs_assembly"]["rounded_cap_rhs_global"][0] = json!(-1e-300); }), "observable: exact pressure assembly vector"),
         ("a negative-zero Poisson entry", Box::new(|e: &mut Value| { e["exact_cases"][0]["pressure_rhs_assembly"]["rounded_poisson_rhs_global"][0] = json!(-0.0); }), "observable: exact pressure assembly vector"),
         ("a missing material record", Box::new(|e: &mut Value| { e["exact_cases"][0]["pipe_materials"] = json!([]); }), "observable: exact section/material coverage"),
         ("the section's OD", Box::new(|e: &mut Value| { e["exact_cases"][0]["pipe_sections"][0]["outside_diameter_m"] = json!(0.25); }), "observable: exact section geometry"),
-        ("the section's wall", Box::new(|e: &mut Value| { e["exact_cases"][0]["pipe_sections"][0]["effective_wall_thickness_m"] = json!(0.0125); }), "observable: exact section geometry"),
+        ("the section's wall", Box::new(|e: &mut Value| { e["exact_cases"][0]["pipe_sections"][0]["wall_thickness_m"] = json!(0.0125); }), "observable: exact section geometry"),
+        ("the reduced section's wall", Box::new(|e: &mut Value| { e["exact_cases"][0]["pipe_sections"][0]["reduced_section"]["wall_m"] = json!(0.0125); }), "observable: exact section geometry"),
+        ("a nonzero allowance", Box::new(|e: &mut Value| { e["exact_cases"][0]["pipe_sections"][0]["corrosion_allowance_m"] = json!(0.001); }), "observable: exact section geometry"),
         ("the material's G", Box::new(|e: &mut Value| { let g = e["exact_cases"][0]["pipe_materials"][0]["G_pa"].as_f64().unwrap(); e["exact_cases"][0]["pipe_materials"][0]["G_pa"] = json!(f64::from_bits(g.to_bits() + 1)); }), "observable: exact material values"),
         ("the material's nu", Box::new(|e: &mut Value| { e["exact_cases"][0]["pipe_materials"][0]["nu"] = json!(0.3); }), "observable: exact material values"),
         ("the material's E", Box::new(|e: &mut Value| { e["exact_cases"][0]["pipe_materials"][0]["E_pa"] = json!(2.1e11); }), "observable: exact material values"),
         ("the material's pipe", Box::new(|e: &mut Value| { e["exact_cases"][0]["pipe_materials"][0]["pipe_id"] = json!("M9"); }), "observable: exact material identity"),
         ("the section's pipe", Box::new(|e: &mut Value| { e["exact_cases"][0]["pipe_sections"][0]["pipe_id"] = json!("M9"); }), "abandoned: prepared section identity"),
         ("a missing section", Box::new(|e: &mut Value| { e["exact_cases"][0]["pipe_sections"] = json!([]); }), "abandoned: prepared section complete domain"),
-        ("a section's numeric slot", Box::new(|e: &mut Value| { e["exact_cases"][0]["pipe_sections"][0]["J_m4"] = json!("x"); }), "abandoned: prepared section numeric slot"),
+        ("a section's numeric slot", Box::new(|e: &mut Value| { e["exact_cases"][0]["pipe_sections"][0]["nominal_section"]["J_m4"] = json!("x"); }), "abandoned: prepared section numeric slot"),
+        ("a reduced section's numeric slot", Box::new(|e: &mut Value| { e["exact_cases"][0]["pipe_sections"][0]["reduced_section"]["Z_m3"] = json!("x"); }), "abandoned: prepared section numeric slot"),
     ];
     for (label, tamper, expected) in &cases {
         assert_eq!(freeze_with(tamper.as_ref()), *expected, "{label}");
@@ -3046,6 +3078,56 @@ fn b3b_refused_exact_requests_take_the_ordinary_route() {
             assert_eq!(published(output), plain, "{label} {mode:?}: the ordinary route's bytes");
         }
     }
+}
+
+/// O4 interim (DEL-05-03 Design `section-bases-and-timoshenko.md` §5): W1-E declines a
+/// Timoshenko document (`ShearModel`) and a section with nonzero mill tolerance or corrosion
+/// allowance (`SectionAllowance`) at G-A's D1.3, under those named facts rather than the generic
+/// `PressureContract`, so the published bytes are the ordinary route's: no W1, one run, in both
+/// modes. Explicit zeros stay inside D1 (the bases coincide), and route L, whose one section is
+/// t - c_m, keeps admitting a nonzero mill tolerance.
+#[test]
+fn o4_w1e_declines_at_admission() {
+    use super::retained_memory::{namespace_branch, AdmissionRefusal, D1Clause, FamilyFact, NamespaceBranch};
+    let section = |key: &'static str, value: f64| move |r: &mut Value| {
+        for pipe in r["model"]["pipe_segments"].as_array_mut().unwrap() {
+            pipe["section"][key] = json!({"value": value, "unit": "m"});
+        }
+    };
+    let variants: Vec<(&str, Box<dyn Fn(&mut Value)>, FamilyFact)> = vec![
+        ("timoshenko", Box::new(|r: &mut Value| r["model"]["pressure_contract"]["shear_model"] = json!("timoshenko_annulus_energy_v1")), FamilyFact::ShearModel),
+        ("mill tolerance", Box::new(section("mill_tolerance", 0.0005)), FamilyFact::SectionAllowance),
+        ("corrosion allowance", Box::new(section("corrosion_allowance", 0.001)), FamilyFact::SectionAllowance),
+    ];
+    for (label, change, fact) in &variants {
+        let mut raw = m3x();
+        change(&mut raw);
+        let request: LinearStaticPreviewRequest = serde_json::from_value(raw.clone()).unwrap();
+        let branch = namespace_branch(&request.model);
+        assert_eq!(branch, if *fact == FamilyFact::ShearModel { Err(FamilyFact::ShearModel) } else { Ok(NamespaceBranch::Exact) }, "{label}");
+        for mode in MODES {
+            let plain = plain(mode, &raw);
+            let (output, counts) = direct(&raw, mode);
+            let law = output.admission().unwrap().law();
+            assert_eq!(law.domain, Some(AdmissionRefusal::Family(D1Clause::Namespace, *fact)), "{label} {mode:?}: D1.3 declines by its fact");
+            assert!(law.refusal.is_some(), "{label} {mode:?}: G-A refuses");
+            assert!(output.retained().is_none() && output.successor().is_none(), "{label} {mode:?}: no W1");
+            assert_eq!(counts, ONE_RUN, "{label} {mode:?}");
+            assert_eq!(published(output), plain, "{label} {mode:?}: the ordinary route's bytes");
+        }
+    }
+    // Explicit zeros are inside D1 on branch E.
+    let mut zeros = m3x();
+    section("mill_tolerance", 0.0)(&mut zeros);
+    let (output, _) = direct(&zeros, MODES[0]);
+    assert_eq!(output.admission().unwrap().law().domain, None, "explicit zero mill tolerance and allowance");
+    // Route L: the pressure-free milestone with a nonzero mill tolerance stays inside D1.
+    let mut preview = raw();
+    section("mill_tolerance", 0.0005)(&mut preview);
+    let request: LinearStaticPreviewRequest = serde_json::from_value(preview.clone()).unwrap();
+    assert_eq!(namespace_branch(&request.model), Ok(NamespaceBranch::Preview));
+    let (output, _) = direct(&preview, MODES[0]);
+    assert_eq!(output.admission().unwrap().law().domain, None, "route L keeps its one t - c_m section");
 }
 
 /// B3b-P (B3-D P-5; D1.5-exact, DEF-E `scope.materials`): the exact route's capture admits the
@@ -3146,11 +3228,13 @@ fn two_member_exact(reversed: bool) -> Value {
 /// reviewed retained-owner changes; the independent controls below remain unchanged.
 /// B7b re-pin: read from the producer after the one re-authoring (M2's authored zero allowance
 /// included) and D3's registration, on the same route and value classes as `EXACT_PINNED`.
+/// T4-U6 re-pin (D-5): read from the producer through the private driver, on the same D-5
+/// classes as `EXACT_PINNED`'s T4-U6 re-pin.
 const TWO_MEMBER_PINNED: [(bool, &str, &str); 4] = [
-    (false, "sparse_interactive", "64e5aa3552151fda1e88c57eeb76cf83e53004dd5f3d61c9b64141b376d63676"),
-    (false, "dense_scrutiny", "43307db54dcb7cf976d7d97447668d64ca3283ec94955d6553a6cd3efc6060fe"),
-    (true, "sparse_interactive", "4952144457d1ba23330e5c389d4f9d646c82d89d0a8855b793dc67cf50b84107"),
-    (true, "dense_scrutiny", "66c8d4ff9da1704b2041f97d3a48aa24ddfc4606d13c8462b8748624cf369f4d")];
+    (false, "sparse_interactive", "ecb616527fa5e87bbb77406feb214259779c70133effcac20d89897f9cf09026"),
+    (false, "dense_scrutiny", "5ae59c565cfecc0be4f0f80165bdd6d6b658eaed1cb166fbbfbcf92129b27e98"),
+    (true, "sparse_interactive", "da6e4f72d7aef588b3cd1ddbcd24a3d0227be09c8e50fc49323157968266bb6b"),
+    (true, "dense_scrutiny", "9befeeb2a105d36602b2da3a2bd2269ddbd45d714f6046bb5c46db272798e238")];
 /// RV123 S-1: a two-member exact successor, in both authored member orders and both modes: each
 /// member's `pipe_sections` entry takes its own prepared A, I, J and Z (`assert_exact_successor`),
 /// and M2's prepared section differs from its source annulus's in at least one value, so the
@@ -3169,7 +3253,11 @@ fn b3b_rv123_s1_two_member_exact_overlays_each_member() {
             assert_exact_successor(&label, &successor, &plain_value, &["selected"]);
             let section = |e: &Value| e["exact_cases"][0]["pipe_sections"].as_array().unwrap().iter().find(|s| s["pipe_id"] == "M2").unwrap().clone();
             let (now, was) = (section(&successor["contract_evidence"]), section(&plain_value["contract_evidence"]));
-            assert!(["As_m2", "I_m4", "J_m4", "Z_m3"].iter().any(|k| num_bits(&now[*k]) != num_bits(&was[*k])), "{label}: M2's prepared section is not its source annulus's");
+            // D-5: the prepared section is written to both nested sections (Design §2.3).
+            for basis in ["nominal_section", "reduced_section"] {
+                assert!(["As_m2", "I_m4", "J_m4", "Z_m3"].iter().any(|k| num_bits(&now[basis][*k]) != num_bits(&was[basis][*k])),
+                    "{label}: M2's prepared {basis} is not its source annulus's");
+            }
             let bytes = sha(&serde_json::to_vec(&successor).unwrap());
             println!("RV123_S1 {label} successor_sha256={bytes}");
             let pinned = TWO_MEMBER_PINNED.iter().find(|(r, m, _)| *r == reversed && *m == mode.as_str()).unwrap().2;
@@ -3182,8 +3270,10 @@ fn b3b_rv123_s1_two_member_exact_overlays_each_member() {
 /// reviewed retained-owner changes; the independent controls below remain unchanged.
 /// B7b re-pin: read from the producer after the one re-authoring and D3's registration, on the
 /// same route and value classes as `EXACT_PINNED`.
-const UNAVAILABLE_EXACT_PINNED: [(&str, &str); 2] = [("sparse_interactive", "bfdce6d2f065ba1239fe2c347941102004e25952544da25f2ec6ecd8038709ff"),
-    ("dense_scrutiny", "a503732194b03d48c98b6af621a20a96e1bd6557144dd03c37d947b924bb3a9b")];
+/// T4-U6 re-pin (D-5): read from the producer through the private driver, on the same D-5
+/// classes as `EXACT_PINNED`'s T4-U6 re-pin.
+const UNAVAILABLE_EXACT_PINNED: [(&str, &str); 2] = [("sparse_interactive", "d42ac63c35a116c86dcdb0b7e022aa4b1f65a5a22a002b684afefd4e3e40e1b0"),
+    ("dense_scrutiny", "2705bb8a7c799fd695db9fae233d0847e8e69a313d6743cdd86029fd2bede32c")];
 /// RV123 S-2: an exact successor with an `unavailable` prepared case, at the n-case serializer's
 /// unavailable branch: the two-case exact input with case-2's freeze refused after its selected
 /// Run (`fail_freeze_of_case`). Case-2 is `unavailable` (`facade_certificate`, phase `facade`),
