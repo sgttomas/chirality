@@ -287,7 +287,7 @@
       "core/reporting/report_package/Cargo.toml": "09464454efd20ab4cdd416ce75763dcb293c5c4741b0fc7ab3efc5cdb015712b",
       "core/reporting/report_renderer/Cargo.toml": "fe19d0718b26f7d82c0ee8449eb5746561f7887b8eb7dd6e95de26dce192fde8",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
-      "core/reporting/result_export/Cargo.toml": "7ee8216b0f27ed7cc7e787397979f8bd05eb52a94b9d339f4bd3b999efcef978",
+      "core/reporting/result_export/Cargo.toml": "f15012551e0d8942997b5bfc0a496463e365d15e8a10ea6334b5acb6df097835",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "3784dc3caabb41d3ba781c2a3e19332fe50852713b66b0227fac95f75131eabb",
       "core/rules/rule_check_runner/Cargo.toml": "74ab4cfa6825b9eb33c4e15e01685bd1cb25cfffcde10e6eeb1ce3973fdb2007",
@@ -1023,7 +1023,7 @@
         }
       },
       "core/reporting/result_export/tests/base_reader_outcomes.rs": {
-        "sha256": "332e57ce7c63683751f4bbc0c6d880fc2e7e88fc14ce4532353d7b3b50f678ea",
+        "sha256": "04f2b6563b1429058fa77044e33509b450b91faaa077bcc8a58e78872bac5839",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -1840,7 +1840,7 @@
         ]
       },
       "core/reporting/result_export/tests/preview_physics_contract.rs": {
-        "sha256": "039b16e9beb870341f525981e473e5f2adeb8de1dc69da8e7e6683987d93c3a5",
+        "sha256": "4311ea965784d3cb5ca6151ba1acfad163dd50a0072cddb9adc50718f844e95a",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
