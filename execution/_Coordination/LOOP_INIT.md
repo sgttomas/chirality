@@ -5,6 +5,17 @@ Work from the repository root. Root maintains `AGENTS.md`, `agents/`,
 technical references in `docs/`. The conversation supplies the undertaking;
 Root is not a standing project-wide audit or backlog.
 
+Use this course of knowledge work as a heuristic, not a prescribed path:
+
+Problem Statement → Requirements → Objectives → Production → Evaluation →
+Assessment → Implementation → Verification → Validation → Integration →
+Reflection → Iteration → Resolution.
+
+It creates no additional stages, artifacts, reviews, approvals, or completion
+conditions. Enter where the work currently stands and revisit activities as
+evidence requires. Work within the given scope and authority; resolve against
+the agreed outcome and adequate supporting evidence.
+
 Find the current manuals through the [manual index](../../docs/alignment-manual/README.md).
 Consult the relevant sections when the work needs them; no full-manual reading is required.
 

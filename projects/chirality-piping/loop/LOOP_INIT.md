@@ -6,6 +6,17 @@ environment. Work in `projects/chirality-piping`. Start from the affected
 current technical rulings, and `deliverable.yaml` states dependency conditions.
 Consult `docs/PRD.md` and its technical companions for the requirements involved.
 
+Use this course of knowledge work as a heuristic, not a prescribed path:
+
+Problem Statement → Requirements → Objectives → Production → Evaluation →
+Assessment → Implementation → Verification → Validation → Integration →
+Reflection → Iteration → Resolution.
+
+It creates no additional stages, artifacts, reviews, approvals, or completion
+conditions. Enter where the work currently stands and revisit activities as
+evidence requires. Work within the given scope and authority; resolve against
+the agreed outcome and adequate supporting evidence.
+
 Find the current manuals through the [manual index](../../../docs/alignment-manual/README.md).
 Consult the relevant sections when the work needs them; no full-manual reading is required.
 
@@ -17,6 +28,29 @@ python3 -m tools.deliverables --project projects/chirality-piping neighborhood D
 
 Use `impact <DEL>` for consumers and `touches <rev|PR:n>` for relevant code
 changes. Update current conditions when their meaning changes, not on every run.
+
+## Implementation and reconciliation
+
+Owner rule, 2026-10-17:
+
+> Going forward, each implementation return must include reconciliation of its affected Scope of Work, Design and dependency conditions before integration.
+
+The implementation manager owns this reconciliation. Carry the rule into every
+implementation brief and identify the affected deliverables. TASKs report the
+effects of their slices; the manager reconciles the combined result with
+`ScopeOfWork.md`, `Design/` and `deliverable.yaml` as implementation and
+verification progress. Coordinate disjoint writes so reconciliation can proceed
+alongside other work. Include warranted edits in the same implementation PR.
+Preserve unmet commitments; changes to commitments or acceptance criteria remain
+owner decisions. Leave unchanged declarations alone; a brief explanation in the
+PR suffices when no edits are warranted.
+
+Review the implementation, affected declarations and evidence together. Agent 0
+checks their agreement before integration, reusing applicable passing evidence.
+Scope the comparison to the change's effects and repeat only portions invalidated
+by later changes. Resolve material conflicts governing the candidate before
+integration; unaffected work can continue. This adds no separate audit stage or
+reconciliation record.
 
 ## Build and verification
 
