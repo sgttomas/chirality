@@ -107,10 +107,14 @@ jobs:
         run: |
           python3 -m pip install --quiet pyyaml || true
           python3 - <<'PYTHON' || true
-          import json, os, subprocess, sys
+          import json, os, re, subprocess, sys
           from pathlib import PurePosixPath
           LIMIT = 50
           lines = ['### Deliverable mapping (report only)', '']
+          def code(value):
+              visible = json.dumps(str(value), ensure_ascii=True)[1:-1]
+              fence = '`' * (max(map(len, re.findall(r'`+', visible)), default=0) + 1)
+              return f'{fence} {visible} {fence}'
           def commit(ref):
               done = subprocess.run(['git', 'rev-parse', '--verify', '--quiet', '--end-of-options', f'{ref}^{{commit}}'], capture_output=True, text=True)
               return done.stdout.strip() if ref and done.returncode == 0 else ''
@@ -142,23 +146,23 @@ jobs:
                       result = {'errors': [f'{type(exc).__name__}: {exc}']}
                   if 'unmapped_paths' not in result:
                       detail = '; '.join(map(str, result.get('errors') or ['no result']))
-                      lines.append(f'**`{project}`**: report unavailable: {detail[:500]}')
+                      lines.append(f'**{code(project)}**: report unavailable: {detail[:500]}')
                       continue
                   prefix = '' if project == '.' else project + '/'
                   unmapped = [path for path in result['unmapped_paths'] if path.startswith(prefix)]
                   relevant = result.get('relevant', {})
                   changed = len({path for hits in relevant.values() for path in hits} | set(unmapped))
                   if not changed:
-                      lines.append(f'**`{project}`**: no changed paths.')
+                      lines.append(f'**{code(project)}**: no changed paths.')
                       continue
-                  lines.append(f'**`{project}`**: {changed} changed, {len(unmapped)} unmapped.')
+                  lines.append(f'**{code(project)}**: {changed} changed, {len(unmapped)} unmapped.')
                   if relevant:
-                      lines.append('Relevant deliverables: ' + ', '.join(f'`{key}` ({len(hits)})' for key, hits in sorted(relevant.items())))
+                      lines.append('Relevant deliverables: ' + ', '.join(f'{code(key)} ({len(hits)})' for key, hits in sorted(relevant.items())))
                   if result.get('errors'):
                       lines.append('Tool errors: ' + '; '.join(map(str, result['errors']))[:500])
                   if unmapped:
                       lines.append('')
-                      lines.extend(f'- `{path}`' for path in unmapped[:LIMIT])
+                      lines.extend(f'- {code(path)}' for path in unmapped[:LIMIT])
                       if len(unmapped) > LIMIT:
                           lines.append(f'- ... and {len(unmapped) - LIMIT} more')
           except Exception as exc:
