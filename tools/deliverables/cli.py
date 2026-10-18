@@ -44,10 +44,11 @@ UniqueLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, uni
 
 
 def run(args, cwd):
-    process = subprocess.run(args, cwd=cwd, capture_output=True, text=True)
+    # Decode without universal-newline translation: Git paths may contain CR.
+    process = subprocess.run(args, cwd=cwd, capture_output=True)
     if process.returncode:
-        raise Invalid(process.stderr.strip() or f"command failed: {args[0]}")
-    return process.stdout
+        raise Invalid(process.stderr.decode('utf-8', errors='replace').strip() or f"command failed: {args[0]}")
+    return process.stdout.decode('utf-8')
 
 
 def revision(repo, ref):

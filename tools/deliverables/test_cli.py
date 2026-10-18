@@ -138,6 +138,26 @@ def test_touches_pr_diffs_base_and_head_locally_beyond_github_file_limit(repo, c
     assert fork != base and 'project/base-only.txt' not in result['unmapped_paths']
 
 
+def test_touches_preserves_distinct_control_characters_in_git_paths(repo, capsys, monkeypatch, tmp_path_factory):
+    put(repo, 'DEL-01-01')
+    git(repo, 'add', '.')
+    git(repo, 'commit', '-qm', 'deliverable')
+    base = git(repo, 'rev-parse', 'HEAD')
+    changed = ['project/line\rbreak.txt', 'project/line\nbreak.txt',
+               'project/tab\tname.txt', 'project/tick`name.txt']
+    for path in changed:
+        (repo / path).write_text('distinct path')
+    git(repo, 'add', '.')
+    git(repo, 'commit', '-qm', 'unusual filenames')
+    head = git(repo, 'rev-parse', 'HEAD')
+    stub_gh(tmp_path_factory.mktemp('gh'), monkeypatch,
+            {'baseRefOid': base, 'headRefOid': head, 'url': 'https://github.com/example/repo/pull/7'})
+    for selection in ('PR:7', f'{base}...{head}'):
+        code, result = query(capsys, 'touches', selection)
+        assert code == 0, result
+        assert sorted(result['unmapped_paths']) == sorted(changed)
+
+
 def test_touches_pr_with_missing_local_commit_fails_without_partial_list(repo, capsys, monkeypatch, tmp_path_factory):
     base = git(repo, 'rev-parse', 'HEAD')
     absent = 'f' * 40

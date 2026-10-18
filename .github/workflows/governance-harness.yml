@@ -114,7 +114,8 @@ jobs:
           def code(value):
               visible = json.dumps(str(value), ensure_ascii=True)[1:-1]
               fence = '`' * (max(map(len, re.findall(r'`+', visible)), default=0) + 1)
-              return f'{fence} {visible} {fence}'
+              padding = ' ' if visible.strip(' ') else ''
+              return f'{fence}{padding}{visible}{padding}{fence}'
           def commit(ref):
               done = subprocess.run(['git', 'rev-parse', '--verify', '--quiet', '--end-of-options', f'{ref}^{{commit}}'], capture_output=True, text=True)
               return done.stdout.strip() if ref and done.returncode == 0 else ''
