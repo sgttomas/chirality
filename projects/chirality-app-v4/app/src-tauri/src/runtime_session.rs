@@ -19,8 +19,96 @@ pub struct RuntimeSession {
     history_pages: u64,
     /// Of those, the pages the host's recovery reads returned (RECOVERY §5 R-4).
     recovery_pages: u64,
+    native_owner: Option<crate::hosting::NativeProjectionOwner>,
+    source_ready: Option<Value>,
 }
 impl RuntimeSession {
+    fn owned(owner: crate::hosting::NativeProjectionOwner) -> Self {
+        Self { native_owner: Some(owner), ..Self::default() }
+    }
+    /// Consume actual source delivery, independently of public replay cursors.
+    /// No Host lock is held while applying frames; acknowledgment follows only
+    /// incorporation into this owned projection. It is not a disk-write receipt.
+    pub(crate) fn receive_native(&mut self, host: &crate::hosting::Host) -> (Value, Value) {
+        let result = (|| {
+            let owner = self.native_owner.as_ref().ok_or("native projection has no original receiving owner")?;
+            let batch = host.pending_native_projection(owner)?;
+            let observation = batch.observation().clone();
+            let mut frames = Vec::new();
+            for event in batch.events() {
+                use crate::hosting::NativeProjectionEvent;
+                match event {
+                    NativeProjectionEvent::Ready(ready) => {
+                        self.incorporate_delivery_frames(&observation, &mut frames);
+                        self.source_ready = Some(ready.clone());
+                        let source = self.delivery_observation(ready, &observation, vec![]);
+                        self.receive(&source);
+                    }
+                    NativeProjectionEvent::Frame(frame) => {
+                        let context = self.source_ready.as_ref().filter(|ready|ready["generation"]==frame["generation"] && frame["generationNeverReady"]!=true).cloned();
+                        if context.is_some() {
+                            frames.push(frame.clone());
+                        } else {
+                            let reason = "source frame had no actual ready delivery; not admitted as live native input".to_owned();
+                            if !self.limits.contains(&reason) { self.limits.push(reason); }
+                        }
+                    }
+                    NativeProjectionEvent::Close(generation) => {
+                        self.incorporate_delivery_frames(&observation, &mut frames);
+                        if let Some(mut ready) = self.source_ready.as_ref().filter(|r|r["generation"]==*generation).cloned() {
+                            ready["state"] = json!("observation-ended");
+                            ready["generationClosed"] = json!(true);
+                            let source = self.delivery_observation(&ready, &observation, vec![]);
+                            self.receive(&source);
+                        }
+                    }
+                }
+            }
+            self.incorporate_delivery_frames(&observation, &mut frames);
+            // Stop removes current control before EOF ends source observation.
+            // Only original Close delivery ends this private incorporation path;
+            // an intervening stopping snapshot must not discard later frames.
+            let received = self.receive_observation(&observation, false);
+            host.ack_native_projection(self.native_owner.as_ref().unwrap(), batch)?;
+            Ok::<_,String>((observation, received))
+        })();
+        match result {
+            Ok(received) => received,
+            Err(error) => {
+                let reason = format!("native source delivery unavailable: {error}");
+                if !self.limits.contains(&reason) { self.limits.push(reason); }
+                let snapshot = host.snapshot();
+                let observation = json!({"generation":snapshot["generation"],"snapshot":snapshot,"frames":[],"gap":true,"sourceDeliveryUnavailable":true});
+                let received = json!({"nativeView":null,"accountObservation":null,"nativeViewLimits":self.limits,"nativeViewObservationEnded":true,"sourceDeliveryUnavailable":true});
+                (observation, received)
+            }
+        }
+    }
+    fn incorporate_delivery_frames(&mut self, observation: &Value, frames: &mut Vec<Value>) {
+        if frames.is_empty() { return; }
+        if let Some(ready) = self.source_ready.clone() {
+            let source = self.delivery_observation(&ready, observation, std::mem::take(frames));
+            self.receive(&source);
+        }
+    }
+    fn delivery_observation(&self, ready: &Value, final_observation: &Value, frames: Vec<Value>) -> Value {
+        let mut snapshot = final_observation["snapshot"].clone();
+        for field in ["state","generation","generationClosed","versionIdentity","supplierStanding"] {
+            snapshot[field] = ready[field].clone();
+        }
+        if ready["generation"] != final_observation["generation"] {
+            // A later source's distribution evidence cannot qualify an earlier one.
+            snapshot["distributionEvidence"] = Value::Null;
+        }
+        json!({"generation":ready["generation"],"snapshot":snapshot,"frames":frames,"gap":false})
+    }
+    /// Original live-observed projections remain retryable recording input even
+    /// when a run was locked during an earlier tick. They grant no current control.
+    pub(crate) fn recording_views(&self) -> Vec<Value> {
+        let mut views = self.prior_views.iter().filter_map(|prior|prior.get("view").cloned()).collect::<Vec<_>>();
+        if let Some(view) = self.view.as_ref() { views.push(view.snapshot()); }
+        views
+    }
     pub fn cursor(&self) -> (&Value, u64) {
         (&self.generation, self.position)
     }
@@ -29,6 +117,9 @@ impl RuntimeSession {
         self.view.as_ref().map_or(Value::Null, NativeView::snapshot)
     }
     pub fn receive(&mut self, observation: &Value) -> Value {
+        self.receive_observation(observation, true)
+    }
+    fn receive_observation(&mut self, observation: &Value, close_from_snapshot: bool) -> Value {
         let snapshot = &observation["snapshot"];
         let generation = &observation["generation"];
         let active = snapshot["state"] == "ready";
@@ -141,7 +232,7 @@ impl RuntimeSession {
                 self.position = position;
             }
         }
-        if !active && self.view.is_some() && !self.closed && snapshot["state"] != "handshaking" {
+        if close_from_snapshot && !active && self.view.is_some() && !self.closed && snapshot["state"] != "handshaking" {
             if let Some(view) = self.view.as_mut() {
                 let _ = view.close(&self.generation);
             }
@@ -208,9 +299,10 @@ impl RuntimeSession {
         name: Option<&str>,
         os: Option<&str>,
     ) -> Value {
-        self.receive(observation);
+        if self.native_owner.is_none() { self.receive(observation); }
+        let account = if observation["sourceDeliveryUnavailable"] == true || observation["snapshot"]["state"] != "ready" { None } else { self.codex_account_for(&observation["generation"]) };
         json!({"generation":observation["generation"],"hostState":observation["snapshot"]["state"],
-            "displayName":name,"osAccount":os,"codexAccount":self.codex_account_for(&observation["generation"]),
+            "displayName":name,"osAccount":os,"codexAccount":account,
             "accountRevision":self.account_revision})
     }
     pub fn codex_account_for(&self, generation: &Value) -> Option<String> {
@@ -854,15 +946,15 @@ pub fn observed_steering_target(
                 && turn["observationEnded"] != true
         })
         .collect::<Vec<_>>();
-    let latest = snapshot["journal"]
+    let latest = snapshot["turnEventBoundaries"]
         .as_array()
-        .into_iter()
-        .flatten()
+        .ok_or("source-owned turn boundary observations unavailable; refresh native observations")?
+        .iter()
         .filter(|frame| {
             frame["generation"] == *generation
-                && frame["frame"]["params"]["threadId"] == thread_id
+                && frame["threadId"] == thread_id
                 && matches!(
-                    frame["frame"]["method"].as_str(),
+                    frame["method"].as_str(),
                     Some("turn/started" | "turn/completed")
                 )
                 && frame["position"].as_u64().is_some()
@@ -890,14 +982,14 @@ pub fn observed_steering_target(
     } else {
         latest
             .filter(|frame| {
-                frame["frame"]["method"] == "turn/started"
-                    && frame["frame"]["params"]["turn"]["status"] == "inProgress"
+                frame["method"] == "turn/started"
+                    && frame["status"] == "inProgress"
             })
             .and_then(|frame| {
                 eligible
                     .iter()
                     .copied()
-                    .find(|turn| turn["turnId"] == frame["frame"]["params"]["turn"]["id"])
+                    .find(|turn| turn["turnId"] == frame["turnId"])
             })
     }
     .ok_or(
@@ -2464,12 +2556,14 @@ impl HomeSession {
         if class == crate::home_resources::HomeClass::Probe {
             return Err("Probe is not an active conversation/account entry".into());
         }
+        let workflow_source_ref = crate::util::opaque_id("workflow-home:" )?;
+        let native_owner = host.claim_native_projection()?;
         Ok(Self {
             class,
-            workflow_source_ref: crate::util::opaque_id("workflow-home:" )?,
+            workflow_source_ref,
             host,
             host_config: config,
-            runtime: std::sync::Mutex::new(RuntimeSession::default()),
+            runtime: std::sync::Mutex::new(RuntimeSession::owned(native_owner)),
             history: std::sync::Mutex::new(HistorySession::default()),
             access_selection: std::sync::Mutex::new(None),
             recovery_startup: std::sync::Arc::new(
@@ -2497,6 +2591,15 @@ impl HomeSession {
         let sources = self.account_sources.lock().unwrap();
         json!({"modeHomeClass":self.class.as_str(),"observations":sources.iter().map(|source|self.host.account_rpc_observation(source).unwrap_or_else(|error|json!({"limit":error,"source":source.evidence()}))).collect::<Vec<_>>(),"limit":"native source facts; credential validity and actor identity are not inferred"})
     }
+}
+/// Read the explicitly selected actual source with an independent window
+/// cursor. No active-home fallback, receipt acknowledgment or native dispatch.
+pub(crate) fn observe_home(homes: &std::sync::Mutex<HomeRouter>, source: &Value, cursor: &Value, after: u64) -> Value {
+    let home = match homes.lock().unwrap().for_generation(source) {
+        Ok(home) => home,
+        Err(error) => return json!({"error":error,"sourceUnavailable":true,"generation":cursor,"frames":[]}),
+    };
+    home.host.observe_scoped(source, cursor, after)
 }
 pub struct HomeRouter {
     account: std::sync::Arc<HomeSession>,
@@ -2860,13 +2963,12 @@ pub fn assess_native_home_work(
 ) -> Result<HomeLogoutAssessment, String> {
     crate::recovery::generation_ref(generation)?;
     let mut runtime = home.runtime.lock().unwrap();
-    let (cursor, position) = runtime.cursor();
-    let observation = home.host.observe(cursor, position);
+    let (observation, received) = runtime.receive_native(&home.host);
+    if observation["sourceDeliveryUnavailable"] == true { return Err("native source delivery unavailable for assessment".into()); }
     let snapshot = &observation["snapshot"];
     if snapshot["generation"] != *generation || snapshot["state"] != "ready" || snapshot["generationClosed"] == true {
         return Err("Selected native home/full generation is unavailable for assessment; no window/home fallback".into());
     }
-    let received = runtime.receive(&observation);
     drop(runtime);
     let mut live = vec![];
     let mut unresolved_turns = vec![];
@@ -2946,7 +3048,10 @@ pub fn assess_native_home_work(
     let mut requests = requests;
     requests.sort_by_key(Value::to_string);
     let coverage = json!({"turns":{"scope":"current selected-home source","available":snapshot["conversationTurns"].is_array(),"complete":false,"unresolved":unresolved_turns},"requests":{"scope":"current received register","available":snapshot["serverRequests"].is_array(),"complete":false},"children":{"receivingViewAvailable":valid_view,"complete":false,"limit":"child visibility/completeness not established; additional work may exist"},"receivingLimits":received["nativeViewLimits"]});
-    let namespace_events=snapshot["journal"].as_array().into_iter().flatten().filter(|event|event["generation"]==*generation&&event["frame"]["method"]=="account/updated").map(|event|json!({"generation":event["generation"],"receiptPosition":event["position"],"method":event["frame"]["method"]})).collect::<Vec<_>>();
+    let namespace_revision = &snapshot["accountNamespaceRevision"];
+    if namespace_revision["generation"] != *generation {
+        return Err("source-owned account namespace observation unavailable; refresh before confirmation".into());
+    }
     let operations=snapshot["clientRequests"].as_array().into_iter().flatten().filter(|request|request["generation"]==*generation&&matches!(request["method"].as_str(),Some("account/login/start"|"account/login/cancel"|"account/logout"))).map(|request|json!({"requestIdentity":request["requestIdentity"],"method":request["method"],"writeResult":request["writeResult"],"outcome":request["outcome"]})).collect::<Vec<_>>();
     let latest_read = snapshot["clientRequests"]
         .as_array()
@@ -2979,7 +3084,7 @@ pub fn assess_native_home_work(
         Some(account) if matches!(account["type"].as_str(),Some("chatgpt"|"apiKey"|"chatgptAuthTokens"))=>json!({"state":"native type reported; identity not established","nativeType":account["type"]}),
         Some(_)=>json!({"state":"redacted/unavailable account; unknown","nativeType":null}),
     }).unwrap_or_else(||json!({"state":"current native report unavailable; previous read is only last observed","nativeType":null}));
-    let account = json!({"state":received["accountObservation"]["state"],"nativeType":received["accountObservation"]["nativeAccount"]["type"],"readAvailability":read_availability,"currentReport":current_account,"namespaceEvents":namespace_events,"operations":operations,"identityVerified":false,"unchangedIdentityProven":false,"limit":"redacted/unavailable equality does not prove unchanged identity; another identical read/clock tick alone is not a namespace change"});
+    let account = json!({"state":received["accountObservation"]["state"],"nativeType":received["accountObservation"]["nativeAccount"]["type"],"readAvailability":read_availability,"currentReport":current_account,"namespaceRevision":namespace_revision,"operations":operations,"identityVerified":false,"unchangedIdentityProven":false,"limit":"redacted/unavailable equality does not prove unchanged identity; another identical read/clock tick alone is not a namespace change"});
     let material = json!({"modeHomeClass":home.class.as_str(),"generation":generation,"account":account,"observedLiveTurns":live,"observedOutstandingRequests":requests,"observedActiveChildren":children,"knownChildActivityUnknown":unknown,"coverage":coverage});
     let view = json!({"modeHomeClass":home.class.as_str(),"generation":generation,"observedAt":crate::util::now_rfc3339(),"sourceCursor":received["observerCursor"],"account":account,"observedLiveTurns":live,"observedOutstandingRequests":requests,"observedActiveChildren":children,"knownChildActivityUnknown":unknown,"coverage":coverage,"warning":"None observed is not none. Child visibility/completeness is not established; additional work may exist. Logout acknowledgment does not end turns/children, delete history or prove credential-store removal."});
     Ok(HomeLogoutAssessment {
@@ -7726,6 +7831,12 @@ mod workflow_root_tests {
         /// for a known App project (H-acct), so the run tag can be stored.
         fn with_recovery()->Self{Self::build(true)}
         fn build(recovery:bool)->Self {
+            Self::build_with_class(recovery, crate::home_resources::HomeClass::Account)
+        }
+        fn with_class(class:crate::home_resources::HomeClass)->Self {
+            Self::build_with_class(false, class)
+        }
+        fn build_with_class(recovery:bool,class:crate::home_resources::HomeClass)->Self {
             use std::os::unix::fs::PermissionsExt;
             let fixture=Fixture::new();for name in ["account","probe"]{std::fs::create_dir(fixture.root.join(name)).unwrap();}
             // The peer sees the WR records where the App publishes them (RS §13.8).
@@ -7832,6 +7943,8 @@ for line in sys.stdin:
  elif method=='thread/turns/list' and f['params'].get('threadId','').startswith('child'):
   if mode('child-mode')=='error':
    emit({'id':f['id'],'error':{'code':-32000,'message':'fixture unreadable child'}});continue
+  if mode('child-mode')=='error-content':
+   emit({'id':f['id'],'error':{'code':-32042,'message':'unreadable source echoed fixture-private-message','data':{'transcript':'fixture-private-data','fixture-private-key':{'nested':'fixture-private-nested'}},'fixture-private-top':'opaque native error extension'}});continue
   result={'data':[] if mode('child-mode')=='noturn' else [{'id':'child-turn','status':'completed','items':[],'error':None,'itemsView':'summary'}],'nextCursor':None}
  elif method=='thread/items/list' and f['params'].get('threadId','').startswith('child'):
   trial=[t for t in inputs if t.startswith('[Chirality] Workflow trial')]
@@ -7842,7 +7955,12 @@ for line in sys.stdin:
   if m=='framing':given=given.replace('[Chirality] Workflow run start:','[Chirality] Workflow run started:',1)
   first={'type':'userMessage','id':'child-message','content':[{'type':'text','text':'Your task, from the authoring agent:'},{'type':'text','text':given}]}
   # TT-9 at Codex 0.160.0: the task arrives as an inter-agent message whose payload is encrypted (encrypted), or no user message is reported at all (nouser).
-  if m=='encrypted':first={'type':'agentMessage','id':'child-task','author':'/root','recipient':'/root/summarize_trial','content':[{'type':'input_text','text':'Message Type: NEW_TASK\nTask name: summarize_trial\nSender: /root\nPayload:'},{'type':'encrypted_content','encrypted_content':'gAAAAfixture'}]}
+  if m in ('encrypted','encrypted-rollout'):
+   first={'type':'agentMessage','id':'child-task','author':'/root','recipient':'/root/summarize_trial','content':[{'type':'input_text','text':'Message Type: NEW_TASK\nTask name: summarize_trial\nSender: /root\nPayload:'},{'type':'encrypted_content','encrypted_content':'gAAAAfixture'}]}
+   # Construct a native ThreadItem, not a raw rollout response_item. The
+   # published AgentMessageThreadItem requires text. The negative mode keeps
+   # the old malformed shape to prove the reader still refuses it.
+   if m=='encrypted':first['text']=first['content'][0]['text']
   data=[{'turnId':'child-turn','item':{'type':'agentMessage','id':'child-reply','text':'Done.'}}]
   if m!='nouser':data.insert(0,{'turnId':'child-turn','item':first})
   result={'data':data,'nextCursor':None}
@@ -7851,6 +7969,8 @@ for line in sys.stdin:
   m=mode('items-mode');seen=text;cid=client
   if m=='error':
    emit({'id':f['id'],'error':{'code':-32000,'message':'fixture unreadable items'}});continue
+  if m=='error-content':
+   emit({'id':f['id'],'error':{'code':-32043,'message':'unreadable source echoed fixture-private-message','data':{'transcript':'fixture-private-data','fixture-private-key':{'nested':'fixture-private-nested'}},'fixture-private-top':'opaque native error extension'}});continue
   if m=='framing':seen=text.replace('[Chirality] Workflow run start:','[Chirality] Workflow run started:',1)
   if m=='differ':seen=text.replace('\n','\r\n')
   if m=='noclient':cid='other-client'
@@ -7869,7 +7989,7 @@ for line in sys.stdin:
             host.start(&cfg,"owned workflow source fixture").unwrap();assert_eq!(host.snapshot()["supplierStanding"],"unverified-development");
             let generation=host.snapshot()["generation"].clone();host.thread_start_with_guidance(&cfg.cwd.to_string_lossy(),"fixture-model","fixture-provider","existing role unchanged").unwrap();
             if recovery{let project=crate::recovery::ExplicitAppProjectContext::known("fixture App project",crate::recovery::AppProjectSource::ConfiguredDirectory).unwrap();assert!(host.observe_conversation_project(&generation,"thread",Some("H-acct"),&project).unwrap()["indexSnapshot"].is_object());}
-            let home=Arc::new(HomeSession::new(crate::home_resources::HomeClass::Account,host,Ok(cfg)).unwrap());Self{fixture,home,generation}
+            let home=Arc::new(HomeSession::new(class,host,Ok(cfg)).unwrap());Self{fixture,home,generation}
         }
         fn wire(&self)->Vec<Value>{std::fs::read_to_string(self.fixture.root.join("wire.jsonl")).unwrap().lines().map(|line|serde_json::from_str(line).unwrap()).collect()}
         fn turn_starts(&self)->usize{self.wire().iter().filter(|f|f["method"]=="turn/start").count()}
@@ -8141,6 +8261,201 @@ for line in sys.stdin:
         // Every entry was validated by the RS writer (W-1); the log reads complete.
         assert!(peer.fixture.rs_entries().iter().all(|e|e["formatVersion"].is_string()));
     }
+    struct NativeDeliveryRecordsStore(PathBuf);
+    impl NativeDeliveryRecordsStore {
+        fn new() -> Self {
+            let root = std::fs::canonicalize(std::env::temp_dir()).unwrap().join(crate::util::opaque_id("native-delivery-records-").unwrap());
+            crate::records_store::use_store_for_test(Some(Ok(crate::records_store::Store { root: root.clone(), placement: crate::records_store::Placement::Test, limits: vec![] })));
+            Self(root)
+        }
+    }
+    impl Drop for NativeDeliveryRecordsStore {
+        fn drop(&mut self) {
+            crate::records_store::use_store_for_test(None);
+            let _ = std::fs::remove_dir_all(&self.0);
+        }
+    }
+    #[test]
+    fn observer_journal_routing_uses_selected_source_separately_from_missing_or_old_cursor() {
+        let account = Peer::new();
+        let key = Peer::with_class(crate::home_resources::HomeClass::ApiKey);
+        // Construct two already-owned actual peers for this read-routing test;
+        // it does not claim a qualified shared App namespace/bootstrap.
+        let homes = Mutex::new(HomeRouter { account: account.home.clone(), key: Some(key.home.clone()), active: crate::home_resources::HomeClass::ApiKey });
+        let before = (account.home.host.client_requests().len(), key.home.host.client_requests().len());
+        let attached = observe_home(&homes, &account.generation, &Value::Null, 0);
+        assert_eq!(attached["generation"], account.generation, "the active key home never substitutes for the selected account source");
+        assert_eq!(attached["gap"], true);
+        assert_eq!(attached["snapshot"]["observerRebuild"]["status"], "queued");
+        let mut old_cursor = account.generation.clone();
+        old_cursor["appSession"] = json!("old-window-session");
+        assert_eq!(observe_home(&homes, &key.generation, &old_cursor, 0)["generation"], key.generation);
+        let mut stale_source = account.generation.clone();
+        stale_source["spawnCounter"] = json!(account.generation["spawnCounter"].as_u64().unwrap()+1);
+        assert_eq!(observe_home(&homes, &stale_source, &Value::Null, 0)["sourceUnavailable"], true);
+        assert_eq!(observe_home(&homes, &old_cursor, &Value::Null, 0)["sourceUnavailable"], true, "unknown owning session has no active-home fallback");
+        assert_eq!((account.home.host.client_requests().len(), key.home.host.client_requests().len()), before, "attachment only queues memory-owned needs");
+    }
+
+    #[test]
+    fn native_projection_delivery_survives_public_replay_loss_and_late_recording() {
+        let _store = NativeDeliveryRecordsStore::new();
+        for (closed, status_first, busy) in [(false,false,false),(false,true,false),(true,false,false),(true,true,false),(false,false,true),(true,true,true)] {
+            let peer = Peer::new();
+            peer.set_mode("notify-mode", "checkpoint");
+            let mut root = declared(&peer);
+            let run = open_run(&peer, &mut root, "thread");
+            let before = kinds_for(&peer, &run);
+            assert_eq!(before, ["run_opened","checkpoint_listed","checkpoint_listed","checkpoint_listed","declaration_finding"]);
+            let deadline = std::time::Instant::now() + Duration::from_secs(5);
+            while !peer.home.host.journal().iter().any(|e|e["frame"]["method"]=="item/completed" && e["frame"]["params"]["item"]["id"]=="m1") {
+                assert!(std::time::Instant::now() < deadline, "source checkpoint receipt observed");
+                std::thread::sleep(Duration::from_millis(10));
+            }
+            // Test stimulus only: no production retention policy is selected.
+            peer.home.host.discard_public_replay_for_test();
+            if closed {
+                peer.home.host.stop("fixture:person", "codex-stop").unwrap();
+                peer.home.host.discard_public_replay_for_test();
+            }
+            let workflows = Mutex::new(root);
+            if status_first {
+                crate::host_tick::receive_view(&peer.home);
+                assert_eq!(kinds_for(&peer, &run), before, "status incorporates source delivery but writes nothing");
+            }
+            let homes = Mutex::new(HomeRouter::new(peer.home.clone()).unwrap());
+            if busy {
+                let held_run = workflows.lock().unwrap().runs[&run].clone();
+                let held = held_run.lock().unwrap();
+                crate::host_tick::tick(&homes, &workflows);
+                assert_eq!(kinds_for(&peer, &run), before, "a busy run is retried later");
+                drop(held);
+            }
+            crate::host_tick::tick(&homes, &workflows);
+            let after = kinds_for(&peer, &run);
+            assert_eq!(&after[5..], ["model_turn","checkpoint_arrival","disposition_change"], "closed={closed}, status_first={status_first}, busy={busy}: {after:?}");
+            let entries = rs_for(&peer, &run);
+            assert!(entries.iter().all(|e|e["recordId"].is_string()), "actual reserved record identities are present");
+            let identities = entries.iter().map(|e|e["recordId"].clone()).collect::<Vec<_>>();
+            for _ in 0..2 { crate::host_tick::receive_view(&peer.home); crate::host_tick::tick(&homes, &workflows); }
+            let later = rs_for(&peer, &run);
+            assert_eq!(later.iter().map(|e|e["recordId"].clone()).collect::<Vec<_>>(), identities, "no duplicate records after delivery or status retry");
+            assert_eq!(kinds_for(&peer, &run), after);
+            assert!(later.iter().all(|e|e["formatVersion"].is_string()), "actual run records validate");
+        }
+    }
+
+    #[test]
+    fn native_projection_delivery_records_frames_between_stop_request_and_source_close() {
+        let _store = NativeDeliveryRecordsStore::new();
+        for status_first in [false, true] {
+            let peer = Peer::new();
+            let mut root = declared(&peer);
+            let run = open_run(&peer, &mut root, "thread");
+            let workflows = Mutex::new(root);
+            let homes = Mutex::new(HomeRouter::new(peer.home.clone()).unwrap());
+            crate::host_tick::receive_view(&peer.home);
+            let (paused_tx, paused_rx) = std::sync::mpsc::channel();
+            let (release_tx, release_rx) = std::sync::mpsc::channel();
+            peer.home.host.pause_stop_cleanup_for_test(move || {
+                let _ = paused_tx.send(());
+                release_rx.recv_timeout(Duration::from_secs(10)).expect("test releases Stop before cleanup");
+            });
+            let host = peer.home.host.clone();
+            let stopping = std::thread::spawn(move || host.stop("fixture:person", "codex-stop"));
+            // Always release and join the actual Stop even when a regression
+            // assertion fails. The paused Stop holds the dispatch gate, so no
+            // test attempts a real protocol dispatch while it is paused.
+            let outcome = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
+                paused_rx.recv_timeout(Duration::from_secs(5)).expect("actual Stop reached stopping before closing input");
+                let snapshot = peer.home.host.snapshot();
+                assert_eq!(snapshot["state"], "stopping");
+                assert_eq!(snapshot["generationClosed"], false);
+                if status_first {
+                    crate::host_tick::receive_view(&peer.home);
+                } else {
+                    crate::host_tick::tick(&homes, &workflows);
+                }
+                let mut dispatched = false;
+                assert!(steer_conversation_turn(&snapshot, &peer.generation, "thread", "turn", "keep working", |_,_,_,_| {
+                    dispatched = true;
+                    Ok(json!({"result":{"turnId":"turn"}}))
+                }).is_err(), "current controls refuse while Stop is in progress");
+                assert!(!dispatched);
+                let item = json!({"id":"late-stop-message","type":"agentMessage","text":"Spacing report"});
+                for method in ["item/started", "item/completed"] {
+                    peer.home.host.native_frame_for_test(&peer.generation, &json!({"method":method,"params":{"threadId":"thread","turnId":"turn","item":item}}));
+                }
+                peer.home.host.discard_public_replay_for_test();
+                crate::host_tick::tick(&homes, &workflows);
+                let records = rs_for(&peer, &run);
+                assert_eq!(records.iter().filter(|e|e["kind"]=="checkpoint_arrival").count(), 1, "late actual-parser receipt must reach the real run writer: {records:?}");
+                assert_eq!(records.iter().filter(|e|e["kind"]=="disposition_change").count(), 1);
+                assert_eq!(peer.turn_starts(), 1, "no resend or control dispatch");
+                records.iter().filter(|e|e["kind"]=="checkpoint_arrival").map(|e|e["recordId"].clone()).collect::<Vec<_>>()
+            }));
+            let _ = release_tx.send(());
+            let stopped = stopping.join().expect("Stop worker completes");
+            stopped.unwrap();
+            let arrival_ids = match outcome { Ok(ids) => ids, Err(panic) => std::panic::resume_unwind(panic) };
+            assert_eq!(peer.home.host.snapshot()["generationClosed"], true);
+            for _ in 0..2 { crate::host_tick::receive_view(&peer.home); crate::host_tick::tick(&homes, &workflows); }
+            assert_eq!(rs_for(&peer, &run).iter().filter(|e|e["kind"]=="checkpoint_arrival").map(|e|e["recordId"].clone()).collect::<Vec<_>>(), arrival_ids, "closure/status/tick retries never duplicate the late receipt");
+        }
+    }
+
+    #[test]
+    fn native_projection_delivery_preserves_generations_and_history_is_not_a_fresh_arrival() {
+        let _store = NativeDeliveryRecordsStore::new();
+        let peer = Peer::new();
+        peer.set_mode("notify-mode", "checkpoint");
+        let mut root = declared(&peer);
+        let run = open_run(&peer, &mut root, "thread");
+        let wait_for = |generation: &Value, turn: &str| {
+            let deadline = std::time::Instant::now() + Duration::from_secs(5);
+            while !peer.home.host.journal().iter().any(|e|e["generation"]==*generation && e["frame"]["method"]=="item/completed" && e["frame"]["params"]["turnId"]==turn && e["frame"]["params"]["item"]["id"]=="m1") {
+                assert!(std::time::Instant::now()<deadline, "actual source receipt in {generation}");
+                std::thread::sleep(Duration::from_millis(10));
+            }
+        };
+        wait_for(&peer.generation, "turn");
+        peer.home.host.discard_public_replay_for_test();
+        peer.home.host.stop("fixture:person", "codex-stop").unwrap();
+        let second = peer.relaunch();
+        peer.set_mode("turn-id", "turn-2");
+        peer.home.host.turn_start_text(&second, "thread", "next source turn").unwrap();
+        wait_for(&second, "turn-2");
+        peer.home.host.discard_public_replay_for_test();
+        let workflows = Mutex::new(root);
+        let homes = Mutex::new(HomeRouter::new(peer.home.clone()).unwrap());
+        crate::host_tick::tick(&homes, &workflows);
+        let records = rs_for(&peer, &run);
+        let arrivals = |records: &[Value]| records.iter().filter(|e|e["kind"]=="checkpoint_arrival").count();
+        assert_eq!(arrivals(&records), 2, "both original live source generations reach the actual run log");
+        let reports = records.iter().enumerate().filter(|(_,e)|e["kind"]=="model_turn" && e["body"]["scope"]=="thread").map(|(i,_)|i).collect::<Vec<_>>();
+        assert_eq!(reports.len(), 2, "one actual thread report per source generation");
+        let first_arrival = records.iter().position(|e|e["kind"]=="checkpoint_arrival").unwrap();
+        assert!(reports[0] < first_arrival && first_arrival < reports[1], "later source metadata must not overtake the earlier checkpoint");
+        {
+            let mut runtime = peer.home.runtime.lock().unwrap();
+            runtime.receive_history(&second, second["home"].as_str().unwrap(), "thread/items/list", &json!({"threadId":"thread","turnId":"historical-turn"}), &json!({"data":[{"turnId":"historical-turn","item":{"type":"agentMessage","id":"historical-message","text":"Spacing report"}}],"nextCursor":null}));
+        }
+        crate::host_tick::tick(&homes, &workflows);
+        assert_eq!(arrivals(&rs_for(&peer, &run)), 2, "a history page is not a live arrival");
+        // Reobserving the same persistent native IDs does not mint new arrivals.
+        peer.home.host.turn_start_text(&second, "thread", "same native IDs fixture").unwrap();
+        let deadline = std::time::Instant::now()+Duration::from_secs(5);
+        while peer.home.host.journal().iter().filter(|e|e["frame"]["method"]=="item/completed" && e["frame"]["params"]["item"]["id"]=="m1").count()<1 {
+            assert!(std::time::Instant::now()<deadline);
+            std::thread::sleep(Duration::from_millis(10));
+        }
+        crate::host_tick::tick(&homes, &workflows);
+        assert_eq!(arrivals(&rs_for(&peer, &run)), 2, "persistent-event deduplication is unchanged");
+        let current = crate::host_tick::receive_view(&peer.home);
+        assert_eq!(current["generation"], second, "current controls never receive the prior source projection");
+        assert_eq!(peer.home.host.snapshot()["generation"], second);
+    }
+
     // OI-008: observations are recorded by the host's own tick with no host_status
     // call, and host_status's workflow part records nothing.
     #[test]
@@ -8275,7 +8590,7 @@ for line in sys.stdin:
         tick_reads(&peer,&root,&descendant_view(&peer,&["child-d","child-e"]));
         let rows=trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]));
         assert_eq!(rows[0]["subAgent"]["unread"],json!(["child-d","child-e"]));
-        assert!(rows[0]["subAgent"]["unreadReasons"].as_array().unwrap().iter().any(|r|r["thread"]=="child-e"&&r["reason"].as_str().unwrap().contains("fixture unreadable child")),"the reason a read failed is reported");
+        assert!(rows[0]["subAgent"]["unreadReasons"].as_array().unwrap().iter().any(|r|r["thread"]=="child-e"&&r["reason"].as_str().unwrap().contains("thread/turns/list answered with an error (native code -32000;")),"the failed native method and code are reported without copying its payload");
         root.lock().unwrap().link_trial_child(&reference,"child-d",true,&descendant_view(&peer,&["child-d","child-e"])).unwrap();
         let rows=trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]));
         assert_eq!(rows[0]["subAgent"]["state"],"linked");assert_eq!(rows[0]["subAgent"]["thread"],"child-d");
@@ -8350,6 +8665,100 @@ for line in sys.stdin:
         let recorded=tick_reads(&peer,&root,&view);
         assert_eq!(recorded[0]["observation"],"sub-agent linked","{recorded:?}");
     }
+    #[test]
+    fn a_rollout_task_without_required_native_text_stays_unread_instead_of_not_checkable(){
+        let peer=Peer::new();let mut root=trial_root(&peer);let g=peer.generation.clone();
+        let reference=root.prepare_trial("delegated",DRAFT,Some((&g,"thread")),Some(&peer.home),peer.project()).unwrap()["reference"].as_str().unwrap().to_owned();
+        let root=Mutex::new(root);
+        trial_flows::send_trial(&root,&peer.home,&reference,&g,"thread","").unwrap();
+        peer.set_mode("child-mode","encrypted-rollout");
+        let view=descendant_view(&peer,&["child-s"]);
+        assert!(tick_reads(&peer,&root,&view).is_empty(),"malformed native input cannot establish fidelity or link automatically");
+        let rows=trial_rows(&root.lock().unwrap(),&view);
+        assert_eq!(rows[0]["subAgent"]["state"],"sub-agent not linked");
+        assert_eq!(rows[0]["subAgent"]["unread"],json!(["child-s"]));
+        assert_eq!(rows[0]["subAgent"]["notCheckable"],json!([]));
+        let reasons=rows[0]["subAgent"]["unreadReasons"].as_array().unwrap();
+        assert_eq!(reasons.len(),1);
+        assert!(reasons[0]["reason"].as_str().unwrap().starts_with("native history schema refused ThreadItemsListResponse:"),"{reasons:?}");
+        assert_eq!(rows[0]["readAgain"]["offered"],true,"unread is retryable, not a final not-checkable claim");
+        // Explicit linking remains the person's choice; it cannot turn an
+        // invalid page into a known task, a verbatim reading or an approval.
+        root.lock().unwrap().link_trial_child(&reference,"child-s",true,&view).unwrap();
+        let again=trial_flows::read_trial_again(&root,&peer.home,&reference,&view).unwrap();
+        assert!(again["recorded"][0]["fidelity"]["limits"].as_array().unwrap().iter().any(|l|l.as_str().is_some_and(|s|s.contains("native history schema refused"))),"{again}");
+        assert_ne!(again["recorded"][0]["fidelity"]["state"],"verbatim");
+        let stored=links(&peer).observations(&reference);
+        assert!(!serde_json::to_string(&stored).unwrap().contains("gAAAAfixture"),"schema refusal must not copy rejected native content into durable fidelity limits");
+    }
+
+    fn check_native_history_error_content_is_transient_not_durable_trial_fidelity(kind: &str) {
+        // Give each regression its own records store, including its
+        // first-time administrative publication.
+        let store = std::fs::canonicalize(std::env::temp_dir()).unwrap().join(crate::util::opaque_id("trial-error-records-").unwrap());
+        crate::records_store::use_store_for_test(Some(Ok(crate::records_store::Store { root: store, placement: crate::records_store::Placement::Test, limits: vec![] })));
+        struct ResetStore;
+        impl Drop for ResetStore { fn drop(&mut self) { crate::records_store::use_store_for_test(None); } }
+        let _store = ResetStore;
+        let peer = Peer::new();
+        let mut root = trial_root(&peer);
+        let g = peer.generation.clone();
+        let reference = root.prepare_trial(kind, DRAFT, Some((&g, "thread")), Some(&peer.home), peer.project()).unwrap()["reference"].as_str().unwrap().to_owned();
+        let thread = if kind == "clean" {
+            root.begin_clean_start(&reference).unwrap();
+            let thread = peer.second_thread();
+            root.mark_clean_started(&reference, &g, &thread);
+            thread
+        } else { "thread".to_owned() };
+        let root = Mutex::new(root);
+        trial_flows::send_trial(&root, &peer.home, &reference, &g, &thread, "").unwrap();
+        let view = if kind == "delegated" {
+            peer.set_mode("child-mode", "error-content");
+            let view = descendant_view(&peer, &["child-s"]);
+            assert!(tick_reads(&peer, &root, &view).is_empty());
+            root.lock().unwrap().link_trial_child(&reference, "child-s", true, &view).unwrap();
+            view
+        } else {
+            peer.set_mode("items-mode", "error-content");
+            let ended = json!({"home":g["home"],"generation":g,"items":[],"descendants":[],"turns":[{"threadId":thread,"id":"turn","status":"completed"}]});
+            let recorded = tick_reads(&peer, &root, &ended);
+            assert_eq!(recorded[0]["fidelity"]["state"], "not checked");
+            ended
+        };
+        let again = trial_flows::read_trial_again(&root, &peer.home, &reference, &view).unwrap();
+        assert_eq!(again["recorded"][0]["fidelity"]["state"], "not checked");
+        if kind == "delegated" {
+            assert_eq!(trial_rows(&root.lock().unwrap(), &view)[0]["readAgain"]["offered"], true);
+        }
+        // The original supplier reply is transient source evidence. Both
+        // error.message and arbitrary error.data can contain native text.
+        let journal = serde_json::to_string(&peer.home.host.journal()).unwrap();
+        for canary in ["fixture-private-message", "fixture-private-data", "fixture-private-key", "fixture-private-nested", "fixture-private-top"] {
+            assert!(journal.contains(canary), "{kind}: raw transient reply remains available");
+        }
+        // Reopen actual files, rather than only examining the returned row.
+        let observations = links(&peer).observations(&reference);
+        assert!(observations.iter().any(|r| r["fidelity"]["state"] == "not checked"));
+        let stored = serde_json::to_string(&observations).unwrap();
+        for canary in ["fixture-private-message", "fixture-private-data", "fixture-private-key", "fixture-private-nested", "fixture-private-top"] {
+            assert!(!stored.contains(canary), "{kind}: native error content must not become a durable fidelity limit");
+        }
+        assert!(stored.contains(if kind == "clean" { "-32043" } else { "-32042" }), "safe numeric code retains the native failure distinction");
+        let sends = peer.turn_starts();
+        peer.set_mode(if kind == "clean" { "items-mode" } else { "child-mode" }, "given");
+        let recovered = trial_flows::read_trial_again(&root, &peer.home, &reference, &view).unwrap();
+        assert_eq!(recovered["recorded"][0]["fidelity"]["state"], "verbatim", "the same explicit read can succeed later");
+        assert_eq!(peer.turn_starts(), sends, "neither failure nor a repeated read resends the trial");
+    }
+    #[test]
+    fn native_history_error_content_is_not_durable_delegated_trial_fidelity() {
+        check_native_history_error_content_is_transient_not_durable_trial_fidelity("delegated");
+    }
+    #[test]
+    fn native_history_error_content_is_not_durable_clean_trial_fidelity() {
+        check_native_history_error_content_is_transient_not_durable_trial_fidelity("clean");
+    }
+
     // Review of #1260 (5): the sub-agent's not-checkable reading is the child
     // read's only; a clean trial's first turn with items but no user message
     // reads "not yet", never a sub-agent sentence.
