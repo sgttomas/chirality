@@ -274,26 +274,26 @@
       "core/library_import/library_import_document/Cargo.toml": "5ac1ab18e251a1ca210e3b0b9e6368e20cca73d4d3d38a9ab769361934336ff7",
       "core/loads/load_case_algebra/Cargo.toml": "664fe60913a9d825c6cc138d2ba2e19243d9ad3da55f440fc95783a151e271fa",
       "core/loads/primitive_loads/Cargo.toml": "4339f9d8c3d22615852875a95c58527d222241bcb9226fc462917748ca1686cb",
-      "core/loads/self_weight_wasm/Cargo.toml": "06b09e51d3b1e25341e1ef05fae7cd27a983205cecf7f451753c1e65c2ebfd1f",
+      "core/loads/self_weight_wasm/Cargo.toml": "75afd00901fbfd8bcdbcdb25bddfa1d99b1444801396678f67efb9cfedcda450",
       "core/loads/stress_recovery/Cargo.toml": "ebee79ddd58fb6c956261449d7c882a76303414cf87a1f10a7c9618b8df005be",
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
-      "core/model_operations/operation_applier/Cargo.toml": "b363967ab3e5b00770c547a14a20185211b02d44557299b96e9319bdd4f46aab",
+      "core/model_operations/operation_applier/Cargo.toml": "4eb130bc57eb8e15e8a92821d80bf1b518a5717c6f75c0a4904e49d23b5f907d",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "91da0da5869cb2eae67c8e10ffb56964047121fc07d768ed78249f9e4e6de0fa",
+      "core/product_physics/Cargo.toml": "aaa614a0cffa2ea1c00eb23f0a44b7bcf7ab5fb9faf70901bab2a22a55b0a00f",
       "core/reporting/audit_manifest/Cargo.toml": "7b941c18378533d99707ed00c6024df56d9e6ac09a85d4b22599aa3fab8754a5",
       "core/reporting/pdf_emitter/Cargo.toml": "24dc0377813b6895aa76a463d849179e35b5ab4e0330ddd0f9de343607def55c",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
       "core/reporting/report_generator/Cargo.toml": "ce88f973060d72ef318631c9411b2c1f885020b20b0382ae282e3837f0190fb0",
-      "core/reporting/report_package/Cargo.toml": "3e2d171cb762ae3020f63a9dfb99771bdd66df8364c8521a2b1b4b7dd987bbd7",
+      "core/reporting/report_package/Cargo.toml": "2a0d1bbe2a0d17b16c0de30ba93f24384351971715d3863bab5e65aac40294c4",
       "core/reporting/report_renderer/Cargo.toml": "fe19d0718b26f7d82c0ee8449eb5746561f7887b8eb7dd6e95de26dce192fde8",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
-      "core/reporting/result_export/Cargo.toml": "9e0815311f1605ed3999faabed884bae26af209894855e865cc37cad0e73d99b",
+      "core/reporting/result_export/Cargo.toml": "25a9d431a3f4c4daf04c890e2431bcb3d3f8b63cb699727c7b31c35644e08d8e",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "3784dc3caabb41d3ba781c2a3e19332fe50852713b66b0227fac95f75131eabb",
       "core/rules/rule_check_runner/Cargo.toml": "74ab4cfa6825b9eb33c4e15e01685bd1cb25cfffcde10e6eeb1ce3973fdb2007",
       "core/rules/rule_pack_document/Cargo.toml": "8e04c4f958b0bd88e05885fa77b9d5311240e913481b54a968e71e90068d59c5",
       "core/rules/rule_pack_lifecycle/Cargo.toml": "811d32918f3d13d8d2a9115ebb6ce9b0243078626bc426d8dbd97224eb2dbd56",
-      "core/runner/headless/Cargo.toml": "3d8fb6ab5a12c435dede8d22969e11174ead6ede76ddbb4a0d70d229e0ead7b5",
+      "core/runner/headless/Cargo.toml": "45be74ae9d76bed41aee915f25e6e27a954650d0ba1e37cac44d8abe7da61f74",
       "core/serialization/canonical_json/Cargo.toml": "6e633f01036771cc2dd8077bd814f787c500d974b500e78404165172d07bb151",
       "core/solver/curved_bend/Cargo.toml": "5d7cf1288eac698c209aa4fd7493fa669aa57494950e75374ac07248001502d8",
       "core/solver/diagnostics/Cargo.toml": "11db1409fcfd3b0312ef80085e36eac4d7a66eb0f4298832137119835b1c92e8",
@@ -307,14 +307,14 @@
       "core/units/Cargo.toml": "7ff0175f5332e79fe1a53dcf160f63f86b6d8fc188f192f36de1f9f7b5f73067",
       "validation/benchmarks/mechanics/Cargo.toml": "85169e69c38b7be6a4ee9cf8a41bc314d4785b9405a02c4da50ae12a2f784e08",
       "validation/benchmarks/nonlinear/Cargo.toml": "f738d5fe831d14fe1c514a8da0351860fd2b93d70532c2644279ed7215cd873a",
-      "validation/benchmarks/numerical_integrity/Cargo.toml": "f745b80383d562c795da59927bce1962f32310fe198f5dfeba30b2a018875394",
+      "validation/benchmarks/numerical_integrity/Cargo.toml": "fc82a3b04c58f78764d157dbc258c49308def0c8ce0fad020a99d1164dbf3f75",
       "validation/benchmarks/numerical_robustness/Cargo.toml": "d33744d24faf4bea38556721f34f862365cdea5cefee32fe13f76e5e8e5c1ee1",
-      "validation/benchmarks/physics_audit_regression/Cargo.toml": "0e53e978362ad2dfa3b60781675634f9527a8b5d7f508bfd9ea76eef224efbc7",
+      "validation/benchmarks/physics_audit_regression/Cargo.toml": "11c60d817b619593c584954c714592c8c4bb1e406a1369db5664fb13890ad01f",
       "validation/benchmarks/stress/Cargo.toml": "fb9755f62cb44b4ddfba712d3e8b4ccebe6e36325dfe549ab3931264b62935dc"
     },
     "reads": {
       "core/product_physics/src/source_receipt/pressure_source_context_tests.rs": {
-        "sha256": "2bc81168f3ced7aa5f447042e6d2b3cbe4e2123cffd3316d1b7fc6ac92e64d0f",
+        "sha256": "e5ca3deede7752e9c72d2d2f460e53047d549dd10684fe38a8a7ed6321264e9d",
         "source_trees": [
           "core/loads/self_weight_wasm/Cargo.toml",
           "core/model_operations/operation_applier/Cargo.toml",
@@ -522,7 +522,7 @@
         ]
       },
       "core/model_operations/operation_applier/tests/load_state_delete_control.rs": {
-        "sha256": "dcce52df5e70bfcf0090e38b2ceb23e7f811dec8fb13f345948f76f79bc32799",
+        "sha256": "450778c72194226154b8ea972bdf677bb7c7b169c7662c7d0046f1917cb5255b",
         "source_trees": [
           "core/model_operations/operation_applier/Cargo.toml"
         ],
@@ -598,7 +598,7 @@
               "fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
+            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
           },
           {
             "anchor": "../../fixtures/results/retained_precision_prepared_combination_v1.json",
@@ -607,7 +607,7 @@
               "fixtures/results/retained_precision_prepared_combination_v1.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
+            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_physics_retained_1.json",
@@ -616,16 +616,16 @@
               "fixtures/results/semantic_contract_v0_3_physics_retained_1.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
+            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
           },
           {
-            "anchor": "../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json",
+            "anchor": "../../fixtures/results/semantic_contract_v0_3_preview_physics_2.json",
             "base": "manifest",
             "files": [
-              "fixtures/results/semantic_contract_v0_3_preview_physics_1.json"
+              "fixtures/results/semantic_contract_v0_3_preview_physics_2.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
+            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
           },
           {
             "anchor": "../../fixtures/results/retained_precision_prepared_ordinary_v1.json",
@@ -634,7 +634,7 @@
               "fixtures/results/retained_precision_prepared_ordinary_v1.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
+            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
           },
           {
             "anchor": "../../fixtures/results/retained_precision_prepared_exact_v1.json",
@@ -643,7 +643,7 @@
               "fixtures/results/retained_precision_prepared_exact_v1.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
+            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
           },
           {
             "anchor": "../../schemas/retained_precision_mp_v2.schema.json",
@@ -652,7 +652,7 @@
               "schemas/retained_precision_mp_v2.schema.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
+            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
           },
           {
             "anchor": "../../schemas/physics_source_recovery.schema.json",
@@ -661,7 +661,7 @@
               "schemas/physics_source_recovery.schema.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
+            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
           },
           {
             "anchor": "Cargo.lock",
@@ -670,34 +670,34 @@
               "core/product_physics/Cargo.lock"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
+            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
           },
           {
-            "anchor": "../../schemas/results_pressure_1.v0.3.schema.json",
+            "anchor": "../../schemas/results_pressure_2.v0.3.schema.json",
             "base": "manifest",
             "files": [
-              "schemas/results_pressure_1.v0.3.schema.json"
+              "schemas/results_pressure_2.v0.3.schema.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
+            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_pressure_source_1.json",
             "base": "manifest",
             "source": "src/build_identity.rs",
-            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99",
+            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6",
             "files": [
               "fixtures/results/semantic_contract_v0_3_pressure_source_1.json"
             ]
           },
           {
-            "anchor": "../../fixtures/results/semantic_contract_v0_3_pressure_1.json",
+            "anchor": "../../fixtures/results/semantic_contract_v0_3_pressure_2.json",
             "base": "manifest",
             "files": [
-              "fixtures/results/semantic_contract_v0_3_pressure_1.json"
+              "fixtures/results/semantic_contract_v0_3_pressure_2.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "a2d5567a8927807f1ab04d5224ac4eaf07e651cb31cf1791dde9022bd5dd2c99"
+            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
           }
         ]
       },
@@ -728,7 +728,7 @@
         }
       },
       "core/product_physics/examples/preview_physics_capture.rs": {
-        "sha256": "21638810a01ce9f69577d8d9bf57ec24b9371360b42e498018f5909838a040d5",
+        "sha256": "0aa1cb99693cb70c83574a57a4b0de66c1919c6f612a7e7580f7b4ded0d5cbe5",
         "source_trees": [
           "core/product_physics/Cargo.toml"
         ],
@@ -739,7 +739,7 @@
         }
       },
       "core/product_physics/src/joint_pressure_tests.rs": {
-        "sha256": "ff2db9bc3aff9d6a8826766e4449cfb507571a6f149c4f78e6ccfbb118596bee",
+        "sha256": "65dd18794b1099d517d29e05b5fe244cfb55409da22a10d91e0059a097cc9a36",
         "source_trees": [
           "core/loads/self_weight_wasm/Cargo.toml",
           "core/model_operations/operation_applier/Cargo.toml",
@@ -759,7 +759,7 @@
         ]
       },
       "core/product_physics/src/u4a_tests.rs": {
-        "sha256": "3b08dfd818193db05528e40745b00fb72f94bf091030d9296ac5a786a17d3a1a",
+        "sha256": "6a98f9446a80ca3fcedd745689a7d09377047d19b0b39e24f2ab84b54af69073",
         "source_trees": [
           "core/loads/self_weight_wasm/Cargo.toml",
           "core/model_operations/operation_applier/Cargo.toml",
@@ -775,7 +775,7 @@
         }
       },
       "core/product_physics/tests/load_reference_state_runtime.rs": {
-        "sha256": "12ceb3582658298edb0895b83db8142f922b824d8b40d7fc0b974e784b813e95",
+        "sha256": "93a55625c0f1074fe66f9aa7b6add5a462f78eeba0e8f8107cd4aa601bfee6de",
         "source_trees": [
           "core/product_physics/Cargo.toml"
         ],
@@ -790,7 +790,7 @@
         ]
       },
       "core/product_physics/tests/load_reference_state_runtime_extension.rs": {
-        "sha256": "b01d08cf3d6ec59923ddb484a152d4521c941413acbde67eba6f16101e38dbf4",
+        "sha256": "64092a699c5dd9529922892a7571de040ed8419aa5e4974cfc9a63567292a513",
         "source_trees": [
           "core/product_physics/Cargo.toml"
         ],
@@ -812,7 +812,7 @@
         ]
       },
       "core/product_physics/tests/pressure_source_join.rs": {
-        "sha256": "ab83dc4c574cbecbda6d11ea2777c25bccd8ae04f1c2ad258d2efd8d43322aff",
+        "sha256": "4450d991ac2b968367ab0d212c57c523a96f44ccac40c79f2f3913fc5f1cf59b",
         "source_trees": [
           "core/product_physics/Cargo.toml"
         ],
@@ -868,7 +868,7 @@
         ]
       },
       "core/product_physics/tests/pressure_source_join/consequences.rs": {
-        "sha256": "3aa87d6d2091f0a18451fbd52be4ad61608e9b2cde0aa5fd493e7c0f877b7ac0",
+        "sha256": "22208d68376ff618a32edfd03f96bde064db9b5f9a23fbb59d7cda75bce87a9b",
         "source_trees": [
           "core/product_physics/Cargo.toml"
         ],
@@ -955,7 +955,7 @@
         ]
       },
       "core/product_physics/tests/source_block_recovery.rs": {
-        "sha256": "24bd7ae9cda0ae448967717a8c3f34970831308e08ef33863aaefdb5f2c2f8ce",
+        "sha256": "cdaa0fc03545793ba42fd04f93cda9dd1d563c8207850d2690c149858c96f5e9",
         "source_trees": [
           "core/product_physics/Cargo.toml"
         ],
@@ -996,7 +996,7 @@
         }
       },
       "core/reporting/result_export/tests/base_reader_outcomes.rs": {
-        "sha256": "042adf5d03f83aca6e6cb9a7702e5c55db1606ae8766378e908dd9e9f7cace4e",
+        "sha256": "7feeaa569478efbafe0d15043c4f653a36f6cb47d28841f11c918c1370ff1a3a",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -1194,7 +1194,7 @@
         ]
       },
       "core/reporting/result_export/tests/load_reference_contract.rs": {
-        "sha256": "081a1a76bd52d5ef8bad267063595924851a77af66b38bd7e97fe5430eb6811a",
+        "sha256": "e06ff9d6750a3e77a3e18771572fdc3acc423a3b2813c8817c1024649239b896",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -1256,10 +1256,10 @@
             ]
           },
           {
-            "anchor": "../../../../fixtures/results/semantic_contract_v0_3_pressure_1.json",
+            "anchor": "../../../../fixtures/results/semantic_contract_v0_3_pressure_2.json",
             "base": "source",
             "files": [
-              "fixtures/results/semantic_contract_v0_3_pressure_1.json"
+              "fixtures/results/semantic_contract_v0_3_pressure_2.json"
             ]
           },
           {
@@ -1289,7 +1289,7 @@
         ]
       },
       "core/reporting/result_export/tests/load_reference_source_contract.rs": {
-        "sha256": "214b496fb9f1d5d211fb495fd96ae81403d27ff615b1dd9db0eb57a4df663844",
+        "sha256": "4865b4a6018f467b4b0120797e2f32ca98ab6523282865c43769b63752f570fa",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -1435,10 +1435,10 @@
             ]
           },
           {
-            "anchor": "../../../../fixtures/results/semantic_contract_v0_3_pressure_1.json",
+            "anchor": "../../../../fixtures/results/semantic_contract_v0_3_pressure_2.json",
             "base": "source",
             "files": [
-              "fixtures/results/semantic_contract_v0_3_pressure_1.json"
+              "fixtures/results/semantic_contract_v0_3_pressure_2.json"
             ]
           },
           {
@@ -1495,7 +1495,7 @@
         ]
       },
       "core/reporting/result_export/tests/number_form.rs": {
-        "sha256": "5cf61c379bda31ce2fda4d72d5134afbccb548c5fd8c01aeaac0db431af8af90",
+        "sha256": "cefedc1de0a1d8ac556d3d6acae6af6c1c5553d3d99392adef76faa7ecd06dde",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -1538,7 +1538,7 @@
         ]
       },
       "core/reporting/result_export/tests/physics_source_contract.rs": {
-        "sha256": "ce1a5c967c3180cafc7b5c2d5e435b8cc6a5aa0be08c063fd8cb869d4d85847f",
+        "sha256": "70eb6e061066e2dcb12599206317ed5808669a7182600047f49cc5c41eacdfe0",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -1593,7 +1593,7 @@
         ]
       },
       "core/reporting/result_export/tests/preview_physics_contract.rs": {
-        "sha256": "e31b787344c05bb3880bf9a4e8c219f2a3a6eee5c5e7f3080866d69e5d77fb19",
+        "sha256": "53b979e7a41ce310b139d781a4bfe684247861ee813826ccad3ba00805a02950",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -1634,7 +1634,7 @@
         ]
       },
       "core/reporting/result_export/tests/reader_verdict.rs": {
-        "sha256": "99a6ee410e0a943accdad2d67d11c40b31583b4ee1605d019dd30063a1ed3ad5",
+        "sha256": "d3576c58b4311cb101423e8de8b0bf63d35a1ac5f84f2f9a9185c119f8aa3c6e",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -1688,9 +1688,9 @@
               "fixtures/results/preview_physics_invented_dense.json",
               "fixtures/results/preview_physics_invented_sparse.json",
               "fixtures/results/semantic_contract_v0_3_physics_retained_1.json",
-              "fixtures/results/semantic_contract_v0_3_pressure_1.json",
+              "fixtures/results/semantic_contract_v0_3_pressure_2.json",
               "fixtures/results/semantic_contract_v0_3_pressure_source_1.json",
-              "fixtures/results/semantic_contract_v0_3_preview_physics_1.json",
+              "fixtures/results/semantic_contract_v0_3_preview_physics_2.json",
               "fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json"
             ]
           },
@@ -1798,7 +1798,7 @@
         ]
       },
       "core/reporting/result_export/tests/retained_precision_carriers.rs": {
-        "sha256": "715d232d673effd827228e0a0046ad808cad160cdcd1204632be788ee0dde0f1",
+        "sha256": "e36edc03cd69822e1a32a566ac2f7ddff0982bedce2c93f63612ddf49759c95c",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -2225,7 +2225,7 @@
         ]
       },
       "core/reporting/result_export/tests/declared_member_load_workspace.rs": {
-        "sha256": "53391d31e5cbda3c631cae58dc93a9dcfe31213c78ed20b0c2b30805a099ee8b",
+        "sha256": "25c248d1f95014d8999ed44e52c39a0c999bc41e448f87121ecd4885ce765a6e",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -2236,7 +2236,7 @@
         }
       },
       "core/reporting/result_export/tests/retained_precision_contract.rs": {
-        "sha256": "9db5753b94c1ebe7fc2649f61b11cf6637664f292299954cd0e5d332b81762df",
+        "sha256": "e288b0574f2e284db01df74a9e1db5daa1e26cf912074d7a66f18560e6b736fc",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -2441,7 +2441,7 @@
         ]
       },
       "core/reporting/result_export/tests/source_blocks.rs": {
-        "sha256": "7b8b2ccc03cc07907971d2a414a73e9dc3ba9630c0f9bce555654be2e4db88f0",
+        "sha256": "5ed7254f97422e05d2e95b993eef5d713a755e3b289319aafae4bf77c98e27a7",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -2739,7 +2739,7 @@
         ]
       },
       "core/runner/headless/src/bin/openpipestress-runner.rs": {
-        "sha256": "f76fd28781d83e7d7aad6fc0e28827401a5dcab825121deef1ccb3976fdabd3f",
+        "sha256": "a156d3052069ee1b6f6740a553324bad00c4522d21f9b48409bd46b77921a74d",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
@@ -2789,7 +2789,7 @@
         ]
       },
       "core/runner/headless/src/load_reference_route_tests.rs": {
-        "sha256": "2582bbd7900ffa2604a8f4e57c7528f3bcc91b027c9b0cf953f6fd09f334f314",
+        "sha256": "55e50a0d6d9c4f80dd17ad8bcfbfc6787bf932e96561852b1f8eb928e6273e2f",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
@@ -2842,7 +2842,7 @@
         ]
       },
       "core/runner/headless/src/result_envelope_binding.rs": {
-        "sha256": "d20053df08b095f31f11fe427b838435507343df786fa8445a8d13630daf00e9",
+        "sha256": "15c20ea3f2fcd73083ab708368317ca5e682eb69cdb6a34733a06df6a40f4f58",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
@@ -2895,7 +2895,7 @@
         ]
       },
       "core/runner/headless/tests/load_reference_cli.rs": {
-        "sha256": "d92be6b205364f53cb0ecb2ee7abb52e04cc0b5448d1181f5bb1e213e73be612",
+        "sha256": "90cbec930b325cf3dc65afeaa6d5a5777d9c376f82905a23015bc2b6b2fa156a",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
@@ -2981,7 +2981,7 @@
         ]
       },
       "core/runner/headless/tests/preview_physics_admission.rs": {
-        "sha256": "651cb673480d9317b9350728c9317f5362e4362b08ee783e8afcc81459ca5ac7",
+        "sha256": "721a429db0297865fb2bcdc2d740a6cf53f28ab3f3f9bb46c634d6a4abb474cb",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
@@ -3867,7 +3867,7 @@
         ]
       },
       "core/product_physics/src/w1_source_census_tests.rs": {
-        "sha256": "dd71c7035506e845b9613e116264c93d3c392f20b631d9f2b1d200e1617b7bf1",
+        "sha256": "b85ad74f611b6e3a8357bdbbec19476454816fd232ebf1dea35bb5925d7d8394",
         "source_trees": [
           "core/loads/self_weight_wasm/Cargo.toml",
           "core/model_operations/operation_applier/Cargo.toml",
@@ -3914,7 +3914,7 @@
         ]
       },
       "core/reporting/result_export/tests/connector_contract.rs": {
-        "sha256": "be351016fbcf3dc62222f0bf93b149b5b44073c28f1cab9fb726c755422d1ea9",
+        "sha256": "2c7de76b779aafbf1918fc59e95361c253fe0936b0cd58dbbd6a1ff0f8cbc7c9",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -3936,7 +3936,7 @@
         ]
       },
       "core/runner/headless/tests/untied_joint_pressure_references.rs": {
-        "sha256": "df65fd76ae09041b9ac8f316690a7cf559e2855504d9b9f8e1ac247a8a32d682",
+        "sha256": "13d96b9b3a6033107d2ee30cdb0bedaef7af684949fed3a002edd30e939c4d20",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
