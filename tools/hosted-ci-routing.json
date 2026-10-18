@@ -188,6 +188,7 @@
         "projects/chirality-app-v4/app/**",
         "projects/chirality-app-v4/execution/PKG-*/DEL-*/Design/**",
         "projects/chirality-app-v4/execution/PKG-02/DEL-02-04/ScopeOfWork.md",
+        "projects/chirality-app-v4/execution/PKG-09/DEL-09-01/ScopeOfWork.md",
         "AGENTS.md",
         "agents/**",
         "workflows/**",
