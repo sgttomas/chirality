@@ -33,6 +33,8 @@ mod observation_facts;
 mod observer_journal;
 #[path = "hosting_observer_rebuild.rs"]
 mod observer_rebuild;
+#[path = "hosting_continuation_context.rs"]
+mod continuation_context;
 #[path = "hosting_native_delivery.rs"]
 mod native_delivery;
 pub(crate) use native_delivery::{NativeProjectionOwner, NativeProjectionBatch, NativeProjectionEvent};
@@ -87,6 +89,9 @@ use crate::attachments::{self, PreparedAttachmentList, SelectedTextAttachment};
 use crate::native_requests::RequestRegister;
 use crate::native_history::{HistoryQuery, NativeHistory};
 use crate::recovery::RecoveryLedger;
+#[path="hosting_child_roles.rs"]
+mod child_role_receiving;
+pub(crate) use child_role_receiving::NativeChildStart;
 use crate::util::{now_rfc3339, opaque_id, sha256_hex};
 use serde_json::{json, Value};
 use std::collections::{HashMap, VecDeque};
@@ -199,7 +204,9 @@ struct Inner {
     held_observer_diagnostics: Vec<Value>,
     /// Frames delivered to receivers, in received order, each {generation, position, class, frame}.
     journal: observer_journal::ObserverJournal,
+    native_child_events: Vec<NativeChildStart>,
     observer_rebuild: observer_rebuild::ObserverRebuild,
+    continuation_contexts: std::collections::BTreeMap<String, continuation_context::Context>,
     // Operational guards must not depend on how much diagnostic replay is kept.
     observation_facts: observation_facts::ObservationFacts,
     native_delivery: native_delivery::NativeDelivery,
@@ -408,6 +415,17 @@ impl PreparedAttachmentDispatch {
     pub fn supply_records(&self)->Vec<Value>{self.list.supply_records()}
     pub fn cancel(&self)->bool{let mut state=self.state.lock().unwrap();if matches!(*state,"prepared"|"validating"){*state="cancelled";true}else{false}}
     pub fn state(&self)->&'static str{*self.state.lock().unwrap()}
+}
+
+/// Positive observation of an original private attachment packet. Only the Host
+/// can issue this borrow; projected/cold attachment metadata is not a constructor.
+pub(crate) struct AttachmentNativeTurnStart<'a> {
+    prepared: &'a PreparedAttachmentDispatch,
+    turn_id: String,
+}
+impl AttachmentNativeTurnStart<'_> {
+    pub(crate) fn source(&self) -> &SourceRequest { self.prepared.source() }
+    pub(crate) fn turn_id(&self) -> &str { &self.turn_id }
 }
 
 struct BoundPipe { file: std::fs::File, generation: Value, epoch: u64, identity: (u64,u64) }
@@ -872,6 +890,7 @@ impl Host {
             "journal": i.journal.iter().collect::<Vec<_>>(),
             "observerRetention": i.journal.retention(),
             "observerRebuild": Self::observer_rebuild_status(i),
+            "continuationContexts": Self::continuation_contexts_snapshot(i),
             "turnEventBoundaries": i.observation_facts.turn_boundaries(&i.generation),
             "accountNamespaceRevision": i.observation_facts.account_revision(&i.generation),
             "malformedFrames": i.malformed,
@@ -1777,6 +1796,7 @@ impl Host {
     }
     fn request_begin_with_access_offer(&self,method:&str,params:Value,initiator:Value,handshake:bool,expected_generation:Option<&Value>,private_credential:bool,oauth_cancel:Option<&SourceRequest>,aa_reservation:Option<request_event_join::CaptureReservation>,cce_intent:Option<call_custody::OfferIntent>,records_project:Option<records_continuity::Project>,private_config:bool,provider_admission:Option<&ProviderAdmission>)->Result<SourceRequest,String>{
         #[cfg(test)] let cce_selected=cce_intent.is_some();
+        if let Some(proof)=provider_admission { self.recheck_child_sources(proof)?; }
         let (tx, rx) = channel();
         let mut i = self.inner.0.lock().unwrap();
         if cce_intent.is_some() && i.cce_offer.is_some(){return Err("one offered start per generation; no replacement".into())}
@@ -1837,6 +1857,9 @@ impl Host {
         let write_result=(||->Result<(),String>{let mut bound=captured?;let serial=if private_credential{
             let deadline=std::time::Instant::now()+Duration::from_secs(20);loop{match self.frame_write.try_lock(){Ok(serial)=>break serial,Err(std::sync::TryLockError::Poisoned(_))=>return Err("frame writer unavailable; transient input released".into()),Err(std::sync::TryLockError::WouldBlock)=>{let i=self.inner.0.lock().unwrap();if i.generation!=request.generation||i.server_requests.is_closed(&request.generation)||i.state!="ready"||std::time::Instant::now()>=deadline{return Err("credential source lost/cancelled/queue limit; transient input released, no retry".into());}drop(i);std::thread::sleep(Duration::from_millis(2));}}}
         }else{self.frame_write.lock().unwrap()};
+            // Source IO has bounded work and holds neither Inner nor the
+            // attachment/Stop gate. Recheck cheap context/receipt custody below.
+            if let Some(proof)=provider_admission { self.recheck_child_sources(proof)?; }
             {let _gate=self.attachment_gate.lock().unwrap();let mut i=self.inner.0.lock().unwrap();self.check_bound(&i,&bound)?;
                 if !i.pending.contains_key(&id.to_string()){return Err("request no longer pending before actual source write".into());}
                 Self::check_send_admitted(&i,method)?;
@@ -2188,7 +2211,7 @@ impl Host {
 
     pub fn history_admit_resume(&self, history: &NativeHistory, dispatch: &HistoryDispatch) -> Result<Value,String> {
         self.check_source(&dispatch.source)?;
-        if dispatch.query.method()!="thread/resume"||dispatch.query.params()!=&json!({"threadId":history.selected_thread()}) {return Err("only original explicit Continue packet can admit".into());}
+        if dispatch.query.method()!="thread/resume"||dispatch.query.params()!=&json!({"threadId":history.selected_thread(),"excludeTurns":true}) {return Err("only original explicit Continue packet can admit".into());}
         let candidate=history.resumed_thread().ok_or("latest history state is not an eligible Continue response")?;
         let snapshot=history.snapshot();let query=serde_json::to_value(&dispatch.query).map_err(|e|e.to_string())?;
         if snapshot["selected"]["streamResolutions"]["thread-state"]["query"]!=query||snapshot["selected"]["streamResolutions"]["thread-state"]["outcome"]!="native-result-observed" {return Err("Continue receipt is not latest resolved thread-state query".into());}
@@ -2200,7 +2223,12 @@ impl Host {
         if history.generation()!=generation||history.home()!=dispatch.query.home()||i.generation!=*generation||i.state!="ready"||i.server_requests.is_closed(generation) {return Err("Continue admission belongs to foreign/stale/closed generation".into());}
         let native=&candidate["native"];if !matches!(native["status"]["type"].as_str(),Some("idle"|"active"))||native["canAcceptDirectInput"]==false||native["id"]!=dispatch.query.params()["threadId"] {return Err("native thread cannot accept direct input".into());}
         if i.threads.iter().any(|t|t["generation"]==*generation&&t["threadId"]==native["id"]) {return Err("thread already operationally admitted in generation".into());}
-        let result=&response["result"];let row=json!({"generation":generation,"threadId":native["id"],"status":native["status"],"model":result.get("model"),"modelProvider":result.get("modelProvider"),"reasoningEffort":result.get("reasoningEffort"),"cwd":result.get("cwd"),"supplierStanding":i.supplier_standing,"resumeRequestRef":dispatch.source.request_ref,"nativeResumeObserved":true,"appRole":{"standing":"unknown"},"networkDisclosure":network_disclosure()});i.threads.push(row.clone());drop(i);
+        let result=&response["result"];let row=json!({"generation":generation,"threadId":native["id"],"status":native["status"],"model":result.get("model"),"modelProvider":result.get("modelProvider"),"reasoningEffort":result.get("reasoningEffort"),"cwd":result.get("cwd"),"supplierStanding":i.supplier_standing,"resumeRequestRef":dispatch.source.request_ref,"nativeResumeObserved":true,"appRole":{"standing":"unknown"},"networkDisclosure":network_disclosure()});i.threads.push(row.clone());
+        // Admission is already established. Context preparation/read failure must
+        // never revoke it, change role/CCE state or make Continue wait on history.
+        let thread=native["id"].as_str().unwrap();
+        if let Ok(context)=continuation_context::Context::admitted(dispatch.clone(),history.selection_epoch(),thread){i.continuation_contexts.insert(thread.into(),context);}
+        drop(i);
         self.restore_records_receipt(generation,native["id"].as_str().unwrap_or_default());
         let i=self.inner.0.lock().unwrap();Ok(i.threads.iter().rev().find(|t|t["generation"]==*generation&&t["threadId"]==native["id"]).cloned().unwrap_or(row))
     }
@@ -2414,7 +2442,7 @@ impl Host {
             Self::check_conversation_request(&i,frame["method"].as_str().unwrap(),&frame["params"])?;
             let mut bound=self.capture_pipe(&i)?;if bound.identity!=prepared.pipe_identity{return Err("actual source pipe changed; nothing sent".into());}
             let key=prepared.source.request_id().to_string();let index=i.source_requests[&key].index;let sender=i.source_requests.get_mut(&key).unwrap().reserved_sender.take().ok_or("reserved RPC already consumed")?;
-            i.send_position+=1;let position=i.send_position;let e=i.source_requests.get_mut(&key).unwrap();e.write_attempt_in_progress=true;e.attempt_position=Some(position);i.pending.insert(key.clone(),(index,sender));
+            i.send_position+=1;let position=i.send_position;let e=i.source_requests.get_mut(&key).unwrap();e.write_attempt_in_progress=true;e.attempt_position=Some(position);e.source_pipe=Some((bound.epoch,bound.identity));i.pending.insert(key.clone(),(index,sender));
             if frame["method"]=="turn/start"{let pos=i.receipt_position;i.turn_request_threads.insert(key.clone(),(generation.clone(),frame["params"]["threadId"].as_str().unwrap().into(),pos));}
             *state="attempted";drop(state);drop(i);drop(gate);drop(source_lock);
             let written=Self::write_complete(&mut bound.file,&bytes);drop(bound);drop(serial);
@@ -2441,6 +2469,54 @@ impl Host {
     pub fn attachment_wait(&self,source:&SourceRequest,wait:Duration)->Result<Value,String>{
         let mut evidence=self.source_request_wait(source,wait)?;let _=self.persist_attachment_observation(source);
         let i=self.inner.0.lock().unwrap();let a=i.source_requests.get(&source.request_id().to_string()).and_then(|e|e.attachment.as_ref()).ok_or("source is not attachment-bearing")?;evidence["custodyLimit"]=json!(a.limit);Ok(evidence)
+    }
+    /// Observes the completed real write and matched native result through the
+    /// original full packet, not `resolve_attachment_submission`'s JSON view.
+    /// Outcome-metadata save failure cannot erase a positive native send.
+    pub(crate) fn attachment_turn_start_finish<'a>(&self, prepared: &'a PreparedAttachmentDispatch, wait: Duration) -> Result<AttachmentNativeTurnStart<'a>, String> {
+        let source = prepared.source();
+        self.check_source(source)?;
+        if source.frame["method"] != "turn/start" || prepared.state() != "attempted" {
+            return Err("attachment start was not dispatched as a new turn".into());
+        }
+        self.wait_source_response(source, wait)?;
+        let _lease = prepared.custody.lease()?;
+        let i = self.inner.0.lock().unwrap();
+        if i.generation != source.generation || i.state != "ready" || i.server_requests.is_closed(source.generation()) {
+            return Err("attachment start source closed/replaced".into());
+        }
+        Self::check_conversation_request(&i, "turn/start", &source.frame["params"])?;
+        let e = i.source_requests.get(&source.request_id().to_string()).ok_or("attachment start source unavailable")?;
+        let a = e.attachment.as_ref().ok_or("attachment start lacks private custody")?;
+        if e.request.generation != source.generation || e.request.frame != source.frame || e.request.request_ref != source.request_ref
+            || !Arc::ptr_eq(&a.custody, &prepared.custody) || a.records != prepared.list.supply_records() || a.original != prepared.client
+            || prepared.client["generation"] != source.generation || prepared.client["requestIdentity"] != *source.request_id()
+            || prepared.client["submissionAssociation"]["threadId"] != source.frame["params"]["threadId"]
+            || prepared.client["submissionAssociation"]["supplyRefs"] != json!(prepared.list.supply_refs())
+            || !e.written || e.write_attempt_in_progress || e.write_error.is_some() || e.source_limit.is_some() || e.attempt_position.is_none() {
+            return Err("attachment start complete source write/private packet binding unavailable".into());
+        }
+        let input = source.frame["params"]["input"].as_array().ok_or("attachment start ordered input unavailable")?;
+        let attachments = prepared.list.native_inputs();
+        if attachments.is_empty() || input.len() < attachments.len() || input[input.len()-attachments.len()..] != attachments {
+            return Err("attachment start complete ordered attachment input differs".into());
+        }
+        if e.source_pipe != Some((prepared.pipe_epoch, prepared.pipe_identity)) || prepared.pipe_epoch != i.attachment_pipe_epoch
+            || Self::pipe_identity(self.stdin.lock().unwrap().as_ref().ok_or("attachment start source pipe closed")?)? != prepared.pipe_identity {
+            return Err("attachment start original source pipe changed".into());
+        }
+        let response = e.response.as_ref().ok_or("attachment start correlated native response unavailable")?;
+        if response.get("id") != Some(source.request_id()) || response.get("method").is_some() || response.get("error").is_some() || e.response_position.is_none_or(|p| p == 0)
+            || i.journal.iter().any(|row| row["generation"] == source.generation && row["class"] == "uncorrelated-response" && row["frame"]["id"] == *source.request_id()) {
+            return Err("attachment start native response failed/uncorrelated/duplicated".into());
+        }
+        let result = response.get("result").ok_or("attachment start native result unavailable")?;
+        Self::validate_native_result("TurnStartResponse", result)?;
+        if result.get("threadId").is_some_and(|t| t != &source.frame["params"]["threadId"]) {
+            return Err("attachment start native thread differs from original packet".into());
+        }
+        let turn_id = result["turn"]["id"].as_str().filter(|s| !s.is_empty()).ok_or("attachment start native identity absent")?.to_owned();
+        Ok(AttachmentNativeTurnStart { prepared, turn_id })
     }
     pub fn resolve_attachment_submission(&self,custody:&Arc<AttachmentCustody>,submission:&str)->Value{
         let lease=match custody.lease(){Ok(lease)=>lease,Err(error)=>return json!({"submissionRef":submission,"nativeTurnRef":null,"dispatch":"unknown/unavailable","limits":[error],"automaticRetry":false})};
@@ -3322,8 +3398,11 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
         if text.is_empty() {
             return;
         }
-        let mut i = self.inner.0.lock().unwrap();
         let parsed:Option<Value>=serde_json::from_str(text).ok();
+        // Validate/retain only minimal child identities outside Inner.
+        // Disposable observer replay is not this receiver's recording source.
+        let child_event=parsed.as_ref().and_then(|frame|NativeChildStart::capture(generation,frame));
+        let mut i = self.inner.0.lock().unwrap();
         let correlated_method=parsed.as_ref().and_then(|f|f.get("id")).and_then(|id|i.source_requests.get(&id.to_string())).filter(|e|e.request.generation==*generation).and_then(|e|e.request.frame["method"].as_str()).map(str::to_owned);
         let safe_reply_id=parsed.as_ref().filter(|f|f.get("method").is_none()).and_then(|f|f.get("id")).and_then(|id|i.source_requests.get(&id.to_string())).filter(|e|e.request.generation==*generation).map(|e|e.request.request_id().clone());
         let possible_original_account=parsed.as_ref().filter(|f|f.get("method").is_none()).and_then(|f|f.get("id")).and_then(Value::as_str).is_some_and(|id|i.source_requests.values().any(|e|e.request.generation==*generation&&auth_rpc::account_method(e.request.frame["method"].as_str().unwrap_or(""))&&e.request.request_id().to_string()==id));
@@ -3422,6 +3501,7 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
                 Self::remember_turn(&mut i, &gen, thread, &frame["params"]["turn"], frame["method"].as_str().unwrap(), pos);
             }
         }
+        if class=="notification"&&i.state=="ready"&&!i.server_requests.is_closed(&gen){if let Some(event)=child_event{i.native_child_events.push(event.at_receipt(pos));}}
         if class == "notification" && matches!(frame["method"].as_str(),Some("item/started"|"item/completed")) {
             i.execution_custody.item(&gen,&frame["params"],frame["method"]=="item/completed",&now_rfc3339());
             Self::persist_execution(&mut i);
@@ -3987,6 +4067,7 @@ mod additive_guidance_transport_tests {
 
 #[cfg(test)]
 mod conversation_transport_tests {
+    mod manual_history_tests { include!("hosting_manual_history_tests.rs"); }
     mod observation_custody_tests { include!("hosting_observation_custody_tests.rs"); }
     mod role_observations_host_tests { include!("role_observations_host_tests.rs"); }
     mod namespace_admission_tests { include!("namespace_admission_tests.rs"); }
@@ -4342,7 +4423,7 @@ mod conversation_transport_tests {
     }
     #[test]
     fn history_bridge_continue_actual_receive_admit_once_and_text_control() {
-        let host=host();let mut view=history_selected();let query=view.continue_query().unwrap();let native=history_resume("idle",true);let(receipt,evidence,outbound)=history_exchange(&host,&query,Some(json!({"result":native})));assert_eq!(outbound["method"],"thread/resume");assert_eq!(outbound["params"],json!({"threadId":"stored"}));assert!(view.resumed_thread().is_none());assert!(host.history_admit_resume(&view,&receipt).is_err());assert_eq!(host.snapshot()["threads"].as_array().unwrap().len(),1);
+        let host=host();let mut view=history_selected();let query=view.continue_query().unwrap();let native=history_resume("idle",true);let(receipt,evidence,outbound)=history_exchange(&host,&query,Some(json!({"result":native})));assert_eq!(outbound["method"],"thread/resume");assert_eq!(outbound["params"],json!({"threadId":"stored","excludeTurns":true}));assert!(view.resumed_thread().is_none());assert!(host.history_admit_resume(&view,&receipt).is_err());assert_eq!(host.snapshot()["threads"].as_array().unwrap().len(),1);
         view.receive(&query,"conversation-home",&g(),&evidence["response"]["result"]).unwrap();let admitted=host.history_admit_resume(&view,&receipt).unwrap();assert_eq!(admitted["threadId"],"stored");assert_eq!(admitted["generation"],g());assert_eq!(admitted["resumeRequestRef"],receipt.source().request_ref());assert!(host.history_admit_resume(&view,&receipt).is_err());assert_eq!(host.snapshot()["threads"].as_array().unwrap().len(),2);
         let(result,outbound)=exchange(&host,Some(json!({"result":{"turn":turn("inProgress")}})),vec![],||host.turn_start_text(&g(),"stored","continued exact text"));assert!(result.is_ok());assert_eq!(outbound["params"]["threadId"],"stored");assert!(outbound["params"].get("developerInstructions").is_none());
     }
@@ -4371,7 +4452,7 @@ mod conversation_transport_tests {
         use crate::role_supply::{Composition,Guidance,Role};
         let host=host();host.inner.0.lock().unwrap().threads.clear();let mut session=crate::runtime_session::HistorySession::default();session.synchronize(&host.snapshot());
         let query=session.prepare(&host.snapshot(),&g(),0,"list",None,Direction::Desc,None).unwrap();let(receipt,_,_)=history_exchange(&host,&query,Some(json!({"result":{"data":[history_thread("notLoaded")],"nextCursor":null}})));session.dispatched(receipt);session.reconcile(&host);assert!(host.snapshot()["threads"].as_array().unwrap().is_empty());session.select(&host.snapshot(),&g(),0,"stored").unwrap();assert_eq!(session.snapshot(None)["selectionEpoch"],1);
-        let query=session.prepare(&host.snapshot(),&g(),1,"continue",None,Direction::Desc,None).unwrap();let(receipt,_,outbound)=history_exchange(&host,&query,Some(json!({"result":history_resume("idle",true)})));assert_eq!(outbound["params"],json!({"threadId":"stored"}));assert!(host.snapshot()["threads"].as_array().unwrap().is_empty());session.dispatched(receipt);session.reconcile(&host);assert_eq!(host.snapshot()["threads"].as_array().unwrap().len(),1);assert_eq!(session.snapshot(None)["selected"]["resumeEligibilityCurrent"],true);assert_eq!(session.role("conversation-home","stored")["standing"],"unknown");
+        let query=session.prepare(&host.snapshot(),&g(),1,"continue",None,Direction::Desc,None).unwrap();let(receipt,_,outbound)=history_exchange(&host,&query,Some(json!({"result":history_resume("idle",true)})));assert_eq!(outbound["params"],json!({"threadId":"stored","excludeTurns":true}));assert!(host.snapshot()["threads"].as_array().unwrap().is_empty());session.dispatched(receipt);session.reconcile(&host);assert_eq!(host.snapshot()["threads"].as_array().unwrap().len(),1);assert_eq!(session.snapshot(None)["selected"]["resumeEligibilityCurrent"],true);assert_eq!(session.role("conversation-home","stored")["standing"],"unknown");
         let common=Guidance::seeded("AGENTS.md","test-release",b"Frozen common bytes\r\n".to_vec(),b"default common").unwrap();let role=Guidance::seeded("agents/AGENT_TASK.md","test-release",b"Frozen TASK bytes\r\n".to_vec(),b"default role").unwrap();let composition=Composition::new(&common,Some((Role::TASK,&role)),true).unwrap();let original=composition.text.clone();let mut native=history_resume("idle",true);native["thread"]["id"]=json!("role-thread");let mut start=None;
         let(result,outbound)=exchange(&host,Some(json!({"result":native})),vec![],||{let receipt=host.thread_start_with_guidance_dispatch(&g(),"/invented","selected","configured",&composition.text)?;session.start_dispatched(receipt.clone(),&composition,"sup:fixture")?;let evidence=host.source_request_wait(&receipt,Duration::from_millis(15))?;start=Some(receipt);Ok(evidence)});assert_eq!(result.unwrap()["writeResult"],"written");assert_eq!(outbound["params"]["developerInstructions"],original);assert_eq!(host.snapshot()["threads"].as_array().unwrap().len(),1);session.reconcile(&host);assert!(session.start_admitted(&start.unwrap()));assert_eq!(host.snapshot()["threads"].as_array().unwrap().len(),2);let role=session.role("conversation-home","role-thread");assert_eq!(role["standing"],"app-observed");assert_eq!(role["role"],"TASK");assert!(session.snapshot(None)["receivingLimits"].as_array().unwrap().is_empty());
         // Role preparation is local and occurs after a genuine native send.
@@ -4410,6 +4491,97 @@ mod conversation_transport_tests {
         let mut second=None;let(result,_)=exchange(&host,Some(json!({"result":{"turn":complete_turn()}})),vec![],||{let packet=host.prepare_attachment_turn(Arc::clone(&owner),&g(),"thread",None,"Explicit new send",&selections)?;let source=host.dispatch_attachment_turn(&packet)?;let evidence=host.attachment_wait(&source,Duration::from_millis(15))?;second=Some(packet);Ok(evidence)});assert_eq!(result.unwrap()["outcome"],"response-observed-result");let second=second.unwrap();assert_ne!(second.submission_ref(),prepared.submission_ref());assert_ne!(second.source().request_id(),prepared.source().request_id());assert_ne!(second.list.supply_refs(),prepared.list.supply_refs());assert_eq!(host.resolve_attachment_submission(&owner,second.submission_ref())["nativeTurnRef"]["turnId"],"turn");assert_eq!(host.resolve_attachment_submission(&owner,prepared.submission_ref())["nativeTurnRef"]["turnId"],"turn");assert_eq!(owner.resolve_cold(prepared.submission_ref())["clientMetadata"]["submissionAssociation"]["supplyRefs"],json!(prepared.list.supply_refs()));std::fs::remove_dir_all(root).unwrap();
     }
     #[test]
+    fn attachment_positive_finish_complete_write_late_reply_and_metadata_failure() {
+        for late in [false, true] {
+            let host=host();let(root,owner,selections)=attachment_fixture();
+            let response=(!late).then(||json!({"result":{"turn":complete_turn()}}));
+            let (result, outbound)=exchange(&host,response,vec![],|| {
+                let packet=host.prepare_attachment_turn_led(owner.clone(),&g(),"thread",None,"Exact person text\r\n家",&selections,Some(("Original notice","original-client")))?;
+                assert!(host.attachment_turn_start_finish(&packet,Duration::ZERO).is_err(),"prepared metadata alone is not a send");
+                host.dispatch_attachment_turn(&packet)?;
+                host.attachment_wait(packet.source(),Duration::from_millis(20))?;
+                if late {
+                    assert!(host.attachment_turn_start_finish(&packet,Duration::ZERO).is_err());
+                    host.on_line(&serde_json::to_vec(&json!({"id":packet.source().request_id(),"result":{"turn":complete_turn()}})).unwrap(),&g());
+                }
+                let native=host.attachment_turn_start_finish(&packet,Duration::ZERO)?;
+                assert!(std::ptr::eq(native.source(),packet.source()));assert_eq!(native.turn_id(),"turn");drop(native);
+                let path=owner.client_path(&g(),packet.source().request_id())?;
+                std::fs::remove_file(&path).unwrap();std::fs::create_dir(&path).unwrap();
+                assert!(host.persist_attachment_observation(packet.source()).is_err());
+                assert!(host.resolve_attachment_submission(&owner,packet.submission_ref())["nativeTurnRef"].is_null());
+                assert_eq!(host.attachment_turn_start_finish(&packet,Duration::ZERO)?.turn_id(),"turn","outcome-metadata failure does not erase the genuine ACK");
+                Ok(json!(true))
+            });
+            assert_eq!(result.unwrap(),true);
+            assert_eq!(outbound["params"]["input"][0]["text"],"Original notice");
+            assert_eq!(outbound["params"]["input"][1]["text"],"Exact person text\r\n家");
+            assert_eq!(outbound["params"]["input"].as_array().unwrap().len(),4);
+            std::fs::remove_dir_all(root).unwrap();
+        }
+    }
+    #[test]
+    fn attachment_positive_finish_reply_before_complete_write_is_not_positive_until_completion() {
+        let host=host();let(root,owner,selections)=attachment_fixture();
+        let mut child=Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).spawn().unwrap();
+        *host.stdin.lock().unwrap()=child.stdin.take();let stdout=child.stdout.take().unwrap();
+        let packet=Arc::new(host.prepare_attachment_turn_led(owner.clone(),&g(),"thread",None,&"x".repeat(4*1024*1024),&selections,Some(("Original notice","original-client"))).unwrap());
+        let (first_tx,first_rx)=channel();let(go_tx,go_rx)=channel();
+        let reader=std::thread::spawn(move|| {
+            let mut input=BufReader::new(stdout);let mut bytes=vec![0;512];input.read_exact(&mut bytes).unwrap();
+            first_tx.send(()).unwrap();go_rx.recv_timeout(Duration::from_secs(5)).unwrap();
+            input.read_until(b'\n',&mut bytes).unwrap();serde_json::from_slice::<Value>(&bytes).unwrap()
+        });
+        let sender=host.clone();let original=packet.clone();
+        let writer=std::thread::spawn(move||sender.dispatch_attachment_turn(&original));
+        first_rx.recv_timeout(Duration::from_secs(3)).unwrap();
+        let response=json!({"id":packet.source().request_id(),"result":{"turn":complete_turn()}});
+        host.on_line(&serde_json::to_vec(&response).unwrap(),&g());
+        assert_eq!(packet.source().evidence()["writeAttemptInProgress"],true);
+        assert!(host.attachment_turn_start_finish(&packet,Duration::ZERO).is_err(),"reply plus an attempted partial write is insufficient");
+        go_tx.send(()).unwrap();let outbound=reader.join().unwrap();writer.join().unwrap().unwrap();
+        assert_eq!(outbound,*packet.source().attempted_frame(),"complete actual ordered frame");
+        assert_eq!(host.attachment_turn_start_finish(&packet,Duration::ZERO).unwrap().turn_id(),"turn");
+        assert_eq!(packet.source().evidence()["response"],response);
+        assert_eq!(host.inner.0.lock().unwrap().send_position,1);
+        *host.stdin.lock().unwrap()=None;assert!(child.wait().unwrap().success());std::fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
+    fn attachment_positive_finish_rejects_bad_receipts_and_private_packet_confusion() {
+        for case in ["error","mixed","null","malformed","thread","wrong-id","foreign-generation","duplicate-after-bad","duplicate-after-good","generation","pipe","custody","records","person","foreign-host"] {
+            let host=host();let(root,owner,selections)=attachment_fixture();
+            let response=match case {
+                "error"=>json!({"error":{"code":-32000,"message":"invented native refusal"}}),
+                "mixed"=>json!({"result":{"turn":complete_turn()},"error":null}),
+                "null"=>json!({"result":null}),
+                "malformed"|"duplicate-after-bad"=>json!({"result":{"turn":{"id":"turn"}}}),
+                "thread"=>json!({"result":{"turn":complete_turn(),"threadId":"foreign-thread"}}),
+                _=>json!({"result":{"turn":complete_turn()}}),
+            };
+            let deliver=(!matches!(case,"wrong-id"|"foreign-generation")).then_some(response);
+            let before=if case=="wrong-id" {vec![json!({"id":999,"result":{"turn":complete_turn()}})]}else{vec![]};
+            let (result,_)=exchange(&host,deliver,before,|| {
+                let mut packet=host.prepare_attachment_turn_led(owner.clone(),&g(),"thread",None,"Original person text",&selections,Some(("Original notice","original-client")))?;
+                host.dispatch_attachment_turn(&packet)?;
+                host.attachment_wait(packet.source(),Duration::from_millis(20))?;
+                match case {
+                    "foreign-generation"=>{let mut foreign=g();foreign["spawnCounter"]=json!(9);host.on_line(&serde_json::to_vec(&json!({"id":packet.source().request_id(),"result":{"turn":complete_turn()}})).unwrap(),&foreign);},
+                    "duplicate-after-bad"|"duplicate-after-good"=>host.on_line(&serde_json::to_vec(&json!({"id":packet.source().request_id(),"result":{"turn":complete_turn()}})).unwrap(),&g()),
+                    "generation"=>host.inner.0.lock().unwrap().generation["spawnCounter"]=json!(2),
+                    "pipe"=>host.inner.0.lock().unwrap().attachment_pipe_epoch+=1,
+                    "custody"=>packet.custody=Arc::new(AttachmentCustody::open(&root.join("app"),&root.join("codex")).unwrap()),
+                    "records"=>packet.client["submissionAssociation"]["supplyRefs"]=json!([]),
+                    "person"=>packet.source.frame["params"]["input"][1]["text"]=json!("changed person's text"),
+                    "foreign-host"=>assert!(super::conversation_transport_tests::host().attachment_turn_start_finish(&packet,Duration::ZERO).is_err()),
+                    _=>{},
+                }
+                if case!="foreign-host" {assert!(host.attachment_turn_start_finish(&packet,Duration::ZERO).is_err(),"{case}");}
+                Ok(json!(true))
+            });
+            assert_eq!(result.unwrap(),true,"{case}");std::fs::remove_dir_all(root).unwrap();
+        }
+    }
+    #[test]
     fn attachment_host_cancel_source_generation_pipe_target_and_metadata_drift_send_no_bytes(){
         for change in ["cancel","file","session","home","counter","pipe","target","metadata"]{let host=host();let(root,owner,selections)=attachment_fixture();event(&host,"inProgress");let mut replacement=None;no_attachment_write(&host,||{let packet=host.prepare_attachment_turn(Arc::clone(&owner),&g(),"thread",Some("turn"),"Person text",&selections).unwrap();match change{"cancel"=>{assert!(packet.cancel());},"file"=>std::fs::write(root.join("first.txt"),"changed").unwrap(),"session"|"home"|"counter"=>{let mut i=host.inner.0.lock().unwrap();let field=match change{"session"=>"appSession","home"=>"home",_=>"spawnCounter"};i.generation[field]=if field=="spawnCounter"{json!(2)}else{json!("other")};},"pipe"=>{let mut child=Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).spawn().unwrap();*host.stdin.lock().unwrap()=child.stdin.take();host.inner.0.lock().unwrap().attachment_pipe_epoch+=1;replacement=Some(child);},"target"=>event(&host,"completed"),_=>{let mut records=packet.supply_records();records[0]["displayName"]=json!("changed metadata");std::fs::write(owner.supplies_path(packet.submission_ref()).unwrap(),serde_json::to_vec(&records).unwrap()).unwrap();}}
             assert!(host.dispatch_attachment_turn(&packet).is_err());assert_eq!(host.inner.0.lock().unwrap().send_position,0);assert_eq!(packet.source().evidence()["lastClientObservation"]["writeResult"],"not-attempted");assert_eq!(packet.source().evidence()["writeAttemptInProgress"],false);assert!(packet.source().evidence()["sentFrame"].is_null());assert!(host.dispatch_attachment_turn(&packet).is_err());});if let Some(mut child)=replacement{assert!(child.wait().unwrap().success());let mut bytes=vec![];child.stdout.take().unwrap().read_to_end(&mut bytes).unwrap();assert!(bytes.is_empty());}std::fs::remove_dir_all(root).unwrap();}
@@ -4421,7 +4593,7 @@ mod conversation_transport_tests {
     }
     #[test]
     fn attachment_host_steer_exact_expected_target_error_redaction_malformed_and_repeat(){
-        for response in [json!({"result":{"turnId":"turn"}}),json!({"result":{"turnId":"wrong"}}),json!({"error":{"code":-32600,"message":"secret payload","data":{"secret":"hidden"}}}),json!({"error":{"message":"missing real code"}}),json!({"result":null})]{let host=host();event(&host,"inProgress");let(root,owner,selections)=attachment_fixture();let mut packet=None;let(result,outbound)=exchange(&host,Some(response.clone()),vec![],||{let p=host.prepare_attachment_turn(Arc::clone(&owner),&g(),"thread",Some("turn"),"steer bytes",&selections)?;let source=host.dispatch_attachment_turn(&p)?;let e=host.attachment_wait(&source,Duration::from_millis(15))?;packet=Some(p);Ok(e)});let e=result.unwrap();let packet=packet.unwrap();assert_eq!(outbound["method"],"turn/steer");assert_eq!(outbound["params"]["expectedTurnId"],"turn");assert!(outbound["params"].get("submissionAssociation").is_none());let view=host.resolve_attachment_submission(&owner,packet.submission_ref());if response==json!({"result":{"turnId":"turn"}}){assert_eq!(view["nativeTurnRef"]["turnId"],"turn");}else{assert!(view["nativeTurnRef"].is_null());}
+        for response in [json!({"result":{"turnId":"turn"}}),json!({"result":{"turnId":"wrong"}}),json!({"error":{"code":-32600,"message":"secret payload","data":{"secret":"hidden"}}}),json!({"error":{"message":"missing real code"}}),json!({"result":null})]{let host=host();event(&host,"inProgress");let(root,owner,selections)=attachment_fixture();let mut packet=None;let(result,outbound)=exchange(&host,Some(response.clone()),vec![],||{let p=host.prepare_attachment_turn(Arc::clone(&owner),&g(),"thread",Some("turn"),"steer bytes",&selections)?;let source=host.dispatch_attachment_turn(&p)?;let e=host.attachment_wait(&source,Duration::from_millis(15))?;packet=Some(p);Ok(e)});let e=result.unwrap();let packet=packet.unwrap();assert!(host.attachment_turn_start_finish(&packet,Duration::ZERO).is_err(),"steering is never a positive start");assert_eq!(outbound["method"],"turn/steer");assert_eq!(outbound["params"]["expectedTurnId"],"turn");assert!(outbound["params"].get("submissionAssociation").is_none());let view=host.resolve_attachment_submission(&owner,packet.submission_ref());if response==json!({"result":{"turnId":"turn"}}){assert_eq!(view["nativeTurnRef"]["turnId"],"turn");}else{assert!(view["nativeTurnRef"].is_null());}
             let before=e["response"].clone();host.on_line(&serde_json::to_vec(&json!({"id":outbound["id"],"result":{"turnId":"conflicting-repeat"}})).unwrap(),&g());assert_eq!(packet.source().evidence()["response"],before);assert_eq!(host.journal().last().unwrap()["class"],"uncorrelated-response");let bytes=std::fs::read_to_string(owner.client_path(&g(),packet.source().request_id()).unwrap()).unwrap();assert!(!bytes.contains("secret payload"));assert!(!bytes.contains("hidden"));if response["error"].get("code").is_some(){assert!(bytes.contains("native error text withheld"));}if response["error"].get("message")==Some(&json!("missing real code")){let record:Value=serde_json::from_str(&bytes).unwrap();assert_eq!(record["outcome"],"unknown-no-response");assert!(record.get("error").is_none());}std::fs::remove_dir_all(root).unwrap();}
     }
     #[test]
@@ -4448,7 +4620,7 @@ mod conversation_transport_tests {
         let packet=Arc::new(host.prepare_attachment_turn(Arc::clone(&owner),&g(),"thread",None,&"x".repeat(4*1024*1024),&selections).unwrap());let sender=Arc::clone(&host);let prepared=Arc::clone(&packet);let(tx,rx)=channel();let writer=std::thread::spawn(move||assert!(tx.send(sender.dispatch_attachment_turn(&prepared)).is_ok()));
         let deadline=std::time::Instant::now()+Duration::from_secs(2);while host.inner.0.lock().unwrap().send_position==0&&std::time::Instant::now()<deadline{std::thread::sleep(Duration::from_millis(5));}assert_eq!(host.inner.0.lock().unwrap().send_position,1);assert!(matches!(rx.recv_timeout(Duration::from_millis(200)),Err(std::sync::mpsc::RecvTimeoutError::Timeout)));
         let reply_mode=std::env::var("CHIRALITY_NONREADER_MODE").is_ok_and(|m|m=="reply");let known_reply=json!({"id":packet.source().request_id(),"result":{"turn":complete_turn()}});if reply_mode{host.on_line(&serde_json::to_vec(&known_reply).unwrap(),&g());}
-        let evidence=packet.source().evidence();let mid=host.snapshot();let resolution=host.resolve_attachment_submission(&owner,packet.submission_ref());std::fs::write(log.join("midwrite.json"),serde_json::to_vec(&json!({"clientObservation":mid["clientRequests"].as_array().unwrap().last(),"sourceWriteResult":evidence["writeResult"],"sourceAttemptInProgress":evidence.get("writeAttemptInProgress"),"resolver":resolution,"sentFramePresent":!evidence["sentFrame"].is_null(),"stopCalled":true})).unwrap()).unwrap();let started=std::time::Instant::now();let stopped=host.stop("person:fixture","codex-stop").unwrap();assert!(started.elapsed()<Duration::from_secs(5));let source=rx.recv_timeout(Duration::from_secs(1)).unwrap().unwrap();writer.join().unwrap();assert_eq!(source.evidence()["writeResult"],"write-failed");if reply_mode{let e=source.evidence();assert_eq!(e["response"],known_reply);assert_eq!(e["canonicalProjectionAvailable"],false);assert!(e["outcome"].as_str().unwrap().contains("both observed"));let view=host.resolve_attachment_submission(&owner,packet.submission_ref());assert_eq!(view["nativeReplyObserved"],true);assert!(view["dispatch"].as_str().unwrap().contains("reply and failed write"));assert!(view["nativeTurnRef"].is_null());}else{assert_eq!(source.evidence()["outcome"],"unknown-no-response");}assert_ne!(mid["clientRequests"].as_array().unwrap().last().unwrap()["writeResult"],"written");assert_eq!(evidence["writeAttemptInProgress"],true);assert_eq!(resolution["writeAttemptInProgress"],true);assert!(resolution["dispatch"].as_str().unwrap().contains("unknown/in-progress"));assert!(resolution["nativeTurnRef"].is_null());assert!(!evidence["sentFrame"].is_object());assert_eq!(stopped["state"],"stopped");std::fs::remove_dir_all(root).unwrap();
+        assert!(host.attachment_turn_start_finish(&packet,Duration::ZERO).is_err(),"an active/partial write plus even a native reply is not a completed send");let evidence=packet.source().evidence();let mid=host.snapshot();let resolution=host.resolve_attachment_submission(&owner,packet.submission_ref());std::fs::write(log.join("midwrite.json"),serde_json::to_vec(&json!({"clientObservation":mid["clientRequests"].as_array().unwrap().last(),"sourceWriteResult":evidence["writeResult"],"sourceAttemptInProgress":evidence.get("writeAttemptInProgress"),"resolver":resolution,"sentFramePresent":!evidence["sentFrame"].is_null(),"stopCalled":true})).unwrap()).unwrap();let started=std::time::Instant::now();let stopped=host.stop("person:fixture","codex-stop").unwrap();assert!(started.elapsed()<Duration::from_secs(5));let source=rx.recv_timeout(Duration::from_secs(1)).unwrap().unwrap();writer.join().unwrap();assert!(host.attachment_turn_start_finish(&packet,Duration::ZERO).is_err(),"failed/partial write plus reply cannot mint a positive result");assert_eq!(source.evidence()["writeResult"],"write-failed");if reply_mode{let e=source.evidence();assert_eq!(e["response"],known_reply);assert_eq!(e["canonicalProjectionAvailable"],false);assert!(e["outcome"].as_str().unwrap().contains("both observed"));let view=host.resolve_attachment_submission(&owner,packet.submission_ref());assert_eq!(view["nativeReplyObserved"],true);assert!(view["dispatch"].as_str().unwrap().contains("reply and failed write"));assert!(view["nativeTurnRef"].is_null());}else{assert_eq!(source.evidence()["outcome"],"unknown-no-response");}assert_ne!(mid["clientRequests"].as_array().unwrap().last().unwrap()["writeResult"],"written");assert_eq!(evidence["writeAttemptInProgress"],true);assert_eq!(resolution["writeAttemptInProgress"],true);assert!(resolution["dispatch"].as_str().unwrap().contains("unknown/in-progress"));assert!(resolution["nativeTurnRef"].is_null());assert!(!evidence["sentFrame"].is_object());assert_eq!(stopped["state"],"stopped");std::fs::remove_dir_all(root).unwrap();
     }
     #[test]
     fn attachment_host_nonreader_stop_and_midwrite_status_actual_bounded_watchdog() {
