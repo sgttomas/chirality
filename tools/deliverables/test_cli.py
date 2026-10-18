@@ -1,5 +1,6 @@
 """Behavioral tests of dependency queries and their observation boundaries."""
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -91,6 +92,86 @@ def test_touches_shared_relevance_and_unmapped_paths(repo, capsys):
     assert sorted(result['relevant']) == ['DEL-01-01', 'DEL-01-02']
     assert result['unknown_deliverables'] == ['DEL-01-03']
     assert result['unmapped_paths'] == ['.keep']
+
+
+def stub_gh(bin_dir, monkeypatch, response):
+    """Put a fake `gh` first on PATH that records its arguments and prints `response`."""
+    (bin_dir / 'response.json').write_text(json.dumps(response))
+    gh = bin_dir / 'gh'
+    gh.write_text(f'#!/bin/sh\nprintf "%s\\n" "$@" > "{bin_dir}/args"\ncat "{bin_dir}/response.json"\n')
+    gh.chmod(0o755)
+    monkeypatch.setenv('PATH', f'{bin_dir}{os.pathsep}{os.environ["PATH"]}')
+    return bin_dir
+
+
+def test_touches_pr_diffs_base_and_head_locally_beyond_github_file_limit(repo, capsys, monkeypatch, tmp_path_factory):
+    put(repo, 'DEL-01-01', code_paths=['src/mapped/**'])
+    git(repo, 'add', '.')
+    git(repo, 'commit', '-qm', 'deliverable')
+    fork = git(repo, 'rev-parse', 'HEAD')
+    git(repo, 'switch', '-qc', 'feature')
+    changed = [f'project/src/mapped/m{index:03}.rs' for index in range(30)]
+    changed += [f'project/src/other/o{index:03}.rs' for index in range(120)]
+    for path in changed:
+        (repo / path).parent.mkdir(parents=True, exist_ok=True)
+        (repo / path).write_text(path)
+    git(repo, 'add', '.')
+    git(repo, 'commit', '-qm', 'pull request with 150 files')
+    head = git(repo, 'rev-parse', 'HEAD')
+    git(repo, 'switch', '-q', '-')
+    (repo / 'project' / 'base-only.txt').write_text('later base change, not part of the PR')
+    git(repo, 'add', '.')
+    git(repo, 'commit', '-qm', 'base moves on')
+    base = git(repo, 'rev-parse', 'HEAD')
+    truncated = [{'path': path} for path in sorted(changed)[:100]]
+    bin_dir = stub_gh(tmp_path_factory.mktemp('gh'), monkeypatch,
+                      {'baseRefOid': base, 'headRefOid': head, 'files': truncated,
+                       'url': 'https://github.com/example/repo/pull/7'})
+    code, result = query(capsys, 'touches', 'PR:7')
+    assert code == 0, result
+    args = (bin_dir / 'args').read_text().split()
+    assert args[:3] == ['pr', 'view', '7'] and 'files' not in args[args.index('--json') + 1]
+    assert result['selection'] == {'pr': 'https://github.com/example/repo/pull/7', 'base': base,
+                                   'head': head, 'diff': f'{base}...{head}'}
+    assert sorted(result['relevant']['DEL-01-01']) == sorted(changed[:30])
+    assert sorted(result['unmapped_paths']) == sorted(changed[30:])
+    assert fork != base and 'project/base-only.txt' not in result['unmapped_paths']
+
+
+def test_touches_preserves_distinct_control_characters_in_git_paths(repo, capsys, monkeypatch, tmp_path_factory):
+    put(repo, 'DEL-01-01')
+    git(repo, 'add', '.')
+    git(repo, 'commit', '-qm', 'deliverable')
+    base = git(repo, 'rev-parse', 'HEAD')
+    changed = ['project/line\rbreak.txt', 'project/line\nbreak.txt',
+               'project/tab\tname.txt', 'project/tick`name.txt']
+    for path in changed:
+        (repo / path).write_text('distinct path')
+    git(repo, 'add', '.')
+    git(repo, 'commit', '-qm', 'unusual filenames')
+    head = git(repo, 'rev-parse', 'HEAD')
+    stub_gh(tmp_path_factory.mktemp('gh'), monkeypatch,
+            {'baseRefOid': base, 'headRefOid': head, 'url': 'https://github.com/example/repo/pull/7'})
+    for selection in ('PR:7', f'{base}...{head}'):
+        code, result = query(capsys, 'touches', selection)
+        assert code == 0, result
+        assert sorted(result['unmapped_paths']) == sorted(changed)
+
+
+def test_touches_pr_with_missing_local_commit_fails_without_partial_list(repo, capsys, monkeypatch, tmp_path_factory):
+    base = git(repo, 'rev-parse', 'HEAD')
+    absent = 'f' * 40
+    bin_dir = tmp_path_factory.mktemp('gh')
+    stub_gh(bin_dir, monkeypatch, {'baseRefOid': base, 'headRefOid': absent,
+                                   'files': [{'path': '.keep'}], 'url': 'https://github.com/example/repo/pull/8'})
+    code, result = query(capsys, 'touches', 'PR:8')
+    assert code == 2
+    assert 'unmapped_paths' not in result and 'relevant' not in result
+    assert result['errors'] == [f'https://github.com/example/repo/pull/8: head commit {absent} is not in this '
+                                f'repository; fetch it (for example `git fetch origin {absent}`) and retry']
+    stub_gh(bin_dir, monkeypatch, {'url': 'https://github.com/example/repo/pull/9'})
+    code, result = query(capsys, 'touches', 'PR:9')
+    assert code == 2 and result['errors'] == ['https://github.com/example/repo/pull/9: gh returned no base commit']
 
 
 def test_dag_diff_tracks_conditions_and_gating_but_not_folder_moves(repo, capsys):

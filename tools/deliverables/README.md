@@ -34,6 +34,14 @@ A single revision selects that commit’s change (against its first parent, or
 the empty tree for a root commit), regardless of working-tree edits. Explicit
 ranges are used as supplied. Use a Git revision/range or `PR:number`/GitHub PR URL (requires authenticated
 `gh`). Unmapped paths and deliverables without mappings remain visible.
+`PR:` resolves the PR's base and head commits with `gh` and diffs
+`base...head` locally, so the list is complete (GitHub's own file list stops
+at 100 files). Both commits must be in the local repository; otherwise the
+command fails and names the commit to fetch rather than returning a partial
+list. On every pull request, `governance-harness`
+runs `touches` over the PR's range for each project with deliverables and
+writes the changed project paths that no deliverable maps, with the relevant
+deliverables, to the job summary. That report never fails the job.
 
 `check` rejects malformed YAML, duplicate IDs/keys, invalid identities and
 escaping paths. Missing suppliers, planned paths and cycles are reported with
