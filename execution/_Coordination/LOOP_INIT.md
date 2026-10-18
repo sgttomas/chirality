@@ -7,9 +7,9 @@ Root is not a standing project-wide audit or backlog.
 
 Orient the current undertaking through this course of knowledge work:
 
-Problem Statement → Requirements → Objectives → Evaluation → Assessment →
-Implementation → Verification → Validation → Integration → Reflection →
-Iteration → Resolution.
+Problem Statement → Requirements → Objectives → Production → Evaluation →
+Assessment → Implementation → Verification → Validation → Integration →
+Reflection → Iteration → Resolution.
 
 Enter where the work currently stands and revisit activities as evidence
 requires. Work within the given scope and authority; resolve against the
