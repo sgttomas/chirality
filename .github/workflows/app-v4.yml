@@ -161,6 +161,7 @@ jobs:
         run: >-
           python -m pytest -q tests/group_b_standalone_test.py tests/group_b_pre_run_inputs_test.py
           tests/group_b_native_forms_test.py tests/group_b_sq_receiving_test.py
+          && python3 -B tests/candidate_identity_test.py
       - name: Node schemas and presentation with mandatory supplier
         if: github.event_name == 'workflow_dispatch'
         run: |
