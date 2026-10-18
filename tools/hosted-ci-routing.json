@@ -279,7 +279,7 @@
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "b363967ab3e5b00770c547a14a20185211b02d44557299b96e9319bdd4f46aab",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "60ef7cb082b7b471a9506c63c3fef462ff1a6dd589d0f7e8015992e86780d729",
+      "core/product_physics/Cargo.toml": "91da0da5869cb2eae67c8e10ffb56964047121fc07d768ed78249f9e4e6de0fa",
       "core/reporting/audit_manifest/Cargo.toml": "7b941c18378533d99707ed00c6024df56d9e6ac09a85d4b22599aa3fab8754a5",
       "core/reporting/pdf_emitter/Cargo.toml": "24dc0377813b6895aa76a463d849179e35b5ab4e0330ddd0f9de343607def55c",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
@@ -287,22 +287,22 @@
       "core/reporting/report_package/Cargo.toml": "3e2d171cb762ae3020f63a9dfb99771bdd66df8364c8521a2b1b4b7dd987bbd7",
       "core/reporting/report_renderer/Cargo.toml": "fe19d0718b26f7d82c0ee8449eb5746561f7887b8eb7dd6e95de26dce192fde8",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
-      "core/reporting/result_export/Cargo.toml": "1a29d2bfc86bac30a3a23ed6349fa469e8c32c0f95ccb2cf3a86a58d557695b3",
+      "core/reporting/result_export/Cargo.toml": "9e0815311f1605ed3999faabed884bae26af209894855e865cc37cad0e73d99b",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "3784dc3caabb41d3ba781c2a3e19332fe50852713b66b0227fac95f75131eabb",
       "core/rules/rule_check_runner/Cargo.toml": "74ab4cfa6825b9eb33c4e15e01685bd1cb25cfffcde10e6eeb1ce3973fdb2007",
       "core/rules/rule_pack_document/Cargo.toml": "8e04c4f958b0bd88e05885fa77b9d5311240e913481b54a968e71e90068d59c5",
       "core/rules/rule_pack_lifecycle/Cargo.toml": "811d32918f3d13d8d2a9115ebb6ce9b0243078626bc426d8dbd97224eb2dbd56",
-      "core/runner/headless/Cargo.toml": "3e53dda018fa3d14bda61167bad97d50eb5889b83e0e87491fb17e73db4430dc",
+      "core/runner/headless/Cargo.toml": "3d8fb6ab5a12c435dede8d22969e11174ead6ede76ddbb4a0d70d229e0ead7b5",
       "core/serialization/canonical_json/Cargo.toml": "6e633f01036771cc2dd8077bd814f787c500d974b500e78404165172d07bb151",
       "core/solver/curved_bend/Cargo.toml": "5d7cf1288eac698c209aa4fd7493fa669aa57494950e75374ac07248001502d8",
       "core/solver/diagnostics/Cargo.toml": "11db1409fcfd3b0312ef80085e36eac4d7a66eb0f4298832137119835b1c92e8",
-      "core/solver/frame_kernel/Cargo.toml": "acb50dc6554e580d64be3e28eecf9a82342bfdbb0e7bc2463ada5d54ee35d4ca",
+      "core/solver/frame_kernel/Cargo.toml": "cd31bee03bb4d759f0bca826b0e1395b33fcac8217ea6af2917a212f8c1b8713",
       "core/solver/linear_supports/Cargo.toml": "8d38681e7d09f9f1502d8986ccbea888bfb678b0ea8022885d3f67503ba4881d",
-      "core/solver/nonlinear_integration/Cargo.toml": "c796f6578785a06b0ff2f862d9375b88cf7855464460cee38bcf2347aaaa94bb",
+      "core/solver/nonlinear_integration/Cargo.toml": "05ed9949799a3bf9e33ff4b9e5553c19127a8cb04552d4a29ac8b00094165276",
       "core/solver/nonlinear_supports/Cargo.toml": "c34c7d2a46294e3c2ab57b4b15028c48664670dfe25278b8b6d22147743a10a6",
-      "core/solver/performance_harness/Cargo.toml": "485f185641069cd8ecebf9e318ac46b218eba5206545c77c95fd68175f0a5b4d",
-      "core/solver/sparse_direct/Cargo.toml": "53a0a174c3c5192e515c133ff3fcfa6694e8b42fc8498db2a8c69fd4e6036ba6",
+      "core/solver/performance_harness/Cargo.toml": "a40eb2f667e3e42e701b520849ade8c79bcbc4adcfb29ad866c795e7b31b9144",
+      "core/solver/sparse_direct/Cargo.toml": "53b01eb9efe7f2a7eb2d321663d8f5db9895e602fb9f8b5c425b891c88c87b6a",
       "core/solver/straight_pipe/Cargo.toml": "ff890b535f3f3cdc526b15edc72badf2a78e54795bff3bb9155cc4f411b50bf8",
       "core/units/Cargo.toml": "7ff0175f5332e79fe1a53dcf160f63f86b6d8fc188f192f36de1f9f7b5f73067",
       "validation/benchmarks/mechanics/Cargo.toml": "85169e69c38b7be6a4ee9cf8a41bc314d4785b9405a02c4da50ae12a2f784e08",
@@ -812,7 +812,7 @@
         ]
       },
       "core/product_physics/tests/pressure_source_join.rs": {
-        "sha256": "b316bf1fd5118663034e327338ad97ab27ff2419a3804beb642773ee5f2fc598",
+        "sha256": "ab83dc4c574cbecbda6d11ea2777c25bccd8ae04f1c2ad258d2efd8d43322aff",
         "source_trees": [
           "core/product_physics/Cargo.toml"
         ],
@@ -868,7 +868,7 @@
         ]
       },
       "core/product_physics/tests/pressure_source_join/consequences.rs": {
-        "sha256": "53bf34fa88ead0242be63a2987d23004505ada4bc82905500711859f58cb1988",
+        "sha256": "3aa87d6d2091f0a18451fbd52be4ad61608e9b2cde0aa5fd493e7c0f877b7ac0",
         "source_trees": [
           "core/product_physics/Cargo.toml"
         ],
@@ -1798,7 +1798,7 @@
         ]
       },
       "core/reporting/result_export/tests/retained_precision_carriers.rs": {
-        "sha256": "ec7812bd08b6ecc78f488dd3a29a2fb4018d4dfcf0d15f16f7b346571367ae1b",
+        "sha256": "715d232d673effd827228e0a0046ad808cad160cdcd1204632be788ee0dde0f1",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -2036,6 +2036,7 @@
               "core/product_physics/src/validation.rs",
               "core/product_physics/src/w1_domain_stage1_tests.rs",
               "core/product_physics/src/w1_source_census_tests.rs",
+              "core/product_physics/src/w1_successor_census_tests.rs",
               "core/reporting/audit_manifest/src/lib.rs",
               "core/reporting/pdf_emitter/src/lib.rs",
               "core/reporting/protected_content_linter/src/bin/protected_content_lint_cli.rs",
@@ -2048,6 +2049,7 @@
               "core/reporting/result_export/src/arc_evidence.rs",
               "core/reporting/result_export/src/arc_marker_tests.rs",
               "core/reporting/result_export/src/connector_evidence.rs",
+              "core/reporting/result_export/src/declared_member_load.rs",
               "core/reporting/result_export/src/derivative.rs",
               "core/reporting/result_export/src/lib.rs",
               "core/reporting/result_export/src/load_reference.rs",
@@ -2102,8 +2104,13 @@
               "core/solver/frame_kernel/src/structural/certified_recovery.rs",
               "core/solver/frame_kernel/src/structural/certified_recovery_tests.rs",
               "core/solver/frame_kernel/src/structural/exact_boundary.rs",
+              "core/solver/frame_kernel/src/structural/exact_boundary/exact_operation_count.rs",
               "core/solver/frame_kernel/src/structural/exact_boundary/functionals.rs",
+              "core/solver/frame_kernel/src/structural/exact_boundary/functionals/block_order_tests.rs",
+              "core/solver/frame_kernel/src/structural/exact_boundary/functionals/congruence_tests.rs",
               "core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs",
+              "core/solver/frame_kernel/src/structural/exact_boundary/metered_tests.rs",
+              "core/solver/frame_kernel/src/structural/exact_boundary/metered_tests/explicit.rs",
               "core/solver/frame_kernel/src/structural/exact_boundary/s11k_tests.rs",
               "core/solver/frame_kernel/src/structural/formation_check.rs",
               "core/solver/frame_kernel/src/structural/formation_check_tests.rs",
@@ -2113,6 +2120,7 @@
               "core/solver/frame_kernel/src/structural/retained/assemble.rs",
               "core/solver/frame_kernel/src/structural/retained/bound.rs",
               "core/solver/frame_kernel/src/structural/retained/combine.rs",
+              "core/solver/frame_kernel/src/structural/retained/declared.rs",
               "core/solver/frame_kernel/src/structural/retained/directed.rs",
               "core/solver/frame_kernel/src/structural/retained/directed/certificate.rs",
               "core/solver/frame_kernel/src/structural/retained/factor.rs",
@@ -2122,6 +2130,7 @@
               "core/solver/frame_kernel/src/structural/retained/product_certificate.rs",
               "core/solver/frame_kernel/src/structural/retained/product_certificate/bridge.rs",
               "core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs",
+              "core/solver/frame_kernel/src/structural/retained/product_certificate/loaded_maximum.rs",
               "core/solver/frame_kernel/src/structural/retained/product_certificate/source_residual.rs",
               "core/solver/frame_kernel/src/structural/retained/recover.rs",
               "core/solver/frame_kernel/src/structural/retained/seeded.rs",
@@ -2215,11 +2224,26 @@
           }
         ]
       },
-      "core/reporting/result_export/tests/retained_precision_contract.rs": {
-        "sha256": "7c48f032515015fe5c18c1ae16961c81db497958fea48c8098bba7b7c9c34571",
+      "core/reporting/result_export/tests/declared_member_load_workspace.rs": {
+        "sha256": "53391d31e5cbda3c631cae58dc93a9dcfe31213c78ed20b0c2b30805a099ee8b",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
+        "inputs": [],
+        "external_reads": {
+          "kind": "audited-external-inputs",
+          "reason": "Two ignored tests read w1_member_load_{mode}.json and w1_member_exhaustion_{mode}.json from the directory named by W1_MEMBER_READER_INPUT_DIR, written by the maintained product writers; no repository file is read."
+        }
+      },
+      "core/reporting/result_export/tests/retained_precision_contract.rs": {
+        "sha256": "9db5753b94c1ebe7fc2649f61b11cf6637664f292299954cd0e5d332b81762df",
+        "source_trees": [
+          "core/reporting/result_export/Cargo.toml"
+        ],
+        "external_reads": {
+          "kind": "audited-external-inputs",
+          "reason": "When B3B_EXACT_BASE is set, the B3b shapes are also read from the {source, invocation} file it names; repository inputs are declared below."
+        },
         "inputs": [
           {
             "anchor": "../../../../fixtures/results/retained_precision_exact_successor_derivative_sparse_interactive.json",
@@ -2371,7 +2395,7 @@
         ]
       },
       "core/reporting/result_export/tests/retained_precision_derivative_golden.rs": {
-        "sha256": "790e6aeab28976574c7b53230319ea4d83b42370abe451908660b3ea2dca8997",
+        "sha256": "a4685b54695d1c044bfe3b78f2dc5f9fd3de6df58e85aad272b1b83d9dbee455",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -2765,7 +2789,7 @@
         ]
       },
       "core/runner/headless/src/load_reference_route_tests.rs": {
-        "sha256": "7fdae427bd4c11d650a60f065f5564f2e30ddb6287b3f93fb7aa3682f1a4a040",
+        "sha256": "2582bbd7900ffa2604a8f4e57c7528f3bcc91b027c9b0cf953f6fd09f334f314",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
@@ -2871,7 +2895,7 @@
         ]
       },
       "core/runner/headless/tests/load_reference_cli.rs": {
-        "sha256": "4ade273d082a01db01b5e4f1dd378d97532ea680f7bc5be1a50ab8e713d0661b",
+        "sha256": "d92be6b205364f53cb0ecb2ee7abb52e04cc0b5448d1181f5bb1e213e73be612",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
@@ -3178,7 +3202,7 @@
         }
       },
       "core/solver/nonlinear_integration/src/s11k_tests.rs": {
-        "sha256": "f3a76c30d0eb519393c1dc0cf6ea27c3d4eb6fa97bcb76147369782a2e6a324b",
+        "sha256": "039ef6897857c7b1dfb9e0274341fc407084cdc14e31974a0d14ff8e143e6455",
         "source_trees": [
           "core/loads/self_weight_wasm/Cargo.toml",
           "core/model_operations/operation_applier/Cargo.toml",
@@ -3260,7 +3284,8 @@
               "core/product_physics/src/u4a_tests.rs",
               "core/product_physics/src/validation.rs",
               "core/product_physics/src/w1_domain_stage1_tests.rs",
-              "core/product_physics/src/w1_source_census_tests.rs"
+              "core/product_physics/src/w1_source_census_tests.rs",
+              "core/product_physics/src/w1_successor_census_tests.rs"
             ],
             "scan": {
               "suffix": ".rs"
@@ -3309,6 +3334,25 @@
               "suffix": ".rs"
             },
             "audit": "non_test_modules recursively enumerates and reads every .rs file under its exact src boundary before checking module reachability; no test or production file is omitted."
+          },
+          {
+            "anchor": "../..",
+            "base": "manifest",
+            "files": [
+              "core/product_physics/src/certified_loads.rs",
+              "core/product_physics/src/lib.rs",
+              "core/product_physics/tests/common/b1_sq_inputs.rs",
+              "core/product_physics/tests/common/w1_member_load_inputs.rs",
+              "core/reporting/result_export/tests/support/retained_precision_corpus.rs",
+              "core/solver/straight_pipe/src/lib.rs"
+            ]
+          },
+          {
+            "anchor": "",
+            "base": "project",
+            "files": [
+              "validation/benchmarks/numerical_robustness/src/exact.rs"
+            ]
           }
         ]
       },
@@ -3395,7 +3439,8 @@
               "core/product_physics/src/u4a_tests.rs",
               "core/product_physics/src/validation.rs",
               "core/product_physics/src/w1_domain_stage1_tests.rs",
-              "core/product_physics/src/w1_source_census_tests.rs"
+              "core/product_physics/src/w1_source_census_tests.rs",
+              "core/product_physics/src/w1_successor_census_tests.rs"
             ],
             "scan": {
               "suffix": ".rs"
@@ -3822,7 +3867,7 @@
         ]
       },
       "core/product_physics/src/w1_source_census_tests.rs": {
-        "sha256": "7ad6d3cfacfc4454ee275b9987efd60608ac54fd2880b716c2c3bbdf82f05f8b",
+        "sha256": "dd71c7035506e845b9613e116264c93d3c392f20b631d9f2b1d200e1617b7bf1",
         "source_trees": [
           "core/loads/self_weight_wasm/Cargo.toml",
           "core/model_operations/operation_applier/Cargo.toml",
