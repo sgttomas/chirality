@@ -43,6 +43,7 @@ fn receive_views(home: &HomeSession) -> (Value, Vec<Value>) {
             view[target] = json!(snapshot[source].as_array().into_iter().flatten()
                 .filter(|row|row["generation"]==generation).collect::<Vec<_>>());
         }
+        view["roleLimitObservations"]=home.history.lock().unwrap().child_limit_observations();
         view["custodyEvents"] = json!(snapshot["sourceCustodyEvents"].as_array().into_iter().flatten()
             .filter(|owned|owned["generation"]==generation).map(|owned|&owned["event"]).collect::<Vec<_>>());
         // Do not fill a closed source's mode from a later source/selection.
@@ -58,14 +59,10 @@ fn receive_views(home: &HomeSession) -> (Value, Vec<Value>) {
 /// observations of its open runs. Lock order as `host_status`: runtime, then
 /// Root, then a run.
 pub(crate) fn tick_home(home: &HomeSession, workflows: &Mutex<WorkflowRootSession>) {
-    // Reconcile only this home's retained private receipts. A genuinely late
-    // role outcome is recorded even when no web view polls this home. Release
-    // History before runtime/Root/run locks: host_status takes runtime then
-    // History, so retaining this guard across receive_view would invert order.
-    {
-        let mut history = home.history.lock().unwrap();
-        history.reconcile(&home.host);
-    }
+    // Reconcile this home's private receipts and deliver accepted manual pages
+    // once, including a genuinely late reply without web-view polling. The
+    // shared helper initializes Runtime and follows runtime -> History order.
+    home.reconcile_manual_history();
     let (_, recording) = receive_views(home);
     for view in recording { record_run_observations(workflows, &view); }
 }
@@ -150,6 +147,7 @@ pub(crate) fn trial_tick(homes: &Mutex<HomeRouter>, workflows: &Mutex<WorkflowRo
         // OA window gaps do not change CV recovery custody or the live native
         // projection. Read at most one queued target on this existing worker.
         home.host.observer_rebuild_reads(crate::hosting::recovery_reads::RECOVERY_READ_WAIT);
+        home.host.continuation_context_reads(crate::hosting::recovery_reads::RECOVERY_READ_WAIT);
         trial_tick_home(&home, workflows);
         delegation_tick_home(&home);
     }

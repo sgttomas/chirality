@@ -31,6 +31,7 @@ mod connector_source_fs;
 pub mod decision_view;
 mod file_act_root;
 mod file_act_view;
+mod file_act_lapse;
 pub mod external_observation;
 pub mod external_trace;
 pub mod trace_receiving;
@@ -63,6 +64,8 @@ pub mod records_retention;
 pub mod recovery;
 mod recovery_root_view;
 pub mod role_supply;
+pub mod child_roles;
+mod native_child_guidance;
 mod instruction_store;
 pub(crate) mod run_offers;
 pub(crate) mod run_restart;
@@ -100,6 +103,7 @@ pub struct AppState {
     act: Arc<Mutex<Option<ActControl>>>,
     workflows: Mutex<runtime_session::WorkflowRootSession>,
     file_acts: Mutex<file_act_root::FileActRoot>,
+    file_act_lapses: Mutex<file_act_lapse::Observer>,
     decision_writer_status: Mutex<Value>,
     person_name: Mutex<Option<String>>,
     instructions_root: Mutex<Result<PathBuf, String>>,
@@ -216,11 +220,15 @@ fn host_status(state: State<'_, AppState>) -> Value {
     let root = state.instructions_root.lock().unwrap().clone();
     s["nativeHistory"] = history.snapshot(root.as_deref().ok());
     s["roleSupply"]["originalStartReceipts"] = s["nativeHistory"]["startReceipts"].clone();
+    s["roleSupply"]["childAssociations"]=s["nativeHistory"]["childAssociations"].clone();
+    s["roleSupply"]["roleLimitObservations"]=s["nativeHistory"]["roleLimitObservations"].clone();
     for thread in s["threads"].as_array_mut().into_iter().flatten() {
         if let (Some(home), Some(id)) = (thread["generation"]["home"].as_str(), thread["threadId"].as_str()) {
             let role = history.role_details(home, id, root.as_deref().ok());
             thread["appRole"] = role["appRole"].clone();
             thread["roleRelation"] = role["roleRelation"].clone();
+            thread["childGuidance"] = role["childGuidance"].clone();
+            thread["roleLimitObservations"] = role["roleLimitObservations"].clone();
             thread["futureGuidanceNotices"] = role["futureGuidanceNotices"].clone();
         }
     }
@@ -887,7 +895,7 @@ fn start_conversation_inner(app:&tauri::AppHandle,state:&AppState,model:String,m
                 .map_err(|error| format!("Production instruction resource directory unavailable: {error}"))
         })
     })();
-    let (composition, package_correspondence) = match prepared {
+    let (mut composition, package_correspondence) = match prepared {
         Ok(prepared) => prepared,
         Err(reason) => {
             *home.role_supply_status.lock().unwrap() = refused_role_entry(role, &reason);
@@ -896,7 +904,16 @@ fn start_conversation_inner(app:&tauri::AppHandle,state:&AppState,model:String,m
     };
     composition.verify()?;
     let generation = home.host.snapshot()["generation"].clone();
-    let provider_admission=home.host.provider_admission_read(&generation,&cwd,&entry_id,&model_provider,&model)?;
+    let mut provider_admission=home.host.provider_admission_read(&generation,&cwd,&entry_id,&model_provider,&model)?;
+    if let Ok(set)=&*state.home_bootstrap.lock().unwrap(){
+        if let Ok(Some(link))=set.child_role_config_link(home.class(),home.host_config.as_ref().map_err(Clone::clone)?){home.host.role_config_link(&mut provider_admission,link);}
+    }
+    let instruction_root=state.instructions_root.lock().unwrap().clone()?;
+    let data_root=state.app_user_data_root.lock().unwrap().clone();
+    match data_root {
+        Ok(data)=>home.host.prepare_role_children(&mut provider_admission,&mut composition,&instruction_root,&data)?,
+        Err(_)=>{crate::child_roles::prepare(&mut composition,Err("App data unavailable".into()),&instruction_root,std::path::Path::new("/unavailable"));},
+    }
     let mut native_relationship = continued_source.map(|origin| (native_conversation_links::freeze_source(state.workspace.as_deref(), &home), origin));
     let attempt_id = util::opaque_id("conversation:")?;
     let frozen_project = state.project_context.clone();
@@ -909,13 +926,13 @@ fn start_conversation_inner(app:&tauri::AppHandle,state:&AppState,model:String,m
     let supply_ref = {
         let mut slot = home.access_selection.lock().unwrap();
         let supply_ref = runtime_session::claim_start(&mut slot, selection, || Ok(supply_ref.to_owned()))?;
-        *home.role_supply_status.lock().unwrap() = json!({"state":"starting","attemptId":attempt_id,"supplyRef":supply_ref,"selection":role,"roleSet":composition.role_set_identity(),"packageCorrespondence":package_correspondence,"generation":generation,"carried":composition.carried,"adoption":"unknown","nativeChildRoles":composition.child_status(None,false),"continuedFrom":continued_from});
+        *home.role_supply_status.lock().unwrap() = json!({"state":"starting","attemptId":attempt_id,"supplyRef":supply_ref,"selection":role,"roleSet":composition.role_set_identity(),"packageCorrespondence":package_correspondence,"generation":generation,"carried":composition.carried,"adoption":"unknown","nativeChildRoles":composition.carried["nativeChildRoles"],"childNamespaceObservation":composition.child_reading,"continuedFrom":continued_from});
         supply_ref
     };
     // Freeze the verified original composition before native dispatch. Actual
     // Host receipt IDs, exact sent bytes and correlated results bind its role.
     *dispatch_invoked=true;
-    let dispatch = home.host.thread_start_with_access_dispatch(&provider_admission, &composition.text);
+    let dispatch = home.host.thread_start_with_role_dispatch(&provider_admission, &composition);
     // All post-claim failures flow through finalization; ? cannot strand Starting.
     let result = (|| -> Result<Value, String> { match dispatch {
         Ok(receipt) => {
@@ -952,7 +969,7 @@ fn start_conversation_inner(app:&tauri::AppHandle,state:&AppState,model:String,m
         };
         let mut status = home.role_supply_status.lock().unwrap();
         if status["attemptId"] == attempt_id && status["generation"] == generation {
-            *status = json!({"state":if result.is_ok(){"response-observed"}else{"start-failed-or-unknown"},"attemptId":attempt_id,"supplyRef":supply_ref,"selection":role,"roleSet":composition.role_set_identity(),"packageCorrespondence":package_correspondence,"generation":generation,"carried":composition.carried,"adoption":"unknown","nativeChildRoles":composition.child_status(None,false),"continuedFrom":continued_from});
+            *status = json!({"state":if result.is_ok(){"response-observed"}else{"start-failed-or-unknown"},"attemptId":attempt_id,"supplyRef":supply_ref,"selection":role,"roleSet":composition.role_set_identity(),"packageCorrespondence":package_correspondence,"generation":generation,"carried":composition.carried,"adoption":"unknown","nativeChildRoles":composition.carried["nativeChildRoles"],"childNamespaceObservation":composition.child_reading,"continuedFrom":continued_from});
         }
         if !record_status.is_null(){status["roleSupplyRecord"]=record_status.clone();}
         result
@@ -985,21 +1002,15 @@ fn history_action(
         history.prepare(&home.host.snapshot(), &generation, selection_epoch, &action, cursor.as_deref(), match direction.as_str() { "asc" => native_history::Direction::Asc, "desc" => native_history::Direction::Desc, _ => return Err("Invalid history paging direction".into()) }, reference.as_deref())?
     };
     let receipt = home.host.history_dispatch(&query)?;
-    home.history.lock().unwrap().dispatched(receipt.clone());
+    home.history.lock().unwrap().dispatched_manual(receipt.clone());
     let waited = home.host.history_wait(&receipt, std::time::Duration::from_secs(20));
-    // The page also feeds the readable native view (DEL-01-03 REQ-001: plan and
-    // other items are recovered from Codex history). Runtime before history lock,
-    // matching host_status's order.
-    if let Ok(evidence) = &waited {
-        if let Some(result) = evidence["response"].get("result") {
-            home.runtime.lock().unwrap().receive_history(query.generation(), query.home(), query.method(), query.params(), result);
-        }
-    }
-    let mut history = home.history.lock().unwrap();
-    history.reconcile(&home.host);
+    // Only the original accepted manual page can enter native activity. The
+    // shared receiver also delivers pages accepted by an earlier host tick.
+    home.reconcile_manual_history();
     waited?;
     let root = state.instructions_root.lock().unwrap().clone();
-    Ok(history.snapshot(root.as_deref().ok()))
+    let snapshot = home.history.lock().unwrap().snapshot(root.as_deref().ok());
+    Ok(snapshot)
 }
 #[tauri::command]
 fn history_select(state: State<'_, AppState>, generation: Value, selection_epoch: u64, thread_id: String) -> Result<Value, String> {
@@ -1009,6 +1020,15 @@ fn history_select(state: State<'_, AppState>, generation: Value, selection_epoch
     history.select(&home.host.snapshot(), &generation, selection_epoch, &thread_id)?;
     let root = state.instructions_root.lock().unwrap().clone();
     Ok(history.snapshot(root.as_deref().ok()))
+}
+/// Read-only prior-work controls for an already privately admitted Continue.
+/// Queueing never resumes a conversation or waits on native history IO.
+#[tauri::command]
+fn continuation_context_action(state: State<'_, AppState>, generation: Value, thread_id: String,
+    resume_request_ref: String, revision: u64, action: String, cursor: Option<String>, direction: String, turn_id: Option<String>) -> Result<Value, String> {
+    let home = state.homes.lock().unwrap().for_generation(&generation)?;
+    let direction = match direction.as_str() { "asc" => native_history::Direction::Asc, "desc" => native_history::Direction::Desc, _ => return Err("Invalid context paging direction".into()) };
+    home.host.continuation_context_action(&generation, &thread_id, &resume_request_ref, revision, &action, cursor.as_deref(), direction, turn_id.as_deref())
 }
 
 #[tauri::command(async)]
@@ -1844,8 +1864,22 @@ fn file_act_read(state:State<'_,AppState>)->Result<Value,String>{
     let root=state.workspace.as_ref().ok_or("No App workspace")?;
     let mut view=file_act_view::read(root);
     view["hotOffers"]=state.file_acts.try_lock().map_err(|_|"File offer state busy")?.snapshot();
+    view["lapseObservation"]=state.file_act_lapses.try_lock().map_err(|_|"File lapse observer busy")?.snapshot();
     Ok(view)
 }
+fn file_act_lapse_result(state:&AppState,retry:bool)->Result<Value,String>{
+    let root=state.workspace.as_ref().ok_or("No App workspace")?;
+    let observation={let mut owner=state.file_act_lapses.try_lock().map_err(|_|"File lapse observer busy")?;
+        if retry{owner.retry(root)}else{owner.observe(root)}};
+    let mut view=file_act_view::read(root);
+    view["hotOffers"]=state.file_acts.try_lock().map_err(|_|"File offer state busy")?.snapshot();
+    view["lapseObservation"]=observation;
+    Ok(view)
+}
+#[tauri::command(async)]
+fn file_act_observe_lapses(state:State<'_,AppState>)->Result<Value,String>{file_act_lapse_result(&state,false)}
+#[tauri::command(async)]
+fn file_act_retry_lapses(state:State<'_,AppState>)->Result<Value,String>{file_act_lapse_result(&state,true)}
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -1895,6 +1929,7 @@ pub fn run() {
         act: Arc::new(Mutex::new(workspace.as_ref().map(|w| ActControl::new(w)))),
         workflows: Mutex::new(runtime_session::WorkflowRootSession::default()),
         file_acts: Mutex::new(file_act_root::FileActRoot::default()),
+        file_act_lapses: Mutex::new(file_act_lapse::Observer::default()),
         decision_writer_status: Mutex::new(json!({"state":"not-run","responsibility":"decision record writer continuation"})),
         workspace: workspace.clone(),
         person_name: Mutex::new(None),
@@ -2074,7 +2109,7 @@ pub fn run() {
         // DEF-1: closing or reloading a window is not a stop (HOSTING §4.5); no window
         // event touches the child.
         .invoke_handler(tauri::generate_handler![
-            file_act_select, file_act_confirm, file_act_continue, file_act_dismiss, file_act_read,
+            file_act_select, file_act_confirm, file_act_continue, file_act_dismiss, file_act_read, file_act_observe_lapses, file_act_retry_lapses,
             read_recovery_custody,
             recovery_retry,
             read_connector_routes,
@@ -2103,6 +2138,7 @@ pub fn run() {
             thread_start,
             role_supply_history,
             history_action,
+            continuation_context_action,
             history_select,
             conversation_send_text,
             collaboration_modes_read,
@@ -2157,7 +2193,7 @@ mod workflow_root_context_tests {
         let control=Arc::new(Mutex::new(Some(ActControl::new(&root))));
         let mut workflows=runtime_session::WorkflowRootSession::default();workflows.open_library(root.clone(),"project",Some(&root),control.clone()).unwrap();
         let library=workflows.active_library().unwrap();
-        let state=AppState{compiled_development_selection:json!({"standing":"test-fixture-not-observed"}),connector_drafts:Mutex::new(connector_materialization::Registry::default()),connector_sources:Mutex::new(connector_source::Session::default()),workspace:Some(root.clone()),act:control,file_acts:Mutex::new(file_act_root::FileActRoot::default()),workflows:Mutex::new(workflows),decision_writer_status:Mutex::new(Value::Null),person_name:Mutex::new(None),instructions_root:Mutex::new(Err("unavailable".into())),app_user_data_root:Mutex::new(Err("unavailable".into())),external_observation:Mutex::new(Default::default()),trace_selection:Mutex::new(Default::default()),attachment_selection:Mutex::new(runtime_session::AttachmentSelectionSession::new(Some(root.clone()))),role_log:role_observations::RoleLog::open(&root).map(Arc::new),native_links:Mutex::new(native_conversation_links::Session::default()),project_context:recovery::ExplicitAppProjectContext::unknown(),project_context_limit:Some("unknown".into()),homes:Mutex::new(runtime_session::HomeRouter::new(home.clone()).unwrap()),home_bootstrap:Mutex::new(Err("descriptor unavailable; no inferred home".into())),native_namespaces:Mutex::new(Err("unavailable".into())),key_namespace_admission:Mutex::new(Value::Null),key_setup:Mutex::new(()),root_home_inputs:Value::Null,codex_stop_gate:Mutex::new(()),codex_stops:Mutex::new(Vec::new()),continue_as:Mutex::new(Default::default()),app_quit:Default::default()};
+        let state=AppState{compiled_development_selection:json!({"standing":"test-fixture-not-observed"}),connector_drafts:Mutex::new(connector_materialization::Registry::default()),connector_sources:Mutex::new(connector_source::Session::default()),workspace:Some(root.clone()),act:control,file_acts:Mutex::new(file_act_root::FileActRoot::default()),file_act_lapses:Mutex::new(file_act_lapse::Observer::default()),workflows:Mutex::new(workflows),decision_writer_status:Mutex::new(Value::Null),person_name:Mutex::new(None),instructions_root:Mutex::new(Err("unavailable".into())),app_user_data_root:Mutex::new(Err("unavailable".into())),external_observation:Mutex::new(Default::default()),trace_selection:Mutex::new(Default::default()),attachment_selection:Mutex::new(runtime_session::AttachmentSelectionSession::new(Some(root.clone()))),role_log:role_observations::RoleLog::open(&root).map(Arc::new),native_links:Mutex::new(native_conversation_links::Session::default()),project_context:recovery::ExplicitAppProjectContext::unknown(),project_context_limit:Some("unknown".into()),homes:Mutex::new(runtime_session::HomeRouter::new(home.clone()).unwrap()),home_bootstrap:Mutex::new(Err("descriptor unavailable; no inferred home".into())),native_namespaces:Mutex::new(Err("unavailable".into())),key_namespace_admission:Mutex::new(Value::Null),key_setup:Mutex::new(()),root_home_inputs:Value::Null,codex_stop_gate:Mutex::new(()),codex_stops:Mutex::new(Vec::new()),continue_as:Mutex::new(Default::default()),app_quit:Default::default()};
         let (_,context)=current_actor_context_for(&state,&home);
         let package=root.join(workflow_workspace::development_catalog::NAME);std::fs::create_dir(&package).unwrap();
         let catalog=workflow_workspace::development_catalog::DevelopmentCatalog::load().unwrap();for(name,bytes)in catalog.select_embedded().snapshot().files(){std::fs::write(package.join(name),bytes).unwrap();}
@@ -2197,6 +2233,8 @@ mod workflow_root_context_tests {
 
 #[cfg(all(test,unix))]
 mod file_act_consumer_tests;
+#[cfg(test)]
+mod file_act_lapse_tests;
 
 #[cfg(test)]
 #[path = "../../tests/group_b_fixture_consumer.rs"]

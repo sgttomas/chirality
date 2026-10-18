@@ -70,11 +70,13 @@ implemented behavior and qualification limits.
    discloses expected model contact at thread start, before a turn; it does not
    represent that notice as measured socket traffic. Reviewed v4 guidance seeds
    an editable App instruction copy without overwriting edits; new conversations
-   read current bytes. Native child roles remain not supplied by the App. The
-   opt-in [supplier child-carrier check](supplier_checks/child_roles.py) and its
+   read current bytes. The Rust host prepares additive native child roles
+   from that frozen guidance, withholding colliding or unsupported names and
+   rechecking configuration/source currentness before dispatch. The opt-in
+   [supplier child-carrier check](supplier_checks/child_roles.py) and its
    [receiving account](../execution/PKG-02/DEL-02-04/Design/CHILD_ROLE_CARRIER_0.160.0.md)
-   observe per-thread TASK configuration and exact child guidance in scripted
-   stock-supplier execution; the App configuration/publication join remains open.
+   distinguish production preparation and scripted stock-supplier carriage
+   from the App's private-receipt/live-association checks and qualification.
 3. The recorder validates package files, records source-faithful requests and
    separately states when the requester identity is unestablished.
 4. The host freezes the chosen alternative and all its consequences before
@@ -122,6 +124,27 @@ implemented behavior and qualification limits.
     Continue uses the latest validated native response and current generation.
     Original role guidance is retained in memory for threads started here; missing
     original guidance is shown as Unknown, independent of native role hints.
+    Received turn summaries show native status, item coverage and message previews;
+    the selected item page reads messages, reasoning summaries, plans, substantive
+    tool results and delegation through the shared native item renderer. Each
+    page identifies its source home, conversation/turn and direction and retains
+    its complete native JSON and exact query evidence. Pending, failed or foreign
+    stream resolutions withhold readable old rows and paging rather than assign
+    them to the new request. Only the selected received page is rendered; this
+    does not automatically read all history or keep a transcript copy. Statuses
+    are observations at the read, recovered plans have no live revision number,
+    and earlier checklist updates remain unrecoverable. Stored item rows have no
+    live item anchors, request links, workflow offers or act controls.
+
+    After an admitted **Continue selected conversation**, the opened conversation
+    shows a separate prior-work context. The host queues the latest native turn
+    page, then the newest received turn's item page. Each initial read is bounded
+    (20 turns, 50 items); cursors are never drained automatically. Older turns
+    and item pages remain explicit reads. Loading, empty, partial and unavailable
+    states do not undo the admitted conversation or resend a message. This
+    memory-only context belongs to the actual resume receipt and source, so a
+    different stored-history selection cannot retarget it. It supplies no live
+    execution, request, role or act authority.
 
 12. Native text-file selections retain private handles and an ordered immutable
     source list. Explicit attachment-bearing send or steering uses that whole
@@ -134,6 +157,13 @@ implemented behavior and qualification limits.
     their order. The notice is marked sent only once that frame's write was
     attempted; a send refused or failed before then leaves it pending. An
     attachment steer is not a new turn and does not carry it.
+    The Host's private positive attachment acknowledgment also saves the notice's
+    exact original turn/client boundary in pointer-only REC metadata. With the
+    original records and native history available after an App restart,
+    **Bring a real run back** and **Compare** can read the closed run without a
+    manual supply check; the carrier and later turns are excluded. A failed
+    metadata save preserves the send and offers metadata-only retry while the
+    original observation is held in this App process.
 13. Explicit App project association comes from configured `CHIRALITY_WORKSPACE`,
     separately from native thread cwd, Codex home and workflow run. Unknown context
     produces no canonical project row. Historical project P remains intact when
@@ -148,6 +178,15 @@ implemented behavior and qualification limits.
     while a durable capture with a failed record remains retryable without
     recapture. File-act reading is separate from decision packages and preserves
     actor/recorder, cold-origin, current-content and professional-statement limits.
+    **Observe file-act content changes and save history** records lapse
+    observations for existing standing A4/A6/A7 file acts in the project's act
+    log. Reading alone stays read-only. Recorded intervals, current comparison
+    and unresolved source claims are shown separately. Each source log keeps
+    its own sequence, including arrival history for a standing act later used
+    in a run; order between logs is unknown. A return to the original bytes
+    renews no act. Failed saves keep the original observation in this App
+    session for **Retry saving held metadata only**, which writes metadata
+    without capturing another act or replacing the observed content/time.
     Request/output/workflow links open the standing facility only through a person;
     they do not invent an arrival reference or settle a supplier request.
 16. Workflow selection, owner-held review, hot A15 capture and immutable library
@@ -418,6 +457,10 @@ implemented behavior and qualification limits.
     not read; the events are kept in this App process, and
     the ledger keeps the conversation's recovery states. Not witnessed
     natively.
+
+    These custody reads remain metadata/turn-summary reads. Item 11's separate
+    prior-work context follows explicit Continue and changes no CV recovery
+    transition, observer rebuild or ledger retention rule.
 23. **Run panel** (NIR §9 PD-1…PD-7, AS §4, §8, §9). The selected workflow and
     each run show the declared part readably, as the host read it from the
     revision's own bytes: inputs, tools, checkpoints, outputs, returned
@@ -622,12 +665,49 @@ implemented behavior and qualification limits.
     changes the source conversation's role or record. Handoffs are kept in App
     process memory.
 
+    Native child roles follow the parent matrix: HELP_HUMAN offers
+    HELPS_HUMANS, WORKING_ITEMS and TASK; HELPS_HUMANS and WORKING_ITEMS offer
+    TASK; a conversation with No role offers no child roles. Each
+    content-bound App TOML file carries the complete common + child-role
+    `developer_instructions`. Only
+    `agents.<ROLE>.description/config_file` is added at `thread/start`;
+    person-defined names, features, depth and permissions stay unchanged.
+    Conservative name exclusion reads enabled supported declarations,
+    referenced TOML content names and recursive native `agents/` sources.
+    Unknown, unsupported, malformed, unreadable or changed context visibly
+    withholds children. The path requires the acting supplier's recorded
+    0.160.0 pin and identified stock `bin/codex` hash; a compatible response
+    from another or unknown executable grants no child supply. Supported empty
+    System context recognizes the standard macOS `/etc` alias; a config leaf
+    link requires the App's owned descriptor and checked link/target
+    identities. Native role roots stay at the reported home/project, never the link target's siblings. The reading establishes
+    observed currentness, with no lock on later external edits.
+
+    A live completed native started-child event can establish App child supply
+    only with the same original generation/scope's private matched parent
+    start receipt and correctly correlated child/parent/role metadata.
+    `agentRole` alone, self/ancestor/fork/foreign references and older resumed
+    or restarted parents grant no fresh association. An observed child's
+    original guidance/limits stay fixed in memory for its same home/thread
+    lifetime, including warm resume or Codex restart. Later native action may
+    be compared with that original TASK statement. Across generations, live
+    or quoted accounts separate original supply/association from the action
+    generation and label the comparison as historical. This
+    grants no new child association, renewed supplier uptake, role binding,
+    CCE or current-source authority; current-run role attribution retains its
+    own original-scope gates. Untyped or unmatched children retain unknown
+    guidance. Observed TASK delegation is recorded and shown.
+    Its default prohibition is **stated, not enforced**; an edited or
+    unrecognized TASK copy keeps limits unknown. Native tools are not denied.
+
     The Rust host records each App start/fork attempt's actual supply
     observations in the project's explicit records store (ROLE §6.1a),
     retaining content-identified copies of the exact App-owned guidance
-    bytes. **Read quoted role-supply history** inspects those bytes and
-    recorded outcomes without a native request. Cold history is unsigned,
-    unverified file evidence; it leaves the current conversation's role
+    bytes. New v0.3 observations also retain exact child compositions, source
+    parts, TOML envelopes and historical limits; exact v0.1/v0.2 readers keep
+    mixed history intact. **Read quoted role-supply history** inspects those
+    bytes and recorded outcomes without a native request. Cold history is
+    unsigned, unverified file evidence; it leaves the current conversation's role
     unknown and restores no role binding or CCE owner.
 
     A run opened with a confirmed original role supply records a role-guidance
@@ -731,6 +811,7 @@ implemented behavior and qualification limits.
 | `native_requests.rs`, `recovery.rs`, `native_items.rs`, `access.rs` | Typed native request custody, pointer ledger, scoped live/ended activity and reported account/destination observations |
 | `src-tauri/src/recovery_store.rs`, `recovery_store_tests.rs` | The pointer ledger's SQLite store (DEL-01-02 §7): append-only triggers, one transaction per batch, synced commits, the held current entries' indexed query, the once-only JSON Lines import; tests include the flat cost from 1,000 to 100,000 rows |
 | `role_supply.rs`, `runtime_session.rs`, `resources/instructions/` | Reviewed v4 defaults, fixed composition bytes, seeding and generation-bound receiving/startup; supplier/model adoption remains a separate warrant |
+| `child_roles.rs`, `access_provider.rs`, `hosting_child_roles.rs`, `native_child_guidance.rs` | Conservative native-name/currentness observation, immutable full child TOML publication, private guarded additive starts and original live child association; unknown origins and unmatched children stay qualified |
 | `catalog.rs`, `proposal.rs`, `external_adapter.rs`, `receiving.rs`, `external_observation.rs` | Reviewed receiving contracts and exact person-selected observation custody; no external host dispatch or origin verification implied |
 | `src-tauri/src/schema_validation.rs`, `schemas/` | W-1 plus complete package/offer/capture checks; declared-ID registry with external retrieval disabled; embedded resources checked by `schemas/sync.py` |
 | `src-tauri/src/records.rs` | Validated append, UUID identities, sequence/read completeness, serialization and ordered capture late-write accounting |
@@ -763,10 +844,13 @@ implemented behavior and qualification limits.
 | `src-tauri/src/workflow_trials.rs`, `workflow_package_copy.rs`, `workflow_workspace.rs` (`compose_run_text`, `TrialText`, `files_folder`) | DEL-02-02 trial core (WR §17 steps 1–4): one composer for run texts and trial texts (TT-3), TX-7's files-line folder with content-addressed supply copies, TT-8 trial snapshots, and the create-once TT-4 trial links and observations |
 | `src-tauri/src/trial_flows.rs`, `workflow_trial_transcript.rs`, `src/TrialComposer.tsx` | DEL-02-02 trial flows (WR §17 steps 5–8): pre-filled delegated and clean trials sent only by the person, links on acknowledgment, TT-9 linking and fidelity reads, bring-back transcripts, Compare, TT-2's run refusal and offer silencing, the review's last clean trial line; the composers in the conversation view |
 | `src-tauri/src/historical_run_learning.rs`, `workflow_learning_pointers.rs`, `historical_trial_flows_tests.rs` | WR TT-10/11 historical Bring back and Compare: strict original WR/RS correspondence, pointer-only original native ACK coordinates in owned REC tags, separate current source and target homes, quoted activity and exact revision bytes without restored live run/supply/selection authority; unavailable source/history remains named |
+| `src-tauri/src/file_act_lapse.rs`, `file_act_view.rs`, `src/FileActPanel.tsx` | Explicit standing A4/A6/A7 file-content observations in existing RS act logs, original-source-bound metadata retry and separate current comparison/resolved history/limited claims |
 | `src-tauri/src/host_tick.rs` | The host's own ticks (OI-008): a record tick receives native frames and records checkpoint observations, and a separate trial tick makes due trial reads, whether or not the interface polls; each tick is guarded and a failure is shown in `host_status`, which only reads |
 | `src/RunPanel.tsx` | Run panel and selected-workflow view (NIR §9 PD-1…PD-7): readable declared part, checkpoints as guidance with their recorded listing and arrivals, the run-record write notice, output standing facets from the record only (AS §8), readable advisory compatibility |
 | `src-tauri/src/conversation_roles.rs`, `src/ConversationRoles.tsx` | Continue as ‹role› handoffs and same-role Fork through the Host (NIR §5.8, ROLE §3.3), the role limit account (ROLE §6.2), the readable start display, role header and guidance-changed flag (ROLE §4.4) |
 | `src/NativeActivity.tsx`, `src/PlanMode.tsx` | Readable per-thread native activity from the `native_items.rs` view (DEL-01-03 plans/tools/delegation with the DEL-01-04 message part) and the experimental plan-mode element |
+| `src/NativeHistory.tsx`, `src/App.tsx`, `tests/native-history.test.mjs` | Source-bound readable stored turn summaries and the selected item page, shared native item bodies with retained raw source, and accepted-query paging regressions; reading and explicit Continue remain separate |
+| `src-tauri/src/runtime_session.rs`, `host_tick.rs`, `hosting_manual_history_tests.rs` (`history_bridge` tests) | Person-directed history reaches native activity once through its original accepted query and current source; rejected pages leave the activity projection and counters unchanged, with raw receipts and limits retained |
 | `src-tauri/src/lib.rs`, `src/App.tsx` | Native command boundary and presentation; the webview cannot confirm a capture itself |
 
 ## Offline build and checks
@@ -792,6 +876,11 @@ export CHIRALITY_CODEX_EXPECTED_SHA256=112fae7a5a1223e673c8a1791d32338f37df8b527
 npm test
 (cd src-tauri && cargo test --offline --locked)
 ```
+
+The focused `node --test tests/file-act-panel.test.mjs` check runs offline Rust
+file-act fixtures with `CHIRALITY_SKIP_CODEX=1` and consumes their actual cold
+history and pending-save DTOs. `CHIRALITY_FILE_ACT_LAPSE_DTO_LOG` may point to
+stdout from a completed passing run of those fixtures to reuse that evidence.
 
 Use the complete published platform package, with its `bin/codex` entrypoint,
 helper binaries, resources and `codex-package.json` retained in their original
@@ -921,8 +1010,17 @@ Authenticated/live model work remains coordinated with the owner.
 For stored history, choose **Read stored conversations**, then select a received
 conversation. **Read metadata**, **Read turns**, **Read goal**, and per-turn item
 controls read disposable native pages; opaque page cursors belong to their
-received stream. **Continue selected conversation** separately requests native
-resume before permitting operational text input. It keeps the conversation’s
+received stream. Turn summaries distinguish `summary`, `notLoaded`, full and
+empty items. **Read items for this turn** displays that received page readably,
+with unchanged native item/page JSON in expandable details. Next/Previous use
+that accepted page's turn, cursor and direction. While a new read is pending or
+unavailable, retained raw evidence stays inspectable and prior readable rows and
+page buttons are withheld. Reading does not supply live status or reconstruct
+earlier checklist updates. **Continue selected conversation** separately requests native
+resume before permitting operational text input, requesting `excludeTurns:true`
+instead of deprecated full-history hydration. Its admitted conversation then
+loads the bounded prior-work context described in item 11. A failed context page
+has an explicit retry that reads history without another resume or send. It keeps the conversation’s
 existing guidance/settings and does not resend automatically. Original App role
 evidence is shown only when retained in this process; a cold restart shows
 Unknown. Reading child metadata does not supply a child role.
@@ -1130,7 +1228,7 @@ narrows R-1 but does not close it: anything that can read that file, including
 an agent under Codex's default read access, can seal. Trustworthy persistent
 cold replay remains unfinished under AAC §6.3 U-AAC-3 and I3-CUST, and SEAL-2 stays
 deferred. Current code refuses unverified replay while preserving evidence.
-Native authenticity, real process-kill/fsync failure witnesses, durable history rebuild (the recovery reads after a restart, item 22b, read metadata and turn summaries only), native witnesses of those reads and cold role-source reconciliation, child role supply, native A15/registered-library and file-act witnesses, and remaining policy/standing/control journeys remain in the Group A graph. Per-home configuration/resource linking is implemented with observed ownership limits. CommonMark parsing and one closed, explicitly development-candidate workflow catalog are supplied; the production native-page supply path and hot registration transaction are implemented, while their actual native consumer witnesses remain separate. General file/arrival entry surfaces and complete file-act lapse-history evidence also remain unfinished: lapses are recorded only for acts that answer an arrival of a live run. External dispatch and host qualification remain unsupplied. Native text-turn and interrupt controls use the selected native thread and
+Native authenticity, real process-kill/fsync failure witnesses, native witnesses of paged recovery and continued prior-work access (the custody reads in item 22b remain metadata/turn summaries; item 11 adds a separate bounded prior-work context), cold role-source reconciliation, native GUI child-role journeys, native A15/registered-library and file-act witnesses, and remaining policy/standing/control journeys remain in the Group A graph. Per-home configuration/resource linking is implemented with observed ownership limits. CommonMark parsing and one closed, explicitly development-candidate workflow catalog are supplied; the production native-page supply path and hot registration transaction are implemented, while their actual native consumer witnesses remain separate. General contextual file/arrival entry surfaces remain unfinished. Standing A4/A6/A7 App-file acts now have explicit durable lapse observations and separate current/history displays, while complete native file-act witnesses remain separate. External dispatch and host qualification remain unsupplied. Native text-turn and interrupt controls use the selected native thread and
 retain generation/terminal limits. Transport and receiving tests do not prove a
 provider prediction. A separately frozen controlled live backend greeting passed;
 its exact source pins and limits are recorded in the run. An approved no-supplier native window inspection establishes tool/window reachability only; corrected UI/storage, browser/device/auth/provider and capture journeys remain separate unfinished witnesses. Host joins stay deferred to their owning sessions.
@@ -1196,7 +1294,11 @@ and `role-supply/content/`. An actual workflow run records role-guidance R3 by
 reference to the original supply, limit account and run context. Pending or
 unavailable publication stays qualified; cold source reading quotes historical
 file evidence and restores no current role or CCE authority. Native child-role
-supply is still unimplemented. Delete or archive beside Fork waits on U-R13.
+preparation, guarded supply, live association and exact quoted child-source
+retention are implemented within item 24's observed-origin and generation
+limits. Supplier carriage evidence remains source-bound; native GUI journeys,
+provider/model adoption and qualification remain separate. Delete or archive
+beside Fork waits on U-R13.
 
 The ask-first App quit (item 22a) and the startup SR-08 write are
 implemented but not witnessed natively, as are the startup RQ-06 endings. The Restart Codex question
