@@ -255,9 +255,10 @@ impl RuntimeSession {
             "observerGap":observation["gap"],"priorNativeViews":self.prior_views,"nativeViewObservationEnded":self.closed,
             "observerRecovery":{"historyRebuilt":false,"historyPagesRead":self.history_pages,"recoveryPagesRead":self.recovery_pages,"historyRead":"after a Codex restart the host reads each conversation that lost observation (thread/read, then its latest turn summaries) and adds those pages to the native view as recovered-from-supplier rows; pages the person reads in stored history are added the same way; the full history is not rebuilt, and items are added only as their pages are read","standing":"App-observed receiving state plus Codex history pages read by the host's recovery reads or by the person"}})
     }
-    /// A person-requested native history page of this open generation, read into
-    /// the native view as `recovered-from-supplier` rows. Other generations,
-    /// closed views and methods the view does not read are left out.
+    /// Leaf projection for the host's separately validated recovery reads and
+    /// constructed view fixtures. Manual reads use the private accepted-page
+    /// delivery below. Other generations, closed views and unsupported methods
+    /// are left out; rows retain `recovered-from-supplier` standing.
     pub fn receive_history(&mut self, generation: &Value, home: &str, method: &str, params: &Value, result: &Value) {
         if !matches!(method, "thread/read" | "thread/turns/list" | "thread/items/list" | "thread/goal/get") {
             return;
@@ -279,6 +280,47 @@ impl RuntimeSession {
         if let Some(limit) = refused {
             if !self.limits.contains(&limit) {
                 self.limits.push(limit);
+            }
+        }
+    }
+    /// Consume only the original page accepted by the manual history owner.
+    /// `false` retains a delivery until actual native Ready has initialized the
+    /// receiving view. Refused or applied deliveries are consumed exactly once.
+    fn receive_accepted_manual_history(&mut self, host: &crate::hosting::Host, page: &AcceptedManualHistory) -> bool {
+        let query = page.dispatch.query();
+        let applied = (|| -> Result<Option<NativeView>, String> {
+            // Runtime's last observation can lag source closure. Recheck the
+            // original private Host receipt at delivery, not a cached snapshot.
+            let status = host.history_dispatch_status(&page.dispatch)?;
+            if status["sourceCurrent"] != true {
+                return Err("original manual history source is no longer current".into());
+            }
+            if status["writeResult"] != "written" || status["outcome"] != "response-observed-result"
+                || status["response"]["result"] != page.result {
+                return Err("original accepted manual history result is unavailable".into());
+            }
+            let Some(view) = self.view.as_ref() else { return Ok(None) };
+            if self.generation != *query.generation() || self.closed {
+                return Err("its generation is not the open receiving generation".into());
+            }
+            // Schema acceptance and view semantics are separate. Apply to a
+            // disposable copy so a later item refusal cannot leak earlier
+            // items, revisions, descendant joins or the next observed order.
+            let mut next = view.clone();
+            next.history(query.home(), query.method(), query.params(), &page.result)?;
+            Ok(Some(next))
+        })();
+        match applied {
+            Ok(Some(view)) => {
+                self.view = Some(view);
+                self.history_pages += 1;
+                true
+            }
+            Ok(None) => false,
+            Err(error) => {
+                let limit = format!("{} page not read into the native view: {error}", query.method());
+                if !self.limits.contains(&limit) { self.limits.push(limit); }
+                true
             }
         }
     }
@@ -1039,8 +1081,10 @@ pub struct HistorySession {
     cce_manager_owner: Option<crate::hosting::call_custody::ManagerOwner>,
     history: Option<crate::native_history::NativeHistory>,
     roles: crate::role_lifecycle::RoleBindings,
+    child_guidance: crate::native_child_guidance::ChildGuidance,
     limits: Vec<String>,
     dispatches: Vec<HistoryPending>,
+    accepted_manual_pages: std::collections::VecDeque<AcceptedManualHistory>,
     starts: Vec<StartPending>,
     forks: Vec<ForkPending>,
     role_log: Option<Result<std::sync::Arc<crate::role_observations::RoleLog>, String>>,
@@ -1053,8 +1097,15 @@ pub struct HistorySession {
 }
 struct HistoryPending {
     receipt: crate::hosting::HistoryDispatch,
+    manual_projection: bool,
     finished: bool,
     evidence: Value,
+}
+// Owned only after successful exact NativeHistory acceptance of an original
+// manual Host dispatch. No renderer constructor, Serde or latest-page lookup.
+struct AcceptedManualHistory {
+    dispatch: crate::hosting::HistoryDispatch,
+    result: Value,
 }
 struct ForkPending {
     receipt: crate::hosting::SourceRequest,
@@ -1206,9 +1257,16 @@ impl HistorySession {
         }
     }
     pub fn dispatched(&mut self, receipt: crate::hosting::HistoryDispatch) {
+        self.track_history_dispatch(receipt, false);
+    }
+    pub(crate) fn dispatched_manual(&mut self, receipt: crate::hosting::HistoryDispatch) {
+        self.track_history_dispatch(receipt, true);
+    }
+    fn track_history_dispatch(&mut self, receipt: crate::hosting::HistoryDispatch, manual_projection: bool) {
         self.dispatches.push(HistoryPending {
             evidence: receipt_summary(&receipt.evidence()),
             receipt,
+            manual_projection,
             finished: false,
         });
     }
@@ -1390,6 +1448,13 @@ impl HistorySession {
                     .push(format!("History receiving refused: {error}"));
                 continue;
             }
+            if pending.manual_projection && status["outcome"] == "response-observed-result"
+                && matches!(pending.receipt.query().method(), "thread/read" | "thread/turns/list" | "thread/items/list" | "thread/goal/get") {
+                self.accepted_manual_pages.push_back(AcceptedManualHistory {
+                    dispatch: pending.receipt.clone(),
+                    result: status["response"]["result"].clone(),
+                });
+            }
             if status["outcome"] == "response-observed-result" {
                 let params = pending.receipt.query().params();
                 let direction = params["sortDirection"].as_str().map(str::to_owned);
@@ -1441,6 +1506,7 @@ impl HistorySession {
         }
         self.record_start_observations(host);
         self.reconcile_forks(host);
+        self.child_guidance.reconcile(host,&self.roles,self.role_log.as_ref());
     }
     /// Immutable source observations: waiting may end before a genuinely late
     /// response. Each state is attempted once; a record error never retries native work.
@@ -1488,6 +1554,7 @@ impl HistorySession {
     pub fn history_mut(&mut self) -> Option<&mut crate::native_history::NativeHistory> {
         self.history.as_mut()
     }
+    pub(crate) fn child_limit_observations(&self)->Value{self.child_guidance.limits()}
     pub fn bind(&mut self, binding: crate::role_lifecycle::RoleBinding) -> Result<(), String> {
         self.roles.insert(binding)
     }
@@ -1499,7 +1566,7 @@ impl HistorySession {
     }
     pub fn role_details(&self, home: &str, thread: &str, root: Option<&std::path::Path>) -> Value {
         let Some(binding) = self.binding(home, thread) else {
-            return json!({"appRole":self.role(home,thread),"futureGuidanceNotices":[]});
+            return json!({"appRole":self.role(home,thread),"childGuidance":self.child_guidance.for_thread(home,thread),"roleLimitObservations":self.child_guidance.limits().as_array().unwrap().iter().filter(|r|r["generation"]["home"]==home&&r["parentThreadId"]==thread).collect::<Vec<_>>(),"futureGuidanceNotices":[]});
         };
         let mut current = std::collections::BTreeMap::new();
         let read = |path: &str, default| match root {
@@ -1582,10 +1649,12 @@ impl HistorySession {
     }
     pub fn snapshot(&self, instruction_root: Option<&std::path::Path>) -> Value {
         let Some(history) = self.history.as_ref() else {
-            return json!({"state":"unavailable","limits":self.limits,"durableNativeData":false});
+            return json!({"state":"unavailable","limits":self.limits,"durableNativeData":false,"childAssociations":self.child_guidance.snapshot(),"roleLimitObservations":self.child_guidance.limits(),"startReceipts":self.starts.iter().map(|p|&p.evidence).collect::<Vec<_>>()});
         };
         let mut view = history.snapshot();
         view["selectionEpoch"] = json!(history.selection_epoch());
+        view["childAssociations"]=self.child_guidance.snapshot();
+        view["roleLimitObservations"]=self.child_guidance.limits();
         view["listDirection"] = json!(self.list_direction);
         view["receivingLimits"] = json!(self.limits);
         view["dispatches"] = json!(self
@@ -1604,6 +1673,8 @@ impl HistorySession {
             view["selected"]["itemDirection"] = json!(self.item_direction);
             view["selected"]["itemTurnId"] = json!(self.item_turn);
             view["selected"]["appRole"] = self.role(history.home(), thread);
+            view["selected"]["childGuidance"]=self.child_guidance.for_thread(history.home(),thread);
+            view["selected"]["roleLimitObservations"]=self.role_details(history.home(),thread,instruction_root)["roleLimitObservations"].clone();
             let details = self.role_details(history.home(), thread, instruction_root);
             view["selected"]["originalRoleSupply"] = details["originalRoleSupply"].clone();
             view["selected"]["futureGuidanceNotices"] = details["futureGuidanceNotices"].clone();
@@ -2137,10 +2208,10 @@ fn submit_attachments_with_notice(
     home: Option<&str>,
 ) -> Result<Value, String> {
     let claim = run.try_claim(generation, thread)?;
-    let mut claimed = ClaimedNotice { run, claim: Some(claim), source: None };
+    let mut claimed = ClaimedNotice { run, claim: Some(claim), prepared: None };
     let lead = claimed.claim.as_ref().map(NoticeClaim::lead);
-    let result = submit_selected_inner(state, host, custody, owner, revision, order, generation, thread, None, text, context, home, lead, &mut claimed.source);
-    claimed.settle(result)
+    let result = submit_selected_inner(state, host, custody, owner, revision, order, generation, thread, None, text, context, home, lead, &mut claimed.prepared);
+    claimed.settle(host, result)
 }
 
 /// A notice claimed by an attachment-bearing turn, settled exactly once: by
@@ -2151,20 +2222,31 @@ fn submit_attachments_with_notice(
 struct ClaimedNotice<'a> {
     run: &'a PendingNotice,
     claim: Option<NoticeClaim>,
-    /// The prepared frame's source, once prepared (before any write).
-    source: Option<crate::hosting::SourceRequest>,
+    /// Original private full packet, retained before any write. It cannot be
+    /// reconstructed from the attachment submission's JSON projection.
+    prepared: Option<std::sync::Arc<crate::hosting::PreparedAttachmentDispatch>>,
 }
 impl ClaimedNotice<'_> {
     fn write_attempted(&self) -> bool {
-        self.source.as_ref().and_then(|source| source.write_attempt_observed()).unwrap_or(false)
+        self.prepared.as_ref().and_then(|prepared| prepared.source().write_attempt_observed()).unwrap_or(false)
     }
-    fn settle(mut self, result: Result<Value, String>) -> Result<Value, String> {
+    fn settle(mut self, host: &crate::hosting::Host, result: Result<Value, String>) -> Result<Value, String> {
         let carriage = if self.write_attempted() {
-            let turn = result.as_ref().ok().and_then(|resolved| resolved["nativeTurnRef"]["turnId"].as_str()).map(str::to_owned);
-            let outcome = match &result {
-                Ok(resolved) => json!({"state":"native turn observed","carrier":"attachment-bearing turn","submissionRef":resolved["submissionRef"]}),
+            let claim = self.claim.as_ref().expect("a claimed notice is settled once");
+            let positive = self.prepared.as_ref().ok_or_else(|| "original private attachment packet unavailable".to_owned())
+                .and_then(|prepared| host.attachment_turn_start_finish(prepared, std::time::Duration::ZERO));
+            let turn = positive.as_ref().ok().map(|native| native.turn_id().to_owned());
+            let mut outcome = match &result {
+                Ok(resolved) => json!({"state":"attachment-bearing turn written; outcome failed/unknown; not resent","carrier":"attachment-bearing turn","submissionRef":resolved["submissionRef"]}),
                 Err(e) => json!({"state":"attachment-bearing turn written; outcome failed/unknown; not resent","carrier":"attachment-bearing turn","limit":e}),
             };
+            match positive {
+                Ok(native) => {
+                    outcome["state"] = json!("native turn observed");
+                    outcome["learningBoundary"] = crate::workflow_learning_pointers::retain_attachment(&claim.held, host, claim.home_class.as_deref(), &native, &claim.notice, &claim.original, &claim.client_id);
+                }
+                Err(limit) => outcome["learningBoundary"] = json!({"persistence":"memory-only","limit":limit,"standing":"no historical boundary retained; the native send outcome is unchanged"}),
+            }
             NoticeCarriage::Written { turn, outcome, result }
         } else {
             NoticeCarriage::NotWritten(result.err().unwrap_or_else(|| "attachment-bearing turn: no write attempt observed".into()))
@@ -2182,8 +2264,8 @@ impl Drop for ClaimedNotice<'_> {
         // Never panics while unwinding: the Host's write facts are read through
         // a poisoned lock; a prepared frame whose facts cannot be read at all is
         // taken as written, outcome unknown, so the notice is not resent.
-        let attempted = match &self.source {
-            Some(source) => source.write_attempt_observed().unwrap_or(true),
+        let attempted = match &self.prepared {
+            Some(prepared) => prepared.source().write_attempt_observed().unwrap_or(true),
             None => false,
         };
         let carriage = if attempted {
@@ -2219,7 +2301,7 @@ pub fn submit_selected_attachments(
 }
 
 /// As `submit_selected_attachments`, with an optional leading App text element
-/// for a new turn (the run-end line, TC-2). `prepared_source` receives the
+/// for a new turn (the run-end line, TC-2). `prepared_packet` receives the
 /// prepared frame's source before any write, so the caller can read from the
 /// Host whether that write was attempted (then it is never resent).
 fn submit_selected_inner(
@@ -2236,7 +2318,7 @@ fn submit_selected_inner(
     context: crate::recovery::ExplicitAppProjectContext,
     home: Option<&str>,
     lead: Option<(&str, &str)>,
-    prepared_source: &mut Option<crate::hosting::SourceRequest>,
+    prepared_packet: &mut Option<std::sync::Arc<crate::hosting::PreparedAttachmentDispatch>>,
 ) -> Result<Value, String> {
     let selected = {
         let state = state.lock().unwrap();
@@ -2271,7 +2353,7 @@ fn submit_selected_inner(
         &selected,
         lead,
     )?);
-    *prepared_source = Some(prepared.source().clone());
+    *prepared_packet = Some(prepared.clone());
     {
         let mut state = state.lock().unwrap();
         let session = state.as_mut().map_err(|error| error.clone())?;
@@ -2405,6 +2487,15 @@ impl HomeBootstrapSet {
                 None => Err(original),
             },
         }
+    }
+    pub(crate) fn child_role_config_link(&self,class:crate::home_resources::HomeClass,config:&crate::hosting::HostConfig)->Result<Option<crate::child_roles::ConfigLink>,String>{
+        self.validate_binding(class,config)?;
+        let target=match class {
+            crate::home_resources::HomeClass::Account=>self.shared_root_targets.as_ref().map(|s|s.config_toml.clone()),
+            crate::home_resources::HomeClass::ApiKey=>self.key_plan()?.inspect()?.resources.into_iter().find(|r|r.name=="config.toml"&&r.state==crate::home_resources::ResourceState::Linked).and_then(|r|r.intended_target),
+            crate::home_resources::HomeClass::Probe=>None,
+        };
+        target.map(|target|crate::child_roles::ConfigLink::observed(config.codex_home.join("config.toml"),target)).transpose()
     }
     pub fn key_plan(&self) -> Result<&crate::home_resources::OwnedHomePlan, String> {
         self.key.as_ref().ok_or_else(|| {
@@ -2548,6 +2639,20 @@ pub struct HomeSession {
     oauth_start_gate: std::sync::Mutex<()>,
 }
 impl HomeSession {
+    /// Explicit commands and the host tick reconcile private receipts. Status
+    /// remains a read. Runtime precedes History in the existing lock order.
+    pub(crate) fn reconcile_manual_history(&self) {
+        let mut runtime = self.runtime.lock().unwrap();
+        // Establish the actual receiving source before draining a first manual
+        // page; a public Host snapshot cannot fabricate a Ready delivery.
+        runtime.receive_native(&self.host);
+        let mut history = self.history.lock().unwrap();
+        history.reconcile(&self.host);
+        while let Some(page) = history.accepted_manual_pages.front() {
+            if !runtime.receive_accepted_manual_history(&self.host, page) { break; }
+            history.accepted_manual_pages.pop_front();
+        }
+    }
     pub fn new(
         class: crate::home_resources::HomeClass,
         host: std::sync::Arc<crate::hosting::Host>,
@@ -5112,6 +5217,7 @@ impl WorkflowRootSession {
             checkpoints: None,
             run_tag: Value::Null,
             model_turns: Default::default(),
+            role_limits_seen: Default::default(),
         };
         // EXEC §3.1 CK-1: the selection is now bound to this conversation for a run.
         workflow_run.evaluate_compatibility(crate::execution_compatibility::report::Occasion::Selection);
@@ -6637,6 +6743,7 @@ pub(crate) struct WorkflowRun {
     run_tag: Value,
     /// RS R5 / HOSTING §8.3: the run's `model_turn` entries (per turn, and thread reports).
     model_turns: crate::model_turn_recorder::ModelTurnRecorder,
+    role_limits_seen: std::collections::BTreeSet<String>,
 }
 impl WorkflowReviewContext {
     pub fn accept_result(
@@ -7243,6 +7350,9 @@ impl WorkflowRun {
             return;
         }
         self.observe_model_turns(view);
+        let scope=self.prepared().scope().clone();let start=self.start_in(view);
+        let bodies=crate::native_child_guidance::run_limit_bodies(view,&scope.home,&scope.conversation,start,&mut self.role_limits_seen);
+        if !bodies.is_empty(){self.push_recorder_outputs(bodies.into_iter().map(|body|("role_limit_observation",body)).collect(),&crate::util::now_rfc3339());self.flush_records();}
         let Some(mut recorder) = self.checkpoints.take() else { return };
         let scope = self.prepared().scope().clone();
         let start = self.start_in(view);
@@ -9854,7 +9964,7 @@ for line in sys.stdin:
         let run=root.lock().unwrap().runs[&a].clone();
         let claim=run.lock().unwrap().claim_end_notice(&peer.generation,"thread").unwrap();
         let unwound=std::panic::catch_unwind(std::panic::AssertUnwindSafe(||{
-            let _claimed=ClaimedNotice{run:&PendingNotice::Run(run.clone()),claim:Some(claim),source:None};
+            let _claimed=ClaimedNotice{run:&PendingNotice::Run(run.clone()),claim:Some(claim),prepared:None};
             panic!("fixture: the send path panicked after the claim");
         }));
         assert!(unwound.is_err());
