@@ -30,15 +30,17 @@ cd "<this folder>"
 python3 run_fixture.py --out "$TMPDIR/b3-sh1-run"
 python3 validate_all.py --run "$TMPDIR/b3-sh1-run"
 # then, from the sibling prototypes:
-python3 "../../../DEL-03-03_Local external-agent receiving adapter/Design/prototype/observe_map.py" --run "$TMPDIR/b3-sh1-run"
-python3 "../../../DEL-03-02_Proposal, validation and outcome contract/Design/prototype/proposal_states.py" --check "$TMPDIR/b3-sh1-run"
+python3 ../../../DEL-03-03/Design/prototype/observe_map.py --run "$TMPDIR/b3-sh1-run"
+python3 ../../../DEL-03-02/Design/prototype/proposal_states.py --check "$TMPDIR/b3-sh1-run"
 ```
 
-The observed output of the run of 2026-09-30 is recorded in
-`_Coordination/AgentRuns/APP-V4-DESIGN-PASS-2-20260930/WAVE_B/B3.md`, and that of
-the RP-2 repair rerun (same date; 22 checks, R13-1 replacing the R12-9
-options, explicit item-left events and capture times on the double's
-recorded states) in `WAVE_B/RP-2.md`.
+The observed output of the run of 2026-09-30 was recorded in
+`projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-DESIGN-PASS-2-20260930/WAVE_B/B3.md`,
+and that of the RP-2 repair rerun (same date; 22 checks, R13-1 replacing the
+R12-9 options, explicit item-left events and capture times on the double's
+recorded states) in `WAVE_B/RP-2.md` beside it. Both records were retired in
+commit 11718e61a2; from the repository root, read them with
+`git show 11718e61a2^:<path>` using the full path above.
 
 ## Limits
 

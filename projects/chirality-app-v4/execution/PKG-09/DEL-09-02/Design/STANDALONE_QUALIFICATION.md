@@ -109,15 +109,20 @@ reliance.
 - **OI-009 is decided** at choice level (`Open_Issues.csv`
   RESOLVED_BY_OWNER_DECISION; DECISION-K3 K-1 with L-7): the App's Codex
   shares the person's settings, providers and MCP servers and signs in
-  separately in App-owned homes. ScopeOfWork TBD-002 and DEP-09-02-027 still
-  say "remains OPEN"; that wording is carried to the next amendment by the
-  owner's "1 yes". This file reads OI-009 from the decision record.
-- **OI-001/OI-002** are ruled for the first increment by D2/D3 (TBD-001
-  reads them as open).
-- **OI-012 (R23-22):** 0.158.0 stays the definition and generation pin
-  (D4); 0.160.0 is checked and design-compatible; the qualification pin is
-  the newest version that has passed a version-advance check when the
-  candidate is built.
+  separately in App-owned homes. ScopeOfWork TBD-002 carries the recorded
+  choice; actual credential-separation qualification still requires its
+  own witness.
+- **OI-001/OI-002** are ruled for the first increment by D2/D3, now carried
+  by ScopeOfWork TBD-001 and the adopted-policy input from DEL-04-01. Only
+  operation-specific additions remain under OI-021; no new classifier
+  selection is pending for this increment.
+- **OI-012:** owner-authorized, reviewed SUP1 advances development/definition
+  and the generated reference to 0.160.0, superseding D4's initial 0.158.0
+  declaration (DEL-01-01 ScopeOfWork [S]/REQ-006/TBD-002). R23-22 still binds
+  the qualification pin to the newest version that has passed a version-advance
+  check when the candidate is built; changed relied-on behaviour returns to
+  the owner. Expected qualified distribution identity and App qualification
+  remain owed; historical exchanges/fixtures retain their actual source pin.
 - **The App act control is DEL-01-04's** (SCA-V4-003 Q-5; AAC). Registration
   (J-6, J-8, J-9) is captured there.
 - **K-7:** only registered revisions run; a draft is tried by a trial that
@@ -176,7 +181,7 @@ R23-19, R23-27).
 | J-1 | From an empty project folder, plan with the agent and revise the plan | Plan revisions (plan items if plan mode is on, K-5 of pass 3) | NPTD NV-01, NV-02; WR WR-VC-01 |
 | J-2 | Execute with substantive real tool use in an ordinary conversation; the agent also delegates one bounded sub-task (ST-4) | Tool outcomes as Codex reports them; request cards; the delegated child | NPTD NV-03; NIR VC-NIR-01, VC-NIR-10; RECOVERY VC-R-03 |
 | J-3 | Turn the work into a workflow draft | Draft listed with content identity; hygiene | WR WR-VC-02, WR-VC-08; NIR VC-NIR-14 |
-| J-4 | Try the draft: a delegated trial with the authoring agent and, at the person's choice, a clean trial in a fresh conversation (not a run, K-7) | No run record; draft not selectable for a run; trial text mirrors the run text; trial links written on an acknowledged send; fidelity shown, not enforced; bring back and compare | WR WR-VC-09, WR-VC-21…WR-VC-25 |
+| J-4 | Try the draft: a delegated trial with the authoring agent and, at the person's choice, a clean trial in a fresh conversation (not a run, K-7) | No run record; draft not selectable for a run; trial text mirrors the run text; a trial link written on each acknowledged send; for the delegated trial, each sub-agent link observation names its method (*begin marker found* or *explicit link control*) and no operator, a link made with the control is not attributed to the person, and an earlier *by the person* sub-agent link observation, if any, reads as a quoted legacy claim with the operator not established; fidelity shown, not enforced; bring back and compare | WR WR-VC-09, WR-VC-21…WR-VC-25 |
 | J-5 | Review the draft; the same-name entry placed in another origin (ST-2) is present | Declared inputs, tools, checkpoints, outputs, evidence; the other-origin notice (WR SP-5); nothing overwritten | WR WR-VC-03, WR-VC-05; WD VC-13 |
 | J-6 | **The person registers it** at the act control (A15), after the unperformed-act negatives (ST-3) | Direct-capture record, actor ≠ recorder, bound bytes; no A15 from silence, timeout, the agent's claim or tool success | AAC VC-AAC-08, VC-AAC-13, VC-AAC-07, VC-AAC-03; NIR VC-NIR-16; RS VC-37; WR WR-VC-12, WR-VC-05 |
 | J-7 | Select the registered revision (an unqualified name offers both origins, ST-2) and run it on new inputs | Source-qualified identity; no rebinding to the other origin; per-run supply | WR WR-VC-06; EXEC VC-E-18; RS VC-40 |
@@ -212,7 +217,7 @@ is `blocked` with the cause "no request raised"; it never passes.
 | S11-3 | J-7, first request | **Deny** it on its card | Denial settled with its origin; not a human act | NIR VC-NIR-04; RECOVERY VC-R-03, VC-R-14 |
 | S11-4 | J-7, a later request | **Grant** it | Grant settled; tool success is not an act | RECOVERY VC-R-03, VC-R-14; WD VC-28; NPTD NV-07 |
 | S11-5 | During J-8's try conversation, while the agent's turn is live and a tool-permission request waits | Quit the App (confirming the question); relaunch | Quit question lists live work; relaunch reads *quit-with-live-work*; the waiting request rebuilt as interrupted by quit | RECOVERY VC-R-06, VC-R-14; NIR VC-NIR-11 |
-| S11-6 | After relaunch | Continue **J-8's try conversation** (the one live at quit), then carry J-8 to registration | Provider vs rendered state; primary-turn completion vs the child still active (ST-4); settlement vs received acknowledgment (ST-5); unknown stays unknown | RECOVERY VC-R-04, VC-R-14; NPTD NV-04; HOSTING X-09, X-10 |
+| S11-6 | After relaunch | Continue **J-8's try conversation** (the one live at quit), then carry J-8 to registration | Provider vs rendered state; primary-turn completion vs the child still active (ST-4); settlement vs received acknowledgment (ST-5); unknown stays unknown; Continue opens the conversation only on an admitted resume, and a refused, read-only or failed result leaves the selection and unsent composer unchanged and sends nothing | RECOVERY VC-R-04, VC-R-14; NPTD NV-04; HOSTING X-09, X-10 |
 
 S11-5 combines only conditions the person produces together: a live turn
 and a waiting request in the same conversation at quit. A registration
@@ -251,7 +256,7 @@ SQ-R9).
 | Id | Condition | Staged | VER | Native production | Replay counterpart |
 |---|---|---|---|---|---|
 | ST-1 | Revision condition: after J-8 registers revision 2, J-7's selection and run record still name revision 1, and revision 1's bytes are unchanged (WR SL-4) | J-8 | VER-002 | The run itself | — |
-| ST-2 | Source collision: a same-name invented workflow placed in the user library before J-5; review lists it (WR SP-5); an unqualified name offers both (SL-3); J-7's selection does not rebind | Before J-5; observed at J-5, J-7 | VER-002 | The examiner places the entry, as declared | — |
+| ST-2 | Source collision: a same-name invented workflow placed in the user library before J-5 and left unregistered through RUN-A (if its in-place registration route is offered, it is not taken; no A15 is captured for it); review lists it (WR SP-5); an unqualified name offers both (SL-3); J-7's selection does not rebind | Before J-5; observed at J-5, J-7 | VER-002 | The examiner places the entry, as declared | — |
 | ST-3 | Unperformed-act negatives: (a) the act control opened and left unconfirmed past a wait; (b) the agent states the workflow is registered; (c) tool success on the draft. No A15 in any | J-6, J-8 | VER-003 | The person leaves the control open; the examiner prompts the claim; a tool uses the draft | — |
 | ST-4 | A delegated child that outlives its parent turn | J-2; S11-1; observed at S11-6 | VER-005 | Needs a model route that carries Codex's delegation tools (HOSTING U-22: the local Responses route drops them), so RUN-A's model is chosen accordingly | A delegation recording where the parent completes first (NPTD NV-04); none exists yet |
 | ST-5 | A lost acknowledgment: an answer written whose acknowledgment never arrives, across a process loss | S11-6 | VER-005 | Not producible on demand | **Required:** a recording captured with HOSTING §9.1's method on the candidate's pin, in X-09's form **with this condition in it** (an answer written to a server request and the process ended before any acknowledgment arrives), replayed on the supplier double with X-10's recovery read; recorded as an EXP rehearsal and cited as `recorded_replay` evidence of S11-6's part, compared with the native observation. Owner and point of need: U-SQ-6 |
@@ -272,6 +277,39 @@ on the real supplier. So the counterpart is a recording of the real Codex at
 the candidate's pin; VC-R-04's stub run stays a definition check of the
 recovery rules and is cited as such. The design choice is recorded here;
 the capture is U-SQ-6.
+
+**Supplier changes adopted with the 2026-10-17 pin repair.** The reviewed
+successor pin state for the drifted supplier sources (PR #1409, reviewed by
+its Codex and Claude reviews) binds these changes. Each affected
+case is disposed of here; an unchanged case ID does not show unchanged meaning.
+
+- **J-4** (WR-VC-22; WR §4.2 TT-9 Link): a sub-agent link observation now
+  records its method (the trial link itself carries none), and the link
+  command establishes no operator; earlier *by the person* values read as
+  quoted legacy claims. These expectations apply to the delegated trial's
+  sub-agent link observations; a clean trial has none. J-4's observation is
+  amended above.
+- **S11-6** (NIR §5.3): Continue opens the conversation only on an admitted
+  resume and sends nothing. S11-6's observation is amended above. WR §4.3
+  RB-2 (a review retained from before a quit gives no native confirmation
+  from its digest alone) does not arise: S11-5 quits during J-8's try, before
+  J-8's review, so J-8's review and registration follow the relaunch as staged.
+- **ST-2** (AAC §4.2; RS §6.2; owner decision of 2026-10-13, "Allow direct
+  single-entry registration"): the one user-library entry ST-2 places can now
+  be reviewed and registered in place. ST-2 keeps it unregistered so that the
+  collision stays an unregistered other-origin entry; if the offer appears, it
+  is not taken, and no A15 is captured for it. No step stages the offer. ST-2
+  is amended above.
+- **No case affected:** NPTD §7.2 (history-metadata child discovery, no
+  parent or completion claim; S11-6's child reading unchanged); WR §4.2
+  bring-back of an earlier process's real run (no SQ step brings a run back);
+  WR RB-4 "reviewed content (draft/entry)" and RS §6.2 single-entry A15 form
+  (J-6, J-8 and J-9 register reviewed drafts); NIR §5.4 (Start opens the
+  conversation; J-1 and M12-5 unchanged); ACCESS §5.4 provider admission (a
+  refused start is a recorded failure or block, never a pass, as SF-4 says);
+  RECOVERY DEF-2 (attribution only). U-SQ-1 applies the SUP1 0.160.0
+  definition pin; the Pin basis ties every scenario to the candidate's own
+  pin, so no case changes.
 
 ## 4. Route, configuration and evidence
 
@@ -432,7 +470,11 @@ the scenario still passing; one with ST-4 not produced and S11-6 `blocked`);
 are each caught (SQ-R1…SQ-R9, SQ-R4 and SQ-R9 three times in all; RV2 Q1,
 Q2, Q4 and SQ-R-L's P-a, P-b among them).
 
-## 11. For the next amendment (R23-11; nothing edited here)
+## 11. Historical next-amendment list (R23-11)
+
+This records the list at SQ-v0.2; current decisions and their reconciled
+ScopeOfWork/needs correspondence are stated above. It does not reissue
+completed decision work or select a current supplier pin.
 
 - TBD-002 and DEP-09-02-027: OI-009 decided (carried by the owner's
   "1 yes").
@@ -450,7 +492,7 @@ Q2, Q4 and SQ-R-L's P-a, P-b among them).
 
 | ID | Item | Owner | Point of need |
 |---|---|---|---|
-| U-SQ-1 | Qualification pin | **Decided by rule (R23-22):** 0.158.0 stays the definition and generation pin; 0.160.0 is checked and design-compatible; the qualification pin is the newest version that has passed a version-advance check when the candidate is built | When the candidate is built |
+| U-SQ-1 | Qualification pin | **Decided by rule; current supplier basis reconciled:** owner-authorized, reviewed SUP1 advances development/definition and the generated reference to 0.160.0 (DEL-01-01 ScopeOfWork [S]/REQ-006/TBD-002; HOSTING §7.0/U-01), superseding R23-22's historical D4 definition-pin declaration. R23-22's qualification rule remains: newest version that has passed a version-advance check when the candidate is built; changed relied-on behaviour returns to the owner. Expected qualified distribution identity and App qualification remain owed; this supplies no signing/release evidence and does not relabel historical fixtures | When the candidate is built |
 | U-SQ-2 | Which local model and server for M12-3, and RUN-A's model (it must carry delegation for ST-4) | Implementer, recorded as configuration (R23-17 pattern) | Before the run; a download needs the owner's yes |
 | U-SQ-3 | Whether the native steps run on a package (I-6). On a development build, if DEL-01-04's SEAL-2 is implemented, J-6/J-8/J-9's act records read "capture not verifiable" (AAC §6.3: "available only to the signed App"); that limit is recorded on AC-003's evidence | Integration owner | Before the run |
 | U-SQ-4 | API-key protocol detail (OI-010) | App implementation owner | Before M12-2 |
@@ -512,3 +554,22 @@ Current executable helpers and schemas are operational inputs; the original
 Host source map, producer executable and captured packets retain their
 historical identities. This additive replay supplies no candidate-pin SQ result
 or production/native witness.
+
+**Candidate identification (I-13).** DEL-09-01 `Design/candidate-identity-v2/`
+defines the identity of an unpackaged development build
+(`chirality.app.bundle-tree.sha256/v2`) and its identification record, which
+supplies the EXP `app_candidate` values and the §5 candidate key. Development
+candidate C1 is identified at `Evidence/EXP/8212c765ec-47bbbf31372b/`
+(revision `8212c765ec`, debug, unsigned, the three declared App data paths absent
+at identification, supplier not bundled). This re-identifies the existing
+bundle without rebuilding: its bytes, modes and structure match the earlier
+v1 inventory; v2 adds ownership and provenance metadata and refuses unsupported
+metadata and escaping links. The v1 identification is withdrawn; its original
+bytes remain in Git history. The new record's build phases distinguish npm
+preparation at 22:27:35Z, the Tauri command at 22:27:42Z and bundle completion
+at 22:28:43Z on 2026-10-17: 68 seconds overall, 61 seconds for Tauri, and
+Cargo's separately reported 56.38 seconds. The original markers and logs are
+bound by SHA-256 in that record and retained in local scratch pending the
+owner's private-evidence-store choice. Identifying C1 opens no examination and selects no qualification
+candidate: U-SQ-3 (development build or package) and the run inputs in §2
+remain as stated.
