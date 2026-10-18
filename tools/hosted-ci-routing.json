@@ -279,7 +279,7 @@
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "3e12b45acefd8101a345cfd023363e8eab3deb7ed7475940cdbe40dd04ffe1ad",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "e6aaf671645227bf29e740de1019b8a91ba98b28674592fbec6865b21bde859a",
+      "core/product_physics/Cargo.toml": "daea0df44472bd3b0ceb56d34c4f529af14f8bc77798566d70839712cc2db51d",
       "core/reporting/audit_manifest/Cargo.toml": "7b941c18378533d99707ed00c6024df56d9e6ac09a85d4b22599aa3fab8754a5",
       "core/reporting/pdf_emitter/Cargo.toml": "24dc0377813b6895aa76a463d849179e35b5ab4e0330ddd0f9de343607def55c",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
@@ -287,7 +287,7 @@
       "core/reporting/report_package/Cargo.toml": "09464454efd20ab4cdd416ce75763dcb293c5c4741b0fc7ab3efc5cdb015712b",
       "core/reporting/report_renderer/Cargo.toml": "fe19d0718b26f7d82c0ee8449eb5746561f7887b8eb7dd6e95de26dce192fde8",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
-      "core/reporting/result_export/Cargo.toml": "a40ce774e5e1ac9795d80a695739bc32ec949060e9f03fe2e865719dea77bdda",
+      "core/reporting/result_export/Cargo.toml": "38a6965810d5f580d005bea7506f0b90b78bf2ee5a8ad9a3e57fe396890b399d",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "3784dc3caabb41d3ba781c2a3e19332fe50852713b66b0227fac95f75131eabb",
       "core/rules/rule_check_runner/Cargo.toml": "74ab4cfa6825b9eb33c4e15e01685bd1cb25cfffcde10e6eeb1ce3973fdb2007",
@@ -868,7 +868,7 @@
         ]
       },
       "core/product_physics/tests/pressure_source_join/consequences.rs": {
-        "sha256": "66a28a6a648af4b32ca84a6fdabfd71f699cc4a314fce633febb30b0f7c8fcb9",
+        "sha256": "2b547b452025c2d64e39835950e37aa5565d5b56f4395b8898fe3588cb586462",
         "source_trees": [
           "core/product_physics/Cargo.toml"
         ],
