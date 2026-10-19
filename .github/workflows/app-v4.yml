@@ -153,7 +153,7 @@ jobs:
             done
           fi
       - name: Role history and portable export verification
-        run: node --test tests/conversation-roles.test.mjs tests/verify-records-bag.test.mjs tests/process-group-custody.test.mjs tests/access-provider.test.mjs tests/continue-as-send.test.mjs
+        run: node --test tests/conversation-roles.test.mjs tests/verify-records-bag.test.mjs tests/process-group-custody.test.mjs tests/access-provider.test.mjs tests/fork-admission.test.mjs tests/continue-as-send.test.mjs
       - name: Workflow and fleet presentation
         run: node --test tests/workflow-selection.test.mjs tests/run-panel.test.mjs tests/workflow-library.test.mjs tests/library-entries.test.mjs tests/registration-review.test.mjs tests/proposed-run-disclosure.test.mjs tests/fleet-records.test.mjs tests/observer-attachment.test.mjs
       - name: Native history and conversation presentation
