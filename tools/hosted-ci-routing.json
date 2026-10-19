@@ -287,7 +287,7 @@
       "core/reporting/report_package/Cargo.toml": "09464454efd20ab4cdd416ce75763dcb293c5c4741b0fc7ab3efc5cdb015712b",
       "core/reporting/report_renderer/Cargo.toml": "fe19d0718b26f7d82c0ee8449eb5746561f7887b8eb7dd6e95de26dce192fde8",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
-      "core/reporting/result_export/Cargo.toml": "b8d9750faeb146f41e3b87a1c91ea0568b709e64e650013b4b5431e56bcc94a5",
+      "core/reporting/result_export/Cargo.toml": "163ccdb5985ddfcf3653c1d1ce1ba9a0feab2e8f2527c34ed477fe5f089a3866",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "3784dc3caabb41d3ba781c2a3e19332fe50852713b66b0227fac95f75131eabb",
       "core/rules/rule_check_runner/Cargo.toml": "74ab4cfa6825b9eb33c4e15e01685bd1cb25cfffcde10e6eeb1ce3973fdb2007",
@@ -2306,7 +2306,6 @@
               "core/reporting/result_export/src/connector_evidence.rs",
               "core/reporting/result_export/src/declared_member_load.rs",
               "core/reporting/result_export/src/derivative.rs",
-              "core/reporting/result_export/src/hash_corpus_tests.rs",
               "core/reporting/result_export/src/lib.rs",
               "core/reporting/result_export/src/load_reference.rs",
               "core/reporting/result_export/src/load_reference_source.rs",
@@ -4240,19 +4239,10 @@
           }
         ]
       },
-      "core/reporting/result_export/src/hash_corpus_tests.rs": {
-        "sha256": "59a8c9383b40f1d55cdfbaa6298c1701b906d6a18a6b37cf67bceadce19d096c",
+      "core/reporting/result_export/tests/hash_corpus.rs": {
+        "sha256": "9b397d16460bd16c79cf46e5b1e1056733d90d251ddc0fb11224a7a0e5c52d40",
         "source_trees": [
-          "core/loads/self_weight_wasm/Cargo.toml",
-          "core/model_operations/operation_applier/Cargo.toml",
-          "core/product_physics/Cargo.toml",
-          "core/reporting/report_package/Cargo.toml",
-          "core/reporting/result_export/Cargo.toml",
-          "core/runner/headless/Cargo.toml",
-          "validation/benchmarks/mechanics/Cargo.toml",
-          "validation/benchmarks/numerical_integrity/Cargo.toml",
-          "validation/benchmarks/physics_audit_regression/Cargo.toml",
-          "validation/benchmarks/stress/Cargo.toml"
+          "core/reporting/result_export/Cargo.toml"
         ],
         "inputs": [
           {
