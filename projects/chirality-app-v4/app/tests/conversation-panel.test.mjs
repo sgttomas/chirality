@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {installMiniDom} from './support/mini-dom.mjs';
 import {loadSrc} from './support/load-src.mjs';
+import {installIdleNativeWaiting} from './support/idle-native-waiting.mjs';
 import {continuationFixture} from './support/continuation-fixture.mjs';
 
 // The conversation section is mounted with react-dom/client on a minimal
@@ -64,8 +65,7 @@ async function ordinaryStartCase({initialThread = false, startGeneration = g, ou
   let snapshot = {...host, threads: initialThread ? [thread('existing', null)] : [],
     homeRouting: {activeModeHomeClass: 'account'},
     roleSet: {available: true, defaultRole: 'HELP_HUMAN', roles: [{name: 'HELP_HUMAN', meaning: 'Alignment', default_for_new_chat: true}]}};
-  const previous = window.__TAURI_INTERNALS__;
-  window.__TAURI_INTERNALS__ = {invoke: async (command, args) => {
+  const idle = installIdleNativeWaiting(async (command, args) => {
     calls.push({command, args});
     if (command === 'host_status') return snapshot;
     if (command === 'decision_view') return {rows: []};
@@ -78,7 +78,7 @@ async function ordinaryStartCase({initialThread = false, startGeneration = g, ou
     const created = {...thread('created', 'HELP_HUMAN'), generation: startGeneration, model: args.model, modelProvider: args.modelProvider};
     snapshot = {...snapshot, generation: startGeneration, threads: [...snapshot.threads, created]};
     return {id: 42, startGeneration, result: {thread: {id: created.threadId}}, roleSupplyRecord: {state: 'recorded'}};
-  }};
+  });
   try {
     await React.act(async () => {root.render(React.createElement(App));});
     const conversation = () => container.querySelectorAll(element => element.getAttribute('id') === 'conversation')[0];
@@ -99,19 +99,29 @@ async function ordinaryStartCase({initialThread = false, startGeneration = g, ou
     assert.equal(props(elements(conversation(), 'textarea')[0]).value, draft, 'unsent composer retained');
     if (outcome === 'success') {
       assert.equal(selectedKey(), JSON.stringify([startGeneration, 'created']), 'opens the native ID in the returned start generation');
+      // ACCESS REQ-004/CS-9: admission consumes this new-conversation choice;
+      // it does not apply the same choice to another conversation.
+      assert.equal(props(labelled(container, 'input', 'Model ')).value, '', 'the next conversation has no model selected');
+      assert.equal(props(labelled(container, 'input', 'Configured Codex provider ')).value, '');
+      assert.equal(props(labelled(container, 'select', 'Access entry ')).value, '');
+      assert.equal(props(button(container, 'Start thread')).disabled, true, 'a second start needs a fresh explicit choice');
       assert.equal(props(button(conversation(), 'Send text')).disabled, false, 'the displayed new conversation can receive an explicit send');
       const headers = conversation().querySelectorAll(element => element.getAttribute('aria-label') === 'Conversation role');
       assert.equal(headers.length, 1);
       assert.ok(headers[0].textContent.startsWith('Role: HELP_HUMAN.'), 'shows the new conversation');
     } else {
       assert.equal(selectedKey(), initialThread ? key('existing') : '', 'unsuccessful start keeps the selection');
+      assert.deepEqual(['Model ', 'Configured Codex provider ', 'Access entry '].map((label,index)=>props(labelled(container,index===2?'select':'input',label)).value),
+        ['chosen-model','openai','chatgpt-account'],'a refused, unknown or incomplete attempt keeps its explicit chooser for retry');
+      assert.equal(props(button(container,'Start thread')).disabled,false);
       assert.equal(props(button(conversation(), 'Send text')).disabled, !initialThread);
       if (outcome === 'refused' || outcome === 'failed') assert.ok(container.textContent.includes('thread_start: Error: Native start'));
     }
   } finally {
+    const renderedText = container.textContent;
     await React.act(() => root.unmount());
     document.body.removeChild(container);
-    window.__TAURI_INTERNALS__ = previous;
+    idle.restore(renderedText);
   }
 }
 
@@ -129,6 +139,200 @@ test('refused, failed and identity-incomplete Start preserve selection and compo
   }
 });
 
+// The ordinary form's actual native boundary with held responses and two
+// configured source homes. No provider/authentication is invoked by this peer.
+async function withStartChooser(check, startReply, {homeReply,decisionReply}={}) {
+  const container=document.createElement('div');document.body.appendChild(container);const root=createRoot(container);
+  const calls=[];
+  const homes={account:{generation:g,threads:[]},'api-key':{generation:{...g,home:'key-home'},threads:[]}};
+  let active='account',statusFailure=false;
+  const snapshot=()=>({...host,state:'ready',generation:homes[active].generation,threads:homes[active].threads,
+    homeRouting:{activeModeHomeClass:active,entries:Object.keys(homes).map(modeHomeClass=>({modeHomeClass}))},
+    roleSet:{available:true,defaultRole:'HELP_HUMAN',roles:[{name:'HELP_HUMAN',meaning:'Alignment',default_for_new_chat:true}]},
+    accessSelection:{state:'started',thread:{threadId:'prior-native-selection'}}});
+  const admitted=(args,index,extra={})=>{
+    const generation=extra.startGeneration??homes[args.modeHomeClass].generation;
+    const id=`created-${index}`;
+    homes[args.modeHomeClass].generation=generation;
+    homes[args.modeHomeClass].threads.push({...thread(id,args.role),generation,model:args.model,modelProvider:args.modelProvider});
+    // Record publication can fail independently of native admission, and the
+    // native reported destination need not equal what the person requested.
+    return {id:index,startGeneration:generation,result:{thread:{id},model:'native-reported-model',modelProvider:'native-reported-provider'},roleSupplyRecord:{state:'not-confirmed'},...extra};
+  };
+  const idle=installIdleNativeWaiting(async(command,args)=>{
+    calls.push({command,args});
+    if(command==='host_status'){if(statusFailure)throw Error('Current status read unavailable');return snapshot();}
+    if(command==='decision_view')return decisionReply?decisionReply(active):{rows:[]};
+    if(command==='native_confirmation_content')return [];
+    if(command==='select_home'){if(homeReply)await homeReply(args,active);active=args.modeHomeClass;return {state:'selected'};}
+    if(command==='read_home_access')return {state:'synthetic source read'};
+    assert.equal(command,'thread_start');
+    const index=calls.filter(call=>call.command==='thread_start').length;
+    return startReply?startReply(args,index,admitted):admitted(args,index);
+  });
+  const field=(tag,label)=>labelled(container,tag,label);
+  const values=()=>({model:props(field('input','Model ')).value,modelProvider:props(field('input','Configured Codex provider ')).value,entryId:props(field('select','Access entry ')).value});
+  const edit=async(patch)=>{for(const [key,value] of Object.entries(patch)){const [tag,label]=key==='model'?['input','Model ']:key==='modelProvider'?['input','Configured Codex provider ']:['select','Access entry '];await change(field(tag,label),value);}};
+  const press=async(text)=>React.act(async()=>{await props(button(container,text)).onClick();});
+  try {
+    await React.act(async()=>root.render(React.createElement(App)));
+    await check({container,calls,idle,homes,values,edit,press,start:()=>button(container,'Start thread'),
+      failStatus:()=>{statusFailure=true;},generation:()=>homes[active].generation});
+  } finally {const renderedText=container.textContent;await React.act(()=>root.unmount());document.body.removeChild(container);idle.restore(renderedText);}
+}
+const selectedChoice={model:'chosen-model',modelProvider:'openai',entryId:'chatgpt-account'};
+const blankChoice={model:'',modelProvider:'',entryId:''};
+const deferred=()=>{let resolve,reject;const promise=new Promise((yes,no)=>{resolve=yes;reject=no;});return {promise,resolve,reject};};
+
+test('each successful ordinary Start consumes only its choice and a second conversation needs a new explicit choice',async()=>{
+  await withStartChooser(async ui=>{
+    assert.deepEqual(ui.values(),blankChoice);assert.equal(props(ui.start()).disabled,true);
+    await ui.edit(selectedChoice);assert.deepEqual(ui.calls.filter(c=>c.command==='thread_start'),[],'editing dispatches nothing');
+    const conversation=()=>ui.container.querySelectorAll(e=>e.getAttribute('id')==='conversation')[0];
+    await change(elements(conversation(),'textarea')[0],'Kept unsent draft / 家');
+    await ui.press('Start thread');
+    assert.deepEqual(ui.values(),blankChoice);assert.equal(props(ui.start()).disabled,true);
+    assert.match(ui.container.querySelectorAll(e=>e.getAttribute('aria-label')==='New conversation choice')[0].textContent,/no model selected/);
+    assert.equal(props(elements(conversation(),'select')[0]).value,JSON.stringify([g,'created-1']));
+    assert.equal(props(elements(conversation(),'textarea')[0]).value,'Kept unsent draft / 家');
+    assert.match(conversation().textContent,/HELP_HUMAN/,'the started conversation retains its role');
+    await ui.press('Start thread');
+    assert.equal(ui.calls.filter(c=>c.command==='thread_start').length,1,'even a queued press on an unselected chooser sends nothing');
+    await ui.edit({...selectedChoice,model:'second-model'});await ui.press('Start thread');
+    assert.equal(props(elements(conversation(),'select')[0]).value,JSON.stringify([g,'created-2']));
+    assert.deepEqual(ui.values(),blankChoice);
+    assert.deepEqual(ui.calls.filter(c=>c.command==='thread_start').map(c=>c.args.model),['chosen-model','second-model']);
+    assert.equal(ui.calls.filter(c=>c.command==='turn/start'||c.command==='conversation_send_text').length,0);
+  });
+});
+
+test('refused, unknown and incomplete ordinary starts retain a usable choice for an explicit retry',async()=>{
+  for(const outcome of ['refused','unknown','missing-id','missing-generation','partial-generation','extra-generation-field','empty-generation-home','zero-generation','fractional-generation','error-envelope']) {
+    await withStartChooser(async ui=>{
+      await ui.edit(selectedChoice);await ui.press('Start thread');
+      assert.deepEqual(ui.values(),selectedChoice,outcome);assert.equal(props(ui.start()).disabled,false,outcome);
+      assert.equal(ui.calls.filter(c=>c.command==='thread_start').length,1,'no automatic retry');
+      await ui.press('Start thread');assert.deepEqual(ui.values(),blankChoice,`${outcome}: explicit retry can succeed`);
+      assert.equal(ui.calls.filter(c=>c.command==='thread_start').length,2);
+    },(args,index,admitted)=>{
+      if(index>1)return admitted(args,index);
+      if(outcome==='refused'||outcome==='unknown')throw Error(`Native start ${outcome}`);
+      if(outcome==='missing-id')return {startGeneration:g,result:{thread:{}}};
+      if(outcome==='missing-generation')return {result:{thread:{id:'unconfirmed'}}};
+      if(outcome==='error-envelope')return {startGeneration:g,result:{thread:{id:'unconfirmed'}},error:{code:-32000}};
+      const generation=outcome==='partial-generation'?{home:g.home}:outcome==='extra-generation-field'?{...g,extra:true}:
+        {...g,home:outcome==='empty-generation-home'?'':g.home,spawnCounter:outcome==='zero-generation'?0:outcome==='fractional-generation'?1.5:1};
+      return {startGeneration:generation,result:{thread:{id:'unconfirmed'}}};
+    });
+  }
+});
+
+test('a pending ordinary Start latches queued duplicate presses and preserves every newer edit, including away and back',async()=>{
+  for(const patch of [{model:'new-model'},{modelProvider:'new-provider'},{entryId:'local-provider'},null]) {
+    const reply=deferred();let complete;
+    await withStartChooser(async ui=>{
+      await ui.edit(selectedChoice);
+      let pending,duplicate;
+      const click=props(ui.start()).onClick;
+      await React.act(()=>{pending=click();duplicate=click();});
+      assert.equal(props(ui.start()).disabled,true);assert.equal(ui.calls.filter(c=>c.command==='thread_start').length,1);
+      if(patch)await ui.edit(patch);
+      else {await ui.edit({model:'temporary'});await ui.edit({model:'chosen-model'});}
+      const newer=ui.values();reply.resolve();
+      await React.act(async()=>{await pending;await duplicate;});
+      assert.deepEqual(ui.values(),newer,'the older success cannot consume a newer edit revision');
+      assert.equal(props(ui.start()).disabled,false);
+      assert.equal(ui.calls.filter(c=>c.command==='thread_start').length,1);
+    },async(args,index,admitted)=>{complete=()=>admitted(args,index);await reply.promise;return complete();});
+  }
+});
+
+test('home choices during a pending Start neither reuse the old choice nor let its success erase a newer home choice',async()=>{
+  const reply=deferred();
+  await withStartChooser(async ui=>{
+    await ui.edit(selectedChoice);let pending;
+    await React.act(()=>{pending=props(ui.start()).onClick();});
+    await ui.press('Use api-key home');assert.deepEqual(ui.values(),blankChoice);
+    const keyChoice={model:'key-model',modelProvider:'openai',entryId:'api-key'};
+    await ui.edit(keyChoice);
+    reply.resolve();await React.act(async()=>{await pending;});
+    assert.deepEqual(ui.values(),keyChoice);assert.equal(props(ui.start()).disabled,false);
+    assert.equal(ui.calls.filter(c=>c.command==='thread_start').length,1);
+    await ui.edit({entryId:'chatgpt-account'});
+    assert.equal(props(ui.start()).disabled,true,'a cloud entry from another home is not a compatible choice');
+    await ui.press('Start thread');assert.equal(ui.calls.filter(c=>c.command==='thread_start').length,1);
+    await ui.edit(keyChoice);await ui.press('Start thread');assert.deepEqual(ui.values(),blankChoice);
+    await ui.press('Use account home');assert.deepEqual(ui.values(),blankChoice,'returning to the prior home does not restore a consumed or invalidated choice');
+  },async(args,index,admitted)=>{if(index===1)await reply.promise;return admitted(args,index);});
+});
+
+test('an away-and-back home transition protects a newer same-valued choice from the earlier pending success',async()=>{
+  const reply=deferred();
+  await withStartChooser(async ui=>{
+    await ui.edit(selectedChoice);let pending;
+    await React.act(()=>{pending=props(ui.start()).onClick();});
+    await ui.press('Use api-key home');await ui.press('Use account home');
+    assert.deepEqual(ui.values(),blankChoice);await ui.edit(selectedChoice);
+    reply.resolve();await React.act(async()=>{await pending;});
+    assert.deepEqual(ui.values(),selectedChoice);assert.equal(props(ui.start()).disabled,false);
+    assert.equal(ui.calls.filter(c=>c.command==='thread_start').length,1);
+  },async(args,index,admitted)=>{await reply.promise;return admitted(args,index);});
+});
+
+test('a home transition invalidates prior-home edits but preserves newer target-home edits while its refresh and an older Start finish',async()=>{
+  const startReply=deferred(),homeReply=deferred(),targetRead=deferred(),targetReadReached=deferred();
+  let holdTargetRead=true;
+  await withStartChooser(async ui=>{
+    await ui.edit(selectedChoice);let pendingStart,pendingHome;
+    await React.act(()=>{pendingStart=props(ui.start()).onClick();});
+    await React.act(()=>{pendingHome=props(button(ui.container,'Use api-key home')).onClick();});
+    assert.deepEqual(ui.values(),blankChoice);
+    await ui.edit({...selectedChoice,model:'edited-before-target-was-active'});
+    assert.equal(props(ui.start()).disabled,true,'the prior-home draft cannot start during selection');
+    await React.act(async()=>{homeReply.resolve();await targetReadReached.promise;});
+    assert.match(ui.container.textContent,/Active home class: api-key/);
+    assert.deepEqual(ui.values(),blankChoice,'edits made while account was still active do not become key-home choices');
+    const targetChoice={model:'target-home-model',modelProvider:'openai',entryId:'api-key'};
+    await ui.edit(targetChoice);
+    startReply.resolve();await React.act(async()=>{await pendingStart;});
+    assert.deepEqual(ui.values(),targetChoice,'the earlier account admission cannot consume the visible key-home draft');
+    assert.equal(props(ui.start()).disabled,true,'the home refresh is still pending');
+    targetRead.resolve();await React.act(async()=>{await pendingHome;});
+    assert.deepEqual(ui.values(),targetChoice);assert.equal(props(ui.start()).disabled,false);
+    assert.equal(ui.calls.filter(c=>c.command==='thread_start').length,1,'neither home transition nor editing dispatches a start');
+    await ui.press('Start thread');assert.deepEqual(ui.values(),blankChoice);
+  },async(args,index,admitted)=>{if(index===1)await startReply.promise;return admitted(args,index);},{
+    homeReply:()=>homeReply.promise,
+    decisionReply:async active=>{if(active==='api-key'&&holdTargetRead){holdTargetRead=false;targetReadReached.resolve();await targetRead.promise;}return {rows:[]};},
+  });
+});
+
+test('a same-class actual generation update while Start is pending does not become another chooser edit',async()=>{
+  const reply=deferred();
+  await withStartChooser(async ui=>{
+    await ui.edit(selectedChoice);let pending;
+    await React.act(()=>{pending=props(ui.start()).onClick();});
+    const actual={appSession:'actual-session',home:'actual-account-home',spawnCounter:2};
+    ui.homes.account.generation=actual;
+    await ui.press('Read native login policy and account');
+    assert.deepEqual(ui.values(),selectedChoice,'a source observation is not another person choice');
+    reply.resolve();await React.act(async()=>{await pending;});
+    assert.deepEqual(ui.values(),blankChoice);
+    const conversation=ui.container.querySelectorAll(e=>e.getAttribute('id')==='conversation')[0];
+    assert.equal(props(elements(conversation,'select')[0]).value,JSON.stringify([actual,'created-1']),'opens the actual returned H5, never the stale pre-click tuple');
+    assert.equal(ui.calls.filter(c=>c.command==='thread_start').length,1);
+  },async(args,index,admitted)=>{await reply.promise;return admitted(args,index);});
+});
+
+test('an admitted start consumes its chooser before an independent refresh failure',async()=>{
+  await withStartChooser(async ui=>{
+    await ui.edit(selectedChoice);ui.failStatus();await ui.press('Start thread');
+    assert.deepEqual(ui.values(),blankChoice);assert.equal(props(ui.start()).disabled,true);
+    assert.match(ui.container.textContent,/current host view unavailable/);
+    assert.equal(ui.calls.filter(c=>c.command==='thread_start').length,1);
+  });
+});
+
 async function ordinaryContinueCase({initialThread = false, outcome = 'success', source = g, contextState = null}) {
   const container = document.createElement('div');
   document.body.appendChild(container);
@@ -136,7 +340,7 @@ async function ordinaryContinueCase({initialThread = false, outcome = 'success',
   const calls = [];
   const unknownRole = {standing: 'unknown', reason: 'original App role not established in this App process'};
   const metadata = {thread: {id: 'stored', status: {type: 'notLoaded'}, agentRole: 'HELP_HUMAN'}};
-  const query = {factory_id: 1, query_id: 2, home: source.home, generation: source, method: 'thread/resume', params: {threadId: 'stored'}};
+  const query = {factory_id: 1, query_id: 2, home: source.home, generation: source, method: 'thread/resume', params: {threadId: 'stored', excludeTurns: true}};
   const existing = {...thread('existing', null), generation: source};
   let continueResponded = false;
   const interleave = outcome === 'delayed-source-choice' || outcome === 'delayed-chat-choice';
@@ -148,8 +352,7 @@ async function ordinaryContinueCase({initialThread = false, outcome = 'success',
   let snapshot = {...host, generation: source, threads: interleave ? [existing, {...thread('other-current', null), generation: source}] : initialThread ? [existing] : [],
     homeRouting: {activeModeHomeClass: 'account', entries: [{modeHomeClass: 'account'}, {modeHomeClass: 'api-key'}]},
     nativeHistory: {state: 'history-receiving', home: source.home, generation: source, selectionEpoch: 0, threads: [{native: metadata.thread}], dispatches: outcome === 'old-admission' ? [{requestRef: 'req:resume'}] : []}};
-  const previous = window.__TAURI_INTERNALS__;
-  window.__TAURI_INTERNALS__ = {invoke: async (command, args) => {
+  const idle = installIdleNativeWaiting(async (command, args) => {
     calls.push({command, args});
     if (command === 'host_status') {
       if (outcome === 'refresh-failed' && continueResponded) throw Error('Current source read failed');
@@ -181,7 +384,7 @@ async function ordinaryContinueCase({initialThread = false, outcome = 'success',
     const admitted = {generation: source, threadId: 'stored', status: {type: 'idle'}, appRole: unknownRole, nativeResumeObserved: true, resumeRequestRef: 'req:resume'};
     const dispatch = {generation: source, home: source.home, requestRef: 'req:resume', writeResult: 'written', outcome: 'response-observed-result', sourceCurrent: true, localQuery: query, activeAdmission: admitted};
     const result = {...snapshot.nativeHistory, selected: {...snapshot.nativeHistory.selected, state: 'resume-response-observed', resumeEligibilityCurrent: true,
-      resume: {thread: {...metadata.thread, status: {type: 'idle'}}}, streamResolutions: {'thread-state': {outcome: 'native-result-observed', query}}}, dispatches: [dispatch]};
+      resume: {thread: {...metadata.thread, status: {type: 'idle'}}}, streamResolutions: {'thread-state': {outcome: 'native-result-observed', query, revision: 2}}}, dispatches: [dispatch]};
     if (outcome === 'read-only') result.selected.state = 'indexed-read-only';
     if (outcome === 'ineligible') result.selected.resumeEligibilityCurrent = false;
     if (outcome === 'not-admitted') delete dispatch.activeAdmission;
@@ -209,7 +412,7 @@ async function ordinaryContinueCase({initialThread = false, outcome = 'success',
     if (outcome === 'selection-changed') snapshot = {...snapshot, nativeHistory: {...result, selectionEpoch: 2}};
     if (outcome === 'query-superseded') snapshot = {...snapshot, nativeHistory: {...result, selected: {...result.selected, streamResolutions: {'thread-state': {outcome: 'native-result-observed', query: {...query, query_id: 99}}}}}};
     return result;
-  }};
+  });
   try {
     await React.act(async () => {root.render(React.createElement(App));});
     const conversation = () => container.querySelectorAll(element => element.getAttribute('id') === 'conversation')[0];
@@ -252,9 +455,10 @@ async function ordinaryContinueCase({initialThread = false, outcome = 'success',
     }
   } finally {
     if (pendingContinue) await React.act(async () => {releaseDecision({rows: []}); await pendingContinue;});
+    const renderedText = container.textContent;
     await React.act(() => root.unmount());
     document.body.removeChild(container);
-    window.__TAURI_INTERNALS__ = previous;
+    idle.restore(renderedText);
   }
 }
 
@@ -277,4 +481,40 @@ test('Continue with no matching new current admission preserves selection and co
 test('a Continue refresh awaiting decision_view cannot overwrite a newer source or chat choice', async () => {
   await ordinaryContinueCase({initialThread: true, outcome: 'delayed-source-choice'});
   await ordinaryContinueCase({initialThread: true, outcome: 'delayed-chat-choice'});
+});
+
+
+test('idle native waiting startup reads no intent, performs no action and cleans up its listener and polling on App unmount', async t => {
+  const intervals = new Map();
+  t.mock.method(globalThis, 'setInterval', (callback, delay) => {
+    const token = {}; intervals.set(token, {callback, delay}); return token;
+  });
+  t.mock.method(globalThis, 'clearInterval', token => {
+    assert.ok(intervals.delete(token), 'clear an installed App interval exactly once');
+  });
+  let idle, waitingPoll;
+  await withStartChooser(async ui => {
+    idle = ui.idle;
+    assert.deepEqual(idle.calls.map(call => call.command), ['checkpoint_native_waiting_ui', 'plugin:event|listen', 'claim_native_waiting_intent'],
+      'startup acknowledges its UI checkpoint, installs the listener, then reads host intent once');
+    assert.ok(ui.calls.every(call => ['host_status', 'decision_view', 'native_confirmation_content'].includes(call.command)),
+      'a null waiting claim never navigates, starts, resumes, sends or answers');
+    assert.deepEqual(ui.values(), blankChoice);
+    idle.assertClean(ui.container);
+    for (const {callback} of intervals.values()) {
+      const claimsBefore = idle.calls.filter(call => call.command === 'claim_native_waiting_intent').length;
+      await React.act(async () => {callback();});
+      if (idle.calls.filter(call => call.command === 'claim_native_waiting_intent').length > claimsBefore) waitingPoll = callback;
+    }
+    assert.equal(typeof waitingPoll, 'function', 'the mounted App installs its waiting recovery poll');
+    assert.deepEqual(idle.calls.filter(call => call.command === 'claim_native_waiting_intent').map(call => call.args.consumer),
+      [idle.calls[0].args.consumer, idle.calls[0].args.consumer], 'polls read the same single-use consumer without a target');
+    assert.ok(ui.calls.every(call => ['host_status', 'decision_view', 'native_confirmation_content'].includes(call.command)),
+      'an idle recovery poll also performs no navigation or supplier action');
+  });
+  assert.equal(intervals.size, 0, 'App unmount clears every installed poll, including native waiting');
+  assert.equal(idle.calls.filter(call => call.command === 'plugin:event|unlisten').length, 1);
+  const callsAfterUnmount = idle.calls.length;
+  await waitingPoll();
+  assert.equal(idle.calls.length, callsAfterUnmount, 'an already queued waiting tick stops after effect cleanup');
 });

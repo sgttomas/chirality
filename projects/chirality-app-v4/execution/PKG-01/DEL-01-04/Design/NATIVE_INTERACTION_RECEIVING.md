@@ -382,12 +382,15 @@ supply leaves the card with the supplier's item identity only.
 | WI-5 | **The stop control in several windows (R22-3).** Each window on a conversation shows the turn's "Interrupt" control while the turn is live (§5.2). The first person's press settles it: DEL-01-02 writes one stop request and sends it once (RECOVERY-v0.2 §3.4 SR-01). A press in another window is refused, `stop-already-requested` while that request is pending (SR-11) or `no-live-turn` once the turn has ended (RECOVERY-v0.2 §4.1), and that window's control then shows the turn's state from the same stop request (pending, then its outcome under §5.1, for example TO-4 or one of RECOVERY-v0.2 §3.4's labels), as WI-4 does for cards. Nothing is sent twice (RECOVERY-v0.2 §3.3) |
 
 
-**Open indicator condition — WI-1/WI-3.** The implemented App indicator is a
-count of waiting supplier requests on the macOS Dock badge. It is absent on
-platforms without a badge, names no conversations outside the window, and a
-Dock click opens the App window rather than the named conversation. The
-remaining WI-1 and WI-3 meanings are unsupplied. Closing hides/minimizes the
-window (RECOVERY SQ-W); it does not end work or requests.
+**Open indicator condition — WI-1/WI-3.** The macOS Dock badge remains a count
+only; a Dock click opens the App window. The macOS native **Waiting requests**
+menu additionally projects current source-qualified conversation groups and
+routes an explicit selection through the existing guarded navigation path
+(Current implementation conditions). Platforms with window-attached menus or
+no badge still lack established outside-window coverage. Actual native menu
+interaction and person qualification remain unestablished by the controlled
+fixtures. Closing hides/minimizes the window (RECOVERY SQ-W); it does not end
+work or requests.
 
 ### 4.5 The answer submission (data) and secret values (SE)
 
@@ -1013,6 +1016,99 @@ RS's own schema.
 
 ## Current implementation conditions
 
+**Native waiting-menu navigation.** The macOS App menu uses the current
+person-answerable waiting groups, separately from the Dock's aggregate count.
+Each menu ID retains its original home class, full generation and optional
+conversation; retired IDs cannot become another target. Group changes refresh
+the menu even when the total stays equal. Menu updates neither focus a window
+nor select a conversation. A person's selection shows the existing window and
+queues a bounded, process-owned navigation intent, not an answer or request
+capability. The selection retains the last acknowledged opaque UI revision;
+the renderer claims it once and uses the existing source-checked navigation.
+Missed wake events do not substitute a later view for that revision. Changed
+or unacknowledged ordering may conservatively refuse a newer click; a new
+selection after acknowledgment remains usable. Interrupted claims, busy
+navigation and newer UI choices produce explicit refusal rather than replay.
+If claim cleanup cannot be acknowledged, only cleanup is retried, never the
+navigation. Failed native menu publication invalidates its cache so that a
+return to the previously desired menu still retries publication.
+The stored target remains exact while labels escape mnemonic
+markers. No request parameters, answers or secrets enter the menu or handoff.
+Controlled Host/menu/renderer checks establish this local connection; actual
+macOS interaction, other-platform coverage and native-person qualification
+remain separate.
+
+**Waiting requests across App homes.** The in-window overview groups current
+person-answerable supplier requests by their original home, full generation
+and optional conversation. It reads the actual home owners and exposes counts
+and navigation metadata, not question content or a replacement request
+register. The person's click rechecks that source and waiting group before
+selecting its home. The App opens an already-loaded original conversation or
+shows the original home's requests when no loaded conversation is available;
+it does not resume, start, send, answer or decline. A stale source does not
+fall back to another generation or a same-named conversation. Request reply
+observations remain separately bound to their original identities. The Dock
+badge and the outside-window WI-1/WI-3 limitations above are unchanged.
+
+**Request cards and received item navigation.** A person's About link reveals
+its already-received item in the displayed conversation's parent/descendant
+activity view, then reaches that row's anchor. This read-only view choice does
+not select another operational conversation, change its composer or role, or
+send a native request. Navigation is qualified by the original request/view
+source and full generation, exact item identity and current reachable subtree;
+a changed source or unavailable row leaves the supplier's item identity rather
+than a dead or retargeted link. Item details remain separate from whether the
+row can be reached in this activity view. The activity row's link back to the
+original typed request card is unchanged.
+
+**Answer command and observation refresh.** The request card keeps the native
+answer command's outcome separate from a subsequent failure to refresh custody.
+A reported local write with acknowledgment not observed is not a refusal; a
+native confirmation dismissal reports no attempt. An arbitrary command error
+does not prove that no write occurred. A failed refresh cannot replace those
+observations with "last answer not taken" or authorize another response from
+an old waiting view. Request-local attempt evidence is bound to the original
+generation and typed request identity and retains no answer content. It does
+not synthesize a register settlement, supplier acknowledgment or a new request.
+Reopening the view still reconstructs cards from the Host's actual register.
+
+**Continue-as message outcome.** The explicit handoff send has its own
+process-held attempt, bound to the admitted target, original Host, full
+generation and exact edited text. The attempt is reserved before dispatch;
+an in-flight writer or unavailable observation cannot establish that nothing
+was sent. The Host retains the original source before waiting, including the
+ordinary pending end-notice path. No-attempt, native error, confirmed native
+turn result and unknown remain distinct. A completely written request and its
+valid correlated turn result establish the send observation; view-refresh
+failure does not replace it. Only a settled producer proof of no attempt
+permits another explicit handoff send. Reading the outcome observes the same
+held attempt and never sends again. Receipt retention changes no notice
+composition, claim, settlement or carry-once rule; its existing written flag
+is not native acceptance. Handoffs remain transient; these observations
+restore no cold request, role or current-generation authority.
+
+**Attachment submission and observation refresh.** The ordered-attachment
+Send and Steer controls keep the original command outcome separate from a
+later failure to read the current Host view. A returned matching native
+acknowledgment is handled by the composer even when that observation fails;
+a rejected command retains its reported error and text. Observation limits
+belong to the original generation, conversation, optional steering target
+and selected list, not a replacement source. A command error alone proves
+neither no attempt nor no native effect. Later acknowledgment on the original
+held source does not rewrite the earlier command outcome or resend anything.
+Carrier, custody, source and once-only notice checks remain unchanged.
+
+**Person-opened App-file arrival review (PD-5).** Eligible live single-file
+A4/A6/A7 arrival rows offer an explicit entry into the existing frozen file
+preview. The host resolves the original run and written arrival; the renderer
+sends identities, never replacement subject, kind, scope or purpose. Native
+confirmation remains a separate person action. A new arrival or refreshed
+view never opens, focuses or notifies the control. Contextual refusal states
+remain visible, and reopened history does not become a live act owner. AAC's
+current implementation conditions describe source and capture custody; RS
+retains run allocation and arrival links. General output/attachment contextual
+shortcuts and native qualification remain separate.
+
 **Standing file-act lapse history (PD-2, AP-5).** The existing standing file
 picker and act log now offer an explicit content-observation action and a
 separate retry of held observation metadata. Neither opens or operates the
@@ -1025,8 +1121,31 @@ evidence held only in this App process. A saved observation whose late-write
 disclosure remains pending is identified separately. Retry does not capture
 another act. Each source log retains its recorded sequence; several logs
 establish no order between them. RS §7 owns the source checks and append.
-General contextual file/arrival entry links and
-native capture/qualification witnesses remain separate.
+General contextual file entry links and native capture/qualification witnesses
+remain separate from the live arrival entry above.
+
+**Fork admission and navigation.** The dedicated Fork handler keeps the
+returned native admission separate from observation refresh. Navigation waits
+for the actual source view to contain the admitted fork with its original full
+generation, source thread and fork receipt; it never inserts a thread row.
+A failed refresh leaves this bounded navigation pending for a later read.
+Newer conversation choices, validated Start intents, home changes and replaced
+sources supersede it, including a newer Start whose outcome stays unknown.
+Pending navigation performs no Fork, Start, resume or message send. Native
+admission, role/supply publication and the current displayed selection remain
+separate; unknown role publication does not turn a valid native fork into a
+refusal. No native admission or same-role contract changes here.
+
+**Admitted Continue navigation.** A confirmed original resume keeps a minimal
+window-local navigation ticket when the following observation fails or has not
+yet shown its admitted row. A later current-source observation can complete
+that same selection only with the original exact query, positive resolution
+revision, history selection and new resume receipt still matching the actual
+operational conversation. A newer conversation choice, validated Start intent,
+home/source change or history operation supersedes the ticket, including when
+the final selected conversation happens to be the same. An unknown command
+result supplies no ticket. Reading never retries resume or sends a message;
+this transient navigation state restores no request or role authority.
 
 **Prior work after admitted Continue.** The opened conversation shows
 DEL-01-02's separate transient prior-work context. The host queues a bounded

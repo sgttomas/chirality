@@ -70,6 +70,9 @@ mod instruction_store;
 pub(crate) mod run_offers;
 pub(crate) mod run_restart;
 pub mod runtime_session;
+mod waiting_requests;
+mod native_waiting;
+#[cfg(test)] mod waiting_requests_tests;
 pub(crate) mod workflow_declaration;
 pub(crate) mod workflow_workspace;
 mod workflow_selection;
@@ -179,6 +182,18 @@ fn read_recovery_custody_from_root(homes:&Mutex<runtime_session::HomeRouter>,mod
     Ok(view)
 }
 
+#[tauri::command(async)]
+fn read_recovery_request_history(state: State<'_, AppState>, mode_home_class: String, generation: Value, cursor: Option<Value>) -> Result<Value,String> {
+    read_recovery_request_history_from_root(&state.homes, &mode_home_class, &generation, cursor.as_ref())
+}
+fn read_recovery_request_history_from_root(homes: &Mutex<runtime_session::HomeRouter>, mode_home_class: &str, generation: &Value, cursor: Option<&Value>) -> Result<Value,String> {
+    let home = homes.try_lock().map_err(|_|"Home selection busy; request-history read not performed")?.active();
+    let view = recovery_root_view::read_request_history(&home, mode_home_class, generation, cursor)?;
+    let active = homes.try_lock().map_err(|_|"Home selection busy after request-history read")?.active();
+    if !Arc::ptr_eq(&home, &active) { return Err("Active request-history home changed; original page not reassigned".into()); }
+    Ok(view)
+}
+
 /// RECOVERY §3.2 CV-15: the person asks for an unavailable conversation's
 /// recovery reads again. The host reads it on this home's ready Codex
 /// (`thread/read`, then its latest turns); nothing is resumed and nothing is
@@ -216,22 +231,7 @@ fn host_status(state: State<'_, AppState>) -> Value {
     // Native commands and the per-home Rust tick reconcile private receipts.
     // Status projects the last received history; polling does not write role
     // observations or admit a genuinely late native outcome.
-    let history = home.history.lock().unwrap();
-    let root = state.instructions_root.lock().unwrap().clone();
-    s["nativeHistory"] = history.snapshot(root.as_deref().ok());
-    s["roleSupply"]["originalStartReceipts"] = s["nativeHistory"]["startReceipts"].clone();
-    s["roleSupply"]["childAssociations"]=s["nativeHistory"]["childAssociations"].clone();
-    s["roleSupply"]["roleLimitObservations"]=s["nativeHistory"]["roleLimitObservations"].clone();
-    for thread in s["threads"].as_array_mut().into_iter().flatten() {
-        if let (Some(home), Some(id)) = (thread["generation"]["home"].as_str(), thread["threadId"].as_str()) {
-            let role = history.role_details(home, id, root.as_deref().ok());
-            thread["appRole"] = role["appRole"].clone();
-            thread["roleRelation"] = role["roleRelation"].clone();
-            thread["childGuidance"] = role["childGuidance"].clone();
-            thread["roleLimitObservations"] = role["roleLimitObservations"].clone();
-            thread["futureGuidanceNotices"] = role["futureGuidanceNotices"].clone();
-        }
-    }
+    let (root,history) = host_tick::project_status_history(&home,&mut s,||state.instructions_root.lock().unwrap().clone());
     // NPTD §7.1: each conversation's delegation reading, as this home's host
     // last read it (the reads run on the host tick and when Try with the
     // authoring agent is pressed; host_status reads nothing from Codex).
@@ -259,12 +259,18 @@ fn host_status(state: State<'_, AppState>) -> Value {
     s["nativeNamespaces"] = match &*state.native_namespaces.lock().unwrap(){Ok(binding)=>binding.snapshot(),Err(error)=>json!({"state":"storage namespace closure unavailable","limit":error,"ordinaryNativeOperations":"independent of persistence availability"})};
     s["keyNamespaceAdmission"] = state.key_namespace_admission.lock().unwrap().clone();
     s["homeResources"]["sourceInputs"] = state.root_home_inputs.clone();
-    s["homeRouting"] = state.homes.lock().unwrap().snapshot();
+    {
+        let homes = state.homes.lock().unwrap();
+        s["homeRouting"] = homes.snapshot();
+        s["waitingRequests"] = waiting_requests::overview(&homes);
+    }
     s["homeAccess"] = home.account_view();
     // OI-008: host_status presents; it records nothing. The checkpoint recorder
     // and the trial reads run on the host's own tick (`host_tick`).
     s["hostTicks"] = host_tick::tick_state();
-    s["workflowRoot"] = host_tick::workflow_status(&state.workflows, &s["nativeView"], state.workspace.is_some());
+    s["workflowRoot"] = host_tick::workflow_status_after_history(&state.workflows, &home, &s["nativeView"], state.workspace.is_some(),history);
+    let trial_homes = state.homes.lock().unwrap().entries();
+    runtime_session::trial_flows::decorate_restart_sources(&state.workflows, &trial_homes, &mut s["workflowRoot"]);
     workflow_selection::publish_context(&mut s, &home);
     s["homeOAuth"] = runtime_session::native_oauth_observation(&home);
     s["continueAs"] = state.continue_as.lock().unwrap().view(&s);
@@ -543,6 +549,10 @@ fn select_home(state: State<'_,AppState>, mode_home_class:String)->Result<Value,
     homes.activate(class)?;
     Ok(homes.snapshot())
 }
+#[tauri::command]
+fn open_waiting_requests(state: State<'_, AppState>, mode_home_class: String, generation: Value, thread_id: Value) -> Result<Value, String> {
+    waiting_requests::open(&mut state.homes.lock().unwrap(), &mode_home_class, &generation, &thread_id)
+}
 #[tauri::command(async)]
 fn read_home_access(state:State<'_,AppState>,generation:Value,mode_home_class:String)->Result<Value,String>{
     let home=state.homes.lock().unwrap().for_generation(&generation)?;
@@ -698,6 +708,8 @@ const QUIT_MENU_ID: &str = "chirality-quit";
 fn app_menu(app: &tauri::AppHandle) -> tauri::Result<tauri::menu::Menu<tauri::Wry>> {
     use tauri::menu::{Menu, MenuItem, MenuItemKind, Submenu};
     let menu = Menu::default(app)?;
+    #[cfg(target_os = "macos")]
+    native_waiting::append_menu(app, &menu)?;
     let quit = MenuItem::with_id(app, QUIT_MENU_ID, format!("Quit {}", app.package_info().name), true, Some("CmdOrCtrl+Q"))?;
     for top in menu.items()? {
         let MenuItemKind::Submenu(sub) = top else { continue };
@@ -714,6 +726,37 @@ fn app_menu(app: &tauri::AppHandle) -> tauri::Result<tauri::menu::Menu<tauri::Wr
     }
     menu.append(&Submenu::with_items(app, "File", true, &[&quit])?)?;
     Ok(menu)
+}
+// Menu dispatch only queues navigation; activation stays behind the App's guards.
+fn request_native_waiting(app: &tauri::AppHandle, id: &str) {
+    use tauri::Emitter;
+    let state = app.state::<AppState>();
+    let result = {
+        let homes = state.homes.lock().unwrap();
+        app.state::<Mutex<native_waiting::Registry>>().lock().unwrap().select(id, &homes)
+    };
+    show_main_window(app);
+    if let Err(reason) = result {
+        app.dialog().message(reason).title("Waiting requests").kind(MessageDialogKind::Info).show(|_| {});
+    } else {
+        // This is a wake-up only. The host retains the original pending target
+        // even if there is no listener yet or this emit fails.
+        let _ = app.emit_to("main", native_waiting::WAKE_EVENT, ());
+    }
+}
+#[tauri::command]
+fn checkpoint_native_waiting_ui(registry: State<'_, Mutex<native_waiting::Registry>>, consumer: String, revision: u64) -> Result<(), String> {
+    registry.lock().unwrap().checkpoint(&consumer, revision)
+}
+#[tauri::command]
+fn claim_native_waiting_intent(state: State<'_, AppState>, registry: State<'_, Mutex<native_waiting::Registry>>, consumer: String) -> Value {
+    let homes = state.homes.lock().unwrap();
+    registry.lock().unwrap().claim(&consumer, &homes)
+}
+#[tauri::command]
+fn finish_native_waiting_intent(registry: State<'_, Mutex<native_waiting::Registry>>, consumer: String, intent_id: Option<String>) -> Result<(), String> {
+    let mut registry = registry.lock().unwrap();
+    match intent_id { Some(id) => registry.finish(&consumer, &id), None => { registry.abandon(&consumer); Ok(()) } }
 }
 /// DEF-1 / SQ-W W-4: show the App's window again (the Dock click on macOS,
 /// or before the quit question so that content it names is visible).
@@ -769,9 +812,13 @@ fn request_quit(app: tauri::AppHandle) {
 }
 /// C-24 (DEL-01-04 §4.8): the count of supplier requests waiting for the
 /// person, on the App's Dock icon, whether or not the window is shown.
-fn show_waiting_indicator(app: &tauri::AppHandle, last: &mut Option<i64>) {
+fn show_waiting_indicator(app: &tauri::AppHandle, last: &mut Option<i64>, menu: &mut native_waiting::MenuObserver) {
     let state = app.state::<AppState>();
     let snapshots: Vec<Value> = state.homes.lock().unwrap().entries().iter().map(|home| home.host.snapshot()).collect();
+    let overview = waiting_requests::overview(&state.homes.lock().unwrap());
+    if let Err(error) = menu.update(app, app.state::<Mutex<native_waiting::Registry>>().inner(), &overview) {
+        eprintln!("chirality: waiting menu update failed: {error}");
+    }
     let count = app_quit::waiting_requests(&snapshots)["count"].as_i64().unwrap_or(0);
     if *last != Some(count) {
         if let Some(window) = app.webview_windows().into_values().next() {
@@ -1124,6 +1171,16 @@ fn continue_as_dismiss(state: State<'_, AppState>, id: String) -> Result<(), Str
     state.continue_as.lock().unwrap().dismiss(&id)
 }
 
+#[tauri::command(async)]
+fn continue_as_send(state: State<'_, AppState>, id: String, text: String) -> Result<Value, String> {
+    conversation_roles::send_handoff(&state.continue_as, &state.homes, &state.workflows, &id, &text)
+}
+
+#[tauri::command(async)]
+fn continue_as_send_read(state: State<'_, AppState>, id: String) -> Result<Value, String> {
+    conversation_roles::read_handoff_send(&state.continue_as, &id)
+}
+
 /// NIR CA-4, ROLE F-1: "Fork (same role)".
 #[tauri::command(async)]
 fn conversation_fork(state: State<'_, AppState>, generation: Value, thread_id: String) -> Result<Value, String> {
@@ -1414,6 +1471,20 @@ fn workflow_observe_drafts(state:State<'_,AppState>,context:workflow_selection::
     let mut root=state.workflows.lock().unwrap();workflow_context_home(&state,&context)?;root.verify_library_context(&context)?;
     root.observe_drafts(&view["items"])
 }
+/// WR ME-1: explicitly refresh the opened library's file entries. No native
+/// contact, review, selection, registration or record write is performed.
+#[tauri::command]
+fn workflow_library_entries_refresh(state:State<'_,AppState>,library_ref:String,context:workflow_selection::Context)->Result<Value,String>{
+    runtime_session::WorkflowRootSession::with_library_context(&state.workflows,&context,||state.homes.lock().unwrap().active(),|root,_|root.observe_library_entries(&library_ref))
+}
+/// WR ME-1/2: choose an ordered subset of one held observation. Names and
+/// content are resolved by its original owner, never supplied by the renderer.
+#[tauri::command]
+fn workflow_review_library_entries(state:State<'_,AppState>,library_ref:String,listing_ref:String,entry_refs:Vec<String>,context:workflow_selection::Context)->Result<Value,String>{
+    let home=workflow_context_home(&state,&context)?;state.validate_home_source(&home)?;
+    let (_,observed)=current_actor_context_for(&state,&home);
+    runtime_session::WorkflowRootSession::with_library_context(&state.workflows,&context,||state.homes.lock().unwrap().active(),|root,home|root.review_library_entries(home,observed,&library_ref,&listing_ref,&entry_refs))
+}
 /// WR TT-3, TT-3a, TT-3b (SQ-DT DT-1…DT-3, SQ-FT FT-1…FT-3): Try pressed on a
 /// listed draft. The host takes the trial snapshot, composes the trial text and
 /// keeps the pre-filled message; nothing is sent or recorded. `thread_id` is
@@ -1429,8 +1500,8 @@ fn workflow_trial_prepare(state:State<'_,AppState>,name:String,kind:String,gener
 /// WR TT-11 Try again: a new trial of the draft's current version.
 #[tauri::command(async)]
 fn workflow_trial_again(state:State<'_,AppState>,reference:String)->Result<Value,String>{
-    let home=trial_home(&state,&reference).unwrap_or_else(|_|state.homes.lock().unwrap().active());
-    runtime_session::trial_flows::trial_again(&state.workflows,&reference,&home,state.workspace.as_deref())
+    let homes=state.homes.lock().unwrap().entries();
+    runtime_session::trial_flows::trial_again(&state.workflows,&reference,&homes,state.workspace.as_deref())
 }
 /// WR §5.5: removing the trial card cancels the trial; nothing is recorded.
 #[tauri::command]
@@ -1615,10 +1686,10 @@ fn workflow_end_run(state:State<'_,AppState>,run_ref:String,finished_report:Opti
 /// with a run in force, ends it and starts the proposed one). The proposal is
 /// re-read from the observed message; it never selects or starts anything itself.
 #[tauri::command(async)]
-fn workflow_start_proposed(state:State<'_,AppState>,generation:Value,message:Value,run_ref:Option<String>,person_text:String)->Result<Value,String>{
+fn workflow_start_proposed(state:State<'_,AppState>,generation:Value,message:Value,run_ref:Option<String>,person_text:String,proposal_context:runtime_session::ProposalContext)->Result<Value,String>{
     let home=state.homes.lock().unwrap().for_generation(&generation)?;state.validate_home_source(&home)?;
     let view=crate::host_tick::receive_view(&home); // as workflow_end_run
-    let next=state.workflows.lock().unwrap().start_proposed(&view,home,&generation,&message,run_ref.as_deref(),person_text,state.workspace.as_deref())?;
+    let next=state.workflows.lock().unwrap().start_proposed_disclosed(&view,home,&generation,&message,run_ref.as_deref(),person_text,state.workspace.as_deref(),&proposal_context)?;
     let started=runtime_session::start_workflow_run(&state.workflows,&next);
     Ok(json!({"ended":run_ref,"started":next,"start":match started{Ok(v)=>v,Err(e)=>json!({"state":"proposed workflow run prepared but not started","limit":e})}}))
 }
@@ -1824,18 +1895,29 @@ fn file_act_select(app:tauri::AppHandle,state:State<'_,AppState>,kind:String,sco
 fn file_act_confirm(app:tauri::AppHandle,state:State<'_,AppState>,reference:String)->Result<Value,String>{
     file_act_confirm_original(&state,&reference,|control,offer,observe|act_control::confirm_file_native(&app,control,offer,observe))
 }
+fn file_act_open_arrival_result(state:&AppState,run_ref:&str,arrival_record_id:&str)->Result<Value,String>{
+    let root=state.workspace.as_ref().ok_or("No App workspace")?;
+    let run=state.workflows.try_lock().map_err(|_|"Workflow owner busy; review again")?.runs.get(run_ref).cloned().ok_or("Original live run unavailable; cold records do not create live arrival custody")?;
+    let source=runtime_session::ArrivalSource::open(run,root,run_ref,arrival_record_id)?;
+    let (_,context)=file_act_observe(state,&source.home())?;
+    let mut control=state.act.try_lock().map_err(|_|"Act owner busy; review again")?;
+    state.file_acts.try_lock().map_err(|_|"File offer state busy; review again")?.compose_arrival(control.as_mut().ok_or("No App workspace")?,source,context)
+}
+#[tauri::command(async)]
+fn file_act_open_arrival(state:State<'_,AppState>,run_ref:String,arrival_record_id:String)->Result<Value,String>{file_act_open_arrival_result(&state,&run_ref,&arrival_record_id)}
 fn file_act_confirm_original(state:&AppState,reference:&str,
     confirm:impl FnOnce(&mut ActControl,&act_control::FileActOfferRef,&mut dyn FnMut()->Result<(Value,Value),String>)->Result<Option<Value>,String>
 )->Result<Value,String>{
     let owner=state.file_acts.try_lock().map_err(|_|"File offer state busy")?.get(&reference)?;
     let mut owner=owner.try_lock().map_err(|_|"Original file operation pending")?;
     if owner.attempted{return Err("Original attempt retained; continue its recording or review a new offer".into());}
-    let home=owner.home.clone();let original=owner.context.clone();
+    let home=owner.home.clone();let original=owner.context.clone();let arrival=owner.arrival.clone();
     let mut control=state.act.try_lock().map_err(|_|"Act owner busy; no native attempt")?;
     let control=control.as_mut().ok_or("Original act owner absent")?;
     owner.attempted=true;
     let result=confirm(control,&owner.offer,&mut ||{
         let observed=file_act_observe(&state,&home)?;
+        if let Some(source)=&arrival{source.validate()?;}
         if observed.1!=original{return Err("Actor or owning context changed since preview; review again".into());}
         Ok(observed)
     });
@@ -1844,6 +1926,9 @@ fn file_act_confirm_original(state:&AppState,reference:&str,
 }
 #[tauri::command(async)]
 fn file_act_continue(state:State<'_,AppState>,reference:String)->Result<Value,String>{
+    file_act_continue_result(&state,&reference)
+}
+fn file_act_continue_result(state:&AppState,reference:&str)->Result<Value,String>{
     let owner=state.file_acts.try_lock().map_err(|_|"File offer state busy")?.get(&reference)?;
     let mut owner=owner.try_lock().map_err(|_|"Original file operation pending")?;
     let mut control=state.act.try_lock().map_err(|_|"Act owner busy; original status retained")?;
@@ -1887,7 +1972,10 @@ pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
         .menu(app_menu)
-        .on_menu_event(|app, event| if event.id() == QUIT_MENU_ID { request_quit(app.clone()) })
+        .on_menu_event(|app, event| {
+            if event.id() == QUIT_MENU_ID { request_quit(app.clone()); }
+            else if event.id().as_ref().starts_with(native_waiting::ITEM_PREFIX) { request_native_waiting(app, event.id().as_ref()); }
+        })
         // DEF-1, SQ-W: closing the window is not quit and stops nothing. The
         // window is hidden (macOS; the Dock click shows it again) or minimized
         // (platforms with no Dock), so the main process keeps observing and
@@ -1954,6 +2042,7 @@ pub fn run() {
     };
     let host = Arc::clone(&home.host);
             app.manage(state);
+            app.manage(Mutex::new(native_waiting::Registry::default()));
             let data = app.path().app_data_dir().map_err(|e| e.to_string());
             // RS §13.8: the App's records store, configured once before any
             // record is read or written; a store that cannot be used refuses
@@ -2068,9 +2157,10 @@ pub fn run() {
                 let handle = app.handle().clone();
                 std::thread::Builder::new().name("chirality-waiting-indicator".into()).spawn(move || {
                     let mut last = None;
+                    let mut menu = native_waiting::MenuObserver::default();
                     loop {
                         std::thread::sleep(host_tick::INTERVAL);
-                        host_tick::guarded("indicator", || show_waiting_indicator(&handle, &mut last));
+                        host_tick::guarded("indicator", || show_waiting_indicator(&handle, &mut last, &mut menu));
                     }
                 }).map_err(|e| format!("waiting indicator thread not started: {e}"))?;
             }
@@ -2109,8 +2199,9 @@ pub fn run() {
         // DEF-1: closing or reloading a window is not a stop (HOSTING §4.5); no window
         // event touches the child.
         .invoke_handler(tauri::generate_handler![
-            file_act_select, file_act_confirm, file_act_continue, file_act_dismiss, file_act_read, file_act_observe_lapses, file_act_retry_lapses,
+            file_act_select, file_act_open_arrival, file_act_confirm, file_act_continue, file_act_dismiss, file_act_read, file_act_observe_lapses, file_act_retry_lapses,
             read_recovery_custody,
+            read_recovery_request_history,
             recovery_retry,
             read_connector_routes,
             read_fleet_records,
@@ -2120,6 +2211,10 @@ pub fn run() {
             recheck_published_connector_draft, prepare_connector_reconstruction, prepare_connector_draft, publish_connector_draft, cancel_connector_draft, reconcile_connector_draft, inspect_connector_drafts,
             host_status,
             select_home,
+            open_waiting_requests,
+            claim_native_waiting_intent,
+            checkpoint_native_waiting_ui,
+            finish_native_waiting_intent,
             read_home_access,
             add_api_key,
             oauth_start,oauth_present,oauth_cancel,
@@ -2146,9 +2241,11 @@ pub fn run() {
             conversation_interrupt,
             continue_as_begin,
             continue_as_dismiss,
+            continue_as_send,
+            continue_as_send_read,
             conversation_fork,
             set_person_name,
-            workflow_select_development,workflow_select_production_bundle,workflow_select_production_copy,workflow_open_library,workflow_open_project_library,workflow_observe_drafts,workflow_trial_prepare,workflow_trial_again,workflow_trial_cancel,workflow_trial_send,workflow_trial_start_clean,workflow_trial_link,workflow_trial_unlink,workflow_trial_read,workflow_trial_bring_back,workflow_run_bring_back,workflow_bring_back_cancel,workflow_bring_back_send,workflow_trial_compare,workflow_review_draft,workflow_select_registered,workflow_select_listed,workflow_follow_newer_revision,workflow_create_draft,workflow_refine_registered,workflow_review,workflow_register_native,workflow_continue_registration,workflow_prepare_run,workflow_send_run,workflow_check_supply,workflow_retry_records,workflow_read_records,workflow_end_run,workflow_start_proposed,workflow_end_and_start,workflow_check_notice,workflow_skip_notice,workflow_reopen,workflow_end_recorded,workflow_reopened_notice,workflow_review_digest,native_confirmation_content,
+            workflow_select_development,workflow_select_production_bundle,workflow_select_production_copy,workflow_open_library,workflow_open_project_library,workflow_observe_drafts,workflow_library_entries_refresh,workflow_review_library_entries,workflow_trial_prepare,workflow_trial_again,workflow_trial_cancel,workflow_trial_send,workflow_trial_start_clean,workflow_trial_link,workflow_trial_unlink,workflow_trial_read,workflow_trial_bring_back,workflow_run_bring_back,workflow_bring_back_cancel,workflow_bring_back_send,workflow_trial_compare,workflow_review_draft,workflow_select_registered,workflow_select_listed,workflow_follow_newer_revision,workflow_create_draft,workflow_refine_registered,workflow_review,workflow_register_native,workflow_continue_registration,workflow_prepare_run,workflow_send_run,workflow_check_supply,workflow_retry_records,workflow_read_records,workflow_end_run,workflow_start_proposed,workflow_end_and_start,workflow_check_notice,workflow_skip_notice,workflow_reopen,workflow_end_recorded,workflow_reopened_notice,workflow_review_digest,native_confirmation_content,
             decision_view,
             continue_decision_recording,
             compose_offer,

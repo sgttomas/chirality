@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ConversationSelect, conversationKey, findConversation } from "./TrialComposer";
+import { ConversationSelect, conversationKey, conversationReference, findConversation } from "./TrialComposer";
 type Json = any; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 // The run panel's readable parts (DEL-01-04 NIR §9 PD-1…PD-7, placing
@@ -100,10 +100,13 @@ const lapseLine = (b: Json, pending = false): string => {
   return `Lapse observed for ${text(b?.act?.actKind)} ${text(b?.act?.recordId)} at ${text(b?.time)} (${text(b?.when)}): ${LAPSE_STATE[text(b?.state)] ?? text(b?.state)}.${label} Nothing is asked or stopped because of it.`;
 };
 const line = (key: string, body: Json) => <span key={key}><br /><small>{body}</small></span>;
+export type OpenArrivalFileAct = (runRef: string, arrivalRecordId: string) => Promise<void>;
 
 /** EXEC CE-3 / SD-2: one recorded arrival with its latest disposition, read from
  * the run record. Information only: nothing waits on it and nothing is sent. */
-export function ArrivalRecord({ arrival, all }: { arrival: Json; all: Json[] }) {
+export function ArrivalRecord({ arrival, all, runRef, fileActEntry, openFileAct, busy = false }: {
+  arrival: Json; all: Json[]; runRef?: string; fileActEntry?: Json; openFileAct?: OpenArrivalFileAct; busy?: boolean;
+}) {
   const b = arrival?.body ?? {};
   const name = text(b.checkpoint);
   const related = (kind: string) => all.filter((e: Json) => e?.kind === kind && sameArrival(e?.body?.arrival, name, b.arrivalOrdinal));
@@ -119,6 +122,8 @@ export function ArrivalRecord({ arrival, all }: { arrival: Json; all: Json[] }) 
   const latest = changes.length ? changes[changes.length - 1].body?.disposition : undefined;
   const time = b.event?.evidencedTime;
   const note = writtenNote(arrival, all);
+  const candidate = fileActEntry?.state === "candidate" && !!runRef && typeof arrival?.recordId === "string" && !!arrival.recordId;
+  const fileActReason = text(fileActEntry?.reason) || (runRef ? "No current file-act entry was supplied by the host for this arrival." : "Historical or reopened arrival: no current owned file-act entry is available.");
   return <li>
     Arrival {text(b.arrivalOrdinal)}: {latest === undefined ? "disposition not recorded" : arrivalLabel(latest)}. Observed {text(b.event?.ref)}{time ? ` at ${text(time.value)} (${TIME_SOURCE[text(time.source)] ?? text(time.source)})` : ""}.
     {list(b.referents).map((r: Json, i: number) => line(`r${i}`, `Subject: ${text(r?.subject)}; content ${r?.content?.notObtainable ? `not obtainable: ${text(r.content.reason)}` : `${text(r?.content?.method)} ${text(r?.content?.value).slice(0, 12)}`}.`))}
@@ -135,12 +140,17 @@ export function ArrivalRecord({ arrival, all }: { arrival: Json; all: Json[] }) 
     {related("act_lapsed").filter((c: Json) => postEndBound || c.body?.when !== "after run end").map((c: Json, i: number) => line(`x${i}`, `${lapseLine(c.body, c.written === false)} ${writtenNote(c, all)}`))}
     {list(b.limits).map((l: Json, i: number) => line(`l${i}`, `Limit: ${text(l)}`))}
     {note && line("w", note)}
+    {candidate ? <p>
+      <button disabled={busy || !openFileAct} onClick={() => openFileAct?.(runRef!, arrival.recordId)}>Review file for this arrival…</button>{" "}
+      {fileActReason} The host rechecks the original source and current file when you click. Review opens a frozen offer; a separate native confirmation is required for an act.
+      {!openFileAct && " File review is unavailable in this view."}
+    </p> : <p role="note">Arrival file review unavailable: {fileActReason}</p>}
   </li>;
 }
 
 /** OV-1, SD-1, PD-1, PD-7: one declared checkpoint as plan guidance, with
  * what the run record holds about it. */
-export function CheckpointGuidance({ element, run }: { element: Json; run?: Json }) {
+export function CheckpointGuidance({ element, run, openFileAct, busy = false }: { element: Json; run?: Json; openFileAct?: OpenArrivalFileAct; busy?: boolean }) {
   const v = element?.value ?? {};
   const invalid = element?.reading === "invalid";
   const all = run ? records(run) : [];
@@ -164,7 +174,7 @@ export function CheckpointGuidance({ element, run }: { element: Json; run?: Json
       : evaluability?.status === "not evaluable" ? `listed. The App does not record arrivals for it: ${text(evaluability?.reason)}`
       : `listed. The App records an arrival only from what it observes in the conversation: ${text(evaluability?.reason)}`}${listing && writtenNote(listing, all) ? ` ${writtenNote(listing, all)}` : ""}`)}
     {run && listing && (arrivals.length
-      ? <ul aria-label={`Recorded arrivals of ${name}`}>{arrivals.map((a: Json, i: number) => <ArrivalRecord key={i} arrival={a} all={all} />)}</ul>
+      ? <ul aria-label={`Recorded arrivals of ${name}`}>{arrivals.map((a: Json, i: number) => <ArrivalRecord key={i} arrival={a} all={all} runRef={run?.reference} fileActEntry={run?.fileActEntries?.[a.recordId]} openFileAct={openFileAct} busy={busy} />)}</ul>
       : line("none", `No arrival recorded in this run.${unread ? ` ${unread} arrival entr${unread === 1 ? "y" : "ies"} could not be read, so this may be incomplete.` : ""}`))}
   </li>;
 }
@@ -346,7 +356,7 @@ export function StandingFacets({ facets }: { facets: Facets }) {
 }
 
 /** The declared part, readable (WD §4; OV-1). `run` adds the record's view. */
-export function DeclaredPart({ declaration, run }: { declaration: Json; run?: Json }) {
+export function DeclaredPart({ declaration, run, openFileAct, busy = false }: { declaration: Json; run?: Json; openFileAct?: OpenArrivalFileAct; busy?: boolean }) {
   if (!declaration) return <p>Declared part: not supplied by the host.</p>;
   if (declaration.unavailable) return <p role="note">Declared part could not be read: {text(declaration.unavailable)}</p>;
   const elements = (category: string): Json[] => list(declaration.elements?.[category]);
@@ -365,7 +375,7 @@ export function DeclaredPart({ declaration, run }: { declaration: Json; run?: Js
     {declaration.reading === "recognized" && list(declaration.findings).length > 0 && <p><small>Findings: {list(declaration.findings).map(text).join("; ")}</small></p>}
     {category("expected_inputs", "Inputs", (e, i) => <li key={i}><b>{text(e.value?.name)}</b> ({e.value?.necessity === "optional" ? "optional" : "required"}; {INPUT_KIND[text(e.value?.kind)] ?? text(e.value?.kind)}{e.value?.read_through ? ` through ${text(e.value.read_through)}` : ""}): {text(e.value?.meaning)}{e.value?.basis_requirement ? ` Basis: ${text(e.value.basis_requirement)}` : ""}{e.value?.absence_effect ? ` If absent: ${text(e.value.absence_effect)}` : ""}{readingNote(e)}</li>)}
     {category("required_tools", "Tools", (e, i) => <li key={i}><b>{text(e.value?.name)}</b> ({e.value?.necessity === "optional" ? "optional" : "required"} {TOOL_CLASS[text(e.value?.class)] ?? text(e.value?.class)}{e.value?.operation ? ` ${text(e.value.operation)}` : ""}{e.value?.capability ? ` ${text(e.value.capability)}` : ""}{list(e.value?.versions).length ? `, versions ${names(e.value.versions)}` : ""}): {text(e.value?.purpose)}{e.value?.fallback ? ` Fallback: ${text(e.value.fallback)}` : ""}{readingNote(e)}</li>)}
-    {category("checkpoints", "Checkpoints (plan guidance)", (e, i) => <CheckpointGuidance key={i} element={e} run={run} />)}
+    {category("checkpoints", "Checkpoints (plan guidance)", (e, i) => <CheckpointGuidance key={i} element={e} run={run} openFileAct={openFileAct} busy={busy} />)}
     {category("returned_outputs", "Outputs", (e, i) => <li key={i}><b>{text(e.value?.name)}</b> ({OUTPUT_FORM[text(e.value?.form)] ?? text(e.value?.form)}{e.value?.path ? ` at ${text(e.value.path)}` : ""}{e.value?.designating_line ? `, first line “${text(e.value.designating_line)}”` : ""}; to {text(e.value?.destination)}): {text(e.value?.meaning)}{readingNote(e)}
       <br /><small>Declared promise, not a standing: {names(e.value?.promised_standing) || "none"}.{e.value?.gating_checkpoint ? ` Declared with checkpoint ${text(e.value.gating_checkpoint)}.` : ""}</small>
       {run && <StandingFacets facets={outputStanding(e.value, run)} />}</li>)}
@@ -391,7 +401,7 @@ export const roleWords = (role: Json): string => role?.standing === "app-observe
  * roles is shown with the role in force and the way to work in another role. */
 export function CompatibilityAdvisory({ entry }: { entry: Json }) {
   const p = entry?.preparation;
-  if (!p) return <li>{text(entry?.occasionLabel)}: no evaluation{entry?.limit ? ` (${text(entry.limit)})` : ""}. This check is advisory and never decides whether the run starts.</li>;
+  if (!p) return <li>{text(entry?.occasionLabel) || "Compatibility"}: no evaluation{entry?.limit ? ` (${text(entry.limit)})` : ""}. Evaluation basis not supplied. This check is advisory and never decides whether the run starts.</li>;
   const declared = p.declaration?.raw?.compatible_roles;
   const role = p.role;
   const inForce = role?.standing === "app-observed" ? (role.role ?? null) : undefined;
@@ -399,10 +409,14 @@ export function CompatibilityAdvisory({ entry }: { entry: Json }) {
   return <li>
     {text(entry.occasionLabel)}: requirement check {CHECK[text(p.check?.result)] ?? text(p.check?.result)} ({text(entry.statement)}){entry.notCurrent ? "; evaluated on an earlier basis, so it is not current" : ""}. Advisory: it never decides whether the run starts.
     <ul>
-      {list(p.requirements).map((r: Json, i: number) => <li key={i}>{text(r.name)}: {OUTCOME[text(r.outcome)] ?? text(r.outcome)}{r.reason ? `: ${text(r.reason)}` : ""}{r.fallback ? ` · fallback: ${text(r.fallback)}` : ""}</li>)}
+      {list(p.requirements).map((r: Json, i: number) => <li key={i}>{text(r.name)}: {OUTCOME[text(r.outcome)] ?? text(r.outcome)}{r.reason ? `: ${text(r.reason)}` : ""} · purpose: {text(r.purpose) || "not supplied"}{r.fallback ? ` · fallback: ${text(r.fallback)}` : ""}</li>)}
       <li>Role in force: {roleWords(role)}, fixed for the conversation's life.</li>
       {mismatch && <li role="note">The workflow is written for {names(declared)}; this conversation has {inForce ?? "no role"}. The check does not pass for the role. You may still start or continue the run. To work in one of those roles, use Continue as on the conversation: that starts a new conversation and leaves this one as it is.</li>}
       {list(p.check?.findings).filter((f: Json) => !(mismatch && /written for/.test(text(f)))).map((f: Json, i: number) => <li key={`f${i}`}>Finding: {text(f)}</li>)}
+      <li>Evaluation basis: surface {text(p.basis?.surface) || "not supplied"}; acting pin {text(p.basis?.acting_pin) || "not supplied"}; catalog edition {text(p.basis?.catalog_edition) || "not supplied"}; environment observation {text(p.basis?.environment_observation) || "not supplied"}; evaluated at {text(p.evaluated_at) || "not supplied"}.</li>
+      <li>Evaluation context: conversation {text(p.basis?.conversation) || "not supplied"}; home {text(p.basis?.home) || "not supplied"}; generation {text(p.basis?.generation) || "not supplied"}.</li>
+      <li>Environment inventory source: {text(entry.inventoryOrigin?.kind) || "not supplied"}{entry.inventoryOrigin?.source ? ` · ${text(entry.inventoryOrigin.source)}` : ""}.</li>
+      {list(entry.publication?.factsNotSupplied).map((limit: Json, i: number) => <li key={`publication${i}`}>Report publication limit: {text(limit)}</li>)}
     </ul>
     <small>Publication: {text(entry.publication?.state) || "not published"}; {text(entry.r14)}</small>
   </li>;
@@ -464,22 +478,25 @@ export function RunBringBackView({ run, conversations, target, setTarget, includ
 /** TT-10's default target for bringing a run back: the host's
  * `runBringBackDefaults` entry for this run (the authoring conversation of the
  * latest trial of a draft of the run's slot), or none. */
-export const runBringBackDefault = (workflowRoot: Json, runRef: Json): string | null => {
+export const runBringBackDefault = (workflowRoot: Json, runRef: Json): Json | null => {
   const entry = list(workflowRoot?.runBringBackDefaults).find((d: Json) => d?.run === runRef);
-  return entry?.threadId ? text(entry.threadId) : null;
+  return conversationReference(entry?.authoring);
 };
 
 /** The person's pick wins; until then the target is the host's default
  * conversation when it is a started conversation here, else none. */
-export function RunBringBack({ run, conversations, defaultThread = null, busy, act }: { run: Json; conversations: Json[]; defaultThread?: string | null; busy: boolean; act: RunBringBackAct }) {
+export function RunBringBack({ run, conversations, defaultThread = null, busy, act }: { run: Json; conversations: Json[]; defaultThread?: Json; busy: boolean; act: RunBringBackAct }) {
   const [picked, setPicked] = useState<string | null>(null);
   const [includeNative, setIncludeNative] = useState(false);
   const target = picked ?? conversationKey(findConversation(conversations, defaultThread));
-  return <RunBringBackView run={run} conversations={conversations} target={target} setTarget={setPicked} includeNative={includeNative} setIncludeNative={setIncludeNative} busy={busy} act={act} />;
+  return <>
+    {picked === null && !findConversation(conversations, defaultThread) && <p role="note"><small>Original authoring source unavailable or not selected; choose a current target explicitly.</small></p>}
+    <RunBringBackView run={run} conversations={conversations} target={target} setTarget={setPicked} includeNative={includeNative} setIncludeNative={setIncludeNative} busy={busy} act={act} />
+  </>;
 }
 
 /** PD-1, PD-3, PD-7 for one run, from the run view the host reports. */
-export function RunPanel({ run, conversations, bringBackDefault = null, busy = false, act }: { run: Json; conversations?: Json[]; bringBackDefault?: string | null; busy?: boolean; act?: RunBringBackAct }) {
+export function RunPanel({ run, conversations, bringBackDefault = null, busy = false, act, openFileAct }: { run: Json; conversations?: Json[]; bringBackDefault?: Json; busy?: boolean; act?: RunBringBackAct; openFileAct?: OpenArrivalFileAct }) {
   const compatibility = list(run?.compatibility);
   const declaration = compatibility.find((c: Json) => c?.preparation?.declaration)?.preparation?.declaration;
   const workflow = run?.workflow ?? {};
@@ -489,7 +506,7 @@ export function RunPanel({ run, conversations, bringBackDefault = null, busy = f
     <RecordWriteNotice run={run} />
     <HistoryReferenceNotice pointers={run?.learningPointers} run={run} />
     <h4>Declared part of {text(workflow.name) || "this workflow"}</h4>
-    {declaration ? <DeclaredPart declaration={declaration} run={run} /> : <p>The declared part was not evaluated for this run, so it is not shown here.</p>}
+    {declaration ? <DeclaredPart declaration={declaration} run={run} openFileAct={openFileAct} busy={busy} /> : <p>The declared part was not evaluated for this run, so it is not shown here.</p>}
     <h4>Compatibility (advisory)</h4>
     {compatibility.length ? <ul>{compatibility.map((c: Json, i: number) => <CompatibilityAdvisory key={i} entry={c} />)}</ul> : <p>No compatibility evaluation for this run.</p>}
     {act && <RunBringBack run={run} conversations={conversations ?? []} defaultThread={bringBackDefault} busy={busy} act={act} />}

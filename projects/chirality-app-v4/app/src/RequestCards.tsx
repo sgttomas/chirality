@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { itemAnchorId, requestAnchorId } from "./NativeActivity";
+import { useRef, useState } from "react";
+import { itemAnchorId, requestAnchorId, sameActivityGeneration } from "./NativeActivity";
 import { EXACT_TEXT } from "./exactText";
 type Json = any; // eslint-disable-line @typescript-eslint/no-explicit-any
+export type RequestActivityLink = (request: Json) => { open: () => void } | null;
 
 // Readable request cards (DEL-01-04 NIR §4.1–§4.8). A card presents what Codex
 // asks and sends the native answer value unchanged; classification, the answer
@@ -35,6 +36,34 @@ export function requestThread(request: Json): string | null {
 export function answerable(request: Json): boolean {
   return request?.state === "outstanding" && request?.classification === "known-answerable" && request?.originClass !== "named-service";
 }
+
+/** A UI observation belongs to the full H5 tuple and typed native ID. It
+ * supplies no request authority and contains no answer content. */
+export const requestScopeKey = (request: Json): string => JSON.stringify([
+  request?.generation?.appSession, request?.generation?.home, request?.generation?.spawnCounter,
+  typeof request?.requestIdentity, request?.requestIdentity,
+]);
+export type RequestCustodyObservation = { scope: string; available: boolean; state?: string; reason?: string };
+export type RequestReplyObservation = {
+  scope: string;
+  command: { kind: "pending" | "written" | "dismissed" } | { kind: "rejected"; reason: string } | { kind: "unconfirmed"; writeResult: string };
+  custody: RequestCustodyObservation;
+};
+export type RequestAnswer = (request: Json, answer: Json) => Promise<RequestReplyObservation | void>;
+export type ReadRequestCustody = (request: Json) => Promise<RequestCustodyObservation>;
+
+function replyObservationWords(observation: RequestReplyObservation): string {
+  switch (observation.command.kind) {
+    case "pending": return "Answer command in progress; waiting for native confirmation or a reply write result.";
+    case "written": return "The reply was written locally. Codex receipt or action is not confirmed by that write.";
+    case "dismissed": return "Native confirmation dismissed; no reply write was attempted.";
+    case "rejected": return `Native answer command reported: ${observation.command.reason}. A complete local reply write is not established by this error alone.`;
+    case "unconfirmed": return `Reply write outcome not established (${observation.command.writeResult}); whether Codex received or acted on a reply is unknown.`;
+  }
+}
+export const requestReplyGuarded = (reply: RequestReplyObservation | null | undefined, scope: string): boolean => !!reply && reply.scope === scope &&
+  (reply.command.kind === "pending" || reply.command.kind === "written" || reply.command.kind === "unconfirmed" || !reply.custody.available ||
+    reply.custody.scope !== scope || reply.custody.state !== "outstanding");
 
 /** §4.1 card titles. */
 export function requestTitle(request: Json): string {
@@ -204,35 +233,73 @@ function Subject({ request, item }: { request: Json; item: Json }) {
 }
 
 /** §4.7: "about: ‹item›", linking to the activity row; the supplier's identity when the row is absent. */
-function About({ request, item }: { request: Json; item: Json }) {
+function About({ request, item, navigation }: { request: Json; item: Json; navigation: { open: () => void } | null }) {
   const p = request?.nativeParameters ?? {};
   if (!p.itemId) return null;
-  if (item) return <div>About: <a href={`#${itemAnchorId(item.threadId, item.turnId, item.native?.id)}`}>{text(item.native?.type) || "item"} in this conversation’s activity</a></div>;
+  if (item && navigation) return <div>About: <a href={`#${itemAnchorId(item.threadId, item.turnId, item.native?.id)}`} onClick={event => { event.preventDefault(); navigation.open(); }}>{text(item.native?.type) || "item"} in this conversation’s activity</a></div>;
   return <div>About: Codex item <code>{text(p.itemId)}</code> in turn <code>{text(p.turnId)}</code> (not in this view’s activity)</div>;
 }
 
 /** The activity row of the item a request is about, if this view holds it. */
 export function requestItem(request: Json, view: Json): Json {
   const p = request?.nativeParameters ?? {};
+  if (!sameActivityGeneration(request?.generation, view?.generation) || view?.home !== request.generation.home) return null;
   return (Array.isArray(view?.items) ? view.items : []).find((row: Json) => row?.threadId === p.threadId && row?.turnId === p.turnId && row?.native?.id === p.itemId) ?? null;
 }
 
 // Request-local drafts are disposable. Secret content is never echoed or saved.
-export function NativeRequestCard({ request, view, answer }: { request: Json; view?: Json; answer: (r: Json, a: Json) => Promise<void> }) {
+export function NativeRequestCard({ request, view, answer, readRequest, observation, activityLink }: { request: Json; view?: Json; answer: RequestAnswer; readRequest?: ReadRequestCustody; observation?: RequestReplyObservation; activityLink?: RequestActivityLink }) {
   const [drafts, setDrafts] = useState<Record<string, string>>({});
   const [scope, setScope] = useState("turn");
   const [content, setContent] = useState("");
   const [rejection, setRejection] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
+  const scopeKey = requestScopeKey(request);
+  const currentScope = useRef(scopeKey);
+  currentScope.current = scopeKey;
+  const busyRef = useRef<{ scope: string } | null>(null);
+  const [busyScope, setBusyScope] = useState<string | null>(null);
+  const busy = busyScope === scopeKey;
+  const [scopedError, setScopedError] = useState<{ scope: string; message: string } | null>(null);
+  const setError = (message: string) => setScopedError({ scope: scopeKey, message });
+  const error = scopedError?.scope === scopeKey ? scopedError.message : "";
+  const [lastReply, setLastReply] = useState<RequestReplyObservation | null>(null);
+  const replyRef = useRef<RequestReplyObservation | null>(null);
+  if (observation?.scope === scopeKey) replyRef.current = observation;
+  const observeReply = (observation: RequestReplyObservation) => { replyRef.current = observation; setLastReply(observation); };
+  const reply = observation?.scope === scopeKey ? observation : lastReply?.scope === scopeKey ? lastReply : null;
+  // A completed write cannot be undone by a delayed outstanding snapshot.
+  // A dismissed/rejected command permits retry only after a source-bound
+  // custody read reports that exact request still outstanding.
+  const replyGuard = requestReplyGuarded(reply, scopeKey);
+  const unreconciled = answerable(request) && replyGuard;
   const p = request.nativeParameters ?? {};
   const method = request.method;
   const send = async (value: Json) => {
-    setBusy(true); setError("");
+    if (currentScope.current !== scopeKey || busyRef.current?.scope === scopeKey || !answerable(request) || requestReplyGuarded(replyRef.current, scopeKey)) return;
+    const token = { scope: scopeKey };
+    busyRef.current = token;
+    setBusyScope(scopeKey); setError("");
     // Remove drafts from the rendered control before crossing the IPC boundary.
     setDrafts({}); setContent(""); setRejection("");
-    try { await answer(request, value); } catch (e) { setError(refusalWords(String(e))); }
-    finally { setBusy(false); }
+    try {
+      let completion: ReturnType<RequestAnswer>;
+      try { completion = answer(request, value); }
+      finally { value = undefined; }
+      const observation = await completion;
+      if (currentScope.current === scopeKey && observation?.scope === scopeKey) observeReply(observation);
+    } catch (e) { if (currentScope.current === scopeKey) setError(refusalWords(String(e))); }
+    finally { if (busyRef.current === token) { busyRef.current = null; setBusyScope(null); } }
+  };
+  const reread = async () => {
+    if (!readRequest || !reply || busyRef.current?.scope === scopeKey) return;
+    const token = { scope: scopeKey };
+    busyRef.current = token; setBusyScope(scopeKey);
+    try {
+      const custody = await readRequest(request);
+      if (currentScope.current === scopeKey && custody.scope === scopeKey && replyRef.current?.scope === scopeKey) observeReply({ ...replyRef.current, custody });
+    } catch (e) {
+      if (currentScope.current === scopeKey && replyRef.current?.scope === scopeKey) observeReply({ ...replyRef.current, custody: { scope: scopeKey, available: false, reason: String(e) } });
+    } finally { if (busyRef.current === token) { busyRef.current = null; setBusyScope(null); } }
   };
   const decisionButton = (decision: Json, value: Json, blocked = false) => <button key={JSON.stringify(decision)} disabled={busy || blocked} onClick={() => send(value)}>{decisionWords(decision)} <code>{JSON.stringify(decision)}</code></button>;
   const modern = method === COMMAND || method === FILE_CHANGE;
@@ -249,12 +316,17 @@ export function NativeRequestCard({ request, view, answer }: { request: Json; vi
   const a14 = TOOL_PERMISSION.includes(method);
   return <article id={requestAnchorId(request.generation, request.requestIdentity)} style={{ borderTop: "1px solid #ccc", padding: 8 }}>
     <h3>{requestTitle(request)}</h3>
-    <p><b>{cardState(request)}</b></p>
-    <About request={request} item={item} />
+    <p><b>{unreconciled ? reply?.command.kind === "pending" ? "Answer command in progress" : "Current request state unavailable or not reconciled" : cardState(request)}</b>{unreconciled && <>. Last observed: {cardState(request)}</>}</p>
+    {reply && <section aria-label="Native reply observation">
+      <p>{replyObservationWords(reply)}</p>
+      {!reply.custody.available && reply.command.kind !== "pending" && <p role="alert">Request state unavailable: {reply.custody.reason || "the original request custody could not be read"}</p>}
+      {unreconciled && reply.command.kind !== "pending" && readRequest && <button disabled={busy} onClick={() => { void reread(); }}>Read current request state</button>}
+    </section>}
+    <About request={request} item={item} navigation={activityLink?.(request) ?? null} />
     <Subject request={request} item={item} />
     {a14 && <p>Tool permission only. Your answer decides whether Codex may use this tool; it does not mark anything checked, take the work as done, give engineering sign-off or rely on the result, and it is not recorded as a human act. <a href="#file-acts">Open the App act control</a> (a separate standing facility; nothing is filled in from this request).</p>}
     {(method === QUESTION || method === ELICITATION) && <p>Your answer goes to the agent as conversation input; it is not a recorded act. <a href="#file-acts">Open the App act control</a> (a separate standing facility; nothing is filled in from this request).</p>}
-    {answerable(request) && <div>
+    {answerable(request) && !replyGuard && <div>
       {forms.map(formButton)}
       {modern && forms.length === 0 && <p>This request offers no answer forms.</p>}
       {legacy && <div>
@@ -300,19 +372,20 @@ export function NativeRequestCard({ request, view, answer }: { request: Json; vi
   </article>;
 }
 
-/** WI-1…WI-3: how many supplier requests wait for the person, in which conversations. */
-export function waitingByConversation(requests: Json[]): { thread: string | null; count: number }[] {
-  const counts = new Map<string | null, number>();
-  for (const request of Array.isArray(requests) ? requests : []) if (answerable(request)) counts.set(requestThread(request), (counts.get(requestThread(request)) ?? 0) + 1);
-  return Array.from(counts.entries()).map(([thread, count]) => ({ thread, count }));
-}
+export type WaitingRequestGroup = { modeHomeClass: string; generation: Json; threadId: string | null; count: number };
 
-export function WaitingRequestsIndicator({ requests, open }: { requests: Json[]; open: (thread: string | null) => void }) {
-  const waiting = waitingByConversation(requests);
+/** WI-1…WI-3: local all-home metadata only; opening revalidates its native source. */
+export function WaitingRequestsIndicator({ overview, busy = false, open }: { overview: Json; busy?: boolean; open: (group: WaitingRequestGroup) => void }) {
+  const available = Array.isArray(overview?.groups);
+  const waiting: WaitingRequestGroup[] = available ? overview.groups : [];
   const total = waiting.reduce((sum, row) => sum + row.count, 0);
   return <section aria-label="Requests waiting for your answer" style={{ border: "1px solid #888", padding: "4px 8px", margin: "8px 0" }}>
-    <b>{total === 0 ? "No requests from Codex are waiting for your answer." : `${total} request${total === 1 ? "" : "s"} from Codex waiting for your answer`}</b>
-    {waiting.map(row => <span key={row.thread ?? ""}>{" · "}<button onClick={() => open(row.thread)}>{row.thread ? `conversation ${row.thread}` : "no conversation named"}: {row.count}</button></span>)}
-    {total > 0 && <small> Opening a conversation shows its request cards; it answers nothing.</small>}
+    <b>{!available ? "Waiting-request overview unavailable." : total === 0 ? "No current waiting requests observed in configured homes." : `${total} request${total === 1 ? "" : "s"} from Codex waiting for your answer`}</b>
+    {waiting.map(row => <div key={JSON.stringify([row.modeHomeClass, row.generation, row.threadId])}>
+      <button disabled={busy} onClick={() => open(row)}>{row.modeHomeClass} · {row.threadId ? `conversation ${row.threadId}` : "no conversation named"}: {row.count}</button>
+      <small> Source: {JSON.stringify(row.generation)}.</small>
+    </div>)}
+    {available && <p><small>{overview.coverage} {(overview.sources ?? []).filter((source: Json) => source.state !== "ready").map((source: Json) => `${source.modeHomeClass}: ${source.state}; no current waiting groups shown. `).join("")}</small></p>}
+    {total > 0 && <small> Opening shows the original home's request cards; it answers nothing and resumes no conversation.</small>}
   </section>;
 }

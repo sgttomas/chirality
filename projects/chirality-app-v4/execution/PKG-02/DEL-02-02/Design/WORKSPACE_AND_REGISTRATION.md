@@ -1001,6 +1001,67 @@ The original implementation allocation below locates the trial contributions and
 
 ## Current implementation conditions
 
+**Workflow responses and draft observation (SQ-D D-2).** The workflow panel
+retains a returned native command value separately from later view-refresh or
+draft-observation failures. The displayed response and limits name the
+original command, request and source; a later source change does not retarget
+them. After Create draft or Refine returns, the panel attempts its existing
+draft observation once using the captured original context, even if the first
+view refresh failed. An unavailable observation leaves its cause alongside
+the original response. This neither retries the mutation nor infers that a
+generic native command error means no files were written. Existing native
+source checks and raw child return values remain unchanged.
+
+**Advisory before a run choice (PR-1–PR-5 / CH-1 / CK-1).** A message's
+verified registered candidate and the chat's existing closed selection receive
+the compatibility evaluation before the person chooses Start or End A and
+start B. The selected successor's own report is shown beside its choice,
+separately from the current run's report. The read uses the
+original conversation's role evidence and names the unavailable environment
+observations; it neither selects nor prepares a run, stores a report or writes
+R14. Unknown, unsupported and unavailable evaluations leave the ordinary choice
+available. A proposal press retains its displayed source, message, run and
+registered revision; the host rechecks that correspondence. A direct selected
+successor keeps the existing source, generation, chat, history epoch, library
+and selection-reference checks. Both continue through their existing
+preparation and once-only dispatch paths. A changed displayed choice requires
+a fresh observation rather than substitution of another candidate.
+
+**Frozen registration review display (RB-2).** The App presents the existing
+host-frozen review through the same read-only view before native confirmation
+and while an open A15 confirmation names it. Workflow text keeps its literal
+line breaks. Targets, content identities, file manifests, declarations,
+findings, prior/base file and digest changes, lineage and evidence limits
+remain those supplied by the host. The complete reported data remains
+available beside the readable presentation. Digest calculation uses the
+original frozen representation; the display adds no act or selection control
+and preserves the existing presentation withdrawal and continuation paths.
+
+**Opened-library entry discovery (LS-2, ME-1–ME-4).** Opening a library and
+explicitly refreshing its entry list observe the published-copy folders. The
+interface shows that retained observation; status polling does not rescan the
+folders. Presence alone grants no registration, selection or run authority.
+The person chooses eligible entries in order, then requests their existing
+in-place review. The host retains the listed library, source and content and
+rechecks the selected entries before composing that review. Changed or
+unavailable evidence requires a fresh observation rather than substitution of
+another library or newer bytes. The original physical source remains bound
+through the frozen review, native A15 confirmation and any continuation of
+that captured registration. Existing freshness and publication checks remain.
+
+**Generated supporting files at dispatch (TX-7).** Run preparation retains the
+typed description of the generated folder named by the frozen files line.
+An unattempted Send preserves the original selected revision-store check and
+checks that copy against the original selected package identity before
+publication and again before native dispatch, including when the original
+selection and run-text records were already published. A changed,
+missing or nonplain copy refuses the start without rewriting it, changing the
+prepared text or falling back to another folder. Existing once-only and chained
+start disposition rules still decide whether the original preparation can be
+retried. A copy check does not establish subsequent supplier reads or adoption,
+and it does not make the filesystem permanently immutable. Direct holding
+folders and packages with no supporting files retain their existing paths.
+
 **Records-store and recovery consumption.** `workflow_record_store.rs`
 resolves the explicitly opened project's stable association to the records
 store and pins the physical source while reading or publishing. Pending
@@ -1022,6 +1083,55 @@ establish the complete workflow-making or host reconstruction witness.
 Library definitions, revision stores, ledgers and A15 evidence still follow
 §3 and §4.8; a records package is not a workflow-library backup or permission
 to reuse a prior act.
+
+**Hot trial authoring and source references (TT-3b, TT-11).**
+The in-session trial owner retains the originally selected authoring
+conversation's full generation and thread separately from the acknowledged
+trial's source home, generation, turn and client. A clean trial started in
+another home changes its reading source, not its authoring default. Try again
+and feedback defaults use the original authoring reference while it remains
+available; Read again and Compare use the actual trial source. Native receivers
+and interface defaults match complete references, so a same-named thread in
+another home supplies neither association. Changed or unavailable source and
+target generations remain limits and cannot redirect a prefill after a wait.
+
+Persisted trial links and conversation marks contain bare conversation IDs,
+not the missing home or generation provenance. They remain quoted evidence;
+even one currently loaded matching thread cannot recreate a lost association.
+Cold or unavailable references yield no inferred authoring default or native
+trial source. The latest trial's unknown authoring reference does not borrow
+an older trial's default. The person may explicitly choose a current feedback
+target, which supplies that new target choice and no historical source proof.
+Bring back remains an unsent prefill. The persisted trial-link format stays
+unchanged; no implicit resume/send or live run authority follows from these
+references.
+
+**Clean-trial source continuity after restart (TT-9–TT-11).** Newly acknowledged
+clean trials retain a separate trial-specific source pointer through REC's
+opaque receiver tags. The private native producer checks the complete ordered
+trial/person text frame, completed write, original source generation and
+correlated positive acknowledgment. The pointer binds the original trial link,
+draft/content and text identities, snapshot reference, client message and turn;
+it changes neither the trial-link schema nor the run-only learning pointer.
+This remains unsigned App-kept metadata: current correspondence is not native
+authentication or proof against same-user forgery or replay.
+
+An explicit cold read requires consistent original pointer and REC home/session
+provenance, current durable trial-link correspondence and the owning current
+native source. The reader rechecks the source and durable evidence after native
+pages return, including removal, replacement and conflicting claims. The active
+or feedback-target home is never substituted. Snapshot-byte and fidelity limits
+remain observations; the pointer does not make a changed snapshot original.
+Source-pointer saving failures retain their actual sent outcome and permit
+only a metadata retry from the held native observation, never a resend. A
+missing trial link retains its own existing unavailable-source limit.
+
+Older links without this evidence remain source-unknown. A delegated trial's
+parent acknowledgment alone does not establish its child's source. Original
+authoring defaults remain separate from the qualified clean-trial reading
+source; the person explicitly chooses a current feedback target. Bring back
+still prepares an unsent transcript. No native receipt, workflow selection,
+run, registration, act or model-adoption authority is reconstructed.
 
 **Historical real-run Bring back and Compare (TT-10, TT-11).**
 `historical_run_learning.rs` reads one run as quoted evidence from the explicit

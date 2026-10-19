@@ -1,3 +1,4 @@
+import {installIdleNativeWaiting} from './support/idle-native-waiting.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {installMiniDom} from './support/mini-dom.mjs';
@@ -190,14 +191,14 @@ test('native review actions end with the host presentation while original contin
       const data={context:{sourceRef:'home:synthetic',generation,historyEpoch:0},activeLibrary:'lib-native',activeReview:fresh.reference,
         libraries:[{reference:'lib-native',origin:'project',sourceRoot:'/synthetic',registered:[held]}],reviews:[fresh]};
       let snapshot={state:'ready',generation,threads:[{generation,threadId:'chat-native'}],workflowRoot:data};
-      const calls=[],previous=window.__TAURI_INTERNALS__;
+      const calls=[];
       const nativeDigestRelease=Promise.withResolvers(),viewDigestComputed=Promise.withResolvers();
       const digestRead=t.mock.method(presentationSource,'reviewDigest',content=>{
         const pending=reviewDigest(content);
         viewDigestComputed.resolve(pending);
         return pending;
       });
-      window.__TAURI_INTERNALS__={invoke:async(command,args)=>{
+      const idle=installIdleNativeWaiting(async(command,args)=>{
         calls.push([command,args]);
         if(command==='host_status')return snapshot;
         if(command==='decision_view')return {rows:[]};
@@ -213,7 +214,7 @@ test('native review actions end with the host presentation while original contin
         }
         if(command==='workflow_continue_registration'||command==='workflow_select_registered')return {state:'synthetic original operation returned'};
         throw Error(`Unexpected native command: ${command}`);
-      }};
+      });
       const container=document.createElement('div');document.body.appendChild(container);const root=createRoot(container);
       const article=()=>container.querySelectorAll(e=>e.localName==='article'&&e.querySelectorAll(n=>n.localName==='h3'&&n.textContent==='Current review · review-native').length)[0];
       const body=()=>article().querySelectorAll(e=>e.localName==='pre')[0];
@@ -222,7 +223,10 @@ test('native review actions end with the host presentation while original contin
         // Deliver the native reply inside act and await the view's real hash too:
         // neither one timer tick nor an independent expected hash waits for both.
         await React.act(async()=>{nativeDigestRelease.resolve();await viewDigestComputed.promise;});
-        assert.equal(body().textContent,JSON.stringify(readablePaths(fresh.status),null,2),'complete current review stays visible');
+        const reading=article().querySelectorAll(e=>e.getAttribute('aria-label')==='Frozen workflow registration review')[0];
+        assert.ok(reading,'the current frozen presentation has a readable review');
+        assert.ok(reading.textContent.includes('Complete synthetic review'));
+        assert.equal(reading.querySelectorAll(e=>e.localName==='pre').at(-1).textContent,JSON.stringify(presentation,null,2),'the complete original presentation remains in its diagnostic report');
         const digest=await reviewDigest(presentation);assert.ok(article().textContent.includes(digest));
         assert.ok(article().textContent.includes(`Read the complete review below before choosing ${disposition==='re-confirmation'?'Re-confirm':'Register'}`),'fresh presentation retains the read-first action cue');
         const button=native(article());assert.ok(button);assert.equal(props(button).disabled,false);
@@ -251,7 +255,7 @@ test('native review actions end with the host presentation while original contin
         }else assert.ok(!select,'incomplete attempts supply no Select result');
         assert.equal(calls.filter(([c])=>c==='workflow_register_native').length,1,'continuation/selection never reopens native capture');
       }finally{
-        await React.act(()=>root.unmount());container.parentNode.removeChild(container);window.__TAURI_INTERNALS__=previous;digestRead.mock.restore();
+        const renderedText=container.textContent;await React.act(()=>root.unmount());container.parentNode.removeChild(container);digestRead.mock.restore();idle.restore(renderedText);
       }
     }
   }

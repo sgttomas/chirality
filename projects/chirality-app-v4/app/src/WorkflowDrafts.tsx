@@ -95,6 +95,22 @@ function SubAgent({ trial, busy, act }: { trial: Json; busy: boolean; act: Draft
   </>;
 }
 
+function TrialSourceMetadata({ metadata }: { metadata: Json }) {
+  if (!metadata || typeof metadata !== "object") return null;
+  const state = metadata.state === "save not confirmed" ? "save not confirmed"
+    : metadata.state === "saved" ? "saved"
+    : metadata.state === "saved; current revalidation unavailable" ? "saved; the App cannot currently recheck the saved record"
+    : metadata.state === "source observation not held" ? "unavailable; the original source observation is not held in this App session"
+    : "status not established";
+  return <div aria-label="Restart history source recording" role="status">
+    <p>Restart history source record: {state}. The trial's send outcome is unchanged.</p>
+    {typeof metadata.persistence === "string" && <p>Storage: {metadata.persistence}.</p>}
+    {typeof metadata.limit === "string" && <p role="note">Recording limit: {metadata.limit}</p>}
+    {metadata.heldMetadata === true && metadata.state !== "saved" && <p>Read again also retries saving this original source record. It never resends the trial.</p>}
+    {metadata.heldMetadata !== true && <p>No original source record is held for a save retry in this App session.</p>}
+  </div>;
+}
+
 /** TT-4: one listed trial, with its help actions (TT-11). */
 export function TrialRow({ trial, conversations, busy, act, state, update }: { trial: Json; conversations: Json[]; busy: boolean; act: DraftAct; state: DraftsState; update: Update }) {
   if (trial?.kind === "earlier attachment trial") return <li>Earlier attachment trial · content {short(trial.content?.value)} ({text(trial.version)}) · conversation {conversationName(trial.conversation)} · {text(trial.time)}</li>;
@@ -115,6 +131,8 @@ export function TrialRow({ trial, conversations, busy, act, state, update }: { t
     <div><small>Fidelity: {fidelityWords(fidelity, trial.kind)}{fidelity.checkable !== false && list(fidelity.limits).length ? ` (${list(fidelity.limits).map(text).join("; ")})` : ""}. Snapshot: {text(trial.snapshot?.reading) || "not read"}.
       {trial.filesOutsideWorkFolder ? ` ${text(trial.filesOutsideWorkFolder.reading)}.` : ""} Work folder <code>{text(trial.workFolder)}</code>.</small></div>
     <div><small>{list(trial.broughtBack).length ? `Brought back: ${list(trial.broughtBack).map((b: Json) => `${text(b.time)} to ${conversationName(b.to)}`).join("; ")}.` : "Not brought back."} {text(trial.standing)}</small></div>
+    {(trial.authoringSourceLimit || !findConversation(conversations, trial.authoringConversation)) && <p role="note"><small>{text(trial.authoringSourceLimit) || "The original authoring conversation is not loaded in its original generation; choose a current target explicitly."}</small></p>}
+    <TrialSourceMetadata metadata={trial.sourceMetadata} />
     <div>
       <button disabled={busy} onClick={() => { void act("workflow_trial_again", { reference }); }}>Try again</button>{" "}
       {trial.readAgain?.offered === false
@@ -122,8 +140,9 @@ export function TrialRow({ trial, conversations, busy, act, state, update }: { t
         : <><button disabled={busy} onClick={() => { void act("workflow_trial_read", { reference }); }}>Read again</button>{" "}</>}
       <ConversationSelect label="Bring back to" conversations={conversations} value={target} setValue={key => update({ bbTarget: { ...state.bbTarget, [reference]: key } })} disabled={busy} />{" "}
       <label><input type="checkbox" checked={includeNative} disabled={busy} onChange={e => update({ bbNative: { ...state.bbNative, [reference]: e.target.checked } })} /> include native items</label>{" "}
-      <button disabled={busy || !!trial.live || !chosen} onClick={() => { void act("workflow_trial_bring_back", { reference, generation: chosen?.generation, threadId: chosen?.threadId, includeNative }); }}>Bring trial back</button>
+      <button disabled={busy || !!trial.live || !chosen || !!trial.sourceLimit} onClick={() => { void act("workflow_trial_bring_back", { reference, generation: chosen?.generation, threadId: chosen?.threadId, includeNative }); }}>Bring trial back</button>
       {trial.live && <small> Bring trial back waits until no turn is live.</small>}
+      {trial.sourceLimit && <small> {text(trial.sourceLimit)}</small>}
     </div>
   </li>;
 }

@@ -150,7 +150,10 @@ implemented behavior and qualification limits.
     source list. Explicit attachment-bearing send or steering uses that whole
     list, durable metadata and the actual Host request; failures do not fall back
     to text-only sending or automatic retry. A native acknowledgment is separate
-    from provider uptake or completion. When a run-end notice is pending in the
+    from provider uptake or completion. A failed view refresh is shown
+    separately from the original Send or Steer result: it does not turn an
+    acknowledgment into a rejected command or replace a native error. When a
+    run-end notice is pending in the
     conversation (WR TX-5), an attachment-bearing new turn carries it in one
     frame, in NIR TC-2's order: the run-end line, then the person's text, then
     the attachments. The supply records still name only the attachments, in
@@ -189,16 +192,36 @@ implemented behavior and qualification limits.
     without capturing another act or replacing the observed content/time.
     Request/output/workflow links open the standing facility only through a person;
     they do not invent an arrival reference or settle a supplier request.
+    An eligible live single-file arrival also offers an explicit review entry.
+    The host resolves its original run, written arrival, declared kind, subject,
+    scope and purpose, then freezes the matching file bytes for review and a
+    separate native act/decline/cancel. Capture and record retain their run and
+    arrival links in the original run log. Reopened-only history, ambiguous or
+    stale sources and unsupported subjects stay unavailable for this entry;
+    arrival display alone opens nothing. Existing checkpoint recording decides
+    whether the act counts and never treats capture as resuming the run.
 16. Workflow selection, owner-held review, hot A15 capture and immutable library
     registration are connected to prepared input and source-owned native page
     comparison. Code and synthetic checks do not establish a native person's
     registration, provider uptake or completed workflow execution.
 
-    One existing unregistered library entry can be reviewed in place through
+    Opening a project or user library shows its observed workflow entries.
+    **Refresh library entries** observes later changes. Choose eligible entries
+    in the desired order, then **Review chosen entries…** to open their existing
+    in-place review. The host rechecks the listed source and bytes; file presence
+    alone registers or selects nothing. Unreadable or already registered entries
+    show their limits and retain the existing revision controls.
+
+    One existing unregistered library entry can also be reviewed in place through
     **Review this unregistered in-place library entry**, followed by native
     **Register** confirmation. Its single A15 uses the reviewed `entry:` reference
     and no prior revision; no draft is created. Only the newly captured hot
     registration makes it selectable here; quoted earlier history remains separate.
+    The complete registration review shows literal workflow text alongside its
+    target, content identities, files, findings and reported prior/base changes.
+    The same frozen review remains readable while its native confirmation is
+    open. Its digest and complete reported data remain available; reading the
+    review captures no act.
     **Reuse (WR §4.4, §4.6).** The active library's list of registered revisions
     offers **Select revision ‹n›** on a revision whose registration or
     re-confirmation result this App process holds (RC-2) and whose revision
@@ -212,9 +235,14 @@ implemented behavior and qualification limits.
     picked), from "newer revision ‹n› available", and from a confirmed agent
     proposal (item 20). An edited published copy or an identical copy
     elsewhere is never used, and a store that does not recompute refuses with
-    the selection unchanged. A run's files line (WR TX-7) therefore names the
-    revision's store folder, project- or `~`-relative, and the selection's
-    holding library is recorded as that folder's parent. Other rows keep Refine and re-confirmation through a
+    the selection unchanged. A run's files line (WR TX-7) names that folder
+    project- or `~`-relative when possible; otherwise preparation creates a
+    content-addressed supporting copy in the explicit project. An unattempted
+    Send rechecks that generated copy against the original selected package,
+    retaining the original revision-store check even after prepublication.
+    Changed, missing or nonplain content refuses the start without rewriting
+    the copy or prepared text. The selection still records its original
+    holding library and revision store. Other rows keep Refine and re-confirmation through a
     draft; selecting one, a draft or an unregistered library entry is refused
     with its standing and route (SL-5). Beside a registered selection the view
     shows "newer revision ‹n› available" when the slot's ledger has a newer
@@ -269,9 +297,13 @@ implemented behavior and qualification limits.
     the verbatim native value; a tool-permission card says it is tool permission
     only and its words never say accept or approve. Classification, answer values
     and register checks are unchanged. A card and its activity row link to each
-    other; the row never answers. The top of the App counts requests waiting for
-    the person, per conversation; opening one answers nothing. Requests of other
-    conversations stay listed under Native requests.
+    other; the row never answers. About reveals an already-received parent or
+    descendant item in the read-only activity view without changing the operational
+    conversation or its unsent text. A row outside the current source/subtree
+    keeps its supplier identity instead of a dead link. The top of the App counts current requests
+    waiting for the person across configured homes, grouped by original source
+    and conversation; opening one answers nothing. Requests of other
+    conversations in the selected home stay listed under Native requests.
 20. Workflow run offers come only from agent messages this App observed complete
     live. On the exact `Workflow finished: ‹origin›:‹name›` line naming the run in
     force, the message offers **End run**; the host re-reads the message and
@@ -281,8 +313,13 @@ implemented behavior and qualification limits.
     this session, the message offers **Start ‹workflow› (proposed by the agent)**,
     or **End ‹A› and start ‹B›** while a run is in force (*completed* when the same
     message reports A finished). The proposal selects nothing until the person
-    presses; the selection is then recorded as "agent proposal confirmed by the
-    person". The press resolves the proposed revision from the revision store
+    presses. Before that choice, the resolved candidate's advisory report shows
+    its requirement purposes, the conversation's fixed role and the limits of
+    the environment evidence. Unknown, unsupported or unavailable evaluations
+    leave Start available; displaying the report selects, prepares and sends
+    nothing. The selection is then recorded as "agent proposal confirmed by the
+    person". The press rechecks the displayed source, message, current run and
+    candidate, then resolves the proposed revision from the revision store
     and verifies it there, as a selection from the library list does (SL-4); an
     edited published copy is not used, and a store that does not recompute
     refuses with nothing selected or started. Unresolved proposals show their notice. The activity view marks run
@@ -304,6 +341,10 @@ implemented behavior and qualification limits.
     budget. Package files are opened no-follow and non-blocking relative to their
     opened folder: links, FIFOs and devices are refused. Transitions are
     observed only when the list is read; the folder is not watched.
+    A returned workflow command response stays visible if a later view read
+    fails, with that observation limit shown separately. Create draft and
+    Refine still attempt one draft observation through their original context;
+    this does not repeat the write or infer that a native error left no files.
     **Trials (WR §4.2, owner direction U-WR-24).** A trial mirrors a real run:
     the host takes a content-addressed trial snapshot and composes the trial
     text, a trial header followed by the run text a registered run of that
@@ -422,9 +463,16 @@ implemented behavior and qualification limits.
     Stop/Restart Codex refuse each other while one is under way. *Limits:* on macOS the
     Dock's Quit, logout and shutdown reach the App as `terminate:` and cannot
     be held; they are recorded as `session_ended` *system-terminated* with no
-    question. The indicator gives a count only; the conversations are listed
-    in the window's request cards, and clicking the Dock icon opens the App,
-    not a particular conversation (WI-3). Quit has not been witnessed natively.
+    question. The Dock indicator gives a count only, and clicking it opens the
+    App. The macOS App's **Waiting requests** menu additionally names current
+    source-qualified conversation groups; a person selection shows the window
+    and uses guarded navigation to that original source. A process-owned,
+    single-use handoff survives missed wake events and explicitly refuses
+    interrupted, superseded or unconfirmed-view navigation; choose again from
+    the current menu after the view is acknowledged. Cleanup failures retry
+    cleanup without replaying navigation. These checks do not establish native
+    menu interaction, other-platform outside-window coverage or person
+    qualification. Quit has not been witnessed natively.
 22b. **Recovery after a restart** (DEL-01-02 §3.2 CV-11…CV-15, CV-19, CV-22;
     §3.4 SR-09; §5 R-4, X-3…X-5). When a home's Codex is ready again (Start or
     Restart Codex, or the App's start after a relaunch), the host reads, on
@@ -607,6 +655,11 @@ implemented behavior and qualification limits.
     advisory compatibility (DEL-02-03 CK-1/CK-2) is shown readably; a role
     outside the written-for roles names both and points to Continue as
     (U-R10, chosen display).
+    The direct **End this run and start** choice shows the chat's selected
+    successor and its own advisory before the button, including its source,
+    revision and holding library. Unsupported, unknown and unavailable
+    evaluations leave the existing choice available; the displayed selection's
+    original context is rechecked by the existing chaining command.
     **Across a relaunch (WR TX-5 / SQ-END, (d), (j)).** When a run opens, the host
     tags its conversation in the App's recovery ledger with the run reference
     (owner `DEL-02-03`). A tag that cannot be stored is kept in memory only and
@@ -656,12 +709,22 @@ implemented behavior and qualification limits.
     or has an unknown outcome leaves the header only. The new
     conversation starts with no model chosen and records `continuedFrom`
     {source thread, source start record}; its first message is sent only when
-    the person sends it, and it reads sent only once the send succeeded.
+    the person sends it. The host keeps that original send attempt and its
+    source receipt. A received native turn result stays visible if refreshing
+    the view fails. Pending, incomplete-write and unavailable outcomes remain
+    unknown and block another handoff send. **Read the original send outcome**
+    observes that same attempt without sending again; only a proved no-attempt
+    outcome offers an explicit retry. A native error remains separate from
+    both no-attempt and unknown.
     **Fork (same role)** sends `thread/fork` with the thread id, no
     instructions or settings, and `deferGoalContinuation: true` so that a
     source goal starts no automatic turn in the fork that the person did not
     start. It admits the fork only when Codex reports a new thread
-    forked from the source; the fork inherits the source's role binding. Neither
+    forked from the source; the fork inherits the source's role binding. The
+    App opens that admitted fork only when its matching row is observed in
+    the original source view. A failed refresh leaves navigation pending for
+    a later read; it sends no second Fork. Newer conversation choices, Start
+    intents or home changes supersede that pending navigation. Neither
     changes the source conversation's role or record. Handoffs are kept in App
     process memory.
 
@@ -818,7 +881,7 @@ implemented behavior and qualification limits.
 | `src-tauri/src/records_index.rs`, `records_query.rs`, `records_index_tests.rs` | RS §13.8 derived SQLite query cache: disk-backed identities and positions, streamed rebuilding, authoritative line revalidation, and source-scan fallback; cache metadata is disposable |
 | `src-tauri/src/record_lines.rs`, `record_lines_tests.rs` | RS §13.8 lines: one entry or one group per line (read whole or not at all), each line's chain link to the one before, unchained (legacy) and broken-chain limits, and each log's chain head |
 | `src-tauri/src/records_access.rs`, `records_access_tests.rs`, `records_continuity.rs`, `records_continuity_tests.rs`, `resources/runtime_core/records-read-log.entry.schema.json` | The agents' read-only records capability (RS §13.9): the offered tool, its storage-independent source (the logs R-1 discovers: the project's records store subtree, or §13.7 logs before an import), bounded quoted pages and the read log written before each answer; tests include a fake-peer journey in which the agent calls it |
-| `src-tauri/src/records_store.rs`, `records_store_tests.rs` | The App's records store (RS §13.8): placement and the explicit override, project identity and its limits, the explicit import of §13.7 records, and the host status `recordsStore` |
+| `src-tauri/src/records_store.rs`, `records_store_tests.rs`, `records_store_publication_tests.rs` | The App's records store (RS §13.8): coordinated first identity publication across App processes, placement and the explicit override, project identity and its limits, the explicit import of §13.7 records, and the host status `recordsStore` |
 | `src-tauri/src/records_export.rs`, `records_export_tests.rs`, `tools/verify_records_bag.py` | RS §13.8 BagIt export: native folder selection, byte-preserving payload and prior administration snapshot, SHA-256 manifests and copied-log chain heads; package verification in the App and a standalone Python verifier |
 | `src-tauri/src/records_retention.rs`, `records_retention_tests.rs`, `resources/runtime_core/records-administration.entry.schema.json` | Native close/reopen, legal hold/release and recorded disposal after verified export; surviving administrative evidence, stable write admission and activity leases, truthful partial-failure recovery |
 | `src-tauri/src/storage.rs` | Store, project/run/writer and library paths, R-1 discovery (store subtree, or §13.7 paths in place before an import), atomic capture persistence and locking |
@@ -827,11 +890,13 @@ implemented behavior and qualification limits.
 | `file_act_root.rs`, `file_act_view.rs`, `src/FileActPanel.tsx` | Original file-offer ownership, separate read-only act/decline comparison and per-offer controls; no cold native-origin upgrade |
 | `src-tauri/src/decision_view.rs`, `act_policy.rs`, `standing.rs` | Decision projection, A16 method-aware standing and provenance limits; recorded claims do not establish native act admission |
 | `attachments.rs`, `hosting::attachment_custody`, `resources/attachments/` | Native-selected immutable ordered text sources, durable metadata/client pointers before scoped send, and explicit native outcome limits |
+| `src/App.tsx`, `tests/attachment-outcome.test.mjs`, `src-tauri/src/attachment_outcome_tests.rs` | Ordered-attachment Send/Steer outcomes reach the composer separately from subsequent view-read failures; actual owned-list, write and source-correlation packets supply the mounted consumer checks |
 | `trace_receiving.rs`, `record_relations.rs` | Independent unverified trace imports and general record correction claims; neither verifies native origin |
 | `native_history.rs`, `role_lifecycle.rs` | Read-only native history, scoped Continue receiving and immutable original guidance bindings |
 | `role_observations.rs`, `role_record_source.rs`, `role_observations_tests.rs`, `role_observations_host_tests.rs`, `role_r3_run_tests.rs`, `src/ConversationRoles.tsx` | App start/fork supply observations, exact retained App guidance and historical limits; private confirmed receipts supply role R3 references at run opening, with immutable source-qualified run context and explicit quoted cold inspection; cold claims restore no role/CCE authority |
 | `connector_standing.rs`, `connector_route_store.rs`, `connector_route_view.rs`, `src/ConnectorRoutePanel.tsx` | Provider-independent standing, caller-account persistence (in the project's records store subtree; earlier in-project accounts read in place until imported) and read-only inspection; saved claims do not verify source truth or actor duties |
-| `src/RequestCards.tsx` | Readable DEL-01-04 request cards, item anchors and the waiting-request indicator; answer values come unchanged from the host's register |
+| `src/RequestCards.tsx` | Readable DEL-01-04 request cards, source-qualified read-only navigation to received item anchors and the waiting-request indicator; answer values come unchanged from the host's register |
+| `src-tauri/src/native_waiting.rs`, `src/NativeWaitingBridge.tsx` | macOS native waiting-menu metadata, immutable original-source targets and single-use navigation handoff; no supplier response or restored request authority |
 | `src-tauri/src/codex_stop.rs`, `src/CodexControls.tsx` | Stop/Restart Codex (DEL-01-02 §4.1 C-12 with the DEL-01-04 §5.2 question): live-work assessment with runs in force, ask-first sequence, the ledger `codex_stop` record, interrupts before the stop within the stop wait limit, TO-4 labels and the in-process outcome panel |
 | `src-tauri/src/app_quit.rs` | App quit asked first (DEL-01-02 DEF-6, K-4, SQ-Q; DEL-01-04 §5.2): assessment across homes, `quit_requested`/`quit_answered`, quit interrupts (cause *quit*), the exit's process stops and `session_ended` (AS-09, AS-10); the DEF-1 exit rule; the C-24 waiting count |
 | `src-tauri/src/stop_records.rs`, `resources/runtime_core/recovery.stop-request.schema.json` | REC stop-request records (DEL-01-02 §3.4 SR-01…SR-12): validated transitions and outcome labels, the `codex_stop` ledger entry, and the read-back after a relaunch; the Host writes them through its recovery writer before each interrupt send |
@@ -840,14 +905,21 @@ implemented behavior and qualification limits.
 | `src-tauri/src/model_turn_recorder.rs` | RS R5 `model_turn` entries (HOSTING §8.3): thread-scope reports and one entry per run turn, effective only from a `model/rerouted` naming the turn; observes `native_items.rs`'s `modelReroutes` and the host's thread rows; never reacts |
 | `src-tauri/src/run_restart.rs`, `run_restart_tests.rs` | EXEC §2.7 / RECOVERY §4.1: the REC run tag at `run_opened` (owner `DEL-02-03`) and the host's startup writer of RS "App-restart interruption" limits; tests also cover WR TX-5 / SQ-END end notices after relaunch and (j) permanent refusals |
 | `src-tauri/src/run_offers.rs`, `src/RunOffers.tsx` | Exact run-offer line forms (WR §16.5 PR/FN), the finished-report proof for a *completed* end, and their presentation beneath the message |
+| `src-tauri/src/workflow_proposal_advisory.rs` | Shared read-only CK-1 evaluation of the chat's closed selected revision and a verified offered candidate before the ordinary choice; existing source/selection or proposal correspondence is rechecked at the press |
+| `src-tauri/src/workflow_library_entries.rs`, `src/LibraryEntries.tsx` | Explicit opened-library entry observations and ordered picks for the existing in-place review; host-held source/content correspondence, named refusal limits and no registration or selection authority from presence |
+| `src/WorkflowRegistrationReview.tsx` | Read-only presentation of the existing frozen registration review before and during native A15 confirmation, with literal workflow text, reported metadata and unchanged digest input |
+| `src/App.tsx`, `tests/workflow-action-result.test.mjs`, `src-tauri/src/workflow_action_result_tests.rs` | Workflow command responses remain distinct from later observation failures; actual draft-copy output reaches the mounted consumer and its once-only original-context draft observation |
 | `src-tauri/src/workflow_drafts.rs`, `src/WorkflowDrafts.tsx` | DEL-02-02 draft workspace in the Rust host (SQ-D D-2…D-4 observation, hygiene, §5.1 states) and its list presentation in NIR §7 words, with the two Try buttons and each draft's trial list; nothing here registers, reviews or runs |
-| `src-tauri/src/workflow_trials.rs`, `workflow_package_copy.rs`, `workflow_workspace.rs` (`compose_run_text`, `TrialText`, `files_folder`) | DEL-02-02 trial core (WR §17 steps 1–4): one composer for run texts and trial texts (TT-3), TX-7's files-line folder with content-addressed supply copies, TT-8 trial snapshots, and the create-once TT-4 trial links and observations |
-| `src-tauri/src/trial_flows.rs`, `workflow_trial_transcript.rs`, `src/TrialComposer.tsx` | DEL-02-02 trial flows (WR §17 steps 5–8): pre-filled delegated and clean trials sent only by the person, links on acknowledgment, TT-9 linking and fidelity reads, bring-back transcripts, Compare, TT-2's run refusal and offer silencing, the review's last clean trial line; the composers in the conversation view |
+| `src-tauri/src/workflow_trials.rs`, `workflow_package_copy.rs`, `workflow_workspace.rs` (`compose_run_text`, `TrialText`, `files_folder`), `runtime_session.rs` (`WorkflowRun`) | DEL-02-02 trial core (WR §17 steps 1–4): one composer for run texts and trial texts (TT-3), TX-7's files-line folder with content-addressed supply copies rechecked before unattempted run dispatch, TT-8 trial snapshots, and the create-once TT-4 trial links and observations |
+| `src-tauri/src/trial_flows.rs`, `workflow_trial_transcript.rs`, `src/TrialComposer.tsx` | DEL-02-02 trial flows (WR §17 steps 5–8): pre-filled delegated and clean trials sent only by the person, separate hot authoring and trial-source references, source-bound Try again/feedback defaults, links on acknowledgment, TT-9 linking and fidelity reads, bring-back transcripts, Compare, TT-2's run refusal and offer silencing, the review's last clean trial line; the composers in the conversation view |
+| `src-tauri/src/workflow_trial_source.rs`, `workflow_trial_restart_tests.rs`, `tests/clean-trial-restart.test.mjs` | WR TT-9–TT-11 clean-trial source continuity after restart: a separate pointer from the original positive native acknowledgment, guarded current link/REC correspondence and explicit read/feedback through the original source; older links and delegated child sources remain unavailable without their own evidence |
 | `src-tauri/src/historical_run_learning.rs`, `workflow_learning_pointers.rs`, `historical_trial_flows_tests.rs` | WR TT-10/11 historical Bring back and Compare: strict original WR/RS correspondence, pointer-only original native ACK coordinates in owned REC tags, separate current source and target homes, quoted activity and exact revision bytes without restored live run/supply/selection authority; unavailable source/history remains named |
 | `src-tauri/src/file_act_lapse.rs`, `file_act_view.rs`, `src/FileActPanel.tsx` | Explicit standing A4/A6/A7 file-content observations in existing RS act logs, original-source-bound metadata retry and separate current comparison/resolved history/limited claims |
+| `src-tauri/src/file_act_arrival.rs`, `file_act_root.rs`, `act_control_file.rs`, `src/RunPanel.tsx` | Explicit live App-file arrival entry through the original run/declaration/source, frozen file preview, native confirmation and original run-log capture continuation; historical-only and unsupported contexts remain unavailable |
 | `src-tauri/src/host_tick.rs` | The host's own ticks (OI-008): a record tick receives native frames and records checkpoint observations, and a separate trial tick makes due trial reads, whether or not the interface polls; each tick is guarded and a failure is shown in `host_status`, which only reads |
 | `src/RunPanel.tsx` | Run panel and selected-workflow view (NIR §9 PD-1…PD-7): readable declared part, checkpoints as guidance with their recorded listing and arrivals, the run-record write notice, output standing facets from the record only (AS §8), readable advisory compatibility |
-| `src-tauri/src/conversation_roles.rs`, `src/ConversationRoles.tsx` | Continue as ‹role› handoffs and same-role Fork through the Host (NIR §5.8, ROLE §3.3), the role limit account (ROLE §6.2), the readable start display, role header and guidance-changed flag (ROLE §4.4) |
+| `src-tauri/src/conversation_roles.rs`, `src/ConversationRoles.tsx`, `src/App.tsx` | Source-bound navigation of admitted same-role Forks, Continue as ‹role› handoffs and same-role Fork through the Host (NIR §5.8, ROLE §3.3), the role limit account (ROLE §6.2), the readable start display, role header and guidance-changed flag (ROLE §4.4) |
+| `src-tauri/src/conversation_handoff_send.rs`, `src-tauri/src/hosting_handoff_send.rs` | Original Continue-as send custody and read-only outcome observation; full-source attempt/write/response facts remain separate from view refresh, with the ordinary pending end-notice route preserved |
 | `src/NativeActivity.tsx`, `src/PlanMode.tsx` | Readable per-thread native activity from the `native_items.rs` view (DEL-01-03 plans/tools/delegation with the DEL-01-04 message part) and the experimental plan-mode element |
 | `src/NativeHistory.tsx`, `src/App.tsx`, `tests/native-history.test.mjs` | Source-bound readable stored turn summaries and the selected item page, shared native item bodies with retained raw source, and accepted-query paging regressions; reading and explicit Continue remain separate |
 | `src-tauri/src/runtime_session.rs`, `host_tick.rs`, `hosting_manual_history_tests.rs` (`history_bridge` tests) | Person-directed history reaches native activity once through its original accepted query and current source; rejected pages leave the activity projection and counters unchanged, with raw receipts and limits retained |
@@ -1018,8 +1090,12 @@ unavailable, retained raw evidence stays inspectable and prior readable rows and
 page buttons are withheld. Reading does not supply live status or reconstruct
 earlier checklist updates. **Continue selected conversation** separately requests native
 resume before permitting operational text input, requesting `excludeTurns:true`
-instead of deprecated full-history hydration. Its admitted conversation then
-loads the bounded prior-work context described in item 11. A failed context page
+instead of deprecated full-history hydration. Its confirmed admission can finish opening on a later successful source
+read when the immediate refresh fails or has not yet shown its row. A newer
+conversation choice, Start intent, home/source change or stored-history
+operation supersedes that pending navigation; an unknown result never opens a
+conversation merely because a later read lists it. Its admitted conversation
+then loads the bounded prior-work context described in item 11. A failed context page
 has an explicit retry that reads history without another resume or send. It keeps the conversation’s
 existing guidance/settings and does not resend automatically. Original App role
 evidence is shown only when retained in this process; a cold restart shows
@@ -1228,7 +1304,7 @@ narrows R-1 but does not close it: anything that can read that file, including
 an agent under Codex's default read access, can seal. Trustworthy persistent
 cold replay remains unfinished under AAC §6.3 U-AAC-3 and I3-CUST, and SEAL-2 stays
 deferred. Current code refuses unverified replay while preserving evidence.
-Native authenticity, real process-kill/fsync failure witnesses, native witnesses of paged recovery and continued prior-work access (the custody reads in item 22b remain metadata/turn summaries; item 11 adds a separate bounded prior-work context), cold role-source reconciliation, native GUI child-role journeys, native A15/registered-library and file-act witnesses, and remaining policy/standing/control journeys remain in the Group A graph. Per-home configuration/resource linking is implemented with observed ownership limits. CommonMark parsing and one closed, explicitly development-candidate workflow catalog are supplied; the production native-page supply path and hot registration transaction are implemented, while their actual native consumer witnesses remain separate. General contextual file/arrival entry surfaces remain unfinished. Standing A4/A6/A7 App-file acts now have explicit durable lapse observations and separate current/history displays, while complete native file-act witnesses remain separate. External dispatch and host qualification remain unsupplied. Native text-turn and interrupt controls use the selected native thread and
+Native authenticity, real process-kill/fsync failure witnesses, native witnesses of paged recovery and continued prior-work access (the custody reads in item 22b remain metadata/turn summaries; item 11 adds a separate bounded prior-work context), cold role-source reconciliation, native GUI child-role journeys, native A15/registered-library and file-act witnesses, and remaining policy/standing/control journeys remain in the Group A graph. Per-home configuration/resource linking is implemented with observed ownership limits. CommonMark parsing and one closed, explicitly development-candidate workflow catalog are supplied; the production native-page supply path and hot registration transaction are implemented, while their actual native consumer witnesses remain separate. Eligible hot live single-App-file arrivals now join the frozen file-act preview and native confirmation through an explicit person action. General output/attachment contextual shortcuts and historical-only arrival entry remain separate. Standing A4/A6/A7 App-file acts now have explicit durable lapse observations and separate current/history displays, while complete native file-act witnesses remain separate. External dispatch and host qualification remain unsupplied. Native text-turn and interrupt controls use the selected native thread and
 retain generation/terminal limits. Transport and receiving tests do not prove a
 provider prediction. A separately frozen controlled live backend greeting passed;
 its exact source pins and limits are recorded in the run. An approved no-supplier native window inspection establishes tool/window reachability only; corrected UI/storage, browser/device/auth/provider and capture journeys remain separate unfinished witnesses. Host joins stay deferred to their owning sessions.

@@ -4462,6 +4462,9 @@ struct ProposedRevision {
     revision: crate::workflow_workspace::RegisteredRevision,
     library: std::sync::Arc<WorkflowLibraryContext>,
 }
+#[path = "workflow_proposal_advisory.rs"]
+mod proposal_advisory;
+pub(crate) use proposal_advisory::ProposalContext;
 struct WorkflowSelectionState {
     reference: String,
     selection: crate::workflow_workspace::Selection,
@@ -4509,6 +4512,8 @@ pub(crate) struct WorkflowRootSession {
     selection_marks: std::collections::HashMap<(String, String), crate::run_offers::SelectionMark>,
     /// WR SQ-D D-2/D-4: the latest draft observation per opened library.
     drafts: std::collections::HashMap<String, DraftListing>,
+    /// Explicit open/refresh observations only; status never scans entries.
+    library_entries: std::collections::HashMap<String, crate::workflow_workspace::registration::EntryListing>,
     /// D-3 "app action": per library, draft name -> content the App itself wrote.
     app_made: std::collections::HashMap<String, std::collections::BTreeMap<String, String>>,
     /// WR TT-4: App-kept trial links and observations (App data folder once attached).
@@ -4550,6 +4555,7 @@ impl Default for WorkflowRootSession {
             app_user_data: None,
             selection_marks: Default::default(),
             drafts: Default::default(),
+            library_entries: Default::default(),
             app_made: Default::default(),
             trials: Default::default(),
             trial_desk: Default::default(),
@@ -4612,7 +4618,7 @@ impl WorkflowRootSession {
         };
         json!({"productionCatalog":production_catalog,"selections":self.selected.iter().map(|(chat,s)|json!({"sourceRef":chat.source,"threadId":chat.thread,"selection":self.selection_view(s)})).collect::<Vec<_>>(),
             "inspection":self.inspected.as_ref().map(|s|self.selection_view(s)),
-            "libraries":self.libraries.values().map(|l|json!({"reference":l.reference,"root":crate::attachments::native_path_identity(&l.root),"origin":l.origin,"sourceRoot":l.source_root,"reconciliation":l.owner.try_lock().map(|o|json!(o.reconciliation())).unwrap_or(Value::Null),"registered":l.owner.try_lock().map(|o|o.registered_listing()).unwrap_or(Value::Null),"registrationEvidence":l.owner.try_lock().map(|o|o.registration_evidence()).unwrap_or(Value::Null)})).collect::<Vec<_>>(),"activeLibrary":self.active_library,"activeReview":self.active_review,
+            "libraries":self.libraries.values().map(|l|json!({"reference":l.reference,"root":crate::attachments::native_path_identity(&l.root),"origin":l.origin,"sourceRoot":l.source_root,"reconciliation":l.owner.try_lock().map(|o|json!(o.reconciliation())).unwrap_or(Value::Null),"registered":l.owner.try_lock().map(|o|o.registered_listing()).unwrap_or(Value::Null),"registrationEvidence":l.owner.try_lock().map(|o|o.registration_evidence()).unwrap_or(Value::Null),"entryListing":self.library_entries.get(&l.reference).map(|entries|entries.view()).unwrap_or_else(||json!({"state":"not observed","entries":[],"limits":[],"standing":"Refresh library entries to observe this library"}))})).collect::<Vec<_>>(),"activeLibrary":self.active_library,"activeReview":self.active_review,
             "reviews":self.reviews.iter().map(|(id,review)|match review.try_lock(){Ok(review)=>json!({"reference":id,"status":review.status}),Err(_)=>json!({"reference":id,"state":"original native review interaction pending"})}).collect::<Vec<_>>(),
             "runs":self.runs.iter().map(|(id,run)|match run.try_lock(){Ok(run)=>self.after_run_end.decorate(id,run.view(id)),Err(_)=>json!({"reference":id,"state":"original run operation pending"})}).collect::<Vec<_>>(),
             "afterRunEnd":self.after_run_end.view(),
@@ -4782,6 +4788,7 @@ impl WorkflowRootSession {
             }
             let id = existing.reference.clone();
             self.active_library = Some(id.clone());
+            self.observe_library_entries(&id)?;
             return Ok(id);
         }
         let source_root=root.to_str().ok_or("Native library root is not Unicode; source-qualified identity cannot be encoded losslessly")?.to_owned();
@@ -4811,7 +4818,55 @@ impl WorkflowRootSession {
             }),
         );
         self.active_library = Some(id.clone());
+        self.observe_library_entries(&id)?;
         Ok(id)
+    }
+    /// The two listed-entry commands recheck the displayed home and library
+    /// after waiting for Root, without imposing a workflow-selection policy.
+    pub(crate) fn with_library_context<T>(
+        workflows: &std::sync::Mutex<Self>,
+        context: &crate::workflow_selection::Context,
+        active_home: impl Fn() -> std::sync::Arc<HomeSession>,
+        action: impl FnOnce(&mut Self, std::sync::Arc<HomeSession>) -> Result<T, String>,
+    ) -> Result<T, String> {
+        let home = active_home();
+        context.verify_home(&home)?;
+        let mut root = workflows.lock().unwrap();
+        let current = active_home();
+        context.verify_home(&current)?;
+        if !std::sync::Arc::ptr_eq(&home, &current) {
+            return Err("Workflow App home source changed; no library operation performed".into());
+        }
+        root.verify_library_context(context)?;
+        action(&mut root, current)
+    }
+    /// One explicit open/refresh, not a polling/status side effect.
+    pub fn observe_library_entries(&mut self, library_ref: &str) -> Result<Value, String> {
+        let library = self.active_library()?;
+        if library.reference != library_ref { return Err("The displayed active library changed; entries not observed in another source".into()); }
+        let owner = library.owner.try_lock().map_err(|_| "Original library owner busy; entries not observed now")?;
+        let listing = crate::workflow_workspace::registration::EntryListing::observe(&owner, library_ref);
+        drop(owner);
+        self.library_entries.insert(library_ref.into(), listing);
+        Ok(self.snapshot())
+    }
+    pub fn review_library_entries(&mut self, home: std::sync::Arc<HomeSession>, context: Value, library_ref: &str, listing_ref: &str, entry_refs: &[String]) -> Result<Value, String> {
+        let library = self.active_library()?;
+        if library.reference != library_ref { return Err("The displayed active library changed; no review retarget".into()); }
+        let listing = self.library_entries.get(library_ref).ok_or("Observe this library before choosing entries")?;
+        let mut control = library.control.try_lock().map_err(|_| "Original library act control busy; review pending")?;
+        let owner = library.owner.try_lock().map_err(|_| "Original library owner busy; review pending")?;
+        let review = listing.review(&owner, library_ref, listing_ref, entry_refs)?;
+        let view = review.current()?;
+        let reference = view.review_ref().to_owned();
+        let presentation = view.review_presentation().clone();
+        let offer = control.as_mut().ok_or("Original library act control unavailable")?.compose_a15(&view)?;
+        drop(owner);
+        drop(control);
+        self.reviews.insert(reference.clone(), std::sync::Arc::new(std::sync::Mutex::new(WorkflowReviewContext { reference:reference.clone(), library, home, home_context:context,
+            review:Some(review), offer:Some(offer), attempted_native:false, transaction:None, registered:Default::default(), status:json!({"state":"reviewed; native A15 not captured","presentation":presentation}) })));
+        self.active_review = Some(reference);
+        Ok(self.snapshot())
     }
     pub fn active_library(&self) -> Result<std::sync::Arc<WorkflowLibraryContext>, String> {
         self.active_library
@@ -5218,6 +5273,7 @@ impl WorkflowRootSession {
             run_tag: Value::Null,
             model_turns: Default::default(),
             role_limits_seen: Default::default(),
+            files,
         };
         // EXEC §3.1 CK-1: the selection is now bound to this conversation for a run.
         workflow_run.evaluate_compatibility(crate::execution_compatibility::report::Occasion::Selection);
@@ -5873,6 +5929,14 @@ impl WorkflowRootSession {
         person_text: String,
         project: Option<&std::path::Path>,
     ) -> Result<String, String> {
+        self.start_proposed_with_context(view,home,generation,message,live,person_text,project,None)
+    }
+    #[allow(clippy::too_many_arguments)]
+    fn start_proposed_with_context(
+        &mut self, view:&Value, home:std::sync::Arc<HomeSession>, generation:&Value,
+        message:&Value, live:Option<&str>, person_text:String, project:Option<&std::path::Path>,
+        expected:Option<&ProposalContext>,
+    ) -> Result<String,String> {
         let message = &crate::run_offers::ItemRef::from_value(message)?;
         let home_key = generation["home"].as_str().ok_or("Native home absent")?.to_owned();
         if view["home"] != home_key.as_str() || view["generation"] != *generation {
@@ -5903,6 +5967,9 @@ impl WorkflowRootSession {
             .try_lock()
             .map_err(|_| "Original library owner busy; nothing selected")?
             .store_copy(&found.identity);
+        if let Some(expected) = expected {
+            self.verify_disclosed_context(view,&home,generation,message,live,&named,&found,&store,expected)?;
+        }
         let chosen = self
             .resolve_registered(&crate::workflow_selection::Chat::in_home(&home, &thread), &found.revision, store)
             .map_err(|cause| format!("proposed workflow {}: {cause}; nothing selected or started", named.text()))?;
@@ -6051,6 +6118,8 @@ thread_local! {
     /// Test hook: the next `WorkflowRun::send` panics while its lock is held,
     /// before (`Some(false)`) or after (`Some(true)`) its write is attempted.
     static PANIC_IN_SEND: std::cell::Cell<Option<bool>> = const { std::cell::Cell::new(None) };
+    /// Synthetic mutation after publication/evaluation, before the final guard.
+    static BEFORE_GENERATED_FILES_DISPATCH: std::cell::RefCell<Option<Box<dyn FnOnce()>>> = const { std::cell::RefCell::new(None) };
     /// Mutate the authoritative record after the first lifecycle projection.
     static AFTER_RUN_PRIOR_READING: std::cell::RefCell<Option<Box<dyn FnOnce()>>> = const { std::cell::RefCell::new(None) };
 }
@@ -6173,11 +6242,20 @@ pub(crate) fn send_with_pending_notice_in_mode(
     person_text: &str,
     mode: Option<&str>,
 ) -> Option<NoticeSend> {
+    send_with_pending_notice_observed(root, generation, thread, person_text, mode, &mut |_| {})
+}
+/// Same ordinary notice route, with a trusted Rust receipt-retention callback.
+/// It runs after the existing Host factory returns and before any native wait.
+/// The callback neither composes text nor changes claim/settlement semantics.
+pub(crate) fn send_with_pending_notice_observed(
+    root: &std::sync::Mutex<WorkflowRootSession>, generation: &Value, thread: &str,
+    person_text: &str, mode: Option<&str>, on_source: &mut dyn FnMut(&crate::hosting::SourceRequest),
+) -> Option<NoticeSend> {
     let pending = match pending_notice_run(root, generation, thread)? {
         Ok(run) => run,
-        Err(e) => return Some(NoticeSend { result: Err(e), written: false }),
+        Err(e) => return Some(NoticeSend { result: Err(e), written: false, source: None }),
     };
-    Some(pending.send_text(generation, person_text, mode))
+    Some(pending.send_text_observed(generation, person_text, mode, on_source))
 }
 /// Ordinary text without a mode (the tests' shorthand for `conversation_send_text`).
 #[cfg(test)]
@@ -6208,15 +6286,15 @@ pub(crate) enum PendingNotice {
     Reopened(std::sync::Arc<std::sync::Mutex<ReopenedEnd>>),
 }
 impl PendingNotice {
-    fn send_text(&self, generation: &Value, person_text: &str, mode: Option<&str>) -> NoticeSend {
-        let busy = || NoticeSend { result: Err(NOTICE_RUN_BUSY.into()), written: false };
+    fn send_text_observed(&self, generation: &Value, person_text: &str, mode: Option<&str>, on_source: &mut dyn FnMut(&crate::hosting::SourceRequest)) -> NoticeSend {
+        let busy = || NoticeSend { result: Err(NOTICE_RUN_BUSY.into()), written: false, source: None };
         match self {
             Self::Run(run) => match run.try_lock() {
-                Ok(mut run) => run.send_end_notice_in_mode(generation, person_text, mode),
+                Ok(mut run) => run.send_end_notice_observed(generation, person_text, mode, on_source),
                 Err(_) => busy(),
             },
             Self::Reopened(end) => match end.try_lock() {
-                Ok(mut end) => end.send_end_notice_in_mode(generation, person_text, mode),
+                Ok(mut end) => end.send_end_notice_observed(generation, person_text, mode, on_source),
                 Err(_) => busy(),
             },
         }
@@ -6350,6 +6428,9 @@ impl ReopenedEnd {
         result
     }
     pub(crate) fn send_end_notice_in_mode(&mut self, generation: &Value, person_text: &str, mode: Option<&str>) -> NoticeSend {
+        self.send_end_notice_observed(generation, person_text, mode, &mut |_| {})
+    }
+    fn send_end_notice_observed(&mut self, generation: &Value, person_text: &str, mode: Option<&str>, on_source: &mut dyn FnMut(&crate::hosting::SourceRequest)) -> NoticeSend {
         let claimed = (|| {
             if person_text.is_empty() {
                 return Err("text required".to_string());
@@ -6360,17 +6441,17 @@ impl ReopenedEnd {
                 .transpose()?;
             let thread = self.conversation.clone();
             let claim = self.claim_end_notice(generation, &thread)?;
-            let carriage = carry_notice_text(&self.home.host, &claim, person_text, element.as_ref());
-            Ok((claim, carriage))
+            let (carriage, source) = carry_notice_text(&self.home.host, &claim, person_text, element.as_ref(), on_source);
+            Ok((claim, carriage, source))
         })();
         match claimed {
             Err(e) => {
                 self.sync_notice_flag();
-                NoticeSend { result: Err(e), written: false }
+                NoticeSend { result: Err(e), written: false, source: None }
             }
-            Ok((claim, carriage)) => {
+            Ok((claim, carriage, source)) => {
                 let written = matches!(carriage, NoticeCarriage::Written { .. });
-                NoticeSend { result: self.settle_end_notice(claim, carriage), written }
+                NoticeSend { result: self.settle_end_notice(claim, carriage), written, source }
             }
         }
     }
@@ -6450,6 +6531,9 @@ pub(crate) enum NoticeCarriage {
 pub(crate) struct NoticeSend {
     pub(crate) result: Result<Value, String>,
     pub(crate) written: bool,
+    /// None only on a completed pre-dispatch validation/claim/begin refusal.
+    /// Some includes reserved-but-invalidated and partial/failed writes.
+    pub(crate) source: Option<crate::hosting::SourceRequest>,
 }
 /// The text carrier: [run-end line, the person's text], with the mode's
 /// `collaborationMode` when given, through the prepared-turn sender that
@@ -6459,7 +6543,8 @@ fn carry_notice_text(
     claim: &NoticeClaim,
     person_text: &str,
     mode: Option<&Value>,
-) -> NoticeCarriage {
+    on_source: &mut dyn FnMut(&crate::hosting::SourceRequest),
+) -> (NoticeCarriage, Option<crate::hosting::SourceRequest>) {
     let begun = {
         #[cfg(test)]
         let refused = NOTICE_REFUSED_BEFORE_WRITE.with(|v| v.replace(false));
@@ -6472,10 +6557,13 @@ fn carry_notice_text(
         }
     };
     let source = match begun {
-        Ok(source) if source.evidence()["actualWriteAttemptObserved"] == true => source,
-        Err(e) => return NoticeCarriage::NotWritten(e),
+        Err(e) => return (NoticeCarriage::NotWritten(e), None),
         Ok(source) => {
-            return NoticeCarriage::NotWritten(format!("no write attempt observed: {}", source.evidence()["noAttemptCause"]))
+            on_source(&source);
+            if source.evidence()["actualWriteAttemptObserved"] != true {
+                return (NoticeCarriage::NotWritten(format!("no write attempt observed: {}", source.evidence()["noAttemptCause"])), Some(source));
+            }
+            source
         }
     };
     let mut outcome;
@@ -6499,7 +6587,7 @@ fn carry_notice_text(
     } else {
         Err(format!("End notice turn outcome unavailable; not resent: {outcome}"))
     };
-    NoticeCarriage::Written { turn, outcome, result }
+    (NoticeCarriage::Written { turn, outcome, result }, Some(source))
 }
 // Test seam (V10 G-1): behave as if the Host refused the notice turn before
 // writing any frame, as its own validation and scope refusals do.
@@ -6685,6 +6773,9 @@ impl WorkflowCheckSlot {
             "published":self.published.is_some(),"publicationLimit":self.publication_failure,"r3":r3,"adoption":"unknown"})
     }
 }
+#[path = "file_act_arrival.rs"]
+mod file_act_arrival;
+pub(crate) use file_act_arrival::ArrivalSource;
 pub(crate) struct WorkflowRun {
     learning_pointers: crate::workflow_learning_pointers::Held,
     retention_activity: Option<crate::storage::Ownership>,
@@ -6744,6 +6835,9 @@ pub(crate) struct WorkflowRun {
     /// RS R5 / HOSTING §8.3: the run's `model_turn` entries (per turn, and thread reports).
     model_turns: crate::model_turn_recorder::ModelTurnRecorder,
     role_limits_seen: std::collections::BTreeSet<String>,
+    /// The actual TX-7 folder chosen at preparation, never reconstructed from
+    /// display JSON or silently regenerated during a send retry.
+    files: crate::workflow_workspace::FilesFolder,
 }
 impl WorkflowReviewContext {
     pub fn accept_result(
@@ -6826,6 +6920,7 @@ impl WorkflowRun {
             "endNotice":self.notice.view(),"noticeRecordFailure":self.notice_record_failure,"noticeChecks":self.notice_checks.iter().map(WorkflowCheckSlot::view).collect::<Vec<_>>(),
             "compatibility":self.compatibility_view(),
             "checkpointRecorder":self.checkpoints.as_ref().map(crate::checkpoint_recorder::CheckpointRecorder::view),
+            "fileActEntries":file_act_arrival::entry_views(self),
             "modelTurns":self.model_turns.view(),
             "workflow":{"origin":self.prepared().workflow().origin,"name":self.prepared().workflow().name,"revision":self.prepared().workflow().revision,"sourceRoot":self.prepared().workflow().source_root},
             "home":self.prepared().scope().home,"generation":self.prepared().scope().generation,
@@ -7117,6 +7212,7 @@ impl WorkflowRun {
             &self.prepared().scope().generation,
             &self.prepared().scope().conversation,
         )?;
+        self.verify_generated_supporting_files()?;
         self.publish_pre_send()?;
         let (selection_ref, text_ref) = {
             let published = self.published.as_ref().unwrap();
@@ -7140,6 +7236,12 @@ impl WorkflowRun {
         self.evaluate_compatibility(
             crate::execution_compatibility::report::Occasion::BeforeFirstAction,
         );
+        #[cfg(test)]
+        BEFORE_GENERATED_FILES_DISPATCH.with(|hook| { if let Some(hook)=hook.borrow_mut().take(){hook();} });
+        // Publication/evaluation may take time. The original selected source
+        // and named generated folder must match before the native attempt,
+        // including when publication already succeeded on an earlier call.
+        self.verify_prepared_files_at_dispatch()?;
         #[cfg(test)]
         if PANIC_IN_SEND.with(|p| p.get()) == Some(false) {
             PANIC_IN_SEND.with(|p| p.set(None));
@@ -7198,6 +7300,24 @@ impl WorkflowRun {
         }
         self.open_run();
         Ok(self.status.clone())
+    }
+    fn verify_generated_supporting_files(&mut self)->Result<(),String>{
+        if let Err(cause)=self.files.verify_generated_copy(self.selection.snapshot()){
+            let records=json!({"selection":self.record_state(self.publication.selection_reference()),"runText":self.record_state(self.publication.run_text_reference())});
+            self.status=json!({"state":"generated supporting files changed or unavailable; nothing sent","sent":false,"supplied":"not supplied","records":records,"limit":cause,"retry":"Restore the original supporting files and retry this prepared send while it remains eligible. A withdrawn chained successor needs a new preparation. Files are left unchanged.","otherFiles":self.files.describe(),"adoption":"unknown","runStanding":"not opened: original prepared run retained"});
+            return Err(format!("{cause}; nothing sent; original selection and prepared text retained"));
+        }
+        Ok(())
+    }
+    fn verify_prepared_files_at_dispatch(&mut self)->Result<(),String>{
+        // Retry Records can publish without sending. A cached publication is
+        // no substitute for the same source condition at the native boundary.
+        if let Err(cause)=self.selection.verify_store(&self.prepared().scope().revision_store){
+            let records=json!({"selection":self.record_state(self.publication.selection_reference()),"runText":self.record_state(self.publication.run_text_reference())});
+            self.status=json!({"state":"selected revision source changed or unavailable; nothing sent","sent":false,"supplied":"not supplied","records":records,"limit":cause,"retry":"Restore the exact original selected revision and retry this prepared send while it remains eligible. A withdrawn chained successor needs a new preparation.","otherFiles":self.files.describe(),"adoption":"unknown","runStanding":"not opened: original prepared run retained"});
+            return Err(format!("Selected revision source no longer verifies: {cause}; nothing sent; original selection and prepared text retained"));
+        }
+        self.verify_generated_supporting_files()
     }
     /// V9 F-1: publish the *not found* check for a definitely refused start. R3
     /// stays unavailable: no source-bound native turn exists (RS §13.6a).
@@ -7479,18 +7599,21 @@ impl WorkflowRun {
     /// unchanged. The caller holds the run's lock throughout; nothing here
     /// takes the attachment list's lock.
     pub(crate) fn send_end_notice_in_mode(&mut self, generation: &Value, person_text: &str, mode: Option<&str>) -> NoticeSend {
-        match self.claim_and_carry_text(generation, person_text, mode) {
+        self.send_end_notice_observed(generation, person_text, mode, &mut |_| {})
+    }
+    fn send_end_notice_observed(&mut self, generation: &Value, person_text: &str, mode: Option<&str>, on_source: &mut dyn FnMut(&crate::hosting::SourceRequest)) -> NoticeSend {
+        match self.claim_and_carry_text(generation, person_text, mode, on_source) {
             Err(e) => {
                 self.sync_notice_flag();
-                NoticeSend { result: Err(e), written: false }
+                NoticeSend { result: Err(e), written: false, source: None }
             }
-            Ok((claim, carriage)) => {
+            Ok((claim, carriage, source)) => {
                 let written = matches!(carriage, NoticeCarriage::Written { .. });
-                NoticeSend { result: self.settle_end_notice(claim, carriage), written }
+                NoticeSend { result: self.settle_end_notice(claim, carriage), written, source }
             }
         }
     }
-    fn claim_and_carry_text(&mut self, generation: &Value, person_text: &str, mode: Option<&str>) -> Result<(NoticeClaim, NoticeCarriage), String> {
+    fn claim_and_carry_text(&mut self, generation: &Value, person_text: &str, mode: Option<&str>, on_source: &mut dyn FnMut(&crate::hosting::SourceRequest)) -> Result<(NoticeClaim, NoticeCarriage, Option<crate::hosting::SourceRequest>), String> {
         if !self.notice.awaiting_turn() || self.notice_held_by_start.is_some() {
             return Err(self.notice_not_claimable());
         }
@@ -7504,8 +7627,8 @@ impl WorkflowRun {
             .map(|mode| self.home.host.collaboration_mode_element(generation, &thread, mode))
             .transpose()?;
         let claim = self.claim_end_notice(generation, &thread)?;
-        let carriage = carry_notice_text(&self.home.host, &claim, person_text, element.as_ref());
-        Ok((claim, carriage))
+        let (carriage, source) = carry_notice_text(&self.home.host, &claim, person_text, element.as_ref(), on_source);
+        Ok((claim, carriage, source))
     }
     /// TC-2 / TX-5, first half: claim the pending notice for exactly one new
     /// turn of its conversation. Its record is published first (a failure
@@ -7837,6 +7960,12 @@ pub(crate) mod trial_flows;
 mod workflow_root_tests {
     use super::*;
     use std::{path::PathBuf,sync::{Arc,Mutex},time::Duration};
+    mod file_act_arrival_tests { use super::*; include!("file_act_arrival_tests.rs"); }
+    mod supply_dispatch_tests { use super::*; include!("workflow_supply_dispatch_tests.rs"); }
+    mod library_entries_tests { use super::*; include!("workflow_library_entries_tests.rs"); }
+    mod proposal_disclosure_tests { use super::*; include!("workflow_proposal_disclosure_tests.rs"); }
+    mod selected_chain_disclosure_tests { use super::*; include!("workflow_selected_chain_disclosure_tests.rs"); }
+    mod action_result_tests { use super::*; include!("workflow_action_result_tests.rs"); }
     impl WorkflowRootSession {
         fn fixture_chat(&self) -> crate::workflow_selection::Chat {
             self.selected.keys().next().cloned().unwrap_or(crate::workflow_selection::Chat { source:"explicit single-chat selection fixture".into(), thread:"thread".into() })
@@ -8077,6 +8206,11 @@ for line in sys.stdin:
  elif method=='thread/turns/list':result={'data':[turn()],'nextCursor':None}
  elif method=='thread/items/list':
   m=mode('items-mode');seen=text;cid=client
+  if m=='hold':
+   import time
+   with open('items-held','w') as held:held.write('waiting')
+   deadline=time.monotonic()+10
+   while mode('items-mode')=='hold' and time.monotonic()<deadline:time.sleep(.005)
   if m=='error':
    emit({'id':f['id'],'error':{'code':-32000,'message':'fixture unreadable items'}});continue
   if m=='error-content':
@@ -8581,7 +8715,7 @@ for line in sys.stdin:
             std::thread::sleep(Duration::from_millis(20));};
         assert!(view["items"].as_array().unwrap().iter().any(|r|r["native"]["id"]=="m1"),"the fixture's arrival reached the native view: {view}");
         assert!(view["serverRequests"].is_array(),"the record tick's view carries the server-request register (CE-4)");
-        let status=crate::host_tick::workflow_status(&workflows,&view,true);
+        let status=crate::host_tick::workflow_status(&workflows,&peer.home,&view,true);
         assert!(status["runs"].is_array());
         assert_eq!(kinds_for(&peer,&a),before,"host_status's workflow part records nothing");
         // The tick alone records the arrival (no host_status call anywhere in this test).
@@ -9284,10 +9418,10 @@ for line in sys.stdin:
         let reference=view["reference"].as_str().unwrap().to_owned();
         let root=Mutex::new(root);trial_flows::send_trial(&root,&peer.home,&reference,&g,"thread","").unwrap();
         peer.set_mode("namespace-tools","false");let before=caps(&peer);
-        let again=trial_flows::trial_again(&root,&reference,&peer.home,peer.project()).unwrap_err();
+        let again=trial_flows::trial_again(&root,&reference,std::slice::from_ref(&peer.home),peer.project()).unwrap_err();
         assert!(again.contains("namespaceTools false"),"{again}");assert_eq!(caps(&peer),before+1);
         peer.set_mode("namespace-tools","");
-        assert_eq!(trial_flows::trial_again(&root,&reference,&peer.home,peer.project()).unwrap()["delegation"]["reading"],"present");
+        assert_eq!(trial_flows::trial_again(&root,&reference,std::slice::from_ref(&peer.home),peer.project()).unwrap()["delegation"]["reading"],"present");
     }
     // B-1 (#1250 review): model/list and modelProvider/capabilities/read
     // answer for the provider the app-server resolves for itself; a
@@ -9469,8 +9603,15 @@ for line in sys.stdin:
         let (a1,b1)=(turn_lists(&a),turn_lists(&b));
         trial_flows::compare(&root,&|t|trial_flows::home_holding(&homes,t),&json!({"trial":reference}),&json!({"trial":reference})).unwrap();
         assert_eq!(turn_lists(&a),a1,"Compare reads nothing in A");assert!(turn_lists(&b)>b1,"Compare reads B");
-        let again=trial_flows::trial_again(&root,&reference,&home,a.project()).unwrap();
-        assert_eq!(again["kind"],"clean");assert_eq!(again["authoring"]["generation"],b.generation,"Try again takes the trial's home");
+        let again=trial_flows::trial_again(&root,&reference,&homes,a.project()).unwrap();
+        assert_eq!(again["kind"],"clean");
+        // WR TT-3b/TT-11: the clean trial is read in B, but Try again keeps
+        // the originally selected authoring conversation in A as its default.
+        assert_eq!(again["authoring"]["generation"],a.generation,"Try again keeps the original authoring source");
+    }
+    mod trial_authoring_source_tests {
+        use super::*;
+        include!("workflow_trial_authoring_source_tests.rs");
     }
     #[test]
     fn send_refusals_say_whether_the_trial_stays_pre_filled(){
@@ -9831,7 +9972,12 @@ for line in sys.stdin:
         root.runs[&a].lock().unwrap().end_run(None,None).unwrap();
         let end=rs_for(&peer,&a).into_iter().find(|e|e["kind"]=="run_ended").unwrap();assert_eq!(end["body"],json!({"stoppedBy":"the person","cause":"ended by the person","waitingArrivals":[]}));
         let root=Mutex::new(root);
-        let sent=send_with_pending_notice(&root,&peer.generation,"thread","hello").expect("a notice is pending").unwrap();assert_eq!(sent["state"],"end notice and the person's text sent once");
+        let mut original=None;
+        let sent=send_with_pending_notice_observed(&root,&peer.generation,"thread","hello",None,&mut |source|original=Some(source.clone())).expect("a notice is pending");
+        let source=sent.source.as_ref().expect("notice result retains its actual source");
+        assert_eq!(source.request_ref(),original.as_ref().unwrap().request_ref(),"callback retained the original source before its finish wait");
+        assert!(matches!(peer.home.host.handoff_send_observation(source,&peer.generation,"thread","hello"),crate::hosting::HandoffSendObservation::Sent(_)));
+        let sent=sent.result.unwrap();assert_eq!(sent["state"],"end notice and the person's text sent once");
         let turn=last_turn_start(&peer);let notice=turn["params"]["input"][0]["text"].as_str().unwrap().to_owned();
         assert!(notice.starts_with("[Chirality] Workflow run ended: coordinated-knowledge-work revision ")&&notice.ends_with("ended by the person). No workflow is in force."),"{notice}");
         assert!(notice.contains(&a));assert_eq!(turn["params"]["input"][1]["text"],"hello");assert_eq!(peer.fixture.wr_files().len(),wr_before+1,"notice record published before the send");
@@ -9841,6 +9987,21 @@ for line in sys.stdin:
         let log=rs_for(&peer,&a);let kinds:Vec<&str>=log.iter().map(|e|e["kind"].as_str().unwrap()).collect();
         assert_eq!(kinds,["run_opened","run_ended","supplied_guidance"],"R3 of the notice follows run_ended in the ended run's log");
         assert_eq!(log[2]["body"]["supplyForm"],"workflow run end notice (turn text)");assert_eq!(log[2]["body"]["adoption"],"unknown");
+    }
+    #[test]
+    fn handoff_notice_sources_survive_native_error_and_observation_loss(){
+        for mode in ["error","exit"] {
+            let peer=Peer::new();let (root,_)=ended_run(&peer);
+            peer.set_mode("turn-mode",mode);
+            let mut original=None;
+            let sent=send_with_pending_notice_observed(&root,&peer.generation,"thread","exact edited text",None,&mut |source|original=Some(source.clone())).unwrap();
+            let source=sent.source.as_ref().expect("every completed begin source survives native wait/learning/settlement errors");
+            assert_eq!(source.request_ref(),original.as_ref().unwrap().request_ref());
+            assert_eq!(source.write_attempt_observed(),Some(true));
+            let observed=peer.home.host.handoff_send_observation(source,&peer.generation,"thread","exact edited text");
+            assert!(if mode=="error" {matches!(observed,crate::hosting::HandoffSendObservation::NativeFailed(_))} else {matches!(observed,crate::hosting::HandoffSendObservation::Unknown(_))});
+            assert!(sent.result.is_err(),"the legacy notice result stays unchanged");
+        }
     }
     /// One selected text file in a new attachment list, with App custody.
     /// Returns (list, owner, list revision, selection refs, custody, file path).
@@ -10130,6 +10291,7 @@ for line in sys.stdin:
         let peer=Peer::new();let (root,a)=ended_run(&peer);
         let (wr_before,starts)=(peer.fixture.wr_files().len(),peer.turn_starts());
         let refused=send_with_pending_notice_in_mode(&root,&peer.generation,"thread","plan it",Some("plan")).expect("pending");
+        assert!(refused.source.is_none(),"completed mode validation refused before any native dispatch");
         assert!(!refused.written&&refused.result.unwrap_err().contains("plan mode not offered"));
         assert_eq!((peer.turn_starts(),peer.fixture.wr_files().len()),(starts,wr_before),"refused before the notice was touched");
         assert!(notice_state(&root,&a).starts_with("pending"));
@@ -12398,10 +12560,16 @@ for line in sys.stdin:
         wait(&||peer.turn_starts()==2,"the peer read the stalling turn and stopped reading");
         let (h,gg)=(host.clone(),g.clone());let large=std::thread::spawn(move||h.turn_start_text(&gg,&t3,&"x".repeat(1024*1024)));
         wait(&||reserved(true),"the large frame holds the writer");
-        let (shared,gg)=(root.clone(),g.clone());let notice=std::thread::spawn(move||send_with_pending_notice(&shared,&gg,"thread","hello").expect("notice pending"));
+        let original=Arc::new(Mutex::new(None));
+        let (shared,gg,captured)=(root.clone(),g.clone(),original.clone());let notice=std::thread::spawn(move||send_with_pending_notice_observed(&shared,&gg,"thread","hello",None,&mut |source|*captured.lock().unwrap()=Some(source.clone())).expect("notice pending"));
         wait(&||reserved(false),"the notice turn/start is accepted and queued, not written");
         host.stop_scoped(&g,"the person","Codex stop").unwrap();
-        let refused=notice.join().unwrap().unwrap_err();
+        let refused=notice.join().unwrap();
+        let source=refused.source.as_ref().expect("reserved then invalidated source survives NoticeCarriage::NotWritten");
+        assert_eq!(source.request_ref(),original.lock().unwrap().as_ref().unwrap().request_ref());
+        assert_eq!(source.write_attempt_observed(),Some(false));
+        assert!(matches!(host.handoff_send_observation(source,&g,"thread","hello"),crate::hosting::HandoffSendObservation::NotAttempted(_)));
+        let refused=refused.result.unwrap_err();
         assert!(refused.contains("no write attempt observed"),"the Host returned a source with no write attempt: {refused}");
         let _=(stall.join().unwrap(),large.join().unwrap());
         assert!(root.lock().unwrap().runs[&a].lock().unwrap().view(&a)["endNotice"]["state"].as_str().unwrap().starts_with("pending"),"never Sent");
@@ -12704,6 +12872,10 @@ for line in sys.stdin:
     include!("role_r3_run_tests.rs");
     include!("records_portable_reconstruction_tests.rs");
     include!("historical_trial_flows_tests.rs");
+    mod trial_restart_source_tests {
+        use super::*;
+        include!("workflow_trial_restart_tests.rs");
+    }
     include!("records_access_role_tests.rs");
     include!("run_restart_tests.rs");
     include!("workflow_chat_selection_tests.rs");
