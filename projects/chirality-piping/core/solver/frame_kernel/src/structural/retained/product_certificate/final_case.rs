@@ -9,6 +9,19 @@ use super::source_residual::ResidualWork;
 use super::*;
 #[path = "loaded_maximum.rs"]
 mod loaded_maximum;
+/// The W1 coverage census probe and switches (`w1-coverage-repair.md` §3.2),
+/// compiled only under the opt-in `census-probe` feature.
+#[cfg(feature = "census-probe")]
+#[path = "census_probe.rs"]
+pub mod census_probe;
+/// The corner-1 repair's switch (W1 coverage repair §1.2). Off without
+/// `census-probe`, so the production search is today's.
+fn corner1() -> bool {
+    #[cfg(feature = "census-probe")]
+    { census_probe::switches().corner1 }
+    #[cfg(not(feature = "census-probe"))]
+    { false }
+}
 
 #[derive(Clone, Copy)]
 enum Scalar64 {
@@ -879,7 +892,14 @@ fn recipe_reduced(
         Some(rs) => (rs.area, rs.torsion_constant),
         None => (f.area, f.torsion_constant),
     };
-    let (a, z, j, c) = if represented {
+    // W1 coverage repair census (§3.2, switches (b) and (c)): the annular
+    // lane's stress recipe takes the admitted lane's section. Off without
+    // `census-probe`.
+    #[cfg(feature = "census-probe")]
+    let shared = census_probe::switches().shares_section();
+    #[cfg(not(feature = "census-probe"))]
+    let shared = false;
+    let (a, z, j, c) = if represented || shared {
         (
             Enclosure::point(lift(area)?),
             sec.represented_z.ok_or_else(|| bad("represented Z"))?,
@@ -916,7 +936,10 @@ fn recipe_reduced(
                         ends[e][c] = action(owner,values,member,ProductSite::End(end),component)?;
                     }
                 }
-                return loaded_maximum::search(spent,row,member,ends,curvature,a,z);
+                // W1 coverage repair §1.2: a lane whose Z is the represented hull
+                // and not a point is driven at z_lo (the corner-1 switch).
+                let driven = corner1() && (represented || shared) && z.lo.cmp_value(&z.hi) != Ordering::Equal;
+                return loaded_maximum::search(spent,row,member,ends,curvature,a,z,driven);
             }
             let mut best = None;
             for end in [End::I, End::J] {
@@ -1536,8 +1559,12 @@ fn row_scales_reduced(owner:&adaptive::RetainedSolve,facts:&[ProductMemberFacts]
 fn check_intervals(owner:&adaptive::RetainedSolve, facts:&[ProductMemberFacts], reduced:&ReducedSectionSet,
     k:&[Enclosure], source_values:&[Enclosure], data:&[bool], spent:&mut ProductCertificateSpent<'_>,
     k_curvatures:&[(u32,[Enclosure;2])], s_curvatures:&[(u32,[Enclosure;2])])
-    -> Result<(),ProductFailure> {
+    -> Result<Vec<[f64;4]>,ProductFailure> {
     let source=owner.source();
+        #[cfg(feature = "census-probe")]
+        census_probe::context(spent.rows.first().map_or("", |r| r.case_id), "gate");
+        #[cfg(feature = "census-probe")]
+        let mut probe_rows: Vec<census_probe::GateRow> = Vec::new();
         spent.coverage = summary_coverage_data(owner, data, spent)?;
         let nb=source.body_count() as usize;
         let (mut scales, reduced_map)=row_scales_reduced(owner,facts,reduced,spent)?;
@@ -1658,8 +1685,20 @@ fn check_intervals(owner:&adaptive::RetainedSolve, facts:&[ProductMemberFacts], 
             )?;
             let v = gate(spent, i, hull(represented, geometric), scale, input)?;
             spent.verdicts.push(v);
+            #[cfg(feature = "census-probe")]
+            if census_probe::switches().record {
+                probe_rows.push(census_probe::GateRow { row: i, k: represented, s: geometric, scale, input });
+            }
         }
-    Ok(())
+        #[cfg(feature = "census-probe")]
+        if census_probe::switches().record {
+            census_probe::gate_records(&census_probe::GateInputs { owner, facts, reduced, reduced_map: &reduced_map,
+                k, s: source_values, k_curvatures, s_curvatures, rows: spent.rows, verdicts: &spent.verdicts,
+                scales: &scales, gate_rows: &probe_rows });
+        }
+    // W1 coverage repair §2.2: the coupled, floored scales the gate used, for the
+    // certified proof (the vector `row_scales_reduced` reserved; no new allocation).
+    Ok(scales)
 }
 
 #[cfg(test)]
@@ -2122,6 +2161,8 @@ impl<'s,'m> ProductProofDraft<'s,'m> {
     pub fn lane_debug(&self)->impl std::fmt::Debug+'_ {(&self.data.k,&self.data.source)}
     pub fn project(mut self)->ProductProjectionSpent<'s,'m> {
         let combination=!self.data.owner.prep.factors.is_empty();
+        #[cfg(feature = "census-probe")]
+        census_probe::context(self.data.specs.first().map_or("", |s| s.case_id), "projection");
         let result=(|| {
             let mut maxima=self.work.prepared_reserve(2,self.data.facts.len())?;
             let mut loaded=if self.data.owner.member_loads().iter().any(|l|l.intensity.iter().any(|w|*w!=0.0)) {
@@ -2314,8 +2355,14 @@ fn norm3_core(v:[f64;3],ctx:&mut WideContext<16>,sums:&mut SumWork)
 }
 pub struct CertifiedProductProof {
     work:ProductCertificateSpent<'static>, anchor:std::sync::Arc<ProofAnchor>,
+    /// W1 coverage repair §2.2: the per-body coupled, floored scales the gate used
+    /// (translation, rotation, force, moment), which the receipt states. Held here,
+    /// not in the work owner, whose layout is priced.
+    final_scales:Vec<[f64;4]>,
 }
 impl CertifiedProductProof {
+    /// The per-body scales the product gate judged every row with (W1 coverage repair §2.2).
+    pub fn final_scales(&self)->&[[f64;4]] {&self.final_scales}
     pub fn passed(&self)->bool {self.work.failure.is_none() && self.work.status().is_exact() && self.work.verdicts.iter().all(|v|v.passed)}
     pub fn verdicts(&self)->&[ProductRowVerdict] {&self.work.verdicts}
     pub fn summary_coverage(&self)->&[ProductSummaryCoverage] {&self.work.coverage}
@@ -2353,15 +2400,15 @@ impl<'s,'m> ProjectedProofDraft<'s,'m> {
                 if !spec.matches(r,&mut work)? || r.value.to_bits()!=y.to_bits()
                     || spec.observed.is_some_and(|b|b!=y.to_bits()) {return Err(bad("frozen descriptor/value"));}
             }
-            check_intervals(self.data.owner,self.data.facts,self.data.reduced,&self.data.k.rows,&self.data.source.rows,&self.data.k.data,&mut work,&self.data.k.curvatures,&self.data.source.curvatures)?;
+            let scales=check_intervals(self.data.owner,self.data.facts,self.data.reduced,&self.data.k.rows,&self.data.source.rows,&self.data.k.data,&mut work,&self.data.k.curvatures,&self.data.source.curvatures)?;
             if let Some(v)=work.verdicts.iter().find(|v|!v.passed) {
                 return Err(ProductFailure{cause:Cause::Predicate{row:v.row,predicate:v.failed.unwrap_or(ProductPredicate::SharperExact)}});
             }
             if let Some(f)=work.status().fault(){return Err(ProductFailure{cause:Cause::Accounting(f)});}
-            Ok(())
+            Ok(scales)
         })();
         let mut owned=work.rebind(&[]);
-        let result=match result {Ok(())=>Ok(CertifiedProductProof{work:owned,anchor:self.data.anchor}),
+        let result=match result {Ok(final_scales)=>Ok(CertifiedProductProof{work:owned,anchor:self.data.anchor,final_scales}),
             Err(failure)=>{owned.failure=Some(failure.clone());Err(ProductProofFailure{failure,work:owned})}};
         ProductFinalSpent{result}
     }

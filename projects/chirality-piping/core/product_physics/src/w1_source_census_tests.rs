@@ -1237,6 +1237,67 @@ fn b4_early_exact_material_binding_uses_authoritative_subnormal_words() {
 #[path = "w1_domain_stage1_tests.rs"]
 mod w1_domain_stage1_tests;
 
+// The W1 coverage repair census (DEL-04-08 Design `w1-coverage-repair.md` §3,
+// `w1e-sharper-exact-coverage.md` §6.2): opt-in, `--features census-probe` only.
+#[cfg(feature = "census-probe")]
+#[path = "w1_coverage_census_tests.rs"]
+mod w1_coverage_census_tests;
+
+/// W1 coverage repair §3.2: the census probe is opt-in. No dev-dependency enables it,
+/// so the ordinary test build (and the stack-witness build) compiles the kernel without
+/// it. A census command, which passes `--features census-probe`, does not run this test.
+/// W1 coverage repair §3.2 (revision 8): `census-probe` is named only as the frame
+/// kernel's `[features]` key and as `product_physics`' forward of it, never in a
+/// dependency table or a `default` list (the `mutation-controls` guard's rule). The
+/// registered build identity names no features and `Cargo.lock` records none, so the
+/// manifests are where an accidental enablement would show.
+#[test]
+fn census_probe_is_named_only_by_its_definition_and_forward() {
+    fn manifests(dir: &std::path::Path, out: &mut Vec<std::path::PathBuf>) {
+        for entry in std::fs::read_dir(dir).unwrap() {
+            let path = entry.unwrap().path();
+            let name = path.file_name().unwrap().to_string_lossy().to_string();
+            if path.is_dir() {
+                if name.starts_with('.') || ["target", "node_modules", "execution"].contains(&name.as_str()) { continue; }
+                manifests(&path, out);
+            } else if name == "Cargo.toml" {
+                out.push(path);
+            }
+        }
+    }
+    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../..").canonicalize().unwrap();
+    let mut found = Vec::new();
+    manifests(&root, &mut found);
+    let (mut definitions, mut forwards, mut violations) = (0, 0, Vec::new());
+    for path in &found {
+        let text = std::fs::read_to_string(path).unwrap();
+        let mut table = String::new();
+        for raw in text.lines() {
+            let line = raw.split('#').next().unwrap().trim();
+            if line.starts_with('[') { table = line.to_owned(); continue; }
+            if !line.contains("census-probe") { continue; }
+            let key = line.split('=').next().unwrap().trim();
+            let kernel = path.ends_with("core/solver/frame_kernel/Cargo.toml");
+            let pp = path.ends_with("core/product_physics/Cargo.toml");
+            if table == "[features]" && kernel && line == "census-probe = []" {
+                definitions += 1;
+            } else if table == "[features]" && pp && key == "census-probe" && line == r#"census-probe = ["open_pipe_stress_frame_kernel/census-probe"]"# {
+                forwards += 1;
+            } else {
+                violations.push(format!("{}: {table} {line}", path.display()));
+            }
+        }
+    }
+    assert!(violations.is_empty(), "census-probe named outside its definition and forward: {violations:#?}");
+    assert_eq!((definitions, forwards), (1, 1), "the kernel defines it and product_physics forwards it, once each");
+}
+
+#[test]
+fn census_probe_is_off_in_the_ordinary_test_build() {
+    assert!(!open_pipe_stress_frame_kernel::structural::retained_api::CENSUS_PROBE,
+        "the frame kernel was compiled with the census probe in an ordinary test build");
+}
+
 /// T4-U4b S4 (DEL-04-07 Design u4b-u5b-implementation.md §4.1): the failed-ordinary manifest
 /// carries each member's 15 derived rows after its circular maximum (66 rows per member, in
 /// preview-physics-2's order) as placeholders, and the freeze forms them from the projected rows.

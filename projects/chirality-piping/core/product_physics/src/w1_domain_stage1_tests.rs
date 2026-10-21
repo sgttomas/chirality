@@ -401,7 +401,7 @@ fn w1_loaded_maximum_is_the_kernel_projection_with_member_spans() {
 }
 
 /// Add the loaded beam without changing the sensitive ordinary member.
-fn w1_interior_publication_request(asymmetric:bool,tip_scale:f64)->Value {
+pub(super) fn w1_interior_publication_request(asymmetric:bool,tip_scale:f64)->Value {
         let mut beam=w1_interior_member_request(asymmetric);
         if asymmetric {
             // At tip_scale=-3 the independent stress polynomial is
@@ -503,23 +503,102 @@ fn w1_member_interior_publications_bind_the_actual_direct_entry() {
     }
 }
 
-/// Native quantity scales and published-row maxima straddle an exact binary64
-/// halfway in this distinct input. Preserve the existing strict G5b refusal.
+/// W1 coverage repair §2.2 (corner 2): native quantity scales and published-row maxima
+/// straddle an exact binary64 halfway in this input (force maximum (7/2)Z, coupled
+/// moment 7Z). The receipt now states the final scales the product gate judged every
+/// row with, so precommit G5b holds and the successor publishes in both modes; the
+/// unchanged reader recomputes the same scales. Formerly
+/// `w1_loaded_scale_halfway_keeps_the_existing_g5b_refusal`: the cause that refusal
+/// recorded, the receipt's native provenance, is repaired, and no gate changed.
+/// Maintained writer of the corpus bases `w1_member_halfway_asymmetric_{mode}`: with
+/// `W1_MEMBER_HALFWAY_OUT` naming a folder, each mode's `{id, source, invocation,
+/// generation_profile}` is written there after the public Direct entry's relation holds.
 #[test]
-fn w1_loaded_scale_halfway_keeps_the_existing_g5b_refusal() {
+fn w1_loaded_scale_halfway_publishes() {
     let raw=w1_interior_publication_request(true,-2.0);
+    let z=f64::from_bits(0x3f3c82e3dc7ef90c);
     for mode in MODES {
         let (capture,observer,mut ordinary)=early_observed(&raw,mode,true);
         ordinary.diagnostics.shrink_to_fit();
         let bytes=serde_json::to_vec(&ordinary).unwrap();
         let ((envelope,retained),_,candidate)=hooks::counted_with_successor(||retained_w1(observer,ordinary,&capture));
-        assert_eq!(retained.err(),Some(W1Fallback::Precommit{gate:"G5b",code:"RETAINED_PRECISION_SCALE_MISMATCH".into()}));
-        let expected=with_notice(&bytes,raw["model"]["load_cases"][0]["id"].as_str().unwrap(),None);
-        assert!(serde_json::to_vec(&envelope).unwrap()==expected,"the ordinary bytes keep only the existing R2 fallback notice");
-        let candidate=candidate.unwrap();
+        let successor=retained.unwrap_or_else(|f|panic!("{mode:?}: {f:?}")).value().clone();
+        assert_eq!(candidate.as_ref(),Some(&successor));
+        assert!(serde_json::to_vec(&envelope).unwrap()==bytes,"the ordinary owner is untouched");
         let invocation=json!({"request":raw,"solver_mode":mode.as_str()});
-        let failure=reader::validate(&candidate,Some(&invocation)).unwrap_err();
-        assert_eq!((failure.gate,failure.code.as_str()),("G5b","RETAINED_PRECISION_SCALE_MISMATCH"));
+        let verdict=reader::validate(&successor,Some(&invocation)).unwrap_or_else(|e|panic!("{mode:?}: {e:?}"));
+        assert!(verdict.invocation_bound&&verdict.numerical_eligible);
+        let case=&successor["retained_precision"]["body"]["cases"][0];
+        assert_eq!(case["status"],"selected");
+        let maximum=successor["results"].as_array().unwrap().iter()
+            .find(|r|r["kind"]=="pipe_elastic_normal_stress_maximum_v2"&&r["entity_ref"]=="ss:pipe").unwrap();
+        assert_eq!(maximum["value"].as_f64().unwrap().to_bits(),0x4008555555555555,"RN64(73/24) at t = 7/12");
+        // The loaded body's force scale is the final row maximum. (7/2)Z is an exact
+        // binary64 tie; the published row is RN64 of the projected hull midpoint, observed
+        // here to equal the tie's even neighbour RN64((7/2)Z), so this pin is an observed
+        // outcome, not a property of the law. The coupled moment scale is twice it
+        // (extent 2), RN64(7Z).
+        let scales=&case["selection"]["body_scales"][1];
+        assert_eq!(scales["force"],json!(format!("{:016x}",(3.5*z).to_bits())));
+        assert_eq!(scales["moment"],json!(format!("{:016x}",(7.0*z).to_bits())));
+        // The public Direct entry publishes exactly this successor in the registered
+        // build and the unchanged ordinary bytes otherwise (as the interior controls).
+        let direct_raw=raw.clone();
+        let (direct,_,precommit)=hooks::counted_with_successor(||
+            run_linear_static_preview_value_with_retained_direct(direct_raw,mode,RETAINED_LIMIT).unwrap());
+        if registered() {
+            assert_eq!(direct.admission().unwrap().profile,ProfileStatus::Registered);
+            assert_eq!(precommit,Some(successor.clone()));
+            assert_eq!(published(direct),serde_json::to_vec(&successor).unwrap());
+        } else {
+            assert_eq!(direct.admission().unwrap().profile,ProfileStatus::Stale);
+            assert!(precommit.is_none()&&direct.successor().is_none());
+            assert_eq!(published(direct),bytes);
+        }
+        if let Some(dir)=std::env::var_os("W1_MEMBER_HALFWAY_OUT") {
+            let id=format!("w1_member_halfway_asymmetric_{}",mode.as_str());
+            std::fs::write(std::path::Path::new(&dir).join(format!("{id}.json")),
+                serde_json::to_string_pretty(&json!({"id":id,"source":successor,"invocation":invocation,
+                    "generation_profile":if registered(){"registered_direct"}else{"stale_private_driver"}})).unwrap()+"\n").unwrap();
+        }
+    }
+}
+
+/// W1 coverage repair §2.2 and §5: only the receipt's `body_scales` change provenance. The
+/// native publication keeps its own scales, the coupled maxima of its own rows, which its
+/// certificate judged with. On the 73/24 Pa control they differ from the gate's final scales
+/// at the loaded body, so a native scale replaced by a final one is visible here.
+#[test]
+fn w1_native_scales_stay_native_evidence() {
+    let raw=w1_interior_publication_request(true,-2.0);
+    for mode in MODES {
+        let (request,capture)=source_receipt::CapturedInvocation::parse(raw.clone(),mode).unwrap();
+        let mut prepared=rp::PreparedCase::prepare_observed(request,mode,&capture)
+            .unwrap_or_else(|f|panic!("{:?}",f.capture.error));
+        prepared.solve_native().unwrap();
+        let candidate=prepared.project_candidate().unwrap_or_else(|_|panic!("{mode:?}: the control certifies"));
+        let (_,case)=candidate.capture().native_pair().unwrap();
+        let k::ExecutionOutcome::Selected(owner)=&case.outcome else{panic!("{mode:?}: native selected")};
+        let native=&owner.evidence().body_scales;
+        let final_scales=candidate.certificate().final_scales();
+        assert_eq!(native.len(),4*final_scales.len());
+        let publication=owner.publish();
+        assert_eq!(&publication.body_scales,native,"the evidence states the native publication's scales");
+        // Body 1 (extent 2): the coupled maxima of the native rows themselves.
+        let mut s=[0.0f64;4];
+        for row in publication.rows.iter().filter(|r|r.body==1&&r.class!=k::RowClass::InputDerived) {
+            let slot=[k::Kind::Translation,k::Kind::Rotation,k::Kind::Force,k::Kind::Moment].iter().position(|q|*q==row.kind).unwrap();
+            if let Some(x)=row.value.value() {s[slot]=s[slot].max(x.abs());}
+        }
+        // Coupling with extent 2, written out here rather than through the kernel's
+        // `coupled_scales`: [max(T, 2R), max(R, T/2), max(F, M/2), max(M, 2F)].
+        let [t,r,f,m]=s;
+        let expected=[t.max(2.0*r),r.max(t/2.0),f.max(m/2.0),m.max(2.0*f)];
+        for (kind,want) in expected.iter().enumerate() {
+            let (body,_,bits)=native[4+kind];
+            assert_eq!((body,bits),(1,want.to_bits()),"{mode:?}: native body 1 kind {kind}");
+        }
+        assert_ne!(native[4+2].2,final_scales[1][2].to_bits(),"{mode:?}: the control's native and final force scales differ");
     }
 }
 

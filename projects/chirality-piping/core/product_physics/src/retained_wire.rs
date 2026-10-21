@@ -1258,14 +1258,18 @@ fn after_conserved(e: &Enc, before: u64, increment: u64, after: u64) -> bool {
 /// unpublishable row, so Unpublishable never reaches here; it is refused typed.
 #[allow(clippy::too_many_arguments)]
 fn selection(e: &Enc, owner: &k::RetainedSolve, capture: &rp::ProductCapture,
-    attempt: &rr::PreparedAttemptView<'_>, verdicts: &[k::ProductRowVerdict], recipes: &[k::ProductRecipe], row_ids: &[String])
+    attempt: &rr::PreparedAttemptView<'_>, certificate: &k::CertifiedProductProof, recipes: &[k::ProductRecipe], row_ids: &[String])
     -> Result<Value, ReceiptFailure> {
     let assoc = |p| fail(ReceiptCheck::Association, p);
     const P: &str = "cases[].selection";
     let ev = owner.evidence();
-    let mut scales: std::collections::BTreeMap<u32, [u64; 4]> = Default::default();
-    for (b, kind, v) in &ev.body_scales {
-        scales.entry(*b).or_default()[*kind as usize] = *v;
+    let verdicts = certificate.verdicts();
+    // W1 coverage repair §2.2: the receipt states the final scales the product gate
+    // judged every row with (coupled and floored), one entry per body as the native
+    // publication lists them. The native evidence's scales stay native evidence.
+    let scales = certificate.final_scales();
+    if ev.body_scales.len() != 4 * scales.len() {
+        return Err(assoc("cases[].selection.body_scales"));
     }
     let mut section_terms = Vec::with_capacity(capture.facts.len());
     for (i, f) in capture.facts.iter().enumerate() {
@@ -1307,7 +1311,7 @@ fn selection(e: &Enc, owner: &k::RetainedSolve, capture: &rp::ProductCapture,
         "retained_state_sha256":sha_hex(&ev.retained_state_encoding),
         "stop_rule":kind_value(&ev.stop_rule),
         "floor_ratio":e.ubits(ev.floor_ratio_bits,P),
-        "body_scales":scales.iter().map(|(b,s)|json!({"body":b,"translation":e.ubits(s[0],P),"rotation":e.ubits(s[1],P),"force":e.ubits(s[2],P),"moment":e.ubits(s[3],P)})).collect::<Vec<_>>(),
+        "body_scales":scales.iter().enumerate().map(|(b,s)|json!({"body":b,"translation":e.ubits(s[0].to_bits(),P),"rotation":e.ubits(s[1].to_bits(),P),"force":e.ubits(s[2].to_bits(),P),"moment":e.ubits(s[3].to_bits(),P)})).collect::<Vec<_>>(),
         "input_derived_dofs":input_derived_dofs,
         "section_terms":section_terms,
         // E1: the published-row classes are the certificate's own verdicts.
@@ -2143,7 +2147,7 @@ fn serialize_combination_attempt(e: &Enc, pc: &rp::ProductCapture, combination: 
                 return Err(assoc("combinations[].selection.absolute_verified"));
             }
             let recipes: Vec<k::ProductRecipe> = bound.iter().map(|r| r.recipe).collect();
-            let selection_v = selection(e, owner, pc, &view, certificate.verdicts(), &recipes, &row_ids)?;
+            let selection_v = selection(e, owner, pc, &view, certificate, &recipes, &row_ids)?;
             let source_identity_sha256 = source_identity(&source_v)?;
             (json!({"kind":"ready"}), json!({"disposition":"retained_selected","method":METHOD,"call_ref":call.id,"product_attempt_ref":attempt_id,
                 "run":run_v,"source_ref":run.source,"source_identity_sha256":source_identity_sha256,"selection":selection_v}))
@@ -2237,7 +2241,7 @@ fn serialize_attempt(e: &Enc, pc: &rp::ProductCapture, attempt: &rp::CaseAttempt
             binding.as_object_mut().ok_or(assoc("sources[]"))?.remove("index");
             domain_hash("retained_precision_source_mp_v2", &binding).ok_or(fail(ReceiptCheck::Encoding, "cases[].source_identity_sha256"))?
         };
-        let selection_v = selection(e, owner, pc, &view, certificate.verdicts(), &recipes, &row_ids)?;
+        let selection_v = selection(e, owner, pc, &view, certificate, &recipes, &row_ids)?;
         let part = json!({"status":"selected","method":METHOD,"run":run_v,"source_ref":run.source,"source_identity_sha256":source_identity,"selection":selection_v});
         return Ok((attempt_v, Some((run.source, source)), part));
     }

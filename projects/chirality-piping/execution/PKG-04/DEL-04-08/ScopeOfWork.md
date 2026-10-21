@@ -159,7 +159,7 @@ In these commitments, "exact solution" means the exact solution of the recorded 
 - **AC-003** — Every refused, declined or faulted path behaves as REQ-003 states:
   - it publishes the exact ordinary bytes, or those bytes plus the one notice where retained work ran;
   - every stage fault, no-permit entry and refused exact request takes the ordinary route;
-  - the two W1 corner cases keep their internal refusals and fall back;
+  - the W1 width corner case keeps its internal refusal and falls back;
   - the reader refuses a changed definition or table digest at G0.
 
 ### Memory-pricing law
@@ -214,10 +214,9 @@ In these commitments, "exact solution" means the exact solution of the recorded 
 
 - **REQ-006** — These domains are declined and stated as limits. Each publishes its ordinary results.
   - **(a)** [retired by O4, #1468]
-  - **(b) W1's two fail-closed corners.** These are the first two corners of the W1 Design, §4.4.
+  - **(b) W1's fail-closed width corner.** This is the first corner of the W1 Design, §4.4. The second, the halfway-scale G5b refusal, is repaired by the W1 coverage repair's corner 2 (owner, 2026-10-20, "I approve 1A, 2A, 3A.").
     - The represented-Z input-width floor exhausts the loaded-maximum search ("loaded maximum search exhausted").
-    - Binary64-halfway exact force and moment scale maxima fail G5b (`RETAINED_PRECISION_SCALE_MISMATCH`) before commit.
-    - Both are refused inside the method, and the case keeps its ordinary result with the one `RETAINED_PRECISION_UNAVAILABLE` notice. A search exhaustion is a per-case failure: where other cases are selected, the published successor's receipt records the case with its typed cause. The G5b refusal is a precommit fault, so it withdraws the whole successor and every attempted case falls back.
+    - It is refused inside the method, and the case keeps its ordinary result with the one `RETAINED_PRECISION_UNAVAILABLE` notice. A search exhaustion is a per-case failure: where other cases are selected, the published successor's receipt records the case with its typed cause.
   - **(c) No desktop outputs for the current exact identity.**
     - Exact-route results (`pressure-2`, `pressure-source-1`) solve and can be viewed on the desktop with the Rust reader's standing, but every desktop output surface refuses them (`PRESSURE-2-OUTPUT-NOT-YET-AVAILABLE`). The Python AnalysisRun record and the stress-neutral export accept them.
     - No desktop solve produces a retained-precision successor before B8. If one is opened on the desktop, every output surface refuses it (`RETAINED-PRECISION-OUTPUT-NOT-YET-AVAILABLE`), except the result JSON and stress-neutral exports, which admit it only at numerically eligible standing and with the live native capture of its exact bytes.
@@ -288,7 +287,7 @@ The registered checks are those in `software-workflow.json`.
   - `desktop-test`: `apps/desktop/src/features/results/pressureSourceCorpusParity.test.ts`.
 - **VER-003** — For REQ-003, in `macos-release-sweep`:
   - `core/product_physics/src/retained_facade_tests.rs`: `u3_each_stage_fault_falls_back_to_the_ordinary_bytes`, `u3_no_permit_entries_are_the_ordinary_route`, `u3g2_direct_entry_w1_fallbacks_append_one_notice`, `b3b_refused_exact_requests_take_the_ordinary_route`, `o4_w1e_timoshenko_case_is_admitted_and_selected` and `o4_w1e_dual_basis_case_is_admitted`;
-  - `core/product_physics/src/w1_domain_stage1_tests.rs`: `w1_loaded_maximum_refuses_irreducible_represented_section_width` and `w1_loaded_scale_halfway_keeps_the_existing_g5b_refusal`;
+  - `core/product_physics/src/w1_domain_stage1_tests.rs`: `w1_loaded_maximum_refuses_irreducible_represented_section_width`, `w1_loaded_scale_halfway_publishes` and `w1_native_scales_stay_native_evidence`;
   - `o4_timoshenko_source_case_selects_and_publishes` in `core/product_physics/src/source_recovery.rs`, and `o4_dual_basis_source_case_selects` in `core/product_physics/src/source_receipt/o4_source_tests.rs`;
   - `core/product_physics/src/b7b_admission_tests.rs`;
   - the reader's G0 table and definition tests (`b2_g0_table_tests` in `core/reporting/result_export/src/retained_precision.rs`).
@@ -310,7 +309,8 @@ The registered checks are those in `software-workflow.json`.
 - **VER-006** — For REQ-006:
   - the VER-003 decline and fallback tests, and the facade-level W1 census tests `core/product_physics/src/w1_source_census_tests.rs` and `w1_successor_census_tests.rs` (`macos-release-sweep`);
   - `desktop-test`: `apps/desktop/src/features/results/outputPolicy.test.ts` and `retainedPrecisionOutputRefusal.test.tsx`;
-  - `macos-release-sweep`: `core/runner/headless/tests/retained_precision_admission.rs` and `core/product_physics/tests/retained_precision_admission.rs`.
+  - `macos-release-sweep`: `core/runner/headless/tests/retained_precision_admission.rs` and `core/product_physics/tests/retained_precision_admission.rs`;
+  - for (e), `macos-release-sweep`: `o4_w1e_sharper_allowance_refusal_keeps_the_ordinary_result` in `core/product_physics/src/o4_m3_judging_tests.rs`.
 - **VER-007** — For REQ-007, on the head of each duty's own change:
   - VER-001 to VER-006;
   - for O4 and the W1 repair, the actual-source D3 run (`tools/retained_pricing`, `generate --check`);
