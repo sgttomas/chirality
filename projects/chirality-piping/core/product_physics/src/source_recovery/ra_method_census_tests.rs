@@ -14,8 +14,10 @@ pub(crate) fn w1_production() -> w1probe::Switches {
     w1probe::Switches { corner1: true, ..Default::default() }
 }
 /// R-A's switches for one side of the census. Records are kept on both sides.
+/// `RA_CENSUS_ON=b1` or `=b2` turns on only that part, for the attribution runs.
 pub(crate) fn ra_switches(on: bool) -> ra::Switches {
-    ra::Switches { b1: on, b2: on, record: true, shadow: on }
+    let part = std::env::var("RA_CENSUS_ON").unwrap_or_default();
+    ra::Switches { b1: on && part != "b2", b2: on && part != "b1", record: true, shadow: on }
 }
 /// Runs `f` on this thread under W1's production switches and R-A's `on` setting.
 pub(crate) fn under<T>(on: bool, f: impl FnOnce() -> T) -> T {
@@ -75,8 +77,8 @@ pub(crate) fn method(raw: &Value, mode: PreviewSolverMode, on: bool) -> (Value, 
 /// A published source envelope against the switch-on method: the Rust reader's verdict and
 /// transport check, and every published projection's value bits (and its row's value) equal
 /// to the method's projection. The direct method solves the request's first load case only
-/// (`Owned::actual`), so `case` names the load case whose projections are compared (each
-/// functional id is `source-functional:<len>:<case>:<index>`); the reader runs on the whole
+/// (`Owned::actual`), so `load_case` names the load case whose projections are compared (each
+/// functional id is `source-functional:<byte length>:<case>:<index>`); the reader runs on the whole
 /// envelope. Returns the projections checked and the failures.
 pub(crate) fn publication_check(request: &Value, mode: PreviewSolverMode, env: &Value, direct: &SelectedSourceRecovery) -> (usize, Vec<String>) {
     let first = request["model"]["load_cases"][0]["id"].as_str().unwrap_or_default().to_owned();
@@ -99,10 +101,17 @@ pub(crate) fn publication_check_case(request: &Value, mode: PreviewSolverMode, e
     for case in env["source_block_recovery"]["body"]["cases"].as_array().into_iter().flatten() {
         for p in case["projections"].as_array().into_iter().flatten() {
             let fid = p["functional_id"].as_str().unwrap_or_default();
-            if fid.split(':').nth(2) != Some(load_case) {
+            // `source-functional:<byte length>:<case id>:<index>`; the case id may contain `:`.
+            let parsed = fid.strip_prefix("source-functional:").and_then(|rest| {
+                let (len, rest) = rest.split_once(':')?;
+                let len: usize = len.parse().ok()?;
+                let (case, index) = (rest.get(..len)?, rest.get(len..)?.strip_prefix(':')?);
+                Some((case, index.parse::<usize>().ok()?))
+            });
+            if parsed.is_some_and(|(case, _)| case != load_case) {
                 continue;
             }
-            let Some(index) = fid.rsplit(':').next().and_then(|i| i.parse::<usize>().ok()) else {
+            let Some(index) = parsed.map(|(_, i)| i) else {
                 failures.push(format!("{fid}: unparsed functional id"));
                 continue;
             };

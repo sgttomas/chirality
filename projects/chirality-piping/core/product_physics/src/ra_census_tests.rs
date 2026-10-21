@@ -384,3 +384,73 @@ fn ra_census_multi_case() {
     }
     write("multi_case.json", &rows);
 }
+
+/// The declared-problem oracle's inputs (§5 "Newly selected cases"): for every Z-hinge sweep,
+/// ablation and multi-case request that does not select with R-A off, the product's test-only
+/// declared-problem dump (`with_source_dump`, the format `o4_source_payload_dump` writes) and the
+/// published envelope of the same run with R-A on, the request, and its theory and allowance.
+/// `validation/references/o4_retained_source/declared_problem/oracle.py` judges them.
+#[test]
+#[ignore = "R-A census: declared-problem oracle inputs for newly selected cases (run with --features census-probe --ignored)"]
+fn ra_census_oracle_inputs() {
+    let Some(dir) = out_dir() else { return };
+    let dir = dir.join("oracle");
+    let mut requests: Vec<(Value, String, String)> = Vec::new();
+    for (raw, info, _) in sweep_docs(&["zhinge122"]) {
+        requests.push((raw.clone(), info["theory"].as_str().unwrap().to_owned(), info["allowance"].as_str().unwrap().to_owned()));
+        if info["style"] == "decimal" {
+            let mut multi = raw;
+            let cases = multi["model"]["load_cases"].as_array_mut().unwrap();
+            let mut second = cases[0].clone();
+            second["id"] = json!("case2");
+            for l in second["primitive_loads"].as_array_mut().unwrap() {
+                let v = l["magnitude"]["value"].as_f64().unwrap();
+                l["magnitude"]["value"] = json!(decimal(0.5 * v, 3));
+                l["id"] = json!(format!("{}:2", l["id"].as_str().unwrap()));
+            }
+            cases.push(second);
+            requests.push((multi, info["theory"].as_str().unwrap().to_owned(), info["allowance"].as_str().unwrap().to_owned()));
+        }
+    }
+    for &section in &SECTIONS {
+        let lstar = (annular_phi(section.0, section.1, 0.3, 1.0) / 2.0).sqrt();
+        for (_, length) in [("near_phi2_mm", decimal_mm(lstar)), ("short", 0.75), ("long", 2.5)] {
+            for ratio in [1e-8, 1e-12] {
+                for theory in ["eb", "timo"] {
+                    for allowance in ["zero", "both"] {
+                        for v in ["D", "t", "L", "E", "nu", "k", "m1"] {
+                            requests.push((ablation_request(section, length, ratio, theory, allowance, &[v]).0, theory.into(), allowance.into()));
+                        }
+                    }
+                }
+            }
+        }
+    }
+    let mut written = 0usize;
+    for (raw, theory, allowance) in requests {
+        let off = rm::under(false, || run_linear_static_preview_value_with_mode(raw.clone(), MODE)).map(|e| serde_json::to_value(e).unwrap());
+        if off.as_ref().is_ok_and(|e| e["source_block_recovery"].is_object()) {
+            continue;
+        }
+        let (on, records) = rm::under(true, || source_receipt::with_source_dump(|| {
+            serde_json::to_value(run_linear_static_preview_value_with_mode(raw.clone(), MODE).unwrap()).unwrap()
+        }));
+        let _ = ra::drain();
+        if !on["source_block_recovery"].is_object() {
+            println!("RA_ORACLE not selected on: {theory} {allowance}");
+            continue;
+        }
+        let name = format!("{:x}", Sha256::digest(serde_json::to_vec(&raw).unwrap()));
+        let d = dir.join(&name);
+        std::fs::create_dir_all(&d).unwrap();
+        let dump = json!({"artifact": "o4-source-declared-problem-dump", "schema_version": "1.0.0", "solver_mode": MODE.as_str(),
+            "publication_sha256": on["source_block_recovery"]["body"]["publication_sha256"], "records": records});
+        std::fs::write(d.join("request.json"), serde_json::to_vec(&raw).unwrap()).unwrap();
+        std::fs::write(d.join("envelope.json"), serde_json::to_vec(&on).unwrap()).unwrap();
+        std::fs::write(d.join("dump.json"), serde_json::to_vec(&dump).unwrap()).unwrap();
+        std::fs::write(d.join("meta.json"), serde_json::to_vec(&json!({"theory": theory, "allowance": allowance,
+            "off": off.map(|e| class(&e)).unwrap_or("refused")})).unwrap()).unwrap();
+        written += 1;
+    }
+    println!("RA_ORACLE inputs written={written}");
+}
