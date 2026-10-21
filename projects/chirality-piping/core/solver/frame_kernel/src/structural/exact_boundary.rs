@@ -12,6 +12,10 @@
 use super::retained::work::WorkTotal;
 use super::{Expansion, StiffnessContribution, StructuralError, StructuralSystem};
 use crate::Matrix12;
+// R-A census (DEL-04-08 Design `source-work-nondyadic-inputs.md` §5): site labels
+// and charge records, compiled only under the opt-in `census-probe` feature.
+#[cfg(feature = "census-probe")]
+use crate::structural::retained_api::census_probe::ra as ra_probe;
 
 pub mod functionals;
 #[cfg(any(test, feature = "exact-operation-count"))]
@@ -165,6 +169,8 @@ fn congruence_entries(
     t: &Matrix12,
     w: &mut Work,
 ) -> Result<Vec<Vec<Expansion>>, Error> {
+    #[cfg(feature = "census-probe")]
+    let _site = ra_probe::site("prep:congruence");
     // The K·T and G buffers.
     w.charge(2 * 144)?;
     let mut kt = vec![vec![Expansion::default(); 12]; 12];
@@ -277,11 +283,15 @@ impl Work {
         let next = self.used.checked_add(n);
         if next.is_none() || next.is_some_and(|x| x > self.limits.operations) {
             self.rejected = self.rejected.add(WorkTotal::exact_count(n as u64));
+            #[cfg(feature = "census-probe")]
+            ra_probe::charged(n, false);
             #[cfg(test)]
             metered_tests::trace::charge(n, false);
             return Err(Error::Budget);
         }
         self.used = next.unwrap();
+        #[cfg(feature = "census-probe")]
+        ra_probe::charged(n, true);
         #[cfg(test)]
         metered_tests::trace::charge(n, true);
         Ok(())
@@ -372,6 +382,8 @@ impl Work {
                 #[cfg(any(test, feature = "exact-operation-count"))]
                 let pair = exact_operation_count::Probe::start(self.used);
                 self.charge(PAIR_CHARGE)?;
+                #[cfg(feature = "census-probe")]
+                ra_probe::pair();
                 let step = out.add_product_charged(x, y, 0, |len| -> Result<(), Error> {
                     self.charge(grow_charge(len)?)
                 });
@@ -515,6 +527,8 @@ impl Ratio {
     }
 }
 fn ratio_add(w: &mut Work, a: &Ratio, b: &Ratio) -> Result<Ratio, Error> {
+    #[cfg(feature = "census-probe")]
+    let _site = ra_probe::site("ratio_add");
     let an = w.mul(&a.numerator, &b.denominator)?;
     let bn = w.mul(&b.numerator, &a.denominator)?;
     Ok(Ratio {
@@ -628,6 +642,8 @@ impl<'k> BlockMinors<'k> {
     /// positive (Sylvester's criterion for a symmetric matrix; a positive
     /// det A alone is not enough). Returns Δ2 … Δo.
     fn leading_minors(&mut self, w: &mut Work) -> Result<Vec<Expansion>, Error> {
+        #[cfg(feature = "census-probe")]
+        let _site = ra_probe::site("prep:minors");
         let positive = |m: Expansion| {
             if sign(&m) == Sign::Positive {
                 Ok(m)
@@ -650,6 +666,8 @@ impl<'k> BlockMinors<'k> {
     /// a cached 2×2 minor, each used once. Order 4: a 3×3 determinant along
     /// its first remaining row over cached minors, with adj[3][3] = Δ3.
     fn adjugate(&mut self, w: &mut Work, delta3: Expansion) -> Result<Vec<Expansion>, Error> {
+        #[cfg(feature = "census-probe")]
+        let _site = ra_probe::site("prep:adjugate");
         let order = self.block.len();
         let mut delta3 = Some(delta3);
         let mut adjugate = Vec::with_capacity(order * (order + 1) / 2);
@@ -814,6 +832,8 @@ impl Context {
         }
         // The represented aggregate is checked as source coverage evidence only;
         // exact graph and predicates use unrounded expansions below.
+        #[cfg(feature = "census-probe")]
+        let symmetry_site = ra_probe::site("prep:symmetry");
         for i in 0..n {
             for j in 0..n {
                 let projected: f64 = k[i][j].terms.iter().sum();
@@ -829,6 +849,8 @@ impl Context {
                 }
             }
         }
+        #[cfg(feature = "census-probe")]
+        drop(symmetry_site);
         let mut f = vec![Expansion::default(); n];
         let mut ordered_f = vec![0.0_f64; n];
         if let Some(terms) = force_terms {
@@ -1009,6 +1031,8 @@ impl Context {
         self.solve_charged(&mut w)
     }
     fn solve_charged(&self, w: &mut Work) -> Result<Response<'_>, Error> {
+        #[cfg(feature = "census-probe")]
+        let mut _site = ra_probe::site("solve:displacements");
         let n = self.f.len();
         let zero = w.scalar(0.0)?;
         let mut u = vec![constant(w, zero)?; n];
@@ -1081,6 +1105,11 @@ impl Context {
             for &j in &self.blocks[b] {
                 group[j] = Some(g);
             }
+        }
+        #[cfg(feature = "census-probe")]
+        {
+            drop(_site);
+            _site = ra_probe::site("solve:reactions");
         }
         let mut reactions = Vec::with_capacity(n);
         for i in 0..n {
@@ -1323,6 +1352,8 @@ struct ProjectionData {
     basis: ProjectionBasis,
 }
 fn project(w: &mut Work, r: &Ratio, relative_limit: f64) -> Result<ProjectionData, Error> {
+    #[cfg(feature = "census-probe")]
+    let _site = ra_probe::site("projection");
     w.charge(16)?;
     if !relative_limit.is_finite() || relative_limit < 0.0 {
         return Err(Error::Invalid("projection relative criterion"));

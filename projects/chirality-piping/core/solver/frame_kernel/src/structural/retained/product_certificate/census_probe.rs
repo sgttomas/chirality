@@ -764,3 +764,169 @@ pub(super) fn gate_records(g: &GateInputs<'_, '_>) {
         push(rec);
     }
 }
+
+/// R-A's census (DEL-04-08 Design `source-work-nondyadic-inputs.md` §5): the source
+/// route's work-reduction switches and their records, beside W1's. Thread-local and
+/// off by default; without `census-probe` none of this exists, so the product, the
+/// ordinary test build and the stack witnesses evaluate every row on the long path.
+pub mod ra {
+    use std::cell::{Cell, RefCell};
+    use std::collections::BTreeMap;
+
+    /// R-A's switches. All off by default.
+    #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+    pub struct Switches {
+        /// B1 (§3.1): a recognized negated row takes its source row's Ratio negated.
+        pub b1: bool,
+        /// B2 (§3.1): a zero-prescribed recipe is skipped inside the refusal-free window.
+        pub b2: bool,
+        /// Per-site charge records and per-row decisions.
+        pub record: bool,
+        /// After each evaluation that took B1 or B2, re-evaluate on the long path on a
+        /// private, unlimited ledger and compare every Ratio bit for bit. No case ledger
+        /// reads the private ledger; the operation counter still checks its calls.
+        pub shadow: bool,
+    }
+    /// One labelled site's Work charges since the last drain.
+    #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+    pub struct Site {
+        pub charged: u64,
+        pub charges: u64,
+        pub pairs: u64,
+        pub rejected: u64,
+    }
+    /// One evaluated row: its evaluation ordinal, index, kind, path and charge.
+    #[derive(Clone, Debug, PartialEq, Eq)]
+    pub struct Row {
+        pub evaluation: u64,
+        pub index: usize,
+        pub kind: &'static str,
+        /// "long", "b1", or "long:<why B1 declined>" for a section row.
+        pub path: String,
+        pub b2_skipped_terms: u64,
+        pub charged: u64,
+    }
+    /// Everything recorded on this thread since the last drain.
+    #[derive(Clone, Debug, Default)]
+    pub struct Records {
+        pub evaluations: u64,
+        pub rows: Vec<Row>,
+        pub b2_outside_window: u64,
+        pub b2_disabled: Vec<String>,
+        pub shadow_checked: u64,
+        pub shadow_mismatches: Vec<String>,
+        /// "<stage>/<site>" -> charges.
+        pub sites: BTreeMap<String, Site>,
+    }
+    thread_local! {
+        static SWITCHES: Cell<Switches> = const { Cell::new(Switches { b1: false, b2: false, record: false, shadow: false }) };
+        static RECORDS: RefCell<Records> = RefCell::new(Records::default());
+        static STAGE: Cell<&'static str> = const { Cell::new("none") };
+        static SITE: Cell<&'static str> = const { Cell::new("other") };
+        static QUIET: Cell<bool> = const { Cell::new(false) };
+    }
+    /// The current thread's switches.
+    pub fn switches() -> Switches {
+        SWITCHES.with(Cell::get)
+    }
+    /// Runs `f` with `s` on this thread, restoring the previous switches after.
+    pub fn with<T>(s: Switches, f: impl FnOnce() -> T) -> T {
+        struct Restore(Switches);
+        impl Drop for Restore {
+            fn drop(&mut self) {
+                SWITCHES.with(|c| c.set(self.0));
+            }
+        }
+        let old = SWITCHES.with(|c| c.replace(s));
+        let _restore = Restore(old);
+        f()
+    }
+    /// Takes every record made on this thread since the last drain.
+    pub fn drain() -> Records {
+        RECORDS.with(|r| std::mem::take(&mut *r.borrow_mut()))
+    }
+    fn recording() -> bool {
+        switches().record && !QUIET.with(Cell::get)
+    }
+    /// The shadow evaluation records nothing and takes no shortcut.
+    pub(crate) fn quietly<T>(f: impl FnOnce() -> T) -> T {
+        struct Restore(bool, Switches);
+        impl Drop for Restore {
+            fn drop(&mut self) {
+                QUIET.with(|c| c.set(self.0));
+                SWITCHES.with(|c| c.set(self.1));
+            }
+        }
+        let old = (QUIET.with(|c| c.replace(true)), switches());
+        SWITCHES.with(|c| c.set(Switches { b1: false, b2: false, record: false, shadow: false }));
+        let _restore = Restore(old.0, old.1);
+        f()
+    }
+    pub(crate) fn stage(label: &'static str) {
+        STAGE.with(|s| s.set(label));
+    }
+    /// Labels the following charges until the guard drops.
+    pub(crate) fn site(label: &'static str) -> SiteGuard {
+        SiteGuard(SITE.with(|s| s.replace(label)))
+    }
+    pub(crate) struct SiteGuard(&'static str);
+    impl Drop for SiteGuard {
+        fn drop(&mut self) {
+            SITE.with(|s| s.set(self.0));
+        }
+    }
+    fn key() -> String {
+        format!("{}/{}", STAGE.with(Cell::get), SITE.with(Cell::get))
+    }
+    pub(crate) fn charged(n: usize, accepted: bool) {
+        if !recording() {
+            return;
+        }
+        RECORDS.with(|r| {
+            let mut r = r.borrow_mut();
+            let s = r.sites.entry(key()).or_default();
+            s.charges += 1;
+            if accepted {
+                s.charged += n as u64;
+            } else {
+                s.rejected += n as u64;
+            }
+        });
+    }
+    pub(crate) fn pair() {
+        if !recording() {
+            return;
+        }
+        RECORDS.with(|r| r.borrow_mut().sites.entry(key()).or_default().pairs += 1);
+    }
+    /// Starts one evaluation; returns its ordinal.
+    pub(crate) fn evaluation() -> u64 {
+        RECORDS.with(|r| {
+            let mut r = r.borrow_mut();
+            r.evaluations += 1;
+            r.evaluations
+        })
+    }
+    pub(crate) fn row(row: Row) {
+        if recording() {
+            RECORDS.with(|r| r.borrow_mut().rows.push(row));
+        }
+    }
+    pub(crate) fn outside_window() {
+        if recording() {
+            RECORDS.with(|r| r.borrow_mut().b2_outside_window += 1);
+        }
+    }
+    pub(crate) fn b2_disabled(why: String) {
+        RECORDS.with(|r| r.borrow_mut().b2_disabled.push(why));
+    }
+    pub(crate) fn shadow(mismatch: Option<String>) {
+        RECORDS.with(|r| {
+            let mut r = r.borrow_mut();
+            r.shadow_checked += 1;
+            if let Some(m) = mismatch {
+                r.shadow_mismatches.push(m);
+            }
+        });
+    }
+}
