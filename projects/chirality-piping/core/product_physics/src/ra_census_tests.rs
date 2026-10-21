@@ -176,9 +176,22 @@ fn judge(raw: &Value, off: &Side, on: &Side) -> Value {
         }
     }
     let (mut publication, mut checked) = (Vec::new(), 0usize);
-    if let (Ok(env), Some(direct)) = (&on.public, &on.direct) {
+    if let Ok(env) = &on.public {
         if env["source_block_recovery"].is_object() {
-            (checked, publication) = rm::publication_check(raw, MODE, env, direct);
+            // Each load case against the direct method on that case alone.
+            for case in raw["model"]["load_cases"].as_array().unwrap() {
+                let id = case["id"].as_str().unwrap();
+                let mut single = raw.clone();
+                single["model"]["load_cases"] = json!([case]);
+                let direct = if raw["model"]["load_cases"].as_array().unwrap().len() == 1 { None } else { rm::method(&single, MODE, true).1 };
+                let Some(direct) = direct.as_ref().or(on.direct.as_ref()) else {
+                    publication.push(format!("{id}: the direct method did not select"));
+                    continue;
+                };
+                let (n, f) = rm::publication_check_case(raw, MODE, env, direct, id);
+                checked += n;
+                publication.extend(f);
+            }
         }
     }
     if rule == "newly_selected" {

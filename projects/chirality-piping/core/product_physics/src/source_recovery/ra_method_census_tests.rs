@@ -74,8 +74,16 @@ pub(crate) fn method(raw: &Value, mode: PreviewSolverMode, on: bool) -> (Value, 
 }
 /// A published source envelope against the switch-on method: the Rust reader's verdict and
 /// transport check, and every published projection's value bits (and its row's value) equal
-/// to the method's projection. Returns the projections checked and the failures.
+/// to the method's projection. The direct method solves the request's first load case only
+/// (`Owned::actual`), so `case` names the load case whose projections are compared (each
+/// functional id is `source-functional:<len>:<case>:<index>`); the reader runs on the whole
+/// envelope. Returns the projections checked and the failures.
 pub(crate) fn publication_check(request: &Value, mode: PreviewSolverMode, env: &Value, direct: &SelectedSourceRecovery) -> (usize, Vec<String>) {
+    let first = request["model"]["load_cases"][0]["id"].as_str().unwrap_or_default().to_owned();
+    publication_check_case(request, mode, env, direct, &first)
+}
+/// [`publication_check`] for the named load case.
+pub(crate) fn publication_check_case(request: &Value, mode: PreviewSolverMode, env: &Value, direct: &SelectedSourceRecovery, load_case: &str) -> (usize, Vec<String>) {
     use open_pipe_stress_result_export::physics_source as ps;
     let mut failures = Vec::new();
     let mut checked = 0usize;
@@ -91,6 +99,9 @@ pub(crate) fn publication_check(request: &Value, mode: PreviewSolverMode, env: &
     for case in env["source_block_recovery"]["body"]["cases"].as_array().into_iter().flatten() {
         for p in case["projections"].as_array().into_iter().flatten() {
             let fid = p["functional_id"].as_str().unwrap_or_default();
+            if fid.split(':').nth(2) != Some(load_case) {
+                continue;
+            }
             let Some(index) = fid.rsplit(':').next().and_then(|i| i.parse::<usize>().ok()) else {
                 failures.push(format!("{fid}: unparsed functional id"));
                 continue;
