@@ -1016,6 +1016,23 @@ RS's own schema.
 
 ## Current implementation conditions
 
+**Daily workspace receiving placement.** Conversation and workflow-making
+controls share the primary work area. Persistent secondary disclosures keep
+their children mounted; first-use conversation/access setup remains explicitly
+reachable and opens when needed. The waiting-request overview, native
+confirmation content, active act control and other-conversation request cards
+remain outside collapsed tools. Conversation-scoped cards stay with their
+original primary conversation. No request routing, reply/act meaning or source
+guard changes with this placement.
+
+Internal file-act links and explicit arrival review reveal the existing file
+panel's disclosure; original request navigation reveals its existing target.
+Prepared Open still reveals the exact original composer after commit with its
+full identity/intent guard. Disclosure navigation itself issues no RPC. Edits,
+local targets, outcomes, global text and frozen review retain their existing
+lifetimes. Mounted and browser-renderer fixtures verify this presentation;
+they supply no native App, supplier, model, person-act or qualification claim.
+
 **Read-only authoring context.** The workflow controls distinguish the fixed
 Root project observation, opened Root library, operational conversation,
 Workflow chat or explicit library-only inspection, and current authoring choice
@@ -1103,6 +1120,23 @@ a changed source or unavailable row leaves the supplier's item identity rather
 than a dead or retargeted link. Item details remain separate from whether the
 row can be reached in this activity view. The activity row's link back to the
 original typed request card is unchanged.
+
+**Native answer confirmation parent.** The native request-answer command uses
+the window of its invoking webview, never a main-window or focus lookup. On
+the main thread it validates and caches both public native handles before
+parenting this Warning confirmation. An unavailable handle refuses before any
+dialog or reply; there is no unparented fallback. The full statement, three
+buttons and default **Don't send** remain unchanged. Only exact **Send answer**
+continues, after rechecking that original window and the existing original
+home, full generation, typed request and actor context. Cancellation sends
+nothing; an unavailable original window after confirmation also prevents a
+reply. This changes no tool-permission or reserved-act meaning.
+
+`app/src-tauri/src/native_request_answer_tests.rs` checks the source, answer,
+parent-failure and outcome boundaries with synthetic inputs. The macOS
+production compile and used-library dispatch trace support the parent carry;
+they do not witness native sheet visibility, CUA targeting, destruction while
+the sheet is open, callback shutdown or other-platform runtime behavior.
 
 **Answer command and observation refresh.** The request card keeps the native
 answer command's outcome separate from a subsequent failure to refresh custody.

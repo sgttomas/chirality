@@ -1001,6 +1001,43 @@ The original implementation allocation below locates the trial contributions and
 
 ## Current implementation conditions
 
+**Daily workspace presentation.** The operational conversation and existing
+workflow studio (context, drafts, trials, Compare, Bring back and frozen review)
+form the primary work area, side by side on a wide window and stacked on a
+narrow one. New-conversation model, provider, access-entry, role and Start
+controls retain their original state and handlers in a persistent disclosure.
+It is open for first use without existing conversations or while Codex is not
+ready; the navigation and setup summary remain directly reachable thereafter.
+Connection/access setup is exposed while Codex is not ready, with an explicit
+route from the new-conversation controls.
+
+History/recovery, file acts, records/Fleet, connectors/examination and host
+diagnostics are deliberately reachable secondary disclosures. Every disclosure
+keeps its children mounted while closed; collapsing or following a workspace
+link itself invokes no host command and changes no workflow, source, default,
+send target or draft lifetime. Existing source/generation retirements remain.
+The Fleet component and its attribution/derivation interface are unchanged.
+The waiting-request overview, native confirmation content, active act control
+and requests outside the selected conversation stay outside these secondary
+disclosures. Selected-conversation requests remain in the primary conversation.
+
+Prepared Open retains the existing source/intent checks and post-commit exact
+composer ref; the conversation remains exposed, and reveal spacing keeps that
+composer clear of sticky navigation. File-act anchors and an explicit arrival
+review expose the existing target's containing disclosure before scrolling.
+Request navigation still uses the original full source/group and reveals its
+existing target, without answering, resuming or substituting another thread.
+The operational/Workflow/authoring/render-owner choices, local Send target,
+ordinary global draft, pending/late outcomes and frozen review keep their
+independent state.
+
+Maintained mounted-App checks exercise disclosure lifetime, first-use routes,
+exact prepared reveal, file-act access and source-bound waiting navigation.
+A controlled production-renderer fixture was inspected at desktop and narrow
+viewports through T3 preview with a strict synthetic IPC peer. Those checks
+do not exercise a supplier, model, native App or person act, and do not turn
+the dated native evidence below into a witness for this new layout.
+
 **Read-only workflow working context.** The workflow controls show the host's
 fixed `currentAppProjectContext` and its limit separately from the opened
 workflow library. The existing launch observation supplies a readable native
@@ -1105,6 +1142,38 @@ executed delegation. No message was sent and no workflow review or registration
 was performed. This witnesses the bounded native unsent delegated navigation
 only, not native bring-back, the stale/refusal matrix, a complete workflow-making
 journey, A15 or product qualification.
+
+**Bounded native create, clean trial and refinement.** On 2026-10-21 UTC, a
+development candidate built from App source `dd8fb0e1`, with stock Codex
+0.160.0 and `gpt-6.1-sol`, exercised three native turns. The first created a
+new unregistered single-file draft through the native file-edit tool. A
+completed file-change item and the App's refreshed valid draft corroborated
+the save; the actual trial preview showed the saved method. A deliberately
+chosen clean trial in a separate conversation received only `INPUT: pebble`
+as editable input and returned exactly `PEBBLE`. The App reported verbatim
+workflow supply. Bring back read that completed conversation's actual history,
+with native items excluded and no shortenings, and Open revealed its unsent
+composer in the original authoring conversation. The third turn supplied that
+transcript and refined only two prebound method lines. The completed native
+diff and a refreshed valid draft with a new content identity corroborated the
+exact edit. The original trial retained its earlier-version snapshot, link
+and history. Exactly three turns and two file-change operations were used.
+
+Both authoring final messages nevertheless reported the writes unconfirmed;
+the refinement message reported an empty tool result (`{}`). The discrepancy
+between that feedback and the completed items and saved drafts remains
+undiagnosed. Save claims here rely on the corroborating observations, not the
+agent's status sentence. Native answer writes and Codex request resolution
+were observed. The owner reported confirming the first; the controlling TASK
+did not observe or operate either native **Send answer** button, and the second
+confirmation's actor remains unknown. These tool permissions establish no A15
+or recorded human-act evidence. This older candidate supplies no witness of
+the later parented answer sheet or daily-workspace layout.
+
+This is one bounded create/trial/Bring-back/refine path, not VER-001 or
+VER-007 completion. It exercised no second trial, revised-method behavior,
+delegated execution, supporting file, Compare, human review, A15, registration
+or registered reuse, and establishes no product qualification.
 
 **Workflow responses and draft observation (SQ-D D-2).** The workflow panel
 retains a returned native command value separately from later view-refresh or

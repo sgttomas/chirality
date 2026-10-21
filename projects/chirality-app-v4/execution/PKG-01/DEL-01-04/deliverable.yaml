@@ -400,8 +400,10 @@ code_paths:
 - app/src-tauri/src/file_act_view.rs
 - app/src-tauri/src/file_act_lapse.rs
 - app/src-tauri/src/lib.rs
+- app/src-tauri/src/native_request_answer.rs
 
 - app/src/App.tsx
+- app/src/DailyWorkspace.tsx
 - app/src/NativeHistory.tsx
 - app/src/ObserverAttachment.tsx
 - app/src-tauri/src/act_control.rs
@@ -451,6 +453,7 @@ checks:
 - app/tests/waiting-requests.test.mjs
 - app/tests/native-waiting.test.mjs
 - app/src-tauri/src/waiting_requests_tests.rs
+- app/src-tauri/src/native_request_answer_tests.rs
 - app/tests/run-offers.test.mjs
 - app/tests/workflow-drafts.test.mjs
 - app/tests/validate-records.test.mjs
