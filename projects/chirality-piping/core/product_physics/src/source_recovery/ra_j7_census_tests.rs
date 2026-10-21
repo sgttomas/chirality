@@ -10,7 +10,6 @@ use super::*;
 use open_pipe_stress_frame_kernel::structural::retained_api::census_probe::{self as w1probe, ra};
 use std::panic::{catch_unwind, AssertUnwindSafe};
 
-const SELECTED_CODE: &str = "SOURCE_BLOCK_RECOVERY_SELECTED";
 
 fn project_root() -> std::path::PathBuf {
     std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../..")
@@ -128,24 +127,15 @@ fn diff(a: &Value, b: &Value, path: &str, out: &mut Vec<String>) {
 fn segments(pointer: &str) -> Vec<String> {
     pointer.split('/').skip(1).map(|s| s.replace("~1", "/").replace("~0", "~")).collect()
 }
-/// §5's allowed envelope differences: anything under a `work` or `invocation_work`
-/// object, a `*_sha256` hash (receipt and publication hashes included), or the message
-/// of a `SOURCE_BLOCK_RECOVERY_SELECTED` diagnostic (on both sides).
+/// §5's allowance, strictly (`ra_method_census::allowed_work_change`; census review finding 1).
 fn allowed_envelope_path(pointer: &str, off: &Value, on: &Value) -> bool {
     let s = segments(pointer);
-    if s.iter().any(|x| x == "work" || x == "invocation_work") {
-        return true;
-    }
-    if s.last().is_some_and(|x| x.ends_with("_sha256")) {
-        return true;
-    }
-    if let [d, i, m] = s.as_slice() {
-        if d == "diagnostics" && m == "message" {
-            let code = |e: &Value| e["diagnostics"][i.parse::<usize>().unwrap_or(usize::MAX)]["code"].clone();
-            return code(off) == SELECTED_CODE && code(on) == SELECTED_CODE;
-        }
-    }
-    false
+    let at = |e: &Value| s.iter().try_fold(e, |v, k| match v {
+        Value::Object(m) => m.get(k),
+        Value::Array(x) => k.parse::<usize>().ok().and_then(|i| x.get(i)),
+        _ => None,
+    }).cloned().unwrap_or(Value::Null);
+    super::ra_method_census::allowed_work_change(&s, off, on, &at(off), &at(on))
 }
 fn classify_envelope(off: &Value, on: &Value) -> Value {
     let mut paths = Vec::new();
@@ -263,7 +253,7 @@ fn j7_entry(case: &Value, mode: PreviewSolverMode, lines: &BTreeMap<(String, Str
     diff(&off["entry"], &on["entry"], "", &mut moved);
     let mut violations: Vec<String> = Vec::new();
     for p in &moved {
-        let ok = (direct_selected && p.starts_with("/first_cause/work/"))
+        let ok = (direct_selected && p == "/first_cause/work/charged")
             || (published && (p == "/public/envelope_sha256" || p == "/public/diagnostics_sha256"));
         if !ok {
             violations.push(format!("entry field moved: {p}"));

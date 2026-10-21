@@ -71,9 +71,15 @@ impl Record {
     }
 }
 
+/// R-A census (DEL-04-08 Design `source-work-nondyadic-inputs.md` §5.1): with
+/// `CENSUS_PROBE_W1_PRODUCTION=1`, every thread starts with corner 1 on, the production
+/// value, so that subprocess runs (the dump entry, the headless runner) and threads the
+/// product spawns run W1 as the product does. Unset, the W1 census's defaults stand.
+fn w1_default() -> Switches {
+    Switches { corner1: std::env::var("CENSUS_PROBE_W1_PRODUCTION").as_deref() == Ok("1"), ..Switches::default() }
+}
 thread_local! {
-    static SWITCHES: Cell<Switches> = const { Cell::new(Switches {
-        corner1: false, same_section: false, same_readout: false, lane_null: false, record: false }) };
+    static SWITCHES: Cell<Switches> = Cell::new(w1_default());
     static RECORDS: RefCell<Vec<Record>> = const { RefCell::new(Vec::new()) };
     static CONTEXT: RefCell<(String, &'static str)> = const { RefCell::new((String::new(), "")) };
     static LANE: Cell<bool> = const { Cell::new(false) };
@@ -818,8 +824,15 @@ pub mod ra {
         /// "<stage>/<site>" -> charges.
         pub sites: BTreeMap<String, Site>,
     }
+    /// `RA_CENSUS_DEFAULT=on` (or `b1`, `b2`) starts every thread with R-A on, with the shadow
+    /// comparison, for subprocess runs; a shadow mismatch then panics, so the run fails visibly.
+    fn default_switches() -> Switches {
+        let v = std::env::var("RA_CENSUS_DEFAULT").unwrap_or_default();
+        let on = matches!(v.as_str(), "on" | "b1" | "b2");
+        Switches { b1: on && v != "b2", b2: on && v != "b1", record: false, shadow: on }
+    }
     thread_local! {
-        static SWITCHES: Cell<Switches> = const { Cell::new(Switches { b1: false, b2: false, record: false, shadow: false }) };
+        static SWITCHES: Cell<Switches> = Cell::new(default_switches());
         static RECORDS: RefCell<Records> = RefCell::new(Records::default());
         static STAGE: Cell<&'static str> = const { Cell::new("none") };
         static SITE: Cell<&'static str> = const { Cell::new("other") };
@@ -901,6 +914,9 @@ pub mod ra {
     }
     /// Starts one evaluation; returns its ordinal.
     pub(crate) fn evaluation() -> u64 {
+        if QUIET.with(Cell::get) {
+            return 0;
+        }
         RECORDS.with(|r| {
             let mut r = r.borrow_mut();
             r.evaluations += 1;
@@ -925,6 +941,7 @@ pub mod ra {
             let mut r = r.borrow_mut();
             r.shadow_checked += 1;
             if let Some(m) = mismatch {
+                assert!(std::env::var("RA_CENSUS_DEFAULT").is_err(), "R-A census shadow mismatch: {m}");
                 r.shadow_mismatches.push(m);
             }
         });

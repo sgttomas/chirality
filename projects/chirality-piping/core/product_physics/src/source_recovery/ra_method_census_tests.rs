@@ -123,6 +123,14 @@ pub(crate) fn publication_check_case(request: &Value, mode: PreviewSolverMode, e
             if p["value_bits"] != format!("{:016x}", value.to_bits()) {
                 failures.push(format!("{fid}: value bits"));
             }
+            let q = &projections[index];
+            let bits = |v: &Value| v.as_f64().map(f64::to_bits);
+            if bits(&p["interval"][0]) != Some(q.interval()[0].to_bits()) || bits(&p["interval"][1]) != Some(q.interval()[1].to_bits())
+                || bits(&p["absolute_error_bound"]) != Some(q.absolute_error_bound().to_bits())
+                || bits(&p["relative_error_bound"]) != Some(q.relative_error_bound().to_bits())
+            {
+                failures.push(format!("{fid}: interval or bounds"));
+            }
             if let Some(rid) = p["result_id"].as_str() {
                 let row = env["results"].as_array().and_then(|rs| rs.iter().find(|r| r["id"] == rid));
                 if row.and_then(|r| r["value"].as_f64()).map(f64::to_bits) != Some(value.to_bits()) {
@@ -135,4 +143,49 @@ pub(crate) fn publication_check_case(request: &Value, mode: PreviewSolverMode, e
         failures.push("no published projection was checked".into());
     }
     (checked, failures)
+}
+
+/// §5's allowance, strictly: the work counters R-A moves (`charged` under a `work` or
+/// `invocation_work` object, and `invocation_work.publication_charged`), the two hashes that
+/// bind them (`publication_sha256`, `receipt_sha256`), and a source-block diagnostic's message
+/// whose text differs only in those counters as printed (`charged: N`, `rejected: N`,
+/// `publication_charged: N`). Limits, every other hash and digest, and every other number stay.
+pub(crate) const WORK_CODES: [&str; 3] = ["SOURCE_BLOCK_RECOVERY_SELECTED", "SOURCE_BLOCK_RECOVERY_UNAVAILABLE", "SOURCE_BLOCK_RECOVERY_FINALIZATION_FAILED"];
+pub(crate) fn mask_work(s: &str) -> String {
+    let mut out = String::with_capacity(s.len());
+    let mut rest = s;
+    'scan: while !rest.is_empty() {
+        for key in ["publication_charged: ", "charged: ", "rejected: "] {
+            if let Some(tail) = rest.strip_prefix(key) {
+                let digits = tail.bytes().take_while(u8::is_ascii_digit).count();
+                if digits > 0 {
+                    out.push_str(key);
+                    out.push('#');
+                    rest = &tail[digits..];
+                    continue 'scan;
+                }
+            }
+        }
+        let ch = rest.chars().next().unwrap();
+        out.push(ch);
+        rest = &rest[ch.len_utf8()..];
+    }
+    out
+}
+pub(crate) fn allowed_work_change(path: &[String], off: &Value, on: &Value, a: &Value, b: &Value) -> bool {
+    let n = path.len();
+    let last = path.last().map(String::as_str).unwrap_or_default();
+    let parent = if n >= 2 { path[n - 2].as_str() } else { "" };
+    if (last == "charged" && (parent == "work" || parent == "invocation_work")) || (last == "publication_charged" && parent == "invocation_work") {
+        return a.is_u64() && b.is_u64();
+    }
+    if last == "publication_sha256" || last == "receipt_sha256" {
+        return true;
+    }
+    if n == 3 && path[0] == "diagnostics" && path[2] == "message" {
+        let code = |e: &Value| path[1].parse::<usize>().ok().and_then(|i| e["diagnostics"][i]["code"].as_str().map(str::to_owned));
+        return code(off).is_some_and(|c| WORK_CODES.contains(&c.as_str())) && code(off) == code(on)
+            && a.as_str().zip(b.as_str()).is_some_and(|(x, y)| mask_work(x) == mask_work(y));
+    }
+    false
 }

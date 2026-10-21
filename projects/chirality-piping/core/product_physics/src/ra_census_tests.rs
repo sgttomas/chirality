@@ -14,7 +14,6 @@ use open_pipe_stress_frame_kernel::structural::retained_api::census_probe::ra;
 
 const SECTIONS: [(f64, f64); 5] = [(0.168, 0.007), (0.219, 0.0082), (0.324, 0.0095), (0.114, 0.006), (0.273, 0.0093)];
 const MODE: PreviewSolverMode = PreviewSolverMode::SparseInteractive;
-const WORK_CODES: [&str; 3] = ["SOURCE_BLOCK_RECOVERY_SELECTED", "SOURCE_BLOCK_RECOVERY_UNAVAILABLE", "SOURCE_BLOCK_RECOVERY_FINALIZATION_FAILED"];
 
 fn out_dir() -> Option<std::path::PathBuf> {
     std::env::var_os("RA_CENSUS_OUT").map(std::path::PathBuf::from)
@@ -42,30 +41,12 @@ fn class(env: &Value) -> &'static str {
         "not_attempted"
     }
 }
-/// Masks digit runs, so two texts that differ only in printed numbers compare equal.
-fn mask(s: &str) -> String {
-    let mut out = String::with_capacity(s.len());
-    let mut digits = false;
-    for ch in s.chars() {
-        if ch.is_ascii_digit() {
-            if !digits {
-                out.push('#');
-            }
-            digits = true;
-        } else {
-            digits = false;
-            out.push(ch);
-        }
-    }
-    out
-}
-/// Every differing leaf path between two envelopes, classified against §5's allowance: a work
-/// counter (under a `work` or `invocation_work` object), a hash (`*_sha256`, `*_digest`), or a
-/// work-printing diagnostic whose text differs only in its printed numbers. Anything else is a
-/// violation, which stops R-A for diagnosis.
+/// Every differing leaf path between two envelopes, classified against §5's allowance
+/// (`ra_method_census::allowed_work_change`). Anything else is a violation, which stops R-A for
+/// diagnosis.
 fn diff(off: &Value, on: &Value) -> (Vec<String>, Vec<String>) {
     let (mut allowed, mut violations) = (Vec::new(), Vec::new());
-    fn walk(a: &Value, b: &Value, path: &mut Vec<String>, root: &Value, allowed: &mut Vec<String>, violations: &mut Vec<String>) {
+    fn walk(a: &Value, b: &Value, path: &mut Vec<String>, root: (&Value, &Value), allowed: &mut Vec<String>, violations: &mut Vec<String>) {
         match (a, b) {
             (Value::Object(x), Value::Object(y)) => {
                 for k in x.keys().chain(y.keys().filter(|k| !x.contains_key(*k))) {
@@ -84,12 +65,7 @@ fn diff(off: &Value, on: &Value) -> (Vec<String>, Vec<String>) {
             _ if a == b => {}
             _ => {
                 let at = path.join("/");
-                let work = path.iter().any(|k| k == "work" || k == "invocation_work");
-                let hash = path.last().is_some_and(|k| k.ends_with("sha256") || k.ends_with("digest"));
-                let text = path.len() == 3 && path[0] == "diagnostics" && path[2] == "message"
-                    && path[1].parse::<usize>().ok().and_then(|i| root["diagnostics"][i]["code"].as_str()).is_some_and(|c| WORK_CODES.contains(&c))
-                    && a.as_str().zip(b.as_str()).is_some_and(|(x, y)| mask(x) == mask(y));
-                if work || hash || text {
+                if rm::allowed_work_change(path, root.0, root.1, a, b) {
                     allowed.push(at);
                 } else {
                     violations.push(at);
@@ -97,7 +73,7 @@ fn diff(off: &Value, on: &Value) -> (Vec<String>, Vec<String>) {
             }
         }
     }
-    walk(off, on, &mut Vec::new(), off, &mut allowed, &mut violations);
+    walk(off, on, &mut Vec::new(), (off, on), &mut allowed, &mut violations);
     (allowed, violations)
 }
 
@@ -120,7 +96,7 @@ fn side(raw: &Value, on: bool) -> Side {
     let records = rm::records_json(&ra::drain());
     let internal = serde_json::to_value(&envelope).unwrap();
     let public = rm::under(on, || run_linear_static_preview_value_with_mode(raw.clone(), MODE)).map(|e| serde_json::to_value(e).unwrap());
-    let _ = ra::drain();
+    let public_records = ra::drain();
     let (method, direct) = rm::method(raw, MODE, on);
     let receipt = internal["source_block_recovery"]["body"].clone();
     let record = json!({
@@ -130,7 +106,8 @@ fn side(raw: &Value, on: bool) -> Side {
                 "rejected": budget.rejected, "attempts": budget.attempts, "per_case_limit": budget.per_case_limit},
             "diagnostics": internal["diagnostics"].as_array().into_iter().flatten().filter(|d| d["code"].as_str().is_some_and(|c| c.starts_with("SOURCE_BLOCK")))
                 .map(|d| json!({"code": d["code"], "message": d["message"].as_str().map(|m| m.chars().take(600).collect::<String>())})).collect::<Vec<_>>()},
-        "public": match &public { Ok(env) => json!({"class": class(env), "identity": env["producer"]["semantic_contract_id"]}), Err(e) => json!({"refused": e}) },
+        "public": match &public { Ok(env) => json!({"class": class(env), "identity": env["producer"]["semantic_contract_id"],
+            "shadow_checked": public_records.shadow_checked, "shadow_mismatches": public_records.shadow_mismatches}), Err(e) => json!({"refused": e}) },
         "method": method,
         "records": records,
         "operation_control": {"shortfalls": totals.shortfalls(), "mul_calls": totals.mul.calls, "pairs": totals.pairs,
@@ -146,7 +123,7 @@ fn judge(raw: &Value, off: &Side, on: &Side) -> Value {
         if s.record["operation_control"]["shortfalls"] != 0 {
             findings.push(format!("{name}: a Work call charged less than it executed"));
         }
-        for m in [&s.record["records"]["shadow_mismatches"], &s.record["method"]["records"]["shadow_mismatches"]] {
+        for m in [&s.record["records"]["shadow_mismatches"], &s.record["method"]["records"]["shadow_mismatches"], &s.record["public"]["shadow_mismatches"]] {
             if m.as_array().is_some_and(|m| !m.is_empty()) {
                 findings.push(format!("{name}: shadow mismatch {m}"));
             }
@@ -164,14 +141,14 @@ fn judge(raw: &Value, off: &Side, on: &Side) -> Value {
                 allowed.extend(a.into_iter().map(|p| format!("public/{p}")));
                 violations.extend(v.into_iter().map(|p| format!("public/{p}")));
             }
-            (Err(x), Err(y)) if mask(x) == mask(y) => {}
+            (Err(x), Err(y)) if rm::mask_work(x) == rm::mask_work(y) => {}
             _ => violations.push("public outcome".into()),
         }
     }
     // The method level: off and on must agree on everything but work.
     let (mo, mn) = (&off.record["method"], &on.record["method"]);
     for k in ["outcome", "response_digest", "retained_digest", "stage", "helper_stage", "error"] {
-        if mo[k] != mn[k] && !(k == "error" && mo[k].as_str().zip(mn[k].as_str()).is_some_and(|(x, y)| mask(x) == mask(y))) {
+        if mo[k] != mn[k] && !(k == "error" && mo[k].as_str().zip(mn[k].as_str()).is_some_and(|(x, y)| rm::mask_work(x) == rm::mask_work(y))) {
             violations.push(format!("method/{k}"));
         }
     }
@@ -208,7 +185,7 @@ fn judge(raw: &Value, off: &Side, on: &Side) -> Value {
     }
     findings.extend(violations.iter().map(|v| format!("difference outside the allowance: {v}")));
     findings.extend(publication.iter().map(|p| format!("publication: {p}")));
-    json!({"rule": rule, "allowed_paths": allowed.len(), "violations": violations, "publication_checked": checked, "publication": publication, "findings": findings})
+    json!({"rule": rule, "allowed_paths": allowed.len(), "allowed": allowed, "violations": violations, "publication_checked": checked, "publication": publication, "findings": findings})
 }
 fn census(raw: &Value) -> Value {
     let off = side(raw, false);
@@ -277,26 +254,38 @@ fn ra_census_small_frames() {
     run_sweep("small_frames", &["run2", "lframe"]);
 }
 
-/// One Z-hinge document with the named inputs in their dyadic form and the rest decimal
-/// (`census_document`'s rules, applied one input at a time; §5 "matched-input ablations").
+/// One Z-hinge document with the named authored inputs in their dyadic form and every other
+/// authored input held at the decimal document's value (§5 "matched-input ablations"; census
+/// review finding 3). The decimal document's k, m1 and allowances are formed once from its
+/// decimal geometry, as `census_document` forms them, and stay fixed unless named; all seven
+/// named together give `census_document`'s dyadic document.
 fn ablation_request(section: (f64, f64), length: f64, ratio: f64, theory: &str, allowance: &str, dyadic_inputs: &[&str]) -> (Value, Value) {
     let dy = |x: &str| dyadic_inputs.contains(&x);
-    let (mut d, mut t) = section;
-    let (mut e, mut nu) = (2.03e11, 0.3);
-    let mut l = length;
-    if dy("D") { d = dyadic(d, 6); }
-    if dy("t") { t = dyadic(t, 6); }
-    if dy("E") { e = 1.5 * 2f64.powi(37); }
-    if dy("nu") { nu = 0.3125; }
-    if dy("L") { l = dyadic(l, 8); }
-    let ro = d / 2.0;
-    let ri = ro - t;
-    let g = e / (2.0 * (1.0 + nu));
-    let j = std::f64::consts::PI / 2.0 * (ro.powi(4) - ri.powi(4));
-    let k_exact = ratio * g * j / l;
-    let k = if dy("k") { 2f64.powi(k_exact.log2().round() as i32) } else { decimal(k_exact, 3) };
-    let m1 = if dy("m1") { 2f64.powi((k.log2() - 4.0) as i32) } else { decimal(0.0617 * k, 3) };
-    let (cm, ca) = if allowance == "both" { (0.125 * t, if t < 0.006 { 0.25 * t } else { 0.0015 }) } else { (0.0, 0.0) };
+    let all = dyadic_inputs.len() == 7;
+    let k_of = |d: f64, t: f64, e: f64, nu: f64, l: f64| {
+        let (ro, ri) = (d / 2.0, d / 2.0 - t);
+        ratio * (e / (2.0 * (1.0 + nu))) * (std::f64::consts::PI / 2.0 * (ro.powi(4) - ri.powi(4))) / l
+    };
+    let allowances = |t: f64| if allowance == "both" { (0.125 * t, if t < 0.006 { 0.25 * t } else { 0.0015 }) } else { (0.0, 0.0) };
+    // The decimal document's authored values.
+    let (d0, t0) = section;
+    let k0 = decimal(k_of(d0, t0, 2.03e11, 0.3, length), 3);
+    let m0 = decimal(0.0617 * k0, 3);
+    let (cm0, ca0) = allowances(t0);
+    let d = if dy("D") { dyadic(d0, 6) } else { d0 };
+    let t = if dy("t") { dyadic(t0, 6) } else { t0 };
+    let e = if dy("E") { 1.5 * 2f64.powi(37) } else { 2.03e11 };
+    let nu = if dy("nu") { 0.3125 } else { 0.3 };
+    let l = if dy("L") { dyadic(length, 8) } else { length };
+    let (k, m1, cm, ca) = if all {
+        let k = 2f64.powi(k_of(d, t, e, nu, l).log2().round() as i32);
+        let (cm, ca) = allowances(t);
+        (k, 2f64.powi((k.log2() - 4.0) as i32), cm, ca)
+    } else {
+        let k = if dy("k") { 2f64.powi(k_of(d0, t0, 2.03e11, 0.3, length).log2().round() as i32) } else { k0 };
+        let m1 = if dy("m1") { 2f64.powi((k0.log2() - 4.0) as i32) } else { m0 };
+        (k, m1, cm0, ca0)
+    };
     let doc = json!({"shear_model": theory_token(theory), "material": {"id": "steel", "elastic_modulus_Pa": e, "poisson_ratio": nu},
         "nodes": [{"id": "N0", "xyz_m": [0.0, 0.0, 0.0]}, {"id": "N1", "xyz_m": [l / 3.0, 2.0 * l / 3.0, 2.0 * l / 3.0]}],
         "members": [{"id": "M1", "from": "N0", "to": "N1", "outside_diameter_m": d, "wall_thickness_m": t, "mill_tolerance_m": cm,
@@ -453,4 +442,62 @@ fn ra_census_oracle_inputs() {
         written += 1;
     }
     println!("RA_ORACLE inputs written={written}");
+}
+
+/// Any committed or generated requests, listed one path per line in the file named by
+/// `RA_CENSUS_REQUESTS`, through the same off/on census (sparse mode).
+#[test]
+#[ignore = "R-A census: listed requests off and on (run with --features census-probe --ignored)"]
+fn ra_census_listed_requests() {
+    let Ok(list) = std::env::var("RA_CENSUS_REQUESTS") else { return };
+    let mut rows = Vec::new();
+    for path in std::fs::read_to_string(list).unwrap().lines().filter(|l| !l.trim().is_empty()) {
+        let raw: Value = serde_json::from_str(&std::fs::read_to_string(path.trim()).unwrap()).unwrap();
+        let mut row = census(&raw);
+        row["label"] = json!(path.trim());
+        println!("RA_LISTED {} off={} on={} method_off={} method_on={} charge_on={}", path.trim(),
+            row["off"]["internal"]["class"], row["on"]["internal"]["class"], row["off"]["method"]["work"]["charged"],
+            row["on"]["method"]["work"]["charged"], row["on"]["internal"]["case_charges"]);
+        rows.push(row);
+    }
+    write("listed.json", &rows);
+}
+
+/// RF §5.2 (6) near the invocation limit (census review): invocations of 8, 9 and 10 load cases
+/// on one decimal Z-hinge structure, the first case authored as the sweep's and each later one
+/// its moment scaled by 1 + i/10 (an authored decimal), so the shared 64,000,000 invocation
+/// ledger is approached or passed with R-A off and on.
+#[test]
+#[ignore = "R-A census: many-case invocations near the invocation limit (run with --features census-probe --ignored)"]
+fn ra_census_many_cases() {
+    let mut rows = Vec::new();
+    let docs: Vec<_> = sweep_docs(&["zhinge122"]).into_iter().filter(|(_, i, _)| i["style"] == "decimal").collect();
+    let step = (docs.len() / 12).max(1);
+    for (raw, info, label) in docs.into_iter().step_by(step).take(12) {
+        for n in [8usize, 9, 10] {
+            let mut raw = raw.clone();
+            let cases = raw["model"]["load_cases"].as_array_mut().unwrap();
+            let first = cases[0].clone();
+            for i in 1..n {
+                let mut c = first.clone();
+                c["id"] = json!(format!("case{}", i + 1));
+                for l in c["primitive_loads"].as_array_mut().unwrap() {
+                    let v = l["magnitude"]["value"].as_f64().unwrap();
+                    l["magnitude"]["value"] = json!(decimal(v * (1.0 + i as f64 / 10.0), 3));
+                    l["id"] = json!(format!("{}:{}", l["id"].as_str().unwrap(), i + 1));
+                }
+                cases.push(c);
+            }
+            let mut row = census(&raw);
+            row["info"] = info.clone();
+            row["label"] = json!(format!("{label} cases={n}"));
+            println!("RA_MANY {label} cases={n} off={} on={} rule={} charges_off={} charges_on={} inv_off={} inv_on={} findings={}",
+                row["off"]["internal"]["class"], row["on"]["internal"]["class"], row["judged"]["rule"],
+                row["off"]["internal"]["case_charges"], row["on"]["internal"]["case_charges"],
+                row["off"]["internal"]["budget"]["charged"], row["on"]["internal"]["budget"]["charged"],
+                row["judged"]["findings"].as_array().map_or(0, Vec::len));
+            rows.push(row);
+        }
+    }
+    write("many_cases.json", &rows);
 }

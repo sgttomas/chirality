@@ -627,6 +627,8 @@ fn evaluate(
             fixed = add(&fixed, &p, w)?;
         }
         #[cfg(feature = "census-probe")]
+        ra.charge_source_checks(coefficients.len(), w)?;
+        #[cfg(feature = "census-probe")]
         let fixed_empty = fixed.is_zero();
         let mut q = constant(w, fixed)?;
         #[cfg(feature = "census-probe")]
@@ -1320,6 +1322,8 @@ mod ra_census {
         /// Per DOF for the current row: 0 untouched, 1 skip, 2 outside the window.
         window: Vec<u8>,
         touched: Vec<usize>,
+        /// Per DOF product counts for the current row's window (allocated once, charged in `start`).
+        products: Vec<usize>,
         meta: Vec<Meta>,
         row_start: usize,
         row_index: usize,
@@ -1338,8 +1342,10 @@ mod ra_census {
             let mut b2 = switches.b2;
             let mut zero = Vec::new();
             if b2 {
-                // The per-DOF zero-prescription vector: n entries, read from the prescribed list.
-                w.charge(n.saturating_add(c.source.prescribed.len()))?;
+                // The per-DOF zero-prescription vector and the window's per-DOF counters (n entries
+                // each), read from the prescribed list; then the block scan, one unit per block DOF.
+                w.charge(n.saturating_mul(2).saturating_add(c.source.prescribed.len()))?;
+                w.charge(c.blocks.iter().map(Vec::len).sum::<usize>())?;
                 zero = vec![false; n];
                 for &(i, v) in &c.source.prescribed {
                     if v == 0.0 {
@@ -1358,6 +1364,7 @@ mod ra_census {
                 zero,
                 window: if b2 { vec![0; n] } else { Vec::new() },
                 touched: Vec::new(),
+                products: if b2 { vec![0; n] } else { Vec::new() },
                 meta: Vec::with_capacity(ds.len()),
                 row_start: 0,
                 row_index: 0,
@@ -1380,26 +1387,24 @@ mod ra_census {
                 for i in self.touched.drain(..) {
                     self.window[i] = 0;
                 }
+                // One unit per term scanned for a zero-prescribed DOF, charged before the scan;
+                // then one per product and atom of such a term, charged before its atoms are read.
+                w.charge(d.terms.len())?;
                 if d.terms.iter().any(|t| self.zero[t.dof]) {
-                    // One unit per term scanned, and per product and atom inspected,
-                    // charged before the inspection.
-                    let units = d.terms.len().saturating_add(
-                        d.terms.iter().filter(|t| self.zero[t.dof]).map(|t| atoms(&t.products)).sum::<usize>(),
-                    );
-                    w.charge(units)?;
-                    let mut products = vec![0usize; self.zero.len()];
                     for t in d.terms.iter().filter(|t| self.zero[t.dof]) {
+                        w.charge(atoms(&t.products))?;
                         if self.window[t.dof] == 0 {
                             self.window[t.dof] = 1;
+                            self.products[t.dof] = 0;
                             self.touched.push(t.dof);
                         }
-                        products[t.dof] += t.products.len();
+                        self.products[t.dof] += t.products.len();
                         if t.products.iter().any(|p| p.len() > 5 || !p.iter().all(|&x| in_band(x))) {
                             self.window[t.dof] = 2;
                         }
                     }
                     for &i in &self.touched {
-                        if products[i] > 64 {
+                        if self.products[i] > 64 {
                             self.window[i] = 2;
                         }
                         if self.window[i] == 2 {
@@ -1443,12 +1448,15 @@ mod ra_census {
             });
             let Some(j) = candidate else { return self.decline("no_candidate") };
             let s = &ds[j];
-            // Static recognition, charged before it runs: one unit per compared atom and term.
+            // Static recognition, charged before it runs: one unit per compared atom and term, of
+            // both rows (d's extra terms included).
             w.charge(
                 atoms(&s.offset)
                     .saturating_add(atoms(&d.offset))
                     .saturating_add(s.terms.len())
-                    .saturating_add(s.terms.iter().map(|t| atoms(&t.products)).sum::<usize>()),
+                    .saturating_add(s.terms.iter().map(|t| atoms(&t.products)).sum::<usize>())
+                    .saturating_add(d.terms.len())
+                    .saturating_add(d.terms.iter().map(|t| atoms(&t.products)).sum::<usize>()),
             )?;
             // (1) d's first terms are s's with -1.0 appended to every product; so is the offset.
             if d.offset.len() != s.offset.len()
@@ -1524,11 +1532,18 @@ mod ra_census {
             });
             Ok(Some(q))
         }
+        /// B1's dynamic checks on a candidate source row, charged before they inspect: one
+        /// unit per coefficient, one for the fixed part and one for the block count. The block
+        /// count reuses the long path's own zero test of each block numerator.
+        pub(super) fn charge_source_checks(&self, n: usize, w: &mut Work) -> Result<(), Error> {
+            if self.row_source {
+                w.charge(n.saturating_add(2))?;
+            }
+            Ok(())
+        }
         pub(super) fn note(&mut self, coefficients: &[Expansion], fixed_empty: bool, contributing: usize, w: &mut Work) -> Result<(), Error> {
             let mut meta = Meta::default();
             if self.row_source {
-                // One unit per inspected expansion: the coefficients, the fixed part and the blocks.
-                w.charge(coefficients.len().saturating_add(2))?;
                 let unit = coefficients.iter().any(|e| e.terms.len() == 1 && e.terms[0].abs() == 1.0);
                 meta.source_ok = fixed_empty && contributing <= 1 && !unit;
             }
