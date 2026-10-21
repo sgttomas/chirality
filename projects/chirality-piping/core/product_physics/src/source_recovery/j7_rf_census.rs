@@ -758,3 +758,12 @@ fn u4b_every_selected_census_case_still_selects_with_its_new_charge() {
     assert_eq!(selected, 66, "the census's 62 method-only and 4 published selections");
     println!("U4B_J7_SELECTED largest per-case charge {largest} of 8000000");
 }
+
+// R-A census (DEL-04-08 Design `source-work-nondyadic-inputs.md` §5): opt-in,
+// `--features census-probe` only; every target is `#[ignore]`.
+#[cfg(feature = "census-probe")]
+#[path = "ra_method_census_tests.rs"]
+pub(crate) mod ra_method_census;
+#[cfg(feature = "census-probe")]
+#[path = "ra_j7_census_tests.rs"]
+mod ra_j7_census;

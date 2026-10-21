@@ -1042,3 +1042,9 @@ fn o4_census_source_work_small_frames() { census_sweep("small_frames", &["run2",
 #[cfg(feature = "census-probe")]
 #[path = "w1e_census_tests.rs"]
 mod w1e_census_tests;
+
+// R-A's census (DEL-04-08 Design `source-work-nondyadic-inputs.md` §5): opt-in,
+// `--features census-probe` only; every target is `#[ignore]`.
+#[cfg(feature = "census-probe")]
+#[path = "ra_census_tests.rs"]
+mod ra_census_tests;
