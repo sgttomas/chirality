@@ -38,7 +38,7 @@ def main():
     parser.add_argument('--record', type=Path, required=True)
     args = parser.parse_args()
     if args.action == 'key':
-        commands = ['production-build', 'chromium-desktop:r2-smoke,b3b-project-persistence']
+        commands = ['production-build', 'chromium-desktop:r2-smoke,b3b-project-persistence,rotation-glyph']
         selection = None
         if args.suite == 'numerical':
             path = ROOT / 'projects/chirality-piping/tools/ci/numerical_ci.py'
