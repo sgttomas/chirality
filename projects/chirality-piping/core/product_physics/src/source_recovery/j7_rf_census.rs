@@ -762,3 +762,12 @@ fn u4b_every_selected_census_case_still_selects_with_its_new_charge() {
 // R-A's gating test (DEL-04-08 Design `source-work-nondyadic-inputs.md` §3.2).
 #[path = "ra_gating_tests.rs"]
 pub(crate) mod ra_gating;
+
+// The source-route replay census (DEL-04-08, "Source-route replay design"; scratch
+// prototype, never merged): opt-in, `--features census-probe` only; every target is `#[ignore]`.
+#[cfg(feature = "census-probe")]
+#[path = "replay_method_census_tests.rs"]
+pub(crate) mod replay_method_census;
+#[cfg(feature = "census-probe")]
+#[path = "replay_j7_census_tests.rs"]
+mod replay_j7_census;

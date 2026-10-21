@@ -71,9 +71,15 @@ impl Record {
     }
 }
 
+/// Replay census (DEL-04-08, source-route replay design; as R-A's census did): with
+/// `CENSUS_PROBE_W1_PRODUCTION=1`, every thread starts with W1's production switches
+/// (corner 1 on, the others off), so subprocess runs and threads the product spawns run W1
+/// as the product does. Unset, the W1 census's defaults stand.
+fn w1_default() -> Switches {
+    Switches { corner1: std::env::var("CENSUS_PROBE_W1_PRODUCTION").as_deref() == Ok("1"), ..Switches::default() }
+}
 thread_local! {
-    static SWITCHES: Cell<Switches> = const { Cell::new(Switches {
-        corner1: false, same_section: false, same_readout: false, lane_null: false, record: false }) };
+    static SWITCHES: Cell<Switches> = Cell::new(w1_default());
     static RECORDS: RefCell<Vec<Record>> = const { RefCell::new(Vec::new()) };
     static CONTEXT: RefCell<(String, &'static str)> = const { RefCell::new((String::new(), "")) };
     static LANE: Cell<bool> = const { Cell::new(false) };
@@ -762,5 +768,233 @@ pub(super) fn gate_records(g: &GateInputs<'_, '_>) {
                 .map(|(k, p)| ((*k).to_owned(), p.map_or(Field::S("not_judged".into()), Field::B))).collect()))
             .put("variants", Field::L(std::mem::take(&mut results[i])));
         push(rec);
+    }
+}
+
+/// The source-route replay census (DEL-04-08, "Source-route replay design"; scratch
+/// prototype, never merged): R-A off, the bind-only replay, its test-side shadow full
+/// replay, per-case finalization ledger marks and the fault-model mutants. Thread-local
+/// and off by default; env defaults let subprocess runs take part. Without
+/// `census-probe` none of this exists.
+pub mod replay {
+    use std::cell::{Cell, RefCell};
+
+    /// One fault model (supporting evidence only). Each is injected into the live
+    /// attempt, the retained copy or the captured rebuild, never into the replay.
+    #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+    pub enum Mutant {
+        #[default]
+        None,
+        /// The lowest bit of one live functional Ratio term, after `evaluate`, before projection.
+        Ratio,
+        /// The lowest bit of one live displacement numerator term, after solve.
+        Disp,
+        /// One bit of one retained witness minor (order >= 3) or `a` term, after retention.
+        Wit,
+        /// One retained functional Ratio, after retention.
+        Ret,
+        /// One retained functional projection's value, one ulp, after retention.
+        Proj,
+        /// The live attempt projects one row with relative limit 1e-8 (its label follows).
+        Lim,
+        /// One retained functional projection's relative-limit label, after retention.
+        Label,
+        /// One captured-rebuild force value, one ulp.
+        Src,
+        /// One captured-rebuild descriptor atom, one ulp.
+        Desc,
+        /// A fabricated retained contact, after retention.
+        ContactRet,
+        /// The captured rebuild's expected contact list made nonempty.
+        ContactExp,
+        /// Hidden state: a one-shot thread-local perturbs one row of the first evaluation
+        /// in the thread (the live one) and no later evaluation.
+        Hidden,
+    }
+    impl Mutant {
+        pub fn parse(s: &str) -> Option<Self> {
+            Some(match s {
+                "" | "none" => Self::None,
+                "M-RATIO" => Self::Ratio,
+                "M-DISP" => Self::Disp,
+                "M-WIT" => Self::Wit,
+                "M-RET" => Self::Ret,
+                "M-PROJ" => Self::Proj,
+                "M-LIM" => Self::Lim,
+                "M-LABEL" => Self::Label,
+                "M-SRC" => Self::Src,
+                "M-DESC" => Self::Desc,
+                "M-CONTACT-RET" => Self::ContactRet,
+                "M-CONTACT-EXP" => Self::ContactExp,
+                "M-HIDDEN" => Self::Hidden,
+                _ => return None,
+            })
+        }
+        pub fn name(self) -> &'static str {
+            match self {
+                Self::None => "none",
+                Self::Ratio => "M-RATIO",
+                Self::Disp => "M-DISP",
+                Self::Wit => "M-WIT",
+                Self::Ret => "M-RET",
+                Self::Proj => "M-PROJ",
+                Self::Lim => "M-LIM",
+                Self::Label => "M-LABEL",
+                Self::Src => "M-SRC",
+                Self::Desc => "M-DESC",
+                Self::ContactRet => "M-CONTACT-RET",
+                Self::ContactExp => "M-CONTACT-EXP",
+                Self::Hidden => "M-HIDDEN",
+            }
+        }
+        pub const ALL: [Mutant; 12] = [Self::Ratio, Self::Disp, Self::Wit, Self::Ret, Self::Proj, Self::Lim, Self::Label,
+            Self::Src, Self::Desc, Self::ContactRet, Self::ContactExp, Self::Hidden];
+    }
+    /// The replay census's switches. All off by default.
+    #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+    pub struct Switches {
+        /// Every product evaluation takes the long path (no hints, shortcut flag false):
+        /// pre-R-A charges.
+        pub ra_off: bool,
+        /// Finalization's captured replay is the bind-only replay.
+        pub bind: bool,
+        /// After the replay stage succeeds, the full replay's arithmetic runs on a private
+        /// ledger that no case ledger reads, and every comparison is recorded.
+        pub shadow: bool,
+        /// A shadow mismatch panics (subprocess runs).
+        pub strict: bool,
+        pub mutant: Mutant,
+    }
+    fn env_on(name: &str) -> bool {
+        std::env::var(name).as_deref() == Ok("1")
+    }
+    /// `REPLAY_CENSUS_RA_OFF=1`, `REPLAY_CENSUS_BIND=1`, `REPLAY_CENSUS_SHADOW=1|0` (default:
+    /// on with bind), `REPLAY_CENSUS_STRICT=1`, `REPLAY_CENSUS_MUTANT=<name>`.
+    fn default_switches() -> Switches {
+        let bind = env_on("REPLAY_CENSUS_BIND");
+        let shadow = match std::env::var("REPLAY_CENSUS_SHADOW").as_deref() {
+            Ok("1") => true,
+            Ok("0") => false,
+            _ => bind,
+        };
+        Switches {
+            ra_off: env_on("REPLAY_CENSUS_RA_OFF"),
+            bind,
+            shadow,
+            strict: env_on("REPLAY_CENSUS_STRICT"),
+            mutant: Mutant::parse(&std::env::var("REPLAY_CENSUS_MUTANT").unwrap_or_default()).expect("REPLAY_CENSUS_MUTANT"),
+        }
+    }
+    /// One finalization case: the case ledger's charge at each mark.
+    #[derive(Clone, Debug, Default)]
+    pub struct CaseRecord {
+        pub case_id: String,
+        pub marks: Vec<(&'static str, usize)>,
+        pub replay: &'static str,
+        /// `None` while open; "ok" or the finalization error's text.
+        pub outcome: Option<String>,
+        /// Uncharged by bind-only: the reservations of the full replay's preflights it skips
+        /// (2 x ratio_charge per retained Ratio, 2 x scalars per witness), reported only.
+        pub bind_skipped_reservations: usize,
+        pub shadow: Option<Result<(), String>>,
+        /// The shadow's own result: its private charge, or its refusal.
+        pub shadow_private: Option<Result<usize, String>>,
+    }
+    #[derive(Clone, Debug, Default)]
+    pub struct Records {
+        pub cases: Vec<CaseRecord>,
+        pub shadow_checked: u64,
+        pub shadow_mismatches: Vec<String>,
+        /// Mutant applications, "<mutant>:<site>".
+        pub mutants_applied: Vec<String>,
+        pub evaluations: u64,
+    }
+    thread_local! {
+        static SWITCHES: Cell<Switches> = Cell::new(default_switches());
+        static RECORDS: RefCell<Records> = RefCell::new(Records::default());
+        static HIDDEN_ARMED: Cell<bool> = const { Cell::new(true) };
+    }
+    pub fn switches() -> Switches {
+        SWITCHES.with(Cell::get)
+    }
+    /// Runs `f` with `s` on this thread, restoring the previous switches after; re-arms
+    /// M-HIDDEN's one-shot for the scope.
+    pub fn with<T>(s: Switches, f: impl FnOnce() -> T) -> T {
+        struct Restore(Switches, bool);
+        impl Drop for Restore {
+            fn drop(&mut self) {
+                SWITCHES.with(|c| c.set(self.0));
+                HIDDEN_ARMED.with(|c| c.set(self.1));
+            }
+        }
+        let old = SWITCHES.with(|c| c.replace(s));
+        let armed = HIDDEN_ARMED.with(|c| c.replace(true));
+        let _restore = Restore(old, armed);
+        f()
+    }
+    pub fn drain() -> Records {
+        RECORDS.with(|r| std::mem::take(&mut *r.borrow_mut()))
+    }
+    pub fn mutant() -> Mutant {
+        switches().mutant
+    }
+    pub fn applied(site: &str) {
+        RECORDS.with(|r| r.borrow_mut().mutants_applied.push(format!("{}:{site}", mutant().name())));
+    }
+    /// M-HIDDEN's one-shot: true exactly once per `with` scope (and once per thread outside one).
+    pub fn take_hidden() -> bool {
+        mutant() == Mutant::Hidden && HIDDEN_ARMED.with(|c| c.replace(false))
+    }
+    pub fn evaluation() {
+        RECORDS.with(|r| r.borrow_mut().evaluations += 1);
+    }
+    /// Opens a finalization case record.
+    pub fn case_begin(case_id: &str, charged: usize) {
+        RECORDS.with(|r| {
+            r.borrow_mut().cases.push(CaseRecord {
+                case_id: case_id.to_owned(),
+                marks: vec![("entry", charged)],
+                replay: if switches().bind { "bind" } else { "full" },
+                ..Default::default()
+            })
+        });
+    }
+    fn open<T>(f: impl FnOnce(&mut CaseRecord) -> T) -> Option<T> {
+        RECORDS.with(|r| r.borrow_mut().cases.last_mut().filter(|c| c.outcome.is_none()).map(f))
+    }
+    pub fn mark(label: &'static str, charged: usize) {
+        open(|c| c.marks.push((label, charged)));
+    }
+    pub fn case_end(outcome: String, charged: usize) {
+        open(|c| {
+            c.marks.push(("end", charged));
+            c.outcome = Some(outcome);
+        });
+    }
+    pub fn bind_skipped(n: usize) {
+        open(|c| c.bind_skipped_reservations = c.bind_skipped_reservations.saturating_add(n));
+    }
+    pub fn shadow_private(r: Result<usize, String>) {
+        open(|c| c.shadow_private = Some(r));
+    }
+    /// The shadow full replay's verdict for the current case.
+    pub fn shadow(result: Result<(), String>) {
+        let strict = switches().strict;
+        let mismatch = result.as_ref().err().cloned();
+        let case = open(|c| {
+            c.shadow = Some(result.clone());
+            c.case_id.clone()
+        })
+        .unwrap_or_default();
+        RECORDS.with(|r| {
+            let mut r = r.borrow_mut();
+            r.shadow_checked += 1;
+            if let Some(m) = &mismatch {
+                r.shadow_mismatches.push(format!("{case}: {m}"));
+            }
+        });
+        if let Some(m) = mismatch {
+            assert!(!strict, "replay census shadow mismatch: {case}: {m}");
+        }
     }
 }

@@ -1078,3 +1078,9 @@ fn ra_gating_zhinge_negated_rows_take_b1() {
     }
     assert_eq!(gated, 24);
 }
+
+// The source-route replay census (DEL-04-08, "Source-route replay design"; scratch
+// prototype, never merged): opt-in, `--features census-probe` only; every target is `#[ignore]`.
+#[cfg(feature = "census-probe")]
+#[path = "replay_census_tests.rs"]
+mod replay_census_tests;

@@ -330,6 +330,8 @@ impl SelectedSourceRecovery {
             Ok::<(), RecoveryError>(())
         })();
         self.summary.work = self.budget.report();
+        #[cfg(feature = "census-probe")]
+        replay_census_hooks::mark("binding", &self.budget);
         result.map_err(|error| failure("current source binding", error, &self.budget))
     }
 
@@ -340,6 +342,12 @@ impl SelectedSourceRecovery {
         let outcome = (|| {
             let source = prepare_sources(&input, &mut self.budget)?;
             stage = "expected invocation replay";
+            #[cfg(feature = "census-probe")]
+            {
+                #[allow(clippy::needless_return)]
+                return replay_census_hooks::replay_or_bind(&self.retained, source, &input, &mut self.budget);
+            }
+            #[allow(unreachable_code)]
             self.retained
                 .replay_against(
                     &source.system(&input),
@@ -1898,6 +1906,12 @@ pub(super) fn solve(
         let retained = functionals
             .retain(&[], &dof_projections, &functional_projections, &mut budget)
             .result?;
+        #[cfg(feature = "census-probe")]
+        let retained = {
+            let mut retained = retained;
+            retained.census_mutate();
+            retained
+        };
         stage = "selected output construction";
         charge(
             &mut budget,
@@ -3154,3 +3168,9 @@ mod j7_t4_consequences;
 #[cfg(test)]
 #[path = "source_recovery/j7_rf_census.rs"]
 pub(crate) mod j7_rf_census;
+
+// The source-route replay census (DEL-04-08, "Source-route replay design"; scratch
+// prototype, never merged): opt-in, `--features census-probe` only.
+#[cfg(feature = "census-probe")]
+#[path = "source_recovery/replay_census_hooks_tests.rs"]
+mod replay_census_hooks;

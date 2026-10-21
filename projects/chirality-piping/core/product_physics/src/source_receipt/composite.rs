@@ -6,6 +6,9 @@ use exact::functionals::{FunctionalConvention, FunctionalQuantity, FunctionalUni
 
 const MAX_BASIS: &str = "retained_source_endpoint_normal_max_v1";
 const RECIPE_WORK: usize = 4096;
+// Source-route replay census (scratch prototype, never merged): finalization ledger marks.
+#[cfg(feature = "census-probe")]
+use open_pipe_stress_frame_kernel::structural::retained_api::census_probe::replay as replay_probe;
 
 fn charge(selected: &mut SelectedSourceRecovery, work: usize) -> Result<(), ReceiptError> {
     selected.charge_finalization(work).map_err(|e| {
@@ -749,6 +752,8 @@ impl FinalizedSourceBlockCase {
     ) -> Result<Self, ReceiptError> {
         #[cfg(test)]
         trace("source_case_finalization_entry", &selected);
+        #[cfg(feature = "census-probe")]
+        replay_probe::case_begin(&input.load_case.id, selected.summary().work.charged);
         let checked = (|| {
             if ordinary.mode != capture.mode
                 || !matches!(ordinary.outcome, "sensitive" | "rejected")
@@ -762,6 +767,8 @@ impl FinalizedSourceBlockCase {
             charge(&mut selected, reservation)?;
             #[cfg(test)]
             trace("source_case_finalization_reserved", &selected);
+            #[cfg(feature = "census-probe")]
+            replay_probe::mark("reserved", selected.summary().work.charged);
             let material_record = capture.check_input_with_physical(
                 &input,
                 &mut selected,
@@ -769,6 +776,8 @@ impl FinalizedSourceBlockCase {
             )?;
             #[cfg(test)]
             trace("captured_source_replay_complete", &selected);
+            #[cfg(feature = "census-probe")]
+            replay_probe::mark("physical", selected.summary().work.charged);
             selected
                 .check_binding_against(source_recovery::Input {
                     model: input.model,
@@ -991,6 +1000,8 @@ impl FinalizedSourceBlockCase {
             trace("source_case_finalization_complete", &selected);
             Ok((ledger, source, derived_checks, section_stress_checks))
         })();
+        #[cfg(feature = "census-probe")]
+        replay_probe::case_end(match &checked { Ok(_) => "ok".into(), Err(e) => e.0.clone() }, selected.summary().work.charged);
         let (ledger, source, derived_checks, section_stress_checks) =
             checked.map_err(|mut e| {
                 e.1 = Some(selected.summary().work);

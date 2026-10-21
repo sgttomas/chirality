@@ -6,6 +6,10 @@
 //! A single non-cloneable ledger covers preparation through retention and replay.
 use super::*;
 use std::sync::Arc;
+// Source-route replay census (scratch prototype, never merged): R-A off, the bind-only
+// replay, its shadow and the mutants; compiled only under the opt-in `census-probe` feature.
+#[cfg(feature = "census-probe")]
+use crate::structural::retained_api::census_probe::replay as replay_probe;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum AttemptStage {
@@ -206,6 +210,14 @@ impl Context {
     pub fn solve_with_budget(&self, budget: &mut AttemptBudget) -> Attempt<Response<'_>> {
         budget.run(AttemptStage::Solve, |w, token| {
             binding(self, token, w)?;
+            #[cfg(feature = "census-probe")]
+            {
+                let mut response = solve(self, w)?;
+                replay_census::m_disp(&mut response);
+                #[allow(clippy::needless_return)]
+                return Ok(response);
+            }
+            #[allow(unreachable_code)]
             solve(self, w)
         })
     }
@@ -356,6 +368,8 @@ impl<'a> FunctionalPlan<'a> {
         rule: Option<HintRule<'_>>,
         budget: &mut AttemptBudget,
     ) -> Attempt<Self> {
+        #[cfg(feature = "census-probe")]
+        let rule = rule.filter(|_| !replay_probe::switches().ra_off);
         budget.run(AttemptStage::Plan, |w, token| {
             binding(context, token, w)?;
             descriptors_charge(descriptors, context.f.len(), w)?;
@@ -607,6 +621,10 @@ fn evaluate(
     shortcuts: bool,
     w: &mut Work,
 ) -> Result<Vec<Ratio>, Error> {
+    #[cfg(feature = "census-probe")]
+    let shortcuts = shortcuts && !replay_probe::switches().ra_off;
+    #[cfg(feature = "census-probe")]
+    let hidden = replay_census::evaluation_begins();
     let c = response.context;
     let n = c.f.len();
     w.charge(
@@ -689,6 +707,8 @@ fn evaluate(
         exact_operation_count::row(exact_operation_count::RowPath::Long { b2_skipped: ra.skipped() });
         values.push(q);
     }
+    #[cfg(feature = "census-probe")]
+    replay_census::m_hidden(&mut values, hidden);
     Ok(values)
 }
 
@@ -726,6 +746,8 @@ impl<'a> Response<'a> {
                 return Err(Error::Invalid("functional plan response"));
             }
             let values = evaluate(self, &plan.descriptors, &plan.hints, true, w)?;
+            #[cfg(feature = "census-probe")]
+            let values = replay_census::m_ratio(values);
             Ok(FunctionalSet {
                 response: self,
                 plan,
@@ -840,6 +862,8 @@ impl<'r, 'p, 'a> FunctionalSet<'r, 'p, 'a> {
         relative_limit: f64,
         budget: &mut AttemptBudget,
     ) -> Attempt<QualifiedFunctionalProjection<'_, 'r, 'p, 'a>> {
+        #[cfg(feature = "census-probe")]
+        let relative_limit = replay_census::m_lim(index, relative_limit);
         budget.run(AttemptStage::Projection, |w, token| {
             response_binding(self.response, token, w)?;
             let ratio = self
@@ -1070,6 +1094,8 @@ impl RetainedFunctionalSet {
         relative_limit: f64,
         budget: &mut AttemptBudget,
     ) -> Attempt<FunctionalReplayCheck> {
+        #[cfg(feature = "census-probe")]
+        let expected_hints = expected_hints.filter(|_| !replay_probe::switches().ra_off);
         budget.run(AttemptStage::Replay, |w, token| {
             w.charge(24)?;
             if !Arc::ptr_eq(&self.token, token)
@@ -1541,6 +1567,393 @@ mod shortcuts {
                     && !coefficients.iter().any(|e| e.terms.len() == 1 && e.terms[0].abs() == 1.0);
                 self.source_ok.push(ok);
             }
+        }
+    }
+}
+
+/// The source-route replay census (DEL-04-08, "Source-route replay design"; scratch
+/// prototype, never merged). Compiled only under the opt-in `census-probe` feature and
+/// inert until a census sets its thread-local switches (`census_probe::replay`).
+///
+/// - `bind_against`: the bind-only replay. Every check of `replay_against` that does no
+///   exact arithmetic, each charged before it inspects; no Context preparation, solve,
+///   evaluation, projection or contact recomputation, and none of their comparisons.
+/// - `shadow_replay`: the full replay's body on a private ledger (operations unlimited,
+///   every other limit the case's) that no case ledger reads; the token check is
+///   necessarily skipped there.
+/// - The mutants: fault models in the live attempt and the retained copy.
+#[cfg(feature = "census-probe")]
+mod replay_census {
+    use super::*;
+    use crate::structural::retained_api::census_probe::replay::{self as probe, Mutant};
+
+    /// Flips the lowest bit of the largest-magnitude term.
+    fn flip_low(terms: &mut [f64]) -> bool {
+        let Some(i) = (0..terms.len()).max_by(|&a, &b| terms[a].abs().total_cmp(&terms[b].abs())) else {
+            return false;
+        };
+        terms[i] = f64::from_bits(terms[i].to_bits() ^ 1);
+        true
+    }
+    fn first_nonzero(values: &[Ratio]) -> Option<usize> {
+        values.iter().position(|r| !r.numerator.terms.is_empty())
+    }
+    pub(super) fn m_disp(response: &mut Response<'_>) {
+        if probe::mutant() != Mutant::Disp {
+            return;
+        }
+        if let Some(i) = first_nonzero(&response.displacement) {
+            flip_low(&mut response.displacement[i].numerator.terms);
+            probe::applied(&format!("live displacement {i}"));
+        }
+    }
+    pub(super) fn m_ratio(mut values: Vec<Ratio>) -> Vec<Ratio> {
+        if probe::mutant() == Mutant::Ratio {
+            if let Some(i) = first_nonzero(&values) {
+                flip_low(&mut values[i].numerator.terms);
+                probe::applied(&format!("live functional ratio {i}"));
+            }
+        }
+        values
+    }
+    pub(super) fn evaluation_begins() -> bool {
+        probe::evaluation();
+        probe::take_hidden()
+    }
+    pub(super) fn m_hidden(values: &mut [Ratio], hidden: bool) {
+        if hidden {
+            if let Some(i) = first_nonzero(values) {
+                flip_low(&mut values[i].numerator.terms);
+                probe::applied(&format!("first evaluation in the thread, row {i}"));
+            }
+        }
+    }
+    pub(super) fn m_lim(index: usize, relative_limit: f64) -> f64 {
+        if probe::mutant() == Mutant::Lim && index == 0 {
+            probe::applied("live projection 0 at 1e-8");
+            return 1e-8;
+        }
+        relative_limit
+    }
+
+    /// `ratio_preflight`'s dimension check alone, charged its 4; returns the comparison
+    /// reservation (2 x ratio_charge) that the full replay charges after it and bind-only
+    /// does not.
+    fn ratio_dims(r: &Ratio, w: &mut Work) -> Result<usize, Error> {
+        w.charge(4)?;
+        if r.numerator.terms.len() > w.limits.expansion_terms
+            || r.denominator.terms.is_empty()
+            || r.denominator.terms.len() > w.limits.expansion_terms
+        {
+            return Err(Error::Invalid("functional retained ratio dimensions"));
+        }
+        Ok(ratio_charge(r).saturating_mul(2))
+    }
+
+    #[allow(clippy::too_many_arguments)]
+    pub(super) fn bind(
+        set: &RetainedFunctionalSet,
+        expected: &StructuralSystem<'_>,
+        identity: &str,
+        force_basis: ForceBasis<'_>,
+        expected_congruence: &[CongruenceMember],
+        expected_descriptors: &[FunctionalDescriptor],
+        expected_contacts: &[(usize, i8, f64)],
+        relative_limit: f64,
+        token: &Arc<()>,
+        w: &mut Work,
+    ) -> Result<FunctionalReplayCheck, Error> {
+        // (1) replay_against's opening charge, token, limits and relative-limit policy.
+        w.charge(24)?;
+        if !Arc::ptr_eq(&set.token, token)
+            || set.response.limits != w.limits
+            || !relative_limit.is_finite()
+            || relative_limit < 0.0
+        {
+            return Err(Error::Invalid("functional replay policy/limits"));
+        }
+        // (2) The n/DOF bound.
+        let n = expected.force.len();
+        if n > 256 || n > w.limits.dofs {
+            return Err(Error::Budget);
+        }
+        // (3) Both descriptor lists, charged as replay_against charges them, and equality.
+        descriptors_charge(expected_descriptors, n, w)?;
+        descriptors_charge(&set.descriptors, n, w)?;
+        if !same_descriptors(&set.descriptors, expected_descriptors) {
+            return Err(Error::Invalid("functional expected plan binding"));
+        }
+        // (4) Values/projections coverage.
+        if set.values.len() != set.descriptors.len() || set.projections.len() != set.descriptors.len() {
+            return Err(Error::Invalid("functional replay coverage"));
+        }
+        // (5) retained_charge's dimension checks: its opening 8, the response dimensions, the
+        // retained source's own preflight (unchanged), each Ratio's and witness's dimensions
+        // at their inspection charge (4 and 8). The comparison reservations that follow them
+        // in the full replay (2 x ratio_charge per Ratio, 2 x scalars per witness, 24 per DOF
+        // projection and 16 per contact, 16 per functional projection) are not charged:
+        // nothing is compared. Their sum is recorded, uncharged.
+        let r = &set.response;
+        w.charge(8)?;
+        if r.source.force.len() != n
+            || r.displacement.len() != n
+            || r.reactions.len() != n
+            || r.projections.len() != 2 * n
+            || r.contacts.len() > n
+            || r.witnesses.len() > n
+        {
+            return Err(Error::Invalid("functional retained response dimensions"));
+        }
+        source_preflight(&r.source.system(), &r.source.identity, r.source.force_basis(), &r.source.congruence, w)?;
+        let mut skipped = 0usize;
+        for value in r.displacement.iter().chain(&r.reactions) {
+            skipped = skipped.saturating_add(ratio_dims(value, w)?);
+        }
+        for b in &r.witnesses {
+            w.charge(8)?;
+            if b.dofs.is_empty()
+                || b.dofs.len() > FUNCTIONAL_ORDER_CAP
+                || b.scalar_count() > BlockWitness::size_bound(b.dofs.len(), w.limits.expansion_terms)
+            {
+                return Err(Error::Invalid("functional retained witness dimensions"));
+            }
+            skipped = skipped.saturating_add(b.scalar_count().saturating_mul(2));
+        }
+        for c in &r.contacts {
+            skipped = skipped.saturating_add(ratio_dims(&c.penetration, w)?);
+            skipped = skipped.saturating_add(ratio_dims(&c.normalized_reaction, w)?);
+        }
+        skipped = skipped.saturating_add(r.projections.len().saturating_mul(24).saturating_add(r.contacts.len().saturating_mul(16)));
+        for value in &set.values {
+            skipped = skipped.saturating_add(ratio_dims(value, w)?);
+        }
+        skipped = skipped.saturating_add(set.projections.len().saturating_mul(16));
+        // (6) The expected source's preflight, then Snapshot equality of the retained source
+        // with it, as check_binding_with_budget performs them.
+        source_preflight(expected, identity, force_basis, expected_congruence, w)?;
+        if !r.source.matches(expected, identity, force_basis, expected_congruence) {
+            return Err(Error::Invalid("functional expected source binding"));
+        }
+        // (7) Every functional projection's identity and policy label, 4 per projection.
+        w.charge(set.projections.len().saturating_mul(4))?;
+        for (i, p) in set.projections.iter().enumerate() {
+            if p.index != i || p.relative_limit.to_bits() != relative_limit.to_bits() {
+                return Err(Error::Invalid("functional replay projection identity/policy"));
+            }
+        }
+        // (8) replay_leaves's non-arithmetic checks: its opening n x 8 (the seen vectors),
+        // then 16 per expected contact and 4 per retained DOF projection, each before it
+        // inspects.
+        w.charge(n.saturating_mul(8))?;
+        if expected_contacts.len() != r.contacts.len() {
+            return Err(Error::Invalid("functional expected contacts"));
+        }
+        w.charge(expected_contacts.len().saturating_mul(16))?;
+        let mut contact_seen = vec![false; n];
+        for (&(d, s, g), c) in expected_contacts.iter().zip(&r.contacts) {
+            if d >= n || contact_seen[d] || d != c.dof || s != c.sense || g.to_bits() != c.gap.to_bits() {
+                return Err(Error::Invalid("functional expected contact binding"));
+            }
+            contact_seen[d] = true;
+        }
+        w.charge(r.projections.len().saturating_mul(4))?;
+        let mut seen = vec![false; 2 * n];
+        for p in &r.projections {
+            if p.dof >= n || p.relative_limit.to_bits() != relative_limit.to_bits() {
+                return Err(Error::Invalid("functional retained DOF projection policy"));
+            }
+            let i = 2 * p.dof + usize::from(p.quantity == Quantity::Reaction);
+            if seen[i] {
+                return Err(Error::Invalid("functional retained DOF projection coverage"));
+            }
+            seen[i] = true;
+        }
+        probe::bind_skipped(skipped);
+        Ok(FunctionalReplayCheck {
+            dofs: n,
+            blocks: r.witnesses.len(),
+            functionals: set.values.len(),
+            dof_projections: 2 * n,
+        })
+    }
+
+    /// The full replay's body (replay_against after its token check), on `w`.
+    #[allow(clippy::too_many_arguments)]
+    pub(super) fn full_body(
+        set: &RetainedFunctionalSet,
+        expected: &StructuralSystem<'_>,
+        identity: &str,
+        force_basis: ForceBasis<'_>,
+        expected_congruence: &[CongruenceMember],
+        expected_descriptors: &[FunctionalDescriptor],
+        expected_hints: Option<HintRule<'_>>,
+        expected_contacts: &[(usize, i8, f64)],
+        relative_limit: f64,
+        w: &mut Work,
+    ) -> Result<(), Error> {
+        let expected_hints = expected_hints.filter(|_| !probe::switches().ra_off);
+        w.charge(24)?;
+        if !relative_limit.is_finite() || relative_limit < 0.0 {
+            return Err(Error::Invalid("functional replay policy/limits"));
+        }
+        let n = expected.force.len();
+        if n > 256 || n > w.limits.dofs {
+            return Err(Error::Budget);
+        }
+        descriptors_charge(expected_descriptors, n, w)?;
+        descriptors_charge(&set.descriptors, n, w)?;
+        if !same_descriptors(&set.descriptors, expected_descriptors) {
+            return Err(Error::Invalid("functional expected plan binding"));
+        }
+        if set.values.len() != set.descriptors.len() || set.projections.len() != set.descriptors.len() {
+            return Err(Error::Invalid("functional replay coverage"));
+        }
+        retained_charge(&set.response, n, w)?;
+        for r in &set.values {
+            ratio_preflight(r, w)?;
+        }
+        w.charge(set.projections.len().saturating_mul(16))?;
+        let context = prepare(expected, identity, force_basis, expected_congruence, &set.token, w)?;
+        if !context.source.matches(
+            &set.response.source.system(),
+            &set.response.source.identity,
+            set.response.source.force_basis(),
+            &set.response.source.congruence,
+        ) {
+            return Err(Error::Invalid("functional expected source binding"));
+        }
+        if context.witnesses.len() != set.response.witnesses.len()
+            || !context.witnesses.iter().zip(&set.response.witnesses).all(|(a, b)| a.same_bits(b))
+        {
+            return Err(Error::Invalid("functional retained block/minor mismatch"));
+        }
+        let response = solve(&context, w)?;
+        if response.displacement != set.response.displacement || response.reactions != set.response.reactions {
+            return Err(Error::Invalid("functional retained response mismatch"));
+        }
+        replay_leaves(&response, &set.response, expected_contacts, relative_limit, w)?;
+        let expected_hints = match expected_hints {
+            Some(rule) => build_hints(rule, expected_descriptors.len(), w)?,
+            None => Vec::new(),
+        };
+        let values = evaluate(&response, expected_descriptors, &expected_hints, true, w)?;
+        if values != set.values {
+            return Err(Error::Invalid("functional retained ratio mismatch"));
+        }
+        for (i, (p, r)) in set.projections.iter().zip(&values).enumerate() {
+            if p.index != i || p.relative_limit.to_bits() != relative_limit.to_bits() {
+                return Err(Error::Invalid("functional replay projection identity/policy"));
+            }
+            let q = project(w, r, relative_limit)?;
+            if !p.matches(&q) || p.exact_sign != r.sign() {
+                return Err(Error::Invalid("functional retained projection mismatch"));
+            }
+        }
+        Ok(())
+    }
+}
+#[cfg(feature = "census-probe")]
+impl RetainedFunctionalSet {
+    /// The bind-only replay (census only): `replay_against`'s signature; see `replay_census::bind`.
+    /// The hints are not built: no evaluation runs.
+    #[allow(clippy::too_many_arguments)]
+    pub fn bind_against(
+        &self,
+        expected: &StructuralSystem<'_>,
+        identity: &str,
+        force_basis: ForceBasis<'_>,
+        expected_congruence: &[CongruenceMember],
+        expected_descriptors: &[FunctionalDescriptor],
+        _expected_hints: Option<HintRule<'_>>,
+        expected_contacts: &[(usize, i8, f64)],
+        relative_limit: f64,
+        budget: &mut AttemptBudget,
+    ) -> Attempt<FunctionalReplayCheck> {
+        budget.run(AttemptStage::Replay, |w, token| {
+            replay_census::bind(self, expected, identity, force_basis, expected_congruence, expected_descriptors,
+                expected_contacts, relative_limit, token, w)
+        })
+    }
+    /// The maintained test-side full replay (census only): the full replay's body on a private
+    /// ledger, operations unlimited and every other limit the retained response's. No case
+    /// ledger reads it. Returns the private charge, or the first refusal.
+    #[allow(clippy::too_many_arguments)]
+    pub fn shadow_replay(
+        &self,
+        expected: &StructuralSystem<'_>,
+        identity: &str,
+        force_basis: ForceBasis<'_>,
+        expected_congruence: &[CongruenceMember],
+        expected_descriptors: &[FunctionalDescriptor],
+        expected_hints: Option<HintRule<'_>>,
+        expected_contacts: &[(usize, i8, f64)],
+        relative_limit: f64,
+    ) -> Result<usize, String> {
+        let mut w = Work {
+            limits: Limits { operations: usize::MAX, ..self.response.limits },
+            used: 0,
+            rejected: super::WorkTotal::zero(),
+        };
+        replay_census::full_body(self, expected, identity, force_basis, expected_congruence, expected_descriptors,
+            expected_hints, expected_contacts, relative_limit, &mut w)
+            .map(|()| w.used)
+            .map_err(|e| format!("{e:?}"))
+    }
+    /// The retained-copy mutants (census only), applied after retention.
+    pub fn census_mutate(&mut self) {
+        use crate::structural::retained_api::census_probe::replay::{self as probe, Mutant};
+        let flip = |terms: &mut Vec<f64>| {
+            if let Some(i) = (0..terms.len()).max_by(|&a, &b| terms[a].abs().total_cmp(&terms[b].abs())) {
+                terms[i] = f64::from_bits(terms[i].to_bits() ^ 1);
+            }
+        };
+        match probe::mutant() {
+            Mutant::Wit => {
+                let r = &mut self.response;
+                if let Some(b) = r.witnesses.iter_mut().find(|b| b.minors.is_some()) {
+                    flip(&mut b.minors.as_mut().unwrap()[0]);
+                    probe::applied("retained witness minor");
+                } else if let Some(b) = r.witnesses.first_mut() {
+                    flip(&mut b.a);
+                    probe::applied("retained witness a");
+                }
+            }
+            Mutant::Ret => {
+                if let Some(i) = self.values.iter().position(|r| !r.numerator.terms.is_empty()) {
+                    flip(&mut self.values[i].numerator.terms);
+                    probe::applied(&format!("retained functional ratio {i}"));
+                }
+            }
+            Mutant::Proj => {
+                if let Some(p) = self.projections.iter_mut().find(|p| p.value != 0.0 && p.value.is_finite()) {
+                    p.value = p.value.next_up();
+                    probe::applied(&format!("retained functional projection {}", p.index));
+                }
+            }
+            Mutant::Label => {
+                if let Some(p) = self.projections.first_mut() {
+                    p.relative_limit = 1e-8;
+                    probe::applied("retained functional projection 0 label");
+                }
+            }
+            Mutant::ContactRet => {
+                let r = &mut self.response;
+                if let (Some(u), Some(f)) = (r.displacement.first().cloned(), r.reactions.first().cloned()) {
+                    let (ps, rs) = (u.sign(), f.sign());
+                    r.contacts.push(RetainedContact {
+                        dof: 0,
+                        sense: 1,
+                        gap: 0.0,
+                        prescribed: r.source.prescribed.iter().find(|(i, _)| *i == 0).map(|(_, v)| *v),
+                        penetration: u,
+                        normalized_reaction: f,
+                        penetration_sign: ps,
+                        reaction_sign: rs,
+                    });
+                    probe::applied("fabricated retained contact on DOF 0");
+                }
+            }
+            _ => {}
         }
     }
 }
