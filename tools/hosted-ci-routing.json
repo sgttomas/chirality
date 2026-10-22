@@ -293,7 +293,7 @@
       "core/rules/rule_check_runner/Cargo.toml": "74ab4cfa6825b9eb33c4e15e01685bd1cb25cfffcde10e6eeb1ce3973fdb2007",
       "core/rules/rule_pack_document/Cargo.toml": "8e04c4f958b0bd88e05885fa77b9d5311240e913481b54a968e71e90068d59c5",
       "core/rules/rule_pack_lifecycle/Cargo.toml": "811d32918f3d13d8d2a9115ebb6ce9b0243078626bc426d8dbd97224eb2dbd56",
-      "core/runner/headless/Cargo.toml": "6c50c400118d8ca5054fab49a6845021bc454f2af8de253ebb6e510f3774945c",
+      "core/runner/headless/Cargo.toml": "465e04378b45e7a2c80faccc52a729d0d3560bba5c880e064c2e01557ed054d3",
       "core/serialization/canonical_json/Cargo.toml": "fb2259bdfcb6adebc877b46e4e1b3126fdf1b08c0b6441a5e4ba49ab75e670a0",
       "core/solver/curved_bend/Cargo.toml": "5d7cf1288eac698c209aa4fd7493fa669aa57494950e75374ac07248001502d8",
       "core/solver/diagnostics/Cargo.toml": "11db1409fcfd3b0312ef80085e36eac4d7a66eb0f4298832137119835b1c92e8",
@@ -1273,6 +1273,12 @@
               "fixtures/results/pressure_load_state_pressure_sparse.analysis_run.json",
               "fixtures/results/pressure_load_state_pressure_sparse.document.json",
               "fixtures/results/pressure_load_state_pressure_sparse.stress_neutral.json",
+              "fixtures/results/pressure_plain_connected_dense.analysis_run.json",
+              "fixtures/results/pressure_plain_connected_dense.document.json",
+              "fixtures/results/pressure_plain_connected_dense.stress_neutral.json",
+              "fixtures/results/pressure_plain_connected_sparse.analysis_run.json",
+              "fixtures/results/pressure_plain_connected_sparse.document.json",
+              "fixtures/results/pressure_plain_connected_sparse.stress_neutral.json",
               "fixtures/results/pressure_source_load_state_eigen_motion_dense.analysis_run.json",
               "fixtures/results/pressure_source_load_state_eigen_motion_dense.document.json",
               "fixtures/results/pressure_source_load_state_eigen_motion_dense.stress_neutral.json",
@@ -1303,6 +1309,12 @@
               "fixtures/results/pressure_source_load_state_n06_sparse.analysis_run.json",
               "fixtures/results/pressure_source_load_state_n06_sparse.document.json",
               "fixtures/results/pressure_source_load_state_n06_sparse.stress_neutral.json",
+              "fixtures/results/pressure_source_plain_n05_dense.analysis_run.json",
+              "fixtures/results/pressure_source_plain_n05_dense.document.json",
+              "fixtures/results/pressure_source_plain_n05_dense.stress_neutral.json",
+              "fixtures/results/pressure_source_plain_n05_sparse.analysis_run.json",
+              "fixtures/results/pressure_source_plain_n05_sparse.document.json",
+              "fixtures/results/pressure_source_plain_n05_sparse.stress_neutral.json",
               "fixtures/results/pressure_source_reader_corpus.json",
               "fixtures/results/pressure_thermal_ui_mechanics_dense.json",
               "fixtures/results/pressure_thermal_ui_mechanics_sparse.json",
@@ -3230,7 +3242,7 @@
         ]
       },
       "core/runner/headless/tests/physics_source_connected.rs": {
-        "sha256": "c8e30dbbac377680de328005764525588dcda1c34d820ba98899e11c7c442ce5",
+        "sha256": "d80d50765e20d3af2cb69269422a18275a5056a96f091371d85fc20b3f268652",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
@@ -3251,6 +3263,14 @@
               "fixtures/product_preview/pressure_source/physics_source/n06-dense_scrutiny.raw.json",
               "fixtures/product_preview/pressure_source/physics_source/n06-sparse_interactive.raw.json",
               "fixtures/product_preview/pressure_source/physics_source/n06.request.json"
+            ]
+          },
+          {
+            "anchor": "../../../fixtures/results/pressure_source_plain_n05_{short}.document.json",
+            "base": "manifest",
+            "files": [
+              "fixtures/results/pressure_source_plain_n05_dense.document.json",
+              "fixtures/results/pressure_source_plain_n05_sparse.document.json"
             ]
           }
         ]
@@ -4510,6 +4530,12 @@
               "fixtures/results/pressure_load_state_pressure_sparse.analysis_run.json",
               "fixtures/results/pressure_load_state_pressure_sparse.document.json",
               "fixtures/results/pressure_load_state_pressure_sparse.stress_neutral.json",
+              "fixtures/results/pressure_plain_connected_dense.analysis_run.json",
+              "fixtures/results/pressure_plain_connected_dense.document.json",
+              "fixtures/results/pressure_plain_connected_dense.stress_neutral.json",
+              "fixtures/results/pressure_plain_connected_sparse.analysis_run.json",
+              "fixtures/results/pressure_plain_connected_sparse.document.json",
+              "fixtures/results/pressure_plain_connected_sparse.stress_neutral.json",
               "fixtures/results/pressure_source_load_state_eigen_motion_dense.analysis_run.json",
               "fixtures/results/pressure_source_load_state_eigen_motion_dense.document.json",
               "fixtures/results/pressure_source_load_state_eigen_motion_dense.stress_neutral.json",
@@ -4540,6 +4566,12 @@
               "fixtures/results/pressure_source_load_state_n06_sparse.analysis_run.json",
               "fixtures/results/pressure_source_load_state_n06_sparse.document.json",
               "fixtures/results/pressure_source_load_state_n06_sparse.stress_neutral.json",
+              "fixtures/results/pressure_source_plain_n05_dense.analysis_run.json",
+              "fixtures/results/pressure_source_plain_n05_dense.document.json",
+              "fixtures/results/pressure_source_plain_n05_dense.stress_neutral.json",
+              "fixtures/results/pressure_source_plain_n05_sparse.analysis_run.json",
+              "fixtures/results/pressure_source_plain_n05_sparse.document.json",
+              "fixtures/results/pressure_source_plain_n05_sparse.stress_neutral.json",
               "fixtures/results/pressure_source_reader_corpus.json",
               "fixtures/results/pressure_thermal_ui_mechanics_dense.json",
               "fixtures/results/pressure_thermal_ui_mechanics_sparse.json",
@@ -4847,6 +4879,25 @@
           "kind": "audited-external-inputs",
           "reason": "The cfg(test) O4 declared-problem dump hook (o4_source_dump_writes_a_requested_case) reads the request file named by SWBPIPE_O4_SOURCE_DUMP_REQUEST only when SWBPIPE_O4_SOURCE_DUMP_OUT is also set, and writes the dump there; it has no repository default and no product-input read. Repository inputs are declared below: the twelve committed source requests, their 24 raw publications and the O4 controls fixture."
         }
+      },
+      "core/runner/headless/tests/pressure_export.rs": {
+        "sha256": "d0cce4810964f80c09017945599e9ab3964f27663d0355a45476cb2e8fb1e19c",
+        "source_trees": [
+          "core/runner/headless/Cargo.toml"
+        ],
+        "inputs": [
+          {
+            "anchor": "../../..",
+            "base": "manifest",
+            "files": [
+              "core/product_physics/tests/fixtures/exact_pressure_connected_request.json",
+              "fixtures/results/pressure_connected_mechanics_dense.json",
+              "fixtures/results/pressure_connected_mechanics_sparse.json",
+              "fixtures/results/pressure_plain_connected_dense.document.json",
+              "fixtures/results/pressure_plain_connected_sparse.document.json"
+            ]
+          }
+        ]
       }
     }
   },
