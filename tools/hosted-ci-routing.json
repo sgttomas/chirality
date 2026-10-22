@@ -287,7 +287,7 @@
       "core/reporting/report_package/Cargo.toml": "8c981453733fffd76fd3458dbfd852524c590a241c8b286013907b00f503c4aa",
       "core/reporting/report_renderer/Cargo.toml": "fe19d0718b26f7d82c0ee8449eb5746561f7887b8eb7dd6e95de26dce192fde8",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
-      "core/reporting/result_export/Cargo.toml": "db41c397e80c0e012af70cdb93be1e91a9cb1465ec587b589411a7397c4339e3",
+      "core/reporting/result_export/Cargo.toml": "9bd2588b09c560ce5fc601458325b554ec3f0302b3abde53eb8dd30cfd7663b0",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "3784dc3caabb41d3ba781c2a3e19332fe50852713b66b0227fac95f75131eabb",
       "core/rules/rule_check_runner/Cargo.toml": "74ab4cfa6825b9eb33c4e15e01685bd1cb25cfffcde10e6eeb1ce3973fdb2007",
@@ -2682,7 +2682,7 @@
         ]
       },
       "core/reporting/result_export/tests/retained_precision_derivative_golden.rs": {
-        "sha256": "8c323fbfe26dc3e625e97759afc26f8bdb6a6f2271169617fc4043d644732604",
+        "sha256": "b09e6ee5e89dd701140c8be44aad770f5c47e870bd610f6dfd560ae2fce59c17",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
