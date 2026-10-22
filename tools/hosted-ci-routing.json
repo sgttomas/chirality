@@ -4690,6 +4690,7 @@
               "core/product_physics/tests/fixtures/exact_pressure_connected_request.json",
               "core/product_physics/tests/fixtures/kd5_maximum_u_line.json",
               "core/product_physics/tests/fixtures/load_reference_states/reference_cases.json",
+              "core/product_physics/tests/fixtures/pre04_failure_unification/pexact_a_r1e-08_zero_timo.request.json",
               "core/product_physics/tests/fixtures/pressure_reference/NEAR_FIXED_EXPECTATIONS.json",
               "core/product_physics/tests/fixtures/pressure_reference/NEAR_INCOMPRESSIBLE_EXPECTATIONS.json",
               "core/product_physics/tests/fixtures/pressure_reference/NEAR_ROTATION_EXPECTATIONS.json",
