@@ -12,6 +12,9 @@
     "piping": {
       "description": "Piping build, unit tests and core workflow smoke"
     },
+    "piping-desktop": {
+      "description": "Full piping desktop behavioural suite (Vitest), selected by hosted_ci.py from the inputs it reads or compiles into its wasm engines"
+    },
     "piping-numerical": {
       "description": "Piping numerical oracle and kernel checks"
     },

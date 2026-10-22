@@ -7,7 +7,8 @@ import sys
 import unittest
 from unittest.mock import patch
 
-from hosted_ci import aggregate, make_plan, select_paths, validate_plan, numerical_plan, ROOT as SOURCE_ROOT, SUITES
+from hosted_ci import (aggregate, desktop_plan, make_plan, select_paths, validate_plan, numerical_plan,
+                       ROOT as SOURCE_ROOT, SUITES, WASM_ENGINE_CRATES)
 
 PROFILE = json.loads((Path(__file__).resolve().parents[1] / "hosted-ci-routing.json").read_text())
 
@@ -56,7 +57,8 @@ class HostedCITests(unittest.TestCase):
         self.commit()
         # This temporary Git fixture models a diff, not a product checkout.
         # Supply the actual repository source graph for its records-only paths.
-        with patch('hosted_ci.numerical_plan', side_effect=lambda root, paths, profile: numerical_plan(SOURCE_ROOT, paths, profile)):
+        with patch('hosted_ci.numerical_plan', side_effect=lambda root, paths, profile: numerical_plan(SOURCE_ROOT, paths, profile)), \
+             patch('hosted_ci.desktop_plan', side_effect=lambda root, *args: desktop_plan(SOURCE_ROOT, *args)):
             self.assertEqual(self.plan()["modes"], modes(**{"app-v4": "full"}))
 
     def test_project_records_including_json_do_not_run_product_suites(self):
@@ -133,7 +135,8 @@ class HostedCITests(unittest.TestCase):
             ("projects/pec/new-input.bin", modes()),
             ("unknown-root-input.bin", dict.fromkeys(SUITES, "full")),
             ("projects/chirality-app-v4/unmapped/new-code.bin", modes(**{"app-v4": "full"})),
-            ("projects/chirality-piping/new-code.bin", modes(piping="full", **{"piping-numerical": "full", "piping-python": "full"})),
+            # An unmatched project input also selects the full desktop suite.
+            ("projects/chirality-piping/new-code.bin", modes(piping="full", **{"piping-desktop": "full", "piping-numerical": "full", "piping-python": "full"})),
         ]:
             selection = select_paths([path], PROFILE)
             self.assertEqual(selection["unmatched_paths"], [] if path.startswith(("projects/chirality-app-dev/", "projects/pec/")) else [path])
@@ -224,8 +227,54 @@ class HostedCITests(unittest.TestCase):
             validate_plan(self.root, changed)
 
     def test_piping_cache_control_does_not_expand_unrelated_app_coverage(self):
+        # The browser result it keys now covers the desktop suite too.
         self.assertEqual(select_paths(['tools/software_workflow/result_cache.py'], PROFILE)['modes'],
-                         modes(piping='full', **{'piping-numerical': 'full', 'piping-python': 'full'}))
+                         modes(piping='full', **{'piping-desktop': 'full', 'piping-numerical': 'full', 'piping-python': 'full'}))
+
+    def test_desktop_suite_follows_the_inputs_it_reads_or_compiles(self):
+        project = 'projects/chirality-piping/'
+        for path, kind in [
+            ('apps/desktop/src/App.tsx', 'desktop-source-reference'),
+            ('apps/desktop/package.json', 'desktop-source-reference'),
+            ('package-lock.json', 'desktop-input'),
+            ('fixtures/results/new.json', 'desktop-source-reference'),
+            ('validation/references/t3_r1/new.json', 'desktop-input'),
+            # Docs that desktop tests read are selected although docs select no product job.
+            ('docs/BUILD_AND_RELEASE.md', 'desktop-source-reference'),
+            # Python a desktop test reads as text.
+            ('core/analysis_runs/compatibility.py', 'desktop-source-reference'),
+            # Rust compiled into the wasm engines, and a file one of them includes.
+            ('core/loads/primitive_loads/src/lib.rs', 'wasm-engine-source'),
+            ('core/loads/self_weight_wasm/tests/fixtures/applied_self_weight_v1.json', 'desktop-input'),
+            ('validation/benchmarks/numerical_robustness/src/exact.rs', 'wasm-engine-compile-read'),
+        ]:
+            with self.subTest(path=path):
+                selection = select_paths([project + path], PROFILE)
+                self.assertEqual(selection['modes']['piping-desktop'], 'full')
+                self.assertEqual(selection['modes']['piping'], 'full')
+                self.assertEqual(selection['piping_desktop_selection']['reasons'], [{'path': project + path, 'kind': kind}])
+        for paths in [
+            # Python-only: tests and tools the desktop suite neither names nor runs.
+            ['tests/test_export_public_openpipestress.py', 'tools/release/run_evidence_sweep.py'],
+            # Rust-only: crates outside the wasm engines' normal/build dependencies.
+            ['core/solver/performance_harness/src/lib.rs', 'core/reporting/report_package/src/lib.rs'],
+            ['docs/note.md'],
+        ]:
+            with self.subTest(paths=paths):
+                selection = select_paths([project + path for path in paths], PROFILE)
+                self.assertEqual(selection['modes']['piping-desktop'], 'not-applicable')
+                self.assertEqual(selection['piping_desktop_selection']['classification'], 'not-applicable')
+
+    def test_desktop_selection_fails_toward_the_full_suite(self):
+        selection = select_paths(['projects/chirality-piping/tests/test_export_public_openpipestress.py'], PROFILE, self.root)
+        self.assertEqual(selection['modes']['piping-desktop'], 'full')
+        self.assertEqual(selection['piping_desktop_selection']['classification'], 'full-fallback')
+
+    def test_wasm_engine_crates_are_the_ones_the_desktop_build_compiles(self):
+        script = (SOURCE_ROOT / 'projects/chirality-piping/apps/desktop/scripts/build-wasm-engine.mjs').read_text()
+        for manifest in WASM_ENGINE_CRATES:
+            segments = Path(manifest).parent.parts
+            self.assertIn(', '.join(f'"{part}"' for part in segments), script)
 
     def test_desktop_resource_table_cannot_hide_new_unknown_fixture(self):
         profile = json.loads(json.dumps(PROFILE))
