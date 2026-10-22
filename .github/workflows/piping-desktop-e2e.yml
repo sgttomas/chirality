@@ -107,7 +107,9 @@ jobs:
         working-directory: projects/chirality-piping
       - name: Core browser journey and save/reopen
         if: steps.verified.outputs.cache-hit != 'true'
-        run: npm run test:e2e:desktop -- --project=chromium-desktop r2-smoke.spec.ts b3b-project-persistence.spec.ts rotation-glyph.spec.ts
+        # As the broad matrix: pass Playwright's arguments through the workspace script itself (the root
+        # script's nested npm would swallow --project). Both projects, as this lane has always run.
+        run: npm run test:e2e --workspace apps/desktop -- --project=chromium-desktop --project=chromium-compact r2-smoke.spec.ts b3b-project-persistence.spec.ts rotation-glyph.spec.ts
         working-directory: projects/chirality-piping
       - uses: actions/upload-artifact@v4
         if: failure()
