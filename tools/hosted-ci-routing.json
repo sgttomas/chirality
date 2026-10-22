@@ -3272,6 +3272,14 @@
               "fixtures/product_preview/pressure_source/physics_source/n06-sparse_interactive.raw.json",
               "fixtures/product_preview/pressure_source/physics_source/n06.request.json"
             ]
+          },
+          {
+            "anchor": "../../../fixtures/results/pressure_source_plain_n05_{short}.document.json",
+            "base": "manifest",
+            "files": [
+              "fixtures/results/pressure_source_plain_n05_dense.document.json",
+              "fixtures/results/pressure_source_plain_n05_sparse.document.json"
+            ]
           }
         ]
       },
