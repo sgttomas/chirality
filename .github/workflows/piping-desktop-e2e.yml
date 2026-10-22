@@ -255,7 +255,9 @@ jobs:
             !/projects/*/execution/
           sparse-checkout-cone-mode: false
       - uses: ./.github/actions/setup-piping-e2e
-      - run: npm run test:e2e:desktop -- --shard=${{ matrix.shard }}/4
+      # The root script nests a second `npm run`, which takes `--shard` as its own option; pass it
+      # through the workspace script itself so Playwright receives it.
+      - run: npm run test:e2e --workspace apps/desktop -- --shard=${{ matrix.shard }}/4
         working-directory: projects/chirality-piping
       - uses: actions/upload-artifact@v4
         if: failure()
