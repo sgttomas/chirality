@@ -330,10 +330,12 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
           filter: blob:none
+          # The release-readiness tests read the approved dependency graph.
           sparse-checkout: |
             /*
             !/execution/
             !/projects/*/execution/
+            /projects/chirality-piping/execution/_DAG/
           sparse-checkout-cone-mode: false
       - uses: actions/setup-python@v5
         with:
