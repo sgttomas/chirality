@@ -8,10 +8,13 @@ import pytest
 
 from render_dispatch_briefs import (  # noqa: E402
     main,
+    parse_rendered_brief,
+    parse_required_brief_fields,
     render_concordance_verify_brief,
     render_package_brief,
     render_section_brief,
     validate_full_engineering_rules,
+    validate_brief,
 )
 from build_section_map import parse_manifest  # noqa: E402
 
@@ -66,13 +69,25 @@ def test_package_brief_supersession_propagation(tmp_path):
 def test_verify_brief_rendering(tmp_path):
     paths = {
         "sections_root": tmp_path / "sections",
-        "concordance_register": tmp_path / "_Planning" / "Publication_Concordance_Register.csv",
+        "section_map": tmp_path / "_Planning" / "Section_Map.csv",
         "rules": tmp_path / "_Planning" / "Publication_Rules.md",
         "input_manifest": tmp_path / "_Planning" / "Publication_Input_Manifest.md",
     }
-    brief = render_concordance_verify_brief(tmp_path / "package" / "RUN", paths)
-    assert "Workflow: dbm-concordance-verify" in brief
-    assert "Publication_Concordance_Verification_Findings.csv" in brief
+    snapshot = tmp_path / "package" / "RUN"
+    brief = render_concordance_verify_brief(snapshot, paths)
+    contract = Path(__file__).resolve().parents[2] / "workflows" / "dbm-concordance-verify" / "CONTRACT.md"
+    validate_brief(brief, parse_required_brief_fields(contract))
+    parsed = parse_rendered_brief(brief)
+    runtime = parsed["RuntimeOverrides"]
+    assert runtime["ASSEMBLED_DBM_PATH"] == str(snapshot / "Rewritten_DBM.md")
+    assert runtime["REVIEW_OUTPUT_DIR"].rstrip("/") == str(snapshot)
+    assert runtime["REVIEW_EVIDENCE_ROOT"].rstrip("/") == str(snapshot / "review")
+    assert runtime["SECTION_MAP_PATH"] == str(paths["section_map"])
+    assert "CONCORDANCE_REGISTER_PATH" not in runtime
+    assert "CONCORDANCE_FINDINGS_PATH" not in runtime
+    assert "SOURCE_SUPERSESSION_FINDINGS_PATH" not in runtime
+    assert parsed["AllowedWriteTargets"] == parsed["ExpectedOutputs"]
+    assert len(parsed["AllowedWriteTargets"]) == 2
 
 
 def test_full_engineering_rules_reject_stale_compression(tmp_path):
@@ -97,7 +112,8 @@ def test_full_engineering_rules_reject_stale_compression(tmp_path):
         validate_full_engineering_rules(rules)
 
 
-def test_renderer_scratch_full_engineering_dispatch(monkeypatch, tmp_path):
+@pytest.mark.parametrize("legacy_register", [False, True])
+def test_renderer_scratch_full_engineering_dispatch(monkeypatch, tmp_path, legacy_register):
     execution_root = tmp_path / "Root"
     publication_root = execution_root / "_Publication" / "DBM"
     planning_root = publication_root / "_Planning"
@@ -178,10 +194,11 @@ def test_renderer_scratch_full_engineering_dispatch(monkeypatch, tmp_path):
     )
 
     register = planning_root / "Publication_Concordance_Register.csv"
-    register.write_text(
-        "AssertionKey,AssertionLabel,AuthoritySectionID,RequiredSectionIDs,ComparisonRule,ComparisonParameter\n",
-        encoding="utf-8",
-    )
+    if legacy_register:
+        register.write_text(
+            "AssertionKey,AssertionLabel,AuthoritySectionID,RequiredSectionIDs,ComparisonRule,ComparisonParameter\n",
+            encoding="utf-8",
+        )
 
     monkeypatch.setattr(
         sys,
@@ -198,8 +215,7 @@ def test_renderer_scratch_full_engineering_dispatch(monkeypatch, tmp_path):
             str(section_map),
             "--rules",
             str(rules),
-            "--concordance-register",
-            str(register),
+            *(["--concordance-register", str(register)] if legacy_register else []),
             "--dispatch-root",
             str(dispatch_root),
             "--sections-root",
@@ -215,6 +231,14 @@ def test_renderer_scratch_full_engineering_dispatch(monkeypatch, tmp_path):
 
     section_brief = (dispatch_root / "SEC-01_INIT-TASK.md").read_text(encoding="utf-8")
     package_brief = (dispatch_root / "DBM_PUBLISH_INIT-TASK.md").read_text(encoding="utf-8")
+    verify_brief = (dispatch_root / "DBM_CONCORDANCE_VERIFY_INIT-TASK.md").read_text(encoding="utf-8")
+    verify_runtime = parse_rendered_brief(verify_brief)["RuntimeOverrides"]
+    assert "ASSEMBLED_DBM_PATH" in verify_runtime
+    assert "REVIEW_EVIDENCE_ROOT" in verify_runtime
+    assert verify_runtime["SOURCE_SUPERSESSION_FINDINGS_PATH"] == str(package_root / "RUN-SCRATCH" / "Source_Supersession_Findings.csv")
+    assert ("CONCORDANCE_REGISTER_PATH" in verify_runtime) == legacy_register
+    assert ("PUBLICATION_CONCORDANCE_REGISTER_PATH:" in section_brief) == legacy_register
+    assert "CONCORDANCE_FINDINGS_PATH" not in verify_runtime
     assert "DBM_OUTPUT_MODE: FULL_ENGINEERING_DBM" in section_brief
     assert "DBM_OUTPUT_MODE: FULL_ENGINEERING_DBM" in package_brief
     assert f"SUPERSESSION_MAP_PATH: {supersession_map}" in section_brief
