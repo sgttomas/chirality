@@ -292,9 +292,9 @@
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
       "core/reporting/result_export/Cargo.toml": "9bd2588b09c560ce5fc601458325b554ec3f0302b3abde53eb8dd30cfd7663b0",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
-      "core/rules/expression_evaluator/Cargo.toml": "3784dc3caabb41d3ba781c2a3e19332fe50852713b66b0227fac95f75131eabb",
+      "core/rules/expression_evaluator/Cargo.toml": "7018210dadfb7c2b855298730f5f8cddedbe09f7f03b05421b81c3694f873b18",
       "core/rules/rule_check_runner/Cargo.toml": "74ab4cfa6825b9eb33c4e15e01685bd1cb25cfffcde10e6eeb1ce3973fdb2007",
-      "core/rules/rule_pack_document/Cargo.toml": "8e04c4f958b0bd88e05885fa77b9d5311240e913481b54a968e71e90068d59c5",
+      "core/rules/rule_pack_document/Cargo.toml": "80528ccb5537228460583e50aabf58a676192a6802207b0df3c4afba01dc8688",
       "core/rules/rule_pack_lifecycle/Cargo.toml": "811d32918f3d13d8d2a9115ebb6ce9b0243078626bc426d8dbd97224eb2dbd56",
       "core/runner/headless/Cargo.toml": "465e04378b45e7a2c80faccc52a729d0d3560bba5c880e064c2e01557ed054d3",
       "core/serialization/canonical_json/Cargo.toml": "fb2259bdfcb6adebc877b46e4e1b3126fdf1b08c0b6441a5e4ba49ab75e670a0",
@@ -2898,7 +2898,7 @@
         ]
       },
       "core/rules/expression_evaluator/tests/conformance_corpus.rs": {
-        "sha256": "469c32866b3f85237168253ad0ca8b2109237589144316e53bede2744b627fe6",
+        "sha256": "a896a9f8abb06c1151a7ba8049f67b6956640656ce2ee973d19cc8d4c4ab7403",
         "source_trees": [
           "core/rules/expression_evaluator/Cargo.toml"
         ],
@@ -3126,7 +3126,7 @@
         ]
       },
       "core/rules/rule_pack_document/tests/invented_demo_document.rs": {
-        "sha256": "26179e710dccb2caa6ab9039c30f265f3a726cc00e66374118c470858b4f14e6",
+        "sha256": "15bdd76058ba7a28e8f1f3a89c3935537944e114405f6a67740961c349c66386",
         "source_trees": [
           "core/rules/rule_pack_document/Cargo.toml"
         ],
