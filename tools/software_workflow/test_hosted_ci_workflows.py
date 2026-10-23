@@ -71,3 +71,31 @@ def test_python_gate_and_result_are_independent_of_cargo():
     assert aggregate['env']['PYTHON_MODE'] == '${{ needs.selection.outputs.python_mode }}'
     assert 'aggregate --suite piping-python --mode "$PYTHON_MODE"' in aggregate['run']
     assert set(jobs['desktop-e2e']['needs']) == {'selection', 'product', 'numerical', 'python-product'}
+
+
+def test_selected_desktop_suite_runs_in_the_required_product_job_and_keys_its_reuse(tmp_path):
+    import os
+    import subprocess
+    import sys
+    jobs = workflow('piping-desktop-e2e.yml')['jobs']
+    assert jobs['selection']['outputs']['desktop_mode'] == '${{ steps.numeric.outputs.desktop_mode }}'
+    steps = jobs['product']['steps']
+    desktop = next(s for s in steps if s.get('name') == 'Desktop behaviour (including persistence and undo)')
+    assert desktop['run'] == 'npm run test:desktop'
+    assert desktop['if'] == "steps.verified.outputs.cache-hit != 'true' && needs.selection.outputs.desktop_mode == 'full'"
+    key = next(s for s in steps if s.get('id') == 'result-key')
+    assert key['env']['DESKTOP_MODE'] == '${{ needs.selection.outputs.desktop_mode }}'
+    assert '--desktop-mode "$DESKTOP_MODE"' in key['run']
+    aggregate = jobs['desktop-e2e']['steps'][-1]
+    assert aggregate['env']['DESKTOP_MODE'] == '${{ needs.selection.outputs.desktop_mode }}'
+    assert 'aggregate --suite piping-desktop --mode "$DESKTOP_MODE" --selection "$SELECTION" --product "$PRODUCT"' in aggregate['run']
+    # A browser pass recorded without the desktop suite cannot be reused for a run that needs it.
+    env = {**os.environ, 'GITHUB_OUTPUT': str(tmp_path / 'out'), 'ImageOS': 'ubuntu24', 'ImageVersion': '1',
+           'RUNNER_OS': 'Linux', 'RUNNER_ARCH': 'X64'}
+    command = [sys.executable, str(ROOT / 'tools/software_workflow/result_cache.py'), 'key', '--suite', 'browser',
+               '--record', str(tmp_path / 'record.json')]
+    keys = {}
+    for mode in ('full', 'not-applicable'):
+        keys[mode] = subprocess.run(command + ['--desktop-mode', mode], env=env, capture_output=True, text=True, check=True).stdout
+    assert keys['full'] != keys['not-applicable']
+    assert subprocess.run(command, env=env, capture_output=True).returncode != 0

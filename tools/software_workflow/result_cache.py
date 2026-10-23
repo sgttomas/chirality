@@ -35,11 +35,18 @@ def main():
     parser.add_argument('action', choices=['key', 'save', 'reuse'])
     parser.add_argument('--suite', choices=['numerical', 'browser'], required=True)
     parser.add_argument('--plan', type=Path)
+    parser.add_argument('--desktop-mode', choices=['full', 'not-applicable'])
     parser.add_argument('--record', type=Path, required=True)
     args = parser.parse_args()
     if args.action == 'key':
         commands = ['production-build', 'chromium-desktop:r2-smoke,b3b-project-persistence,rotation-glyph']
         selection = None
+        if args.suite == 'browser':
+            # A pass without the full desktop suite cannot stand for one with it.
+            if args.desktop_mode is None:
+                raise SystemExit('Browser verification key needs the desktop selection')
+            if args.desktop_mode == 'full':
+                commands.insert(0, 'desktop-test')
         if args.suite == 'numerical':
             path = ROOT / 'projects/chirality-piping/tools/ci/numerical_ci.py'
             spec = importlib.util.spec_from_file_location('numerical_cache_plan', path)

@@ -3,18 +3,30 @@
 from __future__ import annotations
 
 import argparse
+import functools
 import json
 import importlib.util
 import os
-from pathlib import Path
+from pathlib import Path, PurePosixPath
+import re
 import subprocess
+import tomllib
 
 from select_affected_checks import select_checks
 from software_workflow_common import load_profile, matches
 
 ROOT = Path(__file__).resolve().parents[2]
 PROFILE = ROOT / "tools/hosted-ci-routing.json"
-SUITES = ("app-v4", "piping", "piping-numerical", "piping-python")
+SUITES = ("app-v4", "piping", "piping-desktop", "piping-numerical", "piping-python")
+PIPING = "projects/chirality-piping/"
+# The crates `apps/desktop/scripts/build-wasm-engine.mjs` compiles into the
+# engines the desktop suite executes.
+WASM_ENGINE_CRATES = ("core/model_operations/operation_applier/Cargo.toml", "core/loads/self_weight_wasm/Cargo.toml")
+DESKTOP_SOURCES = "apps/desktop/src"
+# A project-relative path written in desktop source, cut at a template,
+# glob, query or fragment; `core/units catalog` names `core/units`.
+PROJECT_PATH = re.compile(r"(?<![\w./-])((?:api|apps|core|docs|examples|fixtures|governance|provenance|schemas|tests|tools|validation)/[^\s'\"`$*?#]*)")
+RELATIVE_PATH = re.compile(r"['\"`]((?:\.\./)+[^\s'\"`$*?#]+)")
 
 
 def git(root: Path, *args: str) -> str:
@@ -66,6 +78,122 @@ def numerical_plan(root: Path, paths: list[str] | None, profile: dict) -> dict:
                 "reasons": [], "fallback_reasons": [str(exc)]}
 
 
+# One selection run reads one checkout; scan it once.
+@functools.lru_cache(maxsize=None)
+def wasm_engine_inputs(root: Path) -> tuple[frozenset[str], frozenset[str]]:
+    """Crate directories and exact files the wasm engines compile from.
+
+    Follows normal and build path dependencies; dev dependencies are not
+    compiled into the engines. Compile reads are the literal `include*!` and
+    `#[path]` targets in each crate's `src/` and `build.rs`, including test
+    modules there (a superset). A read that is not a literal fails selection.
+    """
+    module = numerical_module(root)
+    project = (root / PIPING).resolve()
+    closure: set[Path] = set()
+    pending = [Path(m) for m in WASM_ENGINE_CRATES]
+    while pending:
+        manifest = pending.pop()
+        if manifest in closure:
+            continue
+        if manifest.parts[:1] == ("..",) or not (project / manifest).is_file():
+            raise ValueError("Unresolved wasm engine crate: " + manifest.as_posix())
+        closure.add(manifest)
+        data = tomllib.loads((project / manifest).read_text())
+        tables = [data.get(key, {}) for key in ("dependencies", "build-dependencies")]
+        tables += [target.get(key, {}) for target in data.get("target", {}).values()
+                   for key in ("dependencies", "build-dependencies")]
+        for table in tables:
+            for name, spec in table.items():
+                if isinstance(spec, dict) and spec.get("workspace") is True:
+                    raise ValueError("Unresolved inherited wasm engine dependency: " + name)
+                if isinstance(spec, dict) and "path" in spec:
+                    target = (project / manifest.parent / spec["path"] / "Cargo.toml").resolve()
+                    pending.append(Path(os.path.relpath(target, project)))
+    reads = set()
+    for manifest in closure:
+        crate = project / manifest.parent
+        sources = sorted((crate / "src").rglob("*.rs")) + [p for p in [crate / "build.rs"] if p.is_file()]
+        seen = set()
+        while sources:
+            source = sources.pop()
+            if source in seen:
+                continue
+            seen.add(source)
+            code = module.rust_source(source.read_text())
+            syntax = module.RUST_STRING.sub(lambda m: " " * len(m.group()), code)
+            for match in re.finditer(r"\binclude(?:_str|_bytes)?\s*!\s*\(|#\s*\[\s*path\s*=", syntax):
+                start = match.end()
+                while start < len(code) and code[start].isspace():
+                    start += 1
+                literal = module.RUST_STRING.match(code, start)
+                if not literal:
+                    raise ValueError("Unresolved wasm engine compile read in " + source.relative_to(project).as_posix())
+                target = (source.parent / module.rust_literal(literal.group())).resolve()
+                if not target.is_relative_to(project) or not target.is_file():
+                    raise ValueError("Unresolved wasm engine compile read: " + str(target))
+                reads.add(target.relative_to(project).as_posix())
+                if not match.group().startswith("include"):
+                    sources.append(target)
+    return frozenset(m.parent.as_posix() for m in closure), frozenset(reads)
+
+
+@functools.lru_cache(maxsize=None)
+def desktop_references(root: Path) -> frozenset[str]:
+    """Project paths, or directory prefixes, that desktop source names."""
+    project = (root / PIPING).resolve()
+    sources = project / DESKTOP_SOURCES
+    if not sources.is_dir():
+        raise ValueError("Desktop sources unavailable")
+    references = set()
+    for source in sorted(sources.rglob("*")):
+        if source.suffix not in {".ts", ".tsx", ".js", ".mjs"} or not source.is_file():
+            continue
+        text = source.read_text()
+        # Prose punctuation after a named path is not part of it.
+        references.update(match.rstrip("/.,;:)") for match in PROJECT_PATH.findall(text))
+        for match in RELATIVE_PATH.findall(text):
+            target = Path(os.path.normpath(source.parent / match))
+            if target.is_relative_to(project):
+                references.add(target.relative_to(project).as_posix())
+    return frozenset(reference for reference in references if reference not in {"", "."})
+
+
+def desktop_plan(root: Path, paths: list[str], selection: dict, profile: dict) -> dict:
+    """Select the full desktop suite unless each changed input is Python or
+    Rust code that the suite neither names nor compiles into its engines."""
+    piping_paths = set(selection["reasons"].get("piping", []))
+    candidates = sorted(piping_paths | {p for p in paths if p.startswith(PIPING)})
+    if not candidates:
+        return {"classification": "not-applicable", "reasons": [], "fallback_reasons": []}
+    try:
+        crates, compile_reads = wasm_engine_inputs(root)
+        references = desktop_references(root)
+    except (ValueError, OSError, KeyError, TypeError, AttributeError, ImportError, tomllib.TOMLDecodeError) as exc:
+        return {"classification": "full-fallback", "reasons": [], "fallback_reasons": [str(exc)]}
+    reasons = []
+    for path in candidates:
+        relative = path[len(PIPING):]
+        if not path.startswith(PIPING):
+            kind = "shared-input"
+        elif any(relative == ref or relative.startswith(ref + "/") for ref in references):
+            kind = "desktop-source-reference"
+        elif path not in piping_paths:
+            continue
+        elif path in selection.get("unmatched_paths", []):
+            kind = "unmatched-input"
+        elif relative.startswith("apps/desktop/") or PurePosixPath(relative).suffix not in {".py", ".rs"}:
+            kind = "desktop-input"
+        elif relative in compile_reads:
+            kind = "wasm-engine-compile-read"
+        elif any(relative.startswith(crate + "/") for crate in crates):
+            kind = "wasm-engine-source"
+        else:
+            continue
+        reasons.append({"path": path, "kind": kind})
+    return {"classification": "reachability" if reasons else "not-applicable", "reasons": reasons, "fallback_reasons": []}
+
+
 def select_paths(paths: list[str], profile: dict, root: Path = ROOT) -> dict:
     selection = select_checks(profile, paths)
     checks = set(selection["checks"])
@@ -94,6 +222,16 @@ def select_paths(paths: list[str], profile: dict, root: Path = ROOT) -> dict:
             checks.discard("piping-numerical")
         selection["piping_numerical_selection"] = numerical
         selection["checks"] = sorted(checks)
+    desktop = desktop_plan(root, paths, selection, profile)
+    if desktop["classification"] != "not-applicable":
+        # The product job runs the desktop suite, so it is selected too.
+        checks.update(("piping", "piping-desktop"))
+        selection["modes"].update({"piping": "full", "piping-desktop": "full"})
+    else:
+        checks.discard("piping-desktop")
+        selection["modes"]["piping-desktop"] = "not-applicable"
+    selection["piping_desktop_selection"] = desktop
+    selection["checks"] = sorted(checks)
     return selection
 
 
@@ -103,7 +241,9 @@ def make_plan(root: Path, profile: dict, event: str, base: str, head: str) -> di
             "target_base": base, "head": resolved_head, "base": None,
             "paths": [], "checks": list(SUITES), "reasons": {}, "unmatched_paths": [],
             "modes": {suite: "full" for suite in SUITES}, "selection_reason": "Explicit full workflow dispatch",
-            "piping_numerical_selection": numerical_plan(root, None, profile)}
+            "piping_numerical_selection": numerical_plan(root, None, profile),
+            "piping_desktop_selection": {"classification": "full-fallback", "reasons": [],
+                                         "fallback_reasons": ["Full product coverage"]}}
     if event != "pull_request":
         return plan
     try:
@@ -136,12 +276,18 @@ def validate_plan(root: Path, plan: dict) -> None:
         raise ValueError("Selection differs from the complete candidate diff or current reachability inputs")
 
 
+# Suites that run as a step of another suite's job: unselected, that job may
+# still run (and must then succeed) for its own suite.
+SHARED_PRODUCT_SUITES = {"piping-desktop"}
+
+
 def aggregate(suite: str, mode: str, selection: str, product: str, instructions: str = "skipped") -> bool:
     if selection != "success":
         return False
     if mode == "full":
         return product == "success"
-    return mode == "not-applicable" and product == "skipped" and instructions == "skipped"
+    allowed = {"skipped", "success"} if suite in SHARED_PRODUCT_SUITES else {"skipped"}
+    return mode == "not-applicable" and product in allowed and instructions == "skipped"
 
 
 def main() -> int:
