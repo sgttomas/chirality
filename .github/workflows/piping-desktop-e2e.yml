@@ -23,6 +23,7 @@ jobs:
       mode: ${{ steps.plan.outputs.mode }}
       numerical_mode: ${{ steps.numeric.outputs.mode }}
       python_mode: ${{ steps.numeric.outputs.python_mode }}
+      desktop_mode: ${{ steps.numeric.outputs.desktop_mode }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -48,7 +49,7 @@ jobs:
           import json, os
           modes = json.load(open('piping-ci-plan.json'))['modes']
           with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
-              for suite, output in [('piping-numerical', 'mode'), ('piping-python', 'python_mode')]:
+              for suite, output in [('piping-numerical', 'mode'), ('piping-python', 'python_mode'), ('piping-desktop', 'desktop_mode')]:
                   mode = modes[suite]
                   if mode not in {'full', 'not-applicable'}:
                       raise SystemExit(f'Invalid {suite} selection')
@@ -82,7 +83,9 @@ jobs:
           node-version: '24'
       - name: Fingerprint browser verification inputs
         id: result-key
-        run: python3 tools/software_workflow/result_cache.py key --suite browser --record "${{ runner.temp }}/verified-browser/result.json"
+        env:
+          DESKTOP_MODE: ${{ needs.selection.outputs.desktop_mode }}
+        run: python3 tools/software_workflow/result_cache.py key --suite browser --desktop-mode "$DESKTOP_MODE" --record "${{ runner.temp }}/verified-browser/result.json"
       - name: Restore exact successful verification
         id: verified
         if: github.event_name == 'pull_request'
@@ -97,8 +100,9 @@ jobs:
         run: python3 tools/software_workflow/result_cache.py reuse --suite browser --record "${{ runner.temp }}/verified-browser/result.json"
       - uses: ./.github/actions/setup-piping-e2e
         if: steps.verified.outputs.cache-hit != 'true'
+      # The full desktop suite, when the selection finds a desktop input in the diff.
       - name: Desktop behaviour (including persistence and undo)
-        if: github.event_name == 'workflow_dispatch'
+        if: steps.verified.outputs.cache-hit != 'true' && needs.selection.outputs.desktop_mode == 'full'
         run: npm run test:desktop
         working-directory: projects/chirality-piping
       - name: Production build
@@ -288,6 +292,7 @@ jobs:
           MODE: ${{ needs.selection.outputs.mode }}
           NUMERICAL_MODE: ${{ needs.selection.outputs.numerical_mode }}
           PYTHON_MODE: ${{ needs.selection.outputs.python_mode }}
+          DESKTOP_MODE: ${{ needs.selection.outputs.desktop_mode }}
           SELECTION: ${{ needs.selection.result }}
           PRODUCT: ${{ needs.product.result }}
           NUMERICAL: ${{ needs.numerical.result }}
@@ -296,3 +301,4 @@ jobs:
           python3 tools/software_workflow/hosted_ci.py aggregate --suite piping --mode "$MODE" --selection "$SELECTION" --product "$PRODUCT"
           python3 tools/software_workflow/hosted_ci.py aggregate --suite piping-numerical --mode "$NUMERICAL_MODE" --selection "$SELECTION" --product "$NUMERICAL"
           python3 tools/software_workflow/hosted_ci.py aggregate --suite piping-python --mode "$PYTHON_MODE" --selection "$SELECTION" --product "$PYTHON_PRODUCT_RESULT"
+          python3 tools/software_workflow/hosted_ci.py aggregate --suite piping-desktop --mode "$DESKTOP_MODE" --selection "$SELECTION" --product "$PRODUCT"
