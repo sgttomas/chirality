@@ -14,6 +14,7 @@ Apply these project conventions while using ordinary Git judgment and the author
 - Verify in proportion to consequence and confirm required checks pass on the exact head. Obtain independent scrutiny where the grant requires it. Clear blocking findings and reassess affected checks after candidate changes; a passing rerun does not establish that a known defect was repaired. Verify the source HEAD when merging.
 - Git integration, human acceptance and product release remain distinct. Explicit holds and reserved decisions apply. The grant is limited to `sgttomas/chirality`; it does not authorize protection bypasses, history rewrites, force pushes, permission changes or releases.
 - Update affected live consumers and references in the change itself. The PR description carries the change, rationale, checks and open matters; no downstream notice or receipt chain is required.
+- Delete after merge. Once a PR merges, or its work is abandoned, its owner removes what the work created: worktrees (with `git worktree remove`, so Git's records stay consistent), local branches, build output such as Cargo target directories, and scratch. Reviewers and TASKs remove their own when they return. Before removing a worktree, check it holds no uncommitted work that is still wanted. Keep only what an open review, a named consumer or a recovery need still uses, and anything the owner has asked to keep. Build output from parallel lanes fills a disk within days, so this step is not optional.
 
 For implementation and closeout in this monorepo:
 

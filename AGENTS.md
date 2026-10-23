@@ -31,7 +31,10 @@ remains accountable for acceptance and reliance.
    changes. Apply already-authorized decisions without asking again. Leave
    unchanged declarations alone; Git preserves their history.
 6. Return the usable result, checks, material findings and reserved choices.
-   Stop when the agreed result is established; do not invent closeout work.
+   Once the work is integrated, delete the worktrees, branches, build output and
+   scratch it created, unless an open review, a named consumer or a recovery need
+   still uses them. Stop when the agreed result is established; do not invent
+   other closeout work.
 
 ## Deliverables and records
 
