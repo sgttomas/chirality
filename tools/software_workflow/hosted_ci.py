@@ -276,18 +276,12 @@ def validate_plan(root: Path, plan: dict) -> None:
         raise ValueError("Selection differs from the complete candidate diff or current reachability inputs")
 
 
-# Suites that run as a step of another suite's job: unselected, that job may
-# still run (and must then succeed) for its own suite.
-SHARED_PRODUCT_SUITES = {"piping-desktop"}
-
-
 def aggregate(suite: str, mode: str, selection: str, product: str, instructions: str = "skipped") -> bool:
     if selection != "success":
         return False
     if mode == "full":
         return product == "success"
-    allowed = {"skipped", "success"} if suite in SHARED_PRODUCT_SUITES else {"skipped"}
-    return mode == "not-applicable" and product in allowed and instructions == "skipped"
+    return mode == "not-applicable" and product == "skipped" and instructions == "skipped"
 
 
 def main() -> int:

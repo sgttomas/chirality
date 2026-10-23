@@ -51,15 +51,23 @@ def test_reuse_rejects_missing_wrong_or_failed_record(tmp_path):
 
 def test_workflow_saves_only_success_and_never_restores_partial_keys():
     workflow = yaml.load((ROOT / '.github/workflows/piping-desktop-e2e.yml').read_text(), Loader=yaml.BaseLoader)
-    for job in ['product', 'numerical']:
-        steps = workflow['jobs'][job]['steps']
+    jobs = workflow['jobs']
+    # Browser verification is recorded by its own job after the product job and
+    # the desktop shards it vouches for (desktop suite sharding, 2026-10-22).
+    for job, saver, names in [('numerical', 'numerical', ['Locked Cargo numerical suite']),
+                              ('product', 'browser-record', ['Production build', 'Core browser journey and save/reopen']),
+                              ('desktop', 'browser-record', ['Desktop behaviour (including persistence and undo)'])]:
+        steps = jobs[job]['steps']
         restore = next(s for s in steps if s.get('uses') == 'actions/cache/restore@v4')
         assert restore['if'] == "github.event_name == 'pull_request'"
         assert 'restore-keys' not in restore['with']
-        save = next(s for s in steps if s.get('uses') == 'actions/cache/save@v4')
+        saver_steps = jobs[saver]['steps']
+        save = next(s for s in saver_steps if s.get('uses') == 'actions/cache/save@v4')
         assert 'success()' in save['if']
         assert save['with']['key'] == restore['with']['key']
-        for name in ['Locked Cargo numerical suite'] if job == 'numerical' else ['Production build', 'Core browser journey and save/reopen']:
+        saver_restore = next(s for s in saver_steps if s.get('uses') == 'actions/cache/restore@v4')
+        assert 'restore-keys' not in saver_restore['with']
+        for name in names:
             step = next(s for s in steps if s.get('name') == name)
             assert step['if'] == "steps.verified.outputs.cache-hit != 'true'"
 
