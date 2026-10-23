@@ -108,6 +108,17 @@ jobs:
         if: steps.verified.outputs.cache-hit != 'true'
         run: npm run test:e2e:desktop -- --project=chromium-desktop r2-smoke.spec.ts b3b-project-persistence.spec.ts rotation-glyph.spec.ts
         working-directory: projects/chirality-piping
+      - name: Publish the verified key
+        if: success()
+        env:
+          RESULT_KEY: ${{ steps.result-key.outputs.key }}
+        run: mkdir -p "${{ runner.temp }}/browser-key" && printf '%s' "$RESULT_KEY" > "${{ runner.temp }}/browser-key/key"
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: browser-key-product
+          path: ${{ runner.temp }}/browser-key/key
+          retention-days: 1
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
@@ -169,10 +180,22 @@ jobs:
         if: steps.verified.outputs.cache-hit != 'true'
         run: npm test --workspace apps/desktop -- --shard=${{ matrix.shard }}/2
         working-directory: projects/chirality-piping
+      - name: Publish the verified key
+        if: success()
+        env:
+          RESULT_KEY: ${{ steps.result-key.outputs.key }}
+        run: mkdir -p "${{ runner.temp }}/browser-key" && printf '%s' "$RESULT_KEY" > "${{ runner.temp }}/browser-key/key"
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: browser-key-desktop-${{ matrix.shard }}
+          path: ${{ runner.temp }}/browser-key/key
+          retention-days: 1
 
   browser-record:
     # A reused pass vouches for the browser journey and every selected desktop
-    # shard, so it is recorded only after all of them succeed.
+    # shard. It is recorded only after all of them succeed, and only under the
+    # key each of them actually ran with.
     name: Record browser verification
     needs: [selection, product, desktop]
     if: >-
@@ -190,28 +213,32 @@ jobs:
             !/execution/
             !/projects/*/execution/
           sparse-checkout-cone-mode: false
-      - uses: actions/setup-node@v4
+      - uses: actions/download-artifact@v4
         with:
-          node-version: '24'
-      - name: Fingerprint browser verification inputs
+          pattern: browser-key-*
+          path: ${{ runner.temp }}/browser-keys
+      - name: Require one key across the verifiers
         id: result-key
         env:
           DESKTOP_MODE: ${{ needs.selection.outputs.desktop_mode }}
-        run: python3 tools/software_workflow/result_cache.py key --suite browser --desktop-mode "$DESKTOP_MODE" --record "${{ runner.temp }}/verified-browser/result.json"
+        run: |
+          expect=(--expect product)
+          if [ "$DESKTOP_MODE" = full ]; then expect+=(--expect desktop-1 --expect desktop-2); fi
+          python3 tools/software_workflow/result_cache.py agree --suite browser --keys-dir "${{ runner.temp }}/browser-keys" "${expect[@]}"
       - name: Restore exact successful verification
         id: verified
-        if: github.event_name == 'pull_request'
+        if: steps.result-key.outputs.key != ''
         uses: actions/cache/restore@v4
         with:
           path: ${{ runner.temp }}/verified-browser/result.json
           key: ${{ steps.result-key.outputs.key }}
       - name: Record successful browser verification
-        if: steps.verified.outputs.cache-hit != 'true'
+        if: steps.result-key.outputs.key != '' && steps.verified.outputs.cache-hit != 'true'
         env:
           RESULT_KEY: ${{ steps.result-key.outputs.key }}
         run: python3 tools/software_workflow/result_cache.py save --suite browser --record "${{ runner.temp }}/verified-browser/result.json"
       - name: Save successful verification
-        if: success() && steps.verified.outputs.cache-hit != 'true'
+        if: success() && steps.result-key.outputs.key != '' && steps.verified.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
           path: ${{ runner.temp }}/verified-browser/result.json

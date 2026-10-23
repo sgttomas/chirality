@@ -88,11 +88,21 @@ def test_selected_desktop_suite_runs_in_the_required_product_job_and_keys_its_re
     desktop = next(s for s in desktop_job['steps'] if s.get('name') == 'Desktop behaviour (including persistence and undo)')
     assert desktop['run'] == 'npm test --workspace apps/desktop -- --shard=${{ matrix.shard }}/2'
     assert desktop['if'] == "steps.verified.outputs.cache-hit != 'true'"
-    # Every job that runs or records browser verification uses the same mode-aware key.
-    for job in ('product', 'desktop', 'browser-record'):
+    # Every verifying job computes the same mode-aware key and publishes the one it ran with.
+    for job, artifact in (('product', 'browser-key-product'), ('desktop', 'browser-key-desktop-${{ matrix.shard }}')):
         key = next(s for s in jobs[job]['steps'] if s.get('id') == 'result-key')
         assert key['env']['DESKTOP_MODE'] == '${{ needs.selection.outputs.desktop_mode }}'
         assert '--desktop-mode "$DESKTOP_MODE"' in key['run']
+        upload = next(s for s in jobs[job]['steps'] if s.get('uses') == 'actions/upload-artifact@v4' and s['with']['name'] == artifact)
+        assert upload['if'] == 'success()'
+    # The recorder saves only under the key every expected verifier published.
+    agree = next(s for s in jobs['browser-record']['steps'] if s.get('id') == 'result-key')
+    assert 'result_cache.py agree --suite browser' in agree['run']
+    assert '--expect product' in agree['run'] and '--expect desktop-1 --expect desktop-2' in agree['run']
+    assert not any('result_cache.py key' in s.get('run', '') for s in jobs['browser-record']['steps'])
+    for step in jobs['browser-record']['steps']:
+        if step.get('uses') in ('actions/cache/restore@v4', 'actions/cache/save@v4') or 'result_cache.py save' in step.get('run', ''):
+            assert "steps.result-key.outputs.key != ''" in step['if']
     # The record follows every job it vouches for.
     record = jobs['browser-record']
     assert set(record['needs']) == {'selection', 'product', 'desktop'}

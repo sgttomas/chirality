@@ -84,3 +84,21 @@ def test_selection_identity_changes_reuse_key_even_with_identical_commands(tmp_p
     first = key(selection)
     for field, value in [('classification', 'full-fallback'), ('manifests', ['core/b/Cargo.toml']), ('reasons', [{'kind': 'exact-file-reader'}])]:
         assert key({**selection, field: value}) != first
+
+
+def test_record_stands_only_for_a_key_every_verifier_ran_with(tmp_path):
+    def publish(name, key):
+        (tmp_path / ('browser-key-' + name)).mkdir(exist_ok=True)
+        (tmp_path / ('browser-key-' + name) / 'key').write_text(key)
+    key = 'verified-v2-browser-' + 'a' * 64
+    publish('product', key)
+    assert cache.agreed_key(tmp_path, ['product']) == key
+    # A selected shard that published nothing cannot be vouched for.
+    assert cache.agreed_key(tmp_path, ['product', 'desktop-1', 'desktop-2']) is None
+    publish('desktop-1', key); publish('desktop-2', key)
+    assert cache.agreed_key(tmp_path, ['product', 'desktop-1', 'desktop-2']) == key
+    # A verifier on another runner image computed another key: save nothing.
+    publish('desktop-2', 'verified-v2-browser-' + 'b' * 64)
+    assert cache.agreed_key(tmp_path, ['product', 'desktop-1', 'desktop-2']) is None
+    publish('product', 'verified-v2-numerical-' + 'a' * 64)
+    assert cache.agreed_key(tmp_path, ['product']) is None
