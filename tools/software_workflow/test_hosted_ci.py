@@ -175,13 +175,11 @@ class HostedCITests(unittest.TestCase):
             self.assertTrue(aggregate(suite,'not-applicable','success','skipped'))
             self.assertTrue(aggregate(suite,'full','success','success'))
 
-    def test_unselected_desktop_suite_passes_beside_its_selected_product_job(self):
-        # The desktop suite is a step of the piping product job, which runs for
-        # its own suite on Python- or Rust-only diffs that do not select it.
-        self.assertTrue(aggregate('piping-desktop', 'not-applicable', 'success', 'success'))
+    def test_unselected_desktop_suite_requires_its_own_job_skipped(self):
+        # The desktop suite runs in its own sharded job, skipped when unselected.
         self.assertTrue(aggregate('piping-desktop', 'not-applicable', 'success', 'skipped'))
-        self.assertFalse(aggregate('piping-desktop', 'not-applicable', 'success', 'failure'))
-        self.assertFalse(aggregate('piping', 'not-applicable', 'success', 'success'))
+        for state in ('success', 'failure', 'cancelled'):
+            self.assertFalse(aggregate('piping-desktop', 'not-applicable', 'success', state))
 
     def test_aggregate_cli_failure_returns_failure_without_traceback(self):
         completed = subprocess.run([sys.executable, str(Path(__file__).with_name('hosted_ci.py')),

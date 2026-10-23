@@ -30,14 +30,44 @@ def fingerprint(root, suite, commands, environment, selection=None):
     return hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
 
 
+def agreed_key(keys_dir, expected):
+    """The one key every expected verifier published, or None.
+
+    A record may stand only for verification that ran under its key. Verifiers
+    on different runner images publish different keys; then nothing is saved.
+    """
+    keys = {}
+    for name in expected:
+        path = Path(keys_dir) / ('browser-key-' + name) / 'key'
+        if not path.is_file():
+            return None
+        keys[name] = path.read_text().strip()
+    values = set(keys.values())
+    if len(values) != 1 or not next(iter(values)).startswith('verified-v2-browser-'):
+        return None
+    return values.pop()
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('action', choices=['key', 'save', 'reuse'])
+    parser.add_argument('action', choices=['key', 'save', 'reuse', 'agree'])
     parser.add_argument('--suite', choices=['numerical', 'browser'], required=True)
     parser.add_argument('--plan', type=Path)
     parser.add_argument('--desktop-mode', choices=['full', 'not-applicable'])
-    parser.add_argument('--record', type=Path, required=True)
+    parser.add_argument('--record', type=Path)
+    parser.add_argument('--keys-dir', type=Path)
+    parser.add_argument('--expect', action='append', default=[])
     args = parser.parse_args()
+    if args.action == 'agree':
+        if args.suite != 'browser' or args.keys_dir is None or not args.expect:
+            raise SystemExit('agree needs --suite browser, --keys-dir and --expect')
+        key = agreed_key(args.keys_dir, args.expect)
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as stream:
+            stream.write('key=' + (key or '') + '\n')
+        print(f'Verifier keys agree: {key}' if key else 'Verifier keys are missing or differ; no reuse record is saved.')
+        return
+    if args.record is None:
+        raise SystemExit('--record is required')
     if args.action == 'key':
         commands = ['production-build', 'chromium-desktop:r2-smoke,b3b-project-persistence,rotation-glyph']
         selection = None
