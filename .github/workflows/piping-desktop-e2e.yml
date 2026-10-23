@@ -106,7 +106,7 @@ jobs:
         working-directory: projects/chirality-piping
       - name: Core browser journey and save/reopen
         if: steps.verified.outputs.cache-hit != 'true'
-        run: npm run test:e2e:desktop -- --project=chromium-desktop r2-smoke.spec.ts b3b-project-persistence.spec.ts rotation-glyph.spec.ts
+        run: npm run test:e2e:desktop -- --project=chromium-desktop r2-smoke.spec.ts b3b-project-persistence.spec.ts rotation-glyph.spec.ts result-overlays.spec.ts
         working-directory: projects/chirality-piping
       - name: Publish the verified key
         if: success()
