@@ -71,7 +71,39 @@ def test_python_gate_and_result_are_independent_of_cargo():
     assert aggregate['env']['PYTHON_MODE'] == '${{ needs.selection.outputs.python_mode }}'
     assert 'aggregate --suite piping-python --mode "$PYTHON_MODE"' in aggregate['run']
     # The sharded desktop job joins the aggregate (desktop suite sharding, 2026-10-22).
-    assert set(jobs['desktop-e2e']['needs']) == {'selection', 'product', 'desktop', 'numerical', 'python-product'}
+    assert set(jobs['desktop-e2e']['needs']) == {'selection', 'product', 'desktop', 'desktop-rust', 'numerical', 'python-product'}
+
+
+def test_selected_desktop_rust_tests_run_on_macos_and_gate_the_aggregate(tmp_path):
+    import os
+    import subprocess
+    jobs = workflow('piping-desktop-e2e.yml')['jobs']
+    assert jobs['selection']['outputs']['desktop_rust_mode'] == '${{ steps.numeric.outputs.desktop_rust_mode }}'
+    read = next(s for s in jobs['selection']['steps'] if s.get('id') == 'numeric')
+    assert "('piping-desktop-rust', 'desktop_rust_mode')" in read['run']
+    job = jobs['desktop-rust']
+    assert job['needs'] == 'selection'
+    assert job['if'] == "needs.selection.outputs.desktop_rust_mode == 'full'"
+    # The product platform (DEC-057); the job never reuses a result.
+    assert job['runs-on'] == 'macos-26'
+    run = next(s for s in job['steps'] if s.get('name') == 'Locked desktop shell Cargo tests')
+    assert run['run'] == 'cargo test --locked --manifest-path apps/desktop/src-tauri/Cargo.toml'
+    assert run['working-directory'] == 'projects/chirality-piping'
+    assert 'if' not in run
+    assert not any(s.get('uses', '').startswith('actions/cache') for s in job['steps'])
+    aggregate = jobs['desktop-e2e']['steps'][-1]
+    assert aggregate['env']['DESKTOP_RUST_MODE'] == '${{ needs.selection.outputs.desktop_rust_mode }}'
+    assert aggregate['env']['DESKTOP_RUST'] == '${{ needs.desktop-rust.result }}'
+    assert 'aggregate --suite piping-desktop-rust --mode "$DESKTOP_RUST_MODE" --selection "$SELECTION" --product "$DESKTOP_RUST"' in aggregate['run']
+    # Executed as the workflow runs it: selected and failed, cancelled or skipped
+    # fails; unselected passes only when the job was skipped.
+    script = '\n'.join(line for line in aggregate['run'].splitlines() if 'piping-desktop-rust' in line)
+    for mode, result, passed in [('full', 'success', True), ('full', 'failure', False), ('full', 'cancelled', False),
+                                 ('full', 'skipped', False), ('not-applicable', 'skipped', True),
+                                 ('not-applicable', 'success', False)]:
+        env = {**os.environ, 'DESKTOP_RUST_MODE': mode, 'SELECTION': 'success', 'DESKTOP_RUST': result}
+        process = subprocess.run(['bash', '-e', '-c', script], cwd=ROOT, env=env, capture_output=True)
+        assert (process.returncode == 0) == passed, (mode, result)
 
 
 def test_selected_desktop_suite_runs_in_the_required_product_job_and_keys_its_reuse(tmp_path):
