@@ -77,7 +77,7 @@ python3 docs/alignment-manual/render_manual.py \
 Add `--check` to verify without writing. The displayed revision identifies the
 source used for rendering, not human acceptance. Check links and inspect the
 result at desktop and narrow widths. Review content before preparing revised
-Word/PDF publication layouts; retained earlier print editions remain historical.
+Word/PDF publication layouts.
 
 ## Earlier editions
 
@@ -92,8 +92,9 @@ Manual restated repository instructions, which are now the only home for current
 practice. Recover their text with, for example,
 `git show 4ac1315672:docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v2.md`.
 
-- [Consolidated v8 Markdown](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md), [Word](Project_Management_for_Human_Agent_Teams_Consolidated_v8.docx), [PDF](Project_Management_for_Human_Agent_Teams_Consolidated_v8.pdf).
-- [Consolidated v7 Markdown](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md).
+- [Consolidated v7 Markdown](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md). It stays in the working tree because the `software-prd` and `reverse-engineer-software` workflows cite its chapter 2 for the software PRD sequence.
+
+Consolidated v8 (Markdown, Word and PDF) was removed from the working tree on 2026-10-23; recover it with `git show 4ac1315672:docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v8.md`.
 
 Still earlier files and review evidence are recoverable from
 `archive/pre-manuals-2026-10-09` and `archive/pre-efficiency-cleanup-2026-10-09`.
