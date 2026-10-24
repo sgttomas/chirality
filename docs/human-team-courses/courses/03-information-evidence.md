@@ -183,6 +183,6 @@ Explain one conclusion without reading it aloud, and show the passage that suppo
 
 Keep the evidence packet as Portfolio 03 and link its source index to Portfolio 02. Course 04 will examine the interpretation and applicability of the requirements found here.
 
-The [management manual (Edition 9)](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html), sections 2.2 and 6.3, supports records that preserve identity, provenance, and useful grounds. The [Field Book (Edition 2)](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v2.html), section 3, supports visible treatment of open matters.
+The [management manual (Edition 9)](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html), sections 2.2 and 6.3, supports records that preserve identity, provenance, and useful grounds. Its section 2.4 supports visible treatment of open matters.
 
 Use the [series references](../references.html) for further reading. External readings are optional; no external source can fill a gap in the fictional case without an explicit new exercise input.
