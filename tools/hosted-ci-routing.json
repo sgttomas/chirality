@@ -294,7 +294,7 @@
       "core/reporting/report_package/Cargo.toml": "fdfd00caa2361dd0aa74a9012c3c11750164a8068e16975a24843e59324d8c32",
       "core/reporting/report_renderer/Cargo.toml": "4fdfc6954384445ca3a91af393deb8d3e5e6994ab62fbe43c1cafebbd9f68147",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
-      "core/reporting/result_export/Cargo.toml": "80455ad46df61b82a2d972f06a40b605b04ee7ab485791be1c1be457c4fe3627",
+      "core/reporting/result_export/Cargo.toml": "63f8e8be3e1b8ac33e23dd4621830def774511bc409bd1edeed511f6d7eaf6fb",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "7018210dadfb7c2b855298730f5f8cddedbe09f7f03b05421b81c3694f873b18",
       "core/rules/rule_check_runner/Cargo.toml": "9a2be1a226d4f0da6e2f6ba329eec3c1ebbdbe5b51d6f03f953c32ab3cb03794",
