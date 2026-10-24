@@ -18,7 +18,7 @@ The person can read the same account to understand and question the method with 
 
 In the instructions that follow, “you” means the agent. “The person” means the human with whom you are working. The person may be one of several people with defined responsibilities in the undertaking. When you act as a contributor, work within that assignment; when you coordinate, also carry responsibility for how the contributions fit together. The constructed cases describe several participants so that you can examine their different responsibilities.
 
-Read this manual to understand the method, its vocabulary and its reasons. Use the [Field Book](Project_Management_for_Human_Agent_Teams_Field_Book_v2.md) as a concise reference during work. Read the [Chirality Agent User Manual](CHIRALITY_AGENT_USER_MANUAL_v4.md) when applying the method in the Chirality repository. The three books use the same meanings at different levels of detail; the repository guide identifies the local mechanisms.
+Read this manual to understand the method, its vocabulary and its reasons. Where you work in a repository with its own instructions, those instructions carry current practice and the local mechanisms; this manual explains the reasoning behind them.
 
 The [working vocabulary](#vocabulary) gives concise definitions. Return to the explanations and cases when a distinction affects your action. Establish what the terms refer to in the person's undertaking rather than assuming that matching words establish a common understanding. The [manual index](README.md) identifies current editions. Project-specific commitments and adopted requirements remain authoritative; reading this book does not amend them.
 
@@ -303,7 +303,7 @@ Once a premise is established, reuse it. Revisit the part invalidated by a mater
 
 ## 4.5 Receive and integrate actual returns
 
-Use the host's actual completion mechanism. A prompt can be prepared but not dispatched. A message can be queued without starting another turn. A manager's turn can end before its contributors return.
+Use the host's actual completion mechanism, and make sure the return reaches the coordinator: a contributor in a separate conversation that finishes without notifying anyone looks like silence from both sides. Name the return route in the assignment and keep a backstop that does not depend on the coordinator's own session. A prompt can be prepared but not dispatched. A message can be queued without starting another turn. A manager's turn can end before its contributors return.
 
 Account for dispatched work and inspect the actual result. A useful return identifies the output, completed scope, checks, limitations and unresolved choices. It distinguishes prepared work from executed changes and actual results from expected ones.
 
@@ -421,7 +421,7 @@ Some records are product requirements. A model history, signed operational decis
 
 Begin with current artifacts, actual state and the latest steering. Use history to resolve relevant uncertainty. Do not rebuild a complete chronology simply because a session restarted.
 
-A replaceable recovery note can identify the current candidate, completed work, pending checks, active operations, local-only output, holds and next useful action. Its purpose is continuity, not an accumulating record of every session.
+Open work is usually recoverable from its own records: each open change's description states its exact version, the checks performed, what remains and the next step, and repeatable discovery re-establishes the wider state. Where those do not suffice, a replaceable recovery note can identify the current candidate, completed work, pending checks, active operations, local-only output, holds and next useful action. Its purpose is continuity, not an accumulating record of every session.
 
 If an operation executed but confirmation was lost, inspect the actual state before repeating it. A duplicate write or release can be worse than a delayed confirmation. Preparation and execution must remain distinguishable.
 
@@ -747,6 +747,6 @@ These definitions are shared by the three manuals. The shorter books use them in
 
 Return to the person's actual undertaking. Use the method to produce and examine useful work, explain consequential choices and improve the result together. You and the person can return to the same passages when an interpretation or course of action needs discussion. A common understanding develops through that work; it is not established merely because both have read the document.
 
-Keep the [Field Book](Project_Management_for_Human_Agent_Teams_Field_Book_v2.md) available as a concise working reference after reading this manual. Return here for the reasons, distinctions and examples. Use the [Chirality Agent User Manual](CHIRALITY_AGENT_USER_MANUAL_v4.md) for current repository practice. These are complementary uses of one method.
+Return here for the reasons, distinctions and examples when a choice needs them. For current practice in a particular repository, use that repository's own instructions.
 
 Earlier editions remain useful for historical interpretation of work that named them. Their exact source identity does not automatically make every former procedure applicable today. A current edition is a discovery aid; specific adopted commitments retain their own authority.

@@ -216,6 +216,6 @@ Keep your account as Portfolio 10 and connect it to the Course 09 configuration 
 
 Carry the remaining decisions into Course 11. They will become part of the project's continuation decision and the final practicum.
 
-Read Field Book (Edition 2) §§6 and 9, and management manual (Edition 9) §§5.4–5.6, 7.5–7.6, and chapter 8, in [References](../references.html). They explain evidence limits, product examination, and transfer of continuing responsibility.
+Read management manual (Edition 9) chapter 5, §§7.5–7.6, and chapter 8, in [References](../references.html). They explain evidence limits, product examination, and transfer of continuing responsibility.
 
 The optional NASA readings go deeper into verification and validation methods, but all core exercises can use the supplied offline records.

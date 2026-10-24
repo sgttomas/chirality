@@ -4,7 +4,7 @@ This series has twelve courses in project management and project engineering for
 
 Use the courses to prepare, carry out, examine, and coordinate professional work. Develop your discipline's technical knowledge alongside them.
 
-The courses are written for you, the person learning project practice. The [Chirality manuals](../alignment-manual/README.md) are written mainly for your agent, to read and use while it works with you. Give it the management manual so it shares the method and vocabulary, then use the Field Book as a reference during the work. Describe the problem you want to solve or the thing you want to build, and provide the relevant work and circumstances.
+The courses are written for you, the person learning project practice. The [Chirality manuals](../alignment-manual/README.md) are written mainly for your agent, to read and use while it works with you. Give it the management manual so it shares the method and vocabulary. Describe the problem you want to solve or the thing you want to build, and provide the relevant work and circumstances.
 
 Bring what you learn here into that work. Examine what the agent contributes, talk through the interpretations that matter, make the decisions that are yours, and have the agent carry the agreed work forward. You and your agent develop a shared way of working by producing, examining, and improving the result. When experience raises a question you need to understand, return to the lessons and the manuals.
 
