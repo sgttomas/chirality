@@ -46,7 +46,7 @@ If a canonical BOE exists for the project, follow its structure. Otherwise, the 
 ### Section guidance
 
 - **Per-Deliverable Plan (§5):** every deliverable from the decomposition MUST appear. Record cost ownership rules for every package with multi-deliverable scope overlap.
-- **Run Sequence (§6):** every deliverable assigned a tier; tier assignments consistent with dependencies; cycles detected and reported in QA + Conflicts.
+- **Run Sequence (§6):** every deliverable has a tier or a stated unresolved input condition/decision; ordering judgments cite consumer-local needs and actual estimating use; reciprocal needs and limits are reported in QA + Conflicts. The view is derived for this estimate and does not become dependency authority.
 - **PRICE_SOURCES Register (§7):** identify and prioritize low-confidence items impacting the plan.
 - **Assumptions Log (§9):** merge scaffold assumptions + BOE derivations with IDs and impact-if-wrong.
 

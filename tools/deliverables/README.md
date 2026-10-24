@@ -1,79 +1,92 @@
 # Deliverable queries
 
-Run from the repository with Python 3 and PyYAML:
+Run from the selected Git repository with Python 3 and PyYAML. The repository
+must have a resolvable `HEAD`; `--project` names an existing directory within it
+and defaults to `projects/chirality-app-v4`:
 
 ```sh
-python3 -m tools.deliverables --project projects/chirality-app-v4 check
-python3 -m tools.deliverables --project projects/chirality-app-v4 neighborhood DEL-07-02
-python3 -m tools.deliverables --project projects/chirality-app-v4 impact DEL-07-02
-python3 -m tools.deliverables --project projects/chirality-app-v4 touches HEAD
-python3 -m tools.deliverables --project projects/chirality-app-v4 touches PR:1234
-python3 -m tools.deliverables --project projects/chirality-app-v4 dag-diff app-v4/deps-baseline-1
+python3 -m tools.deliverables --project projects/example check
+python3 -m tools.deliverables --project projects/example neighborhood DEL-01-01
+python3 -m tools.deliverables --project projects/example impact DEL-01-01
+python3 -m tools.deliverables --project projects/example touches HEAD
+python3 -m tools.deliverables --project projects/example dag-diff baseline-tag
 ```
 
-App v4 is the default project. Output is JSON; nothing is written. The basis
-names HEAD and observed working-tree changes. Every relationship cites its
-source file and need index. `dag-diff` resolves the baseline to a commit and
-compares declarations there with current working files, preserving distinct
-conditions and multiplicity. Metadata may live under either old phase folders
-or flat deliverable folders.
+Output is JSON; queries write nothing. The basis names HEAD and observed
+working-tree changes. Every relationship cites its source file and need index.
+Metadata can live in flat deliverable folders or package phase folders; no move
+or migration is performed. Without the CLI, PyYAML, Git or HEAD, inspect the
+relevant declarations and source evidence directly and state the query limit.
 
-`deliverable.yaml` requires `id` and `needs`. Optional `name`, `code_paths` and
-`checks` describe the deliverable. Every need has `from` and `condition`, with
-optional `when`, `gating` and `evidence`. Suppliers are local `DEL-nn-nn` IDs or
-`external:name`, `doc:path`, `package:id`, or `unknown`. Paths and globs are
-project-relative. Consumer declarations define the upstream relationships;
-reverse links are generated. Migrated outward obligations to nonlocal targets
-can carry `direction: downstream`; the neighborhood lists these as outputs,
-not required inputs.
+## Consumer-local declarations
 
-`neighborhood` shows direct inputs and consumers. `impact` follows consumers
-transitively, including non-gating relationships. `touches` matches Git diff
-paths against relevant code paths; a path can match several deliverables.
-A single revision selects that commit’s change (against its first parent, or
-the empty tree for a root commit), regardless of working-tree edits. Explicit
-ranges are used as supplied. Use a Git revision/range or `PR:number`/GitHub PR URL (requires authenticated
-`gh`). Unmapped paths and deliverables without mappings remain visible.
-`PR:` resolves the PR's base and head commits with `gh` and diffs
-`base...head` locally, so the list is complete (GitHub's own file list stops
-at 100 files). Both commits must be in the local repository; otherwise the
-command fails and names the commit to fetch rather than returning a partial
-list. On every pull request, `governance-harness`
-runs `touches` over the PR's range for each project with deliverables and
-writes the changed project paths that no deliverable maps, with the relevant
-deliverables, to the job summary. That report never fails the job.
+`deliverable.yaml` requires `id` and a `needs` list. The `id` uses the numeric
+DEL prefix for dependency binding; an accepted suffix-bearing PROJECT identity
+and its metadata remain unchanged. A named DEL folder and that YAML binding
+must agree. Optional `name`, `code_paths` and `checks`
+describe the deliverable; paths and globs are project-relative. For example:
 
-`check` rejects malformed YAML, duplicate IDs/keys, invalid identities and
-escaping paths. Missing suppliers, planned paths and cycles are reported with
-exit 0; malformed input returns exit 2 and any usable partial result. Cycles
-include non-gating relationships and are not themselves execution blockers.
-A present file or supplier declaration establishes only presence. Suitability
-remains unknown; the tool never marks completion, interprets a merge as
-acceptance, or claims a test passed. Agent judgment and appropriate checks
-establish whether an input meets its condition.
-
-Migration is explicit and dry-run by default. For the App v4 pilot's full
-source-row accounting and DAG-004 comparison, run:
-
-```sh
-python3 tools/deliverables/migrate_dependencies.py --source-ref 8e95c5593fc552c277a1daa79ced73ca48d09256
+```yaml
+id: DEL-01-01
+needs:
+  - from: DEL-02-01
+    condition: Interface dimensions checked for the selected operating case.
+    when: Before issuing the affected drawing.
+    evidence: execution/PKG-01/DEL-01-01/Design/interface.md#basis
+  - from: unknown
+    condition: Identify the source of the equipment rating before its use.
+  - from: external:recipient
+    direction: downstream
+    gating: false
+    condition: Provide the agreed interface drawing for recipient review.
 ```
 
-`--summary` gives counts and unresolved facts; `--apply` writes YAML only.
-Re-running against that source after flattening preserves the flat evidence
-paths and seeded code/check references. No new record or graph file is emitted.
-Unknown targets and differing old maturity descriptions remain evidence for
-judgment, not new blockers. Row IDs occur in the migration output, not in the
-ongoing deliverable format. Source Notes are retained where restrictions and
-rationale cannot safely be separated mechanically.
+Every need has `from` and nonempty `condition`. Optional fields are `when`,
+`gating` (boolean), and `evidence` (a project-relative path with an optional
+section reference). Suppliers are local `DEL-nn-nn` IDs, `external:name`,
+`doc:path`, `package:id`, or `unknown`. Preserve case, use, maturity and technical
+holds in the condition and trigger. Distinct needs between the same endpoints
+remain distinct declarations. `needs: []` means none declared yet; it is no
+claim that the deliverable has no needs or that the set is complete.
 
-Piping's DAG-011 is a snapshot (active/retired/anchor rows in one CSV), not
-App v4's admitted/held layers. Its reproducible migration command is:
+The consumer states native upstream needs; reverse links are generated. A
+producer-local `direction: downstream` is available for an actual obligation to
+a nonlocal recipient, not a second native consumer list. It is listed as an
+output, not a required input. A consumer declaration does not create supplier
+scope or approval authority. Authoring and refresh use `dependency-extract`;
+existing declarations are changed for their meaning, never retired merely
+because a source scan did not rediscover them.
 
-```sh
-python3 tools/deliverables/migrate_dependencies.py --project projects/chirality-piping --source-ref 6228147ac5 --dag _DAG/DAG-011 --dag-format snapshot --retire-metadata --apply
-```
+## Observation limits
 
-The snapshot option filters active execution relationships and preserves empty
-architecture nodes. `--retire-metadata` omits optional pointers to removed admin
-files; their source content remains in Git. It does not remove need conditions.
+`neighborhood` shows direct inputs, outward obligations and native consumers.
+`impact` follows native consumers transitively, including non-gating links.
+`check` rejects malformed YAML, duplicate keys/IDs, identity disagreement,
+invalid targets and escaping paths. Missing suppliers, planned paths and cycles
+are observations with exit 0; malformed input returns exit 2 and any usable
+partial result. Reported cycles contain present native DEL nodes only, include
+non-gating relationships, and exclude external/outward/unknown targets. They
+are not a complete project graph or execution-blocker verdict.
+
+`gating` is retained as a declared distinction for an undertaking's judgment;
+these queries neither filter by it nor evaluate its condition. A present path
+or supplier declaration establishes presence only. Suitability remains unknown.
+Queries never mark completion, treat a merge as acceptance, run referenced
+checks, lift technical holds, or infer readiness from lifecycle. Assess the
+actual condition for its intended use with evidence and appropriate checks.
+
+`touches` matches Git diff paths against code paths and deliverable localities;
+several deliverables may match. A single revision selects that commit's change
+against its first parent (the empty tree for a root commit), regardless of
+working-tree edits; explicit ranges are used as supplied. `PR:number` or a
+GitHub PR URL requires authenticated `gh` and resolves base/head commits, then
+diffs `base...head` locally. Both commits must be present; a missing commit is
+an error, not a partial file list. This explicit network-capable selection is
+not needed for local queries. Unmapped paths remain visible. On PRs,
+`governance-harness` reports relevance and unmapped paths without failing its job.
+
+`dag-diff` compares declarations at a supplied Git revision with working files,
+preserving condition fields and multiplicity. Its name does not establish a
+central DAG authority, accepted baseline, acyclicity or condition satisfaction.
+No CSV/Markdown dependency register, central currency record, migration adapter
+or lifecycle state is read or written by this method.

@@ -1,44 +1,50 @@
-# dependency-extract — Tool Policy
+# Native query support
 
-## Preferred tool order
+Use the current `tools.deliverables` library when available. From its repository
+root, with Python 3 and PyYAML, the relevant commands are:
 
-1. Reasoning-led two-pass extraction (Pass 1 ANCHOR from `{ANCHOR_DOC}`, then Pass 2 EXECUTION from `{EXECUTION_DOC_ORDER}`) over the deliverable's source documents, `_REFERENCES.md`, and `{DECOMPOSITION_PATH}` (when available).
-2. Reasoning-led target resolution, row match/merge, and persistence to `Dependencies.csv` and `_DEPENDENCIES.md`.
-3. `python3 tools/validation/validate_dependencies_schema.py {deliverable_folder}/Dependencies.csv` — Function 5 canonical validation (confirms all 29 required v3.1 columns are present, CSV is parseable, core enum values are canonical, ANCHOR/EXECUTION row rules hold, and `Status=CANDIDATE` is absent).
-4. `python3 tools/validation/validate_enum.py {ENUM_NAME} {value}` — Function 5 enum-field normalization and validation on write.
-5. `bash tools/validation/validate_id_format.sh {TYPE} {value}` — Function 5 ID-format validation for package/deliverable/dependency and other stable IDs.
-6. Optional: `python3 tools/validation/validate_decomposition_registers.py {EXECUTION_ROOT} --families EVQ,DRB` — Function 5 report-only evidence-quality (`EVQ-003`, `EVQ-004`) and binding (`DRB-006`) findings, when the brief permits reading the execution root.
+```sh
+python3 -m tools.deliverables --project <project> check
+python3 -m tools.deliverables --project <project> neighborhood DEL-01-02
+python3 -m tools.deliverables --project <project> impact DEL-01-02
+```
 
-## Allowed deterministic tools
+Resolve `<project>` explicitly; the CLI has an App v4 default that must not
+silently select this undertaking's project. The project must be an existing
+directory within the current Git repository, and that repository must have a
+resolvable `HEAD`. When the library is supplied through `PYTHONPATH`, run from
+the target Git repository with the same project/HEAD prerequisites. A new or
+non-Git workspace is not required to initialize Git merely to use this method.
 
-### Declared command restrictions
-The optional execution.json contains declared command restrictions. Effective authorization also depends on the host, role, and brief; report the actual enforcement boundary.
+Every command loads all `deliverable.yaml` files beneath the selected project
+and observes referenced path presence, even for a single neighbourhood or impact
+query. Use it only when those reads are authorized. Otherwise inspect the
+selected YAML and relevant source/target declarations directly. Follow only
+connections needed for the assignment; if reverse-link coverage or structural
+validation is incomplete, say so. This fallback uses the same local source of
+truth, with no alternate persistence format or graph authority.
 
-- `python3 tools/validation/validate_dependencies_schema.py:*`
-- `python3 tools/validation/validate_enum.py:*`
-- `bash tools/validation/validate_id_format.sh:*`
-- `python3 tools/validation/validate_decomposition_registers.py:*` (optional check)
+The CLI prints JSON and writes nothing. Its basis names HEAD and observed
+working-tree changes. `check` rejects malformed YAML, duplicate keys/identities,
+invalid identities, disagreement with a containing folder that names a DEL
+identity, downstream native Deliverable mirrors and escaping paths with exit 2,
+retaining any usable partial result. The folder check accepts a descriptive
+suffix; it does not establish agreement with the accepted decomposition.
+Missing source declarations, unresolved/external references, planned paths and
+cycles can still return exit 0. `needs` retains case multiplicity;
+`neighborhood` separates local outward entries as `outputs` from inputs.
 
-## Expected use of reasoning
+Reported cycles contain native Deliverables only, using native upstream links;
+external, document and package references and downstream entries are outside
+that cycle projection. Both gating and non-gating native links participate.
+`impact` likewise follows native consumers, including non-gating links. Neither
+query evaluates `condition`, `when` or suitability, executes referenced checks,
+or verifies an evidence locus. Presence means only presence. A missing
+supplier declaration is an unresolved reference; an external/outward entry's
+unknown presence is not an unmet-input verdict.
 
-Reasoning is the primary extraction engine. The agent performs evidence-first two-pass extraction: Pass 1 (Vertical) anchors the deliverable to the Tree (Definition) by reading the ANCHOR_DOC and emitting `DependencyClass=ANCHOR` rows; Pass 2 (Horizontal) maps DAG execution flow edges by reading EXECUTION_DOCS and emitting `DependencyClass=EXECUTION` rows. Reasoning also governs target resolution (best-effort, conservative; `UNKNOWN` when uncertain), match/merge precedence, enum normalization on write (e.g., `INBOUND` -> `UPSTREAM`), `_DEPENDENCIES.md` index updates (Run Notes, Run History, Lifecycle Summary), and Tree x DAG integrity checks (FLOATING_NODE, AMBIGUOUS_ANCHOR, MISSING_DECOMPOSITION warnings). Deterministic tools intervene during Function 5 local quality checks for schema validation, enum validation, and ID-format validation.
-
-## Disallowed use
-
-- No editing of any source document or `_REFERENCES.md`.
-- No editing of decomposition outputs.
-- No writes outside dependency artifacts (`{deliverable}/_DEPENDENCIES.md`, `{deliverable}/Dependencies.csv`).
-- The TASK shell may create the required run record under `{deliverable}/_run_records/`.
-- No hierarchy discovery (no creating or restructuring the decomposition Tree).
-- No cross-deliverable synthesis (aggregation is downstream).
-- No hidden reliance on tools outside the declared list unless the human expands AllowedTools. No writes outside declared scope.
-
-## Write boundary
-
-Writes are limited to dependency artifacts only:
-
-- `{deliverable}/_DEPENDENCIES.md`
-- `{deliverable}/Dependencies.csv`
-- TASK run record under `{deliverable}/_run_records/`
-
-No other files may be created or modified.
+Read [the library reference](../../../tools/deliverables/README.md) for other
+queries. Do not invoke migration or older CSV validators as a substitute for
+local authoring. Tool absence, unsupported identity or Git failure belongs in
+the return with the inspection actually performed; it grants no authority to
+renumber accepted work or discard a need.

@@ -21,7 +21,7 @@
 7. Read `Handoff_State.md` from the snapshot and every later handoff record for this amendment: later checkpoint-snapshot `Handoff_State.md` files, `_PostAcceptanceValidation/{AMENDMENT_ID}_*/` records, and closeout or effective-state records under `{SCOPE_CHANGE_ROOT}`. Take each obligation's current disposition from the latest applicable record, including human deferrals and optional derivatives recorded as not activated, and cite the deciding record.
 8. Verify amendment snapshot recency:
    - Determine amendment date from the snapshot's `Brief.md` or folder timestamp.
-   - Record amendment recency as context only. Determine rerun sufficiency from matching scope, input hashes and successful run receipts (see Pass 2), never from dates alone.
+   - Record amendment recency as context only. Determine sufficiency from the actual declaration/source assessment or the derivative workflow's matching scope and input basis (see Pass 2), never from dates alone.
    - If amendment date is in the future (clock skew):
      - Record a MAJOR finding with uncertainty recorded separately: "Amendment snapshot timestamp is in the future; cannot audit."
      - Halt with `FAILED_INPUTS`.
@@ -30,11 +30,19 @@
     - Valid values: `PROJECT`, `SOFTWARE`, `DOMAIN`.
     - For `DOMAIN`, Pass 4 invokes `tools/validation/validate_domain_decomposition_integrity.py` against the active decomposition package and amendment snapshot; Pass 7 adds KTY content remediation verification.
 
+The native-needs clauses below apply only to `PROJECT`/`SOFTWARE` DEL identities.
+For `DOMAIN`, check the existing non-dependency metadata and the accepted
+amendment, decomposition, supersession and KTY remediation obligations. Do not
+require KTY `deliverable.yaml`, dispatch DEL-native dependency authoring for a
+KTY, or substitute a dependency CSV/Markdown route. If a handoff names an
+unsupported KTY dependency task, report that limitation without declaring the
+obligation completed or inventing a persistence format.
+
 If preconditions fail, halt with `FAILED_INPUTS` and report what is missing.
 
 **Input manifest and rerun of this audit.** Write `INPUT_MANIFEST.sha256` in the
 audit snapshot, listing the SHA-256 of every input read (register, handoff
-records, decomposition, affected metadata, dependency registers and tool
+records, decomposition, affected metadata, local dependency declarations and tool
 outputs). A prior audit snapshot remains sufficient only while its
 `INPUT_MANIFEST.sha256` still matches the current inputs; its date does not
 decide this. A prior snapshot without an input manifest cannot establish that
@@ -54,7 +62,8 @@ For each row in `Amendment_Actions.csv`, verify the action was executed:
 
 **ADD actions:**
 - Confirm the deliverable folder exists at the expected path under the correct package.
-- Confirm minimum viable fileset is present: `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`.
+- Confirm the four non-dependency metadata files are present: `_STATUS.md`, `_CONTEXT.md`, `_REFERENCES.md` and `_SEMANTIC.md`.
+- For `PROJECT`/`SOFTWARE` DEL identities only, also confirm `deliverable.yaml` and verify its identity against the accepted deliverable binding. An empty `needs` list is not evidence that dependency assessment is complete. No YAML declaration is required for a `DOMAIN` KTY.
 - Confirm `_STATUS.md` shows lifecycle state >= `OPEN` (the `preparation` skill ran).
 - Confirm `_CONTEXT.md` header fields match the decomposition document's entry for this deliverable.
 
@@ -75,12 +84,12 @@ For each row in `Amendment_Actions.csv`, verify the action was executed:
 **MERGE actions:**
 - Verify REMOVE checks for all source entities.
 - Verify ADD checks for the combined entity.
-- Check that dependencies previously targeting source entities have been re-targeted or flagged.
+- For `PROJECT`/`SOFTWARE` DEL identities, check that needs referencing source entities were assessed against the accepted change and their actual conditions; do not assume retargeting is required.
 
 **SPLIT actions:**
 - Verify REMOVE checks for the source entity.
 - Verify ADD checks for each fragment entity.
-- Check that dependencies previously targeting the source have been re-targeted or flagged.
+- For `PROJECT`/`SOFTWARE` DEL identities, check that needs referencing the source were assessed against the accepted change and their actual conditions; do not assume retargeting is required.
 
 For each action, record: `ActionSeq`, `Expected`, `Actual`, `Status`, `Evidence`. Status values:
 
@@ -98,14 +107,23 @@ From `RUN_SUMMARY.md`, extract the list of recommended downstream reruns.
 
 For each recommended rerun:
 
-A rerun is sufficient when its recorded input basis (an `INPUT_MANIFEST.sha256` or equivalent hash-bearing run receipt) includes the accepted post-change hashes of the amended inputs and its scope covers the affected entities. Dates such as `LastSeen` values or snapshot folder dates are context only; a later date without matching input hashes is not evidence of a sufficient rerun.
+For derivative workflows that require run snapshots, a rerun is sufficient when its recorded input basis (an `INPUT_MANIFEST.sha256` or equivalent hash-bearing evidence) includes the accepted post-change hashes of the amended inputs and its scope covers the affected entities. Local dependency authoring is verified from the actual declarations and sources as specified below; it requires no separate extraction receipt. Dates are context only and do not establish sufficient assessment.
 
 Before judging a rerun missing, apply the current disposition from the handoff records read in Pass 0. A rerun deferred by a recorded human decision is `DEFERRED_BY_HUMAN`; an optional derivative the accepted records leave unactivated is `NOT_ACTIVATED`. Cite the decision; report either as an OBSERVATION and list it as open work, not as MAJOR or MINOR.
 
-**TASK+dependency-extract re-extraction:**
-- Check whether `Dependencies.csv` exists in the affected deliverable folder.
-- Confirm the extraction run's input manifest binds the amended deliverable inputs and decomposition at their post-change hashes.
-- If no evidence of a sufficient rerun and no recorded deferral: finding (MAJOR — dependencies may reference stale or phantom entities).
+**Local dependency authoring/refresh (`dependency-extract`; PROJECT/SOFTWARE DEL only):**
+- Inspect the affected consumers' current `deliverable.yaml` declarations
+  against the accepted action, amended scope/design and actual source
+  conditions. Check the resulting changes and unchanged declarations that
+  were reviewed; do not require an extraction receipt or timestamp refresh.
+- Verify that each required semantic change is present and supported, with
+  case, use, `when`, `gating`, unknown sources and outward obligations
+  preserved. No wording rediscovery or endpoint-only match justifies deleting
+  or merging a need.
+- If a required assessment or correction is missing and no recorded deferral
+  applies, report its actual consequence and evidence. Use MAJOR when the
+  missing work may leave materially stale or unsupported dependency meaning.
+  Presence of YAML alone is not completion evidence.
 
 **`preparation` skill runs (for ADD actions):**
 - Already verified in Pass 1 (folder + minimum viable fileset existence).
@@ -122,17 +140,40 @@ For each recommended rerun, record: `Agent`, `Scope`, `Evidence of Completion`, 
 
 ---
 
-### Pass 3 — Orphaned Reference Detection
+### Pass 3 — Affected Reference Assessment
 
-Scan for references that target entities affected by REMOVE, MERGE, or RECLASSIFY actions:
+The native-needs assessment in this pass is for `PROJECT`/`SOFTWARE` DEL
+identities only. Record it as `NOT_APPLICABLE` for `DOMAIN`; this does not skip
+the DOMAIN amendment, context, decomposition, supersession or remediation
+checks in the other passes.
 
-1. For each RETIRED entity ID, search all `Dependencies.csv` files across the execution root for rows where `TargetDeliverableID` matches the retired ID and `Status = ACTIVE`.
-   - Use: `python3 tools/coordination/analyze_dep_closure.py {EXECUTION_ROOT}` if available, or manual CSV scanning.
-   - Each match is an orphaned reference (CRITICAL — active dependency targets a retired deliverable).
+1. Locate needs affected by REMOVE, MERGE, SPLIT, MODIFY or RECLASSIFY from
+   all consumer-local `deliverable.yaml` files in the execution root.
+   Query `tools.deliverables neighborhood` and `impact` for affected native
+   IDs where available, then inspect each relevant source declaration. See
+   `tools/deliverables/README.md` and `construct-local-work-graph`. The CLI
+   requires the project root in a Git repository with HEAD and reads all
+   project declarations/path-presence references. Use it only within the
+   authorized read scope; bounded direct inspection is the fallback. Native-only cycle reporting does not cover
+   external/unknown relations or establish input suitability.
 
-2. For RECLASSIFY actions where the package changed, check that ANCHOR rows (`IMPLEMENTS_NODE`) in the reclassified deliverable's `Dependencies.csv` reference the correct parent package.
+2. Compare each affected need with the accepted change and the actual
+   artifact needed for its stated condition, use, case and trigger. Retirement
+   of production scope does not automatically make an existing artifact
+   unusable. Preserve a supported historical input where its condition still
+   holds; cite the evidence and accepted change. Report an unresolved binding
+   or unfulfilled condition with its actual consequence and uncertainty.
+   Never retarget, delete or fail a need merely because its producer retired.
 
-3. For MODIFY actions where the deliverable name changed, check `TargetName` fields in other deliverables' `Dependencies.csv` for stale name references (MINOR — cosmetic but may cause confusion).
+3. For reclassification, verify the accepted identity/parent binding from
+   decomposition and locality sources; do not manufacture engineering needs
+   to represent tree membership. A label change warrants correction only
+   where it makes the actual reference misleading or ambiguous.
+
+4. Preserve distinct same-endpoint needs, `when`, `gating`, external inputs,
+   unknown sources and outward downstream obligations. Reciprocal needs are
+   observations for assessment, not automatic non-gating or closure cases.
+   A structurally valid query is not a satisfaction or readiness verdict.
 
 ---
 
@@ -284,7 +325,7 @@ contains `KTY_Remediation_Manifest.csv`.
 
 | Severity | Meaning |
 |---|---|
-| `CRITICAL` | Scope change action was not executed, or orphaned dependency targets a retired deliverable — project integrity compromised |
+| `CRITICAL` | Scope change action was not executed, or an affected reference demonstrably compromises project integrity; retirement alone does not establish this consequence |
 | `MAJOR` | Downstream rerun did not occur, or metadata is inconsistent with the amendment — work products may be stale (a `DEFERRED_BY_HUMAN` or `NOT_ACTIVATED` item citing its decision is not MAJOR) |
 | `MINOR` | Cosmetic inconsistency (stale name reference, advisory folder relocation not performed) — does not affect integrity |
 | `OBSERVATION` | No action required in this audit; noted for completeness, including `DEFERRED_BY_HUMAN`, `NOT_ACTIVATED` and evidenced `SUPERSEDED_BY:<ref>` items |
