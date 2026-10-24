@@ -67,7 +67,7 @@ Required:
 - `SCAFFOLD_PATH` — path to approved SCAFFOLD snapshot (may have been modified by human after Phase SCAFFOLD)
 
 Optional:
-- `DEPENDENCY_SOURCES` — `AUTO` (default; reads per-deliverable `Dependencies.csv`) or explicit path(s) to dependency registers
+- `DEPENDENCY_SOURCES` — `AUTO` (default; reads consumer-local `deliverable.yaml` needs) or explicit paths to local need declarations and supporting source evidence
 - `EVALUATION_CRITERIA` — path to or structured block of evaluation criteria with point allocations
 - `AGGREGATION_HINTS` — human-specified aggregation preferences
 
@@ -98,7 +98,7 @@ All resolved defaults and chosen paths MUST be recorded in the snapshot `Run_Con
 Disallowed behavior:
 - No writes outside `{EXECUTION_ROOT}/_EstimatePrep/`.
 - No overwriting prior snapshots.
-- No modification of `_PriceSources/`, `_Estimates/`, deliverable folders, decomposition outputs, or dependency registers.
+- No modification of `_PriceSources/`, `_Estimates/`, deliverable folders, decomposition outputs, or local need declarations.
 - No recursive ingestion of prior `_EstimatePrep/` outputs unless explicitly provided as `PRIOR_SNAPSHOT` / `SCAFFOLD_PATH`.
 
 ## Phase SCAFFOLD — method
@@ -119,8 +119,8 @@ Disallowed behavior:
 
 1. **Resolve tool root + create snapshot folder.** Create `EPREP_BOE_{LABEL}_{DATE}_{TIME}/`.
 2. **Load approved scaffold.** Read `SCAFFOLD_PATH`; diff against original scaffold if identifiable; log human modifications in `Decision_Log.md`.
-3. **Load decomposition + dependencies.** Read `DEPENDENCY_SOURCES` (or `AUTO` for per-deliverable `Dependencies.csv`); build dependency DAG; detect cycles.
-4. **Derive tier sequencing.** Assign tiers via topological layering (T0, T1, ...); identify sequential chains and parallelization opportunities; output `Tier_Analysis.md`.
+3. **Load decomposition + needs.** Read `DEPENDENCY_SOURCES` (or `AUTO` for consumer-local `deliverable.yaml`). Use `construct-local-work-graph` to derive the relationships relevant to this estimating run. Preserve distinct conditions, `when`, `gating`, cases, unknown sources, external inputs and outward downstream obligations. Do not treat an outward obligation as an estimating prerequisite. Query tools are read-only; `tools/deliverables/README.md` describes their project-root and Git/HEAD requirements and native-only cycle reporting. Every query loads all project declarations and observes referenced path presence; use it only within the authorized read scope. Otherwise inspect relevant declarations directly and state reverse-link limits.
+4. **Derive tier sequencing.** Assess which actual input conditions govern meaningful estimating, then layer those prerequisites (T0, T1, ...), with chains and parallel opportunities in `Tier_Analysis.md`. State the source need and evidence for each ordering judgment. A native cycle is not automatically a blocker or a reason to make links non-gating. Where a reciprocal or unknown relation cannot be sequenced from actual staged-use conditions, record its tier as unresolved with the specific condition/decision needed; continue independent work. File presence and lifecycle do not establish input suitability. The run sequence is a derived estimating view, not a second dependency authority.
 5. **Generate per-deliverable estimation plan.** Tier assignment, basis/fallback/mixed-method from approved scaffold, substance and cost drivers, required price sources; package-level cost ownership rules.
 6. **Generate dependency-informed run sequence.** Tiers in order + within-tier parallelism + sequential chains + gates.
 7. **Generate aggregation strategy.** Rollups: deliverables to packages to project totals; add evaluation-weight views if `EVALUATION_CRITERIA` provided.
@@ -171,14 +171,14 @@ Disallowed behavior:
 
 ## Non-negotiable constraints
 
-- **Write quarantine.** Write ONLY under `{EXECUTION_ROOT}/_EstimatePrep/`. Never modify `_PriceSources/`, `_Estimates/`, deliverable folders, decomposition outputs, or dependency registers. Publishing to canonical locations is a separate, human-approved step handled by the invoker.
+- **Write quarantine.** Write ONLY under `{EXECUTION_ROOT}/_EstimatePrep/`. Never modify `_PriceSources/`, `_Estimates/`, deliverable folders, decomposition outputs, or local need declarations. Publishing to canonical locations is a separate, human-approved step handled by the invoker.
 - **Snapshots are immutable.** Each run writes a new snapshot folder; never overwrite prior snapshots.
 - **Phase separation.** SCAFFOLD and BOE are distinct invocations. A single run MUST NOT span both phases — the human gate between them is a non-negotiable decision point.
 - **Provenance tracking is mandatory.** Every generated value carries provenance appropriate to its schema family: `Basis` + `Confidence` for Families 1-7; `Source` + `Confidence` for Family 8; `Basis` alone (no `Confidence`) for Family 9. Do not add columns that do not exist in the canonical schema for a given file.
 - **Parametric defaults are not human confirmation.** Parametric values MUST be labeled `PARAMETRIC` with `MEDIUM` or `LOW` confidence, never `HIGH`. Only human-confirmed, vendor-quoted, or directly source-document-derived values earn `HIGH`.
 - **No silent overrides.** When ENRICH mode overlays human data on a baseline, every override MUST be logged in `Override_Log.csv` (what changed, from what, to what, confidence change).
 - **Conflicts are surfaced.** If two sources disagree or schema mismatches exist, produce `Conflicts.csv`; do not silently pick a winner.
-- **Dependencies are read-only inputs.** Dependency registers inform tier sequencing in Phase BOE but are never modified by this workflow.
+- **Dependencies are read-only inputs.** Local needs inform tier sequencing in Phase BOE but are never modified by this workflow; their conditions remain at the consumer.
 - **No recursive ingestion.** Do not treat prior `_EstimatePrep/` outputs as "market evidence" unless explicitly provided as `PRIOR_SNAPSHOT` / `SCAFFOLD_PATH`.
 - **CSV schema integrity.** Every generated CSV MUST match the exact column names and order specified by its schema family (or by the canonical file discovered via `AUTO_FROM_CANONICAL`). No invented columns.
 

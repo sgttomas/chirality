@@ -69,7 +69,7 @@ This is a reasoning-only workflow. No deterministic tools are required or allowe
 
 Disallowed behavior:
 - No writes outside `{DELIVERABLE_PATH}` (except the status helper which writes to the same folder).
-- No modifications to `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `_MEMORY.md`, `_SEMANTIC.md`, `_SEMANTIC_LENSING.md`.
+- No modifications to `_CONTEXT.md`, `deliverable.yaml`, `_REFERENCES.md`, `_MEMORY.md`, `_SEMANTIC.md`, `_SEMANTIC_LENSING.md`.
 - No cross-deliverable scanning or editing.
 
 ## Authority hierarchy (source-grounded drafting)
@@ -134,9 +134,9 @@ If either is missing: return `RUN_STATUS=FAILED_INPUTS` (do not modify files).
    - If NO listed reference materials are locally accessible: return `RUN_STATUS=FAILED_INPUTS` (source fidelity cannot be established without source access).
    - If some references are accessible and others are not: proceed with accessible sources; record inaccessible sources as missing. Content that depends solely on inaccessible sources becomes `TBD`.
    - For each accessible source, read the source slices relevant to this deliverable's scope (see Glossary: source slice).
-6. Read `{DELIVERABLE_PATH}/_DEPENDENCIES.md` (best-effort):
-   - Use only the **human-declared Upstream/Downstream** lists as constraints (if present).
-   - Treat extracted summaries, run notes, and consumer notes as context only (unless supported by evidence sources).
+6. Read `{DELIVERABLE_PATH}/deliverable.yaml` needs when present:
+   - Use the consumer's actual conditions and intended input use to understand interfaces, retaining `when`, `gating`, cases, maturity, technical holds and unknown/external sources. Keep outward downstream obligations distinct from required inputs.
+   - A need does not create a producer commitment or waive scope, release or acceptance conditions. File presence and lifecycle do not establish suitability. Do not merge distinct cases by endpoint or copy a dependency register into the production documents.
 
 **Output:** Internal understanding of deliverable identity, context, and available sources.
 
@@ -193,7 +193,7 @@ Using DOMAIN + TASK, generate the four documents in `{DELIVERABLE_PATH}`.
 
 **Interpretation rule:** Procedure may describe steps to **produce** the deliverable artifact and/or to **use/operate** it, depending on deliverable type and source availability.
 
-- Prerequisites: include declared upstream dependencies (if present) and required references.
+- Prerequisites: describe actual input conditions and required references for the procedure's use; cite the relevant local needs rather than duplicate their register.
 - Steps: derive from specification requirements + deliverable type conventions (use `TBD` where judgment would be needed).
 - Verification: checks confirming steps succeeded.
 - Records: what evidence/documents should result.
@@ -286,11 +286,11 @@ A successful run produces all four documents regardless of pass directive (Pass 
 
 ## Glossary
 
-- **Minimum viable fileset** (seeded with the `preparation` skill): `_CONTEXT.md`, `_DEPENDENCIES.md`, `_STATUS.md`, `_REFERENCES.md`, `_SEMANTIC.md` (placeholder).
+- **Minimum viable fileset** (seeded with the `preparation` skill): `_CONTEXT.md`, `deliverable.yaml`, `_STATUS.md`, `_REFERENCES.md`, `_SEMANTIC.md` (placeholder).
 - **Four documents** (produced/overwritten here): `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`.
 - **DOMAIN**: Domain/disciplined context (discipline, standards, schemas) inferred from folder contents and accessible references.
 - **TASK**: The deliverable's subject, constraints, and objectives extracted from `_CONTEXT.md` and the decomposition (with conservative inference rules).
-- **Dependency information**: `_DEPENDENCIES.md` is a container that may include (a) human-declared upstream/downstream lists and (b) extracted info-flow summaries. Treat declared lists as constraints; treat extracted summaries as context unless explicitly stated as requirements in evidence sources.
+- **Dependency information**: consumer-local `deliverable.yaml` needs state `from` and `condition`, with optional `when`, `gating` and `evidence`; outward external obligations may use `direction: downstream`. Use their actual condition/case as interface context within accepted scope. They establish neither satisfaction nor new producer commitments; reverse links are derived when needed.
 - **Source slice**: the smallest local source region that preserves meaning for a cited claim or requirement. Includes: the cited section or clause, its immediate parent heading (for scope framing), and any embedded tables, acceptance criteria, notes, or exceptions within that section. Adjacent exclusion or applicability material should be included when it qualifies the claim.
 
 ## Non-negotiable constraints
@@ -302,7 +302,7 @@ A successful run produces all four documents regardless of pass directive (Pass 
 - **No human input.** Work entirely from the deliverable folder, accessible references, and the decomposition. Do not ask questions or wait for answers.
 - **Respect human work.** If `_STATUS.md` indicates a state NOT in `ALLOW_OVERWRITE_STATES`, do not overwrite the four documents; return `SKIPPED_PROTECT_HUMAN_WORK`.
 - **Cross-document consistency.** Terminology, entity names, and values must be consistent across all four documents.
-- **Do not modify metadata files** created with the `preparation` skill (`_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `_MEMORY.md`, `_SEMANTIC.md`, `_SEMANTIC_LENSING.md`) except `_STATUS.md` (safe state update only).
+- **Do not modify metadata files** created with the `preparation` skill (`_CONTEXT.md`, `deliverable.yaml`, `_REFERENCES.md`, `_MEMORY.md`, `_SEMANTIC.md`, `_SEMANTIC_LENSING.md`) except `_STATUS.md` (safe state update only).
 - **Decomposition not overstated.** Do not create requirements, design values, or procedural steps from decomposition prose when the actual source text is locally available.
 - **Pass 3 source rereads evidenced.** Each substantive Pass 3 change records which source slice was consulted.
 - **DOMAIN variant unsupported.** A brief with `DECOMP_VARIANT=DOMAIN` returns `RUN_STATUS=UNSUPPORTED_VARIANT`; DOMAIN Knowledge Types use the separate `domain-documents` workflow.

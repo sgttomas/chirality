@@ -9,7 +9,7 @@
    - For each deliverable ID or path, locate the deliverable folder.
    - Resolve `LEGACY_FOUR_DOC | SOW_V1 | MIGRATION_DUAL | AMBIGUOUS | INVALID`;
      accept dual only when the brief cites exact path-scoped migration authority.
-   - Check for Dependencies.csv if `INCLUDE_DEPENDENCIES_CSV=true`.
+   - Check for `deliverable.yaml` if `INCLUDE_DEPENDENCIES=true`.
 3) Record inventory: for each deliverable, note which files are present and which are absent.
 4) If zero deliverables resolve: write `Brief.md` with `RUN_STATUS = FAILED_INPUTS` and stop.
 5) If no recognized production contract exists: record `NOT_INITIALIZED` and
@@ -128,16 +128,25 @@ not a parallel audit-generated namespace.
 
 ---
 
-### Pass 7 — Dependencies.csv provenance audit
+### Pass 7 — Local need evidence audit
 
-If `INCLUDE_DEPENDENCIES_CSV=true` and Dependencies.csv exists:
+If `INCLUDE_DEPENDENCIES=true` and `deliverable.yaml` exists:
 
-1) For each row where `Status = ACTIVE`:
-   - Check `EvidenceFile` is present and non-empty (not `location TBD`).
-   - Check `SourceRef` is present and non-empty (not `location TBD`).
-2) Compute **dependency provenance completeness** = (ACTIVE rows with both EvidenceFile AND SourceRef present and not `location TBD`) / (total ACTIVE rows).
-3) For rows missing provenance, record `DEP_MISSING_PROVENANCE` findings with the `DependencyID` and `Statement`.
-4) Check `Notes` field for epistemic labels (FACT, ASSUMPTION, PROPOSAL) where present.
+1) Inspect each need's `from`, `condition`, optional `when`, `gating` and
+   `evidence` against the actual stated use and available sources. Cite the
+   YAML path and need index. Preserve distinct cases, external/unknown sources
+   and outward `direction: downstream` obligations.
+2) Report **optional dependency evidence coverage** as needs with a stated
+   evidence pointer / needs inspected, retaining the denominator and zero-need
+   case. `evidence` is optional; its absence alone is not a provenance finding
+   or a malformed declaration. Assess support for any actual factual claims
+   under the same epistemic standard as the production content.
+3) Record actual unsupported factual claims, ambiguous conditions or source
+   conflicts with their evidence and uncertainty. An unknown binding is an
+   explicit uncertainty, not a fabricated missing supplier or readiness fail.
+4) Do not infer satisfaction from producer lifecycle, presence or a cycle, and
+   do not change gating, retarget a need or merge it with another endpoint
+   match. This is a read-only epistemic audit, not dependency authoring.
 
 ---
 

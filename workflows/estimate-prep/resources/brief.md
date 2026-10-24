@@ -68,7 +68,7 @@ Any other value produces `RUN_STATUS=FAILED_INPUTS`. A single run MUST NOT span 
 
 | Field | Default | Notes |
 |---|---|---|
-| `DEPENDENCY_SOURCES` | `AUTO` | `AUTO` (reads per-deliverable `Dependencies.csv`) or explicit path(s) |
+| `DEPENDENCY_SOURCES` | `AUTO` | `AUTO` (reads consumer-local `deliverable.yaml` needs) or explicit paths to local declarations/supporting evidence |
 | `EVALUATION_CRITERIA` | — | Path to or structured block of evaluation criteria with point allocations |
 | `AGGREGATION_HINTS` | — | Human-specified aggregation preferences |
 

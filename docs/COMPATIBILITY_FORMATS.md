@@ -2,8 +2,11 @@
 
 Compatibility reference for existing readers, not a development procedure.
 New deliverable work uses ScopeOfWork, Design and deliverable.yaml under AGENTS.md.
-Machine-readable schemas and parsers remain at their existing paths; this document
-does not change accepted source formats or require migration of dormant consumers.
+Dependency CSV descriptions below are historical source references, not supported
+authoring, query or adapter routes. Current dependencies use the native-only
+[deliverable method](../tools/deliverables/README.md); superseded dependency tools
+and workflows are recoverable through Git. Other adopted source formats are
+unchanged, and no project artifact migration is implied.
 
 ## Paths and containment
 

@@ -81,7 +81,7 @@ Read in this order when present:
 1. `_CONTEXT.md` — required. If missing, fail with `FAILED_INPUTS`.
 2. `_STATUS.md` — lifecycle state and phase history.
 3. `_REFERENCES.md` — source corpus and source-state warnings.
-4. `_DEPENDENCIES.md` — dependency notes; do not infer blockers from it.
+4. `deliverable.yaml` — optional local need conditions as interface context. Preserve case/trigger, gating, unknown/external sources and outward obligations; do not infer satisfaction or blockers, merge cases by endpoint, or author a dependency map here.
 5. `MEMORY.md` — if absent, record `not present` in Inputs Read.
 6. Production documents:
    - `PROJECT` / `SOFTWARE`: `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`
@@ -101,7 +101,7 @@ May write only inside `deliverable_folder`:
 - `_SEMANTIC.md` — primary output; overwrite allowed.
 - `_STATUS.md` — only if `STATUS_POLICY` requires it and TASK/brief authorizes it.
 
-Never modify production documents, `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, `MEMORY.md`, or files outside the scope.
+Never modify production documents, `_CONTEXT.md`, `_REFERENCES.md`, `deliverable.yaml`, `MEMORY.md`, or files outside the scope.
 
 ## Deliverable perspective
 
@@ -322,7 +322,7 @@ Write `_SEMANTIC.md` in this order.
 - _CONTEXT.md — [SourceRef]
 - _STATUS.md — [SourceRef or not present]
 - _REFERENCES.md — [SourceRef or not present]
-- _DEPENDENCIES.md — [SourceRef or not present]
+- deliverable.yaml — [SourceRef or not present]
 - MEMORY.md — [SourceRef or not present]
 - Datasheet.md — [SourceRef or absent]
 - Specification.md — [SourceRef or absent]

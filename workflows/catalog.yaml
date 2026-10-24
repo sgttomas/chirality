@@ -40,9 +40,6 @@
         "name": "scope-change"
       },
       {
-        "name": "project-dag"
-      },
-      {
         "name": "task-management",
         "displayName": "Manage tasks"
       },
@@ -276,9 +273,6 @@
           },
           {
             "name": "scope-change-packet"
-          },
-          {
-            "name": "scc-resolution-case"
           },
           {
             "name": "kty-content-remediate"
