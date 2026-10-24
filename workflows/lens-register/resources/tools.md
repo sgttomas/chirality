@@ -70,7 +70,7 @@ Read-only:
 - `_STATUS.md`
 - `_CONTEXT.md`
 - `_REFERENCES.md`
-- `_DEPENDENCIES.md` / `Dependencies.csv` if present
+- `deliverable.yaml` needs if present
 - all production documents
 
 No other writes are allowed unless a future human-approved workflow revision explicitly changes the contract.

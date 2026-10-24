@@ -57,15 +57,33 @@ is the `PackageID` column, and a Scope Item's `DeliverableID(s)` and
 
 Before checkpoint groups 2 and 3, check the registers with
 `python3 tools/validation/validate_decomposition_registers.py <EXECUTION_ROOT> --families XRG`
-(report-only; the XRG family cross-checks `Deliverables.csv`,
-`ScopeLedger.csv`, and `ContextBudgetQA.csv`; other families assume
-deliverable folders that exist only after project setup; `--list-checks` lists
-all checks).
+(report-only; XRG cross-checks `Deliverables.csv`, `ScopeLedger.csv`, and
+`ContextBudgetQA.csv` independently of dependency storage or locality layout;
+`--list-checks` lists the scope/objective/context checks).
 Findings route repair or are presented as exceptions; they do not add a
 checkpoint.
 
 The accepted package is consumed downstream by `project-setup`, then by
 `scope-of-work` with `MODE=INIT` for each deliverable's production contract.
+
+---
+
+## Dependency handoff to setup
+
+Carry source-grounded needed inputs with the responsible consuming Deliverable,
+the actual intended use/condition, relevant case or trigger, and the source
+location. Keep an unknown producer/source explicitly unresolved. These are
+inputs to the consumer's later local authoring, not producer commitments or a
+complete execution network. Do not expand a general interface into every
+producer/consumer pair or merge distinct uses because endpoints match.
+
+After scope exists, `project-setup` uses `dependency-extract` to author actual
+needs in each consumer's `deliverable.yaml` from scope, relevant Design and
+sources. Reverse links and undertaking-specific graphs are derived on demand.
+Do not create an authoritative dependency graph or dependency CSV/Markdown
+companions in decomposition. Existing scope, objective, coverage and context
+registers retain their decomposition roles; technical holds and acceptance
+remain with their actual authorities.
 
 ---
 
@@ -127,7 +145,7 @@ The `software-decomp` workflow conforms to the package architecture defined in `
 
 ### Preventing monolithic drift
 
-As software decompositions grow companion analysis surfaces (dependency graphs, context budget analyses, coverage telemetry), those surfaces SHOULD live in companion files rather than being embedded in the main decomposition document. The main document remains a concise control surface.
+As software decompositions grow companion analysis surfaces (context budget analyses, coverage telemetry), those surfaces SHOULD live in companion files rather than being embedded in the main decomposition document. Dependency views remain derived queries from local needs, rather than authoritative decomposition companions. The main document remains a concise control surface.
 
 Any single-file review bundle, reporting dashboard, or publication render assembled from the modular package is a **derived publication artifact** and must be explicitly labeled as such. It must not silently become the authoritative amendment surface.
 

@@ -1,65 +1,63 @@
 #!/usr/bin/env python3
-"""Exhaustive dependency-register audit. Successful observation exits 0, even for FAIL subjects."""
+"""Read-only native DEL dependency audit; observations do not establish readiness."""
 from __future__ import annotations
+
 import argparse
+import json
+import subprocess
 import sys
 from pathlib import Path
-from audit_common import in_lifecycle_folder, inventory, parse_register, report_base, require_root, write_report
+
+from audit_common import TOOLS, report_base, require_root, write_report
 
 
-def audit(root):
-    root = require_root(root)
-    result = report_base(root)
-    units = inventory(root)
-    files = []
-    for unit in units:
-        path = unit / "Dependencies.csv"
-        if path.is_file():
-            info, _ = parse_register(path)
-            info["production_unit"] = unit.name.split("_")[0]
-            files.append(info)
-        else:
-            result["issues"].append(f"missing register: {path}")
-    # Registers of nonstandard production units remain in the CSV census.
-    known = {item["path"] for item in files}
-    for path in sorted(root.rglob("Dependencies.csv")):
-        relative = path.relative_to(root)
-        if in_lifecycle_folder(relative) and "_Archive" not in relative.parts and str(path) not in known:
-            info, _ = parse_register(path)
-            files.append(info)
-    files.sort(key=lambda info: info["path"])
-    result["files"] = files
-    total = sum(info["rows"] for info in files)
-    populated = sum(info["evidence_populated"] for info in files)
-    complete = all(info["denominator_complete"] for info in files)
-    result["summary"] = {"production_units": len(units), "files": len(files), "rows": total,
-        "schema_valid_files": sum(info["schema_valid"] for info in files),
-        "malformed_rows": sum(info["malformed_rows"] for info in files),
-        "readable_rows": sum(info["readable_rows"] for info in files),
-        "files_with_implements_node": sum(info["implements_node_rows"] > 0 for info in files),
-        "evidence_populated": populated, "evidence_denominator": total,
-        "denominator_complete": complete,
-        "evidence_coverage_percent": round(100 * populated / total, 4) if total and complete else None}
-    for info in files:
-        if not info["implements_node_rows"]:
-            info["issues"].append("no ANCHOR row with AnchorType=IMPLEMENTS_NODE")
-        if info["evidence_populated"] != info["rows"]:
-            info["issues"].append("EvidenceFile is absent or unassessable for one or more records")
-    failures = result["issues"] or any(info["issues"] or info["row_findings"] for info in files)
-    result["subject_status"] = "FAIL" if failures else "PASS" if files else "NOT_ASSESSED"
+def audit(project):
+    """Report the native check query without maintaining another dependency parser or graph."""
+    project = require_root(project)
+    result = report_base(project)
+    result.update(schema_version=2, assessment="native DEL metadata structure and reference presence only")
+    process = subprocess.run(
+        [sys.executable, str(TOOLS / "deliverables/cli.py"), "--project", str(project), "check"],
+        cwd=project, capture_output=True, text=True,
+    )
+    try:
+        query = json.loads(process.stdout)
+    except (json.JSONDecodeError, UnicodeError) as exc:
+        raise ValueError("native deliverable check did not return JSON: " +
+                         (process.stderr.strip() or str(exc))) from exc
+    if not isinstance(query, dict) or not isinstance(query.get("errors"), list):
+        raise ValueError("native deliverable check returned an invalid report")
+    result["query"] = query
+    result["issues"] = list(query["errors"])
+    # Native check reports partial, structurally invalid metadata with a basis
+    # and exit 2. Missing Git/HEAD/project inputs have no basis and are failed
+    # observations; no fallback parser silently changes the query semantics.
+    if process.returncode not in (0, 2) or "basis" not in query:
+        result["run_status"] = "FAILED_INPUTS"
+        if not result["issues"]:
+            result["issues"].append(process.stderr.strip() or "native deliverable check could not establish its input basis")
+        return result
+    result["summary"] = {
+        "deliverables": query["deliverables"],
+        "needs": len(query["needs"]),
+        "unknown_references": len(query["unknown"]),
+        "native_cycle_components": len(query["cycles"]),
+    }
+    result["subject_status"] = "FAIL" if result["issues"] else "PASS" if query["deliverables"] else "NOT_ASSESSED"
     return result
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--root", required=True, type=Path)
+    parser.add_argument("--project", required=True, type=Path,
+                        help="project root containing execution localities; document/evidence paths are relative to it")
     parser.add_argument("--output", required=True, help="JSON report path, or - for stdout")
     args = parser.parse_args(argv)
     try:
-        report = audit(args.root)
+        report = audit(args.project)
     except (OSError, ValueError) as exc:
-        report = report_base(args.root)
-        report.update(run_status="FAILED_INPUTS", issues=[str(exc)])
+        report = report_base(args.project)
+        report.update(schema_version=2, run_status="FAILED_INPUTS", issues=[str(exc)])
     try:
         write_report(report, args.output)
     except (OSError, ValueError) as exc:

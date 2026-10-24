@@ -65,12 +65,9 @@ def build_plan(profile: str, root: Path = ROOT) -> list[CheckStep]:
     if profile in {"skeleton", "python", "all"}:
         steps.append(
             CheckStep(
-                name="dag dependency schema",
-                command=python_cmd(
-                    "tools/validation/validate_dependencies_schema.py",
-                    "execution/_DAG/DAG-002/DependencyEdges.csv",
-                ),
-                description="Validate the approved DAG-002 dependency register schema.",
+                name="native dependency query tests",
+                command=python_cmd("-m", "pytest", "-q", "tools/deliverables/test_cli.py"),
+                description="Exercise current local dependency structure and observation boundaries.",
             )
         )
         steps.append(

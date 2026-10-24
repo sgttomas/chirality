@@ -25,9 +25,8 @@ CENTRAL = (
     "scope-change",
 )
 # Ordered core navigation set: the central workflows, with software-prd ahead
-# of software-decomp and project-dag after scope-change (both core in
-# navigation but not central), and the three everyday project workflows the
-# App shows at first glance.
+# of software-decomp (core in navigation but not central), and the three
+# everyday project workflows the App shows at first glance.
 CORE = (
     "create-workflow",
     "project-setup",
@@ -37,7 +36,6 @@ CORE = (
     "domain-decomp",
     "research-orchestration",
     "scope-change",
-    "project-dag",
     "task-management",
     "review",
     "reconciliation",

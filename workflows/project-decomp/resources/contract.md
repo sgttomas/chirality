@@ -18,6 +18,25 @@ conflict as a contradiction and request the human's resolution.
 
 ---
 
+## Dependency handoff to setup
+
+Carry source-grounded needed inputs with the responsible consuming Deliverable,
+the actual intended use/condition, relevant case or trigger, and the source
+location. Keep an unknown producer/source explicitly unresolved. These are
+inputs to the consumer's later local authoring, not producer commitments or a
+complete execution network. Do not expand a general interface into every
+producer/consumer pair or merge distinct uses because endpoints match.
+
+After scope exists, `project-setup` uses `dependency-extract` to author actual
+needs in each consumer's `deliverable.yaml` from scope, relevant Design and
+sources. Reverse links and undertaking-specific graphs are derived on demand.
+Do not create an authoritative dependency graph or dependency CSV/Markdown
+companions in decomposition. Existing scope, objective, coverage and context
+registers retain their decomposition roles; technical holds and acceptance
+remain with their actual authorities.
+
+---
+
 ## Non-negotiable invariants
 
 - **Human-validated scope.** The agent prepares proposals and checks before
@@ -41,7 +60,7 @@ conflict as a contradiction and request the human's resolution.
 - **Stable identifiers.** Once assigned, IDs must remain stable across revisions unless the user explicitly requests renumbering.
 - **Deterministic DeliverableID ↔ PackageID coupling.**
   - Package IDs MUST be fixed-width: `PKG-XX` (2 digits, zero-padded; e.g., `PKG-12`).
-  - Deliverable IDs MUST be fixed-width and mechanically derived from the parent package: `DEL-XX-YY_{shortDescription}`.
+  - Deliverable numeric identities MUST be fixed-width and mechanically derived from the parent package: `DEL-XX-YY`. Preserve any accepted `_{shortDescription}` as its descriptive label binding; native YAML uses the numeric identity.
     - The first `XX` MUST equal the numeric portion of `ParentPackageID` / `PackageID`.
     - The `YY` is a sequential counter **unique within that package** (`01`, `02`, …).
   - Example: `PKG-12` → `DEL-12-03_Pre-commissioning-Installation`
@@ -177,7 +196,7 @@ This section defines the entities and required tables in the decomposition outpu
 - `Exclusions` (optional)
 
 #### Deliverable
-- `DeliverableID` (stable; follows `DEL-XX-YY_{shortDescription}`, e.g., `DEL-12-03_Pre-commissioning-Installation`)
+- `DeliverableID` (stable numeric `DEL-XX-YY`; preserve an accepted descriptive suffix binding, e.g., `DEL-12-03_Pre-commissioning-Installation`, without changing its numeric identity)
 - `Name`
 - `ParentPackageID`
 - `Description`

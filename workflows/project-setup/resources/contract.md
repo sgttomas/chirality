@@ -56,13 +56,13 @@ If the observed state doesn't match a phase cleanly (e.g., partial scaffolding f
 - **Filesystem is the state.** Project truth is in the folder structure + files. Do not maintain a separate hidden database.
 - **Evidence-first reporting.** Report only what can be justified from files you actually read (with paths; best-effort anchors; or `location TBD`).
 - **Human authority is the halting condition.** Confirmation gates are mandatory.
-- **Coordination representation is human-owned.** WORKING_ITEMS records the representation the human chooses; it does not impose one.
-- **No forced false precision.** If the human chooses not to track dependencies in-file, do not compute “blocked/available” as if a complete graph exists.
+- **Coordination representation is human-owned.** WORKING_ITEMS records how the human chooses to coordinate work; the dependency declaration has one current form, consumer-local `deliverable.yaml`.
+- **No forced false precision.** Local needs record actual input conditions, not a complete accepted network or a lifecycle-derived availability verdict. Judge conditions for the selected undertaking from evidence and responsible judgment.
 - **Bounded sub-agents only.** Spawn sub-agents only for clearly bounded work with explicit scope. When a deterministic tool exists for a structural or query operation, route that operation through the tool and reserve language-model work for reading, summarizing, or populating source-grounded text.
 - **Bounded workflow stages use TASK.** Reusable method work such as `semantic-matrix-build`, `lens-register`, `dependency-extract`, `estimate-snapshot`, and `content-digest` is dispatched as `TASK + Workflow`, not by minting a new persona agent. WORKING_ITEMS writes or resolves the bounded brief; TASK normalizes scope, loads the selected workflow resources, follows its effective write boundary, supplies run evidence, and returns the auditable report.
 - **Accepted work selection.** The human establishes the undertaking’s scope. WORKING_ITEMS assigns bounded contributions within that accepted scope and reports proposed scope changes for human decision.
 - **Human-owned schedule basis.** Dependency evidence is not automatically a schedule constraint. Before schedule work, the human selects `PRECEDENCE | CONSTRAINT | HYBRID`, scope, hard-versus-soft edge rules, duration posture, calendars, and milestones.
-- **No invented schedule facts.** Structure traces to accepted decomposition IDs; constraints trace to accepted dependency rows or explicit human rulings. Durations remain blank unless proposals are explicitly enabled and labeled.
+- **No invented schedule facts.** Structure traces to accepted decomposition IDs; constraints trace to the actual declared input/use conditions selected for that undertaking or explicit human rulings. Durations remain blank unless proposals are explicitly enabled and labeled.
 - **Schedule cycle discipline.** PRECEDENCE cycles require a recorded human-approved resolution. CONSTRAINT/HYBRID cycles are represented as concurrency/risk patterns unless the human rules otherwise.
 - **Schedule quarantine.** Each schedule run writes an immutable snapshot under `{EXECUTION_ROOT}/_Schedule/{RunID}/`; it never modifies decomposition or deliverable truth.
 - **Incremental setup preserves existing work.** In `INCREMENTAL` mode, existing folders, IDs, file content and lifecycle state are kept. Added entities are scaffolded; retired entities are never deleted; modified deliverables go to their production contract's update path, never to re-scaffolding.
@@ -94,7 +94,7 @@ Recommended lifecycle ownership (may vary by project):
 | Mode | Applies when | Functions | Human checkpoints |
 |---|---|---|---|
 | `INITIAL` | An accepted decomposition has not yet been set up | 1 (Initialize), 2 (Scaffold + setup pipelines) | The phase gates of Functions 1–2 |
-| `INCREMENTAL` | An accepted `scope-change` amendment, not covered by the project's adoption baseline, has been applied and its `Handoff_State.md` hands setup back to this workflow | 5 (Incremental setup) | Confirm the adoption baseline once per project where `INITIAL` setup did not record it; confirm the incremental plan; then report. Other gates only for decisions the stages reserve (for example accepting a `project-dag` successor or rejecting the change for `DAG pending` deliverables, SCC resolution, a lifecycle act such as reopening an `ISSUED` deliverable) |
+| `INCREMENTAL` | An accepted `scope-change` amendment, not covered by the project's adoption baseline, has been applied and its `Handoff_State.md` hands setup back to this workflow | 5 (Incremental setup) | Confirm the adoption baseline once per project where `INITIAL` setup did not record it; confirm the incremental plan; then report. Other gates only for decisions the stages reserve (for example an unresolved technical condition or a lifecycle act such as reopening an `ISSUED` deliverable) |
 
 Functions 3 (Scan & report) and 4 (Estimating) apply in either mode on request.
 
@@ -106,7 +106,7 @@ Functions 3 (Scan & report) and 4 (Estimating) apply in either mode on request.
 | Accepted action register | `Amendment_Actions.csv` in the snapshot, or the distinct register its group-2 `ACCEPTED_MANIFEST.csv` names (for example `Amendment_Actions_CP2.csv`) | Resolve through the accepted manifest; `Intake_Actions.csv` is group-1 evidence only. Verify the recorded hash. |
 | `Propagation_Plan.md`, `Handoff_State.md` | The same snapshot | Name the hand-back, derivative state, deferred items and blockers. |
 | Amended decomposition | `{DECOMP_ROOT}/`, as applied by the amendment | Source of IDs, names, parent bindings and metadata for added entities. |
-| Coordination record | `{COORDINATION_ROOT}/_COORDINATION.md` | Representation, dependency tracking mode (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3) and threshold are reused, not re-asked. Read only; this workflow does not write the human-owned record in `INCREMENTAL` mode. |
+| Coordination record | `{COORDINATION_ROOT}/_COORDINATION.md` | The existing coordination arrangements and recorded technical holds are reused, not re-asked. Historical dependency labels do not select another writer or dependency method. Read only; this workflow does not write the human-owned record in `INCREMENTAL` mode. |
 | Setup log | `{COORDINATION_ROOT}/SETUP_LOG.md` | Agent-owned and append-only (see [Setup log](#setup_logmd-project-level-agent-owned-append-only)). Holds the adoption baseline and one line per incremental run. Created at the end of `INITIAL` setup (method Phase 2.7), or by the adoption step (Phase 5.0) in a project set up before incremental setup existed. |
 | Production format | Each affected deliverable, resolved per `docs/COMPATIBILITY_FORMATS.md#historical-specification` §2.2 | Selects the update path for `MODIFY`. |
 
@@ -116,21 +116,19 @@ If any input is missing, unaccepted or inconsistent with the workspace (for exam
 
 | Accepted action | Setup treatment |
 |---|---|
-| `ADD` (and successor entities of `MERGE`/`SPLIT`) | Scaffold only the new package, deliverable, category or knowledge type with the source-qualified `preparation` skill (Phase 2.1 rules), then initialize production with the project's contract (`SOW_V1` via `scope-of-work`, `MODE=INIT`; DOMAIN via `domain-documents` with `AUTHORITY_MODE: SCA_DRIVEN` as the amendment's hand-off) and create its dependency and status records. |
+| `ADD` (and successor entities of `MERGE`/`SPLIT`) | Scaffold only the new package, deliverable, category or knowledge type with the source-qualified `preparation` skill (Phase 2.1 rules), then initialize production with the project's contract (`SOW_V1` via `scope-of-work`, `MODE=INIT`; DOMAIN via `domain-documents` with `AUTHORITY_MODE: SCA_DRIVEN` as the amendment's hand-off) and create its local needs declaration and status records (DEL only for needs). |
 | `REMOVE` (and sources retired by `MERGE`/`SPLIT`) | No deletion of folders or files. Confirm the `scope-change` retirement rule was applied: the `[RETIRED — {AMENDMENT_ID}]` decomposition annotation and one appended `_STATUS.md` history line, lifecycle state unchanged, `write_status.sh` not used. Append the history line only where the accepted poststate lacks it. |
 | `MODIFY` | No re-scaffolding. Route the deliverable to its production contract's update path (Function 5, Phase 5.5): for `SOW_V1`, `scope-of-work` `MODE=REVISE` ending in `MODE=VERIFY`. A `CHECKING` or `ISSUED` deliverable is held for the human; an `ISSUED` deliverable reopens only as `docs/COMPATIBILITY_FORMATS.md#historical-specification` §3.3 allows. `_CONTEXT.md` edits belong to the amendment itself. |
 | `RECLASSIFY` | Routed as `MODIFY` (Phase 5.5). An `ISSUED` deliverable reopens only for a scope-changing `RECLASSIFY` (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §3.3). Move a folder only when the accepted propagation plan names the relocation and the human confirms it in the incremental plan; move it whole, keeping content and `_STATUS.md`. |
 
-The affected set is the deliverables named by the accepted actions. Their
-neighbours are the deliverables with a recorded edge to or from an affected
-deliverable (declared sections, `Dependencies.csv`) and any the accepted
-impact assessment names for dependency review.
-
-Where the project has an accepted project DAG (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4), the
-incremental dependency stage ends with a `project-dag` currency audit. The
-deliverables a departure affects are `DAG pending` until the human accepts the
-candidate successor or rejects the change; unaffected work continues on the
-accepted version. This workflow reports the flag and does not clear it.
+The affected set is the deliverables named by the accepted actions. Derive
+their neighbours and affected consumers on demand from `deliverable.yaml`
+using `tools.deliverables neighborhood <DEL>` / `impact <DEL>` and the
+accepted impact assessment. Preserve distinct cases, conditions and triggers
+between the same identities. A retirement does not automatically delete or
+retarget a consumer need: an existing artifact may still satisfy a stated use.
+Review that actual condition and retain technical holds and source uncertainty.
+No central network is maintained or granted dependency authority.
 
 ---
 
@@ -139,17 +137,21 @@ accepted version. This workflow reports the flag and does not clear it.
 - **Package**: A top-level scope grouping in the decomposition (`PKG-…`).
 - **Deliverable / Working item**: A scoped unit of work (`DEL-…`) represented by one deliverable folder.
 - **Lifecycle state**: `OPEN | INITIALIZED | SEMANTIC_READY | IN_PROGRESS | CHECKING | ISSUED` (local to the deliverable folder).
-- **Coordination representation** (`docs/COMPATIBILITY_FORMATS.md#historical-vocabulary` §6, `docs/COMPATIBILITY_FORMATS.md#historical-specification` §13): The human’s chosen way to coordinate across packages/deliverables, recorded separately from the dependency tracking mode:
-  - `SCHEDULE_FIRST` — a schedule (Gantt) drives sequencing; recorded dependencies, unless the mode is `NOT_TRACKED`, support blocker detection and audit.
-  - `DEPENDENCY_TRACKED` — the dependency graph drives sequencing.
-  - `HYBRID` — a combination of schedule-first and dependency-tracked.
-  - Earlier records may carry the former option labels (`Schedule-first`; `Declared deps` or `Declared critical dependencies`; `Full graph` or `Full dependency graph (DAG)`); they remain readable as written. `Schedule-first` corresponds to `SCHEDULE_FIRST`; the declared and full-graph labels named a tracking mode (`DECLARED`, `FULL_GRAPH`) rather than a representation, so confirm the representation with the human when the record is next updated.
-- **Dependency tracking mode** (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3):
-  - `NOT_TRACKED` — dependency coordination occurs outside the files (humans or an external schedule); do not compute blockers or report a ready/blocked judgment from dependencies.
-  - `DECLARED` — only critical dependencies are recorded (partial, human-curated); the recorded edges are a partial view. Compute blockers only from the recorded register (see **Dependency register**). Dependency extraction may add `Dependencies.csv` rows when the Phase 1.3 rules call for it; it does not make the view complete.
-  - `FULL_GRAPH` — dependency declarations are intended to form a complete DAG; compute blockers only from the declared graph in the recorded register, after closure audit and cycle treatment (see Validity).
-  - A legacy `TRACKED` value in an existing record is read as `FULL_GRAPH`; new records write `FULL_GRAPH`.
-- **Dependency register**: deliverable-local dependency artifacts: `_DEPENDENCIES.md`, with the `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.2 headings, and `Dependencies.csv` when present. They are the dependency evidence (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4). In a project without an accepted project DAG, the recorded register used for blockers is the union of the declared entries in `_DEPENDENCIES.md` and the CSV rows (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3). `dependency-extract` mirrors each declared entry into the CSV as an `Origin=DECLARED` row, but a file not yet refreshed may hold a declaration only in the markdown, so never compute blockers from the CSV alone. A declared entry and a row for the same direction and target are one edge, counted once; where they disagree, the declared section governs and the disagreement is reported. In a project with an accepted project DAG, blockers come instead from the accepted current version named by `_DAG/_LATEST.md`, and a deliverable whose local evidence departs from it is `DAG pending` until the human decides (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4; `project-dag`).
+- **Coordination representation**: the human's chosen use of schedules,
+  dependency-informed sequencing or both, recorded in `_COORDINATION.md`.
+- **Consumer-local need**: an input and its actual intended condition/use in
+  the consumer's `deliverable.yaml`. The native schema lives in
+  `tools/deliverables/cli.py`: `from`, `condition`, and optional `when`,
+  `gating`, `evidence`, `direction`. Unknown sources remain `from: unknown`.
+  Outward obligations to external recipients stay at the actual producer
+  with `direction: downstream`; they do not create native reverse declarations.
+  A consumer's statement does not change producer scope, appoint a supplier,
+  establish availability or waive a release condition.
+- **Derived dependency view**: a neighbourhood, reverse link, impact map or
+  graph generated for a concrete undertaking from local needs. It is a query
+  result, not another dependency source. Endpoint equality does not merge
+  distinct use/case/trigger conditions. Structural validity and file presence
+  are separate from condition satisfaction and technical readiness.
 - **Semantic lens artifacts**:
   - `_SEMANTIC.md` is a lens scaffold (question-shaping), not an authority.
   - `_SEMANTIC_LENSING.md` is an enrichment register, not an authority.
@@ -166,11 +168,21 @@ A workspace is valid when:
 - Every deliverable folder contains the minimum viable fileset (see STRUCTURE).
 - `{COORDINATION_ROOT}/_COORDINATION.md` exists and reflects the human-confirmed coordination representation.
 
-### Coordination representation validity
+### Dependency declaration validity
 
-- Representation and dependency mode were explicitly confirmed by the human.
-- If mode is `NOT_TRACKED`, reports must not label deliverables as blocked/available based on dependencies.
-- If mode is `DECLARED` or `FULL_GRAPH`, blockers are computed, in a project without an accepted project DAG, from the recorded register, which is the union of the declared entries in `_DEPENDENCIES.md` and `Dependencies.csv` (see **Dependency register**); in a project with one, from its accepted current version, with `DAG pending` deliverables given no verdict. In either case they are computed only from edges outside unresolved cycles. Edges that participate in an unresolved SCC are non-gating: they are excluded from blocker computation and reported as held pending resolution through `scc-resolution-case` and the owning decisions (`docs/COMPATIBILITY_FORMATS.md#historical-cycle-method` §2 rule 4). A cycle does not by itself invalidate the coordination record or block independent work.
+- Each PROJECT/SOFTWARE DEL has one schema-valid `deliverable.yaml` whose
+  numeric identity agrees with its accepted decomposition binding and folder.
+- Needs come from actual scope, relevant Design, sources and intended use;
+  missing bindings remain explicit. An initial `needs: []` means none declared
+  yet, not that inputs are complete or the deliverable is ready.
+- Reverse links and graphs are derived on demand. A query reports its selected
+  scope and unknowns; successful structure checks do not establish suitability.
+- Assess reciprocal conditions for the selected work and preserve technical
+  holds. A cycle does not itself change `gating`, waive a condition or require
+  a new case/approval machinery. Continue work whose actual inputs permit it.
+- This native dependency method covers DEL localities only. It does not assess
+  KTY dependency declarations or authorize new KTY dependency files; retain
+  existing DOMAIN artifacts unchanged.
 
 ### S-EST — Estimating pipeline validity
 
@@ -185,8 +197,8 @@ If any of these conditions are not met, WORKING_ITEMS must report the specific m
 ### Invalid states (examples)
 
 - Deliverable folder missing minimum viable fileset (downstream agents cannot operate).
-- Coordination mode unspecified (WORKING_ITEMS cannot know whether to compute blockers).
-- Reporting blockers in `NOT_TRACKED` mode (false precision).
+- YAML identity disagrees with its accepted/local deliverable binding.
+- Inferring input satisfaction from lifecycle state, metadata presence or a successful structural query.
 - Running semantic lensing steps out of order (no `_SEMANTIC.md` or `_SEMANTIC_LENSING.md`).
 - Running estimating pipeline without a BOE or INDEX.md (`estimate-snapshot` cannot operate).
 - Spawning `estimate-snapshot` for a deliverable excluded in BOE Section 4 (contradicts human strategy).
@@ -216,8 +228,7 @@ If any of these conditions are not met, WORKING_ITEMS must report the specific m
           _CONTEXT.md
           _STATUS.md
           _REFERENCES.md
-          _DEPENDENCIES.md
-          Dependencies.csv         # optional; produced by TASK+dependency-extract
+          deliverable.yaml        # accepted numeric DEL id + consumer-local needs
           _SEMANTIC.md             # required placeholder; lens scaffold content optional
           _SEMANTIC_LENSING.md     # enrichment register (optional)
           ScopeOfWork.md           # SOW_V1 production contract (scope-of-work, MODE=INIT)
@@ -243,8 +254,7 @@ Every deliverable folder should be seeded with:
 | `_CONTEXT.md` | Identity and scope | Must contain stable IDs from decomposition |
 | `_STATUS.md` | Lifecycle state | Authoritative lifecycle indicator |
 | `_REFERENCES.md` | Sources index | Pointers to package references and other materials |
-| `_DEPENDENCIES.md` | Human-readable dependency view | Created with the `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.2 skeleton; TASK+dependency-extract refreshes only its agent-owned sections |
-| `Dependencies.csv` | Structured dependency edges | Optional; created by TASK+dependency-extract when run |
+| `deliverable.yaml` | Consumer-local input conditions (DEL only) | Schema-valid accepted numeric identity and initial `needs: []`; `dependency-extract` authors actual needs after scope exists |
 | `_SEMANTIC.md` | Semantic lens scaffold | Required placeholder at scaffold time; lens content optional and created/overwritten by TASK+semantic-matrix-build |
 | `_SEMANTIC_LENSING.md` | Enrichment register | Optional; created by TASK+lens-register |
 
@@ -256,15 +266,15 @@ Every deliverable folder should be seeded with:
 # Coordination Record
 
 **Representation:** [SCHEDULE_FIRST | DEPENDENCY_TRACKED | HYBRID]
-**Dependency tracking mode:** [NOT_TRACKED | DECLARED | FULL_GRAPH]
 **External schedule / coordination artifact:** [path/link or "N/A"]
-**Default maturity threshold (if computing blockers):** [INITIALIZED|SEMANTIC_READY|IN_PROGRESS|CHECKING|ISSUED]
 
 ## Notes (human-owned)
 - [How the team is coordinating]
 - [Optional: stage gates definitions live here if humans want them recorded]
 ```
 
+Dependency declarations live only in each DEL's `deliverable.yaml`; this
+record contains coordination policy, not dependency cases or a stage map.
 This workflow does not add agent-written sections to `_COORDINATION.md`. Setup
 evidence goes to `SETUP_LOG.md` below.
 
@@ -302,11 +312,17 @@ an accepted amendment's setup hand-back has been carried out.
 ### Deliverable IDs (important)
 
 Deliverable IDs are sourced from the decomposition. Do not invent new IDs. The expected pattern is the hyphen style (format varies by decomposition variant):
-- WORKING_ITEMS (workflow: project-decomp): `DEL-PPP-LL_{shortDescription}` (3-digit package, 2-digit sequence, description suffix)
+- WORKING_ITEMS (workflow: project-decomp): `DEL-PP-LL` (2-digit package, 2-digit sequence), with its accepted descriptive suffix retained as a label binding
 - WORKING_ITEMS (workflow: software-decomp): `DEL-PP-LL` (2-digit package, 2-digit sequence, no suffix)
 - WORKING_ITEMS (workflow: domain-decomp): `KTY-CC-TT_{shortDescription}` (category, type sequence, description suffix)
 
 ---
+
+A descriptive suffix in an accepted decomposition/folder is retained exactly;
+`deliverable.yaml` uses its numeric DEL identity. Compare that identity with
+the accepted binding, folder and existing production contract. Report a
+mismatch; do not renumber or rewrite accepted artifacts to satisfy a tool.
+For KTY, this DEL-native dependency schema does not apply.
 
 ## Output Persistence
 

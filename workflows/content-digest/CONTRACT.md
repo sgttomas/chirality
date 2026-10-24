@@ -42,7 +42,7 @@ This workflow currently defines no optional runtime overrides.
 1. Exactly one digest file is written to `OUTPUT_PATH`.
 2. The digest contains all seven required sections in the required order.
 3. Identity fields come from `_CONTEXT.md` or are explicitly marked absent; they are not invented.
-4. Dependency counts and key upstream/downstream items are derived from deliverable-local files only.
+4. Incoming-need and outward-obligation record counts and key conditions come only from the local `deliverable.yaml`. Reverse consumer links are `not queried`, not zero; distinct cases and unknown/external qualifications remain visible.
 5. Quality observations are specific factual flags rather than vague judgments.
 6. No file in `DELIVERABLE_PATH` is modified.
 7. No file outside the specified deliverable folder is read.
