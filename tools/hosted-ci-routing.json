@@ -2348,6 +2348,7 @@
               "apps/desktop/src-tauri/src/main.rs",
               "apps/desktop/src-tauri/src/memory_pool.rs",
               "apps/desktop/src-tauri/src/model_document_file.rs",
+              "apps/desktop/src-tauri/src/model_document_save.rs",
               "apps/desktop/src-tauri/src/model_document_version.rs",
               "apps/desktop/src-tauri/src/native_result_download.rs",
               "apps/desktop/src-tauri/src/native_smoke.rs",
