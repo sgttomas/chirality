@@ -2378,6 +2378,7 @@
               "apps/desktop/src-tauri/src/report_package_bridge.rs",
               "apps/desktop/src-tauri/src/solve_jobs.rs",
               "apps/desktop/src-tauri/src/solve_worker.rs",
+              "apps/desktop/src-tauri/src/stored_read.rs",
               "apps/desktop/src-tauri/src/worker_alloc.rs",
               "core/gui/viewport_editor/src/lib.rs",
               "core/library_import/library_import_document/src/lib.rs",
