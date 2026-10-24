@@ -2359,6 +2359,8 @@
             "base": "manifest",
             "files": [
               "apps/desktop/src-tauri/build.rs",
+              "apps/desktop/src-tauri/src/analysis_runs.rs",
+              "apps/desktop/src-tauri/src/analysis_runs_tests.rs",
               "apps/desktop/src-tauri/src/atomic_report_package_save.rs",
               "apps/desktop/src-tauri/src/command_ingress.rs",
               "apps/desktop/src-tauri/src/host_memory.rs",
@@ -4618,7 +4620,9 @@
               "fixtures/pcf_export/invented/source_pcf_payload.json",
               "fixtures/persistence/invented_persisted_preview_project.json",
               "fixtures/persistence/model_state_record_witness.json",
+              "fixtures/persistence/recorded_run_witness.json",
               "fixtures/persistence/sorted_compact_json_vectors.json",
+              "fixtures/persistence/transient_run_input.json",
               "fixtures/plugin_manifest/invented_manifest_no_bypass.json",
               "fixtures/product_preview/demo_fixture_generation.json",
               "fixtures/product_preview/invented_agent_proposal.json",
