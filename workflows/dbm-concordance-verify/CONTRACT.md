@@ -2,164 +2,150 @@
 
 ## Brief
 
-This file defines the INIT-TASK dispatch contract for `TASK + dbm-concordance-verify`.
+`TASK + dbm-concordance-verify` reviews internal semantic consistency after a
+complete DBM has been authored. WORKING_ITEMS may commission it alongside
+`dbm-postauthor-concordance` for a package, or directly against a standalone
+human draft. A standalone run makes no DOMAIN admission or publication claim.
 
-### Purpose
+### Scope and required brief fields
 
-Use this workflow after deterministic package concordance and source-supersession checks have produced findings, but before dbm-publisher accepts package readiness.
-
-### Scope model
-
-- `ScopePath` should be the immutable package snapshot directory.
-- `AllowedWriteTargets` must name exactly:
-  - `Publication_Concordance_Verification.md`
-  - `Publication_Concordance_Verification_Findings.csv`
-
-The brief must not grant write access to section folders, planning artifacts, KTY folders, or source authority files.
-
-### Required brief fields
+`ScopePath` is `REVIEW_OUTPUT_DIR`. `AllowedWriteTargets` names exactly the two
+output files below. Both must be distinct, remain inside the review directory
+after path resolution, and must not alias any input. If `PACKAGE_SNAPSHOT_PATH`
+is supplied, the review directory must also be inside that package boundary.
+Existing accepted outputs are not overwritten; use a new review directory.
 
 | Field | Type | Meaning | Example |
 |---|---|---|---|
-| `PURPOSE` | string | Why verification is being run | `Verify semantic concordance before package readiness.` |
-| `ScopePath` | path | Package snapshot directory | `/abs/root/_Publication/DBM/package/RUN-20260421-120000/` |
-| `Workflow` | string | Must equal this workflow name | `dbm-concordance-verify` |
-| `AllowedWriteTargets` | list[path] | Exact verification outputs | `[/.../Publication_Concordance_Verification.md, /.../Publication_Concordance_Verification_Findings.csv]` |
-| `RuntimeOverrides.SECTIONS_ROOT` | path | Current section outputs root | `/.../_Publication/DBM/sections/` |
-| `RuntimeOverrides.CONCORDANCE_REGISTER_PATH` | path | Frozen register | `/.../_Planning/Publication_Concordance_Register.csv` |
-| `RuntimeOverrides.CONCORDANCE_FINDINGS_PATH` | path | Deterministic concordance findings | `/.../Publication_Concordance_Findings.csv` |
-| `RuntimeOverrides.OUTPUT_VERIFICATION_PATH` | path | Markdown verification output | `/.../Publication_Concordance_Verification.md` |
-| `RuntimeOverrides.OUTPUT_VERIFICATION_FINDINGS_PATH` | path | CSV verification findings output | `/.../Publication_Concordance_Verification_Findings.csv` |
-| `ExpectedOutputs` | list[path] | Same two verification outputs | `[/.../Publication_Concordance_Verification.md, /.../Publication_Concordance_Verification_Findings.csv]` |
+| `PURPOSE` | string | Why consistency review is needed | `Review shared utility conditions across the authored DBM.` |
+| `ScopePath` | path | Authorized review directory | `/project/reviews/CONCORDANCE-01/` |
+| `Workflow` | string | Workflow selection | `dbm-concordance-verify` |
+| `AllowedWriteTargets` | list[path] | Exactly the two review outputs | `[/.../Publication_Concordance_Verification.md, /.../Publication_Concordance_Verification_Findings.csv]` |
+| `RuntimeOverrides.ASSEMBLED_DBM_PATH` | path | Complete authored Markdown DBM | `/project/draft.md` |
+| `RuntimeOverrides.REVIEW_OUTPUT_DIR` | path | Authorized output root | `/project/reviews/CONCORDANCE-01/` |
+| `RuntimeOverrides.OUTPUT_VERIFICATION_PATH` | path | Markdown report | `/.../Publication_Concordance_Verification.md` |
+| `RuntimeOverrides.OUTPUT_VERIFICATION_FINDINGS_PATH` | path | Candidate findings CSV | `/.../Publication_Concordance_Verification_Findings.csv` |
+| `ExpectedOutputs` | list[path] | Same two review outputs | `[/.../Publication_Concordance_Verification.md, /.../Publication_Concordance_Verification_Findings.csv]` |
 
-### Optional brief fields
+### Optional runtime overrides
 
-| Field | Type | Meaning | Example |
-|---|---|---|---|
-| `RuntimeOverrides.SOURCE_SUPERSESSION_FINDINGS_PATH` | path | Source-supersession findings when validation ran | `/.../Source_Supersession_Findings.csv` |
-| `RuntimeOverrides.PUBLICATION_RULES_PATH` | path | Approved publication rules | `/.../_Planning/Publication_Rules.md` |
-| `RuntimeOverrides.PUBLICATION_INPUT_MANIFEST` | path | Frozen manifest | `/.../_Planning/Publication_Input_Manifest.md` |
-| `RuntimeOverrides.PACKAGE_SNAPSHOT_PATH` | path | Package snapshot root | `/.../_Publication/DBM/package/RUN-20260421-120000/` |
-| `CustomInstructions` | string | Run-specific emphasis only | `Pay special attention to shared utility values.` |
+| Field | Meaning |
+|---|---|
+| `SECTIONS_ROOT` | Current section bodies and QA; they must correspond to the assembled document |
+| `REVIEW_EVIDENCE_ROOT` | Same-document evidence bundle: summary, section coverage, draft claims, body thinness, TBD inventory, and candidate findings |
+| `SECTION_MAP_PATH` | Approved section identities and contribution scope |
+| `PUBLICATION_RULES_PATH` | Approved terminology, uncertainty, and restatement policy |
+| `PUBLICATION_INPUT_MANIFEST` | Input provenance and admission context; its presence is not itself admission |
+| `SOURCE_SUPERSESSION_FINDINGS_PATH` | Existing source-fidelity findings to interpret, not independent source authority |
+| `PACKAGE_SNAPSHOT_PATH` | Additional package boundary for pipeline runs |
+| `CONCORDANCE_REGISTER_PATH` | Explicit legacy register; every supplied key must be accounted for |
+| `CONCORDANCE_FINDINGS_PATH` | Explicit legacy deterministic findings to interpret |
 
-### Runtime-override guidance
+`CustomInstructions` may focus attention but cannot narrow the complete-document
+review without recording the omitted coverage and `ReviewStatus = PARTIAL`.
+There is no inferred legacy-register path and no required assertion CSV.
 
-- `SECTIONS_ROOT` must contain complete current section bundles.
-- The workflow reads synthesized section outputs only. It must not be asked to inspect raw KTY-local source files.
-- `SOURCE_SUPERSESSION_FINDINGS_PATH` should be provided whenever `validate_source_supersession.py` ran.
-
-### Example INIT-TASK brief
+### Example standalone brief
 
 ```md
-PURPOSE: Verify semantic concordance before final DBM readiness.
-ScopePath: /repo/domains/West_Doe_Deepcut_DBM/_Publication/DBM/package/RUN-20260421-120000/
+PURPOSE: Review cross-section consistency of the human-prepared DBM.
+ScopePath: /project/reviews/CONCORDANCE-01/
 Workflow: dbm-concordance-verify
 AllowedWriteTargets:
-  - /repo/domains/West_Doe_Deepcut_DBM/_Publication/DBM/package/RUN-20260421-120000/Publication_Concordance_Verification.md
-  - /repo/domains/West_Doe_Deepcut_DBM/_Publication/DBM/package/RUN-20260421-120000/Publication_Concordance_Verification_Findings.csv
+  - /project/reviews/CONCORDANCE-01/Publication_Concordance_Verification.md
+  - /project/reviews/CONCORDANCE-01/Publication_Concordance_Verification_Findings.csv
 RuntimeOverrides:
-  SECTIONS_ROOT: /repo/domains/West_Doe_Deepcut_DBM/_Publication/DBM/sections/
-  CONCORDANCE_REGISTER_PATH: /repo/domains/West_Doe_Deepcut_DBM/_Publication/DBM/_Planning/Publication_Concordance_Register.csv
-  CONCORDANCE_FINDINGS_PATH: /repo/domains/West_Doe_Deepcut_DBM/_Publication/DBM/package/RUN-20260421-120000/Publication_Concordance_Findings.csv
-  OUTPUT_VERIFICATION_PATH: /repo/domains/West_Doe_Deepcut_DBM/_Publication/DBM/package/RUN-20260421-120000/Publication_Concordance_Verification.md
-  OUTPUT_VERIFICATION_FINDINGS_PATH: /repo/domains/West_Doe_Deepcut_DBM/_Publication/DBM/package/RUN-20260421-120000/Publication_Concordance_Verification_Findings.csv
+  ASSEMBLED_DBM_PATH: /project/draft.md
+  REVIEW_OUTPUT_DIR: /project/reviews/CONCORDANCE-01/
+  OUTPUT_VERIFICATION_PATH: /project/reviews/CONCORDANCE-01/Publication_Concordance_Verification.md
+  OUTPUT_VERIFICATION_FINDINGS_PATH: /project/reviews/CONCORDANCE-01/Publication_Concordance_Verification_Findings.csv
 ExpectedOutputs:
-  - /repo/domains/West_Doe_Deepcut_DBM/_Publication/DBM/package/RUN-20260421-120000/Publication_Concordance_Verification.md
-  - /repo/domains/West_Doe_Deepcut_DBM/_Publication/DBM/package/RUN-20260421-120000/Publication_Concordance_Verification_Findings.csv
+  - /project/reviews/CONCORDANCE-01/Publication_Concordance_Verification.md
+  - /project/reviews/CONCORDANCE-01/Publication_Concordance_Verification_Findings.csv
 ```
+
+For a pipeline run, supply the package's `Rewritten_DBM.md`, current section
+root, approved section map/rules/manifest, and its `review/` evidence bundle.
+Place the verification outputs in an authorized directory within that package.
+Run after assembly and bundle preparation; rendering a dispatch brief does not
+establish that those future inputs exist or match.
 
 ## Acceptance
 
-### Minimum output validity checks
+A valid review has both outputs and stays inside the exact write boundary. Its
+report accounts for every authored section, documents comparison scope and
+limitations, and accounts for each explicitly supplied legacy register key.
+All non-`CONFIRMED` observations have matching findings rows. Empty findings
+still emit the CSV header. No input or accepted pointer is changed.
 
-The run is valid only when all of the following are true:
+### Required findings schema
 
-1. Both required outputs exist:
-   - `Publication_Concordance_Verification.md`
-   - `Publication_Concordance_Verification_Findings.csv`
-2. All writes stayed inside the package snapshot directory named in the brief.
-3. Every register key receives a verdict in the markdown report.
-4. Every blocking verdict appears in the findings CSV.
-5. No section outputs, planning artifacts, KTY files, or register files were modified.
+Columns, in order:
 
-### Required verification findings schema
+`ObservationID, AssertionKey, Verdict, Severity, ImpactedSections, EvidenceRefs, EvidenceSource, Explanation, RecommendedAction`
 
-`Publication_Concordance_Verification_Findings.csv` must contain at least:
-- `AssertionKey`
-- `Verdict`
-- `Blocking`
-- `ImpactedSections`
-- `DeterministicFindingRefs`
-- `SourceSupersessionRefs`
-- `EvidenceRefs`
-- `Explanation`
-- `RecommendedAction`
+- `ObservationID`: run-local identity `CV-001`, `CV-002`, ...; shared with report.
+- `AssertionKey`: descriptive identity for the engineering fact/state and its
+  applicable scope/case; reuse a supplied legacy key only when its meaning matches.
+- `Verdict`: `CONFIRMED`, `NORMALIZATION_ARTIFACT`, `SEMANTIC_MISMATCH`,
+  `IMPLICIT_CONFLICT`, `COVERAGE_GAP`, or `NEEDS_HUMAN_RULING`.
+- `Severity`: `HIGH`, `MEDIUM`, `LOW`, or `ADVISORY`, based on consequence.
+- `ImpactedSections`: section IDs, or document heading/line references when no
+  approved IDs exist.
+- `EvidenceRefs`: exact document/table/line references supporting the observation;
+  disagreements cite both positions. Missing relationships cite the expectation
+  and examined section. Avoid unsupported references to external truth.
+- `EvidenceSource`: `AUTHORED_TEXT` plus any supplied artifact/row references
+  actually used. Tool signals alone are not a semantic finding.
+- `Explanation`: engineering reasoning, including applicable context, uncertainty,
+  and any unit/datum/precision normalization. No invented tolerances.
+- `RecommendedAction`: concrete review or repair, including needed human ruling.
 
-Allowed `Verdict` values:
-- `CONFIRMED`
-- `NORMALIZATION_ARTIFACT`
-- `SEMANTIC_MISMATCH`
-- `IMPLICIT_CONFLICT`
-- `OMITTED_REQUIRED_ASSERTION`
-- `REGISTER_GAP`
-- `NEEDS_HUMAN_RULING`
+`CONFIRMED` observations may remain in the report only. The findings CSV has no
+automatic `Blocking` field. Human dispositions are recorded separately by the
+caller, referencing these observation IDs; this workflow does not author them.
+Legacy `OMITTED_REQUIRED_ASSERTION` and `REGISTER_GAP` output labels are replaced
+by `COVERAGE_GAP` where an actual expectation is evidenced, otherwise by
+`NEEDS_HUMAN_RULING`. A missing legacy emission row alone is not a body omission.
 
 ### Required report structure
 
-`Publication_Concordance_Verification.md` must contain these H2 headings in order:
+H2 headings, in order:
 
-1. `## Verification Summary`
-2. `## Per-Key Verdicts`
-3. `## Deterministic Finding Interpretation`
-4. `## Implicit Conflicts`
-5. `## Register Gaps`
-6. `## Human Rulings Required`
+1. `## Verification Summary` — `ReviewStatus: COMPLETE|PARTIAL`, document identity,
+   evidence basis, candidate counts, and a clear limit to internal consistency.
+2. `## Inputs and Limitations` — consumed paths, provenance checks, unavailable or
+   stale supplied evidence, and dimensions not assessed. State that external
+   correctness/completeness is not established by this review.
+3. `## Section Coverage` — every section examined, with IDs or heading/line anchors;
+   identify any unread/unreviewed section and its effect on status.
+4. `## Cross-Section Observations` — comparison groups, context, locations, verdicts,
+   and observation IDs; include explicitly supplied legacy keys.
+5. `## Review Evidence Interpretation` — interpreted substrate/legacy findings, or
+   `Not supplied; review based on authored content`.
+6. `## Human Rulings Required` — unresolved candidate observations and proposed next
+   steps. No prefilled human decisions or publication-readiness verdict.
 
-### Verdict requirements
+`ReviewStatus = COMPLETE` means the full authored text and commissioned
+comparisons were assessed; it is compatible with material candidate findings.
+`PARTIAL` means an assessment remains incomplete. Missing optional inputs never
+supplied are not a failure. Missing/stale supplied evidence requires an explicit
+limitation and `PARTIAL` for affected requested comparisons; review unaffected text.
 
-- `SEMANTIC_MISMATCH`, `IMPLICIT_CONFLICT`, and `REGISTER_GAP` verdicts require explanation with section references.
-- `OMITTED_REQUIRED_ASSERTION` verdicts must identify the section, assertion key, and whether the section emitted `OMITTED_WITH_RATIONALE`, `OMITTED_BLOCKING`, or no row.
-- `NORMALIZATION_ARTIFACT` verdicts must state why the underlying engineering values agree.
-- `NEEDS_HUMAN_RULING` verdicts must explain what information is missing or ambiguous.
+### Failure and recovery
 
-### Failure reporting expectations
+Use `FAILED_INPUTS` for unreadable/missing authored Markdown, missing required
+overrides, escaping/aliasing output paths, or attempted overwrite of accepted
+review outputs. Do not fabricate empty successful reports. Continue unaffected
+work when optional evidence is unavailable and emit a candid partial review.
+Use `FAILED` if internal failure prevents producing the two outputs; identify
+what was reviewed and what remains. After document edits, commission a new
+full-document review against the new version and its corresponding evidence.
 
-Use `FAILED_INPUTS` when:
-- required runtime overrides are missing,
-- the section root, register, or deterministic findings file is missing,
-- output paths fall outside the package snapshot directory.
+## Tools and authority
 
-Use `FAILED` when:
-- required outputs cannot be written despite valid inputs,
-- the run cannot complete semantic verification for internal reasons.
-
-## Tool use
-
-### Preferred tool order
-
-No deterministic tools are required. The verifier reads already-produced package and section artifacts and performs semantic reasoning.
-
-### Allowed deterministic tools
-
-#### Operationally invoked
-
-None.
-
-### Expected use of reasoning
-
-Use semantic reasoning to compare section prose, assertion rows, deterministic findings, and source-supersession findings across the full package context.
-
-### Disallowed use
-
-- Do not invoke publication tools.
-- Do not dispatch other agents or workflows.
-- Do not read raw KTY-local source files.
-- Do not rewrite section bodies, section QA, planning artifacts, or the concordance register.
-
-### Write boundary
-
-Writes are limited to:
-- `Publication_Concordance_Verification.md`
-- `Publication_Concordance_Verification_Findings.csv`
-
-Both outputs must resolve under the current immutable package snapshot directory named in the brief.
+No deterministic tool execution or delegation. Read only the authored document,
+its supplied section outputs, and named planning/review evidence. No raw KA/KTY
+or reference-source reads; no source-grounded accuracy claim. No changes to
+inputs, human dispositions, or pointers. Tools supply observations; agents
+interpret them; the human decides their disposition and acceptance consequence.
