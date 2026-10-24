@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
-<meta name="source-sha256" content="02b6a550585b5605cd8b5a39de3b05a3a014c33a1d475dc51ab20e082e9cf807">
-<meta name="source-basis-date" content="2026-10-13">
-<meta name="source-basis-revision" content="20a67b8005f5b4a5065da2b030cd532340f48e2f">
+<meta name="source-sha256" content="9892311f52980730ce6c43e36291213bc2c54b6e193915878618b510fe7b4259">
+<meta name="source-basis-date" content="2026-10-23">
+<meta name="source-basis-revision" content="4c9351d36b03926c494e4d034693b89513a3078d">
 <title>Project Management for Human Agent Teams · Chirality</title>
 <style>
 :root {
@@ -346,7 +346,7 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <p>This manual addresses you as an agent working with a person on a substantial undertaking. Use it to help them solve their problem or build what they are trying to make. The method guides your investigation, proposals, execution, coordination and examination of results. Apply it to the actual work and circumstances; reading or summarizing the manual is preparation, not the intended result.</p>
 <p>The person can read the same account to understand and question the method with you. Establish a common understanding through the work: explain consequential interpretations, show results they can inspect and respond when their judgment changes the direction. Their purpose, judgment and responsibility for reliance remain central throughout.</p>
 <p>In the instructions that follow, “you” means the agent. “The person” means the human with whom you are working. The person may be one of several people with defined responsibilities in the undertaking. When you act as a contributor, work within that assignment; when you coordinate, also carry responsibility for how the contributions fit together. The constructed cases describe several participants so that you can examine their different responsibilities.</p>
-<p>Read this manual to understand the method, its vocabulary and its reasons. Use the <a href="Project_Management_for_Human_Agent_Teams_Field_Book_v2.md">Field Book</a> as a concise reference during work. Read the <a href="CHIRALITY_AGENT_USER_MANUAL_v4.md">Chirality Agent User Manual</a> when applying the method in the Chirality repository. The three books use the same meanings at different levels of detail; the repository guide identifies the local mechanisms.</p>
+<p>Read this manual to understand the method, its vocabulary and its reasons. Where you work in a repository with its own instructions, those instructions carry current practice and the local mechanisms; this manual explains the reasoning behind them.</p>
 <p>The <a href="#vocabulary">working vocabulary</a> gives concise definitions. Return to the explanations and cases when a distinction affects your action. Establish what the terms refer to in the person's undertaking rather than assuming that matching words establish a common understanding. The <a href="README.md">manual index</a> identifies current editions. Project-specific commitments and adopted requirements remain authoritative; reading this book does not amend them.</p>
 <h2 id="contents">Contents</h2>
 <ol>
@@ -498,7 +498,7 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <p>Do not expand work that depends on an unproved consequential premise simply because private component tests pass. Hold that dependency, not the whole undertaking. Independent work can continue from a sufficient basis.</p>
 <p>Once a premise is established, reuse it. Revisit the part invalidated by a material change rather than restarting every earlier check. Evidence has an applicable scope; it is neither universally reusable nor automatically obsolete after any edit.</p>
 <h2 id="45-receive-and-integrate-actual-returns">4.5 Receive and integrate actual returns</h2>
-<p>Use the host's actual completion mechanism. A prompt can be prepared but not dispatched. A message can be queued without starting another turn. A manager's turn can end before its contributors return.</p>
+<p>Use the host's actual completion mechanism, and make sure the return reaches the coordinator: a contributor in a separate conversation that finishes without notifying anyone looks like silence from both sides. Name the return route in the assignment and keep a backstop that does not depend on the coordinator's own session. A prompt can be prepared but not dispatched. A message can be queued without starting another turn. A manager's turn can end before its contributors return.</p>
 <p>Account for dispatched work and inspect the actual result. A useful return identifies the output, completed scope, checks, limitations and unresolved choices. It distinguishes prepared work from executed changes and actual results from expected ones.</p>
 <p>The host message, artifact location and existing change record may provide this information. Require a separate return file only when those sources do not meet the receiver's needs.</p>
 <p>Before integration, compare the contribution with the receiving state. A shared interface may have changed while the contributor worked. Reuse unaffected evidence and examine the changed relationship.</p>
@@ -557,7 +557,7 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <p>Some records are product requirements. A model history, signed operational decision, user checkpoint or regulated record may be part of the product itself. Reducing development administration does not remove those obligations. No filename or record type is universally excluded; use the smallest representation that reliably serves the identified purpose.</p>
 <h2 id="64-recover-only-what-continuation-needs">6.4 Recover only what continuation needs</h2>
 <p>Begin with current artifacts, actual state and the latest steering. Use history to resolve relevant uncertainty. Do not rebuild a complete chronology simply because a session restarted.</p>
-<p>A replaceable recovery note can identify the current candidate, completed work, pending checks, active operations, local-only output, holds and next useful action. Its purpose is continuity, not an accumulating record of every session.</p>
+<p>Open work is usually recoverable from its own records: each open change's description states its exact version, the checks performed, what remains and the next step, and repeatable discovery re-establishes the wider state. Where those do not suffice, a replaceable recovery note can identify the current candidate, completed work, pending checks, active operations, local-only output, holds and next useful action. Its purpose is continuity, not an accumulating record of every session.</p>
 <p>If an operation executed but confirmation was lost, inspect the actual state before repeating it. A duplicate write or release can be worse than a delayed confirmation. Preparation and execution must remain distinguishable.</p>
 <p>When transferring ownership, establish the boundary of responsibility and the work retained. A new worker should not overwrite an active operation or discard an unmerged result merely because it was absent from the latest narrative.</p>
 <h2 id="65-preserve-history-without-keeping-every-working-copy">6.5 Preserve history without keeping every working copy</h2>
@@ -867,16 +867,16 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 </div>
 <h1 id="further-use">Further use</h1>
 <p>Return to the person's actual undertaking. Use the method to produce and examine useful work, explain consequential choices and improve the result together. You and the person can return to the same passages when an interpretation or course of action needs discussion. A common understanding develops through that work; it is not established merely because both have read the document.</p>
-<p>Keep the <a href="Project_Management_for_Human_Agent_Teams_Field_Book_v2.md">Field Book</a> available as a concise working reference after reading this manual. Return here for the reasons, distinctions and examples. Use the <a href="CHIRALITY_AGENT_USER_MANUAL_v4.md">Chirality Agent User Manual</a> for current repository practice. These are complementary uses of one method.</p>
+<p>Return here for the reasons, distinctions and examples when a choice needs them. For current practice in a particular repository, use that repository's own instructions.</p>
 <p>Earlier editions remain useful for historical interpretation of work that named them. Their exact source identity does not automatically make every former procedure applicable today. A current edition is a discovery aid; specific adopted commitments retain their own authority.</p>
 <!-- END MARKDOWN CONTENT -->
     </article>
   </div>
   <footer class="document-footer">
   <dl class="document-meta">
-    <div><dt>Source basis dated</dt><dd>13 October 2026</dd></div>
-    <div><dt>Repository basis</dt><dd><code>20a67b8005f5b4a5065da2b030cd532340f48e2f</code></dd></div>
-    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="Project_Management_for_Human_Agent_Teams_Consolidated_v9.md">Project_Management_for_Human_Agent_Teams_Consolidated_v9.md</a><br><code>02b6a550585b5605cd8b5a39de3b05a3a014c33a1d475dc51ab20e082e9cf807</code></dd></div>
+    <div><dt>Source basis dated</dt><dd>23 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>4c9351d36b03926c494e4d034693b89513a3078d</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="Project_Management_for_Human_Agent_Teams_Consolidated_v9.md">Project_Management_for_Human_Agent_Teams_Consolidated_v9.md</a><br><code>9892311f52980730ce6c43e36291213bc2c54b6e193915878618b510fe7b4259</code></dd></div>
   </dl>
     <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
     <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
