@@ -45,10 +45,11 @@ runner/language environment. A reused pass names its original run and says no
 tests executed. Manual runs bypass result reuse. Dependency/build caches are
 separate and do not themselves establish a passing result.
 
-`shared-build-cache.yml` warms Piping numerical and App v4 Cargo dependencies
-on main pushes without executing tests. Piping uses `numerical_ci.py
---build-only`, derived from the numerical job's own selected profiles. App v4
-compiles its test and check profiles. Only registry/Git dependencies and their
+`shared-build-cache.yml` warms Piping numerical, Piping desktop Rust and App v4
+Cargo dependencies on main pushes without executing tests. Piping numerical uses
+`numerical_ci.py --build-only`, derived from the numerical job's own selected
+profiles. Piping desktop Rust compiles its test profile. App v4 compiles its
+test and check profiles. Only registry/Git dependencies and their
 compiled artifacts are saved; local path crates, test executables and incremental
 output are removed. Product jobs restore these main-scoped caches without saving
 PR build caches. Small exact-result verification records retain their existing
