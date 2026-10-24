@@ -7,7 +7,6 @@ Use a reference for the question it can answer. Identify its jurisdiction, purpo
 The course series adapts these project principles: establish the basis, allocate work, define dependencies, examine results, control change, integrate, and transfer responsibility.
 
 - [Project Management for Human Agent Teams](../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html), management manual, Edition 9.
-- [Project Management for Human Agent Teams: Field Book](../alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v2.html), Edition 2.
 
 The human-team courses use human professional and organizational responsibilities, but they do not import the manuals' agent hierarchy, repository commands, or fixed stage labels.
 
