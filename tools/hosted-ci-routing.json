@@ -300,7 +300,7 @@
       "core/rules/rule_check_runner/Cargo.toml": "9a2be1a226d4f0da6e2f6ba329eec3c1ebbdbe5b51d6f03f953c32ab3cb03794",
       "core/rules/rule_pack_document/Cargo.toml": "80528ccb5537228460583e50aabf58a676192a6802207b0df3c4afba01dc8688",
       "core/rules/rule_pack_lifecycle/Cargo.toml": "811d32918f3d13d8d2a9115ebb6ce9b0243078626bc426d8dbd97224eb2dbd56",
-      "core/runner/headless/Cargo.toml": "60600715f655a04a7fd29e2fca713475d90b1c9dc3f46f8c515f864d690087ba",
+      "core/runner/headless/Cargo.toml": "9ce5fc1cde303de19da1351386ee374c3a97f647aad6e57c071be7db419a6159",
       "core/serialization/canonical_json/Cargo.toml": "fb2259bdfcb6adebc877b46e4e1b3126fdf1b08c0b6441a5e4ba49ab75e670a0",
       "core/solver/curved_bend/Cargo.toml": "5d7cf1288eac698c209aa4fd7493fa669aa57494950e75374ac07248001502d8",
       "core/solver/diagnostics/Cargo.toml": "11db1409fcfd3b0312ef80085e36eac4d7a66eb0f4298832137119835b1c92e8",
@@ -317,7 +317,7 @@
       "validation/benchmarks/numerical_integrity/Cargo.toml": "7e9656ea62c995c0252dec484fa73afa27d67a5926b3350b9ff3cd6e128c2263",
       "validation/benchmarks/numerical_robustness/Cargo.toml": "69ad84b9fd0fc1a885957646e0a89994b9f295f6fdebd8902e6b23858276c8b4",
       "validation/benchmarks/physics_audit_regression/Cargo.toml": "2db56f5011e928006cec8e486ad324440c52a01834be661fb8e149a4b6836a72",
-      "validation/benchmarks/stress/Cargo.toml": "fb9755f62cb44b4ddfba712d3e8b4ccebe6e36325dfe549ab3931264b62935dc"
+      "validation/benchmarks/stress/Cargo.toml": "fc2f56a38771e9ac4ebe137d7aedd02987b682e0a2f263a8ef955451a2823565"
     },
     "reads": {
       "core/product_physics/src/source_receipt/pressure_source_context_tests.rs": {
@@ -328,7 +328,8 @@
           "core/product_physics/Cargo.toml",
           "core/runner/headless/Cargo.toml",
           "validation/benchmarks/numerical_integrity/Cargo.toml",
-          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "validation/benchmarks/physics_audit_regression/Cargo.toml",
+          "validation/benchmarks/stress/Cargo.toml"
         ],
         "inputs": [
           {
@@ -913,7 +914,8 @@
           "core/product_physics/Cargo.toml",
           "core/runner/headless/Cargo.toml",
           "validation/benchmarks/numerical_integrity/Cargo.toml",
-          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "validation/benchmarks/physics_audit_regression/Cargo.toml",
+          "validation/benchmarks/stress/Cargo.toml"
         ],
         "inputs": [
           {
@@ -933,7 +935,8 @@
           "core/product_physics/Cargo.toml",
           "core/runner/headless/Cargo.toml",
           "validation/benchmarks/numerical_integrity/Cargo.toml",
-          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "validation/benchmarks/physics_audit_regression/Cargo.toml",
+          "validation/benchmarks/stress/Cargo.toml"
         ],
         "inputs": [],
         "external_reads": {
@@ -949,7 +952,8 @@
           "core/product_physics/Cargo.toml",
           "core/runner/headless/Cargo.toml",
           "validation/benchmarks/numerical_integrity/Cargo.toml",
-          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "validation/benchmarks/physics_audit_regression/Cargo.toml",
+          "validation/benchmarks/stress/Cargo.toml"
         ],
         "inputs": [
           {
@@ -3212,7 +3216,7 @@
         ]
       },
       "core/runner/headless/src/bin/openpipestress-runner.rs": {
-        "sha256": "e41da537c3ff3ba227cde6778e71d0e9bc8126723741d81f1c618ba5f1fce0c8",
+        "sha256": "dcad0ed58629d7eea3eaa949131bf6c7f9906df3180b2cf6a4f9c717312a23f0",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
@@ -3694,7 +3698,8 @@
           "validation/benchmarks/nonlinear/Cargo.toml",
           "validation/benchmarks/numerical_integrity/Cargo.toml",
           "validation/benchmarks/numerical_robustness/Cargo.toml",
-          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "validation/benchmarks/physics_audit_regression/Cargo.toml",
+          "validation/benchmarks/stress/Cargo.toml"
         ],
         "inputs": [
           {
@@ -3863,7 +3868,8 @@
           "validation/benchmarks/nonlinear/Cargo.toml",
           "validation/benchmarks/numerical_integrity/Cargo.toml",
           "validation/benchmarks/numerical_robustness/Cargo.toml",
-          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "validation/benchmarks/physics_audit_regression/Cargo.toml",
+          "validation/benchmarks/stress/Cargo.toml"
         ],
         "inputs": [
           {
@@ -4383,7 +4389,8 @@
           "core/product_physics/Cargo.toml",
           "core/runner/headless/Cargo.toml",
           "validation/benchmarks/numerical_integrity/Cargo.toml",
-          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "validation/benchmarks/physics_audit_regression/Cargo.toml",
+          "validation/benchmarks/stress/Cargo.toml"
         ],
         "inputs": [
           {
@@ -5022,7 +5029,8 @@
           "core/product_physics/Cargo.toml",
           "core/runner/headless/Cargo.toml",
           "validation/benchmarks/numerical_integrity/Cargo.toml",
-          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "validation/benchmarks/physics_audit_regression/Cargo.toml",
+          "validation/benchmarks/stress/Cargo.toml"
         ],
         "inputs": [
           {
