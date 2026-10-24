@@ -317,7 +317,7 @@
       "validation/benchmarks/numerical_integrity/Cargo.toml": "7e9656ea62c995c0252dec484fa73afa27d67a5926b3350b9ff3cd6e128c2263",
       "validation/benchmarks/numerical_robustness/Cargo.toml": "69ad84b9fd0fc1a885957646e0a89994b9f295f6fdebd8902e6b23858276c8b4",
       "validation/benchmarks/physics_audit_regression/Cargo.toml": "2db56f5011e928006cec8e486ad324440c52a01834be661fb8e149a4b6836a72",
-      "validation/benchmarks/stress/Cargo.toml": "fb9755f62cb44b4ddfba712d3e8b4ccebe6e36325dfe549ab3931264b62935dc"
+      "validation/benchmarks/stress/Cargo.toml": "fc2f56a38771e9ac4ebe137d7aedd02987b682e0a2f263a8ef955451a2823565"
     },
     "reads": {
       "core/product_physics/src/source_receipt/pressure_source_context_tests.rs": {
@@ -328,7 +328,8 @@
           "core/product_physics/Cargo.toml",
           "core/runner/headless/Cargo.toml",
           "validation/benchmarks/numerical_integrity/Cargo.toml",
-          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "validation/benchmarks/physics_audit_regression/Cargo.toml",
+          "validation/benchmarks/stress/Cargo.toml"
         ],
         "inputs": [
           {
@@ -913,7 +914,8 @@
           "core/product_physics/Cargo.toml",
           "core/runner/headless/Cargo.toml",
           "validation/benchmarks/numerical_integrity/Cargo.toml",
-          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "validation/benchmarks/physics_audit_regression/Cargo.toml",
+          "validation/benchmarks/stress/Cargo.toml"
         ],
         "inputs": [
           {
@@ -933,7 +935,8 @@
           "core/product_physics/Cargo.toml",
           "core/runner/headless/Cargo.toml",
           "validation/benchmarks/numerical_integrity/Cargo.toml",
-          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "validation/benchmarks/physics_audit_regression/Cargo.toml",
+          "validation/benchmarks/stress/Cargo.toml"
         ],
         "inputs": [],
         "external_reads": {
@@ -949,7 +952,8 @@
           "core/product_physics/Cargo.toml",
           "core/runner/headless/Cargo.toml",
           "validation/benchmarks/numerical_integrity/Cargo.toml",
-          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "validation/benchmarks/physics_audit_regression/Cargo.toml",
+          "validation/benchmarks/stress/Cargo.toml"
         ],
         "inputs": [
           {
@@ -3691,7 +3695,8 @@
           "validation/benchmarks/nonlinear/Cargo.toml",
           "validation/benchmarks/numerical_integrity/Cargo.toml",
           "validation/benchmarks/numerical_robustness/Cargo.toml",
-          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "validation/benchmarks/physics_audit_regression/Cargo.toml",
+          "validation/benchmarks/stress/Cargo.toml"
         ],
         "inputs": [
           {
@@ -3860,7 +3865,8 @@
           "validation/benchmarks/nonlinear/Cargo.toml",
           "validation/benchmarks/numerical_integrity/Cargo.toml",
           "validation/benchmarks/numerical_robustness/Cargo.toml",
-          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "validation/benchmarks/physics_audit_regression/Cargo.toml",
+          "validation/benchmarks/stress/Cargo.toml"
         ],
         "inputs": [
           {
@@ -4380,7 +4386,8 @@
           "core/product_physics/Cargo.toml",
           "core/runner/headless/Cargo.toml",
           "validation/benchmarks/numerical_integrity/Cargo.toml",
-          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "validation/benchmarks/physics_audit_regression/Cargo.toml",
+          "validation/benchmarks/stress/Cargo.toml"
         ],
         "inputs": [
           {
@@ -5017,7 +5024,8 @@
           "core/product_physics/Cargo.toml",
           "core/runner/headless/Cargo.toml",
           "validation/benchmarks/numerical_integrity/Cargo.toml",
-          "validation/benchmarks/physics_audit_regression/Cargo.toml"
+          "validation/benchmarks/physics_audit_regression/Cargo.toml",
+          "validation/benchmarks/stress/Cargo.toml"
         ],
         "inputs": [
           {
