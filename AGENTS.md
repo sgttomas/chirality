@@ -31,7 +31,10 @@ remains accountable for acceptance and reliance.
    changes. Apply already-authorized decisions without asking again. Leave
    unchanged declarations alone; Git preserves their history.
 6. Return the usable result, checks, material findings and reserved choices.
-   Stop when the agreed result is established; do not invent closeout work.
+   Once the work is integrated, delete the worktrees, branches, build output and
+   scratch it created, unless an open review, a named consumer or a recovery need
+   still uses them. Stop when the agreed result is established; do not invent
+   other closeout work.
 
 ## Deliverables and records
 
@@ -40,8 +43,8 @@ Active project deliverables live in `execution/PKG-nn/DEL-nn-nn/`:
 technical detail, and `deliverable.yaml` holds needs, conditions and code/check
 pointers. The consumer states its needs; tools derive reverse links and graphs.
 
-From the repository root, use `python3 -m tools.deliverables --project <project>`
-with `neighborhood <DEL>`, `impact <DEL>`, `touches <rev|PR:n>` or
+From the repository root, use `python3 -m tools.deliverables --project <project>`,
+where `<project>` is the project path such as `projects/chirality-piping`, with `neighborhood <DEL>`, `impact <DEL>`, `touches <rev|PR:n>` or
 `dag-diff <tag>`. `check` reports structural errors and unresolved references.
 See `tools/deliverables/README.md` for arguments and limits. Results are facts
 and unknowns, not completion or acceptance claims; code paths indicate relevance,
@@ -90,14 +93,9 @@ and Design. Consult these shared references where applicable:
   domain ownership, protected writes and human acceptance. Frozen Runtime
   contracts apply only upon explicit reactivation.
 - [Agent and workflow runtime](docs/AGENT_WORKFLOW_RUNTIME.md): product interface
-  reference, only where adopted by the current product; it imports no retired
-  Runtime obligations into App v4 or repository development.
+  reference, only where adopted by the current product.
 - [Compatibility formats](docs/COMPATIBILITY_FORMATS.md): containment and legacy
   formats still consumed by tools.
-
-Omission from these pointers does not supersede a live commitment or hold. If
-one is found elsewhere, move it into its current home or add a relevant pointer
-in the same change. Historical procedures create no new development duties.
 
 ## Roles and workflows
 
@@ -111,15 +109,13 @@ in the same change. Historical procedures create no new development duties.
 The agent working with the owner holds Agent 0’s responsibilities for purpose,
 continuity and reserved choices, whatever role it entered through. Other roles
 are taken up as the work needs them. This grants no additional host permissions.
-The person may work untyped or enter through either manager or HELP_HUMAN.
-HELP_HUMAN may coordinate directly or through Type 1 managers; managers may
-assign bounded TASK work. Use only the hierarchy the undertaking needs.
+Use only the hierarchy the undertaking needs.
 Load the active role's `agents/AGENT_<ROLE>.md`; other role, workflow and skill
 bodies are on demand. Keep ownership of integration and route returns through
 the host's actual mechanisms. Roles, methods and limits come from these
 repository files, never from host-side agent definitions, harness configuration
 or instruction files kept outside the repository. A dispatched agent's brief is
-given in full in the dispatch and refers only to repository files. Scratch space
+given in full in the dispatch and refers only to repository files and host facts. Scratch space
 holds evidence, outputs, logs and at most one recovery note, never instructions.
 
 Use `workflows/coordinated-knowledge-work/WORKFLOW.md` when coordinating related
