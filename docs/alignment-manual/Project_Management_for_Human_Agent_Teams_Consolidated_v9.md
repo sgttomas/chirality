@@ -699,9 +699,9 @@ The case shows why concurrency and shared-basis examination belong together. Mor
 
 # Working vocabulary
 
-These definitions are shared by the three manuals. The shorter books use them in their respective contexts. The [thesis vocabulary](../thesis/glossary.md) develops the related conceptual distinctions.
+These definitions apply throughout this manual. The [thesis vocabulary](../thesis/glossary.md) develops the related conceptual distinctions.
 
-| Term | Meaning in these manuals |
+| Term | Meaning in this manual |
 |---|---|
 | Acceptance | An authorized act concerning an identified subject, scope and purpose; distinct from completion, a passing check or release. |
 | Accepted basis | The identified commitments and conditions established by the applicable decision. |
