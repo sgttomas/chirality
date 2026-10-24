@@ -24,6 +24,7 @@ jobs:
       numerical_mode: ${{ steps.numeric.outputs.mode }}
       python_mode: ${{ steps.numeric.outputs.python_mode }}
       desktop_mode: ${{ steps.numeric.outputs.desktop_mode }}
+      desktop_rust_mode: ${{ steps.numeric.outputs.desktop_rust_mode }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -49,7 +50,8 @@ jobs:
           import json, os
           modes = json.load(open('piping-ci-plan.json'))['modes']
           with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
-              for suite, output in [('piping-numerical', 'mode'), ('piping-python', 'python_mode'), ('piping-desktop', 'desktop_mode')]:
+              for suite, output in [('piping-numerical', 'mode'), ('piping-python', 'python_mode'), ('piping-desktop', 'desktop_mode'),
+                                    ('piping-desktop-rust', 'desktop_rust_mode')]:
                   mode = modes[suite]
                   if mode not in {'full', 'not-applicable'}:
                       raise SystemExit(f'Invalid {suite} selection')
@@ -244,6 +246,39 @@ jobs:
           path: ${{ runner.temp }}/verified-browser/result.json
           key: ${{ steps.result-key.outputs.key }}
 
+  desktop-rust:
+    # The desktop shell crate's Cargo tests (store, commands, persistence),
+    # when the selection finds the crate, a path dependency it compiles or a
+    # file either compiles or its tests read in the diff. macOS Apple Silicon
+    # is the product platform (DEC-057); it needs no webview packages and runs
+    # the macOS memory and worker paths the tests cover. No frontend build.
+    name: Desktop Rust (src-tauri)
+    needs: selection
+    if: needs.selection.outputs.desktop_rust_mode == 'full'
+    runs-on: macos-26
+    timeout-minutes: 30
+    env:
+      CARGO_INCREMENTAL: '0'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          filter: blob:none
+          sparse-checkout: |
+            /*
+            !/execution/
+            !/projects/*/execution/
+          sparse-checkout-cone-mode: false
+      - uses: dtolnay/rust-toolchain@1.97.1
+      # Shared dependency cache contract: docs/CI_SELECTION.md.
+      - name: Restore main-scoped desktop Rust build dependencies
+        uses: ./.github/actions/restore-build-cache
+        with:
+          suite: piping-desktop-rust
+      - name: Locked desktop shell Cargo tests
+        run: cargo test --locked --manifest-path apps/desktop/src-tauri/Cargo.toml
+        working-directory: projects/chirality-piping
+
   numerical:
     name: Numerical Cargo oracles
     needs: selection
@@ -384,7 +419,7 @@ jobs:
 
   desktop-e2e:
     name: Desktop E2E (source mode)
-    needs: [selection, product, desktop, numerical, python-product]
+    needs: [selection, product, desktop, desktop-rust, numerical, python-product]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -404,9 +439,11 @@ jobs:
           NUMERICAL_MODE: ${{ needs.selection.outputs.numerical_mode }}
           PYTHON_MODE: ${{ needs.selection.outputs.python_mode }}
           DESKTOP_MODE: ${{ needs.selection.outputs.desktop_mode }}
+          DESKTOP_RUST_MODE: ${{ needs.selection.outputs.desktop_rust_mode }}
           SELECTION: ${{ needs.selection.result }}
           PRODUCT: ${{ needs.product.result }}
           DESKTOP: ${{ needs.desktop.result }}
+          DESKTOP_RUST: ${{ needs.desktop-rust.result }}
           NUMERICAL: ${{ needs.numerical.result }}
           PYTHON_PRODUCT_RESULT: ${{ needs.python-product.result }}
         run: |
@@ -414,3 +451,4 @@ jobs:
           python3 tools/software_workflow/hosted_ci.py aggregate --suite piping-numerical --mode "$NUMERICAL_MODE" --selection "$SELECTION" --product "$NUMERICAL"
           python3 tools/software_workflow/hosted_ci.py aggregate --suite piping-python --mode "$PYTHON_MODE" --selection "$SELECTION" --product "$PYTHON_PRODUCT_RESULT"
           python3 tools/software_workflow/hosted_ci.py aggregate --suite piping-desktop --mode "$DESKTOP_MODE" --selection "$SELECTION" --product "$DESKTOP"
+          python3 tools/software_workflow/hosted_ci.py aggregate --suite piping-desktop-rust --mode "$DESKTOP_RUST_MODE" --selection "$SELECTION" --product "$DESKTOP_RUST"
