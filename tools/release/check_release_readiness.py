@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Provider-neutral local release-readiness checks for OpenPipeStress."""
+"""Provider-neutral local release checks; dependency conditions are not assessed.
+
+The repository root selects documentation and test commands, not dependency
+consumers or release-use conditions. This helper provides no dependency-subject
+validation or readiness verdict for those inputs.
+"""
 
 from __future__ import annotations
 
@@ -21,7 +26,6 @@ REQUIRED_PATHS = (
     "docs/VALIDATION_STRATEGY.md",
     "docs/IP_AND_DATA_BOUNDARY.md",
     "docs/PROFESSIONAL_BOUNDARY.md",
-    "execution/_DAG/DAG-002/DependencyEdges.csv",
 )
 
 CARGO_SEARCH_ROOTS = (
@@ -63,16 +67,6 @@ def build_plan(profile: str, root: Path = ROOT) -> list[CheckStep]:
     steps: list[CheckStep] = []
 
     if profile in {"skeleton", "python", "all"}:
-        steps.append(
-            CheckStep(
-                name="dag dependency schema",
-                command=python_cmd(
-                    "tools/validation/validate_dependencies_schema.py",
-                    "execution/_DAG/DAG-002/DependencyEdges.csv",
-                ),
-                description="Validate the approved DAG-002 dependency register schema.",
-            )
-        )
         steps.append(
             CheckStep(
                 name="release readiness script tests",

@@ -98,10 +98,10 @@ Values outside these enums require explicit justification in Notes or are treate
 
 | # | Check | Requirement |
 |---|---|---|
-| S9a | Tier assignment | Every deliverable is assigned a tier (T0, T1, ...) |
-| S9b | Dependency consistency | Tier assignments are consistent with the dependency DAG |
-| S9c | Cycle detection | Cycles are detected and reported in `QA_Report.md` AND `Conflicts.csv` |
-| S9d | Dependencies unmodified | Dependency registers are read-only inputs; no modifications |
+| S9a | Tier assignment | Every deliverable has a tier (T0, T1, ...) or an explicit unresolved input condition/decision |
+| S9b | Dependency consistency | Tier assignments cite the actual local input conditions relevant to estimating; unknown, external and reciprocal needs retain their qualifications |
+| S9c | Cycle detection | Relevant reciprocal needs are reported in `QA_Report.md` AND `Conflicts.csv`; native-only tool cycles do not establish readiness or automatically change gating |
+| S9d | Dependencies unmodified | Local need declarations are read-only inputs; no modifications |
 
 ## Conflict surfacing (both phases)
 

@@ -4,7 +4,7 @@
 
 ### Schedule workflow (when selected)
 
-1. **Ingest and validate:** freeze accepted decomposition/dependency snapshots; confirm scope, schedule basis, and edge-classification rules.
+1. **Ingest and validate:** bind accepted decomposition and the local needs used for this undertaking; confirm scope, schedule basis, and edge-classification rules.
 2. **Structure and sequence:** use deterministic graph tools where possible; present the candidate network or constraint matrix for human correction.
 3. **Durations and calendars:** generate a blank duration template by default; collect human durations, calendars, milestones, and gates.
 4. **Render:** compute dates and produce reviewable CSV/Mermaid plus basis-appropriate critical-path or risk analysis.
@@ -14,7 +14,7 @@ No schedule gate may be skipped. Repetitive graph analysis, calculation, and ren
 
 ### Function 1: Initialize (once per workspace; `INITIAL` mode)
 
-**Goal:** Ingest the decomposition, confirm coordination representation, and record it durably.
+**Goal:** Ingest the decomposition, record the human's coordination arrangements and establish local dependency authoring.
 
 An accepted scope-change amendment does not re-run Functions 1 and 2; its amended scope is set up by Function 5.
 
@@ -33,42 +33,34 @@ An accepted scope-change amendment does not re-run Functions 1 and 2; its amende
 
 ---
 
-#### Phase 1.2: Confirm coordination representation
+#### Phase 1.2: Record coordination arrangements
 
 **Action:**
-- Ask the human how they intend to coordinate work across packages/deliverables.
-- Offer the coordination representations (`docs/COMPATIBILITY_FORMATS.md#historical-vocabulary` §6), which differ in what drives sequencing:
+- Resolve the human's intended use of schedules, dependency-informed sequencing
+  or both. Reuse arrangements already supplied; request only a missing decision
+  that matters to the selected undertaking.
+- Record those arrangements in `{COORDINATION_ROOT}/_COORDINATION.md`.
+  Bootstrap its root with
+  `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT} _Coordination`.
+- Dependencies have one current authoring form: consumer-local
+  `deliverable.yaml`. Do not select tracking modes or infer input satisfaction
+  from a default lifecycle threshold. Existing policy and accepted holds remain
+  in force; no format migration is implicit in setup.
 
-| Representation | What it means | When it fits |
-|---|---|---|
-| `SCHEDULE_FIRST` | A schedule (Gantt) drives sequencing; recorded dependencies, unless the mode is `NOT_TRACKED`, support blocker detection and audit | Large programs where a schedule already exists elsewhere |
-| `DEPENDENCY_TRACKED` | The dependency graph drives sequencing | Smaller programs or teams committed to maintaining the graph |
-| `HYBRID` | A combination of schedule-first and dependency-tracked | When a schedule drives some sequencing and recorded dependencies drive the rest |
-
-- Separately, offer the dependency tracking modes (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3; see the contract glossary): `NOT_TRACKED` (coordination outside the files; lifecycle state only), `DECLARED` (only interface-critical dependencies recorded; humans manage the rest), or `FULL_GRAPH` (dependencies intended to be complete and acyclic; blockers can be computed). The representation does not change what a mode means.
-- Record both choices in `{COORDINATION_ROOT}/_COORDINATION.md`.
-- Bootstrap coordination root: `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT} _Coordination`
-
-**Gate question:** “Confirm coordination representation: [SCHEDULE_FIRST | DEPENDENCY_TRACKED | HYBRID], and dependency tracking mode: [NOT_TRACKED | DECLARED | FULL_GRAPH]. Should I compute blocked/available, or only report lifecycle state?”
-
-**Do not proceed until the human confirms.**
-
----
-
-#### Phase 1.3 (Optional): Confirm dependency declaration rules
-
-Run this phase **only if** the human selects `DECLARED` or `FULL_GRAPH`.
+#### Phase 1.3: Establish dependency authoring scope
 
 **Action:**
-- Confirm a default maturity threshold rule used for blocker computation (recommended default: `INITIALIZED`, unless the human specifies otherwise).
-- Confirm where dependencies live:
-  - Declarations are recorded in the declared sections of `_DEPENDENCIES.md`.
-  - If the `dependency-extract` workflow is used, it also writes `Dependencies.csv` and mirrors each declaration there as an `Origin=DECLARED` row.
-  - Blockers are read from both sources together (Phase 3.1).
-- If the human wants help proposing dependencies:
-  - Propose candidates using heuristics, but clearly label them **PROPOSAL** requiring human acceptance.
-
-**Gate question:** “Confirm dependency rules: default threshold = [X]. Mode = [DECLARED|FULL_GRAPH]. Do you want me to propose candidates, or will humans curate dependencies directly?”
+- Identify the accepted deliverables and the responsible consumers who can
+  state what each actual input must support. Use accepted scope, relevant
+  `Design/` content, sources and intended use, rather than textual extraction
+  alone. A need may be reasoned from that evidence; do not invent a producer
+  commitment or claim every need is captured.
+- Keep source uncertainty, maturity/case/use conditions and actual triggers in
+  the declaration. Preserve distinct conditions between the same endpoints.
+- Use `dependency-extract` after production scope exists (Phase 2.2b) to author
+  or refresh needs. Ordinary need updates do not add an acceptance checkpoint;
+  changes to scope, reserved decisions or technical holds follow their actual
+  authority.
 
 ---
 
@@ -100,24 +92,22 @@ Run this phase **only if** the human selects `DECLARED` or `FULL_GRAPH`.
   dispatch TASK; using the skill does not force delegation.
 - **WORKING_ITEMS (workflow: project-decomp) / WORKING_ITEMS (workflow: software-decomp):** For each package in the decomposition, `PREPARATION_ACTOR` uses deterministic scaffolding/status tools for filesystem operations:
   - `tools/scaffolding/scaffold_package.sh {EXECUTION_ROOT} {PKG_ID} {PkgLabel}` — creates the package folder with all 9 lifecycle subfolders.
-  - `tools/scaffolding/scaffold_deliverable.sh {pkg_folder}/1_Working {DEL_ID} {DelLabel}` — creates each deliverable folder with minimum viable fileset stubs.
+  - `tools/scaffolding/scaffold_deliverable.sh {pkg_folder}/1_Working {DEL_ID} {DelLabel}` — creates each deliverable folder with four metadata stubs and `deliverable.yaml` (`id` plus `needs: []`).
   - A newly created `_STATUS.md` stub is written to `OPEN` in the exact form given by the `preparation` skill's scaffold contract, naming the actual actor; `write_status.sh` handles later transitions but cannot initialize the empty stub.
 - **WORKING_ITEMS (workflow: domain-decomp):** For each category in the decomposition, `PREPARATION_ACTOR` uses deterministic scaffolding/status tools for filesystem operations:
   - `tools/scaffolding/scaffold_package.sh {EXECUTION_ROOT} {CAT_ID} {CatLabel}` — creates the category folder with all 9 lifecycle subfolders.
-  - `tools/scaffolding/scaffold_deliverable.sh {cat_folder}/1_Working {KTY_ID} {KtyLabel}` — creates each Knowledge Type folder with minimum viable fileset stubs.
+  - `tools/scaffolding/scaffold_deliverable.sh {cat_folder}/1_Working {KTY_ID} {KtyLabel}` — creates each Knowledge Type folder with four non-dependency metadata stubs. The DEL-native needs method does not assess KTY declarations or add KTY dependency files; preserve existing artifacts.
   - A newly created `_STATUS.md` stub is written to `OPEN` in the exact form given by the `preparation` skill's scaffold contract, naming the actual actor; `write_status.sh` handles later transitions but cannot initialize the empty stub.
   - If the domain pipeline requires structural prereqs for hypergraph/closure work, `PREPARATION_ACTOR` also uses `tools/scaffolding/scaffold_tool_root.sh` to initialize the required domain-level tool roots.
 - Scaffolding order and ownership:
-  - `scaffold_deliverable.sh` creates all five empty stubs (`_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `_SEMANTIC.md`) in one call. Inventory targets first, capture each `CREATED_PATH`, and populate only files created by that invocation; an existing empty file is existing work.
+  - `scaffold_deliverable.sh` creates four empty metadata stubs (`_STATUS.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_SEMANTIC.md`) and, for DEL only, schema-valid `deliverable.yaml` in one call. Inventory targets first, capture each `CREATED_PATH`, and populate only files created by that invocation; an existing empty file is existing work.
   - `write_status.sh` cannot initialize an empty `_STATUS.md`; the `preparation` skill writes the exact `OPEN` form into the newly created stub, and `write_status.sh` is used only for later transitions.
-  - When file ownership is split (for example, `_DEPENDENCIES.md` belongs to another owner or stage), the actor may instead use inventoried exclusive creation of exactly its accepted targets: record target existence before writing, create each target only if absent, and report created paths and hashes. Do not create placeholder files outside the actor's ownership.
+  - When file ownership is split (for example, a local needs declaration belongs to another owner or stage), the actor may instead use inventoried exclusive creation of exactly its accepted targets: record target existence before writing, create each target only if absent, and report created paths and hashes. Do not create placeholder files outside the actor's ownership.
   - Folder labels follow the project's recorded label rule where one exists; the `preparation` skill's sanitization rule is the default for new workspaces.
 - `PREPARATION_ACTOR` uses the language model only to populate metadata text from the decomposition and any human-confirmed declarations:
   - `_CONTEXT.md`
-  - `_DEPENDENCIES.md` (the `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.2 skeleton given in the `preparation` skill's scaffold contract, carrying the recorded dependency tracking mode)
   - `_REFERENCES.md`
-- `PREPARATION_ACTOR` validates each newly created deliverable or knowledge-type folder with:
-  - `tools/validation/check_min_viable_fileset.sh {folder}`
+- `PREPARATION_ACTOR` validates each newly created DEL with `tools/validation/check_min_viable_fileset.sh {folder} {accepted_DEL_ID}`. The YAML ID must agree with the numeric accepted identity and folder; preserve accepted suffix bindings and numbering. An initial empty needs list means none declared yet, with no completeness/readiness claim. For KTY, omit the accepted DEL argument; only non-dependency metadata are assessed.
 
 **Gate question:** “Scaffolding complete. [N] packages/categories and [M] deliverables/knowledge types created. Minimum viable fileset validation passed for all newly created folders. Any missing references flagged. Ready to run document drafting?”
 
@@ -179,7 +169,7 @@ skipped.
 See `workflows/scope-of-work/WORKFLOW.md`, the retained compatibility
 `workflows/four-documents/WORKFLOW.md`, and `workflows/domain-documents/WORKFLOW.md`.
 
-**Gate question:** “Pass 1+2 complete. Ready for dependency extraction (Phase 2.2b, if the coordination mode calls for it) or semantic lenses (if using semantic lensing)?”
+**Gate question:** “Pass 1+2 complete. Ready for local need authoring (Phase 2.2b, PROJECT/SOFTWARE only) or semantic lenses (if using semantic lensing)?”
 
 ---
 
@@ -205,17 +195,37 @@ Run this phase only when the human requests a DOMAIN KTY enrichment or verificat
 
 ---
 
-#### Phase 2.2b: Dependency extraction and closure audit (when the coordination mode calls for it)
-
-Run this phase only when the recorded dependency tracking mode is `DECLARED` or `FULL_GRAPH` and the human-confirmed dependency rules (Phase 1.3) call for extracted registers. Under `NOT_TRACKED`, skip it and record the skip.
+#### Phase 2.2b: Author local needs and query their structure (PROJECT/SOFTWARE)
 
 **Action:**
-1. After the production contracts from Phase 2.2 exist, dispatch **TASK + `dependency-extract`** once per deliverable (one deliverable per brief), with `SCOPE`, `DECOMPOSITION_PATH`, and the write boundary of `workflows/dependency-extract/resources/brief.md`. The default `DOC_ROLE_MAP` reads `ScopeOfWork.md`.
-2. After all extraction runs report, dispatch **TASK + `audit-dep-closure`** over the accepted scope inventory, with any declared exemptions and `UPDATE_LATEST_POINTER` set by the brief.
-3. Route each non-trivial SCC in the closure result to **`scc-resolution-case`** in the project's case home (`_DAG/cases/<CASE-ID>/`, or a legacy PKG-00 control deliverable that already holds its cases). Cycle-participating edges stay non-gating and are reported as held until the owning decisions resolve them (see Phase 3.1).
-4. Where the project needs an accepted DAG, hand off to the **`project-dag`** workflow with the closure snapshot, the frozen scope inventory, and the SCC cases. It constructs a version from this dependency evidence and ends in explicit human acceptance (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4). Do not present the closure snapshot or its `_LATEST.md` observation pointer as the accepted DAG.
+1. Once Phase 2.2 has supplied the actual production scope, use
+   **TASK + `dependency-extract`** for each selected DEL, one consumer per brief.
+   Resolve its accepted identity, `ScopeOfWork.md`, relevant `Design/`, source
+   conditions, existing `deliverable.yaml` and the workflow's bounded write
+   contract. Author the actual input/use conditions, preserving unchanged
+   declarations, case multiplicity, uncertainty and technical holds. A later
+   scan's failure to rediscover wording is no reason to retire a need.
+2. Use **`audit-dep-closure`** for a bounded read-only query over the selected
+   declarations and inventory. Inspect malformed needs, unknown bindings,
+   selected coverage and reciprocal relationships. Where available, run
+   `python3 -m tools.deliverables --project <PROJECT_ROOT> check`, then
+   `neighborhood <DEL>` or `impact <DEL>` for an actual coordination question.
+   The CLI requires an existing Git repository/HEAD and the shared tools on
+   its import path; if unavailable, inspect declarations and the schema
+   directly and report query coverage/limits. Do not require Git for setup.
+3. Assess reciprocal conditions for the selected activity with
+   `construct-local-work-graph` as needed. Preserve each need's actual
+   `gating` meaning and technical release condition; cycles do not automatically
+   change those values or create an approval/case route. Continue unaffected
+   work whose inputs permit it.
+4. Return the authored changes, query findings and actual remaining conditions.
+   A structural pass, supplier declaration or file presence is not suitability,
+   acceptance or project-wide dependency completeness. Do not maintain a
+   second central dependency map or copy reverse links into local needs.
 
-**Gate question:** “Dependency registers extracted for [N] deliverables; closure audit [status] with [K] SCCs routed to resolution cases. Proceed to semantic lensing (if used), or first construct and accept the project DAG (`project-dag`)?”
+This DEL-native phase does not assess KTY dependency declarations. Report that
+limit for a DOMAIN undertaking; do not fabricate KTY schema or invoke a removed
+CSV/central-network dependency route.
 
 ---
 
@@ -371,15 +381,16 @@ for the method contracts.
 - Check `3_Issued/` zones for issued items.
 
 Dependencies:
-- If dependency tracking mode is `DECLARED` or `FULL_GRAPH`:
-  - Where the project has **no accepted project DAG**, compute `BLOCKED/UNBLOCKED` only from the recorded register (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3). That register is the union of the declared entries in `_DEPENDENCIES.md` and the rows of `Dependencies.csv` when present. Do not rely on the CSV alone: a declaration not yet mirrored as an `Origin=DECLARED` row still counts.
-    - Treat a declared entry and a row for the same direction and target as one edge, counted once. Where they disagree, use the declared entry and report the disagreement.
-    - For an entry without a CSV row, compare its `Required maturity` with the upstream deliverable's `_STATUS.md` state. Use the Phase 1.3 default threshold when the entry states none.
-    - Under `FULL_GRAPH`, compute blockers only after the closure audit and cycle treatment (Phase 2.2b).
-  - Where the project has an accepted project DAG, compute them instead from its accepted current version (resolved through `_DAG/_LATEST.md`), with satisfaction read from the local files. Report deliverables the latest currency audit lists as `DAG pending`, or whose local evidence departs from the version, as pending, not blocked or unblocked (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4).
-  - Edges that participate in an unresolved cycle (SCC) are non-gating: exclude them from blocker computation and report them separately as **HELD** pending resolution (`docs/COMPATIBILITY_FORMATS.md#historical-cycle-method` §2 rule 4; `scc-resolution-case`). Do not label a deliverable blocked, or withhold independent work, solely because of a held edge.
-- If dependency tracking mode is `NOT_TRACKED`:
-  - Do not label items as blocked/available.
+- Read the selected DELs' `deliverable.yaml` and derive neighbourhood/impact
+  views for the actual question using Phase 2.2b's tools or direct inspection
+  fallback. State query scope, malformed declarations, source unknowns and
+  reciprocal conditions.
+- Assess whether each actual input meets the selected use from evidence and
+  responsible judgment. Keep an unassessed condition unknown; lifecycle state,
+  file presence and structural validity do not establish satisfaction.
+- Preserve all case/trigger distinctions and technical holds. No automatic
+  blocker computation from lifecycle thresholds, endpoint deduplication or
+  blanket non-gating treatment follows from the query.
 
 ---
 
@@ -393,13 +404,11 @@ Always report by lifecycle state:
 - CHECKING
 - ISSUED
 
-Additionally, if dependency tracking mode is enabled, provide an **advisory** section:
-- UNBLOCKED (recorded or accepted-version dependencies met)
-- BLOCKED (recorded or accepted-version dependencies not met)
-- HELD (edges in unresolved cycles; non-gating and excluded from BLOCKED)
-- DAG PENDING (accepted project DAG only: deliverables affected by an undecided departure, each with the departure and the decision awaited; no ready or blocked verdict, `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4)
-
-Under `DECLARED`, label this section a partial view of the recorded critical edges (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3).
+For the selected undertaking, report the actual input conditions assessed,
+the evidence and judgment supporting their use, unresolved sources, technical
+holds and work that can proceed independently. Name any needed owner decision
+and its effect. Query results are a partial observed view; they do not establish
+a complete or accepted network, lifecycle advancement or readiness.
 
 WORKING_ITEMS does not assign or recommend priorities.
 
@@ -441,7 +450,7 @@ WORKING_ITEMS does not produce estimates or interpret pricing data. It reads the
 **Action:**
 - For each deliverable in the current tier, resolve `estimate-snapshot` brief inputs:
   - **Required:** `RUN_ROOT` (deliverable folder path), `ESTIMATES_ROOT` (`{EXECUTION_ROOT}/_Estimates/`), `SCOPE` (deliverable ID), `BASIS_OF_ESTIMATE` (from BOE Section 4 per-deliverable entry), `CURRENCY` (from BOE Section 3).
-  - **Recommended:** `DECOMPOSITION_PATH` (from INIT.md decomposition path), `DEPENDENCY_SOURCES` (deliverable-local `Dependencies.csv` or `_DEPENDENCIES.md`), `PRICE_SOURCES` (resolved from INDEX.md per-package mapping → absolute file paths within `_PriceSources/`).
+  - **Recommended:** `DECOMPOSITION_PATH` (from INIT.md decomposition path), `DEPENDENCY_SOURCES` (consumer-local `deliverable.yaml`, or a bounded view derived from those needs for the estimate), `PRICE_SOURCES` (resolved from INDEX.md per-package mapping → absolute file paths within `_PriceSources/`).
   - **Optional:** `FALLBACK_POLICY`, `ALLOW_MIXED_METHODS`, `ROUNDING`, `OUTPUT_LABEL`, `UPDATE_LATEST_POINTER`, `EXCLUSIONS` — sourced from BOE per-deliverable table (Section 4) with fallback to common run parameters (Section 3).
 - Spawn one TASK+`Workflow: estimate-snapshot` per deliverable in the tier. Dispatches run in parallel within a tier, unless the BOE specifies sequential constraints within that tier.
 - Collect per-deliverable results: snapshot folder path, `RUN_STATUS`, key warnings.
@@ -508,11 +517,11 @@ Run this phase when `SETUP_LOG.md` has no `BASELINE` line: a project set up befo
 **Action:**
 - Resolve the accepted snapshot from `{EXECUTION_ROOT}/_ScopeChange/_LATEST.md`. List any earlier accepted `SCA-*` snapshots not covered by the `SETUP_LOG.md` baseline whose setup hand-back has no `COMPLETE` line there, and take them in amendment order in the same plan. Where later amendments act on the same entity, the latest accepted state governs; show such cases in the plan. An amendment covered by the baseline never enters the plan.
 - Resolve the accepted action register through the snapshot's group-2 `ACCEPTED_MANIFEST.csv` (`Amendment_Actions.csv` or its bound distinct name) and verify its hash. Read `Propagation_Plan.md` and `Handoff_State.md` for the hand-back, deferred items and blockers.
-- Read each affected entity's row in the amended decomposition, and the recorded representation, dependency tracking mode and threshold in `_COORDINATION.md`. Do not re-run Phases 1.2–1.3.
+- Read each affected entity's row in the amended decomposition, and the coordination arrangements and technical holds in `_COORDINATION.md`. Do not re-run Phases 1.2–1.3.
 - For each affected deliverable, resolve its production format (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §2.2) and lifecycle state. Derive the neighbours (contract, *`INCREMENTAL` action treatment*).
-- Prepare the incremental plan: each entity with its action, treatment, stages, write targets and actor; the dependency stages for the recorded mode (Phase 5.6); semantic or DOMAIN stages the project uses; derivatives made stale (estimates, schedules, hypergraph, semantic artifacts) with their owners; where the project has an accepted project DAG, the deliverables for which it becomes stale, to be confirmed by the Phase 5.6 currency audit (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4); and any decisions the stages reserve for the human.
+- Prepare the incremental plan: each entity with its action, treatment, stages, write targets and actor; the local need review/query scope (Phase 5.6); semantic or DOMAIN stages the project uses; derivatives made stale (estimates, schedules, hypergraph, semantic artifacts) with their owners; and any decisions the stages reserve for the human.
 
-**Gate question:** "Accepted amendment [ID] (register hash [H]): [a] to scaffold, [r] retired, [m] modified ([h] held at `CHECKING` or `ISSUED`), [n] neighbours for dependency refresh under [mode]. Confirm this incremental plan?"
+**Gate question:** "Accepted amendment [ID] (register hash [H]): [a] to scaffold, [r] retired, [m] modified ([h] held at `CHECKING` or `ISSUED`), [n] neighbours for local need review. Confirm this incremental plan?"
 
 **Do not write before the human confirms the plan.**
 
@@ -522,7 +531,7 @@ Run this phase when `SETUP_LOG.md` has no `BASELINE` line: a project set up befo
 
 **Action:**
 - For each `ADD` (and each new `MERGE`/`SPLIT` successor), apply Phase 2.1 with the source-qualified `preparation` skill: `scaffold_package.sh` for a new package or category, `scaffold_deliverable.sh` for a new deliverable or knowledge type. Inventory first and populate only files created by this invocation. A path that already exists for an added ID is existing work: report it and do not overwrite it.
-- `_DEPENDENCIES.md` carries the recorded tracking mode. Its declared sections hold only human declarations from the accepted amendment or the plan confirmation.
+- A new DEL receives `deliverable.yaml` with the accepted numeric ID and `needs: []`; author actual conditions after its scope exists. An empty list is no completeness or readiness claim. Preserve existing files; no dependency format migration is implied.
 - Initialize `OPEN` only in a newly created `_STATUS.md`, and run `tools/validation/check_min_viable_fileset.sh` on each new folder.
 - **DOMAIN:** before drafting a new Knowledge Type, reuse the amendment's recorded `CLUSTER_COHERENT` ratification when the retrieval index has not changed since it; otherwise run Phase 2.1b for the new Knowledge Types only.
 
@@ -542,7 +551,7 @@ Run this phase when `SETUP_LOG.md` has no `BASELINE` line: a project set up befo
 **Action:**
 - For each `REMOVE` (and each retired `MERGE`/`SPLIT` source), delete nothing. Confirm the decomposition row carries `[RETIRED — {AMENDMENT_ID}]`. A missing annotation returns to `scope-change`: the annotation is decomposition truth, which this function does not edit.
 - Confirm `_STATUS.md` holds one history line recording the retirement under the amendment. Where the accepted poststate lacks it, append exactly one, for example `- {YYYY-MM-DD} — Retired under {AMENDMENT_ID}; lifecycle state remains {CURRENT_STATE} ({ACTOR})`. Leave `**Current State:**` unchanged and do not use `write_status.sh`. This line is appended here rather than returned because `_STATUS.md` history is deliverable-local lifecycle evidence, not decomposition truth, and appending it changes no state.
-- Record retired deliverables as `EXEMPT_UNITS` of class `RETIRED` for the closure audit, citing the action row. Report recorded edges from neighbours that target a retired deliverable to their owners; declared sections are human-owned.
+- Identify retired deliverables and the accepted action for the bounded query. Ask their actual consumers to review affected needs: retirement does not by itself make an existing artifact unusable or justify deleting/retargeting a condition. Preserve usable historical evidence and technical holds.
 - **DOMAIN:** KTY content retirement belongs to the amendment's `KTY_Remediation_Manifest.csv` lanes. Report rows that are not `COMPLETE`; do not archive content here.
 
 ---
@@ -566,28 +575,42 @@ Run this phase when `SETUP_LOG.md` has no `BASELINE` line: a project set up befo
 
 #### Phase 5.6: Refresh dependency stages for the affected scope
 
-Follow the recorded tracking mode (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3) and Phase 2.2b's briefs, limited to the affected deliverables and their neighbours:
+Use Phase 2.2b's local authoring and read-only query methods for the affected
+DELs and their derived neighbours:
 
-- **`NOT_TRACKED`:** skip extraction and closure audit, and record the skip.
-- **`DECLARED`:** where the Phase 1.3 rules call for extracted registers, dispatch `dependency-extract` (`MODE: UPDATE`, one deliverable per brief) for each affected deliverable that has a production contract and each neighbour; then `audit-dep-closure` with an explicit `SCOPE` list of those deliverables and the retired exemptions. Report the result as a partial view.
-- **`FULL_GRAPH`:** dispatch `dependency-extract` for the same deliverables as above, then run `audit-dep-closure` over the accepted inventory (its `SCOPE: ALL` rules, with retired exemptions): a new cycle through a changed edge can pass through unaffected deliverables. The audit reads existing registers; it does not re-extract them. Route new SCCs to `scc-resolution-case`.
-- **Accepted project DAG (`DECLARED` or `FULL_GRAPH`):** where the project has an accepted project DAG (`_DAG/_LATEST.md`), hand off to `project-dag` after extraction and closure for a currency audit (`project-dag` `resources/currency.md`, `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4) naming the accepted amendment. An accepted inventory change or a changed arc is a departure: the affected deliverables it lists are `DAG pending` until the human accepts the candidate successor or rejects the change, and they get no ready or blocked verdict from dependencies meanwhile. Unaffected deliverables continue on the accepted version. This function does not edit the accepted version, prepare or accept its successor, or clear the flag; `project-dag` owns those steps and their human checkpoint.
-- A new deliverable whose production contract does not yet exist is extracted after Phase 5.3 completes for it; record the wait. Where an accepted project DAG exists, the currency audit follows that extraction or records the deliverable's evidence as not yet comparable.
+- Derive the actual affected consumers from `deliverable.yaml` and the accepted
+  impact assessment. A changed relation may reach a reciprocal path through
+  unchanged deliverables; expand the read scope when that actual path matters.
+- Use `dependency-extract` to review each affected consumer's actual scope,
+  Design, sources and intended input/use conditions. Preserve unchanged needs,
+  distinct case/trigger records and unknown sources. Do not create a producer
+  commitment or retire a declaration solely because extraction missed wording.
+- Use `audit-dep-closure` for a bounded query over the resulting declarations.
+  Report changes, malformed declarations, unresolved references, query scope
+  and reciprocal conditions. Do not maintain a second map or infer satisfaction
+  from the query result.
+- Review needs that target retired producers against the actual retained
+  artifact/use condition. Modify or remove only the meaning affected by the
+  accepted amendment; do not automatically delete or retarget the relation.
+- Author a new DEL's needs once Phase 5.3 supplies its production scope. Report
+  a wait if that input is absent. Existing scope/technical/acceptance holds
+  remain in force. DOMAIN/KTY dependency declarations are outside this native
+  DEL method; do not invent a schema or new dependency output for them.
 
 ---
 
 #### Phase 5.7: Refresh coordination and report
 
 **Action:**
-- Run Phase 3.1 and report per Phase 3.2. List retired deliverables separately with their unchanged lifecycle state and exclude them from the advisory blocked/unblocked sections.
+- Run Phase 3.1 and report per Phase 3.2. List retired deliverables separately with their unchanged lifecycle state and identify the actual input conditions affected by their retirement.
 - Write the run record under `{COORDINATION_ROOT}/AgentRuns/<RunID>/`: the confirmed plan, snapshot path and register hash, briefs, returns, created and skipped paths, update routes, dependency evidence and the report.
 - Append one line to `SETUP_LOG.md`: `COMPLETE` when every planned item is done, otherwise `PARTIAL` or `BLOCKED` with the remaining items named in the run record.
 - The accepted amendment snapshot stays immutable. The run record and setup-log line are this function's setup evidence, for the human and for resuming an interrupted run.
-- **Closure check:** propose `audit-scope-closure` against the accepted amendment (normally after a `COMPLETE` line). It is the check that the added scope was scaffolded after acceptance. It audits the workspace itself against the amended basis: its ADD checks confirm each added folder and its minimum viable fileset, its REMOVE checks the retirement records, and its rerun verification checks the reruns the amendment's `RUN_SUMMARY.md` recommends against hash-bearing run receipts, such as `dependency-extract` input manifests. It takes dispositions from the amendment's `scope-change` handoff records; it does not read `SETUP_LOG.md` or this run record. Its findings route repair work back into this function.
+- **Closure check:** propose `audit-scope-closure` against the accepted amendment (normally after a `COMPLETE` line). It is the check that the added scope was scaffolded after acceptance. It audits the workspace itself against the amended basis: its ADD checks confirm each added folder and its minimum viable fileset, its REMOVE checks the retirement records, and its dependency checks inspect the accepted change and actual resulting local declarations and sources. A dependency refresh is evidenced by its meaningful result, not a mandatory extraction receipt. It takes dispositions from the amendment's `scope-change` handoff records; it does not read `SETUP_LOG.md` or this run record. Its findings route repair work back into this function.
 - **DOMAIN:** report an existing hypergraph snapshot as stale and propose Phase 2.6.
 
-**Report to human:** "Incremental setup for [ID]: [a] scaffolded ([paths]), [r] retirements recorded, [m] modified routed ([routes and outcomes]); [h] held for the human (`CHECKING`, `ISSUED` awaiting a recorded reopening); dependency refresh [mode and result]; `DAG pending` [deliverables and the `project-dag` decision awaited, or none, or no accepted DAG]; stale derivatives [list with owners]; decisions pending [list]; closure check `audit-scope-closure` [proposed | dispatched]."
+**Report to human:** "Incremental setup for [ID]: [a] scaffolded ([paths]), [r] retirements recorded, [m] modified routed ([routes and outcomes]); [h] held for the human (`CHECKING`, `ISSUED` awaiting a recorded reopening); local need review/query [scope, changes and remaining conditions]; stale derivatives [list with owners]; decisions pending [list]; closure check `audit-scope-closure` [proposed | dispatched]."
 
-An interrupted run resumes from Phase 5.1 by inspecting what exists: preparation and extraction are per-item and idempotent, and completed items are skipped. A `PARTIAL` or `BLOCKED` line in `SETUP_LOG.md` keeps the amendment in the Function 5 queue.
+An interrupted run resumes from Phase 5.1 by inspecting what exists: preparation and need authoring are per-item and idempotent, and completed items are skipped. A `PARTIAL` or `BLOCKED` line in `SETUP_LOG.md` keeps the amendment in the Function 5 queue.
 
 ---

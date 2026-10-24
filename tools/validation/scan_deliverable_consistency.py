@@ -44,7 +44,7 @@ resolve_production_format = _common.resolve_production_format
 CORE_FILES = [
     "_STATUS.md",
     "_CONTEXT.md",
-    "_DEPENDENCIES.md",
+    "deliverable.yaml",
     "_REFERENCES.md",
     "_SEMANTIC.md",
 ]

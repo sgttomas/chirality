@@ -58,6 +58,48 @@ def test_unknown_conditions_cycles_and_non_gating_are_not_completion(repo, capsy
     assert result['affected'] == ['DEL-01-02']
 
 
+def test_distinct_cases_unknowns_and_queries_preserve_declarations(repo, capsys):
+    path = put(repo, 'DEL-01-01', [
+        {'from': 'DEL-01-02', 'condition': 'rating for winter case', 'when': 'winter review'},
+        {'from': 'DEL-01-02', 'condition': 'rating for summer case', 'when': 'summer review', 'gating': False},
+        {'from': 'unknown', 'condition': 'identify owner review source'},
+        {'from': 'external:recipient', 'direction': 'downstream', 'condition': 'provide agreed drawing'},
+    ])
+    put(repo, 'DEL-01-02')
+    before = path.read_bytes(), path.stat().st_mtime_ns
+    for command in (('check',), ('neighborhood', 'DEL-01-01'), ('impact', 'DEL-01-02')):
+        code, result = query(capsys, *command)
+        assert code == 0, result
+        assert (path.read_bytes(), path.stat().st_mtime_ns) == before
+        if command[0] == 'neighborhood':
+            assert len(result['upstream']) == 3 and len(result['outputs']) == 1
+            assert [row['when'] for row in result['upstream'][:2]] == ['winter review', 'summer review']
+        if command[0] == 'impact':
+            assert result['affected'] == ['DEL-01-01']
+            assert len(result['relationships']) == 4
+
+
+def test_identity_binding_and_native_outward_duplicates_are_rejected(repo, capsys):
+    path = put(repo, 'DEL-01-01')
+    path.write_text('id: DEL-01-02\nneeds: []\n')
+    code, result = query(capsys, 'check')
+    assert code == 2 and 'disagrees with deliverable identity DEL-01-01' in result['errors'][0]
+    path.write_text('id: DEL-01-01\nneeds:\n- from: DEL-01-02\n  direction: downstream\n  condition: drawing\n')
+    code, result = query(capsys, 'check')
+    assert code == 2 and 'native consumers declare their own needs' in result['errors'][0]
+
+
+def test_flat_or_phase_locality_label_does_not_change_stable_identity(repo, capsys):
+    path = repo / 'project/execution/PKG-01/1_Working/DEL-01-01_Drawing-Set/deliverable.yaml'
+    path.parent.mkdir(parents=True)
+    path.write_text('id: DEL-01-01\nneeds: []\n')
+    code, result = query(capsys, 'check')
+    assert code == 0 and result['deliverables'] == 1
+    assert cli.parse(path.read_text(), str(path), expected_id='DEL-01-01')['id'] == 'DEL-01-01'
+    with pytest.raises(cli.Invalid, match='disagrees'):
+        cli.parse(path.read_text(), str(path), expected_id='DEL-02-01')
+
+
 def test_typed_targets_and_present_evidence_do_not_claim_satisfaction(repo, capsys):
     (repo / 'project' / 'interface.md').write_text('a stub')
     put(repo, 'DEL-01-01', [{'from': 'doc:interface.md', 'condition': 'correct interface',

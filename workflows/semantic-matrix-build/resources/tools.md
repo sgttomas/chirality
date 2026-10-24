@@ -53,7 +53,7 @@ Do not use tools or scripts to bypass the semantic reasoning work. A generated t
 Do not:
 
 - edit production documents;
-- edit `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, or `MEMORY.md`;
+- edit `_CONTEXT.md`, `_REFERENCES.md`, `deliverable.yaml`, or `MEMORY.md`;
 - write outside the effective bounded task brief's authorization;
 - scan sibling deliverables;
 - claim cross-deliverable conclusions;

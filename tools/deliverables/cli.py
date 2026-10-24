@@ -19,6 +19,7 @@ except ImportError:
     from graph import find_sccs
 
 ID = re.compile(r"DEL-\d+-\d+$")
+LOCALITY_ID = re.compile(r"(DEL-\d+-\d+)(?:[_-].*)?$")
 TARGET = re.compile(r"(?:DEL-\d+-\d+|(?:external|doc|package):\S.*|unknown)$")
 
 
@@ -64,13 +65,15 @@ def safe_path(value):
     return path.as_posix()
 
 
-def parse(text, source):
+def parse(text, source, expected_id=None):
     try:
         obj = yaml.load(text, Loader=UniqueLoader)
     except yaml.YAMLError as exc:
         raise Invalid(f'{source}: {exc}') from exc
     if not isinstance(obj, dict) or not isinstance(obj.get('id'), str) or not ID.fullmatch(obj['id']):
         raise Invalid(f'{source}: expected a stable DEL-nn-nn id')
+    if expected_id is not None and obj['id'] != expected_id:
+        raise Invalid(f'{source}: id {obj["id"]} disagrees with deliverable identity {expected_id}')
     if not isinstance(obj.get('needs'), list):
         raise Invalid(f'{source}: needs must be a list')
     if 'name' in obj and not isinstance(obj['name'], str):
@@ -91,6 +94,8 @@ def parse(text, source):
             raise Invalid(f'{location}: gating must be a boolean')
         if need.get('direction', 'upstream') not in ('upstream', 'downstream'):
             raise Invalid(f'{location}: direction must be upstream or downstream')
+        if need.get('direction') == 'downstream' and ID.fullmatch(need['from']):
+            raise Invalid(f'{location}: native consumers declare their own needs; downstream is for nonlocal obligations')
         if 'when' in need and not isinstance(need['when'], str):
             raise Invalid(f'{location}: when must be text')
         if need['from'].startswith('doc:'):
@@ -127,7 +132,8 @@ def load(repo, project, ref=None):
                 errors.append(f'{relative_path}: {exc}')
     for source, text in sources:
         try:
-            obj = parse(text, source)
+            locality = LOCALITY_ID.fullmatch(PurePosixPath(source).parent.name)
+            obj = parse(text, source, expected_id=locality.group(1) if locality else None)
             if obj['id'] in documents:
                 raise Invalid(f'{source}: duplicate identity {obj["id"]}')
             documents[obj['id']] = dict(obj, source=source)

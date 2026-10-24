@@ -9,8 +9,8 @@ from collections import Counter
 from pathlib import Path
 from audit_common import inventory, report_base, require_root, sow, write_report
 
-MUST_FILES = ("_STATUS.md", "_CONTEXT.md", "_DEPENDENCIES.md", "_REFERENCES.md")
-OPTIONAL_FILES = ("Dependencies.csv", "_MEMORY.md", "_SEMANTIC.md", "_SEMANTIC_LENSING.md")
+MUST_FILES = ("_STATUS.md", "_CONTEXT.md", "_REFERENCES.md")
+OPTIONAL_FILES = ("_MEMORY.md", "_SEMANTIC.md", "_SEMANTIC_LENSING.md")
 LIFECYCLE = {"OPEN", "INITIALIZED", "SEMANTIC_READY", "IN_PROGRESS", "CHECKING", "ISSUED", "RETIRED"}
 CONTRACT = {"version": "structure-audit/v1", "basis": "docs/SPEC.md sections 1-2; production format via tools/scope_of_work/common.py",
     "tool_roots": ["_Aggregation", "_Coordination", "_Decomposition", "_Estimates", "_Reconciliation", "_Sources"],
@@ -70,12 +70,15 @@ def audit(root, variant, inventory_path=None, isolated_migration=False, migratio
     result.update(variant=variant, contract=CONTRACT, inventory_source=str(inventory_path) if inventory_path else "live variant discovery")
     selection = selected_units(root, variant, inventory_path)
     units = []
+    # Native needs are DEL-only. KTY dependencies are outside this assessment;
+    # DOMAIN's non-dependency metadata and production checks remain in place.
+    required_files = MUST_FILES if variant == "DOMAIN" else (*MUST_FILES, "deliverable.yaml")
     for path, additional in selection:
         issues = []
         if not path.is_dir():
             issues.append("declared production-unit directory is missing")
-        files = {name: (path / name).is_file() for name in (*MUST_FILES, *OPTIONAL_FILES, *sow.LEGACY_FILES, "ScopeOfWork.md", *additional)}
-        issues.extend(f"missing required file: {name}" for name in (*MUST_FILES, *additional) if not files[name])
+        files = {name: (path / name).is_file() for name in (*required_files, *OPTIONAL_FILES, *sow.LEGACY_FILES, "ScopeOfWork.md", *additional)}
+        issues.extend(f"missing required file: {name}" for name in (*required_files, *additional) if not files[name])
         state, state_issue = current_state(path / "_STATUS.md")
         if state_issue:
             issues.append(state_issue)

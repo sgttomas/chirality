@@ -18,5 +18,5 @@ Do not claim validator PASS unless it actually ran and passed.
 
 - No writes outside `PACKET_PATH` and `_run_records/`.
 - No mutation of product deliverables.
-- No mutation of `Dependencies.csv`.
+- No mutation of `deliverable.yaml` local needs.
 - No mutation of `_ScopeChange/`, `_Reconciliation/`, or decomposition authority.
