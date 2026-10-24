@@ -34,6 +34,14 @@ if [[ "$DEL_ID" == DEL-* ]]; then
     exit 2
   fi
 fi
+if [[ -n "$NATIVE_ID" && -L "$DEL_DIR" ]]; then
+  SCAFFOLD_ROOT="${WORKING_DIR:A}"
+  SCAFFOLD_TARGET="${DEL_DIR:A}"
+  if [[ "$SCAFFOLD_TARGET" != "$SCAFFOLD_ROOT" && "$SCAFFOLD_TARGET" != "$SCAFFOLD_ROOT/"* ]]; then
+    print -u2 "DEL directory symlink resolves outside the supplied working root"
+    exit 2
+  fi
+fi
 
 STUBS=(
   "_STATUS.md"

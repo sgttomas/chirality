@@ -24,7 +24,8 @@ sow = load_module("evaluation_sow_contract", TOOLS / "scope_of_work/common.py")
 # Lifecycle folders that can hold a production unit. A unit moves between them
 # as it matures; 0_References holds reference material and is excluded.
 LIFECYCLE_DIRS = ("1_Working", "2_Checking", "3_Issued")
-PRODUCTION_UNIT = re.compile(r"(?:DEL|KTY)-\d+-\d+(?:_|$)")
+# Match the native DEL locality spelling, retaining KTY source protection.
+PRODUCTION_UNIT = re.compile(r"(?:DEL|KTY)-\d+-\d+(?:[_-].*)?$")
 
 
 def inventory(root, variant=None):
@@ -56,13 +57,16 @@ def write_report(report, output):
     if str(output) == "-":
         print(text, end="")
     else:
-        target = Path(output).resolve()
+        requested = Path(output).absolute()
+        target = requested.resolve()
         if target.exists() and not target.is_file():
             raise ValueError(f"report output is not a regular file: {target}")
         # Reports cannot replace inspected workspace content, including flat
         # native localities as well as the lifecycle-folder structure format.
-        if (in_lifecycle_folder(target) or any(PRODUCTION_UNIT.match(part) for part in target.parts)
-                or target.name in {"deliverable.yaml", "ScopeOfWork.md", "_STATUS.md"}):
+        if any(in_lifecycle_folder(path)
+               or any(PRODUCTION_UNIT.fullmatch(part) for part in path.parts)
+               or path.name in {"deliverable.yaml", "ScopeOfWork.md", "_STATUS.md"}
+               for path in (requested, target)):
             raise ValueError("report output must be outside production-unit source paths")
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(text, encoding="utf-8")

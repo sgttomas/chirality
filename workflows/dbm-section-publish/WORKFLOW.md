@@ -343,7 +343,7 @@ When that happens, dbm-publisher must split/refine the section design rather tha
    - `_REFERENCES.md`
    - `_STATUS.md`
    - `_MEMORY.md` whenever `_STATUS.md` is read, as non-authoritative operational context only
-   - optional `deliverable.yaml` only when explicitly required by the section map or publication rules
+   - optional `_DEPENDENCIES.md` only when explicitly required by the section map or publication rules
 4. **Apply root-admission, readiness gates, and selector semantics.** Enforce publication-admission evidence, `MappingRole`, `ContributionScope`, KTY readiness, and publication-rule precedence.
 5. **Draft the section body.** Follow the approved template for `SECTION_TYPE`, the publication rules, `DBM_OUTPUT_MODE`, the body completeness standard, expected body components, and expected design-basis table treatment. In `FULL_ENGINEERING_DBM` mode, use DBM-native engineering headings and subsections rather than QA/export artifact structures.
 6. **Assess section adequacy.** Before finalizing QA, evaluate whether the section is standalone for core engineering basis, whether the DBM-native structure is adequate, whether applicable design-basis content classes were covered, whether design-basis tables were included/consolidated/split or rationally omitted, and whether `PRIMARY` KTY material was materially used.

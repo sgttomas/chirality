@@ -10,6 +10,7 @@
 - **Scope-bounded.** Audit only the scope change identified in the brief. Do not expand to unrelated deliverables unless tracing affected references requires it.
 - **Amendment record is authoritative.** The accepted action register is the source of truth for what should have happened: the register bound by hash in the accepted checkpoint-group-2 snapshot's `ACCEPTED_MANIFEST.csv` (currently `Amendment_Actions.csv`; historical runs may bind another name such as `Amendment_Actions_CP2.csv`). A run with no group-2 checkpoint snapshot falls back to `Amendment_Actions.csv` in the amendment snapshot, recorded as a fallback. `Intake_Actions.csv` is group-1 proposal evidence, never the register. Later accepted handoff records supply each obligation's current disposition. The audit verifies reality against this record.
 - **DOMAIN deterministic validation is tool-backed.** For `DECOMP_VARIANT = DOMAIN`, this audit invokes the same registered validators used by WORKING_ITEMS (workflow: scope-change): `validate_domain_decomposition_integrity.py`, `accumulate_supersession_map.py`, and `validate_kty_remediation_manifest.py` when their inputs are in scope.
+- **Native needs are DEL-only.** YAML dependency-file requirements, local need authoring checks and native affected-reference coverage apply only to `PROJECT`/`SOFTWARE` DEL identities. For `DOMAIN`, retain its non-dependency metadata and other applicable checks; do not require KTY YAML or add an alternate dependency route.
 
 ---
 
@@ -34,7 +35,7 @@ A scope closure audit is valid when:
 - `INPUT_MANIFEST.sha256` records the hash of every input read.
 - Every row in the resolved accepted register was checked against filesystem state (Pass 1).
 - Every recommended downstream rerun was checked for evidence of completion (Pass 2).
-- Affected-reference assessment covered needs referencing the changed or retired entities across all consumer-local `deliverable.yaml` files (Pass 3), preserving supported historical inputs.
+- For `PROJECT`/`SOFTWARE` DEL identities, affected-reference assessment covered needs referencing the changed or retired entities across all consumer-local `deliverable.yaml` files (Pass 3), preserving supported historical inputs. The native-needs pass is `NOT_APPLICABLE` for `DOMAIN`; its other applicable passes remain required.
 - Decomposition document consistency was verified against the amendment record (Pass 4).
 - Context metadata for every affected deliverable was checked against the decomposition (Pass 5).
 - Supersession binding completeness was verified for all source-affecting actions (Pass 6) — this pass runs whenever any row of the resolved accepted register has `SupersessionBindingPresent = YES`, regardless of whether supersession artifacts are present on disk.
@@ -55,7 +56,7 @@ A scope closure audit is valid when:
 | Action marked VERIFIED when filesystem contradicts | False positive — integrity failure |
 | Rerun judged sufficient from dates alone | Inspect actual local declaration/source changes; derivative snapshots require matching scope and input basis |
 | Prior audit snapshot edited in place | Corrections use a new superseding snapshot |
-| Affected-reference search limited to changed packages only | Search all consumer-local `deliverable.yaml` files for references to the changed entities; consumers may be in other packages |
+| PROJECT/SOFTWARE native affected-reference search limited to changed packages only | Search all consumer-local DEL `deliverable.yaml` files for references to the changed entities; consumers may be in other packages. This native-needs requirement does not apply to DOMAIN KTY identities |
 | Silent resolution of amendment/filesystem disagreement | Violates conflict surfacing invariant |
 | Audit scope expanded beyond the specified amendment | Each audit covers one `AMENDMENT_ID`; separate runs for separate amendments |
 | DOMAIN KTY remediation manifest ignored | KTY content may be stale, retired, or blocked for factual use without audit visibility |
@@ -201,7 +202,7 @@ inputs or evidence binding; the superseded snapshot's bytes stay unchanged and
 ## Coverage
 - Actions checked: {n} of {total}
 - Downstream reruns checked: {n} of {total recommended}
-- deliverable.yaml files searched for affected references: {n}
+- PROJECT/SOFTWARE DEL deliverable.yaml files searched for affected references: {n; NOT_APPLICABLE for DOMAIN}
 - Deliverable _CONTEXT.md files checked: {n}
 - KTY remediation manifest rows checked: {n}
 - `.Archive/` scanner exclusion surfaces checked: {n}

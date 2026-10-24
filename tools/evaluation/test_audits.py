@@ -211,6 +211,40 @@ def test_cli_arbitrary_cwd_and_flat_source_protection(native_project, tmp_path):
     assert not (source.parent / "Design").exists()
 
 
+@pytest.mark.parametrize('suffix', ['', '_Report', '-Report'])
+def test_report_cannot_overwrite_source_in_supported_native_locality(native_project, suffix, capsys):
+    folder = native_project/'execution/PKG-01'/f'DEL-01-01{suffix}'
+    folder.mkdir(parents=True)
+    declaration = folder/'deliverable.yaml'
+    declaration.write_text('id: DEL-01-01\nneeds: []\n')
+    source = folder/'Design/input.md'
+    source.parent.mkdir()
+    source.write_bytes(b'preserved native source\n')
+    before = declaration.read_bytes(), source.read_bytes()
+    # The locality is accepted by the actual native loader before testing the
+    # report destination boundary; a failed-input query cannot mask the probe.
+    observed = dependencies(native_project)
+    assert observed['subject_status'] == 'PASS'
+    assert observed['summary']['deliverables'] == 1
+    assert dependency_main(['--project', str(native_project), '--output', str(source)]) == 2
+    assert 'outside production-unit source paths' in capsys.readouterr().err
+    assert (declaration.read_bytes(), source.read_bytes()) == before
+
+
+def test_report_cannot_hide_locality_ownership_through_source_symlink(native_project, tmp_path, capsys):
+    declaration = put(native_project, 'DEL-01-01')
+    design = declaration.parent/'Design'
+    design.mkdir()
+    external = tmp_path/'input.md'
+    external.write_bytes(b'preserved linked source\n')
+    destination = design/'input.md'
+    destination.symlink_to(external)
+    assert dependencies(native_project)['subject_status'] == 'PASS'
+    assert dependency_main(['--project', str(native_project), '--output', str(destination)]) == 2
+    assert 'outside production-unit source paths' in capsys.readouterr().err
+    assert external.read_bytes() == b'preserved linked source\n'
+
+
 def test_inventory_scans_all_lifecycle_folders(tmp_path):
     from audit_common import inventory
     make_workspace(tmp_path)

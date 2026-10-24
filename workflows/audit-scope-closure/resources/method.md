@@ -30,6 +30,14 @@
     - Valid values: `PROJECT`, `SOFTWARE`, `DOMAIN`.
     - For `DOMAIN`, Pass 4 invokes `tools/validation/validate_domain_decomposition_integrity.py` against the active decomposition package and amendment snapshot; Pass 7 adds KTY content remediation verification.
 
+The native-needs clauses below apply only to `PROJECT`/`SOFTWARE` DEL identities.
+For `DOMAIN`, check the existing non-dependency metadata and the accepted
+amendment, decomposition, supersession and KTY remediation obligations. Do not
+require KTY `deliverable.yaml`, dispatch DEL-native dependency authoring for a
+KTY, or substitute a dependency CSV/Markdown route. If a handoff names an
+unsupported KTY dependency task, report that limitation without declaring the
+obligation completed or inventing a persistence format.
+
 If preconditions fail, halt with `FAILED_INPUTS` and report what is missing.
 
 **Input manifest and rerun of this audit.** Write `INPUT_MANIFEST.sha256` in the
@@ -54,7 +62,8 @@ For each row in `Amendment_Actions.csv`, verify the action was executed:
 
 **ADD actions:**
 - Confirm the deliverable folder exists at the expected path under the correct package.
-- Confirm minimum viable fileset is present: `_STATUS.md`, `_CONTEXT.md`, `deliverable.yaml`, `_REFERENCES.md`. Verify the YAML identity against the accepted deliverable binding; an empty `needs` list is not evidence that dependency assessment is complete.
+- Confirm the four non-dependency metadata files are present: `_STATUS.md`, `_CONTEXT.md`, `_REFERENCES.md` and `_SEMANTIC.md`.
+- For `PROJECT`/`SOFTWARE` DEL identities only, also confirm `deliverable.yaml` and verify its identity against the accepted deliverable binding. An empty `needs` list is not evidence that dependency assessment is complete. No YAML declaration is required for a `DOMAIN` KTY.
 - Confirm `_STATUS.md` shows lifecycle state >= `OPEN` (the `preparation` skill ran).
 - Confirm `_CONTEXT.md` header fields match the decomposition document's entry for this deliverable.
 
@@ -75,12 +84,12 @@ For each row in `Amendment_Actions.csv`, verify the action was executed:
 **MERGE actions:**
 - Verify REMOVE checks for all source entities.
 - Verify ADD checks for the combined entity.
-- Check that needs referencing source entities were assessed against the accepted change and their actual conditions; do not assume retargeting is required.
+- For `PROJECT`/`SOFTWARE` DEL identities, check that needs referencing source entities were assessed against the accepted change and their actual conditions; do not assume retargeting is required.
 
 **SPLIT actions:**
 - Verify REMOVE checks for the source entity.
 - Verify ADD checks for each fragment entity.
-- Check that needs referencing the source were assessed against the accepted change and their actual conditions; do not assume retargeting is required.
+- For `PROJECT`/`SOFTWARE` DEL identities, check that needs referencing the source were assessed against the accepted change and their actual conditions; do not assume retargeting is required.
 
 For each action, record: `ActionSeq`, `Expected`, `Actual`, `Status`, `Evidence`. Status values:
 
@@ -102,7 +111,7 @@ For derivative workflows that require run snapshots, a rerun is sufficient when 
 
 Before judging a rerun missing, apply the current disposition from the handoff records read in Pass 0. A rerun deferred by a recorded human decision is `DEFERRED_BY_HUMAN`; an optional derivative the accepted records leave unactivated is `NOT_ACTIVATED`. Cite the decision; report either as an OBSERVATION and list it as open work, not as MAJOR or MINOR.
 
-**Local dependency authoring/refresh (`dependency-extract`):**
+**Local dependency authoring/refresh (`dependency-extract`; PROJECT/SOFTWARE DEL only):**
 - Inspect the affected consumers' current `deliverable.yaml` declarations
   against the accepted action, amended scope/design and actual source
   conditions. Check the resulting changes and unchanged declarations that
@@ -132,6 +141,11 @@ For each recommended rerun, record: `Agent`, `Scope`, `Evidence of Completion`, 
 ---
 
 ### Pass 3 — Affected Reference Assessment
+
+The native-needs assessment in this pass is for `PROJECT`/`SOFTWARE` DEL
+identities only. Record it as `NOT_APPLICABLE` for `DOMAIN`; this does not skip
+the DOMAIN amendment, context, decomposition, supersession or remediation
+checks in the other passes.
 
 1. Locate needs affected by REMOVE, MERGE, SPLIT, MODIFY or RECLASSIFY from
    all consumer-local `deliverable.yaml` files in the execution root.

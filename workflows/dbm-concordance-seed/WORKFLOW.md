@@ -246,7 +246,7 @@ When the dispatcher provides `CustomInstructions` naming a specific risk class, 
    - `_REFERENCES.md`
    - `_STATUS.md`
    - `_MEMORY.md` whenever `_STATUS.md` is read, as non-authoritative operational context only
-   - optional `deliverable.yaml` only when section-map notes or publication rules make interface context material
+   - optional `_DEPENDENCIES.md` only when section-map notes or publication rules make interface context material
 4. **Apply scope and readiness discipline.** Refuse unmapped or out-of-scope content. Fail if total mapped KA count exceeds `MAX_KA_FILES_TOTAL`.
 5. **Transform evidence atoms into candidates.** Use atom context and risk signals to decide which atoms represent concordance-worthy values, states, or relationships.
 6. **Refine existing draft candidates when provided.** Fill missing typed fields, normalize labels/keys, and mark unresolved ambiguity with `ResolutionStatus`.

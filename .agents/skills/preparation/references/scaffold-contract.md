@@ -41,10 +41,11 @@ id: DEL-12-03
 needs: []
 ```
 
-Use the accepted numeric DEL identity. A descriptive directory/decomposition
-suffix is a label binding, not part of the native YAML ID; preserve that
-accepted binding and numbering. Check the YAML ID against its owning folder
-and the accepted decomposition ID with
+Keep the accepted DeliverableID, metadata spelling, folder binding and
+numbering unchanged. Native YAML `id` and ScopeOfWork `deliverable_id` use the
+numeric DEL prefix as a dependency binding projection; this does not redefine
+the accepted suffix-bearing PROJECT identity. Check that projection against
+the owning folder and accepted decomposition ID with
 `check_min_viable_fileset.sh <folder> <accepted-deliverable-ID>`.
 
 An empty list means no needs have been declared yet. It establishes no claim

@@ -35,6 +35,10 @@ companions in decomposition. Existing scope, objective, coverage and context
 registers retain their decomposition roles; technical holds and acceptance
 remain with their actual authorities.
 
+Native YAML `id` and ScopeOfWork `deliverable_id` bind to the numeric prefix
+of the accepted DeliverableID. This dependency binding projection does not
+change the canonical suffix-bearing PROJECT ID, metadata spelling or numbering.
+
 ---
 
 ## Non-negotiable invariants
@@ -60,7 +64,7 @@ remain with their actual authorities.
 - **Stable identifiers.** Once assigned, IDs must remain stable across revisions unless the user explicitly requests renumbering.
 - **Deterministic DeliverableID ↔ PackageID coupling.**
   - Package IDs MUST be fixed-width: `PKG-XX` (2 digits, zero-padded; e.g., `PKG-12`).
-  - Deliverable numeric identities MUST be fixed-width and mechanically derived from the parent package: `DEL-XX-YY`. Preserve any accepted `_{shortDescription}` as its descriptive label binding; native YAML uses the numeric identity.
+  - Deliverable IDs MUST be fixed-width and mechanically derived from the parent package: `DEL-XX-YY_{shortDescription}`.
     - The first `XX` MUST equal the numeric portion of `ParentPackageID` / `PackageID`.
     - The `YY` is a sequential counter **unique within that package** (`01`, `02`, …).
   - Example: `PKG-12` → `DEL-12-03_Pre-commissioning-Installation`
@@ -196,7 +200,7 @@ This section defines the entities and required tables in the decomposition outpu
 - `Exclusions` (optional)
 
 #### Deliverable
-- `DeliverableID` (stable numeric `DEL-XX-YY`; preserve an accepted descriptive suffix binding, e.g., `DEL-12-03_Pre-commissioning-Installation`, without changing its numeric identity)
+- `DeliverableID` (stable; follows `DEL-XX-YY_{shortDescription}`, e.g., `DEL-12-03_Pre-commissioning-Installation`)
 - `Name`
 - `ParentPackageID`
 - `Description`

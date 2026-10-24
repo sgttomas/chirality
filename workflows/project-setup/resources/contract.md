@@ -312,16 +312,18 @@ an accepted amendment's setup hand-back has been carried out.
 ### Deliverable IDs (important)
 
 Deliverable IDs are sourced from the decomposition. Do not invent new IDs. The expected pattern is the hyphen style (format varies by decomposition variant):
-- WORKING_ITEMS (workflow: project-decomp): `DEL-PP-LL` (2-digit package, 2-digit sequence), with its accepted descriptive suffix retained as a label binding
+- WORKING_ITEMS (workflow: project-decomp): `DEL-PPP-LL_{shortDescription}` (3-digit package, 2-digit sequence, description suffix)
 - WORKING_ITEMS (workflow: software-decomp): `DEL-PP-LL` (2-digit package, 2-digit sequence, no suffix)
 - WORKING_ITEMS (workflow: domain-decomp): `KTY-CC-TT_{shortDescription}` (category, type sequence, description suffix)
 
 ---
 
-A descriptive suffix in an accepted decomposition/folder is retained exactly;
-`deliverable.yaml` uses its numeric DEL identity. Compare that identity with
-the accepted binding, folder and existing production contract. Report a
-mismatch; do not renumber or rewrite accepted artifacts to satisfy a tool.
+A suffix-bearing accepted DeliverableID, metadata spelling and folder binding
+remain unchanged. Only the native YAML `id` and existing ScopeOfWork
+`deliverable_id` use the numeric DEL prefix for dependency binding. Compare
+that projection with the accepted binding, folder and production contract;
+it does not amend a decomposition variant's numbering or identifier policy.
+Report a mismatch; do not renumber or rewrite accepted artifacts to satisfy a tool.
 For KTY, this DEL-native dependency schema does not apply.
 
 ## Output Persistence

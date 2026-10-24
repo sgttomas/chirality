@@ -110,7 +110,7 @@ Explicit class assignments:
 | Category, KTY, Subject, Objective registers and Domain Ledger | Structural context |
 | `Section_Context` packets | Structural context |
 | Hypergraph evidence when admitted | Structural context / auxiliary structure evidence |
-| `_STATUS.md`, `_MEMORY.md`, `deliverable.yaml`, `Open_Issues_Register.csv` | Operational caveat context |
+| `_STATUS.md`, `_MEMORY.md`, `_DEPENDENCIES.md`, `Open_Issues_Register.csv` | Operational caveat context |
 | `_MEMORY.md` | Read only when paired with `_STATUS.md`; never factual authority and never a source for body claims |
 | `_SEMANTIC.md` | Excluded from publication authority |
 

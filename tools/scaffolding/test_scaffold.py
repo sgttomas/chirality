@@ -117,6 +117,44 @@ def test_package_rerun_and_path_boundary(tmp_path):
     assert subprocess.run(bad,capture_output=True).returncode==2
 
 
+def test_native_scaffold_rejects_directory_symlink_escaping_working_root(tmp_path):
+    working = tmp_path/'working'
+    outside = tmp_path/'outside'
+    working.mkdir()
+    outside.mkdir()
+    retained = outside/'retained.md'
+    retained.write_bytes(b'unchanged outside source\n')
+    (working/'DEL-01-01_Test').symlink_to(outside, target_is_directory=True)
+    result = subprocess.run(
+        ['zsh', str(HERE/'scaffold_deliverable.sh'), str(working), 'DEL-01-01', 'Test'],
+        text=True, capture_output=True,
+    )
+    assert result.returncode == 2
+    assert 'outside the supplied working root' in result.stderr
+    assert 'CREATED_PATH:' not in result.stdout
+    assert {path.name: path.read_bytes() for path in outside.iterdir()} == {
+        'retained.md': b'unchanged outside source\n',
+    }
+
+
+@pytest.mark.parametrize('relative_target', ['.', 'retained'])
+def test_native_scaffold_keeps_in_root_directory_symlink_behavior(tmp_path, relative_target):
+    working = tmp_path/'working'
+    working.mkdir()
+    target = working/relative_target
+    target.mkdir(exist_ok=True)
+    retained = target/'retained.md'
+    retained.write_bytes(b'unchanged in-root source\n')
+    (working/'DEL-01-01_Test').symlink_to(target, target_is_directory=True)
+    result = subprocess.run(
+        ['zsh', str(HERE/'scaffold_deliverable.sh'), str(working), 'DEL-01-01', 'Test'],
+        text=True, capture_output=True,
+    )
+    assert result.returncode == 0, result.stderr
+    assert retained.read_bytes() == b'unchanged in-root source\n'
+    assert parse((target/'deliverable.yaml').read_text(), 'scaffold') == {'id': 'DEL-01-01', 'needs': []}
+
+
 def test_legacy_memory_requires_explicit_consolidation(tmp_path):
     target=tmp_path/'DEL-01-01_Test'
     target.mkdir()

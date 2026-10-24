@@ -20,9 +20,10 @@ relevant declarations and source evidence directly and state the query limit.
 
 ## Consumer-local declarations
 
-`deliverable.yaml` requires `id` and a `needs` list. The `id` is the accepted
-stable DEL identity, without a descriptive directory suffix. A named DEL folder
-and its YAML identity must agree. Optional `name`, `code_paths` and `checks`
+`deliverable.yaml` requires `id` and a `needs` list. The `id` uses the numeric
+DEL prefix for dependency binding; an accepted suffix-bearing PROJECT identity
+and its metadata remain unchanged. A named DEL folder and that YAML binding
+must agree. Optional `name`, `code_paths` and `checks`
 describe the deliverable; paths and globs are project-relative. For example:
 
 ```yaml

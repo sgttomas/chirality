@@ -75,8 +75,9 @@ Use the existing native schema described in
 
 Paths use POSIX separators, stay within the project, and may use a `::` or `#`
 locus. Absolute paths and `..` escapes are invalid. A folder's descriptive
-suffix is not part of its stable `id`; preserve the accepted identity and report
-an inconsistency rather than renumbering it.
+suffix is omitted from the numeric YAML `id` binding; the accepted canonical
+DeliverableID and metadata remain unchanged. Report an inconsistency rather
+than renumbering it.
 
 An ordinary entry is upstream and belongs at the actual consumer. Do not copy
 it into the native producer as a downstream mirror. An actual outward
