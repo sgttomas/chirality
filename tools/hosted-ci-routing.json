@@ -280,7 +280,7 @@
       "core/loads/self_weight_wasm/Cargo.toml": "7ca342122090fb46dd0e92e533adbc3c762b10cf94d8e5a39e7fb75561e08df5",
       "core/loads/stress_recovery/Cargo.toml": "0b9812c9f5fde6e4faca7ac318c2098e526dd015a6117863a1d04b7951548ff0",
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
-      "core/model_operations/operation_applier/Cargo.toml": "836298832d5906d10965011b995651bbfa0590b2e7f418221c3cc8762873ce2b",
+      "core/model_operations/operation_applier/Cargo.toml": "21d5cd6481ede9a6c5ea857791b41358306da4a089a2c3afdda9a6cc0fd7d792",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
       "core/product_physics/Cargo.toml": "3485978cd20f1cc3c4dcd757d890f9196bce1335c508e82bac8401e652d733f2",
       "core/reporting/audit_manifest/Cargo.toml": "7b941c18378533d99707ed00c6024df56d9e6ac09a85d4b22599aa3fab8754a5",
@@ -577,6 +577,21 @@
             "base": "source",
             "files": [
               "fixtures/model_operations/physics_thermal_ui_model.json"
+            ]
+          }
+        ]
+      },
+      "core/model_operations/operation_applier/tests/model_data_authoring.rs": {
+        "sha256": "485e49c19273e5f7a6637a863f4d531712b2128ee7def06139ec44ba3ee63a67",
+        "source_trees": [
+          "core/model_operations/operation_applier/Cargo.toml"
+        ],
+        "inputs": [
+          {
+            "anchor": "../../../fixtures/model_document/applier_emitted.json",
+            "base": "manifest",
+            "files": [
+              "fixtures/model_document/applier_emitted.json"
             ]
           }
         ]
@@ -2379,7 +2394,9 @@
               "core/model_operations/operation_applier/src/geometry_operations.rs",
               "core/model_operations/operation_applier/src/joint_pressure_authoring.rs",
               "core/model_operations/operation_applier/src/lib.rs",
+              "core/model_operations/operation_applier/src/library_apply.rs",
               "core/model_operations/operation_applier/src/load_state_authoring.rs",
+              "core/model_operations/operation_applier/src/model_data_authoring.rs",
               "core/model_operations/operation_applier/src/numerical_health.rs",
               "core/model_operations/operation_applier/src/pipe_reconnect.rs",
               "core/model_operations/operation_applier/src/pressure_authoring.rs",
@@ -4490,6 +4507,8 @@
               "fixtures/hanger/invented_hanger_cases.json",
               "fixtures/hanger/invented_hanger_library_valid.json",
               "fixtures/material/invented_material_library_valid.json",
+              "fixtures/model_document/applier_emitted.json",
+              "fixtures/model_document/desktop_emitted.json",
               "fixtures/model_document/desktop_shape_cases.json",
               "fixtures/model_document/invented_annotated_model.json",
               "fixtures/model_document/invented_every_slot_model.json",
