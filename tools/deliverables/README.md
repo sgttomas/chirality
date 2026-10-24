@@ -32,7 +32,7 @@ needs:
   - from: DEL-02-01
     condition: Interface dimensions checked for the selected operating case.
     when: Before issuing the affected drawing.
-    evidence: execution/PKG-01/DEL-01-01/Design/interface.md#basis
+    evidence: execution/PKG-01/DEL-01-01/Work/interface.md#basis
   - from: unknown
     condition: Identify the source of the equipment rating before its use.
   - from: external:recipient
@@ -48,6 +48,10 @@ section reference). Suppliers are local `DEL-nn-nn` IDs, `external:name`,
 holds in the condition and trigger. Distinct needs between the same endpoints
 remain distinct declarations. `needs: []` means none declared yet; it is no
 claim that the deliverable has no needs or that the set is complete.
+
+Generic paths use the shared `Work/` convention. Follow the selected project's
+adopted locality spelling, including App v4 and Piping's existing `Design/`.
+Queries do not select, detect or migrate between locality folder names.
 
 The consumer states native upstream needs; reverse links are generated. A
 producer-local `direction: downstream` is available for an actual obligation to

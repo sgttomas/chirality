@@ -9,7 +9,8 @@ step with the result. It is a bounded comparison, not a mandatory final stage or
 a whole-corpus audit. Perform warranted edits in the PR doing the work.
 
 Identify the affected deliverables, actual candidate, relevant consumers and
-permitted scope from the assignment and diff. Read their ScopeOfWork, Design
+permitted scope from the assignment and diff. Read their ScopeOfWork, work
+material in the project's adopted locality (`Work/` by the shared default),
 and dependency conditions. Follow only the sources needed to establish the
 meaning of the affected commitment or interface. During migration, existing
 CSV dependencies remain source inputs until their replacement is available.
