@@ -15,6 +15,9 @@
     "piping-desktop": {
       "description": "Full piping desktop behavioural suite (Vitest), selected by hosted_ci.py from the inputs it reads or compiles into its wasm engines"
     },
+    "piping-desktop-rust": {
+      "description": "Desktop shell (apps/desktop/src-tauri) Cargo tests on macOS, selected by hosted_ci.py from the crate, its path dependencies and the files they compile or its tests read"
+    },
     "piping-numerical": {
       "description": "Piping numerical oracle and kernel checks"
     },
@@ -267,6 +270,7 @@
       ],
       "checks": [
         "app-v4",
+        "piping-desktop-rust",
         "piping-numerical"
       ]
     }
