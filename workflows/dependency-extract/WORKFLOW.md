@@ -1,6 +1,6 @@
 ---
 name: dependency-extract
-description: Author or refresh a deliverable's consumer-local needs in deliverable.yaml from its scope, design, sources and intended use.
+description: Author or refresh a deliverable's consumer-local needs in deliverable.yaml from its scope, work material, sources and intended use.
 ---
 # Declare local needs
 
@@ -13,7 +13,10 @@ create a producer commitment, supplier appointment, approval or technical waiver
 The result is the current `needs` list in the selected Deliverable's
 `deliverable.yaml`, plus a concise return of changes, checks and unresolved
 matters. Reverse links and work graphs are derived when needed. ScopeOfWork
-remains the commitment and acceptance master; Design holds technical detail.
+remains the commitment and acceptance master. The adopted work locality holds
+technical reasoning, execution detail and locally kept artifacts/outputs, with
+maturity and issue status explicit. Use `Work/` for new/adopting projects;
+follow an existing project's recorded locality convention without renaming it.
 This method does not change those authorities, lifecycle or accepted identities.
 
 TASK may execute one bounded assignment; WORKING_ITEMS or HELPS_HUMANS may do
@@ -25,8 +28,8 @@ returns. See the [brief guide](resources/brief.md).
 
 Resolve the project root, selected Deliverable, exact allowed write target and
 intended use from the assignment. Read its existing `deliverable.yaml`,
-`ScopeOfWork.md`, relevant `Design/` content and the source passages needed for
-this work. Use an identified accepted decomposition or reference index when
+`ScopeOfWork.md`, relevant work material in that locality and the source
+passages needed for this work. Use an identified accepted decomposition or reference index when
 needed to confirm identity or resolve a source; do not choose authority by file
 mtime. Read another locality or external source only within the authorized read
 scope. Do not perform a project-wide census to refresh one consumer.
@@ -34,14 +37,14 @@ scope. Do not perform a project-wide census to refresh one consumer.
 If the local file is missing, create it only when the assignment authorizes that
 write and the stable identity is established. Otherwise return that gap. If the
 identity, source meaning or write target is ambiguous, leave the affected part
-unchanged and continue independent work. Missing Design or source material
+unchanged and continue independent work. Missing work or source material
 limits the claim of coverage; it does not authorize invented content.
 
 The sole persistent write target is the selected `deliverable.yaml`. Within it,
 change only `needs`, apart from supplying an established `id` when creating the
 file. Preserve other fields and useful comments. Do not edit producer files,
-ScopeOfWork, Design, source originals or decomposition records. Do not create a
-second dependency register, hand-maintained reverse links, graph, status table
+ScopeOfWork, work material, source originals or decomposition records. Do not
+create a second dependency register, hand-maintained reverse links, graph, status table
 or routine run history. This is an authoring method, not project migration.
 
 ## State each actual need
@@ -68,7 +71,7 @@ Use the existing native schema described in
   The query tool includes both values in native graphs and does not evaluate
   the classification, `condition` or `when` automatically.
 - Optional `evidence` is a project-relative path with a useful locus, such as
-  `execution/PKG-01/DEL-01-01/Design/Interface.md::Review inputs`. Cite the
+  `execution/PKG-01/DEL-01-01/Work/Interface.md::Review inputs`. Cite the
   source or design rationale that supports the need when available. Do not
   invent an evidence file or exact quotation. Where evidence is unavailable,
   retain the uncertainty in the condition and return the missing basis.
