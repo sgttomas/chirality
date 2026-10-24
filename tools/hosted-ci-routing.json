@@ -3213,7 +3213,7 @@
         ]
       },
       "core/runner/headless/src/bin/openpipestress-runner.rs": {
-        "sha256": "e41da537c3ff3ba227cde6778e71d0e9bc8126723741d81f1c618ba5f1fce0c8",
+        "sha256": "dcad0ed58629d7eea3eaa949131bf6c7f9906df3180b2cf6a4f9c717312a23f0",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
