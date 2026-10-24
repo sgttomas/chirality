@@ -4534,6 +4534,7 @@
               "fixtures/handoff/invented_target_fixture.json",
               "fixtures/handoff/invented_witness.swbhandoff/handoff_package.json",
               "fixtures/handoff/invented_witness.swbhandoff/model/model.json",
+              "fixtures/handoff/verifier_parity_cases.json",
               "fixtures/hanger/invented_hanger_cases.json",
               "fixtures/hanger/invented_hanger_library_valid.json",
               "fixtures/material/invented_material_library_valid.json",
