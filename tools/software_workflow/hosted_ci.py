@@ -270,6 +270,21 @@ def declared_compiled_reads(root: Path, crates: frozenset[str], declarations_jso
     return frozenset(reads)
 
 
+def desktop_rust_cargo_control(relative: str) -> bool:
+    """A Cargo control the desktop job's `cargo test` reads: `.cargo/` configuration
+    in its working directory (the project) or a directory above the crate, a
+    `rust-toolchain` file there, or a project-level Cargo workspace file. Cargo
+    reads configuration from the working directory and its ancestors, never from
+    a dependency's own `.cargo/`; repository-root files are shared inputs."""
+    parts = PurePosixPath(relative).parts
+    ancestors = {PurePosixPath(DESKTOP_RUST_CRATE).parts[:i] for i in range(len(PurePosixPath(DESKTOP_RUST_CRATE).parts))}
+    if ".cargo" in parts:
+        return parts[:parts.index(".cargo")] in ancestors
+    if parts and parts[-1] in {"rust-toolchain", "rust-toolchain.toml"}:
+        return parts[:-1] in ancestors
+    return parts in {("Cargo.toml",), ("Cargo.lock",)}
+
+
 def desktop_rust_plan(root: Path, paths: list[str], selection: dict, profile: dict) -> dict:
     """Select the desktop shell's Cargo tests when a changed input is that
     crate, a path dependency it compiles, a file either compiles or reads, or
@@ -291,6 +306,8 @@ def desktop_rust_plan(root: Path, paths: list[str], selection: dict, profile: di
         relative = path[len(PIPING):]
         if not path.startswith(PIPING):
             kind = "shared-input"
+        elif desktop_rust_cargo_control(relative):
+            kind = "cargo-control"
         elif path in selection.get("unmatched_paths", []):
             kind = "unmatched-input"
         elif relative.startswith(DESKTOP_RUST_CRATE + "/"):

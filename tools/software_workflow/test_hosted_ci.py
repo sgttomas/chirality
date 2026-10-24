@@ -304,6 +304,13 @@ class HostedCITests(unittest.TestCase):
             ('apps/desktop/src-tauri/Cargo.lock', 'desktop-rust-source'),
             ('apps/desktop/src-tauri/build.rs', 'desktop-rust-source'),
             ('apps/desktop/src-tauri/tauri.conf.json', 'desktop-rust-source'),
+            # Cargo controls the job's `cargo test` reads from its working directory (the project)
+            # and the directories above the crate (Codex review of #1590).
+            ('.cargo/config.toml', 'cargo-control'),
+            ('.cargo/config', 'cargo-control'),
+            ('apps/desktop/.cargo/config.toml', 'cargo-control'),
+            ('rust-toolchain.toml', 'cargo-control'),
+            ('apps/rust-toolchain', 'cargo-control'),
             # Direct and transitive Cargo path dependencies.
             ('core/units/src/lib.rs', 'path-dependency-source'),
             ('core/model_operations/operation_applier/Cargo.toml', 'path-dependency-source'),
@@ -328,6 +335,8 @@ class HostedCITests(unittest.TestCase):
             [project + 'core/runner/headless/src/lib.rs', project + 'core/solver/performance_harness/src/lib.rs'],
             [project + 'tests/test_export_public_openpipestress.py', project + 'tools/release/run_evidence_sweep.py'],
             [project + 'docs/note.md'],
+            # A dependency's own `.cargo/` is never read by Cargo.
+            [project + 'core/units/.cargo/config.toml'],
             ['projects/chirality-app-v4/app/src-tauri/src/workflow_catalog.rs'],
         ]:
             with self.subTest(paths=paths):
