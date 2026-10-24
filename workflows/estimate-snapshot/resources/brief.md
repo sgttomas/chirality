@@ -19,7 +19,7 @@ Use this workflow with a generic TASK shell (no profile).
 | Field | Default | Notes |
 |---|---|---|
 | `RuntimeOverrides.DECOMPOSITION_PATH` | auto-locate | Absolute path to decomposition markdown; auto-locates under `{EXECUTION_ROOT}/_Decomposition/` if absent; logs `MISSING_DECOMPOSITION` warning if not found |
-| `RuntimeOverrides.DEPENDENCY_SOURCES` | `AUTO` | `AUTO` reads each in-scope deliverable's `Dependencies.csv`; or explicit paths |
+| `RuntimeOverrides.DEPENDENCY_SOURCES` | `AUTO` | `AUTO` reads each in-scope consumer's `deliverable.yaml` needs; or explicit paths to local declarations/supporting evidence |
 | `RuntimeOverrides.PRICE_SOURCES` | none | List of local files/folders with basis evidence (quotes, rate tables, historical datasets, parametric models, allowance tables) |
 
 ## Optional fields
@@ -71,7 +71,7 @@ RuntimeOverrides:
 The workflow reads only:
 
 - `DECOMPOSITION_PATH` (when provided or auto-located)
-- `{deliverable}/Dependencies.csv` for each in-scope deliverable (when `DEPENDENCY_SOURCES=AUTO`)
+- `{deliverable}/deliverable.yaml` for each in-scope consumer (when `DEPENDENCY_SOURCES=AUTO`)
 - Explicit paths in `DEPENDENCY_SOURCES`
 - Explicit paths in `PRICE_SOURCES`
 - Decomposition/deliverable metadata needed to resolve IDs

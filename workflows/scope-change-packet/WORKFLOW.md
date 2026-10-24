@@ -1,7 +1,6 @@
 ---
 name: scope-change-packet
-description: 'Produce a bounded PKG-00 Scope Change Consumable Packet for later human-initiated WORKING_ITEMS (workflow: scope-change) intake;
-  use scc-resolution-case for active SCC resolution receptacles.'
+description: 'Produce a bounded PKG-00 Scope Change Consumable Packet for later human-initiated WORKING_ITEMS (workflow: scope-change) intake.'
 ---
 
 # WORKFLOW — scope-change-packet
@@ -12,7 +11,7 @@ Produce one **Scope Change Consumable Packet** under a PKG-00 control deliverabl
 
 The packet is not an amendment, not a dependency ruling, and not a DepClosure result. It is a bounded staging artifact for a later human-initiated WORKING_ITEMS (workflow: scope-change) workflow.
 
-For active SCC resolution work, use `TASK + scc-resolution-case`. Existing scope-change packets may be retained as seed evidence inside an SCC Resolution Case.
+Reciprocal needs may supply bounded evidence for this packet when an actual scope decision is needed. They do not automatically require an amendment, become non-gating, or acquire a separate resolution-case workflow.
 
 ## Suitable Shell
 
@@ -24,12 +23,12 @@ For active SCC resolution work, use `TASK + scc-resolution-case`. Existing scope
 - `RuntimeOverrides.PACKET_ID` — local packet ID, for example `PKG00-SCA-PACKET-001`.
 - `RuntimeOverrides.PACKET_PATH` — absolute output folder inside `{ScopePath}/scope-change-packets/`.
 - `RuntimeOverrides.PACKET_TITLE` — human-readable packet title.
-- `RuntimeOverrides.SCC_ID` — the target `SCC-{NNN}` identifier as recorded in the cited DepClosure snapshot.
+- `RuntimeOverrides.SCC_ID` — the reciprocal-group label in the cited bounded dependency observation (for example `SCC-001`); it identifies that observation only, not a persistent dependency entity.
 - `RuntimeOverrides.DECOMP_VARIANT` — `SOFTWARE`.
 - `RuntimeOverrides.DECOMPOSITION_PATH` — current decomposition authority.
-- `RuntimeOverrides.DEPCLOSURE_SNAPSHOT` — accepted upstream DepClosure snapshot.
+- `RuntimeOverrides.DEPCLOSURE_SNAPSHOT` — cited bounded dependency observation/report and its input basis; it is evidence, not a dependency authority.
 - `RuntimeOverrides.AFFECTED_DELIVERABLES` — semicolon-separated deliverable IDs.
-- `RuntimeOverrides.FOCUS_ROWS` — semicolon-separated dependency row IDs or `TBD`.
+- `RuntimeOverrides.FOCUS_ROWS` — semicolon-separated consumer `deliverable.yaml` paths and need indices, or `TBD`; retain this packet field name without creating dependency row IDs.
 
 ## Read Boundary
 
@@ -39,7 +38,7 @@ Read only:
 - PKG-00 package-level control files;
 - the cited decomposition document;
 - the cited DepClosure snapshot and evidence files;
-- affected product deliverable `_CONTEXT.md`, `_STATUS.md`, `_DEPENDENCIES.md`, `Dependencies.csv`, and four-doc kit files.
+- affected product deliverable `_CONTEXT.md`, `_STATUS.md`, `deliverable.yaml`, and accepted production files.
 
 Do not scan unrelated packages except as needed to resolve explicitly listed affected deliverables.
 
@@ -62,7 +61,7 @@ Write only:
 Never write:
 
 - product package files;
-- any `Dependencies.csv`;
+- any `deliverable.yaml`;
 - `_ScopeChange/`;
 - `_Reconciliation/`;
 - decomposition files.
@@ -73,13 +72,13 @@ Each packet must contain the fixed ten-file set named above.
 
 `Packet_Contract.md` defines consumption rules, authority limits, the mapping of packet content to WORKING_ITEMS (workflow: scope-change) checkpoint groups, and non-goals.
 
-`Packet_Datasheet.md` records identity, SCC baseline, affected deliverables, affected rows, and evidence inventory.
+`Packet_Datasheet.md` records identity, cited reciprocal-group observation and basis, affected deliverables, actual local need locations, and evidence inventory.
 
 `Packet_Specification.md` records proposed amendment requirements, action candidates, acceptance criteria, and invariant checks.
 
 `Packet_Procedure.md` gives WORKING_ITEMS (workflow: scope-change) intake instructions and how the packet serves each of its three checkpoint groups: (1) proposed change and impact, (2) exact amendment and propagation plan, (3) audited poststate acceptance.
 
-`Packet_Rationale.md` records source-grounded reasoning, why dependency-edge treatment is insufficient, risks, and alternatives rejected.
+`Packet_Rationale.md` records source-grounded reasoning, why the observed input conditions require a scope decision, risks, and alternatives rejected.
 
 `SCOPE_CHANGE_INIT.md` is a seed request. It must say it is not valid until the human explicitly initiates WORKING_ITEMS (workflow: scope-change).
 
@@ -114,8 +113,8 @@ EvidenceID,SourcePath,SourceRef,EvidenceType,Supports,Notes
 1. Load `agents/AGENT_TASK.md`, this workflow, and resources required for the current stage.
 2. Resolve `PACKET_PATH` and confirm it is inside `ScopePath`.
 3. Read PKG-00 control files and deliverable-local packet context.
-4. Read the cited DepClosure evidence for the target SCC.
-5. Read only explicitly affected product deliverables and dependency registers.
+4. Read the cited dependency observation and its actual condition/source evidence for the scoped reciprocal group.
+5. Read only explicitly affected product deliverables and local need declarations. Preserve cases, conditions, `when`, `gating`, unknown/external inputs and outward obligations; do not merge needs by endpoint.
 6. Produce the packet file set using evidence-grounded statements.
 7. Keep proposed WORKING_ITEMS (workflow: scope-change) actions conservative:
    - use `MODIFY` for decomposition text, package/deliverable metadata, or scope-ledger clarification;
@@ -125,7 +124,7 @@ EvidenceID,SourcePath,SourceRef,EvidenceType,Supports,Notes
 
 ## Non-Negotiable Constraints
 
-- Do not claim any dependency row was changed.
+- Do not claim any local need declaration was changed.
 - Do not claim any SCC was closed.
 - Do not claim WORKING_ITEMS (workflow: scope-change) was initiated.
 - Do not claim project-wide blocker status.

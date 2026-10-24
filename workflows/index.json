@@ -408,7 +408,7 @@
       "name": "audit-dep-closure",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Explain dependency closure, missing targets, cycles, and coordination concentrations.",
+      "description": "Inspect consumer-local deliverable.yaml needs and derive bounded dependency findings without changing declarations or evaluating readiness.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -416,9 +416,7 @@
       ],
       "resources": [
         "WORKFLOW.md",
-        "execution.json",
-        "resources/contract.md",
-        "resources/method.md"
+        "execution.json"
       ],
       "navigation": {
         "category": "specialist",
@@ -434,16 +432,7 @@
         "schemaVersion": 1,
         "compatibleRoles": [
           "TASK"
-        ],
-        "tools": {
-          "capabilities": [
-            "read",
-            "write",
-            "bash",
-            "report_coordination_notice",
-            "ack_agent_update"
-          ]
-        }
+        ]
       }
     },
     {
@@ -595,7 +584,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 4,
+        "order": 3,
         "group": {
           "key": "manage-changes",
           "label": "Manage changes",
@@ -1137,7 +1126,7 @@
       "name": "dependency-extract",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Extract dependency register (Dependencies.csv v3.1) from deliverable source documents using Anchor x Execution edge typing with evidence-first provenance. Dispatched as TASK + dependency-extract by project-setup (Function 2 dependency stage), scope-change reruns, or explicit refresh briefs.",
+      "description": "Author or refresh a deliverable's consumer-local needs in deliverable.yaml from its scope, design, sources and intended use.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -1168,15 +1157,7 @@
           "TASK",
           "WORKING_ITEMS",
           "HELPS_HUMANS"
-        ],
-        "tools": {
-          "commands": [
-            "python3 tools/validation/validate_dependencies_schema.py:*",
-            "python3 tools/validation/validate_enum.py:*",
-            "bash tools/validation/validate_id_format.sh:*",
-            "python3 tools/validation/validate_decomposition_registers.py:*"
-          ]
-        }
+        ]
       }
     },
     {
@@ -1980,7 +1961,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 3,
+        "order": 2,
         "group": {
           "key": "manage-changes",
           "label": "Manage changes",
@@ -2385,48 +2366,6 @@
     },
     {
       "kind": "workflow",
-      "name": "project-dag",
-      "source": "bundled",
-      "sourceRootId": "chirality-root",
-      "description": "Construct, examine, and obtain human acceptance of a project DAG version from the deliverable-local dependency evidence, audit its currency when that evidence changes, and hold affected deliverables as DAG pending until the human accepts a successor or rejects the change. Use it toward the 30% gate, after a decomposition or scope change, or when local dependency files may have departed from the accepted DAG.",
-      "central": false,
-      "compatibility": "canonical",
-      "executionRoleIds": [
-        "WORKING_ITEMS"
-      ],
-      "resources": [
-        "WORKFLOW.md",
-        "execution.json",
-        "resources/contract.md",
-        "resources/currency.md",
-        "resources/graph-version.md",
-        "resources/method.md"
-      ],
-      "navigation": {
-        "category": "core",
-        "tier": "primary",
-        "order": 8
-      },
-      "execution": {
-        "schemaVersion": 1,
-        "compatibleRoles": [
-          "WORKING_ITEMS"
-        ],
-        "tools": {
-          "capabilities": [
-            "read",
-            "write",
-            "bash",
-            "delegate_agent",
-            "report_coordination_notice",
-            "send_agent_update",
-            "ack_agent_update"
-          ]
-        }
-      }
-    },
-    {
-      "kind": "workflow",
       "name": "project-decomp",
       "source": "bundled",
       "sourceRootId": "chirality-root",
@@ -2517,7 +2456,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 11,
+        "order": 10,
         "displayName": "Run corpus concordance program"
       },
       "execution": {
@@ -2635,7 +2574,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 10,
+        "order": 9,
         "displayName": "Lifecycle transition review"
       },
       "execution": {
@@ -2647,45 +2586,6 @@
       "metadata": {
         "category": "Review and validation",
         "applicability": "Review evidence and obtain human disposition for a deliverable lifecycle transition."
-      }
-    },
-    {
-      "kind": "workflow",
-      "name": "scc-resolution-case",
-      "source": "bundled",
-      "sourceRootId": "chirality-root",
-      "description": "Create or update an SCC resolution case, under `_DAG/cases/<CASE-ID>/` or a project's legacy PKG-00 control deliverable, that accumulates bounded TASK findings, evidence, human rulings, candidate remedies, and owner-workflow handoffs until DepClosure can verify closure.",
-      "central": false,
-      "compatibility": "canonical",
-      "executionRoleIds": [
-        "TASK",
-        "WORKING_ITEMS",
-        "HELPS_HUMANS"
-      ],
-      "resources": [
-        "WORKFLOW.md",
-        "execution.json",
-        "resources/brief.md",
-        "resources/checks.md",
-        "resources/tools.md"
-      ],
-      "navigation": {
-        "category": "specialist",
-        "tier": "primary",
-        "order": 2,
-        "group": {
-          "key": "manage-changes",
-          "label": "Manage changes",
-          "order": 7
-        }
-      },
-      "execution": {
-        "schemaVersion": 1,
-        "compatibleRoles": [
-          "TASK",
-          "WORKING_ITEMS",
-          "HELPS_HUMANS"
-        ]
       }
     },
     {
@@ -2733,7 +2633,7 @@
       "name": "scope-change-packet",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Produce a bounded PKG-00 Scope Change Consumable Packet for later human-initiated WORKING_ITEMS (workflow: scope-change) intake; use scc-resolution-case for active SCC resolution receptacles.",
+      "description": "Produce a bounded PKG-00 Scope Change Consumable Packet for later human-initiated WORKING_ITEMS (workflow: scope-change) intake.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -3071,7 +2971,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 9,
+        "order": 8,
         "displayName": "Manage tasks"
       },
       "execution": {
@@ -3256,10 +3156,6 @@
         "kind": "skill",
         "name": "deliverable-consistency"
       },
-      "dependency-extract": {
-        "kind": "workflow",
-        "name": "dependency-extract"
-      },
       "domain-documents": {
         "kind": "workflow",
         "name": "domain-documents"
@@ -3367,10 +3263,6 @@
       "researcher": {
         "kind": "skill",
         "name": "researcher"
-      },
-      "scc-resolution-case": {
-        "kind": "workflow",
-        "name": "scc-resolution-case"
       },
       "scope-change-packet": {
         "kind": "workflow",

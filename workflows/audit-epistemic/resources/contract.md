@@ -4,7 +4,7 @@
 
 Given one or more deliverable folders, audit the epistemic state of the
 production contract selected by the accepted basis (`SOW_V1` or transitional
-`LEGACY_FOUR_DOC`) and `Dependencies.csv` against the
+`LEGACY_FOUR_DOC`) and `deliverable.yaml` local needs against the
 epistemic ontology in `TYPES.md` §10.
 
 In an exactly authorized isolated `MIGRATION_DUAL` workspace, audit the
@@ -23,7 +23,7 @@ The goal is to make the epistemic state of a deliverable's claims **visible and 
 
 ## Non-negotiable invariants
 
-- **Read-only on deliverables.** Never modify any deliverable file (document kit, Dependencies.csv, metadata files).
+- **Read-only on deliverables.** Never modify any deliverable file (document kit, deliverable.yaml, metadata files).
 - **Evidence-first.** Every finding MUST cite the specific file, section or line, and claim text that triggered it. Findings without evidence are invalid.
 - **No invention (K-INVENT-1).** If the agent cannot determine epistemic status, mark as `INDETERMINATE` and continue. Do not guess epistemic labels or warrant states.
 - **Mandatory provenance standard (K-PROV-1).** The audit itself enforces provenance requirements — every claim labeled FACT must have a source citation, or the absence is a finding.
@@ -48,7 +48,7 @@ CONFIG:
   - AUDIT_DEPTH: STANDARD | DEEP
     (STANDARD: structural checks — label presence, provenance fields, TBD markers, parameter consistency)
     (DEEP: adds semantic claim extraction — attempts to identify unlabeled non-trivial claims in prose)
-  - INCLUDE_DEPENDENCIES_CSV: true | false (default true)
+  - INCLUDE_DEPENDENCIES: true | false (default true)
   - SEVERITY_THRESHOLD: ALL | WARNING | BLOCKER (minimum severity to include in issue log; default ALL)
 CONSTRAINTS:
   - Read-only on deliverable files
@@ -148,7 +148,7 @@ A run is **invalid** when:
 
 ## Configuration
 - AUDIT_DEPTH: {STANDARD|DEEP}
-- INCLUDE_DEPENDENCIES_CSV: {true|false}
+- INCLUDE_DEPENDENCIES: {true|false}
 - SEVERITY_THRESHOLD: {ALL|WARNING|BLOCKER}
 
 ## Exclusions
@@ -193,8 +193,8 @@ A run is **invalid** when:
 ## Pass 6 — Cross-Document Consistency
 {Scope, parameter, criteria, and intent alignment findings}
 
-## Pass 7 — Dependencies.csv Provenance Audit
-{Provenance completeness for dependency register}
+## Pass 7 — Local Need Evidence Audit
+{Condition/source support, optional evidence coverage and actual epistemic gaps for local needs}
 
 ## Recommendations
 {Prioritized actions to improve epistemic state}
@@ -263,7 +263,7 @@ A run is **invalid** when:
 - Deliverables analyzed: {N}
 - Deliverables skipped (NOT_INITIALIZED): {N}
 - Documents scanned: {N}
-- Dependencies.csv files analyzed: {N}
+- deliverable.yaml files analyzed: {N}
 
 ## Passes Completed
 - Pass 1 (Label Coverage): {COMPLETE|INCOMPLETE|SKIPPED} — {reason if not COMPLETE}

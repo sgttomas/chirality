@@ -1,86 +1,38 @@
-# dependency-extract — Brief Schema
+# Brief a local need declaration
 
-This workflow is dispatched via TASK with `Workflow: dependency-extract` by WORKING_ITEMS (workflow: project-setup) in its Function 2 dependency stage, for `scope-change` reruns, or by any manager briefing an explicit refresh. The following fields describe the brief expected by a single invocation.
+Supply the following in ordinary prose or structured fields:
 
-## Required
+- The project root and selected Deliverable's stable identity and locality.
+- The purpose of the declaration or refresh and the relevant accepted change,
+  intended use or setup scope.
+- The exact `deliverable.yaml` write target and authorized read scope, including
+  any relevant ScopeOfWork, Design, source references and identity basis.
+- Known technical holds, scope/acceptance limits and unresolved source bindings
+  that must survive the refresh.
 
-- `SCOPE` — the deliverable(s) / package(s) / all-deliverables-under-run-root selector that defines what this extraction run processes. The workflow walks each in-scope deliverable folder and produces one register per deliverable.
-
-## Optional — run-root + decomposition
-
-- `RUN_ROOT` — path to the run workspace (may be implied by invoker context).
-- `DECOMPOSITION_PATH` — explicit path to the latest decomposition markdown. When omitted, the workflow auto-discovers under `{RUN_ROOT}/_Decomposition/`. When no decomposition can be located, the run proceeds with a `[WARNING] MISSING_DECOMPOSITION` entry in Run Notes (validation/label resolution is marked degraded, not failed).
-
-## Optional — source-document selection
-
-- `SOURCE_DOCS` — `AUTO` (default) or explicit list of filenames/paths to scan per deliverable.
-- `DOC_ROLE_MAP` — `DEFAULT` (default) or explicit mapping of doc roles (`ANCHOR_DOC` / `EXECUTION_DOCS`) to filename patterns. `DEFAULT` uses `ScopeOfWork.md` as both anchor and execution source when present, with the legacy four-document names (`Datasheet.md`/`Specification.md` for anchor, `Procedure.md`/`Guidance.md` for execution) as transitional inputs.
-- `ANCHOR_DOC` — `AUTO` (default) or explicit filename/path. Controls Pass 1 (Vertical / Tree anchoring).
-- `EXECUTION_DOC_ORDER` — `AUTO` (default) or ordered list of filenames/paths. Controls Pass 2 (Horizontal / DAG execution-edge extraction).
-
-## Optional — run controls
-
-- `MODE` — `UPDATE` (default), `RESET_EXTRACTED`, or `CANONICALIZE_EXISTING`.
-  - `RESET_EXTRACTED` re-extracts without match/merge against prior extracted rows: prior `Origin=EXTRACTED` rows become `Status=RETIRED` (never deleted), new rows receive new `DependencyID`s, and `Origin=DECLARED` rows are preserved.
-  - `CANONICALIZE_EXISTING` is for type-system rectification runs. It reads an existing register, normalizes core enum fields to canonical write form, preserves legacy values in `Notes`, and moves candidate/non-gating graph dispositions out of `Status=CANDIDATE`.
-- `STRICTNESS` — `CONSERVATIVE` (default) or `AGGRESSIVE`. `AGGRESSIVE` permits strongly-implied anchors marked `ASSUMPTION` with `Confidence=LOW`.
-- `CONSUMER_CONTEXT` — `NONE` (default) | `TASK_ESTIMATING` | `AGGREGATION` | `RECONCILIATION`. When set to a non-`NONE` value, the workflow adds a `## Downstream Handoff Notes` section and (for `TASK_ESTIMATING`) attempts to populate `ConsumerHint` and `EstimateImpactClass` extension columns.
-- `ARCHITECTURE_BASIS_POLICY` — `NONE` (default) | `PKG00_CONSISTENCY_TRACKERS`. When enabled, `DEL-00-*` rows are retained as architecture-consistency dependency trackers when supported by evidence, and PKG-00 files may be read but not written.
-
-## Deliverable-local read-only inputs (if present)
-
-- `_REFERENCES.md` — used to resolve document pointers for `TargetType=DOCUMENT` rows.
-- `Dependencies.csv` — existing register used for match/merge and preserving declared edges (`Origin=DECLARED`).
-- `_DEPENDENCIES.md` — existing index used to preserve declared lists and append Run History. Its declared entries are mirrored into `Dependencies.csv` as `Origin=DECLARED` rows in every `MODE` (WORKFLOW.md Function 3); the declared sections themselves are never edited.
-
-## Example brief
+One writer owns the locality. A broader assignment may cover several localities
+only when the coordinator makes the write ownership explicit. No additional
+write target is implied by a source reference or derived downstream link.
 
 ```yaml
 Workflow: dependency-extract
-SCOPE: DEL-01-01
-RUN_ROOT: /abs/path/to/run
-DECOMPOSITION_PATH: /abs/path/to/run/_Decomposition/latest.md
-MODE: UPDATE
-STRICTNESS: CONSERVATIVE
-CONSUMER_CONTEXT: NONE
+PROJECT: /abs/path/to/project
+DELIVERABLE: DEL-01-02
+PURPOSE: Refresh the inputs needed for the affected interface review.
+READ_SCOPE:
+  - execution/PKG-01/DEL-01-02/
+  - execution/PKG-01/DEL-01-01/Design/Interface.md
+  - execution/_Decomposition/accepted-basis.md
+WRITE_TARGET: execution/PKG-01/DEL-01-02/deliverable.yaml
+PRESERVE: Existing issue conditions and the unresolved equipment-rating source.
 ```
 
-## Canonicalization brief example
+Resolve illustrative paths against the actual project. If a needed reference is
+outside the authorized read scope, report that limit and continue unaffected
+work. Do not use a package or `ALL` selector as permission to change every
+locality without establishing the actual targets.
 
-```yaml
-Workflow: dependency-extract
-SCOPE: DEL-01-01
-RUN_ROOT: /abs/path/to/run
-DECOMPOSITION_PATH: /abs/path/to/run/_Decomposition/SOFTWARE_DECOMP.md
-MODE: CANONICALIZE_EXISTING
-STRICTNESS: CONSERVATIVE
-CONSUMER_CONTEXT: RECONCILIATION
-```
-
-## Semantic refresh brief example
-
-```yaml
-Workflow: dependency-extract
-SCOPE: DEL-01-01
-RUN_ROOT: /abs/path/to/run
-DECOMPOSITION_PATH: /abs/path/to/run/_Decomposition/SOFTWARE_DECOMP.md
-MODE: UPDATE
-STRICTNESS: CONSERVATIVE
-CONSUMER_CONTEXT: RECONCILIATION
-ARCHITECTURE_BASIS_POLICY: PKG00_CONSISTENCY_TRACKERS
-ApplyEdits: true
-AllowedWriteTargets:
-  - /abs/path/to/deliverable/Dependencies.csv
-  - /abs/path/to/deliverable/_DEPENDENCIES.md
-  - /abs/path/to/deliverable/_run_records/
-```
-
-## Output
-
-Per in-scope deliverable:
-- `{deliverable}/Dependencies.csv` (v3.1 schema, 29 required columns)
-- `{deliverable}/_DEPENDENCIES.md` (declared lists + extracted summary + lifecycle summary + run notes + run history, in the `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.2 schema; legacy headings in an existing file are preserved)
-
-## Defaults are recorded
-
-All defaults applied at runtime and all chosen paths (decomposition, anchor doc, execution doc order) MUST be recorded in `_DEPENDENCIES.md` Run Notes for auditability.
+The output is the current local YAML and a concise return to the coordinator.
+No extraction modes, secondary register, mirrored declarations, automatic
+retirement, timestamps or run-record bundle are part of this method. A request
+to migrate older project artifacts is a separate undertaking.

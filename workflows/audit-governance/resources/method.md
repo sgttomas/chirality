@@ -133,7 +133,7 @@ Verify that the governance document hierarchy is internally coherent.
 - Report mismatched ownership, undeclared writes, or unsupported enforcement claims. Role prose is not a path registry; a valid brief may authorize bounded project paths outside named workflow output roots.
 
 **6c. TYPES.md ↔ SPEC.md schema alignment:**
-- Verify that enum values used in `SPEC.md` schemas (e.g., Dependencies.csv column enums) match the canonical values in `TYPES.md`.
+- Verify that enum values used in `SPEC.md` schemas match the canonical values in `TYPES.md`.
 - Report any discrepancy.
 
 **6d. CONTRACT enforcement map:**
