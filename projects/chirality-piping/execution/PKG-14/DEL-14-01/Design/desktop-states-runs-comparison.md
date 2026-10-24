@@ -291,10 +291,40 @@ Python agree.
      even when clock readings are equal. Rust then computes the v0.3 hashes. A
      parity test checks them against the TypeScript builder;
    - sets the real `model_state_ref` `{ModelState, <state id>}`;
-   - takes `rule_pack_refs` from the input manifest's `active_rule_packs` (what
-     the solve used, not the document's identity-only references) and
+   - takes `rule_pack_refs` from the input manifest's `active_rule_packs` and
      `library_refs` from the model's `library_ref`s, as the model document's
-     one walk finds them;
+     one walk finds them. At solve time the session resolves the model's
+     `rule_pack_refs` against the local rule-pack store, for the model's
+     project (`modelRulePackResolution.ts`). A reference enters
+     `active_rule_packs`, in the model's order, as `{rule_pack_id, version,
+     checksum_sha256, source_notice}` from the stored pack, when the store holds
+     the pack, the stored document's stamped checksum equals the reference's,
+     and the document recomputes to that checksum. Any other reference is left
+     out of the manifest and becomes a diagnostic of the run's analysis record,
+     not a manifest member (the manifest stays 1.0.0 and is stored with
+     recorded runs). The diagnostics follow the producer's in the record's
+     `diagnostics`, in the model's order, in the producer's diagnostic shape:
+     code `MODEL-RULE-PACK-REF-UNRESOLVED` (the pack is absent, or the store is
+     unavailable or fails) or `MODEL-RULE-PACK-REF-CHECKSUM-MISMATCH` (the
+     checksums differ), severity `warning`, `affected_refs`
+     `["<rule_pack_id>@<version>"]` as `rule_pack_refs` name a pack, and a
+     fixed message, with the identity shown to at most 160 code points, that
+     says the pack is not among the run's rule-pack references. The recorded
+     revision keeps them unchanged under its record hash (Rust, TypeScript and
+     Python). The validators (TypeScript and Python) accept, after the
+     producer's diagnostics, only diagnostics exactly as their code and
+     identity determine them. A recorded revision's must name exactly the
+     model references its stored manifest leaves out of `active_rule_packs`
+     (`ANALYSIS_RULE_PACK_REF_DIAGNOSTICS_MISMATCH` otherwise). The reason
+     (which code) is not derivable from the manifest and is protected by the
+     record hash. A rule-check revision of the transient record carries them
+     over. They are shown with the solve, in the Record Run form and in a
+     recorded run's check, read from the record. A model without references
+     makes no store call, and its manifest (`active_rule_packs: []`) and
+     transient record keep their earlier bytes. The resolution only records
+     identity. The solve does not read, apply or check a pack, nothing in it
+     reaches the native solve, and a reference never makes a check pass. The
+     browser preview refuses the solve before building a manifest;
    - drops the `created_at_unavailable` determinism note, in both TypeScript
      (`analysisRunCompatibility.ts:169` hard-codes it today) and Python
      (`compatibility.py:147` already drops it when `created_at` is set);
@@ -418,7 +448,8 @@ the History panel and `useModelStateHistory.ts`.
     do.
 - **The revision.**
   - `rule_pack_refs` are `{RulePack, "<rule_pack_id>@<version>"}`, in the
-    manifest's order (the manifest sorts them when it is built).
+    manifest's order, which is the model's reference order (the manifest no
+    longer sorts them).
   - `library_refs` are `{Library, "library:<kind>/<id>[@<version>][#<record id>]"}`,
     deduplicated and sorted by code point.
     - **Sites.** The sites are every `library_ref` object at any depth and
