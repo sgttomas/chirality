@@ -140,7 +140,7 @@ impl ProductionCatalog {
             || manifest["standing"] != PRODUCTION_STANDING
             || manifest["historical_shipped_revisions"] != serde_json::json!([])
             || manifest["recognize_v3"] != false
-            || manifest["source_revision"] != "a43843e300e4c0317ba217c0efe453b39c1480ca"
+            || manifest["source_revision"] != "f3c0a1df5eaa86df22111e9b0dac53cbfd1bbc64"
             || manifest["packages"].as_array().map(Vec::len) != Some(1)
             || package["name"] != NAME
             || package["source_root"] != "chirality-root"
