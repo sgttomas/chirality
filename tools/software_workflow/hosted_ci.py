@@ -17,12 +17,14 @@ from software_workflow_common import load_profile, matches
 
 ROOT = Path(__file__).resolve().parents[2]
 PROFILE = ROOT / "tools/hosted-ci-routing.json"
-SUITES = ("app-v4", "piping", "piping-desktop", "piping-numerical", "piping-python")
+SUITES = ("app-v4", "piping", "piping-desktop", "piping-desktop-rust", "piping-numerical", "piping-python")
 PIPING = "projects/chirality-piping/"
 # The crates `apps/desktop/scripts/build-wasm-engine.mjs` compiles into the
 # engines the desktop suite executes.
 WASM_ENGINE_CRATES = ("core/model_operations/operation_applier/Cargo.toml", "core/loads/self_weight_wasm/Cargo.toml")
 DESKTOP_SOURCES = "apps/desktop/src"
+# The desktop shell crate, whose Cargo tests the desktop Rust job runs.
+DESKTOP_RUST_CRATE = "apps/desktop/src-tauri"
 # A project-relative path written in desktop source, cut at a template,
 # glob, query or fragment; `core/units catalog` names `core/units`.
 PROJECT_PATH = re.compile(r"(?<![\w./-])((?:api|apps|core|docs|examples|fixtures|governance|provenance|schemas|tests|tools|validation)/[^\s'\"`$*?#]*)")
@@ -84,29 +86,43 @@ def wasm_engine_inputs(root: Path) -> tuple[frozenset[str], frozenset[str]]:
     """Crate directories and exact files the wasm engines compile from.
 
     Follows normal and build path dependencies; dev dependencies are not
-    compiled into the engines. Compile reads are the literal `include*!` and
-    `#[path]` targets in each crate's `src/` and `build.rs`, including test
-    modules there (a superset). A read that is not a literal fails selection.
+    compiled into the engines.
+    """
+    return compiled_crate_inputs(root, WASM_ENGINE_CRATES, False, "wasm engine")
+
+
+@functools.lru_cache(maxsize=None)
+def compiled_crate_inputs(root: Path, roots: tuple[str, ...], root_dev: bool,
+                          label: str) -> tuple[frozenset[str], frozenset[str]]:
+    """Crate directories and exact files that `roots` compile from.
+
+    Follows normal and build path dependencies, and the roots' own dev
+    dependencies when `root_dev` (their tests compile them). Compile reads are
+    the literal `include*!` and `#[path]` targets in each crate's `src/` and
+    `build.rs`, including test modules there (a superset). A read that is not
+    a literal fails selection.
     """
     module = numerical_module(root)
     project = (root / PIPING).resolve()
     closure: set[Path] = set()
-    pending = [Path(m) for m in WASM_ENGINE_CRATES]
+    pending = [Path(m) for m in roots]
     while pending:
         manifest = pending.pop()
         if manifest in closure:
             continue
         if manifest.parts[:1] == ("..",) or not (project / manifest).is_file():
-            raise ValueError("Unresolved wasm engine crate: " + manifest.as_posix())
+            raise ValueError(f"Unresolved {label} crate: " + manifest.as_posix())
         closure.add(manifest)
         data = tomllib.loads((project / manifest).read_text())
-        tables = [data.get(key, {}) for key in ("dependencies", "build-dependencies")]
-        tables += [target.get(key, {}) for target in data.get("target", {}).values()
-                   for key in ("dependencies", "build-dependencies")]
+        keys = ("dependencies", "build-dependencies")
+        if root_dev and manifest.as_posix() in roots:
+            keys += ("dev-dependencies",)
+        tables = [data.get(key, {}) for key in keys]
+        tables += [target.get(key, {}) for target in data.get("target", {}).values() for key in keys]
         for table in tables:
             for name, spec in table.items():
                 if isinstance(spec, dict) and spec.get("workspace") is True:
-                    raise ValueError("Unresolved inherited wasm engine dependency: " + name)
+                    raise ValueError(f"Unresolved inherited {label} dependency: " + name)
                 if isinstance(spec, dict) and "path" in spec:
                     target = (project / manifest.parent / spec["path"] / "Cargo.toml").resolve()
                     pending.append(Path(os.path.relpath(target, project)))
@@ -128,10 +144,10 @@ def wasm_engine_inputs(root: Path) -> tuple[frozenset[str], frozenset[str]]:
                     start += 1
                 literal = module.RUST_STRING.match(code, start)
                 if not literal:
-                    raise ValueError("Unresolved wasm engine compile read in " + source.relative_to(project).as_posix())
+                    raise ValueError(f"Unresolved {label} compile read in " + source.relative_to(project).as_posix())
                 target = (source.parent / module.rust_literal(literal.group())).resolve()
                 if not target.is_relative_to(project) or not target.is_file():
-                    raise ValueError("Unresolved wasm engine compile read: " + str(target))
+                    raise ValueError(f"Unresolved {label} compile read: " + str(target))
                 reads.add(target.relative_to(project).as_posix())
                 if not match.group().startswith("include"):
                     sources.append(target)
@@ -194,6 +210,123 @@ def desktop_plan(root: Path, paths: list[str], selection: dict, profile: dict) -
     return {"classification": "reachability" if reasons else "not-applicable", "reasons": reasons, "fallback_reasons": []}
 
 
+@functools.lru_cache(maxsize=None)
+def desktop_rust_references(root: Path) -> frozenset[str]:
+    """Project files and directories that desktop shell Rust names by a
+    path-like string literal, resolved from the project, the crate or the
+    source directory. Its tests read fixtures at run time through such
+    literals; a format template names the directory before its first slot.
+    As for desktop source, a bare word or a whole top-level directory is not
+    a reference."""
+    module = numerical_module(root)
+    project = (root / PIPING).resolve()
+    crate = project / DESKTOP_RUST_CRATE
+    if not (crate / "src").is_dir():
+        raise ValueError("Desktop Rust sources unavailable")
+    references = set()
+    for source in sorted(crate.rglob("*.rs")):
+        if {"target", ".git"} & set(source.relative_to(crate).parts):
+            continue
+        for match in module.RUST_STRING.finditer(module.rust_source(source.read_text())):
+            literal = module.rust_literal(match.group())
+            if "{" in literal:
+                # A format template names the directory before its first slot.
+                literal = literal[:literal.index("{")].rpartition("/")[0]
+            if "/" not in literal or "\0" in literal or "\n" in literal or len(literal) > 1024:
+                continue
+            for base in (project, crate, source.parent):
+                target = Path(os.path.normpath(base / literal))
+                try:
+                    if not target.is_relative_to(project) or len(target.relative_to(project).parts) < 2:
+                        continue
+                    # A named file this diff deletes still names its directory.
+                    if target.exists() or (target.suffix and target.parent != project and target.parent.is_dir()
+                                           and len(target.parent.relative_to(project).parts) > 1):
+                        references.add(target.relative_to(project).as_posix())
+                except (OSError, ValueError):
+                    continue
+    return frozenset(references)
+
+
+def desktop_rust_dependency_reads(root: Path, crates: frozenset[str], profile: dict) -> frozenset[str]:
+    """Declared runtime reads of the path dependencies' `src/` and `build.rs`.
+
+    The numerical selector's own check validates the declarations first; a
+    stale or missing declaration fails selection.
+    """
+    return declared_compiled_reads(root, crates, json.dumps(profile.get("piping_runtime_reads", {}), sort_keys=True))
+
+
+@functools.lru_cache(maxsize=None)
+def declared_compiled_reads(root: Path, crates: frozenset[str], declarations_json: str) -> frozenset[str]:
+    module = numerical_module(root)
+    project = (root / PIPING).resolve()
+    declarations = json.loads(declarations_json)
+    module.source_read_dependencies(project, module.readiness.discover_cargo_manifests(project), declarations)
+    reads = set()
+    for source, declaration in declarations["reads"].items():
+        if any(source == crate + "/build.rs" or source.startswith(crate + "/src/") for crate in crates):
+            reads.update(name for entry in declaration["inputs"] for name in entry["files"])
+    return frozenset(reads)
+
+
+def desktop_rust_cargo_control(relative: str) -> bool:
+    """A Cargo control the desktop job's `cargo test` reads: `.cargo/` configuration
+    in its working directory (the project) or a directory above the crate, a
+    `rust-toolchain` file there, or a project-level Cargo workspace file. Cargo
+    reads configuration from the working directory and its ancestors, never from
+    a dependency's own `.cargo/`; repository-root files are shared inputs."""
+    parts = PurePosixPath(relative).parts
+    ancestors = {PurePosixPath(DESKTOP_RUST_CRATE).parts[:i] for i in range(len(PurePosixPath(DESKTOP_RUST_CRATE).parts))}
+    if ".cargo" in parts:
+        return parts[:parts.index(".cargo")] in ancestors
+    if parts and parts[-1] in {"rust-toolchain", "rust-toolchain.toml"}:
+        return parts[:-1] in ancestors
+    return parts in {("Cargo.toml",), ("Cargo.lock",)}
+
+
+def desktop_rust_plan(root: Path, paths: list[str], selection: dict, profile: dict) -> dict:
+    """Select the desktop shell's Cargo tests when a changed input is that
+    crate, a path dependency it compiles, a file either compiles or reads, or
+    a shared or unmatched input."""
+    piping_paths = set(selection["reasons"].get("piping", []))
+    shared = set(selection["reasons"].get("piping-desktop-rust", []))
+    candidates = sorted(piping_paths | shared | {p for p in paths if p.startswith(PIPING)})
+    if not candidates:
+        return {"classification": "not-applicable", "reasons": [], "fallback_reasons": []}
+    try:
+        crates, compile_reads = compiled_crate_inputs(root, (DESKTOP_RUST_CRATE + "/Cargo.toml",), True, "desktop Rust")
+        references = desktop_rust_references(root)
+        runtime_reads = desktop_rust_dependency_reads(root, crates, profile)
+    except (ValueError, OSError, KeyError, TypeError, AttributeError, ImportError, tomllib.TOMLDecodeError) as exc:
+        return {"classification": "full-fallback", "reasons": [], "fallback_reasons": [str(exc)]}
+    dependencies = crates - {DESKTOP_RUST_CRATE}
+    reasons = []
+    for path in candidates:
+        relative = path[len(PIPING):]
+        if not path.startswith(PIPING):
+            kind = "shared-input"
+        elif desktop_rust_cargo_control(relative):
+            kind = "cargo-control"
+        elif path in selection.get("unmatched_paths", []):
+            kind = "unmatched-input"
+        elif relative.startswith(DESKTOP_RUST_CRATE + "/"):
+            kind = "desktop-rust-source"
+        elif relative in compile_reads:
+            kind = "desktop-rust-compile-read"
+        elif any(relative == ref or relative.startswith(ref + "/") for ref in references):
+            kind = "desktop-rust-source-reference"
+        elif relative in runtime_reads:
+            kind = "path-dependency-runtime-read"
+        elif (any(relative.startswith(crate + "/") for crate in dependencies)
+              and (PurePosixPath(relative).suffix == ".rs" or PurePosixPath(relative).name in {"Cargo.toml", "Cargo.lock"})):
+            kind = "path-dependency-source"
+        else:
+            continue
+        reasons.append({"path": path, "kind": kind})
+    return {"classification": "reachability" if reasons else "not-applicable", "reasons": reasons, "fallback_reasons": []}
+
+
 def select_paths(paths: list[str], profile: dict, root: Path = ROOT) -> dict:
     selection = select_checks(profile, paths)
     checks = set(selection["checks"])
@@ -231,6 +364,11 @@ def select_paths(paths: list[str], profile: dict, root: Path = ROOT) -> dict:
         checks.discard("piping-desktop")
         selection["modes"]["piping-desktop"] = "not-applicable"
     selection["piping_desktop_selection"] = desktop
+    desktop_rust = desktop_rust_plan(root, paths, selection, profile)
+    selected = desktop_rust["classification"] != "not-applicable"
+    (checks.add if selected else checks.discard)("piping-desktop-rust")
+    selection["modes"]["piping-desktop-rust"] = "full" if selected else "not-applicable"
+    selection["piping_desktop_rust_selection"] = desktop_rust
     selection["checks"] = sorted(checks)
     return selection
 
@@ -243,7 +381,9 @@ def make_plan(root: Path, profile: dict, event: str, base: str, head: str) -> di
             "modes": {suite: "full" for suite in SUITES}, "selection_reason": "Explicit full workflow dispatch",
             "piping_numerical_selection": numerical_plan(root, None, profile),
             "piping_desktop_selection": {"classification": "full-fallback", "reasons": [],
-                                         "fallback_reasons": ["Full product coverage"]}}
+                                         "fallback_reasons": ["Full product coverage"]},
+            "piping_desktop_rust_selection": {"classification": "full-fallback", "reasons": [],
+                                              "fallback_reasons": ["Full product coverage"]}}
     if event != "pull_request":
         return plan
     try:

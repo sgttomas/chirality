@@ -55,6 +55,42 @@ jobs:
           path: ${{ steps.cache.outputs.paths }}
           key: ${{ steps.cache.outputs.key }}
 
+  piping-desktop-rust:
+    name: Warm Piping desktop Rust dependencies (no tests)
+    if: github.repository == 'sgttomas/chirality' && github.ref == 'refs/heads/main'
+    runs-on: macos-26
+    timeout-minutes: 45
+    env:
+      CARGO_INCREMENTAL: '0'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /*
+            !/execution/
+            !/projects/*/execution/
+          sparse-checkout-cone-mode: false
+      - uses: dtolnay/rust-toolchain@1.97.1
+      - name: Restore main-scoped desktop Rust build dependencies
+        id: cache
+        uses: ./.github/actions/restore-build-cache
+        with:
+          suite: piping-desktop-rust
+      - name: Compile the desktop Rust job's test profile without tests
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: cargo test --no-run --locked --manifest-path apps/desktop/src-tauri/Cargo.toml
+        working-directory: projects/chirality-piping
+      - name: Remove local crate outputs before saving
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: python3 tools/software_workflow/build_cache.py trim --suite piping-desktop-rust
+      - name: Save main-scoped desktop Rust dependencies
+        if: success() && steps.cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ steps.cache.outputs.paths }}
+          key: ${{ steps.cache.outputs.key }}
+
   app-v4:
     name: Warm App v4 product dependencies (no tests)
     if: github.repository == 'sgttomas/chirality' && github.ref == 'refs/heads/main'
