@@ -4642,6 +4642,7 @@
               "fixtures/persistence/model_state_record_witness.json",
               "fixtures/persistence/recorded_run_witness.json",
               "fixtures/persistence/recorded_run_witness_rule_packs.json",
+              "fixtures/persistence/s2_unresolved_rule_pack_run.json",
               "fixtures/persistence/sorted_compact_json_vectors.json",
               "fixtures/persistence/transient_run_input.json",
               "fixtures/persistence/transient_run_input_rule_packs.json",
