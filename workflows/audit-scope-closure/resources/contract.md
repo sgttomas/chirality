@@ -2,14 +2,15 @@
 
 ## Non-negotiable invariants
 
-- **Read-only on project state.** This agent reads deliverable folders, decomposition documents, amendment snapshots, dependency registers, and tool-root artifacts. It does not modify any of them.
+- **Read-only on project state.** This agent reads deliverable folders, decomposition documents, amendment snapshots, local dependency declarations, and tool-root artifacts. It does not modify any of them.
 - **Evidence-first.** Every finding must cite the specific file, row, or section that constitutes evidence. Findings without evidence are invalid.
 - **No invention.** If the impact of a finding is uncertain, record `Assessment: UNKNOWN`, use the observed consequence to select a provisional severity, and flag for human triage. Do not guess resolution paths.
 - **Conflicts surfaced.** If the amendment record disagrees with the filesystem state, report both sides with provenance. Do not silently choose a winner.
 - **Immutable snapshots.** Each audit run produces a new timestamped snapshot folder. Never overwrite prior snapshots ([K-SNAP-1 (historical)](https://github.com/sgttomas/chirality/blob/archive/pre-docs-cleanup-1/docs/CONTRACT.md)).
-- **Scope-bounded.** Audit only the scope change identified in the brief. Do not expand to unrelated deliverables unless orphan tracing requires it.
+- **Scope-bounded.** Audit only the scope change identified in the brief. Do not expand to unrelated deliverables unless tracing affected references requires it.
 - **Amendment record is authoritative.** The accepted action register is the source of truth for what should have happened: the register bound by hash in the accepted checkpoint-group-2 snapshot's `ACCEPTED_MANIFEST.csv` (currently `Amendment_Actions.csv`; historical runs may bind another name such as `Amendment_Actions_CP2.csv`). A run with no group-2 checkpoint snapshot falls back to `Amendment_Actions.csv` in the amendment snapshot, recorded as a fallback. `Intake_Actions.csv` is group-1 proposal evidence, never the register. Later accepted handoff records supply each obligation's current disposition. The audit verifies reality against this record.
 - **DOMAIN deterministic validation is tool-backed.** For `DECOMP_VARIANT = DOMAIN`, this audit invokes the same registered validators used by WORKING_ITEMS (workflow: scope-change): `validate_domain_decomposition_integrity.py`, `accumulate_supersession_map.py`, and `validate_kty_remediation_manifest.py` when their inputs are in scope.
+- **Native needs are DEL-only.** YAML dependency-file requirements, local need authoring checks and native affected-reference coverage apply only to `PROJECT`/`SOFTWARE` DEL identities. For `DOMAIN`, retain its non-dependency metadata and other applicable checks; do not require KTY YAML or add an alternate dependency route.
 
 ---
 
@@ -19,7 +20,7 @@
 |------|---------|
 | **Amendment record** | The immutable snapshot under `_ScopeChange/{AMENDMENT_ID}_*/` produced by WORKING_ITEMS (workflow: scope-change), containing the brief, impact assessment, propagation plan, actions CSV, handoff state and run summary, together with its accepted checkpoint snapshots and later handoff records. `AMENDMENT_ID` is `SCA-{NNN}` or a project-qualified form such as `SCA-APP-{NNN}` |
 | **Closure** | The state in which every action in the amendment record has been executed and all downstream effects have been propagated and verified |
-| **Orphaned reference** | A dependency row, context field, or other artifact that references an entity modified or removed by the scope change but has not been updated to reflect the change |
+| **Affected reference** | A local need, context field or artifact whose meaning may be affected by the accepted change. It is orphaned only where its actual binding or required condition is unsupported; retirement alone does not establish this |
 | **Downstream rerun** | An agent/workflow execution recommended by WORKING_ITEMS (workflow: scope-change)'s propagation plan (e.g., TASK+dependency-extract or a TASK estimation workflow rerun) that must complete for closure |
 | **Stale metadata** | A `_CONTEXT.md`, `_STATUS.md`, or decomposition section that does not reflect the post-change state |
 
@@ -34,7 +35,7 @@ A scope closure audit is valid when:
 - `INPUT_MANIFEST.sha256` records the hash of every input read.
 - Every row in the resolved accepted register was checked against filesystem state (Pass 1).
 - Every recommended downstream rerun was checked for evidence of completion (Pass 2).
-- Orphaned reference detection covered all RETIRED entity IDs across all `Dependencies.csv` files (Pass 3).
+- For `PROJECT`/`SOFTWARE` DEL identities, affected-reference assessment covered needs referencing the changed or retired entities across all consumer-local `deliverable.yaml` files (Pass 3), preserving supported historical inputs. The native-needs pass is `NOT_APPLICABLE` for `DOMAIN`; its other applicable passes remain required.
 - Decomposition document consistency was verified against the amendment record (Pass 4).
 - Context metadata for every affected deliverable was checked against the decomposition (Pass 5).
 - Supersession binding completeness was verified for all source-affecting actions (Pass 6) — this pass runs whenever any row of the resolved accepted register has `SupersessionBindingPresent = YES`, regardless of whether supersession artifacts are present on disk.
@@ -53,9 +54,9 @@ A scope closure audit is valid when:
 |---|---|
 | Finding without evidence | Violates evidence-first invariant |
 | Action marked VERIFIED when filesystem contradicts | False positive — integrity failure |
-| Rerun judged sufficient from dates alone | Sufficiency requires matching scope and input hashes |
+| Rerun judged sufficient from dates alone | Inspect actual local declaration/source changes; derivative snapshots require matching scope and input basis |
 | Prior audit snapshot edited in place | Corrections use a new superseding snapshot |
-| Orphan scan limited to affected packages only | Must scan all `Dependencies.csv` files; orphans may be in unrelated deliverables |
+| PROJECT/SOFTWARE native affected-reference search limited to changed packages only | Search all consumer-local DEL `deliverable.yaml` files for references to the changed entities; consumers may be in other packages. This native-needs requirement does not apply to DOMAIN KTY identities |
 | Silent resolution of amendment/filesystem disagreement | Violates conflict surfacing invariant |
 | Audit scope expanded beyond the specified amendment | Each audit covers one `AMENDMENT_ID`; separate runs for separate amendments |
 | DOMAIN KTY remediation manifest ignored | KTY content may be stale, retired, or blocked for factual use without audit visibility |
@@ -108,7 +109,7 @@ inputs or evidence binding; the superseded snapshot's bytes stay unchanged and
 
 | Column | Type | Description |
 |---|---|---|
-| `IssueID` | string | `ASC-ISS-{NNN}` sequential within this audit. Historical logs using `SCC-{NNN}` remain readable as written; the prefix avoids collision with SCC resolution case IDs and with project-qualified amendment IDs |
+| `IssueID` | string | `ASC-ISS-{NNN}` sequential within this audit. Historical logs using `SCC-{NNN}` remain readable as written; the prefix distinguishes audit findings from historical cycle identifiers and project-qualified amendment IDs |
 | `Pass` | integer | Which audit pass found the issue (1–7) |
 | `Category` | enum | `ACTION_NOT_EXECUTED`, `DOWNSTREAM_NOT_RUN`, `ORPHANED_REFERENCE`, `DECOMP_INCONSISTENCY`, `METADATA_STALE`, `COVERAGE_REGRESSION`, `SUPERSESSION_INCOMPLETE`, `KTY_CONTENT_REMEDIATION`, `ARCHIVE_SCANNER_LEAK` |
 | `Severity` | enum | `CRITICAL`, `MAJOR`, `MINOR`, `OBSERVATION` |
@@ -171,8 +172,8 @@ inputs or evidence binding; the superseded snapshot's bytes stay unchanged and
 ## Pass 2 — Downstream Rerun Verification
 {Table: Agent | Scope | Evidence | Status}
 
-## Pass 3 — Orphaned References
-{Table of orphaned references found, or "No orphaned references detected."}
+## Pass 3 — Affected References
+{Each relevant local need, its accepted-change/condition assessment, evidence and required action or supported unchanged use. Count only demonstrably unsupported bindings as orphaned references.}
 
 ## Pass 4 — Decomposition Consistency
 {Findings per section checked; for DOMAIN, include `validate_domain_decomposition_integrity.py` status and findings summary}
@@ -201,7 +202,7 @@ inputs or evidence binding; the superseded snapshot's bytes stay unchanged and
 ## Coverage
 - Actions checked: {n} of {total}
 - Downstream reruns checked: {n} of {total recommended}
-- Dependencies.csv files scanned for orphans: {n}
+- PROJECT/SOFTWARE DEL deliverable.yaml files searched for affected references: {n; NOT_APPLICABLE for DOMAIN}
 - Deliverable _CONTEXT.md files checked: {n}
 - KTY remediation manifest rows checked: {n}
 - `.Archive/` scanner exclusion surfaces checked: {n}

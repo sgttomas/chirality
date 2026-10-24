@@ -11,7 +11,7 @@ Minimum checks for a valid run.
 ## S1 — Write quarantine respected
 
 - No files outside `{ESTIMATES_ROOT}` were modified.
-- Deliverable content, `_STATUS.md`, decomposition outputs, and dependency registers are untouched.
+- Deliverable content, `_STATUS.md`, decomposition outputs, and local need declarations are untouched.
 
 ## S2 — Snapshot created
 
@@ -99,8 +99,8 @@ A snapshot is "good enough to publish" when:
 When dependency evidence is loaded:
 
 - Deliverables whose estimates are blocked by missing input information are listed in `Blockers.md` or `blocker_report.csv`.
-- Each blocker cites the dependency row that raised it (from the deliverable's `Dependencies.csv` or an explicit dependency source).
-- `EstimateImpactClass` (when present in dependency rows) is passed through as a hint; never invented.
+- Each blocker cites the consumer `deliverable.yaml` path and need index, its actual condition and estimating use, and supporting evidence. Unknowns, distinct cases, external inputs and outward obligations retain their meaning.
+- No blocker is inferred solely from lifecycle, file presence, an unknown binding or a reciprocal relation; identify the actual unmet input condition and its effect on meaningful estimating.
 
 ## Failure reporting
 

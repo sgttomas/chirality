@@ -20,9 +20,9 @@ RuntimeOverrides:
   SCC_ID: SCC-002
   DECOMP_VARIANT: SOFTWARE
   DECOMPOSITION_PATH: /abs/path/to/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md
-  DEPCLOSURE_SNAPSHOT: /abs/path/to/execution/_Reconciliation/DepClosure/CLOSURE_...
+  DEPCLOSURE_SNAPSHOT: /abs/path/to/bounded-dependency-observation.md
   AFFECTED_DELIVERABLES: DEL-10-02;DEL-10-03
-  FOCUS_ROWS: DEP-10-02-004;DEP-10-03-006
+  FOCUS_ROWS: execution/PKG-10/DEL-10-02/deliverable.yaml needs[0];execution/PKG-10/DEL-10-03/deliverable.yaml needs[1]
 ExpectedOutputs:
   - Packet_Contract.md
   - Packet_Datasheet.md
@@ -45,6 +45,6 @@ ExpectedOutputs:
 ## Required Custom Instructions
 
 - Treat packet outputs as proposals and evidence only.
-- Do not edit product deliverables, dependency registers, decomposition files, `_ScopeChange/`, or `_Reconciliation/`.
+- Do not edit product deliverables, local need declarations, decomposition files, `_ScopeChange/`, or `_Reconciliation/`.
 - Do not report SCC closure or project-wide blocked/unblocked status.
 - Keep `SCOPE_CHANGE_INIT.md` human-initiated and subject to the scope-change checkpoint groups.

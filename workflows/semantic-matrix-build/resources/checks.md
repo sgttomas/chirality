@@ -22,7 +22,7 @@
 | Check | Requirement |
 |---|---|
 | Header | Includes generated date, variant, perspective, framework, audit status, phase/status ruling, and Inputs Read. |
-| Inputs Read | Lists `_CONTEXT.md`, `_STATUS.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, `MEMORY.md`, and production documents as read, not present, or absent. |
+| Inputs Read | Lists `_CONTEXT.md`, `_STATUS.md`, `_REFERENCES.md`, `deliverable.yaml`, `MEMORY.md`, and production documents as read, not present, or absent. |
 | SourceRefs | Use path + best-effort heading anchor when possible. |
 | Matrix A | Exact canonical 3×4 Orientation values. |
 | Matrix B | Exact canonical 4×4 Conceptualization values. |
@@ -141,7 +141,7 @@ No status regression is ever allowed.
 | Production docs | Not modified. |
 | `_CONTEXT.md` | Not modified. |
 | `_REFERENCES.md` | Not modified. |
-| `_DEPENDENCIES.md` | Not modified. |
+| `deliverable.yaml` | Not modified. |
 | `MEMORY.md` | Not modified by this workflow. |
 | Sibling folders | Not read or written. |
 | `_STATUS.md` | Modified only when status policy and TASK authorization allow it. |

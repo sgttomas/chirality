@@ -1,6 +1,6 @@
 #!/bin/zsh
 # scaffold_deliverable.sh
-# Creates a deliverable folder with minimum viable fileset (5 stub files) per SPEC.md Section 2.1.
+# Creates metadata stubs and a native needs declaration for DEL localities.
 #
 # Usage: ./scaffold_deliverable.sh <WORKING_DIR> <DEL_ID> <DelLabel>
 #
@@ -10,7 +10,7 @@
 #   DelLabel    — Human-readable label (e.g., "Preliminary-Design")
 #
 # Outputs:
-#   Deliverable folder with 5 stub files. Reports created vs skipped.
+#   Deliverable folder with four metadata stubs and deliverable.yaml for DEL.
 #
 # Example:
 #   ./scaffold_deliverable.sh ./execution/PKG-001_Architectural\ Design/1_Working DEL-001-01 "Preliminary-Design"
@@ -25,14 +25,33 @@ if [[ "$DEL_ID" == */* || "$DEL_LABEL" == */* || "$DEL_ID" == ".." || "$DEL_LABE
   exit 2
 fi
 DEL_DIR="$WORKING_DIR/${DEL_ID}_${DEL_LABEL}"
+NATIVE_ID=""
+if [[ "$DEL_ID" == DEL-* ]]; then
+  if [[ "$DEL_ID" =~ '^(DEL-[0-9]+-[0-9]+)(_[^/]+)?$' ]]; then
+    NATIVE_ID="$match[1]"
+  else
+    print -u2 "Expected a DEL numeric identity, optionally with its accepted description suffix"
+    exit 2
+  fi
+fi
+if [[ -n "$NATIVE_ID" && -L "$DEL_DIR" ]]; then
+  SCAFFOLD_ROOT="${WORKING_DIR:A}"
+  SCAFFOLD_TARGET="${DEL_DIR:A}"
+  if [[ "$SCAFFOLD_TARGET" != "$SCAFFOLD_ROOT" && "$SCAFFOLD_TARGET" != "$SCAFFOLD_ROOT/"* ]]; then
+    print -u2 "DEL directory symlink resolves outside the supplied working root"
+    exit 2
+  fi
+fi
 
 STUBS=(
   "_STATUS.md"
   "_CONTEXT.md"
-  "_DEPENDENCIES.md"
   "_REFERENCES.md"
   "_SEMANTIC.md"
 )
+if [[ -n "$NATIVE_ID" ]]; then
+  STUBS+=("deliverable.yaml")
+fi
 
 # Optional fourth argument --memory includes a blank memory resource.
 if [[ "${4:-}" == "--memory" ]]; then
@@ -63,7 +82,11 @@ for stub in "${STUBS[@]}"; do
     skipped=$((skipped + 1))
   else
     # noclobber protects concurrent reruns; existing bytes are never replaced.
-    (set -o noclobber; : > "$target")
+    if [[ "$stub" == "deliverable.yaml" ]]; then
+      (set -o noclobber; printf 'id: %s\nneeds: []\n' "$NATIVE_ID" > "$target")
+    else
+      (set -o noclobber; : > "$target")
+    fi
     echo "CREATED_PATH: $target"
     created=$((created + 1))
   fi

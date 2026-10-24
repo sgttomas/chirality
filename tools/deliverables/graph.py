@@ -2,8 +2,6 @@
 from collections import defaultdict
 
 
-# Reused from coordination/analyze_dep_closure.py; kept independent of its
-# CSV, status-folder and approval dependencies.
 def find_sccs(graph, nodes):
     """Iterative Kosaraju traversal, including self-loops and large graphs."""
     visited, order = set(), []

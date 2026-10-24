@@ -1,113 +1,15 @@
 #!/usr/bin/env python3
-"""Validate decomposition companion registers for a project execution root.
+"""Read-only cross-check of decomposition companion registers (XRG).
 
-Closes OI-013: there was no durable, deterministic validator for the
-decomposition companion register family. `validate_dependencies_schema.py`
-owns single-file v3.1 schema/enum conformance; `analyze_dep_closure.py` owns
-graph topology and reports an *EvidenceFile-presence* metric only. Neither
-tests evidence-cell quality, and neither tests the registers against each
-other.
+Checks Deliverables.csv, ScopeLedger.csv and optional ContextBudgetQA.csv under
+EXECUTION_ROOT/_Decomposition, or --registers-dir. Every scope item has one
+Package home; supporting deliverables may belong to other Packages. Retains the
+XRG check codes and scope/objective/context assertions. Dependency declarations,
+locality layout and lifecycle are outside this validator: query consumer-local
+needs with tools.deliverables. No input is modified.
 
-This tool is additive and report-only. It never mutates an input. It reuses
-`validate_dependencies_schema.validate()` for schema conformance rather than
-restating that contract.
-
-Check families
---------------
-SCH  Per-file v3.1 schema conformance (delegated).
-EVQ  Evidence-cell quality: locus/quote confusion and empty-evidence rows,
-     reported as distinct named sub-classes, row-class aware.
-XRG  Cross-register consistency: Deliverables.csv <-> ScopeLedger.csv <->
-     ContextBudgetQA.csv, and the ledger's Package home (every scope item has
-     one PackageID, per D-GOV-48: missing on an IN item is an error, missing on
-     an OUT or TBD item is a warning). A linked deliverable may sit in another
-     Package as a supporting contribution; XRG-004 warns only when the home
-     Package holds none of the item's linked deliverables.
-DRB  Dependency-register binding: Dependencies.csv <-> Deliverables.csv and
-     the owning deliverable folder.
-
-Metric naming (deliberate, per the analyze_dep_closure.py lesson)
------------------------------------------------------------------
-"Evidence-file coverage"    = EvidenceFile cell is populated.
-"Evidence-file resolution"  = that path exists on disk.
-"Evidence-locus quality"    = SourceRef is a locus, not a pasted quote.
-"Evidence-quote coverage"   = EvidenceQuote carries verbatim source text.
-These are four different measurements. Do not collapse them into one number.
-
-Scan boundary
--------------
-The companion registers (`Deliverables.csv`, `ScopeLedger.csv`,
-`ContextBudgetQA.csv`) are read from `<EXECUTION_ROOT>/_Decomposition/`, or
-from `--registers-dir` for a project that keeps them elsewhere (for example
-`docs/_Registers/`). Deliverable-local registers are discovered under
-`<EXECUTION_ROOT>/PKG-*/{1_Working,2_Checking,3_Issued}/DEL-*/Dependencies.csv`.
-`0_References` is excluded (reference material, not deliverables), as is any
-register held outside a package lifecycle folder.
-
-EvidenceFile resolution
------------------------
-Root SPEC §6.4 describes `EvidenceFile` as the source document and §6.5 as
-"the source document filename"; neither fixes a base. So a cell is read in
-each form the contracts and the register writers use, and `EVQ-006` is
-reported only when none of them names a regular file:
-
-1. deliverable-relative — relative to the folder holding the register. This is
-   the bare-filename form of SPEC §6.5 and the form `dependency-extract` and the
-   declared-row writers emit (`EvidenceFile=_DEPENDENCIES.md`);
-2. working-root-relative — relative to `--evidence-root` (default: the parent
-   of EXECUTION_ROOT, the project's WORKING_ROOT), per SPEC §0.2.4 for
-   references to the execution root, tool roots and deliverables;
-3. instruction-root-relative — relative to the instruction root, and only for
-   the instruction-surface references SPEC §0.2.4 names: `agents/`,
-   `workflows/`, `tools/`, root `docs/` and `AGENTS.md`. The instruction root
-   is `--instruction-root`, else `CHIRALITY_INSTRUCTION_ROOT` (SPEC §0.2.1),
-   else the checkout that holds this tool.
-
-Forms 1 and 2 must stay inside the working root, and form 3 inside the
-instruction surface. So a checkout-relative path to project material, such as
-`projects/<name>/docs/SPEC.md`, or a path to another project, does not
-resolve: SPEC §0.2.4 says working-root material resolves relative to the
-working root. Absolute paths are rejected rather than followed.
-
-The forms are tried in the order above and the first that names a regular file
-wins. A bare name that is missing from the deliverable folder can therefore
-fall through to a file of the same name at the working root or on the
-instruction surface: a missing deliverable `README.md` resolves to the
-project's `README.md`, and `docs/SPEC.md` resolves to the project's
-`docs/SPEC.md` before Root's. EVQ-006 tests that some cited file exists, not
-that it is the one the row meant. The JSON report counts the form that
-resolved each cell (`evidence_file_resolution_forms`) and the cells that more
-than one form resolves (`evidence_file_multi_form`). The schema names one
-source document, so a cell listing several files is read as one path, not
-split.
-
-Honest-empty waivers
---------------------
-A dependency can be real and still have no quotable source text. To keep exit 0
-from becoming an incentive to invent a quote, a register may sit beside an
-optional `Dependencies_EvidenceWaivers.csv` with columns
-`DependencyID, WaivedCheck, Rationale, DeclaredBy, DeclaredOn`. Only `EVQ-003`
-and `EVQ-004` are waivable. A valid waiver downgrades that row's finding to
-WARNING and counts it under `waived`; it never hides the row. Waivers are
-themselves checked: a stale one (`EVQ-007`), a thin or placeholder rationale
-(`EVQ-008`), or a malformed/unknown entry (`EVQ-009`) is an ERROR. So exit 0
-means every row either carries real evidence or carries a declared, attributed,
-substantively-reasoned exception — never that the defects were papered over.
-
-Usage
------
-    python3 tools/validation/validate_decomposition_registers.py <EXECUTION_ROOT> \
-        [--json OUT.json] [--strict] [--max-per-code N] [--families SCH,EVQ,XRG,DRB] \
-        [--registers-dir DIR] [--evidence-root DIR] [--instruction-root DIR]
-    python3 tools/validation/validate_decomposition_registers.py --list-checks
-
-Exit codes
-----------
-    0  clean (no ERROR findings; no WARNING findings under --strict)
-    1  findings
-    2  operational error (unreadable/absent required input, bad arguments)
+Exit 0: no errors (or warnings with --strict); 1: findings; 2: unusable input.
 """
-
 from __future__ import annotations
 
 import argparse
@@ -118,29 +20,12 @@ import re
 import sys
 from pathlib import Path
 
-VALIDATION_DIR = Path(__file__).resolve().parent
-if str(VALIDATION_DIR) not in sys.path:
-    sys.path.insert(0, str(VALIDATION_DIR))
-
-from validate_dependencies_schema import validate as validate_dep_schema  # noqa: E402
-
 ERROR = "ERROR"
 WARNING = "WARNING"
-
-FAMILIES = ("SCH", "EVQ", "XRG", "DRB")
+FAMILIES = ("XRG",)
 
 CHECKS: dict[str, tuple[str, str, str]] = {
     # code: (family, default severity, description)
-    "SCH-001": ("SCH", ERROR, "Dependencies.csv fails the v3.1 schema/enum contract"),
-    "EVQ-001": ("EVQ", ERROR, "Locus/quote duplication: SourceRef and EvidenceQuote hold identical non-empty text"),
-    "EVQ-002": ("EVQ", WARNING, "Quote-shaped locus: SourceRef embeds a quoted span (locus column carrying quote text)"),
-    "EVQ-003": ("EVQ", ERROR, "Empty-evidence row: EvidenceQuote is blank"),
-    "EVQ-004": ("EVQ", ERROR, "Placeholder locus: SourceRef is blank or a placeholder token (e.g. 'location TBD')"),
-    "EVQ-005": ("EVQ", ERROR, "EvidenceFile cell is blank"),
-    "EVQ-006": ("EVQ", ERROR, "EvidenceFile path does not resolve on disk"),
-    "EVQ-007": ("EVQ", ERROR, "Evidence waiver is stale: the row it waives now carries real evidence"),
-    "EVQ-008": ("EVQ", ERROR, "Evidence waiver has a missing or placeholder Rationale"),
-    "EVQ-009": ("EVQ", ERROR, "Evidence waiver is malformed, names an unknown DependencyID, or waives an unwaivable check"),
     "XRG-001": ("XRG", ERROR, "ScopeLedger DeliverableIDs names a deliverable absent from Deliverables.csv"),
     "XRG-002": ("XRG", ERROR, "Deliverables CoversScopeItems names a scope item absent from ScopeLedger.csv"),
     "XRG-003": ("XRG", ERROR, "Scope-coverage link is non-reciprocal between ScopeLedger.csv and Deliverables.csv"),
@@ -158,48 +43,7 @@ CHECKS: dict[str, tuple[str, str, str]] = {
     "XRG-013": ("XRG", WARNING, "OUT or TBD ledger item has no PackageID (D-GOV-48: every scope item has one Package home)"),
     "XRG-014": ("XRG", ERROR, "Ledger item names more than one PackageID (D-GOV-48: exactly one Package home)"),
     "XRG-015": ("XRG", WARNING, "Ledger item's PackageID names no Package found in Deliverables.csv"),
-    "DRB-001": ("DRB", ERROR, "FromDeliverableID disagrees with the owning deliverable folder"),
-    "DRB-002": ("DRB", ERROR, "FromDeliverableID is absent from Deliverables.csv"),
-    "DRB-003": ("DRB", ERROR, "FromPackageID disagrees with Deliverables.csv"),
-    "DRB-004": ("DRB", WARNING, "FromDeliverableName disagrees with Deliverables.csv Name"),
-    "DRB-005": ("DRB", ERROR, "TargetDeliverableID is absent from Deliverables.csv"),
-    "DRB-006": ("DRB", ERROR, "DependencyID prefix disagrees with FromDeliverableID"),
-    "DRB-007": ("DRB", ERROR, "DependencyID is duplicated across the corpus"),
-    "DRB-008": ("DRB", WARNING, "Deliverables.csv row has no deliverable-local Dependencies.csv in any scanned lifecycle folder"),
 }
-
-# A locus that is a placeholder rather than a citable location.
-PLACEHOLDER_LOCUS = re.compile(
-    r"^\s*(?:"
-    r"location\s+tbd|tbd|to\s+be\s+determined|n/?a|none|unknown|pending|\?+|-+|\.+"
-    r")\s*$",
-    re.IGNORECASE,
-)
-
-# A quoted span inside the locus column: paired straight or curly double quotes
-# with at least four characters between them (avoids matching stray inch marks).
-QUOTE_SPAN = re.compile(r'"[^"]{4,}"|“[^”]{4,}”')
-
-DEL_DIR = re.compile(r"^(DEL-\d{2}-\d{2})(?:[_-].*)?$")
-
-# Honest-empty declaration. Some dependencies are genuinely real but have no
-# quotable source text — the relation was reasoned from register truth rather
-# than stated anywhere. Without a declared route for that case, a clean exit
-# could only be reached by inventing a quote, which would make the gate an
-# incentive to fabricate evidence. A waiver keeps such a row visible (it stays
-# a WARNING and is counted separately), but lets a fully-dispositioned corpus
-# reach exit 0 honestly.
-WAIVER_FILENAME = "Dependencies_EvidenceWaivers.csv"
-WAIVER_COLUMNS = ("DependencyID", "WaivedCheck", "Rationale", "DeclaredBy", "DeclaredOn")
-WAIVABLE_CHECKS = ("EVQ-003", "EVQ-004")
-MIN_RATIONALE_CHARS = 30
-
-# Lifecycle folders that can hold a deliverable. A deliverable moves between
-# these as it matures, so a scan limited to 1_Working silently stops seeing a
-# register the moment the deliverable is promoted. 0_References holds reference
-# material, not deliverables, and is deliberately excluded.
-LIFECYCLE_DIRS = ("1_Working", "2_Checking", "3_Issued")
-
 
 class OperationalError(Exception):
     """Input could not be read or the invocation is unusable."""
@@ -253,448 +97,6 @@ class Finding:
             "row_class": self.row_class,
             "detail": self.detail,
         }
-
-
-def discover_dependency_files(execution_root: Path) -> list[tuple[Path, str | None]]:
-    """Return (path, owning DEL id from folder name) for each deliverable-local register.
-
-    Scans every lifecycle folder in LIFECYCLE_DIRS, not just 1_Working, so that a
-    promoted deliverable's register does not silently drop out of the corpus.
-    """
-    found: list[tuple[Path, str | None]] = []
-    for package_dir in sorted(execution_root.glob("PKG-*")):
-        if not package_dir.is_dir():
-            continue
-        for lifecycle_name in LIFECYCLE_DIRS:
-            lifecycle_dir = package_dir / lifecycle_name
-            if not lifecycle_dir.is_dir():
-                continue
-            for deliverable_dir in sorted(lifecycle_dir.glob("DEL-*")):
-                register = deliverable_dir / "Dependencies.csv"
-                if register.is_file():
-                    match = DEL_DIR.match(deliverable_dir.name)
-                    found.append((register, match.group(1) if match else None))
-    return found
-
-
-def read_waivers(
-    register_path: Path,
-    known_ids: set[str],
-    rel_path: str,
-    findings: list[Finding],
-) -> dict[tuple[str, str], dict[str, str]]:
-    """Load and validate the optional honest-empty waiver sidecar.
-
-    Returns {(DependencyID, WaivedCheck): row} for waivers that are themselves
-    well-formed. A malformed waiver is a finding in its own right and never
-    softens the row it claims to cover.
-    """
-    waiver_path = register_path.parent / WAIVER_FILENAME
-    if not waiver_path.is_file():
-        return {}
-
-    waiver_rel = os.path.join(os.path.dirname(rel_path), WAIVER_FILENAME)
-    rows = read_register(waiver_path)
-    accepted: dict[tuple[str, str], dict[str, str]] = {}
-
-    for offset, row in enumerate(rows, start=2):
-        missing = [column for column in WAIVER_COLUMNS if column not in row]
-        if missing:
-            findings.append(
-                Finding("EVQ-009", waiver_rel,
-                        f"waiver sidecar is missing required column(s): {', '.join(missing)}",
-                        line=offset)
-            )
-            continue
-
-        dep_id = (row.get("DependencyID") or "").strip()
-        check = (row.get("WaivedCheck") or "").strip().upper()
-        rationale = (row.get("Rationale") or "").strip()
-        declared_by = (row.get("DeclaredBy") or "").strip()
-        declared_on = (row.get("DeclaredOn") or "").strip()
-
-        if not dep_id or dep_id not in known_ids:
-            findings.append(
-                Finding("EVQ-009", waiver_rel,
-                        f"waiver names DependencyID {dep_id!r}, which is not a row of "
-                        f"{os.path.basename(rel_path)}", line=offset, row_id=dep_id or None)
-            )
-            continue
-        if check not in WAIVABLE_CHECKS:
-            findings.append(
-                Finding("EVQ-009", waiver_rel,
-                        f"WaivedCheck {check!r} is not waivable; only "
-                        f"{', '.join(WAIVABLE_CHECKS)} may be waived",
-                        line=offset, row_id=dep_id)
-            )
-            continue
-        if not declared_by or not declared_on:
-            findings.append(
-                Finding("EVQ-009", waiver_rel,
-                        "waiver must record both DeclaredBy and DeclaredOn",
-                        line=offset, row_id=dep_id)
-            )
-            continue
-        if (
-            len(rationale) < MIN_RATIONALE_CHARS
-            or PLACEHOLDER_LOCUS.match(rationale)
-        ):
-            findings.append(
-                Finding("EVQ-008", waiver_rel,
-                        f"Rationale must be a substantive statement of why no source text "
-                        f"is quotable (at least {MIN_RATIONALE_CHARS} characters); "
-                        f"found {rationale!r}", line=offset, row_id=dep_id)
-            )
-            continue
-
-        accepted[(dep_id, check)] = row
-
-    return accepted
-
-
-EVIDENCE_FORMS = ("deliverable", "working_root", "instruction_root")
-
-
-def _within(path: Path, root: Path) -> bool:
-    try:
-        path.relative_to(root)
-    except ValueError:
-        return False
-    return True
-
-
-# SPEC §0.2.4: instruction-surface references resolve INSTRUCTION_ROOT-relative.
-INSTRUCTION_SURFACE_DIRS = ("agents", "workflows", "tools", "docs")
-INSTRUCTION_SURFACE_FILES = ("AGENTS.md",)
-
-
-def on_instruction_surface(target: Path, instruction_root: Path) -> bool:
-    """True when `target` lies under a §0.2.4 instruction-surface entry."""
-    try:
-        parts = target.relative_to(instruction_root).parts
-    except ValueError:
-        return False
-    if len(parts) == 1:
-        return parts[0] in INSTRUCTION_SURFACE_FILES
-    return len(parts) > 1 and parts[0] in INSTRUCTION_SURFACE_DIRS
-
-
-def resolve_evidence_file(
-    evidence_file: str,
-    deliverable_dir: Path | None,
-    evidence_root: Path,
-    instruction_root: Path | None,
-) -> tuple[str | None, list[Path], list[str]]:
-    """Resolve one EvidenceFile cell.
-
-    Returns (the first form in EVIDENCE_FORMS order that names a regular file,
-    or None; the candidate paths tried; every form that names a regular file).
-    Forms 1 and 2 count only when the candidate normalizes inside the working
-    root, and form 3 only when it lies on the instruction surface, so `..`
-    cannot reach other material through any base. Normalization is lexical, so
-    a linked package folder is not mistaken for an escape.
-    """
-    working_root = Path(os.path.normpath(evidence_root.absolute()))
-    surface_root = (
-        Path(os.path.normpath(instruction_root.absolute()))
-        if instruction_root is not None else None
-    )
-    bases = zip(EVIDENCE_FORMS, (deliverable_dir, evidence_root, instruction_root))
-    tried: list[Path] = []
-    resolved: list[str] = []
-    for form, base in bases:
-        if base is None:
-            continue
-        target = Path(os.path.normpath(base.absolute() / evidence_file))
-        if form == "instruction_root":
-            if not on_instruction_surface(target, surface_root):
-                continue
-        elif not _within(target, working_root):
-            continue
-        tried.append(target)
-        if target.is_file():
-            resolved.append(form)
-    return (resolved[0] if resolved else None), tried, resolved
-
-
-def check_evidence_quality(
-    rows: list[dict[str, str]],
-    rel_path: str,
-    evidence_root: Path,
-    findings: list[Finding],
-    counters: dict,
-    waivers: dict[tuple[str, str], dict[str, str]] | None = None,
-    deliverable_dir: Path | None = None,
-    instruction_root: Path | None = None,
-) -> None:
-    """EVQ family — the two OI-013 sub-classes plus the file-cell metrics.
-
-    `EvidenceFile` resolves against `deliverable_dir`, `evidence_root` and
-    `instruction_root` in turn (see the module docstring); a base given as None
-    is not tried.
-    """
-    waivers = waivers or {}
-    forms = counters.setdefault("forms", {form: 0 for form in EVIDENCE_FORMS})
-    counters.setdefault("multi_form", 0)
-    waivers_used: set[tuple[str, str]] = set()
-
-    for offset, row in enumerate(rows, start=2):
-        row_id = (row.get("DependencyID") or "").strip() or "<missing DependencyID>"
-        row_class = (row.get("DependencyClass") or "").strip() or "<unclassed>"
-        source_ref = (row.get("SourceRef") or "").strip()
-        quote = (row.get("EvidenceQuote") or "").strip()
-        evidence_file = (row.get("EvidenceFile") or "").strip()
-
-        bucket = counters["by_class"].setdefault(
-            row_class,
-            {
-                "rows": 0,
-                "locus_quote_duplication": 0,
-                "quote_shaped_locus": 0,
-                "empty_evidence_quote": 0,
-                "placeholder_locus": 0,
-                "evidence_file_populated": 0,
-                "evidence_file_resolved": 0,
-                "well_formed_evidence": 0,
-                "waived_rows": 0,
-            },
-        )
-        bucket["rows"] += 1
-
-        clean = True
-        row_waived = False
-
-        # (a) locus/quote confusion.
-        if source_ref and quote and source_ref == quote:
-            bucket["locus_quote_duplication"] += 1
-            clean = False
-            findings.append(
-                Finding(
-                    "EVQ-001",
-                    rel_path,
-                    "SourceRef and EvidenceQuote are byte-identical, so one column is "
-                    "carrying the other's content; a locus names where evidence sits "
-                    "and a quote reproduces it, and the two are never the same text "
-                    f"({len(source_ref)} chars): {source_ref[:120]!r}",
-                    line=offset,
-                    row_id=row_id,
-                    row_class=row_class,
-                )
-            )
-        elif source_ref and QUOTE_SPAN.search(source_ref):
-            bucket["quote_shaped_locus"] += 1
-            clean = False
-            findings.append(
-                Finding(
-                    "EVQ-002",
-                    rel_path,
-                    "SourceRef embeds a quoted span; a locus should name where the "
-                    f"evidence sits, not restate it: {source_ref[:120]!r}",
-                    line=offset,
-                    row_id=row_id,
-                    row_class=row_class,
-                )
-            )
-
-        # (b) empty-evidence rows, reported distinctly from (a).
-        if not quote:
-            bucket["empty_evidence_quote"] += 1
-            clean = False
-            waiver = waivers.get((row_id, "EVQ-003"))
-            if waiver:
-                waivers_used.add((row_id, "EVQ-003"))
-                row_waived = True
-            findings.append(
-                Finding(
-                    "EVQ-003",
-                    rel_path,
-                    "EvidenceQuote is blank; the row asserts a dependency with no "
-                    "quoted source text"
-                    + (f" — WAIVED: {(waiver.get('Rationale') or '').strip()}" if waiver else ""),
-                    line=offset,
-                    row_id=row_id,
-                    row_class=row_class,
-                    severity=WARNING if waiver else None,
-                )
-            )
-        if not source_ref or PLACEHOLDER_LOCUS.match(source_ref):
-            bucket["placeholder_locus"] += 1
-            clean = False
-            waiver = waivers.get((row_id, "EVQ-004"))
-            if waiver:
-                waivers_used.add((row_id, "EVQ-004"))
-                row_waived = True
-            findings.append(
-                Finding(
-                    "EVQ-004",
-                    rel_path,
-                    f"SourceRef is a placeholder, not a citable locus: {source_ref!r}"
-                    + (f" — WAIVED: {(waiver.get('Rationale') or '').strip()}" if waiver else ""),
-                    line=offset,
-                    row_id=row_id,
-                    row_class=row_class,
-                    severity=WARNING if waiver else None,
-                )
-            )
-
-        # Evidence-file coverage and resolution — distinct metrics.
-        if not evidence_file:
-            clean = False
-            findings.append(
-                Finding("EVQ-005", rel_path, "EvidenceFile is blank", line=offset,
-                        row_id=row_id, row_class=row_class)
-            )
-        else:
-            bucket["evidence_file_populated"] += 1
-            # An EvidenceFile must name a regular file in one of the allowed
-            # forms. A directory is not evidence, and an absolute path would
-            # silently escape every base, so both are findings.
-            candidate = Path(evidence_file)
-            if candidate.is_absolute():
-                clean = False
-                findings.append(
-                    Finding(
-                        "EVQ-006",
-                        rel_path,
-                        "EvidenceFile is an absolute path; it must be relative to the "
-                        "deliverable folder, the working root or the instruction root: "
-                        f"{evidence_file!r}",
-                        line=offset,
-                        row_id=row_id,
-                        row_class=row_class,
-                    )
-                )
-            else:
-                form, tried, resolved = resolve_evidence_file(
-                    evidence_file, deliverable_dir, evidence_root, instruction_root
-                )
-                if form is not None:
-                    bucket["evidence_file_resolved"] += 1
-                    forms[form] += 1
-                    if len(resolved) > 1:
-                        counters["multi_form"] += 1
-                else:
-                    clean = False
-                    if not tried:
-                        reason = ("leaves the working root and is not on the "
-                                  "instruction surface")
-                    elif any(target.is_dir() for target in tried):
-                        reason = "is a directory, not a file"
-                    else:
-                        reason = "does not resolve"
-                    bases = ", ".join(
-                        f"{name} {base}"
-                        for name, base in zip(
-                            EVIDENCE_FORMS, (deliverable_dir, evidence_root, instruction_root)
-                        )
-                        if base is not None
-                    )
-                    findings.append(
-                        Finding(
-                            "EVQ-006",
-                            rel_path,
-                            f"EvidenceFile {reason} under any allowed base ({bases}): "
-                            f"{evidence_file!r}",
-                            line=offset,
-                            row_id=row_id,
-                            row_class=row_class,
-                        )
-                    )
-
-        if clean:
-            bucket["well_formed_evidence"] += 1
-        if row_waived:
-            bucket["waived_rows"] += 1
-
-    # A waiver that no longer covers a live defect is stale: the row was
-    # repaired but the declaration was left behind, which would silently soften
-    # a future regression.
-    waiver_rel = os.path.join(os.path.dirname(rel_path), WAIVER_FILENAME)
-    for (dep_id, check) in sorted(set(waivers) - waivers_used):
-        findings.append(
-            Finding("EVQ-007", waiver_rel,
-                    f"waiver of {check} for {dep_id} is stale — that row now carries "
-                    f"real evidence; remove the waiver", row_id=dep_id)
-        )
-
-
-def check_dependency_binding(
-    rows: list[dict[str, str]],
-    rel_path: str,
-    folder_del_id: str | None,
-    deliverables: dict[str, dict[str, str]],
-    seen_ids: dict[str, str],
-    findings: list[Finding],
-) -> None:
-    """DRB family — Dependencies.csv against Deliverables.csv and its own folder."""
-    have_deliverables = bool(deliverables)
-    for offset, row in enumerate(rows, start=2):
-        row_id = (row.get("DependencyID") or "").strip() or "<missing DependencyID>"
-        row_class = (row.get("DependencyClass") or "").strip() or None
-        from_del = (row.get("FromDeliverableID") or "").strip()
-        from_pkg = (row.get("FromPackageID") or "").strip()
-        from_name = (row.get("FromDeliverableName") or "").strip()
-        target_del = (row.get("TargetDeliverableID") or "").strip()
-
-        if row_id != "<missing DependencyID>":
-            prior = seen_ids.get(row_id)
-            if prior:
-                findings.append(
-                    Finding("DRB-007", rel_path,
-                            f"DependencyID also appears in {prior}",
-                            line=offset, row_id=row_id, row_class=row_class)
-                )
-            else:
-                seen_ids[row_id] = rel_path
-
-        if folder_del_id and from_del and from_del != folder_del_id:
-            findings.append(
-                Finding("DRB-001", rel_path,
-                        f"FromDeliverableID {from_del!r} but the register sits in {folder_del_id}",
-                        line=offset, row_id=row_id, row_class=row_class)
-            )
-
-        if from_del and from_del.startswith("DEL-"):
-            expected_prefix = "DEP-" + from_del[len("DEL-"):]
-            if row_id != "<missing DependencyID>" and not row_id.startswith(expected_prefix):
-                findings.append(
-                    Finding("DRB-006", rel_path,
-                            f"DependencyID does not start with {expected_prefix!r}",
-                            line=offset, row_id=row_id, row_class=row_class)
-                )
-
-        if not have_deliverables:
-            continue
-
-        if from_del and from_del not in deliverables:
-            findings.append(
-                Finding("DRB-002", rel_path,
-                        f"FromDeliverableID {from_del!r} is not a Deliverables.csv row",
-                        line=offset, row_id=row_id, row_class=row_class)
-            )
-        elif from_del:
-            record = deliverables[from_del]
-            if from_pkg and from_pkg != record.get("PackageID", "").strip():
-                findings.append(
-                    Finding("DRB-003", rel_path,
-                            f"FromPackageID {from_pkg!r} but Deliverables.csv says "
-                            f"{record.get('PackageID', '').strip()!r}",
-                            line=offset, row_id=row_id, row_class=row_class)
-                )
-            if from_name and from_name != record.get("Name", "").strip():
-                findings.append(
-                    Finding("DRB-004", rel_path,
-                            f"FromDeliverableName {from_name!r} but Deliverables.csv says "
-                            f"{record.get('Name', '').strip()!r}",
-                            line=offset, row_id=row_id, row_class=row_class)
-                )
-
-        if target_del and target_del not in deliverables:
-            findings.append(
-                Finding("DRB-005", rel_path,
-                        f"TargetDeliverableID {target_del!r} is not a Deliverables.csv row",
-                        line=offset, row_id=row_id, row_class=row_class)
-            )
 
 
 def check_cross_register(
@@ -852,194 +254,62 @@ def check_cross_register(
             )
 
 
-DEFAULT_INSTRUCTION_ROOT = VALIDATION_DIR.parent.parent
-INSTRUCTION_ROOT_ENV = "CHIRALITY_INSTRUCTION_ROOT"
-
-
 def run(
     execution_root: Path,
     families: tuple[str, ...] = FAMILIES,
-    evidence_root: Path | None = None,
     registers_dir: Path | None = None,
-    instruction_root: Path | None = None,
 ) -> dict:
-    """Execute the selected check families. Returns a machine-readable report.
-
-    `registers_dir` names the folder holding the companion registers when it is
-    not `<execution_root>/_Decomposition`. `evidence_root` (default: the parent
-    of `execution_root`) and `instruction_root` (default: the
-    `CHIRALITY_INSTRUCTION_ROOT` environment variable, else the checkout holding
-    this tool) are the working-root and instruction-root bases for
-    `EvidenceFile`.
-    """
+    """Check only decomposition registers; never discover dependency files."""
+    if not families or any(family != "XRG" for family in families):
+        raise OperationalError("only the XRG decomposition family is supported")
     execution_root = Path(execution_root)
-    if next(execution_root.glob("PKG-*/DEL-*/deliverable.yaml"), None) is not None:
-        raise OperationalError("deliverable.yaml project: use tools/deliverables/ CLI instead of legacy register validation")
     if not execution_root.is_dir():
         raise OperationalError(f"EXECUTION_ROOT is not a directory: {execution_root}")
     if registers_dir is not None and not Path(registers_dir).is_dir():
         raise OperationalError(f"--registers-dir is not a directory: {registers_dir}")
-    evidence_root = Path(evidence_root) if evidence_root else execution_root.parent
-    if instruction_root is not None:
-        instruction_root_source = "argument"
-    elif os.environ.get(INSTRUCTION_ROOT_ENV):
-        instruction_root = os.environ[INSTRUCTION_ROOT_ENV]
-        instruction_root_source = INSTRUCTION_ROOT_ENV
-    else:
-        instruction_root = DEFAULT_INSTRUCTION_ROOT
-        instruction_root_source = "tool checkout"
-    if not Path(instruction_root).is_dir():
-        raise OperationalError(
-            f"instruction root ({instruction_root_source}) is not a directory: "
-            f"{instruction_root}"
-        )
-    instruction_root = Path(instruction_root)
-
-    findings: list[Finding] = []
-    skipped: list[str] = []
-    counters: dict = {
-        "by_class": {}, "forms": {form: 0 for form in EVIDENCE_FORMS}, "multi_form": 0,
-    }
-
-    decomposition = Path(registers_dir) if registers_dir is not None else (
-        execution_root / "_Decomposition"
-    )
+    decomposition = Path(registers_dir) if registers_dir is not None else execution_root / "_Decomposition"
     deliverables_path = decomposition / "Deliverables.csv"
     ledger_path = decomposition / "ScopeLedger.csv"
     context_qa_path = decomposition / "ContextBudgetQA.csv"
-
-    deliverables: dict[str, dict[str, str]] = {}
-    if deliverables_path.is_file():
-        deliverables = {
-            (row.get("DeliverableID") or "").strip(): row
-            for row in read_register(deliverables_path)
-            if (row.get("DeliverableID") or "").strip()
-        }
-
-    if "XRG" in families:
-        if deliverables_path.is_file() and ledger_path.is_file():
-            context_qa = read_register(context_qa_path) if context_qa_path.is_file() else None
-            if context_qa is None:
-                skipped.append("XRG ContextBudgetQA checks (ContextBudgetQA.csv absent)")
-            check_cross_register(
-                deliverables,
-                read_register(ledger_path),
-                context_qa,
-                {
-                    "deliverables": os.path.relpath(deliverables_path, execution_root),
-                    "ledger": os.path.relpath(ledger_path, execution_root),
-                    "context_qa": os.path.relpath(context_qa_path, execution_root),
-                },
-                findings,
-            )
-        else:
-            skipped.append("XRG family (Deliverables.csv and/or ScopeLedger.csv absent)")
-
-    registers = discover_dependency_files(execution_root)
-    seen_ids: dict[str, str] = {}
-    per_file: list[dict] = []
-
-    for register_path, folder_del_id in registers:
-        rel_path = os.path.relpath(register_path, execution_root)
-        before = len(findings)
-
-        if "SCH" in families:
-            ok, schema_findings, _ext, _count, _header = validate_dep_schema(str(register_path))
-            if not ok:
-                for detail in schema_findings:
-                    findings.append(Finding("SCH-001", rel_path, detail))
-
-        rows = read_register(register_path)
-        if "EVQ" in families:
-            known_ids = {
-                (row.get("DependencyID") or "").strip()
-                for row in rows
-                if (row.get("DependencyID") or "").strip()
-            }
-            waivers = read_waivers(register_path, known_ids, rel_path, findings)
-            check_evidence_quality(
-                rows, rel_path, evidence_root, findings, counters, waivers=waivers,
-                deliverable_dir=register_path.parent, instruction_root=instruction_root,
-            )
-        if "DRB" in families:
-            check_dependency_binding(
-                rows, rel_path, folder_del_id, deliverables, seen_ids, findings
-            )
-
-        per_file.append(
-            {
-                "path": rel_path,
-                "rows": len(rows),
-                "findings": len(findings) - before,
-            }
+    deliverables = {
+        (row.get("DeliverableID") or "").strip(): row
+        for row in read_register(deliverables_path)
+        if (row.get("DeliverableID") or "").strip()
+    } if deliverables_path.is_file() else {}
+    findings: list[Finding] = []
+    skipped: list[str] = []
+    if deliverables_path.is_file() and ledger_path.is_file():
+        context_qa = read_register(context_qa_path) if context_qa_path.is_file() else None
+        if context_qa is None:
+            skipped.append("XRG ContextBudgetQA checks (ContextBudgetQA.csv absent)")
+        check_cross_register(
+            deliverables, read_register(ledger_path), context_qa,
+            {"deliverables": os.path.relpath(deliverables_path, execution_root),
+             "ledger": os.path.relpath(ledger_path, execution_root),
+             "context_qa": os.path.relpath(context_qa_path, execution_root)},
+            findings,
         )
-
-    if "DRB" in families and deliverables:
-        covered = {folder_del_id for _p, folder_del_id in registers if folder_del_id}
-        for missing in sorted(set(deliverables) - covered):
-            findings.append(
-                Finding("DRB-008", os.path.relpath(deliverables_path, execution_root),
-                        f"{missing} has no deliverable-local Dependencies.csv in any of "
-                        f"{'/'.join(LIFECYCLE_DIRS)}; a register outside these folders "
-                        f"is not scanned", row_id=missing)
-            )
-
+    else:
+        skipped.append("XRG family (Deliverables.csv and/or ScopeLedger.csv absent)")
     by_code: dict[str, int] = {}
     for finding in findings:
         by_code[finding.code] = by_code.get(finding.code, 0) + 1
-
-    total_rows = sum(entry["rows"] for entry in per_file)
     return {
         "tool": "validate_decomposition_registers.py",
-        "execution_root": str(execution_root),
-        "evidence_root": str(evidence_root),
-        "instruction_root": str(instruction_root),
-        "instruction_root_source": instruction_root_source,
-        "registers_dir": str(decomposition),
-        "families": list(families),
-        "registers_scanned": len(registers),
-        "dependency_rows": total_rows,
-        "deliverables_declared": len(deliverables),
-        "row_class_metrics": counters["by_class"],
-        "evidence_file_resolution_forms": dict(counters["forms"]),
-        "evidence_file_multi_form": counters["multi_form"],
+        "execution_root": str(execution_root), "registers_dir": str(decomposition),
+        "families": list(families), "deliverables_declared": len(deliverables),
         "findings_by_code": dict(sorted(by_code.items())),
-        "error_count": sum(1 for f in findings if f.severity == ERROR),
-        "warning_count": sum(1 for f in findings if f.severity == WARNING),
-        "skipped": skipped,
-        "per_file": per_file,
-        "findings": [f.as_dict() for f in findings],
+        "error_count": sum(f.severity == ERROR for f in findings),
+        "warning_count": sum(f.severity == WARNING for f in findings),
+        "skipped": skipped, "findings": [finding.as_dict() for finding in findings],
     }
-
 
 def print_report(report: dict, max_per_code: int) -> None:
     print(f"Register validation — {report['execution_root']}")
     print(f"  Families: {', '.join(report['families'])}")
-    print(f"  Registers scanned: {report['registers_scanned']}  "
-          f"Dependency rows: {report['dependency_rows']}  "
-          f"Deliverables declared: {report['deliverables_declared']}")
+    print(f"  Deliverables declared: {report['deliverables_declared']}")
     for note in report["skipped"]:
         print(f"  SKIPPED: {note}")
-
-    metrics = report["row_class_metrics"]
-    if metrics:
-        print("\nEvidence-cell metrics by row class")
-        header = (f"  {'class':<12}{'rows':>6}{'well-formed':>13}{'locus=quote':>13}"
-                  f"{'quoted-locus':>14}{'empty-quote':>13}{'ph-locus':>10}"
-                  f"{'waived':>8}{'file-pop':>10}{'file-res':>10}")
-        print(header)
-        for row_class in sorted(metrics):
-            m = metrics[row_class]
-            print(f"  {row_class:<12}{m['rows']:>6}{m['well_formed_evidence']:>13}"
-                  f"{m['locus_quote_duplication']:>13}{m['quote_shaped_locus']:>14}"
-                  f"{m['empty_evidence_quote']:>13}{m['placeholder_locus']:>10}"
-                  f"{m.get('waived_rows', 0):>8}"
-                  f"{m['evidence_file_populated']:>10}{m['evidence_file_resolved']:>10}")
-        forms = report.get("evidence_file_resolution_forms") or {}
-        if any(forms.values()):
-            print("  EvidenceFile resolved as: " + ", ".join(
-                f"{form.replace('_', '-')}-relative {count}" for form, count in forms.items()
-            ) + f"; {report.get('evidence_file_multi_form', 0)} resolve in more than one form")
 
     if report["findings"]:
         print("\nFindings")
@@ -1071,33 +341,15 @@ def print_report(report: dict, max_per_code: int) -> None:
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
-    )
+    parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("execution_root", nargs="?", help="Project execution root")
     parser.add_argument("--json", dest="json_out", help="Write the full report as JSON")
-    parser.add_argument("--families", default=",".join(FAMILIES),
-                        help=f"Comma-separated subset of {','.join(FAMILIES)}")
-    parser.add_argument("--evidence-root", help="Working-root base for resolving "
-                                                "EvidenceFile (default: parent of "
-                                                "EXECUTION_ROOT); the deliverable folder "
-                                                "and --instruction-root are also tried")
-    parser.add_argument("--instruction-root",
-                        help="Instruction-root base for EvidenceFile cells on the "
-                             "SPEC §0.2.4 instruction surface (default: "
-                             "CHIRALITY_INSTRUCTION_ROOT, else the checkout "
-                             "holding this tool)")
-    parser.add_argument("--registers-dir",
-                        help="Folder holding Deliverables.csv, ScopeLedger.csv and "
-                             "ContextBudgetQA.csv (default: EXECUTION_ROOT/_Decomposition)")
-    parser.add_argument("--strict", action="store_true",
-                        help="Exit 1 on WARNING findings as well as ERROR")
-    parser.add_argument("--max-per-code", type=int, default=20,
-                        help="Human-readable output cap per check code (default 20)")
-    parser.add_argument("--list-checks", action="store_true",
-                        help="Print the check catalogue and exit")
+    parser.add_argument("--families", default="XRG", help="XRG (decomposition checks only)")
+    parser.add_argument("--registers-dir", help="Companion register folder (default: EXECUTION_ROOT/_Decomposition)")
+    parser.add_argument("--strict", action="store_true", help="Exit 1 on warnings as well as errors")
+    parser.add_argument("--max-per-code", type=int, default=20, help="Human-readable finding cap per code")
+    parser.add_argument("--list-checks", action="store_true", help="Print the check catalogue and exit")
     return parser.parse_args(argv)
-
 
 def main(argv: list[str]) -> int:
     args = parse_args(argv)
@@ -1122,9 +374,7 @@ def main(argv: list[str]) -> int:
         report = run(
             Path(args.execution_root),
             families=families,
-            evidence_root=Path(args.evidence_root) if args.evidence_root else None,
             registers_dir=Path(args.registers_dir) if args.registers_dir else None,
-            instruction_root=Path(args.instruction_root) if args.instruction_root else None,
         )
     except OperationalError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
@@ -1143,6 +393,7 @@ def main(argv: list[str]) -> int:
     if args.strict and report["warning_count"]:
         return 1
     return 0
+
 
 
 if __name__ == "__main__":
