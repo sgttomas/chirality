@@ -6,20 +6,6 @@ Start from the affected `execution/PKG-nn/DEL-nn-nn/` and its ScopeOfWork,
 Design and dependency conditions. Consult `docs/PRD.md` and its companions for
 requirements and interfaces involved in this slice, not as a compulsory census.
 
-Use this course of knowledge work as a heuristic, not a prescribed path:
-
-Problem Statement → Requirements → Objectives → Production → Evaluation →
-Assessment → Implementation → Verification → Validation → Integration →
-Reflection → Iteration → Resolution.
-
-It creates no additional stages, artifacts, reviews, approvals, or completion
-conditions. Enter where the work currently stands and revisit activities as
-evidence requires. Work within the given scope and authority; resolve against
-the agreed outcome and adequate supporting evidence.
-
-Find the current manuals through the [manual index](../../../docs/alignment-manual/README.md).
-Consult the relevant sections when the work needs them; no full-manual reading is required.
-
 From the repository root:
 
 ```sh
@@ -47,8 +33,8 @@ Hard boundaries:
 - SWBPIPE and Domains implementation remains in its owning project; the
   interface basis is `execution/_Coordination/HANDOFF_SWBPIPE_DOMAINS.md`.
   PEC is retired; App work does not wait on it.
-- App v3 is `projects/chirality-app-dev`; its product tools and decisions do not
-  apply to App v4. Leave `foundation/thesis/` unchanged.
+- App v3 is frozen and removed from main (see `projects/FROZEN.md`); its product
+  tools and decisions do not apply to App v4. Leave `foundation/thesis/` unchanged.
 - Development or test Codex uses a scratch home made with `mktemp -d`, never
   `~/.codex`; configure it as `app/README.md` describes.
 - Do not sign in or use credentials without the owner.

@@ -196,7 +196,7 @@ Explain your response orally, and repair any unsupported claim found during exam
 
 Keep the appointment response as Portfolio 01, with its revision and source packet identified. Later courses add document control, evidence, and interpretation to this responsibility basis.
 
-The [Field Book (Edition 2)](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v2.html), sections 2 and 3, supports precise assignments and an established basis. This course adapts those principles to human appointments.
+The [management manual (Edition 9)](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html), section 3.1 and chapter 2, supports precise assignments and an established basis. This course adapts those principles to human appointments.
 
 The [Engineers Canada competency guidance](https://engineerscanada.ca/guidelines-and-papers/public-guideline-on-admission-to-the-practice-of-engineering-in-canada) offers further study on technical competence and professional maturity. It is national guidance; the actual regulator sets admission requirements.
 

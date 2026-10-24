@@ -24,32 +24,14 @@ It does not impose Chirality repository paths or a fixed staffing arrangement.
 
 Stable discovery link: `docs/alignment-manual/README.md#project-management-manual`.
 
-## Field Book
-
-**Current edition: v2.** [Read HTML](Project_Management_for_Human_Agent_Teams_Field_Book_v2.html) · [Markdown source](Project_Management_for_Human_Agent_Teams_Field_Book_v2.md)
-
-Keep this concise reference available during work after reading the management
-manual. It preserves the same meanings and helps identify the next useful question,
-action or decision without prescribing a universal sequence of records.
-
-Stable discovery link: `docs/alignment-manual/README.md#field-book`.
-
-## Agent User Manual
-
-**Current edition: v4.** [Read HTML](CHIRALITY_AGENT_USER_MANUAL_v4.html) · [Markdown source](CHIRALITY_AGENT_USER_MANUAL_v4.md)
-
-Operational guidance for agents and the people they work with in the Chirality
-repository: Root, App v4 and SWBPIPE. This is not the App product's user guide.
-
-Stable discovery link: `docs/alignment-manual/README.md#agent-user-manual`.
-
 ## Read the collection
 
 Begin with the management manual to understand the method and its shared
 [working vocabulary](Project_Management_for_Human_Agent_Teams_Consolidated_v9.md#vocabulary).
-Use the Field Book as a concise reference during the undertaking. Add the Agent
-User Manual when working in the Chirality repository. A participant already
-acquainted with the method can return directly to the relevant reference.
+A participant already acquainted with the method can return directly to the
+relevant chapter. In the Chirality repository, current practice is in Root
+`AGENTS.md`, the role files in `agents/`, the selected workflow and the project's
+loop entry, not in a manual.
 
 Bring the person's actual problem, context and purposes into that reading.
 Discuss consequential interpretations and examine results together. Shared
@@ -58,7 +40,7 @@ using the same words does not by itself establish a common understanding.
 
 ## Discovery and reliance
 
-The anchors above are versionless pointers. They reduce stale entry links and
+The anchor above is a versionless pointer. They reduce stale entry links and
 let readers find the current edition without maintaining a second registry.
 Their targets can change; that is their purpose and their limitation.
 
@@ -86,18 +68,16 @@ For each edition, use its explicit source and output path:
 
 ```sh
 python3 docs/alignment-manual/render_manual.py \
-  --source docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v4.md \
-  --output docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v4.html \
-  --basis-date 2026-10-12 --basis-revision 641b6a410130048673c455c1fcf7c46bc0e82c52 \
-  --edition-label 'Operational guide' --metadata-at-end
+  --source docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.md \
+  --output docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html \
+  --basis-date <YYYY-MM-DD> --basis-revision <full commit of the source> \
+  --edition-label 'Management manual' --metadata-at-end
 ```
 
-Use the corresponding filenames and labels `Management manual` or `Field book`
-for the other editions.
 Add `--check` to verify without writing. The displayed revision identifies the
 source used for rendering, not human acceptance. Check links and inspect the
 result at desktop and narrow widths. Review content before preparing revised
-Word/PDF publication layouts; retained earlier print editions remain historical.
+Word/PDF publication layouts.
 
 ## Earlier editions
 
@@ -106,11 +86,15 @@ procedures do not override current instructions. In particular, App v4's origina
 project-definition basis named Consolidated v7, Field Book v1 and User Manual v3.
 The current App v4 basis states its forward selection separately.
 
-- [Consolidated v8 Markdown](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md), [Word](Project_Management_for_Human_Agent_Teams_Consolidated_v8.docx), [PDF](Project_Management_for_Human_Agent_Teams_Consolidated_v8.pdf).
-- [Consolidated v7 Markdown](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md).
-- [Field Book v1](Project_Management_for_Human_Agent_Teams_Field_Book_v1.html).
-- [Agent User Manual v3](CHIRALITY_AGENT_USER_MANUAL_v3.html).
+The owner retired the Field Book (v1, v2) and the Chirality Agent User Manual
+(v3, v4) on 2026-10-23. The Field Book condensed this manual; the Agent User
+Manual restated repository instructions, which are now the only home for current
+practice. Recover their text with, for example,
+`git show 4ac1315672:docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v2.md`.
+
+- [Consolidated v7 Markdown](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md). It stays in the working tree because the `software-prd` and `reverse-engineer-software` workflows cite its chapter 2 for the software PRD sequence.
+
+Consolidated v8 (Markdown, Word and PDF) was removed from the working tree on 2026-10-23; recover it with `git show 4ac1315672:docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v8.md`.
 
 Still earlier files and review evidence are recoverable from
 `archive/pre-manuals-2026-10-09` and `archive/pre-efficiency-cleanup-2026-10-09`.
-No old edition is removed or rewritten by the current revision.
