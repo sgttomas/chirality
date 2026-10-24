@@ -286,7 +286,7 @@
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "056c6bd79fac3c5994433e38bbc35c656f9730ccf5b6c4313a37ab040a79355c",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "4989faa37691e50b9a5defda906bfe0356a3a16fd5a9dda4cc8920a2e05ee346",
+      "core/product_physics/Cargo.toml": "3a3a66b32ddacaae8f93bc60486f8dffbcca651d91a026b8bca914ac653684f3",
       "core/reporting/audit_manifest/Cargo.toml": "7b941c18378533d99707ed00c6024df56d9e6ac09a85d4b22599aa3fab8754a5",
       "core/reporting/pdf_emitter/Cargo.toml": "cd9871fe951f3157dce93fb550540bf4e55dd48e469ba49612208a8b669b6441",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
@@ -294,7 +294,7 @@
       "core/reporting/report_package/Cargo.toml": "1144a8105a3d13c91601a7f4728e7d09fc628cfcdf7ef0c839f1a98fb3e07fd7",
       "core/reporting/report_renderer/Cargo.toml": "dd1437c22314f39279f7203d5cbc4029e537ec649710d335eaa0ccc4977d1f0e",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
-      "core/reporting/result_export/Cargo.toml": "a49ae0346eb66f987e3f3910d308f577fe7d91344ef9d67e9757e28ec02fc8ea",
+      "core/reporting/result_export/Cargo.toml": "5ff4c41802113823b78d3136224687ee142b92c21283b5a681f6ee16baa4f55b",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "7018210dadfb7c2b855298730f5f8cddedbe09f7f03b05421b81c3694f873b18",
       "core/rules/rule_check_runner/Cargo.toml": "9a2be1a226d4f0da6e2f6ba329eec3c1ebbdbe5b51d6f03f953c32ab3cb03794",
@@ -321,7 +321,7 @@
     },
     "reads": {
       "core/product_physics/src/source_receipt/pressure_source_context_tests.rs": {
-        "sha256": "2466b83fd378e91b1566f8e584674f431a43fc88d5d95cd060950677455842f0",
+        "sha256": "0c35342e2e4152f59d9c6c39aa860c1327734172ccb2a97f0d3dcf36063b75d7",
         "source_trees": [
           "core/loads/self_weight_wasm/Cargo.toml",
           "core/model_operations/operation_applier/Cargo.toml",
@@ -1625,7 +1625,7 @@
         ]
       },
       "core/reporting/result_export/tests/load_reference_contract.rs": {
-        "sha256": "557553e711cf9ed47fa721ea709877c4c0c404c104490f5d5b5b59697dbdc4a2",
+        "sha256": "51c89af52dc6c48dc920c8cd294285bcb153a683567eecb00ea7de9af8f5f798",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -2024,7 +2024,7 @@
         ]
       },
       "core/reporting/result_export/tests/preview_physics_contract.rs": {
-        "sha256": "4311ea965784d3cb5ca6151ba1acfad163dd50a0072cddb9adc50718f844e95a",
+        "sha256": "0170555dba84496c546129ab3b9f8473a1751be56915c9e6c599ec099bdba728",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -2509,6 +2509,7 @@
               "core/reporting/report_sections/src/lib.rs",
               "core/reporting/result_export/src/arc_evidence.rs",
               "core/reporting/result_export/src/arc_marker_tests.rs",
+              "core/reporting/result_export/src/component_body.rs",
               "core/reporting/result_export/src/connector_evidence.rs",
               "core/reporting/result_export/src/declared_member_load.rs",
               "core/reporting/result_export/src/derivative.rs",
@@ -2705,7 +2706,7 @@
         }
       },
       "core/reporting/result_export/tests/retained_precision_contract.rs": {
-        "sha256": "acf50575218bdac63b00a9e4ad7cbc644444383cb9d6ffe70cd87dbb0d43d024",
+        "sha256": "4bcc619942a688782e318f394ecbe545d685341d671d81cb7b85db3de123e2bc",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -2864,7 +2865,7 @@
         ]
       },
       "core/reporting/result_export/tests/retained_precision_derivative_golden.rs": {
-        "sha256": "e5f40d996b69d1e5fd6c98cf6dc5fb264fbe7d03cd26602bf27647df68bf9845",
+        "sha256": "5d9c5c7c256e57b3c105993b7288bfdeea2358fddbedaa644d73a2a56b3bf15c",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
