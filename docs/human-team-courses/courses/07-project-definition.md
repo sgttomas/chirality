@@ -223,6 +223,6 @@ Keep the repaired assignment, project basis, requirement table, and scope alloca
 
 Carry these records into Course 08 for planning, and use their interfaces and readiness conditions in Course 09.
 
-Source adaptation: Field Book (Edition 2) §§3–4 and management manual (Edition 9) §§2.1–2.6 and 3.1–3.2. These sections cover basis, scope, outputs, and examination.
+Source adaptation: management manual (Edition 9) §§2.1–2.6 and 3.1–3.2. These sections cover basis, scope, outputs, and examination.
 
 Use the shared [references](../references.html) for systems engineering fundamentals and project governance. External readings are optional for the supplied assignment.

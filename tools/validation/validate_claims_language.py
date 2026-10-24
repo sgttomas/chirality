@@ -101,7 +101,8 @@ REGISTERED_TEXTS = (
     "validation occurs in the user's accepted professional tools; this "
     "package is screening and handoff evidence",
     "handoff evidence for external validation, not a validation outcome",
-    # GF-TOKEN canonical
+    # GF-TOKEN canonical, and the earlier form still carried by older artifacts
+    "Standard claim fence applies (claims taxonomy per DEC-081).",
     "Standard claim fence applies (F-PIP-2; claims taxonomy per DEC-081).",
     # PRD section 19.3 report-notice fragment
     "does not certify, seal, approve, authenticate, or determine code "
