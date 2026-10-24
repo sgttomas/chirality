@@ -204,6 +204,6 @@ Explain one interface to both its proposed supplier and consumer, and revise it 
 
 Keep your interface package as Portfolio 09, and connect it to Course 08's readiness conditions. Carry the current configuration and open findings into Course 10's assurance plan.
 
-Read Field Book (Edition 2) §§4–7 and management manual (Edition 9) §§4.5, 6.1–6.2, and 8.1–8.3 in [References](../references.html). Their dependency, integration, and evidence principles support this course.
+Read management manual (Edition 9) chapter 3, §§4.3–4.6, chapter 5, §§6.1–6.2, and 8.1–8.3 in [References](../references.html). Their dependency, integration, and evidence principles support this course.
 
 The optional NASA technical management readings offer further methods. The Northbank records supply the core basis for the exercise, and NASA's agency procedures do not govern this fictional project.

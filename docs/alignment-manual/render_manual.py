@@ -29,7 +29,7 @@ except ImportError:
 
 PARSER_VERSION = "4.2.0"
 MDURL_VERSION = "0.1.2"
-DEFAULT_SOURCE = Path(__file__).with_name("CHIRALITY_AGENT_USER_MANUAL_v4.md")
+DEFAULT_SOURCE = Path(__file__).with_name("Project_Management_for_Human_Agent_Teams_Consolidated_v9.md")
 
 CSS = """
 :root {
@@ -303,7 +303,7 @@ def slugify(text: str) -> str:
 
 def render(
     source: Path, output: Path, basis_date: str, basis_revision: str, *,
-    edition_label: str = "Agent user manual", metadata_at_end: bool = False,
+    edition_label: str = "Management manual", metadata_at_end: bool = False,
 ) -> tuple[str, dict]:
     if not edition_label.strip():
         raise ValueError("The edition label must not be empty.")
@@ -450,7 +450,7 @@ def main() -> int:
     parser.add_argument("--output", type=Path, help="Defaults to the source path with an .html extension")
     parser.add_argument("--basis-date", required=True, help="Source basis date, YYYY-MM-DD (never inferred from the clock)")
     parser.add_argument("--basis-revision", required=True, help="Full repository basis commit SHA (never inferred from HEAD)")
-    parser.add_argument("--edition-label", default="Agent user manual", help="Reading-edition label shown in the masthead")
+    parser.add_argument("--edition-label", default="Management manual", help="Reading-edition label shown in the masthead")
     parser.add_argument("--metadata-at-end", action="store_true", help="Place visible source metadata after the document")
     parser.add_argument("--check", action="store_true", help="Fail if the existing HTML differs; do not write")
     args = parser.parse_args()
