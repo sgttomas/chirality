@@ -1606,7 +1606,7 @@
         ]
       },
       "core/reporting/result_export/tests/load_reference_contract.rs": {
-        "sha256": "49dd4f23430f5b9f8887c3805552cc26e42fe41d40645330eea6383f1c853ed9",
+        "sha256": "8e2cd7665eb074e96f44d648e96d6743c76fbc1a3ec95313f6263d8fd1ee6533",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
