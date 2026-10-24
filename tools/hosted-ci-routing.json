@@ -284,19 +284,19 @@
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
       "core/product_physics/Cargo.toml": "0417d61e707c777491bbf2c1a95167978e210402b23f0a43126365e0b9053fd5",
       "core/reporting/audit_manifest/Cargo.toml": "7b941c18378533d99707ed00c6024df56d9e6ac09a85d4b22599aa3fab8754a5",
-      "core/reporting/pdf_emitter/Cargo.toml": "309a54981ba32f194c41cdd0783d8f4fcc97ee9dfb58fc19797d73da5f127f20",
+      "core/reporting/pdf_emitter/Cargo.toml": "cd9871fe951f3157dce93fb550540bf4e55dd48e469ba49612208a8b669b6441",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
       "core/reporting/report_generator/Cargo.toml": "24d9ec31f26ab616942b55b6aeddafefe8d1f2ac1c6743fb62556cbb3fd3236f",
       "core/reporting/report_package/Cargo.toml": "1144a8105a3d13c91601a7f4728e7d09fc628cfcdf7ef0c839f1a98fb3e07fd7",
-      "core/reporting/report_renderer/Cargo.toml": "c120455c284ce1f90e5c8b7d43fac3e5c2e5678288d91274cf932083ff46e5bb",
+      "core/reporting/report_renderer/Cargo.toml": "dd1437c22314f39279f7203d5cbc4029e537ec649710d335eaa0ccc4977d1f0e",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
       "core/reporting/result_export/Cargo.toml": "30d1d595de46aed8917e013c740b1fcb7cb9ea3de6c278ac68bc533c99192b4f",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "7018210dadfb7c2b855298730f5f8cddedbe09f7f03b05421b81c3694f873b18",
-      "core/rules/rule_check_runner/Cargo.toml": "74ab4cfa6825b9eb33c4e15e01685bd1cb25cfffcde10e6eeb1ce3973fdb2007",
+      "core/rules/rule_check_runner/Cargo.toml": "9a2be1a226d4f0da6e2f6ba329eec3c1ebbdbe5b51d6f03f953c32ab3cb03794",
       "core/rules/rule_pack_document/Cargo.toml": "80528ccb5537228460583e50aabf58a676192a6802207b0df3c4afba01dc8688",
       "core/rules/rule_pack_lifecycle/Cargo.toml": "811d32918f3d13d8d2a9115ebb6ce9b0243078626bc426d8dbd97224eb2dbd56",
-      "core/runner/headless/Cargo.toml": "465e04378b45e7a2c80faccc52a729d0d3560bba5c880e064c2e01557ed054d3",
+      "core/runner/headless/Cargo.toml": "fd9bffd0adf7d3b22100133fd777ca305ee79e3140385c5a0d5416fe17d7ca1d",
       "core/serialization/canonical_json/Cargo.toml": "fb2259bdfcb6adebc877b46e4e1b3126fdf1b08c0b6441a5e4ba49ab75e670a0",
       "core/solver/curved_bend/Cargo.toml": "5d7cf1288eac698c209aa4fd7493fa669aa57494950e75374ac07248001502d8",
       "core/solver/diagnostics/Cargo.toml": "11db1409fcfd3b0312ef80085e36eac4d7a66eb0f4298832137119835b1c92e8",
@@ -3012,7 +3012,7 @@
         ]
       },
       "core/rules/rule_check_runner/tests/point_path_non_finite_run.rs": {
-        "sha256": "4ad39fd8e99ac8b2e9be8260d02d462f6c390719e01c2806056562fb1db34e04",
+        "sha256": "34bd5ccdd903608df9692f7f89df9efd2b88fb9e4c62f0fa77cef7bd2d57da51",
         "source_trees": [
           "core/rules/rule_check_runner/Cargo.toml"
         ],
