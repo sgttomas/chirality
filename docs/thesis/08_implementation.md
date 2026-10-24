@@ -58,12 +58,16 @@ broader paths.
 
 ### 8.3.1 Current Sources and Queries
 
-Active project deliverables maintain commitments and acceptance criteria in
-`ScopeOfWork.md`, useful technical reasoning in `Design/`, and consumer-owned
+On this chapter's identified source basis, active project deliverables maintain
+commitments and acceptance criteria in `ScopeOfWork.md`, useful technical
+reasoning in `Design/`, and consumer-owned
 needs and conditions in `deliverable.yaml`. The
 [Root entry](../../execution/_Coordination/LOOP_INIT.md) locates the shared
 component and affected consumers; an active project entry locates product
-commitments. The authorized work directs the inquiry.
+commitments. The authorized work directs the inquiry. Current shared locality
+naming is governed by Root `AGENTS.md`: new/adopting projects use `Work/`, while
+App v4 and Piping retain their existing `Design/` convention. This naming change
+does not rewrite the implementation examined here.
 
 The [deliverable CLI](../../tools/deliverables/README.md) exposes
 `neighborhood`, `impact`, `touches`, `dag-diff` and `check`. It reports source

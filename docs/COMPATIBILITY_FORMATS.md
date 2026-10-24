@@ -1,7 +1,8 @@
 # Retained format reference
 
 Compatibility reference for existing readers, not a development procedure.
-New deliverable work uses ScopeOfWork, Design and deliverable.yaml under AGENTS.md.
+New/adopting projects use ScopeOfWork, Work and deliverable.yaml under AGENTS.md;
+existing project locality conventions remain as recorded there.
 Dependency CSV descriptions below are historical source references, not supported
 authoring, query or adapter routes. Current dependencies use the native-only
 [deliverable method](../tools/deliverables/README.md); superseded dependency tools
