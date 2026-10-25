@@ -2391,6 +2391,7 @@
               "apps/desktop/src-tauri/src/worker_alloc.rs",
               "core/gui/viewport_editor/src/lib.rs",
               "core/library_import/library_import_document/src/lib.rs",
+              "core/loads/load_case_algebra/src/factor_sum.rs",
               "core/loads/load_case_algebra/src/lib.rs",
               "core/loads/load_case_algebra/src/s11k_tests.rs",
               "core/loads/primitive_loads/src/lib.rs",
