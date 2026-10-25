@@ -30,7 +30,7 @@ deliverable admits none.
 **Agent does:**
 
 1) Resolve `DECOMP_VARIANT`, `CONTEXT_ROOT`, and `DECOMPOSITION_PATH`. Parse the current decomposition state using the semantic section binding table in [the contract](contract.md) (§Variant Section Binding).
-2) Parse the human's request or the admitted evidence-backed proposal (including a `scope-change-packet` seed or an `scc-resolution-case`) into one or more atomic actions:
+2) Parse the human's request or the admitted evidence-backed proposal (including a `scope-change-packet` seed or bounded source-based dependency analysis) into one or more atomic actions:
    - `ActionType`
    - `EntityType`
    - `EntityID`
@@ -111,7 +111,7 @@ Action-specific tracing rules:
 **`REMOVE`**
 - Trace every reference to the entity being retired.
 - If the retired entity is a parent partition / parent entity, enumerate the full child-closure set and every ledger remapping that must be completed in the same amendment.
-- `PROJECT/SOFTWARE`: run `python3 tools/coordination/analyze_dep_closure.py {CONTEXT_ROOT} --output-dir {temp_dir}` and inspect estimate/schedule references.
+- `PROJECT/SOFTWARE`: derive the affected consumers with `tools.deliverables neighborhood` / `impact`, then inspect their actual local need conditions and estimate/schedule references. Use `construct-local-work-graph` and `tools/deliverables/README.md`; the CLI needs a project root in a Git repository with HEAD, and its cycles cover native deliverables only. Every query loads all project declarations/path-presence references; use it only within the authorized read scope. Otherwise inspect relevant `deliverable.yaml` sources directly and state reverse-link limits. Retirement alone does not invalidate an input artifact; assess its actual condition and accepted use before proposing a change.
 - `DOMAIN`: enumerate affected `HBA-*`, `CAT-*`, `KTY-*`, `SUB-*`, and canonical term occurrences. Count potential orphan conditions:
   - `UnassignedINUnits`
   - `UnitsWithoutKnowledgeTypeMapping`
@@ -134,7 +134,7 @@ Action-specific tracing rules:
 - Union of `REMOVE` impacts for all sources.
 - `ADD` impacts for the successor entity.
 - If a parent partition / parent entity is being merged, enumerate the combined child-closure set and the successor bindings for every child row and authoritative mapping.
-- List all references that will need retargeting.
+- Assess affected references against actual source conditions; list justified dependency changes without automatic retargeting.
 
 **`SPLIT`**
 - `REMOVE` impacts for the source entity.
@@ -242,7 +242,7 @@ Based on the approved amendment, produce a propagation plan **limited to the app
        `[{kind: "skill", name: "preparation", source: <descriptor.source>, sourceRootId: <descriptor.sourceRootId>}]`
        without hardcoding an origin, creates the folder structure and metadata
        files, and initializes production with `scope-of-work`, `MODE=INIT`.
-     - Expected files after incremental setup: `_CONTEXT.md`, `_STATUS.md` (`OPEN`), `_REFERENCES.md`, `_DEPENDENCIES.md`, placeholder `_SEMANTIC.md`
+     - Expected files after incremental setup: `_CONTEXT.md`, `_STATUS.md` (`OPEN`), `_REFERENCES.md`, `deliverable.yaml`, placeholder `_SEMANTIC.md`. Local needs retain the accepted identity; an empty list does not establish completeness.
      - Any propagation step or dispatched workflow that reads `_STATUS.md` must also read sibling `_MEMORY.md` / `MEMORY.md` when present as non-authoritative operational context.
    - `DOMAIN`:
      - Add new rows to the relevant decomposition annex CSVs (Domain Ledger, Knowledge Type Register, Knowledge Subject Register, Vocabulary Map, etc.)
@@ -276,10 +276,10 @@ Based on the approved amendment, produce a propagation plan **limited to the app
 
 5) **For `MERGE/SPLIT` actions**
    - Combine the relevant `REMOVE` + `ADD` propagation items
-   - Explicitly list reference-retargeting and rerun obligations
+   - Explicitly list reference-assessment and rerun obligations; dependency retargeting requires the affected consumer's actual condition/use and the accepted change
 
 6) **Downstream rerun advisory and KTY remediation dispatch plan**
-   - `PROJECT/SOFTWARE`: incremental setup (`project-setup`, `INCREMENTAL` mode) for added, retired and modified deliverables, including dependency extraction for them and their neighbours; estimate snapshot, scheduling, any scoped audits
+   - `PROJECT/SOFTWARE`: incremental setup (`project-setup`, `INCREMENTAL` mode) for added, retired and modified deliverables, including bounded local need assessment for them and affected consumers (derived on demand); estimate snapshot, scheduling, any scoped audits
    - `DOMAIN`: downstream knowledge-generation workflows, terminology QA / grep, and any coverage audit or regeneration workflow that consumes the decomposition
    - For `DOMAIN` amendments that affect KTY-local content, produce `KTY_Remediation_Manifest.csv` rows in the SCA snapshot plan. These rows are per-SCA action/evidence ledger rows, not a cumulative content-disposition surface.
    - Manifest actions drive post-acceptance dispatch:

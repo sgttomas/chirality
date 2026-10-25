@@ -7,11 +7,11 @@
 - Every `Proposed_SCA_Actions.csv` row has non-empty `EvidenceRefs`.
 - Every affected deliverable ID exists in the current decomposition authority or is explicitly marked `TBD`.
 - Packet text does not claim:
-  - dependency rows were changed;
+  - local need declarations were changed;
   - SCC closure was achieved;
   - WORKING_ITEMS (workflow: scope-change) was initiated;
   - project-wide blocked/unblocked state is reportable.
-- PKG-00 contains no `Dependencies.csv`.
+- The packet creates no dependency declarations or central dependency map; all local needs remain read-only.
 - `SCOPE_CHANGE_INIT.md` states that human initiation is required.
 
 ## Readiness Verdict

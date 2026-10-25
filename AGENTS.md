@@ -27,8 +27,8 @@ remains accountable for acceptance and reliance.
 4. Carry authorized work through implementation, proportionate verification and
    integration. Use one coordinator for a shared result, disjoint concurrent
    writes, and owners who stay with their work through repairs.
-5. Update the current ScopeOfWork, Design or dependency condition when its meaning
-   changes. Apply already-authorized decisions without asking again. Leave
+5. Update the current ScopeOfWork, work material or dependency condition when
+   its meaning changes. Apply already-authorized decisions without asking again. Leave
    unchanged declarations alone; Git preserves their history.
 6. Return the usable result, checks, material findings and reserved choices.
    Once the work is integrated, delete the worktrees, branches, build output and
@@ -38,10 +38,19 @@ remains accountable for acceptance and reliance.
 
 ## Deliverables and records
 
-Active project deliverables live in `execution/PKG-nn/DEL-nn-nn/`:
-`ScopeOfWork.md` holds commitments and acceptance criteria, `Design/` holds useful
-technical detail, and `deliverable.yaml` holds needs, conditions and code/check
-pointers. The consumer states its needs; tools derive reverse links and graphs.
+The shared convention for new projects and projects that explicitly adopt it
+uses deliverable localities under `execution/PKG-nn/DEL-nn-nn/`:
+`ScopeOfWork.md` holds commitments and acceptance criteria; `deliverable.yaml`
+holds needs, conditions and code/check pointers; `Work/` holds technical
+reasoning, execution detail, working artifacts and deliverable outputs kept
+locally. Make maturity and issue status explicit. Code and other outputs may
+retain their actual product/source homes, referenced from the locality. The
+consumer states its needs; tools derive reverse links and graphs.
+
+App v4 and `chirality-piping` retain their existing `Design/` convention under
+their project loop entries. Shared methods follow the selected project's
+adopted convention; the new default does not rename those localities or create
+an additional directory. Technical design concepts and filenames are unchanged.
 
 From the repository root, use `python3 -m tools.deliverables --project <project>`,
 where `<project>` is the project path such as `projects/chirality-piping`, with `neighborhood <DEL>`, `impact <DEL>`, `touches <rev|PR:n>` or
@@ -86,8 +95,9 @@ releases. Use `.agents/skills/chirality-change/SKILL.md` for Git conventions.
 
 ## Current contracts
 
-Product commitments live in the project's PRD and named companions, ScopeOfWork
-and Design. Consult these shared references where applicable:
+Product commitments live in the project's PRD, named companions and ScopeOfWork.
+Its adopted work locality holds the related technical and execution material.
+Consult these shared references where applicable:
 
 - [Product boundaries](docs/PRODUCT_BOUNDARIES.md): professional accountability,
   domain ownership, protected writes and human acceptance. Frozen Runtime

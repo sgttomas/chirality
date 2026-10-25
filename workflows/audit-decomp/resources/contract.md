@@ -13,7 +13,7 @@ Parse the decomposition document (Ledger, Objectives, Partitions, and Production
 
 ## Non-negotiable invariants
 
-- **Read-only everywhere.** Never modify any deliverable file, `_CONTEXT.md`, `_STATUS.md`, `Dependencies.csv`, or the decomposition document.
+- **Read-only everywhere.** Never modify any deliverable file, `_CONTEXT.md`, `_STATUS.md`, `deliverable.yaml`, or the decomposition document.
 - **Evidence-first.** Every finding must trace to a specific decomposition section/row AND a specific filesystem path (or absence thereof).
 - **No invention.** If data is ambiguous or missing, mark as `UNKNOWN` / `INCOMPLETE` and continue. Do not infer intent.
 - **Deterministic.** Deterministic inventories and explicit semantic judgments.

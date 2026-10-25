@@ -77,7 +77,7 @@ def test_coverage_preserves_columns_and_reports_resolved_format_states(tmp_path:
         rows = list(csv.DictReader(handle))
 
     assert list(rows[0]) == [
-        "DeliverableID", "Package", "HasDependenciesCsv", "HasSemantic",
+        "DeliverableID", "Package", "HasDependencyDeclaration", "HasSemantic",
         "HasEstimate", "EstimateCount", "HasDatasheet", "HasSpecification",
         "HasGuidance", "HasProcedure", "HasScopeOfWork", "ProductionFormatState",
     ]
@@ -104,3 +104,20 @@ def test_coverage_preserves_columns_and_reports_resolved_format_states(tmp_path:
     with authorized_output.open(newline="", encoding="utf-8") as handle:
         authorized_rows = list(csv.DictReader(handle))
     assert authorized_rows[2]["ProductionFormatState"] == "MIGRATION_DUAL"
+
+
+def test_dependency_presence_uses_native_file_in_flat_and_phase_localities(tmp_path: Path) -> None:
+    execution = tmp_path / "execution"
+    flat = execution / "PKG-01" / "DEL-01-01"
+    phase = execution / "PKG-02" / "2_Checking" / "DEL-02-01"
+    for path in (flat, phase):
+        path.mkdir(parents=True)
+    (flat / "deliverable.yaml").write_text("id: DEL-01-01\nneeds: []\n")
+    (phase / "Dependencies.csv").write_text("historical artifact; not current dependency input\n")
+    output = tmp_path / "coverage.csv"
+    subprocess.run([sys.executable, str(SCRIPT), str(execution), str(output)], check=True)
+    with output.open(newline="") as stream:
+        rows = list(csv.DictReader(stream))
+    assert [(row["DeliverableID"], row["HasDependencyDeclaration"]) for row in rows] == [
+        ("DEL-01-01", "Y"), ("DEL-02-01", "N"),
+    ]

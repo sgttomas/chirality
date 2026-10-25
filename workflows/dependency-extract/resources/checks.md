@@ -1,96 +1,38 @@
-# dependency-extract — QA Checks
+# Check a local need declaration
 
-This file enumerates the mandatory invariants and local quality checks that must hold for a `dependency-extract` run to be considered valid.
+Inspect the saved `deliverable.yaml`, not just the proposed text.
 
-## Non-negotiable invariants
+1. The write stayed within the selected local file and `needs` boundary; a new
+   file uses the established stable identity, agreeing with a containing folder
+   that names a DEL identity. Existing non-need fields, scope,
+   acceptance, lifecycle, supplier authorship and technical holds remain intact.
+2. YAML is parseable without duplicate keys. `id` is the accepted native
+   `DEL-nn-nn` identity and `needs` is a list. Every entry has a supported `from`
+   string and a nonempty `condition`. Optional `when` is text, `gating` is a
+   Boolean and `direction` is `upstream` or `downstream`. Evidence and document
+   paths are project-relative and contained.
+3. Each condition states an actual input/use with its case, maturity and trigger
+   where material. Its scope/design/source basis is inspectable or its missing
+   basis is explicit. File presence, lifecycle or a supplier declaration is not
+   recorded as satisfaction.
+4. Native inputs live at the consumer. Actual outward nonlocal obligations live
+   at the producer with `direction: downstream` and `gating: false`; they are
+   not treated as incoming requirements. No native downstream mirrors or
+   supplier-internal work structure were created.
+5. Distinct same-endpoint cases remain distinct. A repeated source statement
+   does not add a duplicate. Changes/removals have an actual semantic reason;
+   absence from a text scan is insufficient. Unknown sources remain unknown.
+6. No hierarchy anchors, row IDs, automatic status/maturity transitions,
+   satisfaction fields, routine histories or second dependency artifacts were
+   introduced. Repeating the refresh against unchanged evidence leaves the
+   needs unchanged.
 
-1. **Evidence-first.** Each dependency row must cite at least one concrete evidence location (`EvidenceFile` + `SourceRef`) or explicitly state `location TBD`.
-2. **Do not modify source documents.** Never edit deliverable docs, `_REFERENCES.md`, or decomposition outputs.
-3. **Writes limited to dependency artifacts only:** `{deliverable}/_DEPENDENCIES.md`, `{deliverable}/Dependencies.csv`, and the TASK run record under `{deliverable}/_run_records/`.
-4. **No invention.** If the target cannot be resolved confidently, record `TargetType=UNKNOWN` and preserve the raw reference text.
-5. **No hierarchy discovery.** This workflow does not create or restructure the decomposition Tree; it only anchors to identifiers that already exist.
-6. **Straight-through.** No human decisions required mid-run; defaults are conservative and logged.
-7. **Non-destructive updates.** Do not delete rows; retire extracted rows when no longer seen.
-8. **Epistemic separation.** Distinguish FACT vs ASSUMPTION vs PROPOSAL in `Notes`.
-9. **Schema discipline.** `Dependencies.csv` must remain parseable and include all 29 canonical required columns.
-10. **Enum normalization on write.** Normalize legacy and project-specific variants to canonical enums.
-11. **Lifecycle hygiene.** Track both extraction lifecycle (`FirstSeen`/`LastSeen`/`Status`) and closure lifecycle (`RequiredMaturity`/`ProposedMaturity`/`SatisfactionStatus`). `Status` is only `ACTIVE` or `RETIRED`; candidate/non-gating dispositions are worklist/review states, not `Status` values.
-12. **Referential integrity.** `FromDeliverableID` must match the current deliverable; preserve unresolved targets as `UNKNOWN`/`TBD` rather than guessing.
-13. **Information flow only.** Do not create edges that are merely "coordination" or "structural adjacency."
-14. **Declared entries mirrored.** Each readable entry in the declared sections of `_DEPENDENCIES.md` has exactly one ACTIVE `Origin=DECLARED` row in `Dependencies.csv`. That row is either a mirror row marked `mirrored_from=_DEPENDENCIES.md` or an existing direct declaration of the same `Direction` and target. Mirror rows copy only the stated fields and leave the rest `TBD`/`UNKNOWN`, and a rerun with unchanged declarations adds no rows. A mirror row whose entry was removed is `RETIRED`, never deleted. Existing human-owned sections are read, never edited (WORKFLOW.md Function 3, "Mirror declared entries"); a missing one is only added as a `TBD` placeholder (Function 4). A mirror row's `DependencyType` comes from its section heading (`PREREQUISITE` upstream, `ENABLES` downstream), noted as `type_from=section_heading`; a legacy informational downstream heading gives `IMPLICIT`/`MEDIUM`.
-15. **Architecture-basis consistency.** When `ARCHITECTURE_BASIS_POLICY=PKG00_CONSISTENCY_TRACKERS`, supported `DEL-00-*` rows are valid consistency dependencies; do not retire them merely because they point to PKG-00.
+Use the [tool guide](tools.md) for an available structural query. Inspect its
+errors and partial coverage before interpreting results. If the tool is not
+available or its broader reads are unauthorized, directly inspect the selected
+YAML and relevant references and report that validation limit. Never claim a
+tool pass from inspection alone.
 
-## Mandatory local quality checks (WORKFLOW.md Function 5)
-
-### Schema validation
-
-- Run: `python3 tools/validation/validate_dependencies_schema.py {deliverable_folder}/Dependencies.csv`
-  - Confirms all 29 required v3.1 columns are present and CSV is parseable.
-- `DependencyID` is present and unique within the file.
-
-### Enum validation
-
-- Validate enum fields on write using `python3 tools/validation/validate_enum.py`:
-  - `DEPENDENCY_CLASS`, `ANCHOR_TYPE`, `DIRECTION`, `DEPENDENCY_TYPE`, `TARGET_TYPE`, `EXPLICITNESS`, `CONFIDENCE`, `ORIGIN`, `STATUS`, `SATISFACTION_STATUS`
-- Normalize legacy values on write. `INBOUND`/`OUTBOUND` become `UPSTREAM`/`DOWNSTREAM`; legacy or project-specific dependency labels are mapped to canonical `DependencyType` values and preserved in `Notes`.
-- Reject `Status=CANDIDATE` in a canonical register; move candidate visibility to a non-authoritative worklist or a candidate-disposition note on a `RETIRED` row.
-
-### ID format validation
-
-- Validate all ID fields: `bash tools/validation/validate_id_format.sh DEL {FromDeliverableID}`, `bash tools/validation/validate_id_format.sh PKG {FromPackageID}`, `bash tools/validation/validate_id_format.sh DEP {DependencyID}`, etc.
-- `DependencyID` follows `DEP-{PKG}-{DEL}-{SEQ}` (`docs/COMPATIBILITY_FORMATS.md#stable-dependency-identities`, e.g. `DEP-01-01-001`) and its prefix agrees with `FromDeliverableID`.
-
-### Evidence & provenance checks
-
-- ACTIVE rows contain `EvidenceFile` and `SourceRef` (or explicit `location TBD`).
-- `_DEPENDENCIES.md` counts do not contradict `Dependencies.csv`.
-- Obvious duplicate extracted rows are merged or explicitly justified in `Notes`.
-- Optional (when the brief permits reading the execution root): `python3 tools/validation/validate_decomposition_registers.py {EXECUTION_ROOT} --families EVQ,DRB`. It reports a blank `EvidenceQuote` as `EVQ-003`, a placeholder `SourceRef` such as `location TBD` as `EVQ-004`, and a `DependencyID` prefix that disagrees with `FromDeliverableID` as `DRB-006`. `location TBD` satisfies invariant 1 for this run but remains an `EVQ-004` finding; record in-scope findings in Run Notes and never invent a quote or locus to clear them.
-
-### Tree x DAG integrity checks
-
-- **Parent anchor check:**
-  - Count rows where `Status=ACTIVE`, `DependencyClass=ANCHOR`, `AnchorType=IMPLEMENTS_NODE`.
-  - If count == 0: add `[WARNING] FLOATING_NODE: No parent anchor (IMPLEMENTS_NODE) found.` to Run Notes.
-  - If count > 1: add `[WARNING] AMBIGUOUS_ANCHOR: Multiple parent anchors found.` to Run Notes.
-
-## Validity requirements
-
-A `dependency-extract` run is valid when all of the following hold:
-
-- Source documents in scope are not modified.
-- `Dependencies.csv` exists (created if missing) and is parseable.
-- Required columns are present (including `DependencyClass`, `AnchorType`, `TargetRefID`).
-- Every ACTIVE row includes `EvidenceFile` and `SourceRef` (or `location TBD`).
-- Targets are not invented (`UNKNOWN` permitted).
-- Updates are non-destructive (no row deletions).
-- `DependencyID` values are unique within each deliverable register.
-- Write-form enums are canonical (legacy values normalized and not re-emitted).
-- `_DEPENDENCIES.md` summary/lifecycle counts are consistent with `Dependencies.csv`.
-- Declared entries are mirrored as `Origin=DECLARED` rows (invariant 14); unreadable entries are listed in Run Notes as `[WARNING] DECLARED_ENTRY_UNREAD`.
-- If decomposition cannot be located, `_DEPENDENCIES.md` Run Notes include `[WARNING] MISSING_DECOMPOSITION` and anchor validation/label resolution is explicitly marked degraded.
-
-## Non-fatal integrity warnings (required)
-
-The following warnings MUST be emitted to `_DEPENDENCIES.md` Run Notes when conditions are met (they do not fail the run):
-
-- **`[WARNING] FLOATING_NODE`** — no ACTIVE parent anchor (zero rows with `Status=ACTIVE`, `DependencyClass=ANCHOR`, `AnchorType=IMPLEMENTS_NODE`).
-- **`[WARNING] AMBIGUOUS_ANCHOR`** — multiple ACTIVE parent anchors (more than one row with the same classification).
-- **`[WARNING] MISSING_DECOMPOSITION`** — decomposition document could not be located; anchor validation/label resolution is degraded.
-- **`[WARNING] DECLARED_ENTRY_UNREAD`** — a declared entry's direction or target could not be read, so it was not mirrored; the raw line is recorded.
-- **`[WARNING] DECLARED_MISMATCH`** — a direct `Origin=DECLARED` CSV row and a declared entry name the same edge with different fields; both are left unchanged and the human-owned section governs readers.
-
-## Failure-reporting expectations
-
-If checks fail and cannot be auto-repaired conservatively:
-- Keep files non-destructively updated.
-- Add explicit issues to `_DEPENDENCIES.md` Run Notes.
-- Set uncertain fields to `TBD`/`UNKNOWN` rather than inventing values.
-
-## Schema-freeze reminder (Dependencies.csv v3.1)
-
-The 29 required columns are fixed by the v3.1 schema and must appear in `Dependencies.csv` (order enforced by `validate_dependencies_schema.py`):
-
-`RegisterSchemaVersion`, `DependencyID`, `FromPackageID`, `FromDeliverableID`, `FromDeliverableName`, `DependencyClass`, `AnchorType`, `Direction`, `DependencyType`, `TargetType`, `TargetPackageID`, `TargetDeliverableID`, `TargetRefID`, `TargetName`, `TargetLocation`, `Statement`, `EvidenceFile`, `SourceRef`, `EvidenceQuote`, `Explicitness`, `RequiredMaturity`, `ProposedMaturity`, `SatisfactionStatus`, `Confidence`, `Origin`, `FirstSeen`, `LastSeen`, `Status`, `Notes`
-
-Extension columns `EstimateImpactClass` and `ConsumerHint` are optional (non-breaking); populating them is required only when `CONSUMER_CONTEXT=TASK_ESTIMATING` and evidence supports the values.
+Return malformed or ambiguous existing entries that cannot be repaired without
+changing disputed meaning. A structurally valid file or a successful query does
+not establish completeness, input suitability, engineering release or readiness.

@@ -36,10 +36,13 @@ record that states only that two objects are linked loses the condition that
 gives the link its practical meaning. Recording a global completion label can
 hide the fact that one consumer's need is met while another's is not.
 
-Active project work is organized around deliverable folders. A deliverable's
-`ScopeOfWork.md` holds commitments and acceptance criteria, `Design/` holds
-useful technical detail, and `deliverable.yaml` identifies the deliverable and
-states its needs, with optional code paths and check references. A consumer
+The shared convention for new/adopting projects organizes work around
+deliverable localities. `ScopeOfWork.md` holds commitments and acceptance
+criteria; `Work/` holds technical reasoning, execution detail and locally kept
+working artifacts/outputs, with maturity and issue status explicit; and
+`deliverable.yaml` identifies the deliverable and states its needs, with optional
+code paths and check references. Existing App v4 and Piping localities retain
+their recorded `Design/` convention. A consumer
 declares what it needs from a supplier, and tools derive the reverse links and
 graph views.
 
@@ -111,14 +114,15 @@ Root owns shared components in their functional locations: `agents/`,
 references. The conversation defines the current work on Root. There is no
 standing requirement to generate a product decomposition for every shared edit.
 
-Active project deliverables use the following repository convention:
+New/adopting project deliverables use the following shared convention; existing
+App v4 and Piping localities retain `Design/` under their project entries:
 
 ```text
 projects/<project>/execution/
 └── PKG-nn/
     └── DEL-nn-nn/
         ├── ScopeOfWork.md
-        ├── Design/             # where useful
+        ├── Work/               # locally kept work and outputs; status explicit
         └── deliverable.yaml
 ```
 
@@ -151,7 +155,7 @@ all useful content fits a closed schema:
 | Artifact | Purpose | What it does not establish |
 |---|---|---|
 | `ScopeOfWork.md` | Intended result, commitments and acceptance criteria | That the result exists or is accepted |
-| `Design/` | Technical reasoning, constraints and relevant sources | That every assumption has been demonstrated |
+| `Work/` | Technical reasoning, execution detail and locally kept working artifacts/outputs; maturity and issue status explicit | That content is suitable, issued or accepted merely because it is here |
 | `deliverable.yaml` | Needs, conditions and useful code/check pointers | Completion, suitability or an execution schedule |
 
 A decision changes the text it governs. The PR describes the change, its reason,

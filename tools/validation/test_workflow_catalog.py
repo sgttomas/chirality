@@ -86,6 +86,10 @@ def test_root_index_is_fresh_and_classification_is_bounded():
     assert len(skills) == 8 and {item["compatibility"] for item in skills} == {"canonical"}
     assert not any("navigation" in item for item in skills)
     assert index["legacy"]["convertedWorkflowAliases"]["deliverable-consistency"] == {"kind": "skill", "name": "deliverable-consistency"}
+    # Current dependency authoring has one native path, with no central-DAG
+    # package or legacy dispatch alias silently restoring the former method.
+    assert not {"project-dag", "scc-resolution-case"} & {item["name"] for item in workflows}
+    assert not {"dependency-extract", "scc-resolution-case"} & set(index["legacy"]["convertedWorkflowAliases"])
 
 
 def test_root_navigation_partition_is_complete_and_ordered():

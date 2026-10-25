@@ -29,11 +29,11 @@ Deterministic tools handle enum validation and snapshot folder / pointer managem
 
 - No hidden reliance on tools outside the declared list unless the human expands AllowedTools. No writes outside declared scope.
 - No writes outside `{ESTIMATES_ROOT}`.
-- No modification of any file in deliverable folders, decomposition outputs, dependency registers, or lifecycle files.
+- No modification of any file in deliverable folders, decomposition outputs, local need declarations, or lifecycle files.
 - No overwriting an existing snapshot folder.
 - No internet fetching (only local `PRICE_SOURCES`).
 - No treating prior snapshots under `_Estimates/` as pricing sources unless explicitly included in `PRICE_SOURCES`.
 
 ## Write boundary
 
-Write ONLY under `{ESTIMATES_ROOT}` (tool-root-only), into a new per-run snapshot folder `{ESTIMATES_ROOT}/EST_{OUTPUT_LABEL}_{YYYY-MM-DD}_{HHMM}/`. Optionally update `{ESTIMATES_ROOT}/_LATEST.md` when `UPDATE_LATEST_POINTER=TRUE`. No writes outside `ESTIMATES_ROOT`. No modification of project truth (deliverable content, lifecycle files, decomposition outputs, dependency registers).
+Write ONLY under `{ESTIMATES_ROOT}` (tool-root-only), into a new per-run snapshot folder `{ESTIMATES_ROOT}/EST_{OUTPUT_LABEL}_{YYYY-MM-DD}_{HHMM}/`. Optionally update `{ESTIMATES_ROOT}/_LATEST.md` when `UPDATE_LATEST_POINTER=TRUE`. No writes outside `ESTIMATES_ROOT`. No modification of project truth (deliverable content, lifecycle files, decomposition outputs, local need declarations).

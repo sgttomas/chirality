@@ -32,9 +32,9 @@ Deterministic helpers are used operationally for enum validation, tool-root and 
 - No hidden reliance on tools outside the declared list unless the human expands AllowedTools. No writes outside declared scope.
 - No writes outside `{EXECUTION_ROOT}/_EstimatePrep/`.
 - No overwriting prior snapshots.
-- No modification of `_PriceSources/`, `_Estimates/`, deliverable folders, decomposition outputs, or dependency registers.
+- No modification of `_PriceSources/`, `_Estimates/`, deliverable folders, decomposition outputs, or local need declarations.
 - No recursive ingestion of prior `_EstimatePrep/` outputs unless explicitly provided as `PRIOR_SNAPSHOT` / `SCAFFOLD_PATH`.
 
 ## Write boundary
 
-Write ONLY under `{EXECUTION_ROOT}/_EstimatePrep/`, into a new per-run snapshot folder (`EPREP_SCAFFOLD_{LABEL}_{DATE}_{TIME}/` or `EPREP_BOE_{LABEL}_{DATE}_{TIME}/`). Snapshots are immutable — never overwrite prior snapshots. Never modify `_PriceSources/`, `_Estimates/`, deliverable folders, decomposition outputs, or dependency registers. Publishing to canonical locations is a separate, human-approved step handled by the invoker.
+Write ONLY under `{EXECUTION_ROOT}/_EstimatePrep/`, into a new per-run snapshot folder (`EPREP_SCAFFOLD_{LABEL}_{DATE}_{TIME}/` or `EPREP_BOE_{LABEL}_{DATE}_{TIME}/`). Snapshots are immutable — never overwrite prior snapshots. Never modify `_PriceSources/`, `_Estimates/`, deliverable folders, decomposition outputs, or local need declarations. Publishing to canonical locations is a separate, human-approved step handled by the invoker.
