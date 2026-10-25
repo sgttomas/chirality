@@ -7,10 +7,30 @@ import json
 import os
 from pathlib import Path
 import platform
+import re
 import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
+# Names `hosted_ci.py` admits into the product job's Playwright command.
+BROWSER_PROJECT = re.compile(r'[a-z0-9-]+')
+BROWSER_SPEC = re.compile(r'[A-Za-z0-9_.-]+\.spec\.ts')
+
+
+def browser_commands(desktop_mode, project, specs):
+    """The browser verification's command identity: the build, the exact
+    Chromium project and spec set the product job ran, and the desktop suite
+    when it was selected. A pass without a spec cannot stand for a run that
+    selects it."""
+    if desktop_mode is None:
+        raise SystemExit('Browser verification key needs the desktop selection')
+    names = (specs or '').split()
+    if not project or not BROWSER_PROJECT.fullmatch(project) or not names or not all(BROWSER_SPEC.fullmatch(n) for n in names):
+        raise SystemExit('Browser verification key needs the selected Chromium project and specs')
+    commands = ['production-build', project + ':' + ','.join(names)]
+    if desktop_mode == 'full':
+        commands.insert(0, 'desktop-test')
+    return commands
 
 
 def included(path):
@@ -54,6 +74,8 @@ def main():
     parser.add_argument('--suite', choices=['numerical', 'browser'], required=True)
     parser.add_argument('--plan', type=Path)
     parser.add_argument('--desktop-mode', choices=['full', 'not-applicable'])
+    parser.add_argument('--browser-project')
+    parser.add_argument('--browser-specs', help='space-separated, in the order the product job runs them')
     parser.add_argument('--record', type=Path)
     parser.add_argument('--keys-dir', type=Path)
     parser.add_argument('--expect', action='append', default=[])
@@ -69,14 +91,11 @@ def main():
     if args.record is None:
         raise SystemExit('--record is required')
     if args.action == 'key':
-        commands = ['production-build', 'chromium-desktop:r2-smoke,b3b-project-persistence,rotation-glyph']
         selection = None
         if args.suite == 'browser':
-            # A pass without the full desktop suite cannot stand for one with it.
-            if args.desktop_mode is None:
-                raise SystemExit('Browser verification key needs the desktop selection')
-            if args.desktop_mode == 'full':
-                commands.insert(0, 'desktop-test')
+            # A pass without the full desktop suite, or without a selected
+            # spec, cannot stand for a run that needs it.
+            commands = browser_commands(args.desktop_mode, args.browser_project, args.browser_specs)
         if args.suite == 'numerical':
             path = ROOT / 'projects/chirality-piping/tools/ci/numerical_ci.py'
             spec = importlib.util.spec_from_file_location('numerical_cache_plan', path)

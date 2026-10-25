@@ -286,7 +286,7 @@
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "2346afb0d18af398a9409c227e3f81df8b2c014afe5df39ec8ae3e1f94f83095",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "af57dee6598e3018fb7c4cb907629dff10496f951b45bfb0fef7fba1a6dcfe5d",
+      "core/product_physics/Cargo.toml": "b926159f551a7b0c8182e6fef9c0c259bc69971573fcb5c625d148b70b59af94",
       "core/reporting/audit_manifest/Cargo.toml": "b8bc4623a383ed2c22205326bc737486becd9d931bf869e1e8cf40e147f4fad7",
       "core/reporting/pdf_emitter/Cargo.toml": "cd9871fe951f3157dce93fb550540bf4e55dd48e469ba49612208a8b669b6441",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
@@ -294,7 +294,7 @@
       "core/reporting/report_package/Cargo.toml": "fdfd00caa2361dd0aa74a9012c3c11750164a8068e16975a24843e59324d8c32",
       "core/reporting/report_renderer/Cargo.toml": "4fdfc6954384445ca3a91af393deb8d3e5e6994ab62fbe43c1cafebbd9f68147",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
-      "core/reporting/result_export/Cargo.toml": "2236cace6effc89be0211b954b455f0ba26f3dd1d7a8ebef2e18a8ba99654ea2",
+      "core/reporting/result_export/Cargo.toml": "7e37efa559f984e439eb5db5423602ed6490805d5b3081bab9632c5d9236cdae",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "7018210dadfb7c2b855298730f5f8cddedbe09f7f03b05421b81c3694f873b18",
       "core/rules/rule_check_runner/Cargo.toml": "9a2be1a226d4f0da6e2f6ba329eec3c1ebbdbe5b51d6f03f953c32ab3cb03794",
@@ -304,7 +304,7 @@
       "core/serialization/canonical_json/Cargo.toml": "fb2259bdfcb6adebc877b46e4e1b3126fdf1b08c0b6441a5e4ba49ab75e670a0",
       "core/solver/curved_bend/Cargo.toml": "5d7cf1288eac698c209aa4fd7493fa669aa57494950e75374ac07248001502d8",
       "core/solver/diagnostics/Cargo.toml": "11db1409fcfd3b0312ef80085e36eac4d7a66eb0f4298832137119835b1c92e8",
-      "core/solver/frame_kernel/Cargo.toml": "9fe28d22b53a5ce6ac4348d10fbc3e75153de55008a478a035e56f7f5a1444bc",
+      "core/solver/frame_kernel/Cargo.toml": "c5af8b1fb9c72c24ca6baf086e9d3e03b0bb4044015a070122e12043866c3f62",
       "core/solver/linear_supports/Cargo.toml": "8d38681e7d09f9f1502d8986ccbea888bfb678b0ea8022885d3f67503ba4881d",
       "core/solver/nonlinear_integration/Cargo.toml": "5ee20d69fc28c60c3181fac9e847c3a6b16715edc23cc80f628cdc178e279596",
       "core/solver/nonlinear_supports/Cargo.toml": "c34c7d2a46294e3c2ab57b4b15028c48664670dfe25278b8b6d22147743a10a6",
@@ -1630,7 +1630,7 @@
         ]
       },
       "core/reporting/result_export/tests/load_reference_contract.rs": {
-        "sha256": "557553e711cf9ed47fa721ea709877c4c0c404c104490f5d5b5b59697dbdc4a2",
+        "sha256": "fb51cbf14fe3f3509a88a6fd7574a2bf08ef8732548068bf3e523f690bc58d1e",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -2235,7 +2235,7 @@
         ]
       },
       "core/reporting/result_export/tests/retained_precision_carriers.rs": {
-        "sha256": "f030a5bcf89507009d5e63a3fb8f9674de14af6490c5dcd2bf2488cc4fbcb655",
+        "sha256": "f8a4f50b02d398d97bc5818ea2ce7d781f1962cb234355e60a4a748aa8aef501",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -2527,6 +2527,7 @@
               "core/reporting/result_export/src/connector_evidence.rs",
               "core/reporting/result_export/src/declared_member_load.rs",
               "core/reporting/result_export/src/derivative.rs",
+              "core/reporting/result_export/src/global_end_evidence.rs",
               "core/reporting/result_export/src/lib.rs",
               "core/reporting/result_export/src/load_reference.rs",
               "core/reporting/result_export/src/load_reference_source.rs",
@@ -2720,7 +2721,7 @@
         }
       },
       "core/reporting/result_export/tests/retained_precision_contract.rs": {
-        "sha256": "acf50575218bdac63b00a9e4ad7cbc644444383cb9d6ffe70cd87dbb0d43d024",
+        "sha256": "dbfefc42852df20d8b98913275bd6bd3d68e41aba0c7bee556961837f4ffc9a5",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -2879,7 +2880,7 @@
         ]
       },
       "core/reporting/result_export/tests/retained_precision_derivative_golden.rs": {
-        "sha256": "e5f40d996b69d1e5fd6c98cf6dc5fb264fbe7d03cd26602bf27647df68bf9845",
+        "sha256": "1bf77032541515d7bf6630c83ac09f9b7a5386fa862a6c618ea0aac3243685ae",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -4396,7 +4397,7 @@
         ]
       },
       "core/product_physics/src/w1_source_census_tests.rs": {
-        "sha256": "4500c50b3dd9a3aaa88c994b473bf02a81a954c8706f3dd3d32a7558c949d9ff",
+        "sha256": "1f3f88d9450fc25a0a1aecdf1bb95c64aa33b82d8458c5a0726e46610a1bdd53",
         "source_trees": [
           "core/loads/self_weight_wasm/Cargo.toml",
           "core/model_operations/operation_applier/Cargo.toml",
@@ -5221,6 +5222,37 @@
     "files": [
       "fixtures/product_preview/invented_demo_model.json",
       "fixtures/product_preview/rf_skew_t_cant_off_122_r1e-04.desktop_model.json"
+    ]
+  },
+  "piping_browser_journeys": {
+    "description": "Desktop browser specs the product job runs on one Chromium project. The core specs run whenever the job runs. A group's specs are added when the PR diff changes one of its paths, including the specs themselves, and for shared or unmatched inputs and full coverage. Paths are project-relative.",
+    "project": "chromium-desktop",
+    "core": [
+      "r2-smoke.spec.ts",
+      "b3b-project-persistence.spec.ts",
+      "rotation-glyph.spec.ts",
+      "result-overlays.spec.ts"
+    ],
+    "groups": [
+      {
+        "name": "project-open-new-replace",
+        "reason": "Open, New and Replace of an edited project and the unsaved-changes guard (W-12; #1589 broke these specs without a hosted check, #1609)",
+        "paths": [
+          "apps/desktop/src/features/project-storage/**",
+          "apps/desktop/src/features/workspace/workspaceSession.ts",
+          "apps/desktop/src/services/projectService.ts",
+          "apps/desktop/e2e/ui-foundation.spec.ts",
+          "apps/desktop/e2e/c3-viewport-visibility.spec.ts",
+          "apps/desktop/e2e/gui-workflow-validation.spec.ts",
+          "apps/desktop/e2e/linear-authoring.spec.ts"
+        ],
+        "specs": [
+          "ui-foundation.spec.ts",
+          "c3-viewport-visibility.spec.ts",
+          "gui-workflow-validation.spec.ts",
+          "linear-authoring.spec.ts"
+        ]
+      }
     ]
   }
 }
