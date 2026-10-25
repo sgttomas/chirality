@@ -57,7 +57,7 @@ def test_litany_line_in_scope_of_work_is_flagged(tmp_path):
     repo = _repo(tmp_path)
     _write(
         repo,
-        "execution/PKG-01/1_Working/DEL-01-01/ScopeOfWork.md",
+        "execution/PKG-01/DEL-01-01/ScopeOfWork.md",
         f"# SOW\n\n{LITANY_LINE}",
     )
     findings = validator.validate_claims_language(repo)
@@ -104,7 +104,7 @@ def test_two_terms_are_not_a_litany(tmp_path):
 def test_excluded_paths_are_not_scanned(tmp_path):
     repo = _repo(tmp_path)
     for rel in (
-        "execution/PKG-01/1_Working/DEL-01-01/_run_records/RUN.md",
+        "execution/PKG-01/DEL-01-01/_run_records/RUN.md",
         "execution/_Reconciliation/notes.md",
         "docs/_history/2026-01-01_old.md",
         "docs/security/threat_model.md",
@@ -236,7 +236,7 @@ def test_acceptance_sentence_outside_product_source_is_clean(tmp_path):
     )
     _write(
         repo,
-        "execution/PKG-01/1_Working/DEL-01-01/ScopeOfWork.md",
+        "execution/PKG-01/DEL-01-01/ScopeOfWork.md",
         f"# SOW\n\n{BS_ACCEPT}\n{variant}",
     )
     _write(repo, "docs/user_guide/results.md", f"# Results\n\n{variant}")
@@ -306,7 +306,7 @@ def test_scope_of_work_not_scanned_when_wave2_gate_off(tmp_path, monkeypatch):
     repo = _repo(tmp_path)
     _write(
         repo,
-        "execution/PKG-01/1_Working/DEL-01-01/ScopeOfWork.md",
+        "execution/PKG-01/DEL-01-01/ScopeOfWork.md",
         "No certification, sealing, approval, or code-compliance claim.\n",
     )
     assert _codes(repo) == []
