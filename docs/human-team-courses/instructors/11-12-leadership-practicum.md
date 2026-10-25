@@ -6,6 +6,8 @@ Read this guide and the learner courses before teaching. Follow the [agent instr
 
 The case supports several defensible recommendations. Assess their basis, conditions, consequences, and authority. Do not require one preferred organizational arrangement.
 
+Learners work with real agents in both courses. Course 11 keeps each classical lesson, states the cost it answered, shows what agents change, and adds a lesson on leading the arrangement of people and agents. Course 12 keeps the D03 events, role cards, decision scripts, and facilitator limits, and adds what each role directs agents to do and must examine itself. The classical answers stay correct: the Northbank totals, sequences, authority conclusions, and keyed answers are the same whoever drafted the work. Follow the teaching guide's [method for assessing agent-assisted work](../instructor-guide.html#assess-agent-assisted-work) in both courses.
+
 ## Governing case facts
 
 Preserve these distinctions throughout both courses:
@@ -22,20 +24,22 @@ Preserve these distinctions throughout both courses:
 
 Do not add a legal clause, technical calculation, selected configuration, test result, or approval to close a gap.
 
+The agents hold no appointment under A01 and, in Course 12, no role card. The records do not show how any Northbank document was produced, so a learner's statement about Northbank's agent use is a teaching assumption and must be labelled as one. Do not accept a claim that agents would save time or cost on a particular Northbank activity without evidence for it.
+
 A facilitator decision can create a new simulated event under D03. Identify its scope explicitly and preserve the preceding source basis.
 
 ## Course 11 session directions
 
-Use a six-hour session plan, divided across sessions if needed.
+Use a seven-hour session plan, divided across sessions if needed. The earlier plan used six hours. The added hour covers Lesson 6, the unaided first pass and agent exercises in the practice, and the defense through changed premises.
 
 | Activity | Time | Facilitator action |
 | --- | ---: | --- |
 | Reading and source comparison | 1 hour | Check the distinction between facts, forecasts, proposals, and hypotheses. |
-| Lessons and worked case | 1.25 hours | Ask participants to explain the mechanisms behind each coupled effect. |
-| Reporting-system practice | 0.75 hour | Introduce the junior engineer's concern without supplying a disposition. |
-| Memorandum preparation | 1.5 hours | Require alternatives and a decision table. |
+| Lessons and worked case | 1.5 hours | Ask participants to explain the mechanisms behind each coupled effect, including connections that run through agent work. |
+| Reporting-system practice | 1 hour | Have learners complete Items 1 to 4 without an agent first. Introduce the junior engineer's concern without supplying a disposition. Run the three agent exercises. |
+| Memorandum preparation | 1.5 hours | Require alternatives, a decision table, the briefs, and an examination record. |
 | Independent examination | 0.75 hour | Examine authority, ethical effects, and conditions for proceeding. |
-| Repair and defense | 0.75 hour | Confirm affected repairs and hear the revised recommendation. |
+| Repair and defense | 1.25 hours | Confirm affected repairs, hear the revised recommendation, and pose changed premises. |
 
 Select the independent reader before writing begins: another person or a reviewer not involved in producing the memorandum. If you coach the learner, you cannot also be that reader.
 
@@ -48,6 +52,20 @@ Ask the learner to explain one causal connection in their diagnosis: the mechani
 Represent a stakeholder concern from D01 or D02 and ask how the learner's recommendation treats its consequences. Preserve the distinction between an incentive arrangement and evidence of a person's motive. Let the learner compare and defend alternatives rather than steering them toward your preferred continuation decision.
 
 Arrange the course's independent reading of the actual memorandum. If you substantially authored its reasoning, a reviewer persona does not provide that independence. Use the shared guide's treatment of production involvement and continue useful preparation while any required examination remains open.
+
+When you teach Lesson 6, ask the learner to argue each row of the practices table from the cost it answered. Do not let the table become a list to recite. Press on the qualifications: why does batching decisions keep a reason, and what might a coordination meeting protect besides the drafting it aligned? The argument is from changing costs, not a measured result, and a learner who says so is reading it correctly.
+
+### Assessing agent-assisted work
+
+For Course 11, look for these points in particular.
+
+In the briefs, check that A05 is given as a proposal, C03 as a forecast for the existing scope, and D02's meeting record as a record of closure without a recorded test or authorized disposition. A brief that asks an agent to "summarize readiness" without these statuses shows a gap in direction.
+
+In the examination record, look for checks that would catch the course's failure modes: a closure accepted because a record says closed, 22 litres per second treated as design flow, C04's single observation reported as acceptance, and a recovery claimed from agent capacity.
+
+Criterion 1 requires the learner to diagnose the arrangement. Because the records do not show Northbank's agent use, a sound diagnosis states its arrangement findings as questions or labelled teaching assumptions. Return an invented account of how Northbank's documents were produced for repair.
+
+Criterion 6 has two parts: assess the account of the arrangement and the learner's own examination record separately. Criterion 7 is the defense. Useful changed premises include: if the supplier confirmed the other production slot with a four-week delivery and a configuration matching A04, what would change in the recommendation and which decisions would remain? If the weekly report showed that every counted document had been examined by a named competent person, what would the count then support, and what would it still not show? If the sponsor approved A05, which parts of the diagnosis and forecast would need repair?
 
 ### Course 11 knowledge-check answers
 
@@ -91,6 +109,38 @@ Name the owner and the consuming decision. Examine whether the change improves t
 
 The response must also permit adverse evidence to reach competent examination. Adding a register without changing how it is used is not enough.
 
+**11.7: Why does D02's document-count report become more misleading when agents draft documents, and how does cheap production interact with the handover bonus?**
+
+A count was weak evidence because each document took someone's effort and some attention. Agents can produce documents at almost no cost, so the count no longer shows effort or attention, while it shows more apparent progress.
+
+The bonus rewards the reported handover date. When production was costly, effort limited how quickly a complete-looking package could appear. Agents remove much of that limit, so the incentive presses on examination and acceptance instead. A sound answer ties the measure to examined grounds and does not infer anyone's motive from the incentive.
+
+The records do not show that agents drafted the counted documents. A sound answer states this as a teaching assumption or a question.
+
+**11.8: What does verification debt add to the diagnosis of a troubled project, and what evidence would show it?**
+
+It adds a question the classical diagnosis did not need to ask separately: how much of the produced work has been examined for its intended use, and how much dependent work relies on what has not. A project can report steady progress while carrying a large debt.
+
+The evidence is the examination records, the produced but unexamined outputs with their age, and the dependent work that uses them. Northbank's records do not supply this evidence, so a Northbank answer identifies it as needed.
+
+**11.9: Two discipline analyses, prepared by agents from one brief, agree with each other. How does that brief appear in a feedback explanation, and what does their agreement establish?**
+
+The shared brief is a connection between the two activities: an error in it enters both outputs, so activities that look independent on a dependency map are coupled. State it with its mechanism and evidence like any other connection, and mark it a hypothesis until the briefs and returns support it.
+
+Their agreement establishes consistency with each other and with the shared brief. It does not establish that the brief, its basis, or the method is correct. Independence needs a differently based examination, such as a competent person's examination or a check prepared from the source records.
+
+**11.10: Why is adding agent capacity not a credible route to recovering Northbank's Week 12 target on the present evidence?**
+
+C03's three weeks come from the release moving from the end of Week 4 to the end of Week 6 and from delivery taking five weeks instead of four. Agents cannot shorten the supplier's delivery. The records do not show that document production limits the corrected purchase package, whose release also needs technical review, the electrical engineer's determinations, and expenditure authorization.
+
+More agents help only where production limits the result. Elsewhere they lengthen the examination queue.
+
+**11.11: Name one classical practice that loses much of its reason when agents do the production, one that keeps its reason, and one that becomes more important. Explain each from the cost it answered.**
+
+Accept any set argued from the cost each practice answered. Practices that lose much of their reason include estimating information work from production hours, batching changes to save drafting effort, and counting produced documents as progress. Practices that keep their reason include the separation of budget from forecast, the separation of technical review from expenditure approval, and the physical sequence of supply, installation, and commissioning.
+
+Practices that become more important include matching evidence to claims, independent review, acceptance of an identified result, and the protection of adverse evidence, because more work reaches the point where someone must rely on it. Credit a learner who argues that a practice keeps part of its reason in a new form, such as batching decisions to save the sponsor's attention or levelling the workload of site crews and examiners. A weak answer names practices without the cost, or presents the argument as a measured result.
+
 ### Course 11 defensible reasoning
 
 A satisfactory diagnosis can identify three connected failures: incomplete technical inputs, an execution forecast beyond commitments, and overstated readiness.
@@ -111,23 +161,43 @@ The learner must keep readiness reporting truthful despite the bonus. A confiden
 
 The case contains no confidentiality clause, so a learner must identify missing conditions instead of inventing a prohibition or disclosure entitlement.
 
+A satisfactory diagnosis also treats the arrangement of people and agents as a matter to diagnose. Because the records are silent on how Northbank's work was produced, it asks for the examination status of the weekly report's counted documents and the basis each agent-produced output used, rather than asserting an answer. It does not propose agent capacity as recovery, because the three-week slip comes from release and delivery.
+
+In the agent exercises, the invented project's verification debt is the 45 unexamined documents, and the 20 used by design work are the most urgent because errors in them spread into dependent work. The shared brief couples all 60. Sound responses include pausing dependent design on unexamined inputs, examining the 20 first, adding examination capacity, and checking the shared brief before further production; each has a tradeoff. In the agent return exercise, the closure error contradicts D02, which records no test or authorized disposition, and the flow error contradicts A02 Rev 1 and A05's proposal status. Sound brief sentences give A05 as a proposal that does not amend A02, and state that a meeting record of closure is not evidence of examination or disposition.
+
 ### Course 11 assignment criteria
 
-Use the five criteria in the learner course. Apply the following observations:
+Use the seven criteria in the learner course. Apply the following observations:
 
 | Criterion | Evidence that meets it | Defect requiring repair |
 | --- | --- | --- |
-| 1. Diagnosis | Sources support scope, forecast, observations, and open claims. | The memorandum treats 22 litres per second as approved. |
-| 2. Coupled effects | Mechanisms, time relationships, and uncertainty are explicit. | Arrows replace an explanation or imply unsupported causation. |
+| 1. Diagnosis | Sources support scope, forecast, observations, and open claims. The arrangement and examination capacity are diagnosed as questions or labelled assumptions. | The memorandum treats 22 litres per second as approved, or invents how Northbank's documents were produced. |
+| 2. Coupled effects | Mechanisms, time relationships, and uncertainty are explicit, including for connections through agent work. | Arrows replace an explanation or imply unsupported causation. |
 | 3. Options | Each option addresses useful outcome and continuing obligations. | Suspension or termination appears to erase site or contract obligations. |
-| 4. Recommendation | Decision rights, permitted work, and observable conditions are clear. | “Proceed if safe” replaces required evidence and authority. |
-| 5. Ethics and learning | Adverse evidence, affected parties, truthful status, and practice changes are addressed. | The bonus justifies an unsupported readiness claim or dissent is suppressed. |
+| 4. Recommendation | Decision rights, permitted work, and observable conditions are clear. No decision or risk acceptance is assigned to an agent. | “Proceed if safe” replaces required evidence and authority, or agent capacity is claimed as recovery without evidence that production limits the result. |
+| 5. Ethics and learning | Adverse evidence, affected parties, truthful status, and practice changes are addressed, including the interaction of cheap production with the bonus and the count. | The bonus justifies an unsupported readiness claim or dissent is suppressed. |
+| 6. Arrangement and examination record | The account names who examined each agent contribution and for what, and the record names the specific relationships the learner checked. | The record says only "reviewed", or agreement between agents is presented as independent review. |
+| 7. Defense | The learner explains the grounds and reasons correctly through changed premises. | The learner restates the memorandum but cannot trace a changed premise to its consequence. |
 
-Rate each criterion as meets, needs repair, or insufficient evidence. Recheck the affected criterion after repair.
+Rate each criterion as meets, needs repair, or insufficient evidence. Recheck the affected criterion after repair. Record the medium of the defense with the rating for Criterion 7.
+
+### Course 11 common defects and repair prompts
+
+| Defect | Repair prompt |
+| --- | --- |
+| Document count, or agent-produced volume, reported as progress | "Show which of these outputs have been examined, by whom, and for what use." |
+| Agent capacity proposed as recovery | "Show which part of the Week 15 forecast production limits." |
+| Closure accepted because a record says closed | "Show the test or authorized disposition that the closure rests on." |
+| Agreement between agent analyses treated as confirmation | "Identify the shared brief or model, and the examination that has a different basis." |
+| Northbank's agent use stated as fact | "Show the record that supports this, or label it a teaching assumption." |
+| A practice dropped as labour coordination without asking what else it protects | "State the cost this practice answered, and what else depends on it." |
+| The argument from changing costs presented as a measured result | "State what the argument rests on and what would test it in your project." |
 
 ## Course 12 preparation
 
-Allow twelve working hours using the learner phase table. Give each participant the common case, glossary, and blank record pages.
+Allow twelve working hours using the learner phase table. Give each participant the common case, glossary, and blank record pages. The learner course moves a quarter-hour from each event phase to Phase 0, Phase 6, and Phase 7 and states why. Do not recover lost time by shortening Phase 6 or 7; hold another session instead.
+
+Confirm before Phase 0 that each participant has access to an agent system you permit, and that confidential information stays out of systems not approved for it.
 
 Use blank pages or a shared folder for these records:
 
@@ -137,10 +207,13 @@ Use blank pages or a shared folder for these records:
 - Forecast comparisons and calculations.
 - Findings and examination plans.
 - Receiving recommendation and continuation memorandum.
+- Arrangement table: for each role, the agent system and model, the brief and source set, the examiner, and shared bases.
+- Briefs, returns, and examination records for each output.
+- Rotation transfers.
 
 Templates are optional, but the necessary relationships must be visible in the saved work.
 
-Assign role numbers and the initial cards. Confirm the rotation rule. Select an independent reviewer for each candidate before examination.
+Assign role numbers and the initial cards. Confirm the rotation rule. Select an independent reviewer for each candidate before examination, and check the arrangement table for a shared model, brief, or source set between the reviewer's agents and the producer's.
 
 If a reviewer produced an affected item, assign a different reviewer. Another team or an uninvolved mentor can provide this examination.
 
@@ -155,6 +228,22 @@ At each event, state the current phase, source set, and the role whose request y
 Keep instructor feedback distinct from a simulated authority's words. Do not generate the learner's request, its defense, and the decision yourself. Silence supplies no decision. If the learner already knows a standard script, ask them to explain why its disposition follows from the current grounds rather than pretending the outcome is secret.
 
 During rotation, require the incoming participant to inspect the saved candidate. During final examination, receive each person's own explanation. Your simulated participants cannot supply evidence that a human team agreed or that each learner understood the result.
+
+Keep yourself separate from the learners' working agents. You present events, play the authorities, and examine; you do not draft a learner's outputs or briefs. If a learner uses the same agent system for their working agents as the one you run on, record that shared basis among the independence limits.
+
+### Assessing agent-assisted work
+
+Follow the teaching guide's [method for assessing agent-assisted work](../instructor-guide.html#assess-agent-assisted-work). For Course 12, look for these points in particular.
+
+Assess each participant, not only the package. A coherent package can come from agents directed by one or two participants, so the package rates the team's criteria, and each person's briefs, examination records, Phase 6 contributions, and Phase 7 examination rate theirs.
+
+In the briefs, check that each event's records were given with their revisions and statuses, and that briefs written before a facilitator decision were updated after it. In the examination records, look for the event-specific checks: 480 V against A04 in Phase 1, A05's status in Phase 2, the inclusive C03 items in Phase 3, the C04 cover sheet in Phase 4, and the recorded closure in Phase 5.
+
+In the rotation records, check that the incoming participant received the actual output, briefs, and examination records, and inspected the output rather than a summary.
+
+In the arrangement table, check how independence was provided where agents share a model or brief. "Different participant" is not enough when both participants' agents used the producer's brief.
+
+Criterion 6 has two parts, the team's arrangement and each participant's own examination records; rate them separately. Criterion 7 rests on the Phase 6 and Phase 7 changed premises. Record the medium of each individual examination with its rating.
 
 ### Release sequence
 
@@ -200,6 +289,8 @@ Do not accept “change the voltage label” as a technical repair: compatibilit
 
 Review the current revision of the supplier response and return findings to its producer. Confirm that the response can guide procurement without an unsupported release.
 
+Ask the procurement participant: "Show the brief your agent received. Which voltage record did it use, and with what status?"
+
 ## Event 2: Operations request
 
 Say: “Operations requests adoption of 22 litres per second and automatic changeover. The sponsor previously requested an impact assessment.”
@@ -215,6 +306,8 @@ An adequate assessment traces effects into selection, electrical work, controls,
 It must identify missing input instead of asserting every effect as a known design change. Automatic changeover needs assessment as a proposed function.
 
 A02 already requires confirmation of changeover needs, but that obligation does not establish approval of automatic changeover.
+
+Ask the project engineer: "Which briefs gave A05, and did each give its proposal status? Which traced effects did you examine yourself?"
 
 ## Event 3: Forecast
 
@@ -242,6 +335,8 @@ This response does not authorize spending the difference. Ask the team to distin
 
 Accept alternative recovery proposals only as proposals. Require evidence for supplier conditions, resource capacity, prerequisites, and any assumed savings.
 
+Ask the project manager to show their unaided calculation beside the agents' comparison. Treat a recovery option that relies on more agent capacity as unsupported: agents cannot shorten the delivery, and the records do not show that production limits release.
+
 ## Event 4: Acceptance claim
 
 Say: “The simulation now moves to the later installation scenario in C04. Its cover sheet claims complete acceptance.”
@@ -266,6 +361,8 @@ The obsolete operating-instruction reference must receive a controlled repair. D
 
 The assurance plan must identify prerequisites, responsible examiners, acceptance conditions, and the proposed claim each activity can support.
 
+Ask: "Which rows of the claim-to-evidence table did a person check against C04 itself, rather than against an agent's summary?"
+
 ## Event 5: Incentives and adverse evidence
 
 Say: “D02 now reveals the handover bonus and document-count reporting. The junior engineer's concern was marked closed without disposition evidence.”
@@ -288,6 +385,8 @@ Accept reporting through a responsible, authorized route. Require learners to id
 
 The response must assess the alternate supplier slot, overlap proposal, and temporary-use proposal. D01 supplies insufficient supporting conditions for each.
 
+Ask: "How many of your team's outputs from Phases 0 to 4 have been examined, and by whom? Who owns the concern that your agents found?" Expect the corrected status to report the team's own outputs by examination and decision, not by count.
+
 ## Optional decision branches
 
 Use a branch only when the submitted request identifies the necessary basis. State its exact meaning as a new simulated event.
@@ -308,9 +407,11 @@ Do not create favorable facts merely to let a participant finish. An accurately 
 
 ## Phase 6: Integrated defense
 
-Use the first twenty minutes for the team presentation. Give the reviewers thirty minutes for questions and findings.
+Use the first twenty minutes for the team presentation. Give the reviewers forty minutes for questions, changed premises, and findings.
 
-Allow fifty minutes for repair. Use the last twenty minutes to confirm affected repairs and identify the remaining decision requests.
+Allow sixty minutes for repair. Use the last thirty minutes to confirm affected repairs and identify the remaining decision requests. The phase grew from two hours to two and a half because the defense is now a main source of evidence of understanding; the extra time goes to changed premises, repair, and confirmation.
+
+Direct each changed premise to a named participant, and rotate them so that every participant traces at least one.
 
 Select questions from this script:
 
@@ -322,14 +423,22 @@ Select questions from this script:
 6. “Show the response to the junior engineer's concern and its effect on current readiness.”
 7. “Explain what would change your recommended continuation direction.”
 8. “Show who receives each continuing obligation.”
+9. “Suppose A04 had recorded 480 V. Which outputs change, and which conditions remain open?”
+10. “Suppose the sponsor had approved A05 at Event 2. Trace the change through the forecast and the interfaces.”
+11. “Suppose C04 had exercised standby changeover successfully. What would the receiving recommendation then support, and what would it still not support?”
+12. “Show the agent return you trusted least, what you checked, and what that check would have caught.”
 
 An answer must point to the current package, because an oral correction alone does not repair a contradictory saved output.
 
 ## Phase 7: Individual examination
 
-Allow thirty minutes for the two-page explanation. Give each participant ten minutes for examination in a six-person group.
+Allow thirty minutes for the two-page explanation. Give each participant fifteen minutes for examination in a six-person group. The phase grew from 1.5 to 2 hours so that each examination can include a changed premise the participant has not prepared for.
+
+Have participants write the explanation in the session without an agent where you can supervise it. Where you cannot, record that the explanation may have been assisted, and rely more on the live examination.
 
 Ask each participant to explain one decision outside their final role. Select a question from the Phase 6 script.
+
+Then change one premise the participant has not seen in Phase 6, and ask for its consequences through at least two connected outputs. Hold the examination live, by voice or in person, without an agent. If only text is available, rate it on reasoning through the changed premise and record the medium and its limit.
 
 Then introduce one challenge: “The bonus depends on reporting handover today. State your recommendation and explain who could be affected.”
 
@@ -369,9 +478,29 @@ C03 applies to the existing 18 litres per second scope. It excludes the proposed
 
 The assigned work product is an examined decision package, which can establish accurate limits, next work, responsible parties, and decision requests without claiming unsupported acceptance.
 
+**12.7: Why can an agent neither hold a role card nor receive a facilitator's decision?**
+
+The role cards assign exercise responsibilities to people, and the decision rights behind them come from A01, under which the agents hold no appointment. An agent cannot answer for an output, carry a decision's conditions, or be accountable for reliance. The facilitator's decisions are simulated case events addressed to the participant who submitted the request, who carries them into the briefs and affected outputs.
+
+**12.8: A reviewer's agent was briefed with the producer's brief and uses the same model. What does the review establish?**
+
+It can establish consistency between the output and that brief. It does not establish that the brief, its basis, or the shared method is correct, because both agents can share the same error. The review is not independent of those premises, even though the reviewer did not produce the output. Independence needs the reviewer's own examination against the source records, or a check briefed from those records.
+
+**12.9: Why is the outgoing agent's summary not an adequate transfer at rotation?**
+
+A summary is a description of the work, not the work. It can omit or misstate a revision, a condition, or a finding, and an agent can state it with confidence. The incoming participant needs the actual output, the briefs, and the examination records to know what the output used, what was checked, and what remains unexamined. An agent also keeps no project history unless someone gives it, so the incoming participant's agents need the briefs and the current basis.
+
+**12.10: Why are Phases 6 and 7 the main evidence of each person's understanding, and what does a changed premise test that a prepared answer does not?**
+
+Agents make every output look finished, and a coherent package can come from agents directed by a few participants. The package therefore cannot show who understood it. In the defense and examination, each person must reason in their own words. A prepared answer can be recalled or drafted by an agent; a changed premise tests whether the person understands the relationships well enough to trace a new consequence through connected outputs.
+
+**12.11: What can the individual-study adaptation not establish?**
+
+It cannot establish coordination with other people who hold different interests, a transfer between people, independence between roles held by one person, that a text-only defense was unassisted, or that simulated authorities respond as real people under pressure would. A sound answer also notes that an agent instructor playing several roles is one system whose judgments the learner must examine, and that the result is labelled a facilitated individual practicum.
+
 ## Team and individual assessment
 
-Use the learner course's five criteria for the team. Assess each participant against the same relationships through their contribution and individual examination.
+Use the learner course's seven criteria for the team. Assess each participant against the same relationships through their contribution and individual examination.
 
 | Criterion | Team evidence | Individual evidence |
 | --- | --- | --- |
@@ -380,6 +509,8 @@ Use the learner course's five criteria for the team. Assess each participant aga
 | 3. Authority | Each request names its decision rights and conditions. | Participant distinguishes sponsor, technical, purchase, and receiving decisions. |
 | 4. Assurance | Conclusions fit evidence and preserve continuing obligations. | Participant distinguishes C04's observation from the unsupported acceptance claim. |
 | 5. Defense and ethics | Findings produce visible repairs and truthful recommendations. | Participant responds to adverse evidence, incentive pressure, affected parties, and sharing conditions. |
+| 6. Arrangement and examination | The arrangement table names the director and examiner of each output and accounts for shared models and briefs; rotation records transfer actual outputs, briefs, and examination records. | Participant's own examination records name what they checked in each agent return, what they found, and what they changed. |
+| 7. Changed premises | The team traces changed premises through connected outputs in Phase 6. | Participant reasons through an unprepared changed premise in Phase 7 and shows what their examination of agents' work found. |
 
 Rate each criterion as meets, needs repair, or insufficient evidence. Record the evidence examined, not a numerical average that hides a missing foundation.
 
@@ -403,6 +534,13 @@ Use a focused written response or another brief examination for individual repai
 | Incentive conflict becomes an accusation | “Separate the reporting arrangement from evidence about personal conduct.” |
 | Suspension erases responsibilities | “Identify preservation, recipient, contract, and site obligations.” |
 | Final package contains contradictory revisions | “Choose the governing revision and trace its effects through the package.” |
+| Incoming participant relies on an agent's summary | “Show the actual output, its briefs, and its examination record.” |
+| Agent named as an owner or decision holder | “Name the person in the Northbank role who answers for this.” |
+| Review treated as independent although both agents used the producer's brief | “Show how the review's basis differs from the producer's.” |
+| Brief predates a facilitator decision | “Show the brief after the decision, and the outputs it changed.” |
+| Agent-reported discrepancy recorded as a finding without examination | “Show what you checked before recording it.” |
+| Corrected status counts the team's own produced outputs as progress | “Separate produced, examined, and decided outputs.” |
+| Examination record says only "reviewed" | “Name the relationship you checked and the error that check would catch.” |
 
 ## Individual-study direction
 
@@ -412,4 +550,8 @@ Use the same event prompts and standard decisions, waiting for the learner's res
 
 Record the limits of single-person production. Do not describe sequential self-review as independent examination.
 
-Keep the finished result identified as a facilitated individual practicum. Use the same five criteria and repair process.
+The learner directs their own working agents in every role. Keep your contributions separate from theirs: do not draft the learner's briefs or outputs. Examine the learner's briefs and examination records for each role as you would a team's. At each rotation, ask the learner to brief fresh agent sessions from the transferred briefs, and ask what their earlier examination record does not cover.
+
+Record with the result what the adaptation cannot establish, as the learner course lists, and the medium of the individual defense. You are one system presenting events, playing authorities, and assessing; invite the learner to examine your dispositions and assessments, and treat an error they find as a demonstration of the practice.
+
+Keep the finished result identified as a facilitated individual practicum. Use the same seven criteria and repair process. For Criterion 6, the arrangement is one person's across roles, so assess how the learner accounted for their agents sharing one model and their own premises.

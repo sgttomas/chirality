@@ -74,7 +74,7 @@ Assessing agent-assisted work is difficult, and the difficulty is part of what t
 
 Keep your course outputs in one learning portfolio, with each output and its revision identified. Link to supporting evidence instead of copying it repeatedly.
 
-Use a mentor for individual study. The mentor can challenge your evidence, your interpretation, and the reliance you propose. Course 12 requires a team or a facilitated role exercise.
+Use a mentor for individual study. The mentor can challenge your evidence, your interpretation, and the reliance you propose. Course 12 requires a human-agent team or a facilitated role exercise.
 
 ## Study with an agent instructor
 

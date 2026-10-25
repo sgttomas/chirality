@@ -130,7 +130,7 @@ Keep the current exercise's source set explicit. Later information must not sile
 
 Packet C includes a later installation observation, but it does not prove that earlier design and authority gaps were resolved. Require evidence for each claimed resolution.
 
-In Course 12, follow D03 and the instructor guide's event sequence. The Phase 0 basis includes Packet A and B03; A05 is therefore already a known proposal when its adoption becomes the request in Event 2. Each event changes the question or available evidence as specified, but it does not erase prior knowledge.
+In Course 12, follow D03 and the instructor guide's event sequence. Participants direct real agents in their roles, but agents hold no role card, submit no decision request, and receive no simulated decision. The practicum's phase times are rebalanced toward examination, defense, and individual examination; keep them as published. The Phase 0 basis includes Packet A and B03; A05 is therefore already a known proposal when its adoption becomes the request in Event 2. Each event changes the question or available evidence as specified, but it does not erase prior knowledge.
 
 Present the event and receive the learner's response or decision request before you issue a simulated disposition. Use the stated authority and limits. Record the decision as a new exercise event, identifying what it changes and which conditions remain. Do not replace an original record or imply approval through silence.
 
