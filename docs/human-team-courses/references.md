@@ -8,7 +8,7 @@ The course series adapts these project principles: establish the basis, allocate
 
 - [Project Management for Human Agent Teams](../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html), management manual, Edition 9.
 
-The human-team courses use human professional and organizational responsibilities, but they do not import the manuals' agent hierarchy, repository commands, or fixed stage labels.
+The courses teach people to direct and examine agent work within human professional and organizational responsibilities. They do not import the manuals' agent role hierarchy, repository commands, or fixed stage labels.
 
 The [Root thesis](../thesis/README.md) provides background on evidence, judgment, and professional reliance. Its architecture and regulatory interpretations are arguments to examine, not regulator determinations.
 

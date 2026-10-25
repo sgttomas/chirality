@@ -8,9 +8,7 @@ Use Packets A, B, and C. Keep Packet D for the later courses unless you declare 
 
 ## Course 08: Planning and Managing Project Execution
 
-Course 08 is the first course rebuilt for human-agent teams. Each lesson keeps the classical method, states the cost that method was answering, shows what agents change, and develops the extended method. The classical answers stay correct: the Northbank totals, sequences, and authority conclusions are the same as before. What the course adds is how the learner plans, directs, and examines the work when agents do much of the production.
-
-Learners use real agents in the practice and the assessed assignment. Expect them to. Your task is to assess the learner's direction, examination, and judgment, not to prevent agent use.
+In Course 08, each lesson keeps the classical method, states the cost that method was answering, shows what agents change, and develops the extended method. The classical answers stay correct: the Northbank totals, sequences, and authority conclusions are the same as before. What the course adds is how the learner plans, directs, and examines the work when agents do much of the production.
 
 ### Session sequence
 
@@ -39,25 +37,15 @@ When a result differs, work with the learner to locate the first changed input, 
 
 Before ending the exercise, ask what the corrected forecast authorizes. This question connects the calculation to the decision and exposes a budget or readiness inference that correct arithmetic alone would miss.
 
-If you are an agent instructor, you are also an example of the course's subject: an agent whose fluent explanations the learner must examine before relying on them. Invite that examination. When a learner catches an error in your explanation, treat it as a demonstration of the practice.
-
 ### Assessing agent-assisted work
 
-The learner's package will usually be well formed, because agents make well-formed packages cheap. Assess the evidence the course names instead: the briefs, the examination notes, the defects found and repaired, and the defense, under the conditions recorded for it.
+Follow the teaching guide's [method for assessing agent-assisted work](../instructor-guide.html#assess-agent-assisted-work). For Course 08, look for these points in particular.
 
-Read the briefs for the identified basis. A brief that gives C03 without its statement that each item includes actual expenditure, or gives A05 without its proposal status, shows a gap in direction, even if the agent happened to return a correct result.
+In the briefs, check that C03 is given with its statement that each item includes actual expenditure, and that A05 is given with its proposal status.
 
-Criterion 6 has two parts. The designed arrangement can name Northbank roles as examiners, and in individual study those roles are simulated. The learner's own examination record must show what the learner actually checked, so assess that record separately.
+In the examination notes, look for checks such as the delivery count from the end of Week 6 and contingency remaining at 20,000.
 
-Read the examination notes for what the learner actually checked. "Reviewed and correct" is insufficient evidence. A note that the learner checked the delivery count from the end of Week 6 and confirmed that contingency stayed at 20,000 is evidence of examination.
-
-Conduct the defense so that it tests reasoning, not recall of the package. Change a premise and ask for its consequence. For example: if C03's items excluded actual expenditure, how would the forecast change? If the supplier confirmed a four-week delivery, which date moves and which decisions remain? Ask which part of the agent's work the learner trusted least, and why.
-
-State the defense's conditions honestly. In a text conversation you cannot establish that the learner is working without an agent. Prefer a live voice or in-person defense for Criterion 7. If only text is available, rate the criterion on the learner's reasoning through changed premises, record the medium and its limit with the rating, and do not describe the defense as unassisted. This limitation is the same one a sponsor faces with an agent-assisted team, and you can discuss it with the learner as part of the lesson.
-
-A peer explanation is practice. It does not replace the assessed defense.
-
-A learner may find no defect in the agents' work. That is acceptable if their examination would have found one: ask what they checked and what error each check would have caught. Do not require a found defect, because that rewards inventing or planting one.
+Criterion 6 has two parts: assess the designed arrangement and the learner's own examination record separately. Criterion 7 is the defense. Useful changed premises include: if C03's items excluded actual expenditure, how would the forecast change? If the supplier confirmed a four-week delivery, which date moves and which decisions remain?
 
 ### Nine keyed knowledge-check answers
 

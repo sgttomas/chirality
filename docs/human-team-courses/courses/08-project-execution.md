@@ -12,32 +12,17 @@ Read Northbank Packets A, B, and C, and keep each record's revision and status v
 
 ### How this course is built
 
-Each lesson starts from the classical method of execution control. The classical method is sound, and you need it, because much of a physical project still runs at the speed of suppliers, fabrication, and site work. But it was developed for teams in which every piece of work came from a person. It assumes that producing work costs people's time, and that the person producing the work is also paying attention to it.
+The series index explains [how the series is built](../index.html#how-the-series-is-built). In short, the classical method of execution control remains sound, and you need it, because much of a physical project still runs at the speed of suppliers, fabrication, and site work. But the classical method assumes that producing work costs people's time, and that the person producing the work is also paying attention to it. Agents separate production from accountable attention for much of a project's information work.
 
-Agents remove that assumption for much of a project's information work. An agent can often draft, compare, calculate, and search in minutes, at a cost that is usually small beside people's time, and many agents can work at once. But agents cannot carry the responsibilities that the project appointment assigns, and the attention of the people who examine, decide, and accept their work does not grow with them. In a human team, production and accountable attention came together in the same person-hours. With agents, they come apart.
+As in the beam analogy, the ratio that matters here is the time production takes compared with the time examination and decision take. When production takes most of the time, the classical method's single estimate is adequate. When agents shrink production, examination and decision can become the terms that control the plan.
 
-Engineers have met this kind of change before. Euler-Bernoulli beam theory neglects shear deformation, and for a slender beam that is the right simplification. In a short, thick beam, or a sandwich panel with a soft core, shear deformation becomes significant, so Timoshenko theory adds it. The extended theory does not discard the classical one: as the beam becomes slender, it gives the classical result.
-
-The methods in this course behave the same way. Here the ratio that plays the part of slenderness is the time production takes compared with the time examination and decision take. When production takes most of the time, the classical method's single estimate is adequate, and the extended method gives the classical answer. When agents shrink production, examination and decision, which the classical estimate carried inside it, can become the terms that control the plan. Timoshenko theory has its own limits, and so do the methods here, so test them against your own work.
-
-These are claims about how the costs are changing, not measurements of productivity. Agent capability and cost vary with the task and the system.
-
-Lessons 1 to 5 each follow four steps:
-
-1. **The classical method:** what it does and why it works.
-2. **What it assumes:** the cost or limit the method was answering.
-3. **What changes with agents:** which part of that assumption no longer holds, and which part still does.
-4. **The extended method:** how you now plan and control the work, and what each choice gains and costs.
-
-The extended method includes a design problem that the classical method could leave to habit: how to arrange the people and agents who do the work. Lesson 6 treats that arrangement as a system to engineer.
+Lessons 1 to 5 each follow four steps: the classical method, what it assumes, what changes with agents, and the extended method with its tradeoffs. Lesson 6 treats the arrangement of people and agents as a system to engineer.
 
 ### The teaching arrangement
 
-For this course, assume that the Northbank team works with AI agents. The agents can draft, compare, calculate, search, and check the records a team member gives them. They hold no appointment under A01, and they cannot approve, accept, or carry responsibility for any decision that A01 assigns.
+Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case): the agents hold no appointment under A01, and every Northbank record stays as written. You will work with real agents in the practice and the assessed assignment.
 
-This arrangement is a teaching assumption added to the case. It changes no Northbank record: every revision, status, duration, and price stays as stated.
-
-You will work with real agents in the practice and the assessed assignment. Use an agent system that your organization or instructor permits, and keep confidential information out of systems that are not approved for it.
+### Outcomes
 
 After this course, you can:
 
