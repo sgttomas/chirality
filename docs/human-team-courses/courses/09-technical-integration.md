@@ -12,15 +12,11 @@ This course teaches you how to coordinate that technical whole in a team where p
 
 ### How this course is built
 
-The series index explains [how the series is built](../index.html#how-the-series-is-built). In short, the classical method of technical integration remains sound, and you need it, because interfaces between disciplines remain the hard part of the work and their ownership stays with people. But the classical method assumes that cross-checking contributions against each other costs people's time, so a project examines integration at a few planned points, and that a change moves through connected work at the pace people revise documents.
-
-Agents change both terms. They can often cross-check an interface list, a supplier submission, or a discipline input against the project records cheaply and repeatedly, so integration can be examined far more often. They can also carry a change, or an error, through connected work at the same speed. As in the beam analogy, the ratio that matters is how fast the work changes compared with how often people examine how it fits together. When contributions change slowly, a few integrated reviews give the classical result. When agents make change fast, examination, configuration control, and the identified basis must keep pace.
-
-Lessons 1 to 5 each follow four steps: the classical method, what it assumes, what changes with agents, and the extended method with its tradeoffs. The arrangement of the integration work is treated within Lesson 5; for the general design of a human-agent arrangement, see [Course 08, Lesson 6](08-project-execution.html#lesson-6-engineer-the-arrangement-that-does-the-work).
+The series index explains [how the series is built](../index.html#how-the-series-is-built). In this course the shifted constraint is the cost of examining how contributions fit together: agents can cross-check interface lists, supplier data, and discipline inputs cheaply and often, but they can also carry a change or an error through connected work at the same speed, while interface ownership stays with people. Lessons 1 to 5 each follow the series' four steps, and Lesson 5 treats the integration arrangement; for the general design of a human-agent arrangement, see [Course 08, Lesson 6](08-project-execution.html#lesson-6-engineer-the-arrangement-that-does-the-work).
 
 ### The teaching arrangement
 
-Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case): the agents hold no appointment under A01, and every Northbank record stays as written. The records do not say how any Northbank contribution, including B01, was prepared. Where this course asks you to suppose that a contribution was prepared by an agent, it labels that supposition as a teaching assumption. You will work with real agents in the practice and the assessed assignment.
+Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case). The records do not say how any Northbank contribution, including B01, was prepared, so this course labels any supposition that an agent prepared one as a teaching assumption.
 
 ### Outcomes
 
@@ -33,6 +29,7 @@ After this course, you can:
 - Review the integrated result and propagate technical changes.
 - Arrange agent cross-checks of interfaces, supplier data, and discipline inputs, and decide how often to run them.
 - Distinguish consistency among contributions from correctness of the integrated result, and keep configuration control in step with agent-speed change.
+- Direct, examine, and accept agent contributions, and show which judgments are your own.
 
 ## Lesson 1: Establish the technical basis
 
@@ -172,9 +169,9 @@ The classical method assumes that people at the supplier prepared the submission
 
 ### What changes with agents
 
-**A submission's form stops indicating its checking.** [Course 08](08-project-execution.html#lesson-4-connect-purchasing-risk-and-change) noted that suppliers may use agents too. As a teaching assumption, suppose a supplier's agent assembled a submission. Every field can be filled, every table can be formatted, and the submission can still carry a value copied from an unsupported source, as B01 carries A03's 480 V. A complete-looking submission is not evidence that anyone examined it.
+**A submission's form stops indicating its checking.** [Course 08](08-project-execution.html#lesson-4-connect-purchasing-risk-and-change) noted that suppliers may use agents too, and used B01's copied voltage to show the kind of error they can make faster. As a teaching assumption, suppose a supplier's agent assembled a submission. Every field can be filled, every table can be formatted, and the submission can still carry a value copied from an unsupported source. A complete-looking submission is not evidence that anyone examined it.
 
-**The team's comparison becomes cheap and complete.** An agent can compare every value in a submission with the purchase requirements, the basis table, and the interface needs, and it can trace each value's provenance. Given B01, A02, A03, A04, and B03, such a comparison can report the 480 V against A04's 600 V, trace the 480 V to A03, and report that the selected pump curve, declared operating cases, and complete configuration list are absent. The reviewer no longer has to choose which items to read closely in order to save time.
+**The team's comparison becomes cheap and complete.** An agent can compare every value in a submission with the purchase requirements, the basis table, and the interface needs, and it can trace each value's provenance. Given B01, A02, A03, A04, and B03, such a comparison can report the voltage discrepancy with the provenance trace that Lesson 1 described, and report that the selected pump curve, declared operating cases, and complete configuration list are absent. The reviewer no longer has to choose which items to read closely in order to save time.
 
 **Comparison is not review.** An agent's comparison establishes whether the submission agrees with the records the agent was given. It cannot establish whether the offered configuration suits the site supply and system conditions; that is the electrical engineer's determination, which A04 leaves open. An agent asked to "complete" a review can also fill a gap, for example by reading curve data from the product family brochure that B01 contains, although a family description does not identify the selected configuration.
 
@@ -182,7 +179,7 @@ The classical method assumes that people at the supplier prepared the submission
 
 Have agents compare and trace the whole submission, and give the reviewer the findings with the records each finding rests on. The reviewer examines the findings and then the questions a comparison cannot reach: suitability for the identified configuration and system conditions, and whether the operating cases the submission must answer are themselves established.
 
-Have the competent person issue the disposition, and state in it what the agent comparison covered and what the reviewer examined. Agents can help draft supplier questions and the deficiency reply within B01's two working days, but the questions must still name the project's own required contribution, and the reply cannot be an approval.
+Have the competent person issue the disposition, and state in it what the agent comparison covered and what the reviewer examined. Agents can help draft supplier questions and the deficiency reply; [Course 08, Lesson 4](08-project-execution.html#lesson-4-connect-purchasing-risk-and-change) explains why that reply cannot be an approval. The questions must still name the project's own required contribution.
 
 ## Lesson 4: Coordinate the whole life of the result
 
@@ -222,7 +219,7 @@ The classical method assumes that preparing a concrete activity for review costs
 
 **Duplicate configuration lists become cheap.** Each agent assignment that touches the equipment can produce its own configuration list, and the lists can disagree without anyone deciding to make a second record. One authoritative configuration record becomes more important.
 
-**A substitution's effects can be traced fast, and so can its errors.** An agent can trace a proposed motor substitution through power, controls, dimensions, and protection checks in an hour. It can carry the substitution into dependent documents just as fast, whether or not the change arrangements have decided it.
+**A substitution's effects can be traced fast, and so can its errors.** An agent can list the power, controls, dimension, and protection items that a proposed motor substitution affects; the protection and compatibility determinations remain the electrical engineer's. It can carry the substitution into dependent documents just as fast, whether or not the change arrangements have decided it.
 
 ### The extended method
 
@@ -262,9 +259,9 @@ The classical method assumes that tracing in both directions across every contri
 
 **Tracing becomes cheap and repeatable.** Agents can trace requirements to implementation and back across the contributions whenever any of them changes. How often the project examines integration stops being fixed by the cost of tracing and becomes a design choice.
 
-**Agreement among agent outputs is consistency, not correctness.** Suppose, as a teaching assumption, that agents drafted the mechanical, electrical, and controls contributions from one brief and one basis. An agent cross-check that finds them consistent shows that they agree with each other and with that basis. It does not show that the basis is right. If the shared basis carried A03's 480 V, every contribution would agree on 480 V, and the cross-check would pass. B01 shows how a single copied value can travel into a submission. The classical integrated review drew some independence from the separate understanding of each discipline engineer; outputs drafted by agents from a shared brief may not have it.
+**Agreement among agent outputs is consistency, not correctness.** Suppose, as a teaching assumption, that agents drafted the mechanical, electrical, and controls contributions from one brief and one basis. An agent cross-check that finds them consistent shows that they agree with each other and with that basis. It does not show that the basis is right. If the shared basis carried A03's 480 V, every contribution would agree on 480 V, and the cross-check would pass. The classical integrated review drew some independence from the separate understanding of each discipline engineer; outputs drafted by agents from a shared brief may not have it.
 
-**Changes ripple at agent speed.** An agent can carry a change through every dependent output in an hour. If the controlled issue and the confirmation of adoption still move at the classical pace, dependent outputs on different revisions of the basis can exist side by side, and an output can adopt a proposal before anyone has decided it. Configuration control and the identified basis must keep pace with the agents, or the speed produces inconsistency faster than review can find it.
+**Changes ripple at agent speed.** An agent can carry a change through every dependent output quickly. If the controlled issue and the confirmation of adoption still move at the classical pace, dependent outputs on different revisions of the basis can exist side by side, and an output can adopt a proposal before anyone has decided it. Configuration control and the identified basis must keep pace with the agents, or the speed produces inconsistency faster than review can find it.
 
 **Findings are easy to close on paper.** An agent can reword a finding, merge it into another, or mark it addressed in a revised document. None of these closes it. The integration owner still closes a finding on evidence or an authorized decision.
 
@@ -316,7 +313,7 @@ The resulting technical issue stays open, but its owner and point of need become
 
 The project engineer briefs one agent to cross-check B01 against A02 Rev 1, A03 Rev 0, A04 Rev 1, and B03 Rev 0, and a second agent to cross-check B03 against each discipline's needs and A01's responsibilities. Each brief identifies the records with their revisions and status, states that B01 is submitted for technical review and not accepted, states that A03 is an archived reference, and asks the agent to cite the record behind every finding and to propose no technical resolution.
 
-The returns arrive within minutes. The first reports the 480 V against A04's 600 V, traces the 480 V to A03 and its planning-estimate source note, and lists the absent pump curve, operating cases, and configuration list. The second reports that B03 names no owners or dates and that the mechanical and electrical needs depend on each other.
+The first return reports the 480 V against A04's 600 V, traces the 480 V to A03 and its planning-estimate source note, and lists the absent pump curve, operating cases, and configuration list. The second reports that B03 names no owners or dates and that the mechanical and electrical needs depend on each other.
 
 The project engineer does not accept the returns because they match the classical table. The engineer checks each finding against the cited record, checks that neither agent proposed 600 V motors as a resolution or treated C03 as a corrected submission, and checks that the agents left A02's open operating conditions open. The positions in the table above do not change. What changes is that the team can repeat these cross-checks each time a corrected submission or an interface assignment arrives.
 
@@ -375,16 +372,14 @@ Then complete three further exercises:
 6. What must happen after an authorized substitution changes several interfaces?
 7. Agents drafted the contributions on both sides of an interface from one brief, and an agent cross-check finds them consistent. What does that establish about the integrated result, and what does it not establish?
 8. Agents make interface cross-checks cheap. Why does that change how often integration can be examined but not who owns each interface?
-9. Why must configuration control and the identified basis keep pace when agents can propagate a change through connected work in an hour?
+9. Why must configuration control and the identified basis keep pace when agents can propagate a change through connected work quickly?
 10. A supplier submission arrives with every field complete. What does its completeness establish, and what does an agent comparison of it against the basis add and leave open?
 
 ## Assessed assignment
 
 Prepare a technical coordination package for Northbank's existing scope, working with agents. Include the basis, interface assignments, supplier review position, activity reviews, and a substitution impact route. Add a short account of how you arranged the agents' cross-checks and other work and how you examined it, with the briefs you used.
 
-Then defend the package to your instructor. Explain how you reached its main conclusions and what you checked, and reason through changed premises that your instructor poses. Give the defense live, by voice or in person, without consulting an agent, where you can. In a text-only exchange, your instructor cannot establish that you worked without assistance. The instructor then rates the defense on your reasoning through changed premises and records that limit.
-
-Assessing this work is difficult, and the difficulty is part of the lesson. A consistent, well-formed coordination package is easy to produce with agents, and consistency is exactly what this course warns is not enough. Your instructor, like the project's sponsor, needs to see what was examined, on which basis, and by whom. The evidence is in your briefs, your examination record, the defects you found and repaired, and your reasoning in the defense.
+Then defend the package to your instructor. Your instructor will change premises such as the supplier's offered configuration, the basis that agent outputs shared, or the point at which a substitution was propagated, and ask you to reason through the consequences. Your instructor rates the defense as the teaching guide describes; in text-only study it is rated on changed-premise reasoning with the medium recorded.
 
 Use these seven observable criteria:
 
@@ -393,8 +388,8 @@ Use these seven observable criteria:
 3. The supplier review identifies configuration gaps without inventing suitability or approval, and it distinguishes what an agent comparison established from what a competent person must determine.
 4. The activity reviews cover construction, operation, and maintenance relationships.
 5. The change route carries consequences into consumers, configuration records, and affected examination, identifies the basis revision each affected output uses, and confirms adoption.
-6. The account of the arrangement shows the design: which cross-checks agents run and how often, against which identified basis, who examines each finding, and where a check with a different basis or a competent person is needed. Your own examination record shows what you actually checked in each agent return, what it found, and what you changed.
-7. In the defense, you explain the package's main conclusions and their grounds, show what your examination of the agents' work found, distinguish consistency from correctness in your integration evidence, and reason correctly through the changed premises your instructor poses.
+6. The account of the arrangement shows the design: which cross-checks agents run and how often, against which identified basis, who examines each finding, and where a check with a different basis or a competent person is needed. Your own examination record shows what you actually checked in each agent return, what it found, if anything, and what you changed.
+7. In the defense, you explain the package's main conclusions and their grounds, show what your examination of the agents' work found, identify which judgments are your own, and reason correctly through the changed premises your instructor poses.
 
 Before the defense, explain one interface to both its proposed supplier and consumer, and revise it until both can identify the same required contribution. Repair defects found during that examination or the assessment, and retain the previous revision and the repair basis.
 
@@ -402,6 +397,6 @@ Before the defense, explain one interface to both its proposed supplier and cons
 
 Keep your interface package as Portfolio 09, and connect it to Course 08's readiness conditions. Carry the current configuration and open findings into Course 10's assurance plan.
 
-Read management manual (Edition 9) chapter 3, §§4.3–4.6, chapter 5, §§6.1–6.2, and 8.1–8.3 in [References](../references.html). Their dependency, integration, and evidence principles support this course. §5.1 and §5.3 explain why agreement with a shared basis establishes consistency, not the basis's correctness. The manual is written for the agents you work with, so these sections also show you what your agents are asked to do and where your own responsibilities begin.
+Read management manual (Edition 9) chapter 3, §§4.3–4.6, chapter 5, §§6.1–6.2, and 8.1–8.3 in [References](../references.html). Their dependency, integration, and evidence principles support this course. §5.1 and §5.3 explain why agreement with a shared basis establishes consistency, not the basis's correctness.
 
 The optional NASA technical management readings offer further methods. The Northbank records supply the core basis for the exercise, and NASA's agency procedures do not govern this fictional project.

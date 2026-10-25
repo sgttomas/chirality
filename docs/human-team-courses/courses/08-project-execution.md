@@ -230,7 +230,7 @@ The classical method assumes that assessing a change is expensive, so teams coll
 
 **Change assessment becomes fast.** Agents can draft the structure of the A05 impact assessment, its comparisons, and its cost and schedule parts within hours. The hydraulic part cannot be completed until the project establishes the operating conditions that A02 requires, and B02 records that the hydraulic basis is incomplete. A team can therefore prepare an assessment when a change is raised, instead of batching changes to save drafting effort. The specialists' examination and the sponsor's decision remain the slow steps, and they may still be best taken together at the decision-maker's rhythm.
 
-**Propagation becomes fast in both directions.** An agent can carry an approved disposition into every affected document in an hour, and it can carry a proposal into them just as fast. A05 Rev 0 is a proposal. An agent given A05 without its status may design for 22 litres per second, and no delay remains in which someone might notice. So configuration control must govern what agents read: give each agent the identified basis, with revisions and status, and check which basis its output used.
+**Propagation becomes fast in both directions.** An agent can carry an approved disposition into every affected document quickly, and it can carry a proposal into them just as fast. A05 Rev 0 is a proposal. An agent given A05 without its status may design for 22 litres per second, and no delay remains in which someone might notice. So configuration control must govern what agents read: give each agent the identified basis, with revisions and status, and check which basis its output used.
 
 **Suppliers may use agents too.** B01 copied its 480 V value from A03. A supplier's agents can make the same kind of copying error faster, in a submission that looks more complete. A complete-looking submission is still not a reviewed one. Agents can help the team reply within B01's two working days with the deficiencies it found. That reply cannot be an approval: B01 is not accepted, and the electrical engineer's determinations that A04 leaves open still take the time that competent examination takes.
 
@@ -284,7 +284,7 @@ Design the arrangement as a project engineer designs any system: from its requir
 
 **Allocate each function by its consequence.** Agents can produce, compare, and check against stated criteria. Deterministic tools can perform fixed calculations and comparisons. People examine work for reliance, decide, accept, and deal with the sponsor, operations, suppliers, and authorities. Where an error would be serious and hard to detect, arrange stronger examination.
 
-**Design the two interfaces.** The brief tells an agent the purpose, the identified basis with revisions and status, the output wanted, its limits, the checks to perform, and the conditions that require a person's decision. The return reports the output, the scope completed, the checks performed, the limits, and any open choices. It distinguishes what the agent prepared from what it actually changed.
+**Design the two interfaces.** The brief tells an agent the purpose, the identified basis with revisions and status, the output wanted, its limits, the checks to perform, and the conditions that require a person's decision. The return reports the output, the scope completed, the checks performed, the limits, and any open choices. It distinguishes what the agent prepared from what it actually changed. [Course 06](06-working-relationships.html#lesson-5-support-reliable-contributions) treats the brief and the return as communication.
 
 **Provide independence where it matters.** An agent that checks another agent's work, using the same model and the same brief, may share its errors. Their agreement shows consistency, not correctness. Where the consequence warrants it, change the basis of the check, the way the check is prepared, or the examiner. Where the work will be relied on, the examiner is a competent person.
 
@@ -304,7 +304,7 @@ A useful aim for the arrangement is warranted confidence per unit of the account
 
 This lesson also supports a broader argument. Part of the classical discipline exists to manage the cost of coordinating people's labour on information work: estimating it from production hours, batching changes to save drafting effort, and measuring progress by documents produced. Where agents do the production, these practices lose much of their reason, so do not carry them over by habit. Some keep part of their reason in a new form. Batching decisions can still save the sponsor's and specialists' attention, and site crews still need their workload levelled.
 
-The practices that manage authority, evidence, acceptance, and the physical world keep their reasons, and agents make them more important, because more work reaches the point where someone must rely on it.
+The practices that manage authority, evidence, acceptance, and the physical world keep their reasons, and agents make them more important, because work can now reach the point where someone relies on it without anyone having attended to it while it was produced.
 
 This is an argument from how the costs have changed, not a measured result. Agent capability and cost vary with the task and the system, so test the premise against your own work.
 
@@ -330,7 +330,7 @@ This is a forecast, not an approval to spend 265,000, and it gives no conclusion
 
 The project manager briefs an agent to compare C03 with C01 and to calculate the forecast finish. The brief identifies both records with their revisions and status, states that each C03 item includes its recorded actual expenditure, states that C03 excludes A05, and asks the agent to show each step.
 
-The agent returns the comparison and the sequence within minutes. The manager does not accept them because they look right. The manager checks that the agent counted delivery from the end of Week 6, kept contingency at 20,000, added no actual expenditure, and left A05 out. The arithmetic is the same as in the classical account; agents change who performs it and what the manager must check.
+The agent returns the comparison and the sequence. The manager does not accept them because they look right. The manager checks that the agent counted delivery from the end of Week 6, kept contingency at 20,000, added no actual expenditure, and left A05 out. The arithmetic is the same as in the classical account; agents change who performs it and what the manager must check.
 
 The team divides the examination by A01's responsibilities:
 
@@ -396,9 +396,9 @@ Then complete three further exercises:
 
 Prepare an execution control package for Northbank's existing scope, working with agents. Include the schedule, cost comparison, procurement conditions, response priorities, and sponsor decision request. Add a short account of how you arranged the agents' work and how you examined it, with the briefs you used.
 
-Then defend the package to your instructor. Explain how you reached its main conclusions and what you checked, and reason through changed premises that your instructor poses. Give the defense live, by voice or in person, without consulting an agent, where you can. In a text-only exchange, your instructor cannot establish that you worked without assistance. The instructor then rates the defense on your reasoning through changed premises and records that limit.
+Then defend the package to your instructor. Explain how you reached its main conclusions and what you checked, and reason through changed premises that your instructor poses, such as a different cost basis or delivery time. Your instructor rates the defense as the teaching guide describes; in text-only study it is rated on changed-premise reasoning with the medium recorded.
 
-Assessing this work is difficult, and the difficulty is part of the lesson. Your instructor is in your sponsor's position: both receive a finished package and must decide how far to rely on it, without seeing how much judgment went into it. The package alone cannot answer that question. The evidence is in your briefs, your examination record, the defects you found and repaired, and your ability to explain and reason through the work in the defense. Making that evidence visible is part of the practice being assessed.
+As the series index explains under [Work with agents](../index.html#work-with-agents), your instructor is in your sponsor's position: the package alone cannot show how much judgment went into it, so your briefs, examination record, and defense carry that evidence.
 
 Use these seven observable criteria:
 
@@ -408,7 +408,7 @@ Use these seven observable criteria:
 4. Proposed responses preserve the existing scope until the authorized decision changes it, and they claim no saving from agent use without supporting evidence.
 5. The briefing identifies supported progress, forecast departures, uncertainty, and decision owners.
 6. The account of the arrangement shows the design: who examines each agent contribution, what that examination must check, and where independence is needed and how it is provided. Your own examination record shows what you actually checked in each agent return, what it found, and what you changed.
-7. In the defense, you explain the package's main conclusions and their grounds, show what your examination of the agents' work found, and reason correctly through the changed premises your instructor poses.
+7. In the defense, you explain the package's main conclusions and their grounds, show what your examination of the agents' work found, identify which judgments are your own, and reason correctly through the changed premises your instructor poses.
 
 Before the defense, explain your package to a peer as practice, and repair defects found during that examination or the assessment. Retain the previous revision and the repair basis.
 
@@ -416,6 +416,6 @@ Before the defense, explain your package to a peer as practice, and repair defec
 
 Keep the package as Portfolio 08 and add it to your Course 07 project basis. Carry unresolved technical conditions into Course 09, and examination and handover prerequisites into Course 10.
 
-Read management manual (Edition 9) chapter 3, §§4.3–4.5, §§5.2–5.3, chapter 6, §8.1 and §9.1 in [References](../references.html). They connect dependencies, ready work, examination, change propagation, completion, integration, and the whole cost of a result. The manual is written for the agents you work with, so these sections also show you what your agents are asked to do and where your own responsibilities begin.
+Read management manual (Edition 9) chapter 3, §§4.3–4.5, §§5.2–5.3, chapter 6, §8.1 and §9.1 in [References](../references.html). They connect dependencies, ready work, examination, change propagation, completion, integration, and the whole cost of a result.
 
 The optional APM readings give a wider account of project management, but the supplied case contains all inputs for this course's core exercises.

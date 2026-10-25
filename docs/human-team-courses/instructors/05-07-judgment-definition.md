@@ -112,9 +112,9 @@ For the sensitivity exercise, a sound answer recognizes that the next response t
 | Scope and authority | The argument preserves A02 and A05 status, with the A01 decision rights stated accurately. |
 | Technical grounds | The voltage discrepancy and missing hydraulic inputs receive explicit examination without a fabricated solution. |
 | Options and consequences | Alternatives receive a fair comparison, including uncertainty, affected parties, and conditions on further work. |
-| Defense and repair | The learner answers a substantive challenge and explains any changed premise or justified retained conclusion. |
+| Repair after peer challenge | The learner answers a substantive challenge and explains any changed premise or justified retained conclusion. |
 | Agent use and examination | The questions to agents do not presuppose the answer, challenge is arranged with the independence the consequence needs, and the learner's record names the warrants checked against their sources. |
-| Defense through changed premises | The learner explains the grounds, identifies their own judgments, and reasons correctly through the instructor's changed premises. |
+| Defense through changed premises | The learner explains the main conclusions and their grounds, shows what their examination of the agents' work found, identifies which judgments are their own, and reasons correctly through the instructor's changed premises. |
 
 Needs repair: confident acceptance based on brochure data, permanent rejection of every possible 480 V arrangement, or a schedule promise without evidence. Also return for repair a memorandum whose strength of conclusion exceeds its evidence because the learner adopted an agent's wording, or a defense in which the learner cannot explain a sentence of their own memorandum.
 
@@ -157,7 +157,7 @@ In the briefs, check that A01 is given as the basis for authority, that A05 is g
 
 In the examination notes, look for a check of the agent-drafted record against what was decided, such as whether B02's request to keep Week 12 stayed a request and whether the voltage discrepancy and hydraulic gaps stayed open.
 
-The participants' own explanations, not the drafted record, establish common understanding. Criterion 6 has two parts: assess the briefs and the learner's own examination record separately. Criterion 7 is the defense. Useful changed premises include: if operations stated that 22 litres per second is needed before handover, how is the request routed? If the supplier offered to hold the slot in return for acceptance of the 480 V offer in principle, what is the response? If the drafted record said that the team agreed to keep Week 12, what must change?
+The participants' own explanations, not the drafted record, establish common understanding. Where you or a mentor play the participants, criterion 5 cannot show agreement among real people; rate it as the assessment table describes. Criterion 6 has two parts: assess the briefs and the learner's own examination record separately. Criterion 7 is the defense. Useful changed premises include: if operations stated that 22 litres per second is needed before handover, how is the request routed? If the supplier offered to hold the slot in return for acceptance of the 480 V offer in principle, what is the response? If the drafted record said that the team agreed to keep Week 12, what must change?
 
 ### Knowledge-check answers
 
@@ -167,11 +167,11 @@ The participants' own explanations, not the drafted record, establish common und
 4. Establish the disputed proposition. Facts may need observation or analysis, but scope choices need the appropriate decision authority and impact assessment.
 5. Record the actual decision, remaining concern, evidence, affected work, responsible owner, and resolution route. Do not imply technical agreement.
 6. Provide suitable inputs, competence, capacity, supervision, and review. Examine bad news honestly and correct the evidenced cause.
-7. Adding a person adds pairs who may need to talk, n(n-1)/2 for n people, and a newcomer's briefing that is paid once. Adding an agent adds no participant who must be kept informed, and talking to it is cheap. But the agent keeps context only as far as its brief carries it, so context transfer is paid at every assignment and loses some context each time, and each return needs examination. A sound answer names the lossy, repeated context transfer.
+7. Adding a person adds pairs who may need to talk, n(n-1)/2 for n people, and a newcomer's briefing that is paid once. Adding an agent adds no participant who must be kept informed, and talking to it is cheap. But the agent keeps context only as far as its brief carries it, so context transfer is paid at every new session or fresh agent, some context can be lost each time, and each return needs examination. A sound answer names the lossy, repeated context transfer.
 8. The brief gives the purpose, the identified basis with revisions and status, the output wanted, its interfaces and limits, the checks to perform, the conditions that require a person's decision, and the required return, and it asks for missing inputs and assumptions. The return reports the output, scope completed, checks performed and what each examined, limits, and open choices, and it distinguishes what the agent prepared from what it changed.
 9. Agents do not reliably push back, raise disagreement, or hold a correct finding when challenged, and they may work from a flawed premise in their brief. So the brief must ask for objections, doubted premises, the conditions under which the conclusion fails, and the conditions that require the agent to stop and report. The absence of an objection shows only that none was detected or reported; it shows neither soundness nor agreement.
 10. The drafted record establishes what the draft says. It does not establish that people agreed or that the decision was made as recorded. The participants must check what the record means, explain the next action in their own words, and confirm that the record distinguishes decisions, proposals, requests, and unresolved concerns, such as B02's request to keep Week 12.
-11. Agents can take on drafting and comparison, but they hold no interest or authority and cannot speak for a stakeholder. The sponsor's decisions, operations' conditions and acceptance, procurement's needs, and the supplier's commercial exchanges stay with people. As agents take on more of the production, these relationships can become a larger share of each person's work. Credit an answer that treats this as a shift in proportion, not a measured change.
+11. Agents can take on drafting and comparison, but they hold no interest or authority and cannot speak for a stakeholder, so the sponsor's decisions, operations' conditions and acceptance, procurement's needs, and the supplier's commercial exchanges stay with people. As agents take on more of the production, these relationships can become a larger share of each person's work. Credit an answer that treats this as a shift in proportion, not a measured change.
 
 ### Sample practice reasoning
 
@@ -210,12 +210,12 @@ For the follow-up brief, a sound brief identifies the sources with their status,
 | Criterion | Evidence that meets it |
 | --- | --- |
 | Truthful explanation | The speaker states relevant uncertainty and resists pressure to imply unsupported acceptance. |
-| Stakeholder distinctions | The table separates interests, knowledge, contributions, and actual decision rights, and it lists people and organizations, not agents. |
+| Stakeholder distinctions | The table separates interests, knowledge, contributions, and actual decision rights, and it lists people and organizations, not agents, without using a drafted view in place of a stakeholder's stated position. |
 | Listening and fair treatment | The discussion restates concerns accurately, allows correction, and identifies appropriate routes for conflicting interests and confidential evidence. |
 | Accurate meeting record | The record distinguishes decisions, proposals, actions, and unresolved concerns, whoever drafted it. |
-| Common next action | Participant explanations agree on authority and conditions or identify a difference for repair. |
+| Common next action | Participant explanations agree on authority and conditions or identify a difference for repair. Where the participants are simulated, including by you, rate the learner's understanding check and handling of each role's explanation instead, and record "simulated participants" with the rating. |
 | Briefs and examination | The briefs carry the needed context with status and ask for missing inputs and objections, and the learner's record shows what they checked in each return. |
-| Defense through changed premises | The learner explains the next actions and reasons correctly through the instructor's changed premises. |
+| Defense through changed premises | The learner explains the main conclusions and their grounds, shows what their examination of the agents' work found, identifies which judgments are their own, and reasons correctly through the instructor's changed premises. |
 
 Needs repair: agreement obtained by omitting a technical concern, a meeting chair claiming every approval, or unsupported attribution of motives. Also return for repair an agent-drafted record adopted without the participants' check, or a stakeholder position taken from an agent's draft instead of from the stakeholder.
 
@@ -309,7 +309,7 @@ A sound basis index lists A01 Rev 0, A02 Rev 1 (approved for project development
 
 For the agent's interface table, a sound note checks that owners and points of need are labelled as proposals, because B03 names none, and that each exchange traces to B03 or another record. Do not require a found defect; a note that names what was checked meets the exercise.
 
-For the division design, accept different designs that keep the accountable homes with people, give each agent contribution an examiner, and keep with people the judgments the records assign to them: operations' changeover confirmation, the electrical engineer's determinations under A04, the mechanical contribution's operating envelope, and the sponsor's A05 decision. Useful tradeoffs include assignments within one discipline against fewer cross-discipline briefs, and alternatives kept open against unsettled interfaces.
+For the division design, accept different designs that keep the accountable homes with people, give each agent contribution an examiner with a stated examination and an assumed availability labelled as a teaching assumption, and keep with people the judgments the records assign to them: operations' changeover confirmation, the electrical engineer's determinations under A04, and the sponsor's A05 decision. A learner may also keep the operating envelope with the mechanical engineer, as the worked definition does. Useful tradeoffs include assignments within one discipline against fewer cross-discipline briefs, and alternatives kept open against unsettled interfaces.
 
 ### Assessment guidance
 
@@ -320,8 +320,8 @@ For the division design, accept different designs that keep the accountable home
 | Complete allocation | The division covers equipment, piping, supports, electrical, controls, operating information, inputs, and coordination. |
 | Interfaces | Exchanges have contributions, proposed owners, receiving needs, and a home for technical coordination. |
 | Open-matter treatment | Hydraulic conditions, electrical checks, changeover definition, and A06 are connected to the acts they limit. |
-| Division between people and agents | Each agent contribution has an examiner and a size that examiner can check, the retained judgments stay with people, and the learner's record shows what they checked in each return. |
-| Defense through changed premises | The learner explains the main choices and reasons correctly through the instructor's changed premises. |
+| Division between people and agents | Each agent contribution has an examiner, the learner states the examination it creates and the examiner availability assumed as a teaching assumption, the agent work is consistent with that assumption, the retained judgments stay with people, and the learner's record shows what they checked in each return. |
+| Defense through changed premises | The learner explains the main conclusions and their grounds, shows what their examination of the agents' work found, identifies which judgments are their own, and reasons correctly through the instructor's changed premises. |
 
 Needs repair: a polished basis that adopts 22 litres per second, deletes unresolved requirements, or treats a deliverable assignment as fulfilled work. Also return for repair a division that names an agent as an accountable home or reviewer, or a basis index that gives agents A02 Rev 0 or A05 without its status.
 

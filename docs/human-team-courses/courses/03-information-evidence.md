@@ -12,15 +12,11 @@ Complete Courses 01 and 02, and read Northbank Packet A. Use your controlled-bas
 
 ### How this course is built
 
-The series index explains [how the series is built](../index.html#how-the-series-is-built). The classical method of research and evidence remains sound. It was developed when gathering information took people's time, so much of the method protected that effort: a bounded question kept the search affordable, and the person who gathered a source had usually read it.
-
-Agents make gathering nearly instant. The hard part moves to what gathering never did: establishing where information came from, what role a source can play for the actual question, and catching plausible fabrications, such as an invented citation or a summary that drops a condition. A03's copied, unsourced values are the classical example of the failure, and agents can reproduce it faster and at greater volume.
-
-Lessons 1 to 4 each follow four steps: the classical method, what it assumes, what changes with agents, and the extended method with its tradeoffs.
+The series index explains [how the series is built](../index.html#how-the-series-is-built). With agents, gathering from accessible records can become fast, so the researcher's hard work moves to establishing where information came from, what role a source can play for the question, and catching plausible fabrications, such as an invented citation or a summary that drops a condition. A03's copied, unsourced values are the classical example of that failure, and agents can reproduce it faster and at greater volume.
 
 ### The teaching arrangement
 
-Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case): the agents hold no appointment under A01, and every Northbank record stays as written. You will work with real agents in the practice and the assessed assignment, and keep the examination record that Course 01 introduced.
+Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case). In this course, brief agents with Packet A as the only permitted source, unless an exercise says otherwise.
 
 ### Outcomes
 
@@ -62,7 +58,7 @@ The classical method assumes that searching is costly. A broad request wastes th
 
 ### What changes with agents
 
-A broad request no longer wastes search time, because an agent can search and collect in minutes. It now wastes something scarcer: the attention of the person who must examine a large, plausible collection. The framing that protected the researcher's effort now protects the examiner's attention and the scope of the conclusion.
+A broad request no longer wastes search time, because an agent can search and collect quickly. It now wastes something scarcer: the attention of the person who must examine a large, plausible collection. The framing that protected the researcher's effort now protects the examiner's attention and the scope of the conclusion.
 
 Agents answer the question they are given, and they can answer an adjacent one without saying so. Asked what Packet A establishes about the electrical connection, an agent may go on to say whether the supply is suitable, which is the larger question the classical method warns against. That is the quiet extension of scope the brief must prevent, performed without the pause that would make a person ask.
 
@@ -214,7 +210,7 @@ The classical method assumes that the researcher who meets a conflict has read b
 
 Agents can resolve a conflict silently. Given 480 V and 600 V, an agent may report one value, prefer the newer or more confident source, or merge them into a sentence that hides the difference. Any of these can be right by accident, and each one removes the trace the team needs to find work that used A03.
 
-Agents also make packets cheap to fill. The classical warning about documents with no identified role matters more, because an agent can add many relevant-looking sources in minutes, and the absence of the one source the decision needs is harder to see in a large packet.
+Agents also make packets cheap to fill. The classical warning about documents with no identified role matters more, because an agent can add many relevant-looking sources quickly, and the absence of the one source the decision needs is harder to see in a large packet.
 
 A missing result can also be filled. Asked whether the site can supply the selected motor, an agent may answer from general knowledge instead of reporting that Packet A contains no capacity result. The classical rule that a missing result remains a gap now needs to be stated in the brief.
 
@@ -247,9 +243,11 @@ The conclusion gives the next enquiry a sound observation, while preventing that
 
 ### The same work with agents
 
+This account is a teaching assumption, not a Northbank record: the records do not say how any of the work was produced.
+
 The researcher briefs an agent with the question, the consumer, and Packet A as the only permitted source, identified by revision. The brief asks for each claim with its quoted passage, every conflicting value reported without resolution, and a separate list of matters the records do not answer. It states that electrical suitability is outside the enquiry.
 
-The agent returns a claim table within minutes. The researcher checks each quoted passage against A03 Rev 0 and A04 Rev 1, and checks that the A03 entry keeps its planning-estimate origin and its lack of a survey reference. The researcher checks that the capacity and compatibility rows remain unresolved and are not filled with general knowledge, and that the 480 V and 600 V values both appear with their sources.
+The agent returns a claim table. The researcher checks each quoted passage against A03 Rev 0 and A04 Rev 1, and checks that the A03 entry keeps its planning-estimate origin and its lack of a survey reference. The researcher checks that the capacity and compatibility rows remain unresolved and are not filled with general knowledge, and that the 480 V and 600 V values both appear with their sources.
 
 The table and its conclusions are the same as in the classical account. The repair of the subject index and the flag on the design note remain the researcher's decisions, because they depend on judging each source's role.
 
@@ -272,7 +270,7 @@ The supplied questions are:
 - Which transfer-flow value governs project development?
 - What does the packet establish about the electrical connection?
 
-First prepare the claim-and-evidence table for the electrical question yourself, without an agent. You then know what an agent's table should contain. Work with an agent for the outputs that follow.
+First prepare the claim-and-evidence table for the flow question yourself, without an agent. The worked example covers only the electrical question, so this table is your own baseline for judging what an agent's table should contain. Work with an agent for the outputs that follow.
 
 Supply these outputs:
 
@@ -300,7 +298,7 @@ Then complete three further exercises:
 4. What provenance limits apply to A03 Rev 0?
 5. Why do the three Northbank flow values not create three approved scope choices?
 6. What must an evidence packet contain to support another person's examination?
-7. Why does near-instant gathering move the difficulty of research toward examination?
+7. When gathering from accessible records becomes fast, why does the difficulty of research move toward examination?
 8. An agent's evidence table cites A04 Rev 1 with a quoted passage. What must you check before relying on the entry?
 9. How can an agent's summary of A02 be accurate in every sentence and still mislead?
 10. How is an agent's unsourced value like A03's 480 V, and how do you keep it from becoming a source?
@@ -310,7 +308,7 @@ Then complete three further exercises:
 
 Prepare an evidence packet for the project engineer's equipment-basis discussion, working with agents, and address both practice questions. Use Packet A only, and state what the discussion can decide and what needs further input. Add the briefs you used and your examination record.
 
-Then defend the packet to your instructor. Explain how you reached its conclusions and what you checked, and reason through changed premises that your instructor poses. Give the defense live, by voice or in person, without consulting an agent, where you can. In a text-only exchange, the instructor rates the defense on your reasoning through changed premises and records that limit.
+Then defend the packet to your instructor. Explain its conclusions and what you checked, and reason through changed premises such as a survey reference added to A03, an agent citation that A04 does not contain, or an index that lists A04. Your instructor rates the defense as the [teaching guide](../instructor-guide.html#assess-agent-assisted-work) describes; in text-only study it is rated on changed-premise reasoning with the medium recorded.
 
 An instructor assesses seven observable criteria:
 
@@ -318,18 +316,18 @@ An instructor assesses seven observable criteria:
 | --- | --- |
 | Enquiry boundary | Each question identifies its consumer, purpose, and permitted conclusion. Agent briefs name the permitted sources and the questions outside the enquiry. |
 | Retrieval | The index leads a reviewer to the relevant identity, revision, and source qualification. |
-| Evidential role | Claim entries distinguish requirements, observations, proposals, and copied estimates. |
+| Evidential role | Claim entries distinguish requirements, observations, proposals, and copied estimates. Every claim that a conclusion rests on traces to a passage in a cited revision. |
 | Conflict treatment | Each discrepant value receives a source-grounded explanation without hidden deletion. |
 | Scoped reliance | Conclusions preserve unresolved technical and external requirements and name useful next enquiries. No gap is filled from outside the permitted sources. |
-| Examination of agent research | Your examination record shows which quoted passages you checked against their sources, which conditions you compared, and what you found and changed. Every claim that a conclusion rests on traces to a passage in a cited revision. |
+| Examination of agent research | Your examination record shows which quoted passages you checked against their sources, which conditions you compared, and what you found and changed. |
 | Defense | You explain the packet's conclusions and their grounds, and reason correctly through the changed premises your instructor poses. |
 
-Explain one conclusion without reading it aloud, and show the passage that supports it. Repair any retrieval failure or unsupported inference. Acceptance in training does not establish the complete equipment basis.
+Explain one conclusion in your own words and cite the passage that supports it. Repair any retrieval failure or unsupported inference. Acceptance in training does not establish the complete equipment basis.
 
 ## Portfolio continuation and references
 
 Keep the evidence packet as Portfolio 03 and link its source index to Portfolio 02. Course 04 will examine the interpretation and applicability of the requirements found here.
 
-The [management manual (Edition 9)](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html), sections 2.2 and 6.3, supports records that preserve identity, provenance, and useful grounds. Its section 2.4 supports visible treatment of open matters. Section 2.2 also warns that a reliable source can produce an unreliable extraction. The manual is written for the agents you work with, so these sections also show what your agents are asked to do and where your own responsibilities begin.
+The [management manual (Edition 9)](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html), sections 2.2 and 6.3, supports records that preserve identity, provenance, and useful grounds. Its section 2.4 supports visible treatment of open matters. Section 2.2 also warns that a reliable source can produce an unreliable extraction.
 
 Use the [series references](../references.html) for further reading. External readings are optional; no external source can fill a gap in the fictional case without an explicit new exercise input.

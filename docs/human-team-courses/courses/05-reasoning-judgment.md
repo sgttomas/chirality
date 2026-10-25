@@ -12,15 +12,11 @@ Complete Courses 01 to 04, and bring your controlled source index and requiremen
 
 ### How this course is built
 
-The series index explains [how the series is built](../index.html#how-the-series-is-built). In short, the classical method of reasoning and judgment remains sound, and you need it. But it assumes that producing a structured argument costs a person's time and thought, so a well-organized argument usually meant that someone had worked through its grounds. Agents make fluent, well-structured reasoning cheap, so fluency stops being evidence of warrant.
-
-As in the beam analogy, the ratio that matters here is the cost of producing an analysis compared with the cost of judging whether its grounds hold and whether it bears on the decision. When analysis is expensive, a team runs few analyses, and the people who prepare them examine them as they go. When agents make analysis cheap, judging which analyses matter and whether they are warranted becomes the controlling step. That judgment, with the responsibility it carries, stays with the person who will answer for the decision.
-
-Lessons 1 to 5 each follow four steps: the classical method, what it assumes, what changes with agents, and the extended method with its tradeoffs. This course has no separate lesson on the arrangement of people and agents. How you pose questions to agents and arrange challenge of their reasoning is part of each extended method, and [Course 08 Lesson 6](08-project-execution.html#lesson-6-engineer-the-arrangement-that-does-the-work) treats the arrangement as a system.
+The series index explains [how the series is built](../index.html#how-the-series-is-built). In this course the shifted constraint is the cost of reasoning: agents make fluent, well-structured analysis cheap, so fluency stops being evidence of warrant, and judging which analyses matter and whether their grounds hold becomes the scarce step. That judgment stays with the person who will answer for the decision; [Course 08 Lesson 6](08-project-execution.html#lesson-6-engineer-the-arrangement-that-does-the-work) treats the arrangement of people and agents as a system.
 
 ### The teaching arrangement
 
-Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case): the agents hold no appointment under A01, and every Northbank record stays as written. Where this course describes what an agent might return in the case, that description is a teaching assumption, not a case record. You will work with real agents in the practice and the assessed assignment.
+Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case); in this course, any description of what an agent might return in the case is a teaching assumption, not a case record.
 
 ### Outcomes
 
@@ -33,7 +29,7 @@ After this course, you can:
 - Revise a conclusion when new evidence changes its grounds.
 - Pose questions to agents without steering the answer toward a preferred conclusion.
 - Examine an agent's reasoning for its warrant, and distinguish agreement between agents from independent examination.
-- Show which judgments in a recommendation are your own, and answer for them.
+- Direct, examine, and accept agent contributions, and show which judgments are your own.
 
 Use Northbank Packets A and B; later packets are not available for this assignment.
 
@@ -347,7 +343,7 @@ The engineer examines the return against the records, not by its fluency. The ch
 - A02 Rev 1's 18 litres per second governs, and A05 remains a proposal.
 - The two-day request is not treated as establishing that losing the slot will determine final delivery.
 
-The engineer also asks an agent to prepare the alternative responses: immediate acceptance, return for correction and substantiation, and any other response the evidence might support. Agents can prepare these cheaply. The engineer decides which deserve the attention of procurement and the sponsor, and why.
+The engineer also asks an agent to prepare the alternative responses: immediate acceptance, return for correction and substantiation, and any other response the evidence might support. The engineer decides which deserve the attention of procurement and the sponsor, and why.
 
 Suppose a second agent, given the same brief, agrees with the first. The engineer records that agreement as consistency, not as review. Under A04, the electrical engineer must determine spare capacity, protection coordination, and equipment compatibility, and no agreement between agents settles those matters.
 
@@ -411,9 +407,7 @@ Add a short account of how you used agents: the questions you posed and how you 
 
 Defend the memorandum to a peer or mentor, and repair it where the challenge identifies an unsupported claim.
 
-Then defend the memorandum to your instructor. Explain how you reached the recommendation, which judgments are your own, and what you checked in the agents' work, and reason through changed premises that your instructor poses. Give the defense live, by voice or in person, without consulting an agent, where you can. In a text-only exchange, your instructor cannot establish that you worked without assistance. The instructor then rates the defense on your reasoning through changed premises and records that limit.
-
-Assessing this work is difficult, and the difficulty is part of the lesson. A memorandum prepared with agents will usually read well, so its prose says little about the judgment in it. Your instructor is in the decision owner's position: both receive a finished recommendation and must decide how far to rely on it. The evidence is in your briefs, your examination record, your repairs, and your ability to reason through the work in the defense.
+Then defend the memorandum to your instructor. Expect changed premises about the evidence, such as a different survey result, and about pressure, such as a confirmed loss of the delivery slot. Your instructor rates the defense as the teaching guide describes; in text-only study it is rated on changed-premise reasoning with the medium recorded.
 
 The instructor assesses these seven observable criteria:
 
@@ -422,8 +416,8 @@ The instructor assesses these seven observable criteria:
 3. It evaluates the voltage discrepancy and incomplete hydraulic basis without unsupported suitability claims.
 4. It compares options, uncertainty, affected parties, consequences, and conditions for dependent work.
 5. It explains the recommendation and records justified repairs after challenge.
-6. The account of agent use shows how each consequential question was posed without steering it toward a preferred answer, and how challenge was arranged where independence mattered. Your own examination record shows which warrants you checked against the sources, what you found, and what you changed.
-7. In the defense, you explain the recommendation and its grounds, identify which judgments are your own, and reason correctly through the changed premises your instructor poses.
+6. The account of agent use shows how each consequential question was posed openly, or as an explicit hypothesis with a request for the evidence that would refute it, and how challenge was arranged where independence mattered. Your own examination record shows which warrants you checked against the sources, what you found, and what you changed.
+7. In the defense, you explain the recommendation's main conclusions and their grounds, show what your examination of the agents' work found, identify which judgments are your own, and reason correctly through the changed premises your instructor poses.
 
 ## Portfolio continuation and references
 
@@ -431,6 +425,6 @@ Keep the reviewed claim table and decision memorandum as Portfolio 05, and link 
 
 Use them in Course 06 to explain a difficult recommendation, and use their unresolved inputs in Course 07 to define further work.
 
-Source adaptation: Management manual (Edition 9) §§1.2–1.3, 2.4–2.5, and 5.1–5.4. These sections cover claims, uncertainty, examination, agreement among agents, and preserved decision grounds. The manual is written for the agents you work with, so these sections also show you what your agents are asked to do and where your own judgment begins.
+Source adaptation: Management manual (Edition 9) §§1.2–1.3, 2.4–2.5, and 5.1–5.4. These sections cover claims, uncertainty, examination, agreement among agents, and preserved decision grounds.
 
 Read the shared [references](../references.html) for professional competencies and systems engineering fundamentals. Further reading is optional for the supplied exercise.

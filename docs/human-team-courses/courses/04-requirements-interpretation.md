@@ -12,15 +12,11 @@ Complete Courses 01 to 03. Read A01, A02, A05, and A06 closely. Keep your eviden
 
 ### How this course is built
 
-The series index explains [how the series is built](../index.html#how-the-series-is-built). The classical method of interpretation remains sound. It was developed when finding, reading, and comparing requirement text took people's time, so the person who interpreted a clause had usually read its surroundings to find it.
-
-Agents can find, compare, and summarize requirement text quickly. But applicability, interpretation, and the authority to decide stay with people, because they depend on the actual instrument, the actual facts of the assignment, and an appointment. And agents can produce convincing statutes, clauses, rulings, and exemptions that do not exist, so A06's rule against inventing them becomes more important, for agents as well as for people.
-
-Lessons 1 to 4 each follow four steps: the classical method, what it assumes, what changes with agents, and the extended method with its tradeoffs.
+The series index explains [how the series is built](../index.html#how-the-series-is-built). Agents can find, compare, and summarize requirement text quickly, and they can draft readings of it. But people still establish applicability and the interpretation that is relied on, and decide with authority, because these depend on the actual instrument, the verified facts of the assignment, and an appointment. Agents can also produce convincing statutes, clauses, rulings, and exemptions that do not exist, so A06's rule against inventing them matters more.
 
 ### The teaching arrangement
 
-Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case): the agents hold no appointment under A01, and every Northbank record stays as written. You will work with real agents in the practice and the assessed assignment, and keep the examination record that Course 01 introduced. A06's instruction not to invent a statute, code clause, regulator ruling, or exemption applies to every agent you brief.
+Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case). A06's instruction not to invent a statute, code clause, regulator ruling, or exemption applies to every agent you brief.
 
 ### Outcomes
 
@@ -109,9 +105,9 @@ The classical method assumes that reading the surrounding section and following 
 
 ### What changes with agents
 
-Agents remove much of that labour. An agent can read a whole instrument, follow every cross-reference, and collect the definitions in minutes, which makes Steps 1, 2, and 5 cheap.
+Agents remove much of that labour. An agent can read a whole instrument, follow its cross-references, and collect the definitions quickly, which can make Steps 1, 2, and 5 cheap.
 
-Step 6 is where agents tend to fail. A restatement compresses the source, and compression is where conditions drop out. An agent's restatement of A02 can read “provide 18 litres per second at the distribution header” and lose “under the operating conditions that the project must establish.” An agent can also read words such as “shall,” “should,” and “may” by general convention, not by the instrument's own definitions.
+Step 6 is where an agent can fail. A restatement compresses the source, and compression is where conditions drop out. An agent's restatement of A02 can read “provide 18 litres per second at the distribution header” and lose “under the operating conditions that the project must establish.” An agent can also read words such as “shall,” “should,” and “may” by general convention, not by the instrument's own definitions.
 
 ### The extended method
 
@@ -195,9 +191,9 @@ The classical method assumes that inventing authority is a human failure under p
 
 ### What changes with agents
 
-Agents can invent authority without any temptation. Asked to resolve an ambiguity, an agent tends to resolve it instead of reporting it unresolved. It may supply a plausible clause, ruling, or exemption; assert a general precedence rule such as “the more stringent requirement governs”; or treat A05 as amending A02 because A05 is the more recent request. Each of these can read as a reasoned interpretation.
+Agents can invent authority without any temptation. Asked to resolve an ambiguity, an agent can resolve it instead of reporting it unresolved. It may supply a plausible clause, ruling, or exemption; assert a general precedence rule such as “the more stringent requirement governs”; or treat A05 as amending A02 because A05 is the more recent request. Each of these can read as a reasoned interpretation.
 
-An agent's interpretation is an interpretation, not a decision. It cannot reject A05, amend A02, or settle a genuine conflict, and its reading carries no authority of its own.
+An agent's interpretation is a draft reading, not the interpretation the project relies on, and not a decision. It cannot reject A05, amend A02, or settle a genuine conflict, and its reading carries no standing of its own until a person examines it and adopts it as their interpretation.
 
 The classical memorandum still works, and agents can draft most of it. Step 4, comparing the possible readings, is where an agent helps most, if it is asked to list readings instead of choosing one.
 
@@ -238,9 +234,11 @@ The memorandum avoids calling automatic changeover an approved requirement, and 
 
 ### The same work with agents
 
+This account is a teaching assumption, not a Northbank record: the records do not say how any of the work was produced.
+
 The project engineer briefs an agent with A02 Rev 1 as approved for project development, A05 Rev 0 as a proposal with no recorded amendment, and A06 Rev 0 as an open inquiry with its rule against invention quoted. The brief asks for a reading table with the original passage beside each element, the possible readings of the changeover statement, and every matter the records leave unresolved.
 
-The agent returns a table within minutes. The project engineer compares each row with A02 and checks that “under the operating conditions that the project must establish” survives, that the duty to confirm the changeover function with operations has not become automatic changeover, that A05 appears as a proposal, and that the A06 row names no code or instrument.
+The agent returns a table. The project engineer compares each row with A02 and checks that “under the operating conditions that the project must establish” survives, that the duty to confirm the changeover function with operations has not become automatic changeover, that A05 appears as a proposal, and that the A06 row names no code or instrument.
 
 The interpretations are the same as in the classical account. The supported interpretation and the decision about what to ask operations remain the project engineer's own.
 
@@ -258,7 +256,7 @@ An agent asked to draft the S1 report could choose a common measurement method a
 
 Use Packet A and Portfolio 03. No external reading is required.
 
-First prepare the reading of A02's flow, two-unit, and changeover statements yourself, without an agent: actor, result, conditions, and unresolved definitions. You then know what an agent's reading should contain. Work with an agent for the outputs that follow.
+First prepare the A06 enquiry (output 3) yourself, without an agent: for each missing input, why it matters and which decision it prevents. The worked example gives only one row for A06, so this enquiry is your own baseline for judging what an agent's draft should contain. Work with an agent for the outputs that follow.
 
 Supply these outputs:
 
@@ -286,7 +284,7 @@ Then complete three further exercises:
 4. What is the relationship between A02's changeover statement and A05's automatic-changeover request?
 5. What inputs does A06 require before a real applicability conclusion?
 6. How do an interpretation, an authorized decision, and a controlled change differ?
-7. Agents can find, compare, and summarize requirement text quickly. Which parts of interpretation stay with people, and why?
+7. Agents can find, compare, and summarize requirement text quickly, and draft readings of it. Which parts of interpretation stay with people, and why?
 8. Why does A06's rule against inventing a statute, clause, ruling, or exemption matter more when agents draft the enquiry?
 9. An agent's memorandum states that “the more stringent requirement governs.” Why can you not rely on that as a basis?
 10. How do you brief an agent so that it leaves a genuine ambiguity unresolved instead of resolving it?
@@ -296,9 +294,9 @@ Then complete three further exercises:
 
 Prepare a memorandum for Northbank project development, working with agents, and include the practice outputs and a requirement table. State a proposed examination for each approved project requirement at the available level of definition. Add the briefs you used and your examination record.
 
-Then defend one interpretation to your instructor. Explain how you reached it and what you checked, and reason through changed premises that your instructor poses. Give the defense live, by voice or in person, without consulting an agent, where you can. In a text-only exchange, the instructor rates the defense on your reasoning through changed premises and records that limit.
+Then defend one interpretation to your instructor: show the passage, explain an alternative reading, and reason through changed premises such as a supplied jurisdiction and adoption instrument, a recorded amendment to A05, or an agent-cited exemption. Your instructor rates the defense as the [teaching guide](../instructor-guide.html#assess-agent-assisted-work) describes; in text-only study it is rated on changed-premise reasoning with the medium recorded.
 
-An instructor assesses seven observable criteria:
+An instructor assesses eight observable criteria:
 
 | Criterion | Evidence required |
 | --- | --- |
@@ -307,15 +305,16 @@ An instructor assesses seven observable criteria:
 | Status distinctions | Requirements, proposals, observations, assumptions, and interpretations receive their appropriate roles. |
 | Enquiry quality | Missing applicability inputs have owners, affected decisions, and a defined next result. |
 | Useful examination | Proposed checks match the requirements and identify conditions that must first be established. |
-| Direction and examination of agent interpretation | The briefs carry A06's rule and permit an unresolved answer. Your examination record shows each restatement you compared with its source, any named authority and how you treated it, and what you found and changed. |
+| Direction of agents | The briefs carry A06's rule and permit an unresolved answer. |
+| Examination record | The record shows each agent restatement you compared with its source, any authority an agent named and how you treated it, and what you found and changed. |
 | Defense | You show the passage, explain an alternative reading, and reason correctly through the changed premises your instructor poses. |
 
-Show the passage and explain an alternative reading in the defense. Repair any invented obligation or lost qualification. Acceptance in training grants no authority to determine real legal applicability.
+Repair any invented obligation or lost qualification. Acceptance in training grants no authority to determine real legal applicability.
 
 ## Portfolio continuation and references
 
 Keep the memorandum as Portfolio 04, and link each requirement to its controlled source and evidence entry. Course 05 will use this basis to reason about alternatives, uncertainty, and recommendations.
 
-The [management manual (Edition 9)](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html), sections 2.3 and 2.4, supports treating requirements, assumptions, proposals, and open matters separately. The manual is written for the agents you work with, so these sections also show what your agents are asked to do and where your own responsibilities begin.
+The [management manual (Edition 9)](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html), sections 2.3 and 2.4, supports treating requirements, assumptions, proposals, and open matters separately.
 
 The [NRC model-code explanation](https://nrc.canada.ca/en/certifications-evaluations-standards/codes-canada/canadas-construction-system-context-model-codes) illustrates adoption in Canadian construction. It is background reading, not an adoption instrument for Northbank. Read the [series reference limits](../references.html) before using an external source.

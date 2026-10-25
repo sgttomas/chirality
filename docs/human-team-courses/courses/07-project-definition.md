@@ -12,17 +12,11 @@ Complete Courses 01 to 06 and bring your source index, interpretation, decision 
 
 ### How this course is built
 
-The series index explains [how the series is built](../index.html#how-the-series-is-built). In short, the classical method of project definition remains sound, and you need it. But it assumes that the division of work follows what one person or team can carry: the producer's capacity limits the size of a contribution, and the producer's understanding holds it together. With agents, production stops setting that limit for much of the information work, and the division of work follows what a person can examine and integrate.
-
-As in the beam analogy, the ratio that matters here is the size of a contribution that agents can produce compared with the size that a competent person can examine and integrate. When the two are similar, the classical division works. When agents can produce far more than a person can examine, examination and integration set the boundaries.
-
-The basis also gains new readers. Agents read the basis they are given, quickly and literally, so it must be assembled for them as well as for people.
-
-Lessons 1 to 5 each follow four steps: the classical method, what it assumes, what changes with agents, and the extended method with its tradeoffs. Lesson 6 treats the division of work between people and agents as a design problem.
+The series index explains [how the series is built](../index.html#how-the-series-is-built). In this course the shifted constraint is the size of a contribution: it used to follow what one person can carry, and with agents it follows what a person can examine and integrate, as Lesson 4 explains. Agents also read the basis they are given literally, so Lesson 2 assembles it for them, and Lesson 6 treats the division of work between people and agents as a design problem.
 
 ### The teaching arrangement
 
-Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case): the agents hold no appointment under A01, and every Northbank record stays as written. Where this course describes what an agent might produce or which work agents might do in the case, that description is a teaching assumption, not a case record. You will work with real agents in the practice and the assessed assignment.
+Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case); in this course, any description of what an agent might produce or which work agents might do in the case is a teaching assumption, and so is any examiner availability you assume.
 
 ### Outcomes
 
@@ -35,6 +29,7 @@ After this course, you can:
 - Allocate scope while preserving interfaces and combined responsibility.
 - Assemble a basis that agents read with its revisions and status, so that proposals stay proposals.
 - Design the division of work between people and agents, and defend its tradeoffs.
+- Direct, examine, and accept agent contributions, and show which judgments are your own.
 
 Use Northbank Packets A and B, and identify any new classroom decision separately from the supplied records.
 
@@ -273,7 +268,7 @@ The classical method assumes that dependent work moves at the pace of the people
 
 ### What changes with agents
 
-Cheap exploration lets a team run more bounded studies on assumed values while open matters stay open. But an assumed value can now spread through many documents in an hour, so the rule that an assumed value cannot silently become a procurement requirement needs active checking.
+Cheap exploration lets a team run more bounded studies on assumed values while open matters stay open. But an assumed value can now spread through many documents quickly, so the rule that an assumed value cannot silently become a procurement requirement needs active checking.
 
 Readiness still needs decisions. An agent can report that an input exists; it cannot establish that the input meets its condition, and it cannot decide that an activity is ready. The people with authority for the act still decide that the project is ready for equipment order release. Readiness is a question for evidence and judgment, not for whether a file is present.
 
@@ -287,20 +282,20 @@ Decide which bounded studies to run, as Course 05 Lesson 3 describes, and state 
 
 ## Lesson 6: Design the division of work between people and agents
 
-In a human team, the division of work below the deliverable was left largely to the people doing it. A discipline engineer decided how to break down their own contribution, and their capacity and habits set its shape. With agents, someone must decide which parts agents produce, who examines each part, and where people's judgments enter. That is a design problem, and the classical method left it to habit.
+In a human team, the division of work below the deliverable was left largely to the people doing it. A discipline engineer decided how to break down their own contribution, and their capacity and habits set its shape. With agents, someone must decide which parts agents produce, who examines each part, and where people's judgments enter. That is a design problem, and the classical method could leave it to habit.
 
 Design the division from the project basis and A01's responsibilities:
 
 1. **Start from the accountable homes.** The deliverable allocation from Lesson 4 gives each obligation a person or organization. Agent work sits inside those homes; it does not create new ones.
 2. **Identify the judgments that stay with people.** Some inputs and decisions can come only from people with the relevant role or competence. For Northbank, these include the operating conditions and changeover function that operations provides, the spare capacity, protection coordination, and equipment compatibility that A04 leaves to the electrical engineer, and the scope decision on A05 that A01 gives to the sponsor.
-3. **Allocate production by consequence and detectability.** Agents can draft, compare, and cross-read where a competent person can examine the result. Where an error would be serious and hard to detect, arrange stronger examination, or keep the production with the person.
-4. **Size the agent work to the examiners.** Estimate the examination each agent assignment creates for each examiner, and check it against their availability. Course 08 Lesson 2 develops this for scheduling.
-5. **Design the interfaces.** Each agent assignment needs a brief with the identified basis and a return that its examiner can use, as Course 06 Lesson 5 describes.
-6. **Check the design against the failure modes of definition.** These include a proposal read as basis, a superseded revision used as current, an open input filled with a convenient value, an agent assignment that crosses a responsibility line without both owners examining it, and a record produced because it was cheap, not because anyone needs it.
+3. **State the examination each agent contribution creates.** For each agent contribution, name its examiner and what the examination involves. The records give no examiner availability, so state the availability you assume, label it as a teaching assumption, and keep the agent work consistent with it.
+4. **Check the design against the failure modes of definition.** These include a proposal read as basis, a superseded revision used as current, an open input filled with a convenient value, an agent assignment that crosses a responsibility line without both owners examining it, and a record produced because it was cheap, not because anyone needs it.
+
+The general design steps, such as allocating production by consequence and detectability, designing the brief and the return, and sizing agent work to examination capacity, are in [Course 06 Lesson 5](06-working-relationships.html#lesson-5-support-reliable-contributions) and [Course 08 Lesson 6](08-project-execution.html#lesson-6-engineer-the-arrangement-that-does-the-work).
 
 Agents make it cheap to draft several divisions of work. Choosing among them remains a judgment about coordination, examination, and responsibility, and the person who coordinates the combined result makes it with the people whose work it divides.
 
-[Course 08 Lesson 6](08-project-execution.html#lesson-6-engineer-the-arrangement-that-does-the-work) treats the arrangement as a system during execution. In project definition, the design is part of the division of work you propose, and it changes as the basis develops.
+Course 08 treats the arrangement as a system during execution. In project definition, the design is part of the division of work you propose, and it changes as the basis develops.
 
 ## Worked example: Define Northbank's purchase preparation
 
@@ -330,7 +325,7 @@ The proposed division allows source retrieval, operating clarification, commerci
 
 ### The same work with agents
 
-Before any agent works on the definition, the project engineer assembles a basis index. It lists A01 Rev 0, A02 Rev 1 (approved for project development), A04 Rev 1 (checked site observation), A05 Rev 0 (proposal), A06 Rev 0 (open inquiry), B01 Rev 0 (submitted for technical review, not accepted), B02 Rev 0, and B03 Rev 0. It labels A03 as an archived reference whose values were copied from an earlier planning estimate, and it excludes A02 Rev 0, the draft that A07 found in the shared folder.
+Before any agent works on the definition, the project engineer assembles a basis index. It lists A01 Rev 0, A02 Rev 1 (approved for project development), A04 Rev 1 (checked site observation), A05 Rev 0 (proposal), A06 Rev 0 (open inquiry), A07 Rev 0 (source inventory), B01 Rev 0 (submitted for technical review, not accepted), B02 Rev 0, and B03 Rev 0. It labels A03 as an archived reference whose values were copied from an earlier planning estimate, and it excludes A02 Rev 0, the draft that A07 found in the shared folder.
 
 The project engineer proposes this division for the exercise. It is a teaching proposal, not a Northbank record:
 
@@ -373,7 +368,7 @@ Then complete three exercises with agents. For each, keep the brief you gave the
 
 1. **Assemble a basis index for agents.** From A01 to A07 and B01 to B03, list each record with its identity, revision, status, and relationship to the basis. State how you treat A02 Rev 0, A03, and A05, and why.
 2. **Examine an agent's interface table.** Brief an agent with your basis index and B03 to draft the interface table. Check that proposed owners and points of need are labelled as proposals, that open inputs stay open, and that every exchange traces to a record. If you find nothing to correct, record what you checked.
-3. **Design the division.** For the purchase preparation, state for each contribution what agents produce, who examines it, and which judgment stays with a person. State two tradeoffs in your design.
+3. **Design the division.** For the purchase preparation, state for each contribution what agents produce, who examines it, what that examination involves, and which judgment stays with a person. State the examiner availability you assume as a teaching assumption, and two tradeoffs in your design.
 
 ## Knowledge check
 
@@ -400,9 +395,7 @@ Add the basis index you gave the agents, your design for dividing the work betwe
 
 Present the definition to a peer or mentor, check coverage in both directions, and repair identified gaps.
 
-Then defend the definition to your instructor. Explain how you reached its main choices and what you checked in the agents' work, and reason through changed premises that your instructor poses. Give the defense live, by voice or in person, without consulting an agent, where you can. In a text-only exchange, your instructor cannot establish that you worked without assistance. The instructor then rates the defense on your reasoning through changed premises and records that limit.
-
-Assessing this work is difficult, and the difficulty is part of the lesson. A project basis drafted with agents will usually be complete in form, with every heading filled. Your instructor, like the sponsor who accepts a basis, must judge how far to rely on it. The evidence is in your basis index, your division design, your examination record, and your reasoning in the defense.
+Then defend the definition to your instructor. Expect changed premises about the basis, such as an adopted 22 litres per second, and about the arrangement, such as agents that read the whole shared folder. Your instructor rates the defense as the teaching guide describes; in text-only study it is rated on changed-premise reasoning with the medium recorded.
 
 The instructor assesses these seven observable criteria:
 
@@ -411,8 +404,8 @@ The instructor assesses these seven observable criteria:
 3. The work allocation gives each obligation an accountable home and covers the complete accepted scope.
 4. Interfaces identify contributions, proposed owners, points of need, and coordination responsibility.
 5. Open matters identify resolution, authority, and the specific work they limit without invented technical or legal conclusions.
-6. The division of work between people and agents gives each agent contribution an examiner, sizes it to that examination, and keeps with people the judgments that A01 and the records assign to them. Your own examination record shows what you checked in each agent return, what you found, and what you changed.
-7. In the defense, you explain the definition's main choices and their grounds, and reason correctly through the changed premises your instructor poses.
+6. The division of work between people and agents gives each agent contribution an examiner, states the examination it creates and the examiner availability assumed as a teaching assumption, stays consistent with that assumption, and keeps with people the judgments that A01 and the records assign to them. Your own examination record shows what you checked in each agent return, what you found, and what you changed.
+7. In the defense, you explain the definition's main conclusions and their grounds, show what your examination of the agents' work found, identify which judgments are your own, and reason correctly through the changed premises your instructor poses.
 
 ## Portfolio continuation and references
 
@@ -420,6 +413,6 @@ Keep the repaired assignment, project basis, requirement table, and scope alloca
 
 Carry these records into Course 08 for planning, and use their interfaces and readiness conditions in Course 09.
 
-Source adaptation: management manual (Edition 9) §§2.1–2.6, 3.1–3.3, and 4.3. These sections cover basis, scope, outputs, examination, consumers' needs, and the concurrency that examination capacity limits. The manual is written for the agents you work with, so these sections also show you what your agents are asked to do and where your own responsibilities begin.
+Source adaptation: management manual (Edition 9) §§2.1–2.6, 3.1–3.3, and 4.3. These sections cover basis, scope, outputs, examination, consumers' needs, and the concurrency that examination capacity limits.
 
 Use the shared [references](../references.html) for systems engineering fundamentals and project governance. External readings are optional for the supplied assignment.

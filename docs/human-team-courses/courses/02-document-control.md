@@ -12,15 +12,11 @@ Complete Course 01 and read Northbank Packet A. Keep your appointment response a
 
 ### How this course is built
 
-The series index explains [how the series is built](../index.html#how-the-series-is-built). The classical method of document and configuration control remains sound. It was developed when records were scarce and expensive: each one took a person's time to write, copy, and distribute, so the common failure was too few records and lost history.
-
-Agents make records abundant and cheap. The risk inverts: a team can now produce too many records, and every surplus record uses the scarce resource, which is the attention of the people who must read, examine, and keep it current. Control therefore moves from producing records toward restraint, and toward governing which basis agents read, by identity, revision, and status. An agent that reads a superseded revision spreads its error at agent speed.
-
-Lessons 1 to 4 each follow four steps: the classical method, what it assumes, what changes with agents, and the extended method with its tradeoffs. Lesson 5 treats what agents read and write as a control arrangement to design.
+The series index explains [how the series is built](../index.html#how-the-series-is-built). The classical method was developed when each record took a person's time to write, copy, and distribute; with agents, records are cheap, so teams now risk keeping too many, and each surplus record takes the attention of the people who must read and maintain it. Controllers therefore need restraint about which records to keep, and they must govern which basis, by identity, revision, and status, each agent reads. Lesson 5 treats that as an arrangement to design.
 
 ### The teaching arrangement
 
-Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case): the agents hold no appointment under A01, and every Northbank record stays as written. You will work with real agents in the practice and the assessed assignment, and keep the examination record that Course 01 introduced.
+Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case). In this course, agents prepare and copy records only as working material; issuing a controlled revision stays with the people who hold that authority.
 
 ### Outcomes
 
@@ -121,7 +117,7 @@ The classical method assumes that the people who receive an issue read its statu
 
 An agent reads status only if the status is in the material it receives and the brief makes it matter. Without that, it can treat the newest-looking file as current, or a proposal as basis.
 
-A superseded or draft revision used by an agent spreads at agent speed. One designer who opened A02 Rev 0 affects the work that designer touched. An agent briefed with Rev 0 can carry 15 litres per second into every draft, calculation, and list it prepares in an hour, and other agents may then read those outputs as inputs.
+A superseded or draft revision used by an agent spreads at agent speed. One designer who opened A02 Rev 0 affects the work that designer touched. An agent briefed with Rev 0 can carry 15 litres per second into every draft, calculation, and list it prepares, and other agents may then read those outputs as inputs.
 
 So the brief becomes an issue. Every agent assignment receives information for a purpose, which is exactly what the issue check governs.
 
@@ -164,7 +160,7 @@ The classical method assumes that revising and distributing documents takes peop
 
 ### What changes with agents
 
-Agents make several steps fast. An agent can draft an impact list for a flow change in minutes, and the list may be long. The classical warning matters more: a long list is not a complete one, and a list an agent produced cheaply does not show that anyone examined each entry.
+Agents make several steps fast. An agent can draft an impact list for a flow change quickly, and the list may be long. The classical warning matters more: a long list is not a complete one, and a list an agent produced cheaply does not show that anyone examined each entry.
 
 An agent can revise defining information across many documents quickly, and it can carry a wrong value as quickly as a right one. Course 08 develops this for [propagating dispositions](08-project-execution.html#lesson-4-connect-purchasing-risk-and-change).
 
@@ -272,13 +268,15 @@ The correction does not create a new scope decision; it puts the already approve
 
 ### The same work with agents
 
+This account is a teaching assumption, not a Northbank record: the records do not say how any of the work was produced.
+
 The document controller briefs an agent to draft the source-control list and to search the project's working outputs for the values 15 litres per second and 480 V. The brief identifies A02 to A07 with their revisions and status, states that A02 Rev 1 holds the approval record, and asks the agent to list each source it used by identity and revision.
 
 The controller does not accept the list because it is complete in form. The controller checks that Rev 1 is identified by its approval record, not by its filename; that A03 keeps its archived status and planning-estimate note; that A04 appears even though A07 reports that the library index omits it; and that A05 stays a proposal.
 
 The search results are leads for the impact enquiry, not its conclusion. A hit shows where a value is written. The absence of a hit does not show that no work used Rev 0, because a value derived from 15 litres per second need not contain the number. The designer and the project engineer still examine the affected work.
 
-If agents had been working from the shared folder while both revisions sat there, the enquiry would also cover their outputs. That is a teaching assumption, not a Northbank record: the records do not say how any of the work was produced.
+If agents had been working from the shared folder while both revisions sat there, the enquiry would also cover their outputs.
 
 The control and technical responses are the same as in the classical account. Agents change who drafts the list and runs the search, and what the controller and the owners must check.
 
@@ -296,7 +294,7 @@ An agent preparing machining instructions from the drawing folder meets the same
 
 Use A02 to A07 and Portfolio 01. The supplied condition is the folder discrepancy reported in A07, and no additional approval or technical result is available.
 
-First prepare the source-control list (output 1) yourself, without an agent. You then know what an agent's version should contain. Work with an agent for the outputs that follow.
+First prepare source-control entries for A01, A06, and A07 yourself, without an agent: identity, revision, status, permitted use, and limits. The worked example does not cover these records, so the entries are your own baseline for judging what an agent's list should contain. Work with an agent for the outputs that follow.
 
 Supply these outputs:
 
@@ -334,9 +332,9 @@ Then complete three further exercises:
 
 Prepare a controlled-basis package for Northbank project development, working with agents. Use Packet A only, and include a revision list, an issue note, an affected-work enquiry, and a change method. Add a short account of how you arranged what the agents read and wrote, with the briefs you used and your examination record.
 
-Then defend the package to your instructor. Explain how you reached its main conclusions and what you checked, and reason through changed premises that your instructor poses. Give the defense live, by voice or in person, without consulting an agent, where you can. In a text-only exchange, the instructor rates the defense on your reasoning through changed premises and records that limit.
+Then defend the package to your instructor. Explain its main conclusions and what you checked, and reason through changed premises such as an agent that overwrote a revision, a recorded amendment to A05, or a further omission from the library index. Your instructor rates the defense as the [teaching guide](../instructor-guide.html#assess-agent-assisted-work) describes; in text-only study it is rated on changed-premise reasoning with the medium recorded.
 
-An instructor assesses seven observable criteria:
+An instructor assesses nine observable criteria:
 
 | Criterion | Evidence required |
 | --- | --- |
@@ -345,7 +343,9 @@ An instructor assesses seven observable criteria:
 | History | Earlier information remains identifiable without ambiguity about its permitted use. |
 | Change consequences | The method assigns impact examination, decision, distribution, and adoption checks. It does not treat an agent's text search or distribution as evidence of technical adoption. |
 | Configuration relationship | The package identifies missing product definition and limits the proposed comparison accordingly. |
-| Control of agent work | Each brief issues an identified basis with revisions and status. The account shows how agent outputs stay separate from the controlled set until examined, and each record kept names its consumer. Your examination record shows which basis each agent output actually used, what you checked, what you found, and what you changed. |
+| Control of what agents read and write | Each brief issues an identified basis with revisions and status, and agent outputs stay separate from the controlled set until examined. |
+| Record restraint | Each record kept names its consumer and the question it answers. |
+| Examination record | The record shows which basis each agent output actually used, what you checked, what you found, and what you changed. |
 | Defense | You explain the package's main conclusions and their grounds, and reason correctly through the changed premises your instructor poses. |
 
 Demonstrate retrieval to a reviewer and explain one impact enquiry. Repair any ambiguous basis or unsupported configuration claim. Acceptance in training grants no authority to release a real purchase or construction package.
@@ -354,6 +354,6 @@ Demonstrate retrieval to a reviewer and explain one impact enquiry. Repair any a
 
 Keep the package as Portfolio 02 and link it to Portfolio 01. Course 03 will improve its subject index and assess the evidence behind selected claims.
 
-The [management manual (Edition 9)](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html), sections 6.3 and 6.6, explains why a record needs a concrete purpose and why reliance needs an identified edition. The manual is written for the agents you work with, so these sections also show what your agents are asked to do and where your own responsibilities begin.
+The [management manual (Edition 9)](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html), sections 6.3 and 6.6, explains why a record needs a concrete purpose and why reliance needs an identified edition.
 
 For optional study, compare your organization’s actual document and configuration procedures with the [series glossary](../glossary.html). Use the [reference guide](../references.html) to distinguish each source's purpose and authority.

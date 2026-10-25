@@ -16,14 +16,14 @@ In Courses 01 to 04, each lesson keeps the classical method, states the cost tha
 2. Read A01 and A02 together.
 3. Discuss Lessons 1 to 4 using the decision map and ethical-pressure event, including the extended decision map's Steps 7 and 8.
 4. Examine the worked example's division of contributions, then its agent version and sample examination note.
-5. Have each learner prepare the decision map without an agent.
-6. Run the paired practice with Packet A only, with agents for the remaining outputs and a brief and examination note for each.
-7. Run the three further exercises: capability and authority, the concern brief comparison, and the examination competence check.
-8. Discuss Lesson 5 and what a useful examination record contains.
-9. Examine each appointment response against its seven criteria, including each learner's defense.
+5. Discuss Lesson 5 and what a useful examination record contains, before any agent-assisted practice.
+6. Have each learner prepare the decision map without an agent.
+7. Run the paired practice with Packet A only, with agents for the remaining outputs and a brief and examination note for each.
+8. Run the three further exercises: capability and authority, the concern brief comparison, and the examination competence check.
+9. Examine each appointment response against its eight criteria, including each learner's defense.
 10. Require repairs where a conclusion exceeds its evidence or authority.
 
-Step 5 deliberately comes before agent use. A learner who has mapped the decisions once knows what an agent's map should contain and can recognize a return that departs from it.
+Step 6 deliberately comes before agent use. A learner who has mapped the decisions once knows what an agent's map should contain and can recognize a return that departs from it.
 
 Use the opening discussion to find differences between appointment and actual practice. Do not require learners to disclose confidential information.
 
@@ -41,7 +41,7 @@ In the briefs, check that A05 is given as a proposal and A06 as an open inquiry,
 
 In the examination record, look for checks against A01 for each assigned decision and for A04's limits in any electrical statement. The record should mark which judgments are the learner's own; the sample note in the worked example shows the expected size.
 
-The sixth criterion assesses the briefs and the record together; the seventh is the defense. Useful changed premises include: if A05 had a recorded scope amendment, which activities change, and which decisions remain reserved? If the agent system allowed agents to place orders, would that change who may authorize an order? If an electrical capacity result were added to Packet A, which statement in the concern note changes, and which still needs the electrical engineer?
+The sixth criterion assesses the briefs, the seventh the examination record, and the eighth the defense. Useful changed premises include: if A05 had a recorded scope amendment, which activities change, and which decisions remain reserved? If the agent system allowed agents to place orders, would that change who may authorize an order? If an electrical capacity result were added to Packet A, which statement in the concern note changes, and which still needs the electrical engineer?
 
 Course 01 is the learner's first examination record. Teach what a useful note contains before rating it, and treat a thin first record as needing repair, not as a failure of character.
 
@@ -54,7 +54,7 @@ Course 01 is the learner's first examination record. Teach what a useful note co
 5. Decline the unsupported statement, and state what the evidence establishes and what it leaves open. Explain the consequences and get the required response. For real work, follow the actual professional obligations.
 6. Review adds examination, but it does not transfer the producer's responsibility to the reviewer. The producer must carry repairs and explain the result. The reviewer remains responsible for the assigned examination and its conclusions.
 7. Capability shows only that the agent can perform the act. Someone must establish that the act is authorized under the appointment and control process, and a person with that authority must authorize it, with stated limits. The people who authorized the act and accepted the result answer for reliance on it; the agent holds no appointment under A01.
-8. Agents add capability but no one who can answer for it. Each agent contribution comes back to the person who directed or accepted it, so a person who directs several agents answers for several contributions. Accountability concentrates on fewer people as agency grows.
+8. A supervisor answering for a junior's work is not new. The difference is that a junior colleague carries professional duties of their own: to raise concerns, work within competence, and make truthful statements. An agent carries none, so no one but the directing or accepting person carries a professional duty for its contribution. As agents do more of the work, more of the accountability for the result rests on fewer accountable people. A sound answer does not assume that agents replace staff.
 9. An agent's competence is uneven, and it does not reliably recognize where it ends. Its return in an area it handles poorly can read as fluently as one in an area it handles well, so fluency and confidence do not distinguish them. Only examination by someone competent to judge the work does.
 10. The classical signal is difficulty: unfamiliar work is slower and produces hesitation and questions, which prompt the assistance request. Agents do not slow down at their limits. The replacement is a competence check applied to the examination: for each judgment an agent contributes to, state how it will be examined and whether the examiner is competent to examine it, and where not, request a competent examiner. Trying the agent on a part whose answer is known can add evidence, but does not replace examination.
 11. State in the brief the conditions under which the agent must stop and report instead of proceeding, such as an unsupported claim, conflicting sources, an act outside authority, or a missing input, and ask for a separate section of concerns and open choices in the return. The person then examines that section and decides which concerns to raise.
@@ -81,7 +81,7 @@ In the examination competence check, accept any judgment the learner identifies,
 
 ### Assessment decision guidance
 
-Match each observed statement to the seven course criteria. Ask the learner to name the source for one numerical value and the authority for one proposed act.
+Match each observed statement to the eight course criteria. Ask the learner to name the source for one numerical value and the authority for one proposed act.
 
 The first criterion requires both affected-person reasoning and a truthful response to the invented pressure event. A promise to confirm compatibility later does not justify claiming confirmation now.
 
@@ -115,12 +115,12 @@ Acceptance in training covers the demonstrated learning result, but it does not 
 2. Compare identity, revision, status, and purpose.
 3. Discuss why approval for development can coexist with unresolved inputs.
 4. Examine the worked example's control and technical responses separately, then its agent version.
-5. Have each learner prepare the source-control list without an agent.
-6. Assign the remaining practice outputs, prepared with agents, with a brief and an examination note for each.
-7. Run the retrieval test in pairs.
-8. Run the three further exercises: the brief as an issue, the basis-used check, and record restraint.
-9. Discuss Lesson 5's failure modes against the learners' own arrangements.
-10. Examine the controlled-basis packages against the seven criteria, including each learner's defense.
+5. Discuss Lesson 5's arrangement and failure modes before any agent-assisted practice.
+6. Have each learner prepare source-control entries for A01, A06, and A07 without an agent.
+7. Assign the practice outputs, prepared with agents, with a brief and an examination note for each.
+8. Run the retrieval test in pairs.
+9. Run the three further exercises: the brief as an issue, the basis-used check, and record restraint.
+10. Examine the controlled-basis packages against the nine criteria, including each learner's defense.
 11. Require repairs to ambiguous issue status or missing impact treatment.
 
 Use a simple document list for the session. Do not introduce a specialist control system unless it helps the learners' actual context.
@@ -141,7 +141,7 @@ In the briefs, check that A02 Rev 1 is issued with its approval status and unres
 
 In the examination record, look for a comparison between the sources each agent reports using and the revisions issued. Look also for the learner's treatment of text-search results as leads, not as evidence that no work used Rev 0.
 
-The sixth criterion assesses the arrangement for agent reading and writing, the record restraint, and the examination record together; rate each part and require repair of the part that falls short. The seventh is the defense. Useful changed premises include: if an agent had overwritten A02 Rev 0 with Rev 1's content, what evidence would be lost, and how would the impact enquiry change? If A05 had a recorded scope amendment, which agent assignments would need re-briefing? If the library index also omitted A03's source note, what would an agent working from the index report?
+The sixth criterion assesses the arrangement for what agents read and write, the seventh record restraint, the eighth the examination record, and the ninth the defense. Useful changed premises include: if an agent had overwritten A02 Rev 0 with Rev 1's content, what evidence would be lost, and how would the impact enquiry change? If A05 had a recorded scope amendment, which agent assignments would need re-briefing? If the library index also omitted A03's source note, what would an agent working from the index report?
 
 ### Knowledge-check answers
 
@@ -151,7 +151,7 @@ The sixth criterion assesses the arrangement for agent reading and writing, the 
 4. Distribution establishes that information was sent, but adoption requires the affected owner to examine the change and apply it in the relevant work.
 5. Document control manages document identity, revision, status, access, distribution, and retention. Configuration control connects the actual product, defining information, authorized changes, and examination evidence.
 6. Identify the affected work, assess its consequences, repair it, and examine the repair. Preserve the earlier basis and defect where recovery requires them.
-7. A designer who uses Rev 0 affects the work that designer touches, and someone often notices. An agent briefed with Rev 0 can carry 15 litres per second into many outputs in an hour, and other agents may read those outputs as inputs, so the error spreads at agent speed before anyone sees it.
+7. A designer who uses Rev 0 affects the work that designer touches, and someone often notices. An agent briefed with Rev 0 can carry 15 litres per second into many outputs quickly, and other agents may read those outputs as inputs, so the error can spread further before anyone notices it.
 8. The brief gives the agent information for a purpose, which is what an issue does. Apply the issue check to it: identify the receiving activity and permitted use, the issued revisions with status, and the unresolved conditions that affect the work. When the basis changes, agent work in progress is among the recipients.
 9. Each record uses the attention of the people who must read, examine, and keep it current, and a stale record can later be read as current by a person or agent. Keep a record when a concrete consumer needs it to decide, act, examine, or recover, or when an acceptance requirement calls for it; prefer a link or query to another maintained copy.
 10. It establishes that the value is not written in the outputs the agent searched. It does not establish that no work used Rev 0, because a value derived from 15 litres per second need not contain the number, and the search may not have covered every output. The affected owners still examine their work.
@@ -160,6 +160,8 @@ The sixth criterion assesses the arrangement for agent reading and writing, the 
 ### Practice reasoning
 
 A source-control list should identify A02 Rev 1 as approved for project development and distinguish A02 Rev 0 as an earlier draft. It should preserve A03's archived status and copied-estimate origin.
+
+For the unaided entries, A01 Rev 0 is the project appointment, A06 Rev 0 is an open inquiry whose permitted use is directing the requirements enquiry, and A07 Rev 0 is an inventory that describes defects without approving any record. Accept equivalent wording.
 
 A04 should appear as a checked observation with explicit limits. A05 remains a proposal, and A06 remains an open enquiry about external requirements. A07 describes the inventory defects; it does not approve the other documents.
 
@@ -211,7 +213,7 @@ Avoid prescribing retention periods. The exercise teaches learners to preserve i
 2. Ask learners to retrieve A04 through subject terms.
 3. Discuss the evidential roles of A02, A03, A04, and A05.
 4. Examine the worked claim-and-evidence table, then its agent version.
-5. Have each learner prepare the electrical claim table without an agent.
+5. Have each learner prepare the flow claim table without an agent.
 6. Prepare the two practice packets with agents, with a brief and an examination note for each output.
 7. Run the partner reconstruction and challenge.
 8. Run the three further exercises: passages, conditions, and outside knowledge.
@@ -245,7 +247,7 @@ The sixth criterion is the learner's examination of agent research; rate it from
 4. A03 is an archived schedule whose values were copied from an earlier planning estimate, and it has no field survey reference.
 5. A02 Rev 1 supplies the approved 18 litres per second requirement. Rev 0 was a draft. A03 is legacy information. A05 proposes 22 litres per second without amendment.
 6. The packet needs the question, source index, claim entries, conflict treatment, conclusion, and unresolved matters; its sources and qualifications must remain retrievable.
-7. Classical research spent much of its effort on gathering, and the researcher who gathered a source had usually read it. Agents make gathering nearly instant, so the remaining work is establishing provenance and evidential role and catching plausible fabrications and dropped conditions, which only examination does. A broad request now costs examiner attention instead of search time.
+7. Classical research spent much of its effort on gathering, and the researcher who gathered a source had usually read it. With agents, gathering from accessible records can become fast, so the remaining work is establishing provenance and evidential role and catching plausible fabrications and dropped conditions, which only examination does. A broad request now costs examiner attention instead of search time.
 8. Check that A04 Rev 1 contains the quoted passage and that it says what the claim says. Check that the claim keeps A04's conditions: an observation at the surveyed connection, with spare capacity, protection coordination, and compatibility not established. A well-formed citation does not show that the passage exists.
 9. Each sentence can be true while a condition is missing. "A02 requires 18 litres per second" is accurate but drops "under the operating conditions that the project must establish," which makes a single measurement appear to provide more evidence than it does.
 10. Both are values with no traceable origin: A03's were copied from a planning estimate and carry no survey reference, and an agent's unsourced value has no passage behind it. If someone cites the agent output later, it becomes a source with no provenance. Require a source, revision, and passage for each agent claim, treat agent output as derived information, and cite the record it summarizes instead of the summary.
@@ -300,12 +302,13 @@ An external source may inform a method, but it cannot establish an unrecorded No
 
 1. Read A06 aloud before discussing external requirements, and state that its rule applies to every agent the learners brief.
 2. Distinguish technical relevance, project authority, and legal applicability.
-3. Have each learner parse A02 into actor, result, conditions, and unresolved definition, without an agent.
+3. Parse A02 into actor, result, conditions, and unresolved definition.
 4. Compare A02 with A05 using the worked example, then its agent version.
-5. Prepare the offline interpretation and applicability enquiry with agents, with a brief and an examination note for each output.
-6. Run the three further exercises: invention guard, restatement comparison, and visible ambiguity.
-7. Challenge one claimed obligation in each memorandum.
-8. Examine the seven assessed criteria, including each learner's defense, and require supported repairs.
+5. Have each learner prepare the A06 enquiry without an agent.
+6. Prepare the remaining interpretation and applicability outputs with agents, with a brief and an examination note for each output.
+7. Run the three further exercises: invention guard, restatement comparison, and visible ambiguity.
+8. Challenge one claimed obligation in each memorandum.
+9. Examine the eight assessed criteria, including each learner's defense, and require supported repairs.
 
 The offline exercise needs no statute or code text: it teaches what the missing applicability basis prevents. Do not invent legal instruments to make the exercise easier.
 
@@ -331,7 +334,7 @@ In the briefs, check that A06's rule against inventing a statute, clause, ruling
 
 In the examination record, look for a condition-by-condition comparison of each agent restatement with A02, and for the treatment of any instrument, clause, or precedence rule an agent named. A finding of none is acceptable when the learner says what they looked for.
 
-The first criterion now covers invented authority whoever drafted it; rate it from the memorandum itself. The sixth criterion is the learner's direction and examination of agent interpretation. The seventh is the defense. Useful changed premises include: if the instructor supplied a real jurisdiction and its adoption instrument, which rows of the A06 enquiry change, and who interprets them? If A05 carried a recorded scope amendment, which interpretations change and which conditions remain? If an agent cited a clause that exempted non-potable systems, what would you do before relying on it?
+The first criterion now covers invented authority whoever drafted it; rate it from the memorandum itself. The sixth criterion is the learner's direction of agents, the seventh the examination record, and the eighth the defense. Useful changed premises include: if the instructor supplied a real jurisdiction and its adoption instrument, which rows of the A06 enquiry change, and who interprets them? If A05 carried a recorded scope amendment, which interpretations change and which conditions remain? If an agent cited a clause that exempted non-potable systems, what would you do before relying on it?
 
 ### Knowledge-check answers
 
@@ -341,7 +344,7 @@ The first criterion now covers invented authority whoever drafted it; rate it fr
 4. A02 requires confirmation of the needed changeover function. A05 proposes automatic changeover, but no recorded amendment makes that proposal an approved scope requirement.
 5. Obtain jurisdiction, facility classification, asset boundary, permits, adoption instruments, and contract references. Compare their conditions with the actual assignment before concluding applicability.
 6. Interpretation explains meaning or application. An existing applicable obligation does not wait for the sponsor to adopt it. An authorized decision permits a stated act within authority. A controlled change amends the baseline through the governing process.
-7. Applicability, interpretation, and the authority to decide stay with people. Applicability depends on the actual instrument and the verified facts of the assignment, which an agent cannot establish; interpretation that people rely on needs a person who answers for it; and decisions need an appointment, which agents do not hold. Agents can help find, read, compare, and draft.
+7. Applicability, the interpretation that is relied on and its standing, and the authority to decide stay with people. Applicability depends on the actual instrument and the verified facts of the assignment, which an agent cannot establish. An agent can draft readings, but the interpretation the project relies on needs a person who examines it, adopts it, and answers for it. Decisions need an appointment, which agents do not hold. Agents can help find, read, compare, and draft.
 8. Agents can produce a statute, clause, ruling, or exemption that does not exist, or an edition that is not current, in the same confident form as an accurate one, and without any intent to deceive. An invented authority in a well-formed draft is harder to notice than a person's guess, so the rule must be in the brief and the return must be examined for it.
 9. It is a universal order of precedence, which the course rejects. Several obligations can apply together, and their relationship depends on the actual instruments and circumstances. Choosing the more demanding statement automatically can also have technical effects that need examination. The statement has no supplied source.
 10. State that "unresolved" is an acceptable answer, ask for the possible readings and the source support for each instead of one conclusion, prohibit naming any instrument, clause, ruling, exemption, or precedence rule not in the supplied sources, and tie each authority claim to a supplied source and revision. The person then states the supported interpretation and the clarification still required.

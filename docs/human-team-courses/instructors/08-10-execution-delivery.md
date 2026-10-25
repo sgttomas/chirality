@@ -156,7 +156,7 @@ In Course 09, each lesson keeps the classical method, states the cost that metho
 
 Require learners to read the consumer's needs before they propose the supplier's return. This reveals missing conditions that a discipline-only discussion can overlook.
 
-Steps 3 and 4 deliberately come before agent use, and the learner course asks for the same order. A learner who has compared B01 with the records once knows what an agent's cross-check should return and can recognize a return that adds a resolution or misses a gap.
+Step 4 deliberately comes before agent use, and the learner course asks for the same unaided comparison first. A learner who has compared B01 with the records once knows what an agent's cross-check should return and can recognize a return that adds a resolution or misses a gap.
 
 ### Teaching Course 09 with an agent
 
@@ -311,7 +311,7 @@ In the briefs, check that C04 is given with its status, including that it does n
 
 In the examination notes, look for checks against C04's body rather than its cover sheet: one normal transfer condition, all four unexercised scenarios listed and not described as failed, the incomplete configuration list, and the 480 V instruction.
 
-In the arrangement account, look for a stated source of independence for each consequential claim. "A second agent checked it" is not a source of independence; a check briefed from the source records, criteria prepared before reading, a physical test within its scope, or a competent reviewer is.
+In the arrangement account, look for a stated source of independence for each consequential claim. "A second agent checked it" is not a source of independence; a check briefed from the source records, criteria prepared before reading, a physical test within its scope (whose conditions and expected behavior still come from the basis), or a competent reviewer is.
 
 Criterion 6 has two parts: assess the designed arrangement and the learner's own examination record separately. Criterion 7 is the defense. Useful changed premises include: if C04 had recorded the full hydraulic conditions for its one condition, what would it then support, and what still not? If an approved record of the installed configuration existed, which checks could agents then perform, and which remain with people? If the checking agent had used a different model but the same brief and cover sheet, would the check be independent? If the sponsor authorized a qualified handover, which obligations remain, and who owns each?
 

@@ -20,7 +20,7 @@ Preserve these distinctions throughout both courses:
 - Sequential C03 delivery reaches the end of Week 11. Installation ends in Week 13, commissioning in Week 14, and handover in Week 15.
 - Week 12 remains the target. C03 does not amend it.
 - C04 supports one observed normal-condition flow result. It cannot support complete acceptance.
-- The Phase 4 time change does not establish resolution of earlier design or authorization gaps.
+- The move to the later installation scenario in Phase 4 does not establish resolution of earlier design or authorization gaps.
 
 Do not add a legal clause, technical calculation, selected configuration, test result, or approval to close a gap.
 
@@ -30,16 +30,16 @@ A facilitator decision can create a new simulated event under D03. Identify its 
 
 ## Course 11 session directions
 
-Use a seven-hour session plan, divided across sessions if needed. The earlier plan used six hours. The added hour covers Lesson 6, the unaided first pass and agent exercises in the practice, and the defense through changed premises.
+Use a seven-hour session plan, divided across sessions if needed. Most of the time goes to the six lessons and to the practice, which includes an unaided first pass and three agent exercises; the rest goes to the memorandum, its independent examination, and the defense through changed premises.
 
 | Activity | Time | Facilitator action |
 | --- | ---: | --- |
-| Reading and source comparison | 1 hour | Check the distinction between facts, forecasts, proposals, and hypotheses. |
-| Lessons and worked case | 1.5 hours | Ask participants to explain the mechanisms behind each coupled effect, including connections that run through agent work. |
-| Reporting-system practice | 1 hour | Have learners complete Items 1 to 4 without an agent first. Introduce the junior engineer's concern without supplying a disposition. Run the three agent exercises. |
-| Memorandum preparation | 1.5 hours | Require alternatives, a decision table, the briefs, and an examination record. |
-| Independent examination | 0.75 hour | Examine authority, ethical effects, and conditions for proceeding. |
-| Repair and defense | 1.25 hours | Confirm affected repairs, hear the revised recommendation, and pose changed premises. |
+| Reading and source comparison | 0.75 hour | Check the distinction between facts, forecasts, proposals, and hypotheses. |
+| Lessons and worked case | 2 hours | Ask participants to explain the mechanisms behind each coupled effect, including connections that run through agent work. |
+| Reporting-system practice | 1.5 hours | Have learners complete Items 1 to 4 without an agent first. Introduce the junior engineer's concern without supplying a disposition. Run the three agent exercises. |
+| Memorandum preparation | 1.25 hours | Require alternatives, a decision table, the briefs, and an examination record. |
+| Independent examination | 0.5 hour | Examine authority, ethical effects, and conditions for proceeding. |
+| Repair and defense | 1 hour | Confirm affected repairs, hear the revised recommendation, and pose changed premises. |
 
 Select the independent reader before writing begins: another person or a reviewer not involved in producing the memorandum. If you coach the learner, you cannot also be that reader.
 
@@ -139,7 +139,7 @@ More agents help only where production limits the result. Elsewhere they lengthe
 
 Accept any set argued from the cost each practice answered. Practices that lose much of their reason include estimating information work from production hours, batching changes to save drafting effort, and counting produced documents as progress. Practices that keep their reason include the separation of budget from forecast, the separation of technical review from expenditure approval, and the physical sequence of supply, installation, and commissioning.
 
-Practices that become more important include matching evidence to claims, independent review, acceptance of an identified result, and the protection of adverse evidence, because more work reaches the point where someone must rely on it. Credit a learner who argues that a practice keeps part of its reason in a new form, such as batching decisions to save the sponsor's attention or levelling the workload of site crews and examiners. A weak answer names practices without the cost, or presents the argument as a measured result.
+Practices that become more important include matching evidence to claims, independent review, acceptance of an identified result, and the protection of adverse evidence, because work can now reach the point where someone relies on it without anyone having attended to it while it was produced. Independent review gains a further reason: agreement among agent outputs no longer carries the separate understanding that individual people supplied. Credit a learner who argues that a practice keeps part of its reason in a new form, such as batching decisions to save the sponsor's attention or levelling the workload of site crews and examiners. A weak answer names practices without the cost, or presents the argument as a measured result.
 
 ### Course 11 defensible reasoning
 
@@ -177,7 +177,7 @@ Use the seven criteria in the learner course. Apply the following observations:
 | 4. Recommendation | Decision rights, permitted work, and observable conditions are clear. No decision or risk acceptance is assigned to an agent. | “Proceed if safe” replaces required evidence and authority, or agent capacity is claimed as recovery without evidence that production limits the result. |
 | 5. Ethics and learning | Adverse evidence, affected parties, truthful status, and practice changes are addressed, including the interaction of cheap production with the bonus and the count. | The bonus justifies an unsupported readiness claim or dissent is suppressed. |
 | 6. Arrangement and examination record | The account names who examined each agent contribution and for what, and the record names the specific relationships the learner checked. | The record says only "reviewed", or agreement between agents is presented as independent review. |
-| 7. Defense | The learner explains the grounds and reasons correctly through changed premises. | The learner restates the memorandum but cannot trace a changed premise to its consequence. |
+| 7. Defense | The learner explains the grounds, shows what their examination of the agents' work found, identifies which judgments are their own, and reasons correctly through changed premises. | The learner restates the memorandum but cannot trace a changed premise to its consequence. |
 
 Rate each criterion as meets, needs repair, or insufficient evidence. Recheck the affected criterion after repair. Record the medium of the defense with the rating for Criterion 7.
 
@@ -195,7 +195,7 @@ Rate each criterion as meets, needs repair, or insufficient evidence. Recheck th
 
 ## Course 12 preparation
 
-Allow twelve working hours using the learner phase table. Give each participant the common case, glossary, and blank record pages. The learner course moves a quarter-hour from each event phase to Phase 0, Phase 6, and Phase 7 and states why. Do not recover lost time by shortening Phase 6 or 7; hold another session instead.
+Allow twelve working hours using the learner phase table. Give each participant the common case, glossary, and blank record pages. The phase times protect Phases 6 and 7, which are the main evidence of each person's understanding; they assume no saving from agent use. Do not recover lost time by shortening Phase 6 or 7; hold another session instead.
 
 Confirm before Phase 0 that each participant has access to an agent system you permit, and that confidential information stays out of systems not approved for it.
 
@@ -207,13 +207,13 @@ Use blank pages or a shared folder for these records:
 - Forecast comparisons and calculations.
 - Findings and examination plans.
 - Receiving recommendation and continuation memorandum.
-- Arrangement table: for each role, the agent system and model, the brief and source set, the examiner, and shared bases.
+- Arrangement table: for each role, the agent system and model, the brief and source set, who wrote or revised each brief, the examiner, and shared bases.
 - Briefs, returns, and examination records for each output.
 - Rotation transfers.
 
 Templates are optional, but the necessary relationships must be visible in the saved work.
 
-Assign role numbers and the initial cards. Confirm the rotation rule. Select an independent reviewer for each candidate before examination, and check the arrangement table for a shared model, brief, or source set between the reviewer's agents and the producer's.
+Assign role numbers and the initial cards. Confirm the rotation rule. Select an independent reviewer for each candidate before examination, and check the arrangement table for a shared model, brief, or source set between the reviewer's agents and the producer's. A participant who wrote or revised any brief that the output descends from, including before a rotation, counts as a producer of it and cannot be its independent reviewer.
 
 If a reviewer produced an affected item, assign a different reviewer. Another team or an uninvolved mentor can provide this examination.
 
@@ -241,7 +241,7 @@ In the briefs, check that each event's records were given with their revisions a
 
 In the rotation records, check that the incoming participant received the actual output, briefs, and examination records, and inspected the output rather than a summary.
 
-In the arrangement table, check how independence was provided where agents share a model or brief. "Different participant" is not enough when both participants' agents used the producer's brief.
+In the arrangement table, check how independence was provided where agents share a model or brief. "Different participant" is not enough when both participants' agents used the producer's brief, or when the reviewer wrote or revised a brief the output descends from in an earlier phase.
 
 Criterion 6 has two parts, the team's arrangement and each participant's own examination records; rate them separately. Criterion 7 rests on the Phase 6 and Phase 7 changed premises. Record the medium of each individual examination with its rating.
 
@@ -409,7 +409,7 @@ Do not create favorable facts merely to let a participant finish. An accurately 
 
 Use the first twenty minutes for the team presentation. Give the reviewers forty minutes for questions, changed premises, and findings.
 
-Allow sixty minutes for repair. Use the last thirty minutes to confirm affected repairs and identify the remaining decision requests. The phase grew from two hours to two and a half because the defense is now a main source of evidence of understanding; the extra time goes to changed premises, repair, and confirmation.
+Allow sixty minutes for repair. Use the last thirty minutes to confirm affected repairs and identify the remaining decision requests. The phase runs two and a half hours because the defense is a main source of evidence of each person's understanding; the time goes to changed premises, repair, and confirmation.
 
 Direct each changed premise to a named participant, and rotate them so that every participant traces at least one.
 
@@ -432,21 +432,19 @@ An answer must point to the current package, because an oral correction alone do
 
 ## Phase 7: Individual examination
 
-Allow thirty minutes for the two-page explanation. Give each participant fifteen minutes for examination in a six-person group. The phase grew from 1.5 to 2 hours so that each examination can include a changed premise the participant has not prepared for.
+Allow thirty minutes for the two-page explanation. Give each participant twelve minutes for examination in a six-person group, which leaves about eighteen minutes for changeovers. The phase runs two hours so that each examination can include a challenge the participant has not prepared for.
 
 Have participants write the explanation in the session without an agent where you can supervise it. Where you cannot, record that the explanation may have been assisted, and rely more on the live examination.
 
 Ask each participant to explain one decision outside their final role. Select a question from the Phase 6 script.
 
-Then change one premise the participant has not seen in Phase 6, and ask for its consequences through at least two connected outputs. Hold the examination live, by voice or in person, without an agent. If only text is available, rate it on reasoning through the changed premise and record the medium and its limit.
-
-Then introduce one challenge: “The bonus depends on reporting handover today. State your recommendation and explain who could be affected.”
+Then introduce one challenge that the participant has not seen in Phase 6. The challenge is the changed premise; ask for its consequences through at least two connected outputs: “The bonus depends on reporting handover today. State your recommendation and explain who could be affected.”
 
 Alternative challenge: “A supplier asks you to omit the voltage discrepancy from the recipient's summary. Explain your response and information-sharing conditions.”
 
 Accept an explanation of appropriate disclosure to authorized recipients. Do not require indiscriminate public release or secrecy that conceals a significant concern.
 
-Ask the participant to distinguish their own technical competence from authority held by another role. Identify how they would get necessary scrutiny.
+Ask the participant to distinguish their own technical competence from authority held by another role. Identify how they would get necessary scrutiny. Hold the examination live, by voice or in person, without an agent. If only text is available, rate it on reasoning through the changed premise and record the medium and its limit.
 
 ### Course 12 knowledge-check answers
 
@@ -466,7 +464,7 @@ Consider shared assumptions, incentives, and relationships that could impair scr
 
 Record it as an identified simulated event. Apply only its authorized scope. Carry its conditions into affected work and keep unapproved matters open.
 
-**12.4: What does the Phase 4 time change establish about earlier technical gaps?**
+**12.4: What does the move to the later installation scenario in Phase 4 establish about earlier technical gaps?**
 
 It establishes that the reported observation belongs to a later scenario, but it does not establish that earlier gaps were resolved or authorized.
 
@@ -486,9 +484,9 @@ The role cards assign exercise responsibilities to people, and the decision righ
 
 It can establish consistency between the output and that brief. It does not establish that the brief, its basis, or the shared method is correct, because both agents can share the same error. The review is not independent of those premises, even though the reviewer did not produce the output. Independence needs the reviewer's own examination against the source records, or a check briefed from those records.
 
-**12.9: Why is the outgoing agent's summary not an adequate transfer at rotation?**
+**12.9: Why is an agent's summary of the outgoing work not an adequate transfer at rotation?**
 
-A summary is a description of the work, not the work. It can omit or misstate a revision, a condition, or a finding, and an agent can state it with confidence. The incoming participant needs the actual output, the briefs, and the examination records to know what the output used, what was checked, and what remains unexamined. An agent also keeps no project history unless someone gives it, so the incoming participant's agents need the briefs and the current basis.
+A summary is a description of the work, not the work. It can omit or misstate a revision, a condition, or a finding, and an agent can state it with confidence. The incoming participant needs the actual output, the briefs, and the examination records to know what the output used, what was checked, and what remains unexamined. An agent may or may not keep project history, and remembered history can be out of date, so the incoming participant briefs their agents from the current basis either way, using the transferred briefs as a starting point.
 
 **12.10: Why are Phases 6 and 7 the main evidence of each person's understanding, and what does a changed premise test that a prepared answer does not?**
 
@@ -508,9 +506,9 @@ Use the learner course's seven criteria for the team. Assess each participant ag
 | 2. Integration | Interfaces, readiness, change effects, and forecast agree across outputs. | Participant traces one change through at least two connected contributions. |
 | 3. Authority | Each request names its decision rights and conditions. | Participant distinguishes sponsor, technical, purchase, and receiving decisions. |
 | 4. Assurance | Conclusions fit evidence and preserve continuing obligations. | Participant distinguishes C04's observation from the unsupported acceptance claim. |
-| 5. Defense and ethics | Findings produce visible repairs and truthful recommendations. | Participant responds to adverse evidence, incentive pressure, affected parties, and sharing conditions. |
+| 5. Findings and ethics | Findings produce visible repairs and truthful recommendations. | Participant responds to adverse evidence, incentive pressure, affected parties, and sharing conditions. |
 | 6. Arrangement and examination | The arrangement table names the director and examiner of each output and accounts for shared models and briefs; rotation records transfer actual outputs, briefs, and examination records. | Participant's own examination records name what they checked in each agent return, what they found, and what they changed. |
-| 7. Changed premises | The team traces changed premises through connected outputs in Phase 6. | Participant reasons through an unprepared changed premise in Phase 7 and shows what their examination of agents' work found. |
+| 7. Changed premises | The team traces changed premises through connected outputs in Phase 6. | Participant explains the main conclusions and their grounds, shows what their examination of agents' work found, identifies which judgments are their own, and reasons through an unprepared changed premise in Phase 7. |
 
 Rate each criterion as meets, needs repair, or insufficient evidence. Record the evidence examined, not a numerical average that hides a missing foundation.
 

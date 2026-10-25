@@ -12,15 +12,11 @@ This course teaches you how to establish that confidence and carry out that tran
 
 ### How this course is built
 
-The series index explains [how the series is built](../index.html#how-the-series-is-built). In short, the classical method of assurance and handover remains sound, and you need it, because commissioning, physical tests, and the transfer of responsibility to operations still run at the pace of equipment and people. But the classical method assumes that every examination is a person's work. In a human team, an independent review needs a second competent person, so it is expensive, and projects sample it. The same expense also brings independence with it, because the second person prepares and reasons separately.
-
-Agents separate those two properties. An agent can often review, compare, and re-check work cheaply and repeatedly, but an agent's review is not automatically independent: it can share the producer's model, brief, or reference. As in the beam analogy, the classical method treats an examination's cost and its independence as one quantity. When agents make examination cheap, independence becomes a separate term that you must design. Agents can also overstate what an observation supports, and they can assemble a complete-looking handover package in minutes, so the scope of evidence and the identity of the delivered configuration matter more than before.
-
-Lessons 1 to 5 each follow four steps: the classical method, what it assumes, what changes with agents, and the extended method with its tradeoffs. Lesson 6 treats the assurance arrangement as a system to design: where independence is needed, how to obtain it, and how strong each examination must be.
+The series index explains [how the series is built](../index.html#how-the-series-is-built). In this course the shifted constraint is independence: in a human team an independent review needs a second competent person, so it is expensive and sampled but brings separate reasoning with it, while an agent's review is cheap and repeatable but can share the producer's model, brief, or reference. Commissioning and physical tests still set the pace, and because agents can overstate what an observation supports and can assemble a complete-looking package quickly, the scope of evidence and the identity of the delivered configuration matter more; Lessons 1 to 5 follow the series' four steps, and Lesson 6 treats the design of the assurance arrangement.
 
 ### The teaching arrangement
 
-Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case): the agents hold no appointment under A01, and every Northbank record stays as written. The records do not say who drafted C04's cover sheet or how any record was produced. Where this course asks you to suppose that an agent prepared or examined a record, it labels that supposition as a teaching assumption. You will work with real agents in the practice and the assessed assignment.
+Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case). The records do not say who drafted C04's cover sheet or how any record was produced, so this course labels any supposition that an agent prepared or examined a record as a teaching assumption.
 
 ### Outcomes
 
@@ -33,6 +29,7 @@ After this course, you can:
 - Transfer identified responsibilities and preserve unfinished obligations.
 - Design where examination needs independence and how to obtain it, in proportion to consequence and detectability.
 - Examine agent-prepared evidence accounts and handover packages for overstated scope and unidentified configuration.
+- Direct, examine, and accept agent contributions, and show which judgments are your own.
 
 ## Lesson 1: Plan quality with the work
 
@@ -78,7 +75,7 @@ Plan examination with the work, as before, and add two columns to the coverage t
 
 | Requirement or needed condition | Examination | Performed by | Source of independence |
 | --- | --- | --- | --- |
-| Required flow under established conditions | Competent technical assessment and defined performance examination | Mechanical engineer, and the test team for the physical examination | The physical test observes the installation, not the design documents; the assessment is prepared from the established operating cases |
+| Required flow under established conditions | Competent technical assessment and defined performance examination | Mechanical engineer, and the test team for the physical examination | The physical test observes the installation directly, though its conditions and expected behavior come from the basis; the assessment is prepared from the established operating cases |
 | Required changeover behavior | Review and defined functional test | Controls and mechanical engineers, with operations | Required behavior defined with operations before the test is prepared |
 | Operating readiness | Document examination and readiness demonstration | Operations lead, with agent checks of instruction applicability | The receiving team demonstrates its own readiness |
 
@@ -254,7 +251,7 @@ The classical method assumes that assembling a handover package takes people's w
 
 ### What changes with agents
 
-**A package can be assembled instantly from whatever exists.** Suppose, as a teaching assumption, that an agent is asked to assemble Northbank's handover package from the document controller's holdings. C05 records that the controller has draft drawings and the observed test report, and no complete approved record of the installed configuration. The agent can produce a package with a section for every item in the list above, and it can include the instruction that C04 says refers to the supplier's earlier 480 V submission. The package can look complete.
+**A package can be assembled quickly from whatever exists.** Suppose, as a teaching assumption, that an agent is asked to assemble Northbank's handover package from the document controller's holdings. C05 records that the controller has draft drawings and the observed test report, and no complete approved record of the installed configuration. The agent can produce a package with a section for every item in the list above, and it can include the instruction that C04 says refers to the supplier's earlier 480 V submission. The package can look complete.
 
 **A complete-looking package is not an identified, examined configuration.** The defining item of a handover package is the delivered configuration. Without an approved record of the installed configuration, the package has nothing to bind its evidence and instructions to. When an agent fills a section with a draft or a summary, the gap that classical assembly would have exposed is hidden instead.
 
@@ -276,14 +273,14 @@ In a human team, the assurance arrangement could be left largely to habit, becau
 
 - **A shared model.** Agents built on the same model can make the same error in the same place.
 - **A shared brief.** A brief that frames the question or omits a condition can lead the producer and the checker to the same wrong answer.
-- **A shared reference.** A check compares the work with a reference, sometimes called its oracle, such as a source record, a criterion, or an expected value. If producer and checker use the same wrong reference, every check passes. Manual §5.3 states this: agreement with a shared basis establishes consistency, not the basis's correctness.
+- **A shared reference.** A check compares the work with a reference, sometimes called its oracle, such as a source record, a criterion, or an expected value. If producer and checker use the same wrong reference, every check passes; [Course 09, Lesson 5](09-technical-integration.html#lesson-5-examine-integration-and-repair-connected-work) showed that such agreement establishes consistency, not correctness. In assurance, the shared reference is often a test's expected value or the producer's acceptance criteria, so examine those references themselves where the consequence warrants it (manual §5.3).
 - **The producer's own account.** A checker that reads the producer's summary instead of the actual candidate confirms the summary. A second agent asked to verify C04's cover-sheet claim from the cover sheet would examine the wrong thing.
 
 **Obtain independence by changing what the error depends on.** Use one or more of these, as the claim requires:
 
 - A different basis: brief the checker from the source records, not from the producer's tables or summary.
 - Different preparation: have the examiner state the criteria or expected result before reading the output, and withhold the producer's conclusion from the checker's brief.
-- A different method: check a calculation with a deterministic tool, or check a design claim with an inspection or a physical test. A physical test observes the installation itself, so it is independent of the design documents, but only within its own scope: C04's observation covers one normal transfer condition.
+- A different method: check a calculation with a deterministic tool, or check a design claim with an inspection or a physical test. A physical test observes the installation directly, but its conditions and expected behavior come from the basis, so it shares errors there, and it covers only its own scope: C04's observation covers one normal transfer condition.
 - A different examiner: a different model or system, or a different person. Where the work will be relied on, the examiner is a competent person.
 
 **Set the strength of examination by consequence and detectability.** Manual §5.2 asks what a failure would cost and whether it would otherwise become visible in time. A reversible error that the next step would expose needs only the producer's check. An error that would stay plausible until serious consequences occur justifies stronger and often independent examination.
@@ -293,7 +290,7 @@ In a human team, the assurance arrangement could be left largely to habit, becau
 | Minor and reversible | Soon, in the next step | Producer's check, which an agent can perform | A formatting error in a draft review agenda |
 | Material | Before reliance, through a later check | Agent check briefed from the source records, examined by the responsible engineer | An instruction's applicability to the identified configuration |
 | Serious | Only in operation or after a failure | A defined physical test with the required behavior established in advance, competent people, and the receiving operators | Standby changeover, power interruption, alarm response, and maintenance isolation, which C04 did not exercise |
-| Serious to the reliance itself | Only after someone has relied on it | Examination by a competent reviewer independent of the drafter, against the actual evidence | The complete-acceptance claim on C04's draft cover sheet, and any answer to C05's handover question |
+| Serious, and borne by whoever relies on the claim | Only after someone has relied on it | Examination by a competent reviewer independent of the drafter, against the actual evidence | The complete-acceptance claim on C04's draft cover sheet, and any answer to C05's handover question |
 
 These examples illustrate the method; the project's actual requirements and the competent people's assessment set the real arrangement. Required professional, contractual, and project examinations still apply, and proportion is not permission to discard one.
 
@@ -313,7 +310,7 @@ Each arrangement gains something and costs something:
 | Independent competent reviewer | Separate judgment on the claims that matter most | Scarce attention; a queue if overused |
 | Physical test | Observes the installation itself | Fixed by equipment, access, and authorization; covers only its own conditions |
 
-Part of the classical practice of sampling review answered the cost of a person's examination. For agent checks of information work, that reason weakens, so check widely. Independent review by competent people keeps its reason and becomes more important, because more work reaches the point where someone must rely on it. Physical tests and the transfer of responsibility keep their classical form.
+Part of the classical practice of sampling review answered the cost of a person's examination. For agent checks of information work, that reason weakens, so check widely. Independent review by competent people keeps its reason and becomes more important, because agreement among agent checks no longer carries the separate understanding that individual reviewers supplied, as [Course 09, Lesson 5](09-technical-integration.html#lesson-5-examine-integration-and-repair-connected-work) showed. Physical tests and the transfer of responsibility keep their classical form.
 
 This is an argument from how the costs have changed, not a measured result. Agent capability and cost vary with the task and the system, so test the premise against your own work.
 
@@ -414,9 +411,7 @@ Then complete three further exercises:
 
 Prepare Northbank's proposed assurance and handover account, working with agents, including coverage, findings, commissioning prerequisites, recipient information, responsibilities, and a recommendation to the sponsor. Add a short account of your assurance arrangement: where you required independence, how you obtained it, and how you examined the agents' work, with the briefs you used.
 
-Then defend the account to your instructor. Explain how you reached its main conclusions and what you checked, and reason through changed premises that your instructor poses. Give the defense live, by voice or in person, without consulting an agent, where you can. In a text-only exchange, your instructor cannot establish that you worked without assistance. The instructor then rates the defense on your reasoning through changed premises and records that limit.
-
-Assessing this work is difficult, and the difficulty is part of the lesson. This course is about the same problem: deciding how far to rely on a finished, well-formed account without seeing how it was examined. Your instructor is in the sponsor's position when C05's question arrives. The evidence is in your briefs, your statement of where independence came from, your examination record, the defects you found and repaired, and your reasoning in the defense.
+Then defend the account to your instructor. Your instructor will change premises such as the conditions C04 recorded, whether an approved configuration record exists, or how a check was prepared and by whom, and ask you to reason through the consequences. Your instructor rates the defense as the teaching guide describes; in text-only study it is rated on changed-premise reasoning with the medium recorded.
 
 Use these seven observable criteria:
 
@@ -425,8 +420,8 @@ Use these seven observable criteria:
 3. The commissioning plan preserves unresolved behavior and prerequisite conditions, and it distinguishes document prerequisites from physical and human prerequisites.
 4. The handover package identifies the actual recipient needs and receiving responsibilities, and it binds its contents to an identified configuration or states that the approved configuration record is missing.
 5. Residual obligations retain owners, consequences, closure evidence, and required authority, and each owner is a person.
-6. The account of the assurance arrangement shows the design: for each consequential claim, what examines it, against what basis, and what makes that examination independent, in proportion to consequence and detectability. Your own examination record shows what you actually checked in each agent return, what it found, and what you changed.
-7. In the defense, you explain the account's main conclusions and their grounds, show what your examination of the agents' work found, explain where your independence came from, and reason correctly through the changed premises your instructor poses.
+6. The account of the assurance arrangement shows the design: for each consequential claim, what examines it, against what basis, and what makes that examination independent, in proportion to consequence and detectability. Your own examination record shows what you actually checked in each agent return, what it found, if anything, and what you changed.
+7. In the defense, you explain the account's main conclusions and their grounds, show what your examination of the agents' work found, identify which judgments are your own, and reason correctly through the changed premises your instructor poses.
 
 Before the defense, ask a peer to act as the receiving operations lead. Repair any gap that prevents that person from understanding the proposed responsibility, and retain the previous revision and the repair basis.
 
@@ -436,6 +431,6 @@ Keep your account as Portfolio 10 and connect it to the Course 09 configuration 
 
 Carry the remaining decisions into Course 11. They will become part of the project's continuation decision and the final practicum.
 
-Read management manual (Edition 9) chapter 5, §§7.5–7.6, and chapter 8, in [References](../references.html). They explain evidence limits, product examination, and transfer of continuing responsibility. §§5.2–5.5 are the basis for Lesson 6: assurance by consequence and detectability, independence, the actual candidate, and evidence reuse. The manual is written for the agents you work with, so these sections also show you what your agents are asked to do and where your own responsibilities begin.
+Read management manual (Edition 9) chapter 5, §§7.5–7.6, and chapter 8, in [References](../references.html). They explain evidence limits, product examination, and transfer of continuing responsibility. §§5.2–5.5 are the basis for Lesson 6: assurance by consequence and detectability, independence, the actual candidate, and evidence reuse.
 
 The optional NASA readings go deeper into verification and validation methods, but all core exercises can use the supplied offline records.

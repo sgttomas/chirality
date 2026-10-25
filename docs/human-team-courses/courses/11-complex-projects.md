@@ -12,21 +12,17 @@ This course teaches diagnosis and direction when ordinary controls no longer giv
 
 Complete Courses 01 to 10, and bring your Northbank project basis, execution forecast, interface records, and assurance findings. Bring the briefs and examination records from those courses' assignments as well.
 
-Read Packets A to D. Allow seven hours for reading, discussion, practice, and the assessed assignment. The earlier edition allowed six hours; the added hour covers Lesson 6, the briefs and examination record in the practice, and the defense through changed premises.
+Read Packets A to D. Allow seven hours for reading, discussion, practice, and the assessed assignment. Most of the time goes to the six lessons and to the practice, which includes an unaided first pass and three agent exercises; the rest goes to the memorandum, its independent examination, and the defense through changed premises.
 
 Use an independent reader for the assignment. For individual study, ask a mentor to question your diagnosis and recommendation. The independent reader is a person who did not help produce the memorandum; an agent working from your brief does not provide that independence.
 
 ### How this course is built
 
-The series index explains [how the series is built](../index.html#how-the-series-is-built). In short, the classical methods for leading complex projects remain sound, and you need them, because a troubled physical project still fails through its commitments, interfaces, suppliers, and site. But the classical methods of diagnosis assume that a project's visible output reflects the attention people spent on it: a document took someone's hours, and the person who wrote it was paying attention to it. Agents break that link for much of a project's information work.
-
-The ratio that matters to a leader is the amount of work produced compared with the amount that competent people have examined. When people produce the work, the two stay close, and a leader can read output as weak evidence of progress. When agents produce much of it, the gap can grow without anyone reporting it, and the attention of the people who examine, decide, and accept becomes the resource that limits the project.
-
-Lessons 1 to 5 each follow four steps: the classical method, what it assumes, what changes with agents, and the extended method with its tradeoffs. Lesson 6 treats the project's arrangement of people and agents as part of what a leader diagnoses and directs, and it states the series' broader argument about which classical practices keep their reasons.
+The series index explains [how the series is built](../index.html#how-the-series-is-built). For a leader, the shifted constraint is the gap between work produced and work that competent people have examined: when agents produce much of the information work, output no longer shows attention, and the attention of the people who examine, decide, and accept limits the project. Lessons 1 to 5 follow the four steps, and Lesson 6 treats the arrangement of people and agents as something a leader diagnoses and directs.
 
 ### The teaching arrangement
 
-Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case): the agents hold no appointment under A01, and every Northbank record stays as written. The records do not show how any Northbank document was produced, so every statement in this course about Northbank's agent use is a teaching assumption, labelled where it appears. You will work with real agents in the practice and the assessed assignment.
+Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case). The records do not show how any Northbank document was produced, so every statement in this course about Northbank's agent use is a teaching assumption, labelled where it appears.
 
 ## Learning outcomes
 
@@ -39,7 +35,7 @@ After this course, you can:
 - Prepare a bounded decision with evidence and conditions for reconsideration.
 - Diagnose a project's arrangement of people and agents, including its examination capacity and verification debt.
 - Explain which classical practices lose their reason when agents do production, and which keep their reason or become more important, from the costs they answer.
-- Direct and examine agents' contributions to a leadership recommendation, and show which judgments are your own.
+- Direct, examine, and accept agent contributions, and show which judgments are your own.
 
 ## Lesson 1: Understand the relationships that create complexity
 
@@ -77,7 +73,7 @@ The loops remain, but some of them change form.
 
 **A shared brief or model couples activities.** Two activities that look independent on a dependency map are coupled if the agents that prepared them used the same brief, the same basis, or the same model. An error in the shared basis appears in every output that used it. For example, a brief that gave A05 without its proposal status could carry 22 litres per second into the mechanical, electrical, and civil work at once. This is a teaching example, not a Northbank event.
 
-**Propagation is fast in both directions.** [Course 08](08-project-execution.html#lesson-4-connect-purchasing-risk-and-change) showed that an agent can carry an approved disposition into every affected document within an hour, and a proposal just as fast. The delay in which someone might once have noticed a wrong basis may no longer exist.
+**Propagation is fast in both directions.** [Course 08](08-project-execution.html#lesson-4-connect-purchasing-risk-and-change) showed that an agent can carry an approved disposition into every affected document quickly, and a proposal just as fast. The delay in which someone might once have noticed a wrong basis may no longer exist.
 
 **The physical loops do not change.** A delayed selection still reduces the available supplier choices. Delivery, installation, and commissioning still run at the speed of manufacturing and site work.
 
@@ -129,7 +125,7 @@ The classical treatment assumes that every document and report took someone's ef
 
 **Agents carry the brief's interests.** An agent receives no bonus, but it follows its brief. A brief to prepare a handover report for the end of Week 12 carries the incentive into the output, and the agent can present an unsupported conclusion with the same confidence as a supported one. For example, C04's draft cover sheet says that the complete installation passed acceptance; an agent asked to summarize C04 could repeat that claim. This is a teaching example.
 
-**Boundaries multiply the bases in use.** Each party's agents work from the basis that party gives them. B01's supplier copied 480 V from A03, and a supplier's agents can make the same kind of copying error faster, in a submission that looks more complete. You cannot see another organization's briefs, so the receiving examination must check the basis of what arrives, not its completeness.
+**Boundaries multiply the bases in use.** Each party's agents work from the basis that party gives them, and [Course 08 Lesson 4](08-project-execution.html#lesson-4-connect-purchasing-risk-and-change) shows how a supplier's copying error like B01's can arrive faster and look more complete. At the leadership level, the difficulty is that you cannot see another organization's briefs, so the receiving examination must check the basis of what arrives, not its completeness.
 
 **Decision rights do not move.** The agents hold no appointment, so no decision right in this lesson passes to an agent. The separation between the sponsor's and the technical authority's rights carries over unchanged.
 
@@ -259,7 +255,7 @@ A troubled agent-assisted project can fail in its arrangement as well as its exe
 
 These are further places to look, not replacements for the classical questions. Northbank's difficulties in Packets C and D are classical: incomplete technical inputs, a forecast beyond its commitments, and overstated readiness. They would be the same whoever drafted the documents.
 
-The recovery options change too. More agents are the new form of more people: they help where production limits the result, and elsewhere they lengthen the examiners' queue. Re-examining work produced from a wrong basis can cost far more than reproducing it, because reproduction is cheap and examination is not.
+The recovery options change too. More agents are the new form of more people: they help where production limits the result, and elsewhere they lengthen the examiners' queue. When work was produced from a wrong basis, compare two routes: re-examining each affected output to find every place the wrong basis entered, or reproducing the outputs from the corrected basis and examining the new ones. Either route needs examination; reproducing can be cheaper when the wrong basis spread widely, and re-examining when it touched little.
 
 ### The extended method
 
@@ -348,7 +344,7 @@ Agent-assisted projects add failure modes that classical controls were not built
 
 ### The argument from changing costs
 
-This lesson is the leadership-level home for the series' broader argument. Part of the classical discipline exists to manage the cost of coordinating people's labour on information work. Where agents do the production, those practices lose much of their reason, so do not carry them over by habit. The practices that manage authority, evidence, acceptance, and the physical world keep their reasons, and agents make them more important, because more work reaches the point where someone must rely on it.
+This lesson is the leadership-level home for the series' broader argument. Part of the classical discipline exists to manage the cost of coordinating people's labour on information work. Where agents do the production, those practices lose much of their reason, so do not carry them over by habit. The practices that manage authority, evidence, acceptance, and the physical world keep their reasons, and agents make them more important, because work can now reach the point where someone relies on it without anyone having attended to it while it was produced.
 
 | Practice | The cost it answered | With agents |
 | --- | --- | --- |
@@ -357,7 +353,8 @@ This lesson is the leadership-level home for the series' broader argument. Part 
 | Measuring progress by documents produced | Effort as a sign of attention | Loses its reason and starts to mislead |
 | Levelling workload | People's capacity | Keeps its reason for site crews and examiners; loses much of it for agent production |
 | Separating budget from forecast, technical review from expenditure approval, and each decision right under A01 | Authority | Keeps its reason and becomes more important |
-| Matching evidence to claims, and independent review | Evidence | Keeps its reason and becomes more important |
+| Matching evidence to claims | Evidence | Keeps its reason and becomes more important |
+| Independent review | Evidence | Keeps its reason and becomes more important, because agreement among agent outputs no longer carries the separate understanding that individual people supplied ([Course 09 Lesson 5](09-technical-integration.html#lesson-5-examine-integration-and-repair-connected-work)) |
 | Acceptance and handover of an identified result | Reliance | Keeps its reason and becomes more important |
 | Supplier, fabrication, site, and test sequences | The physical world | Unchanged |
 
@@ -489,9 +486,7 @@ Attach a one-page map of coupled effects and a decision table that names authori
 
 Get independent examination, repair confirmed defects, and present a five-minute defense of the revised recommendation.
 
-After the presentation, your instructor poses changed premises and asks you to reason through their consequences. Give the defense live, by voice or in person, without consulting an agent, where you can. In a text-only exchange, your instructor cannot establish that you worked without assistance. The instructor then rates the defense on your reasoning through changed premises and records that limit.
-
-Assessing this work is difficult, and the difficulty is part of the lesson. Your instructor is in the position of Northbank's sponsor receiving the leadership group's memorandum: both must decide how far to rely on a finished, well-formed document without seeing how much judgment went into it. The evidence is in your briefs, your examination record, the defects you found and repaired, and your reasoning in the defense.
+After the presentation, your instructor poses changed premises, such as a confirmed supplier slot, a weekly report whose counted documents have all been examined, or a sponsor approval of A05, and asks you to reason through their consequences. Your instructor rates the defense as the teaching guide describes; in text-only study it is rated on changed-premise reasoning with the medium recorded.
 
 The assignment must meet these seven criteria:
 
@@ -501,7 +496,7 @@ The assignment must meet these seven criteria:
 4. The recommendation preserves decision rights and states observable conditions for action or reconsideration. It assigns no decision or risk acceptance to an agent, and it claims no recovery from agent capacity without evidence that production limits the result.
 5. The revised memorandum addresses adverse evidence, affected people, incentive conflicts, truthful reporting, and a usable improvement in practice, including how cheap production interacts with the incentive and the reporting measure.
 6. The account of the arrangement shows who examined each agent contribution to the memorandum and for what, and where independence was needed and how it was provided. Your own examination record shows what you checked in each agent return, what it found, and what you changed.
-7. In the defense, you explain the recommendation's main conclusions and their grounds, and you reason correctly through the changed premises your instructor poses.
+7. In the defense, you explain the recommendation's main conclusions and their grounds, show what your examination of the agents' work found, identify which judgments are your own, and reason correctly through the changed premises your instructor poses.
 
 ## Portfolio and references
 
@@ -509,6 +504,6 @@ Keep the memorandum, map, decision table, review findings, and repaired revision
 
 Use the [references](../references.html) for further study. In the management manual (Edition 9), chapters 3–6 explain dependencies, ownership, examination, and recovery of a usable position. §§4.3, 4.6 and 5.1–5.3 address concurrency and review capacity, diagnosing waiting, and independence where agents share a basis, and §9.1 addresses the whole cost of a result.
 
-Its agent roles describe how agents contribute to work; they assign no Northbank appointment, which remains under A01. The manual is written for the agents you work with, so these chapters also show what your agents are asked to do and where your own responsibilities begin. APM governance and NASA technical management provide additional perspectives for comparison.
+Its agent roles describe how agents contribute to work; they assign no Northbank appointment, which remains under A01. APM governance and NASA technical management provide additional perspectives for comparison.
 
 Continue to [Course 12](12-project-practicum.html).

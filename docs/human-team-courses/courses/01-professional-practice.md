@@ -16,9 +16,9 @@ This is the first course in the series, so it introduces the way every course is
 
 Each course teaches the classical method of project practice, because the classical methods are sound and a physical project still depends on them. But those methods were developed for teams in which every piece of work came from a person. In such a team, the person who produces the work also pays attention to it, holds the competence it needs, and carries the responsibility for it. Agents separate these. An agent can often draft, compare, calculate, and search quickly, and many agents can work at once. It cannot hold an appointment, and the attention of the people who examine and decide does not grow with the number of agents.
 
-For professional practice, the shifted constraint is responsibility. An agent can contribute to almost any part of an assignment, and it can be authorized to act. But responsibility for relying on the result comes back to a person. Adding agents adds capability without adding anyone who can answer for it, so more agency concentrates accountability on the people who direct and accept the work.
+In professional practice, agents shift where responsibility falls. An agent can contribute to almost any part of an assignment's information work, and a person can authorize it to act. But responsibility for relying on the result comes back to a person. A junior colleague carries professional duties of their own, even when a supervisor answers for their work; an agent carries none. So as agents do more of the work, more of the accountability for the result rests on fewer accountable people: those who direct and accept the work.
 
-The series uses an engineering analogy. Euler-Bernoulli beam theory neglects shear deformation, which is right for a slender beam; Timoshenko theory adds shear for a short, thick beam and gives the classical result as the beam becomes slender. The methods in this series behave the same way: where people do the work, they give the classical answer.
+The series uses an engineering analogy. Euler-Bernoulli beam theory neglects shear deformation, which is right for a slender beam; Timoshenko theory adds shear for a short, thick beam and gives the classical result as the beam becomes slender. The methods in this series behave the same way: where people do the work, they give the classical answer. Timoshenko theory has its own limits, and so do these methods, so test them against your own work. These are claims about how the costs of work are changing, not measurements of productivity.
 
 Lessons 1 to 4 each follow four steps:
 
@@ -32,8 +32,6 @@ Lesson 5 introduces two habits that every later course uses: a record of how you
 ### The teaching arrangement
 
 Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case): the agents hold no appointment under A01, and every Northbank record stays as written. You will work with real agents in the practice and the assessed assignment.
-
-The [management manual](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html) is written mainly for the agents you work with. Reading it shows you what your agents are asked to do and where your own responsibilities begin.
 
 ### Outcomes
 
@@ -84,7 +82,7 @@ The classical method assumes that the person preparing the work meets its conseq
 
 ### What changes with agents
 
-An agent can draft Steps 1 to 4 in minutes. It can list likely users and affected people, and summarize the ethics guideline. That draft is useful, but unless someone gives the agent the site's arrangements, it is drawn from what such projects usually involve, so a complete-looking list can still miss a person whom only the site's arrangements reveal.
+An agent can draft Steps 1 to 4 quickly. It can list likely users and affected people, and summarize the ethics guideline. That draft is useful, but unless someone gives the agent the site's arrangements, it is drawn from what such projects usually involve, so a complete-looking list can still miss a person whom only the site's arrangements reveal.
 
 Professional obligations do not move to the agent. An agent holds no licence and no appointment, and the ethics guideline's duties attach to people. A statement that an agent drafts and you issue is your statement.
 
@@ -133,7 +131,7 @@ Agents can act, not only advise. Depending on the system, an agent can edit file
 
 A person can authorize an agent in advance to perform a defined act, such as preparing a draft or updating an index within stated limits. That authorization is useful, and it can save many interruptions. But it does not move responsibility. A01 appoints people, and the agents hold no appointment. When someone relies on the agent's act, the person who authorized it, and the person who accepted the result, answer for it.
 
-So adding agents adds capability without adding accountable people. A project engineer who directs five agents answers for five contributions instead of one. More agency concentrates accountability on fewer people; it does not spread it.
+A supervisor in a human team already answers for a junior colleague's work, so answering for others is not new. What changes is that the junior also carries professional duties: they must raise concerns, work within their competence, and make truthful statements, whoever supervises them. An agent carries none of these duties. A project engineer who directs five agents answers for five contributions, and no one else carries a professional duty for those contributions. So as agents do more of the work, more of the accountability for the result rests on fewer accountable people. This does not assume that agents replace any person on the team; it concerns where the duties for agent contributions fall.
 
 ### The extended method
 
@@ -238,7 +236,7 @@ The classical method assumes that the person who notices a concern is a professi
 
 ### What changes with agents
 
-Agents tend not to push back unless the arrangement asks them to. Given a request, an agent usually works toward what was asked. Asked to prepare the equipment selection, it may select from the supplier brochure instead of reporting that A02's operating conditions are unresolved. Where it does notice a discrepancy, it may mention it in passing inside a long return, where nobody acts on it.
+Agents tend not to push back unless the arrangement asks them to. Given a request, an agent can simply work toward what was asked. Asked to prepare the equipment selection, it may select from the supplier brochure instead of reporting that A02's operating conditions are unresolved. Where it does notice a discrepancy, it may mention it in passing inside a long return, where nobody acts on it.
 
 So a concern that a careful colleague would have raised may never reach a person unless the brief and the return are designed to carry it. The agent is not resisting pressure; it simply has no professional reason to stop.
 
@@ -268,7 +266,7 @@ The classical method assumes that producing the work shows the judgment that wen
 
 ### What changes with agents
 
-A finished output no longer shows whose judgment it contains. An agent can produce a well-formed decision map, concern note, or appointment response in minutes. A reader, whether a sponsor, a reviewer, or an instructor, cannot tell from the output how much of it the signer examined, and the signer may not be able to explain a part they never thought through.
+A finished output no longer shows whose judgment it contains. An agent can produce a well-formed decision map, concern note, or appointment response quickly. A reader, whether a sponsor, a reviewer, or an instructor, cannot tell from the output how much of it the signer examined, and the signer may not be able to explain a part they never thought through.
 
 So the evidence of your contribution moves out of the output and into how you directed and examined it.
 
@@ -308,9 +306,11 @@ This gives the manager useful work to arrange, while preserving the sponsor's de
 
 ### The same work with agents
 
+This account is a teaching assumption, not a Northbank record: the records do not say how any of the work was produced.
+
 The project engineer briefs an agent to draft the division of contributions. The brief identifies A01 Rev 0, A02 Rev 1, A04 Rev 1, A05 Rev 0 as a proposal, and A06 Rev 0 as an open inquiry. It asks the agent to name, for each matter, the role that A01 makes responsible, and to stop and report any matter that the records do not settle instead of resolving it.
 
-The agent returns a table within minutes. The project engineer does not accept it because it looks complete. The engineer checks that each responsibility matches A01, that A05 sits with the sponsor's decision, that A04's limits survive, and that no matter is assigned to the agent itself. The judgment that the records do not support a final selection is the engineer's own, and the engineer records it as such.
+The agent returns a table. The project engineer does not accept it because it looks complete. The engineer checks that each responsibility matches A01, that A05 sits with the sponsor's decision, that A04's limits survive, and that no matter is assigned to the agent itself. The judgment that the records do not support a final selection is the engineer's own, and the engineer records it as such.
 
 A short examination note could read:
 
@@ -365,7 +365,7 @@ Then complete three further exercises:
 5. How should you respond when commercial pressure requests an unsupported technical statement?
 6. How does independent review affect the producer's responsibility?
 7. An agent can perform an act in your project's systems. What else must be established before it performs the act, and who answers for reliance on the result?
-8. Why does adding agents to a team concentrate accountability instead of spreading it?
+8. A supervisor already answers for a junior colleague's work. What is different when the contribution comes from an agent, and what does that mean for where accountability for the result rests?
 9. Why is an agent's fluent, confident return weak evidence that the work lies within its competence?
 10. The classical competence check relies on a signal that agents do not give. What is that signal, and what replaces it when an agent contributes?
 11. How do you arrange for an agent to raise a concern that it would otherwise pass over?
@@ -374,11 +374,11 @@ Then complete three further exercises:
 
 Prepare a two-page appointment response for the Northbank project engineer, working with agents. Use Packet A and your practice outputs. Include an activity plan and one decision request. Add your examination record: the briefs you used, and what you checked, found, and changed in each agent return.
 
-Then defend the response to your instructor. Explain how you reached its main conclusions and what you checked, and reason through changed premises that your instructor poses. Give the defense live, by voice or in person, without consulting an agent, where you can. In a text-only exchange, your instructor cannot establish that you worked without assistance. The instructor then rates the defense on your reasoning through changed premises and records that limit.
+Then defend the response to your instructor. Explain its main conclusions and what you checked, and reason through changed premises such as a recorded amendment to A05, new electrical evidence, or an agent system that can place orders. Give the defense live, without consulting an agent, where you can. Your instructor rates the defense as the [teaching guide](../instructor-guide.html#assess-agent-assisted-work) describes; in text-only study it is rated on changed-premise reasoning with the medium recorded.
 
-Assessing this work is difficult, and the difficulty is part of the lesson. Your instructor is in the position of a sponsor who receives a finished response and must decide how far to rely on it, without seeing how much judgment went into it. The evidence is in your briefs, your examination record, and your ability to explain and reason through the work in the defense.
+As the [series index](../index.html#work-with-agents) explains, your instructor, like a sponsor, cannot see from the finished response how much judgment went into it. That is why the briefs, the examination record, and the defense are assessed.
 
-An instructor assesses seven observable criteria:
+An instructor assesses eight observable criteria:
 
 | Criterion | Evidence required |
 | --- | --- |
@@ -387,7 +387,8 @@ An instructor assesses seven observable criteria:
 | Source basis | The response uses A02 Rev 1 and distinguishes proposals, observations, and open inquiries. |
 | Competence and examination | Activities include necessary specialist input and a suitable review purpose. Each agent contribution has an examiner with the competence to examine it. |
 | Useful continuation | The plan advances independent work and states the conditions limiting dependent decisions. |
-| Direction and examination record | The briefs identify the records with revision and status and state when the agent must stop and report. The record shows what you actually checked in each return, what it found, and what you changed, and marks which judgments are your own. |
+| Direction of agents | The briefs identify the records with revision and status and state when the agent must stop and report. |
+| Examination record | The record shows what you actually checked in each agent return, what it found, and what you changed, and marks which judgments are your own. |
 | Defense | You explain the response's main conclusions and their grounds, and reason correctly through the changed premises your instructor poses. |
 
 Before the defense, explain your response to a peer as practice, and repair any unsupported claim found during examination. Acceptance in training confirms that the assignment meets its learning criteria; it grants no professional authorization.

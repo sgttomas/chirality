@@ -35,17 +35,15 @@ Allow twelve working hours. Hold several sessions if necessary. Preserve the wor
 | 6 | Integrated defense and repair | 2.5 hours |
 | 7 | Individual examination | 2 hours |
 
-The total stays at twelve hours, but the phase times differ from the edition in which people drafted every output. That edition gave Phase 0 one hour, each event phase 1.5 hours, Phase 6 two hours, and Phase 7 1.5 hours. Agents can draft much of each event's output, so Phases 1 to 5 each give a quarter-hour less to production; their examination and decision steps stay. The time moves to Phase 0, which now also sets up the agent arrangement, and to Phases 6 and 7, which are now the main evidence of each person's understanding. If an event phase runs long, hold another session rather than shortening Phase 6 or 7.
+The phase times are a teaching choice. They protect Phases 6 and 7, because the integrated defense and the individual examination are the main evidence of each person's understanding, and they give Phase 0 time to set up the agent arrangement. Each event phase still includes its briefs, examination records, and independence checks, and the times assume no saving from agent use. If an event phase runs long, hold another session rather than shortening Phase 6 or 7.
 
 ### How this course is built
 
-The series index explains [how the series is built](../index.html#how-the-series-is-built). The practicum combines the classical methods of Courses 01 to 11 with their extensions for agents. In a practicum where people produce every output, producing the phase outputs takes most of the time, and each participant's understanding grows as they produce. With agents, a team can produce complete-looking outputs quickly, so the time and the evidence move to examination, decisions, and each person's ability to explain and defend the result.
-
-The single lesson follows the series' four steps. The role cards, rotation, and phases keep the classical exercise and add what each role directs agents to do and what it must examine itself.
+The series index explains [how the series is built](../index.html#how-the-series-is-built). In the practicum, the shifted constraint is evidence of understanding: when agents can produce complete-looking outputs, a finished package no longer shows who understood it, so the evidence moves to examination, decisions, and each person's ability to explain and defend the result. The single lesson follows the series' four steps, and the role cards, rotation, and phases add what each role directs agents to do and must examine itself.
 
 ### The teaching arrangement
 
-Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case): the agents hold no appointment under A01, and every Northbank record stays as written. In the practicum, agents also hold no role card. The facilitator's decisions are simulated case events under D03; participants request and receive them, and agents do neither.
+Use the case's [arrangement for working with agents](../case-study.html#working-with-agents-in-the-case). In the practicum, agents also hold no role card, and only participants request and receive the facilitator's simulated decisions.
 
 ### Work with agents in your role
 
@@ -59,7 +57,7 @@ For each output, keep:
 
 The participant who holds a card is the producer of that card's outputs and answers for them. An agent's draft becomes the team's work only after that participant has examined it.
 
-Independence needs more care than in a team of people. Agents that share a model can make the same error, and agents that share a brief or source set inherit the same premises. Two participants whose agents share a basis are therefore not automatically independent, even when neither produced the other's work. Where every participant uses the same agent system, independence must come from the reviewer: the reviewer examines the work personally against the source records, and briefs any agent check from those records and the decision index, not from the producer's brief or return.
+Independence needs more care than in a team of people. Agents that share a model, brief, or source set can share an error, and their agreement shows consistency, not correctness ([Course 09 Lesson 5](09-technical-integration.html#lesson-5-examine-integration-and-repair-connected-work)). Two participants whose agents share a basis are therefore not automatically independent, even when neither produced the other's work. A participant who wrote or revised any brief that an output descends from counts as a producer of that output for review, including after rotation. Where every participant uses the same agent system, independence must come from the reviewer: the reviewer examines the work personally against the source records, and briefs any agent check from those records and the decision index, not from the producer's brief or return.
 
 ## Learning outcomes
 
@@ -70,7 +68,7 @@ After this practicum, you can:
 - Assess changes without creating unsupported approvals.
 - Produce and independently examine an integrated recommendation.
 - Explain your own reasoning, limits, and responsibility.
-- Direct and examine agents in your role, and show which judgments are your own.
+- Direct, examine, and accept agent contributions, and show which judgments are your own.
 - Arrange independent examination that accounts for agents sharing a model or brief.
 - Transfer work with its actual outputs, briefs, and examination records.
 - Defend the team's result and your own contribution through changed premises.
@@ -113,7 +111,7 @@ The classical lesson assumes that each output's producer is a person who prepare
 
 **Producing no longer implies attending.** A participant can direct an agent to produce an interface table or a decision request without reading every line of it. Assigning an output to a producer assigns attention only if the arrangement requires the producer to examine the return.
 
-**Inconsistency and false consistency both become cheap.** Agents briefed from different revisions produce outputs that disagree. Agents briefed from the same wrong basis produce outputs that agree with each other and with the error. Agreement across outputs shows consistency, not that the shared basis is correct.
+**Inconsistency and false consistency both become cheap.** Agents briefed from different revisions produce outputs that disagree. Agents briefed from the same wrong basis produce outputs that agree with each other and with the error; [Course 09 Lesson 5](09-technical-integration.html#lesson-5-examine-integration-and-repair-connected-work) explains why such agreement shows consistency, not correctness.
 
 **Independence depends on preparation.** The classical lesson already says that nonparticipation in production does not establish suitable scrutiny. A shared agent model, brief, or source set is now one of the shared assumptions that can impair a review.
 
@@ -125,11 +123,11 @@ The classical lesson assumes that each output's producer is a person who prepare
 
 Assign each output to a participant, who briefs its agents with the inputs and their revisions and statuses, the intended use, the boundaries, and the checks to perform. The participant keeps the examination conditions and examines the return before the output enters the working basis.
 
-When an event or decision changes the basis, update the affected briefs before more agent work starts. An agent keeps no project history between assignments unless someone gives it, so a brief that predates a decision will produce work that ignores it.
+When an event or decision changes the basis, update the affected briefs before more agent work starts. An agent may or may not keep history between assignments, and a system that keeps memory can carry a superseded premise forward, so brief from the current basis either way. A brief that predates a decision will produce work that ignores it.
 
 Name the participant who owns integration in each phase. That person checks the outputs against each other, not each agent's report of completion.
 
-When you arrange a review, record whether the reviewer's agents share a model, brief, or source set with the producer's, and arrange the review so that its basis differs where the consequence warrants it.
+When you arrange a review, record whether the reviewer's agents share a model, brief, or source set with the producer's, and whether the reviewer wrote or revised any brief the output descends from. Arrange the review so that its basis differs where the consequence warrants it.
 
 The producer repairs the work, with agents where useful, and keeps the same brief and contribution owner through ordinary repairs so that context is not lost. The reviewer confirms the affected repair personally.
 
@@ -230,7 +228,7 @@ For Phase 6, assign roles to preserve independent examination of the final packa
 
 Transfer the current revision, open findings, decisions, and next action at each rotation, together with the agent briefs and the examination records for the role's outputs. The next participant must inspect the actual output. Neither the outgoing participant's summary nor an agent's summary of the work replaces it.
 
-Agents do not rotate as people do, because an agent keeps no project history unless someone gives it. The incoming participant briefs their own agents from the transferred briefs and the current basis, and checks that the briefs still match the current decisions. Before relying on an output, the incoming participant reads its examination record and re-examines what the record does not cover, where the consequence warrants it.
+Agents do not rotate as people do. An agent may or may not keep project history, and remembered history can be out of date, so the incoming participant briefs their own agents from the current basis either way, using the transferred briefs as a starting point, and checks that the briefs still match the current decisions. Record each brief's authors in the arrangement table. A participant who wrote or revised any brief that an output descends from counts as a producer of that output and cannot be its independent reviewer, even after rotating to the reviewer card. Before relying on an output, the incoming participant reads its examination record and re-examines what the record does not cover, where the consequence warrants it.
 
 For a four-person team, combine project engineering with discipline representation. Combine procurement with information control. Keep production and independent examination separate.
 
@@ -246,7 +244,7 @@ Use A01 to A07 and B03. Treat B03 as an initial coordination input, and preserve
 4. Assign owners to the unresolved interfaces.
 5. Define the conditions for the next dependent activity.
 6. Select a reviewer for the first purchase-package recommendation.
-7. Record the agent arrangement: for each role, the agent system and model, the brief and source set, who examines each output, and which participants' agents share a basis.
+7. Record the agent arrangement: for each role, the agent system and model, the brief and source set, who wrote or revised each brief, who examines each output, and which participants' agents share a basis.
 
 Produce a one-page project basis, a source index, an interface table, and an arrangement table. Include the missing hydraulic and legal basis.
 
@@ -271,7 +269,7 @@ Produce a supplier response, interface actions, and a decision request. Identify
 
 Give procurement a usable instruction. State which commitment, if any, the decision authorizes. Preserve the decision's conditions in the current working basis.
 
-**With agents:** an agent drafting from B01 can carry its 480 V value forward, because B01 copied it from A03 and looks complete. Brief the agent with A04 Rev 1 and B01's status: submitted for technical review, not accepted. Agents can help the team reply within the two working days, but the reply cannot approve B01, and the electrical engineer's determinations that A04 leaves open still take the time that competent examination takes. When the facilitator's decision arrives, update the affected briefs.
+**With agents:** an agent drafting from B01 can carry its 480 V value forward, because B01 copied it from A03, and the value appears with the same confidence as sourced data. Brief the agent with A04 Rev 1 and B01's status: submitted for technical review, not accepted. [Course 08 Lesson 4](08-project-execution.html#lesson-4-connect-purchasing-risk-and-change) explains why a reply within the two working days cannot be an approval. When the facilitator's decision arrives, update the affected briefs.
 
 ## Phase 2: Respond to the requested scope change
 
@@ -290,7 +288,7 @@ Produce a change assessment and a revised action plan. Distinguish automatic cha
 
 Identify any forecast exclusions. Carry the earlier voltage issue into the revised interface account.
 
-**With agents:** give A05 with its proposal status in every brief. An agent given A05 without its status may design for 22 litres per second, and it can carry that flow into every interface within minutes. Agents can trace the change through B03's interfaces quickly. The project engineer and discipline representative examine each traced effect to separate a known change from a missing input.
+**With agents:** give A05 with its proposal status in every brief. An agent given A05 without its status may design for 22 litres per second, and it can carry that flow into every interface quickly. Agents can trace the change through B03's interfaces quickly. The project engineer and discipline representative examine each traced effect to separate a known change from a missing input.
 
 ## Phase 3: Respond to the forecast
 
@@ -315,7 +313,7 @@ Do not add recorded actual expenditure to C03 again, because its item totals alr
 
 **Event prompt:** The simulation moves to a later installation scenario. C04 arrives with a cover sheet claiming complete acceptance.
 
-Release C04 and C05. This time change supplies the reported observations, but it does not establish that earlier design gaps were resolved.
+Release C04 and C05. This move to a later scenario supplies the reported observations, but it does not establish that earlier design gaps were resolved.
 
 The reported test observed 18 litres per second during one normal condition, but it leaves several scenarios unexercised and lacks complete configuration information.
 
@@ -419,12 +417,12 @@ Finally, draft the team's independence map for the first planned review: does th
 1. What must an incoming participant inspect during role rotation?
 2. What makes a reviewer independent for an assigned output?
 3. How must the team treat a facilitator's conditional decision?
-4. What does the Phase 4 time change establish about earlier technical gaps?
+4. What does the move to the later installation scenario in Phase 4 establish about earlier technical gaps?
 5. Why must C03 remain separate from the 22 litres per second proposal?
 6. How can the team finish this practicum while project acceptance remains unsupported?
 7. Why can an agent neither hold a role card nor receive a facilitator's decision?
 8. A reviewer's agent was briefed with the producer's brief and uses the same model. What does the review establish?
-9. Why is the outgoing agent's summary not an adequate transfer at rotation?
+9. Why is an agent's summary of the outgoing work not an adequate transfer at rotation?
 10. Why are Phases 6 and 7 the main evidence of each person's understanding, and what does a changed premise test that a prepared answer does not?
 11. What can the individual-study adaptation not establish?
 
@@ -442,9 +440,7 @@ Complete the required repairs within the remaining phase time. If required evide
 
 During Phase 7, each participant writes a two-page individual explanation. Identify one personal contribution, one changed judgment, and one unresolved consequential condition. Identify also one agent return you examined, what you checked, and what that check would have caught. Write the explanation in the session without an agent, where the facilitator can arrange it.
 
-Each participant then receives a fifteen-minute examination. Explain a decision outside your final role and respond to one adverse finding. Then reason through a changed premise that you have not prepared for. Give the examination live, by voice or in person, without consulting an agent. If only text is available, the facilitator rates it on your reasoning through changed premises and records the medium and its limit.
-
-Assessing this package is difficult, and the difficulty is part of the lesson. Agents make every output look finished, so the facilitator, like Northbank's sponsor, cannot tell from the package how much judgment went into it or whose judgment it was. A coherent package can come from agents directed by one or two members of the team. The evidence of each person's understanding is in their briefs and examination records, their findings and repairs, and above all in the integrated defense and the individual examination.
+Each participant then receives a twelve-minute examination. Explain a decision outside your final role. Then respond to one challenge that you have not prepared for: a changed premise involving adverse evidence or incentive pressure, such as a request to report handover today or to omit the voltage discrepancy from a summary. Give the examination live, by voice or in person, without consulting an agent, where you can. Your facilitator rates the defense as the teaching guide describes; in text-only study it is rated on changed-premise reasoning with the medium recorded.
 
 The assessment uses seven observable criteria:
 
@@ -452,11 +448,11 @@ The assessment uses seven observable criteria:
 2. The integrated plan gives usable owners, interfaces, prerequisites, forecasts, and consequences of change. Every owner is a person in a Northbank role.
 3. The decision requests distinguish sponsor, technical, procurement, and operating authority with explicit conditions.
 4. The assurance and handover conclusions match the evidence and preserve unresolved obligations.
-5. Each participant defends the reasoning, addresses findings and ethical consequences, and shows the affected repairs within the team's integrated result.
+5. Each participant addresses findings and ethical consequences, and shows the affected repairs within the team's integrated result.
 6. The arrangement table shows, for each output, the participant who directed the agents and who examined the return, and where independence was needed and how it accounted for shared models and briefs. Each participant's examination records show what they checked in each agent return, what they found, and what they changed, and the rotation records show that each incoming participant received the actual output, briefs, and examination records.
-7. In the Phase 6 defense and the Phase 7 examination, each participant explains how they reached their own conclusions, shows what their examination of the agents' work found, and reasons correctly through changed premises.
+7. In the Phase 6 defense and the Phase 7 examination, each participant explains the main conclusions and their grounds, shows what their examination of the agents' work found, identifies which judgments are their own, and reasons correctly through the changed premises the facilitator poses.
 
-Meet all seven criteria. A team result does not establish each participant's understanding, so an unsupported individual explanation requires individual repair.
+Meet all seven criteria. A team result does not establish each participant's understanding, and a coherent package can come from agents directed by one or two members of the team, so an unsupported individual explanation requires individual repair.
 
 ## Individual-study adaptation
 
@@ -488,6 +484,6 @@ An agent instructor that presents the events, plays the authorities, and assesse
 
 Keep the final package, phase decisions, review findings, repaired versions, and individual explanation as Portfolio 12, with an index that makes their relationships retrievable. Keep the arrangement table, briefs, examination records, and rotation transfers with them.
 
-Use the [references](../references.html) for further study. Compare the source manuals' basis, dependency, examination, and integration principles with your experience. The management manual's §§4.2, 4.5 and 5.3 address keeping a contribution owner through repairs, receiving actual returns, and independence where agents share a basis. The manual is written for the agents you work with, so it also shows what your agents are asked to do and where your own responsibilities begin.
+Use the [references](../references.html) for further study. Compare the source manuals' basis, dependency, examination, and integration principles with your experience. The management manual's §§4.2, 4.5 and 5.3 address keeping a contribution owner through repairs, receiving actual returns, and independence where agents share a basis.
 
 Identify one practice to improve on your next project, and state the evidence that would show whether it helps the intended result.
