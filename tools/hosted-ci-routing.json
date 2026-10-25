@@ -286,13 +286,13 @@
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "784bf06b80b76981494172f209488b76c82c4843cfc4deed4d05007fdd49003f",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "b926159f551a7b0c8182e6fef9c0c259bc69971573fcb5c625d148b70b59af94",
+      "core/product_physics/Cargo.toml": "35b46359fce6036e6bfc770fc673ee0446e9811846f501e546eba6efe5847800",
       "core/reporting/audit_manifest/Cargo.toml": "b8bc4623a383ed2c22205326bc737486becd9d931bf869e1e8cf40e147f4fad7",
-      "core/reporting/pdf_emitter/Cargo.toml": "cd9871fe951f3157dce93fb550540bf4e55dd48e469ba49612208a8b669b6441",
+      "core/reporting/pdf_emitter/Cargo.toml": "0f5a7837e30382e888f034c0776f63545ab68eb95f90da76c32d25f8be2c90dc",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
       "core/reporting/report_generator/Cargo.toml": "c85ec217b8b711222aa47bd13e926292e224ce2e5543719e77983a1053385ea3",
-      "core/reporting/report_package/Cargo.toml": "7a74827d3f5d347fa5818a62c3d1c7c505f3635b86abeb599db3bdc748ca0130",
-      "core/reporting/report_renderer/Cargo.toml": "4fdfc6954384445ca3a91af393deb8d3e5e6994ab62fbe43c1cafebbd9f68147",
+      "core/reporting/report_package/Cargo.toml": "41c5ed89ddeb13405f2bd8069b74a480aa08bcfc79f688ece9658652148aed5f",
+      "core/reporting/report_renderer/Cargo.toml": "ce0b4df25e78ff7cfea43caaa26d25d770b26d60b22db9876eae89dfa8794afb",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
       "core/reporting/result_export/Cargo.toml": "7e37efa559f984e439eb5db5423602ed6490805d5b3081bab9632c5d9236cdae",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
@@ -2444,6 +2444,7 @@
               "core/product_physics/src/corrected_displacement_tests.rs",
               "core/product_physics/src/d5_mass_product_tests.rs",
               "core/product_physics/src/exact_admission.rs",
+              "core/product_physics/src/exact_route_limitations_tests.rs",
               "core/product_physics/src/f1a_tests.rs",
               "core/product_physics/src/f1b_tests.rs",
               "core/product_physics/src/formation_guard.rs",
@@ -2515,12 +2516,16 @@
               "core/reporting/protected_content_linter/src/bin/protected_content_lint_cli.rs",
               "core/reporting/protected_content_linter/src/lib.rs",
               "core/reporting/report_generator/src/lib.rs",
+              "core/reporting/report_package/src/admitted.rs",
+              "core/reporting/report_package/src/admitted_tests.rs",
               "core/reporting/report_package/src/bindings.rs",
               "core/reporting/report_package/src/document_form.rs",
+              "core/reporting/report_package/src/exact_sections.rs",
               "core/reporting/report_package/src/lib.rs",
               "core/reporting/report_package/src/reader.rs",
               "core/reporting/report_package/src/schema_eval.rs",
               "core/reporting/report_package/src/wire.rs",
+              "core/reporting/report_renderer/src/exact_statements.rs",
               "core/reporting/report_renderer/src/lib.rs",
               "core/reporting/report_sections/src/lib.rs",
               "core/reporting/result_export/src/arc_evidence.rs",
@@ -3734,6 +3739,7 @@
               "core/product_physics/src/corrected_displacement_tests.rs",
               "core/product_physics/src/d5_mass_product_tests.rs",
               "core/product_physics/src/exact_admission.rs",
+              "core/product_physics/src/exact_route_limitations_tests.rs",
               "core/product_physics/src/f1a_tests.rs",
               "core/product_physics/src/f1b_tests.rs",
               "core/product_physics/src/formation_guard.rs",
@@ -3906,6 +3912,7 @@
               "core/product_physics/src/corrected_displacement_tests.rs",
               "core/product_physics/src/d5_mass_product_tests.rs",
               "core/product_physics/src/exact_admission.rs",
+              "core/product_physics/src/exact_route_limitations_tests.rs",
               "core/product_physics/src/f1a_tests.rs",
               "core/product_physics/src/f1b_tests.rs",
               "core/product_physics/src/formation_guard.rs",
@@ -4741,10 +4748,13 @@
               "fixtures/product_preview/w1_controls/ui/n06-sparse_interactive.request.json",
               "fixtures/redaction_export_controls/cases.json",
               "fixtures/report_lint/invented/lint_run_fixture.json",
+              "fixtures/reports/exact_report_statements.json",
+              "fixtures/reports/exact_route_limitations.json",
               "fixtures/reports/invented/calculation_report_fixture.json",
               "fixtures/reports/invented/component_provenance_cross_layer_projection.json",
               "fixtures/reports/invented/del1005_analysis_record.json",
               "fixtures/reports/invented/del1005_input_manifest.json",
+              "fixtures/reports/invented/exact_report_sections_parity.json",
               "fixtures/reports/invented/report_result_rows_parity.json",
               "fixtures/reports/invented/state_comparison_handoff_desktop_parity.json",
               "fixtures/results/base_reader_outcomes.json",
@@ -5213,6 +5223,34 @@
             "base": "project",
             "files": [
               "fixtures/results/retained_precision_successor_derivative_sparse_interactive.json"
+            ]
+          }
+        ]
+      },
+      "core/reporting/report_package/src/admitted_tests.rs": {
+        "sha256": "fc1f06d79103cbf80bd1037f72ec8035bbf8b153f50ce2ede8329a28a5050cd2",
+        "source_trees": [
+          "core/reporting/report_package/Cargo.toml",
+          "core/runner/headless/Cargo.toml"
+        ],
+        "inputs": [
+          {
+            "anchor": "src",
+            "base": "manifest",
+            "scan": {
+              "suffix": ".rs"
+            },
+            "audit": "admitted_set_forwarding_graph_is_closed recursively reads every .rs file under the crate's exact src boundary before removing its test-only items and checking the admitted-set forwarding graph; no test or production file is omitted.",
+            "files": [
+              "core/reporting/report_package/src/admitted.rs",
+              "core/reporting/report_package/src/admitted_tests.rs",
+              "core/reporting/report_package/src/bindings.rs",
+              "core/reporting/report_package/src/document_form.rs",
+              "core/reporting/report_package/src/exact_sections.rs",
+              "core/reporting/report_package/src/lib.rs",
+              "core/reporting/report_package/src/reader.rs",
+              "core/reporting/report_package/src/schema_eval.rs",
+              "core/reporting/report_package/src/wire.rs"
             ]
           }
         ]
