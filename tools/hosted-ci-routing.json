@@ -297,8 +297,8 @@
       "core/reporting/result_export/Cargo.toml": "7e37efa559f984e439eb5db5423602ed6490805d5b3081bab9632c5d9236cdae",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "7018210dadfb7c2b855298730f5f8cddedbe09f7f03b05421b81c3694f873b18",
-      "core/rules/rule_check_runner/Cargo.toml": "9a2be1a226d4f0da6e2f6ba329eec3c1ebbdbe5b51d6f03f953c32ab3cb03794",
-      "core/rules/rule_pack_document/Cargo.toml": "80528ccb5537228460583e50aabf58a676192a6802207b0df3c4afba01dc8688",
+      "core/rules/rule_check_runner/Cargo.toml": "88971098b7a02b7cd79ee97788e76d31425865b98a0e51dbdd7d6e8711fb9dc1",
+      "core/rules/rule_pack_document/Cargo.toml": "9d6886f3ab0b140c0fb577ba9bec9a5ce75677733c56943ae3deb9c346ed1b6c",
       "core/rules/rule_pack_lifecycle/Cargo.toml": "811d32918f3d13d8d2a9115ebb6ce9b0243078626bc426d8dbd97224eb2dbd56",
       "core/runner/headless/Cargo.toml": "9b7ce60f2a5dbbd01e1f09b7e8fc777a0a1f7d43e89936da30648c9de669bed0",
       "core/serialization/canonical_json/Cargo.toml": "fb2259bdfcb6adebc877b46e4e1b3126fdf1b08c0b6441a5e4ba49ab75e670a0",
@@ -2385,6 +2385,8 @@
               "apps/desktop/src-tauri/src/native_smoke.rs",
               "apps/desktop/src-tauri/src/report_package_bridge.rs",
               "apps/desktop/src-tauri/src/report_package_save.rs",
+              "apps/desktop/src-tauri/src/rule_solver_selection.rs",
+              "apps/desktop/src-tauri/src/rule_solver_selection_tests.rs",
               "apps/desktop/src-tauri/src/solve_jobs.rs",
               "apps/desktop/src-tauri/src/solve_worker.rs",
               "apps/desktop/src-tauri/src/stored_read.rs",
@@ -2544,6 +2546,7 @@
               "core/rules/completeness_checker/src/lib.rs",
               "core/rules/expression_evaluator/src/lib.rs",
               "core/rules/rule_check_runner/src/lib.rs",
+              "core/rules/rule_pack_document/src/format.rs",
               "core/rules/rule_pack_document/src/lib.rs",
               "core/rules/rule_pack_lifecycle/src/lib.rs",
               "core/runner/headless/src/benchmark_binding.rs",
@@ -3029,7 +3032,7 @@
         ]
       },
       "core/rules/rule_check_runner/tests/acceptability_relation_run.rs": {
-        "sha256": "510883d4f341373391439e23179521539ef6d2a0b2d01d60db3f432138b011ef",
+        "sha256": "a98abdb42e8051efb4e9b5c0b64d3381e2f7ed3efed674e92b884fe44d369816",
         "source_trees": [
           "core/rules/rule_check_runner/Cargo.toml"
         ],
@@ -3044,7 +3047,7 @@
         ]
       },
       "core/rules/rule_check_runner/tests/invented_demo_run.rs": {
-        "sha256": "fe659f6917537b1c01f502ebb4fb4e5f80383408ba6d3d7e005560cdbbcd8c95",
+        "sha256": "b0dd83f479ed4b02e8b12d58533f6bc3a2fcc5a46edaf987465dcbdddf1291da",
         "source_trees": [
           "core/rules/rule_check_runner/Cargo.toml"
         ],
@@ -3059,7 +3062,7 @@
         ]
       },
       "core/rules/rule_check_runner/tests/point_path_non_finite_run.rs": {
-        "sha256": "34bd5ccdd903608df9692f7f89df9efd2b88fb9e4c62f0fa77cef7bd2d57da51",
+        "sha256": "a3cee8bdf9a865c6d93343368a90cf3f1beb3596e1684a38e585b32834089b1a",
         "source_trees": [
           "core/rules/rule_check_runner/Cargo.toml"
         ],
