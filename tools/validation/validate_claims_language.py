@@ -265,7 +265,7 @@ def _iter_scopes_of_work(project_root: Path) -> list[Path]:
     return [
         p
         for p in project_root.glob(
-            "execution/PKG-*/1_Working/DEL-*/ScopeOfWork.md"
+            "execution/PKG-*/DEL-*/ScopeOfWork.md"
         )
         if p.is_file()
     ]
