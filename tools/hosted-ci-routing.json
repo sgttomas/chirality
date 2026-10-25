@@ -286,7 +286,7 @@
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "e7db148344faa5d5081880f44e5757c4120e890d837b35feba9a7471534af0bf",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "40d52552150543a495242cc34ed85e7e0dcb5ba2b37686d056b555c788608d18",
+      "core/product_physics/Cargo.toml": "5cfcd9a3df3bb0d51f512548d8976daad1072fad262558116fa3aa5a07f35e62",
       "core/reporting/audit_manifest/Cargo.toml": "b8bc4623a383ed2c22205326bc737486becd9d931bf869e1e8cf40e147f4fad7",
       "core/reporting/pdf_emitter/Cargo.toml": "cd9871fe951f3157dce93fb550540bf4e55dd48e469ba49612208a8b669b6441",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
@@ -1151,17 +1151,6 @@
             ]
           }
         ]
-      },
-      "core/product_physics/tests/silent_drop_guard_runtime.rs": {
-        "sha256": "dabe3a6deb4d807d42e19c7ebc4a8f11af1efaaf9fd06280d0e2dd23f32b7bc4",
-        "source_trees": [
-          "core/product_physics/Cargo.toml"
-        ],
-        "inputs": [],
-        "external_reads": {
-          "kind": "audited-external-inputs",
-          "reason": "Only the env-gated MATERIAL_WIRE_DUMP comparison reads files: the checkout directory it is given; the default run reads none."
-        }
       },
       "core/product_physics/tests/source_block_recovery.rs": {
         "sha256": "cdaa0fc03545793ba42fd04f93cda9dd1d563c8207850d2690c149858c96f5e9",
@@ -5061,6 +5050,23 @@
         "external_reads": {
           "kind": "audited-external-inputs",
           "reason": "When T4_S6_HASH_CORPUS_ROOT is set, the corpus test walks that supplied directory instead of fixtures/ and core/; the repository inputs are declared here."
+        }
+      },
+      "core/product_physics/src/silent_drop_unit_tests.rs": {
+        "sha256": "174c0a30b4dfc7497908d0776ae5b68e956db6bbf3e820db316c72669bbd33b7",
+        "source_trees": [
+          "core/loads/self_weight_wasm/Cargo.toml",
+          "core/model_operations/operation_applier/Cargo.toml",
+          "core/product_physics/Cargo.toml",
+          "core/runner/headless/Cargo.toml",
+          "validation/benchmarks/numerical_integrity/Cargo.toml",
+          "validation/benchmarks/physics_audit_regression/Cargo.toml",
+          "validation/benchmarks/stress/Cargo.toml"
+        ],
+        "inputs": [],
+        "external_reads": {
+          "kind": "audited-external-inputs",
+          "reason": "Only the env-gated MATERIAL_WIRE_CORPUS comparison reads files: the checkout directory it is given; the default run reads none."
         }
       },
       "core/product_physics/src/source_receipt/o4_source_tests.rs": {
