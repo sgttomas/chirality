@@ -151,41 +151,33 @@ Ask: "Proceed with review, or resolve precondition issues first?"
      Axiology; confirm every `OUT-*`, `AC-*`, and `VER-*` closes through the
      output/evaluation matrix.
 
-5) **Dependency Satisfaction** (per the tracking mode, `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3):
-   - `NOT_TRACKED`: record that dependencies are coordinated outside the
-     files and give no computed ready/blocked judgment; skip the rows below.
-   - `DECLARED`: read the recorded register and state that it is a partial
-     view.
-   - `FULL_GRAPH` (a legacy `TRACKED` value is read as `FULL_GRAPH`): read
-     the recorded register. Blockers count only after the closure audit and
-     cycle treatment; if either is outstanding, record that and give no
-     computed blocked judgment.
-   - Where the project has no accepted project DAG, read the edges from the
-     recorded register: the union of the declared entries in
-     `_DEPENDENCIES.md` and `Dependencies.csv` when present (SPEC §5.3). A declared entry and a row
-     for the same direction and target are one edge, counted once. Where they
-     disagree, the declared entry governs; record the disagreement.
-   - Where the project has an accepted project DAG (`_DAG/_LATEST.md`), read
-     this deliverable's edges from the accepted current version, with
-     satisfaction from the local files (SPEC §5.4). If the latest currency
-     audit lists the deliverable as `DAG pending`, or its local evidence adds
-     or removes an edge the version holds, record `DAG pending` with the
-     departure and give no computed blocked judgment.
-   - In any mode, an edge in an unresolved dependency cycle is reported as held,
-     not as a blocker.
-   - For each UPSTREAM edge with a CSV row (`DependencyClass=EXECUTION`,
-     `Status=ACTIVE`):
-     - Is `SatisfactionStatus` recorded?
-     - Is the upstream deliverable in a state that can provide the needed information?
-   - For each Declared Upstream entry without a CSV row (no accepted DAG): compare its
-     `Required maturity` (SPEC §5.2 entry form) with the upstream deliverable's
-     current `_STATUS.md` state. Mark it satisfied when the state has reached
-     that maturity in the SPEC §3.2 order. When the entry states no maturity
-     (missing or `TBD`), compare against the project's default maturity
-     threshold in `_COORDINATION.md` (`project-setup` Phase 1.3; recommended
-     `INITIALIZED`), as SPEC §5.3 says. An unreadable state, or no recorded
-     threshold for an entry without a maturity, is recorded as `TBD`, not
-     satisfied.
+5) **Dependency conditions**:
+   - Read this consumer's `deliverable.yaml` needs and the relevant scope,
+     design and actual input evidence at the review basis. Assess each
+     applicable `condition` with its `when`, case, maturity and technical
+     holds. Cite the source file and need index; preserve distinct needs
+     between the same endpoints.
+   - Use `tools.deliverables neighborhood` for relevant reverse links when
+     available; see `tools/deliverables/README.md` and
+     `construct-local-work-graph`. The CLI needs a Git repository with HEAD
+     and the project root, and loads all project declarations/path-presence
+     references. Use it only within the authorized read scope; otherwise
+     inspect the relevant declarations directly and state reverse-link limits.
+     A bounded query is not a completeness claim.
+   - Record `SATISFIED`, `UNSATISFIED`, `UNKNOWN` or `NOT_APPLICABLE` for
+     this review's condition assessment, with evidence and rationale. These
+     are review observations, not persisted dependency satisfaction states.
+     File presence, producer lifecycle or merge status does not establish
+     suitability. An unresolved source remains unknown.
+   - Keep external inputs distinct from `direction: downstream` outward
+     obligations. Outward obligations are not this consumer's prerequisites;
+     assess their actual recipient/use where relevant to the review.
+   - Preserve `gating` as declared. `gating: false` does not waive a technical
+     condition. Report reciprocal needs without automatically holding or
+     making them non-gating; the CLI's cycle list covers native deliverables
+     only and does not assess technical readiness. Identify the specific
+     unmet condition and its effect on the reviewed scope before treating
+     it as an unfulfilled production obligation.
    - ID format: `DS-{NNN}`
 
 6) **TBD Inventory**:
@@ -200,8 +192,9 @@ Ask: "Proceed with review, or resolve precondition issues first?"
 **Review-type-specific items:**
 
 7) **IDC additions** (when `REVIEW_TYPE = IDC`):
-   - For each UPSTREAM and DOWNSTREAM dependency with `TargetType=DELIVERABLE`:
-     - "Interface assumptions between this deliverable and {target} have been checked"
+   - For each relevant local need and derived consumer relationship:
+     - "Interface assumptions for {source file and need index}, including
+       its condition, case and intended use, have been checked"
    - ID format: `IC-{NNN}`
 
 8) **Independent Verification additions** (when `REVIEW_TYPE = INDEPENDENT_VERIFICATION`):

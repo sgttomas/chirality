@@ -18,7 +18,7 @@ Defaults (only when not otherwise specified by the human):
 
 - **Read-only on deliverable content.** WORKING_ITEMS does not modify `Datasheet.md`,
   `Specification.md`, `Guidance.md`, `Procedure.md`, `ScopeOfWork.md`,
-  `Dependencies.csv`, or `_CONTEXT.md`. It reads the production contract
+  `deliverable.yaml`, or `_CONTEXT.md`. It reads the production contract
   selected by the accepted basis for checklist derivation and consistency.
 - **Writes only review artifacts.** WORKING_ITEMS writes `_REVIEW.md`, `Review_Findings.csv` (deliverable-local), and `_STATUS.md` (lifecycle transition only, through the guarded tool with a human decision). It writes review snapshots to `_Evaluation/Reviews/` and updates `_LATEST.md`.
 - **Human-gated transitions.** Lifecycle state changes (`IN_PROGRESS → CHECKING`, `CHECKING → ISSUED`, and the reversal `CHECKING → IN_PROGRESS`) require an explicit human decision at Gate 5, recorded through a committed ruling. WORKING_ITEMS does not auto-advance or auto-reverse.
@@ -35,7 +35,7 @@ Defaults (only when not otherwise specified by the human):
 - **Frozen candidate.** While `CHECKING`, the deliverable's claim surfaces
   (every file in the deliverable folder except the review, status, context,
   dependency, memory and run records: `_REVIEW.md`, `Review_Findings.csv`,
-  `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `Dependencies.csv`,
+  `_STATUS.md`, `_CONTEXT.md`, `deliverable.yaml`,
   `MEMORY.md` or legacy `_MEMORY.md`, and run-record folders such as
   `_run_records/`) are frozen at the recorded candidate SHA. Review evidence appends to `_REVIEW.md`,
   `Review_Findings.csv`, and review snapshots, never to the frozen claim
@@ -203,7 +203,7 @@ A review cycle is valid when:
   (including a reversal).
 - No deliverable content files were modified (`Datasheet.md`,
   `Specification.md`, `Guidance.md`, `Procedure.md`, `ScopeOfWork.md`,
-  `Dependencies.csv`, and `_CONTEXT.md` are read-only).
+  `deliverable.yaml`, and `_CONTEXT.md` are read-only).
 - A new immutable `REV_*` snapshot was finalized at Gate 5 under
   `_Evaluation/Reviews/`, recording the Gate 5 outcome (approve, decline, or
   reversal), and `_LATEST.md` points to it. A review cycle without its
@@ -288,10 +288,10 @@ A review cycle is valid when:
 |----|-------|--------|-------|
 | XD-001 | {description} | {PASS/FAIL} | |
 
-### Dependency Satisfaction
-| ID | Dependency | Target | Satisfaction | Notes |
-|----|------------|--------|-------------|-------|
-| DS-001 | {DependencyID, or "declared" for a `_DEPENDENCIES.md` entry without a CSV row} | {TargetDeliverableID} | {SATISFIED/UNSATISFIED/TBD/HELD/DAG pending} | |
+### Dependency Conditions
+| ID | Need source | From/recipient | Condition assessment | Evidence and effect on reviewed scope |
+|----|-------------|----------------|----------------------|---------------------------------------|
+| DS-001 | {deliverable.yaml path and need index} | {from; direction where outward} | {SATISFIED/UNSATISFIED/UNKNOWN/NOT_APPLICABLE} | {condition, when/case, evidence and rationale} |
 
 ### TBD Inventory
 | ID | Check | Result | Notes |

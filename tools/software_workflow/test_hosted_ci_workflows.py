@@ -71,7 +71,39 @@ def test_python_gate_and_result_are_independent_of_cargo():
     assert aggregate['env']['PYTHON_MODE'] == '${{ needs.selection.outputs.python_mode }}'
     assert 'aggregate --suite piping-python --mode "$PYTHON_MODE"' in aggregate['run']
     # The sharded desktop job joins the aggregate (desktop suite sharding, 2026-10-22).
-    assert set(jobs['desktop-e2e']['needs']) == {'selection', 'product', 'desktop', 'numerical', 'python-product'}
+    assert set(jobs['desktop-e2e']['needs']) == {'selection', 'product', 'desktop', 'desktop-rust', 'numerical', 'python-product'}
+
+
+def test_selected_desktop_rust_tests_run_on_macos_and_gate_the_aggregate(tmp_path):
+    import os
+    import subprocess
+    jobs = workflow('piping-desktop-e2e.yml')['jobs']
+    assert jobs['selection']['outputs']['desktop_rust_mode'] == '${{ steps.numeric.outputs.desktop_rust_mode }}'
+    read = next(s for s in jobs['selection']['steps'] if s.get('id') == 'numeric')
+    assert "('piping-desktop-rust', 'desktop_rust_mode')" in read['run']
+    job = jobs['desktop-rust']
+    assert job['needs'] == 'selection'
+    assert job['if'] == "needs.selection.outputs.desktop_rust_mode == 'full'"
+    # The product platform (DEC-057); the job never reuses a result.
+    assert job['runs-on'] == 'macos-26'
+    run = next(s for s in job['steps'] if s.get('name') == 'Locked desktop shell Cargo tests')
+    assert run['run'] == 'cargo test --locked --manifest-path apps/desktop/src-tauri/Cargo.toml'
+    assert run['working-directory'] == 'projects/chirality-piping'
+    assert 'if' not in run
+    assert not any(s.get('uses', '').startswith('actions/cache') for s in job['steps'])
+    aggregate = jobs['desktop-e2e']['steps'][-1]
+    assert aggregate['env']['DESKTOP_RUST_MODE'] == '${{ needs.selection.outputs.desktop_rust_mode }}'
+    assert aggregate['env']['DESKTOP_RUST'] == '${{ needs.desktop-rust.result }}'
+    assert 'aggregate --suite piping-desktop-rust --mode "$DESKTOP_RUST_MODE" --selection "$SELECTION" --product "$DESKTOP_RUST"' in aggregate['run']
+    # Executed as the workflow runs it: selected and failed, cancelled or skipped
+    # fails; unselected passes only when the job was skipped.
+    script = '\n'.join(line for line in aggregate['run'].splitlines() if 'piping-desktop-rust' in line)
+    for mode, result, passed in [('full', 'success', True), ('full', 'failure', False), ('full', 'cancelled', False),
+                                 ('full', 'skipped', False), ('not-applicable', 'skipped', True),
+                                 ('not-applicable', 'success', False)]:
+        env = {**os.environ, 'DESKTOP_RUST_MODE': mode, 'SELECTION': 'success', 'DESKTOP_RUST': result}
+        process = subprocess.run(['bash', '-e', '-c', script], cwd=ROOT, env=env, capture_output=True)
+        assert (process.returncode == 0) == passed, (mode, result)
 
 
 def test_selected_desktop_suite_runs_in_the_required_product_job_and_keys_its_reuse(tmp_path):
@@ -117,9 +149,75 @@ def test_selected_desktop_suite_runs_in_the_required_product_job_and_keys_its_re
     env = {**os.environ, 'GITHUB_OUTPUT': str(tmp_path / 'out'), 'ImageOS': 'ubuntu24', 'ImageVersion': '1',
            'RUNNER_OS': 'Linux', 'RUNNER_ARCH': 'X64'}
     command = [sys.executable, str(ROOT / 'tools/software_workflow/result_cache.py'), 'key', '--suite', 'browser',
-               '--record', str(tmp_path / 'record.json')]
+               '--record', str(tmp_path / 'record.json'), '--browser-project', 'chromium-desktop', '--browser-specs', 'r2-smoke.spec.ts']
     keys = {}
     for mode in ('full', 'not-applicable'):
         keys[mode] = subprocess.run(command + ['--desktop-mode', mode], env=env, capture_output=True, text=True, check=True).stdout
     assert keys['full'] != keys['not-applicable']
     assert subprocess.run(command, env=env, capture_output=True).returncode != 0
+
+
+def test_selected_browser_specs_drive_the_product_job_and_key_its_reuse(tmp_path):
+    """W-12: the routing file's browser specs reach Playwright through the plan,
+    and a pass without a selected spec is never reused for a run needing it."""
+    import os
+    import re
+    import subprocess
+    import sys
+    from hosted_ci import browser_plan, route_paths
+
+    def select_paths(paths, profile):
+        # The plan fields the step reads, from the real path rules and browser
+        # planner without the full plan's source scans (test_hosted_ci.py checks
+        # the plan carries exactly this selection).
+        selection = route_paths(paths, profile)
+        return {'modes': selection['modes'], 'piping_browser_selection': browser_plan(paths, selection, profile)}
+    profile = json.loads((ROOT / 'tools/hosted-ci-routing.json').read_text())
+    jobs = workflow('piping-desktop-e2e.yml')['jobs']
+    selection = jobs['selection']
+    assert selection['outputs']['browser_project'] == '${{ steps.numeric.outputs.browser_project }}'
+    assert selection['outputs']['browser_specs'] == '${{ steps.numeric.outputs.browser_specs }}'
+    # The product job runs the selected specs, never a list of its own.
+    step = next(s for s in jobs['product']['steps'] if s.get('name') == 'Core browser journey and save/reopen')
+    assert step['env'] == {'BROWSER_PROJECT': '${{ needs.selection.outputs.browser_project }}',
+                           'BROWSER_SPECS': '${{ needs.selection.outputs.browser_specs }}'}
+    assert 'npm run test:e2e:desktop -- --project="$BROWSER_PROJECT" $BROWSER_SPECS' in step['run']
+    assert not re.search(r'\w+\.spec\.ts', step['run'])
+    # Every verifier keys the same selected specs.
+    for job in ('product', 'desktop'):
+        key = next(s for s in jobs[job]['steps'] if s.get('id') == 'result-key')
+        assert key['env']['BROWSER_SPECS'] == '${{ needs.selection.outputs.browser_specs }}'
+        assert '--browser-project "$BROWSER_PROJECT" --browser-specs "$BROWSER_SPECS"' in key['run']
+    # The selection job's own step turns plans into those outputs, as the workflow runs it.
+    read = next(s for s in selection['steps'] if s.get('id') == 'numeric')['run']
+    script = read.split("<<'PYTHON'\n", 1)[1].rsplit('PYTHON', 1)[0]
+    project = 'projects/chirality-piping/apps/desktop/'
+    outputs = {}
+    for name, paths in [('replace', [project + 'src/features/project-storage/unsavedChangesGuard.ts']),
+                        ('unrelated', [project + 'src/App.tsx'])]:
+        (tmp_path / 'piping-ci-plan.json').write_text(json.dumps(select_paths(paths, profile)))
+        out = tmp_path / ('out-' + name)
+        subprocess.run([sys.executable, '-c', script], cwd=tmp_path, env={**os.environ, 'GITHUB_OUTPUT': str(out)}, check=True,
+                       capture_output=True)
+        outputs[name] = dict(line.split('=', 1) for line in out.read_text().splitlines())
+        assert outputs[name]['browser_project'] == 'chromium-desktop'
+    assert outputs['unrelated']['browser_specs'] == 'r2-smoke.spec.ts b3b-project-persistence.spec.ts rotation-glyph.spec.ts result-overlays.spec.ts'
+    assert outputs['replace']['browser_specs'] == (outputs['unrelated']['browser_specs'] + ' ui-foundation.spec.ts c3-viewport-visibility.spec.ts'
+                                                   ' gui-workflow-validation.spec.ts linear-authoring.spec.ts')
+    # A plan whose spec could inject into the command line is refused.
+    plan = select_paths([project + 'src/App.tsx'], profile)
+    plan['piping_browser_selection']['specs'].append('x.spec.ts;true')
+    (tmp_path / 'piping-ci-plan.json').write_text(json.dumps(plan))
+    assert subprocess.run([sys.executable, '-c', script], cwd=tmp_path, env={**os.environ, 'GITHUB_OUTPUT': str(tmp_path / 'bad')},
+                          capture_output=True).returncode != 0
+    # The reuse key differs between the two selections, and cannot be computed without one.
+    env = {**os.environ, 'GITHUB_OUTPUT': str(tmp_path / 'out'), 'ImageOS': 'ubuntu24', 'ImageVersion': '1',
+           'RUNNER_OS': 'Linux', 'RUNNER_ARCH': 'X64'}
+    command = [sys.executable, str(ROOT / 'tools/software_workflow/result_cache.py'), 'key', '--suite', 'browser',
+               '--record', str(tmp_path / 'record.json'), '--desktop-mode', 'full']
+    keys = {name: subprocess.run(command + ['--browser-project', value['browser_project'], '--browser-specs', value['browser_specs']],
+                                 env=env, capture_output=True, text=True, check=True).stdout for name, value in outputs.items()}
+    assert keys['replace'] != keys['unrelated']
+    for missing in ([], ['--browser-project', 'chromium-desktop'], ['--browser-project', 'chromium-desktop', '--browser-specs', ''],
+                    ['--browser-project', 'chromium-desktop', '--browser-specs', 'x.spec.ts;true']):
+        assert subprocess.run(command + missing, env=env, capture_output=True).returncode != 0

@@ -37,10 +37,6 @@
       "kind": "skill",
       "name": "deliverable-consistency"
     },
-    "dependency-extract": {
-      "kind": "workflow",
-      "name": "dependency-extract"
-    },
     "domain-documents": {
       "kind": "workflow",
       "name": "domain-documents"
@@ -148,10 +144,6 @@
     "researcher": {
       "kind": "skill",
       "name": "researcher"
-    },
-    "scc-resolution-case": {
-      "kind": "workflow",
-      "name": "scc-resolution-case"
     },
     "scope-change-packet": {
       "kind": "workflow",

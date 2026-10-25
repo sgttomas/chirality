@@ -15,9 +15,10 @@ narrower properties.
 
 ### 1.2 Modularity & Encapsulation
 
-Active deliverables maintain ScopeOfWork, useful Design content and dependency
-conditions. They are units of meaning and work, not necessarily isolated code
-modules. Shared code and work that spans deliverables require explicit
+Deliverables maintain ScopeOfWork, material in their adopted work locality
+(`Work/` by the shared default), and dependency conditions. Existing App v4 and
+Piping localities retain `Design/`. They are units of meaning and work, not
+necessarily isolated code modules. Shared code and work that spans deliverables require explicit
 responsibility for integration rather than compulsory staffing bound to folders.
 
 ### 1.3 Interface Contracts
@@ -116,9 +117,9 @@ layout or a populated allocation table.
 
 ### 5.2 Requirements Traceability Views
 
-Generate the view needed by the actual consumer. Current ScopeOfWork, Design and
-consumer-owned needs provide the primary development sources; missing mappings
-remain explicit rather than being counted as absence of impact.
+Generate the view needed by the actual consumer. Current ScopeOfWork, work
+material and consumer-owned needs provide the primary development sources;
+missing mappings remain explicit rather than being counted as absence of impact.
 
 ### 5.3 Acceptance Criteria Allocation
 

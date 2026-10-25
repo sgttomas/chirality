@@ -19,14 +19,14 @@ in the proposal; a brief may name it.
 
 - `INITIAL` — first setup of an accepted decomposition (Functions 1–2). Inputs:
   the accepted decomposition, the human-confirmed coordination representation
-  and dependency tracking mode, and the selected activation scope.
+  and the selected activation scope.
 - `INCREMENTAL` — setup of the amended scope after an accepted `scope-change`
   amendment has been applied (Function 5). Inputs: the accepted amendment
   snapshot named by `_ScopeChange/_LATEST.md`, its accepted action register
   (`Amendment_Actions.csv`, or the register its group-2
   `ACCEPTED_MANIFEST.csv` names), `Propagation_Plan.md` and `Handoff_State.md`;
   the amended decomposition; the existing `_COORDINATION.md`, whose
-  representation and tracking mode are reused rather than re-asked; and the
+  coordination arrangements and technical holds are reused rather than re-asked; and the
   agent-owned, append-only `_Coordination/SETUP_LOG.md`. Its baseline,
   recorded when `INITIAL` setup completes or when an existing project adopts
   this mode, excludes amendments already set up; an amendment whose
@@ -40,8 +40,8 @@ setup.
 ## Method
 
 1. Inspect accepted decomposition, existing workspace state, coordination representation, `_ScopeChange/` state, and activation scope, and infer the mode.
-2. Apply the `preparation` skill, then dispatch the selected production, semantic, dependency (`dependency-extract`, then `audit-dep-closure`), or domain workflows as bounded stages. In `INCREMENTAL` mode, scaffold only added entities, preserve existing folders, IDs, content and lifecycle state, route modified `SOW_V1` deliverables to `scope-of-work` `MODE=REVISE` (held for the human at `CHECKING` or `ISSUED`), rerun dependency stages only for the affected deliverables and their neighbours, hand any accepted project DAG to `project-dag` for a currency audit (affected deliverables stay `DAG pending` until the human decides), record the run in `SETUP_LOG.md`, and propose `audit-scope-closure`.
-3. Sequence dependent work from accepted outputs; route SCCs to `scc-resolution-case` and keep cycle-participating edges non-gating until their owning decisions resolve them. When the project needs an accepted DAG, hand its construction and acceptance to `project-dag`.
+2. Apply the `preparation` skill, then dispatch the selected production, semantic, dependency (`dependency-extract`, then `audit-dep-closure`), or domain workflows as bounded stages. In `INCREMENTAL` mode, scaffold only added entities, preserve existing folders, IDs, content and lifecycle state, route modified `SOW_V1` deliverables to `scope-of-work` `MODE=REVISE` (held for the human at `CHECKING` or `ISSUED`), rerun dependency stages only for the affected deliverables and their neighbours, record the run in `SETUP_LOG.md`, and propose `audit-scope-closure`.
+3. Author actual input/use conditions in consumer-local `deliverable.yaml` from scope, relevant work material and sources, following the project's adopted locality convention (`Work/` by the shared default). Derive reverse links, neighbourhoods and undertaking-specific graphs on demand; assess suitability from evidence and responsible judgment. Preserve reciprocal conditions, technical holds and unknown sources without automatic gating changes. See `construct-local-work-graph` when sequencing selected work.
 4. Prepare estimation inputs and schedule-basis decisions where selected, then validate setup evidence and hand off current derivatives and blockers.
 
 Apply accepted defaults and carry authorized preparation forward on agent

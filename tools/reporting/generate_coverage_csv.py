@@ -8,7 +8,7 @@ Usage:
     python3 generate_coverage_csv.py <EXECUTION_ROOT> <output_csv> [--artifact <pattern>]
 
 Artifacts checked by default:
-    - Dependencies.csv (in deliverable folder)
+    - deliverable.yaml (in deliverable folder)
     - _SEMANTIC.md (in deliverable folder)
     - Estimate snapshot (EST_{DEL_ID}_* in _Estimates/)
 
@@ -35,19 +35,18 @@ _spec.loader.exec_module(_common)
 resolve_production_format = _common.resolve_production_format
 
 def find_deliverables(execution_root):
-    """Find all DEL-* folders under PKG-*/1_Working/."""
-    pattern = os.path.join(execution_root, "PKG-*", "1_Working", "DEL-*")
+    """Find DEL localities in flat and package phase layouts, without moving them."""
     results = []
-    for path in sorted(glob.glob(pattern)):
-        if os.path.isdir(path):
-            folder_name = os.path.basename(path)
-            del_id = folder_name.split('_')[0]
-            pkg_folder = os.path.basename(os.path.dirname(os.path.dirname(path)))
+    for package in sorted(Path(execution_root).glob('PKG-*')):
+        folders = list(package.glob('DEL-*'))
+        for phase in ('1_Working', '2_Checking', '3_Issued'):
+            folders.extend((package / phase).glob('DEL-*'))
+        for path in sorted(folder for folder in folders if folder.is_dir()):
             results.append({
-                'del_id': del_id,
-                'folder_name': folder_name,
-                'path': path,
-                'pkg': pkg_folder,
+                'del_id': path.name.split('_')[0],
+                'folder_name': path.name,
+                'path': str(path),
+                'pkg': package.name,
             })
     return results
 
@@ -80,7 +79,7 @@ def main():
     with open(output_path, 'w', newline='') as f:
         writer = csv.writer(f)
         writer.writerow([
-            'DeliverableID', 'Package', 'HasDependenciesCsv', 'HasSemantic',
+            'DeliverableID', 'Package', 'HasDependencyDeclaration', 'HasSemantic',
             'HasEstimate', 'EstimateCount', 'HasDatasheet', 'HasSpecification',
             'HasGuidance', 'HasProcedure', 'HasScopeOfWork', 'ProductionFormatState'
         ])
@@ -89,7 +88,7 @@ def main():
 
         for d in deliverables:
             stats['total'] += 1
-            has_deps = check_artifact(d['path'], 'Dependencies.csv')
+            has_deps = check_artifact(d['path'], 'deliverable.yaml')
             has_sem = check_artifact(d['path'], '_SEMANTIC.md')
             has_est, est_count = check_estimate(execution_root, d['del_id'])
             has_ds = check_artifact(d['path'], 'Datasheet.md')
@@ -124,7 +123,7 @@ def main():
 
     t = stats['total']
     print(f"Coverage: {t} deliverables")
-    print(f"  Dependencies.csv: {stats['has_deps']}/{t}")
+    print(f"  deliverable.yaml: {stats['has_deps']}/{t}")
     print(f"  _SEMANTIC.md: {stats['has_sem']}/{t}")
     print(f"  Estimates: {stats['has_est']}/{t}")
     print(f"  Doc kit complete: {stats['has_kit']}/{t}")

@@ -1,480 +1,144 @@
 ---
 name: dependency-extract
-description: 'Extract dependency register (Dependencies.csv v3.1) from deliverable source documents using Anchor x Execution edge typing with
-  evidence-first provenance. Dispatched as TASK + dependency-extract by project-setup (Function 2 dependency stage), scope-change reruns, or
-  explicit refresh briefs.'
+description: Author or refresh a deliverable's consumer-local needs in deliverable.yaml from its scope, work material, sources and intended use.
 ---
-
-# WORKFLOW — dependency-extract
-
-## Purpose
-
-Extract typed knowledge-graph edges from a deliverable's source documents, producing a deliverable-local dependency register (`Dependencies.csv` v3.1 + `_DEPENDENCIES.md`) that downstream workflows (aggregation, reconciliation, estimating, scheduling) can merge into larger graphs.
-
-The workflow performs **two-pass extraction** to preserve **Tree x DAG** knowledge-graph integrity:
-
-- **Tree** edges are emitted as `DependencyClass=ANCHOR` rows that connect this deliverable to an existing definition node (WBS/SSOW/objective) and optionally to requirement IDs.
-- **DAG** edges are emitted as `DependencyClass=EXECUTION` rows between deliverables (and other entities) needed to execute the work (prerequisites, handovers, constraints, interfaces).
-
-This workflow does **not** build project-level graphs. It produces only deliverable-local registers that downstream aggregation agents can merge.
-
-## Suitable agent shells
-
-- `TASK` (generic shell mode, no profile) — the ordinary executor.
-- `WORKING_ITEMS` or `HELPS_HUMANS` may run the same bounded extraction directly
-  when their brief authorizes it (`execution.json` lists all three roles); the
-  write boundary below applies unchanged.
-
-Typical callers: WORKING_ITEMS (workflow: project-setup) dispatches TASK with `Workflow: dependency-extract` in its Function 2 dependency stage when the coordination mode calls for extraction; `scope-change` recommends reruns for affected deliverables; a manager may also brief an explicit refresh run during the tier control loop. Runs straight-through; never blocks on human decisions.
-
-## Inputs
-
-### Required
-
-- `SCOPE` — deliverable(s) / package(s) / all deliverables under the current run root
-
-### Optional run-root + decomposition settings
-
-- `RUN_ROOT` — path to run workspace (if available to the invoker)
-- `DECOMPOSITION_PATH` — explicit path to the latest decomposition markdown (preferred)
-  - If not provided and `RUN_ROOT` exists: locate the most recent decomposition file under `{RUN_ROOT}/_Decomposition/` and record the chosen path in Run Notes.
-  - If no decomposition file can be located: do not fail the run; record a warning and skip validation rather than guessing.
-
-### Optional source-document settings (defaults shown)
-
-- `SOURCE_DOCS`: `AUTO` (default) | explicit list of filenames/paths to scan per deliverable
-  - `AUTO` means: scan the deliverable folder for candidate source documents, excluding dependency artifacts and obvious generated files.
-- `DOC_ROLE_MAP`: `DEFAULT` (default) | explicit mapping of doc roles to filenames/patterns
-  - Roles: `ANCHOR_DOC` (definition/traceability signal) and `EXECUTION_DOCS` (workflow/execution signal).
-  - DEFAULT heuristic (overrideable):
-    - ANCHOR_DOC candidates: `ScopeOfWork.md` (current canonical deliverable document; preferred when present), then filenames containing `datasheet`, `definition`, `requirements`, `scope`, `trace`, `spec` (including the legacy four-document `Datasheet.md` and `Specification.md`)
-    - EXECUTION_DOC candidates: `ScopeOfWork.md` (also scanned in Pass 2 for prerequisites, inputs, handovers, and constraints), then filenames containing `procedure`, `method`, `plan`, `workflow`, `guidance`, `runbook` (including the legacy four-document `Procedure.md` and `Guidance.md`)
-    - Legacy four-document names are transitional inputs; when both `ScopeOfWork.md` and legacy documents are present, record the chosen roles in Run Notes.
-- `ANCHOR_DOC`: `AUTO` (default) | explicit filename/path
-  - `AUTO` means: choose the highest-confidence match from `DOC_ROLE_MAP` + `SOURCE_DOCS`; otherwise the first doc in `SOURCE_DOCS`.
-- `EXECUTION_DOC_ORDER`: `AUTO` (default) | ordered list of filenames/paths
-  - `AUTO` means: order execution docs by likely workflow clarity (per `DOC_ROLE_MAP`) and then the remaining docs.
-
-### Optional controls (defaults shown)
-
-- `MODE`: `UPDATE` (default) | `RESET_EXTRACTED` | `CANONICALIZE_EXISTING`
-  - `RESET_EXTRACTED` re-extracts from the current sources without match/merge against prior extracted rows: every prior `Origin=EXTRACTED` row is set `Status=RETIRED` (never deleted; `Notes` records `retired_by=RESET_EXTRACTED`), new rows receive new `DependencyID`s, and `Origin=DECLARED` rows are preserved unchanged. Use it only when a brief says the prior extraction is unreliable.
-- `STRICTNESS`: `CONSERVATIVE` (default) | `AGGRESSIVE`
-- `CONSUMER_CONTEXT`: `NONE` (default) | `TASK_ESTIMATING` | `AGGREGATION` | `RECONCILIATION`
-
-Defaults and chosen paths MUST be recorded in `_DEPENDENCIES.md` Run Notes.
-
-### Deliverable-local read-only input (if present)
-
-- `_REFERENCES.md` — used to resolve document pointers/paths for `TargetType=DOCUMENT` rows and to populate `TargetLocation` conservatively.
-
-## Runtime overrides
-
-| Key | Meaning | Default | Allowed values |
-|---|---|---|---|
-| `SCOPE` | Deliverables in scope for this run | **Required** | deliverable ID(s) / package ID(s) / `ALL` |
-| `RUN_ROOT` | Path to run workspace | (invoker context) | Absolute path |
-| `DECOMPOSITION_PATH` | Path to decomposition markdown | auto-discover under `{RUN_ROOT}/_Decomposition/` | Absolute path |
-| `SOURCE_DOCS` | Documents to scan per deliverable | `AUTO` | `AUTO` / explicit list |
-| `DOC_ROLE_MAP` | Role-to-filename mapping | `DEFAULT` | `DEFAULT` / explicit mapping |
-| `ANCHOR_DOC` | Primary anchor doc | `AUTO` | `AUTO` / filename |
-| `EXECUTION_DOC_ORDER` | Execution doc ordering | `AUTO` | `AUTO` / ordered list |
-| `MODE` | Update, reset, or canonicalize existing register values | `UPDATE` | `UPDATE` / `RESET_EXTRACTED` / `CANONICALIZE_EXISTING` |
-| `STRICTNESS` | Extraction posture | `CONSERVATIVE` | `CONSERVATIVE` / `AGGRESSIVE` |
-| `CONSUMER_CONTEXT` | Downstream consumer hint | `NONE` | `NONE` / `TASK_ESTIMATING` / `AGGREGATION` / `RECONCILIATION` |
-
-## Tool usage
-
-Preferred deterministic helpers (called during Function 5 local quality checks):
-
-- `python3 tools/validation/validate_dependencies_schema.py {deliverable_folder}/Dependencies.csv` — confirms all 29 required v3.1 columns are present and CSV is parseable.
-- `python3 tools/validation/validate_enum.py {ENUM_NAME} {value}` — normalizes and validates enum field values (`DEPENDENCY_CLASS`, `ANCHOR_TYPE`, `DIRECTION`, `DEPENDENCY_TYPE`, `TARGET_TYPE`, `EXPLICITNESS`, `CONFIDENCE`, `ORIGIN`, `STATUS`, `SATISFACTION_STATUS`).
-- `bash tools/validation/validate_id_format.sh {TYPE} {value}` — validates package/deliverable/dependency and other stable-ID formats (`PKG`, `DEL`, `DEP`, `SOW`, `OBJ`, `CAT`, `KTY`, `SUB`).
-- Optional: `python3 tools/validation/validate_decomposition_registers.py {EXECUTION_ROOT} --families EVQ,DRB` — report-only evidence-quality and register-binding findings (see Function 5).
-
-Disallowed behavior:
-
-- No editing of any source document or `_REFERENCES.md`.
-- No editing of decomposition outputs.
-- No writes outside dependency artifacts (`{deliverable}/_DEPENDENCIES.md`, `{deliverable}/Dependencies.csv`).
-- The TASK shell may still create its required run record under `{deliverable}/_run_records/`.
-- No hierarchy discovery (no creating or restructuring the decomposition Tree).
-- No cross-deliverable synthesis (aggregation is downstream).
-
-## Read boundary
-
-Reads are limited to the current deliverable folder plus the decomposition document (if available):
-
-| File | Read scope | Purpose |
-|---|---|---|
-| `{deliverable}/_REFERENCES.md` | Full (if present) | Resolve document pointers for `TargetType=DOCUMENT` rows |
-| Source documents in scope | Full | Evidence extraction (anchors + execution edges) |
-| `{deliverable}/Dependencies.csv` | Full (if present) | Match/merge with existing rows |
-| `{deliverable}/_DEPENDENCIES.md` | Full (if present) | Preserve declared lists + Run History; mirror declared entries into `Dependencies.csv` |
-| `{DECOMPOSITION_PATH}` | Read-only | Validate anchors + resolve canonical labels |
-| Architecture-basis / PKG-00 source files | Relevant excerpts when cited | Confirm architecture-consistency dependency rows without writing PKG-00 |
-| `{EXECUTION_ROOT}` registers | Only through the optional `validate_decomposition_registers.py` check, when the brief permits | Report `EVQ`/`DRB` findings for in-scope registers |
-
-## Write boundary
-
-Writes are limited to dependency artifacts only:
-
-- `{deliverable}/_DEPENDENCIES.md`
-- `{deliverable}/Dependencies.csv`
-- TASK run record under `{deliverable}/_run_records/`
-
-No other files may be created or modified.
-
-## Architecture-basis / PKG-00 policy
-
-Some projects inject architecture-basis deliverables into each downstream
-deliverable through scope change. In that pattern, `DEL-00-*` rows are valid
-architecture-consistency dependency trackers: they tell future agents to inspect
-the relevant PKG-00 basis while carrying out the deliverable.
-
-When a brief enables this policy:
-- keep supported `DEL-00-*` rows as execution dependencies using canonical enum
-  values;
-- read relevant PKG-00 source files only as needed to confirm consistency;
-- do not write any PKG-00 deliverable files;
-- do not retire a `DEL-00-*` row merely because it is architecture basis rather
-  than ordinary implementation work;
-- if a `DEL-00-*` row appears contradicted, stale, or overbroad, preserve it
-  unless the local evidence clearly supports retirement; otherwise record
-  `NEEDS_HUMAN_GRAPH_DECISION` in the run notes.
-
-## Method
-
-### Function 1 — Two-pass extraction (ANCHOR first, then EXECUTION)
-
-Dependency extraction MUST be performed in two passes to preserve **Tree x DAG** integrity.
-
-#### Pass 1 (Vertical) — Anchor this deliverable to the Tree (Definition)
-
-**Primary source:** `{ANCHOR_DOC}`.
-
-**Goal:** Emit:
-- exactly one **parent anchor** when possible (`DependencyClass=ANCHOR`, `AnchorType=IMPLEMENTS_NODE`)
-- zero or more **trace anchors** (`DependencyClass=ANCHOR`, `AnchorType=TRACES_TO_REQUIREMENT`)
-
-**Signals to look for (examples):**
-- "WBS Ref", "Parent ID", "Objective ID", "Scope Item ID"
-- "Traceability", "Requirements", "Requirement IDs", "Compliance to ..."
-- tables/fields mapping this deliverable to upstream definition identifiers
-
-**Row rules (ANCHOR):**
-- `DependencyClass=ANCHOR`
-- `Direction=UPSTREAM` (anchors point "up" to definition)
-- `AnchorType`:
-  - `IMPLEMENTS_NODE` for the single parent definition node
-  - `TRACES_TO_REQUIREMENT` for requirement trace links
-- `DependencyType=OTHER` (do not overload execution dependency types; use `AnchorType` for meaning)
-- `TargetType`:
-  - `WBS_NODE` for parent anchors (or the project's canonical "definition node" type)
-  - `REQUIREMENT` for requirement trace anchors
-  - `UNKNOWN` if you cannot resolve the target kind confidently
-
-**Using the decomposition document (preferred, if available):**
-- Use it to validate and label anchors:
-  - confirm the candidate identifier exists in the decomposition's scope ledger / packages / deliverables / objectives sections,
-  - resolve canonical labels for `TargetName`,
-  - resolve stable deliverable/package IDs when referenced.
-- If decomposition is missing: record `[WARNING] MISSING_DECOMPOSITION` and skip validation/label resolution rather than guessing.
-
-**STRICTNESS handling:**
-- `CONSERVATIVE`: emit ANCHOR rows only when identifiers appear explicitly.
-- `AGGRESSIVE`: you MAY emit a plausible anchor if strongly implied, but must mark it as `ASSUMPTION` in `Notes` and set `Confidence=LOW`.
-
-#### Pass 2 (Horizontal) — Map execution flow edges (DAG)
-
-**Primary sources:** `{EXECUTION_DOC_ORDER}`.
-
-**Goal:** Emit `DependencyClass=EXECUTION` rows capturing prerequisites, handoffs, constraints, and explicit information transfer.
-
-**Signals to look for:**
-- prerequisites, required inputs, approvals, "before you can..."
-- outputs consumed by other deliverables
-- explicit data/artifact handoffs ("provided by...", "requires receipt of...", "uses the following output from...")
-- constraints explicitly framed as requirements/approvals/artifacts
-
-**Row rules (EXECUTION):**
-- `DependencyClass=EXECUTION`
-- `AnchorType=NOT_APPLICABLE`
-- `DependencyType` uses canonical execution enums (`PREREQUISITE`, `INTERFACE`, `HANDOVER`, `CONSTRAINT`, `ENABLES`, `OTHER`)
-- `Direction` indicates flow relative to this deliverable (`UPSTREAM` inputs; `DOWNSTREAM` outputs/consumers)
-
-**Using `_REFERENCES.md` (preferred, if available):**
-- Use it to resolve document identifiers/names mentioned in sources to stable pointers:
-  - Prefer a local path when present.
-  - Otherwise record the best available pointer (URL, doc ID) in `TargetLocation`.
-- Do not emit a dependency row solely because a reference is listed in `_REFERENCES.md` unless the source explicitly states it is required.
-
-Dependency evidence must include:
-- `EvidenceFile` (which source document)
-- `SourceRef` (path + heading; else `location TBD`)
-- optional `EvidenceQuote` (<= 30 words)
-
-`location TBD` and a blank `EvidenceQuote` keep this workflow's own run valid,
-but they are not clean evidence for downstream checks:
-`tools/validation/validate_decomposition_registers.py` reports a blank
-`EvidenceQuote` as `EVQ-003` and a placeholder `SourceRef` such as
-`location TBD` as `EVQ-004`. Populate a verbatim quote and a citable locus
-whenever the source supports one. A genuinely unquotable row may be covered by
-an attributed `Dependencies_EvidenceWaivers.csv` entry, which is a separate
-declaration outside this workflow's write boundary; never invent a quote to
-clear a finding.
-
-### Function 2 — Resolve targets (best-effort, conservative)
-
-**Deliverable targets (preferred):**
-- Prefer exact matches to deliverable IDs defined by the decomposition (do not assume numeric formats).
-- If decomposition exists, resolve target IDs by lookup.
-- If decomposition is missing, accept explicit IDs as strings; otherwise use `TargetType=UNKNOWN`.
-
-**Anchors:**
-- Accept non-deliverable identifiers (WBS/SSOW/OBJ/REQ) when explicitly present.
-- Do not invent missing IDs.
-
-If uncertain:
-- keep `TargetType=UNKNOWN`,
-- preserve the raw reference in `TargetName` and/or `Statement`,
-- mark hypotheses as `PROPOSAL` in `Notes` (never upgrade uncertainty into FACT).
-
-Normalize legacy values on write:
-- `Direction`: `INBOUND` -> `UPSTREAM`, `OUTBOUND` -> `DOWNSTREAM`
-- Project-specific labels in core enum fields MUST be mapped to canonical values before persistence; preserve the original label in `Notes` as `legacy_<field>=<value>`.
-- `Status=CANDIDATE` MUST NOT be emitted. Non-gating candidates belong in a separate non-authoritative worklist or review packet.
-
-### Function 3 — Persist to canonical register (`Dependencies.csv`)
-
-- Create `Dependencies.csv` if missing.
-- Ensure `RegisterSchemaVersion` column exists; set to `v3.1` for all rows.
-- Preserve existing `DependencyID` for matchable rows.
-- Update `LastSeen`, set `Status=ACTIVE` when found.
-- Mark unseen extracted rows `RETIRED` (do not delete).
-- Preserve declared edges (`Origin=DECLARED`); mirror rows for `_DEPENDENCIES.md` declarations follow "Mirror declared entries" below.
-- In `MODE=CANONICALIZE_EXISTING`, do not extract new rows from prose. Read the existing register, normalize all core enum fields to canonical write form, preserve legacy values in `Notes`, and move any non-gating candidate relationship to a non-authoritative candidate worklist or mark the register row `RETIRED` with a candidate-disposition note.
-- Ensure `FromDeliverableID` matches the host deliverable identity.
-- Ensure `DependencyID` uniqueness within the deliverable register.
-- Assign new `DependencyID`s in the `docs/COMPATIBILITY_FORMATS.md#stable-dependency-identities` form `DEP-{PKG}-{DEL}-{SEQ}` (e.g. `DEP-01-01-001` for `DEL-01-01`): the prefix repeats the numeric segments of `FromDeliverableID` and `SEQ` is a zero-padded three-digit sequence within the register. A mismatched prefix is reported by `validate_decomposition_registers.py` as `DRB-006`; preserve existing IDs rather than renumbering them.
-- Normalize target ID placement on write:
-  - For non-deliverable targets (e.g., `WBS_NODE`, `REQUIREMENT`, `DOCUMENT`, `EXTERNAL`), `TargetDeliverableID` MUST be empty; use `TargetRefID` (if a stable ID exists) and `TargetName`.
-  - For `TargetType=DELIVERABLE`, `TargetDeliverableID` MUST contain the deliverable stable ID.
-
-Match/merge precedence for extracted rows (in order), against existing `Origin=EXTRACTED` rows only:
-1. Existing `DependencyID` exact match
-2. Same `DependencyClass` + `AnchorType` + `Direction` + `DependencyType` + `TargetType` + target identifiers + near-equivalent `Statement`
-3. Otherwise create new row with new `DependencyID`
-
-An extracted row that duplicates a declared edge (same `Direction` and target) is kept as its own `Origin=EXTRACTED` row; note `corroborates=<DECLARED DependencyID>` in its `Notes`.
-
-#### Mirror declared entries (every `MODE`)
-
-`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3 reads the recorded register as the declared sections of `_DEPENDENCIES.md` together with `Dependencies.csv`. So that a reader of the CSV alone does not miss a declaration, mirror each declared entry into one `Origin=DECLARED` row. This reads the human-owned sections and never edits them.
-
-- **Entries.** Read the Declared Upstream and Declared Downstream sections, or their legacy equivalents in the SPEC §5.2 table, and take each entry in the §5.2 form: `- {DEL-ID} {Name} — Reason: {reason}` with optional `Required maturity:` and `Location:` sub-lines. Skip `TBD` entries, template placeholders and the `NOT_TRACKED` text "Dependencies coordinated externally by humans." In a combined legacy section, take the direction from the entry's own upstream/downstream label. If an entry's direction or target cannot be read, do not mirror it; record it in Run Notes as `[WARNING] DECLARED_ENTRY_UNREAD` with the raw line.
-- **Row fields.** Copy only what the entry states:
-  - `DependencyClass=EXECUTION`, `AnchorType=NOT_APPLICABLE`.
-  - `Direction` comes from the section: `UPSTREAM` for Declared Upstream, `DOWNSTREAM` for Declared Downstream.
-  - `DependencyType` is supplied by the section heading: `PREREQUISITE` for an entry under Declared Upstream ("I need these before I can proceed") and `ENABLES` for an entry under Declared Downstream ("These need me"). In a combined legacy section, the entry's own upstream/downstream label decides. The §5.2 entry form has no type field, so the heading is the only source; a declaration of another type is recorded as a direct `Origin=DECLARED` CSV row.
-  - For a deliverable ID, set `TargetType=DELIVERABLE` and `TargetDeliverableID`. Set `TargetPackageID` only when the decomposition resolves it; otherwise leave it empty. For no resolvable ID, set `TargetType=UNKNOWN` and keep the raw text in `TargetName`.
-  - `TargetName` is the entry's name. `TargetLocation` is the stated location, or `TBD`. `Statement` is the stated reason.
-  - `RequiredMaturity` is the stated required maturity, or `TBD`. Leave `ProposedMaturity` empty.
-  - `EvidenceFile=_DEPENDENCIES.md`. `SourceRef` is `_DEPENDENCIES.md` plus the section heading as the file writes it. `EvidenceQuote` is the entry line, at most 30 words.
-  - `Explicitness=EXPLICIT`, `Confidence=HIGH`, `Origin=DECLARED`, `Status=ACTIVE`.
-  - Entries under a legacy informational downstream heading (for example `## Downstream (informational; consumers of this deliverable)`) list consumers rather than state a need, so they are mirrored as `ENABLES` with `Explicitness=IMPLICIT` and `Confidence=MEDIUM`, not `EXPLICIT`/`HIGH`.
-  - `SatisfactionStatus=TBD` on a new row.
-  - `Notes` records `mirrored_from=_DEPENDENCIES.md; type_from=section_heading`.
-- **Idempotent update.** Match a mirror row by `Origin=DECLARED` + `mirrored_from=_DEPENDENCIES.md` + `Direction` + target identifier (`TargetDeliverableID`, or `TargetName` for an `UNKNOWN` target). On a match, keep the `DependencyID`, `FirstSeen` and `SatisfactionStatus`. Refresh the stated fields and `LastSeen`, and set `Status=ACTIVE`. Otherwise create the row with the next §6.8 `DependencyID`. A rerun with unchanged declarations changes nothing but `LastSeen`.
-- **Removed declarations.** A mirror row whose entry no longer appears is set `Status=RETIRED`, with `retired_by=declaration_removed` in `Notes`. It is never deleted. `Origin=DECLARED` rows without the `mirrored_from` marker were declared directly in the CSV and are preserved unchanged.
-- **Direct CSV declarations.** Sometimes an `Origin=DECLARED` row without the marker already names the entry's `Direction` and target. That row already carries the declaration, so do not add a mirror row. If its fields differ from the entry, leave the row unchanged and record `[WARNING] DECLARED_MISMATCH` in Run Notes. The human-owned section governs readers until a human reconciles the two.
-
-Record the counts of mirror rows added, refreshed, retired, and entries skipped in Run Notes.
-
-### Function 4 — Update `_DEPENDENCIES.md` index
-
-`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.2 is the heading schema for `_DEPENDENCIES.md`. Keep the declared sections (`## Dependency Tracking Mode`, `## Declared Upstream (I need these before I can proceed)`, `## Declared Downstream (These need me)`) and add/refresh, in this order:
-- `## Extracted Dependency Register` (counts + compact table)
-- `## Lifecycle Summary` (ACTIVE/RETIRED counts + closure-state breakdown)
-- `## Run Notes` (defaults + assumptions + paths used + warnings)
-- `## Run History` (append-only; one entry per run: timestamp, mode, strictness, decomposition path/status, warnings, ACTIVE counts)
-- `## Downstream Handoff Notes` (only when `CONSUMER_CONTEXT` is not `NONE`)
-
-If `_DEPENDENCIES.md` is missing, create it with the SPEC §5.2 headings and leave the human-owned mode and declarations as `TBD`; never infer them. In an existing file, do not rename the declared dependency sections or edit their content. If an existing file lacks a human-owned section (and, for the declared lists, no combined legacy section covers it), add it under its §5.2 heading as a `TBD` placeholder: `- **Mode:** TBD` for the tracking mode, `- TBD` for a declared list. Never fill a placeholder; the human records the mode and declarations. Legacy headings in existing files (SPEC §5.2 legacy-heading table, for example `## Coordination (human-owned)`, `## Coordination Mode`, `## Run Notes & History`, `## Consumer Handoff Notes (optional)`, or a `(populated by TASK+dependency-extract)` suffix) are preserved and read as their §5.2 sections: refresh each agent-owned section under the heading the file already uses, and add a missing section under its §5.2 heading. A legacy `TRACKED` mode value is read as `FULL_GRAPH` and left as written.
-
-### Function 5 — Local quality checks (mandatory)
-
-Before finalizing files, run these checks using deterministic tools where available:
-
-**Schema validation**
-- Validate schema: `python3 tools/validation/validate_dependencies_schema.py {deliverable_folder}/Dependencies.csv`
-  Confirms all 29 required v3.1 columns are present and CSV is parseable.
-- `DependencyID` is present and unique within the file.
-
-**Enum validation**
-- Validate enum fields on write using `python3 tools/validation/validate_enum.py`:
-  - `DEPENDENCY_CLASS`, `ANCHOR_TYPE`, `DIRECTION`, `DEPENDENCY_TYPE`, `TARGET_TYPE`, `EXPLICITNESS`, `CONFIDENCE`, `ORIGIN`, `STATUS`, `SATISFACTION_STATUS`
-- Normalize legacy values: `INBOUND` -> `UPSTREAM`, `OUTBOUND` -> `DOWNSTREAM` on write.
-
-**ID format validation**
-- Validate all ID fields: `bash tools/validation/validate_id_format.sh DEL {FromDeliverableID}`, `bash tools/validation/validate_id_format.sh PKG {FromPackageID}`, `bash tools/validation/validate_id_format.sh DEP {DependencyID}`, etc.
-- `DependencyID` follows `DEP-{PKG}-{DEL}-{SEQ}` (`docs/COMPATIBILITY_FORMATS.md#stable-dependency-identities`) and its prefix agrees with `FromDeliverableID`.
-
-**Evidence & provenance checks**
-- ACTIVE rows contain `EvidenceFile` and `SourceRef` (or explicit `location TBD`).
-- `_DEPENDENCIES.md` counts do not contradict `Dependencies.csv`.
-- Obvious duplicate extracted rows are merged or explicitly justified in `Notes`.
-- Optional, when the brief permits reading the execution root: run `python3 tools/validation/validate_decomposition_registers.py {EXECUTION_ROOT} --families EVQ,DRB` (report-only; omit `--json` unless its output path is inside the write boundary) and record in Run Notes the `EVQ-003` (blank `EvidenceQuote`), `EVQ-004` (placeholder `SourceRef`, including `location TBD`), and `DRB-006` (`DependencyID` prefix disagrees with `FromDeliverableID`) findings for in-scope registers. These findings do not fail this workflow's run; repair them where the source supports it and report the remainder.
-
-**Tree x DAG integrity checks**
-- Parent anchor check:
-  - Count rows where `Status=ACTIVE`, `DependencyClass=ANCHOR`, `AnchorType=IMPLEMENTS_NODE`.
-  - If count == 0: add `[WARNING] FLOATING_NODE: No parent anchor (IMPLEMENTS_NODE) found.` to Run Notes.
-  - If count > 1: add `[WARNING] AMBIGUOUS_ANCHOR: Multiple parent anchors found.` to Run Notes.
-
-If checks fail and cannot be auto-repaired conservatively:
-- keep files non-destructively updated,
-- add explicit issues to Run Notes,
-- set uncertain fields to `TBD`/`UNKNOWN` rather than inventing values.
-
-## Dependency Model: Information Flow Only
-
-**Purpose:** Dependencies capture **information flow / artifact transfer** and **explicit constraints** stated in sources.
-They do **not** represent:
-- scheduling decisions,
-- coordination-only relationships,
-- structural decomposition relationships (those belong in the decomposition agent).
-
-**Stages (optional):**
-- If stage metadata exists in decomposition, prefer it for interpreting "earlier -> later" transfer.
-- If no stage metadata exists, treat the project as a single stage.
-- Same-stage dependencies are permitted only when the source states an explicit information/asset transfer (not "we should coordinate").
-
-**What to Extract (high signal):**
-- Explicit prerequisites / inputs / approvals required *before* work can proceed
-- Deliverable outputs explicitly consumed by another deliverable (handover)
-- Explicit interfaces where one deliverable requires specific data/artifacts from another
-- Explicit constraints ("shall not proceed until...", "requires approval of...", "requires receipt of...", "must comply with ... as a required input")
-- Traceability statements linking deliverable intent to definition nodes and/or requirements
-
-**What NOT to Extract (low signal / out of scope):**
-- Pure "coordination" / "keep aligned" statements with no specific data/artifact transfer
-- Structural adjacency that is obvious from decomposition (e.g., "Design <-> Turnover" as a package naming convention)
-- Scheduling dependencies ("finish-to-start", "start date depends on...") unless explicitly expressed as an input/approval/artifact constraint
-
-**Direction semantics (relative to this deliverable):**
-- **UPSTREAM:** This deliverable requires information/asset FROM the target (information flows TO this deliverable)
-- **DOWNSTREAM:** This deliverable produces information/asset FOR the target (information flows FROM this deliverable)
-
-## Dependency Lifecycle Model
-
-### Lifecycle phases
-1. **DISCOVER** — dependency cues extracted from the deliverable's source documents with evidence.
-2. **REGISTER** — rows normalized into `Dependencies.csv` with stable IDs.
-3. **VALIDATE** — local quality checks performed against schema/evidence/integrity rules.
-4. **CONSUME** — downstream workflows read dependencies for planning/reconciliation/estimating.
-5. **REFRESH_OR_RETIRE** — later runs update `LastSeen`; unseen extracted rows become `RETIRED`.
-
-### Lifecycle dimensions (tracked per row)
-- **Extraction lifecycle:** `FirstSeen`, `LastSeen`, `Status` (`ACTIVE` or `RETIRED`).
-- **Closure lifecycle:** `RequiredMaturity`, `ProposedMaturity`, `SatisfactionStatus`.
-
-`Status` tracks whether the dependency relationship is currently observed in source text.
-`SatisfactionStatus` tracks whether the dependency has been fulfilled or remains open.
-
-## Output structure
-
-### Canonical register: `Dependencies.csv` (v3.1 schema)
-
-#### Core columns (required — 29 columns)
-
-`RegisterSchemaVersion`, `DependencyID`, `FromPackageID`, `FromDeliverableID`, `FromDeliverableName`, `DependencyClass`, `AnchorType`, `Direction`, `DependencyType`, `TargetType`, `TargetPackageID`, `TargetDeliverableID`, `TargetRefID`, `TargetName`, `TargetLocation`, `Statement`, `EvidenceFile`, `SourceRef`, `EvidenceQuote`, `Explicitness`, `RequiredMaturity`, `ProposedMaturity`, `SatisfactionStatus`, `Confidence`, `Origin`, `FirstSeen`, `LastSeen`, `Status`, `Notes`
-
-#### Canonical enums (write form)
-
-- `DependencyClass`: `ANCHOR` | `EXECUTION`
-- `AnchorType`: `IMPLEMENTS_NODE` | `TRACES_TO_REQUIREMENT` | `NOT_APPLICABLE`
-- `Direction`: `UPSTREAM` | `DOWNSTREAM`
-- `DependencyType`: `PREREQUISITE` | `INTERFACE` | `HANDOVER` | `CONSTRAINT` | `ENABLES` | `OTHER`
-- `TargetType`: `DELIVERABLE` | `PACKAGE` | `WBS_NODE` | `REQUIREMENT` | `DOCUMENT` | `EQUIPMENT` | `EXTERNAL` | `UNKNOWN`
-- `Explicitness`: `EXPLICIT` | `IMPLICIT`
-- `SatisfactionStatus`: `TBD` | `PENDING` | `IN_PROGRESS` | `SATISFIED` | `WAIVED` | `NOT_APPLICABLE`
-- `Confidence`: `HIGH` | `MEDIUM` | `LOW`
-- `Origin`: `DECLARED` | `EXTRACTED`
-- `Status`: `ACTIVE` | `RETIRED`
-
-Legacy read compatibility:
-- `INBOUND`/`OUTBOUND` MAY appear in older files; normalize to `UPSTREAM`/`DOWNSTREAM` on write.
-- `COORDINATION`, `INFORMATION`, and project-specific dependency labels MAY appear in older files; interpret the relationship and map to the canonical `DependencyType` set on write.
-- `CANDIDATE` MAY appear in older files as a graph-governance disposition; do not write it to `Status`. Preserve candidate visibility in a separate non-authoritative worklist or in `Notes` on a `RETIRED` row.
-- If `RegisterSchemaVersion` is missing, add it on write and set to `v3.1`.
-
-#### Extension columns (optional; non-breaking)
-
-If you can infer these reliably from text, you MAY add them (do not break older files if absent):
-
-- `EstimateImpactClass` (`BLOCKING|ADVISORY|INFO|TBD`)
-- `ConsumerHint` (`TASK_ESTIMATING|AGGREGATION|RECONCILIATION|TBD`)
-
-Rules:
-- Do not mark these required.
-- Fill conservatively; otherwise omit or use `TBD`.
-
-Estimating-oriented guidance (when `CONSUMER_CONTEXT=TASK_ESTIMATING`):
-- You SHOULD attempt to populate `ConsumerHint` and `EstimateImpactClass` for `DependencyClass=EXECUTION` rows **when evidence supports it**.
-- Set `ConsumerHint=TASK_ESTIMATING` when the dependency plausibly affects estimating readiness or scope.
-- Set `EstimateImpactClass` conservatively:
-  - `BLOCKING`: explicit prerequisite/constraint/approval/input that gates meaningful estimating (scope or key quantities unknown without it).
-  - `ADVISORY`: interface/handover likely to change quantities/specs or procurement approach, but not a hard gate.
-  - `INFO`: informational context; low likelihood of changing totals.
-- If unsure, use `TBD` (do not guess).
-
-### `_DEPENDENCIES.md`
-
-Follows the `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.2 schema (legacy headings in existing files preserved). Must contain:
-- dependency tracking mode and declared upstream/downstream lists (human-owned)
-- extracted register summary
-- lifecycle summary
-- run notes + run history
-- downstream handoff notes when a consumer context is provided
-
-## Outputs
-
-- `{deliverable}/Dependencies.csv` — canonical structured register (v3.1 schema, 29 required columns)
-- `{deliverable}/_DEPENDENCIES.md` — human-readable index with declared lists, extracted summary, run notes, run history, lifecycle summary
-
-## Non-negotiable constraints
-
-- **Evidence-first.** Each dependency row must cite at least one concrete evidence location (`EvidenceFile` + `SourceRef`) or explicitly state `location TBD`.
-- **Do not modify source documents.** Never edit deliverable docs, `_REFERENCES.md`, or decomposition outputs.
-- **Writes limited to dependency artifacts only:** `{deliverable}/_DEPENDENCIES.md` and `{deliverable}/Dependencies.csv`.
-- **No invention.** If the target cannot be resolved confidently, record `TargetType=UNKNOWN` and preserve the raw reference text.
-- **No hierarchy discovery.** This workflow does not create or restructure the decomposition Tree; it only anchors to identifiers that already exist.
-- **Straight-through.** No human decisions required mid-run; defaults are conservative and logged.
-- **Non-destructive updates.** Do not delete rows; retire extracted rows when no longer seen.
-- **Epistemic separation.** Distinguish FACT vs ASSUMPTION vs PROPOSAL in `Notes`.
-- **Schema discipline.** `Dependencies.csv` must remain parseable and include all 29 canonical required columns.
-- **Enum normalization on write.** Normalize legacy variants to canonical enums.
-- **Lifecycle hygiene.** Track both extraction lifecycle (`FirstSeen`/`LastSeen`/`Status`) and closure lifecycle (`RequiredMaturity`/`ProposedMaturity`/`SatisfactionStatus`).
-- **Referential integrity.** `FromDeliverableID` must match the current deliverable; preserve unresolved targets as `UNKNOWN`/`TBD` rather than guessing.
-- **Information flow only.** Do not create edges that are merely "coordination" or "structural adjacency."
-- **Two-pass discipline.** ANCHOR pass (Tree) must complete before EXECUTION pass (DAG); do not collapse passes.
-
-## QA expectations
-
-See `resources/checks.md` for the authoritative invariant list. Summary:
-
-- Source documents in scope are not modified.
-- `Dependencies.csv` exists (created if missing) and is parseable with all 29 required columns.
-- Every ACTIVE row includes `EvidenceFile` and `SourceRef` (or `location TBD`).
-- Targets are not invented (`UNKNOWN` permitted).
-- Updates are non-destructive (no row deletions; unseen rows `RETIRED`).
-- `DependencyID` values are unique within each deliverable register.
-- Write-form enums are canonical; legacy and project-specific values are read-only migration inputs, never emitted.
-- `_DEPENDENCIES.md` summary/lifecycle counts are consistent with `Dependencies.csv`.
-- Each readable declared entry has exactly one ACTIVE `Origin=DECLARED` row; mirror rows whose entry was removed are `RETIRED`.
-- Non-fatal integrity warnings: `[WARNING] FLOATING_NODE` (no parent anchor), `[WARNING] AMBIGUOUS_ANCHOR` (multiple parent anchors), `[WARNING] MISSING_DECOMPOSITION`, `[WARNING] DECLARED_ENTRY_UNREAD`, `[WARNING] DECLARED_MISMATCH`.
-
-## Downstream consumer
-
-This workflow produces deliverable-local registers only. Downstream consumers (the `aggregation` workflow for project-level roll-ups, the `reconciliation` workflow for cross-deliverable consistency, TASK_ESTIMATING for estimating readiness, TASK (workflow: audit-dep-closure) for closure-level audit via `tools/coordination/analyze_dep_closure.py`) consume these registers. This workflow does not build project-level graphs.
+# Declare local needs
+
+Use this method during setup or when an undertaking changes the inputs a
+Deliverable needs. The consumer's responsible contributor states what an input
+must support. This includes useful needs formulated from accepted scope and
+design, not just phrases that a text scan can extract. A declaration does not
+create a producer commitment, supplier appointment, approval or technical waiver.
+
+The result is the current `needs` list in the selected Deliverable's
+`deliverable.yaml`, plus a concise return of changes, checks and unresolved
+matters. Reverse links and work graphs are derived when needed. ScopeOfWork
+remains the commitment and acceptance master. The adopted work locality holds
+technical reasoning, execution detail and locally kept artifacts/outputs, with
+maturity and issue status explicit. Use `Work/` for new/adopting projects;
+follow an existing project's recorded locality convention without renaming it.
+This method does not change those authorities, lifecycle or accepted identities.
+
+TASK may execute one bounded assignment; WORKING_ITEMS or HELPS_HUMANS may do
+the same work directly. Do not delegate from TASK. For a multi-Deliverable
+undertaking, the coordinator assigns disjoint local write targets and integrates
+returns. See the [brief guide](resources/brief.md).
+
+## Establish the locality and purpose
+
+Resolve the project root, selected Deliverable, exact allowed write target and
+intended use from the assignment. Read its existing `deliverable.yaml`,
+`ScopeOfWork.md`, relevant work material in that locality and the source
+passages needed for this work. Use an identified accepted decomposition or reference index when
+needed to confirm identity or resolve a source; do not choose authority by file
+mtime. Read another locality or external source only within the authorized read
+scope. Do not perform a project-wide census to refresh one consumer.
+
+If the local file is missing, create it only when the assignment authorizes that
+write and the stable identity is established. Otherwise return that gap. If the
+identity, source meaning or write target is ambiguous, leave the affected part
+unchanged and continue independent work. Missing work or source material
+limits the claim of coverage; it does not authorize invented content.
+
+The sole persistent write target is the selected `deliverable.yaml`. Within it,
+change only `needs`, apart from supplying an established `id` when creating the
+file. Preserve other fields and useful comments. Do not edit producer files,
+ScopeOfWork, work material, source originals or decomposition records. Do not
+create a second dependency register, hand-maintained reverse links, graph, status table
+or routine run history. This is an authoring method, not project migration.
+
+## State each actual need
+
+Use the existing native schema described in
+[`tools/deliverables/README.md`](../../tools/deliverables/README.md):
+
+- `from` and nonempty `condition` are required. `from` is an established native
+  `DEL-nn-nn` identity, `external:name`, `doc:project-relative-path`,
+  `package:id`, or `unknown`. Use the actual supported supplier or source. A
+  package reference does not mean every Deliverable in that Package supplies
+  the input. Do not invent identities, appointments or a supplier's internal WBS.
+- `condition` states the information, artifact or action needed and its actual
+  intended use, with material case, maturity, release conditions and technical
+  holds. Distinguish preliminary use from later issue requirements. State a
+  useful condition even when its source binding is unknown; preserve the raw
+  source description or unresolved alternatives in that text.
+- Optional `when` states the applicability or trigger, such as a material
+  finding requiring a response. Preserve conditional needs without making every
+  comment or iteration a mandatory revision gate.
+- Optional `gating` records the intended coordination-gate classification.
+  Preserve an existing classification unless its meaning actually changes.
+  `false` never waives a technical condition or means an input is suitable.
+  The query tool includes both values in native graphs and does not evaluate
+  the classification, `condition` or `when` automatically.
+- Optional `evidence` is a project-relative path with a useful locus, such as
+  `execution/PKG-01/DEL-01-01/Work/Interface.md::Review inputs`. Cite the
+  source or design rationale that supports the need when available. Do not
+  invent an evidence file or exact quotation. Where evidence is unavailable,
+  retain the uncertainty in the condition and return the missing basis.
+
+Paths use POSIX separators, stay within the project, and may use a `::` or `#`
+locus. Absolute paths and `..` escapes are invalid. A folder's descriptive
+suffix is omitted from the numeric YAML `id` binding; the accepted canonical
+DeliverableID and metadata remain unchanged. Report an inconsistency rather
+than renumbering it.
+
+An ordinary entry is upstream and belongs at the actual consumer. Do not copy
+it into the native producer as a downstream mirror. An actual outward
+obligation to a nonlocal recipient stays at its native producer with
+`direction: downstream` and `gating: false`; in that entry `from` names the
+recipient. Preserve the supplier's authorship and the native technical
+producer/receiver and routing in the condition. Do not turn allocated supplier
+work into native work. Report a discovered need at another native consumer to
+that consumer's coordinator rather than writing outside the local boundary.
+
+For example, these are two uses of one source, not duplicate endpoints:
+
+```yaml
+id: DEL-01-02
+needs:
+  - from: DEL-01-01
+    condition: Preliminary interface dimensions support the coordination review; final issue dimensions remain required before release.
+    when: Preparing the coordination review
+    gating: false
+  - from: DEL-01-01
+    condition: Confirmed interface dimensions and ratings support issue of the affected connection design.
+    when: Issuing the affected connection design
+```
+
+## Refresh by meaning
+
+Compare proposed needs with existing entries by source, actual input/use, case,
+condition, trigger and direction. Preserve separate cases between the same
+endpoints. Reuse an unchanged declaration; do not append a duplicate because
+another source repeats it, or merge cases merely because `from` matches.
+
+A reference list, shared objective, hierarchy anchor or nearby equipment is not
+by itself an execution need. Keep scope and objective traceability in their
+existing masters. Formulate a need when the accepted work and intended use
+support it; distinguish an uncertain source binding from an unsupported new
+requirement. If a proposed condition would alter commitments, criteria or an
+explicit hold, return that reserved choice without applying it.
+
+Do not delete, retire or rewrite an existing need because a scan failed to find
+its wording. Change or remove it only on evidence that its meaning changed,
+was duplicated in full, or no longer applies to the authorized work. Explain the
+substantive reason in the return or the existing change review; do not add row
+IDs, timestamps, satisfaction states or an append-only history to YAML. An
+amended or retired production obligation may still supply an artifact usable
+for a particular condition; assess the actual input/use rather than retargeting
+or deleting all affected needs automatically.
+
+## Save, check and return
+
+Read the saved YAML back and apply the [local checks](resources/checks.md).
+Use the existing native query tool where available and authorized; its Git,
+HEAD and read-scope requirements, limits and direct-inspection fallback are in
+the [tool guide](resources/tools.md). A tool failure is a finding, not a reason
+to drop declarations or switch persistence formats. Repair ordinary local
+format errors within the boundary; leave disputed meaning unchanged.
+
+On interruption, compare the saved file with the authorized change and current
+sources before resuming. Repeating an unchanged refresh must leave the needs
+unchanged. Return the actual file, meaningful additions/changes/removals and
+reasons, source coverage, checks performed and unresolved conditions or source
+bindings. Report partial work plainly. No separate run record is required.

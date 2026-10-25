@@ -17,7 +17,7 @@
 #
 # Numeric segments accept the two- or three-digit forms used by docs/TYPES.md §2,
 # docs/SPEC.md §6.8 (DependencyID = DEP-{PKG}-{DEL}-{SEQ}) and the ID_PATTERN
-# of tools/coordination/analyze_dep_closure.py (e.g. PKG-02, DEL-02-08,
+# of the native deliverable query tools (e.g. PKG-02, DEL-02-08,
 # DEP-01-01-001). Domain-family IDs (CAT/KTY/SUB) are validated as bare IDs;
 # strip any `_{shortDesc}` folder suffix before calling. The script uses only
 # POSIX shell features and also runs under bash where zsh is not installed.

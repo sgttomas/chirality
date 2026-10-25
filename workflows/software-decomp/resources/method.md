@@ -129,7 +129,12 @@ Write or render the accepted output around that accepted state; output writing
 does not add another checkpoint.
 
 After acceptance, finalize the group-3 snapshot and update
-`_LATEST_ACCEPTED.md` before any downstream handoff.
+`_LATEST_ACCEPTED.md` before any downstream handoff. Carry actual source-grounded needed
+inputs with the responsible consuming Deliverable, intended use/condition,
+case/trigger and source location; retain unknown sources and technical holds.
+Setup authors the corresponding local needs after scope exists. Do not create
+producer commitments or a second authoritative dependency network during this
+handoff.
 
 If accepted source material changes, identify which prior decisions depended on
 it, reopen only those decisions, and refresh their dependent checks before the

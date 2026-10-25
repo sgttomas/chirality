@@ -31,7 +31,7 @@ The workflow does **not** author a narrative Basis of Estimate. Instead, it requ
 ### Recommended
 
 - `RuntimeOverrides.DECOMPOSITION_PATH` — absolute path to the latest decomposition markdown. If absent, attempt to locate most recent under `{EXECUTION_ROOT}/_Decomposition/`. If still missing, log `[WARNING] MISSING_DECOMPOSITION` and proceed with degraded ID/path validation.
-- `RuntimeOverrides.DEPENDENCY_SOURCES` — `AUTO` (default) or explicit paths to dependency registers/snapshots
+- `RuntimeOverrides.DEPENDENCY_SOURCES` — `AUTO` (default) or explicit paths to local need declarations and supporting source evidence
 - `RuntimeOverrides.PRICE_SOURCES` — list of local files/folders containing basis evidence (quotes, rate tables, historical datasets, parametric models, allowance tables)
 
 ### Optional
@@ -65,7 +65,7 @@ The workflow does **not** author a narrative Basis of Estimate. Instead, it requ
 Reads are limited to:
 
 - `DECOMPOSITION_PATH` (when provided or auto-located)
-- `{deliverable}/Dependencies.csv` for each in-scope deliverable (when `DEPENDENCY_SOURCES=AUTO`)
+- `{deliverable}/deliverable.yaml` for each in-scope consumer (when `DEPENDENCY_SOURCES=AUTO`)
 - Explicit paths provided in `DEPENDENCY_SOURCES`
 - Explicit paths provided in `PRICE_SOURCES` (quotes, rate tables, historical datasets, parametric models, allowance tables)
 - Decomposition and deliverable metadata needed to resolve IDs
@@ -79,7 +79,7 @@ Writes are limited to the snapshot folder under `{ESTIMATES_ROOT}`:
 - `{ESTIMATES_ROOT}/EST_{OUTPUT_LABEL}_{YYYY-MM-DD}_{HHMM}/` (new folder each run)
 - Optionally `{ESTIMATES_ROOT}/_LATEST.md` pointer (only when `UPDATE_LATEST_POINTER=TRUE`)
 
-No writes outside `ESTIMATES_ROOT`. No modification of project truth (deliverable content, lifecycle files, decomposition outputs, dependency registers).
+No writes outside `ESTIMATES_ROOT`. No modification of project truth (deliverable content, lifecycle files, decomposition outputs, local need declarations).
 
 ## Tool usage
 
@@ -92,7 +92,7 @@ No writes outside `ESTIMATES_ROOT`. No modification of project truth (deliverabl
 ### Disallowed behavior
 
 - No writes outside `{ESTIMATES_ROOT}`
-- No modification of any file in deliverable folders, decomposition outputs, dependency registers, or lifecycle files
+- No modification of any file in deliverable folders, decomposition outputs, local need declarations, or lifecycle files
 - No overwriting an existing snapshot folder
 - No internet fetching (only local `PRICE_SOURCES`)
 - No treating prior snapshots under `_Estimates/` as pricing sources unless explicitly included in `PRICE_SOURCES`
@@ -119,10 +119,10 @@ No writes outside `ESTIMATES_ROOT`. No modification of project truth (deliverabl
 
 ### Step 3 — Load dependency evidence (readiness + blockers)
 
-1. If `DEPENDENCY_SOURCES=AUTO`, read each in-scope deliverable's `Dependencies.csv` if present.
-2. Use dependency evidence to identify prerequisites and information gaps that block meaningful estimating. If `EstimateImpactClass` is present, use it as a hint only.
-3. Emit `Blockers.md` (or `blocker_report.csv`) listing unresolved inputs by deliverable with evidence references.
-4. Dependencies are NOT pricing evidence — they inform readiness only.
+1. If `DEPENDENCY_SOURCES=AUTO`, read each in-scope consumer's `deliverable.yaml` needs. Explicit paths select local declarations and supporting source evidence, not a second dependency map. Record missing declarations and unknown sources without inventing relationships.
+2. Assess each relevant `condition` against the actual estimating use and available evidence, retaining distinct cases, `when`, maturity and technical holds. Preserve `gating`; a non-gating link or reciprocal need does not waive technical conditions. File presence and lifecycle do not establish suitability. Keep outward `direction: downstream` obligations separate from required inputs.
+3. Emit `Blockers.md` (or `blocker_report.csv`) only for specific unresolved input conditions that prevent meaningful estimating; cite the consumer YAML path and need index, source evidence and consequence. Otherwise disclose the uncertainty or qualification without inventing a blocker. Use `construct-local-work-graph` if relevant sequencing must be derived; see `tools/deliverables/README.md` for read-only queries, Git/HEAD and project-root prerequisites, native-only cycle reporting and direct-declaration inspection. Every query loads all project declarations/path-presence references, so use one only if that wider read scope is authorized; otherwise inspect the bounded declarations directly and state coverage limits.
+4. Local needs are NOT pricing evidence. They identify input conditions; rates and amounts still require `PRICE_SOURCES`. A successful structural check is not a readiness verdict.
 
 ### Step 4 — Load pricing sources (basis evidence)
 
@@ -212,11 +212,11 @@ Mandatory columns: `LineID`, `CBS`, `WBS_PackageID`, `WBS_DeliverableID`, `Descr
 
 - **BASIS_OF_ESTIMATE enum discipline.** Value must be exactly one of `QUOTE`, `RATE_TABLE`, `HISTORICAL`, `PARAMETRIC`, `ALLOWANCE`. Any other value is `FAILED_INPUTS` (fail-fast at Step 0).
 - **Snapshot immutability.** Each run writes a NEW snapshot folder under `{ESTIMATES_ROOT}`. Never overwrite an existing snapshot folder.
-- **Write quarantine (tool-root-only).** Write ONLY under `{ESTIMATES_ROOT}`. Never modify deliverable content, `_STATUS.md` or other lifecycle files, decomposition outputs, or dependency registers.
+- **Write quarantine (tool-root-only).** Write ONLY under `{ESTIMATES_ROOT}`. Never modify deliverable content, `_STATUS.md` or other lifecycle files, decomposition outputs, or local need declarations.
 - **Provenance-first.** Every priced row in `Detail.csv` MUST carry a `SourceRef` (file + section/row ID, or an entry in `Decision_Log.md`/`Assumptions_Log.md`) OR explicitly `location TBD` with a QA warning. Every row also carries `Method` and `Confidence`.
 - **No invention.** If a quantity, rate, currency, scope boundary, or dependency claim cannot be substantiated by provided sources, record `TBD` and surface it in QA. Do not guess.
 - **Confidence rules.** Human-confirmed and vendor-quoted values earn `HIGH`. Parametric values are `MEDIUM` or `LOW`. Never assign `HIGH` to values derived from a parametric model or allowance table.
-- **Dependencies are not pricing evidence.** Dependency registers inform readiness/blockers only. Unit rates must come from `PRICE_SOURCES`.
+- **Dependencies are not pricing evidence.** Local need declarations inform readiness/blockers only. Unit rates must come from `PRICE_SOURCES`.
 - **Avoid recursive ingestion.** Do not treat prior `_Estimates/` snapshots as pricing sources unless explicitly listed in `PRICE_SOURCES`.
 - **Deterministic outputs.** Given identical inputs (scope + sources + brief), artifacts should be stable apart from timestamps and ordering normalizations.
 

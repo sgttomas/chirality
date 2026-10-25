@@ -53,7 +53,7 @@ Reads are limited to files within the specified deliverable folder:
 | File | Read scope | Purpose |
 |---|---|---|
 | `_CONTEXT.md` | Full | Identity, description, acceptance criteria, scope traceability |
-| `_DEPENDENCIES.md` | Full | Tracking mode, upstream/downstream summary, register statistics |
+| `deliverable.yaml` | Full | Local incoming needs, unknown/external sources and outward obligations, retaining conditions and triggers |
 | `_REFERENCES.md` | Full | Source document pointers |
 | `Datasheet.md` | First 80 lines | Key parameters, structured metadata |
 | `Specification.md` | First 80 lines | Requirements, scope definition |
@@ -110,7 +110,7 @@ From the files read, extract:
   in SOW mode, summarize the four practical lens sections and list
   `OUT-*`, `REQ-*`, `AC-*`, and `VER-*` identities without changing the
   seven-section digest schema.
-- **Dependencies** (from `_DEPENDENCIES.md`): Tracking mode (`NOT_TRACKED`/`DECLARED`/`FULL_GRAPH`, per `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3; report a legacy `TRACKED` as `FULL_GRAPH`), upstream count, downstream count, key upstream (top 3-5 by name), key downstream (top 3-5 by name)
+- **Dependencies** (from `deliverable.yaml`): count incoming need records and outward `direction: downstream` obligations separately; summarize 3–5 relevant entries with `from`, `condition`, `when`, `gating` and source need index. Preserve same-endpoint case multiplicity and unknown/external sources. Reverse consumer links are not stored locally and are not queried within this workflow's local-only read boundary; report them as `not queried`, never as zero. An empty or missing list establishes no completeness or readiness claim.
 - **References** (from `_REFERENCES.md`): list of all referenced documents
 - **Semantic** (from first 40 lines of `_SEMANTIC.md`): whether present (`YES`/`NO`), framework type if identifiable
 
@@ -157,11 +157,11 @@ The digest file contains exactly seven sections, in this order:
 - Procedure focus: {1 sentence}
 
 ### Dependencies
-- Tracking mode: {NOT_TRACKED/DECLARED/FULL_GRAPH}
-- Upstream count: {N}
-- Downstream count: {N}
-- Key upstream: {top 3-5 by name}
-- Key downstream: {top 3-5 by name}
+- Incoming need records: {N or not present; preserve distinct cases}
+- Outward obligation records: {N or not present}
+- Key local needs/obligations: {3-5 with from, condition, when, gating and source need index}
+- Reverse consumer links: not queried (local-only read boundary)
+- Unknown/external source qualifications: {actual declarations or none declared}
 
 ### References
 - {list all referenced documents}
@@ -195,7 +195,7 @@ Missing information is noted as `not present` or `TBD in source`. Do not leave p
 - All seven sections present in the output digest.
 - Identity fields populated from `_CONTEXT.md` (not invented).
 - SOW and OBJ traceability IDs listed (or explicitly marked absent).
-- Dependency counts stated with key upstream/downstream named.
+- Local incoming/outward record counts and key conditions are stated; reverse consumer links are explicitly not queried, and distinct cases and unknowns are preserved.
 - Quality Observations are specific items (TBDs, assumptions, conflicts) with IDs where available — not vague assessments.
 - No files in `DELIVERABLE_PATH` were written or modified.
 - The digest was written to the specified `OUTPUT_PATH`.

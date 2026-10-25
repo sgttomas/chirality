@@ -11,12 +11,15 @@ import shutil
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
-SUITES = ('piping-numerical', 'app-v4')
+SUITES = ('piping-numerical', 'piping-desktop-rust', 'app-v4')
 
 
 def inputs(root, suite):
     if suite == 'app-v4':
         project = root / 'projects/chirality-app-v4/app/src-tauri'
+        return project, [project / 'Cargo.toml'], project / 'target'
+    if suite == 'piping-desktop-rust':
+        project = root / 'projects/chirality-piping/apps/desktop/src-tauri'
         return project, [project / 'Cargo.toml'], project / 'target'
     path = root / 'projects/chirality-piping/tools/ci/numerical_ci.py'
     spec = importlib.util.spec_from_file_location('cache_numerical', path)

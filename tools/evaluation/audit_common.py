@@ -1,10 +1,9 @@
-"""Shared inventory, report and dependency parsing for deterministic audits."""
+"""Shared inventory and reporting for deterministic workspace audits."""
 from __future__ import annotations
 
-import csv
-import hashlib
 import importlib.util
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -19,24 +18,18 @@ def load_module(name, path):
     return module
 
 
-schema = load_module("evaluation_dependency_schema", TOOLS / "validation/validate_dependencies_schema.py")
 sow = load_module("evaluation_sow_contract", TOOLS / "scope_of_work/common.py")
 
 
 # Lifecycle folders that can hold a production unit. A unit moves between them
 # as it matures; 0_References holds reference material and is excluded.
 LIFECYCLE_DIRS = ("1_Working", "2_Checking", "3_Issued")
-
-
-def require_legacy_dependencies(root):
-    """Do not report an empty CSV graph for a migrated deliverable project."""
-    if next(Path(root).glob("PKG-*/DEL-*/deliverable.yaml"), None) is not None:
-        raise ValueError("deliverable.yaml project: use tools/deliverables/ CLI instead of legacy CSV audits")
+# Match the native DEL locality spelling, retaining KTY source protection.
+PRODUCTION_UNIT = re.compile(r"(?:DEL|KTY)-\d+-\d+(?:[_-].*)?$")
 
 
 def inventory(root, variant=None):
     """Live immediate production units in every lifecycle folder; never recurse into archived copies."""
-    require_legacy_dependencies(root)
     prefixes = (("CAT-", "KTY-"),) if variant == "DOMAIN" else (("PKG-", "DEL-"),)
     if variant is None:
         prefixes = (("PKG-", "DEL-"), ("CAT-", "KTY-"))
@@ -51,8 +44,7 @@ def in_lifecycle_folder(path):
 def require_root(root):
     root = root.resolve()
     if not root.is_dir():
-        raise ValueError(f"execution root is not a directory: {root}")
-    require_legacy_dependencies(root)
+        raise ValueError(f"workspace root is not a directory: {root}")
     return root
 
 
@@ -65,83 +57,16 @@ def write_report(report, output):
     if str(output) == "-":
         print(text, end="")
     else:
-        target = Path(output).resolve()
+        requested = Path(output).absolute()
+        target = requested.resolve()
         if target.exists() and not target.is_file():
             raise ValueError(f"report output is not a regular file: {target}")
-        # Reports cannot replace inspected workspace content.
-        if in_lifecycle_folder(target) or target.name in {"Dependencies.csv", "_STATUS.md"}:
+        # Reports cannot replace inspected workspace content, including flat
+        # native localities as well as the lifecycle-folder structure format.
+        if any(in_lifecycle_folder(path)
+               or any(PRODUCTION_UNIT.fullmatch(part) for part in path.parts)
+               or path.name in {"deliverable.yaml", "ScopeOfWork.md", "_STATUS.md"}
+               for path in (requested, target)):
             raise ValueError("report output must be outside production-unit source paths")
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(text, encoding="utf-8")
-
-
-def parse_register(path):
-    """Strict CSV shape + canonical row semantics; logical records preserve multiline cells.
-
-    Return a report and shape-readable rows. Invalid rows carry their errors;
-    graph consumers must exclude them. A parse error retains preceding records
-    and marks the denominator incomplete.
-    """
-    result = {"path": str(path), "rows": 0, "readable_rows": 0, "malformed_rows": 0,
-              "denominator_complete": True, "columns": [], "extensions": [],
-              "issues": [], "row_findings": [], "schema_valid": False,
-              "enum_validation": {field: {"valid": 0, "invalid": 0} for field in schema.CANONICAL_ENUMS},
-              "implements_node_rows": 0, "anchor_rows": 0, "execution_rows": 0,
-              "evidence_populated": 0, "evidence_coverage_percent": None}
-    rows = []
-    try:
-        raw = path.read_bytes()
-        result["sha256"] = hashlib.sha256(raw).hexdigest()
-        with path.open(encoding="utf-8-sig", newline="") as stream:
-            reader = csv.reader(stream, strict=True)
-            header = next(reader, None)
-            if not header:
-                result["issues"].append("empty file or missing header")
-                return result, rows
-            header = [name.strip() for name in header]
-            result["columns"] = header
-            missing = sorted(set(schema.REQUIRED_COLUMNS) - set(header))
-            duplicates = sorted({name for name in header if header.count(name) > 1})
-            result["extensions"] = [name for name in header if name not in schema.REQUIRED_COLUMNS]
-            if missing:
-                result["issues"].append("missing columns: " + ", ".join(missing))
-            if duplicates or "" in header:
-                result["issues"].append("duplicate or empty column names: " + ", ".join(duplicates))
-            header_valid = not missing and not duplicates and "" not in header
-            for number, values in enumerate(reader, 1):
-                result["rows"] += 1
-                if len(values) != len(header):
-                    result["malformed_rows"] += 1
-                    result["row_findings"].append({"record": number, "end_line": reader.line_num,
-                        "issues": [f"field count: expected {len(header)}, found {len(values)}"]})
-                    continue
-                if not header_valid:
-                    continue
-                row = dict(zip(header, values))
-                result["readable_rows"] += 1
-                for field, allowed in schema.CANONICAL_ENUMS.items():
-                    result["enum_validation"][field]["valid" if row[field].strip() in allowed else "invalid"] += 1
-                errors = schema.validate_row_semantics([row])
-                # Canonical helper labels its single input as Row 2; report the
-                # actual logical record and physical end line outside that text.
-                errors = [message.removeprefix("Row 2 ") for message in errors]
-                if row["RegisterSchemaVersion"].strip() != "v3.1":
-                    errors.append("RegisterSchemaVersion must equal v3.1")
-                if not row["DependencyID"].strip():
-                    errors.append("DependencyID is empty")
-                if errors:
-                    result["row_findings"].append({"record": number, "end_line": reader.line_num, "issues": errors})
-                row.update(_record=number, _end_line=reader.line_num, _issues=errors, _source_file=str(path))
-                rows.append(row)
-                anchor = row["DependencyClass"].strip() == "ANCHOR"
-                result["anchor_rows"] += int(anchor)
-                result["execution_rows"] += int(row["DependencyClass"].strip() == "EXECUTION")
-                result["implements_node_rows"] += int(anchor and row["AnchorType"].strip() == "IMPLEMENTS_NODE")
-                result["evidence_populated"] += int(bool(row["EvidenceFile"].strip()))
-    except (OSError, UnicodeError, csv.Error) as exc:
-        result["issues"].append(f"unreadable register: {exc}")
-        result["denominator_complete"] = False
-    result["schema_valid"] = not result["issues"] and not result["row_findings"]
-    if result["rows"] and result["denominator_complete"]:
-        result["evidence_coverage_percent"] = round(100 * result["evidence_populated"] / result["rows"], 4)
-    return result, rows
