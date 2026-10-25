@@ -394,7 +394,9 @@ def browser_plan(paths: list[str], selection: dict, profile: dict) -> dict:
             "specs": browser_specs(core, groups, selected), "reasons": reasons, "fallback_reasons": []}
 
 
-def select_paths(paths: list[str], profile: dict, root: Path = ROOT) -> dict:
+def route_paths(paths: list[str], profile: dict) -> dict:
+    """The registered path rules' selection, with unmatched inputs given to
+    their owning product or to every suite; reachability is not yet applied."""
     selection = select_checks(profile, paths)
     checks = set(selection["checks"])
     unmatched = [p for p in paths if not any(matches(p, rule["paths"]) for rule in profile["path_rules"])]
@@ -409,6 +411,12 @@ def select_paths(paths: list[str], profile: dict, root: Path = ROOT) -> dict:
             selection["reasons"].setdefault(owner, []).append(path)
     selection.update(checks=sorted(checks), unmatched_paths=unmatched)
     selection["modes"] = {suite: "full" if suite in checks else "not-applicable" for suite in SUITES}
+    return selection
+
+
+def select_paths(paths: list[str], profile: dict, root: Path = ROOT) -> dict:
+    selection = route_paths(paths, profile)
+    checks = set(selection["checks"])
     if "piping-numerical" in checks or any(p.startswith("projects/chirality-piping/") for p in paths):
         numerical = numerical_plan(root, paths, profile)
         selected = numerical["classification"] == "full-fallback" or bool(numerical["manifests"])

@@ -164,7 +164,14 @@ def test_selected_browser_specs_drive_the_product_job_and_key_its_reuse(tmp_path
     import re
     import subprocess
     import sys
-    from hosted_ci import select_paths
+    from hosted_ci import browser_plan, route_paths
+
+    def select_paths(paths, profile):
+        # The plan fields the step reads, from the real path rules and browser
+        # planner without the full plan's source scans (test_hosted_ci.py checks
+        # the plan carries exactly this selection).
+        selection = route_paths(paths, profile)
+        return {'modes': selection['modes'], 'piping_browser_selection': browser_plan(paths, selection, profile)}
     profile = json.loads((ROOT / 'tools/hosted-ci-routing.json').read_text())
     jobs = workflow('piping-desktop-e2e.yml')['jobs']
     selection = jobs['selection']

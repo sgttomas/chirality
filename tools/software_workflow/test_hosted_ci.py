@@ -9,14 +9,22 @@ import sys
 import unittest
 from unittest.mock import patch
 
-from hosted_ci import (aggregate, desktop_plan, desktop_rust_plan, make_plan, select_paths, validate_plan, numerical_plan,
-                       ROOT as SOURCE_ROOT, SUITES, WASM_ENGINE_CRATES)
+from hosted_ci import (aggregate, browser_plan, desktop_plan, desktop_rust_plan, make_plan, route_paths, select_paths, validate_plan,
+                       numerical_plan, ROOT as SOURCE_ROOT, SUITES, WASM_ENGINE_CRATES)
 
 PROFILE = json.loads((Path(__file__).resolve().parents[1] / "hosted-ci-routing.json").read_text())
 
 
 def modes(**overrides):
     return {**dict.fromkeys(SUITES, "not-applicable"), **overrides}
+
+
+def browser_selection(paths, profile=PROFILE):
+    """`piping_browser_selection` as `select_paths` computes it, from the real
+    path rules. It reads only their piping mode, piping reasons and unmatched
+    paths; the reachability stages after them (about 4 s of source scanning per
+    plan) do not change those for these inputs."""
+    return browser_plan(paths, route_paths(paths, profile), profile)
 
 
 class HostedCITests(unittest.TestCase):
@@ -402,15 +410,19 @@ class HostedCITests(unittest.TestCase):
                      'apps/desktop/e2e/ui-foundation.spec.ts']:
             with self.subTest(path=path):
                 # An unrelated desktop path in the same diff adds no reason of its own.
-                selection = select_paths([project + path, project + 'apps/desktop/src/App.tsx'], PROFILE)
-                browser = selection['piping_browser_selection']
-                self.assertEqual(selection['modes']['piping'], 'full')
+                paths = [project + path, project + 'apps/desktop/src/App.tsx']
+                self.assertEqual(route_paths(paths, PROFILE)['modes']['piping'], 'full')
+                browser = browser_selection(paths)
                 self.assertEqual(browser['classification'], 'reachability')
                 self.assertEqual(browser['project'], 'chromium-desktop')
                 self.assertEqual(browser['specs'], self.CORE_SPECS + self.REPLACE_SPECS)
                 self.assertEqual([(r['path'], r['kind'], r['group'], r['specs']) for r in browser['reasons']],
                                  [(project + path, 'group-path', 'project-open-new-replace', self.REPLACE_SPECS)])
                 self.assertIn('unsaved-changes guard', browser['reasons'][0]['why'])
+        # The plan carries exactly this selection (an empty checkout keeps the
+        # reachability stages to their quick fallbacks).
+        paths = [project + 'apps/desktop/src/features/project-storage/unsavedChangesGuard.ts', project + 'apps/desktop/src/App.tsx']
+        self.assertEqual(select_paths(paths, PROFILE, self.root)['piping_browser_selection'], browser_selection(paths))
 
     def test_unrelated_desktop_changes_run_only_the_core_browser_specs(self):
         project = 'projects/chirality-piping/'
@@ -418,14 +430,14 @@ class HostedCITests(unittest.TestCase):
                       ['apps/desktop/src/features/project-storageX/a.ts', 'apps/desktop/e2e/r2-smoke.spec.ts'],
                       ['core/solver/frame_kernel/src/lib.rs'], ['package-lock.json']]:
             with self.subTest(paths=paths):
-                selection = select_paths([project + path for path in paths], PROFILE)
-                browser = selection['piping_browser_selection']
-                self.assertEqual(selection['modes']['piping'], 'full')
+                paths = [project + path for path in paths]
+                self.assertEqual(route_paths(paths, PROFILE)['modes']['piping'], 'full')
+                browser = browser_selection(paths)
                 self.assertEqual(browser['classification'], 'core')
                 self.assertEqual(browser['specs'], self.CORE_SPECS)
                 self.assertEqual(browser['reasons'], [])
         # No product job, no specs.
-        browser = select_paths([project + 'docs/note.md'], PROFILE)['piping_browser_selection']
+        browser = browser_selection([project + 'docs/note.md'])
         self.assertEqual((browser['classification'], browser['specs']), ('not-applicable', []))
 
     def test_full_shared_and_unmatched_coverage_includes_every_browser_spec(self):
@@ -441,7 +453,7 @@ class HostedCITests(unittest.TestCase):
                            ('unknown-root-input.bin', 'shared-input'),
                            ('projects/chirality-piping/new-code.bin', 'unmatched-input')]:
             with self.subTest(path=path):
-                browser = select_paths([path], PROFILE)['piping_browser_selection']
+                browser = browser_selection([path])
                 self.assertEqual(browser['specs'], self.CORE_SPECS + self.REPLACE_SPECS)
                 self.assertEqual([(r['path'], r['kind']) for r in browser['reasons']], [(path, kind)])
 
@@ -469,7 +481,10 @@ class HostedCITests(unittest.TestCase):
                 profile = json.loads(json.dumps(PROFILE))
                 profile['piping_browser_journeys'][field] = value
                 with self.assertRaises(ValueError):
-                    select_paths(['projects/chirality-piping/apps/desktop/src/App.tsx'], profile)
+                    browser_selection(['projects/chirality-piping/apps/desktop/src/App.tsx'], profile)
+                # The plan itself fails rather than run an underived spec set.
+                with self.assertRaises(ValueError):
+                    select_paths(['projects/chirality-piping/apps/desktop/src/App.tsx'], profile, self.root)
 
 
 if __name__ == "__main__":
