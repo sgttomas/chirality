@@ -25,6 +25,8 @@ jobs:
       python_mode: ${{ steps.numeric.outputs.python_mode }}
       desktop_mode: ${{ steps.numeric.outputs.desktop_mode }}
       desktop_rust_mode: ${{ steps.numeric.outputs.desktop_rust_mode }}
+      browser_project: ${{ steps.numeric.outputs.browser_project }}
+      browser_specs: ${{ steps.numeric.outputs.browser_specs }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -47,8 +49,9 @@ jobs:
         id: numeric
         run: |
           python3 - <<'PYTHON'
-          import json, os
-          modes = json.load(open('piping-ci-plan.json'))['modes']
+          import json, os, re
+          plan = json.load(open('piping-ci-plan.json'))
+          modes = plan['modes']
           with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
               for suite, output in [('piping-numerical', 'mode'), ('piping-python', 'python_mode'), ('piping-desktop', 'desktop_mode'),
                                     ('piping-desktop-rust', 'desktop_rust_mode')]:
@@ -56,6 +59,15 @@ jobs:
                   if mode not in {'full', 'not-applicable'}:
                       raise SystemExit(f'Invalid {suite} selection')
                   out.write(f'{output}={mode}\n')
+              # The product job's Chromium project and specs (tools/hosted-ci-routing.json).
+              browser = plan['piping_browser_selection']
+              specs = browser['specs']
+              if (not re.fullmatch(r'[a-z0-9-]+', browser['project'])
+                      or not all(re.fullmatch(r'[A-Za-z0-9_.-]+\.spec\.ts', spec) for spec in specs)
+                      or (modes['piping'] == 'full') != bool(specs)):
+                  raise SystemExit('Invalid browser selection')
+              out.write(f"browser_project={browser['project']}\nbrowser_specs={' '.join(specs)}\n")
+              print(f"Browser specs ({browser['classification']}): {' '.join(specs) or 'none'}")
           PYTHON
       - uses: actions/upload-artifact@v4
         with:
@@ -87,7 +99,9 @@ jobs:
         id: result-key
         env:
           DESKTOP_MODE: ${{ needs.selection.outputs.desktop_mode }}
-        run: python3 tools/software_workflow/result_cache.py key --suite browser --desktop-mode "$DESKTOP_MODE" --record "${{ runner.temp }}/verified-browser/result.json"
+          BROWSER_PROJECT: ${{ needs.selection.outputs.browser_project }}
+          BROWSER_SPECS: ${{ needs.selection.outputs.browser_specs }}
+        run: python3 tools/software_workflow/result_cache.py key --suite browser --desktop-mode "$DESKTOP_MODE" --browser-project "$BROWSER_PROJECT" --browser-specs "$BROWSER_SPECS" --record "${{ runner.temp }}/verified-browser/result.json"
       - name: Restore exact successful verification
         id: verified
         if: github.event_name == 'pull_request'
@@ -106,9 +120,18 @@ jobs:
         if: steps.verified.outputs.cache-hit != 'true'
         run: npm run build:desktop
         working-directory: projects/chirality-piping
+      # The core specs, and the specs the selection adds for the diff's paths
+      # (tools/hosted-ci-routing.json `piping_browser_journeys`).
       - name: Core browser journey and save/reopen
         if: steps.verified.outputs.cache-hit != 'true'
-        run: npm run test:e2e:desktop -- --project=chromium-desktop r2-smoke.spec.ts b3b-project-persistence.spec.ts rotation-glyph.spec.ts result-overlays.spec.ts
+        env:
+          BROWSER_PROJECT: ${{ needs.selection.outputs.browser_project }}
+          BROWSER_SPECS: ${{ needs.selection.outputs.browser_specs }}
+        run: |
+          test -n "$BROWSER_PROJECT"
+          test -n "$BROWSER_SPECS"
+          echo "Selected browser specs on $BROWSER_PROJECT: $BROWSER_SPECS"
+          npm run test:e2e:desktop -- --project="$BROWSER_PROJECT" $BROWSER_SPECS
         working-directory: projects/chirality-piping
       - name: Publish the verified key
         if: success()
@@ -161,7 +184,9 @@ jobs:
         id: result-key
         env:
           DESKTOP_MODE: ${{ needs.selection.outputs.desktop_mode }}
-        run: python3 tools/software_workflow/result_cache.py key --suite browser --desktop-mode "$DESKTOP_MODE" --record "${{ runner.temp }}/verified-browser/result.json"
+          BROWSER_PROJECT: ${{ needs.selection.outputs.browser_project }}
+          BROWSER_SPECS: ${{ needs.selection.outputs.browser_specs }}
+        run: python3 tools/software_workflow/result_cache.py key --suite browser --desktop-mode "$DESKTOP_MODE" --browser-project "$BROWSER_PROJECT" --browser-specs "$BROWSER_SPECS" --record "${{ runner.temp }}/verified-browser/result.json"
       - name: Restore exact successful verification
         id: verified
         if: github.event_name == 'pull_request'
