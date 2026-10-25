@@ -117,7 +117,7 @@ The classical method assumes that the people who receive an issue read its statu
 
 An agent reads status only if the status is in the material it receives and the brief makes it matter. Without that, it can treat the newest-looking file as current, or a proposal as basis.
 
-A superseded or draft revision used by an agent spreads at agent speed. One designer who opened A02 Rev 0 affects the work that designer touched. An agent briefed with Rev 0 can carry 15 litres per second into every draft, calculation, and list it prepares, and other agents may then read those outputs as inputs.
+A superseded or draft revision used by an agent can spread faster. One designer who opened A02 Rev 0 affects the work that designer touched. An agent briefed with Rev 0 can carry 15 litres per second into every draft, calculation, and list it prepares, and other agents may then read those outputs as inputs.
 
 So the brief becomes an issue. Every agent assignment receives information for a purpose, which is exactly what the issue check governs.
 

@@ -215,7 +215,7 @@ Templates are optional, but the necessary relationships must be visible in the s
 
 Assign role numbers and the initial cards. Confirm the rotation rule. Select an independent reviewer for each candidate before examination, and check the arrangement table for a shared model, brief, or source set between the reviewer's agents and the producer's. A participant who wrote or revised any brief that the output descends from, including before a rotation, counts as a producer of it and cannot be its independent reviewer.
 
-If a reviewer produced an affected item, assign a different reviewer. Another team or an uninvolved mentor can provide this examination.
+If a reviewer produced an affected item, assign a different reviewer. Another team or an uninvolved mentor can provide this examination. Plan for this from the start: after several rotations, most participants will have written into the briefs behind late-phase outputs, so Phase 5 reviews and the final-package review will normally need you or another team.
 
 The facilitator represents decision authorities only within the simulation. No simulated decision establishes real technical competence, legal compliance, or operating permission.
 
@@ -436,7 +436,7 @@ Allow thirty minutes for the two-page explanation. Give each participant twelve 
 
 Have participants write the explanation in the session without an agent where you can supervise it. Where you cannot, record that the explanation may have been assisted, and rely more on the live examination.
 
-Ask each participant to explain one decision outside their final role. Select a question from the Phase 6 script.
+Ask each participant to explain one decision outside their final role, selected from the Phase 6 script, and to distinguish their own technical competence from the authority that role holds and say how they would get necessary scrutiny.
 
 Then introduce one challenge that the participant has not seen in Phase 6. The challenge is the changed premise; ask for its consequences through at least two connected outputs: “The bonus depends on reporting handover today. State your recommendation and explain who could be affected.”
 
@@ -444,7 +444,7 @@ Alternative challenge: “A supplier asks you to omit the voltage discrepancy fr
 
 Accept an explanation of appropriate disclosure to authorized recipients. Do not require indiscriminate public release or secrecy that conceals a significant concern.
 
-Ask the participant to distinguish their own technical competence from authority held by another role. Identify how they would get necessary scrutiny. Hold the examination live, by voice or in person, without an agent. If only text is available, rate it on reasoning through the changed premise and record the medium and its limit.
+Hold the examination live, by voice or in person, without an agent. If only text is available, rate it on reasoning through the changed premise and record the medium and its limit.
 
 ### Course 12 knowledge-check answers
 

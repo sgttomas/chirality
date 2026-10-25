@@ -256,7 +256,7 @@ An agent asked to draft the S1 report could choose a common measurement method a
 
 Use Packet A and Portfolio 03. No external reading is required.
 
-First prepare the A06 enquiry (output 3) yourself, without an agent: for each missing input, why it matters and which decision it prevents. The worked example gives only one row for A06, so this enquiry is your own baseline for judging what an agent's draft should contain. Work with an agent for the outputs that follow.
+First prepare the A06 enquiry (output 3) yourself, without an agent: for each missing input, why it matters and which decision it prevents. The worked example gives only one row for A06, so this enquiry is your own baseline for judging what an agent's draft should contain. Work with an agent for the other outputs.
 
 Supply these outputs:
 

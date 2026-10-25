@@ -62,6 +62,8 @@ For each assessed output, keep the briefs you gave the agents and a short record
 
 Assessing agent-assisted work is difficult, and the difficulty is part of what the series teaches. Your instructor is in the position of a sponsor or client who receives a finished package and must decide how far to rely on it, without seeing how much judgment went into it. Making that judgment visible is part of the practice.
 
+Give each defense live, by voice or in person, without consulting an agent, where you can. In text-only study, your instructor records that limit with the rating.
+
 ## Study with a team
 
 1. Read the lesson before the session.

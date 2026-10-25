@@ -291,7 +291,7 @@ Design the division from the project basis and A01's responsibilities:
 3. **State the examination each agent contribution creates.** For each agent contribution, name its examiner and what the examination involves. The records give no examiner availability, so state the availability you assume, label it as a teaching assumption, and keep the agent work consistent with it.
 4. **Check the design against the failure modes of definition.** These include a proposal read as basis, a superseded revision used as current, an open input filled with a convenient value, an agent assignment that crosses a responsibility line without both owners examining it, and a record produced because it was cheap, not because anyone needs it.
 
-The general design steps, such as allocating production by consequence and detectability, designing the brief and the return, and sizing agent work to examination capacity, are in [Course 06 Lesson 5](06-working-relationships.html#lesson-5-support-reliable-contributions) and [Course 08 Lesson 6](08-project-execution.html#lesson-6-engineer-the-arrangement-that-does-the-work).
+[Course 08 Lesson 6](08-project-execution.html#lesson-6-engineer-the-arrangement-that-does-the-work) covers the general design steps: allocating production by consequence and detectability, and sizing agent work to examination capacity. [Course 06 Lesson 5](06-working-relationships.html#lesson-5-support-reliable-contributions) covers the brief and the return.
 
 Agents make it cheap to draft several divisions of work. Choosing among them remains a judgment about coordination, examination, and responsibility, and the person who coordinates the combined result makes it with the people whose work it divides.
 

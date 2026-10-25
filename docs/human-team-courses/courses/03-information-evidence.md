@@ -160,7 +160,7 @@ Agents can produce plausible fabrications without any intent to deceive. An agen
 
 Agents also drop conditions when they summarize. A summary that says “A02 requires 18 litres per second” has lost “under the operating conditions that the project must establish.” A summary that says “A04 confirms a 600 V supply” has lost what A04 does not establish: spare capacity, protection coordination, and equipment compatibility. Each sentence of such a summary can be accurate and the summary still mislead.
 
-The A03 failure reproduces at agent speed. A03's values were copied from a planning estimate and carry no survey reference. An agent's output that states a value without its source is the same kind of record, and if someone later cites the agent's output, it becomes a source with no provenance. Agents can make many such records quickly.
+The A03 failure can recur faster with agents. A03's values were copied from a planning estimate and carry no survey reference. An agent's output that states a value without its source is the same kind of record, and if someone later cites the agent's output, it becomes a source with no provenance. Agents can make many such records quickly.
 
 ### The extended method
 

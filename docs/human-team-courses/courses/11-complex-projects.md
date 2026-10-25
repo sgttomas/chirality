@@ -495,7 +495,7 @@ The assignment must meet these seven criteria:
 3. The option comparison addresses technical, commercial, operating, and continuing obligations.
 4. The recommendation preserves decision rights and states observable conditions for action or reconsideration. It assigns no decision or risk acceptance to an agent, and it claims no recovery from agent capacity without evidence that production limits the result.
 5. The revised memorandum addresses adverse evidence, affected people, incentive conflicts, truthful reporting, and a usable improvement in practice, including how cheap production interacts with the incentive and the reporting measure.
-6. The account of the arrangement shows who examined each agent contribution to the memorandum and for what, and where independence was needed and how it was provided. Your own examination record shows what you checked in each agent return, what it found, and what you changed.
+6. The account of the arrangement shows who examined each agent contribution to the memorandum and for what, and where independence was needed and how it was provided. Your own examination record shows what you checked in each agent return, what it found, if anything, and what you changed.
 7. In the defense, you explain the recommendation's main conclusions and their grounds, show what your examination of the agents' work found, identify which judgments are your own, and reason correctly through the changed premises your instructor poses.
 
 ## Portfolio and references

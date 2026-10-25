@@ -232,7 +232,7 @@ Agents do not rotate as people do. An agent may or may not keep project history,
 
 For a four-person team, combine project engineering with discipline representation. Combine procurement with information control. Keep production and independent examination separate.
 
-Use the facilitator or another team for conflicted reviews. Role rotation alone does not establish independence or technical competence, and neither does a fresh agent session.
+Use the facilitator or another team for conflicted reviews. Because briefs pass between participants at each rotation, most participants will have written into the briefs behind late-phase outputs, so reviews in Phase 5 and of the final package will normally need the facilitator or another team. Role rotation alone does not establish independence or technical competence, and neither does a fresh agent session.
 
 ## Phase 0: Establish the working basis
 
@@ -440,7 +440,7 @@ Complete the required repairs within the remaining phase time. If required evide
 
 During Phase 7, each participant writes a two-page individual explanation. Identify one personal contribution, one changed judgment, and one unresolved consequential condition. Identify also one agent return you examined, what you checked, and what that check would have caught. Write the explanation in the session without an agent, where the facilitator can arrange it.
 
-Each participant then receives a twelve-minute examination. Explain a decision outside your final role. Then respond to one challenge that you have not prepared for: a changed premise involving adverse evidence or incentive pressure, such as a request to report handover today or to omit the voltage discrepancy from a summary. Give the examination live, by voice or in person, without consulting an agent, where you can. Your facilitator rates the defense as the teaching guide describes; in text-only study it is rated on changed-premise reasoning with the medium recorded.
+Each participant then receives a twelve-minute examination. Explain a decision outside your final role, and distinguish your own competence from the authority that role holds. Then respond to one challenge that you have not prepared for: a changed premise involving adverse evidence or incentive pressure, such as a request to report handover today or to omit the voltage discrepancy from a summary. Give the examination live, by voice or in person, without consulting an agent, where you can. Your facilitator rates the defense as the teaching guide describes; in text-only study it is rated on changed-premise reasoning with the medium recorded.
 
 The assessment uses seven observable criteria:
 
@@ -449,7 +449,7 @@ The assessment uses seven observable criteria:
 3. The decision requests distinguish sponsor, technical, procurement, and operating authority with explicit conditions.
 4. The assurance and handover conclusions match the evidence and preserve unresolved obligations.
 5. Each participant addresses findings and ethical consequences, and shows the affected repairs within the team's integrated result.
-6. The arrangement table shows, for each output, the participant who directed the agents and who examined the return, and where independence was needed and how it accounted for shared models and briefs. Each participant's examination records show what they checked in each agent return, what they found, and what they changed, and the rotation records show that each incoming participant received the actual output, briefs, and examination records.
+6. The arrangement table shows, for each output, the participant who directed the agents and who examined the return, and where independence was needed and how it accounted for shared models and briefs. Each participant's examination records show what they checked in each agent return, what they found, if anything, and what they changed, and the rotation records show that each incoming participant received the actual output, briefs, and examination records.
 7. In the Phase 6 defense and the Phase 7 examination, each participant explains the main conclusions and their grounds, shows what their examination of the agents' work found, identifies which judgments are their own, and reasons correctly through the changed premises the facilitator poses.
 
 Meet all seven criteria. A team result does not establish each participant's understanding, and a coherent package can come from agents directed by one or two members of the team, so an unsupported individual explanation requires individual repair.
