@@ -286,7 +286,7 @@
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "2346afb0d18af398a9409c227e3f81df8b2c014afe5df39ec8ae3e1f94f83095",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "af57dee6598e3018fb7c4cb907629dff10496f951b45bfb0fef7fba1a6dcfe5d",
+      "core/product_physics/Cargo.toml": "c89f092b3ae7082400b703f0f5dffbb33da24beafd3eff183adc9ac7702e9838",
       "core/reporting/audit_manifest/Cargo.toml": "b8bc4623a383ed2c22205326bc737486becd9d931bf869e1e8cf40e147f4fad7",
       "core/reporting/pdf_emitter/Cargo.toml": "cd9871fe951f3157dce93fb550540bf4e55dd48e469ba49612208a8b669b6441",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
@@ -294,7 +294,7 @@
       "core/reporting/report_package/Cargo.toml": "fdfd00caa2361dd0aa74a9012c3c11750164a8068e16975a24843e59324d8c32",
       "core/reporting/report_renderer/Cargo.toml": "4fdfc6954384445ca3a91af393deb8d3e5e6994ab62fbe43c1cafebbd9f68147",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
-      "core/reporting/result_export/Cargo.toml": "2236cace6effc89be0211b954b455f0ba26f3dd1d7a8ebef2e18a8ba99654ea2",
+      "core/reporting/result_export/Cargo.toml": "a5d68ccf523c851b53de352e35eb714051eb0621331376f1b49fc83c9b2fd94c",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "7018210dadfb7c2b855298730f5f8cddedbe09f7f03b05421b81c3694f873b18",
       "core/rules/rule_check_runner/Cargo.toml": "9a2be1a226d4f0da6e2f6ba329eec3c1ebbdbe5b51d6f03f953c32ab3cb03794",
@@ -2235,7 +2235,7 @@
         ]
       },
       "core/reporting/result_export/tests/retained_precision_carriers.rs": {
-        "sha256": "f030a5bcf89507009d5e63a3fb8f9674de14af6490c5dcd2bf2488cc4fbcb655",
+        "sha256": "e086fc00ce03ebef895c7f3a1b08c3b38184269f33a73eeae0ac45ad74459255",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -2444,6 +2444,7 @@
               "core/product_physics/src/f1a_tests.rs",
               "core/product_physics/src/f1b_tests.rs",
               "core/product_physics/src/formation_guard.rs",
+              "core/product_physics/src/imposed_motion.rs",
               "core/product_physics/src/joint.rs",
               "core/product_physics/src/joint_pressure_tests.rs",
               "core/product_physics/src/kd5_nonlinear_tests.rs",
@@ -2877,7 +2878,7 @@
         ]
       },
       "core/reporting/result_export/tests/retained_precision_derivative_golden.rs": {
-        "sha256": "e5f40d996b69d1e5fd6c98cf6dc5fb264fbe7d03cd26602bf27647df68bf9845",
+        "sha256": "a78773dbbd2403dd7dfbcada97077582a6b6e681e81030430295c7b64ab151db",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -3733,6 +3734,7 @@
               "core/product_physics/src/f1a_tests.rs",
               "core/product_physics/src/f1b_tests.rs",
               "core/product_physics/src/formation_guard.rs",
+              "core/product_physics/src/imposed_motion.rs",
               "core/product_physics/src/joint.rs",
               "core/product_physics/src/joint_pressure_tests.rs",
               "core/product_physics/src/kd5_nonlinear_tests.rs",
@@ -3905,6 +3907,7 @@
               "core/product_physics/src/f1a_tests.rs",
               "core/product_physics/src/f1b_tests.rs",
               "core/product_physics/src/formation_guard.rs",
+              "core/product_physics/src/imposed_motion.rs",
               "core/product_physics/src/joint.rs",
               "core/product_physics/src/joint_pressure_tests.rs",
               "core/product_physics/src/kd5_nonlinear_tests.rs",
