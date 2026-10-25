@@ -8,7 +8,7 @@ The course series adapts these project principles: establish the basis, allocate
 
 - [Project Management for Human Agent Teams](../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html), management manual, Edition 9.
 
-The human-team courses use human professional and organizational responsibilities, but they do not import the manuals' agent hierarchy, repository commands, or fixed stage labels.
+The courses teach people to direct and examine agent work within human professional and organizational responsibilities. They do not import the manuals' agent role hierarchy, repository commands, or fixed stage labels.
 
 The [Root thesis](../thesis/README.md) provides background on evidence, judgment, and professional reliance. Its architecture and regulatory interpretations are arguments to examine, not regulator determinations.
 
@@ -38,8 +38,9 @@ For a real applicability exercise, get the relevant adoption instrument and its 
 - [Association for Project Management description of governance](https://www.apm.org.uk/resources/what-is-project-management/what-is-governance/).
 - [NASA Systems Engineering Handbook fundamentals](https://www.nasa.gov/reference/2-0-fundamentals-of-systems-engineering/).
 - [NASA crosscutting technical management](https://www.nasa.gov/reference/6-0-crosscutting-technical-management/).
+- Frederick P. Brooks Jr., *The Mythical Man-Month: Essays on Software Engineering*, anniversary edition (Addison-Wesley, 1995).
 
-APM provides a professional account of project management. NASA supplies a useful account of technical planning, requirements, interfaces, risk, configuration, assessment, and decisions.
+APM provides a professional account of project management. NASA supplies a useful account of technical planning, requirements, interfaces, risk, configuration, assessment, and decisions. Brooks explains why adding people to late work can slow it; Course 06 contrasts that coordination cost with the cost of briefing agents.
 
 Adapt methods to the work and its consequences. NASA's agency processes do not govern an unrelated industrial project.
 

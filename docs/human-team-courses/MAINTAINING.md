@@ -28,9 +28,9 @@ for source in sorted(root.rglob('*.md')):
         '/tmp/chirality-course-renderer/bin/python',
         'docs/alignment-manual/render_manual.py',
         '--source', str(source), '--output', str(output),
-        '--basis-date', '2026-10-23',
-        '--basis-revision', '4c9351d36b03926c494e4d034693b89513a3078d',
-        '--edition-label', 'Human team courses', '--metadata-at-end',
+        '--basis-date', '2026-10-25',
+        '--basis-revision', 'b50a2116352fd7a2bd5ddbeec7b6b6037e86deeb',
+        '--edition-label', 'Human-agent team courses', '--metadata-at-end',
     ], check=True)
 PY
 ```

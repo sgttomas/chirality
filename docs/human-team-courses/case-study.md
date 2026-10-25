@@ -14,6 +14,14 @@ An earlier course can use later packets as additional practice. Identify the pac
 
 The packets contain discrepancies and incomplete evidence, so treat each statement according to its source and status. Do not assume that every document is authoritative for every question.
 
+## Working with agents in the case
+
+The series assumes that the Northbank team works with AI agents. The agents can draft, compare, calculate, search, and check the records that a team member gives them. They hold no appointment under A01, and they cannot approve, accept, or carry responsibility for any decision or duty that A01 assigns.
+
+This arrangement is a teaching assumption added to the case. It changes no Northbank record: every revision, status, duration, price, and stated fact stays as written. Where a course needs a further assumption about agent work, it labels that assumption in the course and keeps it separate from the records.
+
+The records do not say how long any part of Northbank's information work took or how it was produced. Do not infer from them that agents would save time or cost on a particular activity; that claim needs its own evidence.
+
 ## Packet A
 
 ### A01 Appointment Rev 0
