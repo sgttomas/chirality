@@ -9,7 +9,8 @@ is an optional, generated view, not an authored progress record or a prerequisit
 to ordinary work. The human's steering supplies the objective; deliverable files
 supply current commitments, design and dependency conditions.
 
-Read the affected scope and design, then query the relevant upstream and
+Read the affected scope and work material in the project's adopted locality
+(`Work/` by the shared default), then query the relevant upstream and
 downstream needs with the project's deliverable tool when available. Until that
 tool is available, inspect the relevant dependency sources directly. Follow only
 connections needed to understand this undertaking. Preserve non-gating links and
@@ -28,7 +29,7 @@ assignment. Use one integration owner and disjoint concurrent writes. Apply
 `coordinated-knowledge-work` where contributions need coordination. Verification
 and independent scrutiny follow the consequences under Root `AGENTS.md`.
 
-Update scope, design or dependency conditions in their source files when the
+Update scope, work material or dependency conditions in their source files when the
 work changes them, obtaining owner decisions for reserved commitments or
 criteria. Regenerate a graph when needed; do not commit the generated view or
 maintain a second status table. Code-path matches identify relevance, not
