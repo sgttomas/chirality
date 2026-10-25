@@ -286,7 +286,7 @@
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "e7db148344faa5d5081880f44e5757c4120e890d837b35feba9a7471534af0bf",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "cf562e454dce21c978c0526bb3929a8d7cee1cf98f8d7763864f025a737ba090",
+      "core/product_physics/Cargo.toml": "40d52552150543a495242cc34ed85e7e0dcb5ba2b37686d056b555c788608d18",
       "core/reporting/audit_manifest/Cargo.toml": "b8bc4623a383ed2c22205326bc737486becd9d931bf869e1e8cf40e147f4fad7",
       "core/reporting/pdf_emitter/Cargo.toml": "cd9871fe951f3157dce93fb550540bf4e55dd48e469ba49612208a8b669b6441",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
@@ -1151,6 +1151,17 @@
             ]
           }
         ]
+      },
+      "core/product_physics/tests/silent_drop_guard_runtime.rs": {
+        "sha256": "dabe3a6deb4d807d42e19c7ebc4a8f11af1efaaf9fd06280d0e2dd23f32b7bc4",
+        "source_trees": [
+          "core/product_physics/Cargo.toml"
+        ],
+        "inputs": [],
+        "external_reads": {
+          "kind": "audited-external-inputs",
+          "reason": "Only the env-gated MATERIAL_WIRE_DUMP comparison reads files: the checkout directory it is given; the default run reads none."
+        }
       },
       "core/product_physics/tests/source_block_recovery.rs": {
         "sha256": "cdaa0fc03545793ba42fd04f93cda9dd1d563c8207850d2690c149858c96f5e9",
