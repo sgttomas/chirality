@@ -82,7 +82,7 @@ Return a finding with the affected claim, the source or criterion, the consequen
 
 ### Assess and continue
 
-Use the assessed assignment and its five criteria, and examine the learner's actual output and explanation. Choose follow-up questions where a criterion lacks evidence, an answer may reflect your substantial assistance, or the output and explanation disagree. Ask for the relevant demonstration rather than demanding a defense of every sentence.
+Use the assessed assignment and its criteria, and examine the learner's actual output and explanation. Choose follow-up questions where a criterion lacks evidence, an answer may reflect your substantial assistance, or the output and explanation disagree. Ask for the relevant demonstration rather than demanding a defense of every sentence.
 
 Rate each criterion separately:
 

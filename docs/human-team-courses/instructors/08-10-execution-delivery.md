@@ -8,6 +8,10 @@ Use Packets A, B, and C. Keep Packet D for the later courses unless you declare 
 
 ## Course 08: Planning and Managing Project Execution
 
+Course 08 is the first course rebuilt for human-agent teams. Each lesson keeps the classical method, states the cost that method was answering, shows what agents change, and develops the extended method. The classical answers stay correct: the Northbank totals, sequences, and authority conclusions are the same as before. What the course adds is how the learner plans, directs, and examines the work when agents do much of the production.
+
+Learners use real agents in the practice and the assessed assignment. Expect them to. Your task is to assess the learner's direction, examination, and judgment, not to prevent agent use.
+
 ### Session sequence
 
 1. Ask learners to distinguish a target from a forecast.
@@ -16,12 +20,16 @@ Use Packets A, B, and C. Keep Packet D for the later courses unless you declare 
 4. Calculate C03's sequence independently.
 5. Compare the baseline and forecast costs.
 6. Discuss supplier timing and decision authority.
-7. Assign the four practice outputs.
-8. Examine the cost mini-example.
-9. Review the sponsor briefings in pairs.
-10. Assess and repair the execution packages.
+7. Assign the four practice outputs, prepared with agents, with a brief and an examination note for each.
+8. Divide the pre-release activities into production, examination, decision, and external time.
+9. Examine the agent's 355,000 return.
+10. Review the arrangement designs for A05's impact assessment in pairs.
+11. Review the sponsor briefings in pairs.
+12. Assess and repair the execution packages, including each learner's defense.
 
-You can divide a session around Steps 5 and 8, but preserve one project basis across the sessions. Avoid introducing unrecorded approvals to make the problem easier.
+You can divide a session around Steps 5 and 9, but preserve one project basis across the sessions. Avoid introducing unrecorded approvals to make the problem easier.
+
+Steps 3 to 5 deliberately come before agent use, and the learner course asks for the same order. A learner who has calculated the sequence and totals once knows what an agent's return should contain and can recognize a return that departs from it.
 
 ### Teaching Course 08 with an agent
 
@@ -31,7 +39,27 @@ When a result differs, work with the learner to locate the first changed input, 
 
 Before ending the exercise, ask what the corrected forecast authorizes. This question connects the calculation to the decision and exposes a budget or readiness inference that correct arithmetic alone would miss.
 
-### Six keyed knowledge-check answers
+If you are an agent instructor, you are also an example of the course's subject: an agent whose fluent explanations the learner must examine before relying on them. Invite that examination. When a learner catches an error in your explanation, treat it as a demonstration of the practice.
+
+### Assessing agent-assisted work
+
+The learner's package will usually be well formed, because agents make well-formed packages cheap. Assess the evidence the course names instead: the briefs, the examination notes, the defects found and repaired, and the defense, under the conditions recorded for it.
+
+Read the briefs for the identified basis. A brief that gives C03 without its statement that each item includes actual expenditure, or gives A05 without its proposal status, shows a gap in direction, even if the agent happened to return a correct result.
+
+Criterion 6 has two parts. The designed arrangement can name Northbank roles as examiners, and in individual study those roles are simulated. The learner's own examination record must show what the learner actually checked, so assess that record separately.
+
+Read the examination notes for what the learner actually checked. "Reviewed and correct" is insufficient evidence. A note that the learner checked the delivery count from the end of Week 6 and confirmed that contingency stayed at 20,000 is evidence of examination.
+
+Conduct the defense so that it tests reasoning, not recall of the package. Change a premise and ask for its consequence. For example: if C03's items excluded actual expenditure, how would the forecast change? If the supplier confirmed a four-week delivery, which date moves and which decisions remain? Ask which part of the agent's work the learner trusted least, and why.
+
+State the defense's conditions honestly. In a text conversation you cannot establish that the learner is working without an agent. Prefer a live voice or in-person defense for Criterion 7. If only text is available, rate the criterion on the learner's reasoning through changed premises, record the medium and its limit with the rating, and do not describe the defense as unassisted. This limitation is the same one a sponsor faces with an agent-assisted team, and you can discuss it with the learner as part of the lesson.
+
+A peer explanation is practice. It does not replace the assessed defense.
+
+A learner may find no defect in the agents' work. That is acceptable if their examination would have found one: ask what they checked and what error each check would have caught. Do not require a found defect, because that rewards inventing or planting one.
+
+### Nine keyed knowledge-check answers
 
 1. **Readiness and schedule.** A date places an activity on a calendar, but readiness requires the inputs, resources, competence, access, and authority needed for its stated work. Evidence must establish their required conditions.
 2. **Resource conflict.** Independent activities can require the same unavailable person or resource; the calculated dependency sequence then overstates possible concurrency. Revise capacity, sequence, or scope within authority.
@@ -39,6 +67,9 @@ Before ending the exercise, ask what the corrected forecast authorizes. This que
 4. **Double counting.** Adding actual expenditure duplicates cost when the forecast already includes it. C03 states that each forecast item includes recorded actual expenditure. An actual-plus-remaining model is valid only with non-overlapping amounts.
 5. **Equipment release.** Northbank needs the reviewed technical purchase package and the required expenditure authorization. Technical work must address the configuration, voltage discrepancy, operating basis, and relevant requirements. Supplier timing is an input to planning, not approval.
 6. **Overlap.** Define the activity boundaries, prerequisites, resource capacity, safety and technical consequences, authorization, and affected examination. Calculate savings only after the proposed overlap has a supported basis.
+7. **Agents and examination.** When examination limits the activity, more agents increase the rate at which outputs reach the examiner without increasing the rate at which the examiner can check them. Unexamined outputs accumulate as verification debt, and the finish does not move. A sound answer identifies the examiner's capacity as the constraint.
+8. **Agreement between agents.** Agreement shows that the two returns are consistent with each other. It does not show that the shared basis, the brief, or the method is correct, because agents that share a model or a brief can share an error. Independence requires a different basis of examination, such as a differently prepared check or a competent person.
+9. **Practices that lose or keep their reason.** Accept any pair argued from the cost each practice answered. Practices that lose much of their reason include estimating information work from production hours, batching changes to save drafting effort, and counting produced documents as progress. A learner may argue that batching decisions keeps a reason, because it saves the decision-maker's attention; credit that argument. Practices that keep their reason include the separation of budget from forecast, the separation of technical review from expenditure approval, readiness conditions, and the authority to decide scope. A weak answer names practices without connecting them to the cost.
 
 ### Calculation guidance
 
@@ -67,11 +98,13 @@ C03's sequence gives end Week 6 release, end Week 11 delivery, Weeks 12–13 ins
 
 The forecast handover is three weeks beyond the target. The sequence assumes ready site works and no overlap, but neither assumption establishes technical purchase readiness.
 
+The three weeks come from the two-week later release and the one-week longer delivery. Agents cannot shorten the delivery. The records do not show how much of the time before release is document production, so they support no claim that agents would move the release.
+
 For the separate cost example:
 
 > Actual 90,000 + remaining 175,000 = expected final cost 265,000.
 
-Adding actual 90,000 to C03's inclusive total gives 355,000, which contains a duplicate 90,000. Learners should explain the error rather than merely give the corrected total.
+The agent's 355,000 return adds actual 90,000 to C03's inclusive total, so it contains a duplicate 90,000. Learners should explain the error rather than merely give the corrected total. A sound brief sentence states that each C03 item already includes its recorded actual expenditure and that no actual expenditure is to be added to C03's total.
 
 ### Sample practice reasoning
 
@@ -85,9 +118,13 @@ An option can request investigation of an alternative supplier slot or a bounded
 
 The briefing should exclude A05's proposed increase from the stated forecast; an alternative that addresses 22 litres per second needs a separate impact assessment and scope decision.
 
+In the duration exercise, a sound answer places the supplier's delivery in external time, the electrical engineer's determinations and the technical review in examination time, the expenditure authorization in decision time, and the drafting of the review and package in production time. It notes that a sponsor budget decision may also come before release, because the forecast exceeds the authorized 240,000. It states that the records give no durations for these parts before release.
+
+A sound arrangement for A05's impact assessment gives agents bounded drafting and comparison assignments, each with A05's proposal status in the brief. The mechanical and electrical engineers examine the hydraulic and electrical parts, and the project engineer examines the interfaces between them. Only the examined assessment reaches the sponsor, who decides. Useful tradeoffs include parallel drafting against a longer examination queue, and one large assignment against harder examination. Accept other designs that allocate examination by consequence and keep the sponsor's decision with the sponsor.
+
 ### Assessment guidance and common defects
 
-Use the course's five criteria. Rate each as meets the criterion, needs repair, or has insufficient evidence.
+Use the course's seven criteria. Rate each as meets the criterion, needs repair, or has insufficient evidence.
 
 Return arithmetic errors for repair. Return unsupported schedule savings for a prerequisite analysis. Require clear authority when a proposal changes budget, target, or scope.
 
@@ -99,6 +136,12 @@ Common defects include:
 - Counting delivery weeks from the wrong release date.
 - Reporting a supplier promise as technical readiness.
 - Using document counts as complete evidence of progress.
+- Claiming a schedule or cost saving from agent use without evidence for the part of the duration or cost it changes.
+- Briefing an agent with A05 or another record without its status.
+- Treating agreement between agents as independent review.
+- Proposing more agent capacity where examination, a decision, or delivery limits the finish.
+- Examination notes that state a conclusion without saying what was checked.
+- A defense that restates the package but cannot explain the consequence of a changed premise.
 
 Ask the learner to show the affected equation or dependency, because a rewritten conclusion alone does not establish that the underlying error is repaired.
 

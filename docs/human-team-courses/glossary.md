@@ -55,6 +55,7 @@ Use these meanings within the courses. A governing law, contract, or standard ca
 | Status | The declared condition of an item under the relevant process, such as draft, approved, or superseded. |
 | Validation | Examination of whether the result is fit for its intended use under the relevant conditions. |
 | Verification | Examination of conformity to specified requirements. |
+| Verification debt | Work produced but not yet examined against its requirements or for its intended use. It grows when work reaches examiners faster than they can examine it, and each item may carry an error into dependent work. |
 | Warrant | The grounds that justify a claim for the proposed reliance. |
 
 An authorized decision can establish or change commitments, permissions, and assigned responsibilities, but it does not establish unexamined physical behavior or performance. A declared status needs supporting evidence for the proposed reliance.
