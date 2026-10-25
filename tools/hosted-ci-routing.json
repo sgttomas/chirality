@@ -4524,6 +4524,7 @@
               "fixtures/caepipe_mbf/invented/caepipe_mbf_export_package.json",
               "fixtures/canonical_hash/binary64_transport_vectors.json",
               "fixtures/canonical_hash/cases.json",
+              "fixtures/comparison/model_state_comparison_golden.json",
               "fixtures/component/invented_component_library_valid.json",
               "fixtures/component/invented_section_component_library_valid.json",
               "fixtures/component/invented_section_library_valid.json",
