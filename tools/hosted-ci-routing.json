@@ -291,7 +291,7 @@
       "core/reporting/pdf_emitter/Cargo.toml": "0f5a7837e30382e888f034c0776f63545ab68eb95f90da76c32d25f8be2c90dc",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
       "core/reporting/report_generator/Cargo.toml": "c85ec217b8b711222aa47bd13e926292e224ce2e5543719e77983a1053385ea3",
-      "core/reporting/report_package/Cargo.toml": "41c5ed89ddeb13405f2bd8069b74a480aa08bcfc79f688ece9658652148aed5f",
+      "core/reporting/report_package/Cargo.toml": "d85f6aa479b2ef26c896d871279f5edf11cd2b5fc505777b8907e5e31d4a3612",
       "core/reporting/report_renderer/Cargo.toml": "ce0b4df25e78ff7cfea43caaa26d25d770b26d60b22db9876eae89dfa8794afb",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
       "core/reporting/result_export/Cargo.toml": "7e37efa559f984e439eb5db5423602ed6490805d5b3081bab9632c5d9236cdae",
@@ -2385,6 +2385,8 @@
               "apps/desktop/src-tauri/src/native_smoke.rs",
               "apps/desktop/src-tauri/src/report_package_bridge.rs",
               "apps/desktop/src-tauri/src/report_package_save.rs",
+              "apps/desktop/src-tauri/src/report_render_exact.rs",
+              "apps/desktop/src-tauri/src/report_render_exact_tests.rs",
               "apps/desktop/src-tauri/src/solve_jobs.rs",
               "apps/desktop/src-tauri/src/solve_worker.rs",
               "apps/desktop/src-tauri/src/stored_read.rs",
@@ -2520,6 +2522,7 @@
               "core/reporting/report_package/src/bindings.rs",
               "core/reporting/report_package/src/document_form.rs",
               "core/reporting/report_package/src/exact_sections.rs",
+              "core/reporting/report_package/src/forwarding_graph_scan.rs",
               "core/reporting/report_package/src/lib.rs",
               "core/reporting/report_package/src/reader.rs",
               "core/reporting/report_package/src/schema_eval.rs",
@@ -5225,7 +5228,7 @@
         ]
       },
       "core/reporting/report_package/src/admitted_tests.rs": {
-        "sha256": "fc1f06d79103cbf80bd1037f72ec8035bbf8b153f50ce2ede8329a28a5050cd2",
+        "sha256": "6177d872538ac64adbdebe9bd92a9b89773370c37c3a911d5a8108ec5a1952c2",
         "source_trees": [
           "core/reporting/report_package/Cargo.toml",
           "core/runner/headless/Cargo.toml"
@@ -5244,6 +5247,7 @@
               "core/reporting/report_package/src/bindings.rs",
               "core/reporting/report_package/src/document_form.rs",
               "core/reporting/report_package/src/exact_sections.rs",
+              "core/reporting/report_package/src/forwarding_graph_scan.rs",
               "core/reporting/report_package/src/lib.rs",
               "core/reporting/report_package/src/reader.rs",
               "core/reporting/report_package/src/schema_eval.rs",
