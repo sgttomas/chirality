@@ -9,13 +9,16 @@ Use these meanings within the courses. A governing law, contract, or standard ca
 | Acceptance | An authorized decision, based on examination, that an identified result satisfies stated conditions for a stated purpose. |
 | Accountability | The obligation to explain and answer for a responsibility or decision. |
 | Actual expenditure | Cost recorded as incurred. It is distinct from a commitment or forecast. |
+| Agent | An AI system that drafts, compares, calculates, searches, or checks work under a person's brief. In this series an agent holds no project appointment and cannot approve, accept, or carry responsibility for a decision. |
 | Applicability | The relationship that makes a requirement govern the work under its stated conditions. |
 | Approved basis | The identified requirements, decisions, and limits approved as a reference for stated work. Applicable external obligations retain their standing. |
 | Assumption | A proposition used in reasoning while its truth remains unconfirmed. |
 | Assurance | Activities that provide justified confidence in the work and its intended result. |
 | Authority | The right to make a stated decision or perform a stated act. |
 | Baseline | An identified reference state placed under a defined change process. |
+| Brief | The instruction that gives an agent one assignment: its purpose, the identified basis with revision and status, the output wanted, its limits, the checks to perform, and the conditions under which it must stop and refer to a person. |
 | Budget | The amount authorized for a defined scope. |
+| Capability | What a participant or tool can do. Capability does not establish authority. |
 | Change control | The process for assessing, deciding, communicating, and implementing departures from a controlled basis. |
 | Claim | A statement that something is the case. |
 | Commissioning | Activities that establish an installation's readiness and behavior under defined conditions before the relevant operating handover. |
@@ -30,10 +33,12 @@ Use these meanings within the courses. A governing law, contract, or standard ca
 | Document control | Identification and control of document revisions, status, access, distribution, and retention. |
 | Estimate | An assessment of a quantity, cost, or duration with a stated basis and uncertainty. |
 | Evidence | Information that can support or challenge a stated claim. |
+| Examination record | A person's record of the briefs they gave agents and of what they checked in each return, what they found, and what they changed. It shows the person's own contribution to agent-assisted work. |
 | Finding | An identified observation or conclusion that needs a defined response. |
 | Forecast | The present assessment of a future outcome. A forecast does not amend an authorized commitment. |
 | Governance | The arrangement of authority, accountability, decision rights, and oversight for the undertaking. |
 | Handover | Transfer of an identified result and its continuing responsibilities to a receiving party. |
+| Independence | The condition in which an examination's basis, preparation, method, or examiner differs enough from the producer's to detect errors the producer's work shares. A check by an agent that shares the producer's model, brief, or reference may lack it. Agreement with a shared basis shows consistency, not correctness. |
 | Interface | A boundary through which parts, disciplines, people, or organizations exchange a contribution or interact. |
 | Issue | A present condition that requires attention or a decision. |
 | Judgment | A person's consideration of purpose, evidence, uncertainty, consequences, and the responsibility they will carry. |
@@ -47,6 +52,7 @@ Use these meanings within the courses. A governing law, contract, or standard ca
 | Readiness | Satisfaction of the conditions required to start a stated activity or rely on a stated contribution. |
 | Requirement | A needed result or constraint under an applicable authority or accepted assignment. |
 | Responsibility | The work, decision, or duty that a person or organization must carry under the applicable arrangement. |
+| Return | An agent's report of an assignment: the output, the scope completed, the checks performed, the limits, and any open choices. It distinguishes what the agent prepared from what it actually changed. |
 | Review | Examination of the work, its basis, and its conclusions by a person with suitable competence and assigned purpose. |
 | Revision | An identified version of a document or other controlled item. |
 | Risk | The relationship between uncertainty and its possible effects on objectives or affected parties. |
@@ -55,6 +61,7 @@ Use these meanings within the courses. A governing law, contract, or standard ca
 | Status | The declared condition of an item under the relevant process, such as draft, approved, or superseded. |
 | Validation | Examination of whether the result is fit for its intended use under the relevant conditions. |
 | Verification | Examination of conformity to specified requirements. |
+| Verification debt | Work produced but not yet examined against its requirements or for its intended use. It grows when work reaches examiners faster than they can examine it, and each item may carry an error into dependent work. |
 | Warrant | The grounds that justify a claim for the proposed reliance. |
 
 An authorized decision can establish or change commitments, permissions, and assigned responsibilities, but it does not establish unexamined physical behavior or performance. A declared status needs supporting evidence for the proposed reliance.
