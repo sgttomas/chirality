@@ -44,6 +44,11 @@
         "tools/publication"
       ]
     },
+    "release": {
+      "pytest_paths": [
+        "tools/release"
+      ]
+    },
     "reporting": {
       "pytest_paths": [
         "tools/reporting"
@@ -174,6 +179,14 @@
     },
     {
       "paths": [
+        "tools/release/*"
+      ],
+      "checks": [
+        "release"
+      ]
+    },
+    {
+      "paths": [
         "tools/reporting/*"
       ],
       "checks": [
@@ -245,6 +258,7 @@
         "pdf2md",
         "practitioner_harness",
         "publication",
+        "release",
         "reporting",
         "retrieval",
         "scope_of_work",

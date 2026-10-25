@@ -18,6 +18,29 @@ conflict as a contradiction and request the human's resolution.
 
 ---
 
+## Dependency handoff to setup
+
+Carry source-grounded needed inputs with the responsible consuming Deliverable,
+the actual intended use/condition, relevant case or trigger, and the source
+location. Keep an unknown producer/source explicitly unresolved. These are
+inputs to the consumer's later local authoring, not producer commitments or a
+complete execution network. Do not expand a general interface into every
+producer/consumer pair or merge distinct uses because endpoints match.
+
+After scope exists, `project-setup` uses `dependency-extract` to author actual
+needs in each consumer's `deliverable.yaml` from scope, relevant material in the project's adopted work locality
+(`Work/` by the shared default), and sources. Reverse links and undertaking-specific graphs are derived on demand.
+Do not create an authoritative dependency graph or dependency CSV/Markdown
+companions in decomposition. Existing scope, objective, coverage and context
+registers retain their decomposition roles; technical holds and acceptance
+remain with their actual authorities.
+
+Native YAML `id` and ScopeOfWork `deliverable_id` bind to the numeric prefix
+of the accepted DeliverableID. This dependency binding projection does not
+change the canonical suffix-bearing PROJECT ID, metadata spelling or numbering.
+
+---
+
 ## Non-negotiable invariants
 
 - **Human-validated scope.** The agent prepares proposals and checks before
