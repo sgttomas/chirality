@@ -294,7 +294,7 @@
       "core/reporting/report_package/Cargo.toml": "b9be3decfe034732db69455d41b185c115a49b08c6790b4027a7c69fc3dfd89d",
       "core/reporting/report_renderer/Cargo.toml": "9e68ec98586d5dbab46074e602d40ac47052ca3680df2cddc9a074473cbbeaed",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
-      "core/reporting/result_export/Cargo.toml": "7e37efa559f984e439eb5db5423602ed6490805d5b3081bab9632c5d9236cdae",
+      "core/reporting/result_export/Cargo.toml": "3004e610471c15af9a4a6f44c151a4362d16b76669476ca34fbf22ddd2d42897",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "7018210dadfb7c2b855298730f5f8cddedbe09f7f03b05421b81c3694f873b18",
       "core/rules/rule_check_runner/Cargo.toml": "88971098b7a02b7cd79ee97788e76d31425865b98a0e51dbdd7d6e8711fb9dc1",
@@ -2235,7 +2235,7 @@
         ]
       },
       "core/reporting/result_export/tests/retained_precision_carriers.rs": {
-        "sha256": "f8a4f50b02d398d97bc5818ea2ce7d781f1962cb234355e60a4a748aa8aef501",
+        "sha256": "9eb6fe617cb0d624ba938c6b6a182f87c2342bda8b809df91e051594ddf466da",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
