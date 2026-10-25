@@ -5220,5 +5220,36 @@
       "fixtures/product_preview/invented_demo_model.json",
       "fixtures/product_preview/rf_skew_t_cant_off_122_r1e-04.desktop_model.json"
     ]
+  },
+  "piping_browser_journeys": {
+    "description": "Desktop browser specs the product job runs on one Chromium project. The core specs run whenever the job runs. A group's specs are added when the PR diff changes one of its paths, including the specs themselves, and for shared or unmatched inputs and full coverage. Paths are project-relative.",
+    "project": "chromium-desktop",
+    "core": [
+      "r2-smoke.spec.ts",
+      "b3b-project-persistence.spec.ts",
+      "rotation-glyph.spec.ts",
+      "result-overlays.spec.ts"
+    ],
+    "groups": [
+      {
+        "name": "project-open-new-replace",
+        "reason": "Open, New and Replace of an edited project and the unsaved-changes guard (W-12; #1589 broke these specs without a hosted check, #1609)",
+        "paths": [
+          "apps/desktop/src/features/project-storage/**",
+          "apps/desktop/src/features/workspace/workspaceSession.ts",
+          "apps/desktop/src/services/projectService.ts",
+          "apps/desktop/e2e/ui-foundation.spec.ts",
+          "apps/desktop/e2e/c3-viewport-visibility.spec.ts",
+          "apps/desktop/e2e/gui-workflow-validation.spec.ts",
+          "apps/desktop/e2e/linear-authoring.spec.ts"
+        ],
+        "specs": [
+          "ui-foundation.spec.ts",
+          "c3-viewport-visibility.spec.ts",
+          "gui-workflow-validation.spec.ts",
+          "linear-authoring.spec.ts"
+        ]
+      }
+    ]
   }
 }

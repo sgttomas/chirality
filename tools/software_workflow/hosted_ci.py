@@ -29,6 +29,9 @@ DESKTOP_RUST_CRATE = "apps/desktop/src-tauri"
 # glob, query or fragment; `core/units catalog` names `core/units`.
 PROJECT_PATH = re.compile(r"(?<![\w./-])((?:api|apps|core|docs|examples|fixtures|governance|provenance|schemas|tests|tools|validation)/[^\s'\"`$*?#]*)")
 RELATIVE_PATH = re.compile(r"['\"`]((?:\.\./)+[^\s'\"`$*?#]+)")
+# The selection job passes these to Playwright on its command line.
+BROWSER_PROJECT = re.compile(r"[a-z0-9-]+")
+BROWSER_SPEC = re.compile(r"[A-Za-z0-9_.-]+\.spec\.ts")
 
 
 def git(root: Path, *args: str) -> str:
@@ -327,6 +330,70 @@ def desktop_rust_plan(root: Path, paths: list[str], selection: dict, profile: di
     return {"classification": "reachability" if reasons else "not-applicable", "reasons": reasons, "fallback_reasons": []}
 
 
+def browser_journeys(profile: dict) -> tuple[str, list[str], list[dict]]:
+    """The product job's declared Chromium project, core specs and path groups.
+
+    A malformed declaration fails selection: no spec set can be derived from it.
+    """
+    declaration = profile["piping_browser_journeys"]
+    project, core, groups = declaration["project"], declaration["core"], declaration["groups"]
+    if not isinstance(project, str) or not BROWSER_PROJECT.fullmatch(project):
+        raise ValueError("Invalid browser project declaration")
+    if not isinstance(core, list) or not core or not isinstance(groups, list):
+        raise ValueError("Invalid browser spec declaration")
+    names = set()
+    for group in groups:
+        if (not isinstance(group.get("name"), str) or group["name"] in names or not isinstance(group.get("reason"), str)
+                or not isinstance(group.get("paths"), list) or not group["paths"]
+                or not all(isinstance(path, str) and path for path in group["paths"])
+                or not isinstance(group.get("specs"), list) or not group["specs"]):
+            raise ValueError("Invalid browser spec group declaration")
+        names.add(group["name"])
+    for spec in core + [spec for group in groups for spec in group["specs"]]:
+        if not isinstance(spec, str) or not BROWSER_SPEC.fullmatch(spec):
+            raise ValueError("Invalid browser spec name: " + repr(spec))
+    return project, list(core), groups
+
+
+def browser_specs(core: list[str], groups: list[dict], selected: set[str]) -> list[str]:
+    """The core specs, then each selected group's specs in declaration order."""
+    specs = list(core)
+    for group in groups:
+        if group["name"] in selected:
+            specs.extend(spec for spec in group["specs"] if spec not in specs)
+    return specs
+
+
+def browser_full(profile: dict, reason: str) -> dict:
+    project, core, groups = browser_journeys(profile)
+    return {"classification": "full-fallback", "project": project,
+            "specs": browser_specs(core, groups, {group["name"] for group in groups}),
+            "reasons": [], "fallback_reasons": [reason]}
+
+
+def browser_plan(paths: list[str], selection: dict, profile: dict) -> dict:
+    """The specs the product job runs when it runs: the core specs, and each
+    group whose declared path the diff changes. A shared CI input or an
+    unmatched project input selects every group."""
+    project, core, groups = browser_journeys(profile)
+    if selection["modes"]["piping"] != "full":
+        return {"classification": "not-applicable", "project": project, "specs": [], "reasons": [], "fallback_reasons": []}
+    piping_paths = set(selection["reasons"].get("piping", []))
+    reasons, selected = [], set()
+    for path in sorted(piping_paths | {p for p in paths if p.startswith(PIPING)}):
+        if not path.startswith(PIPING):
+            kind, matched = "shared-input", groups
+        elif path in selection.get("unmatched_paths", []):
+            kind, matched = "unmatched-input", groups
+        else:
+            kind, matched = "group-path", [group for group in groups if matches(path[len(PIPING):], group["paths"])]
+        for group in matched:
+            selected.add(group["name"])
+            reasons.append({"path": path, "kind": kind, "group": group["name"], "specs": group["specs"], "why": group["reason"]})
+    return {"classification": "reachability" if reasons else "core", "project": project,
+            "specs": browser_specs(core, groups, selected), "reasons": reasons, "fallback_reasons": []}
+
+
 def select_paths(paths: list[str], profile: dict, root: Path = ROOT) -> dict:
     selection = select_checks(profile, paths)
     checks = set(selection["checks"])
@@ -370,6 +437,7 @@ def select_paths(paths: list[str], profile: dict, root: Path = ROOT) -> dict:
     selection["modes"]["piping-desktop-rust"] = "full" if selected else "not-applicable"
     selection["piping_desktop_rust_selection"] = desktop_rust
     selection["checks"] = sorted(checks)
+    selection["piping_browser_selection"] = browser_plan(paths, selection, profile)
     return selection
 
 
@@ -383,7 +451,8 @@ def make_plan(root: Path, profile: dict, event: str, base: str, head: str) -> di
             "piping_desktop_selection": {"classification": "full-fallback", "reasons": [],
                                          "fallback_reasons": ["Full product coverage"]},
             "piping_desktop_rust_selection": {"classification": "full-fallback", "reasons": [],
-                                              "fallback_reasons": ["Full product coverage"]}}
+                                              "fallback_reasons": ["Full product coverage"]},
+            "piping_browser_selection": browser_full(profile, "Full product coverage")}
     if event != "pull_request":
         return plan
     try:
