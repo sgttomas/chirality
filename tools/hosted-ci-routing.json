@@ -291,8 +291,8 @@
       "core/reporting/pdf_emitter/Cargo.toml": "2683fe2c51222fcaa4da2a793a14cc1c9af376bf0e1676eaef932ebd35a79250",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
       "core/reporting/report_generator/Cargo.toml": "c85ec217b8b711222aa47bd13e926292e224ce2e5543719e77983a1053385ea3",
-      "core/reporting/report_package/Cargo.toml": "b7416216483b2472c3e8e894432b7e66cc8ead9be3ac4a8224188966c7a3ff7c",
-      "core/reporting/report_renderer/Cargo.toml": "3af50805514d903548a690d61756c5420cbf380b3d33f3b8d62435fd3adc4a77",
+      "core/reporting/report_package/Cargo.toml": "4bf4e006d561a8936b714c6215e8f92646b7672eb1567350ccec28ccdf1bd752",
+      "core/reporting/report_renderer/Cargo.toml": "53d9686bceb15d222ac996d3c357216fe897a94185e7d3c1757e55e909fd17ec",
       "core/reporting/report_sections/Cargo.toml": "44acb66312edbc9bfd77aa2980a898511ac34de67fba0fc773b70007a3aad0f1",
       "core/reporting/result_export/Cargo.toml": "74ef9e9560d7edc9f2c57c884167892b67e861f5e9ca5fce9146e1d55d2a1c94",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
@@ -300,7 +300,7 @@
       "core/rules/rule_check_runner/Cargo.toml": "88971098b7a02b7cd79ee97788e76d31425865b98a0e51dbdd7d6e8711fb9dc1",
       "core/rules/rule_pack_document/Cargo.toml": "4f7c86c11d3106f5e8ddb32f542784c0913c135011e07f4e6ae1eca976961ae9",
       "core/rules/rule_pack_lifecycle/Cargo.toml": "811d32918f3d13d8d2a9115ebb6ce9b0243078626bc426d8dbd97224eb2dbd56",
-      "core/runner/headless/Cargo.toml": "84dd53c1ef6d32315de99be81d881d3b2bec4c69b8f370f2d3aa73273dd74ab6",
+      "core/runner/headless/Cargo.toml": "f8bb3ea14745e0cbad89dbf01c8176f2557e638c96be0c6591724e1589b84602",
       "core/serialization/canonical_json/Cargo.toml": "fb2259bdfcb6adebc877b46e4e1b3126fdf1b08c0b6441a5e4ba49ab75e670a0",
       "core/solver/curved_bend/Cargo.toml": "5d7cf1288eac698c209aa4fd7493fa669aa57494950e75374ac07248001502d8",
       "core/solver/diagnostics/Cargo.toml": "11db1409fcfd3b0312ef80085e36eac4d7a66eb0f4298832137119835b1c92e8",
@@ -3244,7 +3244,7 @@
         ]
       },
       "core/runner/headless/src/bin/openpipestress-runner.rs": {
-        "sha256": "0fa3244327da81b8504c6e7c4f26d90ee5bba5466de10385ed7fe84daaf5fc3b",
+        "sha256": "eca58effce73817aec2335819fd77d34150428ec36ffeff127061e912e0ef5f3",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
