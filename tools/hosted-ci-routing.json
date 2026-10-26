@@ -286,13 +286,13 @@
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "8225c3d9988cdc79a7b366f78d3881a19c4f0a4922db90ada295c97d5152f1e2",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "a52cfdf38bdb88a644dd40224999514748bedb5e17d0b22416b37b7ad49567ca",
+      "core/product_physics/Cargo.toml": "fe4fb5775188b93bc29d8e52f6cb32d54920537e4ed6195a79e31040de190377",
       "core/reporting/audit_manifest/Cargo.toml": "b8bc4623a383ed2c22205326bc737486becd9d931bf869e1e8cf40e147f4fad7",
-      "core/reporting/pdf_emitter/Cargo.toml": "f40fa287ba9c24735164f38b279846fcbdfa7967285b597e575fe9d83dd28738",
+      "core/reporting/pdf_emitter/Cargo.toml": "1831810c22b5cd51c4a2b7bd78b3df6215541d3eacd03640a93bd96ee402c406",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
       "core/reporting/report_generator/Cargo.toml": "c85ec217b8b711222aa47bd13e926292e224ce2e5543719e77983a1053385ea3",
-      "core/reporting/report_package/Cargo.toml": "b9be3decfe034732db69455d41b185c115a49b08c6790b4027a7c69fc3dfd89d",
-      "core/reporting/report_renderer/Cargo.toml": "9e68ec98586d5dbab46074e602d40ac47052ca3680df2cddc9a074473cbbeaed",
+      "core/reporting/report_package/Cargo.toml": "3f36101fe6609d36616301cdb0f880ad6717466d05db7c28c0e0dc991c907bc6",
+      "core/reporting/report_renderer/Cargo.toml": "420520e7bb454c0f5966d54371ff0cdfbfea8b40c8026428158f121d79dcea1a",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
       "core/reporting/result_export/Cargo.toml": "ae9126b2cc2ea3d3c27c8165534c2e1c8f0d32a95b821eba0cff9b0a96e5ee6c",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
@@ -300,7 +300,7 @@
       "core/rules/rule_check_runner/Cargo.toml": "88971098b7a02b7cd79ee97788e76d31425865b98a0e51dbdd7d6e8711fb9dc1",
       "core/rules/rule_pack_document/Cargo.toml": "4f7c86c11d3106f5e8ddb32f542784c0913c135011e07f4e6ae1eca976961ae9",
       "core/rules/rule_pack_lifecycle/Cargo.toml": "811d32918f3d13d8d2a9115ebb6ce9b0243078626bc426d8dbd97224eb2dbd56",
-      "core/runner/headless/Cargo.toml": "0e7c8f90bc4228b2d4b18247cfd2a4f7a24c3fdf58cbe453ec08ded63ecee993",
+      "core/runner/headless/Cargo.toml": "1ad954a93456cc34899accae3ab344287b2f2a235c79b8498a76cdc1de6ef7eb",
       "core/serialization/canonical_json/Cargo.toml": "fb2259bdfcb6adebc877b46e4e1b3126fdf1b08c0b6441a5e4ba49ab75e670a0",
       "core/solver/curved_bend/Cargo.toml": "5d7cf1288eac698c209aa4fd7493fa669aa57494950e75374ac07248001502d8",
       "core/solver/diagnostics/Cargo.toml": "11db1409fcfd3b0312ef80085e36eac4d7a66eb0f4298832137119835b1c92e8",
@@ -2368,6 +2368,7 @@
               "apps/desktop/src-tauri/src/analysis_runs_tests.rs",
               "apps/desktop/src-tauri/src/atomic_report_package_save.rs",
               "apps/desktop/src-tauri/src/command_ingress.rs",
+              "apps/desktop/src-tauri/src/exact_source_binding.rs",
               "apps/desktop/src-tauri/src/export_disposition_screen.rs",
               "apps/desktop/src-tauri/src/handoff_package.rs",
               "apps/desktop/src-tauri/src/handoff_package_publish.rs",
@@ -2385,10 +2386,13 @@
               "apps/desktop/src-tauri/src/native_smoke.rs",
               "apps/desktop/src-tauri/src/report_package_bridge.rs",
               "apps/desktop/src-tauri/src/report_package_save.rs",
+              "apps/desktop/src-tauri/src/report_render_exact.rs",
+              "apps/desktop/src-tauri/src/report_render_exact_tests.rs",
               "apps/desktop/src-tauri/src/rule_solver_selection.rs",
               "apps/desktop/src-tauri/src/rule_solver_selection_tests.rs",
               "apps/desktop/src-tauri/src/solve_jobs.rs",
               "apps/desktop/src-tauri/src/solve_worker.rs",
+              "apps/desktop/src-tauri/src/stored_model_document_export.rs",
               "apps/desktop/src-tauri/src/stored_read.rs",
               "apps/desktop/src-tauri/src/worker_alloc.rs",
               "core/gui/viewport_editor/src/lib.rs",
@@ -2520,12 +2524,18 @@
               "core/reporting/protected_content_linter/src/bin/protected_content_lint_cli.rs",
               "core/reporting/protected_content_linter/src/lib.rs",
               "core/reporting/report_generator/src/lib.rs",
+              "core/reporting/report_package/src/admitted.rs",
+              "core/reporting/report_package/src/admitted_tests.rs",
               "core/reporting/report_package/src/bindings.rs",
               "core/reporting/report_package/src/document_form.rs",
+              "core/reporting/report_package/src/exact_package_witness_tests.rs",
+              "core/reporting/report_package/src/exact_sections.rs",
+              "core/reporting/report_package/src/forwarding_graph_scan.rs",
               "core/reporting/report_package/src/lib.rs",
               "core/reporting/report_package/src/reader.rs",
               "core/reporting/report_package/src/schema_eval.rs",
               "core/reporting/report_package/src/wire.rs",
+              "core/reporting/report_renderer/src/exact_statements.rs",
               "core/reporting/report_renderer/src/lib.rs",
               "core/reporting/report_sections/src/lib.rs",
               "core/reporting/result_export/src/arc_evidence.rs",
@@ -4752,10 +4762,23 @@
               "fixtures/product_preview/w1_controls/ui/n06-sparse_interactive.request.json",
               "fixtures/redaction_export_controls/cases.json",
               "fixtures/report_lint/invented/lint_run_fixture.json",
+              "fixtures/reports/exact_report_statements.json",
+              "fixtures/reports/exact_route_limitations.json",
               "fixtures/reports/invented/calculation_report_fixture.json",
               "fixtures/reports/invented/component_provenance_cross_layer_projection.json",
               "fixtures/reports/invented/del1005_analysis_record.json",
               "fixtures/reports/invented/del1005_input_manifest.json",
+              "fixtures/reports/invented/exact_report_package_requests/pressure_2_connector.json",
+              "fixtures/reports/invented/exact_report_package_requests/pressure_2_load_reference_states.json",
+              "fixtures/reports/invented/exact_report_package_requests/pressure_2_realized_bend.json",
+              "fixtures/reports/invented/exact_report_package_requests/pressure_2_straight.json",
+              "fixtures/reports/invented/exact_report_package_requests/pressure_2_straight_substitute.overlay.json",
+              "fixtures/reports/invented/exact_report_package_requests/pressure_source_1.json",
+              "fixtures/reports/invented/exact_report_sections_parity.json",
+              "fixtures/reports/invented/exact_report_witness_inputs/pressure_2_connector-sparse_interactive.raw.json",
+              "fixtures/reports/invented/exact_report_witness_inputs/pressure_2_connector.request.json",
+              "fixtures/reports/invented/exact_report_witness_inputs/pressure_2_realized_bend-sparse_interactive.raw.json",
+              "fixtures/reports/invented/exact_report_witness_inputs/pressure_2_realized_bend.request.json",
               "fixtures/reports/invented/report_result_rows_parity.json",
               "fixtures/reports/invented/state_comparison_handoff_desktop_parity.json",
               "fixtures/results/base_reader_outcomes.json",
@@ -5157,7 +5180,7 @@
         ]
       },
       "core/runner/headless/tests/del1005_package_witness.rs": {
-        "sha256": "7b7297b5785d002a9d051b95cbdc1783cf36f616fef9dba54af9c1b2fe15d29f",
+        "sha256": "cfea331b53e0d6ae61c8ed79f1163042a697a1ff9e53613bec2e90b0c34fbc8d",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
@@ -5224,6 +5247,36 @@
             "base": "project",
             "files": [
               "fixtures/results/retained_precision_successor_derivative_sparse_interactive.json"
+            ]
+          }
+        ]
+      },
+      "core/reporting/report_package/src/admitted_tests.rs": {
+        "sha256": "6177d872538ac64adbdebe9bd92a9b89773370c37c3a911d5a8108ec5a1952c2",
+        "source_trees": [
+          "core/reporting/report_package/Cargo.toml",
+          "core/runner/headless/Cargo.toml"
+        ],
+        "inputs": [
+          {
+            "anchor": "src",
+            "base": "manifest",
+            "scan": {
+              "suffix": ".rs"
+            },
+            "audit": "admitted_set_forwarding_graph_is_closed recursively reads every .rs file under the crate's exact src boundary before removing its test-only items and checking the admitted-set forwarding graph; no test or production file is omitted.",
+            "files": [
+              "core/reporting/report_package/src/admitted.rs",
+              "core/reporting/report_package/src/admitted_tests.rs",
+              "core/reporting/report_package/src/bindings.rs",
+              "core/reporting/report_package/src/document_form.rs",
+              "core/reporting/report_package/src/exact_package_witness_tests.rs",
+              "core/reporting/report_package/src/exact_sections.rs",
+              "core/reporting/report_package/src/forwarding_graph_scan.rs",
+              "core/reporting/report_package/src/lib.rs",
+              "core/reporting/report_package/src/reader.rs",
+              "core/reporting/report_package/src/schema_eval.rs",
+              "core/reporting/report_package/src/wire.rs"
             ]
           }
         ]
