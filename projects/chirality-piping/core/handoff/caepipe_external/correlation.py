@@ -185,8 +185,8 @@ def build_comparison_record(
         "comparison_basis": {
             "units": "SI base units: m, rad, N, N*m",
             "sign_convention": ("SWBPIPE global axes and right-hand rotations; reactions are the support's action on "
-                                "the pipe. CAEPIPE anchor and restraint loads (the pipe's load on the support) are "
-                                "sign-flipped; CAEPIPE rotations are converted from degrees to radians and lengths "
+                                "the pipe. The external prover's anchor and restraint loads (the pipe's load on the support) "
+                                "are sign-flipped; its rotations are converted from degrees to radians and lengths "
                                 "from mm to m."),
             "caepipe_load_cases_compared": sorted(labels_compared),
             "parser_version": (parsed_caepipe or {}).get("parser_version"),
@@ -362,7 +362,7 @@ def _missing_conditions(row: Mapping[str, Any], declaration: Mapping[str, Any],
                         "detail": "the declaration gives no alternative analytic for this quantity"})
     elif check["outcome"] == EXCEEDS:
         missing.append({"condition": CONDITION_ALTERNATIVE, "state": "failed",
-                        "detail": "the alternative analytic value differs from CAEPIPE beyond the print-resolution "
+                        "detail": "the alternative analytic value differs from the external prover's beyond the print-resolution "
                                   "tolerance"})
     elif check["outcome"] != MATCHED:
         missing.append({"condition": CONDITION_ALTERNATIVE, "state": "unevaluated",
@@ -442,7 +442,7 @@ def _classify(row: Mapping[str, Any], declaration: Mapping[str, Any] | None, fau
             if not missing:
                 cause = _cause("documented_behavior_difference", "alternative_analytic_and_hypothesis_series",
                                "analytic and SWBPIPE agree, SWBPIPE and CAEPIPE differ, the declaration's "
-                               "alternative analytic matches CAEPIPE at print resolution, the declaration cites a "
+                               "alternative analytic matches the external prover at print resolution, the declaration cites a "
                                "public source basis and its hypothesis series is consistent",
                                evidence_status="established", declared_difference=declared.get("id"),
                                hypothesis=hypothesis, missing=[])

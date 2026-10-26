@@ -629,7 +629,7 @@ class _Writer:
                 if any(dof.startswith("R") for dof in self.supports[support_id]["dofs"]):
                     self.refuse("MBF-SI-SUPPORT-UNSUPPORTED", f"support:{support_id}",
                                 f"support:{support_id} at node {node!r} restrains rotation ({', '.join(rotations)}) "
-                                "without being a full anchor; the target build (CAEPIPE 15.10) does not accept "
+                                "without being a full anchor; the target tool does not accept "
                                 "rotational restraints (FIXR) in an imported MBF, so partial rotational restraints are "
                                 "not exported")
 

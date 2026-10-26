@@ -299,8 +299,9 @@ def test_print_resolution_tolerance_missing_leaves_the_alternative_check_unevalu
 
 
 def test_declared_difference_never_masks_a_swbpipe_departure_from_the_analytic_witness():
-    # All three disagree (analytic -10 mm, SWBPIPE -12 mm, CAEPIPE -13.05 mm), and the alternative analytic even
-    # matches CAEPIPE with a consistent series and a source basis: the triangle rule still names the cause.
+    # All three disagree (analytic -10 mm, SWBPIPE -12 mm, invented prover value -13.05 mm), and the alternative
+    # analytic even matches the prover value with a consistent series and a source basis: the triangle rule still
+    # names the cause.
     alternative = {"invented-hypothesis": {"uy": {"value": -0.01305, "unit": "m", "basis": "Timoshenko"}}}
     row = quantity(record(case=synthetic_case(declared_differences=[declaration()]), payload=swb_rows(uy_mm=-12.0),
                           caepipe=parsed(uy_mm=-13.05), alternative=alternative, series=CONSISTENT), "uy")
@@ -382,7 +383,7 @@ def test_series_slope_on_synthetic_numbers():
     assert steep["status"] == "inconsistent" and steep["fitted_slope"] == pytest.approx(-1.9, abs=1e-9)
     flat = evaluate_hypothesis_series(SERIES_DEFINITION, series_records(0.0))
     assert flat["status"] == "inconsistent" and flat["fitted_slope"] == pytest.approx(0.0, abs=1e-12)
-    # Right slope but CAEPIPE stiffer than SWBPIPE: shear flexibility cannot do that.
+    # Right slope but the invented prover value stiffer than SWBPIPE: shear flexibility cannot do that.
     wrong = evaluate_hypothesis_series(SERIES_DEFINITION, series_records(-2.0, sign=-1.0))
     assert wrong["status"] == "inconsistent" and "unexpected sign" in wrong["reasons"][0]
 
