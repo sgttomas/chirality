@@ -4551,6 +4551,7 @@
               "fixtures/analysis_boundary/invented_user_rule_checked.json",
               "fixtures/analysis_boundary/invented_user_rule_failed_with_human_ref.json",
               "fixtures/caepipe_external/invented/parser_only_run_package.json",
+              "fixtures/caepipe_external/invented/print_to_file_results.provenance.json",
               "fixtures/caepipe_external/invented/skipped_run_package.json",
               "fixtures/caepipe_mbf/invented/caepipe_mbf_export_package.json",
               "fixtures/canonical_hash/binary64_transport_vectors.json",
