@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
-<meta name="source-sha256" content="5881c39a2053525df883d8dc52e4c579885a7da7dcc21ae741227be27b46e7a8">
-<meta name="source-basis-date" content="2026-10-23">
-<meta name="source-basis-revision" content="4c9351d36b03926c494e4d034693b89513a3078d">
-<title>Project Practice for Human Teams · Chirality</title>
+<meta name="source-sha256" content="bb9c4185da507c60df5e8c2b08ee6bdf30c452284f9ffc4b27f42dd717c9c5d4">
+<meta name="source-basis-date" content="2026-10-25">
+<meta name="source-basis-revision" content="b50a2116352fd7a2bd5ddbeec7b6b6037e86deeb">
+<title>Project Practice for Human-Agent Teams · Chirality</title>
 <style>
 :root {
   color-scheme: light;
@@ -195,11 +195,13 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <body id="manual-top">
 <a class="skip-link" href="#manual-content">Skip to manual</a>
 <header class="masthead">
-  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Human team courses · offline reading edition</span></div>
+  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Human-agent team courses · offline reading edition</span></div>
 </header>
 <details class="mobile-toc">
-  <summary>Contents · 5 sections</summary>
-  <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#start-the-series">Start the series</a></li>
+  <summary>Contents · 7 sections</summary>
+  <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#how-the-series-is-built">How the series is built</a></li>
+<li><a href="#start-the-series">Start the series</a></li>
+<li><a href="#work-with-agents">Work with agents</a></li>
 <li><a href="#study-with-a-team">Study with a team</a></li>
 <li><a href="#study-with-an-agent-instructor">Study with an agent instructor</a></li>
 <li><a href="#assessment">Assessment</a></li>
@@ -209,7 +211,9 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <aside class="sidebar">
   <nav aria-label="Sections">
     <p class="nav-label">In this manual</p>
-    <ol class="contents"><li><a href="#start-the-series">Start the series</a></li>
+    <ol class="contents"><li><a href="#how-the-series-is-built">How the series is built</a></li>
+<li><a href="#start-the-series">Start the series</a></li>
+<li><a href="#work-with-agents">Work with agents</a></li>
 <li><a href="#study-with-a-team">Study with a team</a></li>
 <li><a href="#study-with-an-agent-instructor">Study with an agent instructor</a></li>
 <li><a href="#assessment">Assessment</a></li>
@@ -222,16 +226,30 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 </aside>
 <main id="manual-content" tabindex="-1">
   <div class="paper">
-    <article aria-labelledby="project-practice-for-human-teams">
+    <article aria-labelledby="project-practice-for-human-agent-teams">
 <!-- BEGIN MARKDOWN CONTENT -->
-<h1 id="project-practice-for-human-teams">Project Practice for Human Teams</h1>
-<p>This series has twelve courses in project management and project engineering for human teams. They run from your own professional practice to leading complex projects.</p>
+<h1 id="project-practice-for-human-agent-teams">Project Practice for Human-Agent Teams</h1>
+<p>This series has twelve courses in project management and project engineering for teams in which people work with AI agents. They run from your own professional practice to leading complex projects. They are written for physical engineering projects, where suppliers, fabrication, site work, and testing still set much of the pace.</p>
 <p>Use the courses to prepare, carry out, examine, and coordinate professional work. Develop your discipline's technical knowledge alongside them.</p>
 <p>The courses are written for you, the person learning project practice. The <a href="../alignment-manual/README.md">Chirality manuals</a> are written mainly for your agent, to read and use while it works with you. Give it the management manual so it shares the method and vocabulary. Describe the problem you want to solve or the thing you want to build, and provide the relevant work and circumstances.</p>
 <p>Bring what you learn here into that work. Examine what the agent contributes, talk through the interpretations that matter, make the decisions that are yours, and have the agent carry the agreed work forward. You and your agent develop a shared way of working by producing, examining, and improving the result. When experience raises a question you need to understand, return to the lessons and the manuals.</p>
+<h2 id="how-the-series-is-built">How the series is built</h2>
+<p>The classical methods of project practice are sound, and every course teaches them. But they were developed for teams in which every piece of work came from a person. In such a team, producing work costs people's time, and the person producing the work is also paying attention to it.</p>
+<p>Agents change that for much of a project's information work. An agent can often draft, compare, calculate, and search in minutes, and many agents can work at once. But agents cannot carry the responsibilities that a project appointment assigns, and the attention of the people who examine, decide, and accept their work does not grow with them. Production and accountable attention used to come together in the same person-hours. With agents, they come apart.</p>
+<p>Engineers have met this kind of change before. Euler-Bernoulli beam theory neglects shear deformation, and for a slender beam that is the right simplification. In a short, thick beam, or a sandwich panel with a soft core, shear deformation becomes significant, so Timoshenko theory adds it. The extended theory does not discard the classical one: as the beam becomes slender, it gives the classical result.</p>
+<p>The methods in this series behave the same way. Where people or physical processes do the work, they give the classical answer. Where agents do the production, the examination, judgment, and decisions that the classical methods carried inside people's work become the parts that need explicit design. Timoshenko theory has its own limits, and so do these methods, so test them against your own work.</p>
+<p>These are claims about how the costs of work are changing, not measurements of productivity. Agent capability and cost vary with the task and the system.</p>
+<p>Most lessons follow four steps:</p>
+<ol>
+<li><strong>The classical method:</strong> what it does and why it works.</li>
+<li><strong>What it assumes:</strong> the cost or limit the method was answering.</li>
+<li><strong>What changes with agents:</strong> which part of that assumption no longer holds, and which part still does.</li>
+<li><strong>The extended method:</strong> how you now carry out the practice, and what each choice gains and costs.</li>
+</ol>
+<p>Several courses end with a lesson that treats the arrangement of people and agents as a system to engineer, because the classical methods could leave that arrangement to habit.</p>
 <h2 id="start-the-series">Start the series</h2>
 <p>Read the courses in the order below. Each course contains lessons, a worked example, practice, a knowledge check, and an assessed assignment.</p>
-<p>The exercises use the <a href="case-study.html">Northbank case</a>. The <a href="glossary.html">glossary</a> defines shared terms. Instructors use the <a href="instructor-guide.html">teaching guide</a>.</p>
+<p>The exercises use the <a href="case-study.html">Northbank case</a>, including its <a href="case-study.html#working-with-agents-in-the-case">arrangement for working with agents</a>. The <a href="glossary.html">glossary</a> defines shared terms. Instructors use the <a href="instructor-guide.html">teaching guide</a>.</p>
 <div class="table-scroll" role="region" tabindex="0" aria-label="Table 1; scroll horizontally if needed">
 <table>
 <thead>
@@ -245,17 +263,17 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <tr>
 <td>01</td>
 <td><a href="courses/01-professional-practice.html">Professional Practice and Responsibility</a></td>
-<td>Explain responsibilities, competence limits, and decision rights.</td>
+<td>Explain responsibilities, competence limits, and decision rights, including what agents can contribute and what they cannot carry.</td>
 </tr>
 <tr>
 <td>02</td>
 <td><a href="courses/02-document-control.html">Document and Configuration Control</a></td>
-<td>Establish a controlled basis and trace a change.</td>
+<td>Establish a controlled basis that people and agents work from, and trace a change.</td>
 </tr>
 <tr>
 <td>03</td>
 <td><a href="courses/03-information-evidence.html">Information Research and Evidence</a></td>
-<td>Prepare information that another person can find and examine.</td>
+<td>Prepare information that another person can find and examine, whoever gathered it.</td>
 </tr>
 <tr>
 <td>04</td>
@@ -270,17 +288,17 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <tr>
 <td>06</td>
 <td><a href="courses/06-working-relationships.html">Communication and Working Relationships</a></td>
-<td>Establish understanding, decisions, and workable responsibilities.</td>
+<td>Establish understanding, decisions, and workable responsibilities among people and agents.</td>
 </tr>
 <tr>
 <td>07</td>
 <td><a href="courses/07-project-definition.html">Defining an Engineering Project</a></td>
-<td>Prepare a coherent basis and division of work.</td>
+<td>Prepare a coherent basis and a division of work that people can examine.</td>
 </tr>
 <tr>
 <td>08</td>
 <td><a href="courses/08-project-execution.html">Planning and Managing Project Execution</a></td>
-<td>Maintain a credible plan, cost forecast, and response to change.</td>
+<td>Maintain a credible plan, cost forecast, and response to change, and plan for examination capacity.</td>
 </tr>
 <tr>
 <td>09</td>
@@ -300,13 +318,18 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <tr>
 <td>12</td>
 <td><a href="courses/12-project-practicum.html">Integrated Project Practicum</a></td>
-<td>Deliver and defend a combined team result.</td>
+<td>Deliver and defend a combined result as a human-agent team.</td>
 </tr>
 </tbody>
 </table>
 </div>
 <p>Courses 01 to 04 establish professional and information foundations. Courses 05 to 07 connect reasoning, relationships, and project definition. Courses 08 to 10 address execution, technical integration, and delivery. Courses 11 and 12 address complexity and integrated practice.</p>
 <p>The learning order is not a fixed sequence for running a project. Real projects develop their basis, plans, design, and assurance together.</p>
+<h2 id="work-with-agents">Work with agents</h2>
+<p>You work with real agents in the practice and assessed assignments. Use an agent system that your organization or instructor permits, and keep confidential information out of systems that are not approved for it.</p>
+<p>For each assessed output, keep the briefs you gave the agents and a short record of what you checked in their returns, what you found, and what you changed. Your instructor assesses that record and your own explanation of the work, not only the finished output.</p>
+<p>Assessing agent-assisted work is difficult, and the difficulty is part of what the series teaches. Your instructor is in the position of a sponsor or client who receives a finished package and must decide how far to rely on it, without seeing how much judgment went into it. Making that judgment visible is part of the practice.</p>
+<p>Give each defense live, by voice or in person, without consulting an agent, where you can. In text-only study, your instructor records that limit with the rating.</p>
 <h2 id="study-with-a-team">Study with a team</h2>
 <ol>
 <li>Read the lesson before the session.</li>
@@ -318,9 +341,10 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <li>Explain the repair and its effects on connected work.</li>
 </ol>
 <p>Keep your course outputs in one learning portfolio, with each output and its revision identified. Link to supporting evidence instead of copying it repeatedly.</p>
-<p>Use a mentor for individual study. The mentor can challenge your evidence, your interpretation, and the reliance you propose. Course 12 requires a team or a facilitated role exercise.</p>
+<p>Use a mentor for individual study. The mentor can challenge your evidence, your interpretation, and the reliance you propose. Course 12 requires a human-agent team or a facilitated role exercise.</p>
 <h2 id="study-with-an-agent-instructor">Study with an agent instructor</h2>
 <p>An agent can teach the lessons, discuss the case, challenge your reasoning, and assess your work against the course criteria. Give it access to the <a href="instructor-guide.html">teaching guide</a>, the current course and its linked instructor companion, and the <a href="case-study.html">case records</a>. The guide explains how to support your learning while keeping your own contribution visible.</p>
+<p>An agent instructor is itself an agent whose explanations you should examine before relying on them. Treat that as practice.</p>
 <p>You can begin with:</p>
 <blockquote>
 <p>Act as my instructor for this course series. Read the teaching guide and the relevant course, instructor companion, and case records before teaching. Start by establishing my purpose and experience, using what I have already told you. Work through manageable activities with me. Explain when I need help, let me attempt and defend the work, and assess my demonstrations against the stated criteria. Distinguish practice, worked examples, and assessment. Ask for any required material you cannot access.</p>
@@ -332,16 +356,16 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <p>More than one solution can satisfy a criterion. Whatever your solution, explain its sources, the authority behind it, your reasoning, its uncertainty, and its consequences.</p>
 <p>The series provides training materials. It does not grant professional authority or establish competence for every technical assignment. For real work, follow the actual jurisdiction, appointment, and professional requirements.</p>
 <h2 id="sources-and-references">Sources and references</h2>
-<p><a href="references.html">References</a> explains the role of each source and suggests further reading. This series adapts the project principles of the Chirality manuals for human teams. The manuals keep their own editions; this series does not change their text or the repository's instructions.</p>
+<p><a href="references.html">References</a> explains the role of each source and suggests further reading. This series adapts the project principles of the Chirality manuals for people who work with agents. The manuals keep their own editions; this series does not change their text or the repository's instructions.</p>
 <p>The instructor guides include answer guidance. Keep them separate from a learner's assessment when necessary.</p>
 <!-- END MARKDOWN CONTENT -->
     </article>
   </div>
   <footer class="document-footer">
   <dl class="document-meta">
-    <div><dt>Source basis dated</dt><dd>23 October 2026</dd></div>
-    <div><dt>Repository basis</dt><dd><code>4c9351d36b03926c494e4d034693b89513a3078d</code></dd></div>
-    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="README.md">README.md</a><br><code>5881c39a2053525df883d8dc52e4c579885a7da7dcc21ae741227be27b46e7a8</code></dd></div>
+    <div><dt>Source basis dated</dt><dd>25 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>b50a2116352fd7a2bd5ddbeec7b6b6037e86deeb</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="README.md">README.md</a><br><code>bb9c4185da507c60df5e8c2b08ee6bdf30c452284f9ffc4b27f42dd717c9c5d4</code></dd></div>
   </dl>
     <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
     <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
