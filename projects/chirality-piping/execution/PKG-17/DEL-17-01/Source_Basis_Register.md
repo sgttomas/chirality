@@ -17,6 +17,25 @@ These sources are accepted as public/official evidence for documented interfaces
 | CAEPIPE-PCF | `https://www.sstusa.com/pdfs/PCF.pdf` | `PD2CAEPIPE - Plant Design-to-CAEPIPE Translator`; `Reference`; `PCF to CAEPIPE component Mapping` | Official/public PCF translator documentation records translator inputs, defaults, mapping behavior, and limitations such as defaulted or externally mapped values. | Supports conservative subset and loss-report planning only; hidden translator behavior and external mapping databases are not reproduced. |
 | GLTF-2.0 | `https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html` | `glTF 2.0 Specification`; `2.4 glTF Basics`; `3.2 Asset`; `3.3 Indices and Names`; `3.4 Coordinate System and Units`; `4 GLB File Format Specification` | Khronos glTF 2.0 defines asset structure, versioning, indices/names, coordinate/units conventions, scenes/nodes, and GLB container semantics for visual exchange. | Review geometry only; not solver geometry equivalence, stress-model proof, or professional acceptance evidence. |
 
+### Archived copies (working basis since 2026-10-26)
+
+On 2026-10-26 every `https://www.sstusa.com/...` path above answered
+`301 Moved Permanently` to `https://www.sstcae.com` (the site root), and the
+same paths under `https://www.sstcae.com` answered `404`. The public pages are
+read from Internet Archive captures instead. Agent 0 accepted these as the
+working basis on 2026-10-26. Each capture is the public page as published;
+nothing private or vendor-installed is cited.
+
+| Source ID | Archived copy | Capture date |
+|---|---|---|
+| CAEPIPE-IMPORT-MBF | `https://web.archive.org/web/20251112202203/https://www.sstusa.com/docs/users_manual/import_mbf.htm` (the non-print page with the same `IMPORT MBF`, `Command line operation` and `Format of .MBF` sections; the `_print` page has no capture) | 2025-11-12 |
+| CAEPIPE-EXPORT-DATA | `https://web.archive.org/web/20251112203724/https://www.sstusa.com/docs/users_manual/export_data_from_caepipe.htm` | 2025-11-12 |
+| CAEPIPE-EXPORT-MBF | `https://web.archive.org/web/20251112195234/https://www.sstusa.com/docs/users_manual/export_mbf.htm` | 2025-11-12 |
+| CAEPIPE-BATCH | `https://web.archive.org/web/20251114213552/https://www.sstusa.com/docs/users_manual/running_caepipe_caepipe_3d__in_batch_mode.htm` | 2025-11-14 |
+| CAEPIPE-MBF-EXAMPLE | `https://web.archive.org/web/20251114215018/https://www.sstusa.com/docs/users_manual/example_mbf_format.htm` (`Example MBF Format`; record syntax reference only, never copied into fixtures) | 2025-11-14 |
+| CAEPIPE-PRINT-TO-FILE | `https://web.archive.org/web/20251114204223/https://www.sstusa.com/docs/users_manual/print__ctrl_p__2.htm` (`Print (Ctrl+P)`; `To File` exports the selected input and results to `.txt` or `.csv`) | 2025-11-14 |
+| CAEPIPE-PCF | Archived copy not yet checked; not used by the CAEPIPE correlation pilot. | TBD |
+
 ## Accepted Project References
 
 These sources are accepted project-basis references. They are governance, planning, or workflow sources rather than public target-format evidence.
