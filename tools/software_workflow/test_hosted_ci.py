@@ -1,4 +1,5 @@
 """Real-diff routing and aggregate failures for hosted App/PEC coverage."""
+from fnmatch import fnmatchcase
 import json
 import os
 from pathlib import Path
@@ -8,17 +9,59 @@ import sys
 import unittest
 from unittest.mock import patch
 
-from hosted_ci import (aggregate, desktop_plan, desktop_rust_plan, make_plan, select_paths, validate_plan, numerical_plan,
-                       ROOT as SOURCE_ROOT, SUITES, WASM_ENGINE_CRATES)
+import hosted_ci
+from hosted_ci import (aggregate, browser_plan, desktop_plan, desktop_rust_plan, make_plan, route_paths, select_paths, validate_plan,
+                       numerical_plan, ROOT as SOURCE_ROOT, SUITES, WASM_ENGINE_CRATES)
 
 PROFILE = json.loads((Path(__file__).resolve().parents[1] / "hosted-ci-routing.json").read_text())
+
+# Every plan on this checkout re-scans each crate's Rust source for its reads
+# (about 3.3 s). No test writes this checkout, so a scan's result is a pure
+# function of the project, the manifests and the declarations it is given.
+SOURCE_READS = {}
+load_numerical_module = hosted_ci.numerical_module
+
+
+def shared_numerical_module(root):
+    """The real numerical selector, loaded as each plan loads it, whose source
+    read scan of this checkout is computed once per distinct input. A changed
+    declaration is a new key; a scan that fails is never kept; a fixture
+    checkout is scanned every time."""
+    module = load_numerical_module(root)
+    scan = module.source_read_dependencies
+
+    def source_read_dependencies(project, manifests, declarations=None):
+        resolved = Path(project).resolve()
+        if not resolved.is_relative_to(SOURCE_ROOT.resolve()):
+            return scan(project, manifests, declarations)
+        key = (resolved, tuple(Path(m).as_posix() for m in manifests), json.dumps(declarations, sort_keys=True))
+        if key not in SOURCE_READS:
+            SOURCE_READS[key] = scan(project, manifests, declarations)
+        return {path: set(readers) for path, readers in SOURCE_READS[key].items()}
+
+    module.source_read_dependencies = source_read_dependencies
+    return module
 
 
 def modes(**overrides):
     return {**dict.fromkeys(SUITES, "not-applicable"), **overrides}
 
 
+def browser_selection(paths, profile=PROFILE):
+    """`piping_browser_selection` as `select_paths` computes it, from the real
+    path rules. It reads only their piping mode, piping reasons and unmatched
+    paths; the reachability stages after them (about 4 s of source scanning per
+    plan) do not change those for these inputs."""
+    return browser_plan(paths, route_paths(paths, profile), profile)
+
+
 class HostedCITests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        patcher = patch('hosted_ci.numerical_module', shared_numerical_module)
+        patcher.start()
+        cls.addClassCleanup(patcher.stop)
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
@@ -386,6 +429,96 @@ class HostedCITests(unittest.TestCase):
         self.assertLessEqual(direct | {DESKTOP_RUST_CRATE}, crates)
         # Transitive: the applier's solver dependencies are compiled in too.
         self.assertIn('core/solver/frame_kernel', crates)
+
+    # W-12: #1589 extended the unsaved-changes guard to Open and New and broke
+    # two browser specs no hosted check ran (#1609).
+    CORE_SPECS = ['r2-smoke.spec.ts', 'b3b-project-persistence.spec.ts', 'rotation-glyph.spec.ts', 'result-overlays.spec.ts']
+    REPLACE_SPECS = ['ui-foundation.spec.ts', 'c3-viewport-visibility.spec.ts', 'gui-workflow-validation.spec.ts', 'linear-authoring.spec.ts']
+
+    def test_open_new_replace_changes_add_their_browser_specs_with_reasons(self):
+        project = 'projects/chirality-piping/'
+        for path in ['apps/desktop/src/features/project-storage/unsavedChangesGuard.ts',
+                     'apps/desktop/src/features/project-storage/NewPrompt.tsx',
+                     'apps/desktop/src/features/workspace/workspaceSession.ts',
+                     'apps/desktop/src/services/projectService.ts',
+                     'apps/desktop/e2e/ui-foundation.spec.ts']:
+            with self.subTest(path=path):
+                # An unrelated desktop path in the same diff adds no reason of its own.
+                paths = [project + path, project + 'apps/desktop/src/App.tsx']
+                self.assertEqual(route_paths(paths, PROFILE)['modes']['piping'], 'full')
+                browser = browser_selection(paths)
+                self.assertEqual(browser['classification'], 'reachability')
+                self.assertEqual(browser['project'], 'chromium-desktop')
+                self.assertEqual(browser['specs'], self.CORE_SPECS + self.REPLACE_SPECS)
+                self.assertEqual([(r['path'], r['kind'], r['group'], r['specs']) for r in browser['reasons']],
+                                 [(project + path, 'group-path', 'project-open-new-replace', self.REPLACE_SPECS)])
+                self.assertIn('unsaved-changes guard', browser['reasons'][0]['why'])
+        # The plan carries exactly this selection (an empty checkout keeps the
+        # reachability stages to their quick fallbacks).
+        paths = [project + 'apps/desktop/src/features/project-storage/unsavedChangesGuard.ts', project + 'apps/desktop/src/App.tsx']
+        self.assertEqual(select_paths(paths, PROFILE, self.root)['piping_browser_selection'], browser_selection(paths))
+
+    def test_unrelated_desktop_changes_run_only_the_core_browser_specs(self):
+        project = 'projects/chirality-piping/'
+        for paths in [['apps/desktop/src/App.tsx'], ['apps/desktop/src/features/workspace/shellLayout.ts'],
+                      ['apps/desktop/src/features/project-storageX/a.ts', 'apps/desktop/e2e/r2-smoke.spec.ts'],
+                      ['core/solver/frame_kernel/src/lib.rs'], ['package-lock.json']]:
+            with self.subTest(paths=paths):
+                paths = [project + path for path in paths]
+                self.assertEqual(route_paths(paths, PROFILE)['modes']['piping'], 'full')
+                browser = browser_selection(paths)
+                self.assertEqual(browser['classification'], 'core')
+                self.assertEqual(browser['specs'], self.CORE_SPECS)
+                self.assertEqual(browser['reasons'], [])
+        # No product job, no specs.
+        browser = browser_selection([project + 'docs/note.md'])
+        self.assertEqual((browser['classification'], browser['specs']), ('not-applicable', []))
+
+    def test_full_shared_and_unmatched_coverage_includes_every_browser_spec(self):
+        for plan in [self.plan(base='missing-ref'), self.plan(event='workflow_dispatch')]:
+            browser = plan['piping_browser_selection']
+            self.assertEqual(browser['classification'], 'full-fallback')
+            self.assertEqual(browser['specs'], self.CORE_SPECS + self.REPLACE_SPECS)
+        for path, kind in [('tools/hosted-ci-routing.json', 'shared-input'),
+                           ('tools/software_workflow/hosted_ci.py', 'shared-input'),
+                           ('tools/software_workflow/result_cache.py', 'shared-input'),
+                           ('.github/workflows/piping-desktop-e2e.yml', 'shared-input'),
+                           ('.github/actions/setup-piping-e2e/action.yml', 'shared-input'),
+                           ('unknown-root-input.bin', 'shared-input'),
+                           ('projects/chirality-piping/new-code.bin', 'unmatched-input')]:
+            with self.subTest(path=path):
+                browser = browser_selection([path])
+                self.assertEqual(browser['specs'], self.CORE_SPECS + self.REPLACE_SPECS)
+                self.assertEqual([(r['path'], r['kind']) for r in browser['reasons']], [(path, kind)])
+
+    def test_declared_browser_specs_and_trigger_paths_exist(self):
+        declaration = PROFILE['piping_browser_journeys']
+        # Only adds: the four specs the PR lane ran before W-12 remain core.
+        self.assertEqual(declaration['core'], self.CORE_SPECS)
+        e2e = SOURCE_ROOT / 'projects/chirality-piping/apps/desktop/e2e'
+        tracked = subprocess.check_output(['git', '-C', str(SOURCE_ROOT), 'ls-files', 'projects/chirality-piping/apps/desktop'],
+                                          text=True).splitlines()
+        for group in declaration['groups']:
+            for spec in group['specs']:
+                # A filter naming a missing or dist-only spec would silently run nothing.
+                self.assertTrue((e2e / spec).is_file(), spec)
+                self.assertFalse(spec.endswith('-dist.spec.ts'), spec)
+            for pattern in group['paths']:
+                self.assertTrue(any(fnmatchcase(path[len('projects/chirality-piping/'):], pattern) for path in tracked), pattern)
+        for spec in declaration['core']:
+            self.assertTrue((e2e / spec).is_file(), spec)
+
+    def test_malformed_browser_declaration_fails_selection(self):
+        for field, value in [('project', 'chromium desktop'), ('core', []), ('core', ['r2-smoke.spec.ts; true']),
+                             ('groups', [{'name': 'g', 'reason': 'r', 'paths': [], 'specs': ['a.spec.ts']}])]:
+            with self.subTest(field=field, value=value):
+                profile = json.loads(json.dumps(PROFILE))
+                profile['piping_browser_journeys'][field] = value
+                with self.assertRaises(ValueError):
+                    browser_selection(['projects/chirality-piping/apps/desktop/src/App.tsx'], profile)
+                # The plan itself fails rather than run an underived spec set.
+                with self.assertRaises(ValueError):
+                    select_paths(['projects/chirality-piping/apps/desktop/src/App.tsx'], profile, self.root)
 
 
 if __name__ == "__main__":
