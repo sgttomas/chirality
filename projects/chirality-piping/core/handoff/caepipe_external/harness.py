@@ -34,7 +34,7 @@ ENV_VAR = "SWBPIPE_CAEPIPE_EXCHANGE"
 CONFIG_NAME = "harness_config.json"
 ACKNOWLEDGEMENT_KEY = "license_and_environment_responsibility_acknowledged"
 REQUIRED_KEYS = ("vm_name", "guest_executable", "guest_exchange_root", "guest_work_root")
-CASE_ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9-]{0,62}$")
+CASE_ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9-]{0,62}\Z")
 GUEST_SCRIPT = Path(__file__).resolve().parent / "guest" / "Invoke-CaepipeRoundTrip.ps1"
 GUEST_SCRIPT_REPOSITORY_PATH = "core/handoff/caepipe_external/guest/Invoke-CaepipeRoundTrip.ps1"
 HARNESS_DIR = "_harness"
@@ -44,7 +44,16 @@ BOUNDARY_NOTE = "regression/handoff evidence only; not validation, compatibility
 CASE_LAYERS = ("swbpipe", "caepipe_in", "caepipe_out", "parsed", "comparison")
 OUTPUT_NAMES = ("model.res", "model.mod")
 PRLCTL_ATTEMPTS = 3
-_ROUTES = ("csv_from_batch", "csv_from_gui_print")
+CSV_ROUTES = ("csv_from_batch", "csv_from_gui_print")
+# Guest paths enter `cmd /c` command strings, so they are held to a strict allow-list: an absolute Windows path
+# (drive letter, colon, backslash) of letters, digits, space and \ . - _ ( ) only. Quotes, %, ^, &, |, <, >, !
+# and control characters can never reach the guest shell.
+GUEST_PATH_KEYS = ("guest_executable", "guest_exchange_root", "guest_work_root")
+GUEST_PATH_PATTERN = re.compile(r"^[A-Za-z]:\\[A-Za-z0-9 \\._()-]*\Z")
+
+
+class ContainmentError(RuntimeError):
+    """A path the pilot would write or delete is a symbolic link or lies outside the exchange folder."""
 
 
 @dataclass(frozen=True)
@@ -126,6 +135,11 @@ def resolve_harness_config(environ: Mapping[str, str] = os.environ, *,
     missing = [key for key in REQUIRED_KEYS if not isinstance(config.get(key), str) or not config[key].strip()]
     if missing:
         return skip(f"{CONFIG_NAME} lacks {', '.join(missing)}")
+    checked.append("guest paths are allow-listed Windows absolute paths")
+    for key in GUEST_PATH_KEYS:
+        if not valid_guest_path(config[key], directory=key != "guest_executable"):
+            return skip(f"{CONFIG_NAME} {key} is not an absolute Windows path (X:\\...) of letters, digits, space and "
+                        "\\ . - _ ( ) only")
     prlctl = None
     if require_vm_tools:
         checked.append("prlctl on PATH")
@@ -151,6 +165,17 @@ def resolve_harness_config(environ: Mapping[str, str] = os.environ, *,
     )
 
 
+def valid_guest_path(value: Any, *, directory: bool) -> bool:
+    """True for an allow-listed absolute Windows path without `.`/`..` segments; a file may not end in `\\`."""
+
+    if not isinstance(value, str) or not GUEST_PATH_PATTERN.match(value):
+        return False
+    stripped = value.rstrip("\\")
+    if not directory and stripped != value:
+        return False
+    return all(part not in (".", "..") for part in stripped.split("\\")[1:])
+
+
 def _inside_git(path: Path, environ: Mapping[str, str]) -> bool | None:
     env = {key: value for key, value in os.environ.items() if not key.startswith("GIT_")}
     if environ.get("PATH"):
@@ -164,17 +189,65 @@ def _inside_git(path: Path, environ: Mapping[str, str]) -> bool | None:
     return completed.returncode == 0
 
 
+def contained(root: Path, path: Path) -> Path:
+    """Return `path` when no component below the resolved exchange root is a symbolic link and it stays inside.
+
+    Applied to every directory and file the pilot creates, writes or deletes, so an existing link in the exchange
+    folder can never redirect a write or a cleanup elsewhere (for example into a Git work tree).
+    """
+
+    base = Path(root).resolve()
+    try:
+        parts = Path(path).relative_to(base).parts
+    except ValueError:
+        raise ContainmentError(f"{path} is not inside the exchange folder") from None
+    current = base
+    for part in parts:
+        if part in (".", ".."):
+            raise ContainmentError(f"{path} contains a {part!r} segment")
+        current = current / part
+        if current.is_symlink():
+            raise ContainmentError(f"{current.relative_to(base)} in the exchange folder is a symbolic link; refused")
+    if current.exists() and not current.resolve().is_relative_to(base):
+        raise ContainmentError(f"{current.relative_to(base)} resolves outside the exchange folder")
+    return current
+
+
+def contained_dir(root: Path, path: Path) -> Path:
+    """`contained(root, path)`, created as a directory (parents checked one by one) when absent."""
+
+    base = Path(root).resolve()
+    current = base
+    for part in contained(base, path).relative_to(base).parts:
+        current = contained(base, current / part)
+        if not current.exists():
+            current.mkdir()
+        elif not current.is_dir():
+            raise ContainmentError(f"{current.relative_to(base)} in the exchange folder is not a directory")
+    return current
+
+
+def write_private(root: Path, path: Path, data: bytes | str) -> None:
+    """Write `data` to `path` inside the exchange folder after the containment check."""
+
+    target = contained(root, path)
+    if isinstance(data, str):
+        target.write_text(data, encoding="utf-8")
+    else:
+        target.write_bytes(data)
+
+
 def case_paths(config: HarnessConfig | Path, case_id: str) -> dict[str, Path]:
-    """The Design §5 run directory of one case, created on demand."""
+    """The Design §5 run directory of one case, created on demand inside the exchange folder."""
 
     if not isinstance(case_id, str) or not CASE_ID_PATTERN.match(case_id):
         raise ValueError(f"case id {case_id!r} must match {CASE_ID_PATTERN.pattern}")
-    root = config.exchange_root if isinstance(config, HarnessConfig) else Path(config)
+    root = (config.exchange_root if isinstance(config, HarnessConfig) else Path(config)).resolve()
     case_root = root / "cases" / case_id
-    paths = {"root": case_root, "manifest": case_root / "case_manifest.json"}
+    paths = {"root": case_root, "manifest": contained(root, case_root / "case_manifest.json")}
+    contained_dir(root, case_root)
     for layer in CASE_LAYERS:
-        paths[layer] = case_root / layer
-        paths[layer].mkdir(parents=True, exist_ok=True)
+        paths[layer] = contained_dir(root, case_root / layer)
     return paths
 
 
@@ -207,6 +280,9 @@ def last_json_object(text: str) -> dict[str, Any] | None:
 
 
 def _quote(path: str) -> str:
+    # Only allow-listed guest paths (GUEST_PATH_PATTERN, CASE_ID_PATTERN and fixed names) are ever quoted here.
+    if not re.fullmatch(r"[A-Za-z0-9 \\._()*:-]*", path):
+        raise ValueError("a guest path outside the allow-list would enter a guest command")
     return f'"{path}"'
 
 
@@ -221,15 +297,22 @@ def run_caepipe_round_trip(config: HarnessConfig, case_id: str, mbf_text: str, *
 
     The guest work is done in three `prlctl exec <vm> --current-user cmd /c <command>`
     steps (prepare, solve, collect) so each step's exit status is recorded on its
-    own and outputs are collected even when the solve step fails.
+    own. A failed prepare step stops before solving (`prepare_failed`). Outputs are
+    collected, even when the solve step fails, only when the guest reports solving
+    an MBF whose SHA-256 equals the host's (otherwise `input_hash_mismatch`).
     """
 
     if config.prlctl is None:
         raise ValueError("the harness configuration was resolved without prlctl; live runs need it")
+    for key in GUEST_PATH_KEYS:
+        directory = key != "guest_executable"
+        # Resolution strips a directory's trailing backslash (a drive root `X:\` is held as `X:`).
+        value = getattr(config, key) + ("\\" if directory else "")
+        if not valid_guest_path(value, directory=directory):
+            raise ValueError(f"{key} is not an allow-listed absolute Windows path")
     paths = case_paths(config, case_id)
-    harness_dir = config.exchange_root / HARNESS_DIR
-    harness_dir.mkdir(exist_ok=True)
-    lock = harness_dir / "round_trip.lock"
+    harness_dir = contained_dir(config.exchange_root, config.exchange_root.resolve() / HARNESS_DIR)
+    lock = contained(config.exchange_root, harness_dir / "round_trip.lock")
     try:
         handle = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
     except FileExistsError as error:
@@ -246,15 +329,16 @@ def run_caepipe_round_trip(config: HarnessConfig, case_id: str, mbf_text: str, *
 def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[str, Path], harness_dir: Path,
                 timeout_s: float, runner: Callable[..., subprocess.CompletedProcess]) -> dict[str, Any]:
     started = _now()
+    root = config.exchange_root
     mbf_bytes = mbf_text.encode("utf-8")
-    mbf_path = paths["caepipe_in"] / "model.mbf"
-    mbf_path.write_bytes(mbf_bytes)
+    mbf_sha256 = _sha256(mbf_bytes)
+    write_private(root, paths["caepipe_in"] / "model.mbf", mbf_bytes)
     script_bytes = GUEST_SCRIPT.read_bytes()
-    (harness_dir / GUEST_SCRIPT.name).write_bytes(script_bytes)
+    write_private(root, harness_dir / GUEST_SCRIPT.name, script_bytes)
     out = paths["caepipe_out"]
     for stale in [*out.glob("model*.csv"), *(out / name for name in OUTPUT_NAMES),
                   *(out / name for name in ("guest_stdout.txt", "guest_stderr.txt", "guest_log.json", "run_record.json"))]:
-        if stale.is_file():
+        if contained(root, stale).is_file():
             stale.unlink()
 
     guest_case = _win(config.guest_exchange_root, "cases", case_id)
@@ -290,41 +374,57 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
         steps.append(record)
         return record
 
-    stale_guest = " ".join(_quote(_win(work, name)) for name in ("model*.csv", *OUTPUT_NAMES))
-    step("prepare", f"if not exist {_quote(work)} mkdir {_quote(work)} & del /Q {stale_guest} 2>nul & "
-                    f"copy /Y {_quote(_win(guest_in, 'model.mbf'))} {_quote(guest_mbf)}")
+    # The guest work copy of the MBF is deleted before the copy, so a failed copy can never leave an older MBF
+    # to be solved; a failed prepare step stops the round trip before solving.
+    stale_guest = " ".join(_quote(_win(work, name)) for name in ("model*.csv", "model.mbf", *OUTPUT_NAMES))
+    prepare = step("prepare", f"if not exist {_quote(work)} mkdir {_quote(work)} & del /Q {stale_guest} 2>nul & "
+                              f"copy /Y {_quote(_win(guest_in, 'model.mbf'))} {_quote(guest_mbf)}")
     script_location = "exchange_share"
-    solve = step("solve", solve_command(share_script))
-    guest_log = last_json_object(solve["stdout"])
-    if guest_log is None and solve["exit_status"] != "timeout":
-        script_location = "guest_work_dir"
-        step("stage_script", f"copy /Y {_quote(share_script)} {_quote(work_script)}")
-        solve = step("solve_from_work_dir", solve_command(work_script))
+    solve: dict[str, Any] = {"exit_status": None, "stdout": "", "stderr": ""}
+    guest_log = None
+    if prepare["exit_status"] == 0:
+        solve = step("solve", solve_command(share_script))
         guest_log = last_json_object(solve["stdout"])
-    step("collect", " & ".join([
-        f"copy /Y {_quote(_win(work, 'model*.csv'))} {_quote(guest_out)}",
-        *(f"copy /Y {_quote(_win(work, name))} {_quote(_win(guest_out, name))}" for name in OUTPUT_NAMES),
-    ]))
+        if guest_log is None and solve["exit_status"] != "timeout":
+            script_location = "guest_work_dir"
+            step("stage_script", f"copy /Y {_quote(share_script)} {_quote(work_script)}")
+            solve = step("solve_from_work_dir", solve_command(work_script))
+            guest_log = last_json_object(solve["stdout"])
+    # The guest script reports the SHA-256 of the MBF it actually solved; outputs are attributed to this MBF only
+    # when that hash equals the host's.
+    guest_mbf_sha256 = guest_log.get("mbf_sha256") if isinstance(guest_log, dict) else None
+    guest_mbf_sha256 = guest_mbf_sha256.lower() if isinstance(guest_mbf_sha256, str) else None
+    input_verified = guest_mbf_sha256 == mbf_sha256
+    if guest_log is not None and input_verified:
+        step("collect", " & ".join([
+            f"copy /Y {_quote(_win(work, 'model*.csv'))} {_quote(guest_out)}",
+            *(f"copy /Y {_quote(_win(work, name))} {_quote(_win(guest_out, name))}" for name in OUTPUT_NAMES),
+        ]))
 
-    (out / "guest_stdout.txt").write_text(solve["stdout"], encoding="utf-8")
-    (out / "guest_stderr.txt").write_text(solve["stderr"], encoding="utf-8")
+    write_private(root, out / "guest_stdout.txt", solve["stdout"])
+    write_private(root, out / "guest_stderr.txt", solve["stderr"])
     if guest_log is not None:
-        (out / "guest_log.json").write_text(json.dumps(guest_log, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        write_private(root, out / "guest_log.json", json.dumps(guest_log, indent=2, sort_keys=True) + "\n")
 
     guest_csv = guest_log.get("csv_path") if isinstance(guest_log, dict) else None
     observed = None
-    if isinstance(guest_csv, str) and guest_csv:
-        candidate = out / guest_csv.replace("/", "\\").split("\\")[-1]
+    csv_name = guest_csv.replace("/", "\\").split("\\")[-1] if isinstance(guest_csv, str) else ""
+    if csv_name not in ("", ".", "..") and input_verified:
+        candidate = contained(root, out / csv_name)
         if candidate.is_file():
             observed = candidate
     status = guest_log.get("status") if isinstance(guest_log, dict) else None
-    if solve["exit_status"] == "timeout":
+    if prepare["exit_status"] != 0:
+        route = "prepare_failed"
+    elif solve["exit_status"] == "timeout":
         route = "timeout"
     elif guest_log is None:
         route = "no_guest_json"
-    elif status in _ROUTES and observed is not None:
+    elif not input_verified:
+        route = "input_hash_mismatch"
+    elif status in CSV_ROUTES and observed is not None:
         route = status
-    elif status in _ROUTES:
+    elif status in CSV_ROUTES:
         route = "csv_not_collected"
     else:
         route = str(status or "unknown_guest_status")
@@ -343,8 +443,10 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
         },
         "executable_path_as_configured": config.guest_executable,
         ACKNOWLEDGEMENT_KEY: config.acknowledged,
-        "mbf": {"path": "caepipe_in/model.mbf", "guest_path": guest_mbf, "sha256": _sha256(mbf_bytes),
+        "mbf": {"path": "caepipe_in/model.mbf", "guest_path": guest_mbf, "sha256": mbf_sha256,
                 "bytes": len(mbf_bytes)},
+        "guest_mbf_sha256": guest_mbf_sha256,
+        "input_hash_verified": input_verified,
         "guest_script": {"repository_path": GUEST_SCRIPT_REPOSITORY_PATH,
                          "exchange_copy": f"{HARNESS_DIR}/{GUEST_SCRIPT.name}",
                          "sha256": _sha256(script_bytes), "run_from": script_location},
@@ -369,11 +471,11 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
         "stderr_file": "caepipe_out/guest_stderr.txt",
         "guest_log": guest_log,
         "outputs_collected": sorted(path.name for path in out.iterdir()
-                                    if path.name.startswith("model") and path.is_file()),
+                                    if path.name.startswith("model") and path.is_file() and not path.is_symlink()),
         "timestamps": {"started": started, "finished": _now()},
         "boundary_note": BOUNDARY_NOTE,
     }
-    (out / "run_record.json").write_text(json.dumps(record, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_private(root, out / "run_record.json", json.dumps(record, indent=2, sort_keys=True) + "\n")
     return record
 
 

@@ -314,24 +314,10 @@ def _classify(row: Mapping[str, Any], case: Mapping[str, Any], fault: Any) -> di
         return {"status": "no_verdict", "cause": None, "disposition": "requires_professional_review",
                 "note": "a tolerance is TBD; no comparison verdict and no cause hypothesis"}
 
-    if s_c == "disagree":
-        observed = values["caepipe"] - values["swbpipe"]
-        for declared in case.get("declared_differences") or []:
-            if row["id"] not in (declared.get("applies_to") or []):
-                continue
-            predicted = declared.get("predicted_caepipe_minus_swbpipe")
-            if predicted is None:
-                evidence = "declared_only"
-            elif abs(observed - predicted) <= DECLARED_PREDICTION_FRACTION * abs(predicted):
-                evidence = "predicted"
-            else:
-                continue
-            cause = _cause("documented_behavior_difference", evidence,
-                           "SWBPIPE-CAEPIPE differs on a quantity the case declares"
-                           + (" and the observed difference is within 10 % of the predicted difference"
-                              if evidence == "predicted" else " without a prediction"),
-                           declared_difference=declared.get("id"))
-            return {"status": "not_matched", "cause": cause, "disposition": "assumption_recorded"}
+    # A declared difference explains a SWBPIPE-CAEPIPE difference only when the analytic witness has confirmed
+    # SWBPIPE; otherwise the triangle rule names the cause and a matching declaration is kept as further evidence.
+    declared = _declared_difference(row, case) if s_c == "disagree" else None
+    also = {"declared_difference_also_matched": declared["id"]} if declared else {}
 
     if a_s == "disagree":
         if s_c == "agree" and a_c == "disagree":
@@ -342,8 +328,17 @@ def _classify(row: Mapping[str, Any], case: Mapping[str, Any], fault: Any) -> di
             cause = _cause("solver_defect_candidate", "triangle_rule",
                            "SWBPIPE differs from the analytic witness"
                            + (" and from CAEPIPE, which agrees with the witness" if a_c == "agree" else ""),
-                           ["missing_model_parameter"])
+                           ["missing_model_parameter"]
+                           + (["documented_behavior_difference"] if declared else []), **also)
         return {"status": "not_matched", "cause": cause, "disposition": "requires_professional_review"}
+
+    if a_s == "agree" and declared:
+        cause = _cause("documented_behavior_difference", declared["evidence"],
+                       "analytic and SWBPIPE agree and SWBPIPE-CAEPIPE differs on a quantity the case declares"
+                       + (" and the observed difference is within 10 % of the predicted difference"
+                          if declared["evidence"] == "predicted" else " without a prediction"),
+                       declared_difference=declared["id"])
+        return {"status": "not_matched", "cause": cause, "disposition": "assumption_recorded"}
 
     if a_s == "agree":
         applies = isinstance(fault, Mapping) and row["id"] in (fault.get("applies_to") or [row["id"]])
@@ -361,8 +356,24 @@ def _classify(row: Mapping[str, Any], case: Mapping[str, Any], fault: Any) -> di
 
     cause = _cause("caepipe_profile_unknown", "no_analytic_witness",
                    "SWBPIPE and CAEPIPE differ and no analytic verdict identifies the side",
-                   ["solver_defect_candidate", "export_mapping_issue"])
+                   ["solver_defect_candidate", "export_mapping_issue"]
+                   + (["documented_behavior_difference"] if declared else []), **also)
     return {"status": "not_matched", "cause": cause, "disposition": "requires_professional_review"}
+
+
+def _declared_difference(row: Mapping[str, Any], case: Mapping[str, Any]) -> dict[str, Any] | None:
+    """The first declaration of the case that covers this quantity and fits the observed CAEPIPE - SWBPIPE."""
+
+    observed = row["values"]["caepipe"] - row["values"]["swbpipe"]
+    for declared in case.get("declared_differences") or []:
+        if row["id"] not in (declared.get("applies_to") or []):
+            continue
+        predicted = declared.get("predicted_caepipe_minus_swbpipe")
+        if predicted is None:
+            return {"id": declared.get("id"), "evidence": "declared_only"}
+        if abs(observed - predicted) <= DECLARED_PREDICTION_FRACTION * abs(predicted):
+            return {"id": declared.get("id"), "evidence": "predicted"}
+    return None
 
 
 def _summary(rows: list[Mapping[str, Any]]) -> dict[str, Any]:

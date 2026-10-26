@@ -6,6 +6,7 @@ Every number here is synthetic or invented; nothing is CAEPIPE output.
 
 from __future__ import annotations
 
+import dataclasses
 import hashlib
 import json
 import math
@@ -30,12 +31,19 @@ from core.handoff.caepipe_external import (  # noqa: E402
     resolve_harness_config,
     run_caepipe_round_trip,
 )
-from core.handoff.caepipe_external.harness import ENV_VAR, last_json_object  # noqa: E402
+from core.handoff.caepipe_external.harness import (  # noqa: E402
+    ENV_VAR,
+    ContainmentError,
+    _quote,
+    last_json_object,
+)
 from core.handoff.caepipe_mbf import render_caepipe_mbf_si  # noqa: E402
+from tools.caepipe_correlation import run_pilot  # noqa: E402
 from validation.caepipe_correlation import hand_calcs  # noqa: E402
 
 
 CASES_DIR = ROOT / "validation" / "caepipe_correlation" / "cases"
+PARSER_FIXTURE = ROOT / "fixtures" / "caepipe_external" / "invented" / "print_to_file_results.csv"
 SUS = "Sustained (W+P)"
 TOL = {
     "analytic_vs_swbpipe": {"rel": 1e-6, "abs": {"m": 1e-9, "rad": 1e-9, "N": 1e-6, "N*m": 1e-6}},
@@ -217,6 +225,27 @@ def test_declared_difference_with_prediction_and_without():
     assert row["cause"]["evidence"] == "declared_only"
 
 
+def test_declared_difference_never_masks_a_swbpipe_departure_from_the_analytic_witness():
+    # All three disagree (analytic -10 mm, SWBPIPE -12 mm, CAEPIPE -13.05 mm) and the residual CAEPIPE - SWBPIPE
+    # (-1.05 mm) lies within 10 % of the declared prediction (-1 mm): the triangle rule still names the cause.
+    predicted = {"id": "dd", "applies_to": ["uy"], "cause": "documented_behavior_difference",
+                 "description": "invented", "predicted_caepipe_minus_swbpipe": -0.001}
+    for declaration in (predicted, dict(predicted, predicted_caepipe_minus_swbpipe=None)):
+        row = quantity(record(case=synthetic_case(declared_differences=[declaration]), payload=swb_rows(uy_mm=-12.0),
+                              caepipe=parsed(uy_mm=-13.05)), "uy")
+        assert set(outcomes(row).values()) == {"delta_exceeds_tolerance"}
+        assert row["cause"]["label"] == "solver_defect_candidate"
+        assert row["cause"]["evidence"] == "triangle_rule"
+        assert row["cause"]["declared_difference_also_matched"] == "dd"
+        assert row["disposition"] == "requires_professional_review"
+    # Without an analytic witness a declaration is not enough either.
+    analytic = {key: value for key, value in ANALYTIC.items() if key != "uy"}
+    row = quantity(record(case=synthetic_case(declared_differences=[predicted]), analytic=analytic,
+                          caepipe=parsed(uy_mm=-11.05)), "uy")
+    assert row["cause"]["label"] == "caepipe_profile_unknown"
+    assert row["cause"]["declared_difference_also_matched"] == "dd"
+
+
 def test_fault_injection_is_classified_as_deliberate_export_issue():
     fault = {"target": "mbf", "description": "invented deliberate fault", "material_modulus_factor": 1.1}
     result = record(case=synthetic_case(fault_injection=fault), caepipe=parsed(uy_mm=-9.0))
@@ -318,6 +347,36 @@ def test_harness_skips_without_config_or_acknowledgement(tmp_path):
     assert "guest_executable" in skip_reason({ENV_VAR: str(root), "PATH": path})
 
 
+@pytest.mark.parametrize("key,value", [
+    ("guest_executable", 'C:\\Invented\\tool.exe" & calc & "'),
+    ("guest_executable", "C:\\Invented\\%COMSPEC%\\tool.exe"),
+    ("guest_executable", "C:\\Invented\\tool.exe\\"),
+    ("guest_executable", "C:\\Invented\\a^b|c<d>e!f.exe"),
+    ("guest_exchange_root", "\\\\invented-host\\share"),
+    ("guest_exchange_root", "Z:\\invented\nnext"),
+    ("guest_exchange_root", "invented\\relative"),
+    ("guest_work_root", "C:\\invented-work\\..\\elsewhere"),
+    ("guest_work_root", "C:/invented-work"),
+])
+def test_harness_refuses_guest_paths_outside_the_allow_list(tmp_path, key, value):
+    config = {"vm_name": "invented-vm", "guest_executable": "C:\\Invented Tools (x86)\\tool_1.0-a.exe",
+              "guest_exchange_root": "Z:\\invented", "guest_work_root": "C:\\invented-work\\",
+              "license_and_environment_responsibility_acknowledged": True}
+    root = exchange(tmp_path, config=config)
+    environ = {ENV_VAR: str(root), "PATH": git_only_path(tmp_path)}
+    assert isinstance(resolve_harness_config(environ, require_vm_tools=False), HarnessConfig)
+    (root / "harness_config.json").write_text(json.dumps({**config, key: value}), encoding="utf-8")
+    result = resolve_harness_config(environ, require_vm_tools=False)
+    assert isinstance(result, HarnessSkip) and key in result.reason
+
+
+def test_guest_command_quoting_refuses_shell_metacharacters():
+    assert _quote("C:\\invented-work\\cpc-x\\model*.csv") == '"C:\\invented-work\\cpc-x\\model*.csv"'
+    for bad in ('C:\\a" & calc', "C:\\%PATH%", "C:\\a\nb"):
+        with pytest.raises(ValueError):
+            _quote(bad)
+
+
 def test_harness_skips_without_prlctl_and_resolves_with_it(tmp_path):
     path = git_only_path(tmp_path)
     root = exchange(tmp_path)
@@ -341,7 +400,7 @@ def test_case_paths_layout_and_id_check(tmp_path):
     for layer in ("swbpipe", "caepipe_in", "caepipe_out", "parsed", "comparison"):
         assert paths[layer].is_dir()
     assert paths["manifest"] == tmp_path / "cases" / "cpc-99-invented" / "case_manifest.json"
-    for bad in ("Upper", "-lead", "a/b", "x" * 64, ""):
+    for bad in ("Upper", "-lead", "a/b", "x" * 64, "", "trailing-newline\n"):
         with pytest.raises(ValueError):
             case_paths(tmp_path, bad)
 
@@ -360,6 +419,10 @@ def fake_config(tmp_path: Path) -> HarnessConfig:
                          checked=("invented",))
 
 
+MBF_TEXT = "INVENTED\r\nMBF\r\n"
+MBF_SHA = hashlib.sha256(MBF_TEXT.encode("utf-8")).hexdigest()
+
+
 def test_round_trip_records_route_and_never_runs_a_real_prlctl(tmp_path):
     config = fake_config(tmp_path)
     calls = []
@@ -372,18 +435,21 @@ def test_round_trip_records_route_and_never_runs_a_real_prlctl(tmp_path):
         stdout = ""
         if command.startswith("powershell"):
             stdout = 'WARNING: banner\n' + json.dumps({"status": "csv_from_gui_print", "gui": {"used": True},
+                                                        "mbf_sha256": MBF_SHA.upper(),
                                                         "csv_path": "C:\\invented-work\\cpc-x\\model_results.csv"})
         if "copy /Y" in command and "caepipe_out" in command:
             (config.exchange_root / "cases" / "cpc-x" / "caepipe_out" / "model_results.csv").write_text("Invented\n")
         return subprocess.CompletedProcess(argv, 0, stdout, "")
 
-    record_ = run_caepipe_round_trip(config, "cpc-x", "INVENTED\r\nMBF\r\n", runner=runner)
+    record_ = run_caepipe_round_trip(config, "cpc-x", MBF_TEXT, runner=runner)
     assert [call[6].split(" ")[0] for call in calls] == ["if", "powershell", "copy"]
+    assert '"C:\\invented-work\\cpc-x\\model.mbf"' in calls[0][6].split(" & copy ")[0]  # old guest MBF deleted
+    assert record_["guest_mbf_sha256"] == MBF_SHA and record_["input_hash_verified"] is True
     assert "-File \"Z:\\invented\\_harness\\Invoke-CaepipeRoundTrip.ps1\"" in calls[1][6]
     assert record_["route"] == "csv_from_gui_print"
     assert record_["command_shape"]["gui_print_fallback"] == {
         **record_["command_shape"]["gui_print_fallback"], "used": True, "label": "trial_build_workaround"}
-    assert record_["mbf"]["sha256"] == hashlib.sha256(b"INVENTED\r\nMBF\r\n").hexdigest()
+    assert record_["mbf"]["sha256"] == MBF_SHA
     case_dir = config.exchange_root / "cases" / "cpc-x"
     assert (case_dir / "caepipe_in" / "model.mbf").read_bytes() == b"INVENTED\r\nMBF\r\n"
     assert (config.exchange_root / "_harness" / "Invoke-CaepipeRoundTrip.ps1").is_file()
@@ -404,7 +470,8 @@ def test_round_trip_falls_back_to_a_guest_local_script_copy(tmp_path):
         commands.append(argv[6])
         stdout = ""
         if argv[6].startswith("powershell") and "invented-work" in argv[6].split(" -Exe ")[0]:
-            stdout = json.dumps({"status": "no_results_after_batch", "gui": {"used": False}})
+            stdout = json.dumps({"status": "no_results_after_batch", "gui": {"used": False},
+                                 "mbf_sha256": hashlib.sha256(b"X\r\n").hexdigest()})
         return subprocess.CompletedProcess(argv, 0, stdout, "cannot run script" if not stdout else "")
 
     record_ = run_caepipe_round_trip(config, "cpc-y", "X\r\n", runner=runner)
@@ -412,6 +479,170 @@ def test_round_trip_falls_back_to_a_guest_local_script_copy(tmp_path):
     assert record_["guest_script"]["run_from"] == "guest_work_dir"
     assert record_["route"] == "no_results_after_batch"
     assert record_["observed_csv_path"]["host"] is None
+
+
+def test_round_trip_stops_before_solving_when_preparation_fails(tmp_path):
+    config = fake_config(tmp_path)
+    commands = []
+
+    def runner(argv, **kwargs):
+        commands.append(argv[6])
+        if argv[6].startswith("powershell"):
+            raise AssertionError("solve must not run after a failed prepare step")
+        return subprocess.CompletedProcess(argv, 1, "", "The system cannot find the file specified.")
+
+    record_ = run_caepipe_round_trip(config, "cpc-p", MBF_TEXT, runner=runner)
+    assert len(commands) == 1 and commands[0].startswith("if not exist")
+    assert record_["route"] == "prepare_failed"
+    assert record_["observed_csv_path"]["host"] is None and record_["guest_mbf_sha256"] is None
+
+
+def test_round_trip_accepts_a_drive_root_exchange_share(tmp_path):
+    # A shared folder mapped as a whole drive (`Z:\\`) is held as `Z:` after resolution and must still run.
+    config = {"vm_name": "invented-vm", "guest_executable": "C:\\Invented\\tool.exe",
+              "guest_exchange_root": "Z:\\", "guest_work_root": "C:\\invented-work",
+              "license_and_environment_responsibility_acknowledged": True}
+    root = exchange(tmp_path, config=config)
+    resolved = resolve_harness_config({ENV_VAR: str(root), "PATH": git_only_path(tmp_path)}, require_vm_tools=False)
+    assert isinstance(resolved, HarnessConfig) and resolved.guest_exchange_root == "Z:"
+    commands = []
+
+    def runner(argv, **kwargs):
+        commands.append(argv[6])
+        return subprocess.CompletedProcess(argv, 1, "", "invented failure")
+
+    record_ = run_caepipe_round_trip(dataclasses.replace(resolved, prlctl="/invented/prlctl"), "cpc-z", MBF_TEXT,
+                                     runner=runner)
+    assert record_["route"] == "prepare_failed"
+    assert "Z:\\cases\\cpc-z\\caepipe_in\\model.mbf" in commands[0]
+
+
+def test_round_trip_refuses_outputs_of_a_different_guest_mbf(tmp_path):
+    config = fake_config(tmp_path)
+    commands = []
+    out = config.exchange_root / "cases" / "cpc-h" / "caepipe_out"
+
+    def runner(argv, **kwargs):
+        commands.append(argv[6])
+        stdout = ""
+        if argv[6].startswith("powershell"):
+            stdout = json.dumps({"status": "csv_from_batch", "mbf_sha256": "0" * 64,
+                                 "csv_path": "C:\\invented-work\\cpc-h\\model.csv"})
+        if "caepipe_out" in argv[6]:
+            (out / "model.csv").write_text("Invented\n", encoding="utf-8")
+        return subprocess.CompletedProcess(argv, 0, stdout, "")
+
+    record_ = run_caepipe_round_trip(config, "cpc-h", MBF_TEXT, runner=runner)
+    assert record_["route"] == "input_hash_mismatch"
+    assert record_["guest_mbf_sha256"] == "0" * 64 and record_["input_hash_verified"] is False
+    assert record_["observed_csv_path"]["host"] is None
+    assert not any("caepipe_out" in command for command in commands)  # nothing is collected
+    assert not (out / "model.csv").exists()
+
+
+# --------------------------------------------------------------------------
+# exchange containment and offline binding (no prlctl, no runner)
+# --------------------------------------------------------------------------
+def git_repo(tmp_path: Path) -> Path:
+    repo = tmp_path / "victim-repo"
+    repo.mkdir()
+    subprocess.run(["git", "init", "-q", str(repo)], check=True)
+    return repo
+
+
+def repo_entries(repo: Path) -> list[str]:
+    return sorted(str(path.relative_to(repo)) for path in repo.rglob("*") if ".git" not in path.parts)
+
+
+def test_symlinked_cases_dir_is_refused(tmp_path):
+    config = fake_config(tmp_path)
+    repo = git_repo(tmp_path)
+    (config.exchange_root / "cases").symlink_to(repo, target_is_directory=True)
+    with pytest.raises(ContainmentError):
+        case_paths(config, "cpc-s")
+    with pytest.raises(ContainmentError):
+        run_caepipe_round_trip(config, "cpc-s", MBF_TEXT, runner=lambda *a, **k: pytest.fail("prlctl called"))
+    lines = []
+    assert run_pilot.run_case({"case_id": "cpc-s"}, config, runner="unused", offline=True, hand_calcs=None,
+                              emit=lines.append) is False
+    assert lines and "route=containment_violation" in lines[0]
+    assert repo_entries(repo) == []
+
+
+def test_symlinked_layer_dir_and_file_are_refused(tmp_path):
+    config = fake_config(tmp_path)
+    repo = git_repo(tmp_path)
+    (repo / "tracked.txt").write_text("keep\n", encoding="utf-8")
+    paths = case_paths(config, "cpc-l")
+    paths["caepipe_out"].rmdir()
+    paths["caepipe_out"].symlink_to(repo, target_is_directory=True)
+    with pytest.raises(ContainmentError):
+        case_paths(config, "cpc-l")
+    with pytest.raises(ContainmentError):
+        run_caepipe_round_trip(config, "cpc-l", MBF_TEXT, runner=lambda *a, **k: pytest.fail("prlctl called"))
+    paths["caepipe_out"].unlink()
+    paths["caepipe_out"].mkdir()
+    (paths["caepipe_out"] / "run_record.json").symlink_to(repo / "tracked.txt")
+    with pytest.raises(ContainmentError):
+        run_caepipe_round_trip(config, "cpc-l", MBF_TEXT, runner=lambda *a, **k: pytest.fail("prlctl called"))
+    assert repo_entries(repo) == ["tracked.txt"]
+    assert (repo / "tracked.txt").read_text(encoding="utf-8") == "keep\n"
+    assert not (config.exchange_root / "_harness" / "round_trip.lock").exists()
+
+
+def offline_case(tmp_path, monkeypatch, *, run_record=None, csv=True):
+    """Prepare an offline run of the cantilever case with a stubbed SWBPIPE solve and an invented CSV."""
+    case = next(item for item in run_pilot.load_cases() if item["case_id"] == "cpc-01-cantilever-force")
+    monkeypatch.setattr(run_pilot, "solve_swbpipe", lambda runner, case_: (
+        {"invented": True}, {"payload": {"mechanics_envelope": {"results": []}}}, ""))
+    tmp_path.mkdir(exist_ok=True)
+    config = fake_config(tmp_path)
+    paths = case_paths(config, case["case_id"])
+    if csv:
+        shutil.copyfile(PARSER_FIXTURE, paths["caepipe_out"] / "model_results.csv")
+    if run_record is not None:
+        (paths["caepipe_out"] / "run_record.json").write_text(json.dumps(run_record), encoding="utf-8")
+    lines = []
+    ok = run_pilot.run_case(case, config, runner="unused", offline=True, hand_calcs=hand_calcs, emit=lines.append)
+    return ok, lines, paths
+
+
+def current_mbf_sha(case_id: str) -> str:
+    case = next(item for item in run_pilot.load_cases() if item["case_id"] == case_id)
+    text = render_caepipe_mbf_si(case["model"], title=case["title"],
+                                 reference_temperature_c=case["reference_temperature_c"]).text
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def bound_record(sha: str, **extra):
+    return {"document_kind": "openpipestress.caepipe_harness_run_record", "route": "csv_from_gui_print",
+            "mbf": {"sha256": sha}, "guest_mbf_sha256": sha,
+            "observed_csv_path": {"host": "caepipe_out/model_results.csv"}, **extra}
+
+
+def test_offline_refuses_a_csv_without_a_run_record(tmp_path, monkeypatch):
+    ok, lines, paths = offline_case(tmp_path, monkeypatch)
+    assert ok is False and "route=unbound_output" in lines[0]
+    assert not (paths["comparison"] / "comparison.json").exists() and not (paths["parsed"] / "caepipe_results.json").exists()
+
+
+def test_offline_refuses_stale_and_guest_unverified_outputs(tmp_path, monkeypatch):
+    sha = current_mbf_sha("cpc-01-cantilever-force")
+    ok, lines, paths = offline_case(tmp_path / "stale", monkeypatch, run_record=bound_record("1" * 64))
+    assert ok is False and "route=stale" in lines[0]
+    assert not (paths["caepipe_in"] / "model.mbf").exists()  # the solved MBF is not overwritten
+    ok, lines, _ = offline_case(tmp_path / "legacy", monkeypatch, run_record=bound_record(sha, guest_mbf_sha256=None))
+    assert ok is False and "route=unbound_output" in lines[0]
+
+
+def test_offline_bound_csv_is_compared_and_stdout_carries_status_only(tmp_path, monkeypatch):
+    sha = current_mbf_sha("cpc-01-cantilever-force")
+    ok, lines, paths = offline_case(tmp_path, monkeypatch, run_record=bound_record(sha))
+    assert ok is True
+    assert lines == ["cpc-01-cantilever-force: route=csv_from_gui_print; comparison record written: "
+                     "cases/cpc-01-cantilever-force/comparison/comparison.json"]
+    stored = json.loads((paths["comparison"] / "comparison.json").read_text(encoding="utf-8"))
+    assert "by_outcome" in stored["summary"]
 
 
 # --------------------------------------------------------------------------

@@ -8,7 +8,8 @@ instance and prints them to a CSV file through the documented Print > To File
 command (CAEPIPE-EXPORT-DATA). Menu items and buttons are found by their
 visible captions. The script only stops processes it started.
 
-Output: one JSON object on stdout describing what happened. CAEPIPE outputs
+Output: one JSON object on stdout describing what happened, including the
+SHA-256 of the MBF actually solved (mbf_sha256). CAEPIPE outputs
 stay in the work directory; the caller copies them to its private run folder.
 #>
 param(
@@ -70,6 +71,7 @@ $CB_GETCOUNT = 0x0146; $CB_GETLBTEXT = 0x0148; $CB_SETCURSEL = 0x014E; $CBN_SELC
 $log = [ordered]@{
     schema = "openpipestress.caepipe_guest_round_trip.v1"
     mbf = $Mbf
+    mbf_sha256 = $null
     batch = [ordered]@{}
     gui = [ordered]@{ used = $false }
     csv_path = $null
@@ -130,6 +132,8 @@ function Wait-StableFile([string]$Path, [int]$Sec) {
 }
 
 $mbfItem = Get-Item $Mbf
+# The host compares this hash with the MBF it sent before it attributes any output to that MBF.
+$log.mbf_sha256 = (Get-FileHash -LiteralPath $Mbf -Algorithm SHA256).Hash.ToLowerInvariant()
 $workDir = $mbfItem.DirectoryName
 $stem = [IO.Path]::GetFileNameWithoutExtension($mbfItem.Name)
 $resPath = Join-Path $workDir ($stem + ".res")
@@ -170,8 +174,16 @@ $gp = [uint32]$gui.Id
 try {
     $layout = Wait-Window $gp { param($h) [CaepipeUi]::Cls($h) -eq "CaepipeLayout" } 60
     if (-not $layout) { throw "layout window did not appear" }
+    # A fresh instance may still be loading its start-up model when the window appears; a command posted
+    # then is dropped, so wait and post once more if the dialog does not open.
+    Start-Sleep -Seconds 2
     Invoke-Menu $layout "Open Results..."
-    $open = Wait-Window $gp { param($h) [CaepipeUi]::Text($h) -eq "Open Results" } 20
+    $open = Wait-Window $gp { param($h) [CaepipeUi]::Text($h) -eq "Open Results" } 15
+    if (-not $open) {
+        Note "Open Results command re-posted"
+        Invoke-Menu $layout "Open Results..."
+        $open = Wait-Window $gp { param($h) [CaepipeUi]::Text($h) -eq "Open Results" } 20
+    }
     if (-not $open) { throw "Open Results dialog did not appear" }
     $edit = Find-ChildById $open "Edit" 1152
     if (-not $edit) { throw "file name field not found" }

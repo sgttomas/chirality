@@ -82,7 +82,10 @@ The harness is disabled unless the user configures it (REQ-001, REQ-016):
 
 Without both, every live step skips with a stated reason, and public CI never has
 either. The harness refuses an exchange folder that lies inside a Git work tree or
-lacks a `.gitignore` of `*`. No executable is discovered, bundled or installed.
+lacks a `.gitignore` of `*`. Because the guest paths enter guest shell commands, each
+must be an absolute Windows path (`X:\…`) of letters, digits, space and `\ . - _ ( )`
+only, without `.` or `..` segments; any other value skips the harness naming the
+field. No executable is discovered, bundled or installed.
 
 ## 5. Exchange folder and run directory (DEL-17-05-PH-002)
 
@@ -100,12 +103,19 @@ cases/<case_id>/
 ```
 
 `caepipe_in/` holds only SWBPIPE-derived content. Every layer from `caepipe_out/` on
-is CAEPIPE output or derived from it and stays private (§8). Live runs solve on a
-guest-local copy of the case folder and copy the outputs back. The run record holds
-the MBF's hash; an offline re-run whose current MBF differs from the solved one is
-reported as `stale`, not compared. Each guest step is idempotent and is retried when
-the `prlctl` client itself fails (exit 255 with a `PrlJob_` message), which happens
-intermittently on this host.
+is CAEPIPE output or derived from it and stays private (§8). Every directory and
+file the pilot creates, writes or deletes must lie inside the resolved exchange
+folder with no symbolic link on the way; otherwise the case stops as
+`containment_violation`. Live runs solve on a guest-local copy of the case folder
+and copy the outputs back. A failed preparation step (the guest copy of the MBF)
+stops the run as `prepare_failed` before solving. The guest script reports the
+SHA-256 of the MBF it solved; the run record holds it beside the host MBF's hash, and
+when they differ the run is `input_hash_mismatch` and nothing is collected. A CSV is
+compared only when its run record binds it to the current MBF (both hashes equal);
+an offline re-run reports `stale` when the solved MBF differs from the current one
+and `unbound_output` when no valid run record binds the CSV. Each guest step is
+idempotent and is retried when the `prlctl` client itself fails (exit 255 with a
+`PrlJob_` message), which happens intermittently on this host.
 
 ## 6. Writer, parser and comparison
 
@@ -149,9 +159,11 @@ intermittently on this host.
     differs, the case inputs are suspected; if all three disagree,
     `solver_defect_candidate` with the alternatives listed. A declared
     behaviour difference counts as `documented_behavior_difference` only when the
-    observed CAEPIPE − SWBPIPE difference is within 10 % of the case's predicted
-    difference (or the case gives no prediction, recorded as `declared_only`). No
-    axis is silently defaulted.
+    analytic and SWBPIPE values agree and the observed CAEPIPE − SWBPIPE difference
+    is within 10 % of the case's predicted difference (or the case gives no
+    prediction, recorded as `declared_only`). When the analytic check fails or has
+    no verdict, the triangle rule names the cause and a fitting declaration is kept
+    only as further evidence. No axis is silently defaulted.
   - Disposition: `no_action`, `assumption_recorded`, `bug_report`,
     `dossier_question`, `proposed_code_fix`, `requires_professional_review`.
 
@@ -182,10 +194,14 @@ agreement counts, tolerances measured from them) stay in the exchange folder and
 never committed, pushed, or written into PR, issue or other GitHub text. Public
 material is limited to invented models, SWBPIPE-generated MBF, code, this Design, and
 invented parser fixtures. Vendor files in the CAEPIPE install folder are read locally
-only and never copied. No public text claims agreement with CAEPIPE. A guard test
-checks that no tracked file sits under an exchange-style path or carries the CAEPIPE
-CSV header of a real run, and that the harness refuses an exchange folder inside a Git
-work tree.
+only and never copied. No public text claims agreement with CAEPIPE. The pilot
+command's standard output carries operational status only (case, route, the record's
+path in the exchange folder or the reason none was written); outcome and cause counts
+stay in the private record. A guard test checks that no tracked file sits under an
+exchange-style path, carries the CAEPIPE CSV header of a real run, or is a parsed,
+comparison or run-record artefact (by document kind or private-layer file name)
+unless a provenance sidecar declares it invented, and that the harness refuses an
+exchange folder inside a Git work tree.
 
 ## 9. Regression check
 
@@ -206,3 +222,4 @@ classification. It never prints CAEPIPE values outside the local run.
 - The desktop `.mbf` export (`CaepipeMbfExportPanel.tsx`) still writes the placeholder
   smoke text; it should use the SI writer's record subset.
 - Wider correlation corpus once the full licence lifts the 20-row limit.
+- Non-unit bend flexibility factors are untested: the bend case uses k = 1.

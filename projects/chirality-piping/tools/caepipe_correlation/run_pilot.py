@@ -9,12 +9,18 @@ the SI MBF (with the case's deliberate fault injection, if any), the live
 CAEPIPE round trip through the configured virtual machine (skipped with
 --offline, which reuses the CSV already stored in caepipe_out/), the parsed
 CAEPIPE results, the three-way comparison record and the case manifest, all
-under the private exchange folder named by SWBPIPE_CAEPIPE_EXCHANGE.
+under the private exchange folder named by SWBPIPE_CAEPIPE_EXCHANGE. A CSV is
+compared only when its run record binds it to the current MBF: the host MBF hash
+and the hash the guest reported for the MBF it solved both equal the current
+MBF's hash.
 
-Standard output names each case's route and its counts by outcome and cause
-only; it never prints a CAEPIPE value. Exit status 0 when every selected case
-produced a comparison record, or when the harness is not configured (the reason
-is printed and nothing is written); 1 otherwise; 2 for a usage error.
+Standard output carries operational status only: per case its id, route and
+either the comparison record's path relative to the exchange folder or the
+reason no record was written. Outcome and cause counts stay in the private
+record's `summary`; no CAEPIPE value or derived statistic is printed. Exit
+status 0 when every selected case produced a comparison record, or when the
+harness is not configured (the reason is printed and nothing is written); 1
+otherwise; 2 for a usage error.
 """
 
 from __future__ import annotations
@@ -45,7 +51,15 @@ from core.handoff.caepipe_external import (  # noqa: E402
     resolve_harness_config,
     run_caepipe_round_trip,
 )
-from core.handoff.caepipe_external.harness import BOUNDARY_NOTE, CASE_ID_PATTERN  # noqa: E402
+from core.handoff.caepipe_external.harness import (  # noqa: E402
+    BOUNDARY_NOTE,
+    CASE_ID_PATTERN,
+    CSV_ROUTES,
+    RUN_RECORD_KIND,
+    ContainmentError,
+    contained,
+    write_private,
+)
 from core.handoff.caepipe_mbf import render_caepipe_mbf_si  # noqa: E402
 
 
@@ -178,44 +192,66 @@ def _sha256(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
-def _write_json(path: Path, value: Any) -> None:
-    path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+def _write_json(root: Path, path: Path, value: Any) -> None:
+    write_private(root, path, json.dumps(value, indent=2, sort_keys=True) + "\n")
 
 
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
-def _counts(summary: Mapping[str, Any]) -> str:
-    parts = []
-    for check, counts in summary["by_outcome"].items():
-        parts.append(check + "{" + ", ".join(f"{key}={value}" for key, value in counts.items()) + "}")
-    causes = ", ".join(f"{key}={value}" for key, value in summary["by_cause"].items())
-    return "; ".join(parts) + "; causes{" + causes + "}"
+def stored_run_record(root: Path, out_dir: Path) -> dict[str, Any] | None:
+    """The harness run record stored in caepipe_out/, or None when absent or not a run record."""
+    path = contained(root, out_dir / "run_record.json")
+    try:
+        record = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else None
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+        return None
+    return record if isinstance(record, dict) and record.get("document_kind") == RUN_RECORD_KIND else None
 
 
-def stored_csv(out_dir: Path) -> tuple[Path | None, dict[str, Any] | None]:
-    record_path = out_dir / "run_record.json"
-    record = json.loads(record_path.read_text(encoding="utf-8")) if record_path.is_file() else None
-    host = ((record or {}).get("observed_csv_path") or {}).get("host")
-    if host:
-        candidate = out_dir.parent / host
-        return (candidate if candidate.is_file() else None), record
-    found = sorted(out_dir.glob("model*.csv"))
-    return (found[0] if len(found) == 1 else None), record
+def bound_csv(root: Path, paths: Mapping[str, Path], record: Mapping[str, Any] | None,
+              mbf_sha256: str) -> tuple[Path | None, str, str]:
+    """(CSV, route, reason): the CSV only when the run record binds it to the current MBF, else None and why."""
+    if record is None:
+        return None, "unbound_output", "no valid caepipe_out/run_record.json binds a CSV to this MBF"
+    if (record.get("mbf") or {}).get("sha256") != mbf_sha256:
+        return None, "stale", "the stored CAEPIPE output was produced from a different MBF"
+    route = str(record.get("route") or "unknown_route")
+    if record.get("guest_mbf_sha256") != mbf_sha256:
+        return None, (route if route == "input_hash_mismatch" else "unbound_output"), \
+            "the guest did not report solving this MBF (guest MBF hash absent or different)"
+    host = (record.get("observed_csv_path") or {}).get("host")
+    if route not in CSV_ROUTES or not isinstance(host, str) or not host.startswith("caepipe_out/"):
+        return None, route, "the run record names no collected CAEPIPE CSV"
+    csv_path = contained(root, paths["root"] / host)
+    if not csv_path.is_file():
+        return None, route, "the CAEPIPE CSV named by the run record is missing"
+    return csv_path, route, ""
 
 
 def run_case(case: Mapping[str, Any], config: HarnessConfig, *, runner: str, offline: bool, hand_calcs: Any,
              emit: Callable[[str], None] = print,
              round_trip: Callable[..., dict[str, Any]] = run_caepipe_round_trip) -> bool:
+    try:
+        return _run_case(case, config, runner=runner, offline=offline, hand_calcs=hand_calcs, emit=emit,
+                         round_trip=round_trip)
+    except ContainmentError as error:
+        emit(f"{case['case_id']}: route=containment_violation; {error}; no comparison record")
+        return False
+
+
+def _run_case(case: Mapping[str, Any], config: HarnessConfig, *, runner: str, offline: bool, hand_calcs: Any,
+              emit: Callable[[str], None], round_trip: Callable[..., dict[str, Any]]) -> bool:
     case_id = case["case_id"]
+    root = config.exchange_root.resolve()
     paths = case_paths(config, case_id)
     analytic = hand_calcs.analytic_values(case_id)
 
     body, output, error = solve_swbpipe(runner, case)
-    _write_json(paths["swbpipe"] / "request.json", body)
+    _write_json(root, paths["swbpipe"] / "request.json", body)
     if output is not None:
-        _write_json(paths["swbpipe"] / "result.json", output)
+        _write_json(root, paths["swbpipe"] / "result.json", output)
     if error:
         emit(f"{case_id}: route=not_run; SWBPIPE not solved ({error})")
         return False
@@ -231,44 +267,39 @@ def run_case(case: Mapping[str, Any], config: HarnessConfig, *, runner: str, off
     fault = case.get("fault_injection")
     mbf_text = apply_fault_injection(writer_text, fault) if fault else writer_text
 
-    csv_path, run_record = None, None
+    mbf_sha256 = _sha256(mbf_text)
     if offline:
-        csv_path, run_record = stored_csv(paths["caepipe_out"])
-        stored_hash = ((run_record or {}).get("mbf") or {}).get("sha256")
-        if stored_hash and stored_hash != _sha256(mbf_text):
-            emit(f"{case_id}: route=stale; the stored CAEPIPE output was produced from a different MBF")
+        # Checked before caepipe_in/ is rewritten, so the MBF that produced a stale output is kept.
+        csv_path, route, reason = bound_csv(root, paths, stored_run_record(root, paths["caepipe_out"]), mbf_sha256)
+        if csv_path is None:
+            emit(f"{case_id}: route={route}; {reason}; no comparison record")
             return False
     in_dir = paths["caepipe_in"]
-    (in_dir / "model.mbf").write_bytes(mbf_text.encode("utf-8"))
-    _write_json(in_dir / "id_map.json", {key: value for key, value in mbf.to_dict().items()
-                                          if key.endswith("_map")})
-    _write_json(in_dir / "mbf_render.json", {
+    write_private(root, in_dir / "model.mbf", mbf_text.encode("utf-8"))
+    _write_json(root, in_dir / "id_map.json", {key: value for key, value in mbf.to_dict().items()
+                                                if key.endswith("_map")})
+    _write_json(root, in_dir / "mbf_render.json", {
         "profile_id": mbf.to_dict()["profile_id"], "status": mbf.status, "layout_row_count": mbf.layout_row_count,
         "diagnostics": mbf.diagnostics, "loss_report": mbf.loss_report, "assumptions": mbf.assumptions,
-        "writer_text_sha256": _sha256(writer_text), "mbf_sha256": _sha256(mbf_text),
+        "writer_text_sha256": _sha256(writer_text), "mbf_sha256": mbf_sha256,
         "fault_injection": dict(fault) if fault else None,
     })
 
-    if offline:
-        route = (run_record or {}).get("route", "stored_csv_without_run_record") if csv_path else "no_stored_csv"
-    else:
-        run_record = round_trip(config, case_id, mbf_text)
-        route = run_record["route"]
-        host = (run_record.get("observed_csv_path") or {}).get("host")
-        csv_path = paths["root"] / host if host else None
-    if csv_path is None or not csv_path.is_file():
-        emit(f"{case_id}: route={route}; no CAEPIPE CSV" + (" stored in caepipe_out/" if offline else "")
-             + "; no comparison record")
-        return False
+    if not offline:
+        csv_path, route, reason = bound_csv(root, paths, round_trip(config, case_id, mbf_text), mbf_sha256)
+        if csv_path is None:
+            emit(f"{case_id}: route={route}; {reason}; no comparison record")
+            return False
 
     parsed = read_caepipe_print_csv(csv_path)
-    _write_json(paths["parsed"] / "caepipe_results.json", parsed)
-    _write_json(paths["parsed"] / "parser_diagnostics.json", {
+    _write_json(root, paths["parsed"] / "caepipe_results.json", parsed)
+    _write_json(root, paths["parsed"] / "parser_diagnostics.json", {
         key: parsed[key] for key in ("parser_version", "diagnostics", "sections_parsed", "sections_skipped")})
     record = build_comparison_record(case, swbpipe_model=case["model"], swbpipe_result_payload=payload,
                                      mbf_result=mbf, mbf_text=mbf_text, parsed_caepipe=parsed, analytic=analytic)
-    _write_json(paths["comparison"] / "comparison.json", record)
-    _write_json(paths["manifest"], {
+    comparison_path = paths["comparison"] / "comparison.json"
+    _write_json(root, comparison_path, record)
+    _write_json(root, paths["manifest"], {
         "document_kind": MANIFEST_KIND,
         "case_id": case_id,
         "created": _now(),
@@ -285,7 +316,8 @@ def run_case(case: Mapping[str, Any], config: HarnessConfig, *, runner: str, off
         "layer_privacy": LAYER_PRIVACY,
         "boundary_note": BOUNDARY_NOTE,
     })
-    emit(f"{case_id}: route={route}; {_counts(record['summary'])}")
+    # Operational status only: the counts by outcome and cause stay in the private record's summary (Design §8).
+    emit(f"{case_id}: route={route}; comparison record written: {comparison_path.relative_to(root)}")
     return True
 
 
