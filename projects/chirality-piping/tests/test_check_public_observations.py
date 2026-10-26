@@ -203,6 +203,7 @@ def test_path_and_file_name_forms_are_masked_but_hyphenated_prose_is_not(tmp_pat
     ("src/lib.rs", "let x = 1; // Widget\n/// overflow at startup.\n"),
     ("tools/a.ps1", "$x = 1 # Widget\n# overflow at startup.\n"),
     ("src/a.ts", "/* Widget\n * overflow at startup. */\n"),
+    ("tools/b.ps1", "<# Widget\n#>\n# overflow at startup.\n"),
 ])
 def test_wrapped_comments_join_without_comment_syntax(tmp_path, name, text):
     assert run(tmp_path, {name: text}) == [f"{name}:1: observed token #1"]
@@ -213,3 +214,14 @@ def test_single_quoted_docstring_beside_a_comment_is_prose_but_code_literals_are
             "def test_values(): 'Acmepipe trial quirk.'\n\n\nTITLE = 'Acmepipe trial'  # generic note\n")
     findings = run(tmp_path, {"pkg/mod.py": code})
     assert {item.split(":")[1] for item in findings} == {"2", "6"}
+
+
+def test_concatenated_and_non_ascii_docstrings_are_prose(tmp_path):
+    code = "def helper(): 'generic ' 'Widget overflow at startup.'\n\n\ndef caf\u00e9(): 'Widget overflow at startup.'\n"
+    assert run(tmp_path, {"pkg/mod.py": code}) == ["pkg/mod.py:1: observed token #1", "pkg/mod.py:4: observed token #1"]
+
+
+def test_markdown_link_destinations_are_masked(tmp_path):
+    assert run(tmp_path, {"doc/a.md": "See [details](Design/acmepipe-notes.md); trial notes.\n"}) == []
+    findings = run(tmp_path / "t", {"doc/a.md": "See [Acmepipe](Design/notes.md); it was observed.\n"})
+    assert findings == ["doc/a.md:1: name #1 near observation marker #1"]

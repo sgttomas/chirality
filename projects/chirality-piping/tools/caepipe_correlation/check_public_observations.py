@@ -84,9 +84,16 @@ def _path(word: str) -> bool:
     return bool(FILE_EXTENSION.search(word)) or word.endswith(("/", "\\")) or (separated and "_" in word)
 
 
+MARKDOWN_DESTINATION = re.compile(r"\]\(\s*<?([^()\s<>]+)>?(?:\s+[\"'(][^)]*)?\)")
+
+
 def _unpathed(text: str) -> str:
     out = list(text)
-    for match in re.finditer(r"\S+", text):
+    # Markdown link destinations (`[text](Design/x-notes.md)`) are blanked first, by their own span.
+    for match in MARKDOWN_DESTINATION.finditer(text):
+        if _path(match.group(1).strip(EDGE_PUNCTUATION)):
+            out[match.start(1):match.end(1)] = " " * (match.end(1) - match.start(1))
+    for match in re.finditer(r"\S+", "".join(out)):
         word = match.group()
         lead = len(word) - len(word.lstrip(EDGE_PUNCTUATION))
         core = word.strip(EDGE_PUNCTUATION)
@@ -96,13 +103,15 @@ def _unpathed(text: str) -> str:
     return "".join(out)
 
 
-COMMENT_SYNTAX = re.compile(r"^\s*(?:#+|//+!?|/\*+!?|\*+(?!/)|<#)?\s*(.*?)\s*(?:\*+/|#>)?\s*$")
+COMMENT_CLOSER = re.compile(r"(?:\*+/|#>)\s*$")
+COMMENT_OPENER = re.compile(r"^(?:<#|/\*+!?|//+!?|#+|\*+)")
 
 
 def _strip_comment(text: str) -> str:
-    """The words of one comment line, without its comment syntax, so wrapped comments join as prose."""
+    """The words of one comment line, without its comment syntax, so wrapped comments join as prose.
+    A closing delimiter is removed before an opening prefix, so a bare `#>` or `*/` leaves nothing."""
 
-    return COMMENT_SYNTAX.match(text).group(1)
+    return COMMENT_OPENER.sub("", COMMENT_CLOSER.sub("", text.strip())).strip()
 
 
 def _phrase(term: str) -> re.Pattern[str]:
@@ -118,19 +127,28 @@ def python_prose_lines(text: str) -> dict[int, str]:
         ast.parse(text)
     except (tokenize.TokenError, IndentationError, SyntaxError, ValueError):
         return {number: line for number, line in enumerate(text.splitlines(), 1)}
-    # Docstrings in any quoting (a one-line single-quoted docstring is not triple-quoted), by start position.
-    docstrings = set()
+    # Docstrings in any quoting (a one-line single-quoted docstring is not triple-quoted), as the span of
+    # their expression, so every implicitly concatenated literal belongs to it. AST columns count UTF-8
+    # bytes and tokenizer columns characters; spans are converted to characters.
+    source = text.splitlines()
+
+    def position(line: int, byte_column: int) -> tuple[int, int]:
+        return line, len(source[line - 1].encode("utf-8")[:byte_column].decode("utf-8", errors="ignore"))
+
+    docstrings = []
     for node in ast.walk(ast.parse(text)):
         if isinstance(node, (ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)) and node.body:
             first = node.body[0]
             if isinstance(first, ast.Expr) and isinstance(first.value, ast.Constant) \
                     and isinstance(first.value.value, str):
-                docstrings.add((first.value.lineno, first.value.col_offset))
+                docstrings.append((position(first.lineno, first.col_offset),
+                                   position(first.end_lineno, first.end_col_offset)))
     previous = None
     for token in tokens:
         if token.type == tokenize.COMMENT:
             prose[token.start[0]] = prose.get(token.start[0], "") + " " + _strip_comment(token.string)
-        elif token.type == tokenize.STRING and (token.start in docstrings
+        elif token.type == tokenize.STRING and (any(low <= token.start and token.end <= high
+                                                    for low, high in docstrings)
                                                 or token.string.lstrip("rbuRBUfF").startswith(('"""', "'''"))):
             for offset, part in enumerate(token.string.splitlines()):
                 number = token.start[0] + offset
