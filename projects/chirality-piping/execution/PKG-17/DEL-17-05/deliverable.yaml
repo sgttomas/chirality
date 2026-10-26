@@ -133,6 +133,7 @@ checks:
 - tests/test_caepipe_correlation.py
 - tests/test_caepipe_data_boundary.py
 - tests/test_caepipe_private_correlation.py
+- tests/test_check_public_observations.py
 - apps/desktop/src/features/results/loadReferenceOutputRefusal.test.tsx
 - apps/desktop/src/features/results/retainedPrecisionOutputRefusal.test.tsx
 - apps/desktop/src/App.test.tsx

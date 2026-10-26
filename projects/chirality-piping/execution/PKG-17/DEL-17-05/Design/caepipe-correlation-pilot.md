@@ -11,6 +11,7 @@ invocation `TBD` are settled for the pilot, and what stays open.
 PRD §22.5 makes activation "owner-gated on lawful access to the external tool". The
 owner activated it on 2026-10-26:
 
+<!-- owner-words -->
 - Request: "Could we start making validation cases using a CAEPIPE solver in my
   Parallels Windows virtual desktop and have validation cases made as input files that
   can be given to CAEPIPE and solved and then take the outputs as the validation data
@@ -24,6 +25,7 @@ owner activated it on 2026-10-26:
 - Purpose of the pilot: "The pilot using the trial version of CAEPIPE is just to prove
   the basic concept for how I want to do validation will work. Once that's assured, I
   will pay for the full license allowing us to do more extensive validation work."
+<!-- /owner-words -->
 
 The pilot is a proof of concept supporting that licence decision. It exercises each
 part of the loop once on a small case set; breadth of coverage and governed
@@ -36,14 +38,13 @@ of engineering use, or compatibility proof (DEL-17-05-REQ-008, F-PIP-3).
 
 | Item | Pilot value |
 |---|---|
-| Target | CAEPIPE 15.10, evaluation ("Trial") build, owner-licensed, MBF `VERSION 15.10` |
+| Target | CAEPIPE 15.10 (PRD §22.5 names the target tool and version), run under the owner's licence; MBF `VERSION 15.10` per the public import page |
 | Environment | The owner's Windows virtual machine under Parallels on the development Mac; commands run as the logged-in Windows user (`prlctl exec <vm> --current-user`) |
-| Trial window | A limited evaluation period from first launch (2026-10-26); the private case manifests record the first-launch date |
-| Evaluation limits | Import refuses a model of more than 20 layout rows (observed in CAEPIPE 15.10 Eval); outputs carry the evaluation product name (observed in CAEPIPE 15.10 Eval) (DEL-17-01 CQ-17-01-009) |
+| Licence period | Limited, from first launch (2026-10-26); the private case manifests record the date |
+| Model size | The build in use limits model size (private observation notes; DEL-17-01 CQ-17-01-009) |
 
-The evaluation limit shapes the pilot corpus: every case stays within 20 layout rows.
-A licensed build is expected to lift it; the writer reports the row count and warns
-above 20, but does not refuse.
+That limit shapes the pilot corpus: every case stays small. The writer reports the
+layout row count against a configurable limit and warns above it, but does not refuse.
 
 ## 3. Invocation profile (settles DEL-17-05-REQ-003 for the pilot)
 
@@ -57,16 +58,15 @@ It imports the MBF, writes `<model>.mod` and `<model>.res`, and is documented to
 `<model>.csv` beside the MBF. The harness always runs this route first and uses its CSV
 whenever one appears.
 
-**Trial-build workaround (labelled, not hardened).** In the 15.10 evaluation build
-(observed in CAEPIPE 15.10 Eval) the batch run stops at a modal access-violation error dialog after writing `.res` and never
-writes the CSV, on every model tried, including the manual's own example
-(DEL-17-01 CQ-17-01-008). Until a build fixes that, the guest script stops the process
-it started, opens the solved `.res` in a fresh CAEPIPE instance it starts itself, and
-prints the results to CSV through the documented Print > To File command
-(`CAEPIPE-PRINT-TO-FILE`), finding menu items and buttons by their visible captions. It
+**Workaround for the build in use (labelled, not hardened).** With the build used by
+the pilot, the batch run does not leave the documented CSV (private observation
+notes; DEL-17-01 CQ-17-01-008). Until a build does, the guest script stops the
+process it started, opens the solved results in a fresh instance of the target tool
+that it starts itself, and prints the results to CSV through the documented
+print-to-file command, finding menu items and buttons by their visible captions. It
 reads no binary result file and stops only processes it started. The run record states
 which route produced the CSV (`csv_from_batch` or `csv_from_gui_print`). This fallback
-exists only for the trial build and gets no further investment; the full licence
+exists only for that build and gets no further investment; a licensed full build
 should be checked for batch CSV output first.
 
 ## 4. Configuration surface (DEL-17-05-PH-001)
@@ -123,8 +123,8 @@ idempotent and is retried when the `prlctl` client itself fails (exit 255 with a
   (`OPTIONS SI`, lengths in mm, E in N/mm², weight density in kgf/m³) from the headless
   runner's preview model. A project or quantity in another unit system is refused by
   name, not converted. Unsupported constructs are refused by name and listed in the
-  loss report. Rotational partial restraints are refused: the 15.10 build rejects
-  `FIXR` at import, while translational `FIXD` is accepted (observed in CAEPIPE 15.10 Eval). A
+  loss report. Rotational partial restraints are refused because the target tool's
+  import does not accept them (private notes); translational `FIXD` is written. A
   curved bend is written at its tangent intersection (`KI`, radius `B`, the user
   flexibility factor as `FF`); CAEPIPE generates the bend's near and far end nodes
   with `A` and `B` suffixes on the bend node (technical reference, "Bend",
@@ -136,16 +136,19 @@ idempotent and is retried when the `prlctl` client itself fails (exit 255 with a
   acceleration but no default value, so no difference is declared for it; the
   default is asked of SST (CQ-17-01-010). Poisson's ratio is taken as given or
   derived as E/(2G) − 1.
-- **Parser (PH-003).** `core/handoff/caepipe_external/print_csv.py` reads the
-  Print > To File CSV. Its coverage register lists each recognized section (global
+- **Parser (PH-003).** `core/handoff/caepipe_external/print_csv.py` reads the CSV
+  written by the documented print-to-file command (`CAEPIPE-PRINT-TO-FILE`).
+
+  Its coverage register lists each recognized section (global
   displacements, anchor loads in global and local axes, restraint loads, element
   forces in local and global axes), checks each section's header and unit rows, treats
-  a blank numeric cell as zero (observed in CAEPIPE 15.10 Eval), skips Min/Max blocks and unknown sections with a
+  a blank numeric cell as zero, skips Min/Max blocks and unknown sections with a
   diagnostic, and pairs element-force rows in from/to order (a weak, row-order
-  correlation per REQ-010, bound back to SWBPIPE ids through the writer's id map). The
-  section titles, header and unit rows it recognizes, and the from/to row order, are
-  observed in CAEPIPE 15.10 Eval; the Print > To File command and its CSV option are documented
-  (`CAEPIPE-PRINT-TO-FILE`). Its public test fixture is invented and labelled.
+  correlation per REQ-010, bound back to SWBPIPE ids through the writer's id map).
+
+  The section titles, header and unit rows, the blank-as-zero rule and the row order
+  come from private notes, not from public documentation. The public test fixture is
+  invented and labelled, with no attribution.
 - **Comparison record.** Each case produces one record naming what PRD §22.5 lists:
   internal model hash, exported MBF hash, target tool and version, import/export
   assumptions, manual changes (none), load-case mapping, support mapping, comparison
@@ -173,7 +176,7 @@ idempotent and is retried when the `prlctl` client itself fails (exit 255 with a
     `source_basis` list of public references. A covered quantity's cause is
     `documented_behavior_difference` with `evidence_status: "established"` and
     disposition `assumption_recorded` only when (a) the analytic and SWBPIPE values
-    agree, (b) SWBPIPE and CAEPIPE disagree, (c) `alternative_analytic_vs_caepipe`
+    agree, (b) SWBPIPE and the external prover disagree, (c) `alternative_analytic_vs_caepipe`
     matched, (d) the declaration's `source_basis` is not empty and (e) its
     hypothesis series is `consistent`. When (a) and (b) hold and any of (c)–(e)
     does not, the cause keeps the label with `evidence_status: "hypothesis"`, a
@@ -185,13 +188,14 @@ idempotent and is retried when the `prlctl` client itself fails (exit 255 with a
   - Disposition: `no_action`, `assumption_recorded`, `bug_report`,
     `dossier_question`, `proposed_code_fix`, `requires_professional_review`.
 
-Sign and unit mappings applied before comparison: CAEPIPE's anchor loads are the load
-of the pipe on the anchor, while SWBPIPE reports the reaction on the pipe, hence a sign
-flip (observed in CAEPIPE 15.10 Eval). CAEPIPE prints rotations in degrees and SWBPIPE uses radians. Forces and
-moments added to "W+P" act in the sustained and operating cases (technical reference,
-"Force", <https://docs.sstcae.com/tech_manual/force.htm>). In the evaluation build
-they also appear in the Empty Weight case (observed in CAEPIPE 15.10 Eval). The pilot therefore compares the
-`Sustained (W+P)` case with empty pipes and zero pressure.
+The technical reference documents that sustained-category forces and moments also act
+in the operating cases ("Force", <https://docs.sstcae.com/tech_manual/force.htm>).
+
+Sign and unit mappings are applied before comparison. The target tool's support loads
+and SWBPIPE's reactions differ in sign, rotations arrive in degrees, and the mechanical
+case appears in more than one of the target tool's load cases (private notes). The
+pilot therefore compares the target tool's sustained case, with empty pipes and zero
+pressure.
 
 ## 7. Cases and tolerances
 
@@ -210,11 +214,11 @@ Each case carries three tolerances, all `ASSUMPTION`:
 | Tolerance | Used by | Value |
 |---|---|---|
 | `analytic_vs_swbpipe` | analytic–SWBPIPE | rel 1e-6; abs 1e-9 m, 1e-9 rad, 1e-6 N, 1e-6 N·m (binary64 round-off scale) |
-| `external` | SWBPIPE–CAEPIPE, analytic–CAEPIPE | rel 0.5 %; abs 2e-6 m, 2e-6 rad, 1 N, 1 N·m |
-| `caepipe_print_resolution` | alternative analytic–CAEPIPE | rel 1e-6; abs half a printed unit: 0.5 N, 0.5 N·m, 5e-7 m, 8.7266e-7 rad |
+| `external` | SWBPIPE–prover, analytic–prover | rel 0.5 %; abs 2e-6 m, 2e-6 rad, 1 N, 1 N·m |
+| `caepipe_print_resolution` | alternative analytic–prover | rel 1e-6; abs half a printed unit: 0.5 N, 0.5 N·m, 5e-7 m, 8.7266e-7 rad |
 
-The CAEPIPE CSV prints forces to 1 N, moments to 1 N·m, displacements to 0.001 mm
-and rotations to 0.0001° (observed in CAEPIPE 15.10 Eval), so half a printed unit is the tightest tolerance the
+The printed resolution of the target tool's CSV (private notes) sets the
+`caepipe_print_resolution` values: half a printed unit is the tightest tolerance the
 printed values can resolve.
 
 **Hypothesis series.** A series in `validation/caepipe_correlation/series/` tests the
@@ -226,7 +230,7 @@ scaling a hypothesis predicts across member cases that differ in one parameter.
 slope of the gap against span between the shortest and longest member must be −2
 within ±0.05 (`ASSUMPTION`). That is resolvable at print resolution: with the
 shape-factor-2 gaps of 0.043 mm at 3 m and 0.173 mm at 12 m, rounding of the printed
-CAEPIPE value moves the slope by at most about 0.011 (about 0.021 at shape factor 1).
+external-prover value moves the slope by at most about 0.011 (about 0.021 at shape factor 1).
 A member counts only when its record is bound to its current MBF, its
 analytic–SWBPIPE check matched and its gap exceeds the print resolution; otherwise
 the series is `not_evaluated` with the reasons. With every member counted it is
@@ -239,10 +243,9 @@ carries a different series status. Standard output names only the files written.
 
 ### 7.1 Shear deformation evidence
 
-Facts marked "observed in CAEPIPE 15.10 Eval" rest only on the project's own runs, without values. Whether such
-facts may stay in public text is an owner decision pending (data boundary,
-2026-10-26). If the owner rules that they may not, these marks show what moves to the
-private exchange folder.
+Facts learned from running the target tool are written in this Design without the
+product name, vendor or version, and their detail is kept in private notes (owner,
+2026-10-26). Facts that the public manuals document are cited to them.
 
 SWBPIPE's frame preview is Euler–Bernoulli. CAEPIPE's technical reference, page
 "Fiber Reinforced Plastic Piping (FRP)", section "Stiffness matrix"
@@ -259,11 +262,11 @@ Acceleration and Direction" (<https://docs.sstcae.com/users_manual/analysis.htm>
 documents a configurable gravitational acceleration introduced in 15.10, with
 weights entered in earth-gravity units, but gives no default; the same question
 asks SST for it. The difference is classified as documented only through the
-rule of §6: the alternative analytic must match CAEPIPE at print resolution and the
+rule of §6: the alternative analytic must match the external prover at print resolution and the
 series must be consistent.
 
 The private run records the residual of every alternative-analytic check. Where a
-residual exceeds print resolution although SWBPIPE and CAEPIPE match within the
+residual exceeds print resolution although SWBPIPE and the external prover match within the
 external tolerance, no cause is assigned. The residual is still reported as part of
 the hypothesis that is not yet explained, and the shape factor is not refitted to
 absorb it.
@@ -294,7 +297,7 @@ exchange folder inside a Git work tree.
 otherwise it re-parses each stored CAEPIPE CSV, re-solves the case in SWBPIPE,
 re-runs the comparison and the series step (§7) in a temporary copy, failing if any
 quantity's outcome, cause or cause evidence status moves out of its recorded
-classification. It never prints CAEPIPE values outside the local run.
+classification. It never prints external-prover values outside the local run.
 
 ## 10. Remaining items
 
@@ -306,7 +309,7 @@ classification. It never prints CAEPIPE values outside the local run.
   (conversion), multiple thermal cases.
 - The desktop `.mbf` export (`CaepipeMbfExportPanel.tsx`) still writes the placeholder
   smoke text; it should use the SI writer's record subset.
-- Wider correlation corpus once the full licence lifts the 20-row limit.
+- Wider correlation corpus once a full licence lifts the model-size limit.
 - Non-unit bend flexibility factors are untested: the bend case uses k = 1.
 - CAEPIPE's pipe shear shape factor and default gravitational acceleration
   (CQ-17-01-010); κ = 0.5 stays an `ASSUMPTION` until answered.

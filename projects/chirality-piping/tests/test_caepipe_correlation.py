@@ -1035,7 +1035,7 @@ def write_member_record(config, case_id, *, caepipe_mm):
 
 def test_run_series_writes_a_private_record_and_rebuilds_declaring_cases(tmp_path, monkeypatch):
     config = fake_config(tmp_path)
-    # Invented CAEPIPE-side values: the Timoshenko tip deflections rounded to the 0.001 mm print resolution.
+    # Invented external-prover values: the Timoshenko tip deflections rounded to the 0.001 mm print resolution.
     for case_id in ("cpc-07-cantilever-span-3m", "cpc-01-cantilever-force", "cpc-08-cantilever-span-12m"):
         span = hand_calcs.CANTILEVER_SPANS[case_id]
         write_member_record(config, case_id,

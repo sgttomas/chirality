@@ -1,8 +1,8 @@
 """Parser for the CSV results file written by CAEPIPE's Print > To File command (DEL-17-05).
 
-The recognized section layout is transcribed from the public CAEPIPE
-documentation of the Print > To File output and from observed section headings;
-the public fixture that exercises it is invented. Each recognized section's
+The recognized section layout follows the public documentation of the
+print-to-file output and private notes; the public fixture that exercises it is
+invented. Each recognized section's
 column-header and unit rows are verified exactly before any value is read, so no
 unit is ever assumed. Unknown sections are skipped with an info diagnostic.
 

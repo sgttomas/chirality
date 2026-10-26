@@ -24,7 +24,7 @@ from its stored CSV, so its causes use the series status (Design §6, §7).
 Standard output carries operational status only: per case its id, route and
 either the comparison record's path relative to the exchange folder or the
 reason no record was written, and per series the path of its record. Outcome,
-cause and series status stay in the private records; no CAEPIPE value or
+cause and series status stay in the private records; no external-prover value or
 derived statistic is printed. Exit status 0 when every selected case and every
 rebuild produced a comparison record, or when the harness is not configured
 (the reason is printed and nothing is written); 1 otherwise; 2 for a usage

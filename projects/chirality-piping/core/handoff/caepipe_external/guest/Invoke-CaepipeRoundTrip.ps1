@@ -3,10 +3,9 @@ DEL-17-05 guest-side round trip for a user-owned CAEPIPE installation.
 
 Runs inside the user's Windows environment. It imports and solves one MBF in
 batch mode (CAEPIPE-BATCH, CAEPIPE-IMPORT-MBF), then, when batch mode does not
-leave a CSV beside the MBF, opens the solved results in a fresh CAEPIPE
-instance and prints them to a CSV file through the documented Print > To File
-command (CAEPIPE-EXPORT-DATA). Menu items and buttons are found by their
-visible captions. The script only stops processes it started.
+leave a CSV beside the MBF, opens the solved results in a fresh
+instance and writes them to a CSV file through the documented print-to-file
+command. It locates menu items and buttons by their visible captions. The script only stops processes it started.
 
 Output: one JSON object on stdout describing what happened, including the
 SHA-256 of the MBF actually solved (mbf_sha256). CAEPIPE outputs

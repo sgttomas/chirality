@@ -22,12 +22,12 @@
   "slope_tolerance": {
     "abs": 0.05,
     "basis": "ASSUMPTION",
-    "note": "ASSUMPTION chosen by the implementer for the pilot. Resolvable at print resolution: CAEPIPE prints displacements to 0.001 mm, so C carries at most 5e-7 m of rounding while S is binary64. With the hand-calculated shear gaps (shape factor 2) of 0.0433 mm at 3 m and 0.1733 mm at 12 m, the rounding moves ln|g| by at most 1.2 % and 0.3 %, so the fitted slope by at most about 0.011, a fifth of the tolerance. The bound scales with the inverse of the shape factor; for any shape factor of 1 or more it stays below about 0.022."
+    "note": "ASSUMPTION chosen by the implementer for the pilot. Resolvable at print resolution: the external prover prints displacements to 0.001 mm, so C carries at most 5e-7 m of rounding while S is binary64. With the hand-calculated shear gaps (shape factor 2) of 0.0433 mm at 3 m and 0.1733 mm at 12 m, the rounding moves ln|g| by at most 1.2 % and 0.3 %, so the fitted slope by at most about 0.011, a fifth of the tolerance. The bound scales with the inverse of the shape factor; for any shape factor of 1 or more it stays below about 0.022."
   },
   "member_conditions": [
     "the member's comparison record exists and was built from the case's current MBF",
     "its analytic_vs_swbpipe check of the quantity matched (SWBPIPE confirmed by the Euler-Bernoulli witness)",
-    "the SWBPIPE and CAEPIPE values are present, and |C - S| exceeds the caepipe_print_resolution absolute tolerance of the quantity's unit (the gap is resolved)"
+    "the SWBPIPE and external-prover values are present, and |C - S| exceeds the caepipe_print_resolution absolute tolerance of the quantity's unit (the gap is resolved)"
   ],
   "status_rule": "not_evaluated, with the reasons, unless every member condition holds; then consistent when every relative gap has the expected sign (shear flexibility makes |C| larger than |S|, so (C - S) / S > 0) and |fitted slope - expected exponent| <= slope tolerance, inconsistent otherwise"
 }

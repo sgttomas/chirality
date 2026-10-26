@@ -7,7 +7,7 @@
     "redistribution_status": "public_permissive",
     "contributor_note": "Invented by the DEL-17-05 pilot implementer; round numbers chosen for hand calculation. No CAEPIPE output, vendor material or library data is included."
   },
-  "purpose": "Branch and imposed support displacement: anchor D() displacement in Expansion (T1), a three-leg junction, torsion and bending coupling.",
+  "purpose": "Branch and imposed support displacement: anchor D() displacement in thermal-case, a three-leg junction, torsion and bending coupling.",
   "model": {
     "schema_version": "0.7.0",
     "document_kind": "openpipestress.product_preview.model",
@@ -290,7 +290,7 @@
         "N*m": 1.0
       },
       "basis": "ASSUMPTION",
-      "note": "relative 0.5 %; absolute floors cover the rounding of CAEPIPE's printed values"
+      "note": "relative 0.5 %; absolute floors cover the rounding of the external prover's printed values"
     },
     "caepipe_print_resolution": {
       "rel": 1e-06,
@@ -301,7 +301,7 @@
         "N*m": 0.5
       },
       "basis": "ASSUMPTION",
-      "note": "alternative analytic against CAEPIPE: half a unit of the CAEPIPE CSV print resolution (forces 1 N, moments 1 N*m, displacements 0.001 mm, rotations 0.0001 deg) plus binary64-scale relative 1e-6; the tightest tolerance the printed values can resolve"
+      "note": "alternative analytic against the external prover: half a unit of its printed resolution (forces 1 N, moments 1 N*m, displacements 0.001 mm, rotations 0.0001 deg) plus binary64-scale relative 1e-6; the tightest tolerance the printed values can resolve"
     },
     "governed_status": "TBD",
     "basis_note": "ASSUMPTION: pilot tolerance chosen by the implementer for the proof of concept; the governed external-oracle tolerance class is TBD (owner ruling); never loosened to match CAEPIPE"

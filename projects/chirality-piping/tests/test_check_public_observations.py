@@ -1,0 +1,135 @@
+#!/usr/bin/env python3
+"""Tests for the lane-local public-observation check (tools/caepipe_correlation/check_public_observations.py).
+
+Every term here is invented: "Acmepipe" stands for a product name, "Acme Labs" for a vendor, "9.99" for a
+version, and the tokens for distinctive observed strings.
+"""
+
+from __future__ import annotations
+
+from pathlib import Path
+import subprocess
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.caepipe_correlation import check_public_observations as check  # noqa: E402
+
+TERMS = """# invented
+[names]
+Acmepipe
+Acme Labs
+9.99
+[markers]
+observed
+trial
+[tokens]
+Widget overflow at
+Acmepipe Demo
+Loads on Gadgets
+"""
+
+
+def git(repo: Path, *args: str) -> str:
+    return subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True, check=True).stdout
+
+
+def repo_with(tmp_path: Path, files: dict[str, str]) -> Path:
+    repo = tmp_path / "repo"
+    repo.mkdir(parents=True)
+    git(repo, "init", "-q", "-b", "main")
+    git(repo, "config", "user.email", "invented@example.invalid")
+    git(repo, "config", "user.name", "Invented")
+    (repo / "README.md").write_text("base\n", encoding="utf-8")
+    git(repo, "add", "-A")
+    git(repo, "commit", "-q", "-m", "base")
+    git(repo, "checkout", "-q", "-b", "topic")
+    for name, text in files.items():
+        path = repo / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text, encoding="utf-8")
+    git(repo, "add", "-A")
+    git(repo, "commit", "-q", "-m", "topic change")
+    return repo
+
+
+def run(tmp_path: Path, files: dict[str, str]) -> list[str]:
+    repo = repo_with(tmp_path, files)
+    terms = check.load_terms(write_terms(tmp_path))
+    return check.check_range(repo, "main", "topic", terms)
+
+
+def write_terms(tmp_path: Path) -> Path:
+    tmp_path.mkdir(parents=True, exist_ok=True)
+    path = tmp_path / "terms.txt"
+    path.write_text(TERMS, encoding="utf-8")
+    return path
+
+
+def test_named_observation_in_prose_is_blocked_and_terms_are_not_printed(tmp_path):
+    findings = run(tmp_path, {"doc/design.md": "Intro.\nAcmepipe 9.99 was observed to stop early.\n"})
+    assert findings and all("Acmepipe" not in item and "observed" not in item for item in findings)
+    assert any(item.startswith("doc/design.md:2:") for item in findings)
+
+
+def test_generic_wording_passes(tmp_path):
+    assert run(tmp_path, {"doc/design.md": "The target tool stops early (private notes).\n"}) == []
+
+
+def test_name_without_observation_marker_passes(tmp_path):
+    assert run(tmp_path, {"doc/design.md": "The Acmepipe manual documents batch runs.\n"}) == []
+
+
+def test_observed_token_is_blocked_anywhere_in_prose(tmp_path):
+    findings = run(tmp_path, {"doc/notes.md": "It reported Widget overflow at startup.\n"})
+    assert findings == ["doc/notes.md:1: observed token #1"]
+
+
+def test_code_literals_pass_but_comments_and_test_names_are_prose(tmp_path):
+    code = ('TITLE = "Loads on Gadgets"\n'
+            "# Acmepipe trial build quirk\n"
+            "def test_acmepipe_trial_quirk():\n"
+            "    pass\n")
+    findings = run(tmp_path, {"pkg/mod.py": code})
+    assert {item.split(":")[1] for item in findings} == {"2"}
+    findings = run(tmp_path / "t", {"tests/test_mod.py": "def test_widget_overflow_at_start():\n    pass\n"})
+    assert any("observed token #1" in item for item in findings)
+
+
+def test_identifier_and_path_forms_of_a_name_do_not_match(tmp_path):
+    findings = run(tmp_path, {"core/acmepipe_mbf/notes.md": "See core/acmepipe_mbf/ and acmepipe_export; trial.\n"})
+    assert findings == []
+
+
+def test_fixture_data_keeps_layout_but_not_the_product_label(tmp_path):
+    findings = run(tmp_path, {"fixtures/x/invented/data.csv": "Acmepipe Demo,MODEL,\nLoads on Gadgets: case,\n"})
+    assert findings == ["fixtures/x/invented/data.csv:1: named observed token #2"]
+
+
+def test_owner_words_are_not_screened(tmp_path):
+    text = ("<!-- owner-words -->\n- Owner: \"I installed a trial version of Acmepipe.\"\n<!-- /owner-words -->\n"
+            "Acmepipe trial limits were observed.\n")
+    findings = run(tmp_path, {"doc/design.md": text})
+    assert findings and all(item.startswith("doc/design.md:4:") for item in findings)
+
+
+def test_commit_messages_are_screened(tmp_path):
+    repo = repo_with(tmp_path, {"doc/a.md": "generic\n"})
+    (repo / "doc/b.md").write_text("generic\n", encoding="utf-8")
+    git(repo, "add", "-A")
+    git(repo, "commit", "-q", "-m", "Acmepipe 9.99 observed limit")
+    findings = check.check_range(repo, "main", "topic", check.load_terms(write_terms(tmp_path)))
+    assert any(item.startswith("commit ") for item in findings)
+
+
+def test_whole_file_mode_and_exit_codes(tmp_path):
+    terms = write_terms(tmp_path)
+    clean = tmp_path / "clean.md"
+    clean.write_text("Generic text.\n", encoding="utf-8")
+    dirty = tmp_path / "dirty.md"
+    dirty.write_text("Acmepipe was observed.\n", encoding="utf-8")
+    assert check.main(["--terms-file", str(terms), "--file", str(clean)]) == 0
+    assert check.main(["--terms-file", str(terms), "--file", str(dirty)]) == 1
+    assert check.main(["--terms-file", str(tmp_path / "missing.txt"), "--file", str(clean)]) == 2

@@ -41,7 +41,7 @@ def displacement_block(case: str, unit_row: str = "Node,(mm),(mm),(mm),(deg),(de
 
 
 def text_of(*lines: str) -> str:
-    return "\r\n".join(["Caepipe Trial,INVENTED,", "Version 15.10,Invented,Invented time,", "", *lines, ""])
+    return "\r\n".join(["Invented Prover,INVENTED,", "Version 0.0,Invented,Invented time,", "", *lines, ""])
 
 
 def test_fixture_parses_into_load_case_tables():
@@ -49,8 +49,8 @@ def test_fixture_parses_into_load_case_tables():
     assert result["document_kind"] == "openpipestress.caepipe_print_csv.parsed"
     assert result["parser_version"] == PARSER_VERSION
     assert result["header"] == {
-        "product_label": "Caepipe Trial",
-        "version": "15.10",
+        "product_label": "Invented Prover",
+        "version": "0.0",
         "model_name": "INVENTED-PILOT",
         "title": "Invented parser fixture",
         "analyzed": "Invented timestamp",
@@ -173,7 +173,7 @@ def test_unparseable_number_is_an_error_for_that_row():
 
 def test_cp1252_title_is_decoded(tmp_path):
     path = tmp_path / "results.csv"
-    text = "\r\n".join(["Caepipe Trial,INVENTED,", "Version 15.10,Tuyauterie démo – essai,Invented time,",
+    text = "\r\n".join(["Invented Prover,INVENTED,", "Version 0.0,Tuyauterie démo – essai,Invented time,",
                         "", *displacement_block(SUSTAINED), ""])
     path.write_bytes(text.encode("cp1252"))
     result = read_caepipe_print_csv(path)
