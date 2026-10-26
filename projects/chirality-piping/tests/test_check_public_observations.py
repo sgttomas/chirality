@@ -144,6 +144,7 @@ def test_names_match_in_any_case(tmp_path):
 
 def test_added_line_is_screened_against_unchanged_context(tmp_path):
     repo = repo_with(tmp_path, {"doc/a.md": "The Acmepipe manual documents batch runs.\n"})
+    git(repo, "branch", "-f", "main", "topic")
     (repo / "doc/a.md").write_text("The Acmepipe manual documents batch runs.\nIt was observed to stop.\n",
                                    encoding="utf-8")
     git(repo, "commit", "-q", "-am", "more")
@@ -186,9 +187,29 @@ def test_owner_words_keep_text_outside_the_span_and_reject_unpaired_markers(tmp_
 
 
 def test_path_and_file_name_forms_are_masked_but_hyphenated_prose_is_not(tmp_path):
-    findings = run(tmp_path, {"doc/a.md": "See `Design/acmepipe-notes.md` and acmepipe-pilot.md; the check screens trial text.\n"})
-    assert findings == []
+    text = "See `Design/acmepipe-notes.md`, acmepipe-pilot.md and core/acmepipe-x/; the check screens trial text.\n"
+    assert run(tmp_path, {"doc/a.md": text}) == []
     findings = run(tmp_path / "h", {"doc/a.md": "Acmepipe-compatible output was observed.\n"})
     assert findings == ["doc/a.md:1: name #1 near observation marker #1"]
     findings = run(tmp_path / "s", {"doc/a.md": "The Acmepipe/Other comparison was observed.\n"})
     assert findings == ["doc/a.md:1: name #1 near observation marker #1"]
+
+    for index, text in enumerate(("Acmepipe/9.99 was observed.\n", "It was observed in Acmepipe/Other.\n")):
+        assert "doc/a.md:1: name #1 near observation marker #1" in run(tmp_path / f"p{index}", {"doc/a.md": text})
+
+
+@pytest.mark.parametrize("name, text", [
+    ("pkg/mod.py", "x = 1  # Widget\n# overflow at startup.\n"),
+    ("src/lib.rs", "let x = 1; // Widget\n/// overflow at startup.\n"),
+    ("tools/a.ps1", "$x = 1 # Widget\n# overflow at startup.\n"),
+    ("src/a.ts", "/* Widget\n * overflow at startup. */\n"),
+])
+def test_wrapped_comments_join_without_comment_syntax(tmp_path, name, text):
+    assert run(tmp_path, {name: text}) == [f"{name}:1: observed token #1"]
+
+
+def test_single_quoted_docstring_beside_a_comment_is_prose_but_code_literals_are_not(tmp_path):
+    code = ("def helper():\n    'Acmepipe trial quirk.'  # note\n    return 1\n\n\n"
+            "def test_values(): 'Acmepipe trial quirk.'\n\n\nTITLE = 'Acmepipe trial'  # generic note\n")
+    findings = run(tmp_path, {"pkg/mod.py": code})
+    assert {item.split(":")[1] for item in findings} == {"2", "6"}

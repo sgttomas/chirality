@@ -68,18 +68,41 @@ def _word(term: str) -> re.Pattern[str]:
 
 
 # Paths and file names (`Design/x-notes.md`) are not prose; they are blanked, offsets kept, before names
-# and markers are matched. Observed tokens are still matched on the unmasked text.
-PATH_LIKE = re.compile(r"[^\s`'\"()\[\]<>|,;]*[/\\][^\s`'\"()\[\]<>|,;]*"
-                       r"|[\w.-]+\.(?:md|py|json|ya?ml|txt|csv|mbf|ps1|rs|tsx?|js)\b")
+# and markers are matched. Only a word that is clearly a path is blanked: after its surrounding punctuation
+# is stripped it must end in a separator or a known file extension, or join path segments that hold an
+# underscore. `Name/Other`, `Name/9.99` and sentence-final `Name/Other.` stay prose. Observed tokens are
+# still matched on the unmasked text.
+FILE_EXTENSION = re.compile(r"\.(?:md|py|json|ya?ml|txt|csv|mbf|ps1|rs|tsx?|js|toml|sh)$", re.IGNORECASE)
+PATH_WORD = re.compile(r"[\w.-]+(?:[/\\][\w.-]+)*[/\\]?")
+EDGE_PUNCTUATION = "`'\"()[]<>{}|,;:!?."
 
 
 def _path(word: str) -> bool:
-    # A slash alone does not make a path: `Name/Other` stays prose.
-    return "." in word or "_" in word or word.endswith(("/", "\\")) or word.count("/") + word.count("\\") > 1
+    if not PATH_WORD.fullmatch(word):
+        return False
+    separated = "/" in word or "\\" in word
+    return bool(FILE_EXTENSION.search(word)) or word.endswith(("/", "\\")) or (separated and "_" in word)
 
 
 def _unpathed(text: str) -> str:
-    return PATH_LIKE.sub(lambda match: " " * len(match.group()) if _path(match.group()) else match.group(), text)
+    out = list(text)
+    for match in re.finditer(r"\S+", text):
+        word = match.group()
+        lead = len(word) - len(word.lstrip(EDGE_PUNCTUATION))
+        core = word.strip(EDGE_PUNCTUATION)
+        if core and _path(core):
+            start = match.start() + lead
+            out[start:start + len(core)] = " " * len(core)
+    return "".join(out)
+
+
+COMMENT_SYNTAX = re.compile(r"^\s*(?:#+|//+!?|/\*+!?|\*+(?!/)|<#)?\s*(.*?)\s*(?:\*+/|#>)?\s*$")
+
+
+def _strip_comment(text: str) -> str:
+    """The words of one comment line, without its comment syntax, so wrapped comments join as prose."""
+
+    return COMMENT_SYNTAX.match(text).group(1)
 
 
 def _phrase(term: str) -> re.Pattern[str]:
@@ -95,11 +118,20 @@ def python_prose_lines(text: str) -> dict[int, str]:
         ast.parse(text)
     except (tokenize.TokenError, IndentationError, SyntaxError, ValueError):
         return {number: line for number, line in enumerate(text.splitlines(), 1)}
+    # Docstrings in any quoting (a one-line single-quoted docstring is not triple-quoted), by start position.
+    docstrings = set()
+    for node in ast.walk(ast.parse(text)):
+        if isinstance(node, (ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)) and node.body:
+            first = node.body[0]
+            if isinstance(first, ast.Expr) and isinstance(first.value, ast.Constant) \
+                    and isinstance(first.value.value, str):
+                docstrings.add((first.value.lineno, first.value.col_offset))
     previous = None
     for token in tokens:
         if token.type == tokenize.COMMENT:
-            prose[token.start[0]] = prose.get(token.start[0], "") + " " + token.string
-        elif token.type == tokenize.STRING and token.string.lstrip("rbuRBUfF").startswith(('"""', "'''")):
+            prose[token.start[0]] = prose.get(token.start[0], "") + " " + _strip_comment(token.string)
+        elif token.type == tokenize.STRING and (token.start in docstrings
+                                                or token.string.lstrip("rbuRBUfF").startswith(('"""', "'''"))):
             for offset, part in enumerate(token.string.splitlines()):
                 number = token.start[0] + offset
                 prose[number] = prose.get(number, "") + " " + part
@@ -108,16 +140,6 @@ def python_prose_lines(text: str) -> dict[int, str]:
             prose[token.start[0]] = prose.get(token.start[0], "") + " " + token.string.replace("_", " ")
         if token.type not in (tokenize.NL, tokenize.NEWLINE, tokenize.INDENT, tokenize.DEDENT):
             previous = token
-    # Docstrings in any quoting (a one-line single-quoted docstring is not triple-quoted).
-    source = text.splitlines()
-    for node in ast.walk(ast.parse(text)):
-        if isinstance(node, (ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)) and node.body:
-            first = node.body[0]
-            if isinstance(first, ast.Expr) and isinstance(first.value, ast.Constant) \
-                    and isinstance(first.value.value, str):
-                for number in range(first.lineno, first.end_lineno + 1):
-                    if number not in prose:
-                        prose[number] = source[number - 1]
     return prose
 
 
@@ -129,17 +151,17 @@ def comment_prose_lines(text: str, suffix: str) -> dict[int, str]:
     opener, closer, single = ("<#", "#>", "#") if suffix == ".ps1" else ("/*", "*/", "//")
     for number, line in enumerate(text.splitlines(), 1):
         if block:
-            prose[number] = line
+            prose[number] = _strip_comment(line)
             if closer in line:
                 block = False
             continue
         if opener in line:
-            prose[number] = line[line.index(opener):]
+            prose[number] = _strip_comment(line[line.index(opener):])
             block = closer not in line[line.index(opener) + len(opener):]
             continue
         index = _comment_index(line, single)
         if index is not None:
-            prose[number] = line[index:]
+            prose[number] = _strip_comment(line[index:])
     return prose
 
 
