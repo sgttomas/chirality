@@ -326,6 +326,33 @@ def run_caepipe_round_trip(config: HarnessConfig, case_id: str, mbf_text: str, *
         lock.unlink(missing_ok=True)
 
 
+_CLEARED_OUTPUTS = {name.lower() for name in (*OUTPUT_NAMES, "guest_stdout.txt", "guest_stderr.txt", "guest_log.json",
+                                               "run_record.json")}
+
+
+def _refuse_links(root: Path, out: Path) -> None:
+    """Refuse any symbolic link inside `caepipe_out`, whatever its letter case.
+
+    The exchange folder may sit on a case-insensitive file system, where a link named `MODEL_RESULTS.CSV` would
+    receive the guest's copy of `model_results.csv`; nothing in the layer is ever a link of ours.
+    """
+
+    for entry in contained(root, out).iterdir():
+        if entry.is_symlink():
+            raise ContainmentError(f"{entry.relative_to(Path(root).resolve())} in the exchange folder is a symbolic "
+                                   "link; refused")
+
+
+def _clear_outputs(root: Path, out: Path) -> None:
+    """Delete the previous run's outputs from `caepipe_out`, matching names without regard to letter case."""
+
+    _refuse_links(root, out)
+    for entry in out.iterdir():
+        name = entry.name.lower()
+        if (name in _CLEARED_OUTPUTS or (name.startswith("model") and name.endswith(".csv"))) and entry.is_file():
+            contained(root, entry).unlink()
+
+
 def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[str, Path], harness_dir: Path,
                 timeout_s: float, runner: Callable[..., subprocess.CompletedProcess]) -> dict[str, Any]:
     started = _now()
@@ -336,10 +363,7 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
     script_bytes = GUEST_SCRIPT.read_bytes()
     write_private(root, harness_dir / GUEST_SCRIPT.name, script_bytes)
     out = paths["caepipe_out"]
-    for stale in [*out.glob("model*.csv"), *(out / name for name in OUTPUT_NAMES),
-                  *(out / name for name in ("guest_stdout.txt", "guest_stderr.txt", "guest_log.json", "run_record.json"))]:
-        if contained(root, stale).is_file():
-            stale.unlink()
+    _clear_outputs(root, out)
 
     guest_case = _win(config.guest_exchange_root, "cases", case_id)
     guest_in, guest_out = _win(guest_case, "caepipe_in"), _win(guest_case, "caepipe_out")
@@ -396,6 +420,7 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
     guest_mbf_sha256 = guest_mbf_sha256.lower() if isinstance(guest_mbf_sha256, str) else None
     input_verified = guest_mbf_sha256 == mbf_sha256
     if guest_log is not None and input_verified:
+        _refuse_links(root, out)  # again just before the guest writes into the layer
         step("collect", " & ".join([
             f"copy /Y {_quote(_win(work, 'model*.csv'))} {_quote(guest_out)}",
             *(f"copy /Y {_quote(_win(work, name))} {_quote(_win(guest_out, name))}" for name in OUTPUT_NAMES),

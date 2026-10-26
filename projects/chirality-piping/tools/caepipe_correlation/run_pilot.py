@@ -67,6 +67,7 @@ CASES_DIR = PROJECT / "validation" / "caepipe_correlation" / "cases"
 HAND_CALCS = PROJECT / "validation" / "caepipe_correlation" / "hand_calcs.py"
 RUNNER_ENV = "OPENPIPESTRESS_RUNNER_BIN"
 MANIFEST_KIND = "openpipestress.caepipe_correlation.case_manifest"
+PARSER_DIAGNOSTICS_KIND = "openpipestress.caepipe_print_csv.parser_diagnostics"
 LAYER_PRIVACY = {
     "swbpipe": "SWBPIPE request and result from the invented public case; kept with the private run",
     "caepipe_in": "SWBPIPE-derived MBF and writer maps; no CAEPIPE output",
@@ -294,7 +295,8 @@ def _run_case(case: Mapping[str, Any], config: HarnessConfig, *, runner: str, of
     parsed = read_caepipe_print_csv(csv_path)
     _write_json(root, paths["parsed"] / "caepipe_results.json", parsed)
     _write_json(root, paths["parsed"] / "parser_diagnostics.json", {
-        key: parsed[key] for key in ("parser_version", "diagnostics", "sections_parsed", "sections_skipped")})
+        "document_kind": PARSER_DIAGNOSTICS_KIND,
+        **{key: parsed[key] for key in ("parser_version", "diagnostics", "sections_parsed", "sections_skipped")}})
     record = build_comparison_record(case, swbpipe_model=case["model"], swbpipe_result_payload=payload,
                                      mbf_result=mbf, mbf_text=mbf_text, parsed_caepipe=parsed, analytic=analytic)
     comparison_path = paths["comparison"] / "comparison.json"
