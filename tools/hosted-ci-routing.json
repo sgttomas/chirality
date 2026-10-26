@@ -291,7 +291,7 @@
       "core/reporting/pdf_emitter/Cargo.toml": "2683fe2c51222fcaa4da2a793a14cc1c9af376bf0e1676eaef932ebd35a79250",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
       "core/reporting/report_generator/Cargo.toml": "c85ec217b8b711222aa47bd13e926292e224ce2e5543719e77983a1053385ea3",
-      "core/reporting/report_package/Cargo.toml": "370dcfd25bd35baf771fe927717be943a6471e95fdfe7b40527eb44f70270a4c",
+      "core/reporting/report_package/Cargo.toml": "8f097cf4e907c094e6fcdc5b6488ae6f2cf83933afd6f2169684b0db10dc9b9c",
       "core/reporting/report_renderer/Cargo.toml": "53d9686bceb15d222ac996d3c357216fe897a94185e7d3c1757e55e909fd17ec",
       "core/reporting/report_sections/Cargo.toml": "44acb66312edbc9bfd77aa2980a898511ac34de67fba0fc773b70007a3aad0f1",
       "core/reporting/result_export/Cargo.toml": "74ef9e9560d7edc9f2c57c884167892b67e861f5e9ca5fce9146e1d55d2a1c94",
@@ -300,7 +300,7 @@
       "core/rules/rule_check_runner/Cargo.toml": "88971098b7a02b7cd79ee97788e76d31425865b98a0e51dbdd7d6e8711fb9dc1",
       "core/rules/rule_pack_document/Cargo.toml": "4f7c86c11d3106f5e8ddb32f542784c0913c135011e07f4e6ae1eca976961ae9",
       "core/rules/rule_pack_lifecycle/Cargo.toml": "811d32918f3d13d8d2a9115ebb6ce9b0243078626bc426d8dbd97224eb2dbd56",
-      "core/runner/headless/Cargo.toml": "12142b28480f5fe43b1bcb7c944796862b5d4e7312105b007725edbb8216235e",
+      "core/runner/headless/Cargo.toml": "b6bd5ffa2e024d470e46d8f76bbf1d0db135521f4b72c4fb85ba9b8d8366dd37",
       "core/serialization/canonical_json/Cargo.toml": "fb2259bdfcb6adebc877b46e4e1b3126fdf1b08c0b6441a5e4ba49ab75e670a0",
       "core/solver/curved_bend/Cargo.toml": "5d7cf1288eac698c209aa4fd7493fa669aa57494950e75374ac07248001502d8",
       "core/solver/diagnostics/Cargo.toml": "11db1409fcfd3b0312ef80085e36eac4d7a66eb0f4298832137119835b1c92e8",
@@ -5180,7 +5180,7 @@
         ]
       },
       "core/runner/headless/tests/del1005_package_witness.rs": {
-        "sha256": "db05a274c8fcea04378d22374ee6bb2d6d5af0d530225690e309134a0d7755dd",
+        "sha256": "ec26cd0f9338a0ec241f1f33ff471a5383b2fb692cf701c61f481a9fd5d1deaf",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
