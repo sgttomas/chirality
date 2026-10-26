@@ -38,8 +38,8 @@ of engineering use, or compatibility proof (DEL-17-05-REQ-008, F-PIP-3).
 |---|---|
 | Target | CAEPIPE 15.10, evaluation ("Trial") build, owner-licensed, MBF `VERSION 15.10` |
 | Environment | The owner's Windows virtual machine under Parallels on the development Mac; commands run as the logged-in Windows user (`prlctl exec <vm> --current-user`) |
-| Trial window | 30 days from first launch (2026-10-26), per the vendor release notes; the private case manifests record the date |
-| Evaluation limits observed | Import refuses a model of more than 20 layout rows; printouts carry the evaluation product name and version (DEL-17-01 CQ-17-01-009) |
+| Trial window | A limited evaluation period from first launch (2026-10-26); the private case manifests record the first-launch date |
+| Evaluation limits | Import refuses a model of more than 20 layout rows (observed in CAEPIPE 15.10 Eval); outputs carry the evaluation product name (observed in CAEPIPE 15.10 Eval) (DEL-17-01 CQ-17-01-009) |
 
 The evaluation limit shapes the pilot corpus: every case stays within 20 layout rows.
 A licensed build is expected to lift it; the writer reports the row count and warns
@@ -57,8 +57,8 @@ It imports the MBF, writes `<model>.mod` and `<model>.res`, and is documented to
 `<model>.csv` beside the MBF. The harness always runs this route first and uses its CSV
 whenever one appears.
 
-**Trial-build workaround (labelled, not hardened).** In the 15.10 evaluation build the
-batch run stops at a modal "Access violation" dialog after writing `.res` and never
+**Trial-build workaround (labelled, not hardened).** In the 15.10 evaluation build
+(observed in CAEPIPE 15.10 Eval) the batch run stops at a modal access-violation error dialog after writing `.res` and never
 writes the CSV, on every model tried, including the manual's own example
 (DEL-17-01 CQ-17-01-008). Until a build fixes that, the guest script stops the process
 it started, opens the solved `.res` in a fresh CAEPIPE instance it starts itself, and
@@ -124,10 +124,11 @@ idempotent and is retried when the `prlctl` client itself fails (exit 255 with a
   runner's preview model. A project or quantity in another unit system is refused by
   name, not converted. Unsupported constructs are refused by name and listed in the
   loss report. Rotational partial restraints are refused: the 15.10 build rejects
-  `FIXR` at import ("FIXR is not available"); translational `FIXD` is accepted. A
+  `FIXR` at import, while translational `FIXD` is accepted (observed in CAEPIPE 15.10 Eval). A
   curved bend is written at its tangent intersection (`KI`, radius `B`, the user
-  flexibility factor as `FF`); CAEPIPE reports its near and far tangent points as
-  nodes `<n>A` and `<n>B`, which the writer's node map uses for SWBPIPE's
+  flexibility factor as `FF`); CAEPIPE generates the bend's near and far end nodes
+  with `A` and `B` suffixes on the bend node (technical reference, "Bend",
+  <https://docs.sstcae.com/tech_manual/bend.htm>), which the writer's node map uses for SWBPIPE's
   tangent-point nodes. A bend without a user flexibility factor is refused. SWBPIPE's
   curved bend includes arc bending and axial flexibility but no transverse shear.
   Weight per length maps to a weight density using standard gravity
@@ -139,10 +140,12 @@ idempotent and is retried when the `prlctl` client itself fails (exit 255 with a
   Print > To File CSV. Its coverage register lists each recognized section (global
   displacements, anchor loads in global and local axes, restraint loads, element
   forces in local and global axes), checks each section's header and unit rows, treats
-  a blank numeric cell as zero, skips Min/Max blocks and unknown sections with a
+  a blank numeric cell as zero (observed in CAEPIPE 15.10 Eval), skips Min/Max blocks and unknown sections with a
   diagnostic, and pairs element-force rows in from/to order (a weak, row-order
-  correlation per REQ-010, bound back to SWBPIPE ids through the writer's id map). Its
-  public test fixture is invented and labelled.
+  correlation per REQ-010, bound back to SWBPIPE ids through the writer's id map). The
+  section titles, header and unit rows it recognizes, and the from/to row order, are
+  observed in CAEPIPE 15.10 Eval; the Print > To File command and its CSV option are documented
+  (`CAEPIPE-PRINT-TO-FILE`). Its public test fixture is invented and labelled.
 - **Comparison record.** Each case produces one record naming what PRD §22.5 lists:
   internal model hash, exported MBF hash, target tool and version, import/export
   assumptions, manual changes (none), load-case mapping, support mapping, comparison
@@ -182,10 +185,12 @@ idempotent and is retried when the `prlctl` client itself fails (exit 255 with a
   - Disposition: `no_action`, `assumption_recorded`, `bug_report`,
     `dossier_question`, `proposed_code_fix`, `requires_professional_review`.
 
-Sign and unit mappings applied before comparison: CAEPIPE reports anchor loads as the
-load of the pipe on the anchor, SWBPIPE reports the reaction on the pipe (sign flip);
-CAEPIPE rotations are in degrees, SWBPIPE's in radians; CAEPIPE forces in a
-mechanical case also appear in its Empty Weight case, so the pilot compares the
+Sign and unit mappings applied before comparison: CAEPIPE's anchor loads are the load
+of the pipe on the anchor, while SWBPIPE reports the reaction on the pipe, hence a sign
+flip (observed in CAEPIPE 15.10 Eval). CAEPIPE prints rotations in degrees and SWBPIPE uses radians. Forces and
+moments added to "W+P" act in the sustained and operating cases (technical reference,
+"Force", <https://docs.sstcae.com/tech_manual/force.htm>). In the evaluation build
+they also appear in the Empty Weight case (observed in CAEPIPE 15.10 Eval). The pilot therefore compares the
 `Sustained (W+P)` case with empty pipes and zero pressure.
 
 ## 7. Cases and tolerances
@@ -209,7 +214,7 @@ Each case carries three tolerances, all `ASSUMPTION`:
 | `caepipe_print_resolution` | alternative analytic–CAEPIPE | rel 1e-6; abs half a printed unit: 0.5 N, 0.5 N·m, 5e-7 m, 8.7266e-7 rad |
 
 The CAEPIPE CSV prints forces to 1 N, moments to 1 N·m, displacements to 0.001 mm
-and rotations to 0.0001°, so half a printed unit is the tightest tolerance the
+and rotations to 0.0001° (observed in CAEPIPE 15.10 Eval), so half a printed unit is the tightest tolerance the
 printed values can resolve.
 
 **Hypothesis series.** A series in `validation/caepipe_correlation/series/` tests the
@@ -233,6 +238,11 @@ stored CSVs, each case whose declarations name that hypothesis and whose record
 carries a different series status. Standard output names only the files written.
 
 ### 7.1 Shear deformation evidence
+
+Facts marked "observed in CAEPIPE 15.10 Eval" rest only on the project's own runs, without values. Whether such
+facts may stay in public text is an owner decision pending (data boundary,
+2026-10-26). If the owner rules that they may not, these marks show what moves to the
+private exchange folder.
 
 SWBPIPE's frame preview is Euler–Bernoulli. CAEPIPE's technical reference, page
 "Fiber Reinforced Plastic Piping (FRP)", section "Stiffness matrix"

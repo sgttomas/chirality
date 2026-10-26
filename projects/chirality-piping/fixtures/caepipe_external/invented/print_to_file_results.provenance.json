@@ -3,7 +3,7 @@
   "origin": "invented_by_project",
   "produced_by_caepipe": false,
   "values": "Every number is invented (round, made-up values); none is an analysis result.",
-  "layout_basis": "Section titles, column-header rows and unit rows transcribed from observed section headings of the Print > To File CSV layout and the public CAEPIPE-EXPORT-DATA / Print To File documentation; no CAEPIPE output is included.",
+  "layout_basis": "Section titles, column-header rows and unit rows transcribed from section headings observed in CAEPIPE 15.10 Eval (no values) of the Print > To File CSV layout and the public CAEPIPE-EXPORT-DATA / Print To File documentation; no CAEPIPE output is included.",
   "purpose": "Parser contract test for core/handoff/caepipe_external/print_csv.py (tests/test_caepipe_print_csv_parser.py).",
   "redistribution_status": "public_permissive",
   "privacy_classification": "invented_public_example",
