@@ -286,15 +286,15 @@
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "8225c3d9988cdc79a7b366f78d3881a19c4f0a4922db90ada295c97d5152f1e2",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "ed389a366ecf010062b0f768c37f81ef95fe2a5da69a3bd0f96b4e2fa87be364",
+      "core/product_physics/Cargo.toml": "802e480878a1ca33ed9b973766e7aed9e64233afa27e84f9a89a99784b750441",
       "core/reporting/audit_manifest/Cargo.toml": "b8bc4623a383ed2c22205326bc737486becd9d931bf869e1e8cf40e147f4fad7",
       "core/reporting/pdf_emitter/Cargo.toml": "2683fe2c51222fcaa4da2a793a14cc1c9af376bf0e1676eaef932ebd35a79250",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
       "core/reporting/report_generator/Cargo.toml": "c85ec217b8b711222aa47bd13e926292e224ce2e5543719e77983a1053385ea3",
-      "core/reporting/report_package/Cargo.toml": "4bf4e006d561a8936b714c6215e8f92646b7672eb1567350ccec28ccdf1bd752",
+      "core/reporting/report_package/Cargo.toml": "7ab8a5be0231606dfdedd3b575ba0ac57e4806a27c78e4dee08249fdd0a7c828",
       "core/reporting/report_renderer/Cargo.toml": "53d9686bceb15d222ac996d3c357216fe897a94185e7d3c1757e55e909fd17ec",
       "core/reporting/report_sections/Cargo.toml": "44acb66312edbc9bfd77aa2980a898511ac34de67fba0fc773b70007a3aad0f1",
-      "core/reporting/result_export/Cargo.toml": "ae9126b2cc2ea3d3c27c8165534c2e1c8f0d32a95b821eba0cff9b0a96e5ee6c",
+      "core/reporting/result_export/Cargo.toml": "964c86b48be07df4fb01515ddcb9beb44c16de831a134f409788a8bddf874c0a",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "7018210dadfb7c2b855298730f5f8cddedbe09f7f03b05421b81c3694f873b18",
       "core/rules/rule_check_runner/Cargo.toml": "88971098b7a02b7cd79ee97788e76d31425865b98a0e51dbdd7d6e8711fb9dc1",
@@ -2235,7 +2235,7 @@
         ]
       },
       "core/reporting/result_export/tests/retained_precision_carriers.rs": {
-        "sha256": "9eb6fe617cb0d624ba938c6b6a182f87c2342bda8b809df91e051594ddf466da",
+        "sha256": "7d2367c6a25233c36787ad023456f0a0f1b5e37b096e9ea9c549a5854225f6ee",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -2454,6 +2454,7 @@
               "core/product_physics/src/f1a_tests.rs",
               "core/product_physics/src/f1b_tests.rs",
               "core/product_physics/src/formation_guard.rs",
+              "core/product_physics/src/imposed_motion.rs",
               "core/product_physics/src/joint.rs",
               "core/product_physics/src/joint_pressure_tests.rs",
               "core/product_physics/src/kd5_nonlinear_tests.rs",
@@ -2898,7 +2899,7 @@
         ]
       },
       "core/reporting/result_export/tests/retained_precision_derivative_golden.rs": {
-        "sha256": "1f6a5a8769aaa7ab7150919cc03f85d9ca3f8edd3ac9504dad167baf48291f2b",
+        "sha256": "25afbcb01b76b816bd55161f1c73737e9d1eb84952af9857787ad7f996890af4",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -3754,6 +3755,7 @@
               "core/product_physics/src/f1a_tests.rs",
               "core/product_physics/src/f1b_tests.rs",
               "core/product_physics/src/formation_guard.rs",
+              "core/product_physics/src/imposed_motion.rs",
               "core/product_physics/src/joint.rs",
               "core/product_physics/src/joint_pressure_tests.rs",
               "core/product_physics/src/kd5_nonlinear_tests.rs",
@@ -3928,6 +3930,7 @@
               "core/product_physics/src/f1a_tests.rs",
               "core/product_physics/src/f1b_tests.rs",
               "core/product_physics/src/formation_guard.rs",
+              "core/product_physics/src/imposed_motion.rs",
               "core/product_physics/src/joint.rs",
               "core/product_physics/src/joint_pressure_tests.rs",
               "core/product_physics/src/kd5_nonlinear_tests.rs",
