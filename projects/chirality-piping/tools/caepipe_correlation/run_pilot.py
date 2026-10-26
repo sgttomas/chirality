@@ -14,13 +14,21 @@ compared only when its run record binds it to the current MBF: the host MBF hash
 and the hash the guest reported for the MBF it solved both equal the current
 MBF's hash.
 
+After the selected cases, every hypothesis series in
+validation/caepipe_correlation/series/ is evaluated from its members' stored
+comparison records and written privately to series/<hypothesis_id>.json in the
+exchange folder; every case whose declarations name an evaluated hypothesis and
+whose stored record carries a different series status is then rebuilt offline
+from its stored CSV, so its causes use the series status (Design §6, §7).
+
 Standard output carries operational status only: per case its id, route and
 either the comparison record's path relative to the exchange folder or the
-reason no record was written. Outcome and cause counts stay in the private
-record's `summary`; no CAEPIPE value or derived statistic is printed. Exit
-status 0 when every selected case produced a comparison record, or when the
-harness is not configured (the reason is printed and nothing is written); 1
-otherwise; 2 for a usage error.
+reason no record was written, and per series the path of its record. Outcome,
+cause and series status stay in the private records; no CAEPIPE value or
+derived statistic is printed. Exit status 0 when every selected case and every
+rebuild produced a comparison record, or when the harness is not configured
+(the reason is printed and nothing is written); 1 otherwise; 2 for a usage
+error.
 """
 
 from __future__ import annotations
@@ -51,6 +59,7 @@ from core.handoff.caepipe_external import (  # noqa: E402
     resolve_harness_config,
     run_caepipe_round_trip,
 )
+from core.handoff.caepipe_external.correlation import evaluate_hypothesis_series, series_summary  # noqa: E402
 from core.handoff.caepipe_external.harness import (  # noqa: E402
     BOUNDARY_NOTE,
     CASE_ID_PATTERN,
@@ -58,12 +67,15 @@ from core.handoff.caepipe_external.harness import (  # noqa: E402
     RUN_RECORD_KIND,
     ContainmentError,
     contained,
+    contained_dir,
     write_private,
 )
 from core.handoff.caepipe_mbf import render_caepipe_mbf_si  # noqa: E402
 
 
 CASES_DIR = PROJECT / "validation" / "caepipe_correlation" / "cases"
+SERIES_DIR = PROJECT / "validation" / "caepipe_correlation" / "series"
+SERIES_DEFINITION_KIND = "openpipestress.caepipe_correlation.series_definition"
 HAND_CALCS = PROJECT / "validation" / "caepipe_correlation" / "hand_calcs.py"
 RUNNER_ENV = "OPENPIPESTRESS_RUNNER_BIN"
 MANIFEST_KIND = "openpipestress.caepipe_correlation.case_manifest"
@@ -90,6 +102,23 @@ def load_cases(selected: list[str] | None = None) -> list[dict[str, Any]]:
             raise KeyError(f"unknown case id(s): {', '.join(unknown)}")
         return [cases[case_id] for case_id in sorted(set(selected))]
     return [cases[case_id] for case_id in sorted(cases)]
+
+
+def load_series() -> list[dict[str, Any]]:
+    """The public hypothesis series definitions, checked against the case set."""
+    known = {case["case_id"] for case in load_cases()}
+    series = []
+    for path in sorted(SERIES_DIR.glob("*.json")):
+        definition = json.loads(path.read_text(encoding="utf-8"))
+        if definition.get("document_kind") != SERIES_DEFINITION_KIND:
+            raise ValueError(f"{path.name}: document_kind must be {SERIES_DEFINITION_KIND}")
+        if definition.get("hypothesis_id") != path.stem or not CASE_ID_PATTERN.match(path.stem):
+            raise ValueError(f"{path.name}: hypothesis_id must equal the file stem and match {CASE_ID_PATTERN.pattern}")
+        unknown = sorted({member["case_id"] for member in definition.get("members") or []} - known)
+        if unknown:
+            raise ValueError(f"{path.name}: unknown member case id(s): {', '.join(unknown)}")
+        series.append(definition)
+    return series
 
 
 def load_hand_calcs() -> Any:
@@ -231,23 +260,36 @@ def bound_csv(root: Path, paths: Mapping[str, Path], record: Mapping[str, Any] |
     return csv_path, route, ""
 
 
+def render_case_mbf(case: Mapping[str, Any]) -> tuple[Any, str, str]:
+    """(writer result, writer text, exported MBF text with the case's fault injection applied)."""
+    mbf = render_caepipe_mbf_si(case["model"], title=case.get("title", case["case_id"]),
+                                reference_temperature_c=case.get("reference_temperature_c", 20.0))
+    if mbf.status != "written":
+        return mbf, "", ""
+    fault = case.get("fault_injection")
+    return mbf, mbf.text, apply_fault_injection(mbf.text, fault) if fault else mbf.text
+
+
 def run_case(case: Mapping[str, Any], config: HarnessConfig, *, runner: str, offline: bool, hand_calcs: Any,
              emit: Callable[[str], None] = print,
-             round_trip: Callable[..., dict[str, Any]] = run_caepipe_round_trip) -> bool:
+             round_trip: Callable[..., dict[str, Any]] = run_caepipe_round_trip,
+             hypothesis_series: Mapping[str, Mapping[str, Any]] | None = None) -> bool:
     try:
         return _run_case(case, config, runner=runner, offline=offline, hand_calcs=hand_calcs, emit=emit,
-                         round_trip=round_trip)
+                         round_trip=round_trip, hypothesis_series=hypothesis_series or {})
     except ContainmentError as error:
         emit(f"{case['case_id']}: route=containment_violation; {error}; no comparison record")
         return False
 
 
 def _run_case(case: Mapping[str, Any], config: HarnessConfig, *, runner: str, offline: bool, hand_calcs: Any,
-              emit: Callable[[str], None], round_trip: Callable[..., dict[str, Any]]) -> bool:
+              emit: Callable[[str], None], round_trip: Callable[..., dict[str, Any]],
+              hypothesis_series: Mapping[str, Mapping[str, Any]]) -> bool:
     case_id = case["case_id"]
     root = config.exchange_root.resolve()
     paths = case_paths(config, case_id)
     analytic = hand_calcs.analytic_values(case_id)
+    alternative = hand_calcs.alternative_analytic_values(case_id)
 
     body, output, error = solve_swbpipe(runner, case)
     _write_json(root, paths["swbpipe"] / "request.json", body)
@@ -258,15 +300,12 @@ def _run_case(case: Mapping[str, Any], config: HarnessConfig, *, runner: str, of
         return False
     payload = output["payload"]
 
-    mbf = render_caepipe_mbf_si(case["model"], title=case.get("title", case_id),
-                                reference_temperature_c=case.get("reference_temperature_c", 20.0))
+    mbf, writer_text, mbf_text = render_case_mbf(case)
     if mbf.status != "written":
         codes = sorted({item["code"] for item in mbf.diagnostics if item["severity"] == "error"})
         emit(f"{case_id}: route=not_run; MBF refused ({', '.join(codes)})")
         return False
-    writer_text = mbf.text
     fault = case.get("fault_injection")
-    mbf_text = apply_fault_injection(writer_text, fault) if fault else writer_text
 
     mbf_sha256 = _sha256(mbf_text)
     if offline:
@@ -298,7 +337,8 @@ def _run_case(case: Mapping[str, Any], config: HarnessConfig, *, runner: str, of
         "document_kind": PARSER_DIAGNOSTICS_KIND,
         **{key: parsed[key] for key in ("parser_version", "diagnostics", "sections_parsed", "sections_skipped")}})
     record = build_comparison_record(case, swbpipe_model=case["model"], swbpipe_result_payload=payload,
-                                     mbf_result=mbf, mbf_text=mbf_text, parsed_caepipe=parsed, analytic=analytic)
+                                     mbf_result=mbf, mbf_text=mbf_text, parsed_caepipe=parsed, analytic=analytic,
+                                     alternative_analytic=alternative, hypothesis_series=hypothesis_series)
     comparison_path = paths["comparison"] / "comparison.json"
     _write_json(root, comparison_path, record)
     _write_json(root, paths["manifest"], {
@@ -315,12 +355,86 @@ def _run_case(case: Mapping[str, Any], config: HarnessConfig, *, runner: str, of
         "trial_first_launch_date": config.trial_first_launch_date,
         "route": route,
         "csv": str(csv_path.relative_to(paths["root"])),
+        "hypothesis_series_used": sorted(record["hypothesis_series"]),
         "layer_privacy": LAYER_PRIVACY,
         "boundary_note": BOUNDARY_NOTE,
     })
     # Operational status only: the counts by outcome and cause stay in the private record's summary (Design §8).
     emit(f"{case_id}: route={route}; comparison record written: {comparison_path.relative_to(root)}")
     return True
+
+
+def _stored_comparison(root: Path, case_id: str) -> dict[str, Any] | None:
+    path = contained(root, root / "cases" / case_id / "comparison" / "comparison.json")
+    try:
+        record = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else None
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+        return None
+    return record if isinstance(record, dict) else None
+
+
+def run_series(config: HarnessConfig, *, runner: str, hand_calcs: Any, emit: Callable[[str], None] = print,
+               series_definitions: list[Mapping[str, Any]] | None = None,
+               cases: list[Mapping[str, Any]] | None = None) -> dict[str, bool]:
+    """Evaluate every hypothesis series and rebuild the records whose series status changed.
+
+    Returns {case id: rebuilt} for each case rebuilt offline. The series records are private (Design §8).
+    """
+    root = config.exchange_root.resolve()
+    cases = list(cases if cases is not None else load_cases())
+    definitions = list(series_definitions if series_definitions is not None else load_series())
+    by_id = {case["case_id"]: case for case in cases}
+    statuses: dict[str, dict[str, Any]] = {}
+    try:
+        for definition in definitions:
+            hypothesis = definition["hypothesis_id"]
+            member_ids = [member["case_id"] for member in definition.get("members") or []]
+            current = {}
+            for case_id in member_ids:
+                if case_id in by_id:
+                    mbf, _, mbf_text = render_case_mbf(by_id[case_id])
+                    if mbf.status == "written":
+                        current[case_id] = _sha256(mbf_text)
+            records = {case_id: _stored_comparison(root, case_id) for case_id in member_ids}
+            result = evaluate_hypothesis_series(definition, records, current_mbf_sha256=current)
+            relative = Path("series") / f"{hypothesis}.json"
+            result.update(definition=f"validation/caepipe_correlation/series/{hypothesis}.json", created=_now(),
+                          record=str(relative), boundary_note=BOUNDARY_NOTE)
+            contained_dir(root, root / "series")
+            _write_json(root, root / relative, result)
+            statuses[hypothesis] = result
+            emit(f"series {hypothesis}: series record written: {relative}")
+    except ContainmentError as error:
+        emit(f"series: containment_violation; {error}; no series record")
+        return {"series": False}
+
+    rebuilt: dict[str, bool] = {}
+    for case in cases:
+        named = sorted({str(item.get("hypothesis")) for item in case.get("declared_differences") or []
+                        if item.get("hypothesis") in statuses})
+        if not named:
+            continue
+        stored = _stored_comparison(root, case["case_id"])
+        if stored is None:
+            continue
+        wanted = {hypothesis: series_summary(statuses[hypothesis]) for hypothesis in named}
+        if all((stored.get("hypothesis_series") or {}).get(hypothesis) == wanted[hypothesis] for hypothesis in named):
+            continue
+        rebuilt[case["case_id"]] = run_case(case, config, runner=runner, offline=True, hand_calcs=hand_calcs,
+                                            emit=lambda line: emit(f"rebuild for series: {line}"),
+                                            hypothesis_series=statuses)
+    return rebuilt
+
+
+def run_cases(cases: list[Mapping[str, Any]], config: HarnessConfig, *, runner: str, offline: bool, hand_calcs: Any,
+              emit: Callable[[str], None] = print,
+              round_trip: Callable[..., dict[str, Any]] = run_caepipe_round_trip) -> dict[str, bool]:
+    """Run the selected cases, then the series step; {case id or "series": success}."""
+    results = {case["case_id"]: run_case(case, config, runner=runner, offline=offline, hand_calcs=hand_calcs,
+                                         emit=emit, round_trip=round_trip) for case in cases}
+    for key, ok in run_series(config, runner=runner, hand_calcs=hand_calcs, emit=emit).items():
+        results[key] = results.get(key, True) and ok
+    return results
 
 
 def main(argv: list[str] | None = None, environ: Mapping[str, str] = os.environ) -> int:
@@ -331,6 +445,7 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] = os.environ)
     args = parser.parse_args(argv)
     try:
         cases = load_cases(args.cases)
+        load_series()
     except (KeyError, ValueError) as error:
         print(f"error: {error}", file=sys.stderr)
         return 2
@@ -345,8 +460,8 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] = os.environ)
     for warning in config.warnings:
         print(f"warning: {warning}")
     hand_calcs = load_hand_calcs()
-    results = [run_case(case, config, runner=runner, offline=args.offline, hand_calcs=hand_calcs) for case in cases]
-    return 0 if all(results) else 1
+    results = run_cases(cases, config, runner=runner, offline=args.offline, hand_calcs=hand_calcs)
+    return 0 if all(results.values()) else 1
 
 
 if __name__ == "__main__":

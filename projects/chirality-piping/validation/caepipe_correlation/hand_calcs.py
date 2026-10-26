@@ -8,11 +8,16 @@ action of the support on the pipe.
 
 `basis` is "Euler-Bernoulli" for the primary witness (bending without shear
 deformation, the formulation of SWBPIPE's frame preview). Where shear
-deformation changes a compared quantity, `timoshenko_predictions(case_id)`
-gives the Timoshenko value minus the Euler-Bernoulli value, used as the case's
-`predicted_caepipe_minus_swbpipe`. The shear coefficient KAPPA = 0.5 (shear area
-A/2 of a thin-wall tube) is an ASSUMPTION: CAEPIPE's shear formulation is not
-documented in the admitted sources.
+deformation changes a compared quantity, `alternative_analytic_values(case_id)`
+gives the independent Timoshenko value itself (bending plus transverse shear
+flexibility L / (kappa G A)), keyed by hypothesis id and quantity id; a case
+declaration of that hypothesis compares it with CAEPIPE (DEL-17-05 Design §6).
+The shear coefficient KAPPA = 0.5, i.e. a shape factor 1 / kappa = 2 in the
+shear flexibility "shape factor x L / (G A)", is an ASSUMPTION: the CAEPIPE
+technical reference (docs.sstcae.com, "Fiber Reinforced Plastic Piping (FRP)",
+"Stiffness matrix") names a shape-factor shear term but publishes no value; 2
+is the thin-wall circular tube value. Its CAEPIPE value is a question for SST
+(DEL-17-01 CQ-17-01-010).
 
 All inputs are invented; no value is library, catalog or code-rule data.
 """
@@ -32,13 +37,17 @@ G = E / (2.0 * (1.0 + NU))  # = E / 2.6
 ALPHA = 1.2e-5  # 1/K
 RHO = 7850.0  # kg/m3
 GRAVITY = 9.80665  # m/s2
-KAPPA = 0.5  # ASSUMPTION: thin-wall tube shear coefficient
+KAPPA = 0.5  # ASSUMPTION: thin-wall tube shear coefficient (shape factor 1 / KAPPA = 2)
 KAPPA_NOTE = (
-    "ASSUMPTION: Timoshenko shear coefficient kappa = 0.5 (shear area A/2 of a thin-wall tube); "
-    "CAEPIPE's shear formulation is not documented in the admitted sources"
+    "ASSUMPTION: Timoshenko shear coefficient kappa = 0.5, i.e. shape factor 2 in the shear flexibility "
+    "shape factor x L / (G A) (thin-wall circular tube); the CAEPIPE technical reference names the shape-factor "
+    "term without a value (docs.sstcae.com tech_manual, Fiber Reinforced Plastic Piping (FRP), Stiffness matrix); "
+    "its CAEPIPE value is a question for SST (CQ-17-01-010)"
 )
 
 BASIS = "Euler-Bernoulli"
+ALTERNATIVE_BASIS = "Timoshenko"
+SHEAR_HYPOTHESIS = "shear-deformation"
 
 
 def section() -> dict[str, float]:
@@ -52,20 +61,35 @@ def _row(value: float, unit: str, formula: str) -> dict[str, Any]:
     return {"value": value, "unit": unit, "formula": formula, "basis": BASIS}
 
 
+def _alt(value: float, unit: str, formula: str) -> dict[str, Any]:
+    return {"value": value, "unit": unit, "formula": formula, "basis": ALTERNATIVE_BASIS, "assumption": KAPPA_NOTE}
+
+
+def shear_area() -> float:
+    """kappa A: the effective shear area of the ASSUMPTION kappa = 0.5."""
+    return KAPPA * section()["A"]
+
+
 # ---------------------------------------------------------------------------
-# cpc-01 / cpc-06: cantilever with a tip force
+# cpc-01 / cpc-06 / cpc-07 / cpc-08: cantilever with a tip force (span series)
 # ---------------------------------------------------------------------------
 CANTILEVER_L = 6.0
 CANTILEVER_P = -2000.0  # N along global Y at the tip
+CANTILEVER_SPANS = {
+    "cpc-07-cantilever-span-3m": 3.0,
+    "cpc-01-cantilever-force": 6.0,
+    "cpc-06-cantilever-fault-injected": 6.0,
+    "cpc-08-cantilever-span-12m": 12.0,
+}
 
 
-def cpc_01_cantilever_force() -> dict[str, dict[str, Any]]:
+def cantilever(length: float) -> dict[str, dict[str, Any]]:
     s = section()
-    length, force = CANTILEVER_L, CANTILEVER_P
+    force = CANTILEVER_P
     ei = E * s["I"]
     return {
         "n1_uy": _row(force * length**3 / (3.0 * ei), "m",
-                      "uy(L) = P L^3 / (3 E I), P = -2000 N (signed, global Y), L = 6 m"),
+                      f"uy(L) = P L^3 / (3 E I), P = -2000 N (signed, global Y), L = {length:g} m"),
         "n1_rz": _row(force * length**2 / (2.0 * ei), "rad",
                       "rz(L) = dv/dx = P L^2 / (2 E I) (right-hand rotation about +Z of a member along +X)"),
         "a0_fy": _row(-force, "N", "Fy_A = -P (support on pipe; vertical equilibrium)"),
@@ -74,9 +98,18 @@ def cpc_01_cantilever_force() -> dict[str, dict[str, Any]]:
     }
 
 
-def cpc_01_timoshenko() -> dict[str, float]:
+def cantilever_timoshenko(length: float) -> dict[str, dict[str, Any]]:
+    """Timoshenko tip deflection; the tip rotation and the reactions are unchanged by shear (constant shear force)."""
     s = section()
-    return {"n1_uy": CANTILEVER_P * CANTILEVER_L / (KAPPA * G * s["A"])}
+    force = CANTILEVER_P
+    value = force * length**3 / (3.0 * E * s["I"]) + force * length / (G * shear_area())
+    return {"n1_uy": _alt(value, "m",
+                          f"uy(L) = P L^3 / (3 E I) + P L / (kappa G A), kappa = 0.5, G = E / (2 (1 + nu)), "
+                          f"P = -2000 N, L = {length:g} m")}
+
+
+def cpc_01_cantilever_force() -> dict[str, dict[str, Any]]:
+    return cantilever(CANTILEVER_L)
 
 
 # ---------------------------------------------------------------------------
@@ -98,6 +131,14 @@ def cpc_02_anchored_thermal() -> dict[str, dict[str, Any]]:
 
 def cpc_06_cantilever_fault_injected() -> dict[str, dict[str, Any]]:
     return cpc_01_cantilever_force()
+
+
+def cpc_07_cantilever_span_3m() -> dict[str, dict[str, Any]]:
+    return cantilever(CANTILEVER_SPANS["cpc-07-cantilever-span-3m"])
+
+
+def cpc_08_cantilever_span_12m() -> dict[str, dict[str, Any]]:
+    return cantilever(CANTILEVER_SPANS["cpc-08-cantilever-span-12m"])
 
 
 # ---------------------------------------------------------------------------
@@ -126,12 +167,14 @@ def cpc_03_anchored_weight() -> dict[str, dict[str, Any]]:
     }
 
 
-def cpc_03_timoshenko() -> dict[str, float]:
+def cpc_03_timoshenko() -> dict[str, dict[str, Any]]:
     s = section()
     w, length = weight_per_length(), WEIGHT_L
     # Shear strain V/(kappa G A) with V(x) = -w (L/2 - x) integrated over 0..L/2; the end
-    # moments are unchanged by symmetry (bending rotation is still fixed by M/EI).
-    return {"mid_uy": w * length**2 / (8.0 * KAPPA * G * s["A"])}
+    # moments and reactions are unchanged by symmetry (bending rotation is still fixed by M/EI).
+    value = w * length**4 / (384.0 * E * s["I"]) + w * length**2 / (8.0 * G * shear_area())
+    return {"mid_uy": _alt(value, "m", "uy(L/2) = w L^4 / (384 E I) + w L^2 / (8 kappa G A), fixed-fixed, "
+                                       "w = -rho A g, L = 6 m, kappa = 0.5")}
 
 
 # ---------------------------------------------------------------------------
@@ -260,10 +303,13 @@ def cpc_04_l_bend_thermal() -> dict[str, dict[str, Any]]:
     }
 
 
-def cpc_04_timoshenko() -> dict[str, float]:
-    euler = l_bend_reactions(shear=False, arc_axial=True)
-    timo = l_bend_reactions(shear=True, arc_axial=True)
-    return {key: timo[key] - euler[key] for key in euler}
+def cpc_04_timoshenko() -> dict[str, dict[str, Any]]:
+    values = l_bend_reactions(shear=True, arc_axial=True)
+    formula = (_L_FORMULA.replace("transverse shear and arc ovalization beyond k are not included",
+                                  "arc ovalization beyond k is not included")
+               + "; plus transverse shear int v_i v_j / (kappa G A) ds over legs and arc, kappa = 0.5")
+    return {key: _alt(values[key], "N*m" if key.endswith("my") else "N", formula)
+            for key in ("a_fx", "a_fz", "a_my", "b_fx", "b_fz", "b_my")}
 
 
 # ---------------------------------------------------------------------------
@@ -331,10 +377,12 @@ def cpc_05_branch_imposed_displacement() -> dict[str, dict[str, Any]]:
     return {key: _row(values[key], units[key], f"{extra[key]}; {_BRANCH_FORMULA}") for key in units}
 
 
-def cpc_05_timoshenko() -> dict[str, float]:
-    euler = branch_solution(shear=False)
-    timo = branch_solution(shear=True)
-    return {key: timo[key] - euler[key] for key in ("j_uy", "j_rx", "a1_fy", "a2_fy", "a3_fy", "a3_mx")}
+def cpc_05_timoshenko() -> dict[str, dict[str, Any]]:
+    values = branch_solution(shear=True)
+    units = {"j_uy": "m", "j_rx": "rad", "a1_fy": "N", "a2_fy": "N", "a3_fy": "N", "a3_mx": "N*m"}
+    formula = (_BRANCH_FORMULA + "; Timoshenko: kb = E I / ((1 + Phi) L^3), Phi = 12 E I / (kappa G A L^2), "
+               "kappa = 0.5, Z-leg near-end term (4 + Phi) L^2 kb, far-end moment (2 - Phi) L^2 kb")
+    return {key: _alt(values[key], unit, formula) for key, unit in units.items()}
 
 
 HAND_CALCS: dict[str, Callable[[], dict[str, dict[str, Any]]]] = {
@@ -344,14 +392,19 @@ HAND_CALCS: dict[str, Callable[[], dict[str, dict[str, Any]]]] = {
     "cpc-04-l-bend-thermal": cpc_04_l_bend_thermal,
     "cpc-05-branch-imposed-displacement": cpc_05_branch_imposed_displacement,
     "cpc-06-cantilever-fault-injected": cpc_06_cantilever_fault_injected,
+    "cpc-07-cantilever-span-3m": cpc_07_cantilever_span_3m,
+    "cpc-08-cantilever-span-12m": cpc_08_cantilever_span_12m,
 }
 
-TIMOSHENKO_PREDICTIONS: dict[str, Callable[[], dict[str, float]]] = {
-    "cpc-01-cantilever-force": cpc_01_timoshenko,
-    "cpc-03-anchored-weight": cpc_03_timoshenko,
-    "cpc-04-l-bend-thermal": cpc_04_timoshenko,
-    "cpc-05-branch-imposed-displacement": cpc_05_timoshenko,
-    "cpc-06-cantilever-fault-injected": cpc_01_timoshenko,
+# hypothesis id -> case id -> Timoshenko values of the quantities shear deformation changes.
+ALTERNATIVE_ANALYTICS: dict[str, dict[str, Callable[[], dict[str, dict[str, Any]]]]] = {
+    SHEAR_HYPOTHESIS: {
+        **{case_id: (lambda length=length: cantilever_timoshenko(length))
+           for case_id, length in CANTILEVER_SPANS.items()},
+        "cpc-03-anchored-weight": cpc_03_timoshenko,
+        "cpc-04-l-bend-thermal": cpc_04_timoshenko,
+        "cpc-05-branch-imposed-displacement": cpc_05_timoshenko,
+    },
 }
 
 
@@ -362,7 +415,10 @@ def analytic_values(case_id: str) -> dict[str, dict[str, Any]]:
     return HAND_CALCS[case_id]()
 
 
-def timoshenko_predictions(case_id: str) -> dict[str, float]:
-    """Timoshenko minus Euler-Bernoulli value per quantity (SI); empty where shear does not matter."""
-    function = TIMOSHENKO_PREDICTIONS.get(case_id)
-    return function() if function else {}
+def alternative_analytic_values(case_id: str) -> dict[str, dict[str, dict[str, Any]]]:
+    """Independent alternative analytic values of a case: {hypothesis id: {quantity id: row}} (SI).
+
+    Empty for a case no hypothesis changes. Each row carries its formula, basis and ASSUMPTION.
+    """
+    return {hypothesis: functions[case_id]() for hypothesis, functions in ALTERNATIVE_ANALYTICS.items()
+            if case_id in functions}

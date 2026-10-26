@@ -6,10 +6,11 @@ reason, when the harness is not configured, when no case holds a stored
 comparison record and CAEPIPE CSV, or when no runner executable is configured
 (OPENPIPESTRESS_RUNNER_BIN). Otherwise each stored case is re-run offline in a
 temporary copy (the private corpus is never written): the stored CSV is
-re-parsed, the case is re-solved in SWBPIPE and the comparison is rebuilt. The
-check fails when any quantity's outcome or cause moves from its recorded
-classification. Failure messages name case, quantity and check ids only, never
-values.
+re-parsed, the case is re-solved in SWBPIPE and the comparison is rebuilt, then
+the series step evaluates the hypothesis series and rebuilds the declaring
+cases, as the pilot command does. The check fails when any quantity's outcome,
+cause or cause evidence status moves from its recorded classification. Failure
+messages name case, quantity and check ids only, never values.
 """
 
 from __future__ import annotations
@@ -31,12 +32,13 @@ from core.handoff.caepipe_external import HarnessConfig, HarnessSkip, resolve_ha
 from tools.caepipe_correlation import run_pilot  # noqa: E402
 
 
-def classification(record: dict) -> dict[tuple[str, str], tuple[str, str | None]]:
+def classification(record: dict) -> dict[tuple[str, str], tuple[str, str | None, str | None]]:
     out = {}
     for row in record["quantities"]:
         cause = row["cause"]["label"] if row.get("cause") else None
+        evidence = row["cause"].get("evidence_status") if row.get("cause") else None
         for check, result in row["checks"].items():
-            out[(row["id"], check)] = (result["outcome"], cause)
+            out[(row["id"], check)] = (result["outcome"], cause, evidence)
     return out
 
 
@@ -71,15 +73,15 @@ def test_stored_caepipe_correlation_classifications_are_stable(tmp_path):
     hand_calcs = run_pilot.load_hand_calcs()
     cases = {case["case_id"]: case for case in run_pilot.load_cases(case_ids)}
 
-    failed_cases, moved = [], []
+    results = run_pilot.run_cases([cases[case_id] for case_id in case_ids], copy, runner=runner, offline=True,
+                                  hand_calcs=hand_calcs, emit=lambda line: None)
+    failed_cases = sorted(key for key, ok in results.items() if not ok)
+    moved = []
     for case_id in case_ids:
+        if case_id in failed_cases:
+            continue
         stored = json.loads((config.exchange_root / "cases" / case_id / "comparison" / "comparison.json")
                             .read_text(encoding="utf-8"))
-        ok = run_pilot.run_case(cases[case_id], copy, runner=runner, offline=True, hand_calcs=hand_calcs,
-                                emit=lambda line: None)
-        if not ok:
-            failed_cases.append(case_id)
-            continue
         rebuilt = json.loads((copy_root / "cases" / case_id / "comparison" / "comparison.json").read_text(encoding="utf-8"))
         before, after = classification(stored), classification(rebuilt)
         moved.extend(f"{case_id}/{quantity}/{check}" for quantity, check in sorted(set(before) | set(after))

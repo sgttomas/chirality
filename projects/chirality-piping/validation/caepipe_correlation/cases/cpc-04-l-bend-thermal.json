@@ -336,69 +336,50 @@
       "basis": "ASSUMPTION",
       "note": "relative 0.5 %; absolute floors cover the rounding of CAEPIPE's printed values"
     },
+    "caepipe_print_resolution": {
+      "rel": 1e-06,
+      "abs": {
+        "m": 5e-07,
+        "rad": 8.7266e-07,
+        "N": 0.5,
+        "N*m": 0.5
+      },
+      "basis": "ASSUMPTION",
+      "note": "alternative analytic against CAEPIPE: half a unit of the CAEPIPE CSV print resolution (forces 1 N, moments 1 N*m, displacements 0.001 mm, rotations 0.0001 deg) plus binary64-scale relative 1e-6; the tightest tolerance the printed values can resolve"
+    },
     "governed_status": "TBD",
     "basis_note": "ASSUMPTION: pilot tolerance chosen by the implementer for the proof of concept; the governed external-oracle tolerance class is TBD (owner ruling); never loosened to match CAEPIPE"
   },
   "declared_differences": [
     {
-      "id": "dd-shear-deformation:a_fx",
+      "id": "dd-shear-deformation",
+      "hypothesis": "shear-deformation",
       "applies_to": [
-        "a_fx"
-      ],
-      "cause": "documented_behavior_difference",
-      "description": "Shear deformation: SWBPIPE's frame preview is Euler-Bernoulli; a Timoshenko formulation adds shear flexibility. Predicted difference = Timoshenko - Euler-Bernoulli hand value with kappa = 0.5 (ASSUMPTION: CAEPIPE's shear formulation is not documented in the admitted sources).",
-      "predicted_caepipe_minus_swbpipe": -66.3860464313625,
-      "prediction_source": "hand_calcs.timoshenko_predictions('cpc-04-l-bend-thermal')['a_fx']"
-    },
-    {
-      "id": "dd-shear-deformation:a_fz",
-      "applies_to": [
-        "a_fz"
-      ],
-      "cause": "documented_behavior_difference",
-      "description": "Shear deformation: SWBPIPE's frame preview is Euler-Bernoulli; a Timoshenko formulation adds shear flexibility. Predicted difference = Timoshenko - Euler-Bernoulli hand value with kappa = 0.5 (ASSUMPTION: CAEPIPE's shear formulation is not documented in the admitted sources).",
-      "predicted_caepipe_minus_swbpipe": -41.23050753583129,
-      "prediction_source": "hand_calcs.timoshenko_predictions('cpc-04-l-bend-thermal')['a_fz']"
-    },
-    {
-      "id": "dd-shear-deformation:a_my",
-      "applies_to": [
-        "a_my"
-      ],
-      "cause": "documented_behavior_difference",
-      "description": "Shear deformation: SWBPIPE's frame preview is Euler-Bernoulli; a Timoshenko formulation adds shear flexibility. Predicted difference = Timoshenko - Euler-Bernoulli hand value with kappa = 0.5 (ASSUMPTION: CAEPIPE's shear formulation is not documented in the admitted sources).",
-      "predicted_caepipe_minus_swbpipe": 73.65771694514206,
-      "prediction_source": "hand_calcs.timoshenko_predictions('cpc-04-l-bend-thermal')['a_my']"
-    },
-    {
-      "id": "dd-shear-deformation:b_fx",
-      "applies_to": [
-        "b_fx"
-      ],
-      "cause": "documented_behavior_difference",
-      "description": "Shear deformation: SWBPIPE's frame preview is Euler-Bernoulli; a Timoshenko formulation adds shear flexibility. Predicted difference = Timoshenko - Euler-Bernoulli hand value with kappa = 0.5 (ASSUMPTION: CAEPIPE's shear formulation is not documented in the admitted sources).",
-      "predicted_caepipe_minus_swbpipe": 66.3860464313625,
-      "prediction_source": "hand_calcs.timoshenko_predictions('cpc-04-l-bend-thermal')['b_fx']"
-    },
-    {
-      "id": "dd-shear-deformation:b_fz",
-      "applies_to": [
-        "b_fz"
-      ],
-      "cause": "documented_behavior_difference",
-      "description": "Shear deformation: SWBPIPE's frame preview is Euler-Bernoulli; a Timoshenko formulation adds shear flexibility. Predicted difference = Timoshenko - Euler-Bernoulli hand value with kappa = 0.5 (ASSUMPTION: CAEPIPE's shear formulation is not documented in the admitted sources).",
-      "predicted_caepipe_minus_swbpipe": 41.23050753583129,
-      "prediction_source": "hand_calcs.timoshenko_predictions('cpc-04-l-bend-thermal')['b_fz']"
-    },
-    {
-      "id": "dd-shear-deformation:b_my",
-      "applies_to": [
+        "a_fx",
+        "a_fz",
+        "a_my",
+        "b_fx",
+        "b_fz",
         "b_my"
       ],
       "cause": "documented_behavior_difference",
-      "description": "Shear deformation: SWBPIPE's frame preview is Euler-Bernoulli; a Timoshenko formulation adds shear flexibility. Predicted difference = Timoshenko - Euler-Bernoulli hand value with kappa = 0.5 (ASSUMPTION: CAEPIPE's shear formulation is not documented in the admitted sources).",
-      "predicted_caepipe_minus_swbpipe": -107.89382609590484,
-      "prediction_source": "hand_calcs.timoshenko_predictions('cpc-04-l-bend-thermal')['b_my']"
+      "description": "Shear deformation: SWBPIPE's frame preview is Euler-Bernoulli; the CAEPIPE technical reference describes a pipe stiffness matrix with a transverse shear flexibility term. The alternative analytic is the Timoshenko value (Euler-Bernoulli plus the shear term) with shape factor 2, kappa = 0.5 (ASSUMPTION).",
+      "alternative_analytic": {
+        "basis": "Timoshenko",
+        "values_from": "validation/caepipe_correlation/hand_calcs.py alternative_analytic_values(case_id)['shear-deformation']",
+        "assumption": "ASSUMPTION: Timoshenko shear coefficient kappa = 0.5, i.e. shape factor 2 in the shear flexibility shape factor x L / (G A) (thin-wall circular tube); the CAEPIPE technical reference names the shape-factor term without a value (docs.sstcae.com tech_manual, Fiber Reinforced Plastic Piping (FRP), Stiffness matrix); its CAEPIPE value is a question for SST (CQ-17-01-010)"
+      },
+      "source_basis": [
+        {
+          "id": "SST-TECH-FRP-STIFFNESS",
+          "title": "CAEPIPE Technical Reference Manual, Fiber Reinforced Plastic Piping (FRP)",
+          "location": "Stiffness matrix",
+          "url": "https://docs.sstcae.com/tech_manual/fiber_reinforced_plastic_piping__frp_.htm",
+          "accessed": "2026-10-26",
+          "public": true,
+          "supports": "paraphrased, not quoted: the pipe stiffness matrix is formed from an axial flexibility L/EA, a transverse shear flexibility (a shape factor times L/GA), a bending flexibility L/EI and a torsional flexibility L/2GI; no shape-factor value is published, and the page is the FRP chapter (its use for the steel pipe element is an inference for SST to confirm, CQ-17-01-010)"
+        }
+      ]
     }
   ]
 }

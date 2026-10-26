@@ -31,6 +31,10 @@ from core.handoff.caepipe_external import (  # noqa: E402
     resolve_harness_config,
     run_caepipe_round_trip,
 )
+from core.handoff.caepipe_external.correlation import (  # noqa: E402
+    ALTERNATIVE_CHECK,
+    evaluate_hypothesis_series,
+)
 from core.handoff.caepipe_external.harness import (  # noqa: E402
     ENV_VAR,
     ContainmentError,
@@ -48,6 +52,7 @@ SUS = "Sustained (W+P)"
 TOL = {
     "analytic_vs_swbpipe": {"rel": 1e-6, "abs": {"m": 1e-9, "rad": 1e-9, "N": 1e-6, "N*m": 1e-6}},
     "external": {"rel": 5e-3, "abs": {"m": 2e-6, "rad": 2e-6, "N": 1.0, "N*m": 1.0}},
+    "caepipe_print_resolution": {"rel": 1e-6, "abs": {"m": 5e-7, "rad": 8.7266e-7, "N": 0.5, "N*m": 0.5}},
 }
 
 
@@ -118,11 +123,12 @@ ANALYTIC = {
 MODEL = {"invented": True, "nodes": [{"id": "N1"}]}
 
 
-def record(case=None, payload=None, caepipe=None, analytic=ANALYTIC, mbf_text="INVENTED\r\n"):
+def record(case=None, payload=None, caepipe=None, analytic=ANALYTIC, mbf_text="INVENTED\r\n", alternative=None,
+           series=None):
     return build_comparison_record(case or synthetic_case(), swbpipe_model=MODEL,
                                    swbpipe_result_payload=payload or swb_rows(), mbf_result=MBF,
                                    mbf_text=mbf_text, parsed_caepipe=caepipe if caepipe is not None else parsed(),
-                                   analytic=analytic)
+                                   analytic=analytic, alternative_analytic=alternative, hypothesis_series=series)
 
 
 def quantity(result, qid):
@@ -210,40 +216,115 @@ def test_tolerance_tbd_and_missing_analytic():
     assert row["cause"]["label"] == "caepipe_profile_unknown"
 
 
-def test_declared_difference_with_prediction_and_without():
-    predicted = {"id": "dd", "applies_to": ["uy"], "cause": "documented_behavior_difference",
-                 "description": "invented", "predicted_caepipe_minus_swbpipe": -0.001}
-    within = quantity(record(case=synthetic_case(declared_differences=[predicted]), caepipe=parsed(uy_mm=-11.05)), "uy")
-    assert within["cause"]["label"] == "documented_behavior_difference"
-    assert within["cause"]["evidence"] == "predicted"
-    assert within["cause"]["declared_difference"] == "dd"
-    assert within["disposition"] == "assumption_recorded"
-    outside = quantity(record(case=synthetic_case(declared_differences=[predicted]), caepipe=parsed(uy_mm=-11.2)), "uy")
-    assert outside["cause"]["label"] == "export_mapping_issue"
-    declared_only = dict(predicted, predicted_caepipe_minus_swbpipe=None)
-    row = quantity(record(case=synthetic_case(declared_differences=[declared_only]), caepipe=parsed(uy_mm=-12.0)), "uy")
-    assert row["cause"]["evidence"] == "declared_only"
+def declaration(**changes):
+    item = {"id": "dd", "hypothesis": "invented-hypothesis", "applies_to": ["uy"],
+            "cause": "documented_behavior_difference", "description": "invented",
+            "alternative_analytic": {"basis": "Timoshenko"},
+            "source_basis": [{"id": "INVENTED-SOURCE", "url": "https://invented.example/page"}]}
+    item.update(changes)
+    return item
+
+
+# Invented alternative analytic: -11.0 mm against SWBPIPE and the Euler-Bernoulli witness at -10.0 mm.
+ALTERNATIVE = {"invented-hypothesis": {"uy": {"value": -0.011, "unit": "m", "formula": "invented",
+                                              "basis": "Timoshenko", "assumption": "ASSUMPTION: invented"}}}
+CONSISTENT = {"invented-hypothesis": {"status": "consistent", "fitted_slope": -2.0}}
+
+
+def declared_row(*, uy_mm=-11.0, declared=None, alternative=ALTERNATIVE, series=CONSISTENT, case=None, **kwargs):
+    case = case or synthetic_case(declared_differences=[declared or declaration()])
+    return quantity(record(case=case, caepipe=parsed(uy_mm=uy_mm), alternative=alternative, series=series,
+                           **kwargs), "uy")
+
+
+def missing(row):
+    return [(item["condition"], item["state"]) for item in row["cause"]["missing"]]
+
+
+def test_declared_difference_established_when_all_five_conditions_hold():
+    result = record(case=synthetic_case(declared_differences=[declaration()]), caepipe=parsed(uy_mm=-11.0),
+                    alternative=ALTERNATIVE, series=CONSISTENT)
+    row = quantity(result, "uy")
+    assert outcomes(row) == {"analytic_vs_swbpipe": "matched_within_tolerance",
+                             "swbpipe_vs_caepipe": "delta_exceeds_tolerance",
+                             "analytic_vs_caepipe": "delta_exceeds_tolerance",
+                             ALTERNATIVE_CHECK: "matched_within_tolerance"}
+    assert row["values"]["alternative"] == -0.011
+    assert row["checks"][ALTERNATIVE_CHECK]["tolerance"]["abs"] == 5e-7
+    assert row["value_sources"]["alternative"]["basis"] == "Timoshenko"
+    assert row["value_sources"]["alternative"]["declared_difference"] == "dd"
+    assert row["cause"]["label"] == "documented_behavior_difference"
+    assert row["cause"]["evidence_status"] == "established"
+    assert row["cause"]["missing"] == [] and row["cause"]["hypothesis"] == "invented-hypothesis"
+    assert row["disposition"] == "assumption_recorded"
+    # The fourth check is present only on a covered quantity.
+    assert ALTERNATIVE_CHECK not in quantity(result, "rz")["checks"]
+    assert result["hypothesis_series"]["invented-hypothesis"]["status"] == "consistent"
+    assert result["summary"]["by_evidence_status"] == {"established": 1}
+    assert result["tolerance_basis"][ALTERNATIVE_CHECK]["abs"]["N"] == 0.5
+
+
+@pytest.mark.parametrize("label,kwargs,expected", [
+    ("alternative exceeds", {"uy_mm": -11.002}, [("alternative_analytic_matched", "failed")]),
+    ("no alternative value", {"alternative": {}}, [("alternative_analytic_matched", "unevaluated")]),
+    ("no source basis", {"declared": declaration(source_basis=[])}, [("source_basis", "failed")]),
+    ("source basis absent", {"declared": {key: value for key, value in declaration().items()
+                                          if key != "source_basis"}}, [("source_basis", "failed")]),
+    ("series inconsistent", {"series": {"invented-hypothesis": {"status": "inconsistent"}}},
+     [("hypothesis_series_consistent", "failed")]),
+    ("series not evaluated", {"series": {"invented-hypothesis": {"status": "not_evaluated"}}},
+     [("hypothesis_series_consistent", "unevaluated")]),
+    ("series absent", {"series": None}, [("hypothesis_series_consistent", "unevaluated")]),
+    ("no hypothesis", {"declared": declaration(hypothesis=None), "series": None},
+     [("alternative_analytic_matched", "unevaluated"), ("hypothesis_series_consistent", "unevaluated")]),
+    ("all three", {"uy_mm": -11.002, "declared": declaration(source_basis=[]), "series": None},
+     [("alternative_analytic_matched", "failed"), ("source_basis", "failed"),
+      ("hypothesis_series_consistent", "unevaluated")]),
+])
+def test_declared_difference_stays_a_hypothesis_naming_what_is_missing(label, kwargs, expected):
+    row = declared_row(**kwargs)
+    assert outcomes(row)["swbpipe_vs_caepipe"] == "delta_exceeds_tolerance", label
+    assert row["cause"]["label"] == "documented_behavior_difference", label
+    assert row["cause"]["evidence_status"] == "hypothesis", label
+    assert missing(row) == expected, label
+    assert row["disposition"] == "requires_professional_review", label
+
+
+def test_print_resolution_tolerance_missing_leaves_the_alternative_check_unevaluated():
+    case = synthetic_case(declared_differences=[declaration()])
+    del case["tolerances"]["caepipe_print_resolution"]
+    row = declared_row(case=case)
+    assert outcomes(row)[ALTERNATIVE_CHECK] == "tolerance_tbd"
+    assert missing(row) == [("alternative_analytic_matched", "unevaluated")]
 
 
 def test_declared_difference_never_masks_a_swbpipe_departure_from_the_analytic_witness():
-    # All three disagree (analytic -10 mm, SWBPIPE -12 mm, CAEPIPE -13.05 mm) and the residual CAEPIPE - SWBPIPE
-    # (-1.05 mm) lies within 10 % of the declared prediction (-1 mm): the triangle rule still names the cause.
-    predicted = {"id": "dd", "applies_to": ["uy"], "cause": "documented_behavior_difference",
-                 "description": "invented", "predicted_caepipe_minus_swbpipe": -0.001}
-    for declaration in (predicted, dict(predicted, predicted_caepipe_minus_swbpipe=None)):
-        row = quantity(record(case=synthetic_case(declared_differences=[declaration]), payload=swb_rows(uy_mm=-12.0),
-                              caepipe=parsed(uy_mm=-13.05)), "uy")
-        assert set(outcomes(row).values()) == {"delta_exceeds_tolerance"}
-        assert row["cause"]["label"] == "solver_defect_candidate"
-        assert row["cause"]["evidence"] == "triangle_rule"
-        assert row["cause"]["declared_difference_also_matched"] == "dd"
-        assert row["disposition"] == "requires_professional_review"
+    # All three disagree (analytic -10 mm, SWBPIPE -12 mm, CAEPIPE -13.05 mm), and the alternative analytic even
+    # matches CAEPIPE with a consistent series and a source basis: the triangle rule still names the cause.
+    alternative = {"invented-hypothesis": {"uy": {"value": -0.01305, "unit": "m", "basis": "Timoshenko"}}}
+    row = quantity(record(case=synthetic_case(declared_differences=[declaration()]), payload=swb_rows(uy_mm=-12.0),
+                          caepipe=parsed(uy_mm=-13.05), alternative=alternative, series=CONSISTENT), "uy")
+    assert {name: value for name, value in outcomes(row).items() if name != ALTERNATIVE_CHECK} == {
+        "analytic_vs_swbpipe": "delta_exceeds_tolerance", "swbpipe_vs_caepipe": "delta_exceeds_tolerance",
+        "analytic_vs_caepipe": "delta_exceeds_tolerance"}
+    assert outcomes(row)[ALTERNATIVE_CHECK] == "matched_within_tolerance"
+    assert row["cause"]["label"] == "solver_defect_candidate"
+    assert row["cause"]["evidence"] == "triangle_rule"
+    assert "evidence_status" not in row["cause"]
+    assert row["cause"]["declared_difference_covers"] == "dd"
+    assert "documented_behavior_difference" in row["cause"]["alternatives"]
+    assert row["disposition"] == "requires_professional_review"
     # Without an analytic witness a declaration is not enough either.
     analytic = {key: value for key, value in ANALYTIC.items() if key != "uy"}
-    row = quantity(record(case=synthetic_case(declared_differences=[predicted]), analytic=analytic,
-                          caepipe=parsed(uy_mm=-11.05)), "uy")
+    row = declared_row(analytic=analytic)
     assert row["cause"]["label"] == "caepipe_profile_unknown"
-    assert row["cause"]["declared_difference_also_matched"] == "dd"
+    assert row["cause"]["declared_difference_covers"] == "dd"
+
+
+def test_declared_quantity_that_matches_needs_no_cause():
+    row = declared_row(uy_mm=-10.0)
+    assert row["status"] == "matched" and row["cause"] is None and row["disposition"] == "no_action"
+    assert outcomes(row)[ALTERNATIVE_CHECK] == "delta_exceeds_tolerance"  # recorded, not used for a cause
 
 
 def test_fault_injection_is_classified_as_deliberate_export_issue():
@@ -255,6 +336,70 @@ def test_fault_injection_is_classified_as_deliberate_export_issue():
     assert row["disposition"] == "bug_report"
     assert quantity(result, "fy")["disposition"] == "no_action"
     assert result["manual_changes"]["description"] == "invented deliberate fault"
+    # A declaration covering the faulted quantity does not displace the known deliberate cause.
+    row = declared_row(uy_mm=-9.0, case=synthetic_case(fault_injection=fault, declared_differences=[declaration()]))
+    assert row["cause"]["evidence"] == "deliberate_fault_injection"
+    assert row["cause"]["alternatives"] == ["documented_behavior_difference"]
+    assert row["cause"]["declared_difference_covers"] == "dd"
+
+
+# --------------------------------------------------------------------------
+# hypothesis series (synthetic numbers)
+# --------------------------------------------------------------------------
+SERIES_DEFINITION = {
+    "hypothesis_id": "invented-hypothesis", "quantity": "q", "expected_exponent": -2.0,
+    "expected_relative_gap_sign": 1, "slope_tolerance": {"abs": 0.05, "basis": "ASSUMPTION"},
+    "members": [{"case_id": "c-short", "span": 3.0}, {"case_id": "c-mid", "span": 6.0},
+                {"case_id": "c-long", "span": 12.0}],
+}
+
+
+def member_record(swb, cae, *, a_s="matched_within_tolerance", digest="h", resolution=5e-7):
+    return {"exported_model_hash": digest,
+            "tolerance_basis": {ALTERNATIVE_CHECK: {"abs": {"m": resolution}}},
+            "quantities": [{"id": "q", "unit": "m", "values": {"swbpipe": swb, "caepipe": cae},
+                            "checks": {"analytic_vs_swbpipe": {"outcome": a_s}}}]}
+
+
+def series_records(exponent, *, sign=1.0, base=0.01, swb=-0.1):
+    """Members with relative gap sign * base * (L / 3)^exponent and SWBPIPE value `swb`."""
+    out = {}
+    for member in SERIES_DEFINITION["members"]:
+        relative = sign * base * (member["span"] / 3.0) ** exponent
+        out[member["case_id"]] = member_record(swb, swb * (1.0 + relative))
+    return out
+
+
+def test_series_slope_on_synthetic_numbers():
+    result = evaluate_hypothesis_series(SERIES_DEFINITION, series_records(-2.0))
+    assert result["status"] == "consistent" and result["reasons"] == []
+    assert result["fitted_slope"] == pytest.approx(-2.0, abs=1e-9)
+    assert result["least_squares_slope"] == pytest.approx(-2.0, abs=1e-9)
+    assert [member["relative_gap"] for member in result["members"]] == pytest.approx([0.01, 0.0025, 0.000625])
+    # Endpoint slope ln(r12 / r3) / ln(4) with r12 / r3 = 4^-1.97 and 4^-1.9.
+    assert evaluate_hypothesis_series(SERIES_DEFINITION, series_records(-1.97))["status"] == "consistent"
+    steep = evaluate_hypothesis_series(SERIES_DEFINITION, series_records(-1.9))
+    assert steep["status"] == "inconsistent" and steep["fitted_slope"] == pytest.approx(-1.9, abs=1e-9)
+    flat = evaluate_hypothesis_series(SERIES_DEFINITION, series_records(0.0))
+    assert flat["status"] == "inconsistent" and flat["fitted_slope"] == pytest.approx(0.0, abs=1e-12)
+    # Right slope but CAEPIPE stiffer than SWBPIPE: shear flexibility cannot do that.
+    wrong = evaluate_hypothesis_series(SERIES_DEFINITION, series_records(-2.0, sign=-1.0))
+    assert wrong["status"] == "inconsistent" and "unexpected sign" in wrong["reasons"][0]
+
+
+def test_series_not_evaluated_reasons():
+    records = series_records(-2.0)
+    for name, change in (
+            ("missing", {"c-mid": None}),
+            ("witness", {"c-mid": member_record(-0.1, -0.1003, a_s="delta_exceeds_tolerance")}),
+            ("unresolved", {"c-long": member_record(-0.1, -0.1 - 4e-7)}),
+            ("no value", {"c-short": member_record(-0.1, None)}),
+            ("no resolution", {"c-short": member_record(-0.1, -0.101, resolution=None)})):
+        result = evaluate_hypothesis_series(SERIES_DEFINITION, {**records, **change})
+        assert result["status"] == "not_evaluated" and result["fitted_slope"] is None, name
+        assert len(result["reasons"]) == 1, (name, result["reasons"])
+    stale = evaluate_hypothesis_series(SERIES_DEFINITION, records, current_mbf_sha256={"c-long": "other"})
+    assert stale["status"] == "not_evaluated" and "different MBF" in stale["reasons"][0]
 
 
 def test_record_carries_prd_22_5_fields():
@@ -726,9 +871,54 @@ def test_cantilever_hand_calc_against_textbook_numbers():
     assert values["n1_uy"]["value"] == pytest.approx(-0.06145, rel=1e-3)
     assert values["n1_rz"]["value"] == pytest.approx(-2000.0 * 36.0 / (2.0 * 200.0e9 * inertia), rel=1e-12)
     assert values["a0_fy"]["value"] == 2000.0 and values["a0_mz"]["value"] == 12000.0
+
+
+
+def test_timoshenko_alternatives_against_independently_worked_numbers():
+    # Worked independently: A = pi/4 (0.1683^2 - 0.15408^2) = 3.60046e-3 m2, I = 1.17162e-5 m4, G = E / 2.6,
+    # kappa = 0.5 (shape factor 2): kappa G A = 0.5 * 7.6923e10 * 3.60046e-3 = 1.38479e8 N.
     area = math.pi / 4.0 * (0.1683**2 - 0.15408**2)
-    shear = hand_calcs.timoshenko_predictions("cpc-01-cantilever-force")["n1_uy"]
-    assert shear == pytest.approx(-2000.0 * 6.0 / (0.5 * 200.0e9 / 2.6 * area), rel=1e-12)
+    inertia = math.pi / 64.0 * (0.1683**4 - 0.15408**4)
+    assert area == pytest.approx(3.60046e-3, rel=1e-5)
+    kga = 0.5 * 200.0e9 / 2.6 * area
+    assert kga == pytest.approx(1.38479e8, rel=1e-5)
+    ei = 200.0e9 * inertia
+    # Cantilever tip: -2000 L^3 / (3 E I) - 2000 L / (kappa G A); shear parts 0.04333, 0.08666, 0.17331 mm.
+    for case_id, span, worked in (("cpc-07-cantilever-span-3m", 3.0, -7.72498e-3),
+                                  ("cpc-01-cantilever-force", 6.0, -6.153986e-2),
+                                  ("cpc-06-cantilever-fault-injected", 6.0, -6.153986e-2),
+                                  ("cpc-08-cantilever-span-12m", 12.0, -0.4917990)):
+        alternative = hand_calcs.alternative_analytic_values(case_id)
+        assert set(alternative) == {"shear-deformation"}
+        row = alternative["shear-deformation"]["n1_uy"]
+        assert row["basis"] == "Timoshenko" and row["unit"] == "m" and "ASSUMPTION" in row["assumption"]
+        assert row["value"] == pytest.approx(worked, rel=2e-6), case_id
+        assert row["value"] == pytest.approx(-2000.0 * span**3 / (3.0 * ei) - 2000.0 * span / kga, rel=1e-12)
+        euler = hand_calcs.analytic_values(case_id)["n1_uy"]["value"]
+        assert row["value"] - euler == pytest.approx(-2000.0 * span / kga, rel=1e-9)
+    # Fixed-fixed midspan under w = -rho A g: w L^4 / (384 E I) + w L^2 / (8 kappa G A), L = 6 m.
+    w = -7850.0 * area * 9.80665
+    mid = hand_calcs.alternative_analytic_values("cpc-03-anchored-weight")["shear-deformation"]["mid_uy"]["value"]
+    assert mid == pytest.approx(w * 6.0**4 / (384.0 * ei) + w * 36.0 / (8.0 * kga), rel=1e-12)
+    assert mid == pytest.approx(-4.082191e-4, rel=2e-6)
+    # Tee: each X-leg is a fixed-guided Timoshenko beam, Fy = -12 E I / ((1 + Phi) L^3) uy_J,
+    # Phi = 12 E I / (kappa G A L^2) = 0.012691 at L = 4 m; shear softens every reaction.
+    phi = 12.0 * ei / (kga * 16.0)
+    assert phi == pytest.approx(0.012691, rel=1e-4)
+    branch = {key: row["value"] for key, row in
+              hand_calcs.alternative_analytic_values("cpc-05-branch-imposed-displacement")["shear-deformation"].items()}
+    assert branch["a1_fy"] == pytest.approx(-12.0 * ei / ((1.0 + phi) * 64.0) * branch["j_uy"], rel=1e-12)
+    assert branch["a1_fy"] + branch["a2_fy"] + branch["a3_fy"] == pytest.approx(0.0, abs=1e-9)
+    euler = {key: row["value"] for key, row in hand_calcs.analytic_values("cpc-05-branch-imposed-displacement").items()}
+    assert all(abs(branch[key]) < abs(euler[key]) for key in ("a1_fy", "a3_fy", "a3_mx"))
+    # L-bend: the Timoshenko reactions still satisfy equilibrium and are smaller than the Euler-Bernoulli ones.
+    bend = {key: row["value"] for key, row in
+            hand_calcs.alternative_analytic_values("cpc-04-l-bend-thermal")["shear-deformation"].items()}
+    assert bend["a_fx"] + bend["b_fx"] == pytest.approx(0.0, abs=1e-9)
+    assert bend["a_my"] + bend["b_my"] + 3.0 * bend["b_fx"] - 4.0 * bend["b_fz"] == pytest.approx(0.0, abs=1e-6)
+    euler = {key: row["value"] for key, row in hand_calcs.analytic_values("cpc-04-l-bend-thermal").items()}
+    assert all(abs(bend[key]) < abs(euler[key]) for key in bend)
+    assert hand_calcs.alternative_analytic_values("cpc-02-anchored-thermal") == {}
 
 
 def test_thermal_and_weight_hand_calcs():
@@ -757,6 +947,9 @@ def test_l_bend_and_branch_hand_calcs_satisfy_equilibrium():
     assert branch["j_uy"] > 0 and branch["j_rx"] < 0  # J follows the +Y motion; the Z-leg slope is +dv/dz
 
 
+PRINT_RESOLUTION = {"rel": 1e-6, "abs": {"m": 5e-7, "rad": 8.7266e-7, "N": 0.5, "N*m": 0.5}}
+
+
 def test_case_files_render_within_the_evaluation_row_limit_and_match_hand_calcs():
     paths = sorted(CASES_DIR.glob("*.json"))
     assert [path.stem for path in paths] == sorted(hand_calcs.HAND_CALCS)
@@ -769,12 +962,110 @@ def test_case_files_render_within_the_evaluation_row_limit_and_match_hand_calcs(
         analytic = hand_calcs.analytic_values(case["case_id"])
         assert {item["id"] for item in case["quantities"]} == set(analytic), path.stem
         assert all(item["basis"] == "Euler-Bernoulli" for item in analytic.values())
-        predictions = hand_calcs.timoshenko_predictions(case["case_id"])
+        alternatives = hand_calcs.alternative_analytic_values(case["case_id"])
+        covered = {}
         for declared in case["declared_differences"]:
             assert declared["cause"] == "documented_behavior_difference"
-            if declared["predicted_caepipe_minus_swbpipe"] is not None:
-                (qid,) = declared["applies_to"]
-                assert declared["predicted_caepipe_minus_swbpipe"] == pytest.approx(predictions[qid], rel=1e-12)
-        for name in ("analytic_vs_swbpipe", "external"):
+            assert declared["hypothesis"] in alternatives, path.stem
+            assert declared["alternative_analytic"]["basis"] == "Timoshenko"
+            assert declared["source_basis"] and all(item["url"].startswith("https://docs.sstcae.com/")
+                                                    for item in declared["source_basis"])
+            assert "predicted_caepipe_minus_swbpipe" not in declared
+            covered.setdefault(declared["hypothesis"], set()).update(declared["applies_to"])
+        assert covered == {hypothesis: set(rows) for hypothesis, rows in alternatives.items()}, path.stem
+        for name in ("analytic_vs_swbpipe", "external", "caepipe_print_resolution"):
             assert case["tolerances"][name]["basis"] == "ASSUMPTION"
+        assert {key: case["tolerances"]["caepipe_print_resolution"][key] for key in ("rel", "abs")} == PRINT_RESOLUTION
         assert case["provenance"]["origin"] == "invented"
+    weight = json.loads((CASES_DIR / "cpc-03-anchored-weight.json").read_text(encoding="utf-8"))
+    assert [item["applies_to"] for item in weight["declared_differences"]] == [["mid_uy"]]  # no gravity declaration
+
+
+def test_span_series_cases_differ_from_the_cantilever_only_in_span():
+    def normalized(case_id):
+        case = json.loads((CASES_DIR / f"{case_id}.json").read_text(encoding="utf-8"))
+        span = case["model"]["nodes"][1]["position"]["x"]
+        text = json.dumps({key: value for key, value in case.items() if key not in ("case_id", "title", "purpose")})
+        return span, json.loads(text.replace(case_id, "CASE").replace('"x": %r' % span, '"x": "SPAN"'))
+    span_6, base = normalized("cpc-01-cantilever-force")
+    assert span_6 == 6.0
+    for case_id, span in (("cpc-07-cantilever-span-3m", 3.0), ("cpc-08-cantilever-span-12m", 12.0)):
+        found, other = normalized(case_id)
+        assert found == span and other == base, case_id
+
+
+def test_shear_series_definition_matches_the_cases_and_is_resolvable_at_print_resolution():
+    (definition,) = run_pilot.load_series()
+    assert definition["hypothesis_id"] == "shear-deformation" and definition["quantity"] == "n1_uy"
+    assert definition["expected_exponent"] == -2.0 and definition["expected_relative_gap_sign"] == 1
+    assert definition["slope_tolerance"] == {**definition["slope_tolerance"], "abs": 0.05, "basis": "ASSUMPTION"}
+    cases = {case["case_id"]: case for case in run_pilot.load_cases()}
+    for member in definition["members"]:
+        case = cases[member["case_id"]]
+        assert case["model"]["nodes"][1]["position"]["x"] == member["span"]
+        assert hand_calcs.CANTILEVER_SPANS[member["case_id"]] == member["span"]
+        assert any(item["hypothesis"] == "shear-deformation" and "n1_uy" in item["applies_to"]
+                   for item in case["declared_differences"])
+    # Worst-case print rounding (5e-7 m on the CAEPIPE value) of the shape-factor-2 gaps moves the endpoint
+    # slope by about 0.011, well inside the 0.05 tolerance; at shape factor 1 (half the gap) by about 0.021.
+    spans = sorted(member["span"] for member in definition["members"])
+    gaps = {span: abs(hand_calcs.cantilever_timoshenko(span)["n1_uy"]["value"]
+                      - hand_calcs.cantilever(span)["n1_uy"]["value"]) for span in (spans[0], spans[-1])}
+    bound = sum(-math.log1p(-5e-7 / gap) for gap in gaps.values()) / math.log(spans[-1] / spans[0])
+    assert bound == pytest.approx(0.0105, abs=5e-4)
+    assert 2.0 * bound < definition["slope_tolerance"]["abs"]
+    # The exact Timoshenko gaps follow the exponent.
+    relative = {span: gaps[span] / abs(hand_calcs.cantilever(span)["n1_uy"]["value"]) for span in gaps}
+    slope = math.log(relative[spans[-1]] / relative[spans[0]]) / math.log(spans[-1] / spans[0])
+    assert slope == pytest.approx(-2.0, abs=1e-9)
+
+
+def write_member_record(config, case_id, *, caepipe_mm):
+    """An invented comparison record of a cantilever member, bound to the case's current MBF."""
+    paths = case_paths(config, case_id)
+    swb = hand_calcs.analytic_values(case_id)["n1_uy"]["value"]
+    (paths["comparison"] / "comparison.json").write_text(json.dumps({
+        "document_kind": "invented", "exported_model_hash": current_mbf_sha(case_id),
+        "tolerance_basis": {ALTERNATIVE_CHECK: {"abs": {"m": 5e-7}}},
+        "hypothesis_series": {},
+        "quantities": [{"id": "n1_uy", "unit": "m", "values": {"swbpipe": swb, "caepipe": caepipe_mm * 1e-3},
+                        "checks": {"analytic_vs_swbpipe": {"outcome": "matched_within_tolerance"}}}],
+    }), encoding="utf-8")
+
+
+def test_run_series_writes_a_private_record_and_rebuilds_declaring_cases(tmp_path, monkeypatch):
+    config = fake_config(tmp_path)
+    # Invented CAEPIPE-side values: the Timoshenko tip deflections rounded to the 0.001 mm print resolution.
+    for case_id in ("cpc-07-cantilever-span-3m", "cpc-01-cantilever-force", "cpc-08-cantilever-span-12m"):
+        span = hand_calcs.CANTILEVER_SPANS[case_id]
+        write_member_record(config, case_id,
+                            caepipe_mm=round(hand_calcs.cantilever_timoshenko(span)["n1_uy"]["value"] * 1e3, 3))
+    calls = []
+
+    def fake_run_case(case, config_, **kwargs):
+        calls.append((case["case_id"], kwargs["offline"], kwargs["hypothesis_series"]["shear-deformation"]["status"]))
+        kwargs["emit"](f"{case['case_id']}: route=invented; comparison record written")
+        return True
+
+    monkeypatch.setattr(run_pilot, "run_case", fake_run_case)
+    lines = []
+    rebuilt = run_pilot.run_series(config, runner="unused", hand_calcs=hand_calcs, emit=lines.append)
+    assert rebuilt == {"cpc-01-cantilever-force": True, "cpc-07-cantilever-span-3m": True,
+                       "cpc-08-cantilever-span-12m": True}
+    assert sorted(calls) == [(case_id, True, "consistent") for case_id in sorted(rebuilt)]
+    stored = json.loads((config.exchange_root / "series" / "shear-deformation.json").read_text(encoding="utf-8"))
+    assert stored["status"] == "consistent" and stored["fitted_slope"] == pytest.approx(-2.0, abs=0.011)
+    assert stored["document_kind"] == "openpipestress.caepipe_correlation.series_record"
+    assert lines[0] == "series shear-deformation: series record written: series/shear-deformation.json"
+    assert all("consistent" not in line and "slope" not in line for line in lines)  # operational status only
+    # A case without a stored record (cpc-03, cpc-04, cpc-05, cpc-06 here) is not rebuilt.
+    assert "cpc-03-anchored-weight" not in rebuilt
+
+
+def test_run_series_without_member_records_is_not_evaluated(tmp_path, monkeypatch):
+    config = fake_config(tmp_path)
+    monkeypatch.setattr(run_pilot, "run_case", lambda *a, **k: pytest.fail("nothing to rebuild"))
+    lines = []
+    assert run_pilot.run_series(config, runner="unused", hand_calcs=hand_calcs, emit=lines.append) == {}
+    stored = json.loads((config.exchange_root / "series" / "shear-deformation.json").read_text(encoding="utf-8"))
+    assert stored["status"] == "not_evaluated" and len(stored["reasons"]) == 3

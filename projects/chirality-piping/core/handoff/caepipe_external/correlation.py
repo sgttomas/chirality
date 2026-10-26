@@ -4,8 +4,12 @@
 hand-calculation value, the SWBPIPE value (headless runner result rows) and the
 CAEPIPE value (parsed Print > To File CSV bound back through the MBF writer's
 id maps), compares them in SI base units (m, rad, N, N*m) and classifies every
-difference. Cause hypotheses are labelled ASSUMPTION; a classification is never
-silently defaulted.
+difference. A quantity covered by a declared behaviour difference with an
+independent alternative analytic value (for example a Timoshenko value) also
+carries a fourth check, `alternative_analytic_vs_caepipe`, at the case's print
+resolution tolerance. Cause hypotheses are labelled ASSUMPTION; a
+classification is never silently defaulted. `evaluate_hypothesis_series`
+evaluates a declared hypothesis across a slenderness series of cases.
 
 The record built from CAEPIPE output is private (Design §8). It is regression
 and handoff evidence only, not validation, compatibility proof, code compliance
@@ -21,7 +25,7 @@ from typing import Any, Mapping
 
 
 COMPARISON_RECORD_KIND = "openpipestress.caepipe_correlation.comparison_record"
-COMPARISON_RECORD_VERSION = "1"
+COMPARISON_RECORD_VERSION = "2"
 EVIDENCE_CLASSIFICATION = ("private regression and handoff evidence; not validation, compatibility proof, code "
                            "compliance or professional acceptance")
 TARGET_TOOL = "CAEPIPE"
@@ -48,7 +52,21 @@ CHECKS = {
     "swbpipe_vs_caepipe": ("swbpipe", "caepipe", "external"),
     "analytic_vs_caepipe": ("analytic", "caepipe", "external"),
 }
-DECLARED_PREDICTION_FRACTION = 0.10
+# The fourth check, present only on a quantity a declared difference with an alternative analytic covers.
+ALTERNATIVE_CHECK = "alternative_analytic_vs_caepipe"
+ALTERNATIVE_CHECK_SPEC = ("alternative", "caepipe", "caepipe_print_resolution")
+ALL_CHECKS = {**CHECKS, ALTERNATIVE_CHECK: ALTERNATIVE_CHECK_SPEC}
+
+SERIES_RECORD_KIND = "openpipestress.caepipe_correlation.series_record"
+SERIES_CONSISTENT = "consistent"
+SERIES_INCONSISTENT = "inconsistent"
+SERIES_NOT_EVALUATED = "not_evaluated"
+SERIES_STATUSES = (SERIES_CONSISTENT, SERIES_INCONSISTENT, SERIES_NOT_EVALUATED)
+
+# Conditions (c)-(e) of the documented-behaviour-difference rule (DEL-17-05 Design §6).
+CONDITION_ALTERNATIVE = "alternative_analytic_matched"
+CONDITION_SOURCE = "source_basis"
+CONDITION_SERIES = "hypothesis_series_consistent"
 
 _SI_UNIT = {"displacement": "m", "rotation": "rad", "reaction_force": "N", "reaction_moment": "N*m"}
 _TO_SI = {"m": 1.0, "mm": 1.0e-3, "rad": 1.0, "N": 1.0, "kN": 1.0e3, "N*m": 1.0, "kN*m": 1.0e3}
@@ -77,13 +95,22 @@ def build_comparison_record(
     mbf_text: str,
     parsed_caepipe: Mapping[str, Any] | None,
     analytic: Mapping[str, Mapping[str, Any]] | None,
+    alternative_analytic: Mapping[str, Mapping[str, Mapping[str, Any]]] | None = None,
+    hypothesis_series: Mapping[str, Mapping[str, Any]] | None = None,
 ) -> dict[str, Any]:
-    """Build the PRD §22.5 comparison record of one case."""
+    """Build the PRD §22.5 comparison record of one case.
+
+    `alternative_analytic` maps a hypothesis id to {quantity id: {"value", "unit", "formula", "basis", ...}}
+    (independent alternative analytic values); `hypothesis_series` maps a hypothesis id to its series evaluation
+    (at least {"status"}); a hypothesis without one counts as `not_evaluated`.
+    """
 
     mbf = mbf_result.to_dict() if hasattr(mbf_result, "to_dict") else dict(mbf_result)
     envelope = swbpipe_result_payload.get("mechanics_envelope", swbpipe_result_payload)
     results = envelope.get("results") or []
     analytic = analytic or {}
+    alternative_analytic = alternative_analytic or {}
+    series = {key: dict(value) for key, value in (hypothesis_series or {}).items() if isinstance(value, Mapping)}
     tolerances = case.get("tolerances") or {}
     fault = case.get("fault_injection")
     header = (parsed_caepipe or {}).get("header") or {}
@@ -103,6 +130,18 @@ def build_comparison_record(
         values = {"analytic": ana, "swbpipe": swb, "caepipe": cae}
         checks = {name: _check(values[left], values[right], tolerances.get(key), si_unit, analytic_side=left == "analytic")
                   for name, (left, right, key) in CHECKS.items()}
+        declaration = _covering_declaration(spec["id"], case)
+        alternative_source: dict[str, Any] | None = None
+        if declaration is not None and isinstance(declaration.get("alternative_analytic"), Mapping):
+            alt_reference = (alternative_analytic.get(declaration.get("hypothesis")) or {}).get(spec["id"])
+            values["alternative"] = (_si(alt_reference.get("value"), alt_reference.get("unit"))
+                                     if isinstance(alt_reference, Mapping) else None)
+            alternative_source = ({key: alt_reference.get(key) for key in ("formula", "basis", "unit", "assumption")}
+                                  if isinstance(alt_reference, Mapping) else {"available": False})
+            alternative_source["declared_difference"] = declaration.get("id")
+            left, right, key = ALTERNATIVE_CHECK_SPEC
+            checks[ALTERNATIVE_CHECK] = _check(values[left], values[right], tolerances.get(key), si_unit,
+                                               analytic_side=True)
         row = {
             "id": spec["id"],
             "quantity": spec["quantity"],
@@ -117,10 +156,11 @@ def build_comparison_record(
                              if isinstance(reference, Mapping) else {"available": False}),
                 "swbpipe": swb_source,
                 "caepipe": cae_source,
+                **({"alternative": alternative_source} if alternative_source is not None else {}),
             },
             "checks": checks,
         }
-        row.update(_classify(row, case, fault))
+        row.update(_classify(row, declaration, fault, series))
         rows.append(row)
 
     summary = _summary(rows)
@@ -158,11 +198,16 @@ def build_comparison_record(
         "tolerance_basis": {
             name: ({**dict(tolerances[key]), "basis": "ASSUMPTION"} if isinstance(tolerances.get(key), Mapping)
                    else {"status": TOLERANCE_TBD, "basis": "ASSUMPTION"})
-            for name, (_, _, key) in CHECKS.items()
+            for name, (_, _, key) in ALL_CHECKS.items()
         } | {"pass_rule": "|a - b| <= abs + rel * max(|a|, |b|)",
              "governed_status": tolerances.get("governed_status", "TBD"),
              "note": tolerances.get("basis_note")},
         "declared_differences": list(case.get("declared_differences") or []),
+        "hypothesis_series": {
+            hypothesis: series_summary(series.get(hypothesis))
+            for hypothesis in sorted({str(item.get("hypothesis")) for item in case.get("declared_differences") or []
+                                      if isinstance(item, Mapping) and item.get("hypothesis")})
+        },
         "quantities": rows,
         "summary": summary,
         "discrepancy_disposition": {
@@ -291,9 +336,60 @@ def _cause(label: str, evidence: str, rule: str, alternatives: list[str] | None 
             "alternatives": alternatives or [], **extra}
 
 
-def _classify(row: Mapping[str, Any], case: Mapping[str, Any], fault: Any) -> dict[str, Any]:
+def _covering_declaration(quantity_id: str, case: Mapping[str, Any]) -> Mapping[str, Any] | None:
+    """The first declared difference of the case whose `applies_to` names the quantity."""
+    for declared in case.get("declared_differences") or []:
+        if isinstance(declared, Mapping) and quantity_id in (declared.get("applies_to") or []):
+            return declared
+    return None
+
+
+def series_summary(series: Mapping[str, Any] | None) -> dict[str, Any]:
+    """The part of a series evaluation a comparison record carries; `not_evaluated` when there is none."""
+    if not isinstance(series, Mapping) or series.get("status") not in SERIES_STATUSES:
+        return {"status": SERIES_NOT_EVALUATED, "reasons": ["no series evaluation is available"]}
+    return {key: series[key] for key in ("status", "fitted_slope", "expected_exponent", "slope_tolerance",
+                                         "reasons", "record") if key in series}
+
+
+def _missing_conditions(row: Mapping[str, Any], declaration: Mapping[str, Any],
+                        series: Mapping[str, Mapping[str, Any]]) -> list[dict[str, str]]:
+    """Which of conditions (c)-(e) failed or is unevaluated; empty when all hold."""
+    missing = []
+    check = row["checks"].get(ALTERNATIVE_CHECK)
+    if check is None:
+        missing.append({"condition": CONDITION_ALTERNATIVE, "state": "unevaluated",
+                        "detail": "the declaration gives no alternative analytic for this quantity"})
+    elif check["outcome"] == EXCEEDS:
+        missing.append({"condition": CONDITION_ALTERNATIVE, "state": "failed",
+                        "detail": "the alternative analytic value differs from CAEPIPE beyond the print-resolution "
+                                  "tolerance"})
+    elif check["outcome"] != MATCHED:
+        missing.append({"condition": CONDITION_ALTERNATIVE, "state": "unevaluated",
+                        "detail": f"{ALTERNATIVE_CHECK} outcome {check['outcome']}"
+                                  + (f" ({check['reason']})" if check.get("reason") else "")})
+    sources = declaration.get("source_basis")
+    if not isinstance(sources, list) or not sources:
+        missing.append({"condition": CONDITION_SOURCE, "state": "failed",
+                        "detail": "the declaration names no public source basis"})
+    hypothesis = declaration.get("hypothesis")
+    status = series_summary(series.get(hypothesis) if hypothesis else None)["status"]
+    if not hypothesis:
+        missing.append({"condition": CONDITION_SERIES, "state": "unevaluated",
+                        "detail": "the declaration names no hypothesis series"})
+    elif status == SERIES_INCONSISTENT:
+        missing.append({"condition": CONDITION_SERIES, "state": "failed",
+                        "detail": f"hypothesis series {hypothesis!r} is inconsistent"})
+    elif status != SERIES_CONSISTENT:
+        missing.append({"condition": CONDITION_SERIES, "state": "unevaluated",
+                        "detail": f"hypothesis series {hypothesis!r} is not evaluated"})
+    return missing
+
+
+def _classify(row: Mapping[str, Any], declaration: Mapping[str, Any] | None, fault: Any,
+              series: Mapping[str, Mapping[str, Any]]) -> dict[str, Any]:
     checks, values = row["checks"], row["values"]
-    outcomes = {name: check["outcome"] for name, check in checks.items()}
+    outcomes = {name: checks[name]["outcome"] for name in CHECKS}
     if all(outcome in (MATCHED, NOT_APPLICABLE) for outcome in outcomes.values()) and \
             outcomes["swbpipe_vs_caepipe"] == MATCHED:
         return {"status": "matched", "cause": None, "disposition": "no_action"}
@@ -314,10 +410,10 @@ def _classify(row: Mapping[str, Any], case: Mapping[str, Any], fault: Any) -> di
         return {"status": "no_verdict", "cause": None, "disposition": "requires_professional_review",
                 "note": "a tolerance is TBD; no comparison verdict and no cause hypothesis"}
 
-    # A declared difference explains a SWBPIPE-CAEPIPE difference only when the analytic witness has confirmed
-    # SWBPIPE; otherwise the triangle rule names the cause and a matching declaration is kept as further evidence.
-    declared = _declared_difference(row, case) if s_c == "disagree" else None
-    also = {"declared_difference_also_matched": declared["id"]} if declared else {}
+    # A declared difference can explain a SWBPIPE-CAEPIPE difference only when the analytic witness has confirmed
+    # SWBPIPE; otherwise the triangle rule names the cause and the declaration is listed as an alternative.
+    declared = declaration if s_c == "disagree" else None
+    also = {"declared_difference_covers": declared.get("id")} if declared else {}
 
     if a_s == "disagree":
         if s_c == "agree" and a_c == "disagree":
@@ -332,21 +428,33 @@ def _classify(row: Mapping[str, Any], case: Mapping[str, Any], fault: Any) -> di
                            + (["documented_behavior_difference"] if declared else []), **also)
         return {"status": "not_matched", "cause": cause, "disposition": "requires_professional_review"}
 
-    if a_s == "agree" and declared:
-        cause = _cause("documented_behavior_difference", declared["evidence"],
-                       "analytic and SWBPIPE agree and SWBPIPE-CAEPIPE differs on a quantity the case declares"
-                       + (" and the observed difference is within 10 % of the predicted difference"
-                          if declared["evidence"] == "predicted" else " without a prediction"),
-                       declared_difference=declared["id"])
-        return {"status": "not_matched", "cause": cause, "disposition": "assumption_recorded"}
-
     if a_s == "agree":
         applies = isinstance(fault, Mapping) and row["id"] in (fault.get("applies_to") or [row["id"]])
         if applies:
             cause = _cause("export_mapping_issue", "deliberate_fault_injection",
                            "analytic and SWBPIPE agree and CAEPIPE differs; the case deliberately altered the "
-                           "exported MBF", fault_description=fault.get("description"))
+                           "exported MBF", ["documented_behavior_difference"] if declared else None,
+                           fault_description=fault.get("description"), **also)
             return {"status": "not_matched", "cause": cause, "disposition": "bug_report"}
+        if declared:
+            missing = _missing_conditions(row, declared, series)
+            hypothesis = declared.get("hypothesis")
+            if not missing:
+                cause = _cause("documented_behavior_difference", "alternative_analytic_and_hypothesis_series",
+                               "analytic and SWBPIPE agree, SWBPIPE and CAEPIPE differ, the declaration's "
+                               "alternative analytic matches CAEPIPE at print resolution, the declaration cites a "
+                               "public source basis and its hypothesis series is consistent",
+                               evidence_status="established", declared_difference=declared.get("id"),
+                               hypothesis=hypothesis, missing=[])
+                return {"status": "not_matched", "cause": cause, "disposition": "assumption_recorded"}
+            cause = _cause("documented_behavior_difference", "declared_hypothesis",
+                           "analytic and SWBPIPE agree and SWBPIPE and CAEPIPE differ on a quantity a declaration "
+                           "covers, but the evidence conditions listed in `missing` do not all hold",
+                           ["export_mapping_issue", "caepipe_profile_unknown", "support_semantics_mismatch",
+                            "load_case_mismatch", "unit_or_axis_mismatch"],
+                           evidence_status="hypothesis", declared_difference=declared.get("id"),
+                           hypothesis=hypothesis, missing=missing)
+            return {"status": "not_matched", "cause": cause, "disposition": "requires_professional_review"}
         cause = _cause("export_mapping_issue", "triangle_rule",
                        "analytic and SWBPIPE agree and CAEPIPE differs: the CAEPIPE side (export mapping, CAEPIPE "
                        "profile or an undeclared behaviour difference) is suspected",
@@ -361,24 +469,99 @@ def _classify(row: Mapping[str, Any], case: Mapping[str, Any], fault: Any) -> di
     return {"status": "not_matched", "cause": cause, "disposition": "requires_professional_review"}
 
 
-def _declared_difference(row: Mapping[str, Any], case: Mapping[str, Any]) -> dict[str, Any] | None:
-    """The first declaration of the case that covers this quantity and fits the observed CAEPIPE - SWBPIPE."""
+def evaluate_hypothesis_series(definition: Mapping[str, Any], member_records: Mapping[str, Mapping[str, Any] | None],
+                               *, current_mbf_sha256: Mapping[str, str] | None = None) -> dict[str, Any]:
+    """Evaluate a slenderness series (Design §7) from its members' comparison records.
 
-    observed = row["values"]["caepipe"] - row["values"]["swbpipe"]
-    for declared in case.get("declared_differences") or []:
-        if row["id"] not in (declared.get("applies_to") or []):
+    For each member the relative gap (C - S) / S of the definition's quantity is taken from its comparison
+    record. Every member must have a record (built from its current MBF when `current_mbf_sha256` names one),
+    SWBPIPE confirmed by the analytic witness, both values and a gap larger than the print-resolution absolute
+    tolerance; otherwise the status is `not_evaluated` with the reasons. The fitted slope is the log-log slope of
+    |relative gap| against span between the shortest and the longest member; the status is `consistent` when every
+    relative gap has the expected sign and the slope lies within the tolerance of the expected exponent, otherwise
+    `inconsistent`. The result is derived from CAEPIPE output and is private (Design §8).
+    """
+
+    quantity = definition.get("quantity")
+    expected = float(definition["expected_exponent"])
+    tolerance = float((definition.get("slope_tolerance") or {})["abs"])
+    sign = definition.get("expected_relative_gap_sign")
+    current = current_mbf_sha256 or {}
+    members, reasons = [], []
+    for member in definition.get("members") or []:
+        case_id, span = member["case_id"], float(member["span"])
+        entry: dict[str, Any] = {"case_id": case_id, "span": span}
+        members.append(entry)
+        record = member_records.get(case_id)
+        if not isinstance(record, Mapping):
+            reasons.append(f"{case_id}: no comparison record")
             continue
-        predicted = declared.get("predicted_caepipe_minus_swbpipe")
-        if predicted is None:
-            return {"id": declared.get("id"), "evidence": "declared_only"}
-        if abs(observed - predicted) <= DECLARED_PREDICTION_FRACTION * abs(predicted):
-            return {"id": declared.get("id"), "evidence": "predicted"}
-    return None
+        entry["exported_model_hash"] = record.get("exported_model_hash")
+        if current.get(case_id) and record.get("exported_model_hash") != current[case_id]:
+            reasons.append(f"{case_id}: the comparison record was built from a different MBF")
+            continue
+        row = next((item for item in record.get("quantities") or [] if item.get("id") == quantity), None)
+        if row is None:
+            reasons.append(f"{case_id}: the comparison record has no quantity {quantity!r}")
+            continue
+        swb, cae = (row.get("values") or {}).get("swbpipe"), (row.get("values") or {}).get("caepipe")
+        entry.update(unit=row.get("unit"), swbpipe=swb, caepipe=cae)
+        if ((row.get("checks") or {}).get("analytic_vs_swbpipe") or {}).get("outcome") != MATCHED:
+            reasons.append(f"{case_id}: analytic_vs_swbpipe did not match (SWBPIPE not confirmed by the witness)")
+            continue
+        if not isinstance(swb, (int, float)) or not isinstance(cae, (int, float)) or swb == 0:
+            reasons.append(f"{case_id}: SWBPIPE or CAEPIPE value missing (or SWBPIPE zero)")
+            continue
+        resolution = ((((record.get("tolerance_basis") or {}).get(ALTERNATIVE_CHECK) or {}).get("abs") or {})
+                      .get(row.get("unit")))
+        gap = cae - swb
+        entry.update(gap=gap, relative_gap=gap / swb, print_resolution_abs=resolution)
+        if not isinstance(resolution, (int, float)):
+            reasons.append(f"{case_id}: no caepipe_print_resolution tolerance for unit {row.get('unit')!r}")
+        elif abs(gap) <= resolution:
+            reasons.append(f"{case_id}: the gap is not resolved at print resolution")
+
+    result: dict[str, Any] = {
+        "document_kind": SERIES_RECORD_KIND,
+        "hypothesis_id": definition.get("hypothesis_id"),
+        "quantity": quantity,
+        "members": members,
+        "expected_exponent": expected,
+        "slope_tolerance": {"abs": tolerance, "basis": "ASSUMPTION"},
+        "fitted_slope": None,
+        "least_squares_slope": None,
+        "status": SERIES_NOT_EVALUATED,
+        "reasons": reasons,
+        "evidence_classification": EVIDENCE_CLASSIFICATION,
+    }
+    spans = sorted({entry["span"] for entry in members})
+    if not reasons and len(spans) < 2:
+        reasons.append("fewer than two distinct spans")
+    if reasons:
+        return result
+    short = min(members, key=lambda entry: entry["span"])
+    long_ = max(members, key=lambda entry: entry["span"])
+    slope = math.log(abs(long_["relative_gap"]) / abs(short["relative_gap"])) / math.log(long_["span"] / short["span"])
+    xs = [math.log(entry["span"]) for entry in members]
+    ys = [math.log(abs(entry["relative_gap"])) for entry in members]
+    mean_x, mean_y = sum(xs) / len(xs), sum(ys) / len(ys)
+    lsq = (sum((x - mean_x) * (y - mean_y) for x, y in zip(xs, ys))
+           / sum((x - mean_x) ** 2 for x in xs))
+    wrong_sign = [entry["case_id"] for entry in members
+                  if sign in (1, -1) and math.copysign(1.0, entry["relative_gap"]) != sign]
+    if wrong_sign:
+        reasons.append(f"relative gap of the unexpected sign: {', '.join(wrong_sign)}")
+    if abs(slope - expected) > tolerance:
+        reasons.append("the fitted slope lies outside the tolerance of the expected exponent")
+    result.update(fitted_slope=slope, least_squares_slope=lsq,
+                  status=SERIES_INCONSISTENT if reasons else SERIES_CONSISTENT)
+    return result
 
 
 def _summary(rows: list[Mapping[str, Any]]) -> dict[str, Any]:
-    by_outcome = {name: {outcome: 0 for outcome in OUTCOMES} for name in CHECKS}
+    by_outcome = {name: {outcome: 0 for outcome in OUTCOMES} for name in ALL_CHECKS}
     by_cause: dict[str, int] = {}
+    by_evidence_status: dict[str, int] = {}
     by_disposition: dict[str, int] = {}
     by_status: dict[str, int] = {}
     for row in rows:
@@ -386,12 +569,16 @@ def _summary(rows: list[Mapping[str, Any]]) -> dict[str, Any]:
             by_outcome[name][check["outcome"]] += 1
         label = row["cause"]["label"] if row["cause"] else "none"
         by_cause[label] = by_cause.get(label, 0) + 1
+        if row["cause"] and row["cause"].get("evidence_status"):
+            status = row["cause"]["evidence_status"]
+            by_evidence_status[status] = by_evidence_status.get(status, 0) + 1
         by_disposition[row["disposition"]] = by_disposition.get(row["disposition"], 0) + 1
         by_status[row["status"]] = by_status.get(row["status"], 0) + 1
     return {
         "quantities": len(rows),
         "by_outcome": {name: {key: value for key, value in counts.items() if value} for name, counts in by_outcome.items()},
         "by_cause": dict(sorted(by_cause.items())),
+        "by_evidence_status": dict(sorted(by_evidence_status.items())),
         "by_disposition": dict(sorted(by_disposition.items())),
         "by_status": dict(sorted(by_status.items())),
     }

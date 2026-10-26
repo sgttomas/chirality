@@ -99,6 +99,7 @@ cases/<case_id>/
   caepipe_out/               CSV, guest run log, .mod/.res as CAEPIPE wrote them        PRIVATE
   parsed/                    normalized CAEPIPE results                                  PRIVATE
   comparison/                three-way comparison record                                 PRIVATE
+series/<hypothesis_id>.json  hypothesis series evaluation (§7)                          PRIVATE
 ```
 
 `caepipe_in/` holds only SWBPIPE-derived content. Every layer from `caepipe_out/` on
@@ -130,8 +131,10 @@ idempotent and is retried when the `prlctl` client itself fails (exit 255 with a
   tangent-point nodes. A bend without a user flexibility factor is refused. SWBPIPE's
   curved bend includes arc bending and axial flexibility but no transverse shear.
   Weight per length maps to a weight density using standard gravity
-  (9.80665 m/s²); CAEPIPE applies its own gravitational constant, a documented
-  difference. Poisson's ratio is taken as given or derived as E/(2G) − 1.
+  (9.80665 m/s²). The user's manual documents a configurable gravitational
+  acceleration but no default value, so no difference is declared for it; the
+  default is asked of SST (CQ-17-01-010). Poisson's ratio is taken as given or
+  derived as E/(2G) − 1.
 - **Parser (PH-003).** `core/handoff/caepipe_external/print_csv.py` reads the
   Print > To File CSV. Its coverage register lists each recognized section (global
   displacements, anchor loads in global and local axes, restraint loads, element
@@ -144,7 +147,11 @@ idempotent and is retried when the `prlctl` client itself fails (exit 255 with a
   internal model hash, exported MBF hash, target tool and version, import/export
   assumptions, manual changes (none), load-case mapping, support mapping, comparison
   basis, tolerance basis and discrepancy disposition. Each compared quantity carries
-  three values (analytic, SWBPIPE, CAEPIPE) and three pairwise checks.
+  three values (analytic, SWBPIPE, CAEPIPE) and three pairwise checks. A quantity
+  covered by a declared difference that gives an independent alternative analytic
+  (§7.1) also carries that value and a fourth check, `alternative_analytic_vs_caepipe`,
+  at the print-resolution tolerance (§7). The record lists the status of each
+  hypothesis series its declarations name.
   - Outcome: `matched_within_tolerance`, `delta_exceeds_tolerance`,
     `row_unmatched_internal_only`, `row_unmatched_external_only`, `tolerance_tbd`.
   - Cause hypothesis for a non-matching outcome (an `ASSUMPTION` until evidenced):
@@ -156,13 +163,22 @@ idempotent and is retried when the `prlctl` client itself fails (exit 255 with a
     profile or a documented behaviour difference the case declares) is suspected; if
     SWBPIPE alone differs, `solver_defect_candidate`; if the analytic value alone
     differs, the case inputs are suspected; if all three disagree,
-    `solver_defect_candidate` with the alternatives listed. A declared
-    behaviour difference counts as `documented_behavior_difference` only when the
-    analytic and SWBPIPE values agree and the observed CAEPIPE − SWBPIPE difference
-    is within 10 % of the case's predicted difference (or the case gives no
-    prediction, recorded as `declared_only`). When the analytic check fails or has
-    no verdict, the triangle rule names the cause and a fitting declaration is kept
-    only as further evidence. No axis is silently defaulted.
+    `solver_defect_candidate` with the alternatives listed.
+  - Declared behaviour differences. A case may declare a difference for named
+    quantities: its hypothesis id, an independent alternative analytic value per
+    quantity (computed in `hand_calcs.py`, the one source of the values) and a
+    `source_basis` list of public references. A covered quantity's cause is
+    `documented_behavior_difference` with `evidence_status: "established"` and
+    disposition `assumption_recorded` only when (a) the analytic and SWBPIPE values
+    agree, (b) SWBPIPE and CAEPIPE disagree, (c) `alternative_analytic_vs_caepipe`
+    matched, (d) the declaration's `source_basis` is not empty and (e) its
+    hypothesis series is `consistent`. When (a) and (b) hold and any of (c)–(e)
+    does not, the cause keeps the label with `evidence_status: "hypothesis"`, a
+    `missing` list naming each failed or unevaluated condition, and disposition
+    `requires_professional_review`. When the analytic check fails or has no
+    verdict, the triangle rule names the cause and the declaration is listed only
+    as an alternative; a deliberate fault injection likewise keeps its cause. No
+    axis is silently defaulted.
   - Disposition: `no_action`, `assumption_recorded`, `bug_report`,
     `dossier_question`, `proposed_code_fix`, `requires_professional_review`.
 
@@ -181,7 +197,66 @@ tolerance class stays `TBD` until the owner rules values; tolerances are never
 loosened, nor SWBPIPE tuned, to match CAEPIPE. The pilot cases cover, once each, a
 force load, thermal expansion, self-weight, a bend, a branch and an imposed
 displacement on a support, plus one case with a deliberately injected input fault to
-show that a real difference is caught and classified.
+show that a real difference is caught and classified, and two span variants of the
+cantilever for the slenderness series.
+
+Each case carries three tolerances, all `ASSUMPTION`:
+
+| Tolerance | Used by | Value |
+|---|---|---|
+| `analytic_vs_swbpipe` | analytic–SWBPIPE | rel 1e-6; abs 1e-9 m, 1e-9 rad, 1e-6 N, 1e-6 N·m (binary64 round-off scale) |
+| `external` | SWBPIPE–CAEPIPE, analytic–CAEPIPE | rel 0.5 %; abs 2e-6 m, 2e-6 rad, 1 N, 1 N·m |
+| `caepipe_print_resolution` | alternative analytic–CAEPIPE | rel 1e-6; abs half a printed unit: 0.5 N, 0.5 N·m, 5e-7 m, 8.7266e-7 rad |
+
+The CAEPIPE CSV prints forces to 1 N, moments to 1 N·m, displacements to 0.001 mm
+and rotations to 0.0001°, so half a printed unit is the tightest tolerance the
+printed values can resolve.
+
+**Hypothesis series.** A series in `validation/caepipe_correlation/series/` tests the
+scaling a hypothesis predicts across member cases that differ in one parameter.
+`shear-deformation.json` uses the tip deflection `n1_uy` of the cantilever at spans
+3 m (`cpc-07-cantilever-span-3m`), 6 m (`cpc-01-cantilever-force`) and 12 m
+(`cpc-08-cantilever-span-12m`). Shear deformation predicts a relative gap
+(C − S)/S = 3EI/(κGAL²), positive and ∝ (r/L)² for any shape factor, so the log-log
+slope of the gap against span between the shortest and longest member must be −2
+within ±0.05 (`ASSUMPTION`). That is resolvable at print resolution: with the
+shape-factor-2 gaps of 0.043 mm at 3 m and 0.173 mm at 12 m, rounding of the printed
+CAEPIPE value moves the slope by at most about 0.011 (about 0.021 at shape factor 1).
+A member counts only when its record is bound to its current MBF, its
+analytic–SWBPIPE check matched and its gap exceeds the print resolution; otherwise
+the series is `not_evaluated` with the reasons. With every member counted it is
+`consistent` when every relative gap is positive and the slope is within tolerance,
+else `inconsistent`. After the selected cases, the pilot command evaluates every
+series from the stored member records, writes the result privately to
+`series/<hypothesis_id>.json` in the exchange folder, and rebuilds offline, from the
+stored CSVs, each case whose declarations name that hypothesis and whose record
+carries a different series status. Standard output names only the files written.
+
+### 7.1 Shear deformation evidence
+
+SWBPIPE's frame preview is Euler–Bernoulli. CAEPIPE's technical reference, page
+"Fiber Reinforced Plastic Piping (FRP)", section "Stiffness matrix"
+(<https://docs.sstcae.com/tech_manual/fiber_reinforced_plastic_piping__frp_.htm>),
+describes a pipe stiffness matrix formed from axial (L/EA), transverse shear (a
+shape factor times L/GA), bending (L/EI) and torsion (L/2GI) flexibility terms. It
+publishes no shape-factor value, and the page sits in the FRP chapter, so its use
+for the steel pipe element is an inference. The alternative analytic for the
+`shear-deformation` hypothesis is the Timoshenko value: the Euler–Bernoulli witness
+plus that shear term, with shape factor 2 (κ = 0.5, the thin-wall circular tube
+value), an `ASSUMPTION`. The shape factor CAEPIPE uses is a question for SST
+(DEL-17-01 CQ-17-01-010). The user's manual page "Analysis", section "Gravitational
+Acceleration and Direction" (<https://docs.sstcae.com/users_manual/analysis.htm>),
+documents a configurable gravitational acceleration introduced in 15.10, with
+weights entered in earth-gravity units, but gives no default; the same question
+asks SST for it. The difference is classified as documented only through the
+rule of §6: the alternative analytic must match CAEPIPE at print resolution and the
+series must be consistent.
+
+The private run records the residual of every alternative-analytic check. Where a
+residual exceeds print resolution although SWBPIPE and CAEPIPE match within the
+external tolerance, no cause is assigned. The residual is still reported as part of
+the hypothesis that is not yet explained, and the shape factor is not refitted to
+absorb it.
 
 A difference indicating a wrong SWBPIPE output goes to Agent 0 with its evidence and
 is not fixed in this deliverable.
@@ -206,8 +281,9 @@ exchange folder inside a Git work tree.
 
 `tests/test_caepipe_private_correlation.py` reads the private corpus through
 `SWBPIPE_CAEPIPE_EXCHANGE`. When it is unset or empty the test skips with that reason;
-otherwise it re-parses each stored CAEPIPE CSV, re-solves the case in SWBPIPE and
-re-runs the comparison, failing if any quantity's outcome moves out of its recorded
+otherwise it re-parses each stored CAEPIPE CSV, re-solves the case in SWBPIPE,
+re-runs the comparison and the series step (§7) in a temporary copy, failing if any
+quantity's outcome, cause or cause evidence status moves out of its recorded
 classification. It never prints CAEPIPE values outside the local run.
 
 ## 10. Remaining items
@@ -222,3 +298,5 @@ classification. It never prints CAEPIPE values outside the local run.
   smoke text; it should use the SI writer's record subset.
 - Wider correlation corpus once the full licence lifts the 20-row limit.
 - Non-unit bend flexibility factors are untested: the bend case uses k = 1.
+- CAEPIPE's pipe shear shape factor and default gravitational acceleration
+  (CQ-17-01-010); κ = 0.5 stays an `ASSUMPTION` until answered.

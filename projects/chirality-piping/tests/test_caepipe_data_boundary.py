@@ -25,7 +25,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from core.handoff.caepipe_external import HarnessSkip, resolve_harness_config  # noqa: E402
-from core.handoff.caepipe_external.correlation import COMPARISON_RECORD_KIND  # noqa: E402
+from core.handoff.caepipe_external.correlation import COMPARISON_RECORD_KIND, SERIES_RECORD_KIND  # noqa: E402
 from core.handoff.caepipe_external.harness import ENV_VAR, RUN_RECORD_KIND  # noqa: E402
 from core.handoff.caepipe_external.print_csv import DOCUMENT_KIND as PARSED_CSV_KIND  # noqa: E402
 from tools.caepipe_correlation.run_pilot import MANIFEST_KIND, PARSER_DIAGNOSTICS_KIND  # noqa: E402
@@ -39,8 +39,8 @@ FORBIDDEN_HARNESS_FILES = {"Invoke-CaepipeRoundTrip.ps1", "round_trip.lock"}
 # Artefacts of the private exchange layers (Design §5): CAEPIPE output or derived from it.
 PRIVATE_LAYER_NAMES = {"caepipe_results.json", "parser_diagnostics.json", "comparison.json", "run_record.json",
                        "guest_log.json", "guest_stdout.txt", "guest_stderr.txt", "case_manifest.json"}
-PRIVATE_DOCUMENT_KINDS = {PARSED_CSV_KIND, PARSER_DIAGNOSTICS_KIND, COMPARISON_RECORD_KIND, RUN_RECORD_KIND,
-                          MANIFEST_KIND}
+PRIVATE_DOCUMENT_KINDS = {PARSED_CSV_KIND, PARSER_DIAGNOSTICS_KIND, COMPARISON_RECORD_KIND, SERIES_RECORD_KIND,
+                          RUN_RECORD_KIND, MANIFEST_KIND}
 SECTION_TITLES = (
     "Loads on Anchors in Global Coordinates",
     "Loads on Anchors in Local Coordinates",
@@ -118,6 +118,8 @@ def test_private_artefact_detector_on_synthetic_files(tmp_path):
     assert private_artefact_reason(write("renamed_diag.json", {"document_kind": PARSER_DIAGNOSTICS_KIND,
                                                                 "diagnostics": []})) is not None
     assert private_artefact_reason(write("renamed_manifest.json", {"document_kind": MANIFEST_KIND})) is not None
+    # The private series evaluation shares its file name with the public series definition; its kind decides.
+    assert private_artefact_reason(write("shear-deformation.json", {"document_kind": SERIES_RECORD_KIND})) is not None
     for name in sorted(PRIVATE_LAYER_NAMES):
         assert private_artefact_reason(write(name, {"anything": 1})) is not None, name
     assert private_artefact_reason(write("other.json", {"document_kind": "openpipestress.caepipe_other"})) is None
