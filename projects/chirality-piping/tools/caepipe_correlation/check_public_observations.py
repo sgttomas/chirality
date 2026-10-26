@@ -17,7 +17,7 @@ comments, docstrings and test function names: code may implement the behaviour i
 counts as code. In tests and fixtures, observed tokens that carry a product name are blocked on every line.
 Names and markers match regardless of case. Consecutive prose lines are read as one text, so a term wrapped
 across lines still matches; a change is screened in the context of its whole file, and a finding is reported
-when a match involves an added line. Paths are not screened. Commit messages in `--base..--head` and any
+when a match involves an added line. Paths and file names are not screened for names and markers. Commit messages in `--base..--head` and any
 `--file` given whole are prose too. In Markdown, the owner's verbatim words between `<!-- owner-words -->` and
 `<!-- /owner-words -->` are not screened; an unpaired marker is an operational error.
 
@@ -65,6 +65,21 @@ def _normal(text: str) -> str:
 def _word(term: str) -> re.Pattern[str]:
     # Identifier characters bound a term, so code paths and identifiers (`caepipe_mbf`) never match a name.
     return re.compile(r"(?<![A-Za-z0-9_])" + re.escape(_normal(term)) + r"(?![A-Za-z0-9_])", re.IGNORECASE)
+
+
+# Paths and file names (`Design/x-notes.md`) are not prose; they are blanked, offsets kept, before names
+# and markers are matched. Observed tokens are still matched on the unmasked text.
+PATH_LIKE = re.compile(r"[^\s`'\"()\[\]<>|,;]*[/\\][^\s`'\"()\[\]<>|,;]*"
+                       r"|[\w.-]+\.(?:md|py|json|ya?ml|txt|csv|mbf|ps1|rs|tsx?|js)\b")
+
+
+def _path(word: str) -> bool:
+    # A slash alone does not make a path: `Name/Other` stays prose.
+    return "." in word or "_" in word or word.endswith(("/", "\\")) or word.count("/") + word.count("\\") > 1
+
+
+def _unpathed(text: str) -> str:
+    return PATH_LIKE.sub(lambda match: " " * len(match.group()) if _path(match.group()) else match.group(), text)
 
 
 def _phrase(term: str) -> re.Pattern[str]:
@@ -233,6 +248,7 @@ def scan(label: str, lines: dict[int, str], terms: dict[str, list[str]], added: 
     names = [(index, _word(term)) for index, term in enumerate(terms["names"], 1)]
     markers = [(index, _word(term)) for index, term in enumerate(terms["markers"], 1)]
     for text, numbers, starts in _runs(lines):
+        text = _unpathed(text)
         marker_spans = [(index, _span(numbers, starts, match))
                         for index, pattern in markers for match in pattern.finditer(text)]
         for name_index, pattern in names:

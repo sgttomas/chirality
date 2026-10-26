@@ -183,3 +183,12 @@ def test_owner_words_keep_text_outside_the_span_and_reject_unpaired_markers(tmp_
         run(tmp_path / "u", {"doc/a.md": "<!-- owner-words -->\nAcmepipe was observed.\n"})
     with pytest.raises(ValueError):
         run(tmp_path / "c", {"doc/a.md": "Acmepipe was observed.\n<!-- /owner-words -->\n"})
+
+
+def test_path_and_file_name_forms_are_masked_but_hyphenated_prose_is_not(tmp_path):
+    findings = run(tmp_path, {"doc/a.md": "See `Design/acmepipe-notes.md` and acmepipe-pilot.md; the check screens trial text.\n"})
+    assert findings == []
+    findings = run(tmp_path / "h", {"doc/a.md": "Acmepipe-compatible output was observed.\n"})
+    assert findings == ["doc/a.md:1: name #1 near observation marker #1"]
+    findings = run(tmp_path / "s", {"doc/a.md": "The Acmepipe/Other comparison was observed.\n"})
+    assert findings == ["doc/a.md:1: name #1 near observation marker #1"]
