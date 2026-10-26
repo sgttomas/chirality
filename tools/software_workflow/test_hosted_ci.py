@@ -9,10 +9,38 @@ import sys
 import unittest
 from unittest.mock import patch
 
+import hosted_ci
 from hosted_ci import (aggregate, browser_plan, desktop_plan, desktop_rust_plan, make_plan, route_paths, select_paths, validate_plan,
                        numerical_plan, ROOT as SOURCE_ROOT, SUITES, WASM_ENGINE_CRATES)
 
 PROFILE = json.loads((Path(__file__).resolve().parents[1] / "hosted-ci-routing.json").read_text())
+
+# Every plan on this checkout re-scans each crate's Rust source for its reads
+# (about 3.3 s). No test writes this checkout, so a scan's result is a pure
+# function of the project, the manifests and the declarations it is given.
+SOURCE_READS = {}
+load_numerical_module = hosted_ci.numerical_module
+
+
+def shared_numerical_module(root):
+    """The real numerical selector, loaded as each plan loads it, whose source
+    read scan of this checkout is computed once per distinct input. A changed
+    declaration is a new key; a scan that fails is never kept; a fixture
+    checkout is scanned every time."""
+    module = load_numerical_module(root)
+    scan = module.source_read_dependencies
+
+    def source_read_dependencies(project, manifests, declarations=None):
+        resolved = Path(project).resolve()
+        if not resolved.is_relative_to(SOURCE_ROOT.resolve()):
+            return scan(project, manifests, declarations)
+        key = (resolved, tuple(Path(m).as_posix() for m in manifests), json.dumps(declarations, sort_keys=True))
+        if key not in SOURCE_READS:
+            SOURCE_READS[key] = scan(project, manifests, declarations)
+        return {path: set(readers) for path, readers in SOURCE_READS[key].items()}
+
+    module.source_read_dependencies = source_read_dependencies
+    return module
 
 
 def modes(**overrides):
@@ -28,6 +56,12 @@ def browser_selection(paths, profile=PROFILE):
 
 
 class HostedCITests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        patcher = patch('hosted_ci.numerical_module', shared_numerical_module)
+        patcher.start()
+        cls.addClassCleanup(patcher.stop)
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
