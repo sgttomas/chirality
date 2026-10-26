@@ -47,8 +47,7 @@ above 20, but does not refuse.
 
 ## 3. Invocation profile (settles DEL-17-05-REQ-003 for the pilot)
 
-The project selects the documented batch pattern (`CAEPIPE-BATCH`, archived copy in
-DEL-17-01 `Source_Basis_Register.md`):
+The project selects the documented batch pattern (`CAEPIPE-BATCH`, located in DEL-17-01 `Source_Basis_Register.md`):
 
 ```text
 <CAEPIPE executable> "<model>.mbf";batchmode=yes

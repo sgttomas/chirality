@@ -341,6 +341,11 @@ def _refuse_links(root: Path, out: Path) -> None:
         if entry.is_symlink():
             raise ContainmentError(f"{entry.relative_to(Path(root).resolve())} in the exchange folder is a symbolic "
                                    "link; refused")
+        # The layer only ever holds regular files; a directory at an output name would make the guest's `copy`
+        # write inside it (and through any link it contains).
+        if not entry.is_file():
+            raise ContainmentError(f"{entry.relative_to(Path(root).resolve())} in the exchange folder is not a "
+                                   "regular file; refused")
 
 
 def _clear_outputs(root: Path, out: Path) -> None:

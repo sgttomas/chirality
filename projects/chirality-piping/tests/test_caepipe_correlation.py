@@ -624,6 +624,40 @@ def test_case_variant_output_links_are_refused_before_collection(tmp_path):
     assert victim.read_text(encoding="utf-8") == "keep\n"
 
 
+def test_directories_at_output_names_are_refused_before_collection(tmp_path):
+    # A directory named like an output file would make the guest's `copy` write inside it, through any link there.
+    victim = tmp_path / "outside" / "victim.txt"
+    victim.parent.mkdir()
+    victim.write_text("keep\n", encoding="utf-8")
+    (tmp_path / "pre").mkdir()
+    config = fake_config(tmp_path / "pre")
+    nested = case_paths(config, "cpc-n")["caepipe_out"] / "model.res"
+    nested.mkdir()
+    (nested / "model.res").symlink_to(victim)
+    with pytest.raises(ContainmentError):
+        run_caepipe_round_trip(config, "cpc-n", MBF_TEXT, runner=lambda *a, **k: pytest.fail("prlctl called"))
+
+    (tmp_path / "during").mkdir()
+    config = fake_config(tmp_path / "during")
+    out = case_paths(config, "cpc-m")["caepipe_out"]
+    commands = []
+
+    def runner(argv, **kwargs):
+        commands.append(argv[6])
+        stdout = ""
+        if argv[6].startswith("powershell"):
+            (out / "model.mod").mkdir()  # planted while the guest solves
+            (out / "model.mod" / "model.mod").symlink_to(victim)
+            stdout = json.dumps({"status": "csv_from_batch", "mbf_sha256": MBF_SHA,
+                                 "csv_path": "C:\\invented-work\\cpc-m\\model_results.csv"})
+        return subprocess.CompletedProcess(argv, 0, stdout, "")
+
+    with pytest.raises(ContainmentError):
+        run_caepipe_round_trip(config, "cpc-m", MBF_TEXT, runner=runner)
+    assert not any("caepipe_out" in command and command.startswith("copy") for command in commands)
+    assert victim.read_text(encoding="utf-8") == "keep\n"
+
+
 def offline_case(tmp_path, monkeypatch, *, run_record=None, csv=True):
     """Prepare an offline run of the cantilever case with a stubbed SWBPIPE solve and an invented CSV."""
     case = next(item for item in run_pilot.load_cases() if item["case_id"] == "cpc-01-cantilever-force")
