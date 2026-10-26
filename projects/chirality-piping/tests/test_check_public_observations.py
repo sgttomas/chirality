@@ -241,3 +241,15 @@ def test_concatenated_docstring_fragments_join(tmp_path):
                                   "Widget `overflow` _at_ startup.\n"])
 def test_markdown_formatting_does_not_hide_a_phrase(tmp_path, text):
     assert run(tmp_path, {"doc/a.md": text}) == ["doc/a.md:1: observed token #1"]
+
+
+@pytest.mark.parametrize("name, text", [
+    ("doc/a.md", "Widget [overflow](errors.md) at startup.\n"),
+    ("doc/b.md", "Widget [overflow][ref] at startup.\n"),
+    ("src/lib.rs", "/// Widget **overflow** at startup.\nfn f() {}\n"),
+    ("pkg/mod.py", "def helper():\n    \"\"\"Widget `overflow` at startup.\"\"\"\n"),
+    ("pkg/two.py", "x = 1  # Widget [overflow](notes.md) at startup.\n"),
+])
+def test_links_and_formatting_do_not_hide_a_phrase_in_any_prose(tmp_path, name, text):
+    line = 1 + text.split("Widget")[0].count("\n")
+    assert run(tmp_path, {name: text}) == [f"{name}:{line}: observed token #1"]

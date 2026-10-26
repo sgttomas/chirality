@@ -15,8 +15,9 @@ Terms file sections (one term per line, `#` comments and blank lines ignored):
 Prose is every line of a non-code file, and in code files (Python, PowerShell, TypeScript, Rust) only
 comments, docstrings and test function names: code may implement the behaviour it needs. Fixture CSV data
 counts as code. In tests and fixtures, observed tokens that carry a product name are blocked on every line.
-Comment extraction outside Python is deliberately over-inclusive (quotes ignored, block nesting counted), and
-Markdown blockquote, emphasis and code markers are removed before matching. Names and markers match
+Comment extraction outside Python is deliberately over-inclusive (quotes ignored, block nesting counted). Every
+prose line, whatever its source, is matched as visible text: links keep their labels, and blockquote,
+emphasis and code markers are removed. Names and markers match
 regardless of case. Consecutive prose lines are read as one text, so a term wrapped across lines still matches; a change is screened in the context of its whole file, and a finding is reported
 when a match involves an added line. Paths and file names are not screened for names and markers. Commit messages in `--base..--head` and any
 `--file` given whole are prose too. In Markdown, the owner's verbatim words between `<!-- owner-words -->` and
@@ -87,16 +88,9 @@ def _path(word: str) -> bool:
     return bool(FILE_EXTENSION.search(word)) or word.endswith(("/", "\\")) or (separated and "_" in word)
 
 
-MARKDOWN_DESTINATION = re.compile(r"\]\(\s*<?([^()\s<>]+)>?(?:\s+[\"'(][^)]*)?\)")
-
-
 def _unpathed(text: str) -> str:
     out = list(text)
-    # Markdown link destinations (`[text](Design/x-notes.md)`) are blanked first, by their own span.
-    for match in MARKDOWN_DESTINATION.finditer(text):
-        if _path(match.group(1).strip(EDGE_PUNCTUATION)):
-            out[match.start(1):match.end(1)] = " " * (match.end(1) - match.start(1))
-    for match in re.finditer(r"\S+", "".join(out)):
+    for match in re.finditer(r"\S+", text):
         word = match.group()
         lead = len(word) - len(word.lstrip(EDGE_PUNCTUATION))
         core = word.strip(EDGE_PUNCTUATION)
@@ -247,20 +241,21 @@ def _without_owner_words(lines: dict[int, str]) -> dict[int, str]:
 
 
 MARKDOWN_QUOTE = re.compile(r"^(?:\s*>)+")
+MARKDOWN_LINK = re.compile(r"!?\[([^\]]*)\](?:\([^)]*\)|\[[^\]]*\])")
 MARKDOWN_EMPHASIS = re.compile(r"[*~`]+|(?<![A-Za-z0-9])_+|_+(?![A-Za-z0-9])")
 
 
-def _plain_markdown(line: str) -> str:
-    """A Markdown line without blockquote prefixes and emphasis, code and strike-through markers."""
+def _plain(line: str) -> str:
+    """Visible text of a prose line, from any source (Markdown, comments, docstrings, commit messages):
+    links keep only their labels, and blockquote, emphasis, code and strike-through markers are removed."""
 
-    return MARKDOWN_EMPHASIS.sub("", MARKDOWN_QUOTE.sub("", line))
+    return MARKDOWN_EMPHASIS.sub("", MARKDOWN_LINK.sub(r"\1", MARKDOWN_QUOTE.sub("", line)))
 
 
 def prose_of(path: str, text: str) -> dict[int, str]:
     suffix = Path(path).suffix.lower()
     if suffix == ".md":
-        lines = _without_owner_words({number: line for number, line in enumerate(text.splitlines(), 1)})
-        return {number: _plain_markdown(line) for number, line in lines.items()}
+        return _without_owner_words({number: line for number, line in enumerate(text.splitlines(), 1)})
     if suffix == ".py":
         return python_prose_lines(text)
     if suffix in CODE_SUFFIXES:
@@ -309,6 +304,7 @@ def _token_findings(label: str, lines: dict[int, str], tokens: list[tuple[int, s
 def scan(label: str, lines: dict[int, str], terms: dict[str, list[str]], added: set[int] | None = None) -> list[str]:
     """Findings in `lines` (the whole prose); with `added`, only matches that involve an added line."""
 
+    lines = {number: _plain(text) for number, text in lines.items()}
     findings = _token_findings(label, lines, list(enumerate(terms["tokens"], 1)), added, "observed token")
     names = [(index, _word(term)) for index, term in enumerate(terms["names"], 1)]
     markers = [(index, _word(term)) for index, term in enumerate(terms["markers"], 1)]
