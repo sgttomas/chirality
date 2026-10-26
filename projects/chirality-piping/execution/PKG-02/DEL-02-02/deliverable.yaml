@@ -168,13 +168,14 @@ needs:
     reporting unit consumers; TargetRefID: DOWNSTREAM-UNIT-CONSUMERS'
   direction: downstream
   gating: false
-- from: doc:core/units module contract
+- from: doc:core/units/README.md
   condition: 'DEL-02-02 must produce a core/units module contract documenting quantity shape dimension
     signature conversion API operation rules diagnostics and storage hooks.
 
 
-    Notes: FACT; local output artifact path remains TBD because repository module layout is not fixed
-    in source.; legacy_anchortype=NOT_APPLICABLE; legacy_direction=DOWNSTREAM; legacy_dependencytype=HANDOVER;
+    Notes: FACT; the output artifact is core/units/README.md ("OpenPipeStress Unit Core Contract"), which
+    ScopeOfWork.md names as carrying the unit catalog''s current realization. This resolves the reference
+    only; it is not a fulfilment or completion claim.; legacy_anchortype=NOT_APPLICABLE; legacy_direction=DOWNSTREAM; legacy_dependencytype=HANDOVER;
     legacy_targettype=DOCUMENT; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=PENDING; legacy_origin=EXTRACTED;
     legacy_status=ACTIVE
 
@@ -182,7 +183,8 @@ needs:
     Required input maturity in source: SEMANTIC_READY; this is not a fulfilment or completion claim.
 
 
-    Target description — TargetName: core/units module contract; TargetRefID: core/units module contract'
+    Target description — TargetName: core/units module contract; TargetRefID: core/units module contract;
+    TargetLocation: core/units/README.md'
   direction: downstream
   gating: false
 - from: doc:docs/SPEC.md
