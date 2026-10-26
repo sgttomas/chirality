@@ -291,7 +291,7 @@
       "core/reporting/pdf_emitter/Cargo.toml": "1831810c22b5cd51c4a2b7bd78b3df6215541d3eacd03640a93bd96ee402c406",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
       "core/reporting/report_generator/Cargo.toml": "c85ec217b8b711222aa47bd13e926292e224ce2e5543719e77983a1053385ea3",
-      "core/reporting/report_package/Cargo.toml": "a0a2e356b5e1f87b25f1eb5839fe72f524da07e37baf5de43d729b6953993ec2",
+      "core/reporting/report_package/Cargo.toml": "7b93c2b328ffee025d025b6aa6f15d7925e06622bca32c43273902dc753133ed",
       "core/reporting/report_renderer/Cargo.toml": "420520e7bb454c0f5966d54371ff0cdfbfea8b40c8026428158f121d79dcea1a",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
       "core/reporting/result_export/Cargo.toml": "22e080a40a19035c426d97fac6f2cdd5f5157f780f09dbfa9c5af36cd727466c",
