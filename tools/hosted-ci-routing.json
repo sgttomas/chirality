@@ -286,13 +286,13 @@
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "8225c3d9988cdc79a7b366f78d3881a19c4f0a4922db90ada295c97d5152f1e2",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "669a99175aaf2b28505a4438de8cd79ab45530d9fc3ce65bd3383c19dedb1658",
+      "core/product_physics/Cargo.toml": "1c27b4bc5720659379292885cf494d9db65bba8a82548d78efe84027a6c9c555",
       "core/reporting/audit_manifest/Cargo.toml": "b8bc4623a383ed2c22205326bc737486becd9d931bf869e1e8cf40e147f4fad7",
-      "core/reporting/pdf_emitter/Cargo.toml": "f40fa287ba9c24735164f38b279846fcbdfa7967285b597e575fe9d83dd28738",
+      "core/reporting/pdf_emitter/Cargo.toml": "1831810c22b5cd51c4a2b7bd78b3df6215541d3eacd03640a93bd96ee402c406",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
       "core/reporting/report_generator/Cargo.toml": "c85ec217b8b711222aa47bd13e926292e224ce2e5543719e77983a1053385ea3",
-      "core/reporting/report_package/Cargo.toml": "b9be3decfe034732db69455d41b185c115a49b08c6790b4027a7c69fc3dfd89d",
-      "core/reporting/report_renderer/Cargo.toml": "9e68ec98586d5dbab46074e602d40ac47052ca3680df2cddc9a074473cbbeaed",
+      "core/reporting/report_package/Cargo.toml": "a0a2e356b5e1f87b25f1eb5839fe72f524da07e37baf5de43d729b6953993ec2",
+      "core/reporting/report_renderer/Cargo.toml": "420520e7bb454c0f5966d54371ff0cdfbfea8b40c8026428158f121d79dcea1a",
       "core/reporting/report_sections/Cargo.toml": "524afb73458989e83cddabc8b64fc4cbfb9c0b1b484403d96ae31da2e5111354",
       "core/reporting/result_export/Cargo.toml": "74ef9e9560d7edc9f2c57c884167892b67e861f5e9ca5fce9146e1d55d2a1c94",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
@@ -2385,6 +2385,8 @@
               "apps/desktop/src-tauri/src/native_smoke.rs",
               "apps/desktop/src-tauri/src/report_package_bridge.rs",
               "apps/desktop/src-tauri/src/report_package_save.rs",
+              "apps/desktop/src-tauri/src/report_render_exact.rs",
+              "apps/desktop/src-tauri/src/report_render_exact_tests.rs",
               "apps/desktop/src-tauri/src/rule_solver_selection.rs",
               "apps/desktop/src-tauri/src/rule_solver_selection_tests.rs",
               "apps/desktop/src-tauri/src/solve_jobs.rs",
@@ -2520,12 +2522,17 @@
               "core/reporting/protected_content_linter/src/bin/protected_content_lint_cli.rs",
               "core/reporting/protected_content_linter/src/lib.rs",
               "core/reporting/report_generator/src/lib.rs",
+              "core/reporting/report_package/src/admitted.rs",
+              "core/reporting/report_package/src/admitted_tests.rs",
               "core/reporting/report_package/src/bindings.rs",
               "core/reporting/report_package/src/document_form.rs",
+              "core/reporting/report_package/src/exact_sections.rs",
+              "core/reporting/report_package/src/forwarding_graph_scan.rs",
               "core/reporting/report_package/src/lib.rs",
               "core/reporting/report_package/src/reader.rs",
               "core/reporting/report_package/src/schema_eval.rs",
               "core/reporting/report_package/src/wire.rs",
+              "core/reporting/report_renderer/src/exact_statements.rs",
               "core/reporting/report_renderer/src/lib.rs",
               "core/reporting/report_sections/src/lib.rs",
               "core/reporting/result_export/src/arc_evidence.rs",
@@ -4752,10 +4759,13 @@
               "fixtures/product_preview/w1_controls/ui/n06-sparse_interactive.request.json",
               "fixtures/redaction_export_controls/cases.json",
               "fixtures/report_lint/invented/lint_run_fixture.json",
+              "fixtures/reports/exact_report_statements.json",
+              "fixtures/reports/exact_route_limitations.json",
               "fixtures/reports/invented/calculation_report_fixture.json",
               "fixtures/reports/invented/component_provenance_cross_layer_projection.json",
               "fixtures/reports/invented/del1005_analysis_record.json",
               "fixtures/reports/invented/del1005_input_manifest.json",
+              "fixtures/reports/invented/exact_report_sections_parity.json",
               "fixtures/reports/invented/report_result_rows_parity.json",
               "fixtures/reports/invented/state_comparison_handoff_desktop_parity.json",
               "fixtures/results/base_reader_outcomes.json",
@@ -5224,6 +5234,35 @@
             "base": "project",
             "files": [
               "fixtures/results/retained_precision_successor_derivative_sparse_interactive.json"
+            ]
+          }
+        ]
+      },
+      "core/reporting/report_package/src/admitted_tests.rs": {
+        "sha256": "6177d872538ac64adbdebe9bd92a9b89773370c37c3a911d5a8108ec5a1952c2",
+        "source_trees": [
+          "core/reporting/report_package/Cargo.toml",
+          "core/runner/headless/Cargo.toml"
+        ],
+        "inputs": [
+          {
+            "anchor": "src",
+            "base": "manifest",
+            "scan": {
+              "suffix": ".rs"
+            },
+            "audit": "admitted_set_forwarding_graph_is_closed recursively reads every .rs file under the crate's exact src boundary before removing its test-only items and checking the admitted-set forwarding graph; no test or production file is omitted.",
+            "files": [
+              "core/reporting/report_package/src/admitted.rs",
+              "core/reporting/report_package/src/admitted_tests.rs",
+              "core/reporting/report_package/src/bindings.rs",
+              "core/reporting/report_package/src/document_form.rs",
+              "core/reporting/report_package/src/exact_sections.rs",
+              "core/reporting/report_package/src/forwarding_graph_scan.rs",
+              "core/reporting/report_package/src/lib.rs",
+              "core/reporting/report_package/src/reader.rs",
+              "core/reporting/report_package/src/schema_eval.rs",
+              "core/reporting/report_package/src/wire.rs"
             ]
           }
         ]
