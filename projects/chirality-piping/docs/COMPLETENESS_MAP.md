@@ -54,6 +54,9 @@ the native smoke runs recorded there.
   is fixed once nodes exist (#1627). A model document, stored project or saved
   state without project units is refused by name at open, and the entity
   editors refuse a missing unit key by name instead of assuming one (#1631).
+  Only a model or project change supersedes a pending New Blank; a superseded
+  one is named (`NEW-BLANK-SUPERSEDED`) with the stored blank's name and id
+  and the List Local Projects route (#1640).
 - **Authoring:** place nodes and pipes in the 3D viewport, assign materials and
   sections, and add bends, expansion joints, supports, load cases and
   combinations. Rigid components take a user stiffness scale with its source
@@ -151,17 +154,22 @@ The biggest gaps:
    - Imposed displacement is refused on PF (FR-SOL-006); the owner ruled to
      build it there in two stages. Stage 1 is #1615 and the stage 2 design
      #1618, both open.
-7. **Project units, remaining (W-17).** Two load-case fields still fall back
-   to a fixed unit when the stored value has none: the modulus-basis solve
+7. **W-17, remaining: project units and one stale message.** Two load-case
+   fields still fall back to a fixed unit when the stored value has none: the modulus-basis solve
    temperature to `K` and the seismic gravity acceleration to `m/s^2`
    (`PropertyInspector.tsx:2237,2247`), and the matching grid columns use
    those units (`ModelTree.tsx` `modulus-basis-temperature`,
    `seismic-gravity`). A DEL-02-02 design for these temperature and
    acceleration units is queued. The CAEPIPE MBF and local FEA export panels
    fall back to fixed units when a project key is missing
-   (`CaepipeMbfExportPanel.tsx:331,382-383`; `LocalFeaHandoffPanel.tsx:540-546`). A pending New Blank can be cancelled by
-   a selection or unapplied typing; #1640 (open) fixes that. The desktop has no
-   command to delete a stored project. Affected: §10.1 step 1.
+   (`CaepipeMbfExportPanel.tsx:331,382-383`;
+   `LocalFeaHandoffPanel.tsx:540-546`). Before them in the queue: a failed
+   state listing in Save Handoff can overwrite a newer status message, because
+   its catch (`workspaceSession.ts:2552`) does not check that the session is
+   unchanged, as the success path does (`:2558`). Since #1640, a selection or
+   unapplied typing no longer cancels a pending New Blank. Whether to add a
+   command that deletes a stored project is an owner question (§4.2). Affected:
+   §10.1 step 1.
 
 ## 2. Outcome table
 
@@ -186,13 +194,13 @@ class, the evidence, and the deliverables. Paths are under
 | FR-KNOW-003 (490) | Should | O | OD-1/OD-3 (DEL-13-03 SOW:15). `core/constraints/validation/engine.py`, Python only | DEL-13-03, DEL-13-02 | |
 | FR-KNOW-004 (491) | Should | O | OD-1/OD-3 (DEL-13-02 SOW:15). `schemas/constraint.schema.json` | DEL-13-02 | |
 | FR-KNOW-005 (492) | Could | O | PRD §13.3 "In future releases"; OD-1 defers further PKG-16 features; DEL-16-04:3 "v0.2 R7" | (R7) | |
-| §10.1 step 1, select units (415) | — | D | W-17 (a): `features/project-units/ProjectUnitsDialog.tsx`, mounted in `App.tsx`; `projectService.ts` (`PROJECT_UNIT_KEYS`, `SI_PROJECT_UNITS`, `US_CUSTOMARY_PROJECT_UNITS`, `PROJECT-UNITS-INCOMPLETE`). **Tests:** `ProjectUnitsDialog.test.tsx`, `projectUnitSelection.test.ts`; e2e `confirmProjectUnits`. Observed natively (§5) | DEL-02-02 | Changing units after creation (slice b, #1627): `set_project_unit` (`operation_applier/src/project_units_authoring.rs`; tests `operation_applier/tests/project_unit_authoring.rs`) and the Project units section on the Project page (`features/project-units/ProjectUnitsSection.tsx`). Length is locked once nodes exist; no stored value is converted (DEL-02-02 Design §2.7–§2.8). Missing units (#1631): a document without `project.units` is refused by name on every open path (model document, local project, saved state), and the entity editors refuse a missing key by name instead of assuming a unit (`features/project-units/missingProjectUnit.ts`; `missingProjectUnitEditors.test.tsx`; DEL-02-02 Design §3). A refused stored project or state can be exported as a model document for repair (`src-tauri/src/stored_model_document_export.rs`; `storedDocumentExport.test.tsx`). The e2e confirms SI only. Remaining (§1 item 7, W-17 rest): the load fields' `K` and `m/s^2` defaults, the export panels' unit fallbacks, and the New Blank supersession fix (#1640, open). |
+| §10.1 step 1, select units (415) | — | D | W-17 (a): `features/project-units/ProjectUnitsDialog.tsx`, mounted in `App.tsx`; `projectService.ts` (`PROJECT_UNIT_KEYS`, `SI_PROJECT_UNITS`, `US_CUSTOMARY_PROJECT_UNITS`, `PROJECT-UNITS-INCOMPLETE`). **Tests:** `ProjectUnitsDialog.test.tsx`, `projectUnitSelection.test.ts`; e2e `confirmProjectUnits`. Observed natively (§5) | DEL-02-02 | Changing units after creation (slice b, #1627): `set_project_unit` (`operation_applier/src/project_units_authoring.rs`; tests `operation_applier/tests/project_unit_authoring.rs`) and the Project units section on the Project page (`features/project-units/ProjectUnitsSection.tsx`). Length is locked once nodes exist; no stored value is converted (DEL-02-02 Design §2.7–§2.8). Missing units (#1631): a document without `project.units` is refused by name on every open path (model document, local project, saved state), and the entity editors refuse a missing key by name instead of assuming a unit (`features/project-units/missingProjectUnit.ts`; `missingProjectUnitEditors.test.tsx`; DEL-02-02 Design §3). A refused stored project or state can be exported as a model document for repair (`src-tauri/src/stored_model_document_export.rs`; `storedDocumentExport.test.tsx`). The e2e confirms SI only. New Blank (#1640): only a model or project change supersedes a pending create (`workspaceSession.ts` `modelCommitEpochRef`); a superseded one is named `NEW-BLANK-SUPERSEDED` with the stored blank's name and id and the List Local Projects route; tests `App.projectHandlers.test.tsx`. Remaining (§1 item 7, W-17 rest): the Save Handoff state-list catch, the load fields' `K` and `m/s^2` defaults and the export panels' unit fallbacks. |
 
 ### 2.2 Desktop GUI and operations (PRD §11.3, §11.8, §14)
 
 | ID (PRD line) | Pri | Class | Evidence | Deliverables | Notes |
 |---|---|---|---|---|---|
-| R2 exit (1572) | — | D | W-4 (#1582): the native smoke authors a cantilever from blank through the GUI (`native-smoke/driver.js`, `authorFromBlank`), solves natively, checks the tip deflection against PL³/3EI within 1e-9, saves in place, reopens in a fresh process and re-solves to the same rows, value and model hash (`run.mjs`, "from blank" checks) | DEL-07-11, DEL-07-01/02/05/07 | The browser journey still ends at `BROWSER_SOLVE_BACKEND_REQUIRED_FOR_EDITED_MODEL`, by design. One model shape and the SI preset only. Since #1634 the smoke builds what it launches (content stamps for the WASM engines and the app binary, `scripts/engineSourceStamp.mjs`, `appBinaryBinding.mjs`), holds a per-worktree build lock (`worktreeBuildLock.mjs`), and reports a failed solve or memory refusal by name instead of timing out (`native-smoke/driver.js`); 135 of 135 checks passed on #1634's head. #1640 (open) makes the driver wait for the New Blank session. |
+| R2 exit (1572) | — | D | W-4 (#1582): the native smoke authors a cantilever from blank through the GUI (`native-smoke/driver.js`, `authorFromBlank`), solves natively, checks the tip deflection against PL³/3EI within 1e-9, saves in place, reopens in a fresh process and re-solves to the same rows, value and model hash (`run.mjs`, "from blank" checks) | DEL-07-11, DEL-07-01/02/05/07 | The browser journey still ends at `BROWSER_SOLVE_BACKEND_REQUIRED_FOR_EDITED_MODEL`, by design. One model shape and the SI preset only. Since #1634 the smoke builds what it launches (content stamps for the WASM engines and the app binary, `scripts/engineSourceStamp.mjs`, `appBinaryBinding.mjs`), holds a per-worktree build lock (`worktreeBuildLock.mjs`), and reports a failed solve or memory refusal by name instead of timing out (`native-smoke/driver.js`); 135 of 135 checks passed on #1634's head. Since #1640 the driver waits for the blank's session before authoring (`native-smoke/driver.js` `awaitBlankProject`; `driver.test.mjs`). |
 | FR-GUI-001 (498) | Must | D | `PipeViewport.tsx:1289-1291` (nodes, supports, components); deformed shape `:1306-1310`; rotation glyphs `:1313`; reaction arrows `:1315-1317`; result colour `:1323-1327`; load arrows `:1332`; labels `:1374-1429`; legend `:2456`. **Tests:** `e2e/result-overlays.spec.ts:158` (PR core lane), `PipeViewport.overlays.test.tsx`, `c3-viewport-visibility.spec.ts`, `rotation-glyph.spec.ts` | DEL-07-01, DEL-07-05 | Overlays are off by default. Colour is one value per member. Reaction arrows come from global-frame rows only. The D-72 orbit qualification with result colour has not run. §14.2 bend arcs, corridors and no-go volumes are not drawn. |
 | FR-GUI-002 (499) | Must | P | `ModelTree.tsx` (`GRID_ENTITY_TYPES`; the Tree layout's `treeRecords` slot) | DEL-07-02 | Lines show in the Tree layout's Lines section (W-13 S2a, #1565; placed by #1612). States and runs are navigated in the History panel (W-12), not the model tree. |
 | FR-GUI-003 (500) | Must | P | `PropertyInspector.tsx:1276,1291,1311`; `typedInspector.test.tsx` | DEL-07-02 | No dependencies, linked assumptions or dependent rule-pack inputs. |
@@ -609,6 +617,12 @@ node-proximity tolerance, user-settable (REQ-04-06-012); no verified bounds in
 v0.1 (`DEL-04-08 Design/b7-plan.md`); the W-10 reconnect limitation
 (DEL-16-06 SOW:79).
 
+**Owner question (Agent 0, 2026-10-26):** a command to delete a stored local
+project, such as a blank orphaned by a superseded New Blank (#1640's "Open").
+Neither the PRD nor any ScopeOfWork commits to one, so it would be a scope
+addition. Until it is decided, a stored blank stays in the store and is
+reached through List Local Projects.
+
 Opening exact-route reports and handoff needs no new decision to start. Ruling
 10A already directs DEL-08-01 to design their limitation sections. Opening the
 surfaces afterwards returns to the owner.
@@ -658,18 +672,18 @@ targeted regression checks and independent scrutiny (Root `AGENTS.md`).
 | W-11 (design, a, b) | Exact-route report sections: the design; slice (a), the statement table, renderer sections and dormant package checks; slice (b), the desktop exact sections, admission and native source binding. All behind the gate | #1628, #1632, #1637 |
 | W-17 (units at open) | A model document, stored project or saved state without project units is refused by name at open; the entity editors refuse a missing key by name; the recovery export of a refused stored project or state | #1631: 135 of 135 native-smoke checks on its head |
 | W-17 (native smoke) | The smoke builds what it launches (WASM engine and app binary content stamps), holds a per-worktree build lock, and reports a failed solve or memory refusal by name instead of timing out | #1634: 135 of 135 on its head |
+| W-17 (New Blank) | Only a model or project change supersedes a pending New Blank; a superseded one is named `NEW-BLANK-SUPERSEDED` with the stored blank's name and id and the List Local Projects route; the smoke driver waits for the blank's session | #1640 (merged as `9d51a4e744`) |
 | W-17 (solve refusals) | The Solve panel and the Solve job JSON name each memory refusal's point, exact code and retry path; "available memory" wording as #1636 counts it | #1638 |
 | — | Bundled demo without the malformed tee C-120 | #1620 |
 
-**In flight** (open pull requests on 2026-10-26; refresh at each map update,
-and give the merge of any that has merged):
+**In flight** (open pull requests on 2026-10-26, rechecked after #1640 merged;
+refresh at each map update, and give the merge of any that has merged):
 
 | PR | Unit | Rows it addresses |
 |---|---|---|
 | #1615 | W-16 a: imposed displacement on PF, stage 1, linear (draft, waiting for its D3 re-pricing turn) | FR-SOL-006, FR-SOL-002, §22.2 |
 | #1618 | W-16 stage 2 design: imposed displacement with nonlinear supports (stacked on #1615) | FR-SOL-006 |
 | #1639 | W-11 (c): material, section, component, support and library records in reports on every route (behind the exact-route gate) | FR-REP-003, FR-REP-001 |
-| #1640 | W-17: only a model or project change supersedes a pending New Blank; the smoke waits for its session | §10.1 step 1, R2 exit |
 | #1641 | Numerical lane (routed from W-17): the library reads of Save Model Document and Save Handoff are metered | FR-HAND-001 |
 | #1625 | Exact unit factor-sum rule for the constant-effort combination gate | none (a PF combination gate, DEL-05-02) |
 | #1630 | Closing the nested PF input records | none (follows #1573, strict inputs) |
@@ -683,7 +697,7 @@ and give the merge of any that has merged):
 | W-11 (rest) | Slice (c), FR-REP-003 on every route; then opening the exact-route reports | M (c), about 0.3k (opening) (DEL-08-01 Design `exact-route-report-sections.md` §6) | desktop + Rust | heavy | (a) and (b), done | #1639 (c) | Opening returns to the owner |
 | W-15 c | Eccentric reducer offset with the 0.8.0 model document (§12.3) | S–M | numerical + schema | heavy, scrutiny | the 0.8.0 document coordination | none | No |
 | W-16 | Combinations on EX (FR-SOL-009); imposed displacement on PF, stage 1 linear, then stage 2 with nonlinear supports (FR-SOL-006, owner's row-2 ruling; its PF benchmarks also close FR-SOL-002); `equivalent_static` on EX (§12.5) | M | numerical | heavy, scrutiny | — | #1615 (stage 1), #1618 (stage 2 design); none for EX combinations or `equivalent_static` | No |
-| W-17 (rest) | A DEL-02-02 design for the temperature and acceleration units of the load fields (the `K` and `m/s^2` defaults, `PropertyInspector.tsx:2237,2247` and the grid columns) and the export panels' unit fallbacks (`CaepipeMbfExportPanel.tsx`, `LocalFeaHandoffPanel.tsx`); the New Blank supersession fix; possibly a delete-project command | not sized | design + desktop | desktop | — | #1640 (New Blank) | A delete-project command is a product choice for Agent 0 (#1640, Open) |
+| W-17 (rest) | First, guard the Save Handoff state-list failure catch (`workspaceSession.ts:2552`) as its success path is guarded (`:2558`), so a stale failure cannot overwrite a newer status message. Then a DEL-02-02 design for the temperature and acceleration units of the load fields (the `K` and `m/s^2` defaults, `PropertyInspector.tsx:2237,2247` and the grid columns) and the export panels' unit fallbacks (`CaepipeMbfExportPanel.tsx`, `LocalFeaHandoffPanel.tsx`) | not sized | desktop; design + desktop | desktop | — | none | No |
 | — (numerical lane) | Metering the `load_library` reads of Save Model Document and Save Handoff (routed from W-17) | not sized | Rust | heavy | #1631's metered reader | #1641 | No |
 | W-18b | Per-report user release of the user's own project data (a shareable path): build the merged design, five slices (r1)–(r3) (DEL-08-01 Design `report-user-release.md` §8) | about 4.35k lines (§8) | desktop + Rust | heavy | W-18 a–b2, done | none | Shareable path decided (owner, 2026-10-24, option B: a per-report user release) |
 | W-14 | Design-knowledge entry and constraint validation | — | — | — | — | none | Deferred to v0.2 (OD-3) |
