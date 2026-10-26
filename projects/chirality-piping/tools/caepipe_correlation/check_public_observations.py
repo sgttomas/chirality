@@ -15,11 +15,14 @@ Terms file sections (one term per line, `#` comments and blank lines ignored):
 Prose is every line of a non-code file, and in code files (Python, PowerShell, TypeScript, Rust) only
 comments, docstrings and test function names: code may implement the behaviour it needs. Fixture CSV data
 counts as code. In tests and fixtures, observed tokens that carry a product name are blocked on every line.
-Names and markers match regardless of case. Consecutive prose lines are read as one text, so a term wrapped
-across lines still matches; a change is screened in the context of its whole file, and a finding is reported
+Comment extraction outside Python is deliberately over-inclusive (quotes ignored, block nesting counted), and
+Markdown blockquote, emphasis and code markers are removed before matching. Names and markers match
+regardless of case. Consecutive prose lines are read as one text, so a term wrapped across lines still matches; a change is screened in the context of its whole file, and a finding is reported
 when a match involves an added line. Paths and file names are not screened for names and markers. Commit messages in `--base..--head` and any
 `--file` given whole are prose too. In Markdown, the owner's verbatim words between `<!-- owner-words -->` and
 `<!-- /owner-words -->` are not screened; an unpaired marker is an operational error.
+
+The check is a lexical aid to review, not a proof that text is clean; review of the change remains the control.
 
 Exit 1 on a finding, 2 on an operational error, 0 otherwise.
 """
@@ -150,7 +153,7 @@ def python_prose_lines(text: str) -> dict[int, str]:
         elif token.type == tokenize.STRING and (any(low <= token.start and token.end <= high
                                                     for low, high in docstrings)
                                                 or token.string.lstrip("rbuRBUfF").startswith(('"""', "'''"))):
-            for offset, part in enumerate(token.string.splitlines()):
+            for offset, part in enumerate(_string_lines(token.string)):
                 number = token.start[0] + offset
                 prose[number] = prose.get(number, "") + " " + part
         elif token.type == tokenize.NAME and previous is not None and previous.string == "def" \
@@ -161,45 +164,56 @@ def python_prose_lines(text: str) -> dict[int, str]:
     return prose
 
 
+STRING_OPENING = re.compile(r"[rbuRBUfF]*(\'\'\'|\"\"\"|\'|\")")
+
+
+def _string_lines(literal: str) -> list[str]:
+    """The text of a string literal by source line, without prefix and delimiters, so implicitly
+    concatenated fragments (`'Widget ' 'overflow'`) join as prose."""
+
+    if "\n" not in literal:
+        try:
+            value = ast.literal_eval(literal)
+        except (ValueError, SyntaxError):
+            value = None
+        if isinstance(value, str):
+            return [value]
+    parts = literal.splitlines()
+    opening = STRING_OPENING.match(literal)
+    if opening:
+        parts[0] = parts[0][len(opening.group(0)):]
+        if parts[-1].endswith(opening.group(1)):
+            parts[-1] = parts[-1][:-len(opening.group(1))]
+    return parts
+
+
 def comment_prose_lines(text: str, suffix: str) -> dict[int, str]:
-    """Comments of a PowerShell, TypeScript, JavaScript or Rust source, by line number (approximate)."""
+    """Comments of a PowerShell, TypeScript, JavaScript or Rust source, by line number.
+
+    Deliberately over-inclusive rather than parsed: quotes are ignored, so a line is prose from its first
+    comment opener on, and block comments count their nesting depth. A string, lifetime or regular
+    expression that looks like a comment adds code to the prose; it never hides a comment."""
 
     prose: dict[int, str] = {}
-    block = False
+    depth = 0
     opener, closer, single = ("<#", "#>", "#") if suffix == ".ps1" else ("/*", "*/", "//")
     for number, line in enumerate(text.splitlines(), 1):
-        if block:
-            prose[number] = _strip_comment(line)
-            if closer in line:
-                block = False
-            continue
-        if opener in line:
-            prose[number] = _strip_comment(line[line.index(opener):])
-            block = closer not in line[line.index(opener) + len(opener):]
-            continue
-        index = _comment_index(line, single)
-        if index is not None:
-            prose[number] = _strip_comment(line[index:])
+        start = 0 if depth else None
+        i = 0
+        while i < len(line):
+            if line.startswith(opener, i):
+                start = i if start is None else start
+                depth, i = depth + 1, i + len(opener)
+            elif depth and line.startswith(closer, i):
+                depth, i = depth - 1, i + len(closer)
+            elif not depth and line.startswith(single, i):
+                start = i if start is None else start
+                break
+            else:
+                i += 1
+        if start is not None:
+            prose[number] = _strip_comment(line[start:])
     return prose
-
-
-def _comment_index(line: str, single: str) -> int | None:
-    quote = None
-    i = 0
-    while i < len(line):
-        char = line[i]
-        if quote:
-            if char == "\\":
-                i += 2
-                continue
-            if char == quote:
-                quote = None
-        elif char in "\"'`":
-            quote = char
-        elif line.startswith(single, i):
-            return i
-        i += 1
-    return None
 
 
 OWNER_WORDS_OPEN = "<!-- owner-words -->"
@@ -232,10 +246,21 @@ def _without_owner_words(lines: dict[int, str]) -> dict[int, str]:
     return kept
 
 
+MARKDOWN_QUOTE = re.compile(r"^(?:\s*>)+")
+MARKDOWN_EMPHASIS = re.compile(r"[*~`]+|(?<![A-Za-z0-9])_+|_+(?![A-Za-z0-9])")
+
+
+def _plain_markdown(line: str) -> str:
+    """A Markdown line without blockquote prefixes and emphasis, code and strike-through markers."""
+
+    return MARKDOWN_EMPHASIS.sub("", MARKDOWN_QUOTE.sub("", line))
+
+
 def prose_of(path: str, text: str) -> dict[int, str]:
     suffix = Path(path).suffix.lower()
     if suffix == ".md":
-        return _without_owner_words({number: line for number, line in enumerate(text.splitlines(), 1)})
+        lines = _without_owner_words({number: line for number, line in enumerate(text.splitlines(), 1)})
+        return {number: _plain_markdown(line) for number, line in lines.items()}
     if suffix == ".py":
         return python_prose_lines(text)
     if suffix in CODE_SUFFIXES:

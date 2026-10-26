@@ -204,9 +204,14 @@ def test_path_and_file_name_forms_are_masked_but_hyphenated_prose_is_not(tmp_pat
     ("tools/a.ps1", "$x = 1 # Widget\n# overflow at startup.\n"),
     ("src/a.ts", "/* Widget\n * overflow at startup. */\n"),
     ("tools/b.ps1", "<# Widget\n#>\n# overflow at startup.\n"),
+    ("src/b.rs", "fn f<'a>(x: &'a str) -> &'a str { x } // Widget overflow at startup.\n"),
+    ("src/c.rs", "/* outer\n/* inner */\nWidget overflow at startup.\n*/\n"),
+    ("src/b.ts", "const r = /\"/g; // Widget overflow at startup.\n"),
+    ("tools/c.ps1", "$p = \"C:\\\" # Widget overflow at startup.\n"),
 ])
 def test_wrapped_comments_join_without_comment_syntax(tmp_path, name, text):
-    assert run(tmp_path, {name: text}) == [f"{name}:1: observed token #1"]
+    line = 1 + text.split("Widget")[0].count("\n")
+    assert run(tmp_path, {name: text}) == [f"{name}:{line}: observed token #1"]
 
 
 def test_single_quoted_docstring_beside_a_comment_is_prose_but_code_literals_are_not(tmp_path):
@@ -225,3 +230,14 @@ def test_markdown_link_destinations_are_masked(tmp_path):
     assert run(tmp_path, {"doc/a.md": "See [details](Design/acmepipe-notes.md); trial notes.\n"}) == []
     findings = run(tmp_path / "t", {"doc/a.md": "See [Acmepipe](Design/notes.md); it was observed.\n"})
     assert findings == ["doc/a.md:1: name #1 near observation marker #1"]
+
+
+def test_concatenated_docstring_fragments_join(tmp_path):
+    code = "def helper():\n    'Widget ' 'overflow at startup.'\n"
+    assert run(tmp_path, {"pkg/mod.py": code}) == ["pkg/mod.py:2: observed token #1"]
+
+
+@pytest.mark.parametrize("text", ["Widget **overflow** at startup.\n", "> Widget\n> overflow at startup.\n",
+                                  "Widget `overflow` _at_ startup.\n"])
+def test_markdown_formatting_does_not_hide_a_phrase(tmp_path, text):
+    assert run(tmp_path, {"doc/a.md": text}) == ["doc/a.md:1: observed token #1"]
