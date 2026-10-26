@@ -174,7 +174,7 @@ class, the evidence, and the deliverables. Paths are under
 
 | ID (PRD line) | Pri | Class | Evidence | Deliverables | Notes |
 |---|---|---|---|---|---|
-| FR-MOD-001 (476) | Must | P | **Store:** desktop `lib.rs:2432` save, `:1189` load. **Tests:** desktop `lib.rs:6283,6338,6510,7565`; `e2e/b3b-project-persistence.spec.ts`. **Schema:** `schemas/model.schema.yaml` describes the 0.7.0 document; `tests/test_model_document_schema.py:247,254` validates the bundled demo and e2e documents against it | DEL-02-05, DEL-02-01, DEL-00-04 | Tags, notes, assumptions and rule-pack references have 0.7.0 slots (#1564) and are authored in the desktop (#1565). File › Save Model Document… saves the document to a file (W-6a, #1588). Nothing validates against the schema at run time. |
+| FR-MOD-001 (476) | Must | P | **Store:** desktop `lib.rs` `save_local_project` (`:2580`), `open_local_project` (`:2515`). **Tests:** desktop `lib.rs` `local_project_store_uses_sqlite_fts5_and_round_trips_model_snapshot` (`:6678`), `save_local_project_round_trips_every_slot_and_refuses_malformed_slots` (`:7943`); `e2e/b3b-project-persistence.spec.ts`. **Schema:** `schemas/model.schema.yaml` describes the 0.7.0 document; `tests/test_model_document_schema.py` `test_current_documents_validate_against_the_format` (`:256-260`) validates the bundled demo and e2e documents against it | DEL-02-05, DEL-02-01, DEL-00-04 | Tags, notes, assumptions and rule-pack references have 0.7.0 slots (#1564) and are authored in the desktop (#1565). File › Save Model Document… saves the document to a file (W-6a, #1588). Nothing validates against the schema at run time. |
 | FR-MOD-002 (477) | Must | P | Typed entities in PP `lib.rs:367,382,449,578,657` | DEL-02-01 | Lines, constraints and equipment interfaces have 0.7.0 slots as typed records without evaluation (#1564), authored in the Model tree and the Model records tab (#1565). |
 | FR-MOD-003 (478) | Must | D | Identity changes refused: `operation_applier/src/rich_authoring.rs:1092`, test `:864`; `atomic_batch.rs:690`; reconnect keeps ids (`pipe_reconnect.rs`) | DEL-02-01, DEL-16-06 | No all-operations id-survival test. |
 | FR-MOD-004 (479) | Must | P | Only `project.name` and entity `label` | DEL-02-01 | Tags and notes have 0.7.0 slots (#1564), authored in the inspector for every entity and the project (#1565). |
@@ -211,11 +211,11 @@ class, the evidence, and the deliverables. Paths are under
 | ID (PRD line) | Pri | Class | Evidence | Deliverables | Notes |
 |---|---|---|---|---|---|
 | FR-SOL-001 (510) | Must | D | `core/solver/frame_kernel/src/lib.rs:17,1591`; t3_r1 references | DEL-04-01 | Both routes. |
-| FR-SOL-002 (511) | Must | P | `validation/benchmarks/mechanics/src/lib.rs:934,963,1693`; W9-A (both routes), W9-C | DEL-04-01, DEL-09-01 | Beams, frames, transforms and thermal pass on both routes. The imposed-displacement benchmarks (W9-C, `mechanics/src/lib.rs:948`) run on EX only, because PF refuses support motion (FR-SOL-006). #1615 (open) runs the settlement benchmark on PF. |
+| FR-SOL-002 (511) | Must | P | `validation/benchmarks/mechanics/src/lib.rs:934,963,1693`; W9-A (both routes), W9-C | DEL-04-01, DEL-09-01 | Beams, frames, transforms and thermal pass on both routes. The imposed-displacement benchmark (W9-C, route witness `core/product_physics/tests/w9_solver_benchmarks.rs` `w9_c_l_frame_anchor_settlement_exact_route`, `:413`) runs on EX only, because PF refuses support motion (FR-SOL-006). #1615 (open) runs the settlement benchmark on PF. |
 | FR-SOL-003 (512) | Must | D | `core/solver/straight_pipe`; `self_weight.rs:505-512`; `STRESS-*` | DEL-04-02, DEL-05-03 | PF Euler–Bernoulli; EX adds Timoshenko. |
 | FR-SOL-004 (513) | Must | P | DEC-045 stiffness scaling of the mapped member on both routes (PP `rigid_component.rs`, `lib.rs` member formation; W-15 a+d, #1604); EX admits valve, flange, rigid and specialty and refuses reducers in pressure regions (`exact_admission.rs`); rigid-link benchmark against independent references (`validation/references/` W-15 package; `tests/w15_rigid_scaling_benchmarks.rs`) | DEL-03-05 | Offsets exist only on connectors and tie rods; the eccentric reducer offset is slice c (with the 0.8.0 document). |
 | FR-SOL-005 (514) | Must | D | `core/solver/linear_supports`; PP `lib.rs:2741`; EX admits linear restraints and springs (`exact_admission.rs:295-305`) | DEL-04-03 | Both routes. |
-| FR-SOL-006 (515) | Must | P | EX applies `boundary_motion` (`exact_admission.rs:106`; W9-C `tests/w9_solver_benchmarks.rs:413`). PF refuses support-targeted loads (`preview_physics.rs:1041-1093`, `IMPOSED_DISPLACEMENT_REQUIRES_LOAD_STATE_MODEL`) | DEL-04-03, DEL-04-07, DEL-05-01, DEL-05-05 | Owner (OD-6 row 2): build on PF in two stages (`DEL-04-07 Design/pressure-contract.md`, "Imposed displacement on the pressure-free route"). Stage 1 is #1615 (open; DEL-04-03 Design `pf-imposed-displacement.md`); the stage 2 design is #1618 (open, stacked on #1615). |
+| FR-SOL-006 (515) | Must | P | EX applies support motion (W9-C route witness `core/product_physics/tests/w9_solver_benchmarks.rs` `w9_c_l_frame_anchor_settlement_exact_route`, `:413`). PF refuses support-targeted loads (`preview_physics.rs` `imposed_displacement_refusal`, `:1093`; diagnostic `IMPOSED_DISPLACEMENT_REQUIRES_LOAD_STATE_MODEL`, `:1136`) | DEL-04-03, DEL-04-07, DEL-05-01, DEL-05-05 | Owner (OD-6 row 2): build on PF in two stages (`DEL-04-07 Design/pressure-contract.md`, "Imposed displacement on the pressure-free route"). Stage 1 is #1615 (open; DEL-04-03 Design `pf-imposed-displacement.md`); the stage 2 design is #1618 (open, stacked on #1615). |
 | FR-SOL-007 (516) | Must | D | Straight pipes and realized bends publish twelve global end rows per member and case (`element_global_end_force_v1`, `element_global_end_moment_v1`) beside their `element_local` rows on PF and EX, each F = Rᵀ f from the published local end rows (PP `lib.rs:12350` `append_element_global_end_results`, called at `:6551`); the readers check them (`result_export/src/global_end_evidence.rs`); tests `core/product_physics/tests/global_end_actions_runtime.rs` (both routes and modes: rotation, nodal balance, bend ends, EX wall axial, PF combinations, readers) and `tests/test_global_end_verifier.py`. Connectors publish global end actions (`:4511`) | DEL-04-01 | Design `global-end-actions.md` (REQ-004, the transform). Source-recovery publications omit the rows by the named rule `global_end_rows_published`. The dormant retained route carries them as named not-covered rows, re-registered in DEL-04-08 §8.20. |
 | FR-SOL-008 (517) | Must | D | `core/loads/stress_recovery`; `tests/t4_u6_section_bases.rs:270` | DEL-05-03 | Pressure stresses exist where pressure exists (EX). |
 | FR-SOL-009 (518) | Must | P | `core/loads/load_case_algebra`; `preview_physics_runtime.rs:597,682,709` | DEL-05-02 | EX refuses every combination (`pressure_runtime.rs:337-343`; `exact_admission.rs:229`). |
@@ -243,10 +243,10 @@ class, the evidence, and the deliverables. Paths are under
 | FR-RULE-005 (534) | Must | D | `LibraryManagerPanel.tsx`; desktop `lib.rs:8593`; `tests/test_library_import_provenance.py`; `LibraryApplySection.tsx`, `libraryApply.ts`, applier `library_apply.rs`; tests `libraryApply.test.ts`, `operation_applier/tests/library_apply.rs` | DEL-03-01, DEL-03-07 | Records feed rule checks (desktop `lib.rs:3029`). Applying them to model entities (#1566): stored material and section records insert as new entities or apply to the selected one through one reviewed batch with one undo (material E/ν or E/G mode; a section apply updates its bound pipes). |
 | FR-RULE-006 (535) | Should | D | Same panel, component kind; `libraryApply.ts` `buildComponentApply` | DEL-03-02, DEL-03-07 | Applying records (#1566): stored component records apply to an existing component of the matching kind by a fixed source-kind table (apply only; no insert). |
 | FR-RULE-007 (536) | Must | D | `tests/test_invented_example_models.py`; `examples/rule_packs/invented_demo.yaml` | DEL-11-04, DEL-06-05 | |
-| FR-REP-001 (578) | Must | P | W-3: local-private render (`RenderedReportPanel.tsx`, `reportRenderService.ts`); rule-pack refs, user-rule outcomes, versions, date, settings and coordinate systems (`renderableReportInput.ts`; renderer test `render.rs:321`). Observed natively (§5). W-18 b2 (#1616): Save Report Package for a Current PF result (`reportPackageRequest.ts`) | DEL-08-01, DEL-08-06 | A public render is blocked for every session (provenance hard-coded private, `renderableReportInput.ts` `sessionProvenance`); the per-report user release (W-18b) is designed (#1622), not built. EX refused for the render and the package (10A); W-11 (a) (#1632) and (b) (#1637) build its sections and admission behind the gate. `assumptions: []`; build id and model coordinates "not recorded"; library refs are W-11 (c) (#1639, open). |
+| FR-REP-001 (578) | Must | P | W-3: local-private render (`RenderedReportPanel.tsx`, `reportRenderService.ts`); rule-pack refs, user-rule outcomes, versions, date, settings and coordinate systems (`renderableReportInput.ts`; renderer test `render.rs` `report_context_renders_prd_19_2_identity_settings_and_coordinate_rows`, `:326`). Observed natively (§5). W-18 b2 (#1616): Save Report Package for a Current PF result (`reportPackageRequest.ts`) | DEL-08-01, DEL-08-06 | A public render is blocked for every session (provenance hard-coded private, `renderableReportInput.ts` `sessionProvenance`); the per-report user release (W-18b) is designed (#1622), not built. EX refused for the render and the package (10A); W-11 (a) (#1632) and (b) (#1637) build its sections and admission behind the gate. `assumptions: []`; build id and model coordinates "not recorded"; library refs are W-11 (c) (#1639, open). |
 | FR-REP-002 (579) | Must | P | Rule-check section `report_renderer/src/lib.rs:845-904`; §19.3 notice and human-review record `:954-990`; test `render.rs:390` | DEL-08-01 | Reached only in the local-private PF render. |
-| FR-REP-003 (580) | Must | P | Provenance notes for session, components and spring hangers (`renderableReportInput.ts:537-545`) | DEL-08-03 | Materials, sections and library records absent. W-11 (c) adds them on every route (#1639, open; DEL-08-01 Design `exact-route-report-sections.md` §4). |
-| FR-REP-004 (581) | Should | P | Within-run comparison summary (`ReportPanel.tsx:210-214,663-665`) | DEL-08-06 | No comparison section in the renderer. The local private package for a Current PF result carries the chosen within-run comparison context in its state, comparison and handoff sections (W-18 b2, #1616); EX packages are refused. |
+| FR-REP-003 (580) | Must | P | Provenance notes for session, components and spring hangers (`renderableReportInput.ts` `provenance_notes`, `:560-563`) | DEL-08-03 | Materials, sections and library records absent. W-11 (c) adds them on every route (#1639, open; DEL-08-01 Design `exact-route-report-sections.md` §4). |
+| FR-REP-004 (581) | Should | P | Within-run comparison summary: the Comparison line (`ReportPanel.tsx` `reportComparisonLine`, `:224-229`) and the JSON comparison fields (`reportComparisonFields`, `:679`); package placement `stateComparisonHandoffSections.ts:220-238` | DEL-08-06 | No comparison section in the renderer. The local private package for a Current PF result (#1616) carries the selected within-run comparison (#1619) in `state_comparison_handoff_records[].sections.comparison_sections`, or records `comparison_unavailable` beside `sections`; `handoff_sections` is empty. EX packages remain refused. |
 | FR-REP-005 (582) | Must | D | `core/reporting/protected_content_linter`; `tests/test_report_protected_content_linter.py` | DEL-08-05 | |
 | §19.1 report types (no row before) | — | P | — | DEL-08-06 | No state-comparison, run-comparison or handoff-manifest report a user can reach. |
 | FR-HAND-001 (558) | Must | P | W-6a: File › Save Model Document… saves the canonical model document on either route with no solve (`modelDocumentSave.ts`, `model_document_save.rs`); `HandoffPanel.tsx:211-283`, `NativePackagePanel.tsx:217-229` produce preview documents; `core/handoff/exporter/workflow.py:57` is called only by tests | DEL-15-01, DEL-15-03, DEL-17-03, DEL-07-12 | W-6b: File › Save Handoff… writes a verified directory package (model member plus schema manifest) on a saved model state (`handoff_package.rs`, `handoffPackageSave.ts`). Runs are not referenced in v0.1 (`AnalysisRunRef` const). A stored project or state refused at open exports through the recovery export (#1631). Both saves read referenced libraries without a memory lease; #1641 (open) meters them. The preview panel needs a solved PF result; EX refused (10A). |
@@ -316,27 +316,37 @@ This map has 35 P, 41 D (including one bounded and one at repository level),
   FR-SOL-015 now includes the health indicator.
 
 **§23 MVP items:**
-- **In the desktop:** 27 of 28 items. Imposed displacement works on EX only;
-  combinations on PF only; the validation suite is headless. Rigid elements
+- **Implemented:** 27 of 28 items, 26 with desktop paths and the initial
+  validation suite headless (`ValidationEvidencePanel` shows an inventory and
+  does not run it). Imposed displacement works on EX only; combinations on PF
+  only. Rigid elements
   are DEC-045 stiffness scaling with component weight on both routes (W-15 a, b
   and d: #1604, #1608), without the eccentric reducer offset (W-15 c).
   Canonical model package export is File › Save Model Document… (W-6a, #1588)
   and File › Save Handoff… (W-6b, #1600), without run references.
-- **Partly in the desktop:** basic report generation. The local private PF
+- **Partly available in the desktop:** basic report generation. The local private PF
   render (W-3) and the local private PF report package (W-18 b2, #1616) exist;
   EX reports stay behind the gate (W-11 a and b: #1632, #1637), and no report
   is shareable (W-18b designed, #1622).
 
-**§24 milestones, factually:**
-- **R0:** met.
+**§24 milestones, factually.** Each entry says which of the milestone's
+deliverables exist. Milestone judgment is the owner's; this map records none.
+- **R0:** its deliverables exist: the model schema and unit system, the
+  straight element, the linear solver, the headless runner's command line, and
+  the cantilever and fixed-fixed thermal benchmarks (§2.1, §2.3).
 - **R1:** partly. Rigid elements are DEC-045 stiffness scaling with component
   weight (W-15 a, b and d: #1604, #1608), and §22.2 has the rigid link (#1604);
   the eccentric reducer offset remains (W-15 c). Imposed displacement passes
   on EX only (FR-SOL-002; #1615, open).
-- **R2:** ruled met under v0.1 tokens (D-14/DEC-035). The native smoke now runs
-  a GUI-authored model through solve, review, save and reopen (W-4).
+- **R2:** DEC-035 (D-14) advanced the target stage to R3 while reserving the
+  R2 milestone judgment for the human (`execution/_Decomposition/SOFTWARE_DECOMP.md:645`).
+  The native smoke now runs a GUI-authored model through solve, review, save
+  and reopen (W-4).
 - **R3 (States, Runs, Comparison):** partly. States, run history and basic state and run comparison are in the desktop (v0.1 by OD-1; W-12 S1–S3c). Mapping editor/manual mappings, tolerance profiles, graphical diffs and comparison export remain in v0.2 R3.
-- **R4** and **R5:** met as v0.1 R3/R4 (D-23/DEC-048, D-27/DEC-054). A report
+- **R4** and **R5:** DEC-048 (D-23) accepted exit evidence for target-stage
+  advancement; DEC-054 (D-27) accepted a conditional R4 gate, with §16.2/§16.5
+  evidence obligations remaining (`SOFTWARE_DECOMP.md:658,664`). These
+  historical rulings do not establish current milestone acceptance. A report
   is obtainable only as a local private PF document or package (W-3; W-18 b2,
   #1616).
 - **R6:** partly. Design knowledge is deferred (OD-3); no fresh reproduction
