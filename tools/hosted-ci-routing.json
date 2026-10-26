@@ -286,7 +286,7 @@
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "8225c3d9988cdc79a7b366f78d3881a19c4f0a4922db90ada295c97d5152f1e2",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "4053cdf5ce9ec1a8a4f5e6443642690a6765973b2115477349a331787471be42",
+      "core/product_physics/Cargo.toml": "95419b4afd64027c82623780b015e67af9a073da2d6d5f42def2a0533e3cb050",
       "core/reporting/audit_manifest/Cargo.toml": "b8bc4623a383ed2c22205326bc737486becd9d931bf869e1e8cf40e147f4fad7",
       "core/reporting/pdf_emitter/Cargo.toml": "2683fe2c51222fcaa4da2a793a14cc1c9af376bf0e1676eaef932ebd35a79250",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
@@ -2515,6 +2515,7 @@
               "core/product_physics/src/u4b_tests.rs",
               "core/product_physics/src/validation.rs",
               "core/product_physics/src/w15_rigid_scaling_tests.rs",
+              "core/product_physics/src/w16_nonlinear_motion_tests.rs",
               "core/product_physics/src/w1_census_driver.rs",
               "core/product_physics/src/w1_coverage_census_tests.rs",
               "core/product_physics/src/w1_domain_stage1_tests.rs",
@@ -3719,7 +3720,7 @@
         }
       },
       "core/solver/nonlinear_integration/src/s11k_tests.rs": {
-        "sha256": "d73ddc5f48ae5e97a01efb1fbb5260dad500f730132051c951d09fe39569041b",
+        "sha256": "0d3fb0e3058de0f4a93eefb30107495ce42d89e9cf4d84b8f2cf9d9d6dca4d0c",
         "source_trees": [
           "core/loads/self_weight_wasm/Cargo.toml",
           "core/model_operations/operation_applier/Cargo.toml",
@@ -3817,6 +3818,7 @@
               "core/product_physics/src/u4b_tests.rs",
               "core/product_physics/src/validation.rs",
               "core/product_physics/src/w15_rigid_scaling_tests.rs",
+              "core/product_physics/src/w16_nonlinear_motion_tests.rs",
               "core/product_physics/src/w1_census_driver.rs",
               "core/product_physics/src/w1_coverage_census_tests.rs",
               "core/product_physics/src/w1_domain_stage1_tests.rs",
@@ -3894,7 +3896,7 @@
         ]
       },
       "core/solver/nonlinear_integration/src/structural_adapter/k5_tests.rs": {
-        "sha256": "8ca0af7e032794051b26dcb9eec654584afba9b30903d8382a63ae7546220887",
+        "sha256": "2e915f093f8e365d6c0289986de063c687937ad1695d73824ef422784231b662",
         "source_trees": [
           "core/loads/self_weight_wasm/Cargo.toml",
           "core/model_operations/operation_applier/Cargo.toml",
@@ -3992,6 +3994,7 @@
               "core/product_physics/src/u4b_tests.rs",
               "core/product_physics/src/validation.rs",
               "core/product_physics/src/w15_rigid_scaling_tests.rs",
+              "core/product_physics/src/w16_nonlinear_motion_tests.rs",
               "core/product_physics/src/w1_census_driver.rs",
               "core/product_physics/src/w1_coverage_census_tests.rs",
               "core/product_physics/src/w1_domain_stage1_tests.rs",
