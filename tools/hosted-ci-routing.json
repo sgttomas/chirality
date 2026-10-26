@@ -2388,6 +2388,7 @@
               "apps/desktop/src-tauri/src/report_package_save.rs",
               "apps/desktop/src-tauri/src/report_render_exact.rs",
               "apps/desktop/src-tauri/src/report_render_exact_tests.rs",
+              "apps/desktop/src-tauri/src/rule_check_object_form_tests.rs",
               "apps/desktop/src-tauri/src/rule_solver_selection.rs",
               "apps/desktop/src-tauri/src/rule_solver_selection_tests.rs",
               "apps/desktop/src-tauri/src/solve_jobs.rs",
