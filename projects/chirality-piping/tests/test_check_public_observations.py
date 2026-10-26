@@ -11,6 +11,8 @@ from pathlib import Path
 import subprocess
 import sys
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -93,7 +95,7 @@ def test_code_literals_pass_but_comments_and_test_names_are_prose(tmp_path):
             "def test_acmepipe_trial_quirk():\n"
             "    pass\n")
     findings = run(tmp_path, {"pkg/mod.py": code})
-    assert {item.split(":")[1] for item in findings} == {"2"}
+    assert {item.split(":")[1] for item in findings} == {"2", "3"}
     findings = run(tmp_path / "t", {"tests/test_mod.py": "def test_widget_overflow_at_start():\n    pass\n"})
     assert any("observed token #1" in item for item in findings)
 
@@ -133,3 +135,51 @@ def test_whole_file_mode_and_exit_codes(tmp_path):
     assert check.main(["--terms-file", str(terms), "--file", str(clean)]) == 0
     assert check.main(["--terms-file", str(terms), "--file", str(dirty)]) == 1
     assert check.main(["--terms-file", str(tmp_path / "missing.txt"), "--file", str(clean)]) == 2
+
+
+def test_names_match_in_any_case(tmp_path):
+    findings = run(tmp_path, {"doc/a.md": "ACMEPIPE was observed.\nacme labs trial notes.\n"})
+    assert {item.split(":")[1] for item in findings} == {"1", "2"}
+
+
+def test_added_line_is_screened_against_unchanged_context(tmp_path):
+    repo = repo_with(tmp_path, {"doc/a.md": "The Acmepipe manual documents batch runs.\n"})
+    (repo / "doc/a.md").write_text("The Acmepipe manual documents batch runs.\nIt was observed to stop.\n",
+                                   encoding="utf-8")
+    git(repo, "commit", "-q", "-am", "more")
+    findings = check.check_range(repo, "main", "topic", check.load_terms(write_terms(tmp_path)))
+    assert findings == ["doc/a.md:1: name #1 near observation marker #1"]
+
+
+def test_unchanged_findings_are_not_reported(tmp_path):
+    repo = repo_with(tmp_path, {"doc/a.md": "Acmepipe was observed.\n\n\nGeneric.\n"})
+    git(repo, "branch", "-f", "main", "topic")
+    (repo / "doc/a.md").write_text("Acmepipe was observed.\n\n\nGeneric.\nMore generic text.\n", encoding="utf-8")
+    git(repo, "commit", "-q", "-am", "more")
+    assert check.check_range(repo, "main", "topic", check.load_terms(write_terms(tmp_path))) == []
+
+
+def test_tokens_and_names_wrapped_across_lines_match(tmp_path):
+    findings = run(tmp_path, {"doc/a.md": "It printed Widget\n  overflow at startup.\nThe Acme\nLabs build was observed.\n"})
+    assert "doc/a.md:1: observed token #1" in findings
+    assert any(item.startswith("doc/a.md:3: name #2") for item in findings)
+
+
+def test_non_ascii_and_quoted_file_names_are_screened(tmp_path):
+    findings = run(tmp_path, {"doc/na\u00efve \"notes\".md": "Acmepipe was observed.\n"})
+    assert findings and all(item.startswith('doc/na\u00efve "notes".md:1:') for item in findings)
+
+
+def test_one_line_single_quoted_docstring_is_prose(tmp_path):
+    code = "def helper():\n    'Acmepipe trial quirk.'\n    return 1\n"
+    findings = run(tmp_path, {"pkg/mod.py": code})
+    assert {item.split(":")[1] for item in findings} == {"2"}
+
+
+def test_owner_words_keep_text_outside_the_span_and_reject_unpaired_markers(tmp_path):
+    text = '<!-- owner-words -->"Acmepipe trial."<!-- /owner-words --> Acmepipe was observed.\n'
+    assert run(tmp_path, {"doc/a.md": text}) == ["doc/a.md:1: name #1 near observation marker #1"]
+    with pytest.raises(ValueError):
+        run(tmp_path / "u", {"doc/a.md": "<!-- owner-words -->\nAcmepipe was observed.\n"})
+    with pytest.raises(ValueError):
+        run(tmp_path / "c", {"doc/a.md": "Acmepipe was observed.\n<!-- /owner-words -->\n"})

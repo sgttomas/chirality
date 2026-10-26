@@ -1006,7 +1006,7 @@ def test_shear_series_definition_matches_the_cases_and_is_resolvable_at_print_re
         assert hand_calcs.CANTILEVER_SPANS[member["case_id"]] == member["span"]
         assert any(item["hypothesis"] == "shear-deformation" and "n1_uy" in item["applies_to"]
                    for item in case["declared_differences"])
-    # Worst-case print rounding (5e-7 m on the CAEPIPE value) of the shape-factor-2 gaps moves the endpoint
+    # Worst-case print rounding (5e-7 m on the external prover's value) of the shape-factor-2 gaps moves the endpoint
     # slope by about 0.011, well inside the 0.05 tolerance; at shape factor 1 (half the gap) by about 0.021.
     spans = sorted(member["span"] for member in definition["members"])
     gaps = {span: abs(hand_calcs.cantilever_timoshenko(span)["n1_uy"]["value"]

@@ -12,11 +12,14 @@ Terms file sections (one term per line, `#` comments and blank lines ignored):
 - `[markers]`: words that mark an observation (blocked when a name sits within one line of one);
 - `[tokens]`: distinctive observed strings, blocked wherever they appear in prose.
 
-Prose is every added line of a non-code file, and in code files (Python, PowerShell, TypeScript, Rust) only
+Prose is every line of a non-code file, and in code files (Python, PowerShell, TypeScript, Rust) only
 comments, docstrings and test function names: code may implement the behaviour it needs. Fixture CSV data
 counts as code. In tests and fixtures, observed tokens that carry a product name are blocked on every line.
-Paths are not screened. Commit messages in `--base..--head` and any `--file` given whole are prose too. In Markdown, the
-owner's verbatim words between `<!-- owner-words -->` and `<!-- /owner-words -->` are not screened.
+Names and markers match regardless of case. Consecutive prose lines are read as one text, so a term wrapped
+across lines still matches; a change is screened in the context of its whole file, and a finding is reported
+when a match involves an added line. Paths are not screened. Commit messages in `--base..--head` and any
+`--file` given whole are prose too. In Markdown, the owner's verbatim words between `<!-- owner-words -->` and
+`<!-- /owner-words -->` are not screened; an unpaired marker is an operational error.
 
 Exit 1 on a finding, 2 on an operational error, 0 otherwise.
 """
@@ -24,6 +27,8 @@ Exit 1 on a finding, 2 on an operational error, 0 otherwise.
 from __future__ import annotations
 
 import argparse
+import ast
+import bisect
 import io
 import re
 import subprocess
@@ -53,9 +58,17 @@ def load_terms(path: Path) -> dict[str, list[str]]:
     return terms
 
 
-def _word(term: str, *, case: bool = False) -> re.Pattern[str]:
+def _normal(text: str) -> str:
+    return " ".join(text.split())
+
+
+def _word(term: str) -> re.Pattern[str]:
     # Identifier characters bound a term, so code paths and identifiers (`caepipe_mbf`) never match a name.
-    return re.compile(r"(?<![A-Za-z0-9_])" + re.escape(term) + r"(?![A-Za-z0-9_])", 0 if case else re.IGNORECASE)
+    return re.compile(r"(?<![A-Za-z0-9_])" + re.escape(_normal(term)) + r"(?![A-Za-z0-9_])", re.IGNORECASE)
+
+
+def _phrase(term: str) -> re.Pattern[str]:
+    return re.compile(re.escape(_normal(term)), re.IGNORECASE)
 
 
 def python_prose_lines(text: str) -> dict[int, str]:
@@ -64,7 +77,8 @@ def python_prose_lines(text: str) -> dict[int, str]:
     prose: dict[int, str] = {}
     try:
         tokens = list(tokenize.generate_tokens(io.StringIO(text).readline))
-    except (tokenize.TokenError, IndentationError, SyntaxError):
+        ast.parse(text)
+    except (tokenize.TokenError, IndentationError, SyntaxError, ValueError):
         return {number: line for number, line in enumerate(text.splitlines(), 1)}
     previous = None
     for token in tokens:
@@ -79,6 +93,16 @@ def python_prose_lines(text: str) -> dict[int, str]:
             prose[token.start[0]] = prose.get(token.start[0], "") + " " + token.string.replace("_", " ")
         if token.type not in (tokenize.NL, tokenize.NEWLINE, tokenize.INDENT, tokenize.DEDENT):
             previous = token
+    # Docstrings in any quoting (a one-line single-quoted docstring is not triple-quoted).
+    source = text.splitlines()
+    for node in ast.walk(ast.parse(text)):
+        if isinstance(node, (ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)) and node.body:
+            first = node.body[0]
+            if isinstance(first, ast.Expr) and isinstance(first.value, ast.Constant) \
+                    and isinstance(first.value.value, str):
+                for number in range(first.lineno, first.end_lineno + 1):
+                    if number not in prose:
+                        prose[number] = source[number - 1]
     return prose
 
 
@@ -128,18 +152,28 @@ OWNER_WORDS_CLOSE = "<!-- /owner-words -->"
 
 
 def _without_owner_words(lines: dict[int, str]) -> dict[int, str]:
-    """Drop lines between owner-words markers: the owner's verbatim words are quoted, not observations."""
+    """Drop the text between owner-words markers: the owner's verbatim words are quoted, not observations.
+    Text outside a marked span, on the marker lines too, is kept; an unpaired marker raises ValueError."""
 
     kept: dict[int, str] = {}
     inside = False
     for number in sorted(lines):
-        line = lines[number]
-        if OWNER_WORDS_OPEN in line:
-            inside = True
-        if not inside:
-            kept[number] = line
-        if OWNER_WORDS_CLOSE in line:
-            inside = False
+        line, out = lines[number], ""
+        while line:
+            marker = OWNER_WORDS_CLOSE if inside else OWNER_WORDS_OPEN
+            other = OWNER_WORDS_OPEN if inside else OWNER_WORDS_CLOSE
+            at, stray = line.find(marker), line.find(other)
+            if stray != -1 and (at == -1 or stray < at):
+                raise ValueError("unpaired owner-words marker")
+            if at == -1:
+                out += "" if inside else line
+                break
+            out += "" if inside else line[:at] + " "
+            line, inside = line[at + len(marker):], not inside
+        if out.strip():
+            kept[number] = out
+    if inside:
+        raise ValueError("unpaired owner-words marker")
     return kept
 
 
@@ -154,25 +188,64 @@ def prose_of(path: str, text: str) -> dict[int, str]:
     return {number: line for number, line in enumerate(text.splitlines(), 1)}
 
 
-def scan(label: str, lines: dict[int, str], terms: dict[str, list[str]]) -> list[str]:
+def _runs(lines: dict[int, str]) -> list[tuple[str, list[int], list[int]]]:
+    """Consecutive lines joined into one whitespace-normalized text, with each line's start offset."""
+
+    runs: list[tuple[str, list[int], list[int]]] = []
+    numbers, starts, text = [], [], ""
+    for number in sorted(lines):
+        if numbers and number != numbers[-1] + 1:
+            runs.append((text, numbers, starts))
+            numbers, starts, text = [], [], ""
+        piece = _normal(lines[number])
+        if text and piece:
+            text += " "
+        numbers.append(number)
+        starts.append(len(text))
+        text += piece
+    if numbers:
+        runs.append((text, numbers, starts))
+    return runs
+
+
+def _span(numbers: list[int], starts: list[int], match: re.Match[str]) -> list[int]:
+    first = bisect.bisect_right(starts, match.start()) - 1
+    last = bisect.bisect_right(starts, max(match.start(), match.end() - 1)) - 1
+    return numbers[first:last + 1]
+
+
+def _token_findings(label: str, lines: dict[int, str], tokens: list[tuple[int, str]], added: set[int] | None,
+                    kind: str) -> list[str]:
     findings: list[str] = []
-    tokens = [(index, term.lower()) for index, term in enumerate(terms["tokens"], 1)]
-    names = [(index, _word(term, case=True)) for index, term in enumerate(terms["names"], 1)]
-    markers = [(index, _word(term)) for index, term in enumerate(terms["markers"], 1)]
-    numbers = sorted(lines)
-    for number in numbers:
-        text = lines[number]
-        lowered = text.lower()
+    for text, numbers, starts in _runs(lines):
         for index, term in tokens:
-            if term in lowered:
-                findings.append(f"{label}:{number}: observed token #{index}")
+            for match in _phrase(term).finditer(text):
+                span = _span(numbers, starts, match)
+                if added is None or added.intersection(span):
+                    findings.append(f"{label}:{span[0]}: {kind} #{index}")
+    return findings
+
+
+def scan(label: str, lines: dict[int, str], terms: dict[str, list[str]], added: set[int] | None = None) -> list[str]:
+    """Findings in `lines` (the whole prose); with `added`, only matches that involve an added line."""
+
+    findings = _token_findings(label, lines, list(enumerate(terms["tokens"], 1)), added, "observed token")
+    names = [(index, _word(term)) for index, term in enumerate(terms["names"], 1)]
+    markers = [(index, _word(term)) for index, term in enumerate(terms["markers"], 1)]
+    for text, numbers, starts in _runs(lines):
+        marker_spans = [(index, _span(numbers, starts, match))
+                        for index, pattern in markers for match in pattern.finditer(text)]
         for name_index, pattern in names:
-            if not pattern.search(text):
-                continue
-            window = " ".join(lines.get(n, "") for n in (number - 1, number, number + 1))
-            for marker_index, marker in markers:
-                if marker.search(window):
-                    findings.append(f"{label}:{number}: name #{name_index} near observation marker #{marker_index}")
+            for match in pattern.finditer(text):
+                name_span = _span(numbers, starts, match)
+                low, high = name_span[0] - 1, name_span[-1] + 1
+                for marker_index, marker_span in marker_spans:
+                    if marker_span[-1] < low or marker_span[0] > high:
+                        continue
+                    if added is None or added.intersection(name_span + marker_span):
+                        finding = f"{label}:{name_span[0]}: name #{name_index} near observation marker #{marker_index}"
+                        if finding not in findings:
+                            findings.append(finding)
     return findings
 
 
@@ -181,28 +254,30 @@ def _git(repo: Path, *args: str) -> str:
 
 
 def added_line_numbers(repo: Path, base: str, head: str) -> dict[str, set[int]]:
-    diff = _git(repo, "diff", "--unified=0", "--no-color", "--no-renames", f"{base}...{head}")
+    # Paths come NUL-separated and are passed back literally, so quoted or non-ASCII names are never misparsed.
+    paths = [path for path in _git(repo, "diff", "-z", "--name-only", "--no-renames", "--diff-filter=d",
+                                   f"{base}...{head}").split("\0") if path]
     added: dict[str, set[int]] = {}
-    path = None
-    for line in diff.splitlines():
-        if line.startswith("+++ "):
-            path = None if line[4:] == "/dev/null" else line[6:]
-        elif line.startswith("@@") and path is not None:
+    for path in paths:
+        diff = _git(repo, "--literal-pathspecs", "diff", "--unified=0", "--no-color", "--no-renames",
+                    f"{base}...{head}", "--", path)
+        for line in diff.splitlines():
             match = re.match(r"@@ -\S+ \+(\d+)(?:,(\d+))? @@", line)
-            start, count = int(match.group(1)), int(match.group(2) or "1")
-            added.setdefault(path, set()).update(range(start, start + count))
-    return added
+            if match:
+                start, count = int(match.group(1)), int(match.group(2) or "1")
+                added.setdefault(path, set()).update(range(start, start + count))
+    return {path: numbers for path, numbers in added.items() if numbers}
 
 
-def scan_named_tokens(label: str, lines: dict[int, str], terms: dict[str, list[str]]) -> list[str]:
+def scan_named_tokens(label: str, lines: dict[int, str], terms: dict[str, list[str]],
+                      added: set[int] | None = None) -> list[str]:
     """Observed tokens that carry a product name, on every line: test data and fixtures may hold observed
     layouts, never the product's own label."""
 
-    names = [_word(term, case=True) for term in terms["names"]]
-    named = [(index, term.lower()) for index, term in enumerate(terms["tokens"], 1)
-             if any(pattern.search(term) for pattern in names)]
-    return [f"{label}:{number}: named observed token #{index}"
-            for number in sorted(lines) for index, term in named if term in lines[number].lower()]
+    names = [_word(term) for term in terms["names"]]
+    named = [(index, term) for index, term in enumerate(terms["tokens"], 1)
+             if any(pattern.search(_normal(term)) for pattern in names)]
+    return _token_findings(label, lines, named, added, "named observed token")
 
 
 def _data_path(path: str) -> bool:
@@ -214,17 +289,12 @@ def check_range(repo: Path, base: str, head: str, terms: dict[str, list[str]],
                 messages_base: str | None = None) -> list[str]:
     findings: list[str] = []
     for path, numbers in sorted(added_line_numbers(repo, base, head).items()):
-        try:
-            text = _git(repo, "show", f"{head}:{path}")
-        except subprocess.CalledProcessError:
-            continue
+        text = _git(repo, "show", f"{head}:{path}")
         # A fixture data file (CSV) is consumed by code like code itself; only the named-token rule applies.
         if not (_data_path(path) and Path(path).suffix.lower() == ".csv"):
-            prose = prose_of(path, text)
-            findings += scan(path, {n: prose[n] for n in numbers if n in prose}, terms)
+            findings += scan(path, prose_of(path, text), terms, numbers)
         if _data_path(path):
-            all_lines = dict(enumerate(text.splitlines(), 1))
-            findings += scan_named_tokens(path, {n: all_lines[n] for n in numbers if n in all_lines}, terms)
+            findings += scan_named_tokens(path, dict(enumerate(text.splitlines(), 1)), terms, numbers)
     # Commit messages already published cannot change; a pre-push run screens only the new ones.
     for commit in _git(repo, "rev-list", f"{messages_base or base}..{head}").split():
         message = _git(repo, "log", "-1", "--format=%B", commit)
@@ -248,7 +318,7 @@ def main(argv: list[str] | None = None) -> int:
             findings += check_range(args.repo, args.base, args.head, terms, args.messages_base)
         for path in args.file:
             findings += scan(str(path), prose_of(str(path), path.read_text(encoding="utf-8")), terms)
-    except (OSError, ValueError, subprocess.CalledProcessError):
+    except (OSError, ValueError, UnicodeDecodeError, subprocess.CalledProcessError):
         print("check_public_observations: operational error (terms file, refs or files unreadable)", file=sys.stderr)
         return 2
     for finding in findings:
