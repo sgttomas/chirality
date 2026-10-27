@@ -746,9 +746,20 @@ def canonical_sidecar(sidecar: Mapping[str, Any]) -> dict[str, Any]:
     return out
 
 
-def sidecar_difference(given: Mapping[str, Any], regenerated: Mapping[str, Any]) -> tuple[str, str, str] | None:
+def reported_exclusions(loss_report: Iterable[Mapping[str, Any]]) -> frozenset[str]:
+    """The load_map paths an import reported by name as many-to-one (MBF-IMPORT-ID-UNRECOVERABLE, REQ-016): each
+    sidecar entry the MBF sums into one primitive, and that primitive's formed entry. The import reports them only
+    for entries whose case, category, target and axis are the file primitive's, so no other value hides there."""
+    return frozenset(item["location"] for item in loss_report if item["code"] == "MBF-IMPORT-ID-UNRECOVERABLE"
+                     and item["location"].startswith("load_map["))
+
+
+def sidecar_difference(given: Mapping[str, Any], regenerated: Mapping[str, Any],
+                       excluded: Iterable[str] = ()) -> tuple[str, str, str] | None:
     """The first JSON path, in sorted key order, at which the canonical forms of `given` and `regenerated` differ,
-    with each side's value (JSON text, "absent" where the key is missing); None when they are equal."""
+    with each side's value (JSON text, "absent" where the key is missing); None when they are equal. Paths in
+    `excluded` (reported_exclusions) are not compared."""
+    excluded = frozenset(excluded)
     def shown(value: Any) -> str:
         text = "absent" if value is _BAD else json.dumps(value, sort_keys=True)
         return text if len(text) <= 160 else text[:157] + "..."
@@ -757,6 +768,8 @@ def sidecar_difference(given: Mapping[str, Any], regenerated: Mapping[str, Any])
         if isinstance(a, dict) and isinstance(b, dict):
             for key in sorted(set(a) | set(b), key=str):
                 where = f"{path}[{key}]" if path in _KEYED_MAPS else (f"{path}.{key}" if path else str(key))
+                if where in excluded:
+                    continue
                 found = first(a.get(key, _BAD), b.get(key, _BAD), where)
                 if found is not None:
                     return found
@@ -1487,8 +1500,8 @@ class _Importer:
 
     def ambiguous(self) -> None:
         """Refuse, before assembly, a sidecar whose reverse mapping is not a function (VER-002 r13): two elements
-        between the same pair of CAEPIPE nodes, two cases with one label, and on a bound import two primitives with
-        one key (primitive_key), which the MBF holds as their sum, so no single id is theirs."""
+        between the same pair of CAEPIPE nodes, or two cases with one label. Several primitives with one key
+        (primitive_key) are a many-to-one mapping the MBF sums, reported by name (REQ-016), not refused."""
         def repeated(map_name: str, keyed: Iterable[tuple[str, Any]], what: str) -> None:
             seen: dict[Any, str] = {}
             for name, key in keyed:
@@ -1502,9 +1515,6 @@ class _Importer:
         repeated("element_map", ((swb_id, frozenset((entry["from"], entry["to"])))
                                  for swb_id, entry in self.maps["element_map"].items()), "the pair of CAEPIPE nodes")
         repeated("load_case_map", self.maps["load_case_map"].items(), "the case label")
-        if self.bound:
-            repeated("load_map", ((key, primitive_key(entry)) for key, entry in self.maps["load_map"].items()),
-                     "the case, category, target and axis (the MBF holds their sum as one primitive)")
 
     def pd1(self) -> bool:
         return self.version in PD1_VERSIONS
@@ -2077,8 +2087,9 @@ class _Importer:
         """The exact-digest route's guard of record (Design §14, VER-002 r13): the writer regenerates the sidecar
         from the imported model (no MBF is written), and the format-2 sidecar given must equal it after
         canonicalisation (sidecar_difference); otherwise MBF-IMPORT-SIDECAR-NOT-REPRODUCED names the first differing
-        JSON path. The one input beyond the model is the import's own record of which straights' y_reference it
-        derived (id_map y_reference_derived)."""
+        JSON path. The one input beyond the model is the import's record of which straights' y_reference it derived
+        (id_map y_reference_derived). Excluded are exactly the load_map entries this import reported by name as
+        many-to-one (reported_exclusions), on both sides."""
         reference = ({} if self.t_ref is None else {"reference_temperature_c": self.t_ref.value} if self.si
                      else {"reference_temperature_f": self.t_ref.value})
         regenerated, refusals = regenerate_caepipe_sidecar(model, mbf_sha256=self.sha,
@@ -2086,14 +2097,15 @@ class _Importer:
                                                            **reference)
         if regenerated is None:
             self.refuse("MBF-IMPORT-SIDECAR-NOT-REPRODUCED", 0, "sidecar",
-                        "the bound sidecar is not the writer's own record of this MBF: the writer does not write the "
-                        "imported model (" + ", ".join(sorted({item["code"] for item in refusals})) + ")")
+                        "the bound sidecar is not the writer's record of the model it yields: the writer does not "
+                        "write the imported model (" + ", ".join(sorted({item["code"] for item in refusals})) + ")")
             return
-        found = sidecar_difference(self.sidecar, regenerated)
+        found = sidecar_difference(self.sidecar, regenerated, excluded=reported_exclusions(self.loss))
         if found is not None:
             path, given, again = found
             self.refuse("MBF-IMPORT-SIDECAR-NOT-REPRODUCED", 0, path,
-                        f"the bound sidecar is not the writer's own record of this MBF: at {path} it has {given}, "
+                        f"the bound sidecar is not the writer's record of the model it yields: at {path} it has "
+                        f"{given}, "
                         f"and the writer, regenerating the sidecar from the imported model, records {again}. A "
                         "sidecar whose identities were edited is applied only on request, by CAEPIPE name, every "
                         "restored identity unconfirmed (rebind_by_node_number, Design §15)")
@@ -3139,9 +3151,17 @@ class _Importer:
                     load_id = match[0]
                     if item["category"] == "thermal" and match[2] is not None:
                         direction = match[2]
-                elif self.bound:
-                    self.listed("approximated", "MBF-IMPORT-ID-UNRECOVERABLE", item["line"], formed,
-                                f"no single sidecar primitive matches {formed}; it keeps its formed id")
+                elif self.bound and match is not None:  # many-to-one (REQ-016): reported by name, entry by entry
+                    keys = [map_key for map_key, _ in match[3]]
+                    named = ", ".join(f"load_map[{key}]" for key in keys)
+                    self.listed("approximated", "MBF-IMPORT-ID-UNRECOVERABLE", item["line"],
+                                f"load_map[{case_id}/{formed}]",
+                                f"the MBF holds {named} summed as one primitive; no single sidecar id is its own, so "
+                                f"it keeps its formed id {formed}")
+                    for map_key in keys:
+                        self.listed("approximated", "MBF-IMPORT-ID-UNRECOVERABLE", item["line"], f"load_map[{map_key}]",
+                                    f"load_map[{map_key}] is one of the {len(keys)} primitives the MBF sums into "
+                                    f"{formed}; its id is not recoverable")
                 id_map["load_map"][load_id] = {"case": case_id, "category": item["category"], "target": target_id}
                 loads.append({"id": load_id, "category": item["category"], "target": target, "direction": direction,
                               "magnitude": {"value": item["magnitude"], "unit": item["unit"]},
@@ -3606,7 +3626,7 @@ class _Importer:
 
     def restorable_primitives(self, cases: Mapping[str, str]) -> dict[tuple, tuple[str, int, Any]]:
         """primitive_key -> (sidecar primitive id, count, direction, [(map key, direction)]) for bound imports; a
-        count above 1 is refused before assembly (ambiguous)."""
+        count above 1 is a many-to-one mapping, reported by name."""
         if not self.bound:
             return {}
         counts: dict[tuple, list[tuple[str, Any, str]]] = {}

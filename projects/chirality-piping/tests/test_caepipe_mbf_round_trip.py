@@ -35,7 +35,8 @@ for extra in (ROOT, ROOT / "tests", ROOT / "tools" / "validation"):
 import caepipe_mbf_canonical as canon  # noqa: E402
 from core.handoff.caepipe_mbf import importer as importer_module  # noqa: E402
 from core.handoff.caepipe_mbf import render_caepipe_mbf_si  # noqa: E402
-from core.handoff.caepipe_mbf.importer import import_caepipe_mbf, sidecar_difference  # noqa: E402
+from core.handoff.caepipe_mbf.importer import (  # noqa: E402
+    canonical_sidecar, import_caepipe_mbf, reported_exclusions, sidecar_difference)
 from core.handoff.caepipe_mbf.si_writer import regenerate_caepipe_sidecar  # noqa: E402
 from schema_validation import JsonSchemaDependencyMissing, _skip_or_note_missing_jsonschema, validate_instance  # noqa: E402
 from test_model_schema import desktop_entity_requirements  # noqa: E402
@@ -146,18 +147,13 @@ def models() -> dict[str, tuple[dict, str, float]]:
 
 
 MODELS = models()
-# Models whose bound import refuses (printed-domain validity, §18.2), by name: summed primitives are many-to-one, so
-# the sidecar's reverse mapping is ambiguous (VER-002 r13). Their unbound imports stay in (a').
-BOUND_REFUSED = {"writer-cancelling-forces": "three primitives on one node and axis print as one FOR; the bound "
-                                             "import refuses the many-to-one load_map (MBF-IMPORT-SIDECAR-AMBIGUOUS)"}
 # Reversible subset (§18.2): written, no MBF-SI-SHEAR-MODULUS-NOT-EXPORTED, printed values valid, distinct keys kept.
-REVERSIBLE = sorted(set(MODELS) - set(BOUND_REFUSED))
-UNBOUND = sorted(MODELS)
+REVERSIBLE = sorted(MODELS)
 # Excluded by name, with the reason: the component names the far tangent node, which the sidecar does not carry
 # (the importer reports MBF-IMPORT-ID-UNRECOVERABLE for every bound bend component node).
 EXCLUDED = {"writer-bent-l-reversed": (reversed_bend(), "component node is the far tangent node; not in the sidecar")}
 # Byte-reproducible subset (§18.2): bound sidecar, identical writer settings, no formatting collision.
-BYTE_REPRODUCIBLE = list(REVERSIBLE)
+BYTE_REPRODUCIBLE = sorted(MODELS)
 SOLVE_THRESHOLD_FACTOR = 1e3  # ASSUMPTION (Design §18.1(d)): provisional, not a derived bound
 SOLVE_R_IN_LIMIT = 1e-8
 # Models whose source A the headless solve itself refuses, so there is no solve to compare (listed by name).
@@ -213,7 +209,7 @@ class Trip:
 
 @pytest.fixture(scope="module")
 def trips() -> dict[str, Trip]:
-    return {name: Trip(name, *MODELS[name]) for name in UNBOUND}
+    return {name: Trip(name, *MODELS[name]) for name in REVERSIBLE}
 
 
 # --- (a) canonical equality, bound ----------------------------------------------------------------
@@ -239,7 +235,7 @@ def test_every_excluded_loss_and_model_is_listed():
 
 
 # --- (a') unbound imports ----------------------------------------------------------------------------
-@pytest.mark.parametrize("name", UNBOUND)
+@pytest.mark.parametrize("name", REVERSIBLE)
 def test_unbound_import_under_pd1_equals_by_caepipe_name(trips, name):
     trip = trips[name]
     # The shear model is not in the MBF: the caller states the source's (Design §9.4), else Timoshenko applies.
@@ -254,7 +250,7 @@ def test_unbound_import_under_pd1_equals_by_caepipe_name(trips, name):
     assert comparison.failures == []
 
 
-@pytest.mark.parametrize("name", UNBOUND)
+@pytest.mark.parametrize("name", REVERSIBLE)
 def test_unbound_import_under_the_base_rule_gives_the_named_refusal(trips, name, monkeypatch):
     monkeypatch.setattr(importer_module, "PD1_VERSIONS", ())
     trip = trips[name]
@@ -266,7 +262,7 @@ def test_unbound_import_under_the_base_rule_gives_the_named_refusal(trips, name,
     assert any("without FLC" in item["message"] for item in refused) == has_force
     # With the bound sidecar the writer's conventions apply and the same bytes import.
     assert import_caepipe_mbf(trip.data, sidecar=trip.sidecar, material_provenance=INVENTED,
-                              source_label=name).status == ("refused" if name in BOUND_REFUSED else "imported")
+                              source_label=name).status == "imported"
 
 
 # --- (b) identities ---------------------------------------------------------------------------------------
@@ -304,24 +300,23 @@ def test_bound_import_restores_the_sidecar_identities_and_reports_the_rest(trips
     assert "not export" in unrecoverable
 
 
-def test_summed_primitives_are_many_to_one_and_refused_bound():
-    # VER-002 r13: two primitives on one node and axis print as one FOR. No single sidecar id is the file's, so the
-    # bound import refuses the many-to-one record by path before assembly (the regeneration identity would refuse
-    # it too: one primitive regenerates one entry); the unbound import keeps the sum under its formed id.
+def test_summed_primitives_are_many_to_one_and_reported():
+    # REQ-016: two primitives on one node and axis print as one FOR. The bound import keeps the sum under its formed
+    # id and reports, by name, the primitive and each sidecar entry it sums (VER-002 r13); the regeneration identity
+    # excludes exactly those entries and compares the rest.
     model = writer_tests.cantilever()
     model["load_cases"][0]["primitive_loads"].append(writer_tests.force("tip2", "N1", "GLOBAL_Y", -1000.0))
     trip = Trip("summed", model, "SUMMED", 20.0)
-    case = model["load_cases"][0]["id"]
-    assert refusals(trip.bound) == {("MBF-IMPORT-SIDECAR-AMBIGUOUS", f"load_map[{case}/tip2]")}
-    unbound = import_caepipe_mbf(trip.data, material_provenance=INVENTED, source_label="summed")
-    loads = unbound.model["load_cases"][0]["primitive_loads"]
-    assert [load["magnitude"]["value"] for load in loads] == [-7000.0]
-    kept = deepcopy(trip.sidecar)
-    del kept["load_map"][f"{case}/tip2"]
-    imported = import_caepipe_mbf(trip.data, sidecar=kept, material_provenance=INVENTED, source_label="kept")
-    assert imported.status == "imported", imported.diagnostics  # one entry is a function again
-    found = regeneration_difference(trip.sidecar, imported)  # the regeneration identity alone refuses it
-    assert found is not None and found[0] == f"load_map[{case}/tip2]" and found[2] == "absent"
+    assert trip.bound.status == "imported", trip.bound.diagnostics
+    loads = trip.bound.model["load_cases"][0]["primitive_loads"]
+    assert [(load["id"], load["magnitude"]["value"]) for load in loads] == [
+        ("load:concentrated_force:N1:global_y", -7000.0)]
+    assert exclusions(trip.bound) == {"load_map[case:tip/tip]", "load_map[case:tip/tip2]",
+                                      "load_map[case:tip/load:concentrated_force:N1:global_y]"}
+    assert differing_entries(trip.sidecar, trip.bound) == exclusions(trip.bound)
+    assert regeneration_difference(trip.sidecar, trip.bound) is None
+    found = sidecar_difference(trip.sidecar, regenerated_from(trip.bound))  # without the reported exclusions
+    assert found is not None and found[0] in exclusions(trip.bound)
 
 
 def test_a_merged_anchor_split_the_solve_refuses_is_not_restored():
@@ -756,13 +751,33 @@ def refusals(result) -> set[tuple[str, str]]:
     return {(item["code"], item["location"]) for item in result.diagnostics if item["severity"] == "error"}
 
 
-def regeneration_difference(sidecar: dict, result) -> tuple[str, str, str] | None:
-    """The regeneration identity alone (Design §14): `sidecar` against what the writer regenerates from the imported
-    model of `result` (and its record of derived orientations); None when they are equal."""
+def regenerated_from(result) -> dict:
+    """What the writer regenerates from the imported model of `result` (and its record of derived orientations)."""
     regenerated, errors = regenerate_caepipe_sidecar(result.model, mbf_sha256="0" * 64,
                                                      derived_y_reference=result.id_map["y_reference_derived"])
     assert regenerated is not None, errors
-    return sidecar_difference(sidecar, regenerated)
+    return regenerated
+
+
+def exclusions(result) -> frozenset[str]:
+    """The load_map entries `result`'s own import reported by name as many-to-one (REQ-016)."""
+    return reported_exclusions(result.loss_report)
+
+
+def regeneration_difference(sidecar: dict, result) -> tuple[str, str, str] | None:
+    """The regeneration identity alone (Design §14): `sidecar` against what the writer regenerates from the imported
+    model of `result`, excluding exactly the entries that import reported; None when they are equal."""
+    return sidecar_difference(sidecar, regenerated_from(result), excluded=exclusions(result))
+
+
+def differing_entries(sidecar: dict, result) -> set[str]:
+    """Every load_map entry at which `sidecar` and the regeneration from `result` differ, with nothing excluded;
+    every other part of the two must be equal."""
+    given, again = canonical_sidecar(sidecar), canonical_sidecar(regenerated_from(result))
+    assert {key: value for key, value in given.items() if key != "load_map"} == {
+        key: value for key, value in again.items() if key != "load_map"}
+    return {f"load_map[{key}]" for key in set(given["load_map"]) | set(again["load_map"])
+            if given["load_map"].get(key) != again["load_map"].get(key)}
 
 
 def test_a_restored_region_through_a_tee_is_refused_by_name_and_by_the_route():
@@ -1046,8 +1061,7 @@ def test_an_english_import_round_trips_through_the_si_writer_by_exact_normalizat
 
 # --- schema (§18.1 item 6) -----------------------------------------------------------------------------------------
 def all_imports(trips):
-    found = [(name, trip.bound.model if name not in BOUND_REFUSED else import_caepipe_mbf(
-        trip.data, material_provenance=INVENTED, source_label=name).model) for name, trip in trips.items()]
+    found = [(name, trip.bound.model) for name, trip in trips.items()]
     for stem in ("units_english", "units_si"):
         data, declaration = fixture(stem)
         found.append((stem, import_caepipe_mbf(data, material_provenance=declaration["material_provenance"],
@@ -1088,11 +1102,9 @@ def test_canonical_sums_are_exact_and_independent_of_the_writer(trips):
     for value in (1e9, 0.001, -1e9):
         running += value * 4.4482216152605
     assert abs(running - 0.0044482216152605) > 1e-7  # the error the exact sum avoids
-    unbound = import_caepipe_mbf(trip.data, material_provenance=INVENTED, source_label="sums")  # bound: refused
-    imported = trip.imported(unbound, oriented=False)
+    imported = trip.imported(trip.bound, oriented=True)
     assert imported.values[key] == 0.004448221615  # the writer's printed, correctly rounded sum
-    reference, limits = canon.unoriented(reference, trip.limits(reference))
-    assert canon.compare(reference, imported, limits).failures == []
+    assert canon.compare(reference, imported, trip.limits(reference)).failures == []
 
 
 def test_canonical_form_of_a_tiny_bend_uses_scaled_norms():
@@ -1614,7 +1626,15 @@ def authored_orientation_model() -> dict:
     return model
 
 
+def summed_model() -> dict:
+    """The invented cantilever with a second force on its tip along the same axis: a many-to-one load_map (REQ-016)."""
+    model = writer_tests.cantilever()
+    model["load_cases"][0]["primitive_loads"].append(writer_tests.force("tip2", "N1", "GLOBAL_Y", -1000.0))
+    return model
+
+
 MUTATION_BASES = {"pressurized": lambda: writer_tests.pressurized_l(), "pressure-free": lambda: writer_tests.bent_l(),
+                  "summed": summed_model,
                   "contract-only": contract_only_model, "authored-orientation": authored_orientation_model}
 
 
@@ -1654,9 +1674,18 @@ def test_every_mutated_sidecar_is_refused_by_name_or_restores_the_same_model(bas
     # (the positive control), and every mutated sidecar differs from that regeneration, so the identity alone,
     # given the model the file and the unmutated sidecar determine, refuses each one too.
     assert regeneration_difference(base, expected) is None
-    regenerated, _ = regenerate_caepipe_sidecar(expected.model, mbf_sha256="0" * 64,
-                                                derived_y_reference=expected.id_map["y_reference_derived"])
-    assert bool(expected.model.get("pressure_contract")) == (base_model != "pressure-free")
+    regenerated = regenerated_from(expected)
+    reported = exclusions(expected)
+    assert bool(reported) == (base_model == "summed")
+
+    def excluded(sidecar: dict) -> frozenset[str]:
+        # An exclusion applies only where the import reported it for this file: a mutation of any reported entry
+        # (or of the map holding them) leaves none, so no mutation hides inside one.
+        given, unmutated = canonical_sidecar(sidecar).get("load_map"), canonical_sidecar(base)["load_map"]
+        same = isinstance(given, dict) and all(
+            given.get(path[len("load_map["):-1]) == unmutated.get(path[len("load_map["):-1]) for path in reported)
+        return reported if same else frozenset()
+    assert bool(expected.model.get("pressure_contract")) == (base_model not in ("pressure-free", "summed"))
     unbound = run(None, "unbound")  # a digest that is not this file's leaves the sidecar unapplied (§15)
     assert unbound.status == "imported", unbound.diagnostics
     mutations = sidecar_mutations(base)
@@ -1667,16 +1696,26 @@ def test_every_mutated_sidecar_is_refused_by_name_or_restores_the_same_model(bas
         if base.get(name, None) != {}:  # emptying a map the base already holds empty changes nothing
             mutations.append((f"{name}: map emptied", {**deepcopy(base), name: {}}))
     outcomes = {"refused": 0, "equal": 0, "unbound": 0}
+    # Removing one of the summed entries leaves a sidecar the writer writes for a model with one primitive there: a
+    # consistent edit, which imports as that model (§14); it is the only mutation that imports.
+    consistent = {f"load_map/{path[len('load_map['):-1]}: removed" for path in reported
+                  if path[len("load_map["):-1] in base["load_map"]}
     for label, sidecar in mutations:
         imported = run(sidecar, "mutated")
         errors = {item["code"] for item in imported.diagnostics if item["severity"] == "error"}
+        if label in consistent:
+            assert imported.status == "imported" and imported.source["binding"] == "bound", label
+            assert regeneration_difference(sidecar, imported) is None and not exclusions(imported), label
+            outcomes["equal"] += 1
+            continue
         if label.endswith(": removed") or label.endswith(": map deleted") or ": null for " in label:
             assert imported.status == "refused", label  # format 2 is complete and holds no null (r10, r11)
         if imported.status == "refused":
             assert errors and all(code.startswith("MBF-IMPORT-") for code in errors), label
             # The identity alone refuses it too; a mutated digest is the parser's (it decides the route, and the
             # identity, which compares everything else, excludes it).
-            assert label.startswith("mbf_sha256") or sidecar_difference(sidecar, regenerated) is not None, label
+            assert label.startswith("mbf_sha256") or sidecar_difference(
+                sidecar, regenerated, excluded=excluded(sidecar)) is not None, label
             outcomes["refused"] += 1
         elif imported.source["binding"] == "unbound":
             assert label.startswith("mbf_sha256") and imported.model == unbound.model, label
@@ -1697,13 +1736,13 @@ def test_every_mutated_sidecar_is_refused_by_name_or_restores_the_same_model(bas
             assert not survives and refusals_ and all(code.startswith("MBF-SI-") for code in refusals_), label
         else:
             assert survives, label
-    assert ("writer" in captured) == (base_model != "pressure-free")
+    assert ("writer" in captured) == (base_model not in ("pressure-free", "summed"))
     assert len(mutations) > 300 and outcomes["refused"] > 0, outcomes
     # VER-002 r12, r13: each field set to a different well-formed value. A value the MBF or a derivation determines
     # must agree with it, and the regeneration identity alone refuses it too. A value the writer copies from the model
     # unchanged (an id, `reversed`, an authored orientation or family, an origin, a thermal direction, the shear
-    # model, a closure) regenerates as given: the import cannot tell an edit of it from the writer's own record, and
-    # imports it (Design §14 states this limit).
+    # model, a closure) regenerates as given: a consistent edit, which imports as stated (Design §14: the guard
+    # proves consistency, not authorship).
     replaced = sidecar_replacements(base, data)
     for label, sidecar, expected in replaced:
         imported = run(sidecar, "replaced")
@@ -1711,7 +1750,7 @@ def test_every_mutated_sidecar_is_refused_by_name_or_restores_the_same_model(bas
         if expected == "refused":
             assert imported.status == "refused" and errors, label
             assert all(code.startswith("MBF-IMPORT-") for code in errors), label
-            assert sidecar_difference(sidecar, regenerated) is not None, label
+            assert sidecar_difference(sidecar, regenerated, excluded=excluded(sidecar)) is not None, label
         elif expected == "unbound":
             assert imported.source["binding"] == "unbound", label
         else:
@@ -2079,13 +2118,20 @@ def guarded(model: dict, change, label: str, **options):
     return result, regeneration_difference(changed, base), base
 
 
-def test_every_comparison_model_regenerates_its_sidecar_identically(trips):
-    # The writer's own sidecar of every model in the reversible subset is exactly what the writer regenerates from its
-    # bound import; the guard refuses none of them.
+def test_every_comparison_model_regenerates_its_sidecar_identically_or_with_reported_exclusions(trips):
+    # The writer's sidecar of every model is what the writer regenerates from its bound import, except exactly the
+    # entries that import reported by name under REQ-016: each excluded path has its report and differs, and nothing
+    # else is excluded or differs. Only the summed-load model has any.
+    excluded_models = set()
     for name in REVERSIBLE:
         trip = trips[name]
         assert trip.bound.status == "imported", (name, trip.bound.diagnostics)
         assert regeneration_difference(trip.sidecar, trip.bound) is None, name
+        assert differing_entries(trip.sidecar, trip.bound) == exclusions(trip.bound), name
+        if exclusions(trip.bound):
+            excluded_models.add(name)
+    assert excluded_models == {"writer-cancelling-forces"}
+    assert len(REVERSIBLE) == 22
 
 
 def test_a_straight_recorded_as_a_bend_is_refused_on_both_routes():
@@ -2203,6 +2249,13 @@ def test_the_rebind_route_is_taken_on_request_whatever_the_digest():
     assert rebound.source["binding"] == "rebound_unconfirmed" == rebound.id_map["binding"]
     assert {"N0", "N1", "S1", "anchor:N0", "mat:CS"} <= set(rebound.id_map["rebound_unconfirmed"])
     assert not any(item["code"] == "MBF-IMPORT-SIDECAR-NOT-REPRODUCED" for item in rebound.diagnostics)
+    # It never claims a bound or confirmed import: every restored id is unconfirmed, and no text says bound.
+    restored = {item["id"] for name in ("nodes", "pipe_segments", "supports", "materials")
+                for item in rebound.model[name]}
+    assert restored <= set(rebound.id_map["rebound_unconfirmed"])
+    texts = rebound.model_bytes().decode() + rebound.report_bytes().decode()
+    assert "bound to the SWBPIPE writer sidecar" not in texts and "(bound import)" not in texts
+    assert '"binding": "bound"' not in texts + rebound.id_map_bytes().decode()
 
 
 def test_a_declared_origin_other_than_the_recorded_one_is_refused():

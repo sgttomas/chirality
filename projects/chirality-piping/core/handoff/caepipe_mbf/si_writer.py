@@ -1472,24 +1472,15 @@ class _Writer:
         every region. A failed region check is refused as MBF-SI-PRESSURE-REGION-FORMAT; any other refusal, at any
         stage, as MBF-SI-PREFLIGHT-REFUSED carrying the importer's code. Nothing is cut or reordered."""
         from hashlib import sha256
-        from .importer import import_caepipe_mbf, primitive_key  # deferred: the importer imports this module
+        from .importer import import_caepipe_mbf  # deferred: the importer imports this module
 
         data = result.text.encode("ascii")  # type: ignore[union-attr]
         sidecar = result.sidecar(sha256(data).hexdigest())
-        # Primitives the MBF sums into one keep one entry here: a bound import refuses the many-to-one record
-        # (MBF-IMPORT-SIDECAR-AMBIGUOUS), and the preflight checks geometry and regions, not load identities. Only
-        # an undeclared material takes a declaration; a recorded origin is the import's. Maps that are not the
-        # writer's shape (a test's mutation) pass unchanged, for the import's parser to refuse by path.
-        undeclared: dict[str, Any] = {}
-        try:
-            kept: dict[tuple, str] = {}
-            for key, entry in sidecar["load_map"].items():
-                kept.setdefault(primitive_key(entry), key)
-            sidecar["load_map"] = {key: sidecar["load_map"][key] for key in kept.values()}
-            undeclared = {name: {"origin": "project_invented", "source_name": "writer preflight; never output"}
-                          for name, entry in sidecar["material_map"].items() if entry["origin"] == "undeclared"}
-        except (KeyError, TypeError, AttributeError, StopIteration):
-            pass
+        # Only an undeclared material takes a declaration; a recorded origin is the import's (Design §7.4).
+        materials = sidecar.get("material_map")
+        undeclared = {name: {"origin": "project_invented", "source_name": "writer preflight; never output"}
+                      for name, entry in (materials.items() if isinstance(materials, Mapping) else ())
+                      if isinstance(entry, Mapping) and entry.get("origin") == "undeclared"}
         back = import_caepipe_mbf(data, sidecar=sidecar, source_label="writer preflight (geometry only)",
                                   material_provenance=undeclared)
         prefix = "pressure_map region "

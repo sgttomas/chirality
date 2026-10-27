@@ -1136,11 +1136,14 @@ Forces and moments on one node are summed per component, as the writer sums them
 ## 14. Everything else
 
 **The sidecar trust model** (Agent 0's decision under the owner's delegation, after
-independent review VER-002 r13). A bound sidecar is trusted only as the writer's own record
-of that exact MBF. On an exact-digest bound import, the sidecar is used only when it equals
-what the writer regenerates from the imported model, after canonicalisation. Any authored
-value the writer would not reproduce counts as a difference and is refused by name at its
-JSON path.
+independent review VER-002 r13), stated as it is enforced. On an exact-digest bound import,
+the guard verifies that the sidecar is the writer's record of the model it yields. The
+sidecar is used only when it equals what the writer regenerates from the imported model,
+after canonicalisation. Any value the writer would not reproduce counts as a difference and
+is refused by name at its JSON path. The guard proves consistency, not authorship. An edit
+that the writer would reproduce for the model it yields cannot be told apart from writer
+output, and imports as such. Such consistent edits import as stated, with nothing defaulted
+or misread. Authorship is not claimed.
 
 **The regeneration identity** is the exact-digest route's guard of record. After assembly,
 a bound import of a format-2 sidecar has the writer regenerate the sidecar from the imported
@@ -1152,21 +1155,30 @@ immaterial, every number as a binary64 (1 and 1.0 are one value) and each load d
 as the axis it names (`global_y`, `GLOBAL_Y`, `UY` and `uy` alike). A difference is refused
 as `MBF-IMPORT-SIDECAR-NOT-REPRODUCED`, naming the first differing JSON path in sorted key
 order with both values. A model the writer does not write is refused the same way at
-`sidecar`, naming the writer's codes. The checks that run first are supporting checks and
+`sidecar`, naming the writer's codes. Excluded from the comparison are exactly the
+`load_map` entries the import reports by name as many-to-one under REQ-016
+(`MBF-IMPORT-ID-UNRECOVERABLE`, §15). These are each sidecar entry the MBF sums into one
+primitive, and that primitive's entry under its formed id, which is regenerated. An
+exclusion applies only where this import made the report for this file. The import reports
+only entries whose case, category, target and axis are the file primitive's, so no other
+value can hide in one. A test holds every exclusion to its report, and every model to no
+other difference. The checks that run first are supporting checks and
 give the narrower code: the strict parser, completeness, the ambiguity check (§15), the
 no-defaults rule (every effective value comes from an explicit format-2 record or a
 documented legacy omission, never from a default filling a missing or null field) and the
 agreement rule (a recorded value the MBF or a derivation also determines must agree with
 it; neither side is silently preferred, VER-002 r12). The seeded mutation test (§15) shows
-that each mutation it makes is refused, and would be refused by the identity alone. A legacy
+that each mutation it makes is refused, and would be refused by the identity alone, except
+the consistent edits below. A legacy
 sidecar, which the writer no longer writes, keeps the supporting checks only.
 
-**What the identity cannot see.** The digest binds only the MBF, and the MBF has no carrier
-for the sidecar (TBD-17-01-003, TBD-17-04-003). Some values pass from the model to the sidecar
+**Consistent edits.** The digest binds only the MBF, and the MBF has no carrier for the
+sidecar (TBD-17-01-003, TBD-17-04-003; O-6). Some values pass from the model to the sidecar
 unchanged: ids, `reversed`, an authored `y_reference` or `family`, a recorded `origin`, a
 thermal direction, the shear model of a contract, region ids, and closure transfers with
-their provenance. Such a value regenerates as the sidecar gives it. So an edit of one cannot
-be told apart from the writer's own record, and the import restores it. A user who edited a
+their provenance. Such a value regenerates as the sidecar gives it, so an edit of one imports
+as stated. Removing one of two primitives the MBF sums is such an edit too: the other then
+names the file's primitive alone. A user who edited a
 sidecar's identities, or whose sidecar the exact-digest route refuses, asks for the rebind
 route instead (`rebind_by_node_number`, REQ-016, §15 **Unbound**). It is taken only on that
 explicit request, whatever the digest. It applies the sidecar by CAEPIPE name, reports every
@@ -1398,21 +1410,22 @@ absence a legacy sidecar records is formed: a missing `y_reference` or `family` 
 **An ambiguous sidecar is refused before assembly** (`MBF-IMPORT-SIDECAR-AMBIGUOUS`, by JSON
 path; VER-002 r13). A sidecar is refused where its reverse mapping, from the file to the
 sidecar, is not a function: two element entries between one pair of CAEPIPE nodes, or two
-cases with one label, on both routes. On a bound import, two primitives with one case,
-category, target and axis are refused too, since the MBF holds their sum as one record and
-no single id is the file's. The axis reads a direction through its aliases. The writer's
-preflight keeps one of such primitives in its own re-import, which checks geometry and
-regions. The check against the file of what the parser
+cases with one label, on both routes. Several primitives with one case, category, target
+and axis are different: the MBF sums them into one record, a many-to-one mapping that
+REQ-016 reports (below), and the import proceeds. The axis reads a direction through its
+aliases. The check against the file of what the parser
 admits stays where it was: ownership and pressure of regions (§9.4), supports' DOF sets per
 node (§12), the frame check of `y_reference` (§10.5).
 
-A seeded mutation test exercises the parser on format-2 sidecars of four invented files
-(pressurized, pressure-free, with a contract and no region, and with an authored non-default
-orientation). Each field is swapped for every other JSON type, each container emptied, each
+A seeded mutation test exercises the parser on format-2 sidecars of five invented files
+(pressurized, pressure-free, with a contract and no region, with an authored non-default
+orientation, and with two forces the MBF sums). Each field is swapped for every other JSON type, each container emptied, each
 number made huge or non-finite, an unknown key added and each key removed, and each of the
 eight maps deleted and emptied. Each import passes a closure declaration, so a bound import
 that fell through to unbound formation would succeed and be caught. Every mutated import is
-refused with a named `MBF-IMPORT-*` code and never raises. The regeneration identity alone,
+refused with a named `MBF-IMPORT-*` code and never raises. The one exception is removing
+one of the two summed entries, a consistent edit (§14), which imports as the model it
+yields. A mutation of a reported entry cancels its exclusion, so none hides there. The regeneration identity alone,
 given the model the file and the unmutated sidecar determine, refuses each mutation too (a
 mutated digest is the parser's: it decides the route). The writer's own sidecar regenerates
 exactly, as a positive control, and so does that of every model in the reversible subset
@@ -1429,8 +1442,10 @@ involved.
 
 - **Primitive loads.** `load_map` records each primitive's case, category, target and
   direction (implemented), but not its magnitude. The writer sums several primitives on one
-  target, so a bound import refuses a sidecar naming more than one for a (case, category,
-  target, axis) (above). The unbound and rebind routes give the sum a §10.4 id.
+  target, so a primitive id is restored only when the sidecar names exactly one primitive
+  for that (case, category, target, axis). A sum keeps its §10.4 id. It is reported at
+  `load_map[<case>/<formed id>]`, and each sidecar entry it sums at `load_map[<key>]`;
+  these reports are the regeneration identity's only exclusions (§14).
 - **Support families** when the sidecar entry has no `family` (§12).
 - **Bend component nodes** (§11 item 5).
 - **Members the writer does not export** (§17's last rows).
@@ -1439,8 +1454,14 @@ involved.
 governs every value, and ids are formed by §10.4. A sidecar is not applied unless the
 caller explicitly asks for `rebind_by_node_number`.
 
-- **What rebinding does.** It is taken only on the explicit request, whatever the digest;
-  a byte-bound sidecar with the request is rebound too (VER-002 r13). It applies the sidecar
+- **REQ-016** (ScopeOfWork): "A sidecar that is not byte-bound shall be applied only on
+  explicit request, with every restored identity reported as unconfirmed."
+  The explicit request is honoured whatever the digest. A byte-bound sidecar with the request
+  is applied the same way, rebound and unconfirmed (VER-002 r13; Agent 0 accepted it). The
+  result never claims a bound or confirmed import: its `source` and `id_map` binding is
+  `rebound_unconfirmed`, every restored id is listed there, and the model's data boundary
+  says the ids are rebound and unconfirmed.
+- **What rebinding does.** It applies the sidecar
   by CAEPIPE name only: nodes by number, pipes by from/to names with their `reversed` flag,
   supports by node with their DOF split and family, bends by TI number, materials by name.
   It restores no case or primitive id, orientation, origin or pressure state: those are
@@ -1684,9 +1705,7 @@ reproduction by name.
   the sidecar; unbound imports take §10.5's documented local y);
 - support families, which `support_map` does not carry (§12);
 - labels, provenance and the members of §17's last rows;
-- several primitives on one target, which are compared as their sum (unbound imports: a
-  bound import refuses such a sidecar, §15, so `writer-cancelling-forces` is outside the
-  bound subset by printed-domain validity and listed by name);
+- several primitives on one target, which are compared as their sum;
 - zero-valued primitives, which are dropped;
 - absent versus zero α, and absent versus zero section fields;
 - combinations, which are not exported;
@@ -1883,7 +1902,7 @@ dossier as CQ-17-01-011 to -015.
 | TBD-17-04-005 | Encoding and default of OPMISC's gravitational-direction field (15.10 and later) | **Finding** (observed format behaviour, recorded here; the TBD's status is Agent 0's): CAEPIPE's export writes OPMISC with 13 fields, the direction as three components after the acceleration, and for the default earth environment acceleration `386.4` (in SI files too) with direction (0, −1, 0). The importer reads that default setting only (§6) and refuses any other (`MBF-IMPORT-GRAVITY-UNSUPPORTED`) and a one-field direction (`MBF-IMPORT-TBD-17-04-005`). Still open: the public field list's one-field encoding, the meaning of the export's field 9, and the acceleration's unit in SI files. The writer never writes these fields |
 | TBD-17-04-006 | Text encoding, foot and inch mark characters, and numeric precision that CAEPIPE's MBF export writes | The importer reads only strict UTF-8 and the marks the public pages show. Anything else is refused by name. Values are read as written, with no precision assumed; private-regression outcomes record differences, and no tolerance is widened for them |
 | TBD-17-04-007 | Whether `L=<load name>` is the documented load reference, carried like M and P, and which load case a `FOR` or `MOM` without `FLC` joins; and whether these are stable across versions | Bound imports apply the writer's conventions. Unbound imports refuse both with `MBF-IMPORT-TBD-17-04-007`. Unbound imports may admit both where an explicitly retained bounded profile decision does so |
-| TBD-17-04-008 | Whether CAEPIPE's MBF export keeps node numbers, row order and TI bend rows as imported, and whether it writes offsets or absolute coordinates | An unbound sidecar is applied only on explicit request, and every rebound id is marked unconfirmed (§15). Geometry is read only in its documented forms |
+| TBD-17-04-008 | Whether CAEPIPE's MBF export keeps node numbers, row order and TI bend rows as imported, and whether it writes offsets or absolute coordinates | A sidecar is applied by CAEPIPE name only on explicit request, whatever its digest, and every rebound id is marked unconfirmed (§15). Geometry is read only in its documented forms |
 | TBD-17-04-009 | Whether the absolute-coordinate marker `*` precedes or follows the node number in an MBF layout row. The *Node* page and the *DX, DY, DZ* page and MBF examples disagree | The trailing marker shown in MBF examples is a selected interpretation (§10.2). Any other placement is refused by name (`MBF-IMPORT-TBD-17-04-009`) |
 
 ### 20.2 Owner choices
@@ -1902,10 +1921,10 @@ dossier as CQ-17-01-011 to -015.
   `model_settings.shear_model`; that is a later slice, not this one.
 - **O-4.** How CAEPIPE-exported MBFs are produced for §18.3: by hand by the owner, or by a
   guest automation step.
-- **O-6.** Whether to bind the sidecar itself. The regeneration identity cannot see an edit
-  of a value the writer copies from the model unchanged (§14), because the digest binds only
-  the MBF. Binding the sidecar would need a carrier in the MBF (TBD-17-04-003), so it is a
-  format change.
+- **O-6 (open, not adopted).** Binding the sidecar's digest into the MBF, so that a
+  consistent edit (§14) would be refused too. Agent 0 did not adopt it: it costs more than
+  it buys, and without signing it still would not stop a deliberate editor. It is revisited
+  only if signing is ever wanted.
 
 ### 20.3 Next tranches
 
@@ -1923,6 +1942,10 @@ tranche, in priority order, each with its writer counterpart where one is missin
 4. flexible anchors and springs;
 5. hangers;
 6. temperature-dependent materials, after a ruling on modulus basis and mean α.
+
+After tranche 2 merges, not part of its branch (Agent 0, under the owner's delegation): a
+sidecar self-digest over the sidecar's canonical content, to catch accidental or partial
+edits, with older sidecars without one reported as legacy.
 
 Later, in proposed order: concentrated weight and uniform load; contents, insulation and
 lining; rigid and valve joints; reducers (0.8.0); SIF user values; multiple thermal loads;
