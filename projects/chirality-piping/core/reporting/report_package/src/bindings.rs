@@ -14,9 +14,9 @@
 use crate::admitted::{self, AdmittedSet};
 use crate::document_form;
 use crate::exact_sections;
+use crate::quantity_display::{display_quantity, source_displays_scaled_value, QUANTITY_DISPLAY_POLICY};
 use crate::wire::{LinkedSolverIdentity, ReportPackageRequest};
 use open_pipe_stress_audit_manifest as audit;
-use open_pipe_stress_canonical_json::canonical_number;
 use open_pipe_stress_result_export::derivative::{digest, guard_json, validate_document};
 use open_pipe_stress_result_export::semantic_contract::for_source;
 use serde_json::{json, Value};
@@ -46,7 +46,6 @@ const DERIVATIVE_LABEL: &str = "openpipestress_jcs_ijson_v1";
 const RULE_TOKENS: [&str; 3] = ["RULE_INPUTS_INCOMPLETE", "USER_RULE_CHECKED", "USER_RULE_FAILED"];
 const DEC018_UNIT_SYSTEM: &str = "unit-system:dec-018-si-dual-display";
 const STORAGE_CONVENTION: &str = "entered_units_preserved";
-const QUANTITY_DISPLAY_POLICY: &str = "display result-row values with their explicit units; no report-time conversion";
 
 fn mismatch(what: impl std::fmt::Display) -> String {
     format!("{BINDING_MISMATCH}: {what}")
@@ -123,9 +122,10 @@ fn section_basis_suffix(id: &str, metadata: &Value) -> Result<&'static str, Stri
 /// The report-row contract (§2.3 item 6): one row per source row, in order,
 /// with the desktop's five-field projection
 /// (`apps/desktop/src/features/report/reportResultRows.ts`). The value text is
-/// the ECMAScript Number-to-String form (`canonical_number`), after
-/// `guard_json`. Parity vectors:
-/// `fixtures/reports/invented/report_result_rows_parity.json`.
+/// the report's display rule ([`display_quantity`]) over the ECMAScript
+/// Number-to-String form (`canonical_number`), after `guard_json`. Parity
+/// vectors: `fixtures/reports/invented/report_result_rows_parity.json` and
+/// `fixtures/reports/invented/report_quantity_display_parity.json`.
 pub fn expected_report_result_rows(source: &Value) -> Result<Vec<Value>, String> {
     guard_json(source).map_err(|detail| format!("{REPORT_ROWS_MISMATCH}: {detail}"))?;
     let rows = source["results"]
@@ -137,8 +137,8 @@ pub fn expected_report_result_rows(source: &Value) -> Result<Vec<Value>, String>
                 row[key].as_str().ok_or_else(|| format!("{REPORT_ROWS_MISMATCH}: a source row has no string {key}"))
             };
             let (id, kind, unit) = (field("id")?, field("kind")?, field("unit")?);
-            let value = match &row["value"] {
-                Value::Number(number) => canonical_number(number),
+            let quantity = match &row["value"] {
+                Value::Number(number) => display_quantity(number, unit),
                 _ => return Err(format!("{REPORT_ROWS_MISMATCH}: source row {id} has no numeric value")),
             };
             let label = match row.get("metadata") {
@@ -159,11 +159,51 @@ pub fn expected_report_result_rows(source: &Value) -> Result<Vec<Value>, String>
                 "row_id": format!("row:{id}"),
                 "label": label,
                 "case_ref": case_ref,
-                "quantity_display": format!("{value} {unit}"),
+                "quantity_display": quantity,
                 "source_ref": format!("result:{id}"),
             }))
         })
         .collect()
+}
+
+/// The report's row references and their full-precision checksums (§2.3
+/// item 5): one `calculation_report.result_export_refs` entry per source row,
+/// in order, naming the row and carrying the SHA-256 of its canonical form.
+/// The displayed rows (item 6) are rounded, so two sources can display the
+/// same rows; these checksums are what bind each displayed row to its stored
+/// value. Returns each row's id and digest. The native exact render
+/// (`apps/desktop/src-tauri/src/report_render_exact.rs`) applies the same
+/// check to the delivered source.
+pub fn check_report_result_refs<'a>(report: &Value, source: &'a Value) -> Result<Vec<(&'a str, String)>, String> {
+    let rows = array(source, "/results");
+    let result_refs = array(report, "/calculation_report/result_export_refs");
+    require(result_refs.len() == rows.len(), "report result references cover the source rows")?;
+    let mut row_digests = Vec::with_capacity(rows.len());
+    for (row, entry) in rows.iter().zip(result_refs) {
+        let id = row["id"].as_str().ok_or_else(|| mismatch("source row id"))?;
+        let row_digest = digest(row).map_err(|detail| format!("{SOURCE_INVALID}: {detail}"))?;
+        let row_ref = reference("Result", id);
+        require(entry["ref"] == row_ref, format!("report result reference {id}"))?;
+        check_hash(&entry["checksum"], &row_ref, &row_digest, &JCS_LABELS, &format!("report row checksum {id}"))?;
+        row_digests.push((id, row_digest));
+    }
+    Ok(row_digests)
+}
+
+/// The report's unit display summary (§2.3 item 5): the storage convention,
+/// the complete display policy ([`QUANTITY_DISPLAY_POLICY`], whose statement
+/// the renderer prints near the results), `conversion_performed` exactly when
+/// the report displays a value stored in Pa
+/// ([`source_displays_scaled_value`]), and the source rows' stored units. The
+/// native exact render applies the same check to the delivered source.
+pub fn check_unit_display_summary(report: &Value, source: &Value) -> Result<(), String> {
+    let display = &report["calculation_report"]["model_input_summary"]["unit_display_summary"];
+    require(display["storage_convention"] == STORAGE_CONVENTION, "unit display storage_convention")?;
+    require(display["quantity_display_policy"] == QUANTITY_DISPLAY_POLICY, "unit display quantity_display_policy")?;
+    require(display["conversion_performed"] == source_displays_scaled_value(source), "unit display conversion_performed")?;
+    let rows = array(source, "/results");
+    let units: BTreeSet<&str> = rows.iter().filter_map(|row| row["unit"].as_str()).filter(|unit| !unit.is_empty()).collect();
+    require(display["result_units"] == json!(units.into_iter().collect::<Vec<_>>()), "unit display result_units")
 }
 
 /// The safe-reference projection of the report's rule-pack checksum to its
@@ -333,18 +373,7 @@ pub(crate) fn check_request_in(
     require(audit_refs[1]["ref"] == report_envelope_ref, "report received-result reference")?;
     check_hash(&audit_refs[1]["checksum"], &report_envelope_ref, &received_digest, &JCS_LABELS, "report received-result checksum")?;
 
-    let rows = array(source, "/results");
-    let result_refs = array(report, "/calculation_report/result_export_refs");
-    require(result_refs.len() == rows.len(), "report result references cover the source rows")?;
-    let mut row_digests = Vec::with_capacity(rows.len());
-    for (row, entry) in rows.iter().zip(result_refs) {
-        let id = row["id"].as_str().ok_or_else(|| mismatch("source row id"))?;
-        let row_digest = digest(row).map_err(|detail| format!("{SOURCE_INVALID}: {detail}"))?;
-        let row_ref = reference("Result", id);
-        require(entry["ref"] == row_ref, format!("report result reference {id}"))?;
-        check_hash(&entry["checksum"], &row_ref, &row_digest, &JCS_LABELS, &format!("report row checksum {id}"))?;
-        row_digests.push((id, row_digest));
-    }
+    let row_digests = check_report_result_refs(report, source)?;
 
     let load_set = unique_refs(
         array(e, "/load_basis_refs").iter().filter_map(|item| Some((item["ref_type"].as_str()?, item["ref_id"].as_str()?))),
@@ -470,18 +499,15 @@ pub(crate) fn check_request_in(
         require(audit_manifest.manifest_id == input.payload_ref, "desktop audit manifest id is not the input-manifest reference")?;
     }
 
-    // Unit system and the complete no-conversion display policy.
+    // Unit system and the complete display policy: values stored in Pa are
+    // displayed in MPa, so `conversion_performed` is whether the report
+    // displays such a value (a result row, or an exact headline).
     require(text(e, "/unit_system_ref/ref_id") == Some(audit_manifest.unit_system_ref.as_str()), "audit unit system")?;
     if desktop {
         require(e["unit_system_ref"] == reference("unit_system", &format!("{model}:units")), "desktop unit system")?;
     }
     require(summary["unit_system_ref"] == reference("unit_system", DEC018_UNIT_SYSTEM), "report display-policy reference")?;
-    let display = &summary["unit_display_summary"];
-    require(display["storage_convention"] == STORAGE_CONVENTION, "unit display storage_convention")?;
-    require(display["quantity_display_policy"] == QUANTITY_DISPLAY_POLICY, "unit display quantity_display_policy")?;
-    require(display["conversion_performed"] == false, "unit display conversion_performed")?;
-    let units: BTreeSet<&str> = rows.iter().filter_map(|row| row["unit"].as_str()).filter(|unit| !unit.is_empty()).collect();
-    require(display["result_units"] == json!(units.into_iter().collect::<Vec<_>>()), "unit display result_units")?;
+    check_unit_display_summary(report, source)?;
 
     // Status.
     let statuses = array(e, "/analysis_status");
