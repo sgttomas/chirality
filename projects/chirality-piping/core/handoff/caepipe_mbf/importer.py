@@ -261,7 +261,7 @@ def english_length_bound(text: str) -> Fraction:
 # Coordinate System; DEL-17-01 CAEPIPE-LOCAL-AXES): a non-vertical element's local y lies in the plane of its
 # local x and global Y, toward +Y; a vertical element's local y is global -X. The manual gives no angle for
 # "vertical"; this profile treats an element as vertical when the horizontal part of its unit direction is at
-# most VERTICAL_SINE (selected interpretation, Design §11.8).
+# most VERTICAL_SINE (selected interpretation, Design §10.5).
 VERTICAL_SINE = 1e-6
 
 

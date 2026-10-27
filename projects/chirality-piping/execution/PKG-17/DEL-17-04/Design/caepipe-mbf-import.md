@@ -109,6 +109,7 @@ page and section. Their text, tables and examples are not reproduced.
 | `CAEPIPE-LOAD-CASES` | `users_manual/load_cases.htm` (*Load cases*) | Case-membership semantics only: which loads each CAEPIPE case includes. Used to state the writer's case mapping and its inverse |
 | `CAEPIPE-BEND` | `tech_manual/bend.htm` (technical reference, *Bend*) | CAEPIPE generates the near and far end nodes of a bend's curved portion, named with A and B suffixes on the bend node. The section given on the bend row applies to the curved portion and to the straight from the preceding node to the A node |
 | `CAEPIPE-FORCE` | `tech_manual/force.htm` (technical reference, *Force*) | The Force technical reference documents that sustained-category forces and moments also participate in operating cases. It does not state which category an MBF force or moment without `FLC` takes |
+| `CAEPIPE-LOCAL-AXES` | `tech_manual/local_coordinate_system.htm` (technical reference, *Local Coordinate System*) | The pipe element local-axis convention: with global Y vertical, a non-vertical straight's local y lies in the plane of its local x and global Y, toward +Y; a vertical straight's local y is global −X (§10.5) |
 | `CAEPIPE-TECH-REF` | `tech_manual/index.htm` | The technical reference's index; the pages used are registered separately above |
 
 The seven rows from `CAEPIPE-LAYOUT-OFFSETS` to `CAEPIPE-FORCE` are registered in DEL-17-01
@@ -119,10 +120,16 @@ Archive holds one (it holds none for `CAEPIPE-MBF-ABSOLUTE`), and a boundary:
 - "case-membership semantics only" for `CAEPIPE-LOAD-CASES` and `CAEPIPE-FORCE`;
 - "bend end-node naming and section assignment only" for `CAEPIPE-BEND`.
 
+`CAEPIPE-LOCAL-AXES` was registered later with the boundary "pipe local-axis convention
+only", for the straight-pipe orientation of §10.5.
+
 ## 3. Where it lives and its interface
 
 - **Module:** `core/handoff/caepipe_mbf/importer.py`, beside the writer and sharing its
-  constants (`MBF_VERSION`, `SUSTAINED_LABEL`, `EXPANSION_LABEL`, `STANDARD_GRAVITY`).
+  constants (`MBF_VERSION`, `LOAD_CASE_LABELS`, `STANDARD_GRAVITY`). The writer keeps its two
+  case labels in one mapping, `LOAD_CASE_LABELS["sustained"]` and
+  `LOAD_CASE_LABELS["expansion"]`; this Design's "sustained label" and "expansion label"
+  name those entries.
 - **Function:**
   `import_caepipe_mbf(data: bytes, *, sidecar: Mapping | None = None, material_provenance: Mapping | None = None, rebind_by_node_number: bool = False, source_label: str) -> MbfImportResult`.
   - Input is bytes, not text, so that the importer owns the decoding (§4.1).
@@ -156,8 +163,10 @@ Archive holds one (it holds none for `CAEPIPE-MBF-ABSOLUTE`), and a boundary:
 - The manual's own examples write foot and inch marks both as ASCII `'` `"` and as the
   typographic `’` `”` (U+2019, U+201D). Both are accepted as foot and inch marks, and only
   in lengths. Any other non-ASCII character outside free text (headings, descriptions,
-  model comments) is refused. Which encoding and marks CAEPIPE's MBF export writes is TBD-17-04-006.
-- Line ends: CRLF or LF. A lone CR is refused. Trailing spaces are trimmed. Spaces around
+  model comments) is refused (`MBF-IMPORT-CHARACTER-UNSUPPORTED`). A leading byte-order mark
+  is refused as `MBF-IMPORT-ENCODING-UNSUPPORTED`. Which encoding and marks CAEPIPE's MBF
+  export writes is TBD-17-04-006.
+- Line ends: CRLF or LF. A lone CR is refused (`MBF-IMPORT-LINE-END-UNSUPPORTED`). Trailing spaces are trimmed. Spaces around
   commas are not significant: the manual's examples show both forms.
 - A blank line is ignored, except right after a section keyword where the manual gives the
   blank line a meaning (OPPRES, OPMISC). There it is recorded as "section present with
@@ -173,7 +182,10 @@ Archive holds one (it holds none for `CAEPIPE-MBF-ABSOLUTE`), and a boundary:
   but only when it names exactly one documented keyword. `OPT` names both OPTIONS and
   OPTEMP, so the bare prefix is refused (`MBF-IMPORT-SECTION-AMBIGUOUS`); the full words are
   accepted. An unknown single-token line inside a section is a data line of that section
-  and must parse as one.
+  and must parse as one. A keyword-like line (an uppercase token of three or more letters
+  and digits) that is not a record of its section is refused as
+  `MBF-IMPORT-SECTION-UNKNOWN`.
+- MATERIAL, PIPE and LAYOUT are required (`MBF-IMPORT-SECTION-MISSING`).
 - `VERSION` is required. A file without it is the 6.xx variant and is refused by name
   (`MBF-IMPORT-VERSION-MISSING`). The accepted versions form an explicit list, initially
   `15.10`, the writer's version. Any other version is refused by name
@@ -187,13 +199,16 @@ Archive holds one (it holds none for `CAEPIPE-MBF-ABSOLUTE`), and a boundary:
   as in `FIXD(1,0,1)`.
 - A real is an optional sign, digits with an optional decimal point, and an optional
   exponent. Anything else in a numeric field is `MBF-IMPORT-NUMBER-INVALID`, naming line and
-  field. An empty optional field means "not given". An empty required field is refused.
+  field. An empty optional field means "not given". An empty required field is refused
+  (`MBF-IMPORT-FIELD-MISSING`). A MATERIAL, PIPE or LOADS name defined twice is refused
+  (`MBF-IMPORT-RECORD-REPEATED`).
 - A record with more fields than its documented field list, for the declared MBF version,
   is refused by name (`MBF-IMPORT-FIELD-UNDOCUMENTED`, naming the record and field
   position). Trailing fields with no public description are not given a meaning.
 - Non-finite values are refused. Range checks match the writer's: E > 0; 0 < ν < 0.5;
   0 < t < OD/2; R > 0; k > 0; non-negative material weight densities; negative values are refused. They are applied before any
-  derived value is formed, so an out-of-range input is refused by name, never clamped.
+  derived value is formed, so an out-of-range input is refused by name, never clamped
+  (`MBF-IMPORT-VALUE-OUT-OF-RANGE`).
 
 ### 4.4 Layout rows and comments
 
@@ -210,7 +225,11 @@ A layout data line is a row, a continuation line or a model comment.
   comment `L=S1`, and `CWGT=…` is the comment `WGT=…`, not `CWGT`. Every later field is a
   comment.
 - **Continuation.** A row whose last comment ends with a comma continues on the next line,
-  which carries comments only.
+  which carries comments only. Its fields are comments as written: no leading `C` is removed
+  from a continuation line. A row that ends with a comma before any comment, a continuation
+  with no following line, an empty key-letter field, unbalanced parentheses, or a To row
+  without a preceding From row is refused (`MBF-IMPORT-ROW-SYNTAX-INVALID`). A layout with
+  no element is refused (`MBF-IMPORT-TOPOLOGY-EMPTY`).
 - **Comment form.** Each comment is `NAME`, `NAME=value` or `NAME(v1,…)`. The name is
   matched exactly against the documented comment list, and the longest documented name
   wins. For example `FIXDX` is not read as `F` followed by `IXDX`. An undocumented name is
@@ -247,6 +266,16 @@ done in engineering applications are permissible as a solution"):
   0.45359237 kg/lb, the standard-gravity kgf and lbf definitions, and °F intervals × 5/9.
 - The import result states that normalization was applied, with its factors.
 - A native English writer mode is an owner choice, carried in the survey proposal.
+- **As implemented.** `si_writer.py` accepts the project units `in`, `lbf` and `degF` and the
+  quantity units `in`, `lbf`, `psi`, `lbf*in`, `lbf*ft`, `lbf/in`, `degF` (interval) and
+  `1/degF`. Each is multiplied by its exact rational factor and rounded once to binary64:
+  1 in = 25.4 mm; 1 lbf = 0.45359237 kg × 9.80665 m/s² = 4.4482216152605 N; psi, lbf·in,
+  lbf·ft and lbf/in from those two; °F intervals × 5/9; 1/°F × 9/5. An absolute reference
+  temperature in °F, passed as `reference_temperature_f`, becomes (T − 32) × 5/9 °C. The
+  writer's result carries the info diagnostic `MBF-SI-UNITS-NORMALIZED`, listing each
+  factor applied, and its assumptions say so. Every other unit stays refused. The importer
+  itself still converts only as §5.3 says; its English result states that the writer
+  re-exports it by this normalization.
 
 | Quantity | English MBF | Written as | SI MBF | Written as |
 |---|---|---|---|---|
@@ -263,15 +292,13 @@ done in engineering applications are permissible as a solution"):
 
 - **Project units.** English mode writes `in, lbf, lbf*in, psi, psi, degF` and `deg` (or
   `rad`); that is the US-customary preset. SI mode writes `mm, N, N*m, MPa, Pa, degC` and
-  `deg` (or `rad`).
+  `deg` (or `rad`), keyed in the desktop's order length, force, moment, pressure, stress,
+  temperature, angle: pressure `MPa` and stress `Pa`, as written above.
 - **Moments.** The project moment key follows the preset. Each moment quantity carries its
   own `lbf*ft`.
-- **Consequence for iteration.** English imports cannot be re-exported through the
-  current SI writer, which refuses non-SI project units (`MBF-SI-PROJECT-UNIT-UNSUPPORTED`).
-  An English-mode import opens and solves in SWBPIPE, but it does not give two-way
-  iteration. Bidirectional English iteration requires a separately selected writer
-  extension, or a documented normalization to the writer's SI profile. That is owner
-  choice O-2 (§20).
+- **Consequence for iteration.** An English-mode import opens and solves in SWBPIPE, and
+  re-exports through the SI writer by the normalization above (O-2). The re-exported MBF is
+  SI; a native English writer mode remains an owner choice (§20).
 
 ### 5.3 The two conversions the importer does make (HELP_HUMAN, routine and exact)
 
@@ -424,12 +451,15 @@ provenance.
   identifies project-invented data or the user's own supplied source; vendor-library,
   unknown and suspected protected origins remain refused. Redistribution disposition
   alone is insufficient.
-  - **Mechanism.** The writer would copy into each `material_map` entry an explicit
-    `origin` member (§21). It sets `project_invented` only when the source material's
-    `provenance_record` states `redistribution_status: invented_non_engineering_example`
-    and carries no `library_ref`. It sets `user_supplied` only when the record's
-    `contributor_certification` states the data is the user's own supplied source and the
-    record carries no `library_ref`. Otherwise it sets no origin.
+  - **Mechanism (implemented).** The writer copies into each `material_map` entry an
+    explicit `origin` member. It sets `project_invented` only when the source material's
+    `provenance_record` states `contributor_certification: "invented non-engineering
+    example"` with `redistribution_status: public_permissive` and carries no `library_ref`.
+    It sets `user_supplied` only when the record's `contributor_certification` is
+    `"user-supplied own source"` and the record carries no `library_ref`. Otherwise it sets
+    no origin. Both are values the model schema admits: its `redistribution_status` enum has
+    no invented value, so the certification string, the project's existing vocabulary for
+    invented data, is the affirmative marker, and a disposition alone never qualifies.
   - **No origin, no import.** A material whose entry has no `origin` needs the caller's
     explicit declaration. That covers a material inserted from a library (`library_ref`
     present), a `private_only`, `public_permissive` or `unknown` status without such a
@@ -485,19 +515,20 @@ environmental-load flags (*Format of .MBF*, LOADS).
 
 ### 9.3 Load cases
 
-The writer maps mechanical cases to the sustained label held in its constant
-`SUSTAINED_LABEL`. It maps thermal and imposed-displacement cases to the first expansion
-label in its constant `EXPANSION_LABEL` (writer assumptions; DEL-17-05 Design §6). The
+The writer maps mechanical cases to the sustained label `LOAD_CASE_LABELS["sustained"]`.
+It maps thermal and imposed-displacement cases to the first expansion label
+`LOAD_CASE_LABELS["expansion"]` (writer assumptions; DEL-17-05 Design §6). The
 importer forms at most two primitive load cases:
 
-- `case:mbf-sustained`, labelled with `SUSTAINED_LABEL`, holds weight, concentrated
+- `case:mbf-sustained`, labelled with the sustained label, `kind: sustained`, holds weight, concentrated
   forces and concentrated moments. Forces and moments are placed there per §13's case
   rule.
-- `case:mbf-expansion-t1`, labelled with `EXPANSION_LABEL`, holds thermal changes and
+- `case:mbf-expansion-t1`, labelled with the expansion label, `kind: thermal`, holds thermal changes and
   anchor displacements and rotations.
 
 Further rules:
 
+- Both cases carry `status: draft`, the desktop's status for a new case.
 - A case with no primitives is not created.
 - No `combinations` are created. CAEPIPE forms its own (*Load cases*), and that is listed
   as `delegated`.
@@ -579,7 +610,32 @@ zero, because the manual gives no rule for them.
   - anchor at `n` → `support:n`; restraint at `n` → `support:n-restraint`;
   - material `M` → `material:M`;
   - primitive loads → `load:<category>:<target id>[:<axis>]`.
-- Node labels are the CAEPIPE names. Pipe labels are `a-b`.
+- Node labels are the CAEPIPE names. Pipe labels are `a-b`. Support labels are the node's
+  `TAG`, else `anchor at n` or `restraint at n`; bend components are labelled `bend n`; load
+  cases carry the writer's case labels (§9.3).
+
+### 10.5 Straight-pipe orientation
+
+The MBF carries no element orientation. A straight pipe still needs a `y_reference`, which
+the solve requires, so the importer assigns one deterministically:
+
+- **Bound imports** restore it from the writer's sidecar: `element_map[pipe].y_reference`,
+  which the writer records for every straight with an authored `y_reference`.
+- **Otherwise** the straight takes the local y axis CAEPIPE documents for pipe elements
+  (documented: `CAEPIPE-LOCAL-AXES`, technical reference *Local Coordinate System*). With
+  global Y vertical, a non-vertical element's local y lies in the plane of its local x and
+  global Y, toward +Y, so `y_reference` = Y − (Y·x)x normalized (computed as
+  (−x_y·x_x, x_x² + x_z², −x_y·x_z) to keep precision near vertical). A vertical element's
+  local y is global −X.
+- **Selected interpretation.** The manual gives no angle for "vertical". This profile treats
+  a straight as vertical when the horizontal part of its unit direction is at most 1e-6
+  (`VERTICAL_SINE`).
+- Z-vertical models are refused in tranche 1 (§5.1); the manual's Z-vertical convention
+  (local z toward +Z in the plane of local x and Z; vertical elements y = global Y) joins
+  the Z-vertical tranche.
+- Each assignment is reported as `MBF-IMPORT-ORIENTATION-DEFAULTED` (info, by element).
+  A circular section's stiffness does not depend on the orientation; only local-axis results
+  (local forces, moments and stresses) depend on the convention.
 
 ## 11. Bends
 
@@ -618,7 +674,10 @@ reference *Bend*; *Node*). The inverse:
      For M and L it is the same rule. The writer refuses differing properties within one
      row, so this is its inverse.
 5. **Component** `component:bend-n`:
-   - `kind: bend`, `node: node:nA`;
+   - `kind: bend`, `node: node:nA`. The sidecar does not record which tangent node the
+     source component named, so a bound import also uses the near tangent node and reports
+     the component node as `MBF-IMPORT-ID-UNRECOVERABLE`; a source model whose component
+     names the far node is excluded from canonical equality by name (§18.1);
    - `geometry.bend_pipe_ref`, `geometry.bend_radius` {R, `in`|`mm`} and
      `bend_geometry_source_reference` (MBF hash and line);
    - `mechanics_interface.solver_consumption: curved_bend_macro_element`;
@@ -658,9 +717,9 @@ Support data are comments on the node's row or on a Location row. They follow *F
 
 With a bound sidecar, the writer's `support_map` restores the original supports, their ids
 and DOF sets. That map preserves each split explicitly: the writer may have merged several
-supports into one anchor, and the sidecar splits them back. The writer does not currently
-record `family` in `support_map`, so families are not recoverable and are reported as
-such (§15). Adding `family` is a one-line writer change, proposed here.
+supports into one anchor, and the sidecar splits them back. The writer records each
+support's `family` in `support_map` (implemented), and bound imports restore it. A sidecar
+entry without `family` (an older sidecar) is reported as unrecoverable (§15).
 
 ## 13. Point loads and displacements
 
@@ -694,6 +753,25 @@ the manual does not make clear which kind a record is, it is refused.
 | FCURVE, FCYCLE, ALLOWABLES, SPCMS, SPLVL, PSDDT/PSDLS, PSDLD | `delegated` (fatigue, allowable loads, spectra and random-vibration definitions). The section name and record count are listed; values are not copied |
 | Unknown section keyword or unknown comment | Refused (`MBF-IMPORT-SECTION-UNKNOWN`, `MBF-IMPORT-COMMENT-UNKNOWN`) |
 
+**Codes named in the implementation beyond those above.** Refusals (block the import):
+
+- `MBF-IMPORT-LINE-END-UNSUPPORTED`, `MBF-IMPORT-CHARACTER-UNSUPPORTED` (§4.1);
+- `MBF-IMPORT-SECTION-MISSING` (§4.2);
+- `MBF-IMPORT-FIELD-MISSING`, `MBF-IMPORT-RECORD-REPEATED`, `MBF-IMPORT-VALUE-OUT-OF-RANGE` (§4.3);
+- `MBF-IMPORT-ROW-SYNTAX-INVALID`, `MBF-IMPORT-TOPOLOGY-EMPTY` (§4.4);
+- `MBF-IMPORT-COMMENT-UNSUPPORTED`: a documented comment refused without a narrower code,
+  such as the SIF and stress-index comments above;
+- `MBF-IMPORT-SIDECAR-INVALID`: a malformed sidecar, or rebinding requested without one (§15).
+
+Loss entries and information (do not block):
+
+- `MBF-IMPORT-TARGET-OPTION-DELEGATED` and `MBF-IMPORT-SECTION-DELEGATED` (`delegated`, §6, §14);
+- `MBF-IMPORT-SECTION-ZERO-OMITTED`, `MBF-IMPORT-THERMAL-LOAD-OMITTED`,
+  `MBF-IMPORT-RECORD-UNUSED` (a record no element references), `MBF-IMPORT-TAG-WITHOUT-SUPPORT`
+  and `MBF-IMPORT-SIDECAR-ENTRY-ABSENT` (`omitted`);
+- `MBF-IMPORT-SIDECAR-NOT-APPLIED` (info: the hashes differ and no rebinding was requested)
+  and `MBF-IMPORT-ORIENTATION-DEFAULTED` (info, §10.5).
+
 ## 15. Ids and the sidecar map
 
 There is no id carrier inside the MBF (TBD-17-01-003, TBD-17-04-003). Identity therefore
@@ -701,9 +779,8 @@ travels in a sidecar.
 
 **Input.** The writer's maps (`node_map`, `element_map`, `support_map`,
 `load_case_map`, `material_map`, `section_map`, `load_map`), as `run_pilot.py` already
-writes them to `caepipe_in/id_map.json`, plus `mbf_sha256`. The tool should write
-`mbf_sha256` into `id_map.json`; today it is in `mbf_render.json`. That one-line change is
-proposed here. The importer accepts either file pair.
+writes them to `caepipe_in/id_map.json`, with `mbf_sha256` (implemented; older runs hold
+it in `mbf_render.json`, and the importer accepts either file pair).
 
 **Bound** (the sidecar's `mbf_sha256` equals the input's). A byte-bound sidecar restores
 the identities, and the splits, that it explicitly preserves:
@@ -715,20 +792,22 @@ the identities, and the splits, that it explicitly preserves:
 - materials, from `material_map[...].swbpipe_material`. MBF materials that map to one
   SWBPIPE material are merged after checking that E, ν and α are identical; otherwise
   `MBF-IMPORT-SIDECAR-CONFLICT`;
-- load cases, from `load_case_map`.
+- load cases, from `load_case_map`;
+- support families, from `support_map[...].family`;
+- straight-pipe orientation, from `element_map[...].y_reference` (§10.5).
 
 **What a bound sidecar cannot restore.** Many-to-one mappings and identities the sidecar
 does not preserve are reported, never guessed. Each is listed in the loss report as
 `approximated` with code `MBF-IMPORT-ID-UNRECOVERABLE`, naming the sidecar entries
 involved.
 
-- **Primitive loads.** `load_map` records each primitive's case, category and target, but
-  not its direction or magnitude. The writer sums several primitives on one target, so a
-  primitive id is restored only when the sidecar names exactly one primitive for that
-  (case, category, target) and the import produces exactly one primitive for it. Every
-  other primitive gets a §10.4 id and is reported. Adding direction to `load_map` would let
-  the writer preserve more; it is proposed for the writer (§21).
-- **Support families.** `support_map` carries no family (§12).
+- **Primitive loads.** `load_map` records each primitive's case, category, target and
+  direction (implemented), but not its magnitude. The writer sums several primitives on one
+  target, so a primitive id is restored only when the sidecar names exactly one primitive
+  for that (case, category, target, axis) and the import produces exactly one primitive for
+  it. Every other primitive gets a §10.4 id and is reported.
+- **Support families** when the sidecar entry has no `family` (§12).
+- **Bend component nodes** (§11 item 5).
 - **Members the writer does not export** (§17's last rows).
 
 **Unbound** (no sidecar, or hashes differ: a CAEPIPE re-export, or an edit). The MBF
@@ -807,15 +886,16 @@ input.
 | Weight only along −Y | Weight along −Y only (Z vertical refused) |
 | LOADS: T1 = T_ref + ΔT, P1 = 0, SG = 0 | ΔT = T1 − T_ref; P1 and SG must be 0 |
 | `OPTEMP` = reference temperature | T_ref |
-| Mechanical case → `SUSTAINED_LABEL`; thermal and displacement → `EXPANSION_LABEL` | `case:mbf-sustained` and `case:mbf-expansion-t1` (ids restored from the sidecar) |
+| Mechanical case → sustained label; thermal and displacement → expansion label (`LOAD_CASE_LABELS`) | `case:mbf-sustained` and `case:mbf-expansion-t1` (ids restored from the sidecar) |
 | Combinations not exported | None created |
 | Force and moment comments `FOR`, `MOM` per node, summed, without `FLC` | Primitives per non-zero component, in the mechanical case. Without `FLC`: bound imports only; unbound imports refuse it, except where an explicitly retained bounded profile decision admits it |
 | Anchor displacement `D`, rotation `ROT` (rad → deg) | Imposed displacement and rotation on the anchor, in the thermal case, in `mm` and `deg` |
 | Full six-DOF restraint (one or several supports) → `KA` | Anchor; the sidecar splits it back |
-| Translational partial restraint → `FIXD` | Restraint support; family not carried (proposed writer change §12) |
+| Translational partial restraint → `FIXD` | Restraint support; family restored from `support_map` in bound imports (§12) |
 | Partial rotational restraint refused | `FIXR` imported (wider than the writer) |
 | Curved bend → `T<n>,KI,B<R>,…,CFF=<k>` at the TI; ends `nA`/`nB` | Tangent nodes from TI, R and the adjacent legs; bend pipe, y_reference and component reconstructed |
-| Straight-pipe `y_reference` not exported | Absent on straights |
+| Straight-pipe `y_reference` not in the MBF; recorded in `element_map` | Restored in bound imports; otherwise the documented local y (§10.5) |
+| US-customary model units → exact normalization to SI (`MBF-SI-UNITS-NORMALIZED`, §5.2) | SI import of the normalized values |
 | `M`, `P`, `L=` written only when changed | M and P carried until changed (documented). `L=` carried the same way in bound imports; unbound imports refuse it, except where an explicitly retained bounded profile decision admits it |
 | Node numbers 10, 20, … in layout order; sidecar maps | Ids from the sidecar, or formed from numbers |
 | Unread members (`analysis_status`, `lines`, `unresolved_assumptions`, `constraints`, `equipment_interfaces`, `rule_pack_refs`, …) not exported | Not recoverable from the MBF; the importer writes only §16.1's desktop-profile members |
@@ -868,7 +948,9 @@ declares it invented. The boundary guard (§18.4) requires the sidecar.
    - (d) **Solve equality.** Headless solves of A and I give global displacements and
      reactions that agree within τ_solve = 10³ · r_in of each family's largest magnitude.
      r_in is the model's largest relative input bound under §18.2. This is a
-     numerical-meaning check (Root `AGENTS.md`).
+     numerical-meaning check (Root `AGENTS.md`). I is solved as imported: its straights carry
+     the restored or documented orientation (§10.5); only a source model the writer tests
+     author without orientation or provenance gets them added before its own solve.
      - Models with r_in > 1e-8 are excluded from this check and listed by name; an example
        is a ΔT that is tiny next to its temperatures.
      - **ASSUMPTION: 10³ is a provisional test threshold, not a derived bound.** It is
@@ -933,7 +1015,8 @@ reproduction by name.
 
 **Representation losses the comparison excludes:**
 
-- `y_reference` on straights, which the writer omits;
+- `y_reference` on straights, which the MBF does not carry (bound imports restore it from
+  the sidecar; unbound imports take §10.5's documented local y);
 - support families, which `support_map` does not carry (§12);
 - labels, provenance and the members of §17's last rows;
 - several primitives on one target, which are compared as their sum;
@@ -1081,10 +1164,8 @@ a2"<!-- /owner-words -->).
   move with the ripple's regeneration.
 - **Members.** Tranche 1 refuses reducers (`JD`). The importer never writes
   `eccentric_offset`, and nothing else in 0.8.0 touches the importer's members.
-- **Writer literal.** The writer's `check_document` compares the literal `"0.7.0"`. It is
-  warning-only, but the writer should also read the schema enum and join the 0.8.0 ripple
-  inventory; otherwise it warns on every 0.8.0 model. The importer's round-trip tests would
-  see that warning, so this has to be settled in the ripple, whichever lands first.
+- **Writer version.** The writer's `check_document` reads the schema's single enum value
+  (implemented), so it follows the 0.8.0 ripple without an edit.
 - **Later reducer tranche.** A CAEPIPE reducer row carries both end ODs and thicknesses
   and its own offsets. A transverse offset component would map to `eccentric_offset` under
   R12's convention (global axes, from the centreline at the component's node to the
@@ -1111,9 +1192,8 @@ dossier as CQ-17-01-011 to -015.
 - **O-1.** Whether DEC-016's wording ("commercial stress software output parsers") should
   say explicitly that model import is outside it. This Design relies on the 2026-10-26
   ruling.
-- **O-2.** English-mode iteration. English imports cannot be re-exported through the
-  current SI writer. Either add an English mode to the writer next, or let
-  the importer offer an opt-in exact conversion to an SI project.
+- **O-2.** English-mode iteration. Agent 0 decided exact normalization to the SI profile
+  in the writer (§5.2, implemented). A native English writer mode remains an owner choice.
 - **O-3.** The tranche-1 cut (§11, §12, §14): temperature-dependent materials, supports
   beyond anchors and restraints, pressure and Z-vertical are refused.
 - **O-4.** How CAEPIPE-exported MBFs are produced for §18.3: by hand by the owner, or by a
@@ -1138,18 +1218,19 @@ intermediate bend nodes; loops.
 ## 21. Reconciliation with this Design
 
 - **DEL-17-04 `ScopeOfWork.md`:** REQ-012 to REQ-020, verification, acceptance, OUT-002,
-  AC-002 and VER-002, TBD-17-04-005 to -008, and the two edited "parser" sentences, as
+  AC-002 and VER-002, TBD-17-04-005 to -009, and the two edited "parser" sentences, as
   applied to that file.
 - **DEL-17-04 `deliverable.yaml`:** checks gain `tests/test_caepipe_mbf_importer.py`,
   `tests/test_caepipe_mbf_round_trip.py` and `tests/test_caepipe_private_mbf_import.py`.
   Code paths are unchanged.
-- **DEL-17-01:** the seven source rows (§2) in `Source_Basis_Register.md`, and
+- **DEL-17-01:** the seven source rows (§2) and `CAEPIPE-LOCAL-AXES` in `Source_Basis_Register.md`, and
   CQ-17-01-011 to -015 in `CAEPIPE_Question_Dossier.md`.
 - **DEL-17-05 Design §5:** the two private run-directory rows. In §10, "two-way
   iteration" joins the remaining items.
-- **Writer and pilot tool:** `family` in `support_map` (§12); primitive direction in
-  `load_map` (§15); an explicit material `origin` in `material_map` (§7.4);
-  the schema-enum version check (§19); and `mbf_sha256` in `id_map.json` (§15).
+- **Writer and pilot tool (implemented):** `family` in `support_map` (§12); primitive
+  direction in `load_map` (§15); an explicit material `origin` in `material_map` (§7.4);
+  straight-pipe `y_reference` in `element_map` (§10.5); exact US-customary normalization
+  (§5.2); the schema-enum version check (§19); and `mbf_sha256` in `id_map.json` (§15).
 - **Decomposition:** DEL-17-04's description in `execution/_Decomposition/SOFTWARE_DECOMP.md`
   should include bounded MBF model import alongside export. Its ID, package home and
   supporting scope mappings stay unchanged.
