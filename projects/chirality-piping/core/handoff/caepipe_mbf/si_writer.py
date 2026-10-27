@@ -25,7 +25,7 @@ from fractions import Fraction
 import json
 import math
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Iterable, Mapping
 
 
 MBF_SI_PROFILE_ID = "caepipe-mbf-si-pilot-1"
@@ -243,6 +243,29 @@ def render_caepipe_mbf_si(
     return writer.run()
 
 
+def regenerate_caepipe_sidecar(
+    model: Mapping[str, Any],
+    *,
+    mbf_sha256: str,
+    derived_y_reference: Iterable[str],
+    reference_temperature_c: float = 20.0,
+    reference_temperature_f: float | None = None,
+) -> tuple[dict[str, Any] | None, list[dict[str, Any]]]:
+    """The sidecar this writer records for `model`, as `render_caepipe_mbf_si` records it, for the importer's
+    regeneration identity (Design §14). Two inputs are not in the model: each straight named in `derived_y_reference`
+    records its y_reference as derived (`y_reference_authored` false, the model's vector, which the import derived),
+    and the export preflight is not run (the import is the caller). Returns (sidecar, []) or (None, the writer's
+    error diagnostics)."""
+    writer = _Writer(model, "REGENERATED", reference_temperature_c, None)
+    if reference_temperature_f is not None:
+        writer.t_ref_f = reference_temperature_f
+    writer.regenerating = frozenset(derived_y_reference)
+    result = writer.run()
+    if result.status != "written":
+        return None, [item for item in result.diagnostics if item["severity"] == "error"]
+    return result.sidecar(mbf_sha256), []
+
+
 class _Writer:
     def __init__(self, model: Any, title: str, t_ref: Any, max_layout_rows: int | None) -> None:
         self.model = model
@@ -276,6 +299,7 @@ class _Writer:
         self.pipe_pressure: dict[str, float] = {}
         self.regions: list[dict[str, Any]] = []
         self.pressure_case: str | None = None
+        self.regenerating: frozenset[str] | None = None  # regenerate_caepipe_sidecar: the derived straights
 
     # -- diagnostics -----------------------------------------------------
     def diag(self, code: str, severity: str, entity: str, message: str) -> None:
@@ -1276,10 +1300,12 @@ class _Writer:
                 if member_id not in self.bends:
                     # Straight-pipe orientation is not in the MBF; the sidecar carries the effective one for bound
                     # imports: the authored vector, or else CAEPIPE's documented local y the import would assign.
-                    authored = _is_vector(member["y_reference"])
+                    # On regeneration a straight the import derived records the model's vector, that derivation.
+                    derived = self.regenerating is not None and member_id in self.regenerating
+                    given = _is_vector(member["y_reference"])
                     element_map[member_id]["y_reference"] = (  # an unauthored one is derived from the text below
-                        {axis: float(member["y_reference"][axis]) for axis in "xyz"} if authored else None)
-                    element_map[member_id]["y_reference_authored"] = authored
+                        {axis: float(member["y_reference"][axis]) for axis in "xyz"} if given else None)
+                    element_map[member_id]["y_reference_authored"] = given and not derived
                 order += 1
             if "bend" in row:
                 bend = self.bends[row["bend"]]
@@ -1360,7 +1386,7 @@ class _Writer:
         # positions, so the record and the derivation agree exactly (Design §15).
         derived = documented_orientations(text.encode("ascii"))
         for member_id, entry in element_map.items():
-            if entry.get("y_reference_authored") is False:
+            if entry.get("y_reference_authored") is False and entry["y_reference"] is None:
                 vector = None if derived is None else derived.get((entry["from"], entry["to"]))
                 if vector is None:
                     self.refuse("MBF-SI-PREFLIGHT-REFUSED", f"pipe:{member_id}",
@@ -1434,7 +1460,7 @@ class _Writer:
             loss_report=self.loss,
             assumptions=self.assumptions,
         )
-        if self.contract is not None and not self.survives_reimport(result):
+        if self.contract is not None and self.regenerating is None and not self.survives_reimport(result):
             return self.refused()
         return result
 
@@ -1446,13 +1472,26 @@ class _Writer:
         every region. A failed region check is refused as MBF-SI-PRESSURE-REGION-FORMAT; any other refusal, at any
         stage, as MBF-SI-PREFLIGHT-REFUSED carrying the importer's code. Nothing is cut or reordered."""
         from hashlib import sha256
-        from .importer import import_caepipe_mbf  # deferred: the importer imports this module
+        from .importer import import_caepipe_mbf, primitive_key  # deferred: the importer imports this module
 
         data = result.text.encode("ascii")  # type: ignore[union-attr]
         sidecar = result.sidecar(sha256(data).hexdigest())
+        # Primitives the MBF sums into one keep one entry here: a bound import refuses the many-to-one record
+        # (MBF-IMPORT-SIDECAR-AMBIGUOUS), and the preflight checks geometry and regions, not load identities. Only
+        # an undeclared material takes a declaration; a recorded origin is the import's. Maps that are not the
+        # writer's shape (a test's mutation) pass unchanged, for the import's parser to refuse by path.
+        undeclared: dict[str, Any] = {}
+        try:
+            kept: dict[tuple, str] = {}
+            for key, entry in sidecar["load_map"].items():
+                kept.setdefault(primitive_key(entry), key)
+            sidecar["load_map"] = {key: sidecar["load_map"][key] for key in kept.values()}
+            undeclared = {name: {"origin": "project_invented", "source_name": "writer preflight; never output"}
+                          for name, entry in sidecar["material_map"].items() if entry["origin"] == "undeclared"}
+        except (KeyError, TypeError, AttributeError, StopIteration):
+            pass
         back = import_caepipe_mbf(data, sidecar=sidecar, source_label="writer preflight (geometry only)",
-                                  material_provenance={"*": {"origin": "project_invented",
-                                                             "source_name": "writer preflight; never output"}})
+                                  material_provenance=undeclared)
         prefix = "pressure_map region "
         for item in back.diagnostics:
             if item["severity"] != "error":

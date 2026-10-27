@@ -140,7 +140,8 @@ only", for the straight-pipe orientation of §10.5.
   - `material_provenance` is the affirmative material provenance declaration (§7.4).
   - `pressure_closure` is the closure-transfer declaration for pressure-region terminals
     (§9.4).
-  - `rebind_by_node_number` is the explicit request to apply an unbound sidecar (§15).
+  - `rebind_by_node_number` is the explicit request to apply a sidecar by CAEPIPE name,
+    whatever its digest, every restored identity unconfirmed (§15).
 - **Result:** `status` (`imported` | `refused`), `model` (the document, or `None` when
   refused), `diagnostics`, `loss_report`, `assumptions`, `target_options` (§6), `id_map`
   (§15) and `source` (`mbf_sha256`, MBF version, unit mode, angles, vertical axis, line
@@ -507,16 +508,24 @@ provenance.
     no origin. Both are values the model schema admits: its `redistribution_status` enum has
     no invented value, so the certification string, the project's existing vocabulary for
     invented data, is the affirmative marker, and a disposition alone never qualifies.
-  - **No origin, no import.** A material whose entry has no `origin` needs the caller's
-    explicit declaration. That covers a material inserted from a library (`library_ref`
+  - **A recorded origin is the material's** (VER-002 r13). On a bound import the sidecar's
+    recorded `origin` qualifies the material; a caller's declaration of another origin for it
+    is refused (`MBF-IMPORT-SIDECAR-CONFLICT` at `material_map[<name>].origin`), neither being
+    preferred, and a declaration of the same origin changes nothing.
+  - **No origin, no import.** A material whose entry has no `origin` (format 2:
+    `"undeclared"`) needs the caller's explicit declaration. That covers a material inserted from a library (`library_ref`
     present), a `private_only`, `public_permissive` or `unknown` status without such a
     statement, and a bare provenance string.
 - **Refused** (`MBF-IMPORT-MATERIAL-PROVENANCE-REQUIRED`): a material with no
   declaration; a declaration naming vendor-library or unknown origin; and any material
   §7.1 marks as suspected protected.
-- **Recorded.** The imported material's `provenance_record` holds the declared source and
-  its disposition: `private_only` for `user_supplied`, and the declared disposition for
-  `project_invented`. It also holds `source_location` `sha256:<mbf>` and the G derivation
+- **Recorded.** The imported material's `provenance_record` holds the source and its
+  disposition. A recorded origin keeps the certification the writer read it from
+  (`"invented non-engineering example"` with `public_permissive`, or `"user-supplied own
+  source"` with `private_only`), so the writer records the same origin again (§14). A declared
+  origin holds the caller's source, the origin token as its certification, which the writer
+  does not read as one (a re-export asks for the declaration again), and its disposition:
+  `private_only` for `user_supplied`, and the declared disposition for `project_invented`. It also holds `source_location` `sha256:<mbf>` and the G derivation
   note (§7.2). PRD §18.4's provenance warnings then apply as usual.
 - **Public tests.** Invented fixtures declare `project_invented` through their provenance
   sidecar.
@@ -964,7 +973,9 @@ The MBF carries no element orientation. A straight pipe still needs a `y_referen
 the solve requires, so the importer assigns one deterministically:
 
 - **Bound imports** restore it from the writer's sidecar: `element_map[pipe].y_reference`,
-  which the writer records for every straight with an authored `y_reference`. It is restored
+  which a format-2 sidecar records for every straight (its effective one, with
+  `y_reference_authored`; §15) and a legacy one for every straight with an authored
+  `y_reference`. It is restored
   only if it is a finite vector from which the frame kernel forms an orientation on the MBF's
   positions in metres, checked as the kernel checks it (`FrameElement::orientation`, ported
   operation for operation): the element axis and the y_reference's part perpendicular to it
@@ -972,12 +983,12 @@ the solve requires, so the importer assigns one deterministically:
   A vector nearly parallel to its straight can fail only the last checks: along (1, 2, 0) m,
   (1, 2.00000001, 0) leaves y about 4e-8 from orthogonal to x (independent review VER-002
   r6). Any other recorded y_reference is refused by name with the element
-  (`MBF-IMPORT-ORIENTATION-UNUSABLE`), and nothing is substituted: the sidecar is the user's
-  binding record (the lane manager's decision after independent review VER-002 r6). The
+  (`MBF-IMPORT-ORIENTATION-UNUSABLE`), and nothing is substituted (the lane manager's
+  decision after independent review VER-002 r6). The
   writer's preflight refuses an export whose own bound re-import refuses so (§9.4), so a
   sidecar the writer wrote is always restored as written.
-- **Bound imports without a recorded y_reference**, and imports without a sidecar, take
-  the documented local y below.
+- **Legacy bound imports without a recorded y_reference**, and imports without a sidecar,
+  take the documented local y below.
 - **Otherwise** the straight takes the local y axis CAEPIPE documents for pipe elements
   (documented: `CAEPIPE-LOCAL-AXES`, technical reference *Local Coordinate System*). With
   global Y vertical, a non-vertical element's local y lies in the plane of its local x and
@@ -1124,12 +1135,43 @@ Forces and moments on one node are summed per component, as the writer sums them
 
 ## 14. Everything else
 
-**The sidecar trust model** (VER-002 r11). The sidecar is the user's binding record: a
-well-formed explicit value is honoured as authored, and the digest binds only the MBF. The
-importer guarantees that every effective value on a bound import comes from an explicit
-format-2 record or a documented legacy omission (§15), never from a default filling a missing
-or null field. A recorded value that the MBF or a derivation also determines must agree with
-it, or the import is refused; neither side is silently preferred (VER-002 r12).
+**The sidecar trust model** (Agent 0's decision under the owner's delegation, after
+independent review VER-002 r13). A bound sidecar is trusted only as the writer's own record
+of that exact MBF. On an exact-digest bound import, the sidecar is used only when it equals
+what the writer regenerates from the imported model, after canonicalisation. Any authored
+value the writer would not reproduce counts as a difference and is refused by name at its
+JSON path.
+
+**The regeneration identity** is the exact-digest route's guard of record. After assembly,
+a bound import of a format-2 sidecar has the writer regenerate the sidecar from the imported
+model (`regenerate_caepipe_sidecar`). No MBF is written and the writer's export preflight
+is not run. The one input beyond the model is the import's record of which straights'
+`y_reference` it derived (`id_map` `y_reference_derived`), so a derived orientation
+regenerates as derived. The two sidecars are compared without the digest, with key order
+immaterial, every number as a binary64 (1 and 1.0 are one value) and each load direction
+as the axis it names (`global_y`, `GLOBAL_Y`, `UY` and `uy` alike). A difference is refused
+as `MBF-IMPORT-SIDECAR-NOT-REPRODUCED`, naming the first differing JSON path in sorted key
+order with both values. A model the writer does not write is refused the same way at
+`sidecar`, naming the writer's codes. The checks that run first are supporting checks and
+give the narrower code: the strict parser, completeness, the ambiguity check (§15), the
+no-defaults rule (every effective value comes from an explicit format-2 record or a
+documented legacy omission, never from a default filling a missing or null field) and the
+agreement rule (a recorded value the MBF or a derivation also determines must agree with
+it; neither side is silently preferred, VER-002 r12). The seeded mutation test (§15) shows
+that each mutation it makes is refused, and would be refused by the identity alone. A legacy
+sidecar, which the writer no longer writes, keeps the supporting checks only.
+
+**What the identity cannot see.** The digest binds only the MBF, and the MBF has no carrier
+for the sidecar (TBD-17-01-003, TBD-17-04-003). Some values pass from the model to the sidecar
+unchanged: ids, `reversed`, an authored `y_reference` or `family`, a recorded `origin`, a
+thermal direction, the shear model of a contract, region ids, and closure transfers with
+their provenance. Such a value regenerates as the sidecar gives it. So an edit of one cannot
+be told apart from the writer's own record, and the import restores it. A user who edited a
+sidecar's identities, or whose sidecar the exact-digest route refuses, asks for the rebind
+route instead (`rebind_by_node_number`, REQ-016, §15 **Unbound**). It is taken only on that
+explicit request, whatever the digest. It applies the sidecar by CAEPIPE name, reports every
+restored identity as unconfirmed (`rebound_unconfirmed`), and keeps its explicit checks; it
+does not run the identity.
 
 **The rule.** A record that changes the mechanics model or its loads, and that SWBPIPE
 cannot represent exactly, is **refused** by name and blocks the import. A record that only
@@ -1156,6 +1198,10 @@ the manual does not make clear which kind a record is, it is refused.
 - `MBF-IMPORT-ROW-SYNTAX-INVALID`, `MBF-IMPORT-TOPOLOGY-EMPTY` (§4.4);
 - `MBF-IMPORT-COMMENT-UNSUPPORTED`: a documented comment refused without a narrower code,
   such as the SIF and stress-index comments above;
+- `MBF-IMPORT-SIDECAR-NOT-REPRODUCED`: a format-2 bound sidecar that is not what the writer
+  regenerates from the imported model, at the first differing JSON path (above);
+- `MBF-IMPORT-SIDECAR-AMBIGUOUS`: a sidecar whose reverse mapping is not a function,
+  refused before assembly (§15);
 - `MBF-IMPORT-SIDECAR-INVALID`: a sidecar the parser refuses, by JSON path, or rebinding
   requested without one (§15). The sidecar format decides what is complete: a format-2
   sidecar (`sidecar_format` 2) missing any field is refused, and a legacy sidecar (none, from
@@ -1248,11 +1294,14 @@ direction, which the MBF does not carry, is authored), the regions' members and 
 nodes, the file's pressure (it needs a contract; a pressure state without a contract is
 Euler–Bernoulli with no region), an unauthored `y_reference` (exactly the documented local y
 on the MBF's positions, after Z rotation) and an unauthored `family` (the solve's inference).
-`*_authored` false means "derived, and equal to the derivation". Authored choices are
-honoured as recorded: `reversed`, an authored `y_reference` or `family`, the ids, `origin`,
-a thermal direction, the shear model of a contract, closure transfers and their provenance.
-A bound import restores each value (an unauthored family as absent, which the solve infers to
-the same family).
+`*_authored` false means "derived, and equal to the derivation". The values the writer
+copies from the model unchanged are restored as recorded, and regenerate as recorded (§14):
+`reversed`, an authored `y_reference` or `family`, the ids, `origin`, a thermal direction,
+the shear model of a contract, closure transfers and their provenance. A bound import restores
+each value (an unauthored family as absent, which the solve infers to the same family). The
+entry's variant must be the element's: a bend record for a bend, an orientation for a
+straight (`MBF-IMPORT-SIDECAR-CONFLICT` at `element_map[<id>].bend`, on both routes; VER-002
+r13).
 
 **Legacy sidecars.** A sidecar without `sidecar_format` is legacy: written by main's
 tranche-1 writer (`si_writer.py` up to 42a86df92f) through `run_pilot.py`. That writer
@@ -1325,7 +1374,15 @@ union of what every SWBPIPE writer version records, so a sidecar from an older r
 - `load_map`: `<case>/<load id>` → `load_case`, `category` (the writer's five), `target`
   (exactly a `node`, a `pipe`, or a `support` with its `dof`), `caepipe_load_case`, `mbf`,
   `caepipe_node` or `caepipe_element` by target, and `direction` (a token the solve parses;
-  legacy also null or absent); load ids are non-empty and unique (`DUPLICATE_ID`);
+  legacy also null or absent); load ids are non-empty and unique (`DUPLICATE_ID`). Each
+  category names one kind of target (a force or moment a node, a weight or thermal load a
+  pipe, a displacement a support), and a force a translation and a moment a rotation
+  direction (VER-002 r13). A legacy primitive's repetitions must be what they repeat: its
+  `caepipe_load_case` its case's label, its `caepipe_node` its target's CAEPIPE node, its
+  `caepipe_element` the pipe's `element_map` entry, and its `mbf` the record main's writer
+  wrote (`FOR`, `MOM`, `D`, `ROT`, `LOADS <L> Temperature 1`, `MATERIAL <M> weight
+  density`). On a bound import a legacy element's `material`, `section` and `load` must be
+  the file's record names;
 - `pressure_map` (format 2 only): as under **Sidecar format**; each terminal has
   `node_ref`, `closure_transfer` and provenance;
 - integers (layout order and row) are non-negative and at most 2⁵³, exact in binary64.
@@ -1336,21 +1393,34 @@ element, support node, material, case and primitive of the file has its entry, a
 no entry names what the file lacks; otherwise `MBF-IMPORT-SIDECAR-CONFLICT`, naming the map.
 A bound import takes no unbound default for anything the sidecar records: ids, families,
 bends, materials, cases, primitives, regions and the shear model come from it. Only an
-absence the sidecar records is formed: a format-2 null `y_reference`, and in a legacy
-sidecar a missing `y_reference` or `family` (above). A primitive the writer summed many-to-one
-keeps its formed id and is reported (below). The check against the file of what the parser
+absence a legacy sidecar records is formed: a missing `y_reference` or `family` (above).
+
+**An ambiguous sidecar is refused before assembly** (`MBF-IMPORT-SIDECAR-AMBIGUOUS`, by JSON
+path; VER-002 r13). A sidecar is refused where its reverse mapping, from the file to the
+sidecar, is not a function: two element entries between one pair of CAEPIPE nodes, or two
+cases with one label, on both routes. On a bound import, two primitives with one case,
+category, target and axis are refused too, since the MBF holds their sum as one record and
+no single id is the file's. The axis reads a direction through its aliases. The writer's
+preflight keeps one of such primitives in its own re-import, which checks geometry and
+regions. The check against the file of what the parser
 admits stays where it was: ownership and pressure of regions (§9.4), supports' DOF sets per
 node (§12), the frame check of `y_reference` (§10.5).
 
-A seeded mutation test exercises the parser on a format-2 sidecar of a pressurized and of a
-pressure-free file: each field swapped for every other JSON type, each container emptied,
-each number made huge or non-finite, an unknown key added and each key removed, and each of
-the eight maps deleted and emptied. Each import passes a closure declaration, so a bound
-import that fell through to unbound formation would succeed and be caught. Each mutated
-import refuses with a named `MBF-IMPORT-*` code or imports the unmutated model (a mutated
-digest that is still well formed is another file's, and gives the unbound import), and never
-raises; every deletion, of a field or a map, is refused; with pressure, the writer's preflight given the same maps refuses with a named
-`MBF-SI-*` code exactly where the import refuses.
+A seeded mutation test exercises the parser on format-2 sidecars of four invented files
+(pressurized, pressure-free, with a contract and no region, and with an authored non-default
+orientation). Each field is swapped for every other JSON type, each container emptied, each
+number made huge or non-finite, an unknown key added and each key removed, and each of the
+eight maps deleted and emptied. Each import passes a closure declaration, so a bound import
+that fell through to unbound formation would succeed and be caught. Every mutated import is
+refused with a named `MBF-IMPORT-*` code and never raises. The regeneration identity alone,
+given the model the file and the unmutated sidecar determine, refuses each mutation too (a
+mutated digest is the parser's: it decides the route). The writer's own sidecar regenerates
+exactly, as a positive control, and so does that of every model in the reversible subset
+(§18.2). With pressure, the writer's preflight given the same maps refuses with a named
+`MBF-SI-*` code exactly where the import refuses. Each field is also set to a different
+well-formed value. One the MBF or a derivation determines is refused, and the identity alone
+refuses it. One the writer copies from the model unchanged imports and regenerates as given
+(§14).
 
 **What a bound sidecar cannot restore.** Many-to-one mappings and identities the sidecar
 does not preserve are reported, never guessed. Each is listed in the loss report as
@@ -1359,9 +1429,8 @@ involved.
 
 - **Primitive loads.** `load_map` records each primitive's case, category, target and
   direction (implemented), but not its magnitude. The writer sums several primitives on one
-  target, so a primitive id is restored only when the sidecar names exactly one primitive
-  for that (case, category, target, axis) and the import produces exactly one primitive for
-  it. Every other primitive gets a §10.4 id and is reported.
+  target, so a bound import refuses a sidecar naming more than one for a (case, category,
+  target, axis) (above). The unbound and rebind routes give the sum a §10.4 id.
 - **Support families** when the sidecar entry has no `family` (§12).
 - **Bend component nodes** (§11 item 5).
 - **Members the writer does not export** (§17's last rows).
@@ -1370,8 +1439,13 @@ involved.
 governs every value, and ids are formed by §10.4. A sidecar is not applied unless the
 caller explicitly asks for `rebind_by_node_number`.
 
-- **What rebinding does.** It applies the sidecar by CAEPIPE name only: nodes by number,
-  pipes by from/to names, supports by node, bends by TI number, materials by name.
+- **What rebinding does.** It is taken only on the explicit request, whatever the digest;
+  a byte-bound sidecar with the request is rebound too (VER-002 r13). It applies the sidecar
+  by CAEPIPE name only: nodes by number, pipes by from/to names with their `reversed` flag,
+  supports by node with their DOF split and family, bends by TI number, materials by name.
+  It restores no case or primitive id, orientation, origin or pressure state: those are
+  formed or declared as on the unbound route. It keeps the parser, the element variant and
+  ambiguity checks (§15 above) and does not run the regeneration identity (§14).
 - **Unconfirmed identity.** Whether CAEPIPE keeps names is open (TBD-17-04-008). Every
   rebound id is therefore marked `rebound_unconfirmed` in the report and the output id map,
   and is never presented as a confirmed identity.
@@ -1382,7 +1456,9 @@ caller explicitly asks for `rebind_by_node_number`.
 
 **Output.** `id_map.json` holds CAEPIPE name → SWBPIPE id for every node (including
 `nA`/`nB`), element, support, bend, material and load case, and `region_map` (region id →
-CAEPIPE elements) when the file has pressure. DEL-17-05's CSV parser can
+CAEPIPE elements) when the file has pressure. It also lists the straights whose
+`y_reference` the import derived (`y_reference_derived`), the regeneration identity's one
+input beyond the model (§14). DEL-17-05's CSV parser can
 bind CAEPIPE results of an imported model through it.
 
 ## 16. The output document
@@ -1608,7 +1684,9 @@ reproduction by name.
   the sidecar; unbound imports take §10.5's documented local y);
 - support families, which `support_map` does not carry (§12);
 - labels, provenance and the members of §17's last rows;
-- several primitives on one target, which are compared as their sum;
+- several primitives on one target, which are compared as their sum (unbound imports: a
+  bound import refuses such a sidecar, §15, so `writer-cancelling-forces` is outside the
+  bound subset by printed-domain validity and listed by name);
 - zero-valued primitives, which are dropped;
 - absent versus zero α, and absent versus zero section fields;
 - combinations, which are not exported;
@@ -1824,6 +1902,10 @@ dossier as CQ-17-01-011 to -015.
   `model_settings.shear_model`; that is a later slice, not this one.
 - **O-4.** How CAEPIPE-exported MBFs are produced for §18.3: by hand by the owner, or by a
   guest automation step.
+- **O-6.** Whether to bind the sidecar itself. The regeneration identity cannot see an edit
+  of a value the writer copies from the model unchanged (§14), because the digest binds only
+  the MBF. Binding the sidecar would need a carrier in the MBF (TBD-17-04-003), so it is a
+  format change.
 
 ### 20.3 Next tranches
 
