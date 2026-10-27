@@ -495,7 +495,7 @@ DEFECT = _alternation(r"crash(?:es|ed|ing)?", r"access violations?", r"defects?"
                       r"freez(?:es|ing)", r"froze(?:n)?", r"unresponsive", r"workarounds?", r"work around", r"broken",
                       r"fail(?:s|ed)? to", r"does not work", r"did not work", r"unreliable", r"unstable",
                       r"stop(?:s|ped)? early", r"abort(?:s|ed)?", r"quits?", r"terminat(?:es|ed) unexpectedly",
-                      r"(?:writes|wrote|produces|produced|leaves|left|gives|gave) no",
+                      r"(?:writes|wrote|produces|produced|leaves|left) no",
                       r"(?:row|size|model[ -]size|node|element|layout)[ -]limits?",
                       r"limits? (?:on|of) (?:the )?(?:model|models|rows?|size|nodes?|elements?)",
                       r"limited to (?:\d+|small)", r"(?:more than|at most|up to|maximum(?: of)?|max\.?|over) \d+ (?:layout )?rows?",

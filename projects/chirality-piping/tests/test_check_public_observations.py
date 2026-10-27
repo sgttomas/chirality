@@ -444,6 +444,7 @@ def test_integer_results_and_counts_are_blocked(tmp_path, text):
     "The importer converts Acmepipe inch lengths at 25.4 mm per inch, so values match exactly.\n",
     "Acmepipe weights in kgf convert at 9.80665 N/kgf, and the writer differs only in units.\n",
     "The survey notes list a trial of the editor's undo stack.\n",
+    "The Acmepipe user's manual gives no default for the gravitational acceleration.\n",
 ])
 def test_format_facts_conversions_and_survey_context_pass(tmp_path, text):
     assert run(tmp_path, {"doc/a.md": text}) == []
