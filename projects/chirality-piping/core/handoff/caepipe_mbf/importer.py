@@ -306,6 +306,15 @@ def _unit(vector: Iterable[float]) -> tuple[float, float, float]:
     return (x / length, y / length, z / length)
 
 
+def _unit_exact(vector: Iterable[Fraction]) -> tuple[float, float, float]:
+    """The unit vector of an exact non-zero vector: scaled exactly by a power of two so its largest component is
+    near 1, then rounded and normalized. A direction component is rounded relative to the vector's length."""
+    largest = max(abs(value) for value in vector)
+    shift = largest.numerator.bit_length() - largest.denominator.bit_length()
+    scale = Fraction(2) ** -shift
+    return _unit(tuple(float(value * scale) for value in vector))
+
+
 def _sub(a, b):
     return (a[0] - b[0], a[1] - b[1], a[2] - b[2])
 
@@ -1475,18 +1484,21 @@ class _Importer:
                                 "R tan(theta/2)" + (" plus the adjacent bend's" if other_t else ""))
         for n, bend in self.bend_geometry.items():
             ti, t = bend["ti"], bend["t"]
-            near = tuple(ti[axis] - t * bend["d_in"][axis] for axis in range(3))
-            far = tuple(ti[axis] + t * bend["d_out"][axis] for axis in range(3))
+            # Each tangent-node coordinate TI -/+ t d is formed exactly from its binary64 operands and rounded once,
+            # so a non-zero coordinate below the binary64 range is refused, never rounded to 0 by a product.
+            exact = {name: tuple(Fraction(ti[axis]) + sign * Fraction(t) * Fraction(bend[direction][axis])
+                                 for axis in range(3))
+                     for name, sign, direction in (("near", -1, "d_in"), ("far", 1, "d_out"))}
             line = self.elements[bend["element"]].line
-            near = tuple(self.binary64(value, line, f"bend {n}", "tangent node") for value in near)
-            far = tuple(self.binary64(value, line, f"bend {n}", "tangent node") for value in far)
-            middle = tuple(near[axis] / 2.0 + far[axis] / 2.0 for axis in range(3))
-            if min(_norm(_sub(ti, near)), _norm(_sub(far, ti)), _norm(_sub(far, near)), _norm(_sub(ti, middle))) == 0:
+            near = tuple(self.binary64(value, line, f"bend {n}", "tangent node") for value in exact["near"])
+            far = tuple(self.binary64(value, line, f"bend {n}", "tangent node") for value in exact["far"])
+            toward_ti = tuple(Fraction(ti[axis]) - (Fraction(near[axis]) + Fraction(far[axis])) / 2 for axis in range(3))
+            if min(_norm(_sub(ti, near)), _norm(_sub(far, ti)), _norm(_sub(far, near))) == 0 or not any(toward_ti):
                 self.refuse("MBF-IMPORT-BEND-GEOMETRY-INVALID", line, f"bend {n}",
                             f"bend {n}'s tangent nodes collapse onto the tangent intersection or each other once "
                             "rounded to binary64")
                 raise _Refused
-            bend.update(near=near, far=far, y_reference=_unit(_sub(ti, middle)))
+            bend.update(near=near, far=far, y_reference=_unit_exact(toward_ti))
         for element in self.elements:  # the generated straights, from tangent node to tangent node
             start = self.bend_geometry[element.start]["far"] if element.start in self.bend_geometry \
                 else self.positions[element.start]

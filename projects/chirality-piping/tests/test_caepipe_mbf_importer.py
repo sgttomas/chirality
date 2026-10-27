@@ -871,3 +871,36 @@ def test_derived_bend_geometry_is_validated_after_rounding():
     result = run(mbf("F10,KA,MM1,PP1,CL=L1", "T20,KI,B1e-6,X3000,CFF=1", "T30,Z3000"))
     assert result.status == "imported", result.diagnostics
     assert result.model["nodes"][1]["position"]["x"] == 3000 - 1e-6
+
+
+# --- derived coordinates are exact until their one rounding (independent review VER-002 r3) --------------------
+def test_a_tangent_node_coordinate_below_binary64_is_refused_not_rounded_to_zero():
+    # Codex VER-002 r3: start (-1, -1e-200, 0), TI (0, 0, 0), next (0, 0, 1); the legs are perpendicular, so
+    # t = 1e-200 x tan 45 deg ~ 1e-200 mm. By hand the near node's Y is 0 - t x (1e-200 / |(1, 1e-200, 0)|), about
+    # -1e-400 mm: non-zero and below binary64. The binary64 product rounded it to 0 and the import succeeded.
+    data = mbf("F10,KA,MM1,PP1,X-1,Y-1e-200,Z0,CL=L1", "T20,KI,B1e-200,X1,Y1e-200,CFF=1", "T30,Z1")
+    diagnostic = refused(run(data), "MBF-IMPORT-VALUE-UNREPRESENTABLE", layout_line(data, "T20"))
+    assert "tangent node" in diagnostic["message"] and diagnostic["location"] == "bend 20"
+
+
+def test_offsets_summed_along_a_run_are_exact_until_one_rounding():
+    # By hand: Y1e-200 at the From row, then an offset of -(1e-200 - 1e-400): the exact position is 1e-400 mm,
+    # non-zero and below binary64, so it is refused rather than imported as 0.
+    offset = "-0." + "9" * 200 + "e-200"  # -(1 - 1e-200) x 1e-200 = -(1e-200 - 1e-400)
+    data = mbf("F10,KA,MM1,PP1,X0,Y1e-200,Z0,CL=L1", f"T20,X3000,Y{offset}")
+    refused(run(data), "MBF-IMPORT-VALUE-UNREPRESENTABLE", layout_line(data, "T20"))
+    # The same sum that cancels exactly imports at 0: 1e-200 - 1e-200.
+    result = run(mbf("F10,KA,MM1,PP1,X0,Y1e-200,Z0,CL=L1", "T20,X3000,Y-1e-200"))
+    assert result.model["nodes"][1]["position"] == {"x": 3000.0, "y": 0.0, "z": 0.0}
+
+
+def test_absolute_coordinates_and_english_fractions_are_read_exactly():
+    # An absolute-coordinate row gives its value directly: Y1e-400 is refused when read.
+    data = mbf("F10,KA,MM1,PP1,CL=L1", "T20*,X3000,Y1e-400,Z0")
+    refused(run(data), "MBF-IMPORT-VALUE-UNREPRESENTABLE", layout_line(data, "T20*"))
+    # A feet-inch fraction of 1/10^400 in (0'0-1/1000...0") is exact as a rational and below binary64 once rounded.
+    data = mbf("F10,KA,MM1,PP1,CL=L1", "T20,X10", "T30,Y0'0-1/1" + "0" * 400 + '"', options="HGRA")
+    refused(run(data), "MBF-IMPORT-VALUE-UNREPRESENTABLE", layout_line(data, "T30"))
+    # Exact fractions sum without rounding: three offsets of 0'0-1/3" make exactly 1 in.
+    result = run(mbf("F10,KA,MM1,PP1,CL=L1", 'T20,X0\'0-1/3"', 'T30,X0\'0-1/3"', 'T40,X0\'0-1/3"', options="HGRA"))
+    assert result.model["nodes"][3]["position"]["x"] == 1.0

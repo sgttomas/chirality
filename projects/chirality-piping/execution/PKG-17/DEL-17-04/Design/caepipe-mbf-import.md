@@ -216,6 +216,15 @@ only", for the straight-pipe orientation of §10.5.
   and nodes, and the weight per length of a non-zero weight density. Norms and unit
   directions use the scaled `hypot`, so neither tiny nor huge lengths overflow or underflow
   in their squares (independent review VER-002 r1).
+- **One rounding per derived coordinate** (independent review VER-002 r3). Node positions
+  (offsets summed along a run, absolute coordinates and feet-inch fractions) are exact
+  rationals until they are rounded. Each tangent-node coordinate, TI ∓ t·d, is formed exactly
+  from its binary64 operands and rounded once, so a non-zero coordinate below the binary64
+  range is refused rather than rounded to 0 by a product. The bend-plane direction is formed
+  from the exact TI and chord middle, scaled exactly by a power of two, then normalized; its
+  components, being a direction, are rounded relative to its length. E in Pa stays the
+  binary64 product the units catalog forms (§7.2); its factor exceeds 1, so it cannot
+  underflow.
 
 ### 4.4 Layout rows and comments
 
