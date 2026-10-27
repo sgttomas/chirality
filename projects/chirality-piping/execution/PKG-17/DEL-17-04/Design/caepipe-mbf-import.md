@@ -623,28 +623,42 @@ Pressure 1 ≠ 0:
 **Regions (unbound).** A region must be one acyclic chain of equal bore whose internal
 nodes join no other pipe and which changes direction only at a realized bend
 (`pressure_runtime.rs`: `PRESSURE_REGION_TOPOLOGY_INVALID`, `_INTERNAL_BRANCH`,
-`_BORE_MISMATCH`, `_NONCOLLINEAR`). The importer forms maximal chains, then cuts them by
-the route's own straight-run check:
+`_BORE_MISMATCH`, `_NONCOLLINEAR`). The route defines no boundaries itself: it admits or
+refuses the regions a document states. The importer forms regions only at boundaries the
+model has, checks each straight run whole with the route's own check, and never cuts a
+straight run that the check admits (Agent 0's manager ruling, independent review VER-002 r2:
+a cut adds closure terminals the file never had):
 
 - **Chains.** A chain continues through a node only when the node joins exactly two
   elements with the same Pressure 1 and the same bore OD − 2t, both compared exactly. It
   therefore ends at a free end, a tee, a change of pressure or bore, or an element with
-  Pressure 1 = 0, which belongs to no region.
-- **Straight runs (independent review VER-002 r1).** The route checks each straight run of
-  a region, between its terminals or between bends, as a whole (`collinear_run`): from the
-  run's first node, every later node's offset divided by the span must lie within
-  64ε = 64 × 2⁻⁵² of the span direction (correctly rounded norm), and advance without
-  passing the span's end. An adjacent-pair angle test does not establish that: sixteen
-  1000 mm straights whose Y offsets grow by 1e-11 mm per row turn by about 1e-14 rad at
-  each node, yet the run's residual is about 2e-14; and two straights meeting 1.5e-11 mm
-  off the line turn by 3e-14 rad, yet their residual is 7.5e-15. The importer ports the
-  check operation for operation, on node positions read to metres as the catalog reads
-  them (value × 0.001 or × 0.0254), and walks each run from its start. When adding the
-  next straight would fail the check, the region ends at that node and a new one starts
-  there. Every run in every region therefore passes the route's check, and a run the route
-  admits stays whole. A bend continues its region: §11 builds its tangent nodes exactly, so
-  its end junctions are within the route's tangency tolerance.
-- A straight-to-straight corner fails the check, so a region ends at every corner.
+  Pressure 1 = 0, which belongs to no region. A bend continues its chain: §11 builds its
+  tangent nodes exactly, so its end junctions are within the route's tangency tolerance.
+- **The route's check.** The route checks each straight run of a region, between its
+  terminals or between bends, as a whole (`collinear_run`): from the run's first node, every
+  later node's offset divided by the span must lie within 64ε = 64 × 2⁻⁵² of the span
+  direction (correctly rounded norm), and advance without passing the span's end. The
+  importer ports it operation for operation, on node positions read to metres as the
+  catalog reads them (value × 0.001 or × 0.0254 + 0). Its correctly rounded norm rounds a
+  subnormal result once on the subnormal lattice (VER-002 r2). Admission is not monotonic in
+  the run's extent, so neither adjacent pairs nor prefixes decide it: sixteen 1000 mm
+  straights whose Y offsets grow by 1e-11 mm per row turn by about 1e-14 rad at each node,
+  yet the run's residual is about 2e-14 (refused); two straights meeting 3e-11 mm off a
+  2000 mm line fail alone (1.5e-14), yet with an 8000 mm straight after them the whole run
+  passes (3e-15).
+- **Corners.** A node between two straights is a corner when their direction change exceeds
+  the route's mitre threshold α_tan = 1e-3 rad (`curved_bend` `TANGENCY_TOLERANCE_RAD`),
+  measured as the route's `kink`, 2·atan2(|a − t|, |a + t|) of the unit directions. Only a
+  run that fails the check whole is examined for corners, so a drift the check admits is
+  never a corner, whatever its local angles.
+- **The rule.** Each straight run of a chain is checked whole. If it passes, it stays in one
+  region. If it fails, the region ends at each of its corners, and each piece between them
+  must pass the check whole. A run with a failing piece, a run without a corner included, is
+  refused by name with its elements (`MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR`); it is never cut.
+  So a kink of 1e-4 or 5e-4 rad in a run is refused, and one of 2e-3 rad is a corner.
+- **Bores.** The route compares a region's bores within its 64ε guard; the importer's chain
+  needs exactly equal bores, so it may end a chain where the route would admit one region.
+  Such a junction is a real, if tiny, bore change.
 
 - **Order and ids.** Members are in chain order. The first terminal is the chain end whose
   element comes first in layout order. The id is `region:mbf-<first terminal>-<second
@@ -706,7 +720,11 @@ refuses:
 - a negative pressure, regions without the exact contract, another contract, and regions
   with connectors (`MBF-SI-PRESSURE-UNSUPPORTED`);
 - a bend whose pressure differs from its incoming straight's (`MBF-SI-BEND-UNSUPPORTED`:
-  one layout row carries both).
+  one layout row carries both);
+- a section without an explicit `corrosion_allowance` under the exact contract, whether or
+  not it carries pressure (`MBF-SI-CORROSION-ALLOWANCE-MISSING`, VER-002 r2). The solve
+  refuses such a model (`EXACT_PRESSURE_CORROSION_ALLOWANCE_REQUIRED`), and the MBF's
+  written 0 would author an allowance on import.
 
 A zero-pressure region writes Pressure 1 = 0 and is listed as omitted
 (`MBF-SI-PRESSURE-REGION-ZERO`), since it imports as no region.
@@ -966,8 +984,9 @@ the manual does not make clear which kind a record is, it is refused.
 - `MBF-IMPORT-VALUE-UNREPRESENTABLE`: a read or derived value outside the binary64 range, or a
   non-zero value that would become 0 (§4.3);
 - tranche 2: `MBF-IMPORT-PRESSURE-CLOSURE-REQUIRED`, `MBF-IMPORT-PRESSURE-CLOSURE-INVALID`,
-  `MBF-IMPORT-PRESSURE-DISPLACEMENT-UNSUPPORTED` (§9.4) and
-  `MBF-IMPORT-CORROSION-ALLOWANCE-MISSING` (§8). `MBF-IMPORT-PRESSURE-UNSUPPORTED`
+  `MBF-IMPORT-PRESSURE-DISPLACEMENT-UNSUPPORTED`, `MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR` (§9.4)
+  and `MBF-IMPORT-CORROSION-ALLOWANCE-MISSING` (§8). `MBF-IMPORT-GEOMETRY-ZERO-LENGTH` also
+  refuses an element whose ends coincide in metres, the unit the solve reads (VER-002 r2). `MBF-IMPORT-PRESSURE-UNSUPPORTED`
   now refuses only a negative Pressure 1.
 
 **Removed in tranche 2.** OPTIONS `Z` no longer refuses (`MBF-IMPORT-OPTION-UNSUPPORTED`
@@ -1221,11 +1240,14 @@ declares it invented. The boundary guard (§18.4) requires the sidecar.
    for bit, apart from straight orientation), and positions against the test's own exact
    sum of the printed offsets, rotated and rounded once. Independent review VER-002 r1 adds:
    the ported straight-run check on hand values; a drifting run the route refuses as one
-   region, which the import cuts; a zigzag run the route admits, which stays one region; a
-   drifting run after a bend; the headless solve of each of these imports, which the route
-   admits, while the drifting run merged into one region is refused by name
-   (`PRESSURE_REGION_NONCOLLINEAR`); and a section with and without a stated corrosion
-   allowance.
+   region, which the import refuses by name (VER-002 r2: never cut); a zigzag run and a run
+   whose first two straights fail alone, which the route admits whole and which stay one
+   region; corners at 2e-3 rad and refused kinks at 1e-4 and 5e-4 rad; a drifting run after a
+   bend; the headless solve of the admitted imports and of a corner, while the drifting run
+   as one region is refused by the route (`PRESSURE_REGION_NONCOLLINEAR`); a section with and
+   without a stated corrosion allowance, and the writer's refusal of a section without one
+   under the contract (Codex's round trip); an element collapsing in metres; and a
+   subnormal norm rounded once.
 
 The weight-density conversion, the G derivation, the ΔT mapping and the rational
 summation change numerical meaning. They therefore get targeted regression tests (items
@@ -1478,9 +1500,10 @@ dossier as CQ-17-01-011 to -015.
   beyond anchors and restraints are refused. Pressure and Z vertical are read since
   tranche 2 (§20.3).
 - **For a ruling (Agent 0, tranche 2).** Two selected interpretations in §9.4: regions end
-  at straight-to-straight corners, and where a straight run stops passing the route's
-  collinearity check, each with a terminal there carrying the declared closure, rather than
-  refusing such a file; and the unbound shear model is Euler–Bernoulli. Independent review
+  at straight-to-straight corners (a direction change above α_tan), each with a terminal
+  there carrying the declared closure, rather than refusing such a file; and the unbound
+  shear model is Euler–Bernoulli. A straight run is never cut otherwise (manager ruling,
+  VER-002 r2). Independent review
   VER-002 r1 found the corner terminals and Euler–Bernoulli defensible.
 - **O-4.** How CAEPIPE-exported MBFs are produced for §18.3: by hand by the owner, or by a
   guest automation step.
