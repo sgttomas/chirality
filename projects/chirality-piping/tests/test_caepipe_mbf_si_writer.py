@@ -663,3 +663,49 @@ def test_schema_version_check_reads_the_model_schema_enum():
     result = render_caepipe_mbf_si(model, title="V")
     assert "MBF-SI-SCHEMA-VERSION" in codes(result, "warning")
     assert any(f"is not {current}" in item["message"] for item in result.diagnostics)
+
+
+def cancelling_cantilever():
+    """Codex VER-002 r1 reproduction (invented): the US cantilever with an explicit G = 29e6/2.6 psi instead of nu,
+    and three same-node Y forces 1e9, 0.001 and -1e9 lbf."""
+    model = us_customary_cantilever()
+    model["materials"][0].pop("poisson_ratio")
+    model["materials"][0]["shear_modulus"] = q(29.0e6 / 2.6, "psi")
+    model["load_cases"][0]["primitive_loads"] = [force(f"f{index}", "N1", "global_y", value, "lbf")
+                                                 for index, value in enumerate((1e9, 0.001, -1e9))]
+    return model
+
+
+def test_same_target_loads_are_summed_exactly_before_one_rounding():
+    # By hand: 1e9 + 0.001 - 1e9 = 0.001 lbf exactly; 0.001 x 4.4482216152605 = 0.0044482216152605 N, printed to ten
+    # significant digits as 0.004448221615. A binary64 running sum of the converted forces gives 0.004447937012.
+    result = render_caepipe_mbf_si(cancelling_cantilever(), title="CANCEL")
+    assert result.status == "written", result.diagnostics
+    assert "T20,X3048,CFOR(0,0.004448221615,0)" in result.text.split("\r\n")
+    # The same holds for thermal changes summed on one element: 100 + 1e-12 - 100 C = 1e-12 C.
+    model = cantilever()
+    model["load_cases"] = [{"id": "case:th", "primitive_loads": [
+        {"id": f"t{index}", "category": "thermal", "target": {"type": "element", "pipe": "S1"}, "direction": "global_x",
+         "magnitude": q(value, "degC"), "dimension": "temperature_interval"} for index, value in enumerate((100.0, 1e-12, -100.0))]}]
+    result = render_caepipe_mbf_si(model, title="DT")
+    assert result.status == "written", result.diagnostics
+    assert "L1,20,0,0" in result.text.split("\r\n")  # T1 = 20 + 1e-12 prints as 20
+
+
+def test_a_normalized_value_that_overflows_or_underflows_is_refused_by_name():
+    # By hand: 1e308 lbf x 4.4482216152605 N/lbf = 4.45e308 N, beyond the largest binary64 (1.80e308).
+    model = us_customary_cantilever()
+    model["load_cases"][0]["primitive_loads"][0]["magnitude"] = q(-1e308, "lbf")
+    result = render_caepipe_mbf_si(model, title="O")
+    assert result.status == "refused"
+    assert any(item["code"] == "MBF-SI-VALUE-OUT-OF-RANGE" and "not representable" in item["message"]
+               for item in result.diagnostics)
+    # By hand: 5e-324 psi (the smallest subnormal) x 0.00689 N/mm2 per psi is below half the smallest subnormal: 0.
+    model = us_customary_cantilever()
+    model["materials"][0]["elastic_modulus"] = q(5e-324, "psi")
+    result = render_caepipe_mbf_si(model, title="U")
+    assert result.status == "refused" and "MBF-SI-VALUE-OUT-OF-RANGE" in codes(result)
+    # By hand: 1e308 m x 1000 = 1e311 mm overflows.
+    model = cantilever()
+    model["nodes"][1]["position"]["x"] = 1e308
+    assert "MBF-SI-VALUE-OUT-OF-RANGE" in codes(render_caepipe_mbf_si(model, title="L"))

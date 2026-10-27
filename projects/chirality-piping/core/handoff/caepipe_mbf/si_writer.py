@@ -239,7 +239,10 @@ class _Writer:
             return None
         return float(value)
 
-    def quantity(self, record: Any, table: Mapping[str, Any], target: str, entity: str, name: str) -> float | None:
+    def quantity(self, record: Any, table: Mapping[str, Any], target: str, entity: str, name: str,
+                 *, exact: bool = False) -> Any:
+        """The quantity in the MBF unit, rounded once to binary64; with `exact`, the unrounded rational (the
+        radians-to-degrees case is rounded once first), so sums round once at the end (Design §18.2)."""
         if not isinstance(record, Mapping) or "value" not in record or "unit" not in record:
             self.invalid(entity, f"{entity} {name} must be a {{value, unit}} quantity")
             return None
@@ -258,15 +261,35 @@ class _Writer:
         scaling = table[unit]
         if scaling == "rad":
             self.rotation_converted = True
-            return math.degrees(value)
-        return self.convert(value, scaling, unit)
+            degrees = math.degrees(value)  # the one non-rational factor: rounded once, before any sum
+            if not math.isfinite(degrees) or (value != 0 and degrees == 0):
+                self.diag("MBF-SI-VALUE-OUT-OF-RANGE", "error", entity,
+                          f"{entity} {name} is not representable in binary64 after conversion to degrees")
+                return None
+            return Fraction(degrees) if exact else degrees
+        if isinstance(scaling, Fraction):
+            self.normalized[unit] = NORMALIZATION[unit][1]
+        value_exact = Fraction(value) * (scaling if isinstance(scaling, Fraction) else Fraction(10) ** scaling)
+        return value_exact if exact else self.rounded(value_exact, entity, name)
 
-    def convert(self, value: float, scaling: int | Fraction, unit: str) -> float:
+    def rounded(self, value: Fraction, entity: str, name: str) -> float | None:
+        """`value` rounded once to binary64, or a named refusal when it overflows or a non-zero value underflows to 0."""
+        try:
+            result = float(value)
+        except OverflowError:
+            result = math.inf
+        if not math.isfinite(result) or (value != 0 and result == 0):
+            self.diag("MBF-SI-VALUE-OUT-OF-RANGE", "error", entity,
+                      f"{entity} {name} is not representable in binary64 after conversion to the MBF unit")
+            return None
+        return result
+
+    def convert(self, value: float, scaling: int | Fraction, unit: str) -> float | None:
         """A power-of-ten scaling, or an exact definitional normalization rounded once to binary64."""
         if isinstance(scaling, Fraction):
             self.normalized[unit] = NORMALIZATION[unit][1]
-            return float(Fraction(value) * scaling)
-        return _scale(value, scaling)
+        return self.rounded(Fraction(value) * (scaling if isinstance(scaling, Fraction) else Fraction(10) ** scaling),
+                            "model.nodes", "position")
 
     # -- run -------------------------------------------------------------
     def run(self) -> MbfSiResult:
@@ -364,7 +387,10 @@ class _Writer:
             coords = [self.number(position.get(axis), entity, f"position.{axis}") for axis in "xyz"]
             if any(value is None for value in coords):
                 continue
-            self.nodes[node["id"]] = tuple(self.convert(value, self.length_exp, "in") for value in coords)  # type: ignore[misc]
+            converted = tuple(self.convert(value, self.length_exp, "in") for value in coords)
+            if any(value is None for value in converted):
+                continue
+            self.nodes[node["id"]] = converted  # type: ignore[assignment]
 
     def read_materials(self) -> None:
         for material in _list(self.model.get("materials"), self, "model.materials"):
@@ -772,10 +798,24 @@ class _Writer:
                 if isinstance(load, Mapping) and load.get("category") not in unsupported:
                     self.read_load(case["id"], label, load)
         self.case_labels = kinds
+        self.round_sums()
         for combination in _list(self.model.get("combinations"), self, "model.combinations"):
             identity = combination.get("id") if isinstance(combination, Mapping) else None
             self.omit("MBF-SI-COMBINATION-NOT-EXPORTED", f"combination:{identity}",
                       f"combination {identity!r} is not exported; the target program forms its own combinations")
+
+    def round_sums(self) -> None:
+        """Round each summed load once: the primitives on one target were added as exact rationals in the MBF
+        unit, so cancellation loses nothing (Design §18.2)."""
+        for name, store in (("forces", self.forces), ("moments", self.moments), ("displacements", self.anchor_disp),
+                            ("rotations", self.anchor_rot)):
+            for node, values in store.items():
+                rounded = [self.rounded(value, f"node:{node}", f"summed {name}") for value in values]
+                store[node] = [0.0 if value is None else value for value in rounded]
+        for name, store in (("weight per length", self.weight), ("thermal change", self.delta_t)):
+            for pipe, value in store.items():
+                rounded = self.rounded(value, f"pipe:{pipe}", f"summed {name}")
+                store[pipe] = 0.0 if rounded is None else rounded
 
     def read_load(self, case_id: str, label: str, load: Mapping[str, Any]) -> None:
         load_id = load.get("id")
@@ -802,11 +842,11 @@ class _Writer:
                             + ("global_x/y/z force" if force else "global RX/RY/RZ moment") + " only")
                 return
             value = self.quantity(load.get("magnitude"), _FORCE_TO_N if force else _MOMENT_TO_NM,
-                                  "N" if force else "N*m", entity, "magnitude")
+                                  "N" if force else "N*m", entity, "magnitude", exact=True)
             if value is None:
                 return
             store = self.forces if force else self.moments
-            store.setdefault(node, [0.0, 0.0, 0.0])[directions[direction]] += value
+            store.setdefault(node, [Fraction(0)] * 3)[directions[direction]] += value
             record.update(target={"node": node}, mbf="FOR" if force else "MOM")
         elif category == "weight":
             pipe = target.get("pipe")
@@ -816,7 +856,8 @@ class _Writer:
             if dimension != "force_per_length":
                 self.refuse("MBF-SI-LOAD-UNSUPPORTED", entity, f"{entity} weight needs dimension force_per_length")
                 return
-            value = self.quantity(load.get("magnitude"), _FORCE_PER_LENGTH_TO_N_PER_M, "N/m", entity, "magnitude")
+            value = self.quantity(load.get("magnitude"), _FORCE_PER_LENGTH_TO_N_PER_M, "N/m", entity, "magnitude",
+                                  exact=True)
             if value is None:
                 return
             if direction not in {"global_y", "GLOBAL_Y"} or value > 0:
@@ -824,7 +865,7 @@ class _Writer:
                             f"{entity} weight acts along {direction!r} with magnitude {_num(value)} N/m; only global -Y "
                             "weight (the target program's default gravity) is exported")
                 return
-            self.weight[pipe] = self.weight.get(pipe, 0.0) + value
+            self.weight[pipe] = self.weight.get(pipe, Fraction(0)) + value
             record.update(target={"pipe": pipe}, mbf="MATERIAL weight density")
         elif category == "thermal":
             pipe = target.get("pipe")
@@ -834,7 +875,8 @@ class _Writer:
             if dimension not in {"temperature_change", "temperature_interval"}:
                 self.refuse("MBF-SI-LOAD-UNSUPPORTED", entity, f"{entity} thermal needs a temperature-interval dimension")
                 return
-            value = self.quantity(load.get("magnitude"), _TEMPERATURE_INTERVAL_TO_C, "C", entity, "magnitude")
+            value = self.quantity(load.get("magnitude"), _TEMPERATURE_INTERVAL_TO_C, "C", entity, "magnitude",
+                                  exact=True)
             if value is None:
                 return
             material_id = self.pipes[pipe]["material"]
@@ -843,7 +885,7 @@ class _Writer:
                             f"{entity} changes the temperature of pipe:{pipe}, whose material {material_id!r} has no "
                             "thermal_expansion_coefficient")
                 return
-            self.delta_t[pipe] = self.delta_t.get(pipe, 0.0) + value
+            self.delta_t[pipe] = self.delta_t.get(pipe, Fraction(0)) + value
             record.update(target={"pipe": pipe}, mbf="LOADS Temperature 1")
         else:  # imposed_displacement
             support_id = target.get("support")
@@ -867,11 +909,11 @@ class _Writer:
                             f"{entity} {dof} needs dimension {'displacement' if translation else 'rotation'}")
                 return
             value = self.quantity(load.get("magnitude"), _LENGTH_TO_MM if translation else _ROTATION_TO_DEG,
-                                  "mm" if translation else "deg", entity, "magnitude")
+                                  "mm" if translation else "deg", entity, "magnitude", exact=True)
             if value is None:
                 return
             store = self.anchor_disp if translation else self.anchor_rot
-            store.setdefault(support["node"], [0.0, 0.0, 0.0])[DOFS.index(dof) % 3] += value
+            store.setdefault(support["node"], [Fraction(0)] * 3)[DOFS.index(dof) % 3] += value
             record.update(target={"support": support_id, "dof": dof}, mbf="D" if translation else "ROT")
         self.load_records[f"{case_id}/{load_id}"] = record
 
@@ -974,6 +1016,9 @@ class _Writer:
             od_m, thk_m = pipe["od"] / 1000.0, pipe["thk"] / 1000.0
             area = math.pi / 4.0 * (od_m**2 - (od_m - 2.0 * thk_m) ** 2)
             density = -self.weight[pipe_id] / (area * STANDARD_GRAVITY)
+            if not math.isfinite(density) or (self.weight[pipe_id] != 0 and density == 0):
+                self.diag("MBF-SI-VALUE-OUT-OF-RANGE", "error", f"pipe:{pipe_id}",
+                          f"pipe:{pipe_id} weight density is not representable in binary64")
         material_key = (pipe["material"], _num(density))
         if material_key not in materials:
             name = f"M{len(materials) + 1}"

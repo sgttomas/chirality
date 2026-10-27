@@ -110,6 +110,7 @@ def models() -> dict[str, tuple[dict, str, float]]:
         "writer-nu-and-g": (both_given_material(), "NU AND G", 20.0),
         "writer-straight-run": (writer_tests.straight_run(20), "RUN", 20.0),
         "bend-boundary": (bend_boundary(), "BEND BOUNDARY", 20.0),
+        "writer-cancelling-forces": (writer_tests.cancelling_cantilever(), "CANCEL", 20.0),
     })
     return found
 
@@ -625,3 +626,19 @@ def test_every_imported_document_validates_against_the_desktop_profile(trips):
                     assert isinstance(item.get(member), str) and item[member].strip(), (name, collection, member)
         assert model["schema_version"] == json.loads((ROOT / "schemas" / "model.schema.yaml").read_text(
             encoding="utf-8"))["properties"]["schema_version"]["enum"][0]
+
+
+def test_canonical_sums_are_exact_and_independent_of_the_writer(trips):
+    # Codex VER-002 r1: three same-node Y forces 1e9, 0.001 and -1e9 lbf. By hand the canonical sum is
+    # 0.001 x 4.4482216152605 = 0.0044482216152605 N; a binary64 running sum of the converted forces is 0.0044479370.
+    trip = trips["writer-cancelling-forces"]
+    reference = trip.reference()
+    key = ("load", "sustained", "concentrated_force", trip.writer.node_map["N1"], 1)
+    assert reference.values[key] == 0.0044482216152605
+    running = 0.0
+    for value in (1e9, 0.001, -1e9):
+        running += value * 4.4482216152605
+    assert abs(running - 0.0044482216152605) > 1e-7  # the error the exact sum avoids
+    imported = trip.imported(trip.bound, oriented=True)
+    assert imported.values[key] == 0.004448221615  # the writer's printed, correctly rounded sum
+    assert canon.compare(reference, imported, trip.limits(reference)).failures == []

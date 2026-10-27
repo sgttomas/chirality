@@ -40,6 +40,18 @@ _TO_SI = {
     "1/K": 1.0, "1/degC": 1.0, "1/degF": 1.8, "K": 1.0, "degC": 1.0, "C": 1.0, "degF": 5.0 / 9.0,
     "rad": 1.0, "deg": math.pi / 180.0, "1": 1.0, "none": 1.0,
 }
+# The same factors as exact rationals (the definitions: 1 in = 0.0254 m, 1 lbf = 4.4482216152605 N, degF intervals
+# x 5/9; degrees by the binary64 pi), for summing primitives without cancellation error (Design §18.2).
+_TO_SI_EXACT = {
+    "m": Fraction(1), "mm": Fraction(1, 1000), "in": Fraction("0.0254"), "ft": Fraction("0.3048"),
+    "N": Fraction(1), "kN": Fraction(1000), "lbf": Fraction("4.4482216152605"),
+    "N*m": Fraction(1), "kN*m": Fraction(1000), "lbf*in": Fraction("4.4482216152605") * Fraction("0.0254"),
+    "lbf*ft": Fraction("4.4482216152605") * Fraction("0.3048"),
+    "N/m": Fraction(1), "N/mm": Fraction(1000), "kN/m": Fraction(1000), "kN/mm": Fraction(10**6),
+    "lbf/in": Fraction("4.4482216152605") / Fraction("0.0254"),
+    "K": Fraction(1), "degC": Fraction(1), "C": Fraction(1), "degF": Fraction(5, 9),
+    "rad": Fraction(1), "deg": Fraction(math.pi) / 180,
+}
 _DOF_TOKEN = {**{dof: dof for dof in DOFS}, **{dof.lower(): dof for dof in DOFS},
               **{dof[0] + dof[1].lower(): dof for dof in DOFS}}
 _AXIS = {"global_x": 0, "global_y": 1, "global_z": 2, "GLOBAL_X": 0, "GLOBAL_Y": 1, "GLOBAL_Z": 2,
@@ -250,10 +262,11 @@ def canonical(model: Mapping[str, Any], names: Mapping[str, str], case_kinds: Ma
             out.values[("bend", key, "k")] = si(modifiers["flexibility_factor_user_value"])
         out.sets[("bend", key, "plane")] = direction
         out.sets[("bend", key, "node")] = names[component["node"]]
+    sums: dict[tuple, Fraction] = {}
     for case in model.get("load_cases") or []:
         kind = case_kinds[case["id"]]
         for load in case.get("primitive_loads") or []:
-            value = si(load["magnitude"])
+            value = Fraction(load["magnitude"]["value"]) * _TO_SI_EXACT[load["magnitude"]["unit"]]
             target = load["target"]
             category = load["category"]
             if category in ("concentrated_force", "concentrated_moment"):
@@ -263,9 +276,9 @@ def canonical(model: Mapping[str, Any], names: Mapping[str, str], case_kinds: Ma
             else:
                 dof = _DOF_TOKEN[target["dof"]]
                 key = (kind, category, supports[target["support"]], dof)
-            out.values[("load",) + key] = out.values.get(("load",) + key, 0.0) + value
-    for key in [key for key, value in out.values.items() if key[0] == "load" and value == 0.0]:
-        del out.values[key]
+            sums[("load",) + key] = sums.get(("load",) + key, Fraction(0)) + value
+    # Summed exactly in SI base units and rounded once; zero sums are dropped.
+    out.values.update({key: float(value) for key, value in sums.items() if value != 0})
     return out
 
 
