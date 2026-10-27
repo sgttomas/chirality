@@ -538,6 +538,12 @@ class _Writer:
             self.diag("MBF-SI-VALUE-OUT-OF-RANGE", "error", entity,
                       f"{entity} needs 0 < wall_thickness < outside_diameter / 2 (got {_num(od)} mm, {_num(thk)} mm)")
             ok = False
+        if self.contract is not None and section.get("corrosion_allowance") is None:
+            # The exact pressure contract needs an explicit allowance on every section (the solve refuses the model
+            # with EXACT_PRESSURE_CORROSION_ALLOWANCE_REQUIRED); the MBF's written 0 would author one.
+            self.refuse("MBF-SI-CORROSION-ALLOWANCE-MISSING", entity,
+                        f"{entity} has no corrosion_allowance under the exact pressure contract; the MBF would write "
+                        "0, an allowance the model does not give")  # the pipe stays read: no cascade
         for name in ("corrosion_allowance", "mill_tolerance", "insulation_thickness"):
             if section.get(name) is None:
                 continue

@@ -95,6 +95,9 @@ OPPRES_DEFAULTS = ("0", "1", "1", "1.00", "0")
 # The exact route's straight-run guard (pressure_runtime.rs REPRESENTATION_GUARD = 64 * f64::EPSILON, used by
 # collinear_run), and the catalog factors (core/units: value * factor + 0.0) by which it reads node positions in m.
 REPRESENTATION_GUARD = 64 * 2.0 ** -52
+# The exact route's mitre threshold alpha_tan (curved_bend TANGENCY_TOLERANCE_RAD): a direction change above it,
+# measured as its `kink`, 2 atan2(|a - t|, |a + t|) of the unit directions, is a corner (Design §9.4).
+TANGENCY_TOLERANCE_RAD = 1.0e-3
 _METRES_PER_UNIT = {"mm": 0.001, "in": 0.0254}
 
 # --- MBF format vocabulary (CAEPIPE User's Manual, Import MBF, Format of .MBF; DEL-17-01 CAEPIPE-IMPORT-MBF) ---
@@ -395,11 +398,16 @@ def correct_norm3(a: float, b: float, c: float) -> float:
             k += 1
         else:
             break
+    if k > 1074:
+        # A subnormal result: round once on its own lattice of 2^-1074, not to 53 bits and then again.
+        k = 1074
+        scaled = square * Fraction(4) ** k
+        root = math.isqrt(scaled.numerator // scaled.denominator)
     midpoint = Fraction(root * root + root) + Fraction(1, 4)  # (root + 1/2)^2
     if scaled > midpoint or (scaled == midpoint and root % 2 == 1):
         root += 1
     try:
-        return math.ldexp(root, -k)
+        return math.ldexp(root, -k)  # exact: root has at most 53 bits, on the lattice of 2^-k
     except OverflowError:
         return math.inf
 
@@ -1852,6 +1860,16 @@ class _Importer:
                         raise _Refused
                     if delta != 0:
                         thermals.append((swb_id, delta, element.line))
+        # The solve reads positions in m (value x factor + 0.0, core/units): an element whose ends coincide there has
+        # zero length to it, however the file's own unit separates them.
+        factor, name_of = _METRES_PER_UNIT[length_unit], {swb_id: name for name, swb_id in id_map["node_map"].items()}
+        for pipe in pipes:
+            a, b = ([value * factor + 0.0 for value in point_of[name_of[pipe[end]]]] for end in ("from", "to"))
+            if a == b:
+                self.refuse("MBF-IMPORT-GEOMETRY-ZERO-LENGTH", pressures[pipe["id"]][1].line,
+                            pipe["id"], f"{pipe['id']} has zero length in metres, the unit the solve reads")
+        if self.has_errors():
+            raise _Refused
         if self.elements and all(element.load is None for element in self.elements):
             self.listed("tbd", "MBF-IMPORT-LOADS-ABSENT", self.sections["LAYOUT"][0], "LAYOUT",
                         "the file has no LOADS section; elements are imported with no temperature, pressure or "
@@ -2258,11 +2276,12 @@ class _Importer:
             members = self.restore_regions(stored["regions"], active, ends, name_of)
             how = "restored from the sidecar's pressure_map (bound import)"
         else:
-            members = self.form_regions(active, pressures, ends, arcs, point_of, name_of)
-            how = ("formed as maximal chains of elements with equal Pressure 1 and bore, ended at tees and where "
-                   "pressure or bore changes, and cut where a straight run stops passing the exact route's own "
-                   "collinearity check (64 epsilon of the run's span); closure transfer at every terminal is the "
-                   "caller's declaration (pressure_closure), never inferred")
+            members = self.form_regions(active, pressures, ends, arcs, point_of, name_of,
+                                        {pipe["id"]: pipe["label"] for pipe in pipes})
+            how = ("formed as maximal chains of elements with equal Pressure 1 and bore, ended at tees, where "
+                   "pressure or bore changes, and at straight-to-straight corners of a run the exact route's "
+                   "collinearity check refuses whole; closure transfer at every terminal is the caller's "
+                   "declaration (pressure_closure), never inferred")
         if members is None:
             raise _Refused
         regions, region_map = [], {}
@@ -2312,7 +2331,7 @@ class _Importer:
                         f"OPPRES gives {', '.join(on)}; SWBPIPE's exact pressure route models neither the Bourdon "
                         "effect nor pressure stiffening of bends (DEL-04-07 D-3)")
 
-    def form_regions(self, active, pressures, ends, arcs, point_of, name_of):
+    def form_regions(self, active, pressures, ends, arcs, point_of, name_of, label_of):
         """Unbound regions: [(id, member pipe ids in chain order, two terminals)], or None after a refusal."""
         incident: dict[str, list[str]] = {}
         for pipe_id, (a, b) in ends.items():
@@ -2341,21 +2360,43 @@ class _Importer:
         def metres(node: str) -> tuple[float, float, float]:
             return tuple(value * factor + 0.0 for value in point_of[name_of[node]])  # type: ignore[return-value]
 
+        def corner(before: str, node: str, after: str) -> bool:
+            a = _unit(_sub(metres(node), metres(before)))
+            t = _unit(_sub(metres(after), metres(node)))
+            theta = 2 * math.atan2(correct_norm3(*_sub(a, t)), correct_norm3(*(a[i] + t[i] for i in range(3))))
+            return theta > TANGENCY_TOLERANCE_RAD
+
+        failing: list[list[str]] = []
+
         def split(members: list[str], start: str) -> list[tuple[list[str], str, str]]:
-            """The chain cut where a straight run (between bends, or between the chain's ends) stops passing the
-            runtime's collinear_run with its origin at the run's first node; a bend continues the region (§11)."""
+            """The chain cut only at its corners. Each straight run (between bends, or between the chain's ends) is
+            checked whole with the runtime's collinear_run; one that passes is never cut. One that fails is cut at
+            its corners, and each piece must then pass; a piece that does not is recorded in `failing`."""
             nodes = [start]
             for member in members:
                 nodes.append(far(member, nodes[-1]))
-            pieces, current, piece_start, run_origin = [], [], start, None
+            cuts: set[int] = set()
+            index = 0
+            while index < len(members):
+                if members[index] in arcs:
+                    index += 1
+                    continue
+                end = index
+                while end < len(members) and members[end] not in arcs:
+                    end += 1
+                if not runtime_collinear([metres(node) for node in nodes[index:end + 1]]):
+                    corners = [k for k in range(index + 1, end) if corner(nodes[k - 1], nodes[k], nodes[k + 1])]
+                    bounds = [index, *corners, end]
+                    for low, high in zip(bounds, bounds[1:]):
+                        if not runtime_collinear([metres(node) for node in nodes[low:high + 1]]):
+                            failing.append(members[low:high])
+                    cuts.update(corners)
+                index = end
+            pieces, current, piece_start = [], [], start
             for index, member in enumerate(members):
-                if member in arcs:
-                    run_origin = None
-                elif run_origin is None:
-                    run_origin = index
-                elif not runtime_collinear([metres(node) for node in nodes[run_origin:index + 2]]):
+                if index in cuts:
                     pieces.append((current, piece_start, nodes[index]))
-                    current, piece_start, run_origin = [], nodes[index], index
+                    current, piece_start = [], nodes[index]
                 current.append(member)
             pieces.append((current, piece_start, nodes[-1]))
             return pieces
@@ -2378,6 +2419,16 @@ class _Importer:
             if order[members[-1]] < order[members[0]]:
                 members, start, end = members[::-1], end, start
             chains.extend(split(members, start))
+        for run in failing:
+            labels = [label_of[pipe_id] for pipe_id in run]
+            self.refuse("MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR", pressures[run[0]][1].line,
+                        f"elements {', '.join(labels)}",
+                        f"the straight run {', '.join(labels)} carries one pressure but is not collinear within the "
+                        "exact route's check (64 epsilon of the run's span) and has no corner (a direction change "
+                        f"above {TANGENCY_TOLERANCE_RAD} rad) to end a region at; a region is never cut inside a "
+                        "straight run")
+        if failing:
+            return None
         declared = self.closure_declaration()
         if declared is None:
             return None

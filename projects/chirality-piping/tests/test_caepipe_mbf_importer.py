@@ -1328,21 +1328,41 @@ def test_correctly_rounded_norm_and_the_ported_collinear_run():
     assert not collinear([(0.0, 0.0, 0.0), (2.0, 0.0, 0.0), (1.0, 0.0, 0.0)])  # passes its end: backtracks
 
 
-def test_a_run_the_exact_route_refuses_is_cut_where_its_own_check_stops_passing():
-    result = run(mbf("F10,KA,MM1,PP1,CL=L1", *DRIFT, loads=("L1,20,10,0",)), pressure_closure=CLOSURE)
-    assert result.status == "imported", result.diagnostics
-    found = regions_of(result)
-    assert len(found) > 1
-    positions = {node["id"]: tuple(value * 0.001 for value in node["position"].values())
-                 for node in result.model["nodes"]}
-    ends = {pipe["id"]: (pipe["from"], pipe["to"]) for pipe in result.model["pipe_segments"]}
-    for _, members, _, _, terminals in found:  # each piece passes the runtime's check; one more element would not
-        chain = [terminals[0][0]] + [ends[member][1] for member in members]
-        assert importer_module.runtime_collinear([positions[node] for node in chain])
-    first = found[0][1]
-    longer = [found[0][4][0][0]] + [ends[member][1] for member in first] + [ends[found[1][1][0]][1]]
-    assert not importer_module.runtime_collinear([positions[node] for node in longer])
-    assert [member for region in found for member in region[1]] == [pipe["id"] for pipe in result.model["pipe_segments"]]
+def test_a_run_the_exact_route_refuses_whole_is_refused_by_name_not_cut():
+    # Manager's rule (VER-002 r2): a region is never cut inside a straight run; DRIFT has no corner.
+    data = mbf("F10,KA,MM1,PP1,CL=L1", *DRIFT, loads=("L1,20,10,0",))
+    error = refused(run(data, pressure_closure=CLOSURE), "MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR")
+    assert error["location"] == "elements " + ", ".join(f"{10 * k}-{10 * (k + 1)}" for k in range(1, 17))
+    assert error["line"] == layout_line(data, "T20,")
+
+
+# Codex VER-002 r2: the first two straights alone fail (the middle node 3e-11 mm off a 2000 mm span: 3e-14 m / 2 m =
+# 1.5e-14 > 64 eps), but the whole run passes (3e-14 m / 10 m = 3e-15). The route checks the whole run.
+NONMONOTONIC = ("T20,X1000,Y3e-11", "T30,X1000,Y-3e-11", "T40,KA,X8000")
+
+
+def test_a_run_the_exact_route_admits_whole_stays_one_region_though_a_prefix_fails():
+    result = run(mbf("F10,KA,MM1,PP1,CL=L1", *NONMONOTONIC, loads=("L1,20,10,0",)), pressure_closure=CLOSURE)
+    assert [(region[0], region[1]) for region in regions_of(result)] == [
+        ("region:mbf-10-40", ["pipe:10-20", "pipe:20-30", "pipe:30-40"])]
+    collinear = importer_module.runtime_collinear
+    assert not collinear([(0.0, 0.0, 0.0), (1.0, 3e-14, 0.0), (2.0, 0.0, 0.0)])
+    assert collinear([(0.0, 0.0, 0.0), (1.0, 3e-14, 0.0), (2.0, 0.0, 0.0), (10.0, 0.0, 0.0)])
+
+
+@pytest.mark.parametrize("offset, regions", [
+    # A direction change of 2e-3 rad (> alpha_tan = 1e-3) is a corner: two regions.
+    ("Y2", ["region:mbf-10-20", "region:mbf-20-30"]),
+    # 5e-4 rad and 1e-4 rad are not corners, and the run fails the route's check whole: refused, not cut.
+    ("Y0.5", None), ("Y0.1", None),
+])
+def test_a_corner_is_a_direction_change_above_the_routes_mitre_threshold(offset, regions):
+    data = mbf("F10,KA,MM1,PP1,CL=L1", "T20,X1000", f"T30,KA,X1000,{offset}", loads=("L1,20,10,0",))
+    result = run(data, pressure_closure=CLOSURE)
+    if regions is None:
+        assert refused(result, "MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR")["location"] == "elements 10-20, 20-30"
+    else:
+        assert [region[0] for region in regions_of(result)] == regions
 
 
 def test_a_run_the_exact_route_admits_stays_one_region():
@@ -1360,13 +1380,14 @@ BEND_DRIFT = ("F10,KA,MM1,PP1,CL=L1", "T20,X1000", "T30,KI,B250,X2000,CFF=1",
               *(f"T{10 * (k + 3)},Z1000,X{k}e-11" for k in range(1, 17)), "T200,KA,Z1000,X17e-11")
 
 
-def test_straight_runs_between_bends_are_checked_each_from_its_own_start():
-    # Only run 2 is cut; the bend stays in the region of the straights it joins.
-    result = run(mbf(*BEND_DRIFT, loads=("L1,20,10,0",)), pressure_closure=CLOSURE)
-    assert result.status == "imported", result.diagnostics
-    found = regions_of(result)
-    assert len(found) > 1
-    assert found[0][1][:4] == ["pipe:10-20", "pipe:20-30A", "pipe:30A-30B", "pipe:30B-40"]
+def test_straight_runs_between_bends_are_checked_each_whole():
+    # Run 1 (10 -> 30A) passes; run 2 (30B -> 200) drifts like DRIFT and has no corner: refused, naming run 2 only.
+    data = mbf(*BEND_DRIFT, loads=("L1,20,10,0",))
+    error = refused(run(data, pressure_closure=CLOSURE), "MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR")
+    assert error["location"] == "elements 30B-40, " + ", ".join(f"{10 * k}-{10 * (k + 1)}" for k in range(4, 20))
+    straight = run(mbf(*BEND_DRIFT[:3], "T40,KA,Z1000", loads=("L1,20,10,0",)), pressure_closure=CLOSURE)
+    assert [region[1] for region in regions_of(straight)] == [["pipe:10-20", "pipe:20-30A", "pipe:30A-30B",
+                                                              "pipe:30B-40"]]
 
 
 # --- §9.4 corrosion allowance: field presence (VER-002 r1, item 2) ------------------------------------------------------
@@ -1386,3 +1407,31 @@ def test_a_stated_allowance_is_carried_and_an_unused_section_needs_none():
     assert result.status == "imported", result.diagnostics
     assert result.model["pipe_segments"][0]["section"]["corrosion_allowance"] == {"value": 0.0, "unit": "mm"}
     assert any("0 its PIPE record states in field 4" in note for note in result.assumptions)
+
+
+# --- VER-002 r2 items 3 and 4 ---------------------------------------------------------------------------------------
+def test_an_element_that_collapses_in_metres_is_refused():
+    # 31.500000000000004 mm and that plus 3.552713678800501e-15 mm differ in binary64, but x 0.001 (the catalog's
+    # mm factor) maps both to one value in m, where the solve reads them.
+    start, end = 31.500000000000004, 31.500000000000004 + 3.552713678800501e-15
+    assert start != end and start * 0.001 + 0.0 == end * 0.001 + 0.0
+    for loads in (("L1,20,10,0",), ("L1,20,0,0",)):  # with or without pressure
+        data = mbf("F10,KA,MM1,PP1,X31.500000000000004,CL=L1", "T20,KA,X3.552713678800501e-15", loads=loads)
+        error = refused(run(data, pressure_closure=CLOSURE), "MBF-IMPORT-GEOMETRY-ZERO-LENGTH", layout_line(data, "T20"))
+        assert "metres" in error["message"]
+
+
+def test_a_subnormal_norm_is_rounded_once_on_the_subnormal_lattice():
+    # Codex's chord, in m: both components are subnormal. The exact root, to 80 digits, rounded once by the
+    # correctly rounded decimal-to-binary conversion; rounding first to 53 bits and then to the lattice was one ulp high.
+    x, y = 5.562684977829851e-306 * 0.001 + 0.0, 1.6578092611e-313 * 0.001 + 0.0
+    assert 0 < x < 2.0 ** -1022
+    with decimal.localcontext() as context:
+        context.prec = 80
+        expected = float((decimal.Decimal(x) ** 2 + decimal.Decimal(y) ** 2).sqrt())
+    assert importer_module.correct_norm3(x, y, 0.0) == expected
+    assert importer_module.correct_norm3(2.0 ** -1074, 0.0, 0.0) == 2.0 ** -1074
+    assert importer_module.correct_norm3(3 * 2.0 ** -1074, 4 * 2.0 ** -1074, 0.0) == 5 * 2.0 ** -1074
+    result = run(mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X5.562684977829851e-306,Y1.6578092611e-313",
+                     loads=("L1,20,10,0",)), pressure_closure=CLOSURE)
+    assert result.status == "imported", result.diagnostics

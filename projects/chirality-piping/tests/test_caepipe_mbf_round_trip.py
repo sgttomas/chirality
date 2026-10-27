@@ -514,28 +514,46 @@ def test_the_bend_boundary_case_is_excluded_from_solve_equality(trips):
 
 
 def test_the_runtime_admits_every_region_the_importer_forms():
-    # VER-002 r1 item 1, judged by the exact route itself. The drifting run imported as one region is refused by
-    # name (PRESSURE_REGION_NONCOLLINEAR); its import, cut by the ported check, the zigzag run the route admits as
-    # one region, and a drifting run after a bend all solve.
+    # Judged by the exact route itself (VER-002 r1 and r2): Codex's run whose first two straights fail alone, the
+    # zigzag run, and a corner each import and solve; the drifting run the importer refuses is refused by the route
+    # too (PRESSURE_REGION_NONCOLLINEAR) when authored as one region.
     runner = runner_binary()
-    files = {"drift": ("F10,KA,MM1,PP1,CL=L1", *importer_tests.DRIFT),
-             "zigzag": ("F10,KA,MM1,PP1,CL=L1", *importer_tests.ZIGZAG), "bend-drift": importer_tests.BEND_DRIFT}
+    files = {"nonmonotonic": ("F10,KA,MM1,PP1,CL=L1", *importer_tests.NONMONOTONIC),
+             "zigzag": ("F10,KA,MM1,PP1,CL=L1", *importer_tests.ZIGZAG),
+             "corner": ("F10,KA,MM1,PP1,CL=L1", "T20,X1000", "T30,KA,X1000,Y2")}
     for name, rows in files.items():
         result = importer_tests.run(importer_tests.mbf(*rows, loads=("L1,20,10,0",)),
                                     pressure_closure=importer_tests.CLOSURE)
         assert result.status == "imported", result.diagnostics
         _, _, error = solve_swbpipe(runner, {"case_id": name, "model": result.model})
         assert error == "", name
-        if name == "drift":
-            merged = deepcopy(result.model)
-            case = merged["load_cases"][0]
-            regions = case["pressure_regions"]
-            assert len(regions) > 1
-            regions[0]["member_pipe_ids"] = [pipe for region in regions for pipe in region["member_pipe_ids"]]
-            regions[0]["terminals"][1] = regions[-1]["terminals"][1]
-            case["pressure_regions"] = regions[:1]
-            _, output, error = solve_swbpipe(runner, {"case_id": "drift-merged", "model": merged})
-            assert error and "PRESSURE_REGION_NONCOLLINEAR" in json.dumps(output)
+    drift = importer_tests.run(importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", *importer_tests.DRIFT)).model
+    drift["pressure_contract"] = {"version": "3.0.0", "mode": "exact_pressure_v3", "shear_model": "euler_bernoulli"}
+    for pipe in drift["pipe_segments"]:
+        pipe["section"]["corrosion_allowance"] = {"value": 0.0, "unit": "mm"}
+    drift["load_cases"] = [{"id": "case:p", "label": "Sustained (W+P)", "kind": "sustained", "status": "draft",
+                            "primitive_loads": [], "provenance": "invented", "pressure_regions": [
+        {"id": "region:drift", "member_pipe_ids": [pipe["id"] for pipe in drift["pipe_segments"]],
+         "pressure_basis": "internal_differential_zero_external_v1", "pressure": {"value": 10.0, "unit": "bar"},
+         "provenance": "invented", "terminals": [
+             {"node_ref": node, "closure_transfer": "transfers_to_wall", "provenance": "invented"}
+             for node in ("node:10", "node:170")]}]}]
+    _, output, error = solve_swbpipe(runner, {"case_id": "drift-one-region", "model": drift})
+    assert error and "PRESSURE_REGION_NONCOLLINEAR" in json.dumps(output)
+
+
+def test_an_import_whose_allowance_is_deleted_is_not_round_tripped_with_an_authored_zero():
+    # Codex VER-002 r2 item 2: import a pressure MBF with P1,168.3,7.11,0, delete the allowance, export.
+    data = importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X3000", pipe=("P1,168.3,7.11,0",), loads=("L1,20,10,0",))
+    imported = importer_tests.run(data, pressure_closure=importer_tests.CLOSURE)
+    assert imported.status == "imported", imported.diagnostics
+    model = deepcopy(imported.model)
+    del model["pipe_segments"][0]["section"]["corrosion_allowance"]
+    written = render_caepipe_mbf_si(model, title="NO ALLOWANCE")
+    assert written.status == "refused" and written.text is None
+    assert {item["code"] for item in written.diagnostics if item["severity"] == "error"} == {
+        "MBF-SI-CORROSION-ALLOWANCE-MISSING"}
+    assert render_caepipe_mbf_si(imported.model, title="WITH ALLOWANCE").status == "written"
 
 
 # --- (e) determinism ----------------------------------------------------------------------------------

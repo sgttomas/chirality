@@ -906,3 +906,17 @@ def test_pressure_refusals_and_omissions():
     unclosed = pressurized_l()
     unclosed["load_cases"][0]["pressure_regions"][0]["terminals"][1]["closure_transfer"] = None
     assert_refused(render_caepipe_mbf_si(unclosed, title="P"), "MBF-SI-INPUT-INVALID", "closure transfer")
+
+
+def test_an_exact_pressure_section_without_an_allowance_is_refused_not_written_as_zero():
+    # VER-002 r2 item 2: the solve refuses such a model (EXACT_PRESSURE_CORROSION_ALLOWANCE_REQUIRED); writing the
+    # MBF's 0 and importing it back would author an allowance and solve.
+    for pipe_id in ("S2", "S1"):
+        model = pressurized_l()
+        del next(item for item in model["pipe_segments"] if item["id"] == pipe_id)["section"]["corrosion_allowance"]
+        assert_refused(render_caepipe_mbf_si(model, title="P"), "MBF-SI-CORROSION-ALLOWANCE-MISSING", f"pipe:{pipe_id}")
+    contract_only = exact(cantilever())  # the contract without regions needs it too
+    del contract_only["pipe_segments"][0]["section"]["corrosion_allowance"]
+    assert_refused(render_caepipe_mbf_si(contract_only, title="P"), "MBF-SI-CORROSION-ALLOWANCE-MISSING")
+    plain = cantilever()  # no contract: no allowance needed
+    assert render_caepipe_mbf_si(plain, title="P").status == "written"
