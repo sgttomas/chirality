@@ -109,6 +109,7 @@ page and section. Their text, tables and examples are not reproduced.
 | `CAEPIPE-LOAD-CASES` | `users_manual/load_cases.htm` (*Load cases*) | Case-membership semantics only: which loads each CAEPIPE case includes. Used to state the writer's case mapping and its inverse |
 | `CAEPIPE-BEND` | `tech_manual/bend.htm` (technical reference, *Bend*) | CAEPIPE generates the near and far end nodes of a bend's curved portion, named with A and B suffixes on the bend node. The section given on the bend row applies to the curved portion and to the straight from the preceding node to the A node |
 | `CAEPIPE-FORCE` | `tech_manual/force.htm` (technical reference, *Force*) | The Force technical reference documents that sustained-category forces and moments also participate in operating cases. It does not state which category an MBF force or moment without `FLC` takes |
+| `CAEPIPE-ANALYSIS` | `users_manual/analysis.htm` (*Analysis*: *Number of Thermal Loads*; *Gravitational Acceleration and Direction*) | The number of thermal loads is the count of operating temperatures (and their pressures) in use; with `CAEPIPE-LOAD-CASES`, multiple operating and expansion cases exist only when it is above 1 (§9.1). From 15.10 a gravitational acceleration and direction scale the analysis, with all input given for earth gravity (§6) |
 | `CAEPIPE-LOCAL-AXES` | `tech_manual/local_coordinate_system.htm` (technical reference, *Local Coordinate System*) | The pipe element local-axis convention: with global Y vertical, a non-vertical straight's local y lies in the plane of its local x and global Y, toward +Y; a vertical straight's local y is global −X (§10.5) |
 | `CAEPIPE-TECH-REF` | `tech_manual/index.htm` | The technical reference's index; the pages used are registered separately above |
 
@@ -382,11 +383,11 @@ code-checking or acceptance logic, and their presence is listed in the loss repo
 | OPTIONS unknown token | `MBF-IMPORT-OPTION-UNSUPPORTED` |
 | OPTEMP field 1, reference temperature | Read (§9.2). Required whenever any LOADS temperature is read; a missing reference temperature is refused (`MBF-IMPORT-REFERENCE-TEMPERATURE-MISSING`), never taken from a default |
 | OPTEMP thermal cycles, solve-thermal flag, cold-modulus flag | `delegated` |
-| OPTEMP number of thermal loads | Absent or 1 is accepted. More than 1 is refused (`MBF-IMPORT-THERMAL-LOADS-UNSUPPORTED`; multiple thermal cases are tranche 2) |
+| OPTEMP number of thermal loads | Absent or 1 is accepted. More than 1 is refused (`MBF-IMPORT-THERMAL-LOADS-UNSUPPORTED`; multiple thermal cases are tranche 2). When given, it decides which LOADS slots are active (§9.1) |
 | OPCODE, OPPRES | `delegated`. They affect code stresses and pressure options only; pressure is refused anyway (§9.1) |
-| OPMISC fields 1–9 (dynamics options and the gravitational acceleration) | `delegated`. CAEPIPE derives masses from weights with this value; static weight is read from weight densities (§7.3) |
-| OPMISC gravitational-direction field (15.10 and later) | Refused when present and non-empty (`MBF-IMPORT-TBD-17-04-005`), in bound and unbound imports alike, until TBD-17-04-005 states its encoding. Weight direction is a mechanics input and is not assumed. The writer never writes this field, so bound imports do not meet it |
-| OPMISC fields beyond the public field list | Refused (`MBF-IMPORT-FIELD-UNDOCUMENTED`, §4.3) |
+| OPMISC fields 1–8 (dynamics and hanger options) | `delegated` |
+| OPMISC gravitational acceleration and direction (15.10 and later) | Two layouts are read. **Documented** (*Format of .MBF*, 10 fields): field 9 is the acceleration; a non-empty field 10, a direction whose one-field encoding no source states, is refused (`MBF-IMPORT-TBD-17-04-005`). **The export's** (observed format behaviour, 13 fields): field 9 has no public description and is read only as the `0` every export writes, else `MBF-IMPORT-FIELD-UNDOCUMENTED`; field 10 is the acceleration; fields 11–13 are the direction as three components. In either layout only the default earth setting the export writes, acceleration `386.4` with direction (0, −1, 0), is read; it is listed as `delegated` and recorded in `assumptions`. SWBPIPE has no gravity setting and carries weight as explicit primitives along −Y (§7.3), which matches earth gravity (`CAEPIPE-ANALYSIS`: input is given for earth gravity). Any other acceleration or direction scales or turns the weights and is refused (`MBF-IMPORT-GRAVITY-UNSUPPORTED`). The export writes `386.4` in SI files too, although the manual gives m/s² for SI, so another value's unit is ambiguous; this is why only the observed default is read |
+| OPMISC field counts other than 0–10 and 13 | Refused (`MBF-IMPORT-FIELD-UNDOCUMENTED`, §4.3) |
 
 ## 7. Materials (MATERIAL)
 
@@ -517,7 +518,7 @@ environmental-load flags (*Format of .MBF*, LOADS).
 | T1 | Read (§9.2) |
 | P1 | Must be 0. Otherwise `MBF-IMPORT-PRESSURE-UNSUPPORTED`; pressure, in bar or psi, is tranche 2 with SWBPIPE pressure regions |
 | Specific gravity | Must be 0. Otherwise `MBF-IMPORT-CONTENTS-UNSUPPORTED` |
-| T2…T10, P2…P10 | Each pair must be empty, or T equal to the OPTEMP reference with P = 0. That is listed as `omitted` ("no thermal load n"). Anything else is `MBF-IMPORT-THERMAL-LOADS-UNSUPPORTED` |
+| T2…T10, P2…P10 | **Active slots.** When OPTEMP gives the number of thermal loads (N = 1 in tranche 1), slots above N are inactive: no load case uses them (`CAEPIPE-ANALYSIS`, *Number of Thermal Loads*; `CAEPIPE-LOAD-CASES`; OPTEMP field order from `CAEPIPE-IMPORT-MBF`). Each inactive slot is dropped and reported by record and slot as `MBF-IMPORT-LOAD-SLOT-INACTIVE` (info), whatever its values; they must still be numbers. CAEPIPE's export fills every slot, with a default temperature in unused temperature slots and 0 in unused pressures (observed format behaviour). **Without a count**, the conservative rule applies: a slot is inactive only when it is empty, or T equals the OPTEMP reference with P = 0 (reported the same way); anything else is ambiguous and refused (`MBF-IMPORT-THERMAL-LOADS-UNSUPPORTED`) |
 | Additional weight | 0 or empty. Otherwise `MBF-IMPORT-LOAD-FIELD-UNSUPPORTED` |
 | Peak temperature, peak pressure | `delegated`. They only feed CAEPIPE's peak case |
 | Wind, snow, ice and wave flags | 0 or empty. Otherwise `MBF-IMPORT-LOAD-FIELD-UNSUPPORTED` |
@@ -561,7 +562,9 @@ Row meanings follow *Format of .MBF*, LAYOUT, and *DX, DY, DZ*:
 - **From row `F<n>`.**
   - **Unknown node:** a new run begins there. X, Y, Z are absolute coordinates. Only the
     first From row may omit them, meaning the origin (*DX, DY, DZ*). Any other unknown From
-    node without coordinates is refused (`MBF-IMPORT-NODE-POSITION-MISSING`).
+    node without coordinates is refused (`MBF-IMPORT-NODE-POSITION-MISSING`). On a From row
+    that gives some coordinates, a missing axis is 0: CAEPIPE's export writes only the non-zero
+    absolute coordinates of a From node (observed format behaviour).
   - **Known node:** a branch starts there. Coordinates may be omitted. If given, they must
     equal the node's position within the half-unit bounds of their printed digits (§18.2's
     δ, summed over the node's path); otherwise
@@ -805,11 +808,15 @@ its tangent lengths, and the bare-metal area behind a weight density. Its norms 
 Loss entries and information (do not block):
 
 - `MBF-IMPORT-TARGET-OPTION-DELEGATED` and `MBF-IMPORT-SECTION-DELEGATED` (`delegated`, §6, §14);
-- `MBF-IMPORT-SECTION-ZERO-OMITTED`, `MBF-IMPORT-THERMAL-LOAD-OMITTED`,
+- `MBF-IMPORT-SECTION-ZERO-OMITTED`,
   `MBF-IMPORT-RECORD-UNUSED` (a record no element references), `MBF-IMPORT-TAG-WITHOUT-SUPPORT`
   and `MBF-IMPORT-SIDECAR-ENTRY-ABSENT` (`omitted`);
 - `MBF-IMPORT-SIDECAR-NOT-APPLIED` (info: the hashes differ and no rebinding was requested)
-  and `MBF-IMPORT-ORIENTATION-DEFAULTED` (info, §10.5).
+  and `MBF-IMPORT-ORIENTATION-DEFAULTED` (info, §10.5);
+- `MBF-IMPORT-LOAD-SLOT-INACTIVE` (info, by record and slot, §9.1).
+
+Further refusal: `MBF-IMPORT-GRAVITY-UNSUPPORTED`, an OPMISC gravity setting other than the
+default earth setting (§6).
 
 ## 15. Ids and the sidecar map
 
@@ -1240,7 +1247,7 @@ dossier as CQ-17-01-011 to -015.
 
 | TBD | Question | Effect until closed |
 |---|---|---|
-| TBD-17-04-005 | Encoding and default of OPMISC's gravitational-direction field (15.10 and later) | A present value is refused by name (`MBF-IMPORT-TBD-17-04-005`) in every import, which may block every 15.10 export. The writer never writes it |
+| TBD-17-04-005 | Encoding and default of OPMISC's gravitational-direction field (15.10 and later) | **Finding** (observed format behaviour, recorded here; the TBD's status is Agent 0's): CAEPIPE's export writes OPMISC with 13 fields, the direction as three components after the acceleration, and for the default earth environment acceleration `386.4` (in SI files too) with direction (0, −1, 0). The importer reads that default setting only (§6) and refuses any other (`MBF-IMPORT-GRAVITY-UNSUPPORTED`) and a one-field direction (`MBF-IMPORT-TBD-17-04-005`). Still open: the public field list's one-field encoding, the meaning of the export's field 9, and the acceleration's unit in SI files. The writer never writes these fields |
 | TBD-17-04-006 | Text encoding, foot and inch mark characters, and numeric precision that CAEPIPE's MBF export writes | The importer reads only strict UTF-8 and the marks the public pages show. Anything else is refused by name. Values are read as written, with no precision assumed; private-regression outcomes record differences, and no tolerance is widened for them |
 | TBD-17-04-007 | Whether `L=<load name>` is the documented load reference, carried like M and P, and which load case a `FOR` or `MOM` without `FLC` joins; and whether these are stable across versions | Bound imports apply the writer's conventions. Unbound imports refuse both with `MBF-IMPORT-TBD-17-04-007`. Unbound imports may admit both where an explicitly retained bounded profile decision does so |
 | TBD-17-04-008 | Whether CAEPIPE's MBF export keeps node numbers, row order and TI bend rows as imported, and whether it writes offsets or absolute coordinates | An unbound sidecar is applied only on explicit request, and every rebound id is marked unconfirmed (§15). Geometry is read only in its documented forms |
