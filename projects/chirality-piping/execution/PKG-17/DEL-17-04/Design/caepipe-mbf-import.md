@@ -710,15 +710,43 @@ A restored region is then checked whole as the route checks it, with the same po
 as an unbound region (its straight runs and its bores, on the MBF's values read to metres),
 in its declared traversal order: from its first terminal, through its members, to its
 second. It is never cut or reordered. A region that is not one chain between its terminals
-is refused as `MBF-IMPORT-SIDECAR-CONFLICT`; one the checks refuse is refused as
-`MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR` or `MBF-IMPORT-PRESSURE-BORE-MISMATCH`, located at
-`pressure_map region <id>` (independent review VER-002 r4). A byte-bound file can fail these
+is refused as `MBF-IMPORT-SIDECAR-CONFLICT`, as is a region id that is empty or repeated; one
+the checks refuse is refused as `MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR`,
+`MBF-IMPORT-PRESSURE-BORE-MISMATCH` or, where another pipe joins an internal node,
+`MBF-IMPORT-PRESSURE-INTERNAL-BRANCH`, located at `pressure_map region <id>` (independent
+review VER-002 r4, r5). A byte-bound file can fail these
 checks although its source model passed them, because the writer prints 10 significant
 digits: OD 168.30000004 and wall 7.11000002 give the same bore radius in metres as 170.3
 and 8.11, but print as 168.3 and 7.11000002; and two offsets collinear as authored need not
 be collinear as printed. The writer's preflight below refuses such an export, so a bound
-import of the writer's own output meets them only if the file was not written by the
-current writer.
+import fails these checks only if the file was not written by the current writer.
+
+**Guard map (VER-002 r5).** Every refusal `pressure_runtime.rs` raises for a model, region or
+member (46 codes, with the two admission-seam codes it raises), and what keeps an import from
+reaching it. U is the unbound route, B the bound (restored) route; the writer's preflight
+re-imports bound, so B covers exports too.
+
+| Runtime code | Importer check | Route |
+|---|---|---|
+| `PRESSURE_REGION_NONCOLLINEAR` | ported `collinear_run` per straight run (`MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR`) | U, B |
+| `PRESSURE_REGION_BORE_MISMATCH` | ported bore guard (`MBF-IMPORT-PRESSURE-BORE-MISMATCH`) | U, B |
+| `PRESSURE_REGION_INTERNAL_BRANCH` | U: a chain continues only through a node joining exactly two pipes; B: ported (`MBF-IMPORT-PRESSURE-INTERNAL-BRANCH`, new in r5) | U, B |
+| `_TOPOLOGY_INVALID`, `PRESSURE_TERMINALS_INVALID`, `PRESSURE_TERMINAL_NODE_UNKNOWN`, `_MEMBER_UNKNOWN`, `_MEMBERS_INVALID`, `_PIPE_OVERLAP` | U: chains of existing pipes, each in one region, with their two ends as terminals; B: membership, ownership and one chain from the first terminal to the second (`MBF-IMPORT-SIDECAR-CONFLICT`) | U, B |
+| `_INPUT_MISSING`, `_ID_DUPLICATE` | U: formed ids, provenance, pressure and members; B: as restored, with ids non-empty and unique (new in r5) | U, B |
+| `PRESSURE_TERMINAL_INPUT_MISSING`, `PRESSURE_TERMINAL_CLOSURE_INVALID` | U: the closure declaration (`MBF-IMPORT-PRESSURE-CLOSURE-REQUIRED`, `-INVALID`); B: restored node, closure and provenance checked | U, B |
+| `_PRESSURE_INVALID` | the file's value read finite (§4.3) | U, B |
+| `EXACT_PRESSURE_CORROSION_ALLOWANCE_REQUIRED` | `MBF-IMPORT-CORROSION-ALLOWANCE-MISSING`; the writer's `MBF-SI-CORROSION-ALLOWANCE-MISSING` | U, B |
+| `EXACT_PRESSURE_RESULT_ID_COLLISION` | ported per kind, ':' read as '-' (`MBF-IMPORT-PRESSURE-ID-COLLISION`, new in r5) | U, B |
+| `_GEOMETRY_INVALID` | ends coinciding in metres refused (`MBF-IMPORT-GEOMETRY-ZERO-LENGTH`); a restored `y_reference` the frame kernel cannot use is replaced by the documented one and reported (new in r5); bend tangents by construction (below). A straight shorter than the frame kernel's 1e-12 m is left to the solve's named refusal (§10.1: no minimum length) | U, B |
+| `EXACT_PRESSURE_MATERIAL_INVALID` | E > 0 and 0 < ν < 0.5 (`MBF-IMPORT-VALUE-OUT-OF-RANGE`) | U, B |
+| `PRESSURE_REGION_MITRE_UNSUPPORTED` and the bend-tangent `_GEOMETRY_INVALID` | cannot arise: §11 builds each bend's tangent nodes exactly from its TI, so a bend's end tangents meet its straights within rounding, far below α_tan | — |
+| `PRESSURE_MODEL_REAUTHOR_REQUIRED`, `PRESSURE_CONTRACT_UNSUPPORTED`, `EXACT_PRESSURE_SHEAR_MODEL_REQUIRED`, `PREVIEW_SCHEMA_VERSION_UNSUPPORTED`, `PREVIEW_CONTRACT_VERSION_MISMATCH`, `_BASIS_UNSUPPORTED`, `CORROSION_ALLOWANCE_WITHOUT_PRESSURE_CONTRACT`, `EXACT_PRESSURE_REQUIRES_REGION`, `EXACT_PRESSURE_REGIONS_REQUIRED` | cannot arise: the importer writes only the current schema version, the one contract (a restored shear model only if admitted), the one basis, the allowance only under the contract, no pressure primitive, and a region list on every case | — |
+| `OBJECTIVE_CONNECTOR_VERSION_UNSUPPORTED`, `OBJECTIVE_CONNECTOR_NOT_IMPLEMENTED`, `EXACT_PRESSURE_FAMILY_NOT_ADMITTED`, `EXACT_PRESSURE_REDUCER_IN_REGION` | cannot arise: the importer writes only realized bends and rigid restraints and anchors (no hanger, nonlinear support, connector, reducer, combination or equivalent-static load) | — |
+| `EXACT_PRESSURE_MATERIAL_AMBIGUOUS`, `_MATERIAL_MISSING`, `_MATERIAL_BASIS_REQUIRED`, `_POISSON_RATIO_REQUIRED`, `THERMAL_EXPANSION_INPUT_MISSING`, `LOAD_STATE_MEMBER_MATERIAL_MISSING`, `_SECTION_MISSING`, `_NOT_NORMALIZED`, `EXACT_PRESSURE_REGION_MEMBER_NOT_STRAIGHT` | cannot arise: each pipe names one imported E/ν material with explicit ν and α; no load-state case; every pipe has a section; bar and psi normalize to Pa in the solve's own seam; the last is an unreachable guard by its source comment | — |
+| `EXACT_PRESSURE_OUTPUT_UNREPRESENTABLE`, `PRESSURE_LEDGER_SUM_UNREPRESENTABLE`, `PRESSURE_ASSEMBLY_COEFFICIENT_UNREPRESENTABLE`, `PRESSURE_ASSEMBLY_SOURCE_UNREPRESENTABLE`, `PRESSURE_ASSEMBLY_CANCELLATION_UNRESOLVED` | not an import guard: solve-time arithmetic of the assembled loads, refused by name by the solve; the importer keeps every input finite | — |
+
+Related: the exact route's `EXACT_IMPOSED_DISPLACEMENT_PRIMITIVE_UNSUPPORTED` is kept out by
+`MBF-IMPORT-PRESSURE-DISPLACEMENT-UNSUPPORTED` (above).
 
 **CAEPIPE pressure effects SWBPIPE does not model.** OPPRES fields 2 and 3 switch CAEPIPE's
 Bourdon effect and pressure correction for bends, and a blank OPPRES line turns both on
@@ -756,12 +784,18 @@ refuses:
   not it carries pressure (`MBF-SI-CORROSION-ALLOWANCE-MISSING`, VER-002 r2). The solve
   refuses such a model (`EXACT_PRESSURE_CORROSION_ALLOWANCE_REQUIRED`), and the MBF's
   written 0 would author an allowance on import;
-- a region the model's values admit but the printed values would not
-  (`MBF-SI-PRESSURE-REGION-FORMAT`, naming the region; VER-002 r4). The writer's preflight
-  imports its own text, bound to its own sidecar, so the printed values are read exactly as
-  an import reads them (positions summed from the printed offsets, bend tangent nodes
-  rebuilt, OD and wall as printed). The restored regions then take the same whole-region
-  checks in their declared order. The writer refuses rather than printing more digits. The
+- any export whose own bound re-import does not succeed completely (VER-002 r4, r5). The
+  writer's preflight imports its own text, bound to its own sidecar, so the printed values
+  are read exactly as an import reads them (positions summed from the printed offsets, bend
+  tangent nodes rebuilt, OD and wall as printed). The restored regions then take the same
+  whole-region checks in their declared order, and the re-import must restore every written
+  region. A region the model's values admit but the printed values would not is refused as
+  `MBF-SI-PRESSURE-REGION-FORMAT`, naming the region. Any other re-import refusal, at any
+  stage, is refused as `MBF-SI-PREFLIGHT-REFUSED`, carrying the importer's code, location
+  and line: for example OD 100.00000004 with wall 50 prints as 100, which the import
+  refuses (`MBF-IMPORT-VALUE-OUT-OF-RANGE`), and a region through a tee
+  (`MBF-IMPORT-PRESSURE-INTERNAL-BRANCH`). The preflight runs for every export under the
+  exact contract. The writer refuses rather than printing more digits. The
   10-significant-digit print is the profile's established form, and the §18.2 bounds and
   byte reproduction rest on it. More digits would not settle the geometry either: an offset
   is a binary64 difference of two positions, so its exact decimal does not, summed, give the
@@ -1026,7 +1060,8 @@ the manual does not make clear which kind a record is, it is refused.
   non-zero value that would become 0 (§4.3);
 - tranche 2: `MBF-IMPORT-PRESSURE-CLOSURE-REQUIRED`, `MBF-IMPORT-PRESSURE-CLOSURE-INVALID`,
   `MBF-IMPORT-PRESSURE-DISPLACEMENT-UNSUPPORTED`, `MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR`,
-  `MBF-IMPORT-PRESSURE-BORE-MISMATCH` (§9.4)
+  `MBF-IMPORT-PRESSURE-BORE-MISMATCH`, `MBF-IMPORT-PRESSURE-INTERNAL-BRANCH`,
+  `MBF-IMPORT-PRESSURE-ID-COLLISION` (§9.4)
   and `MBF-IMPORT-CORROSION-ALLOWANCE-MISSING` (§8). `MBF-IMPORT-GEOMETRY-ZERO-LENGTH` also
   refuses an element whose ends coincide in metres, the unit the solve reads (VER-002 r2). `MBF-IMPORT-PRESSURE-UNSUPPORTED`
   now refuses only a negative Pressure 1.
@@ -1035,8 +1070,8 @@ the manual does not make clear which kind a record is, it is refused.
 stays for unknown tokens; §5.1), a positive Pressure 1 no longer refuses (§9.4), and the
 writer no longer refuses the exact pressure contract or its regions
 (`MBF-SI-PRESSURE-UNSUPPORTED` stays for the cases §9.4 lists and for pressure primitives).
-The writer's new codes are `MBF-SI-PRESSURE-CASE-UNSUPPORTED`, `MBF-SI-CORROSION-ALLOWANCE-MISSING`
-and `MBF-SI-PRESSURE-REGION-FORMAT` (refusals),
+The writer's new codes are `MBF-SI-PRESSURE-CASE-UNSUPPORTED`, `MBF-SI-CORROSION-ALLOWANCE-MISSING`,
+`MBF-SI-PRESSURE-REGION-FORMAT` and `MBF-SI-PREFLIGHT-REFUSED` (refusals),
 `MBF-SI-PRESSURE-REGION-ZERO` and `MBF-SI-SHEAR-MODEL-NOT-EXPORTED` (omitted).
 
 The writer refuses the corresponding cases of its own conversions as
@@ -1295,7 +1330,11 @@ declares it invented. The boundary guard (§18.4) requires the sidecar.
    the route admits only reversed (emitted reversed, solved; refused by the route in file
    order). VER-002 r4 adds the review's two round trips (bores, geometry): each imports and
    solves, the writer refuses it as `MBF-SI-PRESSURE-REGION-FORMAT`, and without that
-   preflight the bound import of its text refuses the restored region by name.
+   preflight the bound import of its text refuses the restored region by name. VER-002 r5
+   adds: a restored region through a tee (refused by the import, the writer and the route),
+   the preflight's refusal of an OD that prints as twice the wall, ids equal once ':' reads
+   as '-', empty and repeated restored region ids, and a restored orientation along the
+   element axis.
 
 The weight-density conversion, the G derivation, the ΔT mapping and the rational
 summation change numerical meaning. They therefore get targeted regression tests (items
