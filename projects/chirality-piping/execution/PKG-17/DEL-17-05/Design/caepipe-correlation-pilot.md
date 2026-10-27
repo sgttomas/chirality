@@ -133,6 +133,11 @@ An authored case (§3; DEL-17-04 Design §18.3) uses the same folder under its o
 (`cases/cpa-nn-…/`). Its `caepipe_in/model.mbf` is the tracked authored file, written as is; it
 has no `id_map.json` or `mbf_render.json`, and its `swbpipe/`, `parsed/` and `comparison/` layers
 stay empty. Its `caepipe_out/` and `imported/` layers are as above and equally private.
+`run_pilot --authored --authored-dir <path>` takes the authored cases from another directory with
+the same `manifest.json` layout instead of the tracked one, so authored files that are themselves
+private are run without entering the repository. The directory must lie inside the exchange folder
+with no symbolic link on the way (else the run stops before any case), and its case ids must not
+name a tracked writer or authored case, whose case folders the run would otherwise replace.
 
 `caepipe_in/` holds only SWBPIPE-derived content or the invented authored file. Every layer from `caepipe_out/` on
 is CAEPIPE output or derived from it and stays private (§8). Every directory and

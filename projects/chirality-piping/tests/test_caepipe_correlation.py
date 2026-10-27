@@ -1109,7 +1109,8 @@ def test_pilot_authored_option_needs_no_runner_and_refuses_comparison_modes(tmp_
     monkeypatch.setattr(run_pilot, "run_cases", lambda *a, **k: pytest.fail("comparison run"))
     calls = []
     monkeypatch.setattr(run_pilot, "run_authored_case",
-                        lambda case, config_, export_only: calls.append((case["case_id"], export_only)) or True)
+                        lambda case, config_, export_only, directory: calls.append((case["case_id"], export_only))
+                        or True)
     assert run_pilot.main(["--authored", "--case", "cpa-12-guide-gap"], environ={}) == 0
     assert run_pilot.main(["--authored", "--export-only", "--case", "cpa-12-guide-gap"], environ={}) == 0
     assert calls == [("cpa-12-guide-gap", False), ("cpa-12-guide-gap", True)]
@@ -1119,6 +1120,79 @@ def test_pilot_authored_option_needs_no_runner_and_refuses_comparison_modes(tmp_
             run_pilot.main(["--authored", mode], environ={})
         assert raised.value.code == 2
     assert "--authored takes only --case and --export-only" in capsys.readouterr().err
+
+
+def authored_dir(root: Path, case_ids: tuple[str, ...] = ("cx-01-invented",), name: str = "authored-private") -> Path:
+    """An invented authored-case directory inside the exchange folder, laid out as validation/.../authored/."""
+    directory = root / name
+    directory.mkdir()
+    for case_id in case_ids:
+        (directory / f"{case_id}.mbf").write_bytes(b"INVENTED AUTHORED FIXTURE\r\n" + case_id.encode() + b"\r\n")
+    (directory / "manifest.json").write_text(json.dumps({
+        "document_kind": run_pilot.AUTHORED_MANIFEST_KIND,
+        "cases": [{"case_id": case_id, "file": f"{case_id}.mbf"} for case_id in case_ids],
+    }), encoding="utf-8")
+    return directory
+
+
+def test_pilot_authored_dir_runs_the_cases_of_a_directory_inside_the_exchange_folder(tmp_path, monkeypatch):
+    config = fake_config(tmp_path)
+    directory = authored_dir(config.exchange_root, ("cx-01-invented", "cx-02-invented"))
+    monkeypatch.setattr(run_pilot, "resolve_harness_config", lambda environ, require_vm_tools: config)
+    calls = []
+
+    def round_trip(config_, case_id, mbf_text):
+        sha = hashlib.sha256(mbf_text.encode("ascii")).hexdigest()
+        calls.append(("round_trip", case_id, mbf_text))
+        return {"route": "csv_from_batch", "mbf": {"sha256": sha}, "guest_mbf_sha256": sha}
+
+    def export(config_, case_id, mbf_sha256):
+        calls.append(("export", case_id))
+        return {"route": "mbf_exported"}
+
+    real = run_pilot.run_authored_case
+    monkeypatch.setattr(run_pilot, "run_authored_case",
+                        lambda case, config_, **kw: real(case, config_, round_trip=round_trip, export=export, **kw))
+    assert run_pilot.main(["--authored", "--authored-dir", str(directory), "--case", "cx-02-invented"],
+                          environ={}) == 0
+    assert calls == [("round_trip", "cx-02-invented", "INVENTED AUTHORED FIXTURE\r\ncx-02-invented\r\n"),
+                     ("export", "cx-02-invented")]
+    calls.clear()
+    assert run_pilot.main(["--authored", "--export-only", "--authored-dir", str(directory)], environ={}) == 0
+    assert calls == [("export", "cx-01-invented"), ("export", "cx-02-invented")]
+
+
+def test_pilot_authored_dir_refusals(tmp_path, monkeypatch, capsys):
+    config = fake_config(tmp_path)
+    monkeypatch.setattr(run_pilot, "resolve_harness_config", lambda environ, require_vm_tools: config)
+    monkeypatch.setattr(run_pilot, "run_authored_case", lambda *a, **k: pytest.fail("ran a case"))
+    with pytest.raises(SystemExit) as raised:
+        run_pilot.main(["--authored-dir", str(tmp_path)], environ={})
+    assert raised.value.code == 2
+    assert "--authored-dir needs --authored" in capsys.readouterr().err
+
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    authored_dir(outside)
+    assert run_pilot.main(["--authored", "--authored-dir", str(outside / "authored-private")], environ={}) == 2
+    assert "is not inside the exchange folder" in capsys.readouterr().err
+
+    (config.exchange_root / "linked").symlink_to(outside / "authored-private", target_is_directory=True)
+    assert run_pilot.main(["--authored", "--authored-dir", str(config.exchange_root / "linked")], environ={}) == 2
+    assert "is a symbolic link; refused" in capsys.readouterr().err
+
+    clashing = authored_dir(config.exchange_root, ("cpa-05-guide", "cpc-01-cantilever-force"), name="clashing")
+    assert run_pilot.main(["--authored", "--authored-dir", str(clashing)], environ={}) == 2
+    assert "case id(s) cpa-05-guide, cpc-01-cantilever-force name tracked cases" in capsys.readouterr().err
+
+    directory = authored_dir(config.exchange_root)
+    assert run_pilot.main(["--authored", "--authored-dir", str(directory), "--case", "cx-09-absent"], environ={}) == 2
+    assert "unknown authored case id(s): cx-09-absent" in capsys.readouterr().err
+
+    # Without a configured harness nothing is read or run, as for the tracked cases.
+    monkeypatch.setattr(run_pilot, "resolve_harness_config", lambda environ, require_vm_tools: HarnessSkip("invented"))
+    assert run_pilot.main(["--authored", "--authored-dir", str(outside)], environ={}) == 0
+    assert "CAEPIPE harness skipped: invented" in capsys.readouterr().out
 
 
 def offline_case(tmp_path, monkeypatch, *, run_record=None, csv=True):

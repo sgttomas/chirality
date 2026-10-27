@@ -4,7 +4,7 @@ From the project root:
 
     python3 -m tools.caepipe_correlation.run_pilot [--case ID ...] [--offline | --export-mbf | --export-only]
         [--runner PATH]
-    python3 -m tools.caepipe_correlation.run_pilot --authored [--case ID ...] [--export-only]
+    python3 -m tools.caepipe_correlation.run_pilot --authored [--authored-dir PATH] [--case ID ...] [--export-only]
 
 Per case: the independent hand calculation, the SWBPIPE solve (headless runner),
 the SI MBF (with the case's deliberate fault injection, if any), the live
@@ -39,7 +39,11 @@ one importer mapping or one named refusal (DEL-17-04 Design §18.3). Per case th
 live round trip imports (and solves) the authored MBF as written, and the export
 step then writes the model back to caepipe_out/exported.mbf; with --export-only
 only the export step runs. No SWBPIPE solve, CSV comparison or series step runs,
-and no runner is needed.
+and no runner is needed. --authored-dir takes the cases from another directory
+with the same manifest layout instead; it must lie inside the exchange folder,
+with no symbolic link on the way, so private authored files stay private, and its
+case ids must not name a tracked writer or authored case, whose case folders the
+run would otherwise replace.
 
 Standard output carries operational status only: per case its id, route and
 either the comparison record's path relative to the exchange folder or the
@@ -131,18 +135,19 @@ def load_cases(selected: list[str] | None = None) -> list[dict[str, Any]]:
     return [cases[case_id] for case_id in sorted(cases)]
 
 
-def load_authored_cases(selected: list[str] | None = None) -> list[dict[str, Any]]:
+def load_authored_cases(selected: list[str] | None = None, directory: Path = AUTHORED_DIR) -> list[dict[str, Any]]:
     """The authored cases of the manifest, checked: each id matches the pattern, is unique and names its MBF."""
-    manifest = json.loads((AUTHORED_DIR / "manifest.json").read_text(encoding="utf-8"))
+    label = "authored/manifest.json" if directory == AUTHORED_DIR else "manifest.json"
+    manifest = json.loads((directory / "manifest.json").read_text(encoding="utf-8"))
     if manifest.get("document_kind") != AUTHORED_MANIFEST_KIND:
-        raise ValueError(f"authored/manifest.json: document_kind must be {AUTHORED_MANIFEST_KIND}")
+        raise ValueError(f"{label}: document_kind must be {AUTHORED_MANIFEST_KIND}")
     cases: dict[str, dict[str, Any]] = {}
     for entry in manifest.get("cases") or []:
         case_id = entry.get("case_id")
         if not isinstance(case_id, str) or not CASE_ID_PATTERN.match(case_id) or case_id in cases:
-            raise ValueError(f"authored/manifest.json: case id {case_id!r} is invalid or repeated")
-        if entry.get("file") != f"{case_id}.mbf" or not (AUTHORED_DIR / entry["file"]).is_file():
-            raise ValueError(f"authored/manifest.json: {case_id} must name its file {case_id}.mbf")
+            raise ValueError(f"{label}: case id {case_id!r} is invalid or repeated")
+        if entry.get("file") != f"{case_id}.mbf" or not (directory / entry["file"]).is_file():
+            raise ValueError(f"{label}: {case_id} must name its file {case_id}.mbf")
         cases[case_id] = entry
     if selected:
         unknown = sorted(set(selected) - set(cases))
@@ -152,9 +157,24 @@ def load_authored_cases(selected: list[str] | None = None) -> list[dict[str, Any
     return [cases[case_id] for case_id in sorted(cases)]
 
 
-def authored_mbf_bytes(case: Mapping[str, Any]) -> bytes:
-    """The authored MBF exactly as tracked (CRLF kept)."""
-    return (AUTHORED_DIR / case["file"]).read_bytes()
+def authored_mbf_bytes(case: Mapping[str, Any], directory: Path = AUTHORED_DIR) -> bytes:
+    """The authored MBF exactly as stored (CRLF kept)."""
+    return (directory / case["file"]).read_bytes()
+
+
+def external_authored_dir(root: Path, path: str) -> Path:
+    """The --authored-dir directory, checked: inside the exchange folder with no symbolic link on the way.
+
+    Its manifest's case ids must not name a tracked writer or authored case: their case folders would be replaced.
+    """
+    directory = contained(root, Path(os.path.abspath(path)))
+    if not directory.is_dir():
+        raise ValueError(f"--authored-dir: {path} is not a directory")
+    tracked = {case["case_id"] for case in load_cases()} | {case["case_id"] for case in load_authored_cases()}
+    clashes = sorted(tracked & {case["case_id"] for case in load_authored_cases(directory=directory)})
+    if clashes:
+        raise ValueError(f"--authored-dir: case id(s) {', '.join(clashes)} name tracked cases")
+    return directory
 
 
 def load_series() -> list[dict[str, Any]]:
@@ -493,10 +513,11 @@ def export_case(case: Mapping[str, Any], config: HarnessConfig, *, emit: Callabl
 def run_authored_case(case: Mapping[str, Any], config: HarnessConfig, *, export_only: bool = False,
                       emit: Callable[[str], None] = print,
                       round_trip: Callable[..., dict[str, Any]] = run_caepipe_round_trip,
-                      export: Callable[..., dict[str, Any]] = run_caepipe_mbf_export) -> bool:
+                      export: Callable[..., dict[str, Any]] = run_caepipe_mbf_export,
+                      directory: Path = AUTHORED_DIR) -> bool:
     """Import (and solve) one authored MBF as written, then export the model back to caepipe_out/exported.mbf."""
     case_id = case["case_id"]
-    data = authored_mbf_bytes(case)
+    data = authored_mbf_bytes(case, directory)
     mbf_sha256 = hashlib.sha256(data).hexdigest()
     try:
         if not export_only:
@@ -551,12 +572,17 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] = os.environ)
     parser.add_argument("--authored", action="store_true",
                         help="run the authored MBF cases of validation/caepipe_correlation/authored/ (with --export-only "
                              "only their export step)")
+    parser.add_argument("--authored-dir", metavar="PATH",
+                        help="with --authored, take the cases from this directory's manifest.json (inside the exchange "
+                             "folder) instead of the tracked ones")
     parser.add_argument("--runner", help=f"openpipestress-runner executable (default: ${RUNNER_ENV})")
     args = parser.parse_args(argv)
     if args.authored and (args.offline or args.export_mbf):
         parser.error("--authored takes only --case and --export-only")
+    if args.authored_dir and not args.authored:
+        parser.error("--authored-dir needs --authored")
     try:
-        cases = load_authored_cases(args.cases) if args.authored else load_cases(args.cases)
+        cases = [] if args.authored_dir else load_authored_cases(args.cases) if args.authored else load_cases(args.cases)
         load_series()
     except (KeyError, ValueError) as error:
         print(f"error: {error}", file=sys.stderr)
@@ -566,9 +592,19 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] = os.environ)
         print(f"CAEPIPE harness skipped: {config.reason}")
         return 0
     if args.authored:
+        directory = AUTHORED_DIR
+        if args.authored_dir:
+            # Checked only once the exchange folder is known: the directory must lie inside it.
+            try:
+                directory = external_authored_dir(config.exchange_root, args.authored_dir)
+                cases = load_authored_cases(args.cases, directory)
+            except (ContainmentError, KeyError, OSError, ValueError) as error:
+                print(f"error: {error}", file=sys.stderr)
+                return 2
         for warning in config.warnings:
             print(f"warning: {warning}")
-        return 0 if all([run_authored_case(case, config, export_only=args.export_only) for case in cases]) else 1
+        return 0 if all([run_authored_case(case, config, export_only=args.export_only, directory=directory)
+                         for case in cases]) else 1
     if args.export_only:
         for warning in config.warnings:
             print(f"warning: {warning}")
