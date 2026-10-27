@@ -525,9 +525,14 @@ provenance.
   insulation density and thickness, and lining density and thickness must be zero or
   empty, and are then written as absent. The MBF has no way to say "absent" and the writer
   writes 0 for absent. This is recorded in `assumptions`.
-- **Under pressure** (§9.4) the corrosion allowance is written as the explicit 0 the file
-  gives, in the length unit, because the exact pressure contract requires an explicit
-  allowance on every section. The other zero fields stay absent.
+- **Under pressure** (§9.4) the exact pressure contract requires an explicit allowance on
+  every section. A section whose PIPE record states field 4 (as 0, the only value read)
+  gets `corrosion_allowance` 0 in the length unit. The import keeps whether the field is
+  present: the manual's PIPE record documents no default for an omitted field, so a section
+  used by an element that omits it, or leaves it empty, is refused under pressure
+  (`MBF-IMPORT-CORROSION-ALLOWANCE-MISSING`, independent review VER-002 r1), never given an
+  authored 0. Without pressure an omitted allowance stays absent. The other zero fields
+  stay absent.
 - **Refused:** a non-zero value of any of these, or a soil name
   (`MBF-IMPORT-SECTION-FIELD-UNSUPPORTED`). Insulation and lining weights, a non-zero
   corrosion allowance and buried pipe are later tranches.
@@ -584,9 +589,15 @@ Further rules:
 ### 9.4 Pressure
 
 **Source.** LOADS Pressure 1 is in psi in English files and in bar in SI files (documented:
-*Format of .MBF*, LOADS). The importer keeps that unit. The units catalog defines both
-exactly: 1 bar = 1e5 Pa, and 1 psi = 1 lbf/in² = 0.45359237 × 9.80665 / 0.0254² Pa. The
-catalog's binary64 factor rounds once on reading.
+*Format of .MBF*, LOADS). The importer keeps that unit, as it keeps every other unit
+(§5.2), and the units catalog reads it to Pa as value × factor in binary64 (`core/units`).
+For bar the factor is 100000.0, exact, so the reading is one rounding of the exact product.
+For psi the factor `PSI_IN_PASCALS` is the binary64 quotient of the binary64 constants
+4.4482216152605 and 0.00064516, which is 6894.757293168361, one unit in the last place below
+6894.757293168362, the correctly rounded value of the definition 0.45359237 × 9.80665 /
+0.0254² (independent review VER-002 r1). A psi pressure therefore carries that constant's
+error, about 1.3e-16 relative, plus one rounding; psi moduli read the same way. The writer
+converts with exact rational factors and rounds once (below).
 
 **Route.** A model document with pressure takes the exact pressure contract; a document
 without `pressure_contract` is pressure-free, and pressure primitives are retired (DEL-04-07
@@ -599,7 +610,8 @@ Pressure 1 ≠ 0:
   without pressure (DEL-05-03 Design `section-bases-and-timoshenko.md`: pressure-free
   documents keep their Euler–Bernoulli frame), so adding pressure changes only the pressure.
   A bound import restores the writer's shear model from the sidecar;
-- the explicit corrosion allowance on every section (§8);
+- the explicit corrosion allowance on every section, which each PIPE record must state
+  (§8);
 - `pressure_regions` on every case: the regions on the sustained case, and an explicit
   empty list on the expansion case. Pressure 1 acts in CAEPIPE's sustained and operating
   cases and not in the expansion case (`CAEPIPE-LOAD-CASES`, case membership), and the
@@ -611,13 +623,28 @@ Pressure 1 ≠ 0:
 **Regions (unbound).** A region must be one acyclic chain of equal bore whose internal
 nodes join no other pipe and which changes direction only at a realized bend
 (`pressure_runtime.rs`: `PRESSURE_REGION_TOPOLOGY_INVALID`, `_INTERNAL_BRANCH`,
-`_BORE_MISMATCH`, `_NONCOLLINEAR`). The importer forms maximal chains. A chain continues
-through a node only when the node joins exactly two elements that have the same Pressure 1
-and the same bore OD − 2t, both compared exactly, and are tangent there: one of them is a
-bend arc (§11 builds exact tangents), or both are straights collinear within the exact
-route's 64ε guard. A region therefore ends at a free end, a tee, a straight-to-straight
-corner, a change of pressure or bore, or an element with Pressure 1 = 0, which belongs to
-no region.
+`_BORE_MISMATCH`, `_NONCOLLINEAR`). The importer forms maximal chains, then cuts them by
+the route's own straight-run check:
+
+- **Chains.** A chain continues through a node only when the node joins exactly two
+  elements with the same Pressure 1 and the same bore OD − 2t, both compared exactly. It
+  therefore ends at a free end, a tee, a change of pressure or bore, or an element with
+  Pressure 1 = 0, which belongs to no region.
+- **Straight runs (independent review VER-002 r1).** The route checks each straight run of
+  a region, between its terminals or between bends, as a whole (`collinear_run`): from the
+  run's first node, every later node's offset divided by the span must lie within
+  64ε = 64 × 2⁻⁵² of the span direction (correctly rounded norm), and advance without
+  passing the span's end. An adjacent-pair angle test does not establish that: sixteen
+  1000 mm straights whose Y offsets grow by 1e-11 mm per row turn by about 1e-14 rad at
+  each node, yet the run's residual is about 2e-14; and two straights meeting 1.5e-11 mm
+  off the line turn by 3e-14 rad, yet their residual is 7.5e-15. The importer ports the
+  check operation for operation, on node positions read to metres as the catalog reads
+  them (value × 0.001 or × 0.0254), and walks each run from its start. When adding the
+  next straight would fail the check, the region ends at that node and a new one starts
+  there. Every run in every region therefore passes the route's check, and a run the route
+  admits stays whole. A bend continues its region: §11 builds its tangent nodes exactly, so
+  its end junctions are within the route's tangency tolerance.
+- A straight-to-straight corner fails the check, so a region ends at every corner.
 
 - **Order and ids.** Members are in chain order. The first terminal is the chain end whose
   element comes first in layout order. The id is `region:mbf-<first terminal>-<second
@@ -938,8 +965,9 @@ the manual does not make clear which kind a record is, it is refused.
 - `MBF-IMPORT-SIDECAR-INVALID`: a malformed sidecar, or rebinding requested without one (§15);
 - `MBF-IMPORT-VALUE-UNREPRESENTABLE`: a read or derived value outside the binary64 range, or a
   non-zero value that would become 0 (§4.3);
-- tranche 2: `MBF-IMPORT-PRESSURE-CLOSURE-REQUIRED`, `MBF-IMPORT-PRESSURE-CLOSURE-INVALID`
-  and `MBF-IMPORT-PRESSURE-DISPLACEMENT-UNSUPPORTED` (§9.4). `MBF-IMPORT-PRESSURE-UNSUPPORTED`
+- tranche 2: `MBF-IMPORT-PRESSURE-CLOSURE-REQUIRED`, `MBF-IMPORT-PRESSURE-CLOSURE-INVALID`,
+  `MBF-IMPORT-PRESSURE-DISPLACEMENT-UNSUPPORTED` (§9.4) and
+  `MBF-IMPORT-CORROSION-ALLOWANCE-MISSING` (§8). `MBF-IMPORT-PRESSURE-UNSUPPORTED`
   now refuses only a negative Pressure 1.
 
 **Removed in tranche 2.** OPTIONS `Z` no longer refuses (`MBF-IMPORT-OPTION-UNSUPPORTED`
@@ -1191,7 +1219,13 @@ declares it invented. The boundary guard (§18.4) requires the sidecar.
    coordinates, forces, moments, displacements, rotations and restraint axes, a bend, the
    gravity direction, a Z-vertical file against its hand-rotated Y-vertical twin (equal bit
    for bit, apart from straight orientation), and positions against the test's own exact
-   sum of the printed offsets, rotated and rounded once.
+   sum of the printed offsets, rotated and rounded once. Independent review VER-002 r1 adds:
+   the ported straight-run check on hand values; a drifting run the route refuses as one
+   region, which the import cuts; a zigzag run the route admits, which stays one region; a
+   drifting run after a bend; the headless solve of each of these imports, which the route
+   admits, while the drifting run merged into one region is refused by name
+   (`PRESSURE_REGION_NONCOLLINEAR`); and a section with and without a stated corrosion
+   allowance.
 
 The weight-density conversion, the G derivation, the ΔT mapping and the rational
 summation change numerical meaning. They therefore get targeted regression tests (items
@@ -1444,9 +1478,10 @@ dossier as CQ-17-01-011 to -015.
   beyond anchors and restraints are refused. Pressure and Z vertical are read since
   tranche 2 (§20.3).
 - **For a ruling (Agent 0, tranche 2).** Two selected interpretations in §9.4: regions end
-  at straight-to-straight corners, each with a terminal there carrying the declared
-  closure, rather than refusing such a file; and the unbound shear model is
-  Euler–Bernoulli.
+  at straight-to-straight corners, and where a straight run stops passing the route's
+  collinearity check, each with a terminal there carrying the declared closure, rather than
+  refusing such a file; and the unbound shear model is Euler–Bernoulli. Independent review
+  VER-002 r1 found the corner terminals and Euler–Bernoulli defensible.
 - **O-4.** How CAEPIPE-exported MBFs are produced for §18.3: by hand by the owner, or by a
   guest automation step.
 
