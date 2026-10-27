@@ -634,8 +634,9 @@ The pressure-free route was deliberately kept Euler–Bernoulli and byte-identic
 - If retained-route memory moves, re-price it.
 
 **Not settled by adopting it.** SWBPIPE's energy-matched κ_E and the shape
-factor the pilot assumes (κ = 0.5) are different shear factors, so a small
-residual difference would remain for correlation to declare.
+factor the pilot assumes (κ = 0.5) are different shear factors. Correlation
+against a tool that uses another factor needs the shear assumptions aligned or
+declared.
 
 **Recommendation.** Offer it, as an explicit opt-in on the pressure-free route,
 keeping Euler–Bernoulli as the default. Reasons:
