@@ -50,6 +50,9 @@ implies or derives acceptance, issuance or lifecycle standing (F-PIP-3).
   - a selected interpretation, which is the profile's choice and not a documented target
     fact: §10.2's marker placement, and any explicitly retained bounded profile decision;
   - a generic statement about the target tool's behaviour, per private notes.
+- **Agent 0, 2026-10-27 (tranche 2), under the owner's delegation:** "the importer's next
+  tranche: pressure and Z-vertical first". Implemented in §9.4 (pressure) and §5.1 and
+  §10.5 (Z vertical), each with its writer counterpart.
 - **Data rule (owner):** CAEPIPE's outputs and anything derived from them are private.
   Manual text, tables and examples are not copied. There is no reverse engineering and no
   claim of compatibility with CAEPIPE.
@@ -132,20 +135,23 @@ only", for the straight-pipe orientation of §10.5.
   `LOAD_CASE_LABELS["expansion"]`; this Design's "sustained label" and "expansion label"
   name those entries.
 - **Function:**
-  `import_caepipe_mbf(data: bytes, *, sidecar: Mapping | None = None, material_provenance: Mapping | None = None, rebind_by_node_number: bool = False, source_label: str) -> MbfImportResult`.
+  `import_caepipe_mbf(data: bytes, *, sidecar: Mapping | None = None, material_provenance: Mapping | None = None, pressure_closure: Mapping | None = None, rebind_by_node_number: bool = False, source_label: str) -> MbfImportResult`.
   - Input is bytes, not text, so that the importer owns the decoding (§4.1).
   - `material_provenance` is the affirmative material provenance declaration (§7.4).
+  - `pressure_closure` is the closure-transfer declaration for pressure-region terminals
+    (§9.4).
   - `rebind_by_node_number` is the explicit request to apply an unbound sidecar (§15).
 - **Result:** `status` (`imported` | `refused`), `model` (the document, or `None` when
   refused), `diagnostics`, `loss_report`, `assumptions`, `target_options` (§6), `id_map`
-  (§15) and `source` (`mbf_sha256`, MBF version, unit mode, line count).
+  (§15) and `source` (`mbf_sha256`, MBF version, unit mode, angles, vertical axis, line
+  count).
 - **Report document:** `to_dict()` emits `document_kind:
   "swbpipe.caepipe_mbf_import_report"` with `profile_id: "caepipe-mbf-import-1"`. The
   report carries no model values from refused or omitted records, only their location and
   name.
 - **Command line:** `python3 -m core.handoff.caepipe_mbf.importer <in.mbf> --out <dir>
   [--sidecar <id_map.json>] [--material-provenance <declaration.json>]
-  [--rebind-by-node-number]` writes `model.json`, `import_report.json` and `id_map.json`.
+  [--pressure-closure <declaration.json>] [--rebind-by-node-number]` writes `model.json`, `import_report.json` and `id_map.json`.
   It refuses an output folder inside a Git work tree unless the input MBF is a project-owned
   invented fixture (§16.4).
 - **No product write path.** The importer writes a model document only. The document
@@ -260,9 +266,26 @@ A layout data line is a row, a continuation line or a model comment.
 
 - `OPTIONS` without `SI` means English units, and `SI` means SI units. `RAD` switches
   angles from degrees to radians. This follows *Format of .MBF*, OPTIONS: Units.
-- The vertical-axis option `Z` is refused in tranche 1 (`MBF-IMPORT-OPTION-UNSUPPORTED`).
-  The writer only writes Y-vertical. Supporting Z-vertical needs both directions to change
-  together; it is listed for tranche 2.
+- **Vertical axis Z** (documented: *Format of .MBF*, OPTIONS, `Z`: the vertical axis is Z;
+  the default is Y). SWBPIPE has one vertical convention, global Y, with weight along −Y
+  (§7.3). A Z-vertical file is turned into it by the exact rotation
+  (X, Y, Z) → (X, Z, −Y), the rotation by −90° about X that takes the file's +Z to +y.
+  - It permutes axes and changes one sign, so it adds no rounding. It applies, before any
+    arithmetic, to every printed coordinate and offset and to every force, moment,
+    displacement and rotation vector with its sign (a proper rotation maps moment and
+    rotation vectors as it maps forces). Restraint flags (`FIXD`, `FIXR`) move with their
+    axes: file Y → z, file Z → y.
+  - Positions are then summed exactly and rounded once (§10.2), and bends (§11), weight
+    (§7.3) and orientation (§10.5) are formed in SWBPIPE's axes. Messages name the file's
+    axes. `source.vertical_axis` records `Z`, and `assumptions` state the rotation.
+  - **Gravity.** Weight acts along the declared vertical: −Z in the file, −y after the
+    rotation. OPMISC's gravity direction is read accordingly (§6).
+- **The writer always writes Y vertical.** A SWBPIPE model document records no vertical
+  axis: weight is an explicit primitive along −Y, and the writer accepts weight only along
+  −Y. Writing `Z` would need a vertical-axis member the document does not have, or a guess
+  from the loads. A Z-vertical import therefore re-exports Y-vertical with the rotated
+  coordinates: the same model in the target's default convention. The writer's
+  assumptions say so, and the importer's assumptions say it for a Z-vertical import.
 - Each record's field units come from the manual's per-mode record descriptions. They are
   not uniform: in English mode an offset is in feet (feet-inch notation) but a bend radius
   is in inches, and in SI mode pressure is in bar.
@@ -379,14 +402,15 @@ code-checking or acceptance logic, and their presence is listed in the loss repo
 |---|---|
 | OPTIONS hanger-design method and piping code | `delegated`; the code name is kept as a string only |
 | OPTIONS `SI`, `RAD` | Read (§5.1) |
-| OPTIONS `Z` | Refused (§5.1) |
+| OPTIONS `Z` | Read: the exact rotation of §5.1 |
 | OPTIONS unknown token | `MBF-IMPORT-OPTION-UNSUPPORTED` |
 | OPTEMP field 1, reference temperature | Read (§9.2). Required whenever any LOADS temperature is read; a missing reference temperature is refused (`MBF-IMPORT-REFERENCE-TEMPERATURE-MISSING`), never taken from a default |
 | OPTEMP thermal cycles, solve-thermal flag, cold-modulus flag | `delegated` |
 | OPTEMP number of thermal loads | Absent or 1 is accepted. More than 1 is refused (`MBF-IMPORT-THERMAL-LOADS-UNSUPPORTED`; multiple thermal cases are tranche 2). When given, it decides which LOADS slots are active (§9.1) |
-| OPCODE, OPPRES | `delegated`. They affect code stresses and pressure options only; pressure is refused anyway (§9.1) |
+| OPCODE | `delegated`. It affects code stresses only |
+| OPPRES | `delegated` without pressure. With pressure, fields 2 and 3 (Bourdon effect, pressure correction for bends) are read for the loss report (§9.4); the other fields stay `delegated` |
 | OPMISC fields 1–8 (dynamics and hanger options) | `delegated` |
-| OPMISC gravitational acceleration and direction (15.10 and later) | Two layouts are read. **Documented** (*Format of .MBF*, 10 fields): field 9 is the acceleration; a non-empty field 10, a direction whose one-field encoding no source states, is refused (`MBF-IMPORT-TBD-17-04-005`). **The export's** (observed format behaviour, 13 fields): field 9 has no public description and is read only as the `0` every export writes, else `MBF-IMPORT-FIELD-UNDOCUMENTED`; field 10 is the acceleration; fields 11–13 are the direction as three components. Only earth gravity is read, by layout (independent review VER-002 r5). **Export layout:** only the setting the export writes for the default environment, acceleration `386.4` with direction (0, −1, 0); the export writes `386.4` in SI files too, so this reading is confined to the 13-field layout. **Documented layout:** the acceleration is in the file's documented unit (m/s² in SI, in/s² in English, *Format of .MBF*, OPMISC) and is read only as standard gravity, 9.80665 m/s² or 9.80665/0.0254 = 386.0886 in/s², printed correctly rounded to its own digits (|p − g₀| ≤ half a unit in p's last digit) with at least three significant digits; so `386.4` in an SI file (39.4 g) is refused. Earth gravity is listed as `delegated` and recorded in `assumptions`: SWBPIPE has no gravity setting and carries weight as explicit primitives along −Y (§7.3), which matches earth gravity (`CAEPIPE-ANALYSIS`: input is given for earth gravity). Any other acceleration or direction scales or turns the weights and is refused (`MBF-IMPORT-GRAVITY-UNSUPPORTED`) |
+| OPMISC gravitational acceleration and direction (15.10 and later) | Two layouts are read. **Documented** (*Format of .MBF*, 10 fields): field 9 is the acceleration; a non-empty field 10, a direction whose one-field encoding no source states, is refused (`MBF-IMPORT-TBD-17-04-005`). **The export's** (observed format behaviour, 13 fields): field 9 has no public description and is read only as the `0` every export writes, else `MBF-IMPORT-FIELD-UNDOCUMENTED`; field 10 is the acceleration; fields 11–13 are the direction as three components. Only earth gravity is read, by layout (independent review VER-002 r5). **Export layout:** only the setting the export writes for the default environment, acceleration `386.4` with direction (0, −1, 0); the export writes `386.4` in SI files too, so this reading is confined to the 13-field layout. **Documented layout:** the acceleration is in the file's documented unit (m/s² in SI, in/s² in English, *Format of .MBF*, OPMISC) and is read only as standard gravity, 9.80665 m/s² or 9.80665/0.0254 = 386.0886 in/s², printed correctly rounded to its own digits (|p − g₀| ≤ half a unit in p's last digit) with at least three significant digits; so `386.4` in an SI file (39.4 g) is refused. Earth gravity is listed as `delegated` and recorded in `assumptions`: SWBPIPE has no gravity setting and carries weight as explicit primitives along −Y (§7.3), which matches earth gravity (`CAEPIPE-ANALYSIS`: input is given for earth gravity). Any other acceleration or direction scales or turns the weights and is refused (`MBF-IMPORT-GRAVITY-UNSUPPORTED`). **Z-vertical files (§5.1):** the export-layout setting is read only with direction (0, 0, −1), along the declared vertical (selected interpretation; no Z-vertical export has been observed), and (0, −1, 0) is refused, since in a Z-vertical file it would turn the weights horizontal. The documented layout gives no direction; its standard gravity acts along the declared vertical |
 | OPMISC field counts other than 0–10 and 13 | Refused (`MBF-IMPORT-FIELD-UNDOCUMENTED`, §4.3) |
 
 ## 7. Materials (MATERIAL)
@@ -501,9 +525,12 @@ provenance.
   insulation density and thickness, and lining density and thickness must be zero or
   empty, and are then written as absent. The MBF has no way to say "absent" and the writer
   writes 0 for absent. This is recorded in `assumptions`.
+- **Under pressure** (§9.4) the corrosion allowance is written as the explicit 0 the file
+  gives, in the length unit, because the exact pressure contract requires an explicit
+  allowance on every section. The other zero fields stay absent.
 - **Refused:** a non-zero value of any of these, or a soil name
-  (`MBF-IMPORT-SECTION-FIELD-UNSUPPORTED`). Insulation and lining weights, corrosion and
-  buried pipe are tranche 2.
+  (`MBF-IMPORT-SECTION-FIELD-UNSUPPORTED`). Insulation and lining weights, a non-zero
+  corrosion allowance and buried pipe are later tranches.
 
 ## 9. Loads (LOADS) and load cases
 
@@ -516,7 +543,7 @@ environmental-load flags (*Format of .MBF*, LOADS).
 | Field | Tranche 1 |
 |---|---|
 | T1 | Read (§9.2) |
-| P1 | Must be 0. Otherwise `MBF-IMPORT-PRESSURE-UNSUPPORTED`; pressure, in bar or psi, is tranche 2 with SWBPIPE pressure regions |
+| P1 | Read (§9.4). A negative value is refused (`MBF-IMPORT-PRESSURE-UNSUPPORTED`): the manual gives no sign convention for external pressure |
 | Specific gravity | Must be 0. Otherwise `MBF-IMPORT-CONTENTS-UNSUPPORTED` |
 | T2…T10, P2…P10 | **Active slots.** When OPTEMP gives the number of thermal loads (N = 1 in tranche 1), slots above N are inactive: no load case uses them (`CAEPIPE-ANALYSIS`, *Number of Thermal Loads*; `CAEPIPE-LOAD-CASES`; OPTEMP field order from `CAEPIPE-IMPORT-MBF`). Each inactive slot is dropped and reported by record and slot as `MBF-IMPORT-LOAD-SLOT-INACTIVE` (info), whatever its values; they must still be numbers. CAEPIPE's export fills every slot, with a default temperature in unused temperature slots and 0 in unused pressures (observed format behaviour). **Without a count**, the conservative rule applies: a slot is inactive only when it is empty, or T equals the OPTEMP reference with P = 0 (reported the same way); anything else is ambiguous and refused (`MBF-IMPORT-THERMAL-LOADS-UNSUPPORTED`) |
 | Additional weight | 0 or empty. Otherwise `MBF-IMPORT-LOAD-FIELD-UNSUPPORTED` |
@@ -548,10 +575,114 @@ importer forms at most two primitive load cases:
 Further rules:
 
 - Both cases carry `status: draft`, the desktop's status for a new case.
-- A case with no primitives is not created.
+- A case with no primitives is not created, except the sustained case when it carries
+  pressure regions (§9.4).
 - No `combinations` are created. CAEPIPE forms its own (*Load cases*), and that is listed
   as `delegated`.
 - With a bound sidecar (§15), the original case ids are restored from `load_case_map`.
+
+### 9.4 Pressure
+
+**Source.** LOADS Pressure 1 is in psi in English files and in bar in SI files (documented:
+*Format of .MBF*, LOADS). The importer keeps that unit. The units catalog defines both
+exactly: 1 bar = 1e5 Pa, and 1 psi = 1 lbf/in² = 0.45359237 × 9.80665 / 0.0254² Pa. The
+catalog's binary64 factor rounds once on reading.
+
+**Route.** A model document with pressure takes the exact pressure contract; a document
+without `pressure_contract` is pressure-free, and pressure primitives are retired (DEL-04-07
+Design `pressure-contract.md`, "Current pressure boundary"; `schemas/model.schema.yaml`
+`PressureContract`, `PressureRegion`). The importer therefore writes, when any element has
+Pressure 1 ≠ 0:
+
+- `pressure_contract` = `{version: 3.0.0, mode: exact_pressure_v3, shear_model:
+  euler_bernoulli}`. Euler–Bernoulli is the beam theory SWBPIPE applies to the same model
+  without pressure (DEL-05-03 Design `section-bases-and-timoshenko.md`: pressure-free
+  documents keep their Euler–Bernoulli frame), so adding pressure changes only the pressure.
+  A bound import restores the writer's shear model from the sidecar;
+- the explicit corrosion allowance on every section (§8);
+- `pressure_regions` on every case: the regions on the sustained case, and an explicit
+  empty list on the expansion case. Pressure 1 acts in CAEPIPE's sustained and operating
+  cases and not in the expansion case (`CAEPIPE-LOAD-CASES`, case membership), and the
+  writer maps the sustained case to the sustained label (§9.3);
+- each region with basis `internal_differential_zero_external_v1`, the file's pressure and
+  unit, its member pipes in chain order, two terminals and provenance naming the LOADS
+  record. Materials are already on the E/ν basis the route needs (§7.2).
+
+**Regions (unbound).** A region must be one acyclic chain of equal bore whose internal
+nodes join no other pipe and which changes direction only at a realized bend
+(`pressure_runtime.rs`: `PRESSURE_REGION_TOPOLOGY_INVALID`, `_INTERNAL_BRANCH`,
+`_BORE_MISMATCH`, `_NONCOLLINEAR`). The importer forms maximal chains. A chain continues
+through a node only when the node joins exactly two elements that have the same Pressure 1
+and the same bore OD − 2t, both compared exactly, and are tangent there: one of them is a
+bend arc (§11 builds exact tangents), or both are straights collinear within the exact
+route's 64ε guard. A region therefore ends at a free end, a tee, a straight-to-straight
+corner, a change of pressure or bore, or an element with Pressure 1 = 0, which belongs to
+no region.
+
+- **Order and ids.** Members are in chain order. The first terminal is the chain end whose
+  element comes first in layout order. The id is `region:mbf-<first terminal>-<second
+  terminal>` by CAEPIPE node name. `id_map.region_map` lists each region's elements.
+- **Corners (selected interpretation; for a ruling, §20.2).** Two regions meet at a
+  straight-to-straight corner, each with a terminal there. With `transfers_to_wall` at both,
+  their end forces pAᵢ along each straight sum to pAᵢ(t_in − t_out) at the node, the
+  resultant pressure force at a sharp corner. The exact route admits no mitre inside a
+  region (`PRESSURE_REGION_MITRE_UNSUPPORTED`), and this partition does not place one there.
+
+**Closure transfer is declared, never inferred.** Each terminal needs `transfers_to_wall` or
+`separately_supported_or_compensated` (`pressure_runtime.rs`: "closure transfer is never
+inferred"). The MBF does not state it. An unbound import with pressure therefore needs the
+caller's declaration `pressure_closure` = `{closure_transfer, provenance, nodes}`:
+`closure_transfer` applies to every terminal, `nodes` (optional) maps CAEPIPE node names to
+another closure transfer, and each terminal's provenance is "closure transfer declared at
+import: <provenance>". Without it the import is refused
+(`MBF-IMPORT-PRESSURE-CLOSURE-REQUIRED`). A malformed declaration, or a `nodes` name that is
+not a terminal, is refused (`MBF-IMPORT-PRESSURE-CLOSURE-INVALID`). A file without pressure
+needs no declaration.
+
+**Bound imports.** The writer's sidecar `pressure_map` restores the contract, the region
+ids, members in order, and the terminals with their closure transfer and provenance. It is
+checked against the file: every member must carry a non-zero Pressure 1, equal across the
+region, and belong to one region only; every element with pressure must belong to one; each
+terminal must name a model node with a closure transfer and provenance. Otherwise the
+import is refused (`MBF-IMPORT-SIDECAR-CONFLICT`). The pressure value always comes from the
+file. A bound sidecar with a contract and no regions restores the contract and empty region
+lists.
+
+**CAEPIPE pressure effects SWBPIPE does not model.** OPPRES fields 2 and 3 switch CAEPIPE's
+Bourdon effect and pressure correction for bends, and a blank OPPRES line turns both on
+(documented: *Format of .MBF*, OPPRES). SWBPIPE's exact route models neither (DEL-04-07
+D-3). With pressure, each effect that is on, by value or by the blank-line default, or left
+unstated (a missing field, or no OPPRES section), is listed as `omitted`
+(`MBF-IMPORT-PRESSURE-EFFECTS-OMITTED`). A value other than 0 or 1 is refused
+(`MBF-IMPORT-FIELD-UNDOCUMENTED`).
+
+**Anchor displacements with pressure** are refused (`MBF-IMPORT-PRESSURE-DISPLACEMENT-UNSUPPORTED`).
+The exact route takes boundary motion only in load-state form and refuses a support-targeted
+primitive (`EXACT_IMPOSED_DISPLACEMENT_PRIMITIVE_UNSUPPORTED`, DEL-04-07 Design), and this
+importer writes no load-state cases.
+
+**Writer counterpart.** Under the same contract (any shear model), each pressure region of
+the sustained-mapped case becomes Pressure 1 on its member elements, in bar: Pa × 10⁻⁵,
+kPa × 10⁻², MPa × 10, bar × 1, and psi × 0.45359237 × 9.80665 / 0.0254² / 10⁵, each the
+exact rational product rounded once (psi is listed in `MBF-SI-UNITS-NORMALIZED`). Elements
+outside every region get 0, and LOADS records are keyed by (T1, P1). With any pressure the
+writer adds `OPPRES` `0,0,0,1,0` after OPTEMP: PD/4t, Bourdon effect off, pressure
+correction for bends off, peak pressure factor 1. That asks the target for the same
+exclusions as SWBPIPE's model. The contract, region ids, members, terminals, closure
+transfer and provenance are not in the MBF. The sidecar's `pressure_map` carries them
+(`{contract, load_case, regions: [{id, members, terminals, provenance, pressure_bar}]}`),
+and the shear model is listed as omitted (`MBF-SI-SHEAR-MODEL-NOT-EXPORTED`). The writer
+refuses:
+
+- a region in a case with thermal or displacement primitives
+  (`MBF-SI-PRESSURE-CASE-UNSUPPORTED`: Pressure 1 does not act in the expansion case);
+- a negative pressure, regions without the exact contract, another contract, and regions
+  with connectors (`MBF-SI-PRESSURE-UNSUPPORTED`);
+- a bend whose pressure differs from its incoming straight's (`MBF-SI-BEND-UNSUPPORTED`:
+  one layout row carries both).
+
+A zero-pressure region writes Pressure 1 = 0 and is listed as omitted
+(`MBF-SI-PRESSURE-REGION-ZERO`), since it imports as no region.
 
 ## 10. Layout geometry
 
@@ -662,9 +793,14 @@ the solve requires, so the importer assigns one deterministically:
 - **Selected interpretation.** The manual gives no angle for "vertical". This profile treats
   a straight as vertical when the horizontal part of its unit direction is at most 1e-6
   (`VERTICAL_SINE`).
-- Z-vertical models are refused in tranche 1 (§5.1); the manual's Z-vertical convention
-  (local z toward +Z in the plane of local x and Z; vertical elements y = global Y) joins
-  the Z-vertical tranche.
+- **Z vertical** (documented, same page). A non-vertical element's local z lies in the
+  plane of its local x and global Z, toward +Z, and y = z × x. A vertical element's local y
+  is global Y. After §5.1's rotation, the file's +Z is +y, so local z is the projected +y
+  and y = z × x = (x_z, 0, −x_x) / |(x_x, x_z)|, a horizontal vector. A vertical element's
+  local y, the file's global Y, is SWBPIPE's −z. The same `VERTICAL_SINE` applies to the
+  rotated direction.
+- For a vertical element the manual fixes y; z follows from x × y, so a downward element's
+  z is the opposite of the one the manual names. This holds for both conventions.
 - Each assignment is reported as `MBF-IMPORT-ORIENTATION-DEFAULTED` (info, by element).
   A circular section's stiffness does not depend on the orientation; only local-axis results
   (local forces, moments and stresses) depend on the convention.
@@ -801,7 +937,17 @@ the manual does not make clear which kind a record is, it is refused.
   such as the SIF and stress-index comments above;
 - `MBF-IMPORT-SIDECAR-INVALID`: a malformed sidecar, or rebinding requested without one (§15);
 - `MBF-IMPORT-VALUE-UNREPRESENTABLE`: a read or derived value outside the binary64 range, or a
-  non-zero value that would become 0 (§4.3).
+  non-zero value that would become 0 (§4.3);
+- tranche 2: `MBF-IMPORT-PRESSURE-CLOSURE-REQUIRED`, `MBF-IMPORT-PRESSURE-CLOSURE-INVALID`
+  and `MBF-IMPORT-PRESSURE-DISPLACEMENT-UNSUPPORTED` (§9.4). `MBF-IMPORT-PRESSURE-UNSUPPORTED`
+  now refuses only a negative Pressure 1.
+
+**Removed in tranche 2.** OPTIONS `Z` no longer refuses (`MBF-IMPORT-OPTION-UNSUPPORTED`
+stays for unknown tokens; §5.1), a positive Pressure 1 no longer refuses (§9.4), and the
+writer no longer refuses the exact pressure contract or its regions
+(`MBF-SI-PRESSURE-UNSUPPORTED` stays for the cases §9.4 lists and for pressure primitives).
+The writer's new codes are `MBF-SI-PRESSURE-CASE-UNSUPPORTED` (refusal),
+`MBF-SI-PRESSURE-REGION-ZERO` and `MBF-SI-SHEAR-MODEL-NOT-EXPORTED` (omitted).
 
 The writer refuses the corresponding cases of its own conversions as
 `MBF-SI-VALUE-OUT-OF-RANGE` (§5.2, §18.2), and the same code for every value it derives
@@ -818,7 +964,8 @@ Loss entries and information (do not block):
   and `MBF-IMPORT-SIDECAR-ENTRY-ABSENT` (`omitted`);
 - `MBF-IMPORT-SIDECAR-NOT-APPLIED` (info: the hashes differ and no rebinding was requested)
   and `MBF-IMPORT-ORIENTATION-DEFAULTED` (info, §10.5);
-- `MBF-IMPORT-LOAD-SLOT-INACTIVE` (info, by record and slot, §9.1).
+- `MBF-IMPORT-LOAD-SLOT-INACTIVE` (info, by record and slot, §9.1);
+- `MBF-IMPORT-PRESSURE-EFFECTS-OMITTED` (`omitted`, §9.4).
 
 Further refusal: `MBF-IMPORT-GRAVITY-UNSUPPORTED`, an OPMISC gravity setting other than the
 default earth setting (§6).
@@ -829,7 +976,7 @@ There is no id carrier inside the MBF (TBD-17-01-003, TBD-17-04-003). Identity t
 travels in a sidecar.
 
 **Input.** The writer's maps (`node_map`, `element_map`, `support_map`,
-`load_case_map`, `material_map`, `section_map`, `load_map`), as `run_pilot.py` already
+`load_case_map`, `material_map`, `section_map`, `load_map`, `pressure_map`), as `run_pilot.py` already
 writes them to `caepipe_in/id_map.json`, with `mbf_sha256` (implemented; older runs hold
 it in `mbf_render.json`, and the importer accepts either file pair).
 
@@ -845,7 +992,9 @@ the identities, and the splits, that it explicitly preserves:
   `MBF-IMPORT-SIDECAR-CONFLICT`;
 - load cases, from `load_case_map`;
 - support families, from `support_map[...].family`;
-- straight-pipe orientation, from `element_map[...].y_reference` (§10.5).
+- straight-pipe orientation, from `element_map[...].y_reference` (§10.5);
+- the pressure contract and pressure regions, from `pressure_map`, checked against the
+  file (§9.4).
 
 **What a bound sidecar cannot restore.** Many-to-one mappings and identities the sidecar
 does not preserve are reported, never guessed. Each is listed in the loss report as
@@ -876,7 +1025,8 @@ caller explicitly asks for `rebind_by_node_number`.
   colliding with a formed id, is refused (`MBF-IMPORT-SIDECAR-CONFLICT`).
 
 **Output.** `id_map.json` holds CAEPIPE name → SWBPIPE id for every node (including
-`nA`/`nB`), element, support, bend, material and load case. DEL-17-05's CSV parser can
+`nA`/`nB`), element, support, bend, material and load case, and `region_map` (region id →
+CAEPIPE elements) when the file has pressure. DEL-17-05's CSV parser can
 bind CAEPIPE results of an imported model through it.
 
 ## 16. The output document
@@ -900,12 +1050,13 @@ bind CAEPIPE results of an imported model through it.
   Materials also carry `provenance_record` (§7.4).
 - **Notes and open issues.** Heading lines and model comments go to `project.notes`.
   Bends without a factor become open issues (§11.6).
-- **Absent members.** No combinations, lines, constraints, rule-pack references, model
-  settings or pressure contract are written.
+- **Absent members.** No combinations, lines, constraints, rule-pack references or model
+  settings are written. The pressure contract is written only for a file with pressure, or
+  restored by a bound sidecar (§9.4).
 
 ### 16.2 Determinism
 
-Identical MBF bytes, sidecar, material-provenance declaration, rebinding option, source label and importer/profile version produce byte-identical outputs. Members are written in the
+Identical MBF bytes, sidecar, material-provenance and closure declarations, rebinding option, source label and importer/profile version produce byte-identical outputs. Members are written in the
 writer's member order, entities in MBF order, and JSON is formatted canonically.
 
 ### 16.3 PRD §18.4 import warnings
@@ -927,15 +1078,16 @@ input.
 
 | Writer (`si_writer.py` and its `assumptions`) | Importer |
 |---|---|
-| `OPTIONS HGRA,SI`; Y vertical; X, Y, Z unchanged | SI mode; Y vertical; coordinates unchanged; HGRA is `delegated` |
+| `OPTIONS HGRA,SI`; always Y vertical; X, Y, Z unchanged (§5.1) | SI mode; Y vertical, or Z rotated exactly (X, Y, Z) → (X, Z, −Y); HGRA is `delegated` |
 | Lengths in mm, scaled by powers of ten from m or mm | Lengths kept in `mm`; project length `mm` |
 | E in N/mm², from Pa, kPa, MPa or GPa | E in `MPa` |
 | ν as given, or E/(2G) − 1 | ν as given; G = E/(2(1+ν)) with basis `homogeneous_isotropic_E_nu_v1` |
 | Material without α → 0 | α = 0 explicit |
 | Temperature-independent material at three identical temperatures | Identical lines → temperature-independent; differing lines refused |
 | Weight per length (−Y) → weight density ρ = \|w\|/(A·g₀) | ρ → w = −ρ·g₀·A along `global_y`, in the mechanical case |
-| Weight only along −Y | Weight along −Y only (Z vertical refused) |
-| LOADS: T1 = T_ref + ΔT, P1 = 0, SG = 0 | ΔT = T1 − T_ref; P1 and SG must be 0 |
+| Weight only along −Y | Weight along −Y (after the rotation, for a Z-vertical file) |
+| LOADS: T1 = T_ref + ΔT, P1 = region pressure in bar (0 outside every region), SG = 0 | ΔT = T1 − T_ref; P1 > 0 → pressure regions in the file's unit (§9.4); SG must be 0 |
+| With pressure, `OPPRES 0,0,0,1,0`; contract, regions, terminals and closure in `pressure_map` | Exact contract; regions restored from `pressure_map` when bound, else formed with the declared closure (§9.4) |
 | `OPTEMP` = reference temperature | T_ref |
 | Mechanical case → sustained label; thermal and displacement → expansion label (`LOAD_CASE_LABELS`) | `case:mbf-sustained` and `case:mbf-expansion-t1` (ids restored from the sidecar) |
 | Combinations not exported | None created |
@@ -971,9 +1123,12 @@ declares it invented. The boundary guard (§18.4) requires the sidecar.
    the line and that no model is produced (or, for loss entries, that the model is produced
    and the entry is listed).
 3. **Round trip on the reversible subset** (`tests/test_caepipe_mbf_round_trip.py`).
-   - **Models.** The six pilot cases (`validation/caepipe_correlation/cases/cpc-01…06`)
-     and the writer test's model builders, in m and mm projects, each within the
-     reversible subset of §18.2. The test file lists which of them are in the
+   - **Models.** The pilot cases (`validation/caepipe_correlation/cases/`) and the writer
+     test's model builders, in m and mm projects, each within the reversible subset of
+     §18.2. Tranche 2 adds pressure models in Pa (an L through a bend), bar (a tee with a
+     separately supported end) and psi (US-customary), and the imports of two invented
+     Z-vertical files with pressure, one SI and one English, the SI one with a skew
+     straight, a corner and a bend. The test file lists which of them are in the
      byte-reproducible subset.
    - For each model A with W = writer(A) and I = import(W):
    - (a) **Canonical equality, bound.** With the bound sidecar, A and I agree within
@@ -1028,6 +1183,15 @@ declares it invented. The boundary guard (§18.4) requires the sidecar.
 6. **Schema.** Every imported document validates against `schemas/model.schema.yaml`
    (`DesktopDocument` profile) and passes the desktop shape-case corpus checks that apply
    to opened documents.
+7. **Tranche 2, hand-derived.** Pressure: each unit's conversion to bar, the region
+   partition (tee, corner, collinear run, pressure and bore changes, an equal bore from
+   another OD and wall, an unpressurized element), the closure declaration and its
+   refusals, the OPPRES effects, and the bound pressure map, its shear model and tampered
+   sidecars. Z vertical: a skew element's and a vertical element's local y, the rotation of
+   coordinates, forces, moments, displacements, rotations and restraint axes, a bend, the
+   gravity direction, a Z-vertical file against its hand-rotated Y-vertical twin (equal bit
+   for bit, apart from straight orientation), and positions against the test's own exact
+   sum of the printed offsets, rotated and rounded once.
 
 The weight-density conversion, the G derivation, the ΔT mapping and the rational
 summation change numerical meaning. They therefore get targeted regression tests (items
@@ -1073,7 +1237,9 @@ reproduction by name.
 - several primitives on one target, which are compared as their sum;
 - zero-valued primitives, which are dropped;
 - absent versus zero α, and absent versus zero section fields;
-- combinations, which are not exported.
+- combinations, which are not exported;
+- pressure-region ids and region provenance (bound imports restore the ids from
+  `pressure_map`).
 
 Each exclusion is listed in the test so that it stays explicit.
 
@@ -1089,7 +1255,14 @@ Each exclusion is listed in the test so that it stays explicit.
   example, an invented fixture with `y_reference` = (2, 0, 0) reconstructs as
   (1, 0, −1)/√2. The raw vectors are 45° apart, but the projected directions agree.
 - per case kind: summed force and moment vectors per node, summed weight per length per
-  pipe, summed ΔT per pipe, and summed anchor displacements and rotations.
+  pipe, summed ΔT per pipe, and summed anchor displacements and rotations;
+- the pressure contract, and per case kind each pressure region by its member pipes: its
+  basis, its terminals (CAEPIPE name and closure transfer, ordered when bound) and its
+  pressure in Pa, the exact product of value and unit factor rounded once.
+
+Node positions of a Z-vertical import are compared in SWBPIPE's axes. The test also checks
+the rotation itself exactly: its own rational sum of the printed offsets, rotated
+(X, Y, Z) → (X, Z, −Y) and rounded once, equals every imported position bit for bit.
 
 **Aggregation (independent review VER-002 r1).** Sums of primitives on one target are
 formed exactly, then rounded once:
@@ -1127,6 +1300,8 @@ depends on:
   factor as the value. A rotation printed in degrees and compared in radians uses
   δ(p)·π/180. For ν, A's value is the writer's ν before printing: the authored ν, or
   E/(2G) − 1 when only G was authored.
+- **Pressure:** printed directly in bar, (δ(p) + 4ε|p|) × 10⁵ Pa. For example, 150 psi
+  prints as 10.34213594 bar, so the bound is 5e-4 Pa plus the ε term.
 - **ΔT = T1 − T_ref:** δ(T1) + δ(T_ref) + 4ε|T1|. This is an absolute bound only, and
   relative error is not used.
 
@@ -1265,8 +1440,13 @@ dossier as CQ-17-01-011 to -015.
   ruling.
 - **O-2.** English-mode iteration. Agent 0 decided exact normalization to the SI profile
   in the writer (§5.2, implemented). A native English writer mode remains an owner choice.
-- **O-3.** The tranche-1 cut (§11, §12, §14): temperature-dependent materials, supports
-  beyond anchors and restraints, pressure and Z-vertical are refused.
+- **O-3.** The tranche-1 cut (§11, §12, §14): temperature-dependent materials and supports
+  beyond anchors and restraints are refused. Pressure and Z vertical are read since
+  tranche 2 (§20.3).
+- **For a ruling (Agent 0, tranche 2).** Two selected interpretations in §9.4: regions end
+  at straight-to-straight corners, each with a terminal there carrying the declared
+  closure, rather than refusing such a file; and the unbound shear model is
+  Euler–Bernoulli.
 - **O-4.** How CAEPIPE-exported MBFs are produced for §18.3: by hand by the owner, or by a
   guest automation step.
 
@@ -1275,8 +1455,13 @@ dossier as CQ-17-01-011 to -015.
 The first-tranche cut is confirmed as a tranche plan (Agent 0, 2026-10-26). The next
 tranche, in priority order, each with its writer counterpart where one is missing:
 
-1. pressure (bar or psi) with SWBPIPE pressure regions, which most real models carry;
-2. Z-vertical, a routine axis rotation;
+1. pressure (bar or psi) with SWBPIPE pressure regions, which most real models carry.
+   **Implemented** (§9.4): Pressure 1 kept in its unit as exact pressure regions in the
+   sustained case under `3.0.0/exact_pressure_v3`, maximal chains with declared closure, and
+   the writer's bar output with OPPRES and the sidecar's `pressure_map`;
+2. Z-vertical, a routine axis rotation. **Implemented** (§5.1, §10.5): the exact rotation
+   (X, Y, Z) → (X, Z, −Y) and the manual's Z-vertical local axes; the writer always writes
+   Y vertical;
 3. rigid, axis-aligned guides and limit stops;
 4. flexible anchors and springs;
 5. hangers;
