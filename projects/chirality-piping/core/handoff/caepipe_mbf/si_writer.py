@@ -160,11 +160,34 @@ class MbfSiResult:
         }
 
     def sidecar(self, mbf_sha256: str) -> dict[str, Any]:
-        """The writer sidecar of the written text whose SHA-256 is `mbf_sha256` (Design §15): the format, every map
-        and the digest. Format 2 records every field, null where there is nothing to record."""
+        """The writer sidecar of the written text whose SHA-256 is `mbf_sha256` (Design §15), format 2: what a bound
+        import restores and the MBF does not carry, each field with its effective value. What the MBF determines
+        (layout order, record names, numbers, bend geometry, sections) is not repeated in it."""
         record = self.to_dict()
-        return {"sidecar_format": SIDECAR_FORMAT, **{key: record[key] for key in record if key.endswith("_map")},
-                "mbf_sha256": mbf_sha256}
+
+        def element(entry: Mapping[str, Any]) -> dict[str, Any]:
+            kept = {key: entry[key] for key in ("from", "to", "reversed")}
+            if "bend" in entry:
+                return {**kept, "bend": {"component": entry["bend"]["component"]}}
+            return {**kept, "y_reference": entry["y_reference"], "y_reference_authored": entry["y_reference_authored"]}
+
+        pressure = record["pressure_map"]
+        return {
+            "sidecar_format": SIDECAR_FORMAT,
+            "node_map": record["node_map"],
+            "element_map": {key: element(entry) for key, entry in record["element_map"].items()},
+            "support_map": {key: {name: entry[name] for name in ("node", "restrained", "family", "family_authored")}
+                            for key, entry in record["support_map"].items()},
+            "load_case_map": record["load_case_map"],
+            "material_map": {key: {name: entry[name] for name in ("swbpipe_material", "origin")}
+                             for key, entry in record["material_map"].items()},
+            "load_map": {key: {name: entry[name] for name in ("load_case", "category", "target", "direction")}
+                         for key, entry in record["load_map"].items()},
+            "pressure_map": {"contract": pressure["contract"], "shear_model": pressure["shear_model"],
+                             "regions": [{name: region[name] for name in ("id", "members", "terminals")}
+                                         for region in pressure["regions"]]},
+            "mbf_sha256": mbf_sha256,
+        }
 
 
 def _known(value: Any, table: Mapping[str, Any]) -> bool:
@@ -172,11 +195,11 @@ def _known(value: Any, table: Mapping[str, Any]) -> bool:
     return isinstance(value, str) and value in table
 
 
-def local_y_reference(start, end) -> tuple[float, float, float]:
-    """CAEPIPE's documented local y of a straight (the importer's, Design §10.5); deferred: the importer imports
+def documented_orientations(data: bytes) -> dict[tuple[str, str], tuple[float, float, float]] | None:
+    """The importer's documented local y of each straight of `data` (Design §10.5); deferred: the importer imports
     this module."""
-    from .importer import local_y_reference as documented
-    return documented(start, end)
+    from .importer import documented_orientations as derive
+    return derive(data)
 
 
 def current_model_schema_version() -> str:
@@ -1254,10 +1277,8 @@ class _Writer:
                     # Straight-pipe orientation is not in the MBF; the sidecar carries the effective one for bound
                     # imports: the authored vector, or else CAEPIPE's documented local y the import would assign.
                     authored = _is_vector(member["y_reference"])
-                    element_map[member_id]["y_reference"] = (
-                        {axis: float(member["y_reference"][axis]) for axis in "xyz"} if authored else
-                        dict(zip("xyz", local_y_reference(*(tuple(float(value) for value in self.nodes[member[end]])
-                                                             for end in ("from", "to"))))))
+                    element_map[member_id]["y_reference"] = (  # an unauthored one is derived from the text below
+                        {axis: float(member["y_reference"][axis]) for axis in "xyz"} if authored else None)
                     element_map[member_id]["y_reference_authored"] = authored
                 order += 1
             if "bend" in row:
@@ -1332,6 +1353,21 @@ class _Writer:
             if comments:
                 comments[0] = "C" + comments[0]
             lines.append(",".join(fields + comments))
+        if self.has_errors():  # degenerate geometry (a zero-length pipe) is refused by name before any derivation
+            return self.refused()
+        text = "".join(line + "\r\n" for line in lines)
+        # An unauthored straight records the documented local y that the import derives from this text's own
+        # positions, so the record and the derivation agree exactly (Design §15).
+        derived = documented_orientations(text.encode("ascii"))
+        for member_id, entry in element_map.items():
+            if entry.get("y_reference_authored") is False:
+                vector = None if derived is None else derived.get((entry["from"], entry["to"]))
+                if vector is None:
+                    self.refuse("MBF-SI-PREFLIGHT-REFUSED", f"pipe:{member_id}",
+                                f"pipe:{member_id} has no authored y_reference, and the import does not read this MBF "
+                                "far enough to derive its documented local y")
+                    continue
+                entry["y_reference"] = dict(zip("xyz", vector))
         if self.has_errors():
             return self.refused()
 
@@ -1384,7 +1420,7 @@ class _Writer:
         self.add_assumptions(temperatures)
         result = MbfSiResult(
             status="written",
-            text="".join(line + "\r\n" for line in lines),
+            text=text,
             diagnostics=self.diagnostics,
             node_map=node_map,
             element_map=element_map,

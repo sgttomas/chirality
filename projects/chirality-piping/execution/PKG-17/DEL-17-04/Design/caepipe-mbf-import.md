@@ -1128,7 +1128,8 @@ Forces and moments on one node are summed per component, as the writer sums them
 well-formed explicit value is honoured as authored, and the digest binds only the MBF. The
 importer guarantees that every effective value on a bound import comes from an explicit
 format-2 record or a documented legacy omission (§15), never from a default filling a missing
-or null field.
+or null field. A recorded value that the MBF or a derivation also determines must agree with
+it, or the import is refused; neither side is silently preferred (VER-002 r12).
 
 **The rule.** A record that changes the mechanics model or its loads, and that SWBPIPE
 cannot represent exactly, is **refused** by name and blocks the import. A record that only
@@ -1212,24 +1213,46 @@ travels in a sidecar.
 `caepipe_in/id_map.json` (older runs hold the digest in `mbf_render.json`, and the importer
 accepts either file pair).
 
-**Sidecar format** (independent review VER-002 r10, r11). The current writer records
-`sidecar_format` = 2. A format-2 sidecar is complete by rule and records the effective value
-of every field; it never uses null, or another sentinel, as a value a default then fills.
-`pressure_map` is always an object: `contract` (the exact contract's version and mode, or
-`"none"`), the effective `shear_model` (the contract's, or the route's `euler_bernoulli`
-without a contract) and the regions (none without a contract). Every straight records its
-effective `y_reference` (the authored vector, or else CAEPIPE's documented local y) and
-`y_reference_authored`; every bend its `bend` record; every support its effective `family`
-(the authored one, or the solve's inference: anchor with six DOFs, else guide) and
-`family_authored`; every material `origin` (one of `MATERIAL_ORIGINS`, or `"undeclared"`,
-when the import needs the caller's declaration); every primitive its effective `direction`
-(the authored one, or the token the import forms: `global_x` thermal, `global_y` weight) and
-its CAEPIPE node or element. The parser refuses a format-2 sidecar missing any field, or with
-null in any, by JSON path (`MBF-IMPORT-SIDECAR-INVALID`), and checks the record against
-itself and the file: an unauthored family must be the inference, a pressure state without a
-contract must be Euler–Bernoulli with no region, and the file's pressure needs a contract.
-A bound import restores each effective value as recorded (an unauthored family as absent,
-which the solve infers to the same family).
+**Sidecar format** (independent review VER-002 r10 to r12). The current writer records
+`sidecar_format` = 2. A format-2 sidecar holds what a bound import restores and the MBF does
+not carry, every field with its effective value; it never uses null, or another sentinel, as
+a value a default then fills, and it does not repeat what the MBF determines (layout order,
+record names, material and section numbers, bend geometry, CAEPIPE kinds and names; no
+`section_map`). Its fields:
+
+- `node_map`: id → CAEPIPE name;
+- `element_map`: id → `from`, `to`, `reversed`, and for a straight its effective
+  `y_reference` (the authored vector, or else CAEPIPE's documented local y, derived from the
+  written MBF's own positions as an import derives it) with `y_reference_authored`, for a
+  bend `bend` with its `component` id;
+- `support_map`: id → `node`, `restrained`, the effective `family` (the authored one, or the
+  solve's inference: anchor with six DOFs, else guide) and `family_authored`;
+- `load_case_map`: id → label; `material_map`: name → `swbpipe_material` id and `origin`
+  (one of `MATERIAL_ORIGINS`, or `"undeclared"`, when the import needs the caller's
+  declaration);
+- `load_map`: `<case>/<load id>` → `load_case`, `category`, `target` and the effective
+  `direction` (the authored one, or the token the import forms: `global_x` thermal,
+  `global_y` weight);
+- `pressure_map`: `contract` (the exact contract's version and mode, or `"none"`), the
+  effective `shear_model` (the contract's, or the route's `euler_bernoulli` without a
+  contract) and `regions` (each `id`, `members`, two `terminals`; none without a contract).
+
+The parser refuses a format-2 sidecar missing any field, with null in any, or with a field
+outside this list, by JSON path (`MBF-IMPORT-SIDECAR-INVALID`). Each recorded value the MBF
+or a derivation also determines must agree with it, or the import is refused
+(`MBF-IMPORT-SIDECAR-CONFLICT`, or `-INVALID` for the parser's own checks): the CAEPIPE
+names and nodes of elements and supports, each node's restrained DOFs, the cases' labels,
+each primitive's category, target and direction (a weight's is the gravity axis, −Y in model
+axes; a force's or moment's the comment's axis; a displacement's the moved DOF; a thermal
+direction, which the MBF does not carry, is authored), the regions' members and terminal
+nodes, the file's pressure (it needs a contract; a pressure state without a contract is
+Euler–Bernoulli with no region), an unauthored `y_reference` (exactly the documented local y
+on the MBF's positions, after Z rotation) and an unauthored `family` (the solve's inference).
+`*_authored` false means "derived, and equal to the derivation". Authored choices are
+honoured as recorded: `reversed`, an authored `y_reference` or `family`, the ids, `origin`,
+a thermal direction, the shear model of a contract, closure transfers and their provenance.
+A bound import restores each value (an unauthored family as absent, which the solve infers to
+the same family).
 
 **Legacy sidecars.** A sidecar without `sidecar_format` is legacy: written by main's
 tranche-1 writer (`si_writer.py` up to 42a86df92f) through `run_pilot.py`. That writer
@@ -1279,9 +1302,10 @@ and wrong shapes are refused by JSON path, for example `element_map[S1].reversed
 union of what every SWBPIPE writer version records, so a sidecar from an older run, without
 `family`, `origin`, `direction` or `y_reference`, still parses:
 
-- top level: `sidecar_format` (2, or absent for legacy), the eight maps and `mbf_sha256`, a
-  lowercase SHA-256 (legacy: optional maps, absent read as empty, no `pressure_map`, and a
-  digest that may be null). Below, "optionally" holds for legacy sidecars only;
+- top level: format 2 as listed under **Sidecar format**; a legacy sidecar holds the seven
+  maps below (no `pressure_map`) and `mbf_sha256`, a lowercase SHA-256 or null. The entries
+  below are a legacy sidecar's ("optionally": its documented omissions; format 2 keeps only
+  the fields listed above);
 - `node_map`: id → CAEPIPE name, one-to-one;
 - `element_map`: id → `from`, `to`, `reversed` (bool), and optionally `layout_order`,
   `layout_row` (non-negative integers), `material`, `section`, `load`, and for a straight
@@ -1302,10 +1326,8 @@ union of what every SWBPIPE writer version records, so a sidecar from an older r
   (exactly a `node`, a `pipe`, or a `support` with its `dof`), `caepipe_load_case`, `mbf`,
   `caepipe_node` or `caepipe_element` by target, and `direction` (a token the solve parses;
   legacy also null or absent); load ids are non-empty and unique (`DUPLICATE_ID`);
-- `pressure_map` (format 2 only): `contract` (`"none"`, or version 3.0.0 and mode
-  exact_pressure_v3), `shear_model` (from `SHEAR_MODELS`; `euler_bernoulli` without a
-  contract) and `regions` (none without a contract; each `id`, `members`, two `terminals`
-  with `node_ref`, `closure_transfer` and provenance, `provenance` and `pressure_bar`);
+- `pressure_map` (format 2 only): as under **Sidecar format**; each terminal has
+  `node_ref`, `closure_transfer` and provenance;
 - integers (layout order and row) are non-negative and at most 2⁵³, exact in binary64.
 
 **A bound sidecar is complete.** It was written for exactly this file, so each node,

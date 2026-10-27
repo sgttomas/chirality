@@ -96,6 +96,12 @@ CLOSURE_TRANSFERS = ("transfers_to_wall", "separately_supported_or_compensated")
 # writer exports and the exact route admits (absent for a restraint), and the direction tokens the solve parses
 # (product_physics `parse_direction`), the only restored direction being a thermal primitive's, which it does not read.
 RESTORABLE_SUPPORT_FAMILIES = (None, "anchor", "guide", "line_stop", "vertical_support")
+# Each direction token's (translation or rotation, axis), so that equivalent tokens compare equal.
+_DIRECTION_AXIS = {**{token: ("t", index) for index, axis in enumerate("xyz")
+                      for token in (f"global_{axis}", f"GLOBAL_{axis.upper()}", f"U{axis.upper()}", f"U{axis}",
+                                    f"u{axis}")},
+                   **{token: ("r", index) for index, axis in enumerate("xyz")
+                      for token in (f"rotation_{axis}", f"R{axis.upper()}", f"R{axis}", f"r{axis}")}}
 RESTORABLE_DIRECTIONS = ("global_x", "GLOBAL_X", "global_y", "GLOBAL_Y", "global_z", "GLOBAL_Z", "rotation_x",
                          "rotation_y", "rotation_z", "UX", "Ux", "ux", "UY", "Uy", "uy", "UZ", "Uz", "uz", "RX", "Rx",
                          "rx", "RY", "Ry", "ry", "RZ", "Rz", "rz")
@@ -272,6 +278,15 @@ def import_caepipe_mbf(
 
     return _Importer(data, sidecar, material_provenance, rebind_by_node_number, source_label,
                      pressure_closure, shear_model).run()
+
+
+def documented_orientations(data: bytes) -> dict[tuple[str, str], tuple[float, float, float]] | None:
+    """CAEPIPE's documented local y of each straight of the MBF `data`, keyed by its (from, to) CAEPIPE names, as an
+    import derives it from the MBF's own positions (Design §10.5); None if the import refuses the file before its
+    positions are read. The SI writer records these for straights without an authored y_reference."""
+    importer = _Importer(data, None, None, False, "documented orientations", derive_only=True)
+    importer.run()
+    return importer.derived
 
 
 # ---------------------------------------------------------------------------
@@ -792,9 +807,11 @@ class _SidecarParser:
         return parse_list
 
     # -- the writer's records ---------------------------------------------
-    # Format 2 requires every field, with its effective value (no null); a legacy sidecar requires what main's
-    # tranche-1 writer always recorded and allows only its documented omissions: y_reference (an unauthored straight),
-    # family, origin and direction (earlier versions), and a null direction or digest.
+    # Format 2 holds what a bound import restores and the MBF does not carry, every field with its effective value
+    # (no null); what the MBF determines (layout order, record names, numbers, bend geometry, sections, CAEPIPE kinds
+    # and names) is not repeated. A legacy sidecar requires what main's tranche-1 writer always recorded and allows only
+    # its documented omissions: y_reference (an unauthored straight), family, origin and direction (earlier
+    # versions), and a null direction or digest.
     def vector(self, value: Any, path: str) -> Any:
         return self.record(value, path, {axis: self.number for axis in "xyz"})
 
@@ -805,22 +822,26 @@ class _SidecarParser:
             "caepipe_row_node": self.text})
 
     def element(self, value: Any, path: str) -> Any:
+        if self.current:  # a straight records its effective orientation and whether it was authored
+            common = {"from": self.text, "to": self.text, "reversed": self.flag}
+            if type(value) is dict and "bend" in value:
+                return self.record(value, path, {**common, "bend": lambda item, where: self.record(
+                    item, where, {"component": self.text})})
+            return self.record(value, path, {**common, "y_reference": self.vector, "y_reference_authored": self.flag})
         common = {"from": self.text, "to": self.text, "reversed": self.flag, "layout_order": self.count,
                   "layout_row": self.count, "material": self.text, "section": self.text, "load": self.text}
         if type(value) is dict and "bend" in value:
             return self.record(value, path, {**common, "bend": self.bend})
-        if self.current:  # a straight records its effective orientation and whether it was authored
-            return self.record(value, path, {**common, "y_reference": self.vector, "y_reference_authored": self.flag})
         return self.record(value, path, common, {"y_reference": self.vector})
 
     def support(self, value: Any, path: str) -> Any:
-        common = {"node": self.text, "caepipe_kind": self.choice(("anchor", "restraint")),
-                  "restrained": self.items(self.choice(DOFS))}
+        common = {"node": self.text, "restrained": self.items(self.choice(DOFS))}
         if self.current:
             entry = self.record(value, path, {**common, "family": self.choice(_RIGID_FAMILIES),
                                               "family_authored": self.flag})
         else:
-            entry = self.record(value, path, common, {"family": self.choice(RESTORABLE_SUPPORT_FAMILIES)})
+            entry = self.record(value, path, {**common, "caepipe_kind": self.choice(("anchor", "restraint"))},
+                                {"family": self.choice(RESTORABLE_SUPPORT_FAMILIES)})
         if entry is _BAD or any(item is _BAD for item in entry.values()) or "restrained" not in entry:
             return entry
         if len(set(entry["restrained"])) != len(entry["restrained"]):
@@ -838,7 +859,8 @@ class _SidecarParser:
                   "thermal_expansion_mm_per_mm_per_c": self.number, "temperatures_c": self.items(self.number),
                   "elements": self.items(self.text)}
         if self.current:
-            return self.record(value, path, {**common, "origin": self.choice((*MATERIAL_ORIGINS, "undeclared"))})
+            return self.record(value, path, {"swbpipe_material": self.text,
+                                             "origin": self.choice((*MATERIAL_ORIGINS, "undeclared"))})
         return self.record(value, path, common, {"origin": self.choice(MATERIAL_ORIGINS)})
 
     def section(self, value: Any, path: str) -> Any:
@@ -853,14 +875,15 @@ class _SidecarParser:
         return self.fail(path, "must be an object naming a node, a pipe, or a support and its DOF")
 
     def load(self, value: Any, path: str) -> Any:
+        if self.current:
+            return self.record(value, path, {"load_case": self.text, "category": self.choice(_LOAD_CATEGORIES),
+                                             "target": self.target, "direction": self.choice(RESTORABLE_DIRECTIONS)})
         common = {"load_case": self.text, "caepipe_load_case": self.text, "category": self.choice(_LOAD_CATEGORIES),
                   "target": self.target, "mbf": self.text}
         if type(value) is dict and type(value.get("target")) is dict and "pipe" in value["target"]:
             common["caepipe_element"] = self.element
         else:
             common["caepipe_node"] = self.text
-        if self.current:
-            return self.record(value, path, {**common, "direction": self.choice(RESTORABLE_DIRECTIONS)})
         return self.record(value, path, common, {"direction": self.choice((None, *RESTORABLE_DIRECTIONS))})
 
     def contract(self, value: Any, path: str) -> Any:
@@ -873,8 +896,7 @@ class _SidecarParser:
         terminal = lambda item, where: self.record(item, where, {  # noqa: E731
             "node_ref": self.text, "closure_transfer": self.choice(CLOSURE_TRANSFERS), "provenance": self.text})
         return self.record(value, path, {"id": self.text, "members": self.items(self.text),
-                                         "terminals": self.items(terminal, length=2), "provenance": self.free_text,
-                                         "pressure_bar": self.number})
+                                         "terminals": self.items(terminal, length=2)})
 
     def pressure(self, value: Any, path: str) -> Any:
         """Format 2: the effective pressure state of every model: `contract` (the exact contract, or "none"), the
@@ -915,8 +937,9 @@ class _SidecarParser:
             self.fail("sidecar", "must be an object")
             return None
         self.current = "sidecar_format" in sidecar
-        if self.current:  # every map, the digest and the format
-            parsed = self.record(sidecar, "", {**maps, "mbf_sha256": self.digest, "sidecar_format": self.format})
+        if self.current:  # every map but section_map (the MBF's), the digest and the format
+            current = {name: parse for name, parse in maps.items() if name != "section_map"}
+            parsed = self.record(sidecar, "", {**current, "mbf_sha256": self.digest, "sidecar_format": self.format})
         else:  # main's run_pilot wrote the seven maps; earlier runs kept the digest in mbf_render.json
             legacy = {name: parse for name, parse in maps.items() if name != "pressure_map"}
             parsed = self.record(sidecar, "", legacy, {"mbf_sha256": self.digest, "pressure_map": self.pressure})
@@ -1007,10 +1030,13 @@ class _Refused(Exception):
 
 class _Importer:
     def __init__(self, data: Any, sidecar: Any, provenance: Any, rebind: bool, source_label: Any,
-                 closure: Any = None, shear_model: Any = None) -> None:
+                 closure: Any = None, shear_model: Any = None, derive_only: bool = False) -> None:
         self.data = data
+        self.derive_only = derive_only
+        self.derived: dict[tuple[str, str], tuple[float, float, float]] | None = None
         self.closure = closure
         self.shear_model = shear_model
+        self.sidecar_current = False
         self.oppres: tuple[int, list[str], bool] | None = None
         self.pressure_notes: list[str] = []
         self.sidecar = sidecar
@@ -1321,6 +1347,7 @@ class _Importer:
             return
         digest = parsed.pop("mbf_sha256")
         self.maps = parsed
+        self.sidecar_current = parser.current
         if digest == self.sha:
             self.bound = True
         elif self.rebind:
@@ -1892,7 +1919,26 @@ class _Importer:
         self.resolve_bends()
         if self.has_errors():
             raise _Refused
+        if self.derive_only:  # documented_orientations: the positions are read; nothing is assembled
+            self.derived = {(a, b): local_y_reference(start, end, z_vertical=self.z_vertical)
+                            for a, b, start, end in self.straight_ends()}
+            raise _Refused
         return self.assemble()
+
+    def straight_ends(self) -> list[tuple[str, str, tuple[float, ...], tuple[float, ...]]]:
+        """Each element's straight as (CAEPIPE from name, to name, from position, to position), the positions as the
+        import reads them: a bend's tangent nodes nA and nB stand in for its TI (§11)."""
+        def end(number: int, near: bool) -> tuple[str, tuple[float, ...]]:
+            if number in self.bend_geometry:
+                bend = self.bend_geometry[number]
+                return (f"{number}A", bend["near"]) if near else (f"{number}B", bend["far"])
+            return str(number), self.positions[number]
+
+        found = []
+        for element in self.elements:
+            (a, start), (b, finish) = end(element.start, False), end(element.end, True)
+            found.append((a, b, start, finish))
+        return found
 
     def row_properties(self, row: _Row, carried: dict[str, Any]) -> None:
         location = f"LAYOUT line {row.line}"
@@ -2374,12 +2420,23 @@ class _Importer:
                                     "the element above 1e-12, and orthonormal right-handed axes within 1e-12); "
                                     "nothing is substituted")
                     elif entry.get("y_reference_authored") is False:
-                        self.diagnostics.append({
-                            "code": "MBF-IMPORT-ORIENTATION-DEFAULTED", "severity": "info", "line": element.line,
-                            "location": swb_id,
-                            "message": f"{swb_id} has no authored y_reference; the sidecar records the effective "
-                                       "one, CAEPIPE's documented pipe local y (CAEPIPE-LOCAL-AXES), restored as "
-                                       "recorded"})
+                        # Recorded as derived: it must be the derivation, the documented local y on the MBF's
+                        # positions (Design §15, agreement rule).
+                        derived = dict(zip("xyz", local_y_reference(point_of[a], point_of[b],
+                                                                     z_vertical=self.z_vertical)))
+                        if pipe["y_reference"] != derived:
+                            self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", element.line,
+                                        f"element_map[{swb_id}].y_reference",
+                                        f"the sidecar records {swb_id}'s y_reference as derived "
+                                        "(y_reference_authored false), but it is not CAEPIPE's documented local y on "
+                                        "the MBF's positions")
+                        else:
+                            self.diagnostics.append({
+                                "code": "MBF-IMPORT-ORIENTATION-DEFAULTED", "severity": "info", "line": element.line,
+                                "location": swb_id,
+                                "message": f"{swb_id} has no authored y_reference; the sidecar records the derived "
+                                           "one, CAEPIPE's documented pipe local y (CAEPIPE-LOCAL-AXES), equal to "
+                                           "the derivation"})
                 else:
                     documented = local_y_reference(point_of[a], point_of[b], z_vertical=self.z_vertical)
                     pipe["y_reference"] = dict(zip("xyz", documented))
@@ -2447,7 +2504,7 @@ class _Importer:
                 self.arc_tangents[pipe["id"]] = runtime_bend_tangents(a, b, radius_of[pipe["id"]] * factor + 0.0,
                                                                       y_reference)
         sections_used = dict.fromkeys(element.section for element in self.elements)
-        if self.bound:
+        if self.bound and not self.sidecar_current:  # format 2 leaves sections to the MBF
             self.incomplete("section_map", sections_used, self.maps["section_map"], "sections")
         for name in sections_used:
             section = self.pipes[name]
@@ -2863,6 +2920,15 @@ class _Importer:
                 if self.bound and match is None:
                     self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", item["line"], formed,
                                 f"the bound sidecar's load_map records no primitive for {formed}, which the file has")
+                # A recorded direction the MBF determines (all but a thermal one, which the MBF does not carry) must be
+                # the MBF's: the gravity axis for a weight, the comment's axis for a force or moment, the moved DOF
+                # for a displacement (Design §15, agreement rule).
+                for map_key, recorded in (match[3] if self.bound and match is not None else []):
+                    if (item["category"] != "thermal" and recorded is not None
+                            and _DIRECTION_AXIS.get(recorded) != _DIRECTION_AXIS.get(item["direction"])):
+                        self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", item["line"], f"load_map[{map_key}].direction",
+                                    f"the sidecar records the direction {recorded} for {formed}, but the MBF gives "
+                                    f"{item['direction']}")
                 if self.bound and match is not None and match[1] == 1:
                     load_id = match[0]
                     if item["category"] == "thermal" and match[2] is not None:
@@ -2882,6 +2948,9 @@ class _Importer:
             load_cases.append(case)
         if self.bound:
             self.incomplete("load_map", sorted(matched, key=repr), sorted(restorable, key=repr), "primitives")
+        if self.bound and self.sidecar_current:  # format 2 names exactly the file's cases
+            self.incomplete("load_case_map", [case["label"] for case in load_cases],
+                            list(self.maps["load_case_map"].values()), "load cases")
         return load_cases
 
     # -- §9.4 pressure ----------------------------------------------------------
@@ -3351,8 +3420,9 @@ class _Importer:
             else:
                 axis = None
             load_id = key[len(case_id) + 1:]  # the parser holds each key to "<case>/<id>"
-            counts.setdefault((case_id, category, target_id, axis), []).append((load_id, direction))
-        return {key: (items[0][0], len(items), items[0][1]) for key, items in counts.items()}
+            counts.setdefault((case_id, category, target_id, axis), []).append((load_id, direction, key))
+        return {key: (items[0][0], len(items), items[0][1], [(item[2], item[1]) for item in items])
+                for key, items in counts.items()}
 
     def report_unrecoverable(self) -> None:
         if not self.bound:
