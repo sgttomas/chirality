@@ -484,3 +484,23 @@ def test_image_links_of_the_target_are_screenshot_references(tmp_path):
     assert run(tmp_path, {"doc/a.md": "![Acmepipe dialog](screenshots/result.png)\n"}) == [
         "doc/a.md:1: screenshot reference"]
     assert run(tmp_path / "d", {"doc/a.md": "![Load path diagram](diagram.png)\n"}) == []
+
+
+
+def test_a_result_equality_is_not_a_unit_conversion(tmp_path):
+    assert run(tmp_path, {"doc/a.md": "Acmepipe agreement: 12/12 = 100%.\n"}) == ["doc/a.md:1: result about the target tool"]
+
+
+def test_mapping_with_a_scope_word_passes(tmp_path):
+    assert run(tmp_path, {"doc/a.md": "The Acmepipe importer matches all 3 values to X/Y/Z.\n"}) == []
+
+
+def test_reference_style_images_of_the_target_are_screenshot_references(tmp_path):
+    text = "![Acmepipe dialog][shot]\n\n[shot]: result.png\n"
+    assert run(tmp_path, {"doc/a.md": text}) == ["doc/a.md:1: screenshot reference"]
+    assert run(tmp_path / "s", {"doc/a.md": "![Acmepipe dialog]\n"}) == ["doc/a.md:1: screenshot reference"]
+
+
+def test_original_format_diagrams_pass(tmp_path):
+    assert run(tmp_path, {"doc/a.md": "![Acmepipe MBF record layout](layout.svg)\n"}) == []
+    assert run(tmp_path / "r", {"doc/a.md": "![Acmepipe record diagram][d]\n\n[d]: d.png\n"}) == []
