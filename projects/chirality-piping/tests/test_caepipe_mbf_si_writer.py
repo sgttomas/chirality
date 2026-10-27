@@ -383,11 +383,80 @@ def test_temperature_dependent_material_is_refused():
                    "material:mat:CS")
 
 
-def test_spring_support_is_refused():
+def test_hanger_support_is_refused():
+    # Hangers stay refused (Design §12): a hanger's loads act by case, which no SWBPIPE member carries.
     model = cantilever()
-    model["supports"].append({"id": "spring:N1", "node": "N1", "family": "spring", "restraints": ["UY"],
-                              "stiffness": {"dof": "UY", "value": q(1.0e6, "N/m")}})
-    assert_refused(render_caepipe_mbf_si(model, title="S"), "MBF-SI-SUPPORT-UNSUPPORTED", "support:spring:N1")
+    model["supports"].append({"id": "hanger:N1", "node": "N1", "family": "spring_hanger", "restraints": ["UY"],
+                              "hanger": {"hanger_type": "spring_hanger",
+                                         "stiffness": {"dof": "UY", "value": q(1.0e6, "N/m")}}})
+    assert_refused(render_caepipe_mbf_si(model, title="S"), "MBF-SI-SUPPORT-UNSUPPORTED", "support:hanger:N1")
+
+
+def spring(support_id, node_id, dof, value, unit="N/m", restraints=None):
+    return {"id": support_id, "node": node_id, "family": "spring", "restraints": restraints or [dof],
+            "stiffness": {"dof": dof, "value": q(value, unit)}}
+
+
+def sprung_cantilever():
+    """The invented cantilever with a spring on each translation at its tip: UY 250000 N/m, UX 1.5 lbf/in."""
+    model = cantilever("mm")
+    model["supports"] += [spring("spring:N1:y", "N1", "UY", 250000.0), spring("spring:N1:x", "N1", "UX", 1.5, "lbf/in")]
+    return model
+
+
+def test_a_spring_is_written_as_a_flexible_anchor():
+    # Hand-derived: 250000 N/m = 250 N/mm (10^-3 exactly); 1.5 lbf/in = 1.5 x 4.4482216152605 N / 25.4 mm
+    # = 0.262690252869714... N/mm, printed to 10 significant digits. UZ has no spring: 0, free; rotations free.
+    result = render_caepipe_mbf_si(sprung_cantilever(), title="SPRING")
+    assert result.status == "written", result.diagnostics
+    assert "T20,KA,X3000,CTRAK(0.2626902529,250,0),ROTK(0,0,0),FOR(0,-6000,0)\r\n" in result.text
+    assert result.support_map["spring:N1:y"] == {"node": "20", "caepipe_kind": "anchor", "restrained": ["UY"],
+                                                 "family": "spring", "family_authored": True}
+    assert "1 lbf/in" in next(item["message"] for item in result.diagnostics
+                              if item["code"] == "MBF-SI-UNITS-NORMALIZED")
+    assert any(note.startswith("Spring supports are written as flexible anchors") for note in result.assumptions)
+
+
+@pytest.mark.parametrize("change, code, fragment", [
+    (lambda m: m["supports"].append(spring("rx", "N1", "RX", 5.0, "N*m/rad")), "MBF-SI-SUPPORT-UNSUPPORTED",
+     "rotational spring"),
+    (lambda m: m["supports"].append(spring("y2", "N1", "UY", 5.0)), "MBF-SI-SUPPORT-UNSUPPORTED", "second spring"),
+    (lambda m: m["supports"].append({"id": "r", "node": "N1", "restraints": ["UZ"]}), "MBF-SI-SUPPORT-UNSUPPORTED",
+     "springs and rigid restraints"),
+    (lambda m: m["supports"].append(spring("z0", "N1", "UZ", 0.0)), "MBF-SI-VALUE-OUT-OF-RANGE", "positive"),
+    (lambda m: m["supports"].append(spring("zz", "N1", "UZ", 5.0, restraints=["UZ", "UX"])),
+     "MBF-SI-SUPPORT-UNSUPPORTED", "same single DOF"),
+    (lambda m: m["supports"].append(spring("zu", "N1", "UZ", 5.0, "N*m/rad")), "MBF-SI-UNIT-UNSUPPORTED", "stiffness"),
+    (lambda m: m["supports"].append({"id": "zs", "node": "N1", "family": "spring", "restraints": ["UZ"]}),
+     "MBF-SI-INPUT-INVALID", "needs a stiffness"),
+    (lambda m: m["load_cases"].append({"id": "case:move", "primitive_loads": [
+        {"id": "dy", "category": "imposed_displacement", "target": {"type": "support", "support": "spring:N1:y",
+                                                                    "dof": "UY"},
+         "direction": "UY", "magnitude": q(1.0, "mm"), "dimension": "displacement"}]}),
+     "MBF-SI-IMPOSED-DISPLACEMENT-UNSUPPORTED", "anchor"),
+])
+def test_springs_the_writer_does_not_write_are_refused_by_name(change, code, fragment):
+    model = sprung_cantilever()
+    change(model)
+    assert_refused(render_caepipe_mbf_si(model, title="S"), code, fragment)
+
+
+def test_a_spring_export_is_checked_by_its_own_bound_reimport(monkeypatch):
+    # The preflight runs for every spring export (Design §12). 1e306 N/mm prints as 1e+306, which the solve reads as
+    # 1e309 N/m: the re-import refuses it (MBF-IMPORT-VALUE-UNREPRESENTABLE), so the export is refused by name.
+    model = cantilever("mm")
+    model["supports"].append(spring("huge", "N1", "UY", 1e306, "N/mm"))
+    assert_refused(render_caepipe_mbf_si(model, title="S"), "MBF-SI-PREFLIGHT-REFUSED",
+                   "MBF-IMPORT-VALUE-UNREPRESENTABLE")
+    calls = []
+    from core.handoff.caepipe_mbf import si_writer
+    original = si_writer._Writer.survives_reimport
+    monkeypatch.setattr(si_writer._Writer, "survives_reimport",
+                        lambda self, result: calls.append(result.status) or original(self, result))
+    assert render_caepipe_mbf_si(sprung_cantilever(), title="SPRING").status == "written"
+    assert calls == ["written"]
+    assert render_caepipe_mbf_si(cantilever(), title="PLAIN").status == "written"
+    assert calls == ["written"]  # no spring and no pressure: no preflight, as before
 
 
 def test_bend_component_is_refused():

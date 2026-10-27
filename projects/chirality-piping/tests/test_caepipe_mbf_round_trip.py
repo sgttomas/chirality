@@ -150,6 +150,7 @@ def models() -> dict[str, tuple[dict, str, float]]:
         "pressure-l-pa": (writer_tests.pressurized_l(), "PRESSURE L", 20.0),
         "pressure-tee-bar": (writer_tests.pressurized_tee(), "PRESSURE TEE", 20.0),
         "pressure-us-psi": (writer_tests.pressurized_us_cantilever(), "PRESSURE US", 20.0),
+        "writer-springs": (writer_tests.sprung_cantilever(), "SPRING", 20.0),
         "z-vertical-si": (z_import(Z_VERTICAL_SI).model, "Z VERTICAL SI", 20.0),
         "z-vertical-english": (z_import(Z_VERTICAL_ENGLISH).model, "Z VERTICAL ENGLISH", 20.0),
     })
@@ -1558,8 +1559,13 @@ def sidecar_replacements(sidecar: dict, data: bytes) -> list[tuple[str, dict, st
                "y_reference_authored"]))
     for swb_id, entry in sidecar["support_map"].items():
         at(f"support_map[{swb_id}].node", "refused", lambda s, k=swb_id: s["support_map"][k].update(node="99"))
+        other = ["UX"] if entry["restrained"] != ["UX"] else ["UZ"]
         at(f"support_map[{swb_id}].restrained", "refused",
-           lambda s, k=swb_id: s["support_map"][k].update(restrained=["UX"]))
+           lambda s, k=swb_id, v=other: s["support_map"][k].update(restrained=v))
+        # A spring (format 3) and a rigid support each read as the other kind: the MBF's springs and rigid DOFs differ.
+        if sidecar.get("sidecar_format") == 3 and len(entry["restrained"]) == 1:
+            at(f"support_map[{swb_id}].family", "refused", lambda s, k=swb_id, v=entry["family"]: s["support_map"][
+                k].update(family="line_stop" if v == "spring" else "spring", family_authored=True))
         inferred = "anchor" if len(entry["restrained"]) == 6 else "guide"
         if not entry["family_authored"]:
             at(f"support_map[{swb_id}].family", "refused",
@@ -1656,8 +1662,11 @@ def summed_model() -> dict:
 
 
 MUTATION_BASES = {"pressurized": lambda: writer_tests.pressurized_l(), "pressure-free": lambda: writer_tests.bent_l(),
-                  "summed": summed_model,
+                  "summed": summed_model, "springs": lambda: writer_tests.sprung_cantilever(),
                   "contract-only": contract_only_model, "authored-orientation": authored_orientation_model}
+# Bases without a pressure contract, and those whose export runs no preflight (no pressure and no spring).
+PRESSURE_FREE_BASES = ("pressure-free", "summed", "springs")
+UNCHECKED_BASES = ("pressure-free", "summed")
 
 
 @pytest.mark.parametrize("base_model", sorted(MUTATION_BASES))
@@ -1699,7 +1708,7 @@ def test_every_mutated_sidecar_is_refused_by_name_or_restores_the_same_model(bas
     regenerated = regenerated_from(expected)
     summed = groups(expected)  # only these identities are set aside; every field of their entries is compared
     assert bool(summed) == (base_model == "summed") and set_aside(expected) == reported(expected)
-    assert bool(expected.model.get("pressure_contract")) == (base_model not in ("pressure-free", "summed"))
+    assert bool(expected.model.get("pressure_contract")) == (base_model not in PRESSURE_FREE_BASES)
     unbound = run(None, "unbound")  # a digest that is not this file's leaves the sidecar unapplied (§15)
     assert unbound.status == "imported", unbound.diagnostics
     mutations = sidecar_mutations(base)
@@ -1777,7 +1786,7 @@ def test_every_mutated_sidecar_is_refused_by_name_or_restores_the_same_model(bas
             assert not survives and refusals_ and all(code.startswith("MBF-SI-") for code in refusals_), label
         else:
             assert survives, label
-    assert ("writer" in captured) == (base_model not in ("pressure-free", "summed"))
+    assert ("writer" in captured) == (base_model not in UNCHECKED_BASES)
     assert len(mutations) > 300 and outcomes["refused"] > 0, outcomes
     # VER-002 r12, r13: each field set to a different well-formed value. A value the MBF or a derivation determines
     # must agree with it, and the regeneration identity alone refuses it too. A value the writer copies from the model
@@ -2174,7 +2183,7 @@ def test_every_comparison_model_regenerates_its_sidecar_identically_or_with_iden
         if groups(trip.bound):
             excluded_models.add(name)
     assert excluded_models == {"writer-cancelling-forces"}
-    assert len(REVERSIBLE) == 22
+    assert len(REVERSIBLE) == 23  # tranche 3 added writer-springs
 
 
 def test_a_straight_recorded_as_a_bend_is_refused_on_both_routes():
@@ -2799,3 +2808,71 @@ def test_the_companion_digest_backfills_only_a_legacy_sidecar(tmp_path):
     (tmp_path / "legacy" / "mbf_render.json").write_text('{"mbf_sha256": "0", "mbf_sha256": "1"}', encoding="utf-8")
     with pytest.raises(importer_module.SidecarJsonInvalid):
         importer_module.load_sidecar(tmp_path / "legacy" / "id_map.json")
+
+
+# --- tranche 3: imported guides, limit stops and springs solve as hand-derived (Design §12) ---------------------------
+def support_force(output, support_id: str, component: str = "Fy") -> float:
+    """The solve's one reaction component of `support_id`, in N."""
+    values = [row["value"] * SI_RESULT[row["unit"]] for row in output["payload"]["mechanics_envelope"]["results"]
+              if row.get("kind") == "support_reaction_component_v2" and row.get("entity_ref") == support_id
+              and (row.get("metadata") or {}).get("component") == component]
+    assert len(values) == 1, (support_id, component, values)
+    return values[0]
+
+
+def solved(rows: tuple[str, ...]) -> tuple[dict, dict]:
+    result = importer_tests.run(importer_tests.mbf(*rows))
+    assert result.status == "imported", result.diagnostics
+    _, output, error = solve_swbpipe(runner_binary(), {"case_id": "tranche-3", "model": result.model})
+    assert error == "", error
+    return result.model, output
+
+
+# The invented section and material of importer_tests.mbf: OD 168.3 mm, wall 7.11 mm, E 200000 MPa, no weight.
+SECOND_MOMENT = math.pi / 64 * (0.1683 ** 4 - (0.1683 - 2 * 0.00711) ** 4)  # m^4
+MODULUS = 200000e6  # Pa
+
+
+@pytest.mark.parametrize("prop, support_id", [("G", "support:30-guide"), ("LS(0,0),DV(0,-1,0)", "support:30-stop-y")])
+def test_an_imported_rigid_guide_or_limit_stop_props_a_cantilever_as_hand_derived(prop, support_id):
+    # Fixed at node 10, propped at 30 (3 m), 6000 N down at midspan node 20: the prop carries 5P/16 = 1875 N
+    # (Euler-Bernoulli, which a pressure-free document solves with). The guide's element runs along X, so it
+    # restrains UY and UZ; the limit stop restrains UY. Neither restrains a rotation.
+    model, output = solved(("F10,KA,MM1,PP1,CL=L1", "T20,X1500,CFOR(0,-6000,0),FLC=1", f"T30,X1500,C{prop}"))
+    assert next(item for item in model["supports"] if item["id"] == support_id)
+    assert abs(support_force(output, support_id)) == pytest.approx(1875.0, rel=1e-9)
+
+
+def test_an_imported_spring_shares_a_tip_load_with_the_cantilever_as_hand_derived():
+    # A 3 m cantilever with a skewed restraint K = 500 N/mm along Y at its tip and 6000 N down there: the tip
+    # deflects F / (3EI/L^3 + k), and the spring carries k / (3EI/L^3 + k) of the load. The flexible anchor's TRAK
+    # gives the same spring.
+    beam = 3 * MODULUS * SECOND_MOMENT / 3.0 ** 3
+    expected = 6000.0 * 5e5 / (beam + 5e5)
+    for row, support_id in (("T20,X3000,CK=500,DV(0,1,0),FOR(0,-6000,0),FLC=1", "support:20-spring-uy"),
+                            ("T20,X3000,KA,CTRAK(0,500,0),ROTK(0,0,0),FOR(0,-6000,0),FLC=1", "support:20-spring-uy")):
+        model, output = solved(("F10,KA,MM1,PP1,CL=L1", row))
+        assert next(item for item in model["supports"] if item["id"] == support_id)["stiffness"]["value"] == {
+            "value": 500.0, "unit": "N/mm"}
+        assert abs(support_force(output, support_id)) == pytest.approx(expected, rel=1e-9)
+        assert abs(support_force(output, "support:10")) == pytest.approx(6000.0 - expected, rel=1e-9)
+
+
+def test_a_format_3_spring_entry_is_held_to_its_vocabulary_and_format_2_admits_none():
+    # The parser (Design §15): a spring acts on exactly one translation with an authored family, and only format 3
+    # records springs; format 2 sidecars keep their rigid vocabulary unchanged.
+    trip = Trip("springs", writer_tests.sprung_cantilever(), "SPRING", 20.0)
+    assert trip.bound.status == "imported", trip.bound.diagnostics
+    key = "spring:N1:y"
+    for change, path in (
+            (lambda entry: entry.update(restrained=["UY", "UZ"]), f"support_map[{key}].restrained"),
+            (lambda entry: entry.update(restrained=["RY"]), f"support_map[{key}].restrained"),
+            (lambda entry: entry.update(family_authored=False), f"support_map[{key}].family_authored")):
+        sidecar = deepcopy(trip.sidecar)
+        change(sidecar["support_map"][key])
+        result = import_caepipe_mbf(trip.data, sidecar=sidecar, material_provenance=INVENTED, source_label="spring")
+        assert (("MBF-IMPORT-SIDECAR-INVALID", path) in refusals(result)), result.diagnostics
+    format_2 = {key: value for key, value in deepcopy(trip.sidecar).items() if key != "sidecar_sha256"}
+    format_2["sidecar_format"] = 2
+    result = import_as_given(trip.data, sidecar=format_2, material_provenance=INVENTED, source_label="spring")
+    assert ("MBF-IMPORT-SIDECAR-INVALID", f"support_map[{key}].family") in refusals(result)
