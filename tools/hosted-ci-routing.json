@@ -2413,6 +2413,7 @@
               "apps/desktop/src-tauri/src/rule_check_object_form_tests.rs",
               "apps/desktop/src-tauri/src/rule_solver_selection.rs",
               "apps/desktop/src-tauri/src/rule_solver_selection_tests.rs",
+              "apps/desktop/src-tauri/src/solve_attestation.rs",
               "apps/desktop/src-tauri/src/solve_jobs.rs",
               "apps/desktop/src-tauri/src/solve_worker.rs",
               "apps/desktop/src-tauri/src/stored_model_document_export.rs",
