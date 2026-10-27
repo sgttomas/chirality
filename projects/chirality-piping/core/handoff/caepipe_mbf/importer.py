@@ -746,20 +746,19 @@ def canonical_sidecar(sidecar: Mapping[str, Any]) -> dict[str, Any]:
     return out
 
 
-def reported_exclusions(loss_report: Iterable[Mapping[str, Any]]) -> frozenset[str]:
-    """The load_map paths an import reported by name as many-to-one (MBF-IMPORT-ID-UNRECOVERABLE, REQ-016): each
-    sidecar entry the MBF sums into one primitive, and that primitive's formed entry. The import reports them only
-    for entries whose case, category, target and axis are the file primitive's, so no other value hides there."""
-    return frozenset(item["location"] for item in loss_report if item["code"] == "MBF-IMPORT-ID-UNRECOVERABLE"
-                     and item["location"].startswith("load_map["))
+def summed_entries(id_map: Mapping[str, Any]) -> dict[str, list[str]]:
+    """The primitives an import formed from several sidecar entries (REQ-016, reported by name), as
+    "<case>/<formed id>" -> the sidecar load_map keys it sums: the identity the regeneration cannot reproduce."""
+    return {f"{entry['case']}/{load_id}": list(entry["summed_entries"])
+            for load_id, entry in id_map.get("load_map", {}).items() if "summed_entries" in entry}
 
 
 def sidecar_difference(given: Mapping[str, Any], regenerated: Mapping[str, Any],
-                       excluded: Iterable[str] = ()) -> tuple[str, str, str] | None:
+                       summed: Mapping[str, Iterable[str]] | None = None) -> tuple[str, str, str] | None:
     """The first JSON path, in sorted key order, at which the canonical forms of `given` and `regenerated` differ,
-    with each side's value (JSON text, "absent" where the key is missing); None when they are equal. Paths in
-    `excluded` (reported_exclusions) are not compared."""
-    excluded = frozenset(excluded)
+    with each side's value (JSON text, "absent" where the key is missing); None when they are equal. `summed`
+    (summed_entries) maps a primitive's regenerated key to the given keys it sums: only that identity is set aside,
+    and each of those entries is compared, field by field, with the regenerated entry."""
     def shown(value: Any) -> str:
         text = "absent" if value is _BAD else json.dumps(value, sort_keys=True)
         return text if len(text) <= 160 else text[:157] + "..."
@@ -768,8 +767,6 @@ def sidecar_difference(given: Mapping[str, Any], regenerated: Mapping[str, Any],
         if isinstance(a, dict) and isinstance(b, dict):
             for key in sorted(set(a) | set(b), key=str):
                 where = f"{path}[{key}]" if path in _KEYED_MAPS else (f"{path}.{key}" if path else str(key))
-                if where in excluded:
-                    continue
                 found = first(a.get(key, _BAD), b.get(key, _BAD), where)
                 if found is not None:
                     return found
@@ -783,7 +780,22 @@ def sidecar_difference(given: Mapping[str, Any], regenerated: Mapping[str, Any],
         same = type(a) is type(b) and a == b
         return None if same else (path, shown(a), shown(b))
 
-    return first(canonical_sidecar(given), canonical_sidecar(regenerated), "")
+    left, right = canonical_sidecar(given), canonical_sidecar(regenerated)
+    loads, again = left.get("load_map"), right.get("load_map")
+    for formed, keys in (summed or {}).items():
+        if not isinstance(loads, dict) or not isinstance(again, dict):
+            break
+        keys = list(keys)
+        if formed in loads and formed not in keys:  # another entry under the formed id: compared as it stands
+            continue
+        for key in keys:
+            found = first(loads.get(key, _BAD), again.get(formed, _BAD), f"load_map[{key}]")
+            if found is not None:
+                return found
+        merged = [loads.pop(key) for key in keys if key in loads]
+        if merged:
+            loads[formed] = merged[0]
+    return first(left, right, "")
 
 
 # The target each load category names (si_writer read_load): a node, a pipe, or a support and its DOF.
@@ -2088,8 +2100,9 @@ class _Importer:
         from the imported model (no MBF is written), and the format-2 sidecar given must equal it after
         canonicalisation (sidecar_difference); otherwise MBF-IMPORT-SIDECAR-NOT-REPRODUCED names the first differing
         JSON path. The one input beyond the model is the import's record of which straights' y_reference it derived
-        (id_map y_reference_derived). Excluded are exactly the load_map entries this import reported by name as
-        many-to-one (reported_exclusions), on both sides."""
+        (id_map y_reference_derived). Only the identity of a primitive the MBF sums is not compared: each sidecar
+        entry this import reported as summed into it is compared, field by field, with its regenerated entry under
+        its formed id (summed_entries)."""
         reference = ({} if self.t_ref is None else {"reference_temperature_c": self.t_ref.value} if self.si
                      else {"reference_temperature_f": self.t_ref.value})
         regenerated, refusals = regenerate_caepipe_sidecar(model, mbf_sha256=self.sha,
@@ -2100,7 +2113,7 @@ class _Importer:
                         "the bound sidecar is not the writer's record of the model it yields: the writer does not "
                         "write the imported model (" + ", ".join(sorted({item["code"] for item in refusals})) + ")")
             return
-        found = sidecar_difference(self.sidecar, regenerated, excluded=reported_exclusions(self.loss))
+        found = sidecar_difference(self.sidecar, regenerated, summed=summed_entries(id_map))
         if found is not None:
             path, given, again = found
             self.refuse("MBF-IMPORT-SIDECAR-NOT-REPRODUCED", 0, path,
@@ -3113,6 +3126,7 @@ class _Importer:
         restorable = self.restorable_primitives(cases)
         matched: set[tuple] = set()
         load_cases = []
+        ids_seen: dict[str, str] = {}  # primitive id -> what took it, across cases (the solve's DUPLICATE_ID)
         for kind, label_key, case_kind in (("sustained", "sustained", "sustained"),
                                            ("expansion", "expansion", "thermal")):
             if not primitives[kind] and not (regions and kind == "sustained"):
@@ -3147,10 +3161,10 @@ class _Importer:
                         self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", item["line"], f"load_map[{map_key}].direction",
                                     f"the sidecar records the direction {recorded} for {formed}, but the MBF gives "
                                     f"{item['direction']}")
+                if self.bound and match is not None and item["category"] == "thermal":
+                    direction = self.thermal_direction(match[3], formed, item["line"])
                 if self.bound and match is not None and match[1] == 1:
                     load_id = match[0]
-                    if item["category"] == "thermal" and match[2] is not None:
-                        direction = match[2]
                 elif self.bound and match is not None:  # many-to-one (REQ-016): reported by name, entry by entry
                     keys = [map_key for map_key, _ in match[3]]
                     named = ", ".join(f"load_map[{key}]" for key in keys)
@@ -3162,7 +3176,18 @@ class _Importer:
                         self.listed("approximated", "MBF-IMPORT-ID-UNRECOVERABLE", item["line"], f"load_map[{map_key}]",
                                     f"load_map[{map_key}] is one of the {len(keys)} primitives the MBF sums into "
                                     f"{formed}; its id is not recoverable")
+                # Restored and formed primitive ids are unique across cases, or the import is refused by name: two
+                # primitives under one id would overwrite each other here and the solve refuses them (DUPLICATE_ID).
+                what = f"the primitive {formed} of case {case_id}"
+                if load_id in ids_seen:
+                    self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", item["line"], f"load_map[{case_id}/{load_id}]",
+                                f"{what} would take id {load_id}, which {ids_seen[load_id]} already has; primitive "
+                                "ids must be unique (DUPLICATE_ID)")
+                    continue
+                ids_seen[load_id] = what
                 id_map["load_map"][load_id] = {"case": case_id, "category": item["category"], "target": target_id}
+                if self.bound and match is not None and match[1] > 1:
+                    id_map["load_map"][load_id]["summed_entries"] = [map_key for map_key, _ in match[3]]
                 loads.append({"id": load_id, "category": item["category"], "target": target, "direction": direction,
                               "magnitude": {"value": item["magnitude"], "unit": item["unit"]},
                               "dimension": item["dimension"], "provenance": provenance(item["line"])})
@@ -3623,6 +3648,23 @@ class _Importer:
                  and entry["target"].get("dof") == dof}
         found &= set(candidates)
         return found.pop() if len(found) == 1 else None
+
+    def thermal_direction(self, entries: list[tuple[str, Any]], formed: str, line: int) -> str:
+        """The direction a restored thermal primitive keeps (the MBF carries none): the one its sidecar entries
+        record, which must name one axis when the MBF sums several (summing across directions is not meaningful),
+        else refused by name; an entry without one (legacy) is reported, and the import's global_x stands."""
+        recorded = [(key, direction) for key, direction in entries if direction is not None]
+        for key, direction in entries:
+            if direction is None:
+                self.listed("approximated", "MBF-IMPORT-DIRECTION-UNRECOVERABLE", line, f"load_map[{key}].direction",
+                            f"load_map[{key}] records no direction; {formed} takes {_THERMAL_DIRECTION}")
+        axes = {_DIRECTION_AXIS[direction] for _, direction in recorded}
+        if len(axes) > 1:
+            self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", line, f"load_map[{recorded[-1][0]}].direction",
+                        f"the sidecar entries the MBF sums into {formed} record different directions ("
+                        + ", ".join(f"{key}: {direction}" for key, direction in recorded) + "); a sum across "
+                        "directions is not meaningful")
+        return recorded[0][1] if recorded else _THERMAL_DIRECTION
 
     def restorable_primitives(self, cases: Mapping[str, str]) -> dict[tuple, tuple[str, int, Any]]:
         """primitive_key -> (sidecar primitive id, count, direction, [(map key, direction)]) for bound imports; a

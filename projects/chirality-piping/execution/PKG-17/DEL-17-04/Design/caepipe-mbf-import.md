@@ -1155,14 +1155,17 @@ immaterial, every number as a binary64 (1 and 1.0 are one value) and each load d
 as the axis it names (`global_y`, `GLOBAL_Y`, `UY` and `uy` alike). A difference is refused
 as `MBF-IMPORT-SIDECAR-NOT-REPRODUCED`, naming the first differing JSON path in sorted key
 order with both values. A model the writer does not write is refused the same way at
-`sidecar`, naming the writer's codes. Excluded from the comparison are exactly the
-`load_map` entries the import reports by name as many-to-one under REQ-016
-(`MBF-IMPORT-ID-UNRECOVERABLE`, §15). These are each sidecar entry the MBF sums into one
-primitive, and that primitive's entry under its formed id, which is regenerated. An
-exclusion applies only where this import made the report for this file. The import reports
-only entries whose case, category, target and axis are the file primitive's, so no other
-value can hide in one. A test holds every exclusion to its report, and every model to no
-other difference. The checks that run first are supporting checks and
+`sidecar`, naming the writer's codes. Only one thing is set aside: the identity of a
+primitive the MBF sums, which no regeneration can reproduce (REQ-016; reported by name as
+`MBF-IMPORT-ID-UNRECOVERABLE`, §15) (VER-002 r14). Each sidecar entry this import summed
+into the primitive (`id_map` `load_map[<formed id>].summed_entries`) is compared, field
+by field, with the primitive's regenerated entry under its formed id. These fields are
+the case, category, target and its kind, and direction; only the keys differ. A summed
+entry that disagrees on any of them is refused by name. Restored and formed primitive ids
+must be unique across cases before the model is assembled, or the import is refused by
+name (`MBF-IMPORT-SIDECAR-CONFLICT` at `load_map[<case>/<id>]`), so the solve's
+`DUPLICATE_ID` is unreachable. A test holds each set-aside identity to its report, and each
+model to no other difference. The checks that run first are supporting checks and
 give the narrower code: the strict parser, completeness, the ambiguity check (§15), the
 no-defaults rule (every effective value comes from an explicit format-2 record or a
 documented legacy omission, never from a default filling a missing or null field) and the
@@ -1252,6 +1255,8 @@ Loss entries and information (do not block):
 - `MBF-IMPORT-SECTION-ZERO-OMITTED`,
   `MBF-IMPORT-RECORD-UNUSED` (a record no element references), `MBF-IMPORT-TAG-WITHOUT-SUPPORT`
   and `MBF-IMPORT-SIDECAR-ENTRY-ABSENT` (`omitted`);
+- `MBF-IMPORT-DIRECTION-UNRECOVERABLE` (`approximated`, §15: a legacy thermal entry
+  without a direction);
 - `MBF-IMPORT-SIDECAR-NOT-APPLIED` (info: the hashes differ and no rebinding was requested)
   and `MBF-IMPORT-ORIENTATION-DEFAULTED` (info, §10.5);
 - `MBF-IMPORT-LOAD-SLOT-INACTIVE` (info, by record and slot, §9.1);
@@ -1425,7 +1430,10 @@ eight maps deleted and emptied. Each import passes a closure declaration, so a b
 that fell through to unbound formation would succeed and be caught. Every mutated import is
 refused with a named `MBF-IMPORT-*` code and never raises. The one exception is removing
 one of the two summed entries, a consistent edit (§14), which imports as the model it
-yields. A mutation of a reported entry cancels its exclusion, so none hides there. The regeneration identity alone,
+yields. Inside each entry reported as summed, the test also changes the category, the
+target, the direction and the case, and adds an entry under the summed primitive's formed
+id (a duplicate primitive id). Each is refused, and the identity alone, which sets aside
+only the summed identity, refuses each too. The regeneration identity alone,
 given the model the file and the unmutated sidecar determine, refuses each mutation too (a
 mutated digest is the parser's: it decides the route). The writer's own sidecar regenerates
 exactly, as a positive control, and so does that of every model in the reversible subset
@@ -1444,8 +1452,16 @@ involved.
   direction (implemented), but not its magnitude. The writer sums several primitives on one
   target, so a primitive id is restored only when the sidecar names exactly one primitive
   for that (case, category, target, axis). A sum keeps its §10.4 id. It is reported at
-  `load_map[<case>/<formed id>]`, and each sidecar entry it sums at `load_map[<key>]`;
-  these reports are the regeneration identity's only exclusions (§14).
+  `load_map[<case>/<formed id>]`, and each sidecar entry it sums at `load_map[<key>]`. Its
+  identity is all the regeneration identity sets aside (§14); a formed id that a restored
+  id already has is refused by name (DUPLICATE_ID).
+- **Thermal direction.** The MBF carries none, so a restored thermal primitive keeps the
+  direction its sidecar entries record. When the MBF sums several, they must name one axis
+  (aliases agree), and it is kept; entries naming different axes are refused by name
+  (`MBF-IMPORT-SIDECAR-CONFLICT` at `load_map[<key>].direction`), since a sum across
+  directions is not meaningful. A legacy entry without a direction cannot represent one:
+  its loss is reported by name (`MBF-IMPORT-DIRECTION-UNRECOVERABLE`), and the import's
+  `global_x` stands.
 - **Support families** when the sidecar entry has no `family` (§12).
 - **Bend component nodes** (§11 item 5).
 - **Members the writer does not export** (§17's last rows).
@@ -1479,7 +1495,8 @@ caller explicitly asks for `rebind_by_node_number`.
 `nA`/`nB`), element, support, bend, material and load case, and `region_map` (region id →
 CAEPIPE elements) when the file has pressure. It also lists the straights whose
 `y_reference` the import derived (`y_reference_derived`), the regeneration identity's one
-input beyond the model (§14). DEL-17-05's CSV parser can
+input beyond the model (§14), and for each summed primitive the sidecar entries it sums
+(`load_map[<id>].summed_entries`). DEL-17-05's CSV parser can
 bind CAEPIPE results of an imported model through it.
 
 ## 16. The output document

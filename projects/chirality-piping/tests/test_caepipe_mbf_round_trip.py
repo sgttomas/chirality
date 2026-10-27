@@ -36,7 +36,7 @@ import caepipe_mbf_canonical as canon  # noqa: E402
 from core.handoff.caepipe_mbf import importer as importer_module  # noqa: E402
 from core.handoff.caepipe_mbf import render_caepipe_mbf_si  # noqa: E402
 from core.handoff.caepipe_mbf.importer import (  # noqa: E402
-    canonical_sidecar, import_caepipe_mbf, reported_exclusions, sidecar_difference)
+    canonical_sidecar, import_caepipe_mbf, sidecar_difference, summed_entries)
 from core.handoff.caepipe_mbf.si_writer import regenerate_caepipe_sidecar  # noqa: E402
 from schema_validation import JsonSchemaDependencyMissing, _skip_or_note_missing_jsonschema, validate_instance  # noqa: E402
 from test_model_schema import desktop_entity_requirements  # noqa: E402
@@ -311,12 +311,11 @@ def test_summed_primitives_are_many_to_one_and_reported():
     loads = trip.bound.model["load_cases"][0]["primitive_loads"]
     assert [(load["id"], load["magnitude"]["value"]) for load in loads] == [
         ("load:concentrated_force:N1:global_y", -7000.0)]
-    assert exclusions(trip.bound) == {"load_map[case:tip/tip]", "load_map[case:tip/tip2]",
-                                      "load_map[case:tip/load:concentrated_force:N1:global_y]"}
-    assert differing_entries(trip.sidecar, trip.bound) == exclusions(trip.bound)
+    assert groups(trip.bound) == {"case:tip/load:concentrated_force:N1:global_y": ["case:tip/tip", "case:tip/tip2"]}
+    assert set_aside(trip.bound) == reported(trip.bound) == differing_entries(trip.sidecar, trip.bound)
     assert regeneration_difference(trip.sidecar, trip.bound) is None
-    found = sidecar_difference(trip.sidecar, regenerated_from(trip.bound))  # without the reported exclusions
-    assert found is not None and found[0] in exclusions(trip.bound)
+    found = sidecar_difference(trip.sidecar, regenerated_from(trip.bound))  # with no identity set aside
+    assert found is not None and found[0] in reported(trip.bound)
 
 
 def test_a_merged_anchor_split_the_solve_refuses_is_not_restored():
@@ -759,15 +758,27 @@ def regenerated_from(result) -> dict:
     return regenerated
 
 
-def exclusions(result) -> frozenset[str]:
-    """The load_map entries `result`'s own import reported by name as many-to-one (REQ-016)."""
-    return reported_exclusions(result.loss_report)
+def groups(result) -> dict[str, list[str]]:
+    """The primitives `result`'s own import formed from several sidecar entries (REQ-016): regenerated key -> keys."""
+    return summed_entries(result.id_map)
+
+
+def reported(result) -> set[str]:
+    """The load_map paths `result`'s import reported by name as many-to-one (MBF-IMPORT-ID-UNRECOVERABLE)."""
+    return {item["location"] for item in result.loss_report
+            if item["code"] == "MBF-IMPORT-ID-UNRECOVERABLE" and item["location"].startswith("load_map[")}
+
+
+def set_aside(result) -> set[str]:
+    """The entries whose identity only the regeneration identity sets aside: each summed primitive's regenerated
+    entry and the sidecar entries it sums."""
+    return {f"load_map[{key}]" for formed, keys in groups(result).items() for key in (formed, *keys)}
 
 
 def regeneration_difference(sidecar: dict, result) -> tuple[str, str, str] | None:
     """The regeneration identity alone (Design §14): `sidecar` against what the writer regenerates from the imported
-    model of `result`, excluding exactly the entries that import reported; None when they are equal."""
-    return sidecar_difference(sidecar, regenerated_from(result), excluded=exclusions(result))
+    model of `result`, the summed primitives' identities aside; None when they are equal."""
+    return sidecar_difference(sidecar, regenerated_from(result), summed=groups(result))
 
 
 def differing_entries(sidecar: dict, result) -> set[str]:
@@ -1675,16 +1686,8 @@ def test_every_mutated_sidecar_is_refused_by_name_or_restores_the_same_model(bas
     # given the model the file and the unmutated sidecar determine, refuses each one too.
     assert regeneration_difference(base, expected) is None
     regenerated = regenerated_from(expected)
-    reported = exclusions(expected)
-    assert bool(reported) == (base_model == "summed")
-
-    def excluded(sidecar: dict) -> frozenset[str]:
-        # An exclusion applies only where the import reported it for this file: a mutation of any reported entry
-        # (or of the map holding them) leaves none, so no mutation hides inside one.
-        given, unmutated = canonical_sidecar(sidecar).get("load_map"), canonical_sidecar(base)["load_map"]
-        same = isinstance(given, dict) and all(
-            given.get(path[len("load_map["):-1]) == unmutated.get(path[len("load_map["):-1]) for path in reported)
-        return reported if same else frozenset()
+    summed = groups(expected)  # only these identities are set aside; every field of their entries is compared
+    assert bool(summed) == (base_model == "summed") and set_aside(expected) == reported(expected)
     assert bool(expected.model.get("pressure_contract")) == (base_model not in ("pressure-free", "summed"))
     unbound = run(None, "unbound")  # a digest that is not this file's leaves the sidecar unapplied (§15)
     assert unbound.status == "imported", unbound.diagnostics
@@ -1695,17 +1698,28 @@ def test_every_mutated_sidecar_is_refused_by_name_or_restores_the_same_model(bas
                               {key: value for key, value in deepcopy(base).items() if key != name}))
         if base.get(name, None) != {}:  # emptying a map the base already holds empty changes nothing
             mutations.append((f"{name}: map emptied", {**deepcopy(base), name: {}}))
+    # VER-002 r14: inside each entry reported as summed, its category, target, direction and case changed, and an
+    # entry added under the summed primitive's formed id (a duplicate primitive id). Each is refused.
+    for formed, keys in summed.items():
+        for key in keys:
+            for field, value in (("category", "concentrated_moment"), ("target", {"node": "N0"}),
+                                 ("direction", "global_x"), ("load_case", "case:other")):
+                mutated = deepcopy(base)
+                mutated["load_map"][key][field] = value
+                mutations.append((f"load_map/{key}/{field}: reported entry changed", mutated))
+        mutated = deepcopy(base)
+        mutated["load_map"][formed] = {**deepcopy(base["load_map"][keys[0]]), "direction": "global_x"}
+        mutations.append((f"load_map/{formed}: duplicate of the formed id", mutated))
     outcomes = {"refused": 0, "equal": 0, "unbound": 0}
     # Removing one of the summed entries leaves a sidecar the writer writes for a model with one primitive there: a
     # consistent edit, which imports as that model (§14); it is the only mutation that imports.
-    consistent = {f"load_map/{path[len('load_map['):-1]}: removed" for path in reported
-                  if path[len("load_map["):-1] in base["load_map"]}
+    consistent = {f"load_map/{key}: removed" for keys in summed.values() for key in keys}
     for label, sidecar in mutations:
         imported = run(sidecar, "mutated")
         errors = {item["code"] for item in imported.diagnostics if item["severity"] == "error"}
         if label in consistent:
             assert imported.status == "imported" and imported.source["binding"] == "bound", label
-            assert regeneration_difference(sidecar, imported) is None and not exclusions(imported), label
+            assert regeneration_difference(sidecar, imported) is None and not groups(imported), label
             outcomes["equal"] += 1
             continue
         if label.endswith(": removed") or label.endswith(": map deleted") or ": null for " in label:
@@ -1715,7 +1729,7 @@ def test_every_mutated_sidecar_is_refused_by_name_or_restores_the_same_model(bas
             # The identity alone refuses it too; a mutated digest is the parser's (it decides the route, and the
             # identity, which compares everything else, excludes it).
             assert label.startswith("mbf_sha256") or sidecar_difference(
-                sidecar, regenerated, excluded=excluded(sidecar)) is not None, label
+                sidecar, regenerated, summed=summed) is not None, label
             outcomes["refused"] += 1
         elif imported.source["binding"] == "unbound":
             assert label.startswith("mbf_sha256") and imported.model == unbound.model, label
@@ -1750,7 +1764,7 @@ def test_every_mutated_sidecar_is_refused_by_name_or_restores_the_same_model(bas
         if expected == "refused":
             assert imported.status == "refused" and errors, label
             assert all(code.startswith("MBF-IMPORT-") for code in errors), label
-            assert sidecar_difference(sidecar, regenerated, excluded=excluded(sidecar)) is not None, label
+            assert sidecar_difference(sidecar, regenerated, summed=summed) is not None, label
         elif expected == "unbound":
             assert imported.source["binding"] == "unbound", label
         else:
@@ -2118,17 +2132,17 @@ def guarded(model: dict, change, label: str, **options):
     return result, regeneration_difference(changed, base), base
 
 
-def test_every_comparison_model_regenerates_its_sidecar_identically_or_with_reported_exclusions(trips):
-    # The writer's sidecar of every model is what the writer regenerates from its bound import, except exactly the
-    # entries that import reported by name under REQ-016: each excluded path has its report and differs, and nothing
-    # else is excluded or differs. Only the summed-load model has any.
+def test_every_comparison_model_regenerates_its_sidecar_identically_or_with_identity_only_exclusions(trips):
+    # The writer's sidecar of every model is what the writer regenerates from its bound import. Only the identity of a
+    # primitive the MBF sums is set aside (REQ-016): its entries differ only there, each set-aside entry has its
+    # named report and nothing else is set aside or differs. Only the summed-load model has any.
     excluded_models = set()
     for name in REVERSIBLE:
         trip = trips[name]
         assert trip.bound.status == "imported", (name, trip.bound.diagnostics)
         assert regeneration_difference(trip.sidecar, trip.bound) is None, name
-        assert differing_entries(trip.sidecar, trip.bound) == exclusions(trip.bound), name
-        if exclusions(trip.bound):
+        assert differing_entries(trip.sidecar, trip.bound) == set_aside(trip.bound) == reported(trip.bound), name
+        if groups(trip.bound):
             excluded_models.add(name)
     assert excluded_models == {"writer-cancelling-forces"}
     assert len(REVERSIBLE) == 22
@@ -2273,4 +2287,47 @@ def test_a_declared_origin_other_than_the_recorded_one_is_refused():
     own = {"*": {"origin": "user_supplied", "source_name": "my own invented data"}}
     result = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=own, source_label="declared")
     assert refusals(result) == {("MBF-IMPORT-SIDECAR-CONFLICT", "material_map[M1].origin")}
+
+
+# --- VER-002 r14: a summed primitive's entries are compared but for its identity ------------------------------------
+def test_a_restored_id_that_a_summed_primitive_would_also_take_is_refused():
+    # Codex VER-002 r14 (finding 1): with a second Y force on the tip and a +500 N X force named
+    # load:concentrated_force:N1:global_y, the MBF prints FOR(500,-7000,0). The X primitive restores that id and the
+    # summed Y primitive forms it too: two primitives under one id, which the solve refuses (DUPLICATE_ID). The
+    # import refuses the collision by name before the model is assembled.
+    model = writer_tests.cantilever()
+    model["load_cases"][0]["primitive_loads"] += [
+        writer_tests.force("tip2", "N1", "global_y", -1000.0),
+        writer_tests.force("load:concentrated_force:N1:global_y", "N1", "global_x", 500.0)]
+    data, sidecar = bound_parts(model)
+    assert "CFOR(500,-7000,0)" in data.decode()
+    result = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="collision")
+    assert refusals(result) == {("MBF-IMPORT-SIDECAR-CONFLICT",
+                                 "load_map[case:tip/load:concentrated_force:N1:global_y]")}
+    assert "DUPLICATE_ID" in result.diagnostics[-1]["message"] and result.model is None
+
+
+def test_summed_thermal_entries_keep_their_common_direction_or_are_refused():
+    # Codex VER-002 r14 (finding 2): two thermal entries on one straight, both global_z, imported as one global_x
+    # thermal load. The formed load keeps a direction its entries agree on (an alias of one axis agrees); entries that
+    # disagree are refused by name, since a sum across directions is not meaningful.
+    data = importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X1000", loads=("L1,120,0,0",))
+    data, sidecar = bound_parts(importer_tests.run(data).model)
+    (key, entry), = sidecar["load_map"].items()
+    case = entry["load_case"]
+    for directions, expected in ((("global_z", "global_z"), "global_z"), (("global_z", "UZ"), "global_z"),
+                                 (("global_z", "global_x"), None)):
+        changed = deepcopy(sidecar)
+        changed["load_map"][key]["direction"] = directions[0]
+        changed["load_map"][f"{case}/t2"] = {**deepcopy(entry), "direction": directions[1]}
+        result = import_caepipe_mbf(data, sidecar=changed, material_provenance=INVENTED, source_label="thermal")
+        if expected is None:
+            assert refusals(result) == {("MBF-IMPORT-SIDECAR-CONFLICT", f"load_map[{case}/t2].direction")}
+            continue
+        assert result.status == "imported", (directions, result.diagnostics)
+        (load,) = [load for case_ in result.model["load_cases"] for load in case_["primitive_loads"]]
+        assert load["direction"] == expected and load["id"] == "load:thermal:pipe:10-20"
+        assert groups(result) == {f"{case}/load:thermal:pipe:10-20": [key, f"{case}/t2"]}
+        assert regeneration_difference(changed, result) is None
+        assert set_aside(result) == reported(result)
 
