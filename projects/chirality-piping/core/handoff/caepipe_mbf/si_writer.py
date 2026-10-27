@@ -284,6 +284,14 @@ class _Writer:
             return None
         return result
 
+    def finite(self, values: Any, entity: str, what: str) -> bool:
+        """True when every derived value is finite; otherwise MBF-SI-VALUE-OUT-OF-RANGE, never an `inf` in the MBF."""
+        values = values if isinstance(values, (list, tuple)) else [values]
+        if all(math.isfinite(value) for value in values):
+            return True
+        self.diag("MBF-SI-VALUE-OUT-OF-RANGE", "error", entity, f"{entity} {what} is not representable in binary64")
+        return False
+
     def convert(self, value: float, scaling: int | Fraction, unit: str) -> float | None:
         """A power-of-ten scaling, or an exact definitional normalization rounded once to binary64."""
         if isinstance(scaling, Fraction):
@@ -654,6 +662,8 @@ class _Writer:
         chord_length = _norm(chord)
         theta = math.acos(cosine)
         tangent_length = bend["radius"] * math.tan(theta / 2.0)
+        if not self.finite([*ti, t1, t2, residual, tangent_length], entity, "tangent intersection"):
+            return None
         tol = _BEND_RELATIVE_TOLERANCE
         if residual > tol * chord_length:
             self.refuse("MBF-SI-BEND-GEOMETRY-INCONSISTENT", entity,
@@ -1014,8 +1024,8 @@ class _Writer:
         density = 0.0
         if pipe_id in self.weight:
             od_m, thk_m = pipe["od"] / 1000.0, pipe["thk"] / 1000.0
-            area = math.pi / 4.0 * (od_m**2 - (od_m - 2.0 * thk_m) ** 2)
-            density = -self.weight[pipe_id] / (area * STANDARD_GRAVITY)
+            area = math.pi / 4.0 * (od_m * od_m - (od_m - 2.0 * thk_m) * (od_m - 2.0 * thk_m))  # inf, not OverflowError
+            density = -self.weight[pipe_id] / (area * STANDARD_GRAVITY) if area > 0 else math.inf
             if not math.isfinite(density) or (self.weight[pipe_id] != 0 and density == 0):
                 self.diag("MBF-SI-VALUE-OUT-OF-RANGE", "error", f"pipe:{pipe_id}",
                           f"pipe:{pipe_id} weight density is not representable in binary64")
@@ -1044,6 +1054,7 @@ class _Writer:
             name = f"L{len(loads) + 1}"
             loads[_num(delta)] = name
             load_entries[name] = self.t_ref + delta
+            self.finite(load_entries[name], f"pipe:{pipe_id}", "operating temperature (reference + thermal change)")
         names = (materials[material_key], sections[section_key], loads[_num(delta)])
         material_map[names[0]]["elements"].append(pipe_id)
         section_map[names[1]]["elements"].append(pipe_id)
@@ -1066,6 +1077,8 @@ class _Writer:
         deltas = [self.delta_t.get(pipe_id, 0.0) for pipe_id in self.pipes]
         t_hi = self.t_ref + max(max(abs(value) for value in deltas), 100.0)
         t_lo = self.t_ref + min(0.0, min(deltas))
+        if not self.finite([t_lo, t_hi], "MATERIAL", "temperature table (reference temperature and thermal changes)"):
+            return self.refused()
         temperatures = sorted({t_lo, self.t_ref, t_hi})
 
         materials: dict[tuple[str, str], str] = {}
@@ -1174,6 +1187,7 @@ class _Writer:
             else:
                 px, py, pz = self.position(rows[index - 1]["node"])
                 offsets = [(axis, value) for axis, value in zip("XYZ", (x - px, y - py, z - pz)) if value != 0]
+                self.finite([value for _, value in offsets], f"pipe:{pipe_id}", "layout offset")
                 if not offsets:
                     self.refuse("MBF-SI-GEOMETRY-UNSUPPORTED", f"pipe:{pipe_id}", f"pipe:{pipe_id} has zero length")
                 fields.extend(f"{axis}{_num(value)}" for axis, value in offsets)
@@ -1321,7 +1335,7 @@ def _cross(a: tuple[float, ...], b: tuple[float, ...]) -> tuple[float, float, fl
 
 
 def _norm(a: tuple[float, ...]) -> float:
-    return math.sqrt(_dot(a, a))
+    return math.hypot(a[0], a[1], a[2])  # scaled: no overflow or underflow in the squares
 
 
 def _unit(a: tuple[float, ...]) -> tuple[float, float, float]:

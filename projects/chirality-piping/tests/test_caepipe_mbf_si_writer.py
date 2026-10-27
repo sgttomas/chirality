@@ -709,3 +709,66 @@ def test_a_normalized_value_that_overflows_or_underflows_is_refused_by_name():
     model = cantilever()
     model["nodes"][1]["position"]["x"] = 1e308
     assert "MBF-SI-VALUE-OUT-OF-RANGE" in codes(render_caepipe_mbf_si(model, title="L"))
+
+
+# Derived values the writer forms itself (independent review VER-002 r2): each is checked before it is printed.
+def test_overflowing_temperatures_are_refused_not_printed_as_inf():
+    # Codex VER-002 r2: reference 1e308 C and a thermal change of 1e308 degC. By hand the material table's top
+    # temperature is 1e308 + 1e308 = 2e308 C, beyond the largest binary64 (1.80e308); it printed "inf" before.
+    model = cantilever()
+    model["load_cases"] = [{"id": "case:th", "primitive_loads": [
+        {"id": "dt", "category": "thermal", "target": {"type": "element", "pipe": "S1"}, "direction": "global_x",
+         "magnitude": q(1e308, "degC"), "dimension": "temperature_interval"}]}]
+    result = render_caepipe_mbf_si(model, title="HOT", reference_temperature_c=1e308)
+    assert result.status == "refused" and result.text is None
+    assert any(item["code"] == "MBF-SI-VALUE-OUT-OF-RANGE" and "temperature" in item["message"]
+               for item in result.diagnostics)
+    # By hand: -1e308 C reference and a -1e308 degC change give -2e308 C at the bottom of the table.
+    model["load_cases"][0]["primitive_loads"][0]["magnitude"] = q(-1e308, "degC")
+    assert "MBF-SI-VALUE-OUT-OF-RANGE" in codes(render_caepipe_mbf_si(model, title="COLD", reference_temperature_c=-1e308))
+
+
+def test_an_overflowing_layout_offset_is_refused():
+    # By hand: nodes at x = -1e308 mm and +1e308 mm give an offset of 2e308 mm.
+    model = cantilever("mm")
+    model["nodes"] = [node("N0", -1e308), node("N1", 1e308)]
+    result = render_caepipe_mbf_si(model, title="FAR")
+    assert result.status == "refused" and any(
+        item["code"] == "MBF-SI-VALUE-OUT-OF-RANGE" and "layout offset" in item["message"] for item in result.diagnostics)
+
+
+def test_an_overflowing_section_area_is_refused_not_raised():
+    # By hand: OD 1e305 mm = 1e302 m; OD^2 = 1e604 overflows, so the bare-metal area and the weight density cannot
+    # be formed. It raised OverflowError (float ** 2) before.
+    model = cantilever("mm")
+    model["pipe_segments"][0]["section"] = {"outside_diameter": q(1e305, "mm"), "wall_thickness": q(1e304, "mm")}
+    model["load_cases"][0]["primitive_loads"].append(
+        {"id": "w", "category": "weight", "target": {"type": "element", "pipe": "S1"}, "direction": "global_y",
+         "magnitude": q(-1.0, "N/m"), "dimension": "force_per_length"})
+    result = render_caepipe_mbf_si(model, title="BIG")
+    assert result.status == "refused" and "MBF-SI-VALUE-OUT-OF-RANGE" in codes(result)
+
+
+def test_a_tangent_intersection_beyond_binary64_is_refused():
+    # By hand: incoming leg along +X ending at T1 x = 1.7e308 mm; outgoing direction (-0.5, 0, sqrt(3)/2), a 120
+    # degree bend, with the far tangent node 1e307 mm from the TI. The TI lies at x = 1.7e308 + 1e307 = 1.8e308 mm,
+    # beyond binary64, although every node is representable.
+    t, s = 1e307, math.sqrt(3) / 2
+    x1 = 1.7e308  # T1; T2 = TI + t (-0.5, 0, s) has x = x1 + 0.5 t; B = TI + 3t (-0.5, 0, s) has x = x1 - 0.5 t
+    model = model_shell("mm")
+    model["nodes"] = [node("A", 1.5e308), node("T1", x1), node("T2", x1 + 0.5 * t, 0.0, s * t),
+                      node("B", x1 - 0.5 * t, 0.0, 3 * s * t)]
+    model["pipe_segments"] = [pipe("S1", "A", "T1", 100.0, 5.0, "mm"), pipe("BEND", "T1", "T2", 100.0, 5.0, "mm"),
+                              pipe("S2", "T2", "B", 100.0, 5.0, "mm")]
+    model["pipe_segments"][1]["y_reference"] = {"x": 1.0, "y": 0.0, "z": 0.0}
+    model["supports"] = [{"id": "SA", "node": "A", "restraints": list(SIX)}]
+    model["components"] = [{"id": "bend", "kind": "bend", "node": "T1",
+                            "geometry": {"bend_pipe_ref": "BEND", "bend_radius": q(t / math.tan(math.pi / 3), "mm")},
+                            "modifiers": {"flexibility_factor_user_value": q(1.0, "none")},
+                            "mechanics_interface": {"solver_consumption": "curved_bend_macro_element"}}]
+    model["load_cases"] = [{"id": "c", "primitive_loads": [force("f", "B", "global_y", -1.0)]}]
+    assert math.isinf(x1 + t)  # the TI is not representable; every node is
+    result = render_caepipe_mbf_si(model, title="FAR BEND")
+    assert result.status == "refused"
+    assert any(item["code"] == "MBF-SI-VALUE-OUT-OF-RANGE" and "tangent intersection" in item["message"]
+               for item in result.diagnostics)
