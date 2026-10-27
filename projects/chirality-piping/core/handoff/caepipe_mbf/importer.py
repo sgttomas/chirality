@@ -20,7 +20,8 @@ From the project root:
 
     python3 -m core.handoff.caepipe_mbf.importer <in.mbf> --out <dir> [--sidecar <id_map.json>]
         [--material-provenance <declaration.json>] [--pressure-closure <declaration.json>]
-        [--rebind-by-node-number] [--source-label <text>]
+        [--shear-model euler_bernoulli|timoshenko_annulus_energy_v1] [--rebind-by-node-number]
+        [--source-label <text>]
 """
 
 from __future__ import annotations
@@ -83,9 +84,10 @@ _PA_PER_UNIT = {"MPa": 1_000_000.0, "psi": 4.448_221_615_260_5 / 0.000_645_16}
 # Pressure (Design §9.4). LOADS Pressure 1 is in bar in SI files and psi in English files (Format of .MBF, LOADS);
 # it keeps that unit, which the units catalog reads to Pa by its binary64 factors (bar 1e5; psi PSI_IN_PASCALS).
 PRESSURE_UNIT = {True: "bar", False: "psi"}
-# A document with pressure takes the exact pressure contract (schemas/model.schema.yaml, PressureContract) with
-# Euler-Bernoulli straights, the beam theory SWBPIPE solves the same model with when it has no pressure.
-PRESSURE_CONTRACT = {"version": "3.0.0", "mode": "exact_pressure_v3", "shear_model": "euler_bernoulli"}
+# A document with pressure takes the exact pressure contract (schemas/model.schema.yaml, PressureContract). An
+# unbound import takes the contract's default shear model, Timoshenko with the energy-matched annular shear factor
+# (owner D-6), or the caller's `shear_model`; a bound import keeps the sidecar's (Design §9.4).
+PRESSURE_CONTRACT = {"version": "3.0.0", "mode": "exact_pressure_v3", "shear_model": "timoshenko_annulus_energy_v1"}
 SHEAR_MODELS = ("euler_bernoulli", "timoshenko_annulus_energy_v1")
 PRESSURE_BASIS = "internal_differential_zero_external_v1"
 CLOSURE_TRANSFERS = ("transfers_to_wall", "separately_supported_or_compensated")
@@ -250,6 +252,7 @@ def import_caepipe_mbf(
     sidecar: Mapping[str, Any] | None = None,
     material_provenance: Mapping[str, Any] | None = None,
     pressure_closure: Mapping[str, Any] | None = None,
+    shear_model: str | None = None,
     rebind_by_node_number: bool = False,
     source_label: str,
 ) -> MbfImportResult:
@@ -258,10 +261,16 @@ def import_caepipe_mbf(
     `pressure_closure` is the caller's closure-transfer declaration for the terminals of pressure regions an
     unbound import forms (Design §9.4): {"closure_transfer": "transfers_to_wall" or
     "separately_supported_or_compensated", "provenance": "<basis>", "nodes": {"<CAEPIPE node>": <closure>}}, with
-    "nodes" optional. Closure transfer is never inferred: without it, a file with pressure is refused."""
+    "nodes" optional. It governs the real ends of regions (free ends, tees, pressure or bore changes); a terminal at a
+    straight-to-straight corner takes transfers_to_wall, deduced from the continuous pipe wall, unless "nodes" names
+    it. Closure transfer is never inferred from the file: without the declaration, a file with pressure is refused.
+
+    `shear_model` (optional) is the exact contract's shear model for an unbound import with pressure, one of
+    SHEAR_MODELS; without it the contract's default timoshenko_annulus_energy_v1 applies. A bound import keeps the
+    sidecar's, and a different `shear_model` with it is refused."""
 
     return _Importer(data, sidecar, material_provenance, rebind_by_node_number, source_label,
-                     pressure_closure).run()
+                     pressure_closure, shear_model).run()
 
 
 # ---------------------------------------------------------------------------
@@ -949,9 +958,10 @@ class _Refused(Exception):
 
 class _Importer:
     def __init__(self, data: Any, sidecar: Any, provenance: Any, rebind: bool, source_label: Any,
-                 closure: Any = None) -> None:
+                 closure: Any = None, shear_model: Any = None) -> None:
         self.data = data
         self.closure = closure
+        self.shear_model = shear_model
         self.oppres: tuple[int, list[str], bool] | None = None
         self.pressure_notes: list[str] = []
         self.sidecar = sidecar
@@ -1047,6 +1057,10 @@ class _Importer:
             self.read_version()
             self.read_options()
             self.bind_sidecar()
+            if self.shear_model is not None and not (type(self.shear_model) is str
+                                                     and self.shear_model in SHEAR_MODELS):
+                self.refuse("MBF-IMPORT-SHEAR-MODEL-INVALID", 0, "shear_model",
+                            f"the shear_model argument {self.shear_model!r} is not one of {', '.join(SHEAR_MODELS)}")
             self.read_analysis_options()
             self.read_materials()
             self.read_pipes()
@@ -2828,6 +2842,13 @@ class _Importer:
         contract = dict(PRESSURE_CONTRACT)
         if stored is not None:
             contract["shear_model"] = stored["contract"]["shear_model"]
+            if self.shear_model is not None and self.shear_model != contract["shear_model"]:
+                self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", 0, "shear_model",
+                            f"the shear_model argument {self.shear_model} differs from the bound sidecar's "
+                            f"{contract['shear_model']}, which a bound import keeps")
+                raise _Refused
+        elif self.shear_model is not None:
+            contract["shear_model"] = self.shear_model
         if active:
             self.pressure_effects()
         ends = {pipe["id"]: (pipe["from"], pipe["to"]) for pipe in pipes}
@@ -2845,8 +2866,17 @@ class _Importer:
                                         {pipe["id"]: pipe["label"] for pipe in pipes})
             how = ("formed as maximal chains of elements with equal Pressure 1 and bore, ended at tees, where "
                    "pressure or bore changes, and at straight-to-straight corners of a run the exact route's "
-                   "collinearity check refuses whole; closure transfer at every terminal is the caller's "
-                   "declaration (pressure_closure), never inferred")
+                   "collinearity check refuses whole; closure transfer at each real end (free end, tee, pressure or "
+                   "bore change) is the caller's declaration (pressure_closure), never inferred from the file; a "
+                   "corner terminal takes transfers_to_wall, deduced from geometry: the pipe wall is continuous "
+                   "there, so it carries the corner's pressure force pA(t_in - t_out), unless pressure_closure.nodes "
+                   "names the corner (Agent 0's decision under the owner's delegation, 2026-10-27)")
+            self.pressure_notes.append(
+                "Shear model: " + (f"the caller's {contract['shear_model']}" if self.shear_model is not None else
+                                   "timoshenko_annulus_energy_v1, the exact contract's default (owner D-6: Timoshenko "
+                                   "with the energy-matched annular shear factor), as the MBF states none")
+                + "; realized curved bends stay Euler-Bernoulli under either model, as the route discloses (Agent "
+                "0's decision under the owner's delegation, 2026-10-27).")
         if members is None:
             raise _Refused
         regions, region_map = [], {}
@@ -3070,6 +3100,7 @@ class _Importer:
                 stretch = nodes[low:high + 1]
                 if not collinear(stretch) and not collinear(stretch[::-1]):
                     cuts.update(k for k in range(low + 1, high) if corner(nodes[k - 1], nodes[k], nodes[k + 1]))
+            corners.update(nodes[index] for index in cuts)
             pieces, current, piece_start = [], [], start
             for index, member in enumerate(members):
                 if index in cuts:
@@ -3079,7 +3110,7 @@ class _Importer:
             pieces.append((current, piece_start, nodes[-1]))
             return pieces
 
-        chains, seen = [], set()
+        chains, seen, corners = [], set(), set()
         for pipe_id in sorted(active, key=order.__getitem__):
             if pipe_id in seen:
                 continue
@@ -3151,9 +3182,15 @@ class _Importer:
                         "terminal")
             return None
         formed = []
+        wall = ("closure transfer deduced from geometry at import, not inferred from the file: the pipe wall is "
+                "continuous through this straight-to-straight corner, so it carries the corner's pressure force "
+                "pA(t_in - t_out)")
         for members, start, end in chains:
             terminals = [{"node_ref": node, "closure_transfer": by_node.get(name_of[node], default),
-                          "provenance": f"closure transfer declared at import: {provenance}"} for node in (start, end)]
+                          "provenance": f"closure transfer declared at import: {provenance}"}
+                         if name_of[node] in by_node or node not in corners else
+                         {"node_ref": node, "closure_transfer": "transfers_to_wall", "provenance": wall}
+                         for node in (start, end)]
             formed.append((f"region:mbf-{name_of[start]}-{name_of[end]}", members, terminals))
         return formed
 
@@ -3344,6 +3381,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--sidecar", type=Path)
     parser.add_argument("--material-provenance", type=Path)
     parser.add_argument("--pressure-closure", type=Path)
+    parser.add_argument("--shear-model")
     parser.add_argument("--rebind-by-node-number", action="store_true")
     parser.add_argument("--source-label")
     args = parser.parse_args(argv)
@@ -3358,6 +3396,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.material_provenance else None,
         pressure_closure=json.loads(args.pressure_closure.read_text(encoding="utf-8"))
         if args.pressure_closure else None,
+        shear_model=args.shear_model,
         rebind_by_node_number=args.rebind_by_node_number,
         source_label=args.source_label or args.mbf.name,
     )

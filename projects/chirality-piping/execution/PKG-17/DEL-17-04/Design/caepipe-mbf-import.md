@@ -151,7 +151,7 @@ only", for the straight-pipe orientation of §10.5.
   name.
 - **Command line:** `python3 -m core.handoff.caepipe_mbf.importer <in.mbf> --out <dir>
   [--sidecar <id_map.json>] [--material-provenance <declaration.json>]
-  [--pressure-closure <declaration.json>] [--rebind-by-node-number]` writes `model.json`, `import_report.json` and `id_map.json`.
+  [--pressure-closure <declaration.json>] [--shear-model <model>] [--rebind-by-node-number]` writes `model.json`, `import_report.json` and `id_map.json`.
   It refuses an output folder inside a Git work tree unless the input MBF is a project-owned
   invented fixture (§16.4).
 - **No product write path.** The importer writes a model document only. The document
@@ -609,11 +609,21 @@ Design `pressure-contract.md`, "Current pressure boundary"; `schemas/model.schem
 `PressureContract`, `PressureRegion`). The importer therefore writes, when any element has
 Pressure 1 ≠ 0:
 
-- `pressure_contract` = `{version: 3.0.0, mode: exact_pressure_v3, shear_model:
-  euler_bernoulli}`. Euler–Bernoulli is the beam theory SWBPIPE applies to the same model
-  without pressure (DEL-05-03 Design `section-bases-and-timoshenko.md`: pressure-free
-  documents keep their Euler–Bernoulli frame), so adding pressure changes only the pressure.
-  A bound import restores the writer's shear model from the sidecar;
+- `pressure_contract` = `{version: 3.0.0, mode: exact_pressure_v3, shear_model}`. The MBF
+  states no shear model. An unbound import takes the exact contract's default,
+  `timoshenko_annulus_energy_v1`, Timoshenko with the energy-matched annular shear factor
+  (owner D-6), or the caller's optional `shear_model` argument, which admits exactly the
+  contract's two values (`euler_bernoulli`, `timoshenko_annulus_energy_v1`); any other value
+  is refused (`MBF-IMPORT-SHEAR-MODEL-INVALID`). A bound import keeps the sidecar's shear
+  model, and a different `shear_model` argument with it is refused
+  (`MBF-IMPORT-SIDECAR-CONFLICT`). Realized curved bends stay Euler–Bernoulli under either
+  model, as the route discloses. The assumptions state the model and its basis (Agent 0's
+  decision under the owner's delegation, 2026-10-27).
+  **Disclosure.** The public technical-reference page "Fiber Reinforced Plastic Piping
+  (FRP)", section "Stiffness matrix", forms pipe flexibility with a transverse-shear term
+  (shape factor × L/GA). Its use for steel pipe is an inference, and no shape-factor value
+  is published; the question is open with SST (CQ-17-01-010). SWBPIPE's energy-matched
+  annular factor may therefore differ from the external tool's unpublished factor;
 - the explicit corrosion allowance on every section, which each PIPE record must state
   (§8);
 - `pressure_regions` on every case: the regions on the sustained case, and an explicit
@@ -700,19 +710,25 @@ a cut adds closure terminals the file never had):
   reads a bend traversed backward by its end tangents. The id is `region:mbf-<first
   terminal>-<second terminal>` by CAEPIPE node name. `id_map.region_map` lists each
   region's elements.
-- **Corners (selected interpretation; for a ruling, §20.2).** Two regions meet at a
-  straight-to-straight corner, each with a terminal there. With `transfers_to_wall` at both,
-  their end forces pAᵢ along each straight sum to pAᵢ(t_in − t_out) at the node, the
-  resultant pressure force at a sharp corner. The exact route admits no mitre inside a
-  region (`PRESSURE_REGION_MITRE_UNSUPPORTED`), and this partition does not place one there.
+- **Corners** (Agent 0's decision under the owner's delegation, 2026-10-27). Two regions meet
+  at a sharp straight-to-straight corner, each with a terminal there. Both corner terminals
+  take `transfers_to_wall`, whatever the caller's global declaration: the pipe is continuous
+  there, so its wall carries the thrust, and the end forces pAᵢ along each straight sum to
+  pAᵢ(t_in − t_out) at the node, the resultant pressure force at a sharp corner. This is
+  deduced from geometry, not inferred from the file, and each corner terminal's provenance
+  and the assumptions say so. A `pressure_closure.nodes` entry naming the corner node still
+  governs it. The exact route admits no mitre inside a region
+  (`PRESSURE_REGION_MITRE_UNSUPPORTED`), and this partition does not place one there.
 
 **Closure transfer is declared, never inferred.** Each terminal needs `transfers_to_wall` or
 `separately_supported_or_compensated` (`pressure_runtime.rs`: "closure transfer is never
 inferred"). The MBF does not state it. An unbound import with pressure therefore needs the
 caller's declaration `pressure_closure` = `{closure_transfer, provenance, nodes}`:
-`closure_transfer` applies to every terminal, `nodes` (optional) maps CAEPIPE node names to
-another closure transfer, and each terminal's provenance is "closure transfer declared at
-import: <provenance>". Without it the import is refused
+`closure_transfer` applies to every real end (a free end, a tee, a change of pressure or
+bore), `nodes` (optional) maps CAEPIPE node names, corner nodes included, to another closure
+transfer, and each such terminal's provenance is "closure transfer declared at import:
+<provenance>". A corner terminal no `nodes` entry names takes `transfers_to_wall`
+(**Corners**, above). Without it the import is refused
 (`MBF-IMPORT-PRESSURE-CLOSURE-REQUIRED`). A malformed declaration, or a `nodes` name that is
 not a terminal, is refused (`MBF-IMPORT-PRESSURE-CLOSURE-INVALID`). A file without pressure
 needs no declaration.
@@ -1055,7 +1071,7 @@ Support data are comments on the node's row or on a Location row. They follow *F
 |---|---|
 | `KA`, anchor in global axes (`LA` absent or 0) | `support:n`, `family: anchor`, restraints UX…RZ |
 | `FIXD(a,b,c)`, `F(a,b,c)`, `FIXDX[=1]`, `FX`, … | Translational restraints. Each value must be 0 or 1 (`MBF-IMPORT-COMMENT-INVALID`). They go on `support:n-restraint` with family absent (the solver's own inference, as for any family-less support) |
-| `FIXR(…)`, `FIXRX[=1]`, … | Rotational restraints, on the same restraint support. The solve reads a family-less support with fewer than six DOFs as a guide, which restrains translations only, so a restraint with some but not all six DOFs including a rotation is refused (`MBF-IMPORT-SUPPORT-UNSUPPORTED`, independent review VER-002 r8). The writer also refuses partial rotational restraints |
+| `FIXR(…)`, `FIXRX[=1]`, … | Rotational restraints, on the same restraint support. A restraint with some but not all rotations and no anchor cannot be represented by the solve's families: a family-less support with fewer than six DOFs is a guide, which restrains translations only. It is refused (`MBF-IMPORT-SUPPORT-UNSUPPORTED`; independent review VER-002 r8, the lane manager's sign-off) |
 | FIXD and FIXR covering all six DOF | Kept as written. The writer writes such a node as `KA` |
 | `KA` with `LA=1` (local axes), `TRAK`, `ROTK`, `FREE` | Refused (`MBF-IMPORT-SUPPORT-UNSUPPORTED`). Flexible anchors are tranche 2: one spring support per DOF, with N·m/deg → N·m/rad by multiplication by 180/π |
 | Guide `G` (`GGAP`, `MU`, `STIFF`) | Refused. Tranche 2, rigid and axis-aligned first |
@@ -1123,6 +1139,8 @@ the manual does not make clear which kind a record is, it is refused.
   such as the SIF and stress-index comments above;
 - `MBF-IMPORT-SIDECAR-INVALID`: a sidecar the parser refuses, by JSON path, or rebinding
   requested without one (§15);
+- `MBF-IMPORT-SHEAR-MODEL-INVALID`: a `shear_model` argument outside the contract's two
+  values (§9.4);
 - `MBF-IMPORT-VALUE-UNREPRESENTABLE`: a read or derived value outside the binary64 range, or a
   non-zero value that would become 0 (§4.3);
 - tranche 2: `MBF-IMPORT-PRESSURE-CLOSURE-REQUIRED`, `MBF-IMPORT-PRESSURE-CLOSURE-INVALID`,
@@ -1704,12 +1722,10 @@ dossier as CQ-17-01-011 to -015.
 - **O-3.** The tranche-1 cut (§11, §12, §14): temperature-dependent materials and supports
   beyond anchors and restraints are refused. Pressure and Z vertical are read since
   tranche 2 (§20.3).
-- **For a ruling (Agent 0, tranche 2).** Two selected interpretations in §9.4: regions end
-  at straight-to-straight corners (a direction change above α_tan), each with a terminal
-  there carrying the declared closure, rather than refusing such a file; and the unbound
-  shear model is Euler–Bernoulli. A straight run is never cut otherwise (manager ruling,
-  VER-002 r2). Independent review
-  VER-002 r1 found the corner terminals and Euler–Bernoulli defensible.
+- The two §9.4 rulings, corner terminals and the unbound shear model, are decided (Agent 0
+  under the owner's delegation, 2026-10-27) and stated in §9.4. Once the pressure-free
+  Timoshenko unit (#1663) lands, pressure-free imports follow the same default through
+  `model_settings.shear_model`; that is a later slice, not this one.
 - **O-4.** How CAEPIPE-exported MBFs are produced for §18.3: by hand by the owner, or by a
   guest automation step.
 

@@ -1087,7 +1087,7 @@ def test_pressure_1_becomes_an_exact_region_in_bar_with_the_file_allowance():
     result = run(mbf(*L_BEND, loads=("L1,120,12.5,0",)), pressure_closure=CLOSURE)
     assert result.status == "imported", result.diagnostics
     assert result.model["pressure_contract"] == {"version": "3.0.0", "mode": "exact_pressure_v3",
-                                                 "shear_model": "euler_bernoulli"}
+                                                 "shear_model": "timoshenko_annulus_energy_v1"}
     assert regions_of(result) == [("region:mbf-10-30", ["pipe:10-20A", "pipe:20A-20B", "pipe:20B-30"], 12.5, "bar",
                                    [("node:10", "transfers_to_wall"), ("node:30", "transfers_to_wall")])]
     region = regions_of(result)[0]
@@ -1104,7 +1104,8 @@ def test_pressure_1_becomes_an_exact_region_in_bar_with_the_file_allowance():
                for pipe in result.model["pipe_segments"])
     assert result.id_map["region_map"] == {"region:mbf-10-30": ["10-20A", "20A-20B", "20B-30"]}
     assert result.summary["pressure_regions"] == 1
-    assert any("closure transfer at every terminal is the caller's declaration" in note for note in result.assumptions)
+    assert any("closure transfer at each real end (free end, tee, pressure or bore change) is the caller's "
+               "declaration" in note for note in result.assumptions)
 
 
 def test_english_pressure_stays_in_psi():

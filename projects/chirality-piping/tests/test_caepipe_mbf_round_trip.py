@@ -237,8 +237,10 @@ def test_every_excluded_loss_and_model_is_listed():
 @pytest.mark.parametrize("name", REVERSIBLE)
 def test_unbound_import_under_pd1_equals_by_caepipe_name(trips, name):
     trip = trips[name]
+    # The shear model is not in the MBF: the caller states the source's (Design §9.4), else Timoshenko applies.
+    shear = (trip.model.get("pressure_contract") or {}).get("shear_model")
     result = import_caepipe_mbf(trip.data, material_provenance=INVENTED, pressure_closure=unbound_closure(trip),
-                                source_label=name)
+                                shear_model=shear, source_label=name)
     assert result.status == "imported", result.diagnostics
     assert any("PD-1" in note for note in result.assumptions)
     reference = trip.reference()
@@ -350,11 +352,28 @@ def test_bound_import_restores_the_pressure_contract_and_regions(trips, name):
 
 
 def test_the_shear_model_travels_only_in_the_sidecar():
-    trip = Trip("timoshenko", writer_tests.pressurized_l(shear="timoshenko_annulus_energy_v1"), "TIMOSHENKO", 20.0)
-    assert trip.bound.model["pressure_contract"]["shear_model"] == "timoshenko_annulus_energy_v1"
-    unbound = import_caepipe_mbf(trip.data, material_provenance=INVENTED, pressure_closure=CLOSURE, source_label="t")
-    assert unbound.model["pressure_contract"]["shear_model"] == "euler_bernoulli"
+    # Agent 0's decision under the owner's delegation, 2026-10-27 (Design §9.4): an unbound pressure import takes the
+    # contract's default timoshenko_annulus_energy_v1 (owner D-6) or the caller's shear_model, one of the contract's
+    # two; a bound import keeps the sidecar's, and a different shear_model with it is refused.
+    trip = Trip("euler", writer_tests.pressurized_l(shear="euler_bernoulli"), "EULER", 20.0)
+    assert trip.bound.model["pressure_contract"]["shear_model"] == "euler_bernoulli"
     assert "MBF-SI-SHEAR-MODEL-NOT-EXPORTED" in {item["code"] for item in trip.writer.loss_report}
+    unbound = lambda **options: import_caepipe_mbf(  # noqa: E731
+        trip.data, material_provenance=INVENTED, pressure_closure=CLOSURE, source_label="t", **options)
+    default = unbound()
+    assert default.model["pressure_contract"]["shear_model"] == "timoshenko_annulus_energy_v1"
+    assert any("timoshenko_annulus_energy_v1, the exact contract's default (owner D-6" in note
+               for note in default.assumptions)
+    assert unbound(shear_model="euler_bernoulli").model["pressure_contract"]["shear_model"] == "euler_bernoulli"
+    for bad in ("timoshenko", "", 1, True, ["euler_bernoulli"]):
+        result = unbound(shear_model=bad)
+        assert refusals(result) == {("MBF-IMPORT-SHEAR-MODEL-INVALID", "shear_model")}, bad
+    kept = import_caepipe_mbf(trip.data, sidecar=trip.sidecar, material_provenance=INVENTED, source_label="k",
+                              shear_model="euler_bernoulli")
+    assert kept.model["pressure_contract"]["shear_model"] == "euler_bernoulli"
+    conflict = import_caepipe_mbf(trip.data, sidecar=trip.sidecar, material_provenance=INVENTED, source_label="c",
+                                  shear_model="timoshenko_annulus_energy_v1")
+    assert refusals(conflict) == {("MBF-IMPORT-SIDECAR-CONFLICT", "shear_model")}
 
 
 def test_a_pressure_map_that_does_not_match_the_file_is_refused(trips):
@@ -1482,3 +1501,55 @@ def test_nested_sidecar_values_are_refused_by_path_and_the_writer_reads_no_unhas
         "node_ref"] = []
     written = render_caepipe_mbf_si(model, title="NODE REF")
     assert written.status == "refused" and "MBF-SI-INPUT-INVALID" in {item["code"] for item in written.diagnostics}
+
+
+# --- §9.4 rulings (Agent 0's decisions under the owner's delegation, 2026-10-27) -------------------------------------
+def terminal_transfers(output: Any, node: str) -> list[list[float]]:
+    """Every region terminal at `node` in the solve's pressure evidence: its pipe cap transfer, in N."""
+    found = []
+    if isinstance(output, dict):
+        if output.get("node_ref") == node and "pipe_cap_transfer_global_n" in output:
+            found.append(output["pipe_cap_transfer_global_n"])
+        for value in output.values():
+            found.extend(terminal_transfers(value, node))
+    elif isinstance(output, list):
+        for value in output:
+            found.extend(terminal_transfers(value, node))
+    return found
+
+
+def test_a_corner_terminal_carries_the_wall_thrust_whatever_the_global_closure():
+    # A sharp corner at 20 (+X in, +Y out) ends two regions there. The pipe wall is continuous through it, so both
+    # corner terminals take transfers_to_wall, deduced from geometry, even under a global
+    # separately_supported_or_compensated, which governs the real ends 10 and 30. By hand: r_i = 168.3/2 - 7.11 =
+    # 77.04 mm, A = pi (0.07704 m)^2, p = 10 bar = 1e6 Pa; the two end forces at 20, pA t_in and -pA t_out, sum to
+    # pA(t_in - t_out) = pA (1, -1, 0), with pA = 18645.86 N.
+    data = importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", "T20,X1000", "T30,KA,Y1000", loads=("L1,20,10,0",))
+    remote = {"closure_transfer": "separately_supported_or_compensated", "provenance": "invented remote declaration"}
+    result = importer_tests.run(data, pressure_closure=remote)
+    assert importer_tests.regions_of(result) == [
+        ("region:mbf-10-20", ["pipe:10-20"], 10.0, "bar",
+         [("node:10", "separately_supported_or_compensated"), ("node:20", "transfers_to_wall")]),
+        ("region:mbf-20-30", ["pipe:20-30"], 10.0, "bar",
+         [("node:20", "transfers_to_wall"), ("node:30", "separately_supported_or_compensated")])]
+    corner = [terminal for case in result.model["load_cases"] for region in case["pressure_regions"]
+              for terminal in region["terminals"] if terminal["node_ref"] == "node:20"]
+    assert all(terminal["provenance"].startswith("closure transfer deduced from geometry at import, not inferred "
+                                                 "from the file") for terminal in corner)
+    assert any("a corner terminal takes transfers_to_wall, deduced from geometry" in note
+               for note in result.assumptions)
+    p_a = 1.0e6 * math.pi * 0.07704 ** 2
+    assert 18645.86 < p_a < 18645.87
+    _, output, error = solve_swbpipe(runner_binary(), {"case_id": "corner", "model": result.model})
+    assert error == ""
+    transfers = terminal_transfers(output, "node:20")
+    assert len(transfers) == 2
+    total = [sum(force[axis] for force in transfers) for axis in range(3)]
+    assert total == pytest.approx([p_a, -p_a, 0.0], rel=1e-12, abs=1e-9)
+    # The per-node override names the corner node and is honoured there, with its declared provenance.
+    override = importer_tests.run(data, pressure_closure={**remote,
+                                                          "nodes": {"20": "separately_supported_or_compensated"}})
+    corner = [terminal for case in override.model["load_cases"] for region in case["pressure_regions"]
+              for terminal in region["terminals"] if terminal["node_ref"] == "node:20"]
+    assert [(terminal["closure_transfer"], terminal["provenance"]) for terminal in corner] == [
+        ("separately_supported_or_compensated", "closure transfer declared at import: invented remote declaration")] * 2
