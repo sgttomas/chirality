@@ -157,6 +157,11 @@ class MbfSiResult:
         }
 
 
+def _known(value: Any, table: Mapping[str, Any]) -> bool:
+    """`value` is a string key of `table`: a model value of another type (a list, say) is never looked up."""
+    return isinstance(value, str) and value in table
+
+
 def current_model_schema_version() -> str:
     """The one `schema_version` the model-document schema admits; fails unless there is exactly one."""
     schema = json.loads(MODEL_SCHEMA_PATH.read_text(encoding="utf-8"))
@@ -407,7 +412,7 @@ class _Writer:
                     f"project.units.{key} is {unit!r}; the SI MBF writer accepts only {' or '.join(accepted)} "
                     "and converts no other unit system",
                 )
-        if units.get("length") in _LENGTH_TO_MM:
+        if _known(units.get("length"), _LENGTH_TO_MM):
             self.length_exp = _LENGTH_TO_MM[units["length"]]
 
     # -- model members ----------------------------------------------------
@@ -503,7 +508,7 @@ class _Writer:
                 self.invalid(entity, f"pipe segment id {pipe['id']!r} is repeated")
                 continue
             start, end = pipe.get("from"), pipe.get("to")
-            if start not in self.nodes or end not in self.nodes:
+            if not _known(start, self.nodes) or not _known(end, self.nodes):
                 self.diag("MBF-SI-REFERENCE-UNRESOLVED", "error", entity,
                           f"{entity} connects {start!r} to {end!r}; both must be model nodes")
                 continue
@@ -511,7 +516,7 @@ class _Writer:
                 self.refuse("MBF-SI-GEOMETRY-UNSUPPORTED", entity, f"{entity} starts and ends at the same node")
                 continue
             material_id = pipe.get("material")
-            if material_id not in self.materials:
+            if not _known(material_id, self.materials):
                 if not any(item["entity"] == f"material:{material_id}" for item in self.diagnostics):
                     self.diag("MBF-SI-REFERENCE-UNRESOLVED", "error", entity,
                               f"{entity} names material {material_id!r}, which is not in model.materials")
@@ -589,7 +594,7 @@ class _Writer:
             self.invalid(entity, f"{entity} bend needs a geometry block with bend_pipe_ref and bend_radius")
             return
         pipe_id = geometry.get("bend_pipe_ref")
-        if pipe_id not in self.pipes:
+        if not _known(pipe_id, self.pipes):
             self.diag("MBF-SI-REFERENCE-UNRESOLVED", "error", entity,
                       f"{entity} bend_pipe_ref {pipe_id!r} is not an exported pipe segment")
             return
@@ -747,7 +752,7 @@ class _Writer:
                 self.invalid(entity, f"support id {support['id']!r} is repeated")
                 continue
             node = support.get("node")
-            if node not in self.nodes:
+            if not _known(node, self.nodes):
                 self.diag("MBF-SI-REFERENCE-UNRESOLVED", "error", entity, f"{entity} is at unknown node {node!r}")
                 continue
             family = support.get("family")
@@ -887,7 +892,7 @@ class _Writer:
                     and region.get("pressure_basis") == _PRESSURE_BASIS
                     and isinstance(region.get("provenance"), str)
                     and isinstance(terminals, list) and len(terminals) == 2
-                    and all(isinstance(item, Mapping) and item.get("node_ref") in self.nodes
+                    and all(isinstance(item, Mapping) and _known(item.get("node_ref"), self.nodes)
                             and item.get("closure_transfer") in _CLOSURE_TRANSFERS
                             and isinstance(item.get("provenance"), str) and item["provenance"].strip()
                             for item in terminals)):
@@ -943,7 +948,7 @@ class _Writer:
         if category in {"concentrated_force", "concentrated_moment"}:
             force = category == "concentrated_force"
             node = target.get("node")
-            if target.get("type") != "node" or node not in self.nodes:
+            if target.get("type") != "node" or not _known(node, self.nodes):
                 self.diag("MBF-SI-REFERENCE-UNRESOLVED", "error", entity, f"{entity} must target a model node")
                 return
             directions = _FORCE_DIRECTIONS if force else _MOMENT_DIRECTIONS
@@ -961,7 +966,7 @@ class _Writer:
             record.update(target={"node": node}, mbf="FOR" if force else "MOM")
         elif category == "weight":
             pipe = target.get("pipe")
-            if target.get("type") != "element" or pipe not in self.pipes:
+            if target.get("type") != "element" or not _known(pipe, self.pipes):
                 self.diag("MBF-SI-REFERENCE-UNRESOLVED", "error", entity, f"{entity} must target a model pipe segment")
                 return
             if dimension != "force_per_length":
@@ -980,7 +985,7 @@ class _Writer:
             record.update(target={"pipe": pipe}, mbf="MATERIAL weight density")
         elif category == "thermal":
             pipe = target.get("pipe")
-            if target.get("type") != "element" or pipe not in self.pipes:
+            if target.get("type") != "element" or not _known(pipe, self.pipes):
                 self.diag("MBF-SI-REFERENCE-UNRESOLVED", "error", entity, f"{entity} must target a model pipe segment")
                 return
             if dimension not in {"temperature_change", "temperature_interval"}:
@@ -1000,13 +1005,13 @@ class _Writer:
             record.update(target={"pipe": pipe}, mbf="LOADS Temperature 1")
         else:  # imposed_displacement
             support_id = target.get("support")
-            dof = _DOF_TOKENS.get(target.get("dof"))
-            support = self.supports.get(support_id)
+            dof = _DOF_TOKENS.get(target.get("dof")) if _known(target.get("dof"), _DOF_TOKENS) else None
+            support = self.supports.get(support_id) if _known(support_id, self.supports) else None
             if target.get("type") != "support" or support is None:
                 self.refuse("MBF-SI-IMPOSED-DISPLACEMENT-UNSUPPORTED", entity,
                             f"{entity} must target an exported rigid support (got {dict(target)!r})")
                 return
-            if dof is None or _DOF_TOKENS.get(direction) != dof:
+            if dof is None or (_DOF_TOKENS.get(direction) if _known(direction, _DOF_TOKENS) else None) != dof:
                 self.invalid(entity, f"{entity} target dof and direction must name the same frame DOF")
                 return
             if not self.is_anchor(support["node"]) or dof not in support["dofs"]:

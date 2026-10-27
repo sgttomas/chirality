@@ -656,8 +656,243 @@ def runtime_blank(text: str) -> bool:
     return all(character in _RUST_WHITESPACE for character in text)
 
 
-_RUST_WHITESPACE = frozenset("\t\n\x0b\x0c\r \x85\xa0     　"
+_RUST_WHITESPACE = frozenset("\t\n\x0b\x0c\r \x85\xa0\u1680\u2028\u2029\u202f\u205f\u3000"
                              + "".join(chr(code) for code in range(0x2000, 0x200B)))
+
+# ---------------------------------------------------------------------------
+# the sidecar (Design §15)
+# ---------------------------------------------------------------------------
+_SHA256 = re.compile(r"[0-9a-f]{64}\Z")
+_LOAD_CATEGORIES = ("concentrated_force", "concentrated_moment", "weight", "thermal", "imposed_displacement")
+_RIGID_FAMILIES = RESTORABLE_SUPPORT_FAMILIES[1:]
+_BAD = object()
+
+
+def runtime_support_findings(supports: Iterable[tuple[str, str, str | None, list[str]]]) -> list[tuple[str, str]]:
+    """What the solve refuses among rigid supports (support_id, node, family, DOFs), in model order, as
+    (support_id, reason): product_physics `rigid_linear_support_from_preview` infers an absent family as anchor with
+    six DOFs and as guide otherwise, and linear_supports `prepare_rigid_support` requires at least one DOF, admits
+    any DOF for an anchor, translations only for a guide or line stop, UZ only for a vertical support, and refuses a
+    DOF already restrained at the node (SUPPORT_INPUT_INVALID)."""
+    allowed = {"anchor": DOFS, "guide": DOFS[:3], "line_stop": DOFS[:3], "vertical_support": ("UZ",)}
+    restrained: set[tuple[str, str]] = set()
+    found = []
+    for support_id, node, family, dofs in supports:
+        family = family if family in _RIGID_FAMILIES else ("anchor" if len(dofs) == len(DOFS) else "guide")
+        if not dofs:
+            found.append((support_id, "a rigid support restrains no DOF"))
+        for dof in dofs:
+            if dof not in allowed[family]:
+                found.append((support_id, f"{dof} is not a DOF a {family} restrains"))
+            elif (node, dof) in restrained:
+                found.append((support_id, f"{dof} at its node is already restrained by another support"))
+            else:
+                restrained.add((node, dof))
+    return found
+
+
+class _SidecarParser:
+    """The strict sidecar parser, run before anything reads the sidecar (Design §15). Every key has an exact JSON
+    type (a bool is not a number, null is not a default), an allowed vocabulary, a non-empty value where an id or
+    name is required, and finite binary64 range for numbers. The vocabulary is the union of what every SWBPIPE
+    writer version records; unknown keys and wrong shapes are refused by JSON path. `parse` returns the typed copy
+    that the importer reads, or None with `errors` [(path, reason)]."""
+
+    def __init__(self) -> None:
+        self.errors: list[tuple[str, str]] = []
+
+    def fail(self, path: str, reason: str) -> object:
+        self.errors.append((path, reason))
+        return _BAD
+
+    # -- scalars ------------------------------------------------------
+    def text(self, value: Any, path: str) -> Any:
+        if type(value) is not str:
+            return self.fail(path, "must be a string")
+        return value if not runtime_blank(value) else self.fail(path, "must not be empty or only whitespace")
+
+    def free_text(self, value: Any, path: str) -> Any:
+        return value if type(value) is str else self.fail(path, "must be a string")
+
+    def number(self, value: Any, path: str, nullable: bool = False) -> Any:
+        if value is None and nullable:
+            return None
+        if type(value) is int:
+            try:
+                return float(value)
+            except OverflowError:
+                return self.fail(path, "must be a finite binary64 number")
+        if type(value) is float and math.isfinite(value):
+            return value
+        return self.fail(path, "must be a finite binary64 number" + (" or null" if nullable else ""))
+
+    def count(self, value: Any, path: str) -> Any:
+        return value if type(value) is int and value >= 0 else self.fail(path, "must be a non-negative integer")
+
+    def flag(self, value: Any, path: str) -> Any:
+        return value if type(value) is bool else self.fail(path, "must be true or false")
+
+    def choice(self, allowed: tuple) -> Any:
+        def parse(value: Any, path: str) -> Any:
+            if (value is None or type(value) is str) and value in allowed:
+                return value
+            shown = ", ".join("null" if item is None else item for item in allowed)
+            return self.fail(path, f"must be one of {shown}")
+        return parse
+
+    # -- containers -----------------------------------------------------
+    def record(self, value: Any, path: str, required: Mapping[str, Any], optional: Mapping[str, Any] = {}) -> Any:
+        if type(value) is not dict:
+            return self.fail(path, "must be an object")
+        out: dict[str, Any] = {}
+        field = lambda key: f"{path}.{key}" if path else str(key)  # noqa: E731
+        for key, item in value.items():
+            if key not in required and key not in optional:
+                self.fail(field(key), "is not a field the writer records")
+            else:
+                out[key] = (required.get(key) or optional[key])(item, field(key))
+        for key in required:
+            if key not in value:
+                self.fail(field(key), "is missing")
+        return out
+
+    def mapping(self, value: Any, path: str, parse: Any) -> Any:
+        if type(value) is not dict:
+            return self.fail(path, "must be an object")
+        out = {}
+        for key, item in value.items():
+            where = f"{path}[{key}]"
+            if type(key) is not str or runtime_blank(key):
+                self.fail(where, "an id must be a non-empty string")
+                continue
+            out[key] = parse(item, where)
+        return out
+
+    def items(self, parse: Any, *, length: int | None = None, nonempty: bool = True) -> Any:
+        def parse_list(value: Any, path: str) -> Any:
+            if type(value) is not list:
+                return self.fail(path, "must be a list")
+            if (length is not None and len(value) != length) or (nonempty and not value):
+                return self.fail(path, f"must hold {length if length is not None else 'at least one'} item(s)")
+            return [parse(item, f"{path}[{index}]") for index, item in enumerate(value)]
+        return parse_list
+
+    # -- the writer's records ---------------------------------------------
+    def vector(self, value: Any, path: str) -> Any:
+        return self.record(value, path, {axis: self.number for axis in "xyz"})
+
+    def bend(self, value: Any, path: str) -> Any:
+        return self.record(value, path, {"component": self.text}, {
+            "radius_mm": self.number, "angle_deg": self.number,
+            "flexibility_factor": lambda item, where: self.number(item, where, nullable=True),
+            "tangent_intersection_mm": self.items(self.number, length=3), "caepipe_row_node": self.text})
+
+    def element(self, value: Any, path: str) -> Any:
+        return self.record(value, path, {"from": self.text, "to": self.text, "reversed": self.flag}, {
+            "layout_order": self.count, "layout_row": self.count, "material": self.text, "section": self.text,
+            "load": self.text, "y_reference": self.vector, "bend": self.bend})
+
+    def support(self, value: Any, path: str) -> Any:
+        entry = self.record(value, path, {"node": self.text, "restrained": self.items(self.choice(DOFS))}, {
+            "caepipe_kind": self.choice(("anchor", "restraint")),
+            "family": self.choice(RESTORABLE_SUPPORT_FAMILIES)})
+        if entry is _BAD or any(item is _BAD for item in entry.values()) or "restrained" not in entry:
+            return entry
+        if len(set(entry["restrained"])) != len(entry["restrained"]):
+            return self.fail(f"{path}.restrained", "repeats a DOF")
+        if entry.get("family") == "anchor" and len(entry["restrained"]) != len(DOFS):
+            return self.fail(f"{path}.family", "an anchor restrains all six DOFs, as the writer exports it")
+        return entry
+
+    def material(self, value: Any, path: str) -> Any:
+        return self.record(value, path, {"swbpipe_material": self.text}, {
+            "weight_density_kgf_per_m3": self.number, "poisson_ratio": self.number,
+            "elastic_modulus_n_per_mm2": self.number, "thermal_expansion_mm_per_mm_per_c": self.number,
+            "temperatures_c": self.items(self.number), "elements": self.items(self.text, nonempty=False),
+            "origin": self.choice(MATERIAL_ORIGINS)})
+
+    def section(self, value: Any, path: str) -> Any:
+        return self.record(value, path, {}, {"outside_diameter_mm": self.number, "wall_thickness_mm": self.number,
+                                             "elements": self.items(self.text, nonempty=False)})
+
+    def target(self, value: Any, path: str) -> Any:
+        if type(value) is dict and set(value) in ({"node"}, {"pipe"}):
+            return self.record(value, path, {key: self.text for key in value})
+        if type(value) is dict and set(value) == {"support", "dof"}:
+            return self.record(value, path, {"support": self.text, "dof": self.choice(DOFS)})
+        return self.fail(path, "must be an object naming a node, a pipe, or a support and its DOF")
+
+    def load(self, value: Any, path: str) -> Any:
+        return self.record(value, path, {
+            "load_case": self.text, "category": self.choice(_LOAD_CATEGORIES), "target": self.target}, {
+            "caepipe_load_case": self.text, "direction": self.choice((None, *RESTORABLE_DIRECTIONS)),
+            "mbf": self.text, "caepipe_node": self.text, "caepipe_element": self.element})
+
+    def contract(self, value: Any, path: str) -> Any:
+        return self.record(value, path, {"version": self.choice((PRESSURE_CONTRACT["version"],)),
+                                         "mode": self.choice((PRESSURE_CONTRACT["mode"],)),
+                                         "shear_model": self.choice(SHEAR_MODELS)})
+
+    def region(self, value: Any, path: str) -> Any:
+        terminal = lambda item, where: self.record(item, where, {  # noqa: E731
+            "node_ref": self.text, "closure_transfer": self.choice(CLOSURE_TRANSFERS), "provenance": self.text})
+        return self.record(value, path, {"id": self.text, "members": self.items(self.text),
+                                         "terminals": self.items(terminal, length=2)},
+                           {"provenance": self.free_text, "pressure_bar": self.number})
+
+    def pressure(self, value: Any, path: str) -> Any:
+        if type(value) is dict and not value:
+            return {}
+        return self.record(value, path, {"contract": self.contract, "regions": self.items(self.region,
+                                                                                          nonempty=False)},
+                           {"load_case": lambda item, where: None if item is None else self.text(item, where)})
+
+    def digest(self, value: Any, path: str) -> Any:
+        if value is None or (type(value) is str and _SHA256.match(value)):
+            return value
+        return self.fail(path, "must be a lowercase SHA-256 hex digest or null")
+
+    # -- the whole sidecar -------------------------------------------------
+    def parse(self, sidecar: Any) -> dict[str, Any] | None:
+        maps = {"node_map": lambda value, path: self.mapping(value, path, self.text),
+                "element_map": lambda value, path: self.mapping(value, path, self.element),
+                "support_map": lambda value, path: self.mapping(value, path, self.support),
+                "load_case_map": lambda value, path: self.mapping(value, path, self.text),
+                "material_map": lambda value, path: self.mapping(value, path, self.material),
+                "section_map": lambda value, path: self.mapping(value, path, self.section),
+                "load_map": lambda value, path: self.mapping(value, path, self.load),
+                "pressure_map": self.pressure}
+        if type(sidecar) is not dict:
+            self.fail("sidecar", "must be an object")
+            return None
+        parsed = self.record(sidecar, "", {}, {**maps, "mbf_sha256": self.digest})
+        if self.errors:
+            return None
+        out = {name: parsed.get(name, {}) for name in maps}
+        out["mbf_sha256"] = parsed.get("mbf_sha256")
+        # Across entries: each load id is its case's ("<case>/<id>") and unique (DUPLICATE_ID); supports as the
+        # solve admits them, together at each node.
+        seen: dict[str, str] = {}
+        for key, entry in out["load_map"].items():
+            prefix = entry["load_case"] + "/"
+            suffix = key[len(prefix):] if key.startswith(prefix) else ""
+            if runtime_blank(suffix):
+                self.fail(f"load_map[{key}]", f"the key must be '{prefix}<load id>' with a non-empty load id")
+            elif suffix in seen:
+                self.fail(f"load_map[{key}]", f"repeats the primitive load id of {seen[suffix]} (DUPLICATE_ID)")
+            else:
+                seen[suffix] = key
+        for support_id, reason in runtime_support_findings(
+                (support_id, entry["node"], entry.get("family"), entry["restrained"])
+                for support_id, entry in out["support_map"].items()):
+            self.fail(f"support_map[{support_id}]", f"{reason}; the solve refuses it (SUPPORT_INPUT_INVALID)")
+        names: dict[str, str] = {}
+        for swb_id, name in out["node_map"].items():
+            if name in names:
+                self.fail(f"node_map[{swb_id}]", f"names CAEPIPE node {name} as {names[name]} does; it must be "
+                          "one-to-one")
+            names[name] = swb_id
+        return None if self.errors else out
 
 
 def runtime_bores_equal(bores: list[float]) -> bool:
@@ -764,9 +999,18 @@ class _Importer:
         self.loss.append({"location": location, "line": line, "category": category, "code": code,
                           "reason": message})
 
-    def sidecar_invalid(self, location: str, message: str) -> None:
-        """A restored sidecar value outside what the import admits: refused by name, never substituted (§15)."""
-        self.refuse("MBF-IMPORT-SIDECAR-INVALID", 0, location, message)
+    def incomplete(self, map_name: str, in_file: Iterable[Any], in_sidecar: Iterable[Any], what: str) -> None:
+        """A byte-bound sidecar was written for exactly this file: each of its entries names something in the file,
+        and each such thing has its entry, or the sidecar is refused (Design §15)."""
+        in_file, in_sidecar = list(in_file), list(in_sidecar)
+        missing = [item for item in in_file if item not in in_sidecar]
+        extra = [item for item in in_sidecar if item not in in_file]
+        if missing or extra:
+            self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", 0, map_name,
+                        f"the bound sidecar's {map_name} does not match the file's {what}: "
+                        + "; ".join(part for part in (f"no entry for {', '.join(map(str, missing))}" if missing else "",
+                                                      f"entries for {', '.join(map(str, extra))}, not in the file"
+                                                      if extra else "") if part))
 
     def has_errors(self) -> bool:
         return any(item["severity"] == "error" for item in self.diagnostics)
@@ -1002,18 +1246,15 @@ class _Importer:
             if self.rebind:
                 self.refuse("MBF-IMPORT-SIDECAR-INVALID", 0, "sidecar", "rebinding was requested without a sidecar")
             return
-        if not isinstance(self.sidecar, Mapping):
-            self.refuse("MBF-IMPORT-SIDECAR-INVALID", 0, "sidecar", "the sidecar must be an object")
+        parser = _SidecarParser()  # strict, before anything reads the sidecar (Design §15)
+        parsed = parser.parse(self.sidecar)
+        if parsed is None:
+            for path, reason in parser.errors:
+                self.refuse("MBF-IMPORT-SIDECAR-INVALID", 0, path, f"the sidecar's {path} {reason}")
             return
-        names = ("node_map", "element_map", "support_map", "load_case_map", "material_map", "load_map",
-                 "pressure_map")
-        for name in names:
-            value = self.sidecar.get(name, {})
-            if not isinstance(value, Mapping):
-                self.refuse("MBF-IMPORT-SIDECAR-INVALID", 0, f"sidecar.{name}", f"sidecar {name} must be an object")
-                return
-            self.maps[name] = value
-        if self.sidecar.get("mbf_sha256") == self.sha:
+        digest = parsed.pop("mbf_sha256")
+        self.maps = parsed
+        if digest == self.sha:
             self.bound = True
         elif self.rebind:
             self.rebound = True
@@ -1024,17 +1265,7 @@ class _Importer:
                                                 "is unbound and the sidecar is not applied (no rebinding requested)"})
             self.maps = {}
             return
-        inverse: dict[str, str] = {}
-        for swb_id, name in self.maps["node_map"].items():
-            if not isinstance(name, str) or not isinstance(swb_id, str):
-                self.refuse("MBF-IMPORT-SIDECAR-INVALID", 0, "sidecar.node_map", "node_map maps ids to names")
-                return
-            if name in inverse:
-                self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", 0, f"sidecar.node_map[{name}]",
-                            f"node_map names CAEPIPE node {name} for two SWBPIPE nodes; it must be one-to-one")
-                return
-            inverse[name] = swb_id
-        self.node_ids = inverse
+        self.node_ids = {name: swb_id for swb_id, name in self.maps["node_map"].items()}
 
     def pd1(self) -> bool:
         return self.version in PD1_VERSIONS
@@ -2020,6 +2251,8 @@ class _Importer:
                 nodes.append({"id": swb_id, "label": name, "position": dict(zip("xyz", point)),
                               "provenance": provenance(node["line"])})
         node_id = {name: id_map["node_map"][name] for names in node_names.values() for name in names}
+        if self.bound:
+            self.incomplete("node_map", node_id, self.node_ids, "nodes")
 
         # materials (§7)
         materials, material_ids = self.assemble_materials(id_map, provenance, claim)
@@ -2027,12 +2260,12 @@ class _Importer:
         factor = _METRES_PER_UNIT[length_unit]
         element_lookup: dict[tuple[str, str], tuple[str, dict]] = {}
         for swb_id, entry in maps.get("element_map", {}).items():
-            if isinstance(entry, Mapping):
-                element_lookup[(str(entry.get("from")), str(entry.get("to")))] = (swb_id, entry)
+            element_lookup[(entry["from"], entry["to"])] = (swb_id, entry)
         pipes, components, unresolved = [], [], []
         pressures: dict[str, tuple[Num | None, _Element]] = {}
         weights: list[tuple[str, float, int]] = []
         thermals: list[tuple[str, float, int]] = []
+        element_pairs: list[tuple[str, str]] = []
         for element in self.elements:
             start = node_names[element.start][-1]
             end = node_names[element.end][0]
@@ -2041,13 +2274,11 @@ class _Importer:
                 members.append(node_names[element.end] + (self.bend_geometry[element.end],))
             for a, b, bend in members:
                 caepipe_name = f"{a}-{b}"
+                element_pairs.append((a, b))
                 swb_id, reversed_, entry = f"pipe:{caepipe_name}", False, {}
                 if (self.bound or self.rebound) and (a, b) in element_lookup:
                     swb_id, entry = element_lookup[(a, b)]
-                    reversed_ = entry.get("reversed") is True
-                    if "reversed" in entry and not isinstance(entry["reversed"], bool):
-                        self.sidecar_invalid(f"element_map[{swb_id}].reversed",
-                                             f"the sidecar's reversed flag for {swb_id} is not true or false")
+                    reversed_ = entry["reversed"]
                     if self.rebound:
                         self.unconfirmed.append(swb_id)
                 claim(swb_id, f"CAEPIPE element {caepipe_name}", element.line)
@@ -2067,11 +2298,8 @@ class _Importer:
                 if bend is not None:
                     pipe["y_reference"] = dict(zip("xyz", bend["y_reference"]))
                 elif restored is not None:  # the sidecar's binding record: restored as written, or refused
-                    usable = isinstance(restored, Mapping) and all(
-                        isinstance(restored.get(axis), (int, float)) and not isinstance(restored.get(axis), bool)
-                        and math.isfinite(restored[axis]) for axis in "xyz") and runtime_frame_axes(
-                        *ends_m, [float(restored[axis]) for axis in "xyz"]) is not None
-                    pipe["y_reference"] = {axis: float(restored[axis]) for axis in "xyz"} if usable else None
+                    usable = runtime_frame_axes(*ends_m, [restored[axis] for axis in "xyz"]) is not None
+                    pipe["y_reference"] = {axis: restored[axis] for axis in "xyz"} if usable else None
                     if not usable:
                         self.refuse("MBF-IMPORT-ORIENTATION-UNUSABLE", element.line, swb_id,
                                     f"the sidecar's y_reference for {swb_id} is not one the frame kernel forms an "
@@ -2115,6 +2343,9 @@ class _Importer:
                         raise _Refused
                     if delta != 0:
                         thermals.append((swb_id, delta, element.line))
+        if self.bound:
+            self.incomplete("element_map", [f"{a}-{b}" for a, b in element_pairs],
+                            [f"{a}-{b}" for a, b in element_lookup], "elements")
         # The solve reads positions in m (value x factor + 0.0, core/units): an element whose ends coincide there has
         # zero length to it, however the file's own unit separates them.
         name_of = {swb_id: name for name, swb_id in id_map["node_map"].items()}
@@ -2149,9 +2380,6 @@ class _Importer:
                             f"section {name} needs 0 < thickness < OD/2 with a bore radius OD/2 - thickness that is "
                             "positive and below OD/2 on the values in m the solve reads; the file's decimals pass, "
                             "but their binary64 values in m do not")
-        self.refuse_blank_ids(((kind, item["id"]) for kind, items in (
-            ("node", nodes), ("pipe", pipes), ("component", components), ("material", materials))
-            for item in items))
         if self.has_errors():
             raise _Refused
         if self.elements and all(element.load is None for element in self.elements):
@@ -2160,7 +2388,10 @@ class _Importer:
                         "contents load, and CAEPIPE's treatment of an element without a load record is not documented")
         self.list_unused(material_ids)
         supports, support_ids = self.assemble_supports(node_id, provenance, id_map, claim)
-        self.refuse_blank_ids(("support", support["id"]) for support in supports)
+        for support_id, reason in runtime_support_findings(
+                (support["id"], support["node"], support.get("family"), support["restraints"]) for support in supports):
+            self.refuse("MBF-IMPORT-SUPPORT-UNSUPPORTED", self.support_lines[support_id], support_id,
+                        f"support {support_id}: {reason}; the solve refuses it (SUPPORT_INPUT_INVALID)")
         if self.has_errors():
             raise _Refused
         self.labels = {pipe["id"]: pipe["label"] for pipe in pipes}
@@ -2168,14 +2399,6 @@ class _Importer:
         pressure = self.assemble_pressure(pipes, pressures, arcs, point_of, id_map, claim)
         load_cases = self.assemble_loads(node_id, support_ids, weights, thermals, length_unit, angle_unit,
                                          provenance, id_map, claim, None if pressure is None else pressure[1])
-        self.refuse_blank_ids([("load case", case["id"]) for case in load_cases]
-                              + [("primitive load", load["id"]) for case in load_cases
-                                 for load in case["primitive_loads"]])
-        load_ids = [load["id"] for case in load_cases for load in case["primitive_loads"]]
-        for identity in sorted({identity for identity in load_ids if load_ids.count(identity) > 1}):
-            self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", 0, f"primitive load id {identity!r}",
-                        f"the sidecar gives two primitive loads the id {identity!r}; the solve requires primitive "
-                        "load ids unique across the model (DUPLICATE_ID)")
         if self.has_errors():
             raise _Refused
         if pressure is not None:
@@ -2248,29 +2471,20 @@ class _Importer:
         id_map["rebound_unconfirmed"] = sorted(set(self.unconfirmed))
         return model, id_map
 
-    def refuse_blank_ids(self, identities: Iterable[tuple[str, str]]) -> None:
-        """A restored id the solve reads as empty (Rust trim, EMPTY_ID) is refused by kind; formed ids never are."""
-        for kind, identity in identities:
-            if runtime_blank(identity):
-                self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", 0, f"{kind} id {identity!r}",
-                            f"the sidecar gives a {kind} the id {identity!r}, which is empty or only whitespace; "
-                            "the solve refuses an empty id (EMPTY_ID, and PRESSURE_REGION_MEMBERS_INVALID for a "
-                            "region member)")
-
     def bend_component(self, element: _Element, pipe_id: str, near_id: str, length_unit: str, provenance: Any,
                        unresolved: list[dict[str, Any]], id_map: dict[str, Any], claim: Any) -> dict[str, Any]:
         n = element.end
         component_id = f"component:bend-{n}"
         if self.bound or self.rebound:
             entry = self.maps.get("element_map", {}).get(pipe_id)
-            bend = entry.get("bend") if isinstance(entry, Mapping) else None
-            if isinstance(bend, Mapping) and isinstance(bend.get("component"), str):
+            bend = entry.get("bend") if entry is not None else None
+            if bend is not None:
                 component_id = bend["component"]
                 if self.rebound:
                     self.unconfirmed.append(component_id)
-            elif bend is not None:
-                self.sidecar_invalid(f"element_map[{pipe_id}].bend", f"the sidecar's bend record for {pipe_id} is "
-                                     "not an object naming its component by a string id")
+            elif self.bound:
+                self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", element.line, f"element_map[{pipe_id}].bend",
+                            f"the bound sidecar records no bend for {pipe_id}, which the file bends at {n}")
             if self.bound:
                 self.listed("approximated", "MBF-IMPORT-ID-UNRECOVERABLE", element.line, f"bend {n}",
                             f"the sidecar does not record which tangent node bend {n}'s component names; the "
@@ -2329,12 +2543,8 @@ class _Importer:
             return None
         if self.bound:
             entry = self.maps.get("material_map", {}).get(name)
-            origin = entry.get("origin") if isinstance(entry, Mapping) else None
-            if isinstance(entry, Mapping) and "origin" in entry and origin not in MATERIAL_ORIGINS:
-                self.sidecar_invalid(f"material_map[{name}].origin", f"the sidecar's origin for material {name} is "
-                                     f"not one of {', '.join(MATERIAL_ORIGINS)}")
-                return None
-            if origin in MATERIAL_ORIGINS:
+            origin = entry.get("origin") if entry is not None else None
+            if origin is not None:
                 return origin, "material origin recorded by the SWBPIPE MBF writer sidecar", (
                     "private_only" if origin == "user_supplied" else None)
         return None
@@ -2345,6 +2555,8 @@ class _Importer:
             if element.material not in used:
                 used.append(element.material)
         materials, material_ids, merged = [], {}, {}
+        if self.bound:
+            self.incomplete("material_map", used, self.maps["material_map"], "materials")
         e_unit, alpha_unit = ("MPa", "1/degC") if self.si else ("psi", "1/degF")
         for name in used:
             record = self.materials[name]
@@ -2361,11 +2573,7 @@ class _Importer:
             swb_id = f"material:{name}"
             if self.bound or self.rebound:
                 entry = self.maps.get("material_map", {}).get(name)
-                if isinstance(entry, Mapping) and "swbpipe_material" in entry and not isinstance(
-                        entry["swbpipe_material"], str):
-                    self.sidecar_invalid(f"material_map[{name}].swbpipe_material",
-                                         f"the sidecar's SWBPIPE material id for {name} is not a string")
-                if isinstance(entry, Mapping) and isinstance(entry.get("swbpipe_material"), str):
+                if entry is not None:
                     swb_id = entry["swbpipe_material"]
                     if self.rebound:
                         self.unconfirmed.append(swb_id)
@@ -2416,10 +2624,10 @@ class _Importer:
 
     def assemble_supports(self, node_id: Mapping[str, str], provenance: Any, id_map: dict[str, Any], claim: Any):
         supports, support_ids = [], {}
+        self.support_lines: dict[str, int] = {}
         sidecar_by_node: dict[str, list[tuple[str, Mapping[str, Any]]]] = {}
         for swb_id, entry in self.maps.get("support_map", {}).items():
-            if isinstance(entry, Mapping):
-                sidecar_by_node.setdefault(str(entry.get("node")), []).append((swb_id, entry))
+            sidecar_by_node.setdefault(entry["node"], []).append((swb_id, entry))
         matched_sidecar: set[str] = set()
         for number in self.node_order:
             record = self.node_data.get(number)
@@ -2442,32 +2650,13 @@ class _Importer:
             line = imported[0][3]
             restored = sidecar_by_node.get(name, []) if (self.bound or self.rebound) else []
             ids = []
-            admitted = True
-            for swb_id, entry in restored:  # each restored support as the writer exports it and the route admits it
-                given = entry.get("restrained")
-                if not (isinstance(given, list) and given and all(isinstance(dof, str) and dof in DOFS for dof in given)
-                        and len(set(given)) == len(given)):
-                    self.sidecar_invalid(f"support_map[{swb_id}].restrained",
-                                         f"the sidecar's support {swb_id} does not restrain a non-empty list of "
-                                         f"distinct DOFs from {', '.join(DOFS)}")
-                    admitted = False
-                elif entry.get("family") not in RESTORABLE_SUPPORT_FAMILIES:
-                    self.sidecar_invalid(f"support_map[{swb_id}].family",
-                                         f"the sidecar gives support {swb_id} the family {entry.get('family')!r}; a "
-                                         "restored support is a rigid restraint (anchor, guide, line_stop, "
-                                         "vertical_support, or none), the families the writer exports and the exact "
-                                         "pressure route admits (EXACT_PRESSURE_FAMILY_NOT_ADMITTED otherwise)")
-                    admitted = False
-                elif entry.get("family") == "anchor" and len(given) != len(DOFS):
-                    self.sidecar_invalid(f"support_map[{swb_id}].family",
-                                         f"the sidecar gives support {swb_id} the family anchor but restrains only "
-                                         f"{', '.join(given)}")
-                    admitted = False
-            if not admitted:
+            if self.bound and not restored:
+                self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", line, f"node {name}",
+                            f"the bound sidecar records no support at node {name}, which the file supports")
                 continue
             if restored:
                 wanted = set().union(*(set(dofs) for _, dofs, _, _ in imported))
-                given = set().union(*(set(entry.get("restrained") or []) for _, entry in restored))
+                given = set().union(*(set(entry["restrained"]) for _, entry in restored))
                 if wanted != given:
                     self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", line, f"node {name}",
                                 f"the sidecar's supports at node {name} restrain other DOFs than the MBF")
@@ -2478,7 +2667,7 @@ class _Importer:
                     if "family" not in entry:
                         self.listed("approximated", "MBF-IMPORT-ID-UNRECOVERABLE", line, f"support_map[{swb_id}]",
                                     f"the sidecar entry for {swb_id} carries no family, which is not recoverable")
-                    entries.append((swb_id, [dof for dof in DOFS if dof in (entry.get("restrained") or [])], family))
+                    entries.append((swb_id, [dof for dof in DOFS if dof in entry["restrained"]], family))
                     matched_sidecar.add(swb_id)
                     if self.rebound:
                         self.unconfirmed.append(swb_id)
@@ -2486,6 +2675,7 @@ class _Importer:
                 entries = [(swb_id, dofs, family) for swb_id, dofs, family, _ in imported]
             for swb_id, dofs, family in entries:
                 claim(swb_id, f"support at node {name}", line)
+                self.support_lines[swb_id] = line
                 support: dict[str, Any] = {"id": swb_id, "label": tags[0][0] if tags else
                                            f"{'anchor' if family == 'anchor' else 'restraint'} at {name}",
                                            "node": node_id[name], "restraints": dofs,
@@ -2496,6 +2686,8 @@ class _Importer:
                 ids.append((swb_id, dofs))
             support_ids[number] = ids
             id_map["support_map"][name] = [swb_id for swb_id, _ in ids]
+        if self.bound:
+            self.incomplete("support_map", matched_sidecar, self.maps["support_map"], "supports")
         if self.rebound:
             for swb_id in self.maps.get("support_map", {}):
                 if swb_id not in matched_sidecar:
@@ -2568,11 +2760,15 @@ class _Importer:
                                                     "direction": dof, "magnitude": total, "unit": unit,
                                                     "dimension": dimension, "line": items[0][1], "axis": dof})
         restorable = self.restorable_primitives(cases)
+        matched: set[tuple] = set()
         load_cases = []
         for kind, label_key, case_kind in (("sustained", "sustained", "sustained"),
                                            ("expansion", "expansion", "thermal")):
             if not primitives[kind] and not (regions and kind == "sustained"):
                 continue
+            if self.bound and LOAD_CASE_LABELS[label_key] not in self.maps["load_case_map"].values():
+                self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", 0, "load_case_map",
+                            f"the bound sidecar records no case {LOAD_CASE_LABELS[label_key]!r}, which the file has")
             case_id = claim(cases[kind], f"CAEPIPE load case {LOAD_CASE_LABELS[label_key]}", 0)
             id_map["load_case_map"][LOAD_CASE_LABELS[label_key]] = case_id
             loads = []
@@ -2584,16 +2780,16 @@ class _Importer:
                                                                     "imposed_displacement") else "")
                 load_id, direction = formed, item["direction"]
                 key = (case_id, item["category"], target_id, item["axis"])
-                match = restorable.get(key) or restorable.get((case_id, item["category"], target_id, "*"))
+                found = [option for option in (key, (case_id, item["category"], target_id, "*")) if option in restorable]
+                match = restorable[found[0]] if found else None
+                matched.update(found[:1])
+                if self.bound and match is None:
+                    self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", item["line"], formed,
+                                f"the bound sidecar's load_map records no primitive for {formed}, which the file has")
                 if self.bound and match is not None and match[1] == 1:
                     load_id = match[0]
                     if item["category"] == "thermal" and match[2] is not None:
-                        if match[2] in RESTORABLE_DIRECTIONS:
-                            direction = match[2]
-                        else:
-                            self.sidecar_invalid(f"load_map[{load_id}].direction",
-                                                 f"the sidecar gives primitive {load_id} the direction {match[2]!r}, "
-                                                 "which is not a direction the solve reads")
+                        direction = match[2]
                 elif self.bound:
                     self.listed("approximated", "MBF-IMPORT-ID-UNRECOVERABLE", item["line"], formed,
                                 f"no single sidecar primitive matches {formed}; it keeps its formed id")
@@ -2607,6 +2803,8 @@ class _Importer:
             if regions is not None:  # Pressure 1 acts in the sustained case, not in the expansion case (§9.4)
                 case["pressure_regions"] = regions if kind == "sustained" else []
             load_cases.append(case)
+        if self.bound:
+            self.incomplete("load_map", sorted(matched, key=repr), sorted(restorable, key=repr), "primitives")
         return load_cases
 
     # -- §9.4 pressure ----------------------------------------------------------
@@ -2614,18 +2812,7 @@ class _Importer:
         """(contract, regions) from LOADS Pressure 1, or None when the model has no pressure."""
         active = {pipe_id: number for pipe_id, (number, _) in pressures.items()
                   if number is not None and number.exact != 0}
-        stored = self.maps.get("pressure_map") if self.bound else None
-        if stored:  # the writer records the one contract it exports, with an admitted shear model, and a region list
-            contract = stored.get("contract")
-            if not (isinstance(contract, Mapping) and contract.get("version") == PRESSURE_CONTRACT["version"]
-                    and contract.get("mode") == PRESSURE_CONTRACT["mode"]
-                    and contract.get("shear_model") in SHEAR_MODELS and isinstance(stored.get("regions", []), list)):
-                self.sidecar_invalid("pressure_map.contract",
-                                     "the sidecar's pressure_map is not the exact contract 3.0.0/exact_pressure_v3 "
-                                     f"with a shear_model from {', '.join(SHEAR_MODELS)} and a region list")
-                raise _Refused
-        else:
-            stored = None
+        stored = (self.maps.get("pressure_map") or None) if self.bound else None
         if not active and stored is None:
             return None
         # The solve reads Pressure 1 in Pa (value x factor + 0.0, core/units) and refuses a non-finite one
@@ -2646,7 +2833,7 @@ class _Importer:
         ends = {pipe["id"]: (pipe["from"], pipe["to"]) for pipe in pipes}
         name_of = {swb_id: name for name, swb_id in id_map["node_map"].items()}
         unit = PRESSURE_UNIT[self.si]
-        if stored is not None and isinstance(stored.get("regions"), list):
+        if stored is not None:
             members = self.restore_regions(stored["regions"], active, ends, name_of)
             if members is not None:
                 members = self.check_restored(members, pressures, ends, arcs, point_of, name_of,
@@ -3009,21 +3196,13 @@ class _Importer:
     def restore_regions(self, stored, active, ends, name_of):
         """Bound regions from the sidecar, checked against the file's Pressure 1 values; None after a refusal."""
         restored, owned = [], set()
-        for entry in stored:
-            members = entry.get("members") if isinstance(entry, Mapping) else None
-            terminals = entry.get("terminals") if isinstance(entry, Mapping) else None
-            valid = (isinstance(entry, Mapping) and isinstance(entry.get("id"), str) and not runtime_blank(entry["id"])
-                     and entry["id"] not in {region_id for region_id, _, _ in restored}
-                     and isinstance(members, list)
-                     and members and all(isinstance(item, str) and item in active and item not in owned
-                                         for item in members)
+        for entry in stored:  # typed by the sidecar parser; checked here against the file
+            members, terminals = entry["members"], entry["terminals"]
+            valid = (entry["id"] not in {region_id for region_id, _, _ in restored}
+                     and all(item in active and item not in owned for item in members)
                      and len(set(members)) == len(members)
                      and len({active[item].exact for item in members}) == 1
-                     and isinstance(terminals, list) and len(terminals) == 2
-                     and all(isinstance(item, Mapping) and item.get("node_ref") in name_of
-                             and item.get("closure_transfer") in CLOSURE_TRANSFERS
-                             and isinstance(item.get("provenance"), str) and not runtime_blank(item["provenance"])
-                             for item in terminals))
+                     and all(item["node_ref"] in name_of for item in terminals))
             if not valid:
                 break
             owned.update(members)
@@ -3039,9 +3218,8 @@ class _Importer:
 
     def displacement_target(self, name: str, dof: str, candidates: list[str]) -> str | None:
         found = {entry["target"].get("support") for entry in self.maps.get("load_map", {}).values()
-                 if isinstance(entry, Mapping) and isinstance(entry.get("target"), Mapping)
-                 and entry.get("category") == "imposed_displacement"
-                 and entry.get("caepipe_node") == name and entry.get("target", {}).get("dof") == dof}
+                 if entry["category"] == "imposed_displacement" and entry.get("caepipe_node") == name
+                 and entry["target"].get("dof") == dof}
         found &= set(candidates)
         return found.pop() if len(found) == 1 else None
 
@@ -3051,31 +3229,22 @@ class _Importer:
             return {}
         counts: dict[tuple, list[tuple[str, Any]]] = {}
         for key, entry in self.maps.get("load_map", {}).items():
-            if not isinstance(entry, Mapping):
-                continue
-            case_id = entry.get("load_case")
-            target = entry.get("target") or {}
-            if not isinstance(target, Mapping):
-                self.sidecar_invalid(f"load_map[{key}].target", f"the sidecar's primitive {key} has a target that is "
-                                     "not an object")
-                continue
+            case_id, target, category = entry["load_case"], entry["target"], entry["category"]
             target_id = target.get("node") or target.get("pipe") or target.get("support")
-            category = entry.get("category")
             direction = entry.get("direction")
             if category in ("concentrated_force", "concentrated_moment"):
                 if direction is None:
                     axis = "*"
                 elif category == "concentrated_force":
-                    axis = {"global_x": 0, "global_y": 1, "global_z": 2}.get(str(direction).lower())
+                    axis = {"global_x": 0, "global_y": 1, "global_z": 2}.get(direction.lower())
                 else:
-                    token = str(direction).upper().replace("ROTATION_", "R")
+                    token = direction.upper().replace("ROTATION_", "R")
                     axis = {"RX": 0, "RY": 1, "RZ": 2}.get(token)
             elif category == "imposed_displacement":
                 axis = target.get("dof")
-                axis = None if axis is None else str(axis).upper()
             else:
                 axis = None
-            load_id = str(key)[len(str(case_id)) + 1:] if str(key).startswith(f"{case_id}/") else str(key)
+            load_id = key[len(case_id) + 1:]  # the parser holds each key to "<case>/<id>"
             counts.setdefault((case_id, category, target_id, axis), []).append((load_id, direction))
         return {key: (items[0][0], len(items), items[0][1]) for key, items in counts.items()}
 

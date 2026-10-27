@@ -19,8 +19,10 @@ import hashlib
 import json
 import math
 import os
+import random
 from pathlib import Path
 import sys
+from typing import Any
 
 import pytest
 
@@ -306,16 +308,20 @@ def test_summed_primitives_are_many_to_one_and_reported():
                for item in trip.bound.loss_report)
 
 
-def test_merged_anchor_is_split_back_by_the_sidecar():
+def test_a_merged_anchor_split_the_solve_refuses_is_not_restored():
+    # The writer writes two rigid supports at one node, translations T and rotations R, as one KA row. With no
+    # family the solve reads R as a guide (fewer than six DOFs), which restrains translations only, so it refuses the
+    # source model (SUPPORT_INPUT_INVALID); the bound import refuses the split by name rather than restore it.
     model = writer_tests.cantilever()
     model["supports"] = [{"id": "T", "node": "N0", "restraints": ["UX", "UY", "UZ"], "family": None},
                          {"id": "R", "node": "N0", "restraints": ["RX", "RY", "RZ"]}]
     trip = Trip("split", model, "SPLIT", 20.0)
     assert "KA" in trip.text.split("\r\n")[trip.text.split("\r\n").index("LAYOUT") + 1]
-    supports = {support["id"]: support["restraints"] for support in trip.bound.model["supports"]}
-    assert supports == {"T": ["UX", "UY", "UZ"], "R": ["RX", "RY", "RZ"]}
+    assert refusals(trip.bound) == {("MBF-IMPORT-SIDECAR-INVALID", "support_map[R]")}
     unbound = import_caepipe_mbf(trip.data, material_provenance=INVENTED, source_label="split")
     assert [(support["id"], support["family"]) for support in unbound.model["supports"]] == [("support:10", "anchor")]
+    _, output, error = solve_swbpipe(runner_binary(), {"case_id": "split", "model": oriented(model)})
+    assert error and "SUPPORT_INPUT_INVALID" in json.dumps(output)
 
 
 def test_a_sidecar_without_family_reports_the_family_unrecoverable():
@@ -364,8 +370,9 @@ def test_a_pressure_map_that_does_not_match_the_file_is_refused(trips):
             stored[0]["terminals"][0]["closure_transfer"] = "open"
         result = import_caepipe_mbf(trip.data, sidecar=sidecar, material_provenance=INVENTED, source_label="tamper")
         assert result.status == "refused", change
-        assert any(item["code"] == "MBF-IMPORT-SIDECAR-CONFLICT" and item["location"] == "pressure_map"
-                   for item in result.diagnostics), change
+        expected = (("MBF-IMPORT-SIDECAR-INVALID", "pressure_map.regions[0].terminals[0].closure_transfer")
+                    if change == "terminal" else ("MBF-IMPORT-SIDECAR-CONFLICT", "pressure_map"))
+        assert expected in refusals(result), change
 
 
 def test_the_pressure_bound_is_half_a_unit_of_the_printed_bar_value(trips):
@@ -640,6 +647,40 @@ def bound_parts(model: dict, monkeypatch=None):
                   "mbf_sha256": hashlib.sha256(data).hexdigest()}
 
 
+def complete_sidecar(data: bytes, model: dict, id_map: dict, **maps) -> dict:
+    """A complete byte-bound sidecar for `data`, from an import (`model`, `id_map`) of the same topology, as the
+    writer would record it; `maps` replace whole maps."""
+    names = {swb_id: name for name, swb_id in id_map["node_map"].items()}
+    bends = {component["geometry"]["bend_pipe_ref"]: component["id"] for component in model.get("components", [])}
+
+    def target(load: dict) -> dict:
+        found = load["target"]
+        return ({"node": found["node"]} if "node" in found else {"pipe": found["pipe"]} if "pipe" in found
+                else {"support": found["support"], "dof": found["dof"]})
+
+    sidecar = {
+        "mbf_sha256": hashlib.sha256(data).hexdigest(),
+        "node_map": dict(sorted((swb_id, name) for name, swb_id in id_map["node_map"].items())),
+        "element_map": {pipe["id"]: {"from": names[pipe["from"]], "to": names[pipe["to"]], "reversed": False,
+                                     **({"bend": {"component": bends[pipe["id"]]}} if pipe["id"] in bends else {})}
+                        for pipe in model["pipe_segments"]},
+        "support_map": {support["id"]: {"node": names[support["node"]], "restrained": support["restraints"],
+                                        "family": support.get("family")} for support in model["supports"]},
+        "material_map": {name: {"swbpipe_material": swb_id} for name, swb_id in id_map["material_map"].items()},
+        "load_case_map": {case["id"]: case["label"] for case in model["load_cases"]},
+        "load_map": {f"{case['id']}/{load['id']}": {"load_case": case["id"], "category": load["category"],
+                                                    "direction": load["direction"], "target": target(load)}
+                     for case in model["load_cases"] for load in case["primitive_loads"]},
+    }
+    if model.get("pressure_contract"):
+        regions = next(case["pressure_regions"] for case in model["load_cases"] if case["pressure_regions"])
+        sidecar["pressure_map"] = {"contract": model["pressure_contract"], "regions": [
+            {"id": region["id"], "members": region["member_pipe_ids"], "terminals": region["terminals"]}
+            for region in regions]}
+    sidecar.update(maps)
+    return sidecar
+
+
 def refusals(result) -> set[tuple[str, str]]:
     return {(item["code"], item["location"]) for item in result.diagnostics if item["severity"] == "error"}
 
@@ -710,7 +751,9 @@ def test_restored_region_ids_must_be_present_and_unique(trips):
         stored[1]["id"] = " " if change == "empty" else stored[0]["id"]
         result = import_caepipe_mbf(trip.data, sidecar=sidecar, material_provenance=INVENTED, source_label=change)
         assert result.status == "refused"
-        assert ("MBF-IMPORT-SIDECAR-CONFLICT", "pressure_map") in refusals(result), change
+        expected = (("MBF-IMPORT-SIDECAR-INVALID", "pressure_map.regions[1].id") if change == "empty"
+                    else ("MBF-IMPORT-SIDECAR-CONFLICT", "pressure_map"))
+        assert expected in refusals(result), change
 
 
 def test_a_restored_orientation_the_frame_cannot_use_is_refused():
@@ -1022,10 +1065,13 @@ def test_a_bend_whose_arc_in_metres_is_not_tangent_is_refused_whole_on_both_rout
     assert "at node 20A" in message and f"{theta:.6g} rad" in message
     terminals = [{"node_ref": node, "closure_transfer": "transfers_to_wall", "provenance": "invented"}
                  for node in ("node:10", "node:30")]
-    sidecar = {"mbf_sha256": hashlib.sha256(data).hexdigest(), "pressure_map": {
-        "contract": {"version": "3.0.0", "mode": "exact_pressure_v3", "shear_model": "euler_bernoulli"},
-        "regions": [{"id": "region:r", "members": ["pipe:10-20A", "pipe:20A-20B", "pipe:20B-30"],
-                     "terminals": terminals}]}}
+    free = importer_tests.run(importer_tests.mbf(*MITRE_ROWS, pipe=("P1,50,2,0",)))
+    sidecar = complete_sidecar(data, free.model, free.id_map, load_case_map={"case:p": "Sustained (W+P)"},
+                               pressure_map={"contract": {"version": "3.0.0", "mode": "exact_pressure_v3",
+                                                          "shear_model": "euler_bernoulli"},
+                                             "regions": [{"id": "region:r", "members": [
+                                                 "pipe:10-20A", "pipe:20A-20B", "pipe:20B-30"],
+                                                 "terminals": terminals}]})
     bound = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="mitre")
     assert refusals(bound) == {("MBF-IMPORT-PRESSURE-MITRE", "pressure_map region region:r")}
     # The route refuses the same region authored on the file's pressure-free import.
@@ -1044,11 +1090,11 @@ def test_a_restored_y_reference_the_frame_kernel_refuses_is_refused_by_name():
     # Y - (Y.x)x for x = (1, 2, 0)/sqrt 5 is (-2/5, 1/5, 0), normalized (-2, 1, 0)/sqrt 5.
     data = importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X1000,Y2000", loads=("L1,20,10,0",))
     restored = {"x": 1.0, "y": 2.00000001, "z": 0.0}
-    sidecar = {"mbf_sha256": hashlib.sha256(data).hexdigest(),
-               "element_map": {"s": {"from": "10", "to": "20", "y_reference": restored}}}
-    result = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="parallel",
-                                pressure_closure=importer_tests.CLOSURE)
-    assert refusals(result) == {("MBF-IMPORT-ORIENTATION-UNUSABLE", "s")}
+    plain = importer_tests.run(data, pressure_closure=importer_tests.CLOSURE)
+    sidecar = complete_sidecar(data, plain.model, plain.id_map)
+    sidecar["element_map"]["pipe:10-20"]["y_reference"] = restored
+    result = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="parallel")
+    assert refusals(result) == {("MBF-IMPORT-ORIENTATION-UNUSABLE", "pipe:10-20")}
     assert importer_module.frame_y_reference_usable((0, 0, 0), (1.0, 2.0, 0), (1.0, 2.00000001, 0.0)) is False
     unbound = importer_tests.run(data, pressure_closure=importer_tests.CLOSURE)
     assert tuple(unbound.model["pipe_segments"][0]["y_reference"].values()) == pytest.approx(
@@ -1117,7 +1163,7 @@ def test_blank_restored_ids_are_refused_by_kind():
     sidecar = {"mbf_sha256": hashlib.sha256(data).hexdigest(), "element_map": {"": {"from": "10", "to": "20"}}}
     result = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="empty",
                                 pressure_closure=importer_tests.CLOSURE)
-    assert refusals(result) == {("MBF-IMPORT-SIDECAR-CONFLICT", "pipe id ''")}
+    assert refusals(result) == {("MBF-IMPORT-SIDECAR-INVALID", "element_map[]")}
     model = importer_tests.run(data, pressure_closure=importer_tests.CLOSURE).model
     _, output, error = solve_swbpipe(runner_binary(), {"case_id": "empty-id",
                                                        "model": renamed(model, {"pipe:10-20": ""})})
@@ -1129,24 +1175,26 @@ def test_blank_restored_ids_are_refused_by_kind():
 
     changes = {
         "node": lambda sidecar: rename(sidecar["node_map"], "A", " "),
-        "pipe": lambda sidecar: rename(sidecar["element_map"], "S1", "　"),
+        "pipe": lambda sidecar: rename(sidecar["element_map"], "S1", "\u3000"),
         "component": lambda sidecar: sidecar["element_map"]["BEND"]["bend"].update(component="\t"),
         "material": lambda sidecar: sidecar["material_map"]["M1"].update(swbpipe_material=" "),
-        "support": lambda sidecar: rename(sidecar["support_map"], "SA", " "),
+        "support": lambda sidecar: rename(sidecar["support_map"], "SA", "\u00a0"),
         "load case": lambda sidecar: rename(sidecar["load_case_map"], "case:th", " "),
         "primitive load": lambda sidecar: rename(sidecar["load_map"], "case:th/t:S1", "case:th/ "),
     }
-    blank = {"node": " ", "pipe": "　", "component": "\t", "material": " ", "support": " ",
-             "load case": " ", "primitive load": " "}
+    path = {"node": "node_map[ ]", "pipe": "element_map[\u3000]", "component": "element_map[BEND].bend.component",
+            "material": "material_map[M1].swbpipe_material", "support": "support_map[\u00a0]",
+            "load case": "load_case_map[ ]", "primitive load": "load_map[case:th/ ]"}
     for kind, change in changes.items():
         sidecar = deepcopy(base)
         change(sidecar)
         result = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label=kind)
         assert result.status == "refused", kind
-        assert ("MBF-IMPORT-SIDECAR-CONFLICT", f"{kind} id {blank[kind]!r}") in refusals(result), kind
+        assert ("MBF-IMPORT-SIDECAR-INVALID", path[kind]) in refusals(result), (kind, refusals(result))
     assert importer_module.runtime_blank("\x1c") is False and "\x1c".strip() == ""
     kept = deepcopy(base)
     rename(kept["element_map"], "S1", "\x1c")
+    kept["load_map"]["case:th/t:S1"]["target"]["pipe"] = "\x1c"
     assert import_caepipe_mbf(data, sidecar=kept, material_provenance=INVENTED, source_label="kept").status == "imported"
 
 
@@ -1188,22 +1236,84 @@ def test_a_restored_support_family_the_route_does_not_admit_is_refused():
     rows = ("F10,KA,MM1,PP1,CL=L1", "T20,KA,X1000")
     for options in ("HGRA,SI", "HGRA,SI,Z", "HGRA"):
         data = importer_tests.mbf(*rows, options=options, pipe=("P1,168.3,7.11,0",), loads=("L1,20,10,0",))
-        restraint = {"node": "10", "restrained": ["UX", "UY", "UZ", "RX", "RY", "RZ"]}
-        for family, admitted in (("constant_effort_support", False), ("guide", True)):
-            sidecar = {"mbf_sha256": hashlib.sha256(data).hexdigest(),
-                       "support_map": {"s": {**restraint, "family": family}}}
-            result = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label=options,
-                                        pressure_closure=importer_tests.CLOSURE)
+        plain = importer_tests.run(data, pressure_closure=importer_tests.CLOSURE)
+        base = complete_sidecar(data, plain.model, plain.id_map)
+        for family, admitted in (("constant_effort_support", False), ("anchor", True)):
+            sidecar = deepcopy(base)
+            sidecar["support_map"]["support:10"]["family"] = family
+            result = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label=options)
             if admitted:
                 assert result.status == "imported", (options, result.diagnostics)
-                assert {"id": "s", "family": "guide"}.items() <= result.model["supports"][0].items()
+                assert result.model["supports"] == plain.model["supports"], options
             else:
-                assert refusals(result) == {("MBF-IMPORT-SIDECAR-INVALID", "support_map[s].family")}, options
+                assert refusals(result) == {("MBF-IMPORT-SIDECAR-INVALID", "support_map[support:10].family")}
     model = importer_tests.run(importer_tests.mbf(*rows, loads=("L1,20,10,0",)),
                                pressure_closure=importer_tests.CLOSURE).model
     model["supports"][0]["family"] = "constant_effort_support"
     _, output, error = solve_swbpipe(runner_binary(), {"case_id": "family", "model": model})
     assert error and "EXACT_PRESSURE_FAMILY_NOT_ADMITTED" in json.dumps(output)
+
+
+def test_restored_supports_are_held_to_the_solves_family_dofs_and_overlap():
+    # Codex VER-002 r8 (P2). The solve infers an absent family as anchor with six DOFs and guide otherwise; a guide or
+    # line stop restrains translations only and a vertical support UZ only; a DOF restrained twice at a node is
+    # refused (SUPPORT_INPUT_INVALID). Each case is refused by support id, and the solve refuses the same supports.
+    rows = ("F10,KA,MM1,PP1,CL=L1", "T20,KA,X1000")
+    data = importer_tests.mbf(*rows, pipe=("P1,168.3,7.11,0",), loads=("L1,20,10,0",))
+    plain = importer_tests.run(data, pressure_closure=importer_tests.CLOSURE)
+    six = ["UX", "UY", "UZ", "RX", "RY", "RZ"]
+    cases = {f"six-dof {family}": {"support:10": {"node": "10", "restrained": six, "family": family}}
+             for family in ("guide", "line_stop", "vertical_support")}
+    cases["overlap"] = {"support:10": {"node": "10", "restrained": six, "family": None},
+                        "s2": {"node": "10", "restrained": ["UX"], "family": None}}
+    runner = runner_binary()
+    for name, supports in cases.items():
+        sidecar = complete_sidecar(data, plain.model, plain.id_map)
+        sidecar["support_map"] = {**supports, "support:20": sidecar["support_map"]["support:20"]}
+        result = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label=name)
+        refused_ids = {support_id for support_id, entry in supports.items()
+                       if entry["family"] not in (None, "anchor") or support_id == "s2"}
+        assert refusals(result) == {("MBF-IMPORT-SIDECAR-INVALID", f"support_map[{support_id}]")
+                                    for support_id in refused_ids}, name
+        model = deepcopy(plain.model)
+        model["supports"] = [{"id": support_id, "node": f"node:{entry['node']}", "restraints": entry["restrained"],
+                              "provenance": "invented", **({"family": entry["family"]} if entry["family"] else {})}
+                             for support_id, entry in supports.items()] + model["supports"][1:]
+        _, output, error = solve_swbpipe(runner, {"case_id": name, "model": model})
+        assert error and "SUPPORT_INPUT_INVALID" in json.dumps(output), name
+
+
+def test_unbound_supports_the_solve_refuses_are_refused_by_name():
+    # The unbound route meets the same rules: FIXD(1,0,1) with FIXRY and no family is a guide to the solve, which
+    # restrains no rotation; KA with FIXD restrains UX twice at one node. Both are refused by support id; the solve
+    # refuses each as authored. FIXD with FIXR on all six DOFs is an anchor to the solve and is kept.
+    runner = runner_binary()
+    for name, row, support_id in (("partial-rotation", "T20,KA,X3000", "support:30-restraint"),
+                                  ("anchor-and-fixd", "T20,KA,X3000,CFIXD(1,0,0)", "support:20-restraint")):
+        rows = ("F10,KA,MM1,PP1,CL=L1", row) + (("T30,X10,CFIXD(1,0,1),FIXRY",) if name == "partial-rotation"
+                                                else ())
+        result = importer_tests.run(importer_tests.mbf(*rows, loads=("L1,20,10,0",)),
+                                    pressure_closure=importer_tests.CLOSURE)
+        assert refusals(result) == {("MBF-IMPORT-SUPPORT-UNSUPPORTED", support_id)}, name
+    kept = importer_tests.run(importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", "T20,X3000",
+                                                 "T30,X10,CFIXD(1,1,1),FIXR(1,1,1)"))
+    assert kept.status == "imported"
+    model = importer_tests.run(importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", "T20,X3000")).model
+    for name, supports in (("partial-rotation", [{"id": "g", "node": "node:20", "restraints": ["UX", "UZ", "RY"],
+                                                  "provenance": "invented"}]),
+                           ("anchor-and-fixd", [{"id": "a", "node": "node:20", "restraints": [
+                               "UX", "UY", "UZ", "RX", "RY", "RZ"], "family": "anchor", "provenance": "invented"},
+                                                {"id": "g", "node": "node:20", "restraints": ["UX"],
+                                                 "provenance": "invented"}])):
+        authored = deepcopy(model)
+        authored["load_cases"] = [{"id": "case:w", "label": "Sustained (W+P)", "kind": "sustained", "status": "draft",
+                                   "provenance": "invented", "primitive_loads": [
+            {"id": "f", "category": "concentrated_force", "target": {"type": "node", "node": "node:20"},
+             "direction": "global_y", "magnitude": {"value": -1.0, "unit": "N"}, "dimension": "force",
+             "provenance": "invented"}]}]
+        authored["supports"] = authored["supports"] + supports
+        _, output, error = solve_swbpipe(runner, {"case_id": name, "model": authored})
+        assert error and "SUPPORT_INPUT_INVALID" in json.dumps(output), name
 
 
 def test_every_restored_sidecar_field_outside_the_admitted_vocabulary_is_refused(trips):
@@ -1213,7 +1323,7 @@ def test_every_restored_sidecar_field_outside_the_admitted_vocabulary_is_refused
     data, base = bound_parts(writer_tests.bent_l())
     changes = {
         "element_map[S1].reversed": lambda sidecar: sidecar["element_map"]["S1"].update(reversed="yes"),
-        "element_map[BEND].bend": lambda sidecar: sidecar["element_map"]["BEND"]["bend"].update(component=7),
+        "element_map[BEND].bend.component": lambda sidecar: sidecar["element_map"]["BEND"]["bend"].update(component=7),
         "support_map[SA].restrained": lambda sidecar: sidecar["support_map"]["SA"].update(restrained=5),
         "support_map[SB].family": lambda sidecar: sidecar["support_map"]["SB"].update(
             family="anchor", restrained=["UX", "UY", "UZ", "RX", "RY"]),
@@ -1221,7 +1331,8 @@ def test_every_restored_sidecar_field_outside_the_admitted_vocabulary_is_refused
         "material_map[M1].swbpipe_material": lambda sidecar: sidecar["material_map"]["M1"].update(
             swbpipe_material=3),
         "load_map[case:th/t:S1].target": lambda sidecar: sidecar["load_map"]["case:th/t:S1"].update(target="S1"),
-        "load_map[t:S1].direction": lambda sidecar: sidecar["load_map"]["case:th/t:S1"].update(direction="sideways"),
+        "load_map[case:th/t:S1].direction": lambda sidecar: sidecar["load_map"]["case:th/t:S1"].update(
+            direction="sideways"),
     }
     for location, change in changes.items():
         sidecar = deepcopy(base)
@@ -1235,4 +1346,139 @@ def test_every_restored_sidecar_field_outside_the_admitted_vocabulary_is_refused
         sidecar = deepcopy(trip.sidecar)
         sidecar["pressure_map"]["contract"].update(change)
         result = import_caepipe_mbf(trip.data, sidecar=sidecar, material_provenance=INVENTED, source_label="contract")
-        assert refusals(result) == {("MBF-IMPORT-SIDECAR-INVALID", "pressure_map.contract")}, change
+        assert refusals(result) == {("MBF-IMPORT-SIDECAR-INVALID", f"pressure_map.contract.{next(iter(change))}")}
+
+
+# --- VER-002 r8: the sidecar parser under mutation ------------------------------------------------------------------
+MUTATION_SEED = 20261027
+
+
+def sidecar_mutations(sidecar: dict) -> list[tuple[str, dict]]:
+    """Every field of `sidecar`, mutated deterministically: each value swapped for every other JSON type (list,
+    object, string, number, bool, null), each container emptied, each number made huge or non-finite, an unknown key
+    added to and each key removed from every object. The seeded generator picks the stand-in of each type."""
+    rng = random.Random(MUTATION_SEED)
+    stand_ins = {"list": [["x"], [1], [None]], "object": [{"x": 1}, {"node": ["node:20"]}],
+                 "string": ["x", "zz", "[]"], "number": [7, -1.5, 0], "bool": [True, False], "null": [None]}
+    kind = lambda value: ("null" if value is None else "bool" if isinstance(value, bool)  # noqa: E731
+                          else "number" if isinstance(value, (int, float)) else "string" if isinstance(value, str)
+                          else "list" if isinstance(value, list) else "object")
+    found: list[tuple[str, dict]] = []
+
+    def at(path: tuple, value: Any, label: str) -> None:
+        mutated = deepcopy(sidecar)
+        holder = mutated
+        for step in path[:-1]:
+            holder = holder[step]
+        if value is _DELETE:
+            del holder[path[-1]]
+        else:
+            holder[path[-1]] = deepcopy(value)
+        found.append((f"{'/'.join(map(str, path))}: {label}", mutated))
+
+    def walk(value: Any, path: tuple) -> None:
+        if path:
+            for other in sorted(stand_ins):
+                if other != kind(value):
+                    at(path, rng.choice(stand_ins[other]), f"{other} for {kind(value)}")
+            if isinstance(value, (list, dict)) and value:
+                at(path, type(value)(), "emptied")
+            if kind(value) == "number":
+                for number in (10 ** 400, -10 ** 400, math.inf, -math.inf, math.nan):
+                    at(path, number, f"{number!r}")
+        if isinstance(value, dict):
+            at(path + ("zz_unknown",), 1, "unknown key")
+            for key in value:
+                at(path + (key,), _DELETE, "removed")
+                walk(value[key], path + (key,))
+        elif isinstance(value, list):
+            for index, item in enumerate(value):
+                walk(item, path + (index,))
+
+    walk(sidecar, ())
+    return found
+
+
+_DELETE = object()
+
+
+def test_every_mutated_sidecar_is_refused_by_name_or_restores_the_same_model():
+    # VER-002 r8: the import of each mutated sidecar either refuses with a named MBF-IMPORT code or imports the
+    # unmutated model, and never raises; the writer's preflight, given the same mutated sidecar, refuses with a named
+    # MBF-SI code exactly where the import refuses, and never raises. The base has pressure, a bend, two supports and
+    # thermal loads; its straights' recorded y_reference is the documented one and its families are absent, so a
+    # removed optional record restores the same model.
+    from core.handoff.caepipe_mbf import si_writer
+    captured: dict[str, Any] = {}
+    original = si_writer._Writer.survives_reimport
+
+    def capture(self, result):
+        captured.update(writer=self, result=result, diagnostics=list(self.diagnostics), loss=list(self.loss))
+        return original(self, result)
+
+    si_writer._Writer.survives_reimport = capture
+    try:
+        written = render_caepipe_mbf_si(writer_tests.pressurized_l(), title="MUTATION")
+    finally:
+        si_writer._Writer.survives_reimport = original
+    assert written.status == "written", written.diagnostics
+    data = written.text.encode("ascii")
+    base = {**{key: value for key, value in written.to_dict().items() if key.endswith("_map")},
+            "mbf_sha256": hashlib.sha256(data).hexdigest()}
+    expected = import_caepipe_mbf(data, sidecar=base, material_provenance=INVENTED, source_label="base")
+    assert expected.status == "imported", expected.diagnostics
+    writer, result = captured["writer"], captured["result"]
+    mutations = sidecar_mutations(base)
+    outcomes = {"refused": 0, "equal": 0}
+    for label, sidecar in mutations:
+        imported = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="mutated")
+        errors = {item["code"] for item in imported.diagnostics if item["severity"] == "error"}
+        if imported.status == "refused":
+            assert errors and all(code.startswith("MBF-IMPORT-") for code in errors), label
+            outcomes["refused"] += 1
+        else:
+            assert imported.model == expected.model, label
+            outcomes["equal"] += 1
+        if not label.split("/")[0].split(":")[0].endswith("_map"):
+            continue  # the preflight binds its own text by its own hash and reads only the maps
+        writer.diagnostics[:], writer.loss[:] = list(captured["diagnostics"]), list(captured["loss"])
+        maps = {key: value for key, value in sidecar.items() if key != "mbf_sha256"}
+        object.__setattr__(result, "to_dict", lambda maps=maps: dict(maps))
+        survives = original(writer, result)
+        refusals_ = {item["code"] for item in writer.diagnostics if item["severity"] == "error"}
+        if imported.status == "refused":
+            assert not survives and refusals_ and all(code.startswith("MBF-SI-") for code in refusals_), label
+        else:
+            assert survives, label
+    assert len(mutations) > 1000 and outcomes["refused"] > 0 and outcomes["equal"] > 0, outcomes
+
+
+def test_nested_sidecar_values_are_refused_by_path_and_the_writer_reads_no_unhashable_value():
+    # Codex VER-002 r8 (P2), on a one-straight invented SI MBF with SHA-bound sidecars: a load target naming a node
+    # by a list raised TypeError, a terminal node_ref [] crashed the importer and the writer, a y_reference component
+    # 10**400 raised OverflowError, and a falsey target passed through `or {}`. Each is refused by JSON path.
+    data = importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X1000", loads=("L1,20,10,0",))
+    plain = importer_tests.run(data, pressure_closure=importer_tests.CLOSURE)
+    base = complete_sidecar(data, plain.model, plain.id_map)
+    assert import_caepipe_mbf(data, sidecar=base, material_provenance=INVENTED, source_label="base").status == "imported"
+    cases = {
+        "load_map[case:mbf-sustained/l].target.node": lambda sidecar: sidecar["load_map"].update(
+            {"case:mbf-sustained/l": {"load_case": "case:mbf-sustained", "category": "concentrated_force",
+                                      "target": {"node": ["node:20"]}}}),
+        "pressure_map.regions[0].terminals[0].node_ref": lambda sidecar: sidecar["pressure_map"]["regions"][0][
+            "terminals"][0].update(node_ref=[]),
+        "element_map[pipe:10-20].y_reference.x": lambda sidecar: sidecar["element_map"]["pipe:10-20"].update(
+            y_reference={"x": 10 ** 400, "y": 1.0, "z": 0.0}),
+        "load_map[case:mbf-sustained/l].target": lambda sidecar: sidecar["load_map"].update(
+            {"case:mbf-sustained/l": {"load_case": "case:mbf-sustained", "category": "weight", "target": {}}}),
+    }
+    for path, change in cases.items():
+        sidecar = deepcopy(base)
+        change(sidecar)
+        result = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label=path)
+        assert refusals(result) == {("MBF-IMPORT-SIDECAR-INVALID", path)}, (path, refusals(result))
+    model = deepcopy(writer_tests.pressurized_l())
+    next(case for case in model["load_cases"] if case.get("pressure_regions"))["pressure_regions"][0]["terminals"][0][
+        "node_ref"] = []
+    written = render_caepipe_mbf_si(model, title="NODE REF")
+    assert written.status == "refused" and "MBF-SI-INPUT-INVALID" in {item["code"] for item in written.diagnostics}

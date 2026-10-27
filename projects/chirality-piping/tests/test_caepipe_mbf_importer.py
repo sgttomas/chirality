@@ -509,10 +509,14 @@ def test_unbound_imports_follow_the_base_rule_without_pd1(monkeypatch):
 
 # --- §12 supports, §13 point loads -------------------------------------------------------------------------------------
 def test_supports():
-    result = run(mbf("F10,KA,MM1,PP1,CL=L1,LA=0", "T20,X3000,CFIXD(1,0,1),FIXRY,TAG=invented guide-like"))
+    result = run(mbf("F10,KA,MM1,PP1,CL=L1,LA=0", "T20,X3000,CFIXD(1,0,1),TAG=invented guide-like"))
     assert [(item["id"], item["restraints"], item.get("family"), item["label"]) for item in result.model["supports"]] == [
         ("support:10", ["UX", "UY", "UZ", "RX", "RY", "RZ"], "anchor", "anchor at 10"),
-        ("support:20-restraint", ["UX", "UZ", "RY"], None, "invented guide-like")]
+        ("support:20-restraint", ["UX", "UZ"], None, "invented guide-like")]
+    # With FIXRY too, the restraint has fewer than six DOFs and no family, which the solve reads as a guide, and a
+    # guide restrains no rotation (SUPPORT_INPUT_INVALID, VER-002 r8): refused by support id.
+    partial = run(mbf("F10,KA,MM1,PP1,CL=L1,LA=0", "T20,X3000,CFIXD(1,0,1),FIXRY,TAG=invented guide-like"))
+    assert refused(partial, "MBF-IMPORT-SUPPORT-UNSUPPORTED")["location"] == "support:20-restraint"
     result = run(mbf("F10,KA,MM1,PP1,CL=L1", "T20,X3000", "T30,X10,CFIXD(1,1,1),FIXR(1,1,1)"))
     assert result.model["supports"][-1]["restraints"] == ["UX", "UY", "UZ", "RX", "RY", "RZ"]  # kept as written
     assert "family" not in result.model["supports"][-1]
@@ -699,8 +703,9 @@ def test_a_sidecar_with_another_hash_is_not_applied_unless_rebinding_is_requeste
     assert {"A", "T1", "T2", "B", "SA"} <= set(rebound.id_map["rebound_unconfirmed"])
     assert any(item["code"] == "MBF-IMPORT-SIDECAR-ENTRY-ABSENT" and "GONE" in item["location"]
                for item in rebound.loss_report)
-    conflict = {**sidecar, "node_map": {"A": "10", "B": "10"}}
-    refused(run(data, sidecar=conflict, rebind_by_node_number=True), "MBF-IMPORT-SIDECAR-CONFLICT")
+    conflict = {**sidecar, "node_map": {"A": "10", "B": "10"}}  # not one-to-one: refused by the sidecar parser
+    assert refused(run(data, sidecar=conflict, rebind_by_node_number=True),
+                   "MBF-IMPORT-SIDECAR-INVALID")["location"] == "node_map[B]"
     refused(run(data, rebind_by_node_number=True), "MBF-IMPORT-SIDECAR-INVALID")
 
 

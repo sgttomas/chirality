@@ -718,11 +718,11 @@ not a terminal, is refused (`MBF-IMPORT-PRESSURE-CLOSURE-INVALID`). A file witho
 needs no declaration.
 
 **Bound imports.** The writer's sidecar `pressure_map` restores the contract, the region
-ids, members in order, and the terminals with their closure transfer and provenance. It is
-checked against the file: every member must carry a non-zero Pressure 1, equal across the
-region, and belong to one region only; every element with pressure must belong to one; each
-terminal must name a model node with a closure transfer and provenance. Otherwise the
-import is refused (`MBF-IMPORT-SIDECAR-CONFLICT`). The pressure value always comes from the
+ids, members in order, and the terminals with their closure transfer and provenance, as the
+sidecar parser types them (§15). It is checked against the file: every member must carry a
+non-zero Pressure 1, equal across the region, and belong to one region only; every element
+with pressure must belong to one; each terminal must name a model node. Otherwise the import
+is refused (`MBF-IMPORT-SIDECAR-CONFLICT`). The pressure value always comes from the
 file. A bound sidecar with a contract and no regions restores the contract and empty region
 lists.
 
@@ -731,8 +731,8 @@ as an unbound region (its straight runs, its bores and its bend junctions, on th
 values read to metres),
 in its declared traversal order: from its first terminal, through its members, to its
 second. It is never cut or reordered. A region that is not one chain between its terminals
-is refused as `MBF-IMPORT-SIDECAR-CONFLICT`, as is a region id that is repeated or that
-Rust's `trim` leaves empty (§15); one the checks refuse is refused as
+is refused as `MBF-IMPORT-SIDECAR-CONFLICT`, as is a repeated region id (an empty one the
+parser refuses, §15); one the checks refuse is refused as
 `MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR`, `MBF-IMPORT-PRESSURE-BORE-MISMATCH`,
 `MBF-IMPORT-PRESSURE-MITRE`, `MBF-IMPORT-PRESSURE-GEOMETRY-INVALID` or, where another pipe
 joins an internal node, `MBF-IMPORT-PRESSURE-INTERNAL-BRANCH`, located at `pressure_map
@@ -743,21 +743,25 @@ and 8.11, but print as 168.3 and 7.11000002; and two offsets collinear as author
 be collinear as printed. The writer's preflight below refuses such an export, so a bound
 import fails these checks only if the file was not written by the current writer.
 
-**Guard map (VER-002 r5, r6, r7).** Every refusal `pressure_runtime.rs` raises for a model,
-region or member (46 codes, with the two admission-seam codes it raises), and what keeps an
+**Guard map (VER-002 r5 to r8).** Every refusal `pressure_runtime.rs` raises for a model,
+region or member (47 codes, with the two admission-seam codes it raises), and what keeps an
 import from reaching it. U is the unbound route, B the bound (restored) route; the writer's
 preflight re-imports bound, so B covers exports too. A bound import restores sidecar
 content, so no B claim rests on what the importer itself writes: each restored field is
 checked against what the import admits (§15), and a row that holds "by construction" names
-the restored fields it depends on (independent review VER-002 r7).
+the restored fields it depends on (independent review VER-002 r7). The sidecar parser (§15)
+is the guard of record for every structural refusal on B: a restored value of the wrong
+type, outside its vocabulary, empty where an id is required, or outside binary64, and any
+unknown key, is refused by JSON path (`MBF-IMPORT-SIDECAR-INVALID`) before anything reads
+the sidecar (r8).
 
 | Runtime code | Importer check | Route |
 |---|---|---|
 | `PRESSURE_REGION_NONCOLLINEAR` | ported `collinear_run` per straight run (`MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR`) | U, B |
 | `PRESSURE_REGION_BORE_MISMATCH` | ported bore guard (`MBF-IMPORT-PRESSURE-BORE-MISMATCH`) | U, B |
 | `PRESSURE_REGION_INTERNAL_BRANCH` | U: a chain continues only through a node joining exactly two pipes; B: ported (`MBF-IMPORT-PRESSURE-INTERNAL-BRANCH`, new in r5) | U, B |
-| `_TOPOLOGY_INVALID`, `PRESSURE_TERMINALS_INVALID`, `PRESSURE_TERMINAL_NODE_UNKNOWN`, `_MEMBER_UNKNOWN`, `_MEMBERS_INVALID`, `_PIPE_OVERLAP` | U: chains of existing pipes, each in one region, with their two ends as terminals; B: membership, ownership and one chain from the first terminal to the second, and every restored id non-empty after Rust's `trim` (§15, new in r6) (`MBF-IMPORT-SIDECAR-CONFLICT`) | U, B |
-| `_INPUT_MISSING`, `_ID_DUPLICATE` | U: formed ids, provenance, pressure and members; B: as restored, with ids and provenance non-empty after Rust's `trim` and ids unique (r5, r6) | U, B |
+| `_TOPOLOGY_INVALID`, `PRESSURE_TERMINALS_INVALID`, `PRESSURE_TERMINAL_NODE_UNKNOWN`, `_MEMBER_UNKNOWN`, `_MEMBERS_INVALID`, `_PIPE_OVERLAP` | U: chains of existing pipes, each in one region, with their two ends as terminals; B: membership, ownership and one chain from the first terminal to the second, (`MBF-IMPORT-SIDECAR-CONFLICT`), and every restored id non-empty after Rust's `trim` (the parser, `MBF-IMPORT-SIDECAR-INVALID`, r6, r8) | U, B |
+| `_INPUT_MISSING`, `_ID_DUPLICATE` | U: formed ids, provenance, pressure and members; B: as restored, with ids and provenance non-empty after Rust's `trim` (the parser) and region ids unique (r5, r6, r8) | U, B |
 | `PRESSURE_TERMINAL_INPUT_MISSING`, `PRESSURE_TERMINAL_CLOSURE_INVALID` | U: the closure declaration (`MBF-IMPORT-PRESSURE-CLOSURE-REQUIRED`, `-INVALID`); B: restored node, closure and provenance checked | U, B |
 | `_PRESSURE_INVALID` | the file's value read finite (§4.3), and finite in Pa as the route reads it, value × 10⁵ or × `PSI_IN_PASCALS` + 0 (`MBF-IMPORT-VALUE-UNREPRESENTABLE`, new in r6) | U, B |
 | `EXACT_PRESSURE_CORROSION_ALLOWANCE_REQUIRED` | `MBF-IMPORT-CORROSION-ALLOWANCE-MISSING`; the writer's `MBF-SI-CORROSION-ALLOWANCE-MISSING` | U, B |
@@ -766,7 +770,8 @@ the restored fields it depends on (independent review VER-002 r7).
 | `EXACT_PRESSURE_MATERIAL_INVALID` | E > 0 and 0 < ν < 0.5 (`MBF-IMPORT-VALUE-OUT-OF-RANGE`) | U, B |
 | `PRESSURE_REGION_MITRE_UNSUPPORTED` | ported tangency check at each junction beside a bend, on the arc formed in metres (**Bends**; `MBF-IMPORT-PRESSURE-MITRE`, new in r6). r5 listed it as unable to arise, reasoning in the file's unit; the metre reading breaks that (VER-002 r6) | U, B |
 | `PRESSURE_MODEL_REAUTHOR_REQUIRED`, `PRESSURE_CONTRACT_UNSUPPORTED`, `EXACT_PRESSURE_SHEAR_MODEL_REQUIRED`, `PREVIEW_SCHEMA_VERSION_UNSUPPORTED`, `PREVIEW_CONTRACT_VERSION_MISMATCH`, `_BASIS_UNSUPPORTED`, `CORROSION_ALLOWANCE_WITHOUT_PRESSURE_CONTRACT`, `EXACT_PRESSURE_REQUIRES_REGION`, `EXACT_PRESSURE_REGIONS_REQUIRED` | by construction: the importer writes only the current schema version, the one contract, the one basis, the allowance only under the contract, no pressure primitive, and a region list on every case. B restores only the contract's shear model and the regions; a restored contract other than 3.0.0/exact_pressure_v3 with a shear model from `SHEAR_MODELS` is refused, no longer replaced by euler_bernoulli (`MBF-IMPORT-SIDECAR-INVALID`, new in r7) | U, B |
-| `EXACT_PRESSURE_FAMILY_NOT_ADMITTED` | U: only anchors and rigid restraints, without family or as `anchor`, and realized bends; no hanger, nonlinear support, connector, combination or equivalent-static load. B: a restored support family other than none, `anchor`, `guide`, `line_stop` or `vertical_support` (the rigid families the writer exports), an `anchor` restraining fewer than six DOFs, or a restrained list that is not distinct DOFs is refused by support id (`MBF-IMPORT-SIDECAR-INVALID`, new in r7; r5 and r6 wrongly listed it as unable to arise). Components restore only their id | U, B |
+| `EXACT_PRESSURE_FAMILY_NOT_ADMITTED` | U: only anchors and rigid restraints, without family or as `anchor`, and realized bends; no hanger, nonlinear support, connector, combination or equivalent-static load. B: the parser refuses a restored support family other than none, `anchor`, `guide`, `line_stop` or `vertical_support` (the rigid families the writer exports), an `anchor` restraining fewer than six DOFs, a restrained list that is not distinct DOFs, and supports the solve's family, DOF and overlap rules refuse (§12), by support id (`MBF-IMPORT-SIDECAR-INVALID`, r7, r8; r5 and r6 wrongly listed it as unable to arise). Components restore only their id | U, B |
+| `JOINT_PRESSURE_INTERFACE_UNRESOLVED` | by construction: raised only for a joint a region lists as a connector member; the importer writes no connector and no region connector list, and on B the parser refuses any region field other than `id`, `members`, `terminals`, `provenance` and `pressure_bar` (new in r8; omitted from the r5 to r7 inventory) | U, B |
 | `OBJECTIVE_CONNECTOR_VERSION_UNSUPPORTED`, `OBJECTIVE_CONNECTOR_NOT_IMPLEMENTED`, `EXACT_PRESSURE_REDUCER_IN_REGION` | by construction: the importer writes no connector and no reducer; B restores no component kind, interface or connector field, only the bend component's id (a string, else `MBF-IMPORT-SIDECAR-INVALID`) | U, B |
 | `EXACT_PRESSURE_MATERIAL_AMBIGUOUS`, `_MATERIAL_MISSING`, `_MATERIAL_BASIS_REQUIRED`, `_POISSON_RATIO_REQUIRED`, `THERMAL_EXPANSION_INPUT_MISSING`, `LOAD_STATE_MEMBER_MATERIAL_MISSING`, `_SECTION_MISSING`, `_NOT_NORMALIZED`, `EXACT_PRESSURE_REGION_MEMBER_NOT_STRAIGHT` | by construction: each pipe names one imported E/ν material with explicit ν and α (B restores only material ids, merged only where E, ν and α are identical, and an origin from `MATERIAL_ORIGINS`); no load-state case (B restores case ids only); every pipe has a section, whose 0 < t < OD/2 is checked again on the values in m (§4.3, new in r6); bar and psi normalize to Pa in the solve's own seam; the last is an unreachable guard by its source comment | U, B |
 | `EXACT_PRESSURE_OUTPUT_UNREPRESENTABLE`, `PRESSURE_LEDGER_SUM_UNREPRESENTABLE`, `PRESSURE_ASSEMBLY_COEFFICIENT_UNREPRESENTABLE`, `PRESSURE_ASSEMBLY_SOURCE_UNREPRESENTABLE`, `PRESSURE_ASSEMBLY_CANCELLATION_UNRESOLVED` | not an import guard: solve-time arithmetic of the assembled loads, refused by name by the solve; the importer keeps every input finite | — |
@@ -1050,7 +1055,7 @@ Support data are comments on the node's row or on a Location row. They follow *F
 |---|---|
 | `KA`, anchor in global axes (`LA` absent or 0) | `support:n`, `family: anchor`, restraints UX…RZ |
 | `FIXD(a,b,c)`, `F(a,b,c)`, `FIXDX[=1]`, `FX`, … | Translational restraints. Each value must be 0 or 1 (`MBF-IMPORT-COMMENT-INVALID`). They go on `support:n-restraint` with family absent (the solver's own inference, as for any family-less support) |
-| `FIXR(…)`, `FIXRX[=1]`, … | Rotational restraints, on the same restraint support. SWBPIPE represents them, so they are imported. The writer refuses partial rotational restraints because the target tool did not accept them in an imported MBF, per private notes |
+| `FIXR(…)`, `FIXRX[=1]`, … | Rotational restraints, on the same restraint support. The solve reads a family-less support with fewer than six DOFs as a guide, which restrains translations only, so a restraint with some but not all six DOFs including a rotation is refused (`MBF-IMPORT-SUPPORT-UNSUPPORTED`, independent review VER-002 r8). The writer also refuses partial rotational restraints |
 | FIXD and FIXR covering all six DOF | Kept as written. The writer writes such a node as `KA` |
 | `KA` with `LA=1` (local axes), `TRAK`, `ROTK`, `FREE` | Refused (`MBF-IMPORT-SUPPORT-UNSUPPORTED`). Flexible anchors are tranche 2: one spring support per DOF, with N·m/deg → N·m/rad by multiplication by 180/π |
 | Guide `G` (`GGAP`, `MU`, `STIFF`) | Refused. Tranche 2, rigid and axis-aligned first |
@@ -1059,11 +1064,22 @@ Support data are comments on the node's row or on a Location row. They follow *F
 | `TAG=<text>` | Becomes the `label` of the node's support. On a node without a support it is listed as `omitted` |
 | `LTAG` (spectrum level) | Empty is accepted (§4.4); non-empty is refused |
 
+**The solve's support rules** (product_physics `rigid_linear_support_from_preview`,
+linear_supports `prepare_rigid_support`), ported and applied to every imported model, bound
+or not (independent review VER-002 r8): a support without family is an anchor with six DOFs
+and a guide otherwise; an anchor restrains any DOF, a guide or line stop translations only,
+a vertical support UZ only; a support restrains at least one DOF; and no DOF is restrained
+twice at a node. A support that breaks one is refused by its id
+(`MBF-IMPORT-SUPPORT-UNSUPPORTED`), as the solve refuses it (`SUPPORT_INPUT_INVALID`): for
+example `KA` with `FIXD` at one node restrains a translation twice.
+
 With a bound sidecar, the writer's `support_map` restores the original supports, their ids
 and DOF sets. That map preserves each split explicitly: the writer may have merged several
-supports into one anchor, and the sidecar splits them back. The writer records each
-support's `family` in `support_map` (implemented), and bound imports restore it. A sidecar
-entry without `family` (an older sidecar) is reported as unrecoverable (§15).
+supports into one anchor, and the sidecar splits them back where the solve admits each part
+(a part with rotations and fewer than six DOFs it does not; the sidecar parser refuses it).
+The writer records each support's `family` in `support_map` (implemented), and bound imports
+restore it. A sidecar entry without `family` (an older sidecar) is reported as unrecoverable
+(§15).
 
 ## 13. Point loads and displacements
 
@@ -1105,8 +1121,8 @@ the manual does not make clear which kind a record is, it is refused.
 - `MBF-IMPORT-ROW-SYNTAX-INVALID`, `MBF-IMPORT-TOPOLOGY-EMPTY` (§4.4);
 - `MBF-IMPORT-COMMENT-UNSUPPORTED`: a documented comment refused without a narrower code,
   such as the SIF and stress-index comments above;
-- `MBF-IMPORT-SIDECAR-INVALID`: a malformed sidecar, a restored field outside what the import
-  admits, or rebinding requested without one (§15);
+- `MBF-IMPORT-SIDECAR-INVALID`: a sidecar the parser refuses, by JSON path, or rebinding
+  requested without one (§15);
 - `MBF-IMPORT-VALUE-UNREPRESENTABLE`: a read or derived value outside the binary64 range, or a
   non-zero value that would become 0 (§4.3);
 - tranche 2: `MBF-IMPORT-PRESSURE-CLOSURE-REQUIRED`, `MBF-IMPORT-PRESSURE-CLOSURE-INVALID`,
@@ -1173,31 +1189,55 @@ the identities, and the splits, that it explicitly preserves:
 - the pressure contract and pressure regions, from `pressure_map`, checked against the
   file (§9.4).
 
-**What a bound import admits from the sidecar** (independent review VER-002 r7). Every
-restored field must lie within what the import admits, the vocabulary the writer records and
-the exact route accepts; anything else is refused by name with its entry
-(`MBF-IMPORT-SIDECAR-INVALID`), never substituted or skipped:
+**The sidecar parser** (independent review VER-002 r7, r8). The whole sidecar is parsed into
+typed values before anything reads it, and the import reads only the parsed values. Each key
+has an exact JSON type (a bool is not a number; null is a value only where the writer writes
+null), an allowed vocabulary, a non-empty value where an id or name is required (empty after
+Rust's `trim`, which removes only Unicode White_Space: U+3000 is, U+001C to U+001F are not,
+although Python's `strip` removes them), and finite binary64 range for numbers. Unknown keys
+and wrong shapes are refused by JSON path, for example `element_map[S1].reversed`
+(`MBF-IMPORT-SIDECAR-INVALID`); nothing is defaulted or substituted. The vocabulary is the
+union of what every SWBPIPE writer version records, so a sidecar from an older run, without
+`family`, `origin`, `direction` or `y_reference`, still parses:
 
-- `element_map`: `reversed` true or false; `y_reference` as §10.5; `bend` an object whose
-  `component` is a string id;
-- `support_map`: `restrained` a non-empty list of distinct DOFs; `family` absent, null,
-  `anchor`, `guide`, `line_stop` or `vertical_support`, and `anchor` only with all six DOFs.
-  The exact route admits no other support family (`EXACT_PRESSURE_FAMILY_NOT_ADMITTED`);
-- `material_map`: `swbpipe_material` a string id; `origin` one of `MATERIAL_ORIGINS`;
-- `load_map`: `target` an object; a restored thermal direction one of the direction tokens
-  the solve parses (`global_x`…, `UX`…; it does not read a thermal one);
-- `pressure_map`: when present, the contract 3.0.0/exact_pressure_v3 with a shear model from
-  `SHEAR_MODELS`, and `regions` a list, each region as §9.4 states.
+- top level: the eight maps (each optional, absent read as empty) and `mbf_sha256`, a
+  lowercase SHA-256 or null;
+- `node_map`: id → CAEPIPE name, one-to-one;
+- `element_map`: id → `from`, `to`, `reversed` (bool), and optionally `layout_order`,
+  `layout_row` (non-negative integers), `material`, `section`, `load`, `y_reference`
+  (`x`, `y`, `z` numbers; §10.5), `bend` (`component` id, and optionally `radius_mm`,
+  `angle_deg`, `flexibility_factor` or null, `tangent_intersection_mm` of three numbers,
+  `caepipe_row_node`);
+- `support_map`: id → `node`, `restrained` (a non-empty list of distinct DOFs), and
+  optionally `caepipe_kind` (`anchor`, `restraint`) and `family` (null, `anchor`, `guide`,
+  `line_stop`, `vertical_support`; `anchor` only with all six DOFs); the supports at each node
+  together must pass the solve's support rules (§12);
+- `load_case_map`: id → label;
+- `material_map`: name → `swbpipe_material` id, and optionally the four numbers the writer
+  records, `temperatures_c`, `elements` and `origin` (one of `MATERIAL_ORIGINS`);
+- `section_map`: name → optionally its two numbers and `elements`;
+- `load_map`: `<case>/<load id>` → `load_case`, `category` (the writer's five), `target`
+  (exactly a `node`, a `pipe`, or a `support` with its `dof`), and optionally
+  `caepipe_load_case`, `direction` (null or a token the solve parses), `mbf`, `caepipe_node`,
+  `caepipe_element`; load ids are non-empty and unique (`DUPLICATE_ID`);
+- `pressure_map`: empty, or the contract 3.0.0/exact_pressure_v3 with a shear model from
+  `SHEAR_MODELS`, `regions` (each `id`, `members`, two `terminals` with `node_ref`,
+  `closure_transfer` and provenance, and optionally `provenance` and `pressure_bar`) and
+  optionally `load_case` (or null).
 
-Ids are checked as below, and node and element names by matching the file. Fields the import
-does not restore (the writer's layout order, section, load and bend geometry records) are not
-read.
+**A bound sidecar is complete.** It was written for exactly this file, so each node,
+element, support node, material, case and primitive of the file has its entry, a bend its
+`bend` record, and no entry names what the file lacks; otherwise
+`MBF-IMPORT-SIDECAR-CONFLICT`, naming the map. A primitive the writer summed many-to-one
+keeps its formed id and is reported (below). The check against the file of what the parser
+admits stays where it was: ownership and pressure of regions (§9.4), supports' DOF sets per
+node (§12), the frame check of `y_reference` (§10.5).
 
-A restored id of any kind that Rust's `trim` leaves empty (only Unicode White_Space:
-U+3000 is, U+001C to U+001F are not, although Python's `strip` removes them) is refused
-(`MBF-IMPORT-SIDECAR-CONFLICT`, naming the kind), since the solve refuses it (`EMPTY_ID`,
-and `PRESSURE_REGION_MEMBERS_INVALID` for a region member); so are two primitive loads
-restored with one id (`DUPLICATE_ID`) (independent review VER-002 r6).
+A seeded mutation test exercises the parser: each field of a complete sidecar swapped for
+every other JSON type, each container emptied, each number made huge or non-finite, an
+unknown key added and each key removed. Each mutated import refuses with a named
+`MBF-IMPORT-*` code or imports the unmutated model, and never raises; the writer's preflight
+given the same maps refuses with a named `MBF-SI-*` code exactly where the import refuses.
 
 **What a bound sidecar cannot restore.** Many-to-one mappings and identities the sidecar
 does not preserve are reported, never guessed. Each is listed in the loss report as
@@ -1298,7 +1338,7 @@ input.
 | Anchor displacement `D`, rotation `ROT` (rad → deg) | Imposed displacement and rotation on the anchor, in the thermal case, in `mm` and `deg` |
 | Full six-DOF restraint (one or several supports) → `KA` | Anchor; the sidecar splits it back |
 | Translational partial restraint → `FIXD` | Restraint support; family restored from `support_map` in bound imports (§12) |
-| Partial rotational restraint refused | `FIXR` imported (wider than the writer) |
+| Partial rotational restraint refused | Refused as well: the solve admits no partial rotational restraint without a family (§12) |
 | Curved bend → `T<n>,KI,B<R>,…,CFF=<k>` at the TI; ends `nA`/`nB` | Tangent nodes from TI, R and the adjacent legs; bend pipe, y_reference and component reconstructed |
 | Straight-pipe `y_reference` not in the MBF; recorded in `element_map` | Restored in bound imports; otherwise the documented local y (§10.5) |
 | US-customary model units → exact normalization to SI (`MBF-SI-UNITS-NORMALIZED`, §5.2) | SI import of the normalized values |
