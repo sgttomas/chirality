@@ -512,7 +512,7 @@ POUND = Fraction("0.45359237")
 
 def own_length(text: str) -> Fraction:
     """The test's own evaluation of the two feet-inch forms in the English fixture."""
-    text = text.replace("’", "'").replace("”", '"').rstrip('"')
+    text = text.replace("\u2019", "'").replace("\u201d", '"').rstrip('"')
     feet, _, rest = text.partition("'")
     inches, _, fraction = rest.partition("-")
     value = Fraction(int(feet) * 12 + int(inches))
@@ -559,7 +559,7 @@ def test_english_positions_equal_the_tests_own_rational_evaluation():
     result = import_caepipe_mbf(data, material_provenance=declaration["material_provenance"], source_label="english")
     assert result.status == "imported", result.diagnostics
     x = own_length("10'6\"")
-    z = own_length("7’3-1/4”")
+    z = own_length("7\u20193-1/4\u201d")
     assert (x, z) == (Fraction(126), Fraction(349, 4))
     assert [tuple(node["position"].values()) for node in result.model["nodes"]] == [
         (0.0, 0.0, 0.0), (float(x), 0.0, 0.0), (float(x), 0.0, float(z))]

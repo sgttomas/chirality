@@ -1059,6 +1059,7 @@ class _Importer:
         carried: dict[str, Any] = {"M": None, "P": None, "L": None}
         current: int | None = None
         first_from = True
+        run_refused = False
         self.layout_present = "LAYOUT" in self.sections
         for row in rows:
             if isinstance(row, tuple):
@@ -1084,13 +1085,17 @@ class _Importer:
             if row.kind == "F":
                 self.from_row(row, first_from)
                 first_from = False
-                current = row.number
+                current = row.number if row.number in self.nodes else None
+                run_refused = current is None
             else:
+                if current is None and run_refused:
+                    continue  # the run's From row is already refused
                 if current is None:
                     self.refuse("MBF-IMPORT-ROW-SYNTAX-INVALID", row.line, f"LAYOUT line {row.line}",
                                 "a To row needs a preceding From row")
                     continue
                 if not self.to_row(row, current, carried):
+                    current, run_refused = None, True
                     continue
                 current = row.number
             self.row_comments(row, row.number, allow_load=True)
