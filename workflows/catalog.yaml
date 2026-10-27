@@ -58,6 +58,9 @@
         "label": "Plan & organize",
         "workflows": [
           {
+            "name": "define-work"
+          },
+          {
             "name": "construct-local-work-graph"
           },
           {
