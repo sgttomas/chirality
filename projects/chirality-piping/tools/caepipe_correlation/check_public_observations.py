@@ -184,8 +184,10 @@ def _string_lines(literal: str) -> list[str]:
     parts, glue = [], False
     for part in raw:
         continued = (len(part) - len(part.rstrip("\\"))) % 2 == 1
-        parts.append((GLUE if glue else "") + (part[:-1] if continued else part))
-        glue = continued
+        text = part[:-1] if continued else part
+        parts.append((GLUE if glue else "") + text)
+        # Whitespace before the backslash is text, so it still separates the next line's words.
+        glue = continued and not text[-1:].isspace()
     return parts
 
 
@@ -256,13 +258,14 @@ MARKDOWN_QUOTE = re.compile(r"^(?:\s*>)+")
 # character keeps the source line it came from.
 HTML_COMMENT = re.compile(r"<!--(.*?)(?:-->|\Z)", re.DOTALL)
 LINK_OPEN = re.compile(r"!?\[([^\[\]]*)\]\(")
+TAG_BODY = r"""(?:[^<>"']|"[^"]*"|'[^']*')*>"""  # attributes, with `>` allowed inside quoted values
 BLOCK_TAG = re.compile(r"</?(?:br|p|div|li|ul|ol|dl|dt|dd|tr|td|th|table|thead|tbody|h[1-6]|hr|blockquote|pre"
-                       r"|section|details|summary)\b[^<>]*>", re.IGNORECASE)
+                       r"|section|details|summary)\b" + TAG_BODY, re.IGNORECASE)
 VISIBLE_TEXT = (
     (re.compile(r"!?\[([^\[\]]*)\]\[[^\[\]]*\]"), 1),
     (re.compile(r"!?\[|\]"), ""),
     (BLOCK_TAG, " "),
-    (re.compile(r"</?[A-Za-z][^<>]*>|<[a-z][a-z0-9+.-]*:[^<>\s]*>"), ""),
+    (re.compile(r"</?[A-Za-z]" + TAG_BODY + r"|<[a-z][a-z0-9+.-]*:[^<>\s]*>"), ""),
     (re.compile(r"&(?:#[0-9]+|#[xX][0-9a-fA-F]+|[A-Za-z][A-Za-z0-9]*);"), html.unescape),
     (re.compile(r"[*~`]+|(?<![A-Za-z0-9])_+|_+(?![A-Za-z0-9])"), ""),
     (re.compile(r"\s+"), " "),
@@ -301,6 +304,47 @@ def _rewrite(pattern: re.Pattern[str], replacement, text: str, owners: list[int]
     return "".join(out), own
 
 
+def _link_end(text: str, index: int) -> int | None:
+    """The index just past an inline link's closing parenthesis, given the index after its opening one:
+    an optional `<...>` or balanced destination, then an optional quoted or parenthesized title, with
+    backslash escapes honoured. None when the text is not a well-formed inline link."""
+
+    size = len(text)
+
+    def blank(at: int) -> int:
+        while at < size and text[at].isspace():
+            at += 1
+        return at
+
+    index = blank(index)
+    if index < size and text[index] == "<":
+        index += 1
+        while index < size and text[index] != ">":
+            index += 2 if text[index] == "\\" else 1
+        index += 1
+    else:
+        depth = 0
+        while index < size and not text[index].isspace():
+            if text[index] == "\\":
+                index += 2
+                continue
+            if text[index] == "(":
+                depth += 1
+            elif text[index] == ")":
+                if depth == 0:
+                    break
+                depth -= 1
+            index += 1
+    index = blank(index)
+    if index < size and text[index] in "\"'(":
+        close = ")" if text[index] == "(" else text[index]
+        index += 1
+        while index < size and text[index] != close:
+            index += 2 if text[index] == "\\" else 1
+        index = blank(index + 1)
+    return index + 1 if index < size and text[index] == ")" else None
+
+
 def _unlinked(text: str, owners: list[int]) -> tuple[str, list[int]]:
     """Inline links and images reduced to their labels; the destination's parentheses are balanced."""
 
@@ -310,11 +354,8 @@ def _unlinked(text: str, owners: list[int]) -> tuple[str, list[int]]:
     for match in LINK_OPEN.finditer(text):
         if match.start() < position:
             continue
-        depth, index = 1, match.end()
-        while index < len(text) and depth:
-            depth += {"(": 1, ")": -1}.get(text[index], 0)
-            index += 1
-        if depth:
+        index = _link_end(text, match.end())
+        if index is None:
             continue
         out.append(text[position:match.start()])
         own.extend(owners[position:match.start()])

@@ -325,3 +325,21 @@ def test_a_continuation_that_splits_a_word_reads_it_whole(tmp_path):
     assert run(tmp_path, {"pkg/mod.py": code}) == ["pkg/mod.py:2: name #1 near observation marker #1"]
     code = 'def helper():\n    """Two\\\n    words stay apart."""\n'
     assert check.python_prose_lines(code)[3].lstrip("\x00").startswith("    words")
+
+
+
+@pytest.mark.parametrize("text", [
+    'Widget [overflow](notes.md "1) Details") at startup.\n',
+    "Widget [overflow](notes.md '(a) b') at startup.\n",
+    "Widget [overflow](notes\\).md) at startup.\n",
+    "Widget [overflow](<notes (1).md>) at startup.\n",
+    'Widget <span title="usage > capacity">overflow</span> at startup.\n',
+    "Widget<br class='a > b'>overflow at startup.\n",
+])
+def test_link_titles_escapes_and_quoted_attributes_do_not_hide_a_phrase(tmp_path, text):
+    assert run(tmp_path, {"doc/a.md": text}) == ["doc/a.md:1: observed token #1"]
+
+
+def test_whitespace_before_a_continuation_still_separates_words(tmp_path):
+    code = '"""Acmepipe \\\nwas observed."""\n'
+    assert run(tmp_path, {"pkg/mod.py": code}) == ["pkg/mod.py:1: name #1 near observation marker #1"]
