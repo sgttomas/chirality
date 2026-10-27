@@ -281,8 +281,9 @@ LINK_OPEN = re.compile(r"!?\[([^\[\]]*)\]\(")
 TAG_BODY = r"""(?:[^<>"']|"[^"]*"|'[^']*')*>"""  # attributes, with `>` allowed inside quoted values
 BLOCK_TAG = re.compile(r"</?(?:br|p|div|li|ul|ol|dl|dt|dd|tr|td|th|table|thead|tbody|h[1-6]|hr|blockquote|pre"
                        r"|section|details|summary)\b" + TAG_BODY, re.IGNORECASE)
+REFERENCE_IMAGE = re.compile(r"!\[([^\[\]]*)\](?:\[([^\[\]]*)\])?(?!\()")
+REFERENCE_DEFINITION = re.compile(r"^\s*\[([^\[\]]+)\]:\s*<?(\S+?)>?(?:\s.*)?$")
 VISIBLE_TEXT = (
-    (re.compile(r"!\[([^\[\]]*)\]\[[^\[\]]*\]|!\[([^\[\]]*)\](?![\[(])"), "image"),
     (re.compile(r"\[([^\[\]]*)\]\[[^\[\]]*\]"), 1),
     (re.compile(r"!?\[|\]"), ""),
     (BLOCK_TAG, " "),
@@ -322,14 +323,7 @@ def _rewrite(pattern: re.Pattern[str], replacement, text: str, owners: list[int]
     for match in pattern.finditer(text):
         out.append(text[position:match.start()])
         own.extend(owners[position:match.start()])
-        if replacement == "image":
-            group = 1 if match.group(1) is not None else 2
-            out.append(match.group(group))
-            own.extend(owners[match.start(group):match.end(group)])
-            if not ORIGINAL_DIAGRAM.search(match.group(group)):
-                out.append(IMAGE_MARK)
-                own.append(owners[match.start()])
-        elif isinstance(replacement, int):
+        if isinstance(replacement, int):
             out.append(match.group(replacement))
             own.extend(owners[match.start(replacement):match.end(replacement)])
         else:
@@ -400,11 +394,33 @@ def _unlinked(text: str, owners: list[int]) -> tuple[str, list[int]]:
         own.extend(owners[position:match.start()])
         out.append(match.group(1))
         own.extend(owners[match.start(1):match.end(1)])
-        if match.group().startswith("!") and not ORIGINAL_DIAGRAM.search(text[match.start():index]):
+        if match.group().startswith("!") and _screenshot_candidate(text[match.start():index]):
             # An image may be a screenshot; the invisible marker lets the screenshot rule judge it in context.
             out.append(IMAGE_MARK)
             own.append(owners[match.start()])
         position = index
+    out.append(text[position:])
+    own.extend(owners[position:])
+    return "".join(out), own
+
+
+def _unimaged(text: str, owners: list[int], references: dict[str, str]) -> tuple[str, list[int]]:
+    """Reference, collapsed and shortcut images reduced to their labels, with the screenshot marker when the
+    label and the resolved destination make the image a screenshot candidate."""
+
+    out: list[str] = []
+    own: list[int] = []
+    position = 0
+    for match in REFERENCE_IMAGE.finditer(text):
+        label, key = match.group(1), match.group(2) or match.group(1)
+        out.append(text[position:match.start()])
+        own.extend(owners[position:match.start()])
+        out.append(label)
+        own.extend(owners[match.start(1):match.end(1)])
+        if _screenshot_candidate(label + " " + references.get(key.lower(), "")):
+            out.append(IMAGE_MARK)
+            own.append(owners[match.start()])
+        position = match.end()
     out.append(text[position:])
     own.extend(owners[position:])
     return "".join(out), own
@@ -419,6 +435,8 @@ def _paragraphs(lines: dict[int, str], blank_breaks: bool = True) -> list[tuple[
 
     paragraphs: list[tuple[str, list[int], set[int]]] = []
     text, owners, last, fenced, starts = "", [], None, False, set()
+    references = {match.group(1).lower(): match.group(2) for line in lines.values()
+                  if (match := REFERENCE_DEFINITION.match(line))}
 
     def flush() -> None:
         nonlocal text, owners, starts
@@ -429,6 +447,7 @@ def _paragraphs(lines: dict[int, str], blank_breaks: bool = True) -> list[tuple[
                 if not part.strip():
                     continue
                 part, part_owners = _unlinked(part, part_owners)
+                part, part_owners = _unimaged(part, part_owners, references)
                 for pattern, replacement in VISIBLE_TEXT:
                     part, part_owners = _rewrite(pattern, replacement, part, part_owners)
                 paragraphs.append((part, part_owners, starts))
@@ -517,19 +536,27 @@ DEFECT = _alternation(r"crash(?:es|ed|ing)?", r"access violations?", r"defects?"
                       r"watermark\w*", r"stamp(?:s|ed)?", r"expir(?:es|ed|y|ation)", r"slow(?:er|ly|s)?", r"performance",
                       r"faster", r"speed")
 IMAGE_MARK = "\u2063"  # an invisible separator placed after an image's label
-# An image whose label or file names an original drawing (or is an SVG) is not a screenshot candidate.
-ORIGINAL_DIAGRAM = re.compile(r"diagram|schematic|layout|sketch|drawing|chart|plot|figure|\.svg\b", re.IGNORECASE)
+# An image is a screenshot candidate unless its label or file names an original drawing (or is an SVG);
+# screenshot cues in either win.
+ORIGINAL_DIAGRAM = re.compile(r"diagram|schematic|sketch|drawing|\.svg\b", re.IGNORECASE)
+SCREENSHOT_CUE = re.compile(r"screen|window|dialog|capture|snap", re.IGNORECASE)
+
+
+def _screenshot_candidate(label_and_destination: str) -> bool:
+    return bool(SCREENSHOT_CUE.search(label_and_destination)) or not ORIGINAL_DIAGRAM.search(label_and_destination)
 SCREENSHOT = re.compile(_alternation(r"screen ?shots?", r"screen (?:captures?|grabs?|recordings?)",
                                      r"screengrabs?").pattern + "|" + IMAGE_MARK, re.IGNORECASE)
 SURVEY = _alternation(r"survey(?:s|ed)?")
-MAPPING_TO = re.compile(r"[^,;.:]{0,60}?\bto\b", re.IGNORECASE)
+# "matches ... to <record, field, column, id, axis or a capitalised or slashed name>" maps records.
+MAPPING_TO = re.compile(r"[^,;.:]{0,60}?\bto\s+(?:the\s+)?(?:[A-Z][\w/]*|\S*/\S*|(?:\w+\s+){0,2}"
+                        r"(?:fields?|records?|columns?|ids?|nodes?|keys?|names?|entries|labels?|axes|axis))\b")
 _UNIT = r"(?:%|‰|percent|per cent|ppm|parts per million|mm|cm|m|N|kN|N[·*]m|Nm|kN[·*]?m|MPa|rad|deg|°)"
 # Numeric results: counts (`20 of 35`, `35/35`, `20 matched`), percentages and ppm, decimals with a unit, and
 # scientific notation. Ids, dates, section numbers and bare integers are not results.
 _CONVERTED = r"(?:in|inch|inches|ft|feet|foot|lb|lbs|lbf|lbm|kip|kips|psi|ksi|°F|F|°C|C|K|kgf|kg|g|N|kN|mm|cm|m|Pa|kPa|MPa|GPa|rad|deg|°)"
-# Unit conversions (`1 in = 25.4 mm`, `1 kgf = 9.80665 N`): a number and a unit on both sides of `=`.
-EQUATION = re.compile(r"(?<![\w.])\d+(?:[.,]\d+)?\s*" + _CONVERTED + r"\s*=\s*\d+(?:[.,]\d+)?(?:[eE][-+]?\d+)?\s*"
-                      + _CONVERTED + r"(?![\w])")
+# Unit conversions (`1 in = 25.4 mm`, `1 kgf = 9.80665 N`): a number and a different unit on each side of `=`.
+EQUATION = re.compile(r"(?<![\w.])\d+(?:[.,]\d+)?\s*(" + _CONVERTED + r")\s*=\s*\d+(?:[.,]\d+)?(?:[eE][-+]?\d+)?\s*("
+                      + _CONVERTED + r")(?![\w])")
 SIGN = re.compile(r"(?:(?<=^)|(?<=[\s(=:]))[-+−](?=\d)")
 _COUNTED = r"(?:quantities|quantity|cases?|values?|checks?|nodes?|results?|records?|reactions?|displacements?|members?)"
 RESULT_NUMBER = re.compile(
@@ -567,7 +594,7 @@ def scan(label: str, lines: dict[int, str], terms: dict[str, list[str]], added: 
             masked = pattern.sub(lambda m: "@" * len(m.group()), masked)
         # Unit conversions (`1 in = 25.4 mm`) are format facts; a sign before a number (`-3 mm`) is kept
         # apart from ids (`REQ-018`) by requiring a space, bracket or start before it.
-        masked = EQUATION.sub(lambda m: " " * len(m.group()), masked)
+        masked = EQUATION.sub(lambda m: " " * len(m.group()) if m.group(1) != m.group(2) else m.group(), masked)
         masked = SIGN.sub(" ", masked)
         numbers = [(_span(owners, m.start(), m.end()), sentences[m.start()]) for m in RESULT_NUMBER.finditer(masked)]
 
@@ -583,7 +610,7 @@ def scan(label: str, lines: dict[int, str], terms: dict[str, list[str]], added: 
             for match in pattern.finditer(text):
                 span, sentence = _span(owners, match.start(), match.end()), sentences[match.start()]
                 # "matches ... to X" maps records; it does not compare results.
-                if pattern is COMPARISON and match.group().lower().startswith("match") \
+                if pattern is COMPARISON and match.group().lower() in ("match", "matches") \
                         and MAPPING_TO.match(text, match.end()):
                     continue
                 involved = near(span, sentence, named + surveyed if pattern is SCREENSHOT else named)

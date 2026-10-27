@@ -504,3 +504,23 @@ def test_reference_style_images_of_the_target_are_screenshot_references(tmp_path
 def test_original_format_diagrams_pass(tmp_path):
     assert run(tmp_path, {"doc/a.md": "![Acmepipe MBF record layout](layout.svg)\n"}) == []
     assert run(tmp_path / "r", {"doc/a.md": "![Acmepipe record diagram][d]\n\n[d]: d.png\n"}) == []
+
+
+
+@pytest.mark.parametrize("text", [
+    "Acmepipe and SWBPIPE agree: 3 mm = 3 mm.\n",
+    "Acmepipe matched all 12 values to 3 decimal places.\n",
+])
+def test_same_unit_equalities_and_precision_matches_are_results(tmp_path, text):
+    assert run(tmp_path, {"doc/a.md": text}) == ["doc/a.md:1: result about the target tool"]
+
+
+def test_screenshot_cues_beat_generic_diagram_words(tmp_path):
+    assert run(tmp_path, {"doc/a.md": "![Acmepipe layout window](screenshots/run.png)\n"}) == [
+        "doc/a.md:1: screenshot reference"]
+
+
+def test_reference_image_destinations_are_resolved(tmp_path):
+    assert run(tmp_path, {"doc/a.md": "![Acmepipe MBF][d]\n\n[d]: layout.svg\n"}) == []
+    assert run(tmp_path / "s", {"doc/a.md": "![Acmepipe MBF][d]\n\n[d]: shots/run.png\n"}) == [
+        "doc/a.md:1: screenshot reference"]
