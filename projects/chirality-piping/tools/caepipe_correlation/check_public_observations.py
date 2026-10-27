@@ -149,7 +149,7 @@ def python_prose_lines(text: str) -> dict[int, str]:
                                                 or token.string.lstrip("rbuRBUfF").startswith(('"""', "'''"))):
             for offset, part in enumerate(_string_lines(token.string)):
                 number = token.start[0] + offset
-                prose[number] = prose.get(number, "") + " " + part
+                prose[number] = prose.get(number, "") + ("" if part.startswith(GLUE) else " ") + part
         elif token.type == tokenize.NAME and previous is not None and previous.string == "def" \
                 and token.string.startswith("test"):
             prose[token.start[0]] = prose.get(token.start[0], "") + " " + token.string.replace("_", " ")
@@ -158,6 +158,7 @@ def python_prose_lines(text: str) -> dict[int, str]:
     return prose
 
 
+GLUE = "\x00"  # marks a prose line that continues the previous one without a separator
 STRING_OPENING = re.compile(r"[rbuRBUfF]*(\'\'\'|\"\"\"|\'|\")")
 
 
@@ -172,13 +173,19 @@ def _string_lines(literal: str) -> list[str]:
             value = None
         if isinstance(value, str):
             return [value]
-    # A backslash at a line end continues the string; it is not text.
-    parts = [part[:-1] if part.endswith("\\") else part for part in literal.splitlines()]
+    raw = literal.splitlines()
     opening = STRING_OPENING.match(literal)
     if opening:
-        parts[0] = parts[0][len(opening.group(0)):]
-        if parts[-1].endswith(opening.group(1)):
-            parts[-1] = parts[-1][:-len(opening.group(1))]
+        raw[0] = raw[0][len(opening.group(0)):]
+        if raw[-1].endswith(opening.group(1)):
+            raw[-1] = raw[-1][:-len(opening.group(1))]
+    # An odd run of backslashes at a line end continues the string without a line break: the next line is
+    # glued on (GLUE), so a word split across the continuation reads whole.
+    parts, glue = [], False
+    for part in raw:
+        continued = (len(part) - len(part.rstrip("\\"))) % 2 == 1
+        parts.append((GLUE if glue else "") + (part[:-1] if continued else part))
+        glue = continued
     return parts
 
 
@@ -243,13 +250,18 @@ def _without_owner_words(lines: dict[int, str]) -> dict[int, str]:
 
 MARKDOWN_QUOTE = re.compile(r"^(?:\s*>)+")
 # Markdown and HTML syntax rewritten to the visible text, in order, over a whole paragraph so that a link or
-# tag wrapped across lines is read as written. A rewrite keeps the label of a link (its first group) or
-# substitutes a literal; every character keeps the source line it came from.
+# tag wrapped across lines is read as written. HTML comments are taken out and read as paragraphs of their
+# own, inline links with balanced destinations keep their labels (`_unlinked`), break and block tags become
+# spaces, and a rewrite below keeps a link's label (its first group) or substitutes a literal. Every
+# character keeps the source line it came from.
+HTML_COMMENT = re.compile(r"<!--(.*?)(?:-->|\Z)", re.DOTALL)
+LINK_OPEN = re.compile(r"!?\[([^\[\]]*)\]\(")
+BLOCK_TAG = re.compile(r"</?(?:br|p|div|li|ul|ol|dl|dt|dd|tr|td|th|table|thead|tbody|h[1-6]|hr|blockquote|pre"
+                       r"|section|details|summary)\b[^<>]*>", re.IGNORECASE)
 VISIBLE_TEXT = (
-    (re.compile(r"<!--|-->"), ""),
-    (re.compile(r"!?\[([^\[\]]*)\]\((?:[^()]|\([^()]*\))*\)"), 1),
     (re.compile(r"!?\[([^\[\]]*)\]\[[^\[\]]*\]"), 1),
     (re.compile(r"!?\[|\]"), ""),
+    (BLOCK_TAG, " "),
     (re.compile(r"</?[A-Za-z][^<>]*>|<[a-z][a-z0-9+.-]*:[^<>\s]*>"), ""),
     (re.compile(r"&(?:#[0-9]+|#[xX][0-9a-fA-F]+|[A-Za-z][A-Za-z0-9]*);"), html.unescape),
     (re.compile(r"[*~`]+|(?<![A-Za-z0-9])_+|_+(?![A-Za-z0-9])"), ""),
@@ -289,6 +301,31 @@ def _rewrite(pattern: re.Pattern[str], replacement, text: str, owners: list[int]
     return "".join(out), own
 
 
+def _unlinked(text: str, owners: list[int]) -> tuple[str, list[int]]:
+    """Inline links and images reduced to their labels; the destination's parentheses are balanced."""
+
+    out: list[str] = []
+    own: list[int] = []
+    position = 0
+    for match in LINK_OPEN.finditer(text):
+        if match.start() < position:
+            continue
+        depth, index = 1, match.end()
+        while index < len(text) and depth:
+            depth += {"(": 1, ")": -1}.get(text[index], 0)
+            index += 1
+        if depth:
+            continue
+        out.append(text[position:match.start()])
+        own.extend(owners[position:match.start()])
+        out.append(match.group(1))
+        own.extend(owners[match.start(1):match.end(1)])
+        position = index
+    out.append(text[position:])
+    own.extend(owners[position:])
+    return "".join(out), own
+
+
 def _paragraphs(lines: dict[int, str], blank_breaks: bool = True) -> list[tuple[str, list[int], set[int]]]:
     """Consecutive prose lines read as one visible, whitespace-normalized text; a gap in line numbers ends a
     paragraph, and so does a blank line when `blank_breaks` (text, not code comments, whose delimiter-only
@@ -302,19 +339,28 @@ def _paragraphs(lines: dict[int, str], blank_breaks: bool = True) -> list[tuple[
     def flush() -> None:
         nonlocal text, owners, starts
         if text:
-            for pattern, replacement in VISIBLE_TEXT:
-                text, owners = _rewrite(pattern, replacement, text, owners)
-            paragraphs.append((text, owners, starts))
+            comments = [(match.group(1), owners[match.start(1):match.end(1)]) for match in HTML_COMMENT.finditer(text)]
+            text, owners = _rewrite(HTML_COMMENT, " ", text, owners)
+            for part, part_owners in [(text, owners)] + comments:
+                if not part.strip():
+                    continue
+                part, part_owners = _unlinked(part, part_owners)
+                for pattern, replacement in VISIBLE_TEXT:
+                    part, part_owners = _rewrite(pattern, replacement, part, part_owners)
+                paragraphs.append((part, part_owners, starts))
         text, owners, starts = "", [], set()
 
     previous_hard = False
     for number in sorted(lines):
-        raw = lines[number].strip()
+        line = lines[number]
+        glue = line.startswith(GLUE)
+        line = line[len(GLUE):] if glue else line
+        raw = line.strip()
         fence = blank_breaks and raw.startswith(("```", "~~~"))
         hard = blank_breaks and (fenced or fence or raw.startswith("|"))
         if fence:
             fenced = not fenced
-        piece = _normal(MARKDOWN_QUOTE.sub("", lines[number]))
+        piece = _normal(MARKDOWN_QUOTE.sub("", line))
         if last is not None and number != last + 1 or not piece and blank_breaks:
             flush()
             previous_hard = False
@@ -324,7 +370,7 @@ def _paragraphs(lines: dict[int, str], blank_breaks: bool = True) -> list[tuple[
         if hard or previous_hard:
             starts.add(number)
         previous_hard = hard
-        if text:
+        if text and not (glue and not line[:1].isspace()):
             text, owners = text + " ", owners + [number]
         text, owners = text + piece, owners + [number] * len(piece)
     flush()

@@ -302,3 +302,26 @@ def test_table_rows_and_code_block_lines_are_separate_sentences(tmp_path):
     assert run(tmp_path, {"doc/a.md": text}) == []
     text = "| Target | Acmepipe |\n| Run | observed |\n"
     assert run(tmp_path / "w", {"doc/a.md": text}) == ["doc/a.md:1: name #1 near observation marker #1"]
+
+
+
+@pytest.mark.parametrize("text", [
+    "Widget <!-- note -->overflow at startup.\n",
+    "Widget<br>overflow at startup.\n",
+    "Widget<p>overflow at startup.</p>\n",
+    "Widget [overflow](https://example.invalid/a_(b_(c))) at startup.\n",
+])
+def test_html_comments_breaks_and_nested_destinations_do_not_hide_a_phrase(tmp_path, text):
+    assert run(tmp_path, {"doc/a.md": text}) == ["doc/a.md:1: observed token #1"]
+
+
+def test_html_comment_bodies_are_screened(tmp_path):
+    assert run(tmp_path, {"doc/a.md": "Generic text <!-- Widget overflow at startup --> here.\n"}) == [
+        "doc/a.md:1: observed token #1"]
+
+
+def test_a_continuation_that_splits_a_word_reads_it_whole(tmp_path):
+    code = 'def helper():\n    """The Acme\\\npipe run was observed."""\n'
+    assert run(tmp_path, {"pkg/mod.py": code}) == ["pkg/mod.py:2: name #1 near observation marker #1"]
+    code = 'def helper():\n    """Two\\\n    words stay apart."""\n'
+    assert check.python_prose_lines(code)[3].lstrip("\x00").startswith("    words")
