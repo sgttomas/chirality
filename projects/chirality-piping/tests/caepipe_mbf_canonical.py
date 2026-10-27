@@ -198,11 +198,11 @@ def _vec(position: Mapping[str, Any], scale: float) -> list[float]:
 
 def _project(y: list[float], a: list[float], b: list[float]) -> list[float]:
     chord = [b[i] - a[i] for i in range(3)]
-    length = math.sqrt(sum(value * value for value in chord))
+    length = math.hypot(*chord)  # scaled norms: tiny and huge bends do not underflow or overflow
     unit = [value / length for value in chord]
     dot = sum(y[i] * unit[i] for i in range(3))
     side = [y[i] - dot * unit[i] for i in range(3)]
-    norm = math.sqrt(sum(value * value for value in side))
+    norm = math.hypot(*side)
     return [value / norm for value in side]
 
 
@@ -304,14 +304,14 @@ def bend_residuals(model: Mapping[str, Any], bend_pipe_id: str) -> dict[str, flo
     incoming = [p[i] - far_end(bend["from"])[i] for i in range(3)]
     outgoing = [far_end(bend["to"])[i] - q[i] for i in range(3)]
     chord = [q[i] - p[i] for i in range(3)]
-    unit = lambda v: [x / math.sqrt(sum(y * y for y in v)) for x in v]  # noqa: E731
+    unit = lambda v: [x / math.hypot(*v) for x in v]  # noqa: E731
     d1, d2 = unit(incoming), unit(outgoing)
     cosine = max(-1.0, min(1.0, sum(d1[i] * d2[i] for i in range(3))))
     det = 1.0 - cosine * cosine
     b1, b2 = sum(d1[i] * chord[i] for i in range(3)), sum(d2[i] * chord[i] for i in range(3))
     t1, t2 = (b1 - cosine * b2) / det, (b2 - cosine * b1) / det
     ti = [p[i] + t1 * d1[i] for i in range(3)]
-    gap = math.sqrt(sum((q[i] - t2 * d2[i] - ti[i]) ** 2 for i in range(3)))
+    gap = math.hypot(*(q[i] - t2 * d2[i] - ti[i] for i in range(3)))
     tangent = radius * math.tan(math.acos(cosine) / 2.0)
     side = _project([float(bend["y_reference"][axis]) for axis in "xyz"], p, q)
     middle = [(p[i] + q[i]) / 2.0 for i in range(3)]
@@ -319,9 +319,8 @@ def bend_residuals(model: Mapping[str, Any], bend_pipe_id: str) -> dict[str, flo
     cross = [side[1] * toward[2] - side[2] * toward[1], side[2] * toward[0] - side[0] * toward[2],
              side[0] * toward[1] - side[1] * toward[0]]
     return {"tangent_near": abs(t1 - tangent), "tangent_far": abs(t2 - tangent), "gap": gap,
-            "orientation": math.sqrt(sum(value * value for value in cross)), "theta": math.acos(cosine),
-            "radius": radius, "ti": ti, "legs": (math.sqrt(sum(v * v for v in incoming)) + t1,
-                                                 math.sqrt(sum(v * v for v in outgoing)) + t2)}
+            "orientation": math.hypot(*cross), "theta": math.acos(cosine),
+            "radius": radius, "ti": ti, "legs": (math.hypot(*incoming) + t1, math.hypot(*outgoing) + t2)}
 
 
 def bounds(model: Mapping[str, Any], writer: Any, printed: Printed, names: Mapping[str, str],

@@ -642,3 +642,19 @@ def test_canonical_sums_are_exact_and_independent_of_the_writer(trips):
     imported = trip.imported(trip.bound, oriented=True)
     assert imported.values[key] == 0.004448221615  # the writer's printed, correctly rounded sum
     assert canon.compare(reference, imported, trip.limits(reference)).failures == []
+
+
+def test_canonical_form_of_a_tiny_bend_uses_scaled_norms():
+    # Codex VER-002 r2 (P3): an imported bend with R = 1e-200 mm and perpendicular legs of 1e-199 mm. The squares of
+    # its chord components (about 1e-400) underflow, so an unscaled norm divided by zero. By hand: TI (1e-199, 0, 0);
+    # t = 1e-200 x tan 45 deg; the projected bend plane is unit(TI - chord middle) = (1, 0, -1)/sqrt 2.
+    data = ("INVENTED TINY BEND\r\nVERSION\r\n15.10\r\nOPTIONS\r\nHGRA,SI\r\nOPTEMP\r\n20\r\nMATERIAL\r\n"
+            "M1,0,0.3\r\nM1,20,200000,1.2e-05\r\nPIPE\r\nP1,168.3,7.11\r\nLOADS\r\nL1,20,0,0\r\nLAYOUT\r\n"
+            "F10,KA,MM1,PP1,CL=L1\r\nT20,KI,B1e-200,X1e-199,CFF=1\r\nT30,KA,Z1e-199\r\n").encode("ascii")
+    result = import_caepipe_mbf(data, material_provenance=INVENTED, source_label="tiny")
+    assert result.status == "imported", result.diagnostics
+    names = {swb_id: name for name, swb_id in result.id_map["node_map"].items()}
+    form = canon.canonical(result.model, names, {}, oriented=True)
+    plane = form.sets[("bend", ("20A", "20B"), "plane")]
+    assert plane == pytest.approx([math.sqrt(0.5), 0.0, -math.sqrt(0.5)], abs=1e-12)
+    assert form.values[("bend", ("20A", "20B"), "R")] == pytest.approx(1e-203, rel=1e-15)  # 1e-200 mm in m

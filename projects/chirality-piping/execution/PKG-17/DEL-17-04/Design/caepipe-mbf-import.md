@@ -563,6 +563,9 @@ Row meanings follow *Format of .MBF*, LAYOUT, and *DX, DY, DZ*:
   the manual gives zero length to joint elements (*DX, DY, DZ*), and those are refused.
   The check is repeated on the rounded binary64 positions: distinct exact positions that
   round to one point are refused the same way.
+- **No minimum length.** Any representable positive length imports; the importer sets no
+  minimum element length (a 1e-200 mm straight is read). If the solve cannot form a very
+  short element, the solve's own refusal is the report (independent review VER-002 r2).
 - **To row naming an existing node** would close a loop. It is refused
   (`MBF-IMPORT-TOPOLOGY-LOOP`), as the writer refuses loops. Loops are tranche 2.
 - **Location row `L<n>`.** Adds comment data at an existing node
@@ -631,7 +634,8 @@ The MBF carries no element orientation. A straight pipe still needs a `y_referen
 the solve requires, so the importer assigns one deterministically:
 
 - **Bound imports** restore it from the writer's sidecar: `element_map[pipe].y_reference`,
-  which the writer records for every straight with an authored `y_reference`.
+  which the writer records for every straight with an authored `y_reference`. Only a finite,
+  non-zero vector is restored; anything else takes the documented local y below.
 - **Otherwise** the straight takes the local y axis CAEPIPE documents for pipe elements
   (documented: `CAEPIPE-LOCAL-AXES`, technical reference *Local Coordinate System*). With
   global Y vertical, a non-vertical element's local y lies in the plane of its local x and
@@ -674,6 +678,12 @@ reference *Bend*; *Node*). The inverse:
      |TI − P| − t ≤ 1e-9·|TI − P|; or |Q − TI| − t ≤ 1e-9·|Q − TI|, unless Q is itself a TI
      whose own tangent length still leaves a positive straight between the two bends.
      These are the writer's relative tolerances (`_BEND_RELATIVE_TOLERANCE`).
+   - **After rounding** (independent review VER-002 r2): R > 0 and θ > 0, so a tangent length
+     that rounds to 0 is an underflow and is refused (`MBF-IMPORT-VALUE-UNREPRESENTABLE`).
+     The generated geometry is checked on its binary64 values: the tangent nodes must differ
+     from the TI and from each other, the TI must differ from the chord middle (the bend-plane
+     direction), and the straights beside the bend must keep a non-zero length; otherwise
+     `MBF-IMPORT-BEND-GEOMETRY-INVALID`.
 4. **Members.**
    - Straight `pipe:P-nA`, from P to N.
    - Bend pipe `pipe:nA-nB`, from N to F, with `y_reference` = unit(TI − (N+F)/2). The
@@ -777,7 +787,11 @@ the manual does not make clear which kind a record is, it is refused.
   non-zero value that would become 0 (§4.3).
 
 The writer refuses the corresponding cases of its own conversions as
-`MBF-SI-VALUE-OUT-OF-RANGE` (§5.2, §18.2).
+`MBF-SI-VALUE-OUT-OF-RANGE` (§5.2, §18.2), and the same code for every value it derives
+before printing that is not finite: the material temperature table and each operating
+temperature (reference plus thermal change), layout offsets, the tangent intersection and
+its tangent lengths, and the bare-metal area behind a weight density. Its norms are scaled
+(`hypot`) as the importer's are.
 
 Loss entries and information (do not block):
 
@@ -1072,7 +1086,9 @@ formed exactly, then rounded once:
   of the printed values, rounded once.
 
 The bounds below are unchanged: a summed load is printed once, so its bound is the
-printed-directly bound of the sum.
+printed-directly bound of the sum. The canonical form's bend-plane projection and the bend
+residuals use scaled norms (`hypot`), so a bend of R = 1e-200 mm is compared, not divided
+by zero (independent review VER-002 r2).
 
 **Tolerances (HELP_HUMAN), derived from the writer's number formatting and, for bends,
 its admitted residuals.** The writer
