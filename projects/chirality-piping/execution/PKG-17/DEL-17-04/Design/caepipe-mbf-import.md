@@ -1253,7 +1253,7 @@ Each exclusion is listed in the test so that it stays explicit.
   direction is compared as the writer checks it: the normalized projection of
   `y_reference` perpendicular to the unit chord between the two tangent nodes. For
   example, an invented fixture with `y_reference` = (2, 0, 0) reconstructs as
-  (1, 0, −1)/√2. The raw vectors are 45° apart, but the projected directions agree.
+  (1, 0, −1)/√2. The raw vectors are 45° apart, but the projected directions coincide.
 - per case kind: summed force and moment vectors per node, summed weight per length per
   pipe, summed ΔT per pipe, and summed anchor displacements and rotations;
 - the pressure contract, and per case kind each pressure region by its member pipes: its
