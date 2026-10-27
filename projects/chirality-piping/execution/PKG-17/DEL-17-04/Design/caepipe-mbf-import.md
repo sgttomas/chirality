@@ -2127,6 +2127,43 @@ The test is `tests/test_caepipe_private_mbf_import.py`.
 DEL-17-05 Design §5's run-directory table gains two rows: `caepipe_out/exported.mbf`
 (PRIVATE) and `imported/` (PRIVATE, derived from CAEPIPE output).
 
+**Authored cases** (Agent 0, under the owner's delegation, 2026-10-27). The writer cases cover only
+what the writer writes: Y vertical and no refused input. A second case kind covers the rest of the
+importer's mappings and named refusals.
+
+- **Fixtures.** `validation/caepipe_correlation/authored/` holds invented, hand-written MBF files, each
+  with an invented-provenance sidecar (§18.4), and `manifest.json`. Each manifest entry names the case
+  (`cpa-nn-…`), its file, the construct it exercises, the importer's own outcome on the file
+  (`importer_expectation`: imported, or refused with a named code) and, for a file with pressure, the
+  closure declaration both imports take (§9.4). The set covers pressure (a straight run and a run
+  through a bend), Z vertical (with a riser, a force, a bend with an anchor displacement, and supports),
+  each mapped support kind of §12 (rigid guides, guides and limit stops with `STIFF`, two-way limit
+  stops, axis-aligned `K`, flexible anchors), and each refusal: `GGAP`, `MU`, limit-stop gaps, a one-way
+  stop, a skewed `DV`, `CNOD`, the hangers `VS`, `CS` and `US`, a non-zero `ROTK`, `KR` and a
+  temperature-dependent material. `KR` is written alone on its row with its `DV`: the target imports
+  one data item per row and takes further items from Location rows (observed format behaviour).
+- **Round trip.** DEL-17-05's pilot command (`run_pilot --authored`, DEL-17-05 Design §3) has the target
+  tool import the authored file as written, through the same batch route as a writer case, which also
+  solves it; the export step then writes the model back to `caepipe_out/exported.mbf`. The authored
+  file is the case's `caepipe_in/model.mbf`, and the run record binds the export to it by hash.
+- **Comparison.** The test imports the authored file and the exported file, both unbound, without a
+  sidecar, with the case's `project_invented` declaration and its closure declaration. For a mapped
+  case the authored import is the reference: the SI writer renders it, and the comparison uses the
+  same canonical forms and writer-derived tolerances as the writer cases (§18.2). The outcome is
+  `equal_within_writer_tolerance`, `differs`, or `refused` when the export's import is refused. For a
+  refused case it compares refusals: `refused_alike` when the export's import is refused with the
+  manifest's named code, `refused_differently` when it is refused otherwise, and `differs` when it
+  imports. An authored file that no longer meets its manifest expectation fails the test by case id.
+- **Binding.** An authored case is checked only when its run record's export entry binds the export
+  to the solve of exactly the tracked authored file (both hashes); otherwise it is skipped with that
+  reason.
+- **Outcomes and privacy** are as above: the record goes to `cases/<id>/imported/import_outcome.json`
+  with `case_kind: authored`, and standard output carries operational status only.
+- **Public tests** check each fixture against its manifest expectation with the importer alone, the
+  manifest's coverage of the constructs above, and the classification and binding on invented
+  exchange folders whose "export" is the authored file or an invented edit of it. They assert no
+  outcome of a target-tool run.
+
 ### 18.4 Boundary guard
 
 `tests/test_caepipe_data_boundary.py` is extended. It fails if any tracked `.mbf` lacks an invented-provenance sidecar, regardless of
@@ -2299,6 +2336,13 @@ SHA-256 of the RFC 8785 serialisation of the rest. The importer verifies it befo
 reads the sidecar, on every route. A mismatch, and a format-3 sidecar without the digest,
 are refused by name. Format-2 and legacy sidecars import as before and are reported as
 carrying no self-digest.
+
+**Remaining from the authored cases (§18.3).** Two support spellings in exported MBF files (observed
+format behaviour) are not read yet. A rigid guide or limit stop carries `STIFF=Rigid`, which the importer
+refuses as `MBF-IMPORT-NUMBER-INVALID`; the open item is to read the token as a rigid support, as
+for a row without `STIFF`. A one-way limit stop carries `None` as its blank
+limit, as in `LS(0.000,None)`; reading it as blank would refuse it by name as a one-way stop
+(`MBF-IMPORT-SUPPORT-UNSUPPORTED`) and not as an invalid number.
 
 Later, in proposed order: concentrated weight and uniform load; contents, insulation and
 lining; rigid and valve joints; reducers (0.8.0); SIF user values; multiple thermal loads;
