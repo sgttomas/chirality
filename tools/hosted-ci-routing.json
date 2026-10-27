@@ -284,7 +284,7 @@
       "core/loads/self_weight_wasm/Cargo.toml": "ec35ef66523c63247f5395d7b5645a4044a666ed11e1f4d19ade3a956ca902c9",
       "core/loads/stress_recovery/Cargo.toml": "0b9812c9f5fde6e4faca7ac318c2098e526dd015a6117863a1d04b7951548ff0",
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
-      "core/model_operations/operation_applier/Cargo.toml": "bd657b4e5ecbdb9a721d2bf1721814edf37ff4d494fa66023f6d868dbcd8c772",
+      "core/model_operations/operation_applier/Cargo.toml": "1dfa760b95b7af44ad30d2c686be296395d5d70bc9c01d0b95a794b050409884",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
       "core/product_physics/Cargo.toml": "872cf329cb05b9d5af8b89c6d4f5bb572bf89dbb0ec20e98bedfacb2cd96a350",
       "core/reporting/audit_manifest/Cargo.toml": "b8bc4623a383ed2c22205326bc737486becd9d931bf869e1e8cf40e147f4fad7",
@@ -608,7 +608,7 @@
         ]
       },
       "core/model_operations/operation_applier/tests/model_data_authoring.rs": {
-        "sha256": "818f90233ab902713093b0fce9d7610692650b210bde9ec766713f50e15f14a4",
+        "sha256": "2c20f3ca9b063d4e13e377e159b12afc15f89042ba45cc2a137576eb87863282",
         "source_trees": [
           "core/model_operations/operation_applier/Cargo.toml"
         ],
@@ -2445,6 +2445,7 @@
               "core/model_operations/operation_applier/src/library_apply.rs",
               "core/model_operations/operation_applier/src/load_state_authoring.rs",
               "core/model_operations/operation_applier/src/model_data_authoring.rs",
+              "core/model_operations/operation_applier/src/model_document_version.rs",
               "core/model_operations/operation_applier/src/model_settings_authoring.rs",
               "core/model_operations/operation_applier/src/numerical_health.rs",
               "core/model_operations/operation_applier/src/pipe_reconnect.rs",
@@ -4616,6 +4617,7 @@
               "fixtures/model_document/invented_every_slot_model.json",
               "fixtures/model_document/library_disposition_parity.json",
               "fixtures/model_document/library_ref_sites.json",
+              "fixtures/model_document/version_states.json",
               "fixtures/model_operations/contract_corpus/case_01_accept_set_field_material_elastic_modulus.json",
               "fixtures/model_operations/contract_corpus/case_02_accept_set_field_element_material_ref.json",
               "fixtures/model_operations/contract_corpus/case_03_accept_update_load_status_text.json",
