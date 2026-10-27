@@ -1022,6 +1022,10 @@ class _Importer:
                                                       f"entries for {', '.join(map(str, extra))}, not in the file"
                                                       if extra else "") if part))
 
+    def loads_line(self) -> int:
+        """The LOADS header's line, or 0 for a file without LOADS (a bound pressure state can still name one)."""
+        return self.sections["LOADS"][0] if "LOADS" in self.sections else 0
+
     def has_errors(self) -> bool:
         return any(item["severity"] == "error" for item in self.diagnostics)
 
@@ -2827,6 +2831,12 @@ class _Importer:
         active = {pipe_id: number for pipe_id, (number, _) in pressures.items()
                   if number is not None and number.exact != 0}
         stored = (self.maps.get("pressure_map") or None) if self.bound else None
+        if self.bound and active and stored is None:  # a bound import never falls through to unbound formation
+            self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", self.loads_line(), "pressure_map",
+                        "the file has Pressure 1, but the bound sidecar records no pressure_map (contract, shear model "
+                        "and regions); a bound import restores them and never forms regions or defaults the shear "
+                        "model")
+            raise _Refused
         if not active and stored is None:
             return None
         # The solve reads Pressure 1 in Pa (value x factor + 0.0, core/units) and refuses a non-finite one
@@ -2903,7 +2913,7 @@ class _Importer:
     def pressure_effects(self) -> None:
         """Lists the CAEPIPE pressure effects OPPRES turns on, or leaves unstated, that SWBPIPE does not model."""
         if self.oppres is None:
-            self.listed("omitted", "MBF-IMPORT-PRESSURE-EFFECTS-OMITTED", self.sections["LOADS"][0], "OPPRES",
+            self.listed("omitted", "MBF-IMPORT-PRESSURE-EFFECTS-OMITTED", self.loads_line(), "OPPRES",
                         "the file has pressure and no OPPRES section, so it does not state CAEPIPE's Bourdon effect "
                         "or pressure correction for bends (a blank OPPRES line turns both on); SWBPIPE's exact "
                         "pressure route models neither (DEL-04-07 D-3)")
@@ -3006,7 +3016,7 @@ class _Importer:
         """Bound regions checked whole as the route checks them, in their declared traversal order (from the first
         terminal), never cut or reordered; None after a refusal (Design §9.4)."""
         _, _, failures = self.route_checks(pressures, ends, arcs, point_of, name_of)
-        line = self.sections["LOADS"][0]
+        line = self.loads_line()
         for region_id, members, terminals in restored:
             start, finish = terminals[0]["node_ref"], terminals[1]["node_ref"]
             ordered, remaining, node = [], set(members), start
@@ -3210,7 +3220,7 @@ class _Importer:
 
     def closure_declaration(self) -> tuple[str, str, dict[str, str]] | None:
         declared = self.closure
-        line = self.sections["LOADS"][0]
+        line = self.loads_line()
         if declared is None:
             self.refuse("MBF-IMPORT-PRESSURE-CLOSURE-REQUIRED", line, "LOADS Pressure 1",
                         "the file has pressure; each pressure-region terminal needs a closure transfer "
@@ -3249,7 +3259,7 @@ class _Importer:
         else:
             if owned == set(active):
                 return restored
-        self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", self.sections["LOADS"][0], "pressure_map",
+        self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", self.loads_line(), "pressure_map",
                     "the sidecar's pressure regions do not match the MBF's Pressure 1 values")
         return None
 

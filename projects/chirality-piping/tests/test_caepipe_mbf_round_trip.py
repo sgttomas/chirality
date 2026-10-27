@@ -1421,12 +1421,20 @@ def sidecar_mutations(sidecar: dict) -> list[tuple[str, dict]]:
 _DELETE = object()
 
 
-def test_every_mutated_sidecar_is_refused_by_name_or_restores_the_same_model():
-    # VER-002 r8: the import of each mutated sidecar either refuses with a named MBF-IMPORT code or imports the
-    # unmutated model, and never raises; the writer's preflight, given the same mutated sidecar, refuses with a named
-    # MBF-SI code exactly where the import refuses, and never raises. The base has pressure, a bend, two supports and
-    # thermal loads; its straights' recorded y_reference is the documented one and its families are absent, so a
-    # removed optional record restores the same model.
+SIDECAR_MAPS = ("node_map", "element_map", "support_map", "load_case_map", "material_map", "section_map", "load_map",
+                "pressure_map")
+
+
+@pytest.mark.parametrize("base_model", ["pressurized", "pressure-free"])
+def test_every_mutated_sidecar_is_refused_by_name_or_restores_the_same_model(base_model):
+    # VER-002 r8, r9: the import of each mutated sidecar either refuses with a named MBF-IMPORT code or imports the
+    # unmutated model, and never raises; with pressure, the writer's preflight, given the same mutated maps, refuses
+    # with a named MBF-SI code exactly where the import refuses, and never raises. Each import passes a closure
+    # declaration, so a bound import that fell through to unbound region formation would succeed and be caught. The
+    # bases have a bend, two supports and thermal loads, and one has pressure; their straights' recorded y_reference
+    # is the documented one and their families are absent, so a removed optional record restores the same model.
+    # Besides the field mutations, each of the eight maps is deleted and emptied, present in the base or not. A
+    # mutated digest that is still well formed is another file's: the import is the unbound one, as documented.
     from core.handoff.caepipe_mbf import si_writer
     captured: dict[str, Any] = {}
     original = si_writer._Writer.survives_reimport
@@ -1437,29 +1445,42 @@ def test_every_mutated_sidecar_is_refused_by_name_or_restores_the_same_model():
 
     si_writer._Writer.survives_reimport = capture
     try:
-        written = render_caepipe_mbf_si(writer_tests.pressurized_l(), title="MUTATION")
+        source = writer_tests.pressurized_l() if base_model == "pressurized" else writer_tests.bent_l()
+        written = render_caepipe_mbf_si(source, title="MUTATION")
     finally:
         si_writer._Writer.survives_reimport = original
     assert written.status == "written", written.diagnostics
     data = written.text.encode("ascii")
     base = {**{key: value for key, value in written.to_dict().items() if key.endswith("_map")},
             "mbf_sha256": hashlib.sha256(data).hexdigest()}
-    expected = import_caepipe_mbf(data, sidecar=base, material_provenance=INVENTED, source_label="base")
+    run = lambda sidecar, label: import_caepipe_mbf(  # noqa: E731
+        data, sidecar=sidecar, material_provenance=INVENTED, pressure_closure=CLOSURE, source_label=label)
+    expected = run(base, "base")
     assert expected.status == "imported", expected.diagnostics
-    writer, result = captured["writer"], captured["result"]
+    assert bool(expected.model.get("pressure_contract")) == (base_model == "pressurized")
+    unbound = run(None, "unbound")  # a digest that is not this file's leaves the sidecar unapplied (§15)
+    assert unbound.status == "imported", unbound.diagnostics
     mutations = sidecar_mutations(base)
-    outcomes = {"refused": 0, "equal": 0}
+    for name in SIDECAR_MAPS:
+        mutations.append((f"{name}: map deleted", {key: value for key, value in deepcopy(base).items() if key != name}))
+        mutations.append((f"{name}: map emptied", {**deepcopy(base), name: {}}))
+    outcomes = {"refused": 0, "equal": 0, "unbound": 0}
     for label, sidecar in mutations:
-        imported = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="mutated")
+        imported = run(sidecar, "mutated")
         errors = {item["code"] for item in imported.diagnostics if item["severity"] == "error"}
         if imported.status == "refused":
             assert errors and all(code.startswith("MBF-IMPORT-") for code in errors), label
             outcomes["refused"] += 1
+        elif imported.source["binding"] == "unbound":
+            assert label.startswith("mbf_sha256") and imported.model == unbound.model, label
+            assert "MBF-IMPORT-SIDECAR-NOT-APPLIED" in {item["code"] for item in imported.diagnostics}, label
+            outcomes["unbound"] += 1
         else:
             assert imported.model == expected.model, label
             outcomes["equal"] += 1
-        if not label.split("/")[0].split(":")[0].endswith("_map"):
-            continue  # the preflight binds its own text by its own hash and reads only the maps
+        if "writer" not in captured or not label.split("/")[0].split(":")[0].endswith("_map"):
+            continue  # the preflight runs with pressure, binds its own text by its own hash and reads only the maps
+        writer, result = captured["writer"], captured["result"]
         writer.diagnostics[:], writer.loss[:] = list(captured["diagnostics"]), list(captured["loss"])
         maps = {key: value for key, value in sidecar.items() if key != "mbf_sha256"}
         object.__setattr__(result, "to_dict", lambda maps=maps: dict(maps))
@@ -1469,6 +1490,7 @@ def test_every_mutated_sidecar_is_refused_by_name_or_restores_the_same_model():
             assert not survives and refusals_ and all(code.startswith("MBF-SI-") for code in refusals_), label
         else:
             assert survives, label
+    assert ("writer" in captured) == (base_model == "pressurized")
     assert len(mutations) > 1000 and outcomes["refused"] > 0 and outcomes["equal"] > 0, outcomes
 
 
@@ -1553,3 +1575,48 @@ def test_a_corner_terminal_carries_the_wall_thrust_whatever_the_global_closure()
               for terminal in region["terminals"] if terminal["node_ref"] == "node:20"]
     assert [(terminal["closure_transfer"], terminal["provenance"]) for terminal in corner] == [
         ("separately_supported_or_compensated", "closure transfer declared at import: invented remote declaration")] * 2
+
+
+def test_a_bound_pressurized_import_without_its_pressure_map_is_refused(monkeypatch):
+    # Codex VER-002 r9 (P2): imported with Euler-Bernoulli, written and hash-bound, then with pressure_map deleted or
+    # emptied, the reimport was bound yet formed regions and took the Timoshenko default. A bound import with
+    # Pressure 1 needs its pressure_map (contract, shear model, regions) and never falls through to the unbound route.
+    rows = ("F10,KA,MM1,PP1,CL=L1", "T20,X1000,CFOR(0,-1000,0),FLC=1")
+    model = importer_tests.run(importer_tests.mbf(*rows, loads=("L1,20,10,0",)), pressure_closure=CLOSURE,
+                               shear_model="euler_bernoulli").model
+    data, sidecar = bound_parts(model)
+    restored = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="whole",
+                                  pressure_closure=CLOSURE)
+    assert restored.model["pressure_contract"]["shear_model"] == "euler_bernoulli"
+    for change in ("deleted", "emptied"):
+        changed = deepcopy(sidecar)
+        if change == "deleted":
+            del changed["pressure_map"]
+        else:
+            changed["pressure_map"] = {}
+        result = import_caepipe_mbf(data, sidecar=changed, material_provenance=INVENTED, source_label=change,
+                                    pressure_closure=CLOSURE)
+        assert refusals(result) == {("MBF-IMPORT-SIDECAR-CONFLICT", "pressure_map")}, change
+
+
+def test_a_restored_pressure_state_on_a_file_without_loads():
+    # Codex VER-002 r9 (P2): a file without LOADS and a complete hash-bound sidecar. An empty pressure_map restores
+    # the file as pressure-free; the writer's empty pressure state (the contract, no regions) restores the contract
+    # with no region; a region the file cannot carry is refused by name. Before r9 the last two raised KeyError.
+    data = importer_tests.mbf("F10,KA,MM1,PP1", "T20,X1000", loads=None)
+    plain = importer_tests.run(data)
+    assert plain.status == "imported" and "pressure_contract" not in plain.model
+    contract = {"version": "3.0.0", "mode": "exact_pressure_v3", "shear_model": "euler_bernoulli"}
+    free = import_caepipe_mbf(data, sidecar=complete_sidecar(data, plain.model, plain.id_map, pressure_map={}),
+                              material_provenance=INVENTED, source_label="free")
+    assert free.status == "imported" and "pressure_contract" not in free.model
+    empty = import_caepipe_mbf(data, sidecar=complete_sidecar(data, plain.model, plain.id_map, pressure_map={
+        "contract": contract, "regions": []}), material_provenance=INVENTED, source_label="empty")
+    assert empty.status == "imported", empty.diagnostics
+    assert empty.model["pressure_contract"] == contract and empty.model["load_cases"] == []
+    terminals = [{"node_ref": node, "closure_transfer": "transfers_to_wall", "provenance": "invented"}
+                 for node in ("node:10", "node:20")]
+    conflicting = import_caepipe_mbf(data, sidecar=complete_sidecar(data, plain.model, plain.id_map, pressure_map={
+        "contract": contract, "regions": [{"id": "region:r", "members": ["pipe:10-20"], "terminals": terminals}]}),
+        material_provenance=INVENTED, source_label="conflicting")
+    assert refusals(conflicting) == {("MBF-IMPORT-SIDECAR-CONFLICT", "pressure_map")}

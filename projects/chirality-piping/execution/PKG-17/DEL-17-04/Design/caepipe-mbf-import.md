@@ -739,8 +739,14 @@ sidecar parser types them (§15). It is checked against the file: every member m
 non-zero Pressure 1, equal across the region, and belong to one region only; every element
 with pressure must belong to one; each terminal must name a model node. Otherwise the import
 is refused (`MBF-IMPORT-SIDECAR-CONFLICT`). The pressure value always comes from the
-file. A bound sidecar with a contract and no regions restores the contract and empty region
-lists.
+file. A bound import of a file with any Pressure 1 ≠ 0 needs a present, non-empty
+`pressure_map`; without one it is refused (`MBF-IMPORT-SIDECAR-CONFLICT`, `pressure_map`)
+before any region is formed or the shear model defaulted: a bound import never falls
+through to the unbound route (independent review VER-002 r9). On a file without pressure, an
+empty `pressure_map` restores the file as pressure-free, and the writer's empty pressure
+state (the contract, no regions) restores the contract with empty region lists, with or
+without a LOADS section; a region the file does not carry is refused
+(`MBF-IMPORT-SIDECAR-CONFLICT`).
 
 A restored region is then checked whole as the route checks it, with the same ported checks
 as an unbound region (its straight runs, its bores and its bend junctions, on the MBF's
@@ -1245,17 +1251,25 @@ union of what every SWBPIPE writer version records, so a sidecar from an older r
 
 **A bound sidecar is complete.** It was written for exactly this file, so each node,
 element, support node, material, case and primitive of the file has its entry, a bend its
-`bend` record, and no entry names what the file lacks; otherwise
-`MBF-IMPORT-SIDECAR-CONFLICT`, naming the map. A primitive the writer summed many-to-one
+`bend` record, a file with Pressure 1 its `pressure_map` (§9.4), and no entry names what the
+file lacks; otherwise `MBF-IMPORT-SIDECAR-CONFLICT`, naming the map. A bound import takes no
+unbound default for anything the sidecar records: ids, families, bends, materials, cases,
+primitives, regions and the shear model come from it. Only what a writer records as absent
+is formed: a straight without a recorded `y_reference` takes the documented local y (§10.5),
+and a support entry without `family` (an older writer's) is reported unrecoverable. A primitive the writer summed many-to-one
 keeps its formed id and is reported (below). The check against the file of what the parser
 admits stays where it was: ownership and pressure of regions (§9.4), supports' DOF sets per
 node (§12), the frame check of `y_reference` (§10.5).
 
-A seeded mutation test exercises the parser: each field of a complete sidecar swapped for
-every other JSON type, each container emptied, each number made huge or non-finite, an
-unknown key added and each key removed. Each mutated import refuses with a named
-`MBF-IMPORT-*` code or imports the unmutated model, and never raises; the writer's preflight
-given the same maps refuses with a named `MBF-SI-*` code exactly where the import refuses.
+A seeded mutation test exercises the parser on a complete sidecar of a pressurized and of a
+pressure-free file: each field swapped for every other JSON type, each container emptied,
+each number made huge or non-finite, an unknown key added and each key removed, and each of
+the eight maps deleted and emptied. Each import passes a closure declaration, so a bound
+import that fell through to unbound formation would succeed and be caught. Each mutated
+import refuses with a named `MBF-IMPORT-*` code or imports the unmutated model (a mutated
+digest that is still well formed is another file's, and gives the unbound import), and never
+raises; with pressure, the writer's preflight given the same maps refuses with a named
+`MBF-SI-*` code exactly where the import refuses.
 
 **What a bound sidecar cannot restore.** Many-to-one mappings and identities the sidecar
 does not preserve are reported, never guessed. Each is listed in the loss report as
