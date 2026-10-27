@@ -263,7 +263,7 @@ def canonical_bytes(value: Any) -> bytes:
 def import_caepipe_mbf(
     data: bytes,
     *,
-    sidecar: Mapping[str, Any] | None = None,
+    sidecar: Mapping[str, Any] | bytes | str | None = None,
     material_provenance: Mapping[str, Any] | None = None,
     pressure_closure: Mapping[str, Any] | None = None,
     shear_model: str | None = None,
@@ -271,6 +271,10 @@ def import_caepipe_mbf(
     source_label: str,
 ) -> MbfImportResult:
     """Import the declared MBF subset into a SWBPIPE model document, or refuse by name.
+
+    `sidecar` is the writer sidecar as parsed JSON, or its JSON text (bytes or str), which the importer parses
+    strictly (parse_sidecar_json; Design §15): a repeated member name, a NaN or Infinity, or bytes that are not strict
+    UTF-8 are refused by JSON path. A caller passing parsed JSON has resolved its own parse.
 
     `pressure_closure` is the caller's closure-transfer declaration for the terminals of pressure regions an
     unbound import forms (Design §9.4): {"closure_transfer": "transfers_to_wall" or
@@ -1515,6 +1519,13 @@ class _Importer:
             if self.rebind:
                 self.refuse("MBF-IMPORT-SIDECAR-INVALID", 0, "sidecar", "rebinding was requested without a sidecar")
             return
+        if isinstance(self.sidecar, (bytes, bytearray, str)):  # JSON text: parsed strictly, changed in nothing
+            try:
+                self.sidecar = parse_sidecar_json(self.sidecar)
+            except SidecarJsonInvalid as error:
+                for path, reason in error.findings:
+                    self.refuse("MBF-IMPORT-SIDECAR-INVALID", 0, path, f"the sidecar JSON at {path} {reason}")
+                return
         if not self.self_digest():  # before anything else reads the sidecar, on every route (Design §15)
             return
         parser = _SidecarParser()  # strict, before anything reads the sidecar (Design §15)
@@ -3955,13 +3966,80 @@ def inside_git_work_tree(path: Path) -> bool:
     return completed.returncode == 0
 
 
-def load_sidecar(path: Path) -> dict[str, Any]:
-    sidecar = json.loads(path.read_text(encoding="utf-8"))
-    if isinstance(sidecar, dict) and "mbf_sha256" not in sidecar:
-        render = path.with_name("mbf_render.json")
-        if render.is_file():
-            sidecar["mbf_sha256"] = json.loads(render.read_text(encoding="utf-8")).get("mbf_sha256")
-    return sidecar
+class SidecarJsonInvalid(ValueError):
+    """Sidecar JSON text that parse_sidecar_json refuses; `findings` are (JSON path, reason)."""
+
+    def __init__(self, findings: list[tuple[str, str]]) -> None:
+        super().__init__("; ".join(f"{path}: {reason}" for path, reason in findings))
+        self.findings = findings
+
+
+def _json_path(path: str, key: str) -> str:
+    return f"{path}[{key}]" if path in _KEYED_MAPS else (f"{path}.{key}" if path else key)
+
+
+def parse_sidecar_json(text: bytes | bytearray | str) -> Any:
+    """Sidecar JSON text, parsed strictly and changed in nothing (Design §15): bytes must be strict UTF-8, the text
+    RFC 8259 JSON (no NaN, Infinity or -Infinity), and no object may repeat a member name, which json.loads would
+    resolve silently to its last value. Raises SidecarJsonInvalid naming each repeated member by JSON path."""
+    if isinstance(text, (bytes, bytearray)):
+        try:
+            text = bytes(text).decode("utf-8")
+        except UnicodeDecodeError as error:
+            raise SidecarJsonInvalid([("sidecar", f"is not strict UTF-8: the byte at offset {error.start} cannot "
+                                                  "be decoded")]) from None
+    repeated: dict[int, tuple[dict, list[str]]] = {}  # holds each such object, so its id is not reused
+
+    def pairs(items: list[tuple[str, Any]]) -> dict[str, Any]:
+        out: dict[str, Any] = {}
+        for key, value in items:
+            if key in out:
+                repeated.setdefault(id(out), (out, []))[1].append(key)
+            out[key] = value
+        return out
+
+    def constant(name: str) -> Any:
+        raise ValueError(f"{name} is not a JSON value")
+
+    try:
+        value = json.loads(text, object_pairs_hook=pairs, parse_constant=constant)
+    except ValueError as error:  # json.JSONDecodeError, or a NaN or Infinity
+        raise SidecarJsonInvalid([("sidecar", f"is not JSON: {error}")]) from None
+    findings: list[tuple[str, str]] = []
+
+    def walk(item: Any, path: str) -> None:
+        if type(item) is dict:
+            for key in dict.fromkeys(repeated.get(id(item), ({}, []))[1]):
+                findings.append((_json_path(path, key), "repeats a member name; JSON does not define which value "
+                                 "counts (RFC 8259 §4), and the sidecar must state each once"))
+            for key, child in item.items():
+                walk(child, _json_path(path, key))
+        elif type(item) is list:
+            for index, child in enumerate(item):
+                walk(child, f"{path}[{index}]")
+
+    walk(value, "")
+    if findings:
+        raise SidecarJsonInvalid(findings)
+    return value
+
+
+def load_sidecar(path: Path) -> bytes | dict[str, Any]:
+    """The sidecar file as the import reads it (Design §15): its bytes, unchanged, which the importer parses strictly
+    and a format-3 sidecar's self-digest then verifies as supplied. The one exception is a legacy sidecar (no
+    `sidecar_format`) without `mbf_sha256`, the layout of main's earliest pilot runs, which kept the digest in
+    `mbf_render.json` beside it: that sidecar is parsed strictly here and takes its companion's digest. A format-2
+    or format-3 sidecar never takes it. Raises SidecarJsonInvalid when that companion is not strict JSON."""
+    data = path.read_bytes()
+    try:
+        sidecar = parse_sidecar_json(data)
+    except SidecarJsonInvalid:
+        return data  # the import refuses it by path
+    render = path.with_name("mbf_render.json")
+    if type(sidecar) is dict and "sidecar_format" not in sidecar and "mbf_sha256" not in sidecar and render.is_file():
+        companion = parse_sidecar_json(render.read_bytes())
+        return {**sidecar, "mbf_sha256": companion.get("mbf_sha256") if type(companion) is dict else None}
+    return data
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -3979,9 +4057,14 @@ def main(argv: list[str] | None = None) -> int:
         print("importer: refused: the output folder is inside a Git work tree and the input MBF is not a declared "
               "invented fixture; import outputs are private", file=sys.stderr)
         return 2
+    try:
+        sidecar = load_sidecar(args.sidecar) if args.sidecar else None
+    except SidecarJsonInvalid as error:
+        print(f"importer: refused: mbf_render.json beside the sidecar is not strict JSON ({error})", file=sys.stderr)
+        return 2
     result = import_caepipe_mbf(
         args.mbf.read_bytes(),
-        sidecar=load_sidecar(args.sidecar) if args.sidecar else None,
+        sidecar=sidecar,
         material_provenance=json.loads(args.material_provenance.read_text(encoding="utf-8"))
         if args.material_provenance else None,
         pressure_closure=json.loads(args.pressure_closure.read_text(encoding="utf-8"))

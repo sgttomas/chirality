@@ -2708,3 +2708,94 @@ def test_the_writer_preflight_reimports_its_sidecar_with_the_self_digest(monkeyp
     assert written.status == "refused"
     found = [item for item in written.diagnostics if item["code"] == "MBF-SI-PREFLIGHT-REFUSED"]
     assert any("MBF-IMPORT-SIDECAR-DIGEST-MISMATCH" in item["message"] for item in found), written.diagnostics
+
+
+def test_a_repeated_member_name_is_refused_by_path_on_every_load_path_and_in_every_format(tmp_path):
+    # Codex VER-002 self-digest r1 (P2): json.loads keeps the last of two members with one name, so "N0":"99","N0":"10"
+    # in a format-3 sidecar imported as verified, its digest unchanged. Where the importer parses JSON (the file
+    # loader, sidecar text or bytes, the command line), a repeated name is refused by path, in every format.
+    data, sidecar = bound_parts(writer_tests.cantilever())
+    text = json.dumps(sidecar)
+    assert text.count('"N0": "10"') == 1
+    repeated = text.replace('"N0": "10"', '"N0": "99", "N0": "10"')
+    assert import_as_given(data, sidecar=json.loads(repeated), material_provenance=INVENTED,
+                           source_label="lenient").source["sidecar_self_digest"] == "verified"  # why it matters
+    path = tmp_path / "id_map.json"
+    path.write_text(repeated, encoding="utf-8")
+    loaded = importer_module.load_sidecar(path)
+    assert loaded == repeated.encode("utf-8")  # unchanged: the importer parses it
+    for label, given, options in (("file", loaded, {}), ("text", repeated, {}), ("bytes", repeated.encode(), {}),
+                                  ("rebind", loaded, {"rebind_by_node_number": True})):
+        result = import_as_given(data, sidecar=given, material_provenance=INVENTED, source_label=label, **options)
+        assert refusals(result) == {("MBF-IMPORT-SIDECAR-INVALID", "node_map[N0]")}, label
+        assert result.source["sidecar_self_digest"] is None and result.source["binding"] == "unbound", label
+    with pytest.raises(importer_module.SidecarJsonInvalid) as raised:
+        importer_module.parse_sidecar_json(repeated)
+    assert raised.value.findings[0][0] == "node_map[N0]"
+    # Nested, top-level, format 2 and legacy alike.
+    nested = text.replace('"y_reference": {"x": ', '"y_reference": {"x": 5.0, "x": ', 1)
+    top = text[:-1] + ', "mbf_sha256": "' + "0" * 64 + '"}'
+    older_data = importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X1000", loads=("L1,20,10,0",))
+    plain = importer_tests.run(older_data, pressure_closure=importer_tests.CLOSURE)
+    older = json.dumps(complete_sidecar(older_data, plain.model, plain.id_map))
+    legacy_text = json.dumps(LEGACY_SIDECAR)
+    for label, mbf, given, where in (
+            ("nested", data, nested, "element_map[S1].y_reference.x"),
+            ("top", data, top, "mbf_sha256"),
+            ("format 2", older_data, older.replace('"sidecar_format": 2', '"sidecar_format": 2, "sidecar_format": 2'),
+             "sidecar_format"),
+            ("legacy", LEGACY_MBF_TEXT.encode("ascii"),
+             legacy_text.replace('"load_case_map": ', '"load_case_map": {}, "load_case_map": ', 1), "load_case_map")):
+        assert given not in (text, older, legacy_text), label
+        result = import_as_given(mbf, sidecar=given.encode(), material_provenance=INVENTED, pressure_closure=CLOSURE,
+                                 source_label=label)
+        assert refusals(result) == {("MBF-IMPORT-SIDECAR-INVALID", where)}, (label, refusals(result))
+    # Not JSON: NaN, bytes that are not UTF-8, a truncated text. Each is refused at `sidecar`.
+    for label, given in (("nan", older.replace('"reversed": false', '"reversed": NaN', 1).encode()),
+                         ("utf-8", older.encode()[:-1] + b"\xff}"), ("truncated", older.encode()[:-1])):
+        assert given != older.encode(), label
+        result = import_as_given(older_data, sidecar=given, material_provenance=INVENTED, pressure_closure=CLOSURE,
+                                 source_label=label)
+        assert refusals(result) == {("MBF-IMPORT-SIDECAR-INVALID", "sidecar")}, (label, refusals(result))
+    # The command line refuses it in the import report.
+    mbf_path, out = tmp_path / "in.mbf", tmp_path / "out"
+    mbf_path.write_bytes(data)
+    assert importer_module.main([str(mbf_path), "--out", str(out), "--sidecar", str(path)]) == 1
+    report = json.loads((out / "import_report.json").read_text(encoding="utf-8"))
+    assert ("MBF-IMPORT-SIDECAR-INVALID", "node_map[N0]") in {(item["code"], item["location"])
+                                                              for item in report["diagnostics"]}
+
+
+def test_the_companion_digest_backfills_only_a_legacy_sidecar(tmp_path):
+    # Codex VER-002 self-digest r1 (P2): load_sidecar filled a missing mbf_sha256 from mbf_render.json before the
+    # self-digest was checked, so a format-3 sidecar with its digest field deleted imported as verified. Only main's
+    # earliest pilot layout, a legacy sidecar that kept its digest beside it, takes the companion's digest.
+    data, sidecar = bound_parts(writer_tests.cantilever())
+    older_data = importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X1000", loads=("L1,20,10,0",))
+    plain = importer_tests.run(older_data, pressure_closure=importer_tests.CLOSURE)
+    older = complete_sidecar(older_data, plain.model, plain.id_map)
+    legacy_data = LEGACY_MBF_TEXT.encode("ascii")
+    for label, mbf, given, expected in (
+            ("format 3", data, sidecar, {("MBF-IMPORT-SIDECAR-DIGEST-MISMATCH", "sidecar_sha256")}),
+            ("format 2", older_data, older, {("MBF-IMPORT-SIDECAR-INVALID", "mbf_sha256")}),
+            ("legacy", legacy_data, LEGACY_SIDECAR, None)):
+        folder = tmp_path / label.replace(" ", "-")
+        folder.mkdir()
+        path = folder / "id_map.json"
+        path.write_text(json.dumps({key: value for key, value in given.items() if key != "mbf_sha256"}),
+                        encoding="utf-8")
+        (folder / "mbf_render.json").write_text(json.dumps({"mbf_sha256": hashlib.sha256(mbf).hexdigest()}),
+                                                encoding="utf-8")
+        loaded = importer_module.load_sidecar(path)
+        result = import_as_given(mbf, sidecar=loaded, material_provenance=INVENTED, pressure_closure=CLOSURE,
+                                 source_label=label)
+        if expected is None:
+            assert loaded == {**LEGACY_SIDECAR, "mbf_sha256": hashlib.sha256(legacy_data).hexdigest()}
+            assert result.status == "imported" and result.source["binding"] == "bound", result.diagnostics
+        else:
+            assert loaded == path.read_bytes(), label  # supplied unchanged: no backfill, merge or normalisation
+            assert refusals(result) == expected, (label, refusals(result))
+    # A companion that is not strict JSON is refused, not read.
+    (tmp_path / "legacy" / "mbf_render.json").write_text('{"mbf_sha256": "0", "mbf_sha256": "1"}', encoding="utf-8")
+    with pytest.raises(importer_module.SidecarJsonInvalid):
+        importer_module.load_sidecar(tmp_path / "legacy" / "id_map.json")

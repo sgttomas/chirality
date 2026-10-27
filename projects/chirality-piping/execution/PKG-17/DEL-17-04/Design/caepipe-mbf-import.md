@@ -1277,9 +1277,10 @@ travels in a sidecar.
 
 **Input.** The writer's sidecar (`MbfSiResult.sidecar`): `sidecar_format`, the maps
 (`node_map`, `element_map`, `support_map`, `load_case_map`, `material_map`, `section_map`,
-`load_map`, `pressure_map`), `mbf_sha256` and the self-digest `sidecar_sha256`, as `run_pilot.py` writes it to
-`caepipe_in/id_map.json` (older runs hold the digest in `mbf_render.json`, and the importer
-accepts either file pair).
+`load_map`, `pressure_map`), `mbf_sha256` and the self-digest `sidecar_sha256`, as
+`run_pilot.py` writes it to `caepipe_in/id_map.json`. Main's earliest pilot runs kept the
+digest in `mbf_render.json` beside a legacy sidecar. For that layout only, the file loader
+takes the companion's digest (*Loading*, below).
 
 **Sidecar format** (independent review VER-002 r10 to r12). The current writer records
 `sidecar_format` = 3, which is format 2 with its self-digest (below). A format-2 sidecar
@@ -1364,6 +1365,37 @@ canonicalisation (§14) compares parsed values; it is not a byte serialisation. 
 importer's `canonical_bytes` is Python's `json.dumps`, which has its own number text (`1.0`
 against `1`, `1e-07`). The tests carry an independent implementation and a digest derived
 by hand from a small invented sidecar.
+
+*Loading* (independent review VER-002, self-digest r1). The sidecar is verified exactly as
+supplied. Nothing is added, merged or normalised before the check.
+
+- **Parsing.** Where the importer parses JSON itself, it parses strictly
+  (`parse_sidecar_json`), in every format. This covers the file loader (`load_sidecar`, the
+  command line, the private regression of §18.3) and sidecar text or bytes passed to
+  `import_caepipe_mbf`. Bytes must be strict UTF-8, and the text must be RFC 8259 JSON:
+  NaN, Infinity and -Infinity are refused. A member name repeated within one object is
+  refused at its JSON path (`MBF-IMPORT-SIDECAR-INVALID`, for example `node_map[N0]`).
+  Python's `json.loads` would otherwise keep the last value silently and so hide the
+  conflict. RFC 8785 requires unique names. A caller that passes `import_caepipe_mbf` an
+  already-parsed object has resolved its own parse, and the importer reads that object as
+  given.
+- **Companion digest.** `load_sidecar` returns the file's bytes unchanged, for the importer
+  to parse. There is one exception, which applies only to legacy sidecars, the format that
+  relied on it: a legacy sidecar (no `sidecar_format`) without `mbf_sha256` takes the digest
+  of the `mbf_render.json` beside it, and that companion is parsed strictly too. A format-2
+  or format-3 sidecar always recorded its own `mbf_sha256` and never takes the companion's.
+  Deleting it is a partial edit: format 3 refuses it by its self-digest, and format 2 by the
+  parser.
+- **Sweep.** These steps changed content before the check, and each is now closed:
+  - the companion backfill, which applied to any sidecar without `mbf_sha256`;
+  - `json.loads` keeping the last of repeated members;
+  - `json.loads` admitting NaN and Infinity;
+  - the private regression's own lenient `json.loads` of `id_map.json`, which now uses
+    `load_sidecar`.
+
+  `import_caepipe_mbf` neither copies nor changes a sidecar before the check. A number's
+  spelling becomes its binary64 value, which is the canonical form's own value model, not a
+  change of content.
 
 *Import.* The self-digest is checked before the parser or any route reads the sidecar. The
 check runs on every route: the exact-digest route, the explicit rebind, and the route that
