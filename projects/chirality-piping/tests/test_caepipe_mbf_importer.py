@@ -1642,3 +1642,23 @@ def test_a_guide_whose_element_is_not_determined_is_refused():
     # Its first node has no preceding element and two following ones.
     data = mbf("F10,MM1,PP1,CL=L1,G", "T20,KA,X3000", "F10", "T30,KA,Y1000")
     assert refused(run(data), "MBF-IMPORT-SUPPORT-UNSUPPORTED", layout_line(data, "F10,"))["location"] == "node 10 G"
+
+
+@pytest.mark.parametrize("row, path", [
+    ("T20,X3000,CK=1e20,DV(0,1,0),FOR(0,-6000,0),FLC=1", "supports[support:20-spring-uy].stiffness.value.value"),
+    ("T20,X3000,CK=9007199254740992,DV(0,1,0),FOR(0,-6000,0),FLC=1",
+     "supports[support:20-spring-uy].stiffness.value.value"),  # 2^53: the first integral float refused
+    ("T20,X3000,CFOR(0,-1e20,0),FLC=1",
+     "load_cases[case:mbf-sustained].primitive_loads[load:concentrated_force:node:20:global_y].magnitude.value"),
+    ("T20,X100000000000000000,CFOR(0,-6000,0),FLC=1", "nodes[node:20].position.x"),
+])
+def test_every_emitted_number_lies_in_the_solves_checked_json_domain(row, path):
+    # VER-002 r2 (tranche 3): the solve reads the document under the checked-JSON profile, which refuses an integral
+    # float beyond 2^53 - 1 (canonical_json validate_checked_value, CHECKED-JSON-UNSAFE-INTEGRAL-FLOAT). The import
+    # refuses each such number by name at its JSON path, whatever field it is; nothing is changed or dropped.
+    data = mbf("F10,KA,MM1,PP1,CL=L1", row)
+    found = refused(run(data), "MBF-IMPORT-VALUE-UNREPRESENTABLE", layout_line(data, "T20"))
+    assert found["location"] == path and "CHECKED-JSON-UNSAFE-INTEGRAL-FLOAT" in found["message"]
+    edge = run(mbf("F10,KA,MM1,PP1,CL=L1", "T20,X3000,CK=9007199254740991,DV(0,1,0),FOR(0,-6000,0),FLC=1"))
+    assert edge.status == "imported"  # 2^53 - 1 is in the domain
+    assert edge.model["supports"][1]["stiffness"]["value"]["value"] == 9007199254740991.0

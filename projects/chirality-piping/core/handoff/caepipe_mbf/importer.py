@@ -227,6 +227,9 @@ SPRING_FAMILY = "spring"
 # POUND_FORCE_IN_NEWTONS / INCH_IN_METERS).
 STIFFNESS_UNIT = {True: "N/mm", False: "lbf/in"}
 _N_PER_M_PER_UNIT = {"N/mm": 1000.0, "lbf/in": 4.448_221_615_260_5 / 0.0254}
+# The solve reads a document under the checked-JSON profile openpipestress_jcs_ijson_v1 (canonical_json
+# MAX_SAFE_INTEGER and `validate_checked_value`): no integer, and no integral float, beyond 2^53 - 1 in magnitude.
+MAX_SAFE_INTEGER = 9_007_199_254_740_991
 _DOCUMENTED_COMMENTS = {*_FORCE_NAMES, *_MOMENT_NAMES, *_DISPLACEMENT_NAMES, *_ROTATION_NAMES, *_FIXD_NAMES,
                         *_FIXR_NAMES, "FLC", "FF", "LA", "TAG", "LTAG", *_SUPPORT_TYPES, *_SUPPORT_DATA,
                         *_TBD_010_COMMENTS, *_ANCHOR_STIFFNESS,
@@ -2222,9 +2225,47 @@ class _Importer:
                             for a, b, start, end in self.straight_ends()}
             raise _Refused
         model, id_map = self.assemble()
+        self.checked_json_domain(model)
+        if self.has_errors():
+            raise _Refused
         if self.bound and self.sidecar_current:
             self.regeneration_identity(model, id_map)
         return model, id_map
+
+    def checked_json_domain(self, model: dict[str, Any]) -> None:
+        """Design §9.4 guard map: every number of the emitted document lies in the checked-JSON numeric domain the
+        solve reads it under (canonical_json `validate_checked_value`, profile openpipestress_jcs_ijson_v1): an
+        integer within +-(2^53 - 1) (CHECKED-JSON-UNSAFE-INTEGER), a finite number (CHECKED-JSON-NON-FINITE), and no
+        integral float beyond 2^53 - 1 (CHECKED-JSON-UNSAFE-INTEGRAL-FLOAT). The importer writes each number as
+        Python's json writes it: a float with a fraction or exponent mark, which the reader parses as f64, and an int
+        as an integer. A number outside the domain is refused by name at its JSON path, never changed or dropped."""
+        def walk(value: Any, path: str, line: int) -> None:
+            if isinstance(value, dict):
+                provenance = value.get("provenance")
+                found = re.search(r", line (\d+)\Z", provenance) if isinstance(provenance, str) else None
+                line = int(found.group(1)) if found else line
+                for key, item in value.items():
+                    walk(item, f"{path}.{key}" if path else key, line)
+            elif isinstance(value, list):
+                for index, item in enumerate(value):
+                    key = item.get("id") if isinstance(item, dict) and isinstance(item.get("id"), str) else index
+                    walk(item, f"{path}[{key}]", line)
+            elif isinstance(value, bool) or not isinstance(value, (int, float)):
+                return
+            elif isinstance(value, int) and abs(value) > MAX_SAFE_INTEGER:
+                self.refuse("MBF-IMPORT-VALUE-UNREPRESENTABLE", line, path,
+                            f"{path} is an integer beyond +-(2^53 - 1), which the solve's checked-JSON reader refuses "
+                            "(CHECKED-JSON-UNSAFE-INTEGER)")
+            elif isinstance(value, float) and not math.isfinite(value):
+                self.refuse("MBF-IMPORT-VALUE-UNREPRESENTABLE", line, path,
+                            f"{path} is not finite, which the solve's checked-JSON reader refuses "
+                            "(CHECKED-JSON-NON-FINITE)")
+            elif isinstance(value, float) and value.is_integer() and abs(value) > MAX_SAFE_INTEGER:
+                self.refuse("MBF-IMPORT-VALUE-UNREPRESENTABLE", line, path,
+                            f"{path} is the integral value {value!r} beyond 2^53 - 1, which the solve's checked-JSON "
+                            "reader refuses (CHECKED-JSON-UNSAFE-INTEGRAL-FLOAT)")
+
+        walk(model, "", 0)
 
     def regeneration_identity(self, model: dict[str, Any], id_map: dict[str, Any]) -> None:
         """The exact-digest route's guard of record (Design §14, VER-002 r13): the writer regenerates the sidecar

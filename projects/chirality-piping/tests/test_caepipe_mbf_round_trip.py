@@ -20,6 +20,7 @@ import json
 import math
 import os
 import random
+import subprocess
 from pathlib import Path
 import sys
 from typing import Any
@@ -44,6 +45,7 @@ from schema_validation import JsonSchemaDependencyMissing, _skip_or_note_missing
 from test_model_schema import desktop_entity_requirements  # noqa: E402
 import test_caepipe_mbf_si_writer as writer_tests  # noqa: E402
 import test_caepipe_mbf_importer as importer_tests  # noqa: E402
+from tools.caepipe_correlation import run_pilot  # noqa: E402
 from tools.caepipe_correlation.run_pilot import load_cases, solve_swbpipe  # noqa: E402
 
 
@@ -2876,3 +2878,39 @@ def test_a_format_3_spring_entry_is_held_to_its_vocabulary_and_format_2_admits_n
     format_2["sidecar_format"] = 2
     result = import_as_given(trip.data, sidecar=format_2, material_provenance=INVENTED, source_label="spring")
     assert ("MBF-IMPORT-SIDECAR-INVALID", f"support_map[{key}].family") in refusals(result)
+
+
+def runner_text(model: dict) -> str:
+    """The runner's whole answer (stdout and stderr) to a solve of `model`, for its named refusal."""
+    body = {"request": run_pilot.runner_request("tranche-3"), "solve": {"preview_model": {"model": model,
+                                                                                          "materials": []}}}
+    completed = subprocess.run([runner_binary(), "solve", "--explicit-local-private-intent", "--input", "-"],
+                               input=json.dumps(body), capture_output=True, text=True, check=False)
+    return completed.stdout + completed.stderr
+
+
+TIP_SPRING = ("F10,KA,MM1,PP1,CL=L1", "T20,X3000,CK={},DV(0,1,0),FOR(0,-6000,0),FLC=1")
+
+
+def test_a_negligible_spring_is_imported_and_refused_by_name_by_the_solve():
+    # VER-002 r2 (tranche 3), classified with the guard map's solve-time arithmetic row (Design §9.4, §12): a
+    # stiffness negligible against the assembled stiffness is the file's, and the solve refuses it by name when its
+    # assembly absorbs the spring. The import keeps the spring as written; no bound is applied.
+    result = importer_tests.run(importer_tests.mbf(*(row.format("1e-300") for row in TIP_SPRING)))
+    assert result.status == "imported", result.diagnostics
+    spring = next(item for item in result.model["supports"] if item["id"] == "support:20-spring-uy")
+    assert spring["stiffness"]["value"] == {"value": 1e-300, "unit": "N/mm"}
+    _, _, error = solve_swbpipe(runner_binary(), {"case_id": "tranche-3", "model": result.model})
+    assert error != ""
+    assert "NUMERICAL_INTEGRITY_ASSEMBLY_UNRESOLVED" in runner_text(result.model)
+
+
+def test_the_checked_json_guard_is_the_solves_own_refusal(monkeypatch):
+    # Without the import's guard, k = 1e20 N/mm imports and the solve refuses the document as
+    # CHECKED-JSON-UNSAFE-INTEGRAL-FLOAT; with it, the import refuses it by name first (Design §9.4 guard map).
+    data = importer_tests.mbf(*(row.format("1e20") for row in TIP_SPRING))
+    assert importer_tests.run(data).status == "refused"
+    monkeypatch.setattr(importer_module._Importer, "checked_json_domain", lambda self, model: None)
+    unguarded = importer_tests.run(data)
+    assert unguarded.status == "imported", unguarded.diagnostics
+    assert "CHECKED-JSON-UNSAFE-INTEGRAL-FLOAT" in runner_text(unguarded.model)

@@ -831,7 +831,8 @@ the sidecar (r8).
 | `JOINT_PRESSURE_INTERFACE_UNRESOLVED` | by construction: raised only for a joint a region lists as a connector member; the importer writes no connector and no region connector list, and on B the parser refuses any region field other than `id`, `members`, `terminals`, `provenance` and `pressure_bar` (new in r8; omitted from the r5 to r7 inventory) | U, B |
 | `OBJECTIVE_CONNECTOR_VERSION_UNSUPPORTED`, `OBJECTIVE_CONNECTOR_NOT_IMPLEMENTED`, `EXACT_PRESSURE_REDUCER_IN_REGION` | by construction: the importer writes no connector and no reducer; B restores no component kind, interface or connector field, only the bend component's id (a string, else `MBF-IMPORT-SIDECAR-INVALID`) | U, B |
 | `EXACT_PRESSURE_MATERIAL_AMBIGUOUS`, `_MATERIAL_MISSING`, `_MATERIAL_BASIS_REQUIRED`, `_POISSON_RATIO_REQUIRED`, `THERMAL_EXPANSION_INPUT_MISSING`, `LOAD_STATE_MEMBER_MATERIAL_MISSING`, `_SECTION_MISSING`, `_NOT_NORMALIZED`, `EXACT_PRESSURE_REGION_MEMBER_NOT_STRAIGHT` | by construction: each pipe names one imported E/ν material with explicit ν and α (B restores only material ids, merged only where E, ν and α are identical, and an origin from `MATERIAL_ORIGINS`); no load-state case (B restores case ids only); every pipe has a section, whose 0 < t < OD/2 is checked again on the values in m (§4.3, new in r6); bar and psi normalize to Pa in the solve's own seam; the last is an unreachable guard by its source comment | U, B |
-| `EXACT_PRESSURE_OUTPUT_UNREPRESENTABLE`, `PRESSURE_LEDGER_SUM_UNREPRESENTABLE`, `PRESSURE_ASSEMBLY_COEFFICIENT_UNREPRESENTABLE`, `PRESSURE_ASSEMBLY_SOURCE_UNREPRESENTABLE`, `PRESSURE_ASSEMBLY_CANCELLATION_UNRESOLVED` | not an import guard: solve-time arithmetic of the assembled loads, refused by name by the solve; the importer keeps every input finite | — |
+| `EXACT_PRESSURE_OUTPUT_UNREPRESENTABLE`, `PRESSURE_LEDGER_SUM_UNREPRESENTABLE`, `PRESSURE_ASSEMBLY_COEFFICIENT_UNREPRESENTABLE`, `PRESSURE_ASSEMBLY_SOURCE_UNREPRESENTABLE`, `PRESSURE_ASSEMBLY_CANCELLATION_UNRESOLVED`, `NUMERICAL_INTEGRITY_ASSEMBLY_UNRESOLVED` | not an import guard: solve-time arithmetic of the assembled loads and stiffness, refused by name by the solve; the importer keeps every input finite. The last depends on the assembly arithmetic over the whole model: a spring stiffness negligible against the assembled stiffness (1e-300 N/mm at a cantilever's tip) imports as written and the solve refuses it by this code (tranche 3, VER-002 r2; regression in the round-trip tests) | — |
+| `CHECKED-JSON-UNSAFE-INTEGRAL-FLOAT`, `CHECKED-JSON-UNSAFE-INTEGER`, `CHECKED-JSON-NON-FINITE` (the checked-JSON reader of the solve's input, canonical_json `validate_checked_value`, profile `openpipestress_jcs_ijson_v1`; not pressure codes, listed with them because every route reaches them) | ported: every number of the emitted document, whatever its field (coordinates, section, material, loads, pressures, temperatures, displacements, stiffnesses), must be an integer within ±(2⁵³ − 1), finite, and not an integral float beyond 2⁵³ − 1; else `MBF-IMPORT-VALUE-UNREPRESENTABLE` at its JSON path, nothing changed or dropped (tranche 3, VER-002 r2). The writer's preflight inherits the refusal as `MBF-SI-PREFLIGHT-REFUSED` | U, B |
 
 Related: the exact route's `EXACT_IMPOSED_DISPLACEMENT_PRIMITIVE_UNSUPPORTED` is kept out by
 `MBF-IMPORT-PRESSURE-DISPLACEMENT-UNSUPPORTED` (above).
@@ -1142,7 +1143,10 @@ stiffness in N/m (`SupportQuantity::positive`, else `SUPPORT_INPUT_INVALID`). Th
 each spring exactly that DOF as its restraint list, a positive stiffness, and refuses one whose
 value × the catalog factor (N/mm 1000; lbf/in 4.4482216152605 / 0.0254, in binary64) is not
 finite. The exact pressure route admits linear restraints and springs (`exact_admission`
-`support_family`), so a spring needs no pressure guard. A support that breaks one is refused by its id
+`support_family`), so a spring needs no pressure guard. A stiffness negligible against the
+assembled stiffness is refused by the solve (`NUMERICAL_INTEGRITY_ASSEMBLY_UNRESOLVED`, §9.4 guard
+map), not by the import; a stiffness outside the solve's checked-JSON domain (1e20 N/mm, an integral
+float beyond 2⁵³ − 1) is refused by the import, as every such number is (§9.4). A support that breaks one is refused by its id
 (`MBF-IMPORT-SUPPORT-UNSUPPORTED`), as the solve refuses it (`SUPPORT_INPUT_INVALID`): for
 example `KA` with `FIXD` at one node restrains a translation twice.
 
@@ -1279,7 +1283,8 @@ the manual does not make clear which kind a record is, it is refused.
 - `MBF-IMPORT-SHEAR-MODEL-INVALID`: a `shear_model` argument outside the contract's two
   values (§9.4);
 - `MBF-IMPORT-VALUE-UNREPRESENTABLE`: a read or derived value outside the binary64 range, or a
-  non-zero value that would become 0 (§4.3), and a spring stiffness that is not finite in N/m (§12);
+  non-zero value that would become 0 (§4.3), a spring stiffness that is not finite in N/m (§12),
+  and any emitted number outside the solve's checked-JSON domain, at its JSON path (§9.4);
 - tranche 3: `MBF-IMPORT-TBD-17-04-010` (§12, §20.1): a limit stop without `DV`, `AXIAL`, `SHEARY`,
   `SHEARZ`, `KR`, a non-zero `ROTK`, and a flexible anchor with only one of `TRAK` and `ROTK`.
   `MBF-IMPORT-SUPPORT-UNSUPPORTED` no longer refuses `G`, `LS`, `K`, `TRAK`, `ROTK`, `DV`, `STIFF`,
@@ -1901,7 +1906,11 @@ declares it invented. The boundary guard (§18.4) requires the sidecar.
    midspan and carry 5P/16; a skewed-restraint spring and a flexible anchor at a cantilever's
    tip each carry k/(3EI/L³ + k) of the tip load (Euler–Bernoulli, within 1e-9). The writer's
    spring export: the hand-derived TRAK line, each refusal, and the preflight's refusal of a
-   stiffness its printed value breaks. The round trip adds `writer-springs` (the cantilever with
+   stiffness its printed value breaks (1e306 and 1e20 N/mm). VER-002 r2: the checked-JSON domain on
+   a stiffness, a force and a coordinate, with 2⁵³ − 1 admitted and 2⁵³ refused; the runner's own
+   `CHECKED-JSON-UNSAFE-INTEGRAL-FLOAT` for the same file with the guard removed; and a 1e-300 N/mm
+   spring that imports as written and the runner refuses as `NUMERICAL_INTEGRITY_ASSEMBLY_UNRESOLVED`.
+   The round trip adds `writer-springs` (the cantilever with
    a 250000 N/m and a 1.5 lbf/in spring) to the reversible and byte-reproducible subsets; the
    parser's spring vocabulary is refused by path outside format 3.
 

@@ -448,6 +448,11 @@ def test_a_spring_export_is_checked_by_its_own_bound_reimport(monkeypatch):
     model["supports"].append(spring("huge", "N1", "UY", 1e306, "N/mm"))
     assert_refused(render_caepipe_mbf_si(model, title="S"), "MBF-SI-PREFLIGHT-REFUSED",
                    "MBF-IMPORT-VALUE-UNREPRESENTABLE")
+    # 1e20 N/mm is finite in N/m, but the re-import refuses it as outside the solve's checked-JSON domain
+    # (VER-002 r2): the preflight inherits that refusal.
+    model["supports"][-1] = spring("huge", "N1", "UY", 1e20, "N/mm")
+    assert_refused(render_caepipe_mbf_si(model, title="S"), "MBF-SI-PREFLIGHT-REFUSED",
+                   "MBF-IMPORT-VALUE-UNREPRESENTABLE", "CHECKED-JSON-UNSAFE-INTEGRAL-FLOAT")
     calls = []
     from core.handoff.caepipe_mbf import si_writer
     original = si_writer._Writer.survives_reimport
