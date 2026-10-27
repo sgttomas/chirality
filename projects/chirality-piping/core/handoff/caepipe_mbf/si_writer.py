@@ -99,7 +99,8 @@ _CLOSURE_TRANSFERS = ("transfers_to_wall", "separately_supported_or_compensated"
 OPPRES_LINE = "0,0,0,1,0"
 # The importer's refusals of a restored region by the exact route's value checks (straight runs, bores), which the
 # printed digits can change; the writer's preflight reports them as MBF-SI-PRESSURE-REGION-FORMAT.
-_REGION_CHECK_CODES = ("MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR", "MBF-IMPORT-PRESSURE-BORE-MISMATCH")
+_REGION_CHECK_CODES = ("MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR", "MBF-IMPORT-PRESSURE-BORE-MISMATCH",
+                       "MBF-IMPORT-PRESSURE-MITRE", "MBF-IMPORT-PRESSURE-GEOMETRY-INVALID")
 _BEND_SOLVER_CONSUMPTION = "curved_bend_macro_element"
 _BEND_RELATIVE_TOLERANCE = 1e-9  # tangent lengths, line intersection, bend angle and bend plane
 _PROJECT_UNITS = {"length": ("m", "mm", "in"), "force": ("N", "lbf"), "temperature": ("degC", "degF")}
@@ -1395,6 +1396,14 @@ class _Writer:
                 self.refuse("MBF-SI-PREFLIGHT-REFUSED", item["location"] or "MBF",
                             f"the bound re-import of this MBF refuses it ({item['code']} at {item['location']}, line "
                             f"{item['line']}): {item['message']}")
+        if back.status == "imported":  # every recorded straight orientation restored as written, never replaced
+            restored = {pipe["id"]: pipe.get("y_reference") for pipe in back.model["pipe_segments"]}
+            for pipe_id, entry in result.element_map.items():
+                if "y_reference" in entry and restored.get(pipe_id) != entry["y_reference"]:
+                    self.refuse("MBF-SI-PREFLIGHT-REFUSED", f"model.pipe_segments[{pipe_id}].y_reference",
+                                f"the bound re-import of this MBF does not restore {pipe_id}'s y_reference: the "
+                                "frame kernel forms no orientation from it on the printed positions in m, so the "
+                                "import replaces it (MBF-IMPORT-ORIENTATION-DEFAULTED)")
         if back.status == "imported" and back.summary.get("pressure_regions") != len(self.regions):
             self.refuse("MBF-SI-PREFLIGHT-REFUSED", "pressure_map",
                         f"the bound re-import restored {back.summary.get('pressure_regions')} pressure regions, not "

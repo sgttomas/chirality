@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import dataclass, field
+import decimal
 from fractions import Fraction
 import hashlib
 import json
@@ -447,17 +448,209 @@ def runtime_bore_radius_m(od: float, wall: float, factor: float) -> float:
     return od_m * 0.5 - reduced
 
 
-def frame_y_reference_usable(start_m, end_m, y_reference) -> bool:
-    """frame_kernel `FrameOrientation::from_x_axis_and_y_reference` on positions in m: the element axis and the
-    y_reference's part perpendicular to it must each have a norm above AXIS_TOLERANCE."""
-    delta = [end_m[axis] - start_m[axis] for axis in range(3)]
-    length = math.sqrt(delta[0] * delta[0] + delta[1] * delta[1] + delta[2] * delta[2])
-    if not length > AXIS_TOLERANCE:
+def runtime_section_valid(od: float, wall: float, factor: float) -> bool:
+    """The build's section checks on OD and wall read to m (product_physics `derive_pipe_section`, annulus_geometry
+    `validate_wall`, `SourceAnnulus::from_od_wall`): 0 < t, 2t < OD, t <= OD - t and 0 < OD/2 - t < OD/2, compared
+    on the binary64 values in m, which a decimal 2t < OD in the file's unit does not settle."""
+    od_m, wall_m = od * factor + 0.0, wall * factor + 0.0
+    if not (math.isfinite(od_m) and math.isfinite(wall_m)) or od_m <= 0.0 or wall_m <= 0.0 or 2.0 * wall_m >= od_m:
         return False
-    x = [value * (1.0 / length) for value in delta]
-    along = y_reference[0] * x[0] + y_reference[1] * x[1] + y_reference[2] * x[2]
-    side = [y_reference[axis] - x[axis] * along for axis in range(3)]
-    return math.sqrt(side[0] * side[0] + side[1] * side[1] + side[2] * side[2]) > AXIS_TOLERANCE
+    if wall_m > od_m or wall_m > od_m - wall_m:
+        return False
+    outer = od_m * 0.5
+    inner = outer - wall_m
+    return not (inner <= 0.0 or inner >= outer)
+
+
+def _dot(a, b) -> float:
+    return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]  # left to right, unfused, as frame_kernel and curved_bend `dot`
+
+
+def _cross(a, b) -> list[float]:
+    return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]
+
+
+def _finite(vector) -> bool:
+    return all(math.isfinite(value) for value in vector)
+
+
+def runtime_frame_axes(start_m, end_m, y_reference) -> list[list[float]] | None:
+    """frame_kernel `FrameElement::orientation` on positions in m, ported operation for operation: the local axes
+    [x, y, z], or None where the kernel refuses. x = the element axis scaled by 1/|d|, y = the y_reference with its
+    x part removed, scaled the same way, z = x x y scaled; each norm must exceed AXIS_TOLERANCE, and then
+    `FrameOrientation::new` requires finite unit axes (| |a| - 1 | <= 1e-12), mutually orthogonal (|a.b| <= 1e-12)
+    and right-handed (max |x x y - z| <= 1e-12). An element no longer than 1e-12 m fails the first step."""
+
+    def normalize(vector):
+        magnitude = math.sqrt(_dot(vector, vector))
+        if magnitude <= AXIS_TOLERANCE:
+            return None
+        inverse = 1.0 / magnitude
+        return [vector[0] * inverse, vector[1] * inverse, vector[2] * inverse]
+
+    axis = normalize([end_m[index] - start_m[index] for index in range(3)])
+    if axis is None or not _finite(axis) or not _finite(y_reference):
+        return None
+    x = normalize(axis)
+    if x is None:
+        return None
+    projection = _dot(y_reference, x)
+    y = normalize([y_reference[index] - x[index] * projection for index in range(3)])
+    if y is None:
+        return None
+    z = normalize(_cross(x, y))
+    if z is None:
+        return None
+    axes = [x, y, z]
+    if not all(_finite(item) for item in axes):
+        return None
+    if any(abs(math.sqrt(_dot(item, item)) - 1.0) > AXIS_TOLERANCE for item in axes):
+        return None
+    if abs(_dot(x, y)) > AXIS_TOLERANCE or abs(_dot(x, z)) > AXIS_TOLERANCE or abs(_dot(y, z)) > AXIS_TOLERANCE:
+        return None
+    right = _cross(x, y)
+    if max(abs(right[index] - z[index]) for index in range(3)) > AXIS_TOLERANCE:
+        return None
+    return axes
+
+
+def frame_y_reference_usable(start_m, end_m, y_reference) -> bool:
+    """Whether the frame kernel forms an orientation from this y_reference on positions in m (runtime_frame_axes)."""
+    return runtime_frame_axes(start_m, end_m, y_reference) is not None
+
+
+_DECIMAL_DIGITS = 90
+
+
+def _decimal_atan(t: decimal.Decimal) -> decimal.Decimal:
+    """atan(t) for 0 <= t <= 1 in the current decimal context: two half-angle reductions, then the Taylor series."""
+    doublings = 0
+    while t > decimal.Decimal("0.125"):
+        t = t / (1 + (1 + t * t).sqrt())
+        doublings += 1
+    square, term, total, n = t * t, t, t, 1
+    while True:
+        term = -term * square
+        n += 2
+        step = term / n
+        if step == 0 or abs(step) < abs(total).scaleb(-_DECIMAL_DIGITS - 4):
+            break
+        total += step
+    return total * (2 ** doublings)
+
+
+def twice_atan2_nonnegative(y: float, x: float) -> float | None:
+    """frame_kernel `twice_atan2_nonnegative`: 2 atan2(y, x) for finite y, x >= 0, not both 0, rounded once to
+    binary64; +0 for y = 0 and fl(pi) for x = 0. The runtime's p = 128 arctangent is the correctly rounded value
+    except within about 2^-120 relative of a rounding boundary (its module documentation); this one evaluates the
+    arctangent to 90 significant digits from the exact quotient and rounds it once, so the two agree there too."""
+    if not (math.isfinite(y) and math.isfinite(x)) or y < 0.0 or x < 0.0 or (y == 0.0 and x == 0.0):
+        return None
+    if y == 0.0:
+        return 0.0
+    if x == 0.0:
+        return math.pi
+    with decimal.localcontext() as context:
+        context.prec, context.Emin, context.Emax = _DECIMAL_DIGITS, -10 ** 6, 10 ** 6
+        quotient = decimal.Decimal(y) / decimal.Decimal(x)  # Decimal(float) is exact
+        if quotient <= 1:
+            angle = _decimal_atan(quotient)
+        else:  # atan t = pi/2 - atan(1/t); pi/4 = 4 atan(1/5) - atan(1/239)
+            quarter_pi = 4 * _decimal_atan(decimal.Decimal(1) / 5) - _decimal_atan(decimal.Decimal(1) / 239)
+            angle = 2 * quarter_pi - _decimal_atan(1 / quotient)
+        return float(Fraction(2 * angle))  # Fraction(Decimal) is exact; float(Fraction) rounds once
+
+
+def runtime_kink(a, t) -> float | None:
+    """curved_bend `kink`: the direction change 2 atan2(|a - t|, |a + t|) of the two directions, each divided by its
+    norm (refused at or below AXIS_TOLERANCE); None where the runtime refuses."""
+
+    def normalize(vector):
+        magnitude = math.sqrt(_dot(vector, vector))
+        if magnitude <= AXIS_TOLERANCE:
+            return None
+        return [vector[0] / magnitude, vector[1] / magnitude, vector[2] / magnitude]
+
+    if not (_finite(a) and _finite(t)):
+        return None
+    a, t = normalize(a), normalize(t)
+    if a is None or t is None:
+        return None
+    difference = [a[index] - t[index] for index in range(3)]
+    total = [a[index] + t[index] for index in range(3)]
+    return twice_atan2_nonnegative(math.sqrt(_dot(difference, difference)), math.sqrt(_dot(total, total)))
+
+
+def runtime_bend_tangents(start_m, end_m, radius_m: float, y_reference) -> tuple[list[float], list[float]] | None:
+    """A realized bend's end tangents [t_i, t_j], oriented from its from-node to its to-node, as the runtime builds
+    them on positions and radius in m, or None where it does not build the bend or form its tangents. Ported
+    operation for operation: product_physics's curved-bend screen (a finite positive chord, R > L/2, the y_reference
+    not parallel to the chord within 1e-9), then curved_bend `objective_arc` (|d|^2 and 4R^2 - |d|^2 from exact
+    products rounded once, s = L/2R, c = sqrt(4R^2 - L^2)/2R, the included angle 2 atan2(s, c) within [1e-9,
+    pi - 1e-9], two Gram-Schmidt passes for the bow normal n, refused at or below 1e-12 |y|), its axes checked by
+    `FrameOrientation::new`, and t_i = c d + s n, t_j = c d - s n."""
+    chord = [end_m[index] - start_m[index] for index in range(3)]
+    y_reference = list(y_reference)
+    if not (_finite(chord) and _finite(y_reference) and math.isfinite(radius_m)) or radius_m <= 0.0:
+        return None
+    # product_physics: the curved-bend screen before the element is formed
+    plain = math.sqrt(chord[0] * chord[0] + chord[1] * chord[1] + chord[2] * chord[2])
+    if not (math.isfinite(plain) and plain > 0.0) or radius_m <= 0.5 * plain:
+        return None
+    unit = [chord[0] / plain, chord[1] / plain, chord[2] / plain]
+    along = y_reference[0] * unit[0] + y_reference[1] * unit[1] + y_reference[2] * unit[2]
+    plane = [y_reference[index] - along * unit[index] for index in range(3)]
+    if math.sqrt(plane[0] * plane[0] + plane[1] * plane[1] + plane[2] * plane[2]) <= 1.0e-9:
+        return None
+    # curved_bend objective_arc
+    try:
+        length_squared = float(sum(Fraction(value) * Fraction(value) for value in chord))
+        four_radius = 4.0 * radius_m
+        if not math.isfinite(four_radius):
+            return None
+        span = float(Fraction(four_radius) * Fraction(radius_m) - sum(Fraction(value) ** 2 for value in chord))
+    except OverflowError:
+        return None
+    chord_length = math.sqrt(length_squared)
+    if not (math.isfinite(chord_length) and chord_length > 0.0) or span <= 0.0:
+        return None
+    diameter = 2.0 * radius_m
+    s, c = chord_length / diameter, math.sqrt(span) / diameter
+    angle = twice_atan2_nonnegative(s, c)
+    if angle is None or not (1.0e-9 <= angle <= math.pi - 1.0e-9):
+        return None
+    d = [chord[0] / chord_length, chord[1] / chord_length, chord[2] / chord_length]
+    reference_magnitude = math.sqrt(_dot(y_reference, y_reference))
+    normal = y_reference
+    for _ in range(2):
+        projection = _dot(normal, d)
+        normal = [normal[index] - projection * d[index] for index in range(3)]
+    normal_magnitude = math.sqrt(_dot(normal, normal))
+    if not normal_magnitude > AXIS_TOLERANCE * reference_magnitude:
+        return None
+    n = [normal[0] / normal_magnitude, normal[1] / normal_magnitude, normal[2] / normal_magnitude]
+    axes = [[-s * d[index] + c * n[index] for index in range(3)], [c * d[index] + s * n[index] for index in range(3)],
+            _cross(n, d)]
+    if not all(_finite(item) for item in axes) or any(
+            abs(math.sqrt(_dot(item, item)) - 1.0) > AXIS_TOLERANCE for item in axes):
+        return None
+    if (abs(_dot(axes[0], axes[1])) > AXIS_TOLERANCE or abs(_dot(axes[0], axes[2])) > AXIS_TOLERANCE
+            or abs(_dot(axes[1], axes[2])) > AXIS_TOLERANCE):
+        return None
+    right = _cross(axes[0], axes[1])
+    if max(abs(right[index] - axes[2][index]) for index in range(3)) > AXIS_TOLERANCE:
+        return None
+    return axes[1], [c * d[index] - s * n[index] for index in range(3)]
+
+
+def runtime_blank(text: str) -> bool:
+    """Rust `str::trim().is_empty()`: empty or only Unicode White_Space. Python's `str.strip` also removes
+    U+001C..U+001F, which Rust keeps, so the set is spelled out."""
+    return all(character in _RUST_WHITESPACE for character in text)
+
+
+_RUST_WHITESPACE = frozenset("\t\n\x0b\x0c\r \x85\xa0     　"
+                             + "".join(chr(code) for code in range(0x2000, 0x200B)))
 
 
 def runtime_bores_equal(bores: list[float]) -> bool:
@@ -1820,6 +2013,7 @@ class _Importer:
         # materials (§7)
         materials, material_ids = self.assemble_materials(id_map, provenance, claim)
         # pipes, weights and temperatures
+        factor = _METRES_PER_UNIT[length_unit]
         element_lookup: dict[tuple[str, str], tuple[str, dict]] = {}
         for swb_id, entry in maps.get("element_map", {}).items():
             if isinstance(entry, Mapping):
@@ -1853,25 +2047,39 @@ class _Importer:
                                 "wall_thickness": {"value": section["thk"].value, "unit": length_unit}},
                     "provenance": provenance(element.line)}
                 restored = entry.get("y_reference") if self.bound else None
+                # The frame kernel forms the orientation on the positions in m, from the pipe's own from-node.
+                ends_m = [[value * factor + 0.0 for value in point_of[name]]
+                          for name in ((b, a) if reversed_ else (a, b))]
                 if bend is not None:
                     pipe["y_reference"] = dict(zip("xyz", bend["y_reference"]))
                 elif isinstance(restored, Mapping) and all(
                         isinstance(restored.get(axis), (int, float)) and not isinstance(restored.get(axis), bool)
-                        and math.isfinite(restored[axis]) for axis in "xyz") and 0 < _norm(
-                        tuple(float(restored[axis]) for axis in "xyz")) < math.inf and frame_y_reference_usable(
-                        *([value * _METRES_PER_UNIT[length_unit] + 0.0 for value in point_of[name]] for name in (a, b)),
-                        [float(restored[axis]) for axis in "xyz"]):
+                        and math.isfinite(restored[axis]) for axis in "xyz") and runtime_frame_axes(
+                        *ends_m, [float(restored[axis]) for axis in "xyz"]) is not None:
                     pipe["y_reference"] = {axis: float(restored[axis]) for axis in "xyz"}
                 else:
-                    pipe["y_reference"] = dict(zip("xyz", local_y_reference(point_of[a], point_of[b],
-                                                                            z_vertical=self.z_vertical)))
+                    documented = local_y_reference(point_of[a], point_of[b], z_vertical=self.z_vertical)
+                    pipe["y_reference"] = dict(zip("xyz", documented))
                     vertical = ("global Z vertical, in the rotated axes" if self.z_vertical else "global Y vertical")
-                    self.diagnostics.append({
-                        "code": "MBF-IMPORT-ORIENTATION-DEFAULTED", "severity": "info", "line": element.line,
-                        "location": swb_id,
-                        "message": f"{swb_id} has no y_reference in the MBF; it takes CAEPIPE's documented pipe "
-                                   f"local y axis (CAEPIPE-LOCAL-AXES, {vertical}). A circular section's "
-                                   "stiffness does not depend on it; only local-axis results do"})
+                    documented_y = (f"CAEPIPE's documented pipe local y axis (CAEPIPE-LOCAL-AXES, {vertical}). A "
+                                    "circular section's stiffness does not depend on it; only local-axis results do")
+                    if restored is not None:  # the sidecar's record is replaced, and the replacement is listed
+                        self.listed("approximated", "MBF-IMPORT-ORIENTATION-DEFAULTED", element.line, swb_id,
+                                    f"the sidecar's y_reference for {swb_id} is not one the frame kernel forms an "
+                                    "orientation from on the MBF's positions in m (finite, a part perpendicular to "
+                                    "the element above 1e-12, and orthonormal right-handed axes within 1e-12); it is "
+                                    f"replaced by {documented_y}")
+                    else:
+                        self.diagnostics.append({
+                            "code": "MBF-IMPORT-ORIENTATION-DEFAULTED", "severity": "info", "line": element.line,
+                            "location": swb_id,
+                            "message": f"{swb_id} has no y_reference in the MBF; it takes {documented_y}"})
+                    axis = [ends_m[1][index] - ends_m[0][index] for index in range(3)]
+                    if runtime_frame_axes(*ends_m, documented) is None and math.sqrt(_dot(axis, axis)) > AXIS_TOLERANCE:
+                        self.refuse("MBF-IMPORT-ORIENTATION-UNUSABLE", element.line, swb_id,
+                                    f"the frame kernel forms no orientation for {swb_id} from CAEPIPE's documented "
+                                    "local y on the MBF's positions in m (they differ in direction from the file's "
+                                    "own values), and the MBF states no other")
                 if bend is not None:
                     components.append(self.bend_component(element, swb_id, node_id[a], length_unit, provenance,
                                                           unresolved, id_map, claim))
@@ -1895,12 +2103,39 @@ class _Importer:
                         thermals.append((swb_id, delta, element.line))
         # The solve reads positions in m (value x factor + 0.0, core/units): an element whose ends coincide there has
         # zero length to it, however the file's own unit separates them.
-        factor, name_of = _METRES_PER_UNIT[length_unit], {swb_id: name for name, swb_id in id_map["node_map"].items()}
+        name_of = {swb_id: name for name, swb_id in id_map["node_map"].items()}
+        radius_of = {component["geometry"]["bend_pipe_ref"]: component["geometry"]["bend_radius"]["value"]
+                     for component in components}
+        # What the runtime forms on the positions in m, read by the pressure region checks (Design §9.4): each pipe's
+        # frame axis and length, and each realized bend's end tangents; None where the runtime forms none.
+        self.frame_x: dict[str, list[float] | None] = {}
+        self.length_m: dict[str, float] = {}
+        self.arc_tangents: dict[str, tuple[list[float], list[float]] | None] = {}
         for pipe in pipes:
             a, b = ([value * factor + 0.0 for value in point_of[name_of[pipe[end]]]] for end in ("from", "to"))
             if a == b:
                 self.refuse("MBF-IMPORT-GEOMETRY-ZERO-LENGTH", pressures[pipe["id"]][1].line,
                             pipe["id"], f"{pipe['id']} has zero length in metres, the unit the solve reads")
+                continue
+            y_reference = [pipe["y_reference"][axis] for axis in "xyz"]
+            axes = runtime_frame_axes(a, b, y_reference)
+            self.frame_x[pipe["id"]] = None if axes is None else axes[0]
+            axis = [b[index] - a[index] for index in range(3)]
+            self.length_m[pipe["id"]] = math.sqrt(_dot(axis, axis))
+            if pipe["id"] in radius_of:
+                self.arc_tangents[pipe["id"]] = runtime_bend_tangents(a, b, radius_of[pipe["id"]] * factor + 0.0,
+                                                                      y_reference)
+        sections_used = dict.fromkeys(element.section for element in self.elements)
+        for name in sections_used:
+            section = self.pipes[name]
+            if not runtime_section_valid(section["od"].value, section["thk"].value, factor):
+                self.refuse("MBF-IMPORT-VALUE-OUT-OF-RANGE", section["line"], f"PIPE {name}",
+                            f"section {name} needs 0 < thickness < OD/2 with a bore radius OD/2 - thickness that is "
+                            "positive and below OD/2 on the values in m the solve reads; the file's decimals pass, "
+                            "but their binary64 values in m do not")
+        self.refuse_blank_ids(((kind, item["id"]) for kind, items in (
+            ("node", nodes), ("pipe", pipes), ("component", components), ("material", materials))
+            for item in items))
         if self.has_errors():
             raise _Refused
         if self.elements and all(element.load is None for element in self.elements):
@@ -1909,10 +2144,24 @@ class _Importer:
                         "contents load, and CAEPIPE's treatment of an element without a load record is not documented")
         self.list_unused(material_ids)
         supports, support_ids = self.assemble_supports(node_id, provenance, id_map, claim)
+        self.refuse_blank_ids(("support", support["id"]) for support in supports)
+        if self.has_errors():
+            raise _Refused
+        self.labels = {pipe["id"]: pipe["label"] for pipe in pipes}
         arcs = {component["geometry"]["bend_pipe_ref"] for component in components}
         pressure = self.assemble_pressure(pipes, pressures, arcs, point_of, id_map, claim)
         load_cases = self.assemble_loads(node_id, support_ids, weights, thermals, length_unit, angle_unit,
                                          provenance, id_map, claim, None if pressure is None else pressure[1])
+        self.refuse_blank_ids([("load case", case["id"]) for case in load_cases]
+                              + [("primitive load", load["id"]) for case in load_cases
+                                 for load in case["primitive_loads"]])
+        load_ids = [load["id"] for case in load_cases for load in case["primitive_loads"]]
+        for identity in sorted({identity for identity in load_ids if load_ids.count(identity) > 1}):
+            self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", 0, f"primitive load id {identity!r}",
+                        f"the sidecar gives two primitive loads the id {identity!r}; the solve requires primitive "
+                        "load ids unique across the model (DUPLICATE_ID)")
+        if self.has_errors():
+            raise _Refused
         if pressure is not None:
             moved = [load["id"] for case in load_cases for load in case["primitive_loads"]
                      if load["category"] == "imposed_displacement"]
@@ -1982,6 +2231,15 @@ class _Importer:
             model["unresolved_assumptions"] = unresolved
         id_map["rebound_unconfirmed"] = sorted(set(self.unconfirmed))
         return model, id_map
+
+    def refuse_blank_ids(self, identities: Iterable[tuple[str, str]]) -> None:
+        """A restored id the solve reads as empty (Rust trim, EMPTY_ID) is refused by kind; formed ids never are."""
+        for kind, identity in identities:
+            if runtime_blank(identity):
+                self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", 0, f"{kind} id {identity!r}",
+                            f"the sidecar gives a {kind} the id {identity!r}, which is empty or only whitespace; "
+                            "the solve refuses an empty id (EMPTY_ID, and PRESSURE_REGION_MEMBERS_INVALID for a "
+                            "region member)")
 
     def bend_component(self, element: _Element, pipe_id: str, near_id: str, length_unit: str, provenance: Any,
                        unresolved: list[dict[str, Any]], id_map: dict[str, Any], claim: Any) -> dict[str, Any]:
@@ -2305,6 +2563,16 @@ class _Importer:
         stored = stored if isinstance(stored, Mapping) and isinstance(stored.get("contract"), Mapping) else None
         if not active and stored is None:
             return None
+        # The solve reads Pressure 1 in Pa (value x factor + 0.0, core/units) and refuses a non-finite one
+        # (PRESSURE_REGION_PRESSURE_INVALID): a finite bar or psi value can overflow there.
+        to_pa = 100_000.0 if self.si else _PA_PER_UNIT["psi"]
+        for name in dict.fromkeys(pressures[pipe_id][1].load for pipe_id in active):
+            if not math.isfinite(self.loads[name]["p1"].value * to_pa + 0.0):
+                self.refuse("MBF-IMPORT-VALUE-UNREPRESENTABLE", self.loads[name]["line"], f"LOADS {name} Pressure 1",
+                            f"Pressure 1 of LOADS {name} is finite in {PRESSURE_UNIT[self.si]} but beyond binary64 in "
+                            "Pa, the unit the solve reads")
+        if self.has_errors():
+            raise _Refused
         contract = dict(PRESSURE_CONTRACT)
         if stored is not None:
             shear = stored["contract"].get("shear_model")
@@ -2383,8 +2651,8 @@ class _Importer:
 
     def route_checks(self, pressures, ends, arcs, point_of, name_of):
         """The exact route's whole-region checks, as ported: (runs, collinear, failures). `failures(members, start)`
-        gives, for members in traversal order from `start`, the straight runs collinear_run refuses and whether the
-        equal-bore guard refuses (Design §9.4)."""
+        gives, for members in traversal order from `start`, the straight runs collinear_run refuses, whether the
+        equal-bore guard refuses, and the bend-adjacent junctions the tangency check refuses (Design §9.4)."""
         factor = _METRES_PER_UNIT["mm" if self.si else "in"]
 
         def far(pipe_id: str, node: str) -> str:
@@ -2413,12 +2681,47 @@ class _Importer:
             section = self.pipes[pressures[pipe_id][1].section]
             return runtime_bore_radius_m(section["od"].value, section["thk"].value, factor)
 
-        def failures(members: list[str], start: str) -> tuple[list[list[str]], bool]:
+        def directions(pipe_id: str, node: str) -> list[list[float]] | None:
+            """The member's directions at its start and end traversed from `node` (pressure_runtime.rs
+            `traverse_region`): a bend's end tangents, a straight's frame axis at both ends; reversed and negated
+            when traversed against the pipe's own from-to order."""
+            if pipe_id in arcs:
+                pair = self.arc_tangents.get(pipe_id)
+            else:
+                axis = self.frame_x.get(pipe_id)
+                pair = None if axis is None else (axis, axis)
+            if pair is None:
+                return None
+            if node == ends[pipe_id][0]:
+                return [list(pair[0]), list(pair[1])]
+            return [[-value for value in pair[1]], [-value for value in pair[0]]]
+
+        def junctions(members: list[str], nodes: list[str]) -> list[tuple[str, float | None]]:
+            """What the runtime refuses at a region's bends: (place, theta) for each bend-adjacent junction whose
+            theta = kink(t_in, t_out) exceeds alpha_tan (PRESSURE_REGION_MITRE_UNSUPPORTED), and (place, None)
+            where a bend's tangents, a junction's angle or a member's frame orientation is not formed
+            (PRESSURE_REGION_GEOMETRY_INVALID). A straight no longer than 1e-12 m, which no orientation fits, is left
+            to the solve's named refusal (§10.1)."""
+            found: list[tuple[str, float | None]] = [
+                (f"element {self.labels[member]}", None) for member in members
+                if (member in arcs and self.arc_tangents.get(member) is None)
+                or (self.frame_x.get(member) is None and self.length_m.get(member, 0.0) > AXIS_TOLERANCE)]
+            for index in range(len(members) - 1):
+                before, after = members[index], members[index + 1]
+                if before not in arcs and after not in arcs:
+                    continue
+                incoming, outgoing = directions(before, nodes[index]), directions(after, nodes[index + 1])
+                theta = None if incoming is None or outgoing is None else runtime_kink(incoming[1], outgoing[0])
+                if theta is None or not theta <= TANGENCY_TOLERANCE_RAD:
+                    found.append((f"node {name_of[nodes[index + 1]]}", theta))
+            return found
+
+        def failures(members: list[str], start: str) -> tuple[list[list[str]], bool, list[tuple[str, float | None]]]:
             nodes = [start]
             for member in members:
                 nodes.append(far(member, nodes[-1]))
             bad = [members[low:high] for low, high in runs(members, nodes) if not collinear(nodes[low:high + 1])]
-            return bad, not runtime_bores_equal([bore_m(member) for member in members])
+            return bad, not runtime_bores_equal([bore_m(member) for member in members]), junctions(members, nodes)
 
         return runs, collinear, failures
 
@@ -2456,7 +2759,9 @@ class _Importer:
                             "where another pipe joins; the exact route admits no internal branch "
                             "(PRESSURE_REGION_INTERNAL_BRANCH), and the region is not cut")
                 continue
-            runs, bores = failures(ordered, start)
+            runs, bores, bends = failures(ordered, start)
+            self.refuse_junctions(bends, line, location, f"region {region_id} as the sidecar declares it",
+                                  "the region is not cut or reordered")
             for run in runs:
                 names = ", ".join(label_of[pipe_id] for pipe_id in run)
                 self.refuse("MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR", line, location,
@@ -2551,16 +2856,20 @@ class _Importer:
         admitted, refused = [], False
         for members, start, end in chains:
             forward = failures(members, start)
-            if forward == ([], False):
+            if forward == ([], False, []):
                 admitted.append((members, start, end))
                 continue
             backward = failures(members[::-1], end)
-            if backward == ([], False):
+            if backward == ([], False, []):
                 admitted.append((members[::-1], end, start))
                 continue
             refused = True
             line = pressures[members[0]][1].line
             names = lambda items: ", ".join(label_of[pipe_id] for pipe_id in items)  # noqa: E731
+            # kink(t_in, t_out) is the same both ways (negated, swapped directions), so a junction refused in one
+            # order is refused in the other; the region is refused whole, never cut at a bend.
+            self.refuse_junctions(forward[2], line, f"elements {names(members)}", f"the region {names(members)}",
+                                  "a region is never cut")
             backward_runs = {frozenset(run) for run in backward[0]}
             both = [run for run in forward[0] if frozenset(run) in backward_runs]
             for run in both:
@@ -2574,7 +2883,7 @@ class _Importer:
                             f"the region {names(members)} has equal bores in the file's decimals, but in metres they "
                             "differ by more than the exact route's guard (64 epsilon of the radius) in both traversal "
                             "orders; a region is never cut to separate them")
-            if not both and not (forward[1] and backward[1]):
+            if not both and not (forward[1] and backward[1]) and not forward[2]:
                 checks = lambda result: ", ".join(  # noqa: E731
                     [f"the straight-run check on {names(run)}" for run in result[0]] + ["the bore guard"] * result[1])
                 self.refuse("MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR", line, f"elements {names(members)}",
@@ -2600,6 +2909,20 @@ class _Importer:
                           "provenance": f"closure transfer declared at import: {provenance}"} for node in (start, end)]
             formed.append((f"region:mbf-{name_of[start]}-{name_of[end]}", members, terminals))
         return formed
+
+    def refuse_junctions(self, found, line: int, location: str, subject: str, never: str) -> None:
+        """What the exact route refuses at a region's bends (pressure_runtime.rs `traverse_region`), by place."""
+        for place, theta in found:
+            if theta is None:
+                self.refuse("MBF-IMPORT-PRESSURE-GEOMETRY-INVALID", line, location,
+                            f"{subject}: at {place} the runtime forms no bend tangent, direction change or frame "
+                            "orientation on the MBF's values in m (PRESSURE_REGION_GEOMETRY_INVALID); " + never)
+            else:
+                self.refuse("MBF-IMPORT-PRESSURE-MITRE", line, location,
+                            f"{subject}: at {place} the bend's end tangent, as the runtime forms the arc on "
+                            f"the MBF's positions and radius in m, turns {theta:.6g} rad from its neighbour, above "
+                            f"the tangency tolerance {TANGENCY_TOLERANCE_RAD} rad: the exact route refuses it as a "
+                            "mitre (PRESSURE_REGION_MITRE_UNSUPPORTED); " + never)
 
     def closure_declaration(self) -> tuple[str, str, dict[str, str]] | None:
         declared = self.closure
@@ -2629,7 +2952,7 @@ class _Importer:
         for entry in stored:
             members = entry.get("members") if isinstance(entry, Mapping) else None
             terminals = entry.get("terminals") if isinstance(entry, Mapping) else None
-            valid = (isinstance(entry, Mapping) and isinstance(entry.get("id"), str) and entry["id"].strip() != ""
+            valid = (isinstance(entry, Mapping) and isinstance(entry.get("id"), str) and not runtime_blank(entry["id"])
                      and entry["id"] not in {region_id for region_id, _, _ in restored}
                      and isinstance(members, list)
                      and members and all(isinstance(item, str) and item in active and item not in owned
@@ -2639,7 +2962,7 @@ class _Importer:
                      and isinstance(terminals, list) and len(terminals) == 2
                      and all(isinstance(item, Mapping) and item.get("node_ref") in name_of
                              and item.get("closure_transfer") in CLOSURE_TRANSFERS
-                             and isinstance(item.get("provenance"), str) and item["provenance"].strip()
+                             and isinstance(item.get("provenance"), str) and not runtime_blank(item["provenance"])
                              for item in terminals))
             if not valid:
                 break

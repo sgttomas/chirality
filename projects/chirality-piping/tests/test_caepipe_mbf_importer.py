@@ -15,6 +15,8 @@ import hashlib
 import json
 import math
 from pathlib import Path
+import re
+import struct
 import subprocess
 import sys
 
@@ -1477,3 +1479,19 @@ def test_a_region_the_route_admits_only_reversed_is_emitted_reversed():
     assert regions_of(result) == [("region:mbf-30-10", ["pipe:20-30", "pipe:10-20"], 10.0, "bar",
                                    [("node:30", "separately_supported_or_compensated"),
                                     ("node:10", "transfers_to_wall")])]
+
+
+def test_the_ported_arc_angle_matches_the_runtime_bit_for_bit():
+    # The tangency and arc-window decisions (VER-002 r6) read frame_kernel's libm-free 2 atan2(y, x). Its own test
+    # table freezes each row's correctly rounded binary64 bits, computed from a 90-digit arctangent; the port must
+    # give every row's bits.
+    source = (ROOT / "core" / "solver" / "frame_kernel" / "src" / "structural" / "arc_angle.rs").read_text()
+    table = source[source.index("FROZEN"):]
+    rows = re.findall(r"\(\s*(0x[0-9a-fA-F_]+)\s*,\s*(0x[0-9a-fA-F_]+)\s*,\s*(0x[0-9a-fA-F_]+)\s*\)", table)
+    value = lambda text: struct.unpack("<d", struct.pack("<Q", int(text.replace("_", ""), 16)))[0]  # noqa: E731
+    assert len(rows) > 40
+    for y, x, expected in rows:
+        assert importer_module.twice_atan2_nonnegative(value(y), value(x)) == value(expected), (y, x)
+    assert importer_module.twice_atan2_nonnegative(0.0, 0.0) is None
+    assert importer_module.twice_atan2_nonnegative(0.0, 2.0) == 0.0
+    assert importer_module.twice_atan2_nonnegative(2.0, 0.0) == math.pi

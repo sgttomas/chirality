@@ -983,3 +983,176 @@ def test_canonical_form_of_a_tiny_bend_uses_scaled_norms():
     plane = form.sets[("bend", ("20A", "20B"), "plane")]
     assert plane == pytest.approx([math.sqrt(0.5), 0.0, -math.sqrt(0.5)], abs=1e-12)
     assert form.values[("bend", ("20A", "20B"), "R")] == pytest.approx(1e-203, rel=1e-15)  # 1e-200 mm in m
+
+
+# --- VER-002 r6: what the solve forms in metres, and restored ids ----------------------------------------------------
+MITRE_ROWS = ("F10,KA,MM1,PP1,X1e15,CL=L1", "T20,KI,B50,X1000,CFF=1", "T30,KA,Y1000")
+
+
+def authored_region(model: dict, terminals: tuple[str, str], pressure: float = 10.0) -> dict:
+    """`model` with all its pipes in one 10 bar exact-pressure region between `terminals`, as a user authors it."""
+    model = deepcopy(model)
+    model["pressure_contract"] = {"version": "3.0.0", "mode": "exact_pressure_v3", "shear_model": "euler_bernoulli"}
+    for pipe in model["pipe_segments"]:
+        pipe["section"]["corrosion_allowance"] = {"value": 0.0, "unit": "mm"}
+    model["load_cases"] = [{"id": "case:p", "label": "Sustained (W+P)", "kind": "sustained", "status": "draft",
+                            "primitive_loads": [], "provenance": "invented", "pressure_regions": [
+        {"id": "region:r", "member_pipe_ids": [pipe["id"] for pipe in model["pipe_segments"]],
+         "pressure_basis": "internal_differential_zero_external_v1", "pressure": {"value": pressure, "unit": "bar"},
+         "provenance": "invented", "terminals": [
+             {"node_ref": node, "closure_transfer": "transfers_to_wall", "provenance": "invented"}
+             for node in terminals]}]}]
+    return model
+
+
+def test_a_bend_whose_arc_in_metres_is_not_tangent_is_refused_whole_on_both_routes():
+    # Codex VER-002 r6 (P2). By hand, in mm: TI 20 at (1e15 + 1000, 0, 0) with legs along +X and +Y, theta = 90 deg,
+    # t = 50 tan 45 deg = 49.99999999999999, so 20A = (1e15 + 950, 0, 0) and 20B = (1e15 + 1000, 49.99999999999999, 0)
+    # (the binary64 spacing at 1e15 mm is 0.125). Read to m (x 0.001, whose binary64 is 0.001 (1 + 2.08e-17)) the
+    # spacing at 1e12 is 2^-13: 20A's x is 1e12 + 7783/8192 (0.9500208 x 8192 = 7782.57) and 20B's 1e12 + 1. The
+    # arc's chord is (409/8192, 0.04999999999999999, 0) m with R = 0.05 m, and its start tangent leaves the incoming
+    # straight (+X) by atan2(c_y, c_x) - asin(|c|/2R), about 1.4648e-3 rad > alpha_tan = 1e-3: a mitre at 20A.
+    chord = (409 / 8192, 49.99999999999999 * 0.001)
+    theta = math.atan2(chord[1], chord[0]) - math.asin(math.hypot(*chord) / (2 * 0.05))
+    assert 1.4648e-3 < theta < 1.4649e-3
+    data = importer_tests.mbf(*MITRE_ROWS, pipe=("P1,50,2,0",), loads=("L1,20,10,0",))
+    unbound = importer_tests.run(data, pressure_closure=importer_tests.CLOSURE)
+    assert refusals(unbound) == {("MBF-IMPORT-PRESSURE-MITRE", "elements 10-20A, 20A-20B, 20B-30")}
+    message = next(item["message"] for item in unbound.diagnostics if item["code"] == "MBF-IMPORT-PRESSURE-MITRE")
+    assert "at node 20A" in message and f"{theta:.6g} rad" in message
+    terminals = [{"node_ref": node, "closure_transfer": "transfers_to_wall", "provenance": "invented"}
+                 for node in ("node:10", "node:30")]
+    sidecar = {"mbf_sha256": hashlib.sha256(data).hexdigest(), "pressure_map": {
+        "contract": {"version": "3.0.0", "mode": "exact_pressure_v3", "shear_model": "euler_bernoulli"},
+        "regions": [{"id": "region:r", "members": ["pipe:10-20A", "pipe:20A-20B", "pipe:20B-30"],
+                     "terminals": terminals}]}}
+    bound = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="mitre")
+    assert refusals(bound) == {("MBF-IMPORT-PRESSURE-MITRE", "pressure_map region region:r")}
+    # The route refuses the same region authored on the file's pressure-free import.
+    model = importer_tests.run(importer_tests.mbf(*MITRE_ROWS, pipe=("P1,50,2,0",))).model
+    _, output, error = solve_swbpipe(runner_binary(), {"case_id": "mitre",
+                                                       "model": authored_region(model, ("node:10", "node:30"))})
+    assert error and "PRESSURE_REGION_MITRE_UNSUPPORTED" in json.dumps(output)
+
+
+def test_a_restored_y_reference_the_frame_kernel_refuses_is_replaced_and_listed():
+    # Codex VER-002 r6 (P2): the straight 10 -> 20 runs along (1, 2, 0) m and the sidecar's y_reference is
+    # (1, 2.00000001, 0). Its part perpendicular to the axis is exactly 1e-8 (-2, 1, 0)/5, of norm 4.47e-9, but the
+    # binary64 projection y.x carries an error of order 1e-16, which the subtraction leaves in y: the kernel's y is
+    # about 4e-8 from orthogonal to x, far above its 1e-12 ("local axes must be mutually orthogonal"). The pipe takes
+    # the documented local y: Y - (Y.x)x for x = (1, 2, 0)/sqrt 5 is (-2/5, 1/5, 0), normalized (-2, 1, 0)/sqrt 5.
+    data = importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X1000,Y2000", loads=("L1,20,10,0",))
+    restored = {"x": 1.0, "y": 2.00000001, "z": 0.0}
+    sidecar = {"mbf_sha256": hashlib.sha256(data).hexdigest(),
+               "element_map": {"s": {"from": "10", "to": "20", "y_reference": restored}}}
+    result = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="parallel",
+                                pressure_closure=importer_tests.CLOSURE)
+    assert result.status == "imported", result.diagnostics
+    assert tuple(result.model["pipe_segments"][0]["y_reference"].values()) == pytest.approx(
+        (-2 / math.sqrt(5), 1 / math.sqrt(5), 0.0), abs=1e-15)
+    assert [(item["location"], item["category"]) for item in result.loss_report
+            if item["code"] == "MBF-IMPORT-ORIENTATION-DEFAULTED"] == [("s", "approximated")]
+    assert importer_module.frame_y_reference_usable((0, 0, 0), (1.0, 2.0, 0), (1.0, 2.00000001, 0.0)) is False
+    runner = runner_binary()
+    authored = deepcopy(result.model)
+    authored["pipe_segments"][0]["y_reference"] = restored
+    _, output, error = solve_swbpipe(runner, {"case_id": "parallel-authored", "model": authored})
+    assert error and "mutually orthogonal" in json.dumps(output)
+    _, _, error = solve_swbpipe(runner, {"case_id": "parallel-replaced", "model": result.model})
+    assert error == ""
+
+
+def test_the_preflight_refuses_an_orientation_its_printed_positions_would_replace(monkeypatch):
+    # A y_reference 8.1e-8 off the straight's axis: the kernel forms orthonormal axes from it on the authored end
+    # (434.3743180726007, 2006.440216234222, 0) mm, but not on the printed one (434.3743181, 2006.440216, 0), where
+    # the rounding left in y exceeds 1e-12. The solve is the judge of both.
+    end = "X434.3743180726007,Y2006.440216234222"
+    model = importer_tests.run(importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", f"T20,KA,{end}", loads=("L1,20,10,0",)),
+                               pressure_closure=importer_tests.CLOSURE).model
+    restored = {"x": 434.3743180726007, "y": 2006.440379564788, "z": 0.0}
+    model["pipe_segments"][0]["y_reference"] = restored
+    runner = runner_binary()
+    _, _, error = solve_swbpipe(runner, {"case_id": "orientation-authored", "model": model})
+    assert error == ""
+    written = render_caepipe_mbf_si(model, title="ORIENTATION")
+    assert written.status == "refused"
+    assert {(item["code"], item["entity"]) for item in written.diagnostics if item["severity"] == "error"} == {
+        ("MBF-SI-PREFLIGHT-REFUSED", "model.pipe_segments[pipe:10-20].y_reference")}
+    data, sidecar = bound_parts(model, monkeypatch)  # printed, the import replaces it
+    bound = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="printed")
+    assert bound.model["pipe_segments"][0]["y_reference"] != restored
+    printed = deepcopy(bound.model)
+    printed["pipe_segments"][0]["y_reference"] = restored
+    _, output, error = solve_swbpipe(runner, {"case_id": "orientation-printed", "model": printed})
+    assert error and "local axes" in json.dumps(output)
+
+
+def test_blank_restored_ids_are_refused_by_kind():
+    # Codex VER-002 r6 (P2): the solve refuses an id that Rust's trim() empties (EMPTY_ID; a region member also
+    # PRESSURE_REGION_MEMBERS_INVALID). Its whitespace is Unicode White_Space: U+3000 is, U+001C is not (although
+    # Python's str.strip removes it).
+    data = importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X1000", loads=("L1,20,10,0",))
+    sidecar = {"mbf_sha256": hashlib.sha256(data).hexdigest(), "element_map": {"": {"from": "10", "to": "20"}}}
+    result = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="empty",
+                                pressure_closure=importer_tests.CLOSURE)
+    assert refusals(result) == {("MBF-IMPORT-SIDECAR-CONFLICT", "pipe id ''")}
+    model = importer_tests.run(data, pressure_closure=importer_tests.CLOSURE).model
+    _, output, error = solve_swbpipe(runner_binary(), {"case_id": "empty-id",
+                                                       "model": renamed(model, {"pipe:10-20": ""})})
+    assert error and all(code in json.dumps(output) for code in ('"EMPTY_ID"', '"PRESSURE_REGION_MEMBERS_INVALID"'))
+    data, base = bound_parts(writer_tests.bent_l())
+
+    def rename(mapping: dict, old: str, new: str) -> None:
+        mapping[new] = mapping.pop(old)
+
+    changes = {
+        "node": lambda sidecar: rename(sidecar["node_map"], "A", " "),
+        "pipe": lambda sidecar: rename(sidecar["element_map"], "S1", "　"),
+        "component": lambda sidecar: sidecar["element_map"]["BEND"]["bend"].update(component="\t"),
+        "material": lambda sidecar: sidecar["material_map"]["M1"].update(swbpipe_material=" "),
+        "support": lambda sidecar: rename(sidecar["support_map"], "SA", " "),
+        "load case": lambda sidecar: rename(sidecar["load_case_map"], "case:th", " "),
+        "primitive load": lambda sidecar: rename(sidecar["load_map"], "case:th/t:S1", "case:th/ "),
+    }
+    blank = {"node": " ", "pipe": "　", "component": "\t", "material": " ", "support": " ",
+             "load case": " ", "primitive load": " "}
+    for kind, change in changes.items():
+        sidecar = deepcopy(base)
+        change(sidecar)
+        result = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label=kind)
+        assert result.status == "refused", kind
+        assert ("MBF-IMPORT-SIDECAR-CONFLICT", f"{kind} id {blank[kind]!r}") in refusals(result), kind
+    assert importer_module.runtime_blank("\x1c") is False and "\x1c".strip() == ""
+    kept = deepcopy(base)
+    rename(kept["element_map"], "S1", "\x1c")
+    assert import_caepipe_mbf(data, sidecar=kept, material_provenance=INVENTED, source_label="kept").status == "imported"
+
+
+def test_sections_are_checked_on_their_binary64_values_in_metres():
+    # OD 504 mm, wall 251.99999999999997 mm (the binary64 below 252, 252 - 2^-45): 2t < OD in mm. In m the wall is
+    # 251.99999999999997158 x 0.001 (1 + 2.08e-17) = 0.2519999999999999768, above the midpoint 0.2519999999999999740
+    # of its neighbours, so it rounds to the binary64 0.2520000000000000018; the OD, 0.50400000000000001049, rounds to
+    # 0.5040000000000000036, twice that: 2t = OD in m. And OD 1 with wall 0.49999999999999999: 2t < OD in decimals,
+    # but the wall's binary64 is 0.5 (it lies 1e-17 below 0.5, the binary64 spacing there 5.6e-17).
+    runner = runner_binary()
+    for name, section, wall in (("metres", "P1,504,251.99999999999997,0", 251.99999999999997),
+                                ("decimal", "P1,1,0.49999999999999999,0", 0.5)):
+        data = importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X1000", pipe=(section,))
+        importer_tests.refused(importer_tests.run(data), "MBF-IMPORT-VALUE-OUT-OF-RANGE",
+                               importer_tests.layout_line(data, "P1,"))
+        od = float(section.split(",")[1])
+        model = authored_region(importer_tests.run(importer_tests.mbf(
+            "F10,KA,MM1,PP1,CL=L1", "T20,KA,X1000", pipe=(f"P1,{od},{od / 4},0",))).model, ("node:10", "node:20"))
+        model["pipe_segments"][0]["section"]["wall_thickness"]["value"] = wall
+        _, output, error = solve_swbpipe(runner, {"case_id": f"section-{name}", "model": model})
+        assert error and "PIPE_DIMENSION_INVALID" in json.dumps(output), name
+
+
+def test_a_pressure_beyond_binary64_in_pascals_is_refused():
+    # 1e304 bar is finite, but the route reads it as 1e304 x 1e5 = 1e309 Pa, beyond the binary64 maximum (about
+    # 1.8e308), and refuses it (PRESSURE_REGION_PRESSURE_INVALID). The headless runner's checked-JSON reader stops
+    # such a value earlier (an integral float above 2^53), so the arithmetic, not a solve, is the reference here.
+    assert 1e304 * 100000.0 == math.inf
+    data = importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X1000", loads=("L1,20,1e304,0",))
+    importer_tests.refused(importer_tests.run(data, pressure_closure=importer_tests.CLOSURE),
+                           "MBF-IMPORT-VALUE-UNREPRESENTABLE", importer_tests.layout_line(data, "L1,"))
