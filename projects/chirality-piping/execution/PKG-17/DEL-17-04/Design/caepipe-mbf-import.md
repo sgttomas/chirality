@@ -209,6 +209,13 @@ only", for the straight-pipe orientation of §10.5.
   0 < t < OD/2; R > 0; k > 0; non-negative material weight densities; negative values are refused. They are applied before any
   derived value is formed, so an out-of-range input is refused by name, never clamped
   (`MBF-IMPORT-VALUE-OUT-OF-RANGE`).
+- **Binary64 range.** A value whose binary64 reading overflows, or a non-zero value that
+  reads as 0, is refused (`MBF-IMPORT-VALUE-UNREPRESENTABLE`); it never imports as zero or
+  infinity. Every derived value is rounded through the same guard, which refuses by the same
+  code: E in Pa, G, node coordinates, the temperature change, summed loads, tangent lengths
+  and nodes, and the weight per length of a non-zero weight density. Norms and unit
+  directions use the scaled `hypot`, so neither tiny nor huge lengths overflow or underflow
+  in their squares (independent review VER-002 r1).
 
 ### 4.4 Layout rows and comments
 
@@ -268,7 +275,9 @@ done in engineering applications are permissible as a solution"):
 - A native English writer mode is an owner choice, carried in the survey proposal.
 - **As implemented.** `si_writer.py` accepts the project units `in`, `lbf` and `degF` and the
   quantity units `in`, `lbf`, `psi`, `lbf*in`, `lbf*ft`, `lbf/in`, `degF` (interval) and
-  `1/degF`. Each is multiplied by its exact rational factor and rounded once to binary64:
+  `1/degF`. Each is multiplied by its exact rational factor and rounded once to binary64
+  (a result that overflows, or a non-zero result that rounds to 0, is refused as
+  `MBF-SI-VALUE-OUT-OF-RANGE`):
   1 in = 25.4 mm; 1 lbf = 0.45359237 kg × 9.80665 m/s² = 4.4482216152605 N; psi, lbf·in,
   lbf·ft and lbf/in from those two; °F intervals × 5/9; 1/°F × 9/5. An absolute reference
   temperature in °F, passed as `reference_temperature_f`, becomes (T − 32) × 5/9 °C. The
@@ -552,6 +561,8 @@ Row meanings follow *Format of .MBF*, LAYOUT, and *DX, DY, DZ*:
   Location row in between does not move the start. X, Y and Z are offsets. A missing axis
   is a zero offset. A zero-length element is refused (`MBF-IMPORT-GEOMETRY-ZERO-LENGTH`):
   the manual gives zero length to joint elements (*DX, DY, DZ*), and those are refused.
+  The check is repeated on the rounded binary64 positions: distinct exact positions that
+  round to one point are refused the same way.
 - **To row naming an existing node** would close a loop. It is refused
   (`MBF-IMPORT-TOPOLOGY-LOOP`), as the writer refuses loops. Loops are tranche 2.
 - **Location row `L<n>`.** Adds comment data at an existing node
@@ -761,7 +772,12 @@ the manual does not make clear which kind a record is, it is refused.
 - `MBF-IMPORT-ROW-SYNTAX-INVALID`, `MBF-IMPORT-TOPOLOGY-EMPTY` (§4.4);
 - `MBF-IMPORT-COMMENT-UNSUPPORTED`: a documented comment refused without a narrower code,
   such as the SIF and stress-index comments above;
-- `MBF-IMPORT-SIDECAR-INVALID`: a malformed sidecar, or rebinding requested without one (§15).
+- `MBF-IMPORT-SIDECAR-INVALID`: a malformed sidecar, or rebinding requested without one (§15);
+- `MBF-IMPORT-VALUE-UNREPRESENTABLE`: a read or derived value outside the binary64 range, or a
+  non-zero value that would become 0 (§4.3).
+
+The writer refuses the corresponding cases of its own conversions as
+`MBF-SI-VALUE-OUT-OF-RANGE` (§5.2, §18.2).
 
 Loss entries and information (do not block):
 
@@ -1039,6 +1055,24 @@ Each exclusion is listed in the test so that it stays explicit.
   (1, 0, −1)/√2. The raw vectors are 45° apart, but the projected directions agree.
 - per case kind: summed force and moment vectors per node, summed weight per length per
   pipe, summed ΔT per pipe, and summed anchor displacements and rotations.
+
+**Aggregation (independent review VER-002 r1).** Sums of primitives on one target are
+formed exactly, then rounded once:
+
+- **Writer.** It adds the primitives as exact rationals (`fractions.Fraction`) in the MBF
+  unit, each the exact product of the authored value and its definitional factor, and
+  rounds the sum once to binary64. Radians to degrees, the one non-rational factor, is
+  rounded per primitive before the sum. A binary64 running sum lost the remainder of
+  cancelling loads: 1e9 + 0.001 − 1e9 lbf wrote 0.004447937012 N instead of 0.004448221615 N.
+- **Canonical comparison.** It sums A's primitives independently of the writer, as exact
+  rationals in SI base units with its own exact factors (1 in = 0.0254 m, 1 lbf =
+  4.4482216152605 N, °F intervals × 5/9; degrees by binary64 π), and rounds once. A
+  comparison that summed in binary64 shared the writer's defect and concealed it.
+- **Importer.** Its sums of FOR, MOM, D and ROT components on one node are exact rationals
+  of the printed values, rounded once.
+
+The bounds below are unchanged: a summed load is printed once, so its bound is the
+printed-directly bound of the sum.
 
 **Tolerances (HELP_HUMAN), derived from the writer's number formatting and, for bends,
 its admitted residuals.** The writer
