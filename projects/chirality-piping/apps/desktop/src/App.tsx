@@ -110,6 +110,7 @@ import { ResultsPanel } from "./features/results/ResultsPanel";
 import { SupportLoadSummaryPanel } from "./features/results/SupportLoadSummaryPanel";
 import { StressRatioTablePanel } from "./features/results/StressRatioTablePanel";
 import { DisplacementExtremesPanel } from "./features/results/DisplacementExtremesPanel";
+import { WeightSummaryPanel } from "./features/results/WeightSummaryPanel";
 import { resolveLocatedCauseSelection } from "./features/results/resultInterpretation";
 import { useDiagnosticFilterRequest, type DiagnosticFilterRequest } from "./features/diagnostics/diagnosticFilterRequest";
 import { ReviewGeometryPanel } from "./features/review-geometry/ReviewGeometryPanel";
@@ -448,6 +449,8 @@ function AppSession() {
               selectionState={orderedSelection}
               onQueueIntent={handleQueueEditorIntent}
               operationBusy={operationBusy}
+              viewCommandRef={viewportViewCommandRef}
+              showAllAvailable={hiddenEntityKeys.size > 0 || isolationActive}
               onApplyCellIntent={async (intent) => {
                 const owned: { current?: Readonly<OperationOutcome> } = {};
                 const applied = await handleApplyIntent(intent, owned);
@@ -733,6 +736,11 @@ function AppSession() {
                   }}
                 />
               )}
+              {historicalRun ? null : (
+                // A9: weight and centre of gravity of the model, a line or the selected pipes, from the
+                // self-weight generator's own weights; model data, so no solve is needed.
+                <WeightSummaryPanel model={model} selectedPipeRefs={selectedPipeRefs} />
+              )}
               <ComparisonPanel
                 comparison={withinRun.status === "ready" ? withinRun.comparison : null}
                 result={currentSolvedResult}
@@ -867,6 +875,7 @@ function AppSession() {
               onViewportInteractionStart={exposeViewportForNarrowInteraction}
               onInvalidateDraft={invalidateDirectDraftContext}
               onQueueIntent={handleQueueEditorIntent}
+              operationBusy={operationBusy}
               onSelect={handleSelectEntity}
               queuedIntents={editorIntents}
               reservedIntents={queuedBatches.flatMap((entry) => entry.batch.operations)}

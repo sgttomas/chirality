@@ -23,8 +23,9 @@ const REDACTION_METADATA_KEYS: [&str; 7] = [
     "export_policy",
     "professional_claim",
 ];
+/// The payload keys the TypeScript and Python contracts screen (`PAYLOAD_DETAIL_KEYS`).
 #[cfg(test)]
-const PAYLOAD_KEYS: [&str; 10] = [
+const PAYLOAD_KEYS: [&str; 12] = [
     "payload",
     "content",
     "contents",
@@ -35,13 +36,11 @@ const PAYLOAD_KEYS: [&str; 10] = [
     "component_values",
     "report_payload",
     "diagnostic_payload",
+    "cache_payload",
+    "sqlite_payload",
 ];
-/// The payload keys the TypeScript and Python contracts screen beyond `PAYLOAD_KEYS`.
-/// Read only in the user-released context, so no existing-context decision changes.
-#[cfg(test)]
-const USER_RELEASED_EXTRA_PAYLOAD_KEYS: [&str; 2] = ["cache_payload", "sqlite_payload"];
-/// The storage-privacy metadata keys whose scalar value marks metadata present in the
-/// TypeScript and Python contracts.  Read only in the user-released context.
+/// The storage-privacy metadata keys whose scalar value marks metadata present, as in the
+/// TypeScript and Python contracts (`STORAGE_PRIVACY_METADATA_KEYS`).
 #[cfg(test)]
 const STORAGE_PRIVACY_METADATA_KEYS: [&str; 16] = [
     "contains_payload",
@@ -140,12 +139,12 @@ fn classify_contract_item(
         !wrapper_release_intent || export_context == USER_RELEASED_REPORT_CONTEXT,
         "explicit user-release intent is admitted only in the {USER_RELEASED_REPORT_CONTEXT} context, not in {export_context}"
     );
-    // The user-released context reads its inputs exactly as the TypeScript and Python
-    // contracts do (`classify` / `_classify`): the two further payload keys, the
-    // storage-privacy metadata keys, and the provenance fallback for a null member and an
-    // `unknown` review.  The five existing contexts keep this mirror's reading unchanged;
-    // its departures there remain open (`docs/security/redaction_export_controls.md`,
-    // Final-Sink Route Binding).
+    // Every context reads its inputs exactly as the TypeScript and Python contracts do
+    // (`classify` / `_classify`): all twelve payload keys, the scalar storage-privacy
+    // metadata keys, the provenance fallback for a null privacy or redistribution
+    // member and for a null or `unknown` review, the unknown-label sets and the public
+    // pairing.  Until the 2026-10-27 alignment the five existing contexts kept an older
+    // reading of these inputs (`docs/security/redaction_export_controls.md`).
     let user_released = export_context == USER_RELEASED_REPORT_CONTEXT;
     let unsafe_present = PAYLOAD_KEYS
         .iter()
@@ -153,44 +152,28 @@ fn classify_contract_item(
         .chain(PATH_KEYS.iter())
         .chain(CLOUD_KEYS.iter())
         .chain(SQL_KEYS.iter())
-        .any(|key| item.contains_key(*key))
-        || (user_released
-            && USER_RELEASED_EXTRA_PAYLOAD_KEYS
-                .iter()
-                .any(|key| item.contains_key(*key)));
+        .any(|key| item.contains_key(*key));
     let metadata_present = REDACTION_METADATA_KEYS
         .iter()
         .any(|key| item.contains_key(*key))
         || unsafe_present
-        || (user_released
-            && STORAGE_PRIVACY_METADATA_KEYS.iter().any(|key| {
-                item.get(*key)
-                    .is_some_and(|value| !value.is_array() && !value.is_object())
-            }));
+        || STORAGE_PRIVACY_METADATA_KEYS.iter().any(|key| {
+            item.get(*key)
+                .is_some_and(|value| !value.is_array() && !value.is_object())
+        });
     let provenance = item.get("provenance").and_then(Value::as_object);
-    let (privacy, redistribution, review) = if user_released {
-        let stated_or_provenance = |key: &str| match item.get(key) {
-            Some(value) if !value.is_null() => Some(value),
-            own => provenance.map_or(own, |value| value.get(key)),
-        };
-        let review = match item.get("review_status") {
-            Some(value) if !value.is_null() && value.as_str() != Some("unknown") => Some(value),
-            own => provenance.map_or(own, |value| value.get("review_status")),
-        };
-        (
-            stated_or_provenance("privacy_classification"),
-            stated_or_provenance("redistribution_status"),
-            review,
-        )
-    } else {
-        (
-            item.get("privacy_classification")
-                .or_else(|| provenance.and_then(|value| value.get("privacy_classification"))),
-            item.get("redistribution_status")
-                .or_else(|| provenance.and_then(|value| value.get("redistribution_status"))),
-            item.get("review_status")
-                .or_else(|| provenance.and_then(|value| value.get("review_status"))),
-        )
+    let stated_or_provenance = |key: &str| match item.get(key) {
+        Some(value) if !value.is_null() => Some(value),
+        own => provenance.map_or(own, |value| value.get(key)),
+    };
+    let privacy = stated_or_provenance("privacy_classification");
+    let redistribution = stated_or_provenance("redistribution_status");
+    // A review status that is not a string reads as `unknown` and gives way to the
+    // provenance's (input contract); a non-string privacy or redistribution stays a stated
+    // label that matches no class.
+    let review = match item.get("review_status") {
+        Some(value) if value.as_str().is_some_and(|text| text != "unknown") => Some(value),
+        own => provenance.map_or(own, |value| value.get("review_status")),
     };
     // Payload-carried local-private intent is not read in the user-released context
     // (§3.2): only the wrapper's release intent decides there.
@@ -199,14 +182,14 @@ fn classify_contract_item(
     } else {
         let item_intent = INTENT_KEYS
             .iter()
-            .find_map(|key| item.get(*key).map(truthy))
+            .find_map(|key| item.get(*key).map(intent_flag))
             .or_else(|| {
                 item.get("export_policy")
                     .and_then(Value::as_object)
                     .and_then(|policy| {
                         INTENT_KEYS
                             .iter()
-                            .find_map(|key| policy.get(*key).map(truthy))
+                            .find_map(|key| policy.get(*key).map(intent_flag))
                     })
             });
         match item_intent {
@@ -217,20 +200,29 @@ fn classify_contract_item(
     };
     let privacy_text = privacy.and_then(Value::as_str);
     let redistribution_text = redistribution.and_then(Value::as_str);
+    // As in the TypeScript and Python contracts, any safe privacy class with any public
+    // redistribution status is safe, in every context; the reason follows the privacy.
+    let safe_public = match (privacy_text, redistribution_text) {
+        (
+            Some(privacy @ ("public" | "public_metadata" | "invented_public_example")),
+            Some("public_permissive" | "invented_non_engineering_example"),
+        ) => Some(if privacy == "invented_public_example" {
+            "SAFE_INVENTED_PUBLIC_EXAMPLE"
+        } else {
+            "SAFE_PUBLIC_METADATA"
+        }),
+        _ => None,
+    };
     let review_text = review.and_then(Value::as_str).unwrap_or("unknown");
 
-    let contains_payload = truthy_option(item.get("contains_payload"))
-        || truthy_option(item.get("payload_present"))
-        || PAYLOAD_KEYS.iter().any(|key| item.contains_key(*key))
-        || (user_released
-            && USER_RELEASED_EXTRA_PAYLOAD_KEYS
-                .iter()
-                .any(|key| item.contains_key(*key)));
-    let secret_present = truthy_option(item.get("secret_material_present"))
+    let contains_payload = blocking_flag_option(item.get("contains_payload"))
+        || blocking_flag_option(item.get("payload_present"))
+        || PAYLOAD_KEYS.iter().any(|key| item.contains_key(*key));
+    let secret_present = blocking_flag_option(item.get("secret_material_present"))
         || SECRET_KEYS.iter().any(|key| item.contains_key(*key));
-    let cloud_present = truthy_option(item.get("cloud_or_network_reference"))
+    let cloud_present = blocking_flag_option(item.get("cloud_or_network_reference"))
         || CLOUD_KEYS.iter().any(|key| item.contains_key(*key));
-    let sql_present = truthy_option(item.get("direct_sql_access"))
+    let sql_present = blocking_flag_option(item.get("direct_sql_access"))
         || SQL_KEYS.iter().any(|key| item.contains_key(*key));
     let storage_bypass = [
         "storage_bypass",
@@ -239,8 +231,8 @@ fn classify_contract_item(
         "application_service_bypass",
     ]
     .iter()
-    .any(|key| truthy_option(item.get(*key)));
-    let path_present = truthy_option(item.get("concrete_path_present"))
+    .any(|key| blocking_flag_option(item.get(*key)));
+    let path_present = blocking_flag_option(item.get("concrete_path_present"))
         || PATH_KEYS.iter().any(|key| item.contains_key(*key));
 
     let unknown_action = if export_context == "local_private" {
@@ -248,7 +240,7 @@ fn classify_contract_item(
     } else {
         "redact_value"
     };
-    let (action, reason) = if truthy_option(item.get("professional_claim")) {
+    let (decided_action, decided_reason) = if professional_claim(item.get("professional_claim")) {
         ("block_export", "PROFESSIONAL_BOUNDARY_BLOCKED")
     } else if cloud_present {
         ("block_export", "CLOUD_OR_NETWORK_REFERENCE_BLOCKED")
@@ -260,8 +252,6 @@ fn classify_contract_item(
         ("block_export", "SECRET_MATERIAL_BLOCKED")
     } else if contains_payload {
         ("block_export", "PAYLOAD_METADATA_ONLY_REQUIRED")
-    } else if path_present {
-        ("redact_value", "CONCRETE_PATH_REDACTED")
     } else if privacy_text == Some("protected_suspected")
         || redistribution_text == Some("protected_suspected")
         || matches!(review_text, "quarantined" | "rejected")
@@ -286,35 +276,19 @@ fn classify_contract_item(
             } else {
                 ("block_export", "USER_RELEASE_INTENT_REQUIRED")
             }
-        } else if matches!(
-            privacy_text,
-            Some("public") | Some("public_metadata") | Some("invented_public_example")
-        ) && matches!(
-            redistribution_text,
-            Some("public_permissive") | Some("invented_non_engineering_example")
-        ) {
-            if privacy_text == Some("invented_public_example") {
-                ("include", "SAFE_INVENTED_PUBLIC_EXAMPLE")
-            } else {
-                ("include", "SAFE_PUBLIC_METADATA")
-            }
+        } else if let Some(reason) = safe_public {
+            ("include", reason)
         } else {
             ("block_export", "USER_RELEASE_VALUE_UNBOUND")
         }
     } else if !metadata_present {
         (unknown_action, "MISSING_METADATA_REDACTED")
-    } else if matches!(redistribution_text, None | Some("unknown") | Some("TBD")) {
+    } else if unknown_label(redistribution) {
         (unknown_action, "REDISTRIBUTION_STATUS_UNKNOWN")
-    } else if matches!(privacy_text, None | Some("unknown") | Some("TBD")) {
+    } else if unknown_label(privacy) {
         (unknown_action, "UNKNOWN_PROVENANCE_WARNING")
-    } else if matches!(privacy_text, Some("public") | Some("public_metadata"))
-        && redistribution_text == Some("public_permissive")
-    {
-        ("include", "SAFE_PUBLIC_METADATA")
-    } else if privacy_text == Some("invented_public_example")
-        && redistribution_text == Some("invented_non_engineering_example")
-    {
-        ("include", "SAFE_INVENTED_PUBLIC_EXAMPLE")
+    } else if let Some(reason) = safe_public {
+        ("include", reason)
     } else if matches!(
         privacy_text,
         Some("private_project_data")
@@ -336,6 +310,14 @@ fn classify_contract_item(
         }
     } else {
         (unknown_action, "UNKNOWN_PROVENANCE_WARNING")
+    };
+    // A concrete path redacts only what would not block (input contract, 2026-10-27): it
+    // never turns a protected, quarantined/rejected, intent or user-release block into a
+    // redaction.
+    let (action, reason) = if path_present && decided_action != "block_export" {
+        ("redact_value", "CONCRETE_PATH_REDACTED")
+    } else {
+        (decided_action, decided_reason)
     };
     let finding_class = match reason {
         "SAFE_PUBLIC_METADATA" | "SAFE_INVENTED_PUBLIC_EXAMPLE" => None,
@@ -368,22 +350,87 @@ fn classify_contract_item(
     }
 }
 
+/// A label the TypeScript and Python contracts read as unknown (`UNKNOWN_*` sets): absent,
+/// null, `unknown` or `TBD`.  Any other value, a non-string included, is a stated label.
 #[cfg(test)]
-fn truthy_option(value: Option<&Value>) -> bool {
-    value.map(truthy).unwrap_or(false)
+fn unknown_label(value: Option<&Value>) -> bool {
+    match value {
+        None | Some(Value::Null) => true,
+        Some(Value::String(text)) => matches!(text.as_str(), "unknown" | "TBD"),
+        Some(_) => false,
+    }
+}
+
+// Input contract (docs/security/redaction_export_controls.md, "Input contract"; HELP_HUMAN
+// ruling 2026-10-27).  The flag strings all three implementations recognize, after trimming
+// and lowercasing; identical in core/security/redaction/controls.py and
+// redactionExportControls.ts.
+#[cfg(test)]
+const RECOGNIZED_FLAG_STRINGS: [&str; 6] = [
+    "true",
+    "yes",
+    "explicit",
+    "present",
+    "local_private",
+    "explicit_local_private",
+];
+/// Trimmed from an intent flag: ASCII whitespace only, U+0009-U+000D and U+0020.
+#[cfg(test)]
+const INTENT_FLAG_TRIM: [char; 6] = ['\u{9}', '\u{a}', '\u{b}', '\u{c}', '\u{d}', '\u{20}'];
+/// Trimmed from a blocking flag: the union of what Rust's `str::trim`, Python's
+/// `str.strip()` (core/security/redaction/controls.py) and JavaScript's
+/// `String.prototype.trim` (redactionExportControls.ts) removed before the contract, so no
+/// implementation reads a blocking flag as unset where it read it as set.  The same code
+/// points as `BLOCKING_FLAG_TRIM` there.
+#[cfg(test)]
+const BLOCKING_FLAG_TRIM: [char; 30] = [
+    '\u{9}', '\u{a}', '\u{b}', '\u{c}', '\u{d}', '\u{1c}', '\u{1d}', '\u{1e}', '\u{1f}', '\u{20}',
+    '\u{85}', '\u{a0}', '\u{1680}', '\u{2000}', '\u{2001}', '\u{2002}', '\u{2003}', '\u{2004}',
+    '\u{2005}', '\u{2006}', '\u{2007}', '\u{2008}', '\u{2009}', '\u{200a}', '\u{2028}', '\u{2029}',
+    '\u{202f}', '\u{205f}', '\u{3000}', '\u{feff}',
+];
+
+#[cfg(test)]
+fn recognized_flag_string(text: &str) -> bool {
+    RECOGNIZED_FLAG_STRINGS.contains(&text.to_ascii_lowercase().as_str())
 }
 
 #[cfg(test)]
-fn truthy(value: &Value) -> bool {
+fn blocking_flag_option(value: Option<&Value>) -> bool {
+    value.map(blocking_flag).unwrap_or(false)
+}
+
+/// A blocking flag is set by `true`, a non-zero number, or a recognized string after
+/// trimming `BLOCKING_FLAG_TRIM` (input contract).
+#[cfg(test)]
+fn blocking_flag(value: &Value) -> bool {
     match value {
         Value::Bool(value) => *value,
-        Value::String(value) => matches!(
-            value.trim().to_ascii_lowercase().as_str(),
-            "true" | "yes" | "explicit" | "present" | "local_private" | "explicit_local_private"
-        ),
+        Value::String(value) => {
+            recognized_flag_string(value.trim_matches(|c| BLOCKING_FLAG_TRIM.contains(&c)))
+        }
         Value::Null | Value::Array(_) | Value::Object(_) => false,
         Value::Number(value) => value.as_f64().map(|number| number != 0.0).unwrap_or(false),
     }
+}
+
+/// An intent flag is set only by `true` or a recognized string after trimming ASCII
+/// whitespace (input contract); a number, an array or an object is not intent.
+#[cfg(test)]
+fn intent_flag(value: &Value) -> bool {
+    match value {
+        Value::Bool(value) => *value,
+        Value::String(value) => {
+            recognized_flag_string(value.trim_matches(|c| INTENT_FLAG_TRIM.contains(&c)))
+        }
+        _ => false,
+    }
+}
+
+/// A professional claim blocks unless it is absent, null or `false` (input contract).
+#[cfg(test)]
+fn professional_claim(value: Option<&Value>) -> bool {
+    !matches!(value, None | Some(Value::Null) | Some(Value::Bool(false)))
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
@@ -870,6 +917,304 @@ mod tests {
         }
     }
 
+    /// The DEL-12-02 input-contract sweep, expanded by the same rule as
+    /// `tests/security/test_redaction_input_contract_sweep.py` and
+    /// `redactionInputContractSweep.test.ts`: items in family order labels, flags, claims,
+    /// each decided in the spec's twelve contexts in order.
+    const SWEEP_CASE_COUNT: usize = 74_760;
+
+    struct SweepCase {
+        family: &'static str,
+        item: Map<String, Value>,
+        context: String,
+        local_intent: bool,
+        release_intent: bool,
+    }
+
+    fn sweep_json(text: &str) -> Value {
+        serde_json::from_str(text).expect("sweep fixture must remain valid JSON")
+    }
+
+    fn expand_sweep(spec: &Value) -> Vec<SweepCase> {
+        let absent = spec["absent"].as_str().expect("absent marker");
+        let put = |target: &mut Map<String, Value>, key: &str, value: &Value| {
+            if value.as_str() != Some(absent) {
+                target.insert(key.to_string(), value.clone());
+            }
+        };
+        let list = |value: &Value| value.as_array().expect("sweep list").clone();
+        let mut items: Vec<(&'static str, Map<String, Value>)> = Vec::new();
+        let labels = &spec["labels"];
+        for privacy in list(&labels["privacy"]) {
+            for redistribution in list(&labels["redistribution"]) {
+                for review in list(&labels["review"]) {
+                    for placement in list(&labels["placements"]) {
+                        let mut item = Map::from_iter([("value".to_string(), json!("x"))]);
+                        match placement.as_str().expect("placement") {
+                            "item" => {
+                                put(&mut item, "privacy_classification", &privacy);
+                                put(&mut item, "redistribution_status", &redistribution);
+                                put(&mut item, "review_status", &review);
+                            }
+                            "provenance" => {
+                                let mut provenance = Map::new();
+                                put(&mut provenance, "privacy_classification", &privacy);
+                                put(&mut provenance, "redistribution_status", &redistribution);
+                                put(&mut provenance, "review_status", &review);
+                                item.insert("provenance".to_string(), Value::Object(provenance));
+                            }
+                            _ => {
+                                // split: the privacy and review on the item, the redistribution
+                                // on a public provenance whose review is quarantined only with
+                                // the item's.
+                                put(&mut item, "privacy_classification", &privacy);
+                                let quarantined = review.as_str() == Some("quarantined");
+                                let mut provenance = Map::from_iter([
+                                    ("privacy_classification".to_string(), json!("public")),
+                                    (
+                                        "redistribution_status".to_string(),
+                                        json!("public_permissive"),
+                                    ),
+                                    (
+                                        "review_status".to_string(),
+                                        json!(if quarantined {
+                                            "quarantined"
+                                        } else {
+                                            "accepted"
+                                        }),
+                                    ),
+                                ]);
+                                put(&mut provenance, "redistribution_status", &redistribution);
+                                item.insert("provenance".to_string(), Value::Object(provenance));
+                                put(&mut item, "review_status", &review);
+                            }
+                        }
+                        items.push(("labels", item));
+                    }
+                }
+            }
+        }
+        let bases = list(&spec["bases"]);
+        for key in list(&spec["flags"]["keys"]) {
+            let key = key.as_str().expect("flag key");
+            for value in list(&spec["flags"]["values"]) {
+                for base in &bases {
+                    let mut item = Map::from_iter([("value".to_string(), json!("x"))]);
+                    item.extend(base.as_object().expect("base object").clone());
+                    match key.strip_prefix("export_policy.") {
+                        Some(policy_key) => {
+                            item.insert(
+                                "export_policy".to_string(),
+                                Value::Object(Map::from_iter([(
+                                    policy_key.to_string(),
+                                    value.clone(),
+                                )])),
+                            );
+                        }
+                        None => {
+                            item.insert(key.to_string(), value.clone());
+                        }
+                    }
+                    items.push(("flags", item));
+                }
+            }
+        }
+        for value in list(&spec["claims"]["values"]) {
+            for base in &bases {
+                let mut item = Map::from_iter([("value".to_string(), json!("x"))]);
+                item.extend(base.as_object().expect("base object").clone());
+                put(&mut item, "professional_claim", &value);
+                items.push(("claims", item));
+            }
+        }
+        let contexts = list(&spec["contexts"]);
+        let mut cases = Vec::with_capacity(items.len() * contexts.len());
+        for (family, item) in items {
+            for context in &contexts {
+                cases.push(SweepCase {
+                    family,
+                    item: item.clone(),
+                    context: context[0].as_str().expect("context").to_string(),
+                    local_intent: context[1].as_bool().expect("local intent"),
+                    release_intent: context[2].as_bool().expect("release intent"),
+                });
+            }
+        }
+        cases
+    }
+
+    fn sweep_decision(case: &SweepCase) -> String {
+        let decided = classify_contract_item(
+            &case.item,
+            &case.context,
+            case.local_intent,
+            case.release_intent,
+        );
+        format!("{}/{}", decided.action, decided.reason_code)
+    }
+
+    fn frozen_column(frozen: &Value, name: &str) -> Vec<String> {
+        let alphabet: Vec<char> = frozen["alphabet"]
+            .as_str()
+            .expect("alphabet")
+            .chars()
+            .collect();
+        let codes = frozen["codes"].as_array().expect("codes");
+        frozen["decisions"][name]
+            .as_array()
+            .expect("decision column")
+            .iter()
+            .flat_map(|line| {
+                line.as_str()
+                    .expect("decision line")
+                    .chars()
+                    .collect::<Vec<_>>()
+            })
+            .map(|symbol| {
+                let index = alphabet
+                    .iter()
+                    .position(|known| *known == symbol)
+                    .expect("symbol");
+                codes[index].as_str().expect("code").to_string()
+            })
+            .collect()
+    }
+
+    /// "Less strict" is this total order on the classifier's actions, least to most strict.
+    /// `redact_value` sits above `warning_only` by the existing contracts: `warning_only`
+    /// keeps the item with its value and is the unknown-metadata action only in
+    /// `local_private`, while `redact_value` replaces `value` and `text` and is that action
+    /// in every public or shared context.  The classifier produces no `redact_field` or
+    /// `omit_field`.
+    const ACTION_ORDER: [&str; 4] = ["include", "warning_only", "redact_value", "block_export"];
+    const BEFORE_COLUMNS: [&str; 3] = ["python_before", "typescript_before", "rust_before"];
+    const RAISED: &str = "raised/TypeError";
+
+    fn strictness(code: &str) -> usize {
+        let action = code.split('/').next().expect("action");
+        ACTION_ORDER
+            .iter()
+            .position(|known| *known == action)
+            .unwrap_or_else(|| panic!("unordered action in {code}"))
+    }
+
+    fn sweep_fixtures() -> (Vec<SweepCase>, Value) {
+        let spec = sweep_json(include_str!(
+            "../../../../fixtures/redaction_export_controls/input_contract_sweep.json"
+        ));
+        let frozen = sweep_json(include_str!(
+            "../../../../fixtures/redaction_export_controls/input_contract_sweep_decisions.json"
+        ));
+        let cases = expand_sweep(&spec);
+        assert_eq!(cases.len(), SWEEP_CASE_COUNT);
+        assert_eq!(frozen["case_count"].as_u64(), Some(SWEEP_CASE_COUNT as u64));
+        assert_eq!(frozen["action_order"], json!(ACTION_ORDER));
+        assert!(cases
+            .iter()
+            .all(|case| matches!(case.family, "labels" | "flags" | "claims")));
+        (cases, frozen)
+    }
+
+    /// The ruling's proof obligation: every sweep case's decision is at least as strict as
+    /// each implementation's frozen pre-contract decision.  Python's former TypeError on an
+    /// array or object label is no decision; the case is held to the TypeScript and Rust
+    /// columns.
+    #[test]
+    fn sweep_decides_no_case_less_strictly_than_any_frozen_pre_contract_decision() {
+        let (cases, frozen) = sweep_fixtures();
+        let before: Vec<(&str, Vec<String>)> = BEFORE_COLUMNS
+            .iter()
+            .map(|name| (*name, frozen_column(&frozen, name)))
+            .collect();
+        let mut looser = Vec::new();
+        for (index, case) in cases.iter().enumerate() {
+            let decided = sweep_decision(case);
+            for (name, column) in &before {
+                assert_eq!(column.len(), SWEEP_CASE_COUNT, "{name}");
+                if column[index] != RAISED && strictness(&decided) < strictness(&column[index]) {
+                    looser.push((index, *name, column[index].clone(), decided.clone()));
+                }
+            }
+        }
+        assert!(
+            looser.is_empty(),
+            "{} looser, first {:?}",
+            looser.len(),
+            looser.first()
+        );
+    }
+
+    /// With the pytest and vitest twins, the three implementations agree case for case.
+    #[test]
+    fn sweep_gives_the_contract_decision_for_every_case() {
+        let (cases, frozen) = sweep_fixtures();
+        let contract = frozen_column(&frozen, "contract");
+        assert_eq!(contract.len(), SWEEP_CASE_COUNT);
+        let mismatches: Vec<usize> = (0..SWEEP_CASE_COUNT)
+            .filter(|index| sweep_decision(&cases[*index]) != contract[*index])
+            .collect();
+        assert!(
+            mismatches.is_empty(),
+            "{} mismatches, first {:?}",
+            mismatches.len(),
+            &mismatches[..mismatches.len().min(5)]
+        );
+    }
+
+    /// Named regressions (HELP_HUMAN ruling 2026-10-27).  The per-row cases of the (a'),
+    /// (b') and (c) tables are the `input-contract-*` cases of the shared corpus, decided by
+    /// `canonical_parity_corpus_matches_rust_contract_mirror` and its two twins.
+    #[test]
+    fn input_contract_corpus_cases_are_present_and_outside_the_pinned_original_cases() {
+        let corpus: Value = serde_json::from_str(include_str!(
+            "../../../../fixtures/redaction_export_controls/cases.json"
+        ))
+        .expect("shared redaction corpus must remain valid JSON");
+        let cases = corpus["cases"].as_array().expect("cases array");
+        let added: Vec<&Value> = cases
+            .iter()
+            .filter(|case| {
+                case["case_id"]
+                    .as_str()
+                    .is_some_and(|id| id.starts_with("input-contract-"))
+            })
+            .collect();
+        assert_eq!(added.len(), 49);
+        assert!(added
+            .iter()
+            .all(|case| case.get("explicit_user_release_intent").is_some()));
+        assert!(cases[cases.len() - 49..].iter().eq(added.into_iter()));
+    }
+
+    /// Before the reorder `concrete_path_present: true` returned `redact_value` /
+    /// `CONCRETE_PATH_REDACTED` ahead of the protected-content block, in every context.
+    #[test]
+    fn concrete_path_never_turns_a_protected_block_into_a_redaction() {
+        let item = json!({
+            "field_id": "invented.input_contract.path_protected",
+            "concrete_path_present": true,
+            "privacy_classification": "protected_suspected",
+            "redistribution_status": "public_permissive",
+            "value": "Invented placeholder value"
+        });
+        for context in [
+            "public_report",
+            "public_example",
+            "shared_model",
+            "downstream_tool",
+            "local_private",
+            USER_RELEASED_REPORT_CONTEXT,
+        ] {
+            let decided =
+                classify_contract_item(item.as_object().expect("object"), context, false, false);
+            assert_eq!(
+                (decided.action, decided.reason_code),
+                ("block_export", "PROTECTED_CONTENT_BLOCKED"),
+                "{context}"
+            );
+        }
+    }
+
     #[test]
     fn user_release_intent_cannot_enable_export_in_another_context() {
         let item = json!({
@@ -923,14 +1268,18 @@ mod tests {
         assert_eq!(blocked.reason_code, "USER_RELEASE_INTENT_REQUIRED");
     }
 
-    /// Codex r1 finding 3: the user-released context reads its inputs as TypeScript and
-    /// Python do (the shared corpus holds the decisions), while each existing context
-    /// keeps this mirror's reading byte for byte.  The existing contexts' departures
-    /// from TypeScript and Python remain open (`docs/security/redaction_export_controls.md`,
-    /// Final-Sink Route Binding) and are not changed here: repairing them would change
-    /// existing decisions.
+    /// The user-released context and the five existing contexts read these inputs as
+    /// TypeScript and Python do (the shared corpus holds the decisions).  Re-pinned
+    /// (W-18b Rust-mirror alignment): this test previously asserted main's old
+    /// existing-context answers on the same items, recording the mirror's departure
+    /// from TypeScript and Python (it ignored `cache_payload` / `sqlite_payload`, did
+    /// not fall back to the provenance for a null member or a null / `unknown` review,
+    /// and did not count a scalar storage-privacy key as metadata).  The decision of
+    /// 2026-10-27 aligns the mirror, so the existing contexts now give the contract's
+    /// answers: the payload and the quarantined provenance block, and the null privacy
+    /// takes its provenance's private class.
     #[test]
-    fn user_released_context_mirrors_the_contract_reading_without_changing_existing_contexts() {
+    fn every_context_mirrors_the_contract_reading_of_payload_provenance_and_storage_inputs() {
         let cases = [
             (
                 json!({"privacy_classification": "private_project_data", "redistribution_status": "private_only", "cache_payload": 1, "value": "Invented value"}),
@@ -954,7 +1303,9 @@ mod tests {
             let released = classify_contract_item(item, USER_RELEASED_REPORT_CONTEXT, false, true);
             assert_eq!((released.action, released.reason_code), (*action, *reason));
         }
-        // The existing contexts' reading of the same items, as on main.
+        // The existing contexts' reading of the same items, now the contract's.  On main
+        // these were `PRIVATE_LOCAL_ALLOWED_WITH_WARNING` for items 0 and 2 and
+        // `UNKNOWN_PROVENANCE_WARNING` for item 3.
         let local = |item: &Value, intent| {
             let decided = classify_contract_item(
                 item.as_object().expect("object"),
@@ -966,16 +1317,44 @@ mod tests {
         };
         assert_eq!(
             local(&cases[0].0, true),
-            ("warning_only", "PRIVATE_LOCAL_ALLOWED_WITH_WARNING")
+            ("block_export", "PAYLOAD_METADATA_ONLY_REQUIRED")
+        );
+        assert_eq!(
+            local(&cases[1].0, true),
+            ("block_export", "PAYLOAD_METADATA_ONLY_REQUIRED")
         );
         assert_eq!(
             local(&cases[2].0, true),
-            ("warning_only", "PRIVATE_LOCAL_ALLOWED_WITH_WARNING")
+            ("block_export", "PROTECTED_CONTENT_BLOCKED")
         );
         assert_eq!(
             local(&cases[3].0, true),
-            ("warning_only", "UNKNOWN_PROVENANCE_WARNING")
+            ("warning_only", "PRIVATE_LOCAL_ALLOWED_WITH_WARNING")
         );
+        assert_eq!(
+            local(&cases[3].0, false),
+            ("block_export", "LOCAL_PRIVATE_INTENT_REQUIRED")
+        );
+        for context in [
+            "public_report",
+            "public_example",
+            "shared_model",
+            "downstream_tool",
+        ] {
+            for (index, (item, (action, reason))) in cases.iter().enumerate() {
+                let decided = classify_contract_item(
+                    item.as_object().expect("object"),
+                    context,
+                    false,
+                    false,
+                );
+                assert_eq!(
+                    (decided.action, decided.reason_code),
+                    (*action, *reason),
+                    "item {index} in {context}"
+                );
+            }
+        }
         let no_metadata_but_storage = json!({"storage_locality": "invented_locality", "value": 1});
         let public = classify_contract_item(
             no_metadata_but_storage.as_object().expect("object"),
@@ -983,7 +1362,12 @@ mod tests {
             false,
             false,
         );
-        assert!(!public.source_metadata_present);
+        // On main the scalar storage key did not count: `MISSING_METADATA_REDACTED`.
+        assert!(public.source_metadata_present);
+        assert_eq!(
+            (public.action, public.reason_code),
+            ("redact_value", "REDISTRIBUTION_STATUS_UNKNOWN")
+        );
         let released = classify_contract_item(
             no_metadata_but_storage.as_object().expect("object"),
             USER_RELEASED_REPORT_CONTEXT,
