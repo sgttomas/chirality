@@ -97,6 +97,8 @@ _CLOSURE_TRANSFERS = ("transfers_to_wall", "separately_supported_or_compensated"
 # OPPRES as written with pressure: PD/4t, Bourdon effect off, pressure correction for bends off, peak pressure
 # factor 1, Bourdon (off) in expansion cases. SWBPIPE's exact pressure route models neither effect (DEL-04-07 D-3).
 OPPRES_LINE = "0,0,0,1,0"
+# The importer's refusals of a restored region by the exact route's checks, which the writer's preflight reads.
+_REGION_CHECK_CODES = ("MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR", "MBF-IMPORT-PRESSURE-BORE-MISMATCH")
 _BEND_SOLVER_CONSUMPTION = "curved_bend_macro_element"
 _BEND_RELATIVE_TOLERANCE = 1e-9  # tangent lengths, line intersection, bend angle and bend plane
 _PROJECT_UNITS = {"length": ("m", "mm", "in"), "force": ("N", "lbf"), "temperature": ("degC", "degF")}
@@ -1343,7 +1345,7 @@ class _Writer:
                  "provenance": region["provenance"], "pressure_bar": self.pipe_pressure[region["member_pipe_ids"][0]]}
                 for region in self.regions]}
         self.add_assumptions(temperatures)
-        return MbfSiResult(
+        result = MbfSiResult(
             status="written",
             text="".join(line + "\r\n" for line in lines),
             diagnostics=self.diagnostics,
@@ -1359,6 +1361,33 @@ class _Writer:
             loss_report=self.loss,
             assumptions=self.assumptions,
         )
+        if self.regions and not self.regions_survive_formatting(result):
+            return self.refused()
+        return result
+
+    def regions_survive_formatting(self, result: MbfSiResult) -> bool:
+        """Design §9.4: each pressure region as the printed MBF gives it back. The writer's own bound re-import
+        reads the printed values exactly as an import will (positions summed from the printed offsets, bend tangent
+        nodes rebuilt, OD and wall as printed) and applies the exact route's whole-region checks to the restored
+        regions in their declared order. A region the model's values admit but the printed values do not is refused
+        by name (MBF-SI-PRESSURE-REGION-FORMAT); the writer never cuts or reorders it."""
+        from hashlib import sha256
+        from .importer import import_caepipe_mbf  # deferred: the importer imports this module
+
+        data = result.text.encode("ascii")  # type: ignore[union-attr]
+        sidecar = {**{key: value for key, value in result.to_dict().items() if key.endswith("_map")},
+                   "mbf_sha256": sha256(data).hexdigest()}
+        back = import_caepipe_mbf(data, sidecar=sidecar, source_label="writer preflight (geometry only)",
+                                  material_provenance={"*": {"origin": "project_invented",
+                                                             "source_name": "writer preflight; never output"}})
+        prefix = "pressure_map region "
+        for item in back.diagnostics:
+            if item["code"] in _REGION_CHECK_CODES and item["location"].startswith(prefix):
+                region = item["location"][len(prefix):]
+                self.refuse("MBF-SI-PRESSURE-REGION-FORMAT", f"region:{region}",
+                            f"region {region} passes the exact route's checks on the model's values but not on the "
+                            f"MBF's printed values (10 significant digits): {item['message']}")
+        return not self.has_errors()
 
     def node_comments(self, node: str) -> list[str]:
         comments = []

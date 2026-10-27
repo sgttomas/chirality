@@ -2290,7 +2290,11 @@ class _Importer:
         unit = PRESSURE_UNIT[self.si]
         if stored is not None and isinstance(stored.get("regions"), list):
             members = self.restore_regions(stored["regions"], active, ends, name_of)
-            how = "restored from the sidecar's pressure_map (bound import)"
+            if members is not None:
+                members = self.check_restored(members, pressures, ends, arcs, point_of, name_of,
+                                              {pipe["id"]: pipe["label"] for pipe in pipes})
+            how = ("restored from the sidecar's pressure_map (bound import), each checked whole as the exact route "
+                   "checks it in its declared order")
         else:
             members = self.form_regions(active, pressures, ends, arcs, point_of, name_of,
                                         {pipe["id"]: pipe["label"] for pipe in pipes})
@@ -2347,6 +2351,82 @@ class _Importer:
                         f"OPPRES gives {', '.join(on)}; SWBPIPE's exact pressure route models neither the Bourdon "
                         "effect nor pressure stiffening of bends (DEL-04-07 D-3)")
 
+    def route_checks(self, pressures, ends, arcs, point_of, name_of):
+        """The exact route's whole-region checks, as ported: (runs, collinear, failures). `failures(members, start)`
+        gives, for members in traversal order from `start`, the straight runs collinear_run refuses and whether the
+        equal-bore guard refuses (Design §9.4)."""
+        factor = _METRES_PER_UNIT["mm" if self.si else "in"]
+
+        def far(pipe_id: str, node: str) -> str:
+            a, b = ends[pipe_id]
+            return b if node == a else a
+
+        def runs(members: list[str], nodes: list[str]) -> list[tuple[int, int]]:
+            """(first, past-last) member indices of each straight run: between bends or the piece's ends."""
+            found, index = [], 0
+            while index < len(members):
+                if members[index] in arcs:
+                    index += 1
+                    continue
+                end = index
+                while end < len(members) and members[end] not in arcs:
+                    end += 1
+                found.append((index, end))
+                index = end
+            return found
+
+        def collinear(nodes: list[str]) -> bool:
+            return runtime_collinear([tuple(value * factor + 0.0 for value in point_of[name_of[node]])
+                                      for node in nodes])
+
+        def bore_m(pipe_id: str) -> float:
+            section = self.pipes[pressures[pipe_id][1].section]
+            return runtime_bore_radius_m(section["od"].value, section["thk"].value, factor)
+
+        def failures(members: list[str], start: str) -> tuple[list[list[str]], bool]:
+            nodes = [start]
+            for member in members:
+                nodes.append(far(member, nodes[-1]))
+            bad = [members[low:high] for low, high in runs(members, nodes) if not collinear(nodes[low:high + 1])]
+            return bad, not runtime_bores_equal([bore_m(member) for member in members])
+
+        return runs, collinear, failures
+
+    def check_restored(self, restored, pressures, ends, arcs, point_of, name_of, label_of):
+        """Bound regions checked whole as the route checks them, in their declared traversal order (from the first
+        terminal), never cut or reordered; None after a refusal (Design §9.4)."""
+        _, _, failures = self.route_checks(pressures, ends, arcs, point_of, name_of)
+        line = self.sections["LOADS"][0]
+        for region_id, members, terminals in restored:
+            start, finish = terminals[0]["node_ref"], terminals[1]["node_ref"]
+            ordered, remaining, node = [], set(members), start
+            while remaining:
+                following = [pipe_id for pipe_id in remaining if node in ends[pipe_id]]
+                if len(following) != 1:
+                    break
+                ordered.append(following[0])
+                remaining.discard(following[0])
+                a, b = ends[following[0]]
+                node = b if node == a else a
+            location = f"pressure_map region {region_id}"
+            if remaining or node != finish:
+                self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", line, location,
+                            f"the sidecar's region {region_id} is not one chain from its first terminal to its second")
+                continue
+            runs, bores = failures(ordered, start)
+            for run in runs:
+                names = ", ".join(label_of[pipe_id] for pipe_id in run)
+                self.refuse("MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR", line, location,
+                            f"region {region_id} as the sidecar declares it (from {name_of[start]}): its straight run "
+                            f"{names} fails the exact route's check (64 epsilon of the run's span) on the MBF's "
+                            "values; the region is not cut or reordered")
+            if bores:
+                self.refuse("MBF-IMPORT-PRESSURE-BORE-MISMATCH", line, location,
+                            f"region {region_id} as the sidecar declares it (from {name_of[start]}): its bores in "
+                            "metres differ by more than the exact route's guard (64 epsilon of the radius) on the "
+                            "MBF's values; the region is not cut or reordered")
+        return None if self.has_errors() else restored
+
     def form_regions(self, active, pressures, ends, arcs, point_of, name_of, label_of):
         """Unbound regions: [(id, member pipe ids in chain order, two terminals)], or None after a refusal."""
         incident: dict[str, list[str]] = {}
@@ -2382,26 +2462,7 @@ class _Importer:
             theta = 2 * math.atan2(correct_norm3(*_sub(a, t)), correct_norm3(*(a[i] + t[i] for i in range(3))))
             return theta > TANGENCY_TOLERANCE_RAD
 
-        def runs(members: list[str], nodes: list[str]) -> list[tuple[int, int]]:
-            """(first, past-last) member indices of each straight run: between bends or the piece's ends."""
-            found, index = [], 0
-            while index < len(members):
-                if members[index] in arcs:
-                    index += 1
-                    continue
-                end = index
-                while end < len(members) and members[end] not in arcs:
-                    end += 1
-                found.append((index, end))
-                index = end
-            return found
-
-        def collinear(nodes: list[str]) -> bool:
-            return runtime_collinear([metres(node) for node in nodes])
-
-        def bore_m(pipe_id: str) -> float:
-            section = self.pipes[pressures[pipe_id][1].section]
-            return runtime_bore_radius_m(section["od"].value, section["thk"].value, factor)
+        runs, collinear, failures = self.route_checks(pressures, ends, arcs, point_of, name_of)
 
         def split(members: list[str], start: str) -> list[tuple[list[str], str, str]]:
             """The chain cut only at its corners: a straight run the runtime's collinear_run admits whole, in either
@@ -2422,14 +2483,6 @@ class _Importer:
                 current.append(member)
             pieces.append((current, piece_start, nodes[-1]))
             return pieces
-
-        def failures(members: list[str], start: str) -> tuple[list[list[str]], bool]:
-            """The straight runs the runtime refuses, and whether its bore guard refuses, for this traversal."""
-            nodes = [start]
-            for member in members:
-                nodes.append(far(member, nodes[-1]))
-            bad = [members[low:high] for low, high in runs(members, nodes) if not collinear(nodes[low:high + 1])]
-            return bad, not runtime_bores_equal([bore_m(member) for member in members])
 
         chains, seen = [], set()
         for pipe_id in sorted(active, key=order.__getitem__):

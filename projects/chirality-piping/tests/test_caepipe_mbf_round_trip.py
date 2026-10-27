@@ -573,6 +573,57 @@ def test_an_import_whose_allowance_is_deleted_is_not_round_tripped_with_an_autho
     assert render_caepipe_mbf_si(imported.model, title="WITH ALLOWANCE").status == "written"
 
 
+# VER-002 r4: two regions the model's values admit but the writer's 10-digit print would not. (a) Bores: 168.30000004
+# - 2 x 7.11000002 = 154.08 = 170.3 - 2 x 8.11, and in m both radii are 0.07704; printed, P1 becomes 168.3, 7.11000002.
+# (b) Geometry: offsets (1000.0000004, 2000.0000008) then (1999.9999996, 3999.9999992), collinear as read; printed to
+# 10 digits, the run is not.
+FORMAT_CASES = {
+    "bores": (("P1,168.30000004,7.11000002,0", "P2,170.3,8.11,0"),
+              ("F10,KA,MM1,PP1,CL=L1", "T20,X1000", "T30,KA,X1000,PP2"), "MBF-IMPORT-PRESSURE-BORE-MISMATCH"),
+    "geometry": (("P1,168.3,7.11,0",), ("F10,KA,MM1,PP1,CL=L1", "T20,X1000.0000004,Y2000.0000008",
+                                        "T30,KA,X1999.9999996,Y3999.9999992"), "MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR"),
+}
+
+
+def format_case(name: str):
+    pipes, rows, _ = FORMAT_CASES[name]
+    result = importer_tests.run(importer_tests.mbf(*rows, pipe=pipes, loads=("L1,20,10,0",)),
+                                pressure_closure=importer_tests.CLOSURE)
+    assert result.status == "imported", result.diagnostics
+    assert [region["id"] for region in result.model["load_cases"][0]["pressure_regions"]] == ["region:mbf-10-30"]
+    return result.model
+
+
+@pytest.mark.parametrize("name", sorted(FORMAT_CASES))
+def test_the_writer_refuses_a_region_its_printed_values_would_break(name, monkeypatch):
+    model = format_case(name)
+    written = render_caepipe_mbf_si(model, title="FORMAT")
+    assert written.status == "refused" and written.text is None
+    errors = [item for item in written.diagnostics if item["severity"] == "error"]
+    assert {(item["code"], item["entity"]) for item in errors} == {
+        ("MBF-SI-PRESSURE-REGION-FORMAT", "region:region:mbf-10-30")}
+    assert any(item["code"] == "MBF-SI-PRESSURE-REGION-FORMAT" for item in written.loss_report)
+    # Without the preflight, the bound import of the printed file refuses the restored region by name, in its
+    # declared order, without cutting it.
+    from core.handoff.caepipe_mbf import si_writer
+    monkeypatch.setattr(si_writer._Writer, "regions_survive_formatting", lambda self, result: True)
+    unchecked = render_caepipe_mbf_si(model, title="FORMAT")
+    data = unchecked.text.encode("ascii")
+    sidecar = {**{key: value for key, value in unchecked.to_dict().items() if key.endswith("_map")},
+               "mbf_sha256": hashlib.sha256(data).hexdigest()}
+    bound = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label=name)
+    assert bound.status == "refused" and bound.source["binding"] == "bound"
+    assert {(item["code"], item["location"]) for item in bound.diagnostics if item["severity"] == "error"} == {
+        (FORMAT_CASES[name][2], "pressure_map region region:mbf-10-30")}
+
+
+def test_the_runtime_solves_the_format_cases_as_imported():
+    runner = runner_binary()
+    for name in FORMAT_CASES:
+        _, _, error = solve_swbpipe(runner, {"case_id": name, "model": format_case(name)})
+        assert error == "", name
+
+
 # --- (e) determinism ----------------------------------------------------------------------------------
 @pytest.mark.parametrize("name", REVERSIBLE)
 def test_importing_twice_gives_identical_bytes(trips, name):
