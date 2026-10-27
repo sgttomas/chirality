@@ -58,6 +58,12 @@
         "label": "Plan & organize",
         "workflows": [
           {
+            "name": "define-work"
+          },
+          {
+            "name": "integrated-engineering-estimate-schedule"
+          },
+          {
             "name": "construct-local-work-graph"
           },
           {
