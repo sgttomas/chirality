@@ -1,7 +1,7 @@
 """SI CAEPIPE MBF text writer for the pilot subset (DEL-17-04).
 
 `render_caepipe_mbf_si` turns the SWBPIPE headless preview model (the
-`solve.preview_model.model` object, model document 0.7.0) into MBF text in the
+`solve.preview_model.model` object, of the current model-document version) into MBF text in the
 SI unit set (mm, N, N*m, MPa, C), following the public CAEPIPE User's Manual
 appendix "Import MBF". Only a narrow pilot subset is written; everything else
 is refused by name and listed in the loss report, never silently dropped.
@@ -19,7 +19,9 @@ analyses the text.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+import json
 import math
+from pathlib import Path
 from typing import Any, Mapping
 
 
@@ -63,6 +65,14 @@ _BEND_SOLVER_CONSUMPTION = "curved_bend_macro_element"
 _BEND_RELATIVE_TOLERANCE = 1e-9  # tangent lengths, line intersection, bend angle and bend plane
 _PROJECT_UNITS = {"length": ("m", "mm"), "force": ("N",), "temperature": ("degC",)}
 
+# The model-document schema whose single `schema_version` enum value is the current version.
+MODEL_SCHEMA_PATH = Path(__file__).resolve().parents[3] / "schemas" / "model.schema.yaml"
+# Material provenance that affirmatively identifies project-invented data or the user's own source (Design
+# `caepipe-mbf-import.md` §7.4). The writer copies the matching origin into `material_map`; otherwise none.
+INVENTED_REDISTRIBUTION_STATUS = "invented_non_engineering_example"
+USER_SUPPLIED_CERTIFICATION = "user-supplied own source"
+MATERIAL_ORIGINS = ("project_invented", "user_supplied")
+
 _TITLE_MAX = 70
 _DESCRIPTION_MAX = 30
 _MAX_NODES = 9999  # node numbers 10, 20, ... stay below 99999
@@ -101,6 +111,27 @@ class MbfSiResult:
             "loss_report": [dict(item) for item in self.loss_report],
             "assumptions": list(self.assumptions),
         }
+
+
+def current_model_schema_version() -> str:
+    """The one `schema_version` the model-document schema admits; fails unless there is exactly one."""
+    schema = json.loads(MODEL_SCHEMA_PATH.read_text(encoding="utf-8"))
+    versions = schema["properties"]["schema_version"].get("enum") or []
+    if len(versions) != 1 or not isinstance(versions[0], str):
+        raise ValueError(f"{MODEL_SCHEMA_PATH.name}: schema_version must admit exactly one version (got {versions!r})")
+    return versions[0]
+
+
+def material_origin(material: Mapping[str, Any]) -> str | None:
+    """`project_invented` or `user_supplied` only from affirmative provenance without a library_ref, else None."""
+    record = material.get("provenance_record")
+    if not isinstance(record, Mapping) or record.get("library_ref") is not None:
+        return None
+    if record.get("redistribution_status") == INVENTED_REDISTRIBUTION_STATUS:
+        return "project_invented"
+    if record.get("contributor_certification") == USER_SUPPLIED_CERTIFICATION:
+        return "user_supplied"
+    return None
 
 
 def render_caepipe_mbf_si(
@@ -235,9 +266,10 @@ class _Writer:
 
     def check_document(self) -> None:
         version = self.model.get("schema_version")
-        if version != "0.7.0":
+        current = current_model_schema_version()
+        if version != current:
             self.diag("MBF-SI-SCHEMA-VERSION", "warning", "model.schema_version",
-                      f"model schema_version {version!r} is not 0.7.0, the version this writer reads")
+                      f"model schema_version {version!r} is not {current}, the version this writer reads")
         if self.model.get("pressure_contract") is not None:
             self.refuse("MBF-SI-PRESSURE-UNSUPPORTED", "model.pressure_contract",
                         "pressure_contract is present; pressure is not exported by the pilot writer")
@@ -341,7 +373,8 @@ class _Writer:
                                       entity, "thermal_expansion_coefficient")
             if not ok or e_mpa is None or nu is None or alpha is None:
                 continue
-            self.materials[material["id"]] = {"E": e_mpa, "nu": nu, "alpha": alpha, "has_alpha": has_alpha}
+            self.materials[material["id"]] = {"E": e_mpa, "nu": nu, "alpha": alpha, "has_alpha": has_alpha,
+                                              "origin": material_origin(material)}
 
     def read_pipes(self) -> None:
         for pipe in _list(self.model.get("pipe_segments"), self, "model.pipe_segments"):
@@ -618,7 +651,7 @@ class _Writer:
                     self.refuse("MBF-SI-SUPPORT-UNSUPPORTED", entity,
                                 f"{entity} has family anchor but restrains only {', '.join(sorted(dofs))}")
                     continue
-                self.supports[support["id"]] = {"node": node, "dofs": dofs}
+                self.supports[support["id"]] = {"node": node, "dofs": dofs, "family": family}
                 self.node_restraints.setdefault(node, set()).update(dofs)
                 self.node_supports.setdefault(node, []).append(support["id"])
         for node, dofs in sorted(self.node_restraints.items()):
@@ -703,7 +736,8 @@ class _Writer:
             return
         direction = load.get("direction")
         dimension = load.get("dimension")
-        record: dict[str, Any] = {"load_case": case_id, "caepipe_load_case": label, "category": category}
+        record: dict[str, Any] = {"load_case": case_id, "caepipe_load_case": label, "category": category,
+                                  "direction": direction}
         if category in {"concentrated_force", "concentrated_moment"}:
             force = category == "concentrated_force"
             node = target.get("node")
@@ -902,6 +936,8 @@ class _Writer:
                 "temperatures_c": temperatures,
                 "elements": [],
             }
+            if material["origin"] is not None:
+                material_map[name]["origin"] = material["origin"]
         section_key = (_num(pipe["od"]), _num(pipe["thk"]))
         if section_key not in sections:
             name = f"P{len(sections) + 1}"
@@ -1062,6 +1098,7 @@ class _Writer:
                 "node": node_map[support["node"]],
                 "caepipe_kind": "anchor" if self.is_anchor(support["node"]) else "restraint",
                 "restrained": [dof for dof in DOFS if dof in support["dofs"]],
+                "family": support["family"],
             }
         load_map = {}
         for key, record in self.load_records.items():

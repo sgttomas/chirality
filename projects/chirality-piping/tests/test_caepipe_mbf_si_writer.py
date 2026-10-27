@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
+import json
 import math
 from pathlib import Path
 import sys
@@ -19,6 +20,7 @@ from core.handoff.caepipe_mbf import (  # noqa: E402
     MbfSiResult,
     render_caepipe_mbf_si,
 )
+from core.handoff.caepipe_mbf.si_writer import MODEL_SCHEMA_PATH, current_model_schema_version  # noqa: E402
 
 
 SIX = ["UX", "UY", "UZ", "RX", "RY", "RZ"]
@@ -531,3 +533,54 @@ def test_bend_with_other_properties_than_its_incoming_straight_is_refused():
     model = bent_l()
     model["load_cases"][0]["primitive_loads"][1]["magnitude"] = q(90.0, "degC")
     assert_refused(render_caepipe_mbf_si(model, title="B"), "MBF-SI-BEND-UNSUPPORTED", "one layout row")
+
+
+# Sidecar fields the MBF importer reads back (Design `caepipe-mbf-import.md` §7.4, §12, §15, §19).
+def test_support_map_records_each_support_family():
+    model = branched()
+    model["supports"][0]["family"] = "anchor"
+    result = render_caepipe_mbf_si(model, title="FAMILY")
+    assert result.status == "written", result.diagnostics
+    assert result.support_map["A1"]["family"] == "anchor"
+    assert result.support_map["A3"]["family"] is None  # authored without a family
+    assert result.support_map["R4"]["family"] is None
+
+
+def test_load_map_records_each_primitive_direction():
+    result = render_caepipe_mbf_si(branched(), title="DIRECTION")
+    assert result.status == "written", result.diagnostics
+    assert {key: entry["direction"] for key, entry in result.load_map.items()} == {
+        "case:sus/f2": "global_y", "case:sus/m4": "RZ", "case:th/t1": "global_x", "case:th/t2": "global_x",
+        "case:th/d3": "UY", "case:th/r3": "RZ"}
+
+
+def test_material_map_origin_only_from_affirmative_provenance():
+    def origin(record):
+        model = cantilever()
+        if record is not None:
+            model["materials"][0]["provenance_record"] = record
+        result = render_caepipe_mbf_si(model, title="ORIGIN")
+        assert result.status == "written", result.diagnostics
+        return result.material_map["M1"].get("origin")
+
+    invented = {"source_name": "invented", "redistribution_status": "invented_non_engineering_example"}
+    assert origin(invented) == "project_invented"
+    assert origin({"source_name": "own", "contributor_certification": "user-supplied own source"}) == "user_supplied"
+    library = {"library_kind": "material", "library_id": "lib", "library_version": "sha256:0", "record_id": "r"}
+    assert origin({**invented, "library_ref": library}) is None
+    for status in ("public_permissive", "private_only", "unknown", "protected_suspected"):
+        assert origin({"source_name": "x", "redistribution_status": status}) is None
+    assert origin(None) is None  # a bare provenance string or none at all
+
+
+def test_schema_version_check_reads_the_model_schema_enum():
+    current = current_model_schema_version()
+    schema = json.loads(MODEL_SCHEMA_PATH.read_text(encoding="utf-8"))
+    assert schema["properties"]["schema_version"]["enum"] == [current]
+    model = cantilever()
+    model["schema_version"] = current
+    assert "MBF-SI-SCHEMA-VERSION" not in codes(render_caepipe_mbf_si(model, title="V"), "warning")
+    model["schema_version"] = "0.0.1"
+    result = render_caepipe_mbf_si(model, title="V")
+    assert "MBF-SI-SCHEMA-VERSION" in codes(result, "warning")
+    assert any(f"is not {current}" in item["message"] for item in result.diagnostics)
