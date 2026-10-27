@@ -4,10 +4,13 @@
 from __future__ import annotations
 
 from copy import deepcopy
+from fractions import Fraction
 import json
 import math
 from pathlib import Path
 import sys
+
+import pytest
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -277,25 +280,98 @@ def test_mm_project_writes_the_same_text_as_metre_project():
     assert metres.element_map == millimetres.element_map
 
 
-def test_project_length_in_inches_is_refused():
+def us_customary_cantilever():
+    """Invented US-customary cantilever: 120 in along X, OD 6.625 in, t 0.28 in, E 29e6 psi, nu 0.3."""
+    model = model_shell("in")
+    model["project"]["units"].update(force="lbf", temperature="degF")
+    model["materials"][0] = {"id": "mat:US", "elastic_modulus": q(29.0e6, "psi"), "poisson_ratio": q(0.3, "1"),
+                             "thermal_expansion_coefficient": q(6.5e-6, "1/degF")}
+    model["nodes"] = [node("N0", 0.0), node("N1", 120.0)]
+    model["pipe_segments"] = [pipe("S1", "N0", "N1", 6.625, 0.28, "in")]
+    model["pipe_segments"][0]["material"] = "mat:US"
+    model["supports"] = [{"id": "anchor:N0", "node": "N0", "restraints": list(SIX)}]
+    model["load_cases"] = [
+        {"id": "case:sus", "primitive_loads": [
+            force("tip", "N1", "global_y", -1000.0, "lbf"),
+            {"id": "m", "category": "concentrated_moment", "target": {"type": "node", "node": "N1"}, "direction": "RZ",
+             "magnitude": q(100.0, "lbf*ft"), "dimension": "moment"}]},
+        {"id": "case:th", "primitive_loads": [
+            {"id": "dt", "category": "thermal", "target": {"type": "element", "pipe": "S1"}, "direction": "global_x",
+             "magnitude": q(180.0, "degF"), "dimension": "temperature_interval"}]},
+    ]
+    return model
+
+
+def test_us_customary_model_is_normalized_by_exact_definitions():
+    # Hand-derived (Design section 5.2, O-2): 120 in x 25.4 = 3048 mm; 6.625 in = 168.275 mm; 0.28 in = 7.112 mm;
+    # 29e6 psi x 4.4482216152605 N / 645.16 mm^2 = 199947.9615 N/mm2; 6.5e-6 /degF x 9/5 = 1.17e-5 /degC;
+    # 1000 lbf = 4448.2216152605 N; 100 lbf*ft = 100 x 4.4482216152605 x 0.3048 = 135.58179483314 N*m;
+    # 180 degF interval x 5/9 = 100 C; reference 70 degF = (70 - 32) x 5/9 = 21.11111111 C.
+    result = render_caepipe_mbf_si(us_customary_cantilever(), title="US", reference_temperature_f=70.0)
+    assert result.status == "written", result.diagnostics
+    assert result.text == crlf(
+        "US", "VERSION", "15.10", "OPTIONS", "HGRA,SI", "OPTEMP", "21.11111111", "MATERIAL",
+        "M1,0,0.3,1,1,CS,mat:US", "M1,21.11111111,199947.9615,1.17e-05", "M1,121.1111111,199947.9615,1.17e-05",
+        "PIPE", "P1,168.275,7.112,0,0,0,0,0,0", "LOADS", "L1,121.1111111,0,0",
+        "LAYOUT", "F10,KA,MM1,PP1,CL=L1", "T20,X3048,CFOR(0,-4448.221615,0),MOM(0,0,135.5817948)",
+    )
+    normalized = [item for item in result.diagnostics if item["code"] == "MBF-SI-UNITS-NORMALIZED"]
+    assert len(normalized) == 1 and normalized[0]["severity"] == "info"
+    for definition in ("1 in = 25.4 mm", "1 lbf = 0.45359237 kg x 9.80665 m/s^2", "1 psi = 1 lbf/in^2",
+                       "1 lbf*ft = 4.4482216152605 N x 0.3048 m", "1/degF = 9/5 per degC",
+                       "a degF interval = 5/9 degC", "T(degC) = (T(degF) - 32) x 5/9"):
+        assert definition in normalized[0]["message"]
+    assert any("exact definitions" in note for note in result.assumptions)
+
+
+@pytest.mark.parametrize("unit, value, expected", [
+    ("in", 10.0, Fraction(254)),
+    ("lbf", 1.0, Fraction("4.4482216152605")),
+    ("psi", 1.0, Fraction("4.4482216152605") / Fraction("645.16")),
+    ("lbf*in", 1000.0, Fraction("4.4482216152605") * Fraction("0.0254") * 1000),
+    ("lbf*ft", 1.0, Fraction("4.4482216152605") * Fraction("0.3048")),
+    ("lbf/in", 1.0, Fraction("4.4482216152605") / Fraction("0.0254")),
+    ("1/degF", 1.0, Fraction(9, 5)),
+    ("degF", 9.0, Fraction(5)),
+])
+def test_each_normalization_factor_is_its_exact_definition(unit, value, expected):
+    from core.handoff.caepipe_mbf.si_writer import NORMALIZATION
+    factor, _ = NORMALIZATION[unit]
+    assert Fraction(value) * factor == expected  # exact in rationals
+    assert float(Fraction(value) * factor) == float(expected)  # rounded once
+
+
+def test_us_customary_weight_per_length_is_normalized_before_the_weight_density():
+    model = us_customary_cantilever()
+    model["load_cases"][0]["primitive_loads"].append(
+        {"id": "w", "category": "weight", "target": {"type": "element", "pipe": "S1"}, "direction": "global_y",
+         "magnitude": q(-1.0, "lbf/in"), "dimension": "force_per_length"})
+    result = render_caepipe_mbf_si(model, title="W")
+    assert result.status == "written", result.diagnostics
+    # 1 lbf/in = 175.1268352 N/m; A = pi/4 (0.168275^2 - 0.154051^2) m^2; rho = 175.1268352 / (A x 9.80665).
+    area = math.pi / 4.0 * (0.168275**2 - (0.168275 - 2 * 0.007112) ** 2)
+    expected = float(Fraction("4.4482216152605") / Fraction("0.0254")) / (area * STANDARD_GRAVITY)
+    assert result.material_map["M1"]["weight_density_kgf_per_m3"] == pytest.approx(expected, rel=1e-15)
+
+
+def test_absolute_fahrenheit_reference_is_converted_by_definition():
+    result = render_caepipe_mbf_si(cantilever(), title="T", reference_temperature_f=212.0)
+    assert result.text.split("\r\n")[6] == "100"
+    assert any(item["code"] == "MBF-SI-UNITS-NORMALIZED" and "T(degC)" in item["message"] for item in result.diagnostics)
+    assert "MBF-SI-UNITS-NORMALIZED" not in {item["code"] for item in render_caepipe_mbf_si(cantilever(), title="T").diagnostics}
+
+
+def test_units_without_an_exact_scaling_or_definition_are_refused():
     model = cantilever()
-    model["project"]["units"]["length"] = "in"
-    assert_refused(render_caepipe_mbf_si(model, title="U"), "MBF-SI-PROJECT-UNIT-UNSUPPORTED",
-                   "project.units.length", "'in'")
-
-
-def test_project_force_in_lbf_is_refused():
+    model["project"]["units"]["length"] = "ft"
+    assert_refused(render_caepipe_mbf_si(model, title="U"), "MBF-SI-PROJECT-UNIT-UNSUPPORTED", "project.units.length", "'ft'")
     model = cantilever()
-    model["project"]["units"]["force"] = "lbf"
-    assert_refused(render_caepipe_mbf_si(model, title="U"), "MBF-SI-PROJECT-UNIT-UNSUPPORTED",
-                   "project.units.force", "'lbf'")
-
-
-def test_quantity_in_psi_is_refused():
+    model["project"]["units"]["force"] = "kip"
+    assert_refused(render_caepipe_mbf_si(model, title="U"), "MBF-SI-PROJECT-UNIT-UNSUPPORTED", "project.units.force", "'kip'")
     model = cantilever()
-    model["materials"][0]["elastic_modulus"] = q(29.0e6, "psi")
+    model["materials"][0]["elastic_modulus"] = q(29.0e3, "ksi")
     assert_refused(render_caepipe_mbf_si(model, title="U"), "MBF-SI-UNIT-UNSUPPORTED",
-                   "material:mat:CS", "elastic_modulus", "'psi'")
+                   "material:mat:CS", "elastic_modulus", "'ksi'")
 
 
 def test_temperature_dependent_material_is_refused():
@@ -563,8 +639,11 @@ def test_material_map_origin_only_from_affirmative_provenance():
         assert result.status == "written", result.diagnostics
         return result.material_map["M1"].get("origin")
 
-    invented = {"source_name": "invented", "redistribution_status": "invented_non_engineering_example"}
+    invented = {"source_name": "invented", "contributor_certification": "invented non-engineering example",
+                "redistribution_status": "public_permissive"}
     assert origin(invented) == "project_invented"
+    assert origin({**invented, "redistribution_status": "private_only"}) is None  # the disposition alone is not enough
+    assert origin({"source_name": "x", "redistribution_status": "public_permissive"}) is None
     assert origin({"source_name": "own", "contributor_certification": "user-supplied own source"}) == "user_supplied"
     library = {"library_kind": "material", "library_id": "lib", "library_version": "sha256:0", "record_id": "r"}
     assert origin({**invented, "library_ref": library}) is None

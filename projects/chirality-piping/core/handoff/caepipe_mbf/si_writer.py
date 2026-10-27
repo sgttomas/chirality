@@ -6,9 +6,11 @@ SI unit set (mm, N, N*m, MPa, C), following the public CAEPIPE User's Manual
 appendix "Import MBF". Only a narrow pilot subset is written; everything else
 is refused by name and listed in the loss report, never silently dropped.
 
-Units are never converted between unit systems: a project or quantity unit
-outside the SI set whose scaling to the MBF unit is an exact power of ten is
-refused. The only non-decimal conversions are those stated in the result's
+SI units scale to the MBF unit by exact powers of ten. US-customary units
+(in, lbf, psi, lbf*in, lbf*ft, lbf/in, degF, 1/degF) are normalized to the SI
+profile by their exact definitions (Design `caepipe-mbf-import.md` §5.2, O-2),
+and the result lists the factors (`MBF-SI-UNITS-NORMALIZED`). Every other unit
+is refused. The other non-decimal conversions are stated in the result's
 `assumptions` (radians to degrees, weight per length to weight density by
 standard gravity, Poisson ratio from E and G).
 
@@ -19,6 +21,7 @@ analyses the text.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from fractions import Fraction
 import json
 import math
 from pathlib import Path
@@ -61,15 +64,39 @@ _EXPANSION_TO_PER_C = {"1/K": 0, "1/degC": 0}
 _TEMPERATURE_INTERVAL_TO_C = {"K": 0, "degC": 0, "C": 0}
 _ROTATION_TO_DEG = {"rad": "rad", "deg": 0}
 _DIMENSIONLESS = {"1": 0, "none": 0}
+# Exact definitional normalization of US-customary units to the SI profile (Design §5.2, O-2): 1 in = 25.4 mm,
+# 1 lb = 0.45359237 kg, 1 kgf = 9.80665 N, so 1 lbf = 0.45359237 x 9.80665 N; degF intervals x 5/9.
+INCH_MM = Fraction("25.4")
+POUND_FORCE_N = Fraction("0.45359237") * Fraction("9.80665")
+NORMALIZATION = {
+    "in": (INCH_MM, "1 in = 25.4 mm"),
+    "lbf": (POUND_FORCE_N, "1 lbf = 0.45359237 kg x 9.80665 m/s^2 = 4.4482216152605 N"),
+    "psi": (POUND_FORCE_N / INCH_MM**2, "1 psi = 1 lbf/in^2 = 4.4482216152605 N / 645.16 mm^2"),
+    "lbf*in": (POUND_FORCE_N * INCH_MM / 1000, "1 lbf*in = 4.4482216152605 N x 0.0254 m"),
+    "lbf*ft": (POUND_FORCE_N * 12 * INCH_MM / 1000, "1 lbf*ft = 4.4482216152605 N x 0.3048 m"),
+    "lbf/in": (POUND_FORCE_N * 1000 / INCH_MM, "1 lbf/in = 4.4482216152605 N / 0.0254 m"),
+    "1/degF": (Fraction(9, 5), "1/degF = 9/5 per degC"),
+    "degF": (Fraction(5, 9), "a degF interval = 5/9 degC"),
+}
+ABSOLUTE_FAHRENHEIT = "T(degC) = (T(degF) - 32) x 5/9"
+_LENGTH_TO_MM["in"] = NORMALIZATION["in"][0]
+_STRESS_TO_MPA["psi"] = NORMALIZATION["psi"][0]
+_FORCE_TO_N["lbf"] = NORMALIZATION["lbf"][0]
+_MOMENT_TO_NM.update({"lbf*in": NORMALIZATION["lbf*in"][0], "lbf*ft": NORMALIZATION["lbf*ft"][0]})
+_FORCE_PER_LENGTH_TO_N_PER_M["lbf/in"] = NORMALIZATION["lbf/in"][0]
+_EXPANSION_TO_PER_C["1/degF"] = NORMALIZATION["1/degF"][0]
+_TEMPERATURE_INTERVAL_TO_C["degF"] = NORMALIZATION["degF"][0]
 _BEND_SOLVER_CONSUMPTION = "curved_bend_macro_element"
 _BEND_RELATIVE_TOLERANCE = 1e-9  # tangent lengths, line intersection, bend angle and bend plane
-_PROJECT_UNITS = {"length": ("m", "mm"), "force": ("N",), "temperature": ("degC",)}
+_PROJECT_UNITS = {"length": ("m", "mm", "in"), "force": ("N", "lbf"), "temperature": ("degC", "degF")}
 
 # The model-document schema whose single `schema_version` enum value is the current version.
 MODEL_SCHEMA_PATH = Path(__file__).resolve().parents[3] / "schemas" / "model.schema.yaml"
 # Material provenance that affirmatively identifies project-invented data or the user's own source (Design
 # `caepipe-mbf-import.md` §7.4). The writer copies the matching origin into `material_map`; otherwise none.
-INVENTED_REDISTRIBUTION_STATUS = "invented_non_engineering_example"
+# Both are values the model schema admits: a provenance_record with this certification and a public_permissive
+# disposition is project-invented; one with the user-supplied certification is the user's own source.
+INVENTED_CERTIFICATION = "invented non-engineering example"
 USER_SUPPLIED_CERTIFICATION = "user-supplied own source"
 MATERIAL_ORIGINS = ("project_invented", "user_supplied")
 
@@ -127,7 +154,8 @@ def material_origin(material: Mapping[str, Any]) -> str | None:
     record = material.get("provenance_record")
     if not isinstance(record, Mapping) or record.get("library_ref") is not None:
         return None
-    if record.get("redistribution_status") == INVENTED_REDISTRIBUTION_STATUS:
+    if (record.get("contributor_certification") == INVENTED_CERTIFICATION
+            and record.get("redistribution_status") == "public_permissive"):
         return "project_invented"
     if record.get("contributor_certification") == USER_SUPPLIED_CERTIFICATION:
         return "user_supplied"
@@ -140,10 +168,17 @@ def render_caepipe_mbf_si(
     title: str,
     reference_temperature_c: float = 20.0,
     max_layout_rows: int | None = 20,
+    reference_temperature_f: float | None = None,
 ) -> MbfSiResult:
-    """Render the pilot subset of a SWBPIPE preview model as SI MBF text, or refuse by name."""
+    """Render the pilot subset of a SWBPIPE preview model as SI MBF text, or refuse by name.
 
-    return _Writer(model, title, reference_temperature_c, max_layout_rows).run()
+    `reference_temperature_f`, when given, replaces `reference_temperature_c` by the exact definition
+    (T - 32) x 5/9, and the normalization is listed."""
+
+    writer = _Writer(model, title, reference_temperature_c, max_layout_rows)
+    if reference_temperature_f is not None:
+        writer.t_ref_f = reference_temperature_f
+    return writer.run()
 
 
 class _Writer:
@@ -155,7 +190,9 @@ class _Writer:
         self.diagnostics: list[dict[str, Any]] = []
         self.loss: list[dict[str, Any]] = []
         self.assumptions: list[str] = []
-        self.length_exp = 0
+        self.length_exp: int | Fraction = 0
+        self.normalized: dict[str, str] = {}
+        self.t_ref_f: Any = None
         self.nodes: dict[str, tuple[float, float, float]] = {}
         self.materials: dict[str, dict[str, Any]] = {}
         self.pipes: dict[str, dict[str, Any]] = {}
@@ -214,14 +251,21 @@ class _Writer:
             self.refuse(
                 "MBF-SI-UNIT-UNSUPPORTED",
                 entity,
-                f"{entity} {name} unit {unit!r} is refused: only SI units with an exact power-of-ten "
-                f"scaling to the MBF unit {target} are written ({', '.join(table)}); no conversion is made",
+                f"{entity} {name} unit {unit!r} is refused: only units with an exact power-of-ten scaling or an "
+                f"exact definitional normalization to the MBF unit {target} are written ({', '.join(table)})",
             )
             return None
         scaling = table[unit]
         if scaling == "rad":
             self.rotation_converted = True
             return math.degrees(value)
+        return self.convert(value, scaling, unit)
+
+    def convert(self, value: float, scaling: int | Fraction, unit: str) -> float:
+        """A power-of-ten scaling, or an exact definitional normalization rounded once to binary64."""
+        if isinstance(scaling, Fraction):
+            self.normalized[unit] = NORMALIZATION[unit][1]
+            return float(Fraction(value) * scaling)
         return _scale(value, scaling)
 
     # -- run -------------------------------------------------------------
@@ -229,6 +273,13 @@ class _Writer:
         if not isinstance(self.model, Mapping):
             self.invalid("model", "model must be an object")
             return self.refused()
+        if self.t_ref_f is not None:
+            if isinstance(self.t_ref_f, bool) or not isinstance(self.t_ref_f, (int, float)) or not math.isfinite(self.t_ref_f):
+                self.diag("MBF-SI-VALUE-OUT-OF-RANGE", "error", "reference_temperature_f",
+                          f"reference temperature must be a finite number (got {self.t_ref_f!r})")
+                return self.refused()
+            self.t_ref = float((Fraction(self.t_ref_f) - 32) * Fraction(5, 9))
+            self.normalized["degF absolute"] = ABSOLUTE_FAHRENHEIT
         if isinstance(self.t_ref, bool) or not isinstance(self.t_ref, (int, float)) or not math.isfinite(self.t_ref):
             self.diag("MBF-SI-VALUE-OUT-OF-RANGE", "error", "reference_temperature_c",
                       f"reference temperature must be a finite number (got {self.t_ref!r})")
@@ -291,7 +342,7 @@ class _Writer:
                     "MBF-SI-PROJECT-UNIT-UNSUPPORTED",
                     f"project.units.{key}",
                     f"project.units.{key} is {unit!r}; the SI MBF writer accepts only {' or '.join(accepted)} "
-                    "and does not convert other unit systems",
+                    "and converts no other unit system",
                 )
         if units.get("length") in _LENGTH_TO_MM:
             self.length_exp = _LENGTH_TO_MM[units["length"]]
@@ -313,7 +364,7 @@ class _Writer:
             coords = [self.number(position.get(axis), entity, f"position.{axis}") for axis in "xyz"]
             if any(value is None for value in coords):
                 continue
-            self.nodes[node["id"]] = tuple(_scale(value, self.length_exp) for value in coords)  # type: ignore[misc]
+            self.nodes[node["id"]] = tuple(self.convert(value, self.length_exp, "in") for value in coords)  # type: ignore[misc]
 
     def read_materials(self) -> None:
         for material in _list(self.model.get("materials"), self, "model.materials"):
@@ -1014,6 +1065,9 @@ class _Writer:
                     "section": attributes[member_id][1],
                     "load": attributes[member_id][2],
                 }
+                if member_id not in self.bends and _is_vector(member["y_reference"]):
+                    # Straight-pipe orientation is not in the MBF; the sidecar carries it for bound imports.
+                    element_map[member_id]["y_reference"] = {axis: float(member["y_reference"][axis]) for axis in "xyz"}
                 order += 1
             if "bend" in row:
                 bend = self.bends[row["bend"]]
@@ -1100,6 +1154,10 @@ class _Writer:
                 "restrained": [dof for dof in DOFS if dof in support["dofs"]],
                 "family": support["family"],
             }
+        if self.normalized:
+            self.diag("MBF-SI-UNITS-NORMALIZED", "info", "project.units",
+                      "US-customary units are normalized to the SI profile by their exact definitions: "
+                      + "; ".join(self.normalized[unit] for unit in sorted(self.normalized)))
         load_map = {}
         for key, record in self.load_records.items():
             entry = dict(record)
@@ -1153,7 +1211,8 @@ class _Writer:
             f"Profile {MBF_SI_PROFILE_ID}: MBF version {MBF_VERSION}, OPTIONS SI with the default vertical axis Y; "
             "SWBPIPE global X, Y, Z are written unchanged as the target program's X, Y, Z, with gravity along -Y.",
             "Lengths are written in mm, forces in N, moments in N*m, modulus in N/mm2 (= MPa), temperatures in C; "
-            "every source unit scales to these by an exact power of ten, and no other unit system is converted.",
+            "SI source units scale to these by an exact power of ten, and US-customary units by the exact definitions "
+            "listed in MBF-SI-UNITS-NORMALIZED (Design caepipe-mbf-import.md section 5.2).",
             f"Load case mapping: mechanical cases (concentrated force, concentrated moment, weight) -> {LOAD_CASE_LABELS['sustained']!r}; "
             f"thermal and imposed-displacement cases -> {LOAD_CASE_LABELS['expansion']!r}.",
             "Materials are written temperature-independent: identical E and expansion coefficient at "
