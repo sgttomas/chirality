@@ -651,18 +651,35 @@ a cut adds closure terminals the file never had):
   measured as the route's `kink`, 2·atan2(|a − t|, |a + t|) of the unit directions. Only a
   run that fails the check whole is examined for corners, so a drift the check admits is
   never a corner, whatever its local angles.
-- **The rule.** Each straight run of a chain is checked whole. If it passes, it stays in one
-  region. If it fails, the region ends at each of its corners, and each piece between them
-  must pass the check whole. A run with a failing piece, a run without a corner included, is
-  refused by name with its elements (`MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR`); it is never cut.
-  So a kink of 1e-4 or 5e-4 rad in a run is refused, and one of 2e-3 rad is a corner.
-- **Bores.** The route compares a region's bores within its 64ε guard; the importer's chain
-  needs exactly equal bores, so it may end a chain where the route would admit one region.
-  Such a junction is a real, if tiny, bore change.
+- **Bores.** The route compares each member's pressure bore with the first member's, in
+  traversal order: r_i,r = OD/2 − ((t − c_m) − c_a) in metres, which must agree within 64ε of
+  the larger radius (`pressure_runtime.rs`, `PRESSURE_REGION_BORE_MISMATCH`;
+  `ExactSectionBases::derive`). The importer ports it with the same metre reading, mill
+  tolerance absent and the stated allowance 0. Equal decimal bores do not settle it:
+  128.2 − 2 × 63.6 and 128.3 − 2 × 63.65 are both 1 mm, but in metres the radii differ by
+  about 5.55e-14 relative (independent review VER-002 r3). The chain still needs exactly
+  equal decimal bores, so it may end where the route would admit one region; such a junction
+  is a real, if tiny, bore change.
+- **The rule.** Each straight run of a chain is checked whole, in either traversal order. If
+  it passes, it stays in one region. If it fails both ways, the region ends at each of its
+  corners. Each region is then checked whole as the route checks it, its straight runs and
+  its bores, first in file order and, if refused, reversed (independent review VER-002 r3).
+  The first order the checks admit is emitted. A region that neither order admits is refused
+  by name with its elements, and never cut: `MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR` for a
+  straight run refused both ways (a run without a corner included),
+  `MBF-IMPORT-PRESSURE-BORE-MISMATCH` for bores refused both ways, and the first code with
+  each order's failing check named when the two orders fail different checks. So a kink of
+  1e-4 or 5e-4 rad in a run is refused, one of 2e-3 rad is a corner, and the review's run from
+  (0, 0) through (2, 3.0000000000924) to (2000, 3000) mm, refused traversed from its first
+  node, is emitted from its last.
 
-- **Order and ids.** Members are in chain order. The first terminal is the chain end whose
-  element comes first in layout order. The id is `region:mbf-<first terminal>-<second
-  terminal>` by CAEPIPE node name. `id_map.region_map` lists each region's elements.
+- **Order and ids.** Members are in chain order. In file order the first terminal is the
+  chain end whose element comes first in layout order; a region the route admits only
+  reversed is emitted from its other end. Reversal changes nothing else: the members and
+  pressure are the same, each terminal keeps its own node's closure transfer, and the route
+  reads a bend traversed backward by its end tangents. The id is `region:mbf-<first
+  terminal>-<second terminal>` by CAEPIPE node name. `id_map.region_map` lists each
+  region's elements.
 - **Corners (selected interpretation; for a ruling, §20.2).** Two regions meet at a
   straight-to-straight corner, each with a terminal there. With `transfers_to_wall` at both,
   their end forces pAᵢ along each straight sum to pAᵢ(t_in − t_out) at the node, the
@@ -984,7 +1001,8 @@ the manual does not make clear which kind a record is, it is refused.
 - `MBF-IMPORT-VALUE-UNREPRESENTABLE`: a read or derived value outside the binary64 range, or a
   non-zero value that would become 0 (§4.3);
 - tranche 2: `MBF-IMPORT-PRESSURE-CLOSURE-REQUIRED`, `MBF-IMPORT-PRESSURE-CLOSURE-INVALID`,
-  `MBF-IMPORT-PRESSURE-DISPLACEMENT-UNSUPPORTED`, `MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR` (§9.4)
+  `MBF-IMPORT-PRESSURE-DISPLACEMENT-UNSUPPORTED`, `MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR`,
+  `MBF-IMPORT-PRESSURE-BORE-MISMATCH` (§9.4)
   and `MBF-IMPORT-CORROSION-ALLOWANCE-MISSING` (§8). `MBF-IMPORT-GEOMETRY-ZERO-LENGTH` also
   refuses an element whose ends coincide in metres, the unit the solve reads (VER-002 r2). `MBF-IMPORT-PRESSURE-UNSUPPORTED`
   now refuses only a negative Pressure 1.
@@ -1246,8 +1264,11 @@ declares it invented. The boundary guard (§18.4) requires the sidecar.
    bend; the headless solve of the admitted imports and of a corner, while the drifting run
    as one region is refused by the route (`PRESSURE_REGION_NONCOLLINEAR`); a section with and
    without a stated corrosion allowance, and the writer's refusal of a section without one
-   under the contract (Codex's round trip); an element collapsing in metres; and a
-   subnormal norm rounded once.
+   under the contract (the review's round trip); an element collapsing in metres; and a
+   subnormal norm rounded once. VER-002 r3 adds: equal decimal bores the route's guard
+   refuses in metres (refused by name; the route refuses them as one region too), and a run
+   the route admits only reversed (emitted reversed, solved; refused by the route in file
+   order).
 
 The weight-density conversion, the G derivation, the ΔT mapping and the rational
 summation change numerical meaning. They therefore get targeted regression tests (items
