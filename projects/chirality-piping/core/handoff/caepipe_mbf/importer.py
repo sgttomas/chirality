@@ -45,12 +45,16 @@ from .si_writer import (
     LOAD_CASE_LABELS,
     MATERIAL_ORIGINS,
     MBF_VERSION,
+    SIDECAR_DIGEST_KEY,
     SIDECAR_FORMAT,
     STANDARD_GRAVITY,
     USER_SUPPLIED_CERTIFICATION,
     _BEND_RELATIVE_TOLERANCE,
+    _KEYED_MAPS,
+    SidecarNotCanonical,
     current_model_schema_version,
     regenerate_caepipe_sidecar,
+    sidecar_self_digest,
 )
 
 
@@ -706,6 +710,8 @@ _RUST_WHITESPACE = frozenset("\t\n\x0b\x0c\r \x85\xa0\u1680\u2028\u2029\u202f\u2
 # the sidecar (Design §15)
 # ---------------------------------------------------------------------------
 _SHA256 = re.compile(r"[0-9a-f]{64}\Z")
+# The sidecar formats this importer reads (Design §15): 2, and the current writer's 3, which is 2 with its self-digest.
+SIDECAR_FORMATS = (2, SIDECAR_FORMAT)
 _LOAD_CATEGORIES = ("concentrated_force", "concentrated_moment", "weight", "thermal", "imposed_displacement")
 _RIGID_FAMILIES = RESTORABLE_SUPPORT_FAMILIES[1:]
 _BAD = object()
@@ -734,14 +740,11 @@ def runtime_support_findings(supports: Iterable[tuple[str, str, str | None, list
     return found
 
 
-# Maps whose entries a JSON path names as map[key] (the parser's paths); other objects' fields as .field.
-_KEYED_MAPS = ("node_map", "element_map", "support_map", "load_case_map", "material_map", "section_map", "load_map")
-
-
 def canonical_sidecar(sidecar: Mapping[str, Any]) -> dict[str, Any]:
-    """`sidecar` without its digest, in the form the regeneration identity compares (Design §14): every number a
-    binary64 (1 and 1.0 are one value), key order immaterial, and each load direction as the axis it names through its
-    aliases (`global_y`, `GLOBAL_Y`, `UY`, `uy`: UY; `rotation_x`, `rx`: RX)."""
+    """`sidecar` without its digests (`mbf_sha256`, which decides the route, and the self-digest), in the form the
+    regeneration identity compares (Design §14): every number a binary64 (1 and 1.0 are one value), key order
+    immaterial, and each load direction as the axis it names through its aliases (`global_y`, `GLOBAL_Y`, `UY`, `uy`:
+    UY; `rotation_x`, `rx`: RX)."""
     def walk(value: Any) -> Any:
         if isinstance(value, Mapping):
             return {key: walk(item) for key, item in value.items()}
@@ -751,7 +754,7 @@ def canonical_sidecar(sidecar: Mapping[str, Any]) -> dict[str, Any]:
             return float(value)
         return value
 
-    out = walk({key: value for key, value in sidecar.items() if key != "mbf_sha256"})
+    out = walk({key: value for key, value in sidecar.items() if key not in ("mbf_sha256", SIDECAR_DIGEST_KEY)})
     loads = out.get("load_map")
     for entry in loads.values() if isinstance(loads, dict) else ():
         direction = entry.get("direction") if isinstance(entry, Mapping) else None
@@ -838,7 +841,8 @@ class _SidecarParser:
     """The strict sidecar parser, run before anything reads the sidecar (Design §15). Every key has an exact JSON
     type (a bool is not a number, null is not a default), an allowed vocabulary, a non-empty value where an id or
     name is required, and finite binary64 range for numbers; unknown keys and wrong shapes are refused by JSON path.
-    A sidecar with `sidecar_format` 2 (the current writer's) must hold every field, each with its effective value
+    A sidecar with `sidecar_format` 2 or 3 (the current writer's: 2 with its self-digest `sidecar_sha256`, which
+    _Importer.self_digest verifies before this parser runs) must hold every field, each with its effective value
     (never null); one without it is legacy, from main's tranche-1 writer, and holds what that writer recorded
     (some fields absent in its earlier versions) and no pressure_map. `parse` returns the typed copy that the
     importer reads, or None with `errors` [(path, reason)]."""
@@ -846,6 +850,7 @@ class _SidecarParser:
     def __init__(self) -> None:
         self.errors: list[tuple[str, str]] = []
         self.current = False
+        self.format_number: int | None = None  # 2 or 3 once parsed; None for a legacy sidecar
 
     def fail(self, path: str, reason: str) -> object:
         self.errors.append((path, reason))
@@ -1036,7 +1041,7 @@ class _SidecarParser:
         contract). A legacy sidecar has none: main's writer exported no pressure."""
         if not self.current:
             return self.fail(path, "is not a field main's tranche-1 writer records; a sidecar with pressure has "
-                             f"sidecar_format {SIDECAR_FORMAT}")
+                             f"sidecar_format {' or '.join(map(str, SIDECAR_FORMATS))}")
         entry = self.record(value, path, {"contract": self.contract, "shear_model": self.choice(SHEAR_MODELS),
                                           "regions": self.items(self.region, nonempty=False)})
         if entry is _BAD or len(entry) != 3 or any(item is _BAD for item in entry.values()):
@@ -1052,8 +1057,9 @@ class _SidecarParser:
         return self.fail(path, "must be a lowercase SHA-256 hex digest" + ("" if self.current else " or null"))
 
     def format(self, value: Any, path: str) -> Any:
-        return value if type(value) is int and value == SIDECAR_FORMAT else self.fail(
-            path, f"must be {SIDECAR_FORMAT}, the format this importer reads (or absent, for a legacy sidecar)")
+        return value if type(value) is int and value in SIDECAR_FORMATS else self.fail(
+            path, f"must be {' or '.join(map(str, SIDECAR_FORMATS))}, a format this importer reads (or absent, for a "
+            "legacy sidecar)")
 
     # -- the whole sidecar -------------------------------------------------
     def parse(self, sidecar: Any) -> dict[str, Any] | None:
@@ -1069,14 +1075,18 @@ class _SidecarParser:
             self.fail("sidecar", "must be an object")
             return None
         self.current = "sidecar_format" in sidecar
-        if self.current:  # every map but section_map (the MBF's), the digest and the format
+        if self.current:  # every map but section_map (the MBF's), the digest and the format; format 3 its self-digest
             current = {name: parse for name, parse in maps.items() if name != "section_map"}
-            parsed = self.record(sidecar, "", {**current, "mbf_sha256": self.digest, "sidecar_format": self.format})
+            current.update(mbf_sha256=self.digest, sidecar_format=self.format)
+            if type(sidecar["sidecar_format"]) is int and sidecar["sidecar_format"] == SIDECAR_FORMAT:
+                current[SIDECAR_DIGEST_KEY] = self.digest
+            parsed = self.record(sidecar, "", current)
         else:  # main's run_pilot wrote the seven maps; earlier runs kept the digest in mbf_render.json
             legacy = {name: parse for name, parse in maps.items() if name != "pressure_map"}
             parsed = self.record(sidecar, "", legacy, {"mbf_sha256": self.digest, "pressure_map": self.pressure})
         if self.errors:
             return None
+        self.format_number = parsed.get("sidecar_format")
         out = {name: parsed.get(name, {}) for name in maps}
         out["mbf_sha256"] = parsed.get("mbf_sha256")
         # The importer reads the restored pressure state as the contract (with its shear model) and regions, or None.
@@ -1201,6 +1211,7 @@ class _Importer:
         self.closure = closure
         self.shear_model = shear_model
         self.sidecar_current = False
+        self.self_digest_state: str | None = None  # "verified" or "absent" once a given sidecar is read
         self.oppres: tuple[int, list[str], bool] | None = None
         self.pressure_notes: list[str] = []
         self.sidecar = sidecar
@@ -1274,7 +1285,8 @@ class _Importer:
                   "angles": "rad" if self.rad else "deg", "vertical_axis": "Z" if self.z_vertical else "Y",
                   "line_count": len(self.lines),
                   "source_label": self.source_label,
-                  "binding": "bound" if self.bound else ("rebound_unconfirmed" if self.rebound else "unbound")}
+                  "binding": "bound" if self.bound else ("rebound_unconfirmed" if self.rebound else "unbound"),
+                  "sidecar_self_digest": self.self_digest_state}
         return MbfImportResult(
             status="refused" if refused else "imported",
             model=None if refused else model,
@@ -1503,12 +1515,23 @@ class _Importer:
             if self.rebind:
                 self.refuse("MBF-IMPORT-SIDECAR-INVALID", 0, "sidecar", "rebinding was requested without a sidecar")
             return
+        if not self.self_digest():  # before anything else reads the sidecar, on every route (Design §15)
+            return
         parser = _SidecarParser()  # strict, before anything reads the sidecar (Design §15)
         parsed = parser.parse(self.sidecar)
         if parsed is None:
             for path, reason in parser.errors:
                 self.refuse("MBF-IMPORT-SIDECAR-INVALID", 0, path, f"the sidecar's {path} {reason}")
             return
+        if parser.format_number != SIDECAR_FORMAT:
+            self.self_digest_state = "absent"
+            self.diagnostics.append({
+                "code": "MBF-IMPORT-SIDECAR-NO-SELF-DIGEST", "severity": "info", "line": 0,
+                "location": "sidecar_format" if parser.current else "sidecar",
+                "message": ("the sidecar is format 2, written before the self-digest" if parser.current else
+                            "the sidecar is legacy, from main's tranche-1 writer")
+                + ", and carries no self-digest: an accidental or partial edit of it is caught only where the "
+                  "agreement rule, the parser or the regeneration identity reads the edited value"})
         digest = parsed.pop("mbf_sha256")
         self.maps = parsed
         self.sidecar_current = parser.current
@@ -1529,6 +1552,43 @@ class _Importer:
             return
         self.node_ids = {name: swb_id for swb_id, name in self.maps["node_map"].items()}
         self.ambiguous()
+
+    def self_digest(self) -> bool:
+        """Design §15: a sidecar claiming format 3 must carry its self-digest `sidecar_sha256`, the SHA-256 of its
+        canonical content without it (si_writer.sidecar_canonical_bytes), and that digest must be the content's, or
+        the import is refused, before the parser or any route reads it. It catches an accidental or partial edit; a
+        deliberate editor can recompute it, so the parser, the agreement rule and the regeneration identity still
+        govern meaning. Format 2 and legacy sidecars carry none: the parser reads them, and bind_sidecar reports it."""
+        sidecar = self.sidecar
+        if not (type(sidecar) is dict and type(sidecar.get("sidecar_format")) is int
+                and sidecar["sidecar_format"] == SIDECAR_FORMAT):
+            return True
+        path = SIDECAR_DIGEST_KEY
+        if path not in sidecar:
+            self.refuse("MBF-IMPORT-SIDECAR-INVALID", 0, path,
+                        f"the sidecar's {path} is missing: a sidecar of format {SIDECAR_FORMAT} carries its "
+                        "self-digest, and one without it is not read as an older format")
+            return False
+        given = sidecar[path]
+        if not (type(given) is str and _SHA256.match(given)):
+            self.refuse("MBF-IMPORT-SIDECAR-INVALID", 0, path,
+                        f"the sidecar's {path} must be a lowercase SHA-256 hex digest")
+            return False
+        try:
+            actual = sidecar_self_digest(sidecar)
+        except SidecarNotCanonical as error:
+            self.refuse("MBF-IMPORT-SIDECAR-INVALID", 0, error.path,
+                        f"the sidecar's {error.path} {error.reason}, so the sidecar has no canonical form for its "
+                        "self-digest")
+            return False
+        if actual != given:
+            self.refuse("MBF-IMPORT-SIDECAR-DIGEST-MISMATCH", 0, path,
+                        f"the sidecar's {path} is not the SHA-256 of its canonical content ({actual}): the sidecar "
+                        "was changed after it was written, or only part of it was kept. It is not applied on any "
+                        "route; restore the written sidecar")
+            return False
+        self.self_digest_state = "verified"
+        return True
 
     def ambiguous(self) -> None:
         """Refuse, before assembly, a sidecar whose reverse mapping is not a function (VER-002 r13): two elements
@@ -2131,6 +2191,8 @@ class _Importer:
         regenerated, refusals = regenerate_caepipe_sidecar(model, mbf_sha256=self.sha,
                                                            derived_y_reference=id_map["y_reference_derived"],
                                                            **reference)
+        if regenerated is not None:  # format 2 is format 3 without the self-digest: compared in the given format
+            regenerated = {**regenerated, "sidecar_format": self.sidecar["sidecar_format"]}
         if regenerated is None:
             self.refuse("MBF-IMPORT-SIDECAR-NOT-REPRODUCED", 0, "sidecar",
                         "the bound sidecar is not the writer's record of the model it yields: the writer does not "
