@@ -89,6 +89,13 @@ PRESSURE_CONTRACT = {"version": "3.0.0", "mode": "exact_pressure_v3", "shear_mod
 SHEAR_MODELS = ("euler_bernoulli", "timoshenko_annulus_energy_v1")
 PRESSURE_BASIS = "internal_differential_zero_external_v1"
 CLOSURE_TRANSFERS = ("transfers_to_wall", "separately_supported_or_compensated")
+# What a bound or rebound import admits from a sidecar, field by field (Design §15): the rigid support families the
+# writer exports and the exact route admits (absent for a restraint), and the direction tokens the solve parses
+# (product_physics `parse_direction`), the only restored direction being a thermal primitive's, which it does not read.
+RESTORABLE_SUPPORT_FAMILIES = (None, "anchor", "guide", "line_stop", "vertical_support")
+RESTORABLE_DIRECTIONS = ("global_x", "GLOBAL_X", "global_y", "GLOBAL_Y", "global_z", "GLOBAL_Z", "rotation_x",
+                         "rotation_y", "rotation_z", "UX", "Ux", "ux", "UY", "Uy", "uy", "UZ", "Uz", "uz", "RX", "Rx",
+                         "rx", "RY", "Ry", "ry", "RZ", "Rz", "rz")
 # OPPRES fields 2 and 3 switch CAEPIPE's Bourdon effect and pressure correction for bends; a blank OPPRES line
 # gives "0, 1, 1, 1.00, 0", both on (Format of .MBF, OPPRES). SWBPIPE's exact route models neither (DEL-04-07 D-3).
 OPPRES_EFFECTS = {1: "Bourdon effect", 2: "pressure correction for bends"}
@@ -756,6 +763,10 @@ class _Importer:
                                  "message": message})
         self.loss.append({"location": location, "line": line, "category": category, "code": code,
                           "reason": message})
+
+    def sidecar_invalid(self, location: str, message: str) -> None:
+        """A restored sidecar value outside what the import admits: refused by name, never substituted (§15)."""
+        self.refuse("MBF-IMPORT-SIDECAR-INVALID", 0, location, message)
 
     def has_errors(self) -> bool:
         return any(item["severity"] == "error" for item in self.diagnostics)
@@ -2034,6 +2045,9 @@ class _Importer:
                 if (self.bound or self.rebound) and (a, b) in element_lookup:
                     swb_id, entry = element_lookup[(a, b)]
                     reversed_ = entry.get("reversed") is True
+                    if "reversed" in entry and not isinstance(entry["reversed"], bool):
+                        self.sidecar_invalid(f"element_map[{swb_id}].reversed",
+                                             f"the sidecar's reversed flag for {swb_id} is not true or false")
                     if self.rebound:
                         self.unconfirmed.append(swb_id)
                 claim(swb_id, f"CAEPIPE element {caepipe_name}", element.line)
@@ -2254,6 +2268,9 @@ class _Importer:
                 component_id = bend["component"]
                 if self.rebound:
                     self.unconfirmed.append(component_id)
+            elif bend is not None:
+                self.sidecar_invalid(f"element_map[{pipe_id}].bend", f"the sidecar's bend record for {pipe_id} is "
+                                     "not an object naming its component by a string id")
             if self.bound:
                 self.listed("approximated", "MBF-IMPORT-ID-UNRECOVERABLE", element.line, f"bend {n}",
                             f"the sidecar does not record which tangent node bend {n}'s component names; the "
@@ -2313,6 +2330,10 @@ class _Importer:
         if self.bound:
             entry = self.maps.get("material_map", {}).get(name)
             origin = entry.get("origin") if isinstance(entry, Mapping) else None
+            if isinstance(entry, Mapping) and "origin" in entry and origin not in MATERIAL_ORIGINS:
+                self.sidecar_invalid(f"material_map[{name}].origin", f"the sidecar's origin for material {name} is "
+                                     f"not one of {', '.join(MATERIAL_ORIGINS)}")
+                return None
             if origin in MATERIAL_ORIGINS:
                 return origin, "material origin recorded by the SWBPIPE MBF writer sidecar", (
                     "private_only" if origin == "user_supplied" else None)
@@ -2340,6 +2361,10 @@ class _Importer:
             swb_id = f"material:{name}"
             if self.bound or self.rebound:
                 entry = self.maps.get("material_map", {}).get(name)
+                if isinstance(entry, Mapping) and "swbpipe_material" in entry and not isinstance(
+                        entry["swbpipe_material"], str):
+                    self.sidecar_invalid(f"material_map[{name}].swbpipe_material",
+                                         f"the sidecar's SWBPIPE material id for {name} is not a string")
                 if isinstance(entry, Mapping) and isinstance(entry.get("swbpipe_material"), str):
                     swb_id = entry["swbpipe_material"]
                     if self.rebound:
@@ -2417,6 +2442,29 @@ class _Importer:
             line = imported[0][3]
             restored = sidecar_by_node.get(name, []) if (self.bound or self.rebound) else []
             ids = []
+            admitted = True
+            for swb_id, entry in restored:  # each restored support as the writer exports it and the route admits it
+                given = entry.get("restrained")
+                if not (isinstance(given, list) and given and all(isinstance(dof, str) and dof in DOFS for dof in given)
+                        and len(set(given)) == len(given)):
+                    self.sidecar_invalid(f"support_map[{swb_id}].restrained",
+                                         f"the sidecar's support {swb_id} does not restrain a non-empty list of "
+                                         f"distinct DOFs from {', '.join(DOFS)}")
+                    admitted = False
+                elif entry.get("family") not in RESTORABLE_SUPPORT_FAMILIES:
+                    self.sidecar_invalid(f"support_map[{swb_id}].family",
+                                         f"the sidecar gives support {swb_id} the family {entry.get('family')!r}; a "
+                                         "restored support is a rigid restraint (anchor, guide, line_stop, "
+                                         "vertical_support, or none), the families the writer exports and the exact "
+                                         "pressure route admits (EXACT_PRESSURE_FAMILY_NOT_ADMITTED otherwise)")
+                    admitted = False
+                elif entry.get("family") == "anchor" and len(given) != len(DOFS):
+                    self.sidecar_invalid(f"support_map[{swb_id}].family",
+                                         f"the sidecar gives support {swb_id} the family anchor but restrains only "
+                                         f"{', '.join(given)}")
+                    admitted = False
+            if not admitted:
+                continue
             if restored:
                 wanted = set().union(*(set(dofs) for _, dofs, _, _ in imported))
                 given = set().union(*(set(entry.get("restrained") or []) for _, entry in restored))
@@ -2539,8 +2587,13 @@ class _Importer:
                 match = restorable.get(key) or restorable.get((case_id, item["category"], target_id, "*"))
                 if self.bound and match is not None and match[1] == 1:
                     load_id = match[0]
-                    if item["category"] == "thermal" and isinstance(match[2], str):
-                        direction = match[2]
+                    if item["category"] == "thermal" and match[2] is not None:
+                        if match[2] in RESTORABLE_DIRECTIONS:
+                            direction = match[2]
+                        else:
+                            self.sidecar_invalid(f"load_map[{load_id}].direction",
+                                                 f"the sidecar gives primitive {load_id} the direction {match[2]!r}, "
+                                                 "which is not a direction the solve reads")
                 elif self.bound:
                     self.listed("approximated", "MBF-IMPORT-ID-UNRECOVERABLE", item["line"], formed,
                                 f"no single sidecar primitive matches {formed}; it keeps its formed id")
@@ -2562,7 +2615,17 @@ class _Importer:
         active = {pipe_id: number for pipe_id, (number, _) in pressures.items()
                   if number is not None and number.exact != 0}
         stored = self.maps.get("pressure_map") if self.bound else None
-        stored = stored if isinstance(stored, Mapping) and isinstance(stored.get("contract"), Mapping) else None
+        if stored:  # the writer records the one contract it exports, with an admitted shear model, and a region list
+            contract = stored.get("contract")
+            if not (isinstance(contract, Mapping) and contract.get("version") == PRESSURE_CONTRACT["version"]
+                    and contract.get("mode") == PRESSURE_CONTRACT["mode"]
+                    and contract.get("shear_model") in SHEAR_MODELS and isinstance(stored.get("regions", []), list)):
+                self.sidecar_invalid("pressure_map.contract",
+                                     "the sidecar's pressure_map is not the exact contract 3.0.0/exact_pressure_v3 "
+                                     f"with a shear_model from {', '.join(SHEAR_MODELS)} and a region list")
+                raise _Refused
+        else:
+            stored = None
         if not active and stored is None:
             return None
         # The solve reads Pressure 1 in Pa (value x factor + 0.0, core/units) and refuses a non-finite one
@@ -2577,12 +2640,7 @@ class _Importer:
             raise _Refused
         contract = dict(PRESSURE_CONTRACT)
         if stored is not None:
-            shear = stored["contract"].get("shear_model")
-            if shear in SHEAR_MODELS:
-                contract["shear_model"] = shear
-            else:
-                self.listed("approximated", "MBF-IMPORT-ID-UNRECOVERABLE", 0, "pressure_map.contract",
-                            "the sidecar gives no admitted shear_model; euler_bernoulli is used")
+            contract["shear_model"] = stored["contract"]["shear_model"]
         if active:
             self.pressure_effects()
         ends = {pipe["id"]: (pipe["from"], pipe["to"]) for pipe in pipes}
@@ -2980,8 +3038,9 @@ class _Importer:
         return None
 
     def displacement_target(self, name: str, dof: str, candidates: list[str]) -> str | None:
-        found = {entry.get("target", {}).get("support") for entry in self.maps.get("load_map", {}).values()
-                 if isinstance(entry, Mapping) and entry.get("category") == "imposed_displacement"
+        found = {entry["target"].get("support") for entry in self.maps.get("load_map", {}).values()
+                 if isinstance(entry, Mapping) and isinstance(entry.get("target"), Mapping)
+                 and entry.get("category") == "imposed_displacement"
                  and entry.get("caepipe_node") == name and entry.get("target", {}).get("dof") == dof}
         found &= set(candidates)
         return found.pop() if len(found) == 1 else None
@@ -2996,6 +3055,10 @@ class _Importer:
                 continue
             case_id = entry.get("load_case")
             target = entry.get("target") or {}
+            if not isinstance(target, Mapping):
+                self.sidecar_invalid(f"load_map[{key}].target", f"the sidecar's primitive {key} has a target that is "
+                                     "not an object")
+                continue
             target_id = target.get("node") or target.get("pipe") or target.get("support")
             category = entry.get("category")
             direction = entry.get("direction")

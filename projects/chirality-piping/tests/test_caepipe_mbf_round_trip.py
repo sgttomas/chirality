@@ -1178,3 +1178,61 @@ def test_a_pressure_beyond_binary64_in_pascals_is_refused():
     data = importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X1000", loads=("L1,20,1e304,0",))
     importer_tests.refused(importer_tests.run(data, pressure_closure=importer_tests.CLOSURE),
                            "MBF-IMPORT-VALUE-UNREPRESENTABLE", importer_tests.layout_line(data, "L1,"))
+
+
+# --- VER-002 r7: restored sidecar content stays within what the import admits ---------------------------------------
+def test_a_restored_support_family_the_route_does_not_admit_is_refused():
+    # Codex VER-002 r7 (P2): a SHA-bound sidecar gives the anchor at 10 the family constant_effort_support. The
+    # writer exports only rigid families (anchor, guide, line_stop, vertical_support, or none) and the exact route
+    # refuses the others (EXACT_PRESSURE_FAMILY_NOT_ADMITTED), so the import refuses it by name with the support id.
+    rows = ("F10,KA,MM1,PP1,CL=L1", "T20,KA,X1000")
+    for options in ("HGRA,SI", "HGRA,SI,Z", "HGRA"):
+        data = importer_tests.mbf(*rows, options=options, pipe=("P1,168.3,7.11,0",), loads=("L1,20,10,0",))
+        restraint = {"node": "10", "restrained": ["UX", "UY", "UZ", "RX", "RY", "RZ"]}
+        for family, admitted in (("constant_effort_support", False), ("guide", True)):
+            sidecar = {"mbf_sha256": hashlib.sha256(data).hexdigest(),
+                       "support_map": {"s": {**restraint, "family": family}}}
+            result = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label=options,
+                                        pressure_closure=importer_tests.CLOSURE)
+            if admitted:
+                assert result.status == "imported", (options, result.diagnostics)
+                assert {"id": "s", "family": "guide"}.items() <= result.model["supports"][0].items()
+            else:
+                assert refusals(result) == {("MBF-IMPORT-SIDECAR-INVALID", "support_map[s].family")}, options
+    model = importer_tests.run(importer_tests.mbf(*rows, loads=("L1,20,10,0",)),
+                               pressure_closure=importer_tests.CLOSURE).model
+    model["supports"][0]["family"] = "constant_effort_support"
+    _, output, error = solve_swbpipe(runner_binary(), {"case_id": "family", "model": model})
+    assert error and "EXACT_PRESSURE_FAMILY_NOT_ADMITTED" in json.dumps(output)
+
+
+def test_every_restored_sidecar_field_outside_the_admitted_vocabulary_is_refused(trips):
+    # Each field a bound import restores, set to a value the unbound route never produces and the writer never
+    # records: refused by name (MBF-IMPORT-SIDECAR-INVALID), never substituted or skipped. Before r7 a malformed
+    # restrained list or load target raised, and an unknown shear model was replaced by euler_bernoulli.
+    data, base = bound_parts(writer_tests.bent_l())
+    changes = {
+        "element_map[S1].reversed": lambda sidecar: sidecar["element_map"]["S1"].update(reversed="yes"),
+        "element_map[BEND].bend": lambda sidecar: sidecar["element_map"]["BEND"]["bend"].update(component=7),
+        "support_map[SA].restrained": lambda sidecar: sidecar["support_map"]["SA"].update(restrained=5),
+        "support_map[SB].family": lambda sidecar: sidecar["support_map"]["SB"].update(
+            family="anchor", restrained=["UX", "UY", "UZ", "RX", "RY"]),
+        "material_map[M1].origin": lambda sidecar: sidecar["material_map"]["M1"].update(origin="vendor_library"),
+        "material_map[M1].swbpipe_material": lambda sidecar: sidecar["material_map"]["M1"].update(
+            swbpipe_material=3),
+        "load_map[case:th/t:S1].target": lambda sidecar: sidecar["load_map"]["case:th/t:S1"].update(target="S1"),
+        "load_map[t:S1].direction": lambda sidecar: sidecar["load_map"]["case:th/t:S1"].update(direction="sideways"),
+    }
+    for location, change in changes.items():
+        sidecar = deepcopy(base)
+        change(sidecar)
+        options = {} if location.startswith("material_map[M1].origin") else {"material_provenance": INVENTED}
+        result = import_caepipe_mbf(data, sidecar=sidecar, source_label=location, **options)
+        assert result.status == "refused", location
+        assert ("MBF-IMPORT-SIDECAR-INVALID", location) in refusals(result), (location, refusals(result))
+    trip = trips["pressure-tee-bar"]
+    for change in ({"shear_model": "plastic"}, {"version": "2.0.0"}, {"mode": "legacy"}):
+        sidecar = deepcopy(trip.sidecar)
+        sidecar["pressure_map"]["contract"].update(change)
+        result = import_caepipe_mbf(trip.data, sidecar=sidecar, material_provenance=INVENTED, source_label="contract")
+        assert refusals(result) == {("MBF-IMPORT-SIDECAR-INVALID", "pressure_map.contract")}, change
