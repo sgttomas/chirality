@@ -739,11 +739,15 @@ sidecar parser types them (§15). It is checked against the file: every member m
 non-zero Pressure 1, equal across the region, and belong to one region only; every element
 with pressure must belong to one; each terminal must name a model node. Otherwise the import
 is refused (`MBF-IMPORT-SIDECAR-CONFLICT`). The pressure value always comes from the
-file. A bound import of a file with any Pressure 1 ≠ 0 needs a present, non-empty
-`pressure_map`; without one it is refused (`MBF-IMPORT-SIDECAR-CONFLICT`, `pressure_map`)
-before any region is formed or the shear model defaulted: a bound import never falls
-through to the unbound route (independent review VER-002 r9). On a file without pressure, an
-empty `pressure_map` restores the file as pressure-free, and the writer's empty pressure
+file. A format-2 sidecar always records the pressure state (§15): `pressure_map` null for no
+contract, otherwise the contract with its shear model, load case and regions; one missing or
+incomplete is refused by path (`MBF-IMPORT-SIDECAR-INVALID`, VER-002 r10). A legacy sidecar
+(main's writer) records none and binds only a pressure-free file. A bound import of a file
+with any Pressure 1 ≠ 0 whose sidecar records no contract (null, or legacy) is refused
+(`MBF-IMPORT-SIDECAR-CONFLICT`, `pressure_map`) before any region is formed or the shear
+model defaulted: a bound import never falls
+through to the unbound route (independent review VER-002 r9). On a file without pressure, a
+null `pressure_map` restores the file as pressure-free, and the writer's empty pressure
 state (the contract, no regions) restores the contract with empty region lists, with or
 without a LOADS section; a region the file does not carry is refused
 (`MBF-IMPORT-SIDECAR-CONFLICT`).
@@ -1144,7 +1148,9 @@ the manual does not make clear which kind a record is, it is refused.
 - `MBF-IMPORT-COMMENT-UNSUPPORTED`: a documented comment refused without a narrower code,
   such as the SIF and stress-index comments above;
 - `MBF-IMPORT-SIDECAR-INVALID`: a sidecar the parser refuses, by JSON path, or rebinding
-  requested without one (§15);
+  requested without one (§15). The sidecar format decides what is complete: a format-2
+  sidecar (`sidecar_format` 2) missing any field is refused, and a legacy sidecar (none, from
+  main's tranche-1 writer) carrying a field that writer never wrote, such as `pressure_map`;
 - `MBF-IMPORT-SHEAR-MODEL-INVALID`: a `shear_model` argument outside the contract's two
   values (§9.4);
 - `MBF-IMPORT-VALUE-UNREPRESENTABLE`: a read or derived value outside the binary64 range, or a
@@ -1192,10 +1198,41 @@ default earth setting (§6).
 There is no id carrier inside the MBF (TBD-17-01-003, TBD-17-04-003). Identity therefore
 travels in a sidecar.
 
-**Input.** The writer's maps (`node_map`, `element_map`, `support_map`,
-`load_case_map`, `material_map`, `section_map`, `load_map`, `pressure_map`), as `run_pilot.py` already
-writes them to `caepipe_in/id_map.json`, with `mbf_sha256` (implemented; older runs hold
-it in `mbf_render.json`, and the importer accepts either file pair).
+**Input.** The writer's sidecar (`MbfSiResult.sidecar`): `sidecar_format`, the maps
+(`node_map`, `element_map`, `support_map`, `load_case_map`, `material_map`, `section_map`,
+`load_map`, `pressure_map`) and `mbf_sha256`, as `run_pilot.py` writes it to
+`caepipe_in/id_map.json` (older runs hold the digest in `mbf_render.json`, and the importer
+accepts either file pair).
+
+**Sidecar format** (independent review VER-002 r10). The current writer records
+`sidecar_format` = 2. A format-2 sidecar is complete by rule: it holds every field the
+current writer writes, with explicit null where there is nothing to record. `pressure_map`
+is always present, null for no contract, otherwise the contract with its shear model, its
+load case and its regions (possibly none); every straight records `y_reference`, a vector or
+null (none authored), and every bend its `bend` record; every support records `family`
+(possibly null); every material `origin` (possibly null); every primitive its `direction`
+(possibly null) and its CAEPIPE node or element. The parser refuses a format-2 sidecar
+missing any field, by JSON path (`MBF-IMPORT-SIDECAR-INVALID`); no default ever fills a
+missing format-2 field. Null is the record of absence: a straight with `y_reference` null
+takes the documented local y (§10.5), and `pressure_map` null leaves the file pressure-free.
+
+**Legacy sidecars.** A sidecar without `sidecar_format` is legacy: written by main's
+tranche-1 writer (`si_writer.py` up to 42a86df92f) through `run_pilot.py`. That writer
+recorded the seven maps other than `pressure_map` and the digest. Its element entries carry
+`from`, `to`, `layout_order`, `layout_row`, `reversed`, `material`, `section`, `load`, a
+`y_reference` only for a straight with an authored one, and a `bend` record; its supports
+`node`, `caepipe_kind`, `restrained` and `family`; its materials the writer's numbers,
+`temperatures_c`, `elements` and `origin` only where declared; its primitives `load_case`,
+`caepipe_load_case`, `category`, `direction`, `target`, `mbf` and the CAEPIPE node or
+element. Its earlier versions omitted `family`, `origin`, `direction` and `y_reference`. The
+legacy behaviour applies only to such sidecars and only to what that writer could produce:
+it exported no pressure, so a legacy bound import is pressure-free (Euler–Bernoulli, as
+every pressure-free document) and a legacy sidecar of a file with Pressure 1 is refused; a
+missing `y_reference` takes the documented local y, and a missing `family` is reported
+unrecoverable. A legacy sidecar carrying a field main's writer never wrote, such as
+`pressure_map` or a null `y_reference`, is refused by path. A sidecar produced by main's
+writer at 42a86df92f is kept as an invented fixture in the round-trip tests and imports
+bound.
 
 **Bound** (the sidecar's `mbf_sha256` equals the input's). A byte-bound sidecar restores
 the identities, and the splits, that it explicitly preserves:
@@ -1224,8 +1261,9 @@ and wrong shapes are refused by JSON path, for example `element_map[S1].reversed
 union of what every SWBPIPE writer version records, so a sidecar from an older run, without
 `family`, `origin`, `direction` or `y_reference`, still parses:
 
-- top level: the eight maps (each optional, absent read as empty) and `mbf_sha256`, a
-  lowercase SHA-256 or null;
+- top level: `sidecar_format` (2, or absent for legacy), the eight maps and `mbf_sha256`, a
+  lowercase SHA-256 (legacy: optional maps, absent read as empty, no `pressure_map`, and a
+  digest that may be null). Below, "optionally" holds for legacy sidecars only;
 - `node_map`: id → CAEPIPE name, one-to-one;
 - `element_map`: id → `from`, `to`, `reversed` (bool), and optionally `layout_order`,
   `layout_row` (non-negative integers), `material`, `section`, `load`, `y_reference`
@@ -1244,31 +1282,31 @@ union of what every SWBPIPE writer version records, so a sidecar from an older r
   (exactly a `node`, a `pipe`, or a `support` with its `dof`), and optionally
   `caepipe_load_case`, `direction` (null or a token the solve parses), `mbf`, `caepipe_node`,
   `caepipe_element`; load ids are non-empty and unique (`DUPLICATE_ID`);
-- `pressure_map`: empty, or the contract 3.0.0/exact_pressure_v3 with a shear model from
-  `SHEAR_MODELS`, `regions` (each `id`, `members`, two `terminals` with `node_ref`,
-  `closure_transfer` and provenance, and optionally `provenance` and `pressure_bar`) and
-  optionally `load_case` (or null).
+- `pressure_map` (format 2 only): null, or the contract 3.0.0/exact_pressure_v3 with a shear
+  model from `SHEAR_MODELS`, `regions` (each `id`, `members`, two `terminals` with
+  `node_ref`, `closure_transfer` and provenance, `provenance` and `pressure_bar`) and
+  `load_case` (or null).
 
 **A bound sidecar is complete.** It was written for exactly this file, so each node,
 element, support node, material, case and primitive of the file has its entry, a bend its
-`bend` record, a file with Pressure 1 its `pressure_map` (§9.4), and no entry names what the
-file lacks; otherwise `MBF-IMPORT-SIDECAR-CONFLICT`, naming the map. A bound import takes no
-unbound default for anything the sidecar records: ids, families, bends, materials, cases,
-primitives, regions and the shear model come from it. Only what a writer records as absent
-is formed: a straight without a recorded `y_reference` takes the documented local y (§10.5),
-and a support entry without `family` (an older writer's) is reported unrecoverable. A primitive the writer summed many-to-one
+`bend` record, each section its entry, a file with Pressure 1 its `pressure_map` (§9.4), and
+no entry names what the file lacks; otherwise `MBF-IMPORT-SIDECAR-CONFLICT`, naming the map.
+A bound import takes no unbound default for anything the sidecar records: ids, families,
+bends, materials, cases, primitives, regions and the shear model come from it. Only an
+absence the sidecar records is formed: a format-2 null `y_reference`, and in a legacy
+sidecar a missing `y_reference` or `family` (above). A primitive the writer summed many-to-one
 keeps its formed id and is reported (below). The check against the file of what the parser
 admits stays where it was: ownership and pressure of regions (§9.4), supports' DOF sets per
 node (§12), the frame check of `y_reference` (§10.5).
 
-A seeded mutation test exercises the parser on a complete sidecar of a pressurized and of a
+A seeded mutation test exercises the parser on a format-2 sidecar of a pressurized and of a
 pressure-free file: each field swapped for every other JSON type, each container emptied,
 each number made huge or non-finite, an unknown key added and each key removed, and each of
 the eight maps deleted and emptied. Each import passes a closure declaration, so a bound
 import that fell through to unbound formation would succeed and be caught. Each mutated
 import refuses with a named `MBF-IMPORT-*` code or imports the unmutated model (a mutated
 digest that is still well formed is another file's, and gives the unbound import), and never
-raises; with pressure, the writer's preflight given the same maps refuses with a named
+raises; every deletion, of a field or a map, is refused; with pressure, the writer's preflight given the same maps refuses with a named
 `MBF-SI-*` code exactly where the import refuses.
 
 **What a bound sidecar cannot restore.** Many-to-one mappings and identities the sidecar

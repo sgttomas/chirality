@@ -117,6 +117,9 @@ MATERIAL_ORIGINS = ("project_invented", "user_supplied")
 
 _TITLE_MAX = 70
 _DESCRIPTION_MAX = 30
+# The writer sidecar's format (Design §15). Format 2 records every field, with explicit null where there is nothing to
+# record; a sidecar without `sidecar_format` is a legacy one, from main's tranche-1 writer.
+SIDECAR_FORMAT = 2
 _MAX_NODES = 9999  # node numbers 10, 20, ... stay below 99999
 
 
@@ -132,7 +135,7 @@ class MbfSiResult:
     material_map: dict[str, dict[str, Any]] = field(default_factory=dict)
     section_map: dict[str, dict[str, Any]] = field(default_factory=dict)
     load_map: dict[str, dict[str, Any]] = field(default_factory=dict)
-    pressure_map: dict[str, Any] = field(default_factory=dict)
+    pressure_map: dict[str, Any] | None = None
     layout_row_count: int = 0
     loss_report: list[dict[str, Any]] = field(default_factory=list)
     assumptions: list[str] = field(default_factory=list)
@@ -155,6 +158,13 @@ class MbfSiResult:
             "loss_report": [dict(item) for item in self.loss_report],
             "assumptions": list(self.assumptions),
         }
+
+    def sidecar(self, mbf_sha256: str) -> dict[str, Any]:
+        """The writer sidecar of the written text whose SHA-256 is `mbf_sha256` (Design §15): the format, every map
+        and the digest. Format 2 records every field, null where there is nothing to record."""
+        record = self.to_dict()
+        return {"sidecar_format": SIDECAR_FORMAT, **{key: record[key] for key in record if key.endswith("_map")},
+                "mbf_sha256": mbf_sha256}
 
 
 def _known(value: Any, table: Mapping[str, Any]) -> bool:
@@ -1148,8 +1158,7 @@ class _Writer:
                 "temperatures_c": temperatures,
                 "elements": [],
             }
-            if material["origin"] is not None:
-                material_map[name]["origin"] = material["origin"]
+            material_map[name]["origin"] = material["origin"]  # null where the model declares none
         section_key = (_num(pipe["od"]), _num(pipe["thk"]))
         if section_key not in sections:
             name = f"P{len(sections) + 1}"
@@ -1231,9 +1240,12 @@ class _Writer:
                     "section": attributes[member_id][1],
                     "load": attributes[member_id][2],
                 }
-                if member_id not in self.bends and _is_vector(member["y_reference"]):
-                    # Straight-pipe orientation is not in the MBF; the sidecar carries it for bound imports.
-                    element_map[member_id]["y_reference"] = {axis: float(member["y_reference"][axis]) for axis in "xyz"}
+                if member_id not in self.bends:
+                    # Straight-pipe orientation is not in the MBF; the sidecar carries it for bound imports, null
+                    # where the model authors none.
+                    element_map[member_id]["y_reference"] = (
+                        {axis: float(member["y_reference"][axis]) for axis in "xyz"}
+                        if _is_vector(member["y_reference"]) else None)
                 order += 1
             if "bend" in row:
                 bend = self.bends[row["bend"]]
@@ -1343,7 +1355,7 @@ class _Writer:
             else:
                 entry["caepipe_node"] = node_map[self.supports[target["support"]]["node"]]
             load_map[key] = entry
-        pressure_map: dict[str, Any] = {}
+        pressure_map: dict[str, Any] | None = None
         if self.contract is not None:
             pressure_map = {"contract": dict(self.contract), "load_case": self.pressure_case, "regions": [
                 {"id": region["id"], "members": list(region["member_pipe_ids"]),
@@ -1383,8 +1395,7 @@ class _Writer:
         from .importer import import_caepipe_mbf  # deferred: the importer imports this module
 
         data = result.text.encode("ascii")  # type: ignore[union-attr]
-        sidecar = {**{key: value for key, value in result.to_dict().items() if key.endswith("_map")},
-                   "mbf_sha256": sha256(data).hexdigest()}
+        sidecar = result.sidecar(sha256(data).hexdigest())
         back = import_caepipe_mbf(data, sidecar=sidecar, source_label="writer preflight (geometry only)",
                                   material_provenance={"*": {"origin": "project_invented",
                                                              "source_name": "writer preflight; never output"}})

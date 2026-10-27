@@ -44,6 +44,7 @@ from .si_writer import (
     LOAD_CASE_LABELS,
     MATERIAL_ORIGINS,
     MBF_VERSION,
+    SIDECAR_FORMAT,
     STANDARD_GRAVITY,
     _BEND_RELATIVE_TOLERANCE,
     current_model_schema_version,
@@ -703,12 +704,15 @@ def runtime_support_findings(supports: Iterable[tuple[str, str, str | None, list
 class _SidecarParser:
     """The strict sidecar parser, run before anything reads the sidecar (Design §15). Every key has an exact JSON
     type (a bool is not a number, null is not a default), an allowed vocabulary, a non-empty value where an id or
-    name is required, and finite binary64 range for numbers. The vocabulary is the union of what every SWBPIPE
-    writer version records; unknown keys and wrong shapes are refused by JSON path. `parse` returns the typed copy
-    that the importer reads, or None with `errors` [(path, reason)]."""
+    name is required, and finite binary64 range for numbers; unknown keys and wrong shapes are refused by JSON path.
+    A sidecar with `sidecar_format` 2 (the current writer's) must hold every field, with explicit null where there is
+    nothing to record; one without it is legacy, from main's tranche-1 writer, and holds what that writer recorded
+    (some fields absent in its earlier versions) and no pressure_map. `parse` returns the typed copy that the
+    importer reads, or None with `errors` [(path, reason)]."""
 
     def __init__(self) -> None:
         self.errors: list[tuple[str, str]] = []
+        self.current = False
 
     def fail(self, path: str, reason: str) -> object:
         self.errors.append((path, reason))
@@ -750,9 +754,15 @@ class _SidecarParser:
         return parse
 
     # -- containers -----------------------------------------------------
-    def record(self, value: Any, path: str, required: Mapping[str, Any], optional: Mapping[str, Any] = {}) -> Any:
+    def record(self, value: Any, path: str, required: Mapping[str, Any], optional: Mapping[str, Any] = {},
+               conditional: tuple[str, ...] = ()) -> Any:
+        """`optional` fields are optional only in a legacy sidecar; in format 2 every field is required except the
+        `conditional` ones, whose presence the caller checks."""
         if type(value) is not dict:
             return self.fail(path, "must be an object")
+        if self.current:
+            required = {**required, **{key: parse for key, parse in optional.items() if key not in conditional}}
+            optional = {key: parse for key, parse in optional.items() if key in conditional}
         out: dict[str, Any] = {}
         field = lambda key: f"{path}.{key}" if path else str(key)  # noqa: E731
         for key, item in value.items():
@@ -797,9 +807,15 @@ class _SidecarParser:
             "tangent_intersection_mm": self.items(self.number, length=3), "caepipe_row_node": self.text})
 
     def element(self, value: Any, path: str) -> Any:
-        return self.record(value, path, {"from": self.text, "to": self.text, "reversed": self.flag}, {
+        orientation = ((lambda item, where: None if item is None else self.vector(item, where)) if self.current
+                       else self.vector)
+        entry = self.record(value, path, {"from": self.text, "to": self.text, "reversed": self.flag}, {
             "layout_order": self.count, "layout_row": self.count, "material": self.text, "section": self.text,
-            "load": self.text, "y_reference": self.vector, "bend": self.bend})
+            "load": self.text, "y_reference": orientation, "bend": self.bend}, conditional=("y_reference", "bend"))
+        if self.current and type(value) is dict and ("y_reference" in value) == ("bend" in value):
+            return self.fail(f"{path}.y_reference", "a straight records its y_reference (a vector or null) and a "
+                             "bend its bend record, exactly one of the two")
+        return entry
 
     def support(self, value: Any, path: str) -> Any:
         entry = self.record(value, path, {"node": self.text, "restrained": self.items(self.choice(DOFS))}, {
@@ -818,7 +834,7 @@ class _SidecarParser:
             "weight_density_kgf_per_m3": self.number, "poisson_ratio": self.number,
             "elastic_modulus_n_per_mm2": self.number, "thermal_expansion_mm_per_mm_per_c": self.number,
             "temperatures_c": self.items(self.number), "elements": self.items(self.text, nonempty=False),
-            "origin": self.choice(MATERIAL_ORIGINS)})
+            "origin": self.choice(((None,) if self.current else ()) + MATERIAL_ORIGINS)})
 
     def section(self, value: Any, path: str) -> Any:
         return self.record(value, path, {}, {"outside_diameter_mm": self.number, "wall_thickness_mm": self.number,
@@ -832,10 +848,19 @@ class _SidecarParser:
         return self.fail(path, "must be an object naming a node, a pipe, or a support and its DOF")
 
     def load(self, value: Any, path: str) -> Any:
-        return self.record(value, path, {
+        entry = self.record(value, path, {
             "load_case": self.text, "category": self.choice(_LOAD_CATEGORIES), "target": self.target}, {
             "caepipe_load_case": self.text, "direction": self.choice((None, *RESTORABLE_DIRECTIONS)),
-            "mbf": self.text, "caepipe_node": self.text, "caepipe_element": self.element})
+            "mbf": self.text, "caepipe_node": self.text, "caepipe_element": self.element},
+            conditional=("caepipe_node", "caepipe_element"))
+        if self.current and type(value) is dict and type(value.get("target")) is dict:
+            wanted = "caepipe_element" if "pipe" in value["target"] else "caepipe_node"
+            other = "caepipe_node" if wanted == "caepipe_element" else "caepipe_element"
+            if wanted not in value:
+                return self.fail(f"{path}.{wanted}", "is missing")
+            if other in value:
+                return self.fail(f"{path}.{other}", "is not a field the writer records for this target")
+        return entry
 
     def contract(self, value: Any, path: str) -> Any:
         return self.record(value, path, {"version": self.choice((PRESSURE_CONTRACT["version"],)),
@@ -850,16 +875,25 @@ class _SidecarParser:
                            {"provenance": self.free_text, "pressure_bar": self.number})
 
     def pressure(self, value: Any, path: str) -> Any:
-        if type(value) is dict and not value:
-            return {}
+        """Format 2: null for no contract, or the contract with its shear model, its regions (possibly none) and
+        its load case. A legacy sidecar has none: main's writer exported no pressure."""
+        if not self.current:
+            return self.fail(path, "is not a field main's tranche-1 writer records; a sidecar with pressure has "
+                             "sidecar_format 2")
+        if value is None:
+            return None
         return self.record(value, path, {"contract": self.contract, "regions": self.items(self.region,
                                                                                           nonempty=False)},
                            {"load_case": lambda item, where: None if item is None else self.text(item, where)})
 
     def digest(self, value: Any, path: str) -> Any:
-        if value is None or (type(value) is str and _SHA256.match(value)):
+        if (value is None and not self.current) or (type(value) is str and _SHA256.match(value)):
             return value
-        return self.fail(path, "must be a lowercase SHA-256 hex digest or null")
+        return self.fail(path, "must be a lowercase SHA-256 hex digest" + ("" if self.current else " or null"))
+
+    def format(self, value: Any, path: str) -> Any:
+        return value if type(value) is int and value == SIDECAR_FORMAT else self.fail(
+            path, f"must be {SIDECAR_FORMAT}, the format this importer reads (or absent, for a legacy sidecar)")
 
     # -- the whole sidecar -------------------------------------------------
     def parse(self, sidecar: Any) -> dict[str, Any] | None:
@@ -874,9 +908,11 @@ class _SidecarParser:
         if type(sidecar) is not dict:
             self.fail("sidecar", "must be an object")
             return None
-        parsed = self.record(sidecar, "", {}, {**maps, "mbf_sha256": self.digest})
+        self.current = "sidecar_format" in sidecar
+        parsed = self.record(sidecar, "", {}, {**maps, "mbf_sha256": self.digest, "sidecar_format": self.format})
         if self.errors:
             return None
+        parsed.pop("sidecar_format", None)
         out = {name: parsed.get(name, {}) for name in maps}
         out["mbf_sha256"] = parsed.get("mbf_sha256")
         # Across entries: each load id is its case's ("<case>/<id>") and unique (DUPLICATE_ID); supports as the
@@ -2391,6 +2427,8 @@ class _Importer:
                 self.arc_tangents[pipe["id"]] = runtime_bend_tangents(a, b, radius_of[pipe["id"]] * factor + 0.0,
                                                                       y_reference)
         sections_used = dict.fromkeys(element.section for element in self.elements)
+        if self.bound:
+            self.incomplete("section_map", sections_used, self.maps["section_map"], "sections")
         for name in sections_used:
             section = self.pipes[name]
             if not runtime_section_valid(section["od"].value, section["thk"].value, factor):

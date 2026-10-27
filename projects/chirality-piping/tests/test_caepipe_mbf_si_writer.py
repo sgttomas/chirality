@@ -875,7 +875,7 @@ def test_unpressurized_elements_and_models_write_pressure_0_and_no_oppres():
     lines = tee.text.split("\r\n")
     assert lines[lines.index("LOADS") + 1:lines.index("LAYOUT")] == ["L1,100,10,0", "L2,20,10,0"]
     plain = render_caepipe_mbf_si(cantilever(), title="PLAIN")
-    assert "OPPRES" not in plain.text.split("\r\n") and plain.pressure_map == {}
+    assert "OPPRES" not in plain.text.split("\r\n") and plain.pressure_map is None
     no_regions = exact(cantilever())  # the contract alone: Pressure 1 = 0 everywhere, the contract in the sidecar
     result = render_caepipe_mbf_si(no_regions, title="CONTRACT ONLY")
     assert "OPPRES" not in result.text.split("\r\n")

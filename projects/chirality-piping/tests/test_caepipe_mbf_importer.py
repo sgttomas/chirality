@@ -378,8 +378,7 @@ def test_a_bound_sidecar_origin_qualifies_and_a_rebound_one_does_not():
                                                              "magnitude": {"value": -1, "unit": "N"}, "dimension": "force"}]}]}
     written = render_caepipe_mbf_si(model, title="ORIGIN")
     data = written.text.encode()
-    sidecar = {**{key: value for key, value in written.to_dict().items() if key.endswith("_map")},
-               "mbf_sha256": hashlib.sha256(data).hexdigest()}
+    sidecar = written.sidecar(hashlib.sha256(data).hexdigest())
     bound = run(data, sidecar=sidecar, material_provenance=None)
     assert bound.status == "imported", bound.diagnostics
     assert bound.model["materials"][0]["id"] == "steel"
@@ -787,8 +786,7 @@ def test_a_bound_import_restores_straight_orientation_from_the_sidecar():
     written = render_caepipe_mbf_si(model, title="ORIENTATION")
     assert written.element_map["S"]["y_reference"] == {"x": 0.0, "y": 0.0, "z": 1.0}
     data = written.text.encode()
-    sidecar = {**{key: value for key, value in written.to_dict().items() if key.endswith("_map")},
-               "mbf_sha256": hashlib.sha256(data).hexdigest()}
+    sidecar = written.sidecar(hashlib.sha256(data).hexdigest())
     bound = run(data, sidecar=sidecar)
     assert bound.model["pipe_segments"][0]["y_reference"] == {"x": 0.0, "y": 0.0, "z": 1.0}
     assert "MBF-IMPORT-ORIENTATION-DEFAULTED" not in {item["code"] for item in bound.diagnostics}
