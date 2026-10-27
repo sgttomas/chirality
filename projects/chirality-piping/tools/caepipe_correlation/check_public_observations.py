@@ -404,9 +404,10 @@ def _unlinked(text: str, owners: list[int]) -> tuple[str, list[int]]:
     return "".join(out), own
 
 
-def _unimaged(text: str, owners: list[int], references: dict[str, str]) -> tuple[str, list[int]]:
+def _unimaged(text: str, owners: list[int], references: dict[str, tuple[str, int]]) -> tuple[str, list[int]]:
     """Reference, collapsed and shortcut images reduced to their labels, with the screenshot marker when the
-    label and the resolved destination make the image a screenshot candidate."""
+    label and the resolved destination make the image a screenshot candidate. The marker belongs to the
+    definition's line, so a change to the definition alone is screened too."""
 
     out: list[str] = []
     own: list[int] = []
@@ -417,9 +418,10 @@ def _unimaged(text: str, owners: list[int], references: dict[str, str]) -> tuple
         own.extend(owners[position:match.start()])
         out.append(label)
         own.extend(owners[match.start(1):match.end(1)])
-        if _screenshot_candidate(label + " " + references.get(key.lower(), "")):
+        destination, line = references.get(key.lower(), ("", owners[match.start()]))
+        if _screenshot_candidate(label + " " + destination):
             out.append(IMAGE_MARK)
-            own.append(owners[match.start()])
+            own.append(line)
         position = match.end()
     out.append(text[position:])
     own.extend(owners[position:])
@@ -435,7 +437,7 @@ def _paragraphs(lines: dict[int, str], blank_breaks: bool = True) -> list[tuple[
 
     paragraphs: list[tuple[str, list[int], set[int]]] = []
     text, owners, last, fenced, starts = "", [], None, False, set()
-    references = {match.group(1).lower(): match.group(2) for line in lines.values()
+    references = {match.group(1).lower(): (match.group(2), number) for number, line in lines.items()
                   if (match := REFERENCE_DEFINITION.match(line))}
 
     def flush() -> None:
@@ -548,14 +550,14 @@ SCREENSHOT = re.compile(_alternation(r"screen ?shots?", r"screen (?:captures?|gr
                                      r"screengrabs?").pattern + "|" + IMAGE_MARK, re.IGNORECASE)
 SURVEY = _alternation(r"survey(?:s|ed)?")
 # "matches ... to <record, field, column, id, axis or a capitalised or slashed name>" maps records.
-MAPPING_TO = re.compile(r"[^,;.:]{0,60}?\bto\s+(?:the\s+)?(?:[A-Z][\w/]*|\S*/\S*|(?:\w+\s+){0,2}"
+MAPPING_TO = re.compile(r"[^,;.:]{0,60}?\bto\s+(?:the\s+)?(?:[A-Z][\w/]*|\S*/\S*|[\w ,]{0,60}?\b"
                         r"(?:fields?|records?|columns?|ids?|nodes?|keys?|names?|entries|labels?|axes|axis))\b")
 _UNIT = r"(?:%|‰|percent|per cent|ppm|parts per million|mm|cm|m|N|kN|N[·*]m|Nm|kN[·*]?m|MPa|rad|deg|°)"
 # Numeric results: counts (`20 of 35`, `35/35`, `20 matched`), percentages and ppm, decimals with a unit, and
 # scientific notation. Ids, dates, section numbers and bare integers are not results.
 _CONVERTED = r"(?:in|inch|inches|ft|feet|foot|lb|lbs|lbf|lbm|kip|kips|psi|ksi|°F|F|°C|C|K|kgf|kg|g|N|kN|mm|cm|m|Pa|kPa|MPa|GPa|rad|deg|°)"
-# Unit conversions (`1 in = 25.4 mm`, `1 kgf = 9.80665 N`): a number and a different unit on each side of `=`.
-EQUATION = re.compile(r"(?<![\w.])\d+(?:[.,]\d+)?\s*(" + _CONVERTED + r")\s*=\s*\d+(?:[.,]\d+)?(?:[eE][-+]?\d+)?\s*("
+# Unit definitions (`1 in = 25.4 mm`, `1 kgf = 9.80665 N`): one unit equals a number of a different unit.
+EQUATION = re.compile(r"(?<![\w.])1\s*(" + _CONVERTED + r")\s*=\s*\d+(?:[.,]\d+)?(?:[eE][-+]?\d+)?\s*("
                       + _CONVERTED + r")(?![\w])")
 SIGN = re.compile(r"(?:(?<=^)|(?<=[\s(=:]))[-+−](?=\d)")
 _COUNTED = r"(?:quantities|quantity|cases?|values?|checks?|nodes?|results?|records?|reactions?|displacements?|members?)"

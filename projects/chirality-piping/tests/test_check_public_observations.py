@@ -524,3 +524,22 @@ def test_reference_image_destinations_are_resolved(tmp_path):
     assert run(tmp_path, {"doc/a.md": "![Acmepipe MBF][d]\n\n[d]: layout.svg\n"}) == []
     assert run(tmp_path / "s", {"doc/a.md": "![Acmepipe MBF][d]\n\n[d]: shots/run.png\n"}) == [
         "doc/a.md:1: screenshot reference"]
+
+
+
+def test_a_changed_image_definition_alone_is_screened(tmp_path):
+    repo = repo_with(tmp_path, {"doc/a.md": "![Acmepipe MBF][d]\n\n[d]: layout.svg\n"})
+    git(repo, "branch", "-f", "main", "topic")
+    (repo / "doc/a.md").write_text("![Acmepipe MBF][d]\n\n[d]: shots/run.png\n", encoding="utf-8")
+    git(repo, "commit", "-q", "-am", "swap")
+    assert check.check_range(repo, "main", "topic", check.load_terms(write_terms(tmp_path))) == [
+        "doc/a.md:1: screenshot reference"]
+
+
+def test_equations_reporting_agreement_are_results(tmp_path):
+    assert run(tmp_path, {"doc/a.md": "Acmepipe and Otherpipe agree: 3 mm = 0.3 cm.\n"}) == [
+        "doc/a.md:1: result about the target tool"]
+
+
+def test_a_mapping_to_listed_fields_passes(tmp_path):
+    assert run(tmp_path, {"doc/a.md": "The Acmepipe importer matches all 3 values to `x`, `y`, and `z` fields.\n"}) == []
