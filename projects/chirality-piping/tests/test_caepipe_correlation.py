@@ -1316,3 +1316,18 @@ def test_run_series_without_member_records_is_not_evaluated(tmp_path, monkeypatc
     assert run_pilot.run_series(config, runner="unused", hand_calcs=hand_calcs, emit=lines.append) == {}
     stored = json.loads((config.exchange_root / "series" / "shear-deformation.json").read_text(encoding="utf-8"))
     assert stored["status"] == "not_evaluated" and len(stored["reasons"]) == 3
+
+
+
+def test_a_later_unbound_run_removes_the_earlier_export_and_records_why(tmp_path):
+    config, out = solved_case(tmp_path, "cpc-e")
+    assert run_caepipe_mbf_export(config, "cpc-e", MBF_SHA, runner=export_runner(out, []))["route"] == "mbf_exported"
+    assert (out / "exported.mbf").is_file()
+    other = "3" * 64
+    entry = run_caepipe_mbf_export(config, "cpc-e", other, runner=lambda *a, **k: pytest.fail("prlctl called"))
+    assert entry["route"] == "not_bound"
+    assert not any(path.name.lower() in ("exported.mbf", "export_guest_log.json", "export_guest_stdout.txt",
+                                         "export_guest_stderr.txt") for path in out.iterdir())
+    stored = json.loads((out / "run_record.json").read_text(encoding="utf-8"))
+    assert stored["mbf_export"]["route"] == "not_bound" and stored["mbf_export"]["solved_mbf_sha256"] == other
+    assert stored["route"] == "csv_from_batch"  # the solve record itself is kept

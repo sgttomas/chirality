@@ -72,9 +72,17 @@ public class CaepipeUi {
   [DllImport("user32.dll")] static extern IntPtr GetSubMenu(IntPtr m, int i);
   [DllImport("user32.dll", CharSet=CharSet.Unicode)] static extern int GetMenuString(IntPtr m, uint i, StringBuilder s, int n, uint f);
   [DllImport("user32.dll")] public static extern bool PostMessage(IntPtr h, uint msg, IntPtr w, IntPtr l);
-  [DllImport("user32.dll", CharSet=CharSet.Unicode)] public static extern IntPtr SendMessage(IntPtr h, uint msg, IntPtr w, string l);
-  [DllImport("user32.dll", CharSet=CharSet.Unicode)] public static extern IntPtr SendMessage(IntPtr h, uint msg, IntPtr w, StringBuilder l);
-  [DllImport("user32.dll")] public static extern IntPtr SendMessage(IntPtr h, uint msg, IntPtr w, IntPtr l);
+  // Synchronous messages go through SendMessageTimeout, so a window that stops responding cannot hold the
+  // script before its finally block stops the processes it started.
+  [DllImport("user32.dll", CharSet=CharSet.Unicode)] static extern IntPtr SendMessageTimeout(IntPtr h, uint msg, IntPtr w, string l, uint flags, uint ms, out IntPtr result);
+  [DllImport("user32.dll", CharSet=CharSet.Unicode)] static extern IntPtr SendMessageTimeout(IntPtr h, uint msg, IntPtr w, StringBuilder l, uint flags, uint ms, out IntPtr result);
+  [DllImport("user32.dll")] static extern IntPtr SendMessageTimeout(IntPtr h, uint msg, IntPtr w, IntPtr l, uint flags, uint ms, out IntPtr result);
+  const uint SMTO_ABORTIFHUNG = 0x0002;
+  const uint SEND_TIMEOUT_MS = 10000;
+  static IntPtr Checked(IntPtr ok, IntPtr result) { if (ok == IntPtr.Zero) throw new TimeoutException("window did not respond within the send timeout"); return result; }
+  public static IntPtr Send(IntPtr h, uint msg, IntPtr w, string l) { IntPtr r; return Checked(SendMessageTimeout(h, msg, w, l, SMTO_ABORTIFHUNG, SEND_TIMEOUT_MS, out r), r); }
+  public static IntPtr Send(IntPtr h, uint msg, IntPtr w, StringBuilder l) { IntPtr r; return Checked(SendMessageTimeout(h, msg, w, l, SMTO_ABORTIFHUNG, SEND_TIMEOUT_MS, out r), r); }
+  public static IntPtr Send(IntPtr h, uint msg, IntPtr w, IntPtr l) { IntPtr r; return Checked(SendMessageTimeout(h, msg, w, l, SMTO_ABORTIFHUNG, SEND_TIMEOUT_MS, out r), r); }
   [DllImport("user32.dll")] public static extern int GetDlgCtrlID(IntPtr h);
   public static string Text(IntPtr h) { var sb = new StringBuilder(2048); GetWindowText(h, sb, 2048); return sb.ToString(); }
   public static string Cls(IntPtr h) { var sb = new StringBuilder(256); GetClassName(h, sb, 256); return sb.ToString(); }
@@ -216,7 +224,7 @@ function Export-SolvedModel {
         if (-not $open) { throw "open-model dialog did not appear" }
         $edit = Find-ChildById $open "Edit" $Ui.FileNameId
         if (-not $edit) { $log.gui.open_controls = Control-Report $open; throw "file name field not found" }
-        [CaepipeUi]::SendMessage($edit, $WM_SETTEXT, [IntPtr]::Zero, $modItem.FullName) | Out-Null
+        [CaepipeUi]::Send($edit, $WM_SETTEXT, [IntPtr]::Zero, $modItem.FullName) | Out-Null
         Click $open $Ui.OpenButton
         # The layout window's title names the open model once it has loaded.
         $stem = [regex]::Escape([IO.Path]::GetFileNameWithoutExtension($modItem.Name))
@@ -231,22 +239,22 @@ function Export-SolvedModel {
         # The current-version MBF type is selected explicitly; the dialog also offers an older format.
         $type = Find-ChildById $export "ComboBox" $Ui.FileTypeId
         if (-not $type) { throw "export file type field not found" }
-        $count = [CaepipeUi]::SendMessage($type, $CB_GETCOUNT, [IntPtr]::Zero, [IntPtr]::Zero).ToInt32()
+        $count = [CaepipeUi]::Send($type, $CB_GETCOUNT, [IntPtr]::Zero, [IntPtr]::Zero).ToInt32()
         $types = @(); $mbfIndex = -1
         for ($i = 0; $i -lt $count; $i++) {
             $sb = New-Object Text.StringBuilder 512
-            [CaepipeUi]::SendMessage($type, $CB_GETLBTEXT, [IntPtr]$i, $sb) | Out-Null
+            [CaepipeUi]::Send($type, $CB_GETLBTEXT, [IntPtr]$i, $sb) | Out-Null
             $types += $sb.ToString()
             if ($sb.ToString() -eq $Ui.MbfType) { $mbfIndex = $i }
         }
         $log.gui.export_types = $types
         if ($mbfIndex -lt 0) { throw "MBF file type not offered" }
-        [CaepipeUi]::SendMessage($type, $CB_SETCURSEL, [IntPtr]$mbfIndex, [IntPtr]::Zero) | Out-Null
+        [CaepipeUi]::Send($type, $CB_SETCURSEL, [IntPtr]$mbfIndex, [IntPtr]::Zero) | Out-Null
         [CaepipeUi]::PostMessage($export, $WM_COMMAND, [IntPtr]($Ui.FileTypeId -bor ($CBN_SELCHANGE -shl 16)), $type) | Out-Null
         Start-Sleep -Milliseconds 300
         $name = Find-ChildById $export "Edit" $Ui.FileNameId
         if (-not $name) { throw "export file name field not found" }
-        [CaepipeUi]::SendMessage($name, $WM_SETTEXT, [IntPtr]::Zero, $target) | Out-Null
+        [CaepipeUi]::Send($name, $WM_SETTEXT, [IntPtr]::Zero, $target) | Out-Null
         Start-Sleep -Milliseconds 300
         $commit = Find-ChildById $export "Button" $Ui.CommitId
         if (-not $commit) { throw "export commit button not found" }
@@ -325,7 +333,7 @@ try {
     if (-not $open) { throw "open-results dialog did not appear" }
     $edit = Find-ChildById $open "Edit" $Ui.FileNameId
     if (-not $edit) { throw "file name field not found" }
-    [CaepipeUi]::SendMessage($edit, $WM_SETTEXT, [IntPtr]::Zero, $resPath) | Out-Null
+    [CaepipeUi]::Send($edit, $WM_SETTEXT, [IntPtr]::Zero, $resPath) | Out-Null
     Click $open $Ui.OpenButton
     $chooser = Wait-Window $gp { param($h) [CaepipeUi]::Cls($h) -eq $Ui.DialogClass -and [CaepipeUi]::Text($h) -eq $Ui.ChooserDialog } 30
     if ($chooser) { Click $chooser $Ui.OkButton }
@@ -342,18 +350,18 @@ try {
     if (-not $save) { throw "print-to-file dialog did not appear" }
     $type = Find-ChildById $save "ComboBox" $Ui.FileTypeId
     if (-not $type) { throw "file type field not found" }
-    $count = [CaepipeUi]::SendMessage($type, $CB_GETCOUNT, [IntPtr]::Zero, [IntPtr]::Zero).ToInt32()
+    $count = [CaepipeUi]::Send($type, $CB_GETCOUNT, [IntPtr]::Zero, [IntPtr]::Zero).ToInt32()
     $csvIndex = -1
     for ($i = 0; $i -lt $count; $i++) {
         $sb = New-Object Text.StringBuilder 512
-        [CaepipeUi]::SendMessage($type, $CB_GETLBTEXT, [IntPtr]$i, $sb) | Out-Null
+        [CaepipeUi]::Send($type, $CB_GETLBTEXT, [IntPtr]$i, $sb) | Out-Null
         if ($sb.ToString() -like $Ui.CsvType) { $csvIndex = $i }
     }
     if ($csvIndex -lt 0) { throw "CSV file type not offered" }
-    [CaepipeUi]::SendMessage($type, $CB_SETCURSEL, [IntPtr]$csvIndex, [IntPtr]::Zero) | Out-Null
+    [CaepipeUi]::Send($type, $CB_SETCURSEL, [IntPtr]$csvIndex, [IntPtr]::Zero) | Out-Null
     [CaepipeUi]::PostMessage($save, $WM_COMMAND, [IntPtr]($Ui.FileTypeId -bor ($CBN_SELCHANGE -shl 16)), $type) | Out-Null
     $name = Find-ChildById $save "Edit" $Ui.FileNameId
-    [CaepipeUi]::SendMessage($name, $WM_SETTEXT, [IntPtr]::Zero, $guiCsv) | Out-Null
+    [CaepipeUi]::Send($name, $WM_SETTEXT, [IntPtr]::Zero, $guiCsv) | Out-Null
     Start-Sleep -Milliseconds 300
     $commit = Find-ChildById $save "Button" $Ui.CommitId
     [CaepipeUi]::PostMessage($commit, $BM_CLICK, [IntPtr]::Zero, [IntPtr]::Zero) | Out-Null

@@ -585,6 +585,16 @@ def _mbf_export(config: HarnessConfig, case_id: str, mbf_sha256: str, paths: dic
     mod = contained(root, out / "model.mod")
     reason = solved_model_binding(run_record, mbf_sha256, mod)
     if reason:
+        # An earlier export is no longer bound to the current MBF: it is removed, and the run record's export
+        # entry says why, so no consumer can read a stale file as the current model's export.
+        for entry in out.iterdir():
+            if entry.name.lower() in EXPORT_OUTPUTS and entry.is_file():
+                contained(root, entry).unlink()
+        refused = {"route": "not_bound", "reason": reason, "solved_mbf_sha256": mbf_sha256,
+                   "timestamps": {"started": started, "finished": _now()}}
+        if run_record is not None:
+            write_private(root, out / "run_record.json",
+                          json.dumps({**run_record, "mbf_export": refused}, indent=2, sort_keys=True) + "\n")
         return {"route": "not_bound", "reason": reason}
     mod_sha256 = _sha256(mod.read_bytes())
     for entry in out.iterdir():

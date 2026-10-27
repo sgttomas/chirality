@@ -27,8 +27,10 @@ opens the case's solved model in a CAEPIPE instance it starts, writes it back to
 MBF with File > Export to MBF... and stops that instance; the harness collects
 caepipe_out/exported.mbf and binds it to the run record by hash (Design §3, §5).
 --export-only runs only that step, from each case's stored solve, which its run
-record must bind to the current MBF; it writes nothing outside caepipe_out/ and
-needs no runner.
+record must bind to the current MBF, and needs no runner. In the exchange folder it
+writes the case's caepipe_out/ files (the export, its guest logs and the run
+record's export entry), the harness copy of the guest script and run lock in
+_harness/, and creates the case's layer folders if they are missing.
 
 Standard output carries operational status only: per case its id, route and
 either the comparison record's path relative to the exchange folder or the
