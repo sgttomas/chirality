@@ -448,11 +448,15 @@ code-checking or acceptance logic, and their presence is listed in the loss repo
 - **Varying values are refused** (`MBF-IMPORT-MATERIAL-TEMPERATURE-DEPENDENT`). SWBPIPE
   has `temperature_points`, but mapping them needs choices the MBF does not state: which
   modulus each case solves with (SWBPIPE's explicit `modulus_basis`), and how the tabulated α,
-  which the public *Material* page documents as a mean coefficient, enters each case. The
-  question is O-7 (§20.2). Until it is ruled, this refusal is the tranche-3 state of §20.3
-  item 6: identical rows are the one exact reading, since a constant E and a constant α give
-  the same E and the same α(T₁ − T_ref) under every modulus basis and every reference
+  which the public *Material* page documents as a mean coefficient, enters each case
+  (O-7, §20.2). Identical rows are the one exact reading, since a constant E and a constant α
+  give the same E and the same α(T₁ − T_ref) under every modulus basis and every reference
   temperature of the mean.
+- **Ruling (O-7; Agent 0's decision under the owner's delegation, 2026-10-27).** A temperature-dependent MATERIAL stays refused until the reference
+  temperature from which the tabulated mean α is measured, and the interpolation between rows
+  for E and for α, are confirmed (DEL-17-01 CQ-17-01-016). It then takes the hot basis (§20.2,
+  option A), for files whose OPTEMP modulus flag selects the hot modulus; cold-modulus files stay
+  refused, since SWBPIPE's case basis selects E and α together.
 - **Joint factors and type.** These are code-check settings. They are listed as
   `delegated` and are not imported.
 - **Strength and code data.** These are the yield and tensile strengths,
@@ -2134,7 +2138,9 @@ a2"<!-- /owner-words -->).
 ### 20.1 TBDs
 
 TBD-17-04-005 to -009 are added to DEL-17-04 CLM-022. The questions go to the DEL-17-01
-dossier as CQ-17-01-011 to -015.
+dossier as CQ-17-01-011 to -015. TBD-17-04-010 is added to the DEL-17-04 ScopeOfWork TBD table
+(Agent 0, 2026-10-27); its unit question is drafted in the dossier as CQ-17-01-017, and O-7's
+as CQ-17-01-016. Both are drafts for the owner to send.
 
 | TBD | Question | Effect until closed |
 |---|---|---|
@@ -2143,7 +2149,7 @@ dossier as CQ-17-01-011 to -015.
 | TBD-17-04-007 | Whether `L=<load name>` is the documented load reference, carried like M and P, and which load case a `FOR` or `MOM` without `FLC` joins; and whether these are stable across versions | Bound imports apply the writer's conventions. Unbound imports refuse both with `MBF-IMPORT-TBD-17-04-007`. Unbound imports may admit both where an explicitly retained bounded profile decision does so |
 | TBD-17-04-008 | Whether CAEPIPE's MBF export keeps node numbers, row order and TI bend rows as imported, and whether it writes offsets or absolute coordinates | A sidecar is applied by CAEPIPE name only on explicit request, whatever its digest, and every rebound id is marked unconfirmed (§15). Geometry is read only in its documented forms |
 | TBD-17-04-009 | Whether the absolute-coordinate marker `*` precedes or follows the node number in an MBF layout row. The *Node* page and the *DX, DY, DZ* page and MBF examples disagree | The trailing marker shown in MBF examples is a selected interpretation (§10.2). Any other placement is refused by name (`MBF-IMPORT-TBD-17-04-009`) |
-| TBD-17-04-010 | Support records whose meaning the public pages leave open: (a) the unit of `ROTK` and `KR`, in-lb/deg or N-m/deg on *Format of .MBF* but inch-lb/radian on the *Anchor* page; (b) whether a `KA` with only one of `TRAK` and `ROTK` leaves the other's DOFs rigid or free; (c) which element's local axes `AXIAL`, `SHEARY` and `SHEARZ` name for a limit stop (the *Guide* page states the preceding element for guides only); (d) the direction of an `LS` without `DV` | Refused by name (`MBF-IMPORT-TBD-17-04-010`). `ROTK(0,0,0)` is read, a zero being free in any unit. The writer writes no rotational spring. To be added to the DEL-17-04 TBD table and asked in the DEL-17-01 dossier, for Agent 0 |
+| TBD-17-04-010 | Support records whose meaning the public pages leave open: (a) the unit of `ROTK` and `KR`, in-lb/deg or N-m/deg on *Format of .MBF* but inch-lb/radian on the *Anchor* page; (b) whether a `KA` with only one of `TRAK` and `ROTK` leaves the other's DOFs rigid or free; (c) which element's local axes `AXIAL`, `SHEARY` and `SHEARZ` name for a limit stop (the *Guide* page states the preceding element for guides only); (d) the direction of an `LS` without `DV` | Refused by name (`MBF-IMPORT-TBD-17-04-010`). `ROTK(0,0,0)` is read, a zero being free in any unit. The writer writes no rotational spring. Part (a) is drafted as DEL-17-01 CQ-17-01-017 |
 
 ### 20.2 Owner choices
 
@@ -2159,7 +2165,7 @@ dossier as CQ-17-01-011 to -015.
   under the owner's delegation, 2026-10-27) and stated in §9.4. Once the pressure-free
   Timoshenko unit (#1663) lands, pressure-free imports follow the same default through
   `model_settings.shear_model`; that is a later slice, not this one.
-- **O-7 (ruling question, §20.3 item 6).** How should a MATERIAL whose temperature rows differ in E
+- **O-7 (ruled: Agent 0's decision under the owner's delegation, 2026-10-27, as recommended below; the ruling is stated in §7.1).** How should a MATERIAL whose temperature rows differ in E
   or α be mapped onto SWBPIPE's `temperature_points` and a case's modulus basis?
   - *What the public pages document.* Each row gives a temperature, E and α (*Format of .MBF*,
     MATERIAL). α is the mean coefficient, not the instantaneous one, and element temperatures
@@ -2190,7 +2196,7 @@ dossier as CQ-17-01-011 to -015.
   - *Recommendation.* C now. Then A, for files whose OPTEMP flag selects the hot modulus, once
     SST confirms (as dossier questions) that the mean is taken from the OPTEMP reference
     temperature and that rows are interpolated linearly. Cold-modulus files stay refused until
-    SWBPIPE has a separate α basis.
+    SWBPIPE has a separate α basis. The confirmation is drafted as DEL-17-01 CQ-17-01-016.
 - **O-4.** How CAEPIPE-exported MBFs are produced for §18.3: by hand by the owner, or by a
   guest automation step.
 - **O-6 (open, not adopted).** Binding the sidecar's digest into the MBF, so that a
@@ -2219,40 +2225,53 @@ tranche, in priority order, each with its writer counterpart where one is missin
    the writer writes springs as flexible anchors, with its preflight, and sidecar format 3 records
    them. Rotational stiffness is refused (TBD-17-04-010);
 5. hangers. **Refused** (§12): no exact mapping onto SWBPIPE's hanger members (gaps below);
-6. temperature-dependent materials. **Refused pending O-7** (§20.2). Identical rows, already read,
-   are the one exact reading.
+6. temperature-dependent materials. **Refused under the O-7 ruling** (§7.1, §20.2) until
+   CQ-17-01-016 is answered; then the hot basis. Identical rows, already read, are the one exact
+   reading.
 
 **Gaps for Agent 0** (tranche 3; each refused by name today). Each states the element, what SWBPIPE
-lacks, and the smallest member that would carry it. Agent 0 decides.
+lacks, the smallest member that would carry it, and the ruling (Agent 0's decision under the owner's delegation, 2026-10-27). Each ruled member is a
+SWBPIPE model or analysis addition that its owning lane builds, not this lane. The importer keeps
+refusing each item by name until its member exists, and then maps onto it.
 
 - **Skewed directions** (a guide on a skewed element; `DV` off the axes; `K` along a skewed
   direction; `LA=1`). SWBPIPE's restraints and springs act on global DOFs only. Smallest member: an
   optional `direction` (a unit vector) on a single-DOF `line_stop` or `spring`, restraining
-  translation along it.
+  translation along it. *Ruling: adopted in principle, second priority.* W-17 scopes it into the
+  model-document 0.9.0 step with C1, so that there is one version step, not two; the solver lane
+  covers the kernel side.
 - **Guide clearance** (`GGAP` > 0). SWBPIPE's `nonlinear.gap` acts on one DOF; a guide's clearance
   is symmetric about its axis in the lateral plane. Smallest member: a two-sided gap on one DOF
   (`gap` with lower and upper limits) would carry an axis-aligned element's clearance per lateral
   DOF only approximately (a square, not a circle); an exact one needs a radial gap over two DOFs.
+  *Ruling: stays refused.* A circular clearance is not approximated by a square one; revisited after
+  the operating case below, as an exact radial gap.
 - **Limit-stop gaps and one-way stops** (`LS(a,b)` with a non-zero or blank limit). SWBPIPE has
   per-DOF `nonlinear` `gap` and `one_way`, but a nonlinear state depends on the combined operating
   load, and the import forms only primitive cases (sustained; thermal). Smallest member: an
   operating case (sustained plus thermal) in which the nonlinear supports are solved, with the
   expansion case as its difference from the sustained one, as `CAEPIPE-ANALYSIS` documents.
 - **Friction** (`MU` > 0). Same gap as above; SWBPIPE's `friction` behaviour exists per DOF.
+- *Ruling on these two: the operating case with nonlinear supports, expansion as the difference, is
+  adopted in principle as the first priority, design first.* It goes to the solver lane, which first
+  reconciles it with the W-16 work in flight (#1654, imposed displacement with nonlinear supports;
+  EX combinations). It changes the analysis basis, so it needs a design, independent numerical
+  scrutiny and targeted regressions before any build.
 - **Displacements at a flexible anchor**. SWBPIPE's imposed displacement is a rigid prescribed
   DOF. Smallest member: an imposed displacement of a spring's ground end (`target.type: support`
-  on a spring support, moving its ground point).
+  on a spring support, moving its ground point). *Ruling: a later item.*
 - **Hangers** (`VS`, `CS`, `US`). SWBPIPE's `constant_effort_support` applies its load in every
   solved case, the thermal case included, and its spring hanger's loads are review-only; CAEPIPE
   applies hanger loads in the sustained and operating cases only (`CAEPIPE-HANGER`). Smallest
   member: a case scope on a hanger's load (sustained and operating only), with the spring rate
   added to the stiffness as a spring. `VS` and `CS` loads come from the target's hanger design and
-  have no input value to carry.
+  have no input value to carry. *Ruling: after the operating case.*
 - **Rotational stiffness** (`ROTK`, `KR`). Not a member gap: SWBPIPE's rotational springs exist; the
   unit is open (TBD-17-04-010).
 - **Temperature-dependent materials, cold modulus**. SWBPIPE's case basis selects E and α together;
   a cold-modulus file needs E at T_ref with the mean α at T1. Smallest member: a separate α basis
-  on a load case (O-7, option B).
+  on a load case (O-7, option B). Under the O-7 ruling, cold-modulus files stay refused; no member
+  is adopted.
 
 After tranche 2 (Agent 0, under the owner's delegation), the sidecar self-digest is
 **implemented** (§15). The writer records format 3: format 2 plus `sidecar_sha256`, the
