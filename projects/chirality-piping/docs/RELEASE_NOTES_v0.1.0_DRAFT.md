@@ -66,6 +66,7 @@ What the SWBPIPE 0.1.0 desktop application does in this source tree. It describe
 - Combinations: factored linear ("mechanics"), result-state subtraction and range envelope.
 - User-imported material, section, component and hanger libraries pass a provenance check and are stored locally. Imported hanger records can be selected onto supports.
 - Offline agent proposals: import a proposal file, validate it, preview the diff and apply it explicitly. No live provider is connected.
+- Project units are chosen when a blank project is created (SI, US customary or a custom unit per key) and can be changed later on the Project page; the length unit is fixed once nodes exist, and no stored value is converted. New entries take their default units from the project units. A model document, stored project or saved state without project units is refused by name at open.
 - Readouts in Entered, SI or US units; editing stays in entered units. Missing or incompatible units are diagnostics, not defaults.
 - Missing-data and project-validation panels separate solve-blocking from rule-check-blocking findings.
 
@@ -74,10 +75,10 @@ What the SWBPIPE 0.1.0 desktop application does in this source tree. It describe
 - Linear-static, small-displacement 3D frame analysis with six DOFs per node. The solve runs natively in a capped local worker process with progress, cancellation and a memory pool.
 - Two solver modes: Sparse interactive (default; in-repository skyline LDLᵀ factorization) and Dense scrutiny.
 - The model's declared pressure contract selects one of two routes:
-  - Pressure-free route: Euler–Bernoulli straight pipes; realized curved bends; anchors, guides, line stops, vertical supports and linear springs; variable spring hangers as linear springs from the entered stiffness; constant-effort supports as a constant force when one translational DOF and a constant load are entered; nonlinear one-way, gap, lift-off and friction supports, iterated to a converged active set. Loads: weight and distributed force, concentrated force and moment, element temperature change, and wind and seismic static-equivalent loads generated from user inputs. Pressure and imposed support displacement are refused on this route.
-  - Exact pressure route (`3.0.0/exact_pressure_v3`): straight circular pipes (Euler–Bernoulli or Timoshenko), realized curved bends, objective-connector expansion joints with optional tie rods, and linear restraints and springs. Loads: internal pressure as a signed differential per explicit region, force, moment and line loads, and load/reference states for thermal and fit strain and prescribed support motion. Valves, flanges, reducers, tees, rigid components, nonlinear and constant-effort supports, combinations and wind or seismic generation are refused by name.
+  - Pressure-free route: Euler–Bernoulli straight pipes; realized curved bends; anchors, guides, line stops, vertical supports and linear springs; variable spring hangers as linear springs from the entered stiffness; constant-effort supports as a constant force when one translational DOF and a constant load are entered; nonlinear one-way, gap, lift-off and friction supports, iterated to a converged active set. Loads: weight and distributed force, concentrated force and moment, element temperature change, wind and seismic static-equivalent loads generated from user inputs, and an imposed displacement or rotation on a rigid support DOF. Pressure is refused on this route, and so is an imposed support displacement in a model with nonlinear supports.
+  - Exact pressure route (`3.0.0/exact_pressure_v3`): straight circular pipes (Euler–Bernoulli or Timoshenko), realized curved bends, objective-connector expansion joints with optional tie rods, linear restraints and springs, and valves, flanges, rigid and specialty components (reducers only outside pressure regions). Loads: internal pressure as a signed differential per explicit region, force, moment and line loads, and load/reference states for thermal and fit strain and prescribed support motion. Tees, reducers in a pressure region, nonlinear and constant-effort supports, combinations, wind or seismic generation and the support-targeted imposed-displacement load are refused by name.
 - Material moduli come from the entered base material properties. A load case may instead select a named temperature point, or linear interpolation between two entered points; there is no extrapolation.
-- Valves, flanges, reducers, tees and rigid or specialty components carry user data, and user SIFs feed review rows. Their span is analysed as pipe; no rigid or semi-rigid stiffness is assembled.
+- Valves, flanges, reducers, tees and rigid or specialty components carry user data, and user SIFs feed review rows. A valve, flange, reducer, rigid or specialty component's mapped member takes the user's stiffness scale (DEC-045) on both routes, and its stress rows are those of the mapped reference section, not a body stress. When self-weight is generated, a component with an entered weight and centre of gravity contributes a nodal force and moment at its node in place of the member's distributed pipe weight. Reducer eccentricity is not modelled. A tee's span is analysed as pipe; no branch flexibility is assembled.
 - Documents with legacy pressure primitives or legacy four-rate expansion joints are refused by name and must be re-authored. Nothing is converted.
 - Missing, invalid or unsupported inputs that the solve needs block it with named diagnostics; nothing is defaulted. Some records the solve does not consume (for example a constant-effort support it cannot apply) contribute nothing and are reported with a warning, while the solve proceeds.
 
@@ -87,7 +88,7 @@ What the SWBPIPE 0.1.0 desktop application does in this source tree. It describe
 - Mechanics stresses: axial, bending and torsional shear components, and a per-member maximum elastic normal stress |N/A| + hypot(My, Mz)/Z. The exact route adds pressure hoop (Lamé) and longitudinal stresses, each on the nominal and the reduced section.
 - Where the user supplied a SIF, an intensified bending measure labelled as not a code stress.
 - Combinations are evaluated on the pressure-free route. Factored-linear ("mechanics") combinations are withheld where superposition is not a solved state: nonlinear supports, constant effort with a factor sum other than 1, or mixed moduli. Result-state subtraction and range envelopes operate on the solved results and are not gated this way.
-- Results table, deformed shape and rotation glyphs in the viewport. Each result shows its numerical-integrity standing and diagnostics.
+- Results table, deformed shape and rotation glyphs in the viewport, with optional member colouring by a result quantity and support reaction arrows. Each result shows its numerical-integrity standing and diagnostics.
 - A numerical health indicator for each load case, from the solver's existing residual and conditioning checks: checks passed, sensitive, quality unresolved, solve failed or not assessed. Each state comes with an estimated conditioning figure where available, the cause where the solver names one, and a link to the solver diagnostic. These checks look for numerical trouble; they do not measure the error.
 
 ### User rule packs
@@ -99,11 +100,13 @@ What the SWBPIPE 0.1.0 desktop application does in this source tree. It describe
 
 ### Reports and exports
 
-- Rendered HTML calculation report from the Rust renderer, with its canonical SHA-256 and a derived Print/PDF view, for pressure-free results. Rendering is refused when the public-report redaction control would have to withhold values.
-- Report record JSON and report-lint JSON.
-- Save Report Package… (`.opsproj`) is present but refuses every result the current solver produces.
-- Result JSON and stress-neutral CSV/JSON exports, offered when the result's standing admits them. These are the only export formats open to exact-route results; eligible exact-route results can also be rule-checked.
-- For pressure-free results also: native JSON package, handoff package JSON, conservative PCF (straight-pipe records; supports and components go to a loss report), glTF review geometry, a `.mbf` model batch file (nodes, elements, supports and load cases; target version and record subset `TBD`) and a local FEA handoff JSON packet.
+- Rendered HTML calculation report from the Rust renderer, with its canonical SHA-256 and a derived Print/PDF view, for pressure-free results and for eligible exact-route (`pressure-2` and `pressure-source-1`) results. A report is rendered only as a local private document, when the user states local-private intent; a public render is refused for every session, because session data is classified private. An exact-route report carries no numerical-health lines.
+- The report carries rule-pack references, user-rule check outcomes, software and solver versions, run settings, coordinate systems, and provenance records for materials, sections, components, supports and library references. A record whose review status is quarantined or rejected, or whose redistribution status is suspected protected, blocks the report.
+- Report record JSON and report-lint JSON, for pressure-free results.
+- Save Report Package… (`.opsproj`) saves a local private package for a current pressure-free or eligible exact-route result.
+- Result JSON and stress-neutral JSON exports, offered when the result's standing admits them. For exact-route results these, rule checks, the rendered report and the report package are the open outputs.
+- For pressure-free results also: native JSON package, handoff package JSON, conservative PCF (straight-pipe records; supports and components go to a loss report), a `.mbf` model batch file package (nodes, elements, supports and load cases; components omitted; target version and record subset `TBD`) and a local FEA handoff JSON packet. PCF and `.mbf` lengths convert exactly from m, mm, in and ft; other units, and a missing project unit, are refused by name.
+- Outputs that must be byte-exact for a downstream tool (stress-neutral CSV, glTF review geometry, PCF text and `.mbf` text) are built but not offered for download while session values are classified private. The `.mbf` text is a placeholder record subset that its target tool does not import.
 - `openpipestress-runner` command-line runner, built from source and not bundled in the app: `solve`, `validate-input`, `export-results`, `run-benchmark`, `run-regression` and `read`; JSON in and out; exit codes 0, 1 and 2; `--solver-mode`. The desktop exports a matching runner envelope JSON.
 
 ### Privacy and local operation
@@ -118,15 +121,16 @@ What the SWBPIPE 0.1.0 desktop application does in this source tree. It describe
 - macOS on Apple silicon (`aarch64-apple-darwin`) only: Tauri `.app` bundle `SWBPIPE`, version 0.1.0, identifier `com.chirality.swbpipe`.
 - Distributed as a zip with a SHA-256 checksum file. The app is signed with the developer's Developer ID certificate (hardened runtime) and notarized by Apple with the ticket stapled (D-06b, owner, 2026-10-23); see the install note.
 
-### In v0.1 scope, not yet in this source tree
+### States, runs, comparison and model export
 
-Owner ruling, 2026-10-23 ("I approve OD-1 through OD-5 as you recommended."; `docs/COMPLETENESS_MAP.md` §4.2) places these in v0.1. They are not implemented in this source tree:
+Owner ruling, 2026-10-23 ("I approve OD-1 through OD-5 as you recommended."; `docs/COMPLETENESS_MAP.md` §4.2) places these in v0.1:
 
-- Named immutable model states and an analysis-run browser (OD-1).
-- Comparison of two saved model states or analysis runs, an entity-mapping editor and tolerance profiles (OD-1). The Comparison panel is a single-result preview with no tolerance classification.
-- Export of the canonical model document to a file, independent of a solve, with a schema-conformant handoff manifest (OD-1, OD-4).
-- Rigid or semi-rigid stiffness for valves, flanges, reducers and specialty items through DEC-045 stiffness scaling (OD-2).
-- Stress or result colour overlays and reaction arrows in the viewport (OD-5).
+- Named immutable model states: save, open, label and delete, kept in the local store (OD-1).
+- Analysis runs recorded against a saved state, with the model's rule-pack references resolved at solve, and a History panel to browse them (OD-1).
+- Comparison of two saved states, of two recorded runs, and of load cases and combinations within one run; view-only, with automatic mapping and no unit conversion or tolerance classification (OD-1).
+- File › Save Model Document… writes the canonical model document, independent of a solve; File › Save Handoff… writes a verified handoff directory package with its manifest for a saved state. Runs are not referenced in the handoff package (OD-1, OD-4).
+
+An entity-mapping editor, tolerance profiles, graphical comparison overlays and comparison export are not provided; the states-and-comparison design places them in v0.2 R3. History export is not provided.
 
 ### Not in v0.1
 
@@ -137,7 +141,7 @@ Owner ruling, 2026-10-23 ("I approve OD-1 through OD-5 as you recommended."; `do
 - Hydrotest cases; rotational gap and friction supports; rigid strut and sliding-support families; hanger preload from installed, cold or hot loads.
 - Flow momentum, Bourdon effect, ovalization and external-pressure collapse.
 - Verified result bounds (retained precision) on any product surface.
-- Report packages for current results; final report layout and PDF policy (`TBD`).
+- A shareable (not local private) report; final report layout and PDF policy (`TBD`).
 - A live agent provider; public API transport, plugin loading and the local FEA package format (`TBD`).
 - Windows, Linux and Intel Mac builds.
 
