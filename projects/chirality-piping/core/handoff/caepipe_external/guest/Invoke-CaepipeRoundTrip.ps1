@@ -188,7 +188,7 @@ $log.batch.csv_present = Test-Path $batchCsv
 if ($log.batch.csv_present) { $log.csv_path = $batchCsv; $log.status = "csv_from_batch"; $log | ConvertTo-Json -Depth 6; exit 0 }
 if (-not $log.batch.res_present) { $log.status = "no_results_after_batch"; $log | ConvertTo-Json -Depth 6; exit 2 }
 
-# 2. Print the solved results to CSV through the GUI.
+# 2. Fallback when the batch route yields no result file: print the solved results to CSV through the GUI.
 $log.gui.used = $true
 $gui = Start-Process -FilePath $Exe -WorkingDirectory (Split-Path $Exe) -PassThru
 $gp = [uint32]$gui.Id

@@ -592,18 +592,11 @@ Timoshenko straight members (transverse shear deformation) as an explicit
 per-document choice, as the exact pressure route already does. Today the
 pressure-free route is Euler–Bernoulli only.
 
-**Evidence** (classes and counts only; values stay private).
-- *Correlation pilot, live, 2026-10-26.* Across eight invented cases, every
-  difference between SWBPIPE and the external prover beyond the pilot's
-  working tolerance was either the deliberately injected fault or a quantity
-  where the analytic and SWBPIPE values agree. For every such quantity, the
-  external prover matched an independent Timoshenko calculation within its own
-  print resolution. A cantilever at three spans showed the gap shrinking with
-  slenderness as shear predicts.
-- One residual is not yet explained. In the 12 m case, the external prover's
-  tip deflection lies a few parts per million beyond the Timoshenko value. It
-  is too large to be print rounding, and a different shear factor would not
-  explain it.
+**Evidence.**
+- *Correlation pilot.* The pilot's comparison and slenderness-series records bear
+  on this choice. They evaluate the external prover, so they stay in the private
+  exchange folder (owner, 2026-10-26: "interoperate openly, evaluate privately"),
+  where the owner can review them.
 - *Public documentation.* The external prover's pipe stiffness is publicly
   described as including a shear term proportional to L/GA, with an
   unpublished shape factor. The pilot's Timoshenko values assume shape factor 2
@@ -640,8 +633,8 @@ The pressure-free route was deliberately kept Euler–Bernoulli and byte-identic
   `AGENTS.md` requires for numerical meaning.
 - If retained-route memory moves, re-price it.
 
-**Not settled by adopting it.** SWBPIPE's energy-matched κ_E and the external
-prover's apparent shape factor differ slightly. For the pilot's section, the
+**Not settled by adopting it.** SWBPIPE's energy-matched κ_E and the shape
+factor the pilot assumes for the external prover differ slightly. For the pilot's section, the
 expected gap is a few percent of the shear term, a small fraction of a percent of totals:
 - within the pilot's working tolerance;
 - above the external prover's print resolution.
@@ -651,13 +644,13 @@ Correlation would still declare that residual difference.
 **Recommendation.** Offer it, as an explicit opt-in on the pressure-free route,
 keeping Euler–Bernoulli as the default. Reasons:
 - the formulation, references and certification already exist;
-- it closes the main systematic difference the pilot found;
+- it lets SWBPIPE include transverse shear deformation where a user's reference tool does;
 - users can then match the shear assumption of the tool they correlate against.
 
 Before building, ask the tool's vendor for the shape factor (CQ-17-01-010), so the correlation
 declaration can be exact. Priority: medium, after the import and export
 streams. It does not block the current correlation work, because correlation
-declares the difference with evidence.
+declares any such difference with its evidence.
 
 ## Native US-customary MBF writing (owner choice)
 
@@ -790,11 +783,12 @@ our reasoning, not observed.
   12. heavy rigid valve with off-centre CoG (R4);
   13. eccentric reducer (W-15 c);
   14. cold spring (C5);
-  15. a 2,000-node rack model for solve-time and conditioning statistics (D6).
+  15. a 2,000-node rack model for SWBPIPE's own solve-time and conditioning
+      statistics (D6).
 
-  Each is our own invented geometry and data, with results kept private and
-  only agreement statistics reported. That follows the stream-1 harness
-  pattern under DEL-17-05.
+  Each is our own invented geometry and data. Results, differences and
+  agreement statistics stay private, in the exchange folder. That follows the
+  stream-1 harness pattern under DEL-17-05.
 - *Touches:* DEL-09-01/03, DEL-17-05, DEL-14-05.
 
 **R10. Solve statistics as numerical-health evidence.** [observed]
@@ -829,6 +823,5 @@ our reasoning, not observed.
 - Dynamic, fatigue, hanger, flange and equipment result screens (no pilot
   model exercises them).
 - Mouse-only context menus and toolbar-only commands.
-- Model-size limits.
 
 These would need a richer invented pilot model.

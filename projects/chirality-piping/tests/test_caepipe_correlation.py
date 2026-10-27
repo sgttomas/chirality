@@ -594,7 +594,7 @@ def test_round_trip_records_route_and_never_runs_a_real_prlctl(tmp_path):
     assert "-File \"Z:\\invented\\_harness\\Invoke-CaepipeRoundTrip.ps1\"" in calls[1][6]
     assert record_["route"] == "csv_from_gui_print"
     assert record_["command_shape"]["gui_print_fallback"] == {
-        **record_["command_shape"]["gui_print_fallback"], "used": True, "label": "trial_build_workaround"}
+        **record_["command_shape"]["gui_print_fallback"], "used": True, "label": "print_to_file_fallback"}
     assert record_["mbf"]["sha256"] == MBF_SHA
     case_dir = config.exchange_root / "cases" / "cpc-x"
     assert (case_dir / "caepipe_in" / "model.mbf").read_bytes() == b"INVENTED\r\nMBF\r\n"

@@ -1,27 +1,38 @@
 #!/usr/bin/env python3
-"""Lane-local check that public text added on a branch states no named observation of the external prover.
+"""Lane-local check that public text added on a branch carries no evaluation of the external prover.
 
-Owner ruling (2026-10-26): facts learned from running the external prover, from its outputs or its screens,
-are written in public text generically ("the external prover", "the target tool"), with no product name,
-vendor or version attached; the named detail lives in private observation notes. This check enforces it on
-what a change adds. All terms come from a private terms file outside the repository and are never printed;
-a finding names the place and the term's position in its list.
+Owner ruling (2026-10-26): "I want: **interoperate openly, evaluate privately**". The product name and the
+file-format and interface facts our code needs to interoperate are public. Anything that evaluates the product
+stays in the private exchange folder: result values, differences, agreement counts and classifications,
+tolerances measured from results; its defects and crashes, the trial's limits, the evaluation stamp, its
+performance; screenshots and survey notes. This check screens what a change adds for those kinds of content:
 
-Terms file sections (one term per line, `#` comments and blank lines ignored):
-- `[names]`: product, vendor and version strings;
-- `[markers]`: words that mark an observation (blocked when a name sits within one line of one);
-- `[tokens]`: distinctive observed strings, blocked wherever they appear in prose.
+- a result: a comparison or agreement word with a numeric value in one sentence that refers to the target;
+- a defect or limit: defect, crash, limit, trial, stamp or performance language in a sentence that refers to
+  the target;
+- a screenshot reference in a sentence that refers to the target or to the survey;
+- a private token (a distinctive string from the private notes), anywhere in prose, and on every added line
+  of tests and fixtures.
+
+A sentence refers to the target when it, or a line next to the hit, names the product, its vendor or version
+(the private terms file's `[names]`), or says "external prover", "target tool" or "the prover" (or, for
+screenshots, "survey"). A numeric result is a count (`20 of 35`, `35/35`, `20 matched`), a percentage or
+ppm, a decimal with a unit, or scientific notation; ids, dates, section numbers, bare integers and the
+product's version are not. The terms file's sections are `[names]`
+and `[tokens]`, one term per line; `#` comments and blank lines are ignored. Terms are never printed; a
+finding names the place and the kind.
 
 Prose is every line of a non-code file, and in code files (Python, PowerShell, TypeScript, Rust) only
-comments, docstrings and test function names: code may implement the behaviour it needs. Fixture CSV data
-counts as code. In tests and fixtures, observed tokens that carry a product name are blocked on every line.
-Comment extraction outside Python is deliberately over-inclusive (quotes ignored, block nesting counted). Every
-prose line, whatever its source, is matched as visible text: links keep their labels, and blockquote,
-emphasis and code markers are removed. Names and markers match
-regardless of case. Consecutive prose lines are read as one text, so a term wrapped across lines still matches; a change is screened in the context of its whole file, and a finding is reported
-when a match involves an added line. Paths and file names are not screened for names and markers. Commit messages in `--base..--head` and any
-`--file` given whole are prose too. In Markdown, the owner's verbatim words between `<!-- owner-words -->` and
-`<!-- /owner-words -->` are not screened; an unpaired marker is an operational error.
+comments, docstrings and test function names: code may contain whatever it needs. Fixture CSV data counts as
+code. Comment extraction outside Python is deliberately over-inclusive (quotes ignored, block nesting
+counted). Every prose line, whatever its source, is matched as visible text: links keep their labels, and
+blockquote, emphasis and code markers are removed. Consecutive prose lines are read as one text, so a term
+wrapped across lines still matches; a change is screened in the context of its whole file, and a finding is
+reported when a match involves an added line. Paths and file names are not screened. Commit messages in
+`--base..--head` and any `--file` given whole are prose too. In Markdown, the owner's verbatim words between
+`<!-- owner-words -->` and `<!-- /owner-words -->`, and text stating the data rule itself between
+`<!-- policy-text -->` and `<!-- /policy-text -->`, are not screened; an unpaired marker is an operational
+error. The check's own source and tests are not screened.
 
 The check is a lexical aid to review, not a proof that text is clean; review of the change remains the control.
 
@@ -41,7 +52,7 @@ import tokenize
 from pathlib import Path
 
 CODE_SUFFIXES = {".py", ".ps1", ".ts", ".tsx", ".js", ".rs"}
-SECTIONS = ("names", "markers", "tokens")
+SECTIONS = ("names", "tokens")
 
 
 def load_terms(path: Path) -> dict[str, list[str]]:
@@ -222,22 +233,24 @@ def comment_prose_lines(text: str, suffix: str) -> dict[int, str]:
 
 OWNER_WORDS_OPEN = "<!-- owner-words -->"
 OWNER_WORDS_CLOSE = "<!-- /owner-words -->"
+POLICY_TEXT_OPEN = "<!-- policy-text -->"
+POLICY_TEXT_CLOSE = "<!-- /policy-text -->"
 
 
-def _without_owner_words(lines: dict[int, str]) -> dict[int, str]:
-    """Drop the text between owner-words markers: the owner's verbatim words are quoted, not observations.
-    Text outside a marked span, on the marker lines too, is kept; an unpaired marker raises ValueError."""
+def _without_span(lines: dict[int, str], opener: str, closer: str) -> dict[int, str]:
+    """Drop the text between a pair of markers. Text outside a marked span, on the marker lines too, is
+    kept; an unpaired marker raises ValueError."""
 
     kept: dict[int, str] = {}
     inside = False
     for number in sorted(lines):
         line, out = lines[number], ""
         while line:
-            marker = OWNER_WORDS_CLOSE if inside else OWNER_WORDS_OPEN
-            other = OWNER_WORDS_OPEN if inside else OWNER_WORDS_CLOSE
+            marker = closer if inside else opener
+            other = opener if inside else closer
             at, stray = line.find(marker), line.find(other)
             if stray != -1 and (at == -1 or stray < at):
-                raise ValueError("unpaired owner-words marker")
+                raise ValueError("unpaired span marker")
             if at == -1:
                 out += "" if inside else line
                 break
@@ -246,8 +259,15 @@ def _without_owner_words(lines: dict[int, str]) -> dict[int, str]:
         if out.strip():
             kept[number] = out
     if inside:
-        raise ValueError("unpaired owner-words marker")
+        raise ValueError("unpaired span marker")
     return kept
+
+
+def _without_owner_words(lines: dict[int, str]) -> dict[int, str]:
+    """Drop the owner's verbatim words (quoted, not evaluations) and text that states the data rule itself
+    (`<!-- policy-text -->`), which must name the kinds of content it keeps private."""
+
+    return _without_span(_without_span(lines, OWNER_WORDS_OPEN, OWNER_WORDS_CLOSE), POLICY_TEXT_OPEN, POLICY_TEXT_CLOSE)
 
 
 MARKDOWN_QUOTE = re.compile(r"^(?:\s*>)+")
@@ -271,9 +291,11 @@ VISIBLE_TEXT = (
     (re.compile(r"[*~`]+|(?<![A-Za-z0-9])_+|_+(?![A-Za-z0-9])"), ""),
     (re.compile(r"\s+"), " "),
 )
-SENTENCE_END = re.compile(r"[.!?](?=\s|$)")
+# A sentence ends at a full stop, question or exclamation mark followed by the end of the text or by a word
+# that starts with a capital letter or a digit (after any opening quote, bracket or emphasis).
+SENTENCE_END = re.compile(r"[.!?](?=\s+[\"'(\[*_`]*[A-Z0-9]|\s*$)")
 # Abbreviations whose full stop does not end a sentence (compared without the final stop, lower case).
-ABBREVIATIONS = {"i.e", "e.g", "etc", "vs", "cf", "approx", "incl", "excl", "resp", "viz", "al", "fig", "figs",
+ABBREVIATIONS = {"i.e", "e.g", "w.r.t", "ver", "etc", "vs", "cf", "approx", "incl", "excl", "resp", "viz", "al", "fig", "figs",
                  "eq", "eqs", "sec", "no", "nos", "ref", "refs", "vol", "ch", "p", "pp", "dr", "mr", "ms", "st"}
 LAST_WORD = re.compile(r"[\w.]+$")
 
@@ -457,33 +479,76 @@ def _token_findings(label: str, lines: dict[int, str], tokens: list[tuple[int, s
     return findings
 
 
+def _alternation(*words: str) -> re.Pattern[str]:
+    return re.compile(r"(?<![\w-])(?:" + "|".join(words) + r")(?![\w-])", re.IGNORECASE)
+
+
+TARGET_REFERENCE = _alternation(r"external[ -]provers?", r"external[ -]prover's", r"target[ -]tools?",
+                                r"target[ -]tool's", r"the prover", r"the prover's")
+COMPARISON = _alternation(r"agree[sd]?", r"agreements?", r"agreeing", r"match(?:e[sd]|ing)?", r"mismatch(?:e[sd]|es)?",
+                          r"differ(?:s|ed|ing)?", r"differences?", r"deviat(?:es?|ed|ions?|ing)", r"discrepanc(?:y|ies)",
+                          r"exceed(?:s|ed|ing)?", r"residuals?", r"correlat(?:es|ed)", r"off by", r"within")
+DEFECT = _alternation(r"crash(?:es|ed|ing)?", r"access violations?", r"defects?", r"bugs?", r"buggy", r"hangs?", r"hung",
+                      r"freez(?:es|ing)", r"froze(?:n)?", r"unresponsive", r"workarounds?", r"work around", r"broken",
+                      r"fail(?:s|ed)? to", r"does not work", r"did not work", r"unreliable", r"unstable",
+                      r"(?:row|size|model[ -]size|node|element|layout)[ -]limits?",
+                      r"limits? (?:on|of) (?:the )?(?:model|models|rows?|size|nodes?|elements?)",
+                      r"limited to (?:\d+|small)", r"\d+[ -]rows?", r"trial", r"evaluation (?:version|build|copy|stamp|period)",
+                      r"watermark\w*", r"stamp(?:s|ed)?", r"expir(?:es|ed|y|ation)", r"slow(?:er|ly|s)?", r"performance",
+                      r"faster", r"speed")
+SCREENSHOT = _alternation(r"screen ?shots?", r"screen (?:captures?|grabs?|recordings?)", r"screengrabs?")
+SURVEY = _alternation(r"survey(?:s|ed)?")
+_UNIT = r"(?:%|‰|percent|per cent|ppm|parts per million|mm|cm|m|N|kN|N[·*]m|Nm|kN[·*]?m|MPa|rad|deg|°)"
+# Numeric results: counts (`20 of 35`, `35/35`, `20 matched`), percentages and ppm, decimals with a unit, and
+# scientific notation. Ids, dates, section numbers and bare integers are not results.
+RESULT_NUMBER = re.compile(
+    r"(?<![\w\-§./])(?:\d+\s*(?:/|of|out of)\s*\d+(?![\w\-]|\.\d)"
+    r"|\d+\s+(?:matched|agreed|exceeded|differed|mismatched|deviated)"
+    r"|\d+(?:[.,]\d+)?\s*(?:%|‰|percent|per cent|ppm|parts per million)"
+    r"|\d+[.,]\d+(?:[eE][-+]?\d+)?\s*" + _UNIT + r"(?![\w/])"
+    r"|\d+(?:\.\d+)?[eE][-+]?\d+)", re.IGNORECASE)
+
+
 def scan(label: str, lines: dict[int, str], terms: dict[str, list[str]], added: set[int] | None = None,
          blank_breaks: bool = True) -> list[str]:
-    """Findings in `lines` (the whole prose); with `added`, only matches that involve an added line. A name
-    and an observation marker match when they share a sentence or lie within one line of each other."""
+    """Findings in `lines` (the whole prose); with `added`, only matches that involve an added line."""
 
-    findings = _token_findings(label, lines, list(enumerate(terms["tokens"], 1)), added, "observed token", blank_breaks)
-    names = [(index, _word(term)) for index, term in enumerate(terms["names"], 1)]
-    markers = [(index, _word(term)) for index, term in enumerate(terms["markers"], 1)]
+    findings = _token_findings(label, lines, list(enumerate(terms["tokens"], 1)), added, "private token", blank_breaks)
+    names = [_word(term) for term in terms["names"]]
     for text, owners, starts in _paragraphs(lines, blank_breaks):
         text = _unpathed(text)
         sentences = _sentences(text, owners, starts)
-        marker_hits = [(index, _span(owners, match.start(), match.end()), sentences[match.start()])
-                       for index, pattern in markers for match in pattern.finditer(text)]
-        for name_index, pattern in names:
+        targets = [(_span(owners, m.start(), m.end()), sentences[m.start()])
+                   for pattern in names + [TARGET_REFERENCE, SURVEY] for m in pattern.finditer(text)]
+        if not targets:
+            continue
+        masked = text
+        for pattern in names:
+            masked = pattern.sub(lambda m: "@" * len(m.group()), masked)
+        numbers = [(_span(owners, m.start(), m.end()), sentences[m.start()]) for m in RESULT_NUMBER.finditer(masked)]
+
+        def near(span: list[int], sentence: int) -> list[int]:
+            """Lines of the target references in the hit's sentence, else of those within one line of it."""
+
+            same = [line for target_span, target_sentence in targets if target_sentence == sentence for line in target_span]
+            return same or [line for target_span, _ in targets
+                            if not (target_span[-1] < span[0] - 1 or target_span[0] > span[-1] + 1) for line in target_span]
+
+        for kind, pattern in (("defect or limit about the target tool", DEFECT),
+                              ("result about the target tool", COMPARISON), ("screenshot reference", SCREENSHOT)):
             for match in pattern.finditer(text):
-                name_span = _span(owners, match.start(), match.end())
-                sentence = sentences[match.start()]
-                low, high = name_span[0] - 1, name_span[-1] + 1
-                for marker_index, marker_span, marker_sentence in marker_hits:
-                    near = not (marker_span[-1] < low or marker_span[0] > high)
-                    if not (near or marker_sentence == sentence):
+                span, sentence = _span(owners, match.start(), match.end()), sentences[match.start()]
+                involved = near(span, sentence)
+                if not involved:
+                    continue
+                if pattern is COMPARISON:
+                    values = [number_span for number_span, number_sentence in numbers if number_sentence == sentence]
+                    if not values:
                         continue
-                    if added is None or added.intersection(name_span + marker_span):
-                        finding = f"{label}:{name_span[0]}: name #{name_index} near observation marker #{marker_index}"
-                        if finding not in findings:
-                            findings.append(finding)
-    return findings
+                    involved += [line for value in values for line in value]
+                if added is None or added.intersection(span + involved):
+                    findings.append(f"{label}:{min(span + involved)}: {kind}")
+    return list(dict.fromkeys(findings))
 
 
 def _git(repo: Path, *args: str) -> str:
@@ -506,15 +571,11 @@ def added_line_numbers(repo: Path, base: str, head: str) -> dict[str, set[int]]:
     return {path: numbers for path, numbers in added.items() if numbers}
 
 
-def scan_named_tokens(label: str, lines: dict[int, str], terms: dict[str, list[str]],
-                      added: set[int] | None = None) -> list[str]:
-    """Observed tokens that carry a product name, on every line: test data and fixtures may hold observed
-    layouts, never the product's own label."""
+def scan_data_tokens(label: str, lines: dict[int, str], terms: dict[str, list[str]],
+                     added: set[int] | None = None) -> list[str]:
+    """Private tokens on every line of test and fixture files, code and data included."""
 
-    names = [_word(term) for term in terms["names"]]
-    named = [(index, term) for index, term in enumerate(terms["tokens"], 1)
-             if any(pattern.search(_normal(term)) for pattern in names)]
-    return _token_findings(label, lines, named, added, "named observed token")
+    return _token_findings(label, lines, list(enumerate(terms["tokens"], 1)), added, "private token")
 
 
 def _data_path(path: str) -> bool:
@@ -522,21 +583,27 @@ def _data_path(path: str) -> bool:
     return "tests" in parts or "fixtures" in parts
 
 
+# The check's own source and tests necessarily name the kinds of content it screens.
+SELF_PATHS = ("tools/caepipe_correlation/check_public_observations.py", "tests/test_check_public_observations.py")
+
+
 def check_range(repo: Path, base: str, head: str, terms: dict[str, list[str]],
                 messages_base: str | None = None) -> list[str]:
     findings: list[str] = []
     for path, numbers in sorted(added_line_numbers(repo, base, head).items()):
+        if path.endswith(SELF_PATHS):
+            continue
         text = _git(repo, "show", f"{head}:{path}")
-        # A fixture data file (CSV) is consumed by code like code itself; only the named-token rule applies.
+        # A fixture data file (CSV) is consumed by code like code itself; only the private-token rule applies.
         if not (_data_path(path) and Path(path).suffix.lower() == ".csv"):
             findings += scan(path, prose_of(path, text), terms, numbers, Path(path).suffix.lower() not in CODE_SUFFIXES)
         if _data_path(path):
-            findings += scan_named_tokens(path, dict(enumerate(text.splitlines(), 1)), terms, numbers)
+            findings += scan_data_tokens(path, dict(enumerate(text.splitlines(), 1)), terms, numbers)
     # Commit messages already published cannot change; a pre-push run screens only the new ones.
     for commit in _git(repo, "rev-list", f"{messages_base or base}..{head}").split():
         message = _git(repo, "log", "-1", "--format=%B", commit)
         findings += scan(f"commit {commit[:10]}", dict(enumerate(message.splitlines(), 1)), terms)
-    return findings
+    return list(dict.fromkeys(findings))
 
 
 def main(argv: list[str] | None = None) -> int:
