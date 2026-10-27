@@ -277,7 +277,9 @@ Anything that evaluates CAEPIPE stays in the exchange folder: result values, dif
 agreement counts and classifications, tolerances measured from results; its defects and
 crashes, the trial's limits, the evaluation stamp, its performance; screenshots and
 survey notes. The lane-local check `tools/caepipe_correlation/check_public_observations.py`
-screens added public text for those kinds of content; review remains the control.
+screens added public text for those kinds of content. A lexical check is only a backstop, so
+every pull request in this lane that adds public text also gets an independent content pass for
+evaluation material on its final diff (Agent 0, 2026-10-27); that review is the control.
 <!-- /policy-text -->
 
 CAEPIPE's output files and the values parsed or derived from them (results,
