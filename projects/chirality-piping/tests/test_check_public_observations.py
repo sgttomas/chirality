@@ -253,3 +253,52 @@ def test_markdown_formatting_does_not_hide_a_phrase(tmp_path, text):
 def test_links_and_formatting_do_not_hide_a_phrase_in_any_prose(tmp_path, name, text):
     line = 1 + text.split("Widget")[0].count("\n")
     assert run(tmp_path, {name: text}) == [f"{name}:{line}: observed token #1"]
+
+
+
+@pytest.mark.parametrize("text", [
+    "Widget [overflow] at startup.\n\n[overflow]: notes.md\n",
+    "Widget [overflow][ref] at startup.\n\n[ref]: notes.md\n",
+    "Widget ![overflow](figure.png \"title\") at startup.\n",
+    "Widget [overflow](https://example.invalid/a_(b)) at startup.\n",
+    "Widget <em>overflow</em> at startup.\n",
+    "Widget&nbsp;overflow&#32;at startup.\n",
+])
+def test_markdown_is_read_as_visible_text(tmp_path, text):
+    assert run(tmp_path, {"doc/a.md": text}) == ["doc/a.md:1: observed token #1"]
+
+
+def test_a_link_wrapped_across_lines_keeps_its_label(tmp_path):
+    findings = run(tmp_path, {"doc/a.md": "It printed Widget [overflow\nat](notes.md) startup.\n"})
+    assert findings == ["doc/a.md:1: observed token #1"]
+
+
+@pytest.mark.parametrize("name, text", [
+    ("doc/a.md", "The Acmepipe run on the\ninvented model, with its default settings,\nwas observed to stop.\n"),
+    ("pkg/mod.py", "# The Acmepipe run on the\n# invented model, with its default settings,\n# was observed to stop.\n"),
+    ("src/lib.rs", "// The Acmepipe run on the\n// invented model, with its default settings,\n// was observed to stop.\n"),
+    ("src/a.ts", "/* The Acmepipe run on the\n * invented model, with its default settings,\n * was observed to stop. */\n"),
+    ("tools/a.ps1", "# The Acmepipe run on the\n# invented model, with its default settings,\n# was observed to stop.\n"),
+])
+def test_a_name_and_a_marker_in_one_sentence_match_across_lines(tmp_path, name, text):
+    assert run(tmp_path, {name: text}) == [f"{name}:1: name #1 near observation marker #1"]
+
+
+def test_separate_sentences_and_paragraphs_more_than_a_line_apart_do_not_match(tmp_path):
+    text = ("The Acmepipe manual documents batch runs. It has\nmany chapters on\ninputs. A run was observed.\n\n"
+            "The Acmepipe manual is public.\n\nA run was observed.\n")
+    assert run(tmp_path, {"doc/a.md": text}) == []
+
+
+def test_escaped_continuations_in_docstrings_join(tmp_path):
+    code = 'def helper():\n    """Widget \\\n    overflow at startup."""\n'
+    assert run(tmp_path, {"pkg/mod.py": code}) == ["pkg/mod.py:2: observed token #1"]
+
+
+
+def test_table_rows_and_code_block_lines_are_separate_sentences(tmp_path):
+    text = ("| Item | Value |\n|---|---|\n| Target | Acmepipe |\n| Notes | none |\n| Run | observed |\n\n"
+            "```\nacmepipe_out/   Acmepipe files\nx/\nparsed/   observed\n```\n")
+    assert run(tmp_path, {"doc/a.md": text}) == []
+    text = "| Target | Acmepipe |\n| Run | observed |\n"
+    assert run(tmp_path / "w", {"doc/a.md": text}) == ["doc/a.md:1: name #1 near observation marker #1"]

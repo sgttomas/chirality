@@ -32,7 +32,7 @@ from __future__ import annotations
 
 import argparse
 import ast
-import bisect
+import html
 import io
 import re
 import subprocess
@@ -172,7 +172,8 @@ def _string_lines(literal: str) -> list[str]:
             value = None
         if isinstance(value, str):
             return [value]
-    parts = literal.splitlines()
+    # A backslash at a line end continues the string; it is not text.
+    parts = [part[:-1] if part.endswith("\\") else part for part in literal.splitlines()]
     opening = STRING_OPENING.match(literal)
     if opening:
         parts[0] = parts[0][len(opening.group(0)):]
@@ -241,15 +242,20 @@ def _without_owner_words(lines: dict[int, str]) -> dict[int, str]:
 
 
 MARKDOWN_QUOTE = re.compile(r"^(?:\s*>)+")
-MARKDOWN_LINK = re.compile(r"!?\[([^\]]*)\](?:\([^)]*\)|\[[^\]]*\])")
-MARKDOWN_EMPHASIS = re.compile(r"[*~`]+|(?<![A-Za-z0-9])_+|_+(?![A-Za-z0-9])")
-
-
-def _plain(line: str) -> str:
-    """Visible text of a prose line, from any source (Markdown, comments, docstrings, commit messages):
-    links keep only their labels, and blockquote, emphasis, code and strike-through markers are removed."""
-
-    return MARKDOWN_EMPHASIS.sub("", MARKDOWN_LINK.sub(r"\1", MARKDOWN_QUOTE.sub("", line)))
+# Markdown and HTML syntax rewritten to the visible text, in order, over a whole paragraph so that a link or
+# tag wrapped across lines is read as written. A rewrite keeps the label of a link (its first group) or
+# substitutes a literal; every character keeps the source line it came from.
+VISIBLE_TEXT = (
+    (re.compile(r"<!--|-->"), ""),
+    (re.compile(r"!?\[([^\[\]]*)\]\((?:[^()]|\([^()]*\))*\)"), 1),
+    (re.compile(r"!?\[([^\[\]]*)\]\[[^\[\]]*\]"), 1),
+    (re.compile(r"!?\[|\]"), ""),
+    (re.compile(r"</?[A-Za-z][^<>]*>|<[a-z][a-z0-9+.-]*:[^<>\s]*>"), ""),
+    (re.compile(r"&(?:#[0-9]+|#[xX][0-9a-fA-F]+|[A-Za-z][A-Za-z0-9]*);"), html.unescape),
+    (re.compile(r"[*~`]+|(?<![A-Za-z0-9])_+|_+(?![A-Za-z0-9])"), ""),
+    (re.compile(r"\s+"), " "),
+)
+SENTENCE_END = re.compile(r"[.!?](?=\s|$)")
 
 
 def prose_of(path: str, text: str) -> dict[int, str]:
@@ -263,61 +269,117 @@ def prose_of(path: str, text: str) -> dict[int, str]:
     return {number: line for number, line in enumerate(text.splitlines(), 1)}
 
 
-def _runs(lines: dict[int, str]) -> list[tuple[str, list[int], list[int]]]:
-    """Consecutive lines joined into one whitespace-normalized text, with each line's start offset."""
+def _rewrite(pattern: re.Pattern[str], replacement, text: str, owners: list[int]) -> tuple[str, list[int]]:
+    out: list[str] = []
+    own: list[int] = []
+    position = 0
+    for match in pattern.finditer(text):
+        out.append(text[position:match.start()])
+        own.extend(owners[position:match.start()])
+        if isinstance(replacement, int):
+            out.append(match.group(replacement))
+            own.extend(owners[match.start(replacement):match.end(replacement)])
+        else:
+            literal = replacement(match.group()) if callable(replacement) else replacement
+            out.append(literal)
+            own.extend([owners[match.start()]] * len(literal))
+        position = match.end()
+    out.append(text[position:])
+    own.extend(owners[position:])
+    return "".join(out), own
 
-    runs: list[tuple[str, list[int], list[int]]] = []
-    numbers, starts, text = [], [], ""
+
+def _paragraphs(lines: dict[int, str], blank_breaks: bool = True) -> list[tuple[str, list[int], set[int]]]:
+    """Consecutive prose lines read as one visible, whitespace-normalized text; a gap in line numbers ends a
+    paragraph, and so does a blank line when `blank_breaks` (text, not code comments, whose delimiter-only
+    lines are empty). Each character carries the source line it came from. In text, a table row and a line in
+    a fenced code block are each a sentence of their own: the returned set holds the source lines that begin
+    a sentence."""
+
+    paragraphs: list[tuple[str, list[int], set[int]]] = []
+    text, owners, last, fenced, starts = "", [], None, False, set()
+
+    def flush() -> None:
+        nonlocal text, owners, starts
+        if text:
+            for pattern, replacement in VISIBLE_TEXT:
+                text, owners = _rewrite(pattern, replacement, text, owners)
+            paragraphs.append((text, owners, starts))
+        text, owners, starts = "", [], set()
+
+    previous_hard = False
     for number in sorted(lines):
-        if numbers and number != numbers[-1] + 1:
-            runs.append((text, numbers, starts))
-            numbers, starts, text = [], [], ""
-        piece = _normal(lines[number])
-        if text and piece:
-            text += " "
-        numbers.append(number)
-        starts.append(len(text))
-        text += piece
-    if numbers:
-        runs.append((text, numbers, starts))
-    return runs
+        raw = lines[number].strip()
+        fence = blank_breaks and raw.startswith(("```", "~~~"))
+        hard = blank_breaks and (fenced or fence or raw.startswith("|"))
+        if fence:
+            fenced = not fenced
+        piece = _normal(MARKDOWN_QUOTE.sub("", lines[number]))
+        if last is not None and number != last + 1 or not piece and blank_breaks:
+            flush()
+            previous_hard = False
+        last = number
+        if not piece:
+            continue
+        if hard or previous_hard:
+            starts.add(number)
+        previous_hard = hard
+        if text:
+            text, owners = text + " ", owners + [number]
+        text, owners = text + piece, owners + [number] * len(piece)
+    flush()
+    return paragraphs
 
 
-def _span(numbers: list[int], starts: list[int], match: re.Match[str]) -> list[int]:
-    first = bisect.bisect_right(starts, match.start()) - 1
-    last = bisect.bisect_right(starts, max(match.start(), match.end() - 1)) - 1
-    return numbers[first:last + 1]
+def _span(owners: list[int], start: int, end: int) -> list[int]:
+    return list(range(owners[start], owners[max(start, end - 1)] + 1))
+
+
+def _sentences(text: str, owners: list[int], starts: set[int]) -> list[int]:
+    """The sentence number of every character; a sentence ends at a full stop, question or exclamation
+    mark, and before every line in `starts`."""
+
+    numbers, current, ends = [], 0, {match.end() for match in SENTENCE_END.finditer(text)}
+    for index in range(len(text)):
+        if index in ends or index and owners[index] != owners[index - 1] and owners[index] in starts:
+            current += 1
+        numbers.append(current)
+    return numbers
 
 
 def _token_findings(label: str, lines: dict[int, str], tokens: list[tuple[int, str]], added: set[int] | None,
-                    kind: str) -> list[str]:
+                    kind: str, blank_breaks: bool = True) -> list[str]:
     findings: list[str] = []
-    for text, numbers, starts in _runs(lines):
+    for text, owners, _ in _paragraphs(lines, blank_breaks):
         for index, term in tokens:
             for match in _phrase(term).finditer(text):
-                span = _span(numbers, starts, match)
+                span = _span(owners, match.start(), match.end())
                 if added is None or added.intersection(span):
                     findings.append(f"{label}:{span[0]}: {kind} #{index}")
     return findings
 
 
-def scan(label: str, lines: dict[int, str], terms: dict[str, list[str]], added: set[int] | None = None) -> list[str]:
-    """Findings in `lines` (the whole prose); with `added`, only matches that involve an added line."""
+def scan(label: str, lines: dict[int, str], terms: dict[str, list[str]], added: set[int] | None = None,
+         blank_breaks: bool = True) -> list[str]:
+    """Findings in `lines` (the whole prose); with `added`, only matches that involve an added line. A name
+    and an observation marker match when they share a sentence or lie within one line of each other."""
 
-    lines = {number: _plain(text) for number, text in lines.items()}
-    findings = _token_findings(label, lines, list(enumerate(terms["tokens"], 1)), added, "observed token")
+    findings = _token_findings(label, lines, list(enumerate(terms["tokens"], 1)), added, "observed token", blank_breaks)
     names = [(index, _word(term)) for index, term in enumerate(terms["names"], 1)]
     markers = [(index, _word(term)) for index, term in enumerate(terms["markers"], 1)]
-    for text, numbers, starts in _runs(lines):
+    for text, owners, starts in _paragraphs(lines, blank_breaks):
         text = _unpathed(text)
-        marker_spans = [(index, _span(numbers, starts, match))
-                        for index, pattern in markers for match in pattern.finditer(text)]
+        sentences = _sentences(text, owners, starts)
+        marker_hits = [(index, _span(owners, match.start(), match.end()), sentences[match.start()])
+                       for index, pattern in markers for match in pattern.finditer(text)]
         for name_index, pattern in names:
             for match in pattern.finditer(text):
-                name_span = _span(numbers, starts, match)
+                name_span = _span(owners, match.start(), match.end())
+                sentence = sentences[match.start()]
                 low, high = name_span[0] - 1, name_span[-1] + 1
-                for marker_index, marker_span in marker_spans:
-                    if marker_span[-1] < low or marker_span[0] > high:
+                for marker_index, marker_span, marker_sentence in marker_hits:
+                    near = not (marker_span[-1] < low or marker_span[0] > high)
+                    if not (near or marker_sentence == sentence):
                         continue
                     if added is None or added.intersection(name_span + marker_span):
                         finding = f"{label}:{name_span[0]}: name #{name_index} near observation marker #{marker_index}"
@@ -369,7 +431,7 @@ def check_range(repo: Path, base: str, head: str, terms: dict[str, list[str]],
         text = _git(repo, "show", f"{head}:{path}")
         # A fixture data file (CSV) is consumed by code like code itself; only the named-token rule applies.
         if not (_data_path(path) and Path(path).suffix.lower() == ".csv"):
-            findings += scan(path, prose_of(path, text), terms, numbers)
+            findings += scan(path, prose_of(path, text), terms, numbers, Path(path).suffix.lower() not in CODE_SUFFIXES)
         if _data_path(path):
             findings += scan_named_tokens(path, dict(enumerate(text.splitlines(), 1)), terms, numbers)
     # Commit messages already published cannot change; a pre-push run screens only the new ones.
@@ -394,7 +456,8 @@ def main(argv: list[str] | None = None) -> int:
         if args.base:
             findings += check_range(args.repo, args.base, args.head, terms, args.messages_base)
         for path in args.file:
-            findings += scan(str(path), prose_of(str(path), path.read_text(encoding="utf-8")), terms)
+            findings += scan(str(path), prose_of(str(path), path.read_text(encoding="utf-8")), terms,
+                             blank_breaks=path.suffix.lower() not in CODE_SUFFIXES)
     except (OSError, ValueError, UnicodeDecodeError, subprocess.CalledProcessError):
         print("check_public_observations: operational error (terms file, refs or files unreadable)", file=sys.stderr)
         return 2
