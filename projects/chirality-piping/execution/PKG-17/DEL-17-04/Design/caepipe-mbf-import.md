@@ -706,6 +706,20 @@ import is refused (`MBF-IMPORT-SIDECAR-CONFLICT`). The pressure value always com
 file. A bound sidecar with a contract and no regions restores the contract and empty region
 lists.
 
+A restored region is then checked whole as the route checks it, with the same ported checks
+as an unbound region (its straight runs and its bores, on the MBF's values read to metres),
+in its declared traversal order: from its first terminal, through its members, to its
+second. It is never cut or reordered. A region that is not one chain between its terminals
+is refused as `MBF-IMPORT-SIDECAR-CONFLICT`; one the checks refuse is refused as
+`MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR` or `MBF-IMPORT-PRESSURE-BORE-MISMATCH`, located at
+`pressure_map region <id>` (independent review VER-002 r4). A byte-bound file can fail these
+checks although its source model passed them, because the writer prints 10 significant
+digits: OD 168.30000004 and wall 7.11000002 give the same bore radius in metres as 170.3
+and 8.11, but print as 168.3 and 7.11000002; and two offsets collinear as authored need not
+be collinear as printed. The writer's preflight below refuses such an export, so a bound
+import of the writer's own output meets them only if the file was not written by the
+current writer.
+
 **CAEPIPE pressure effects SWBPIPE does not model.** OPPRES fields 2 and 3 switch CAEPIPE's
 Bourdon effect and pressure correction for bends, and a blank OPPRES line turns both on
 (documented: *Format of .MBF*, OPPRES). SWBPIPE's exact route models neither (DEL-04-07
@@ -741,7 +755,17 @@ refuses:
 - a section without an explicit `corrosion_allowance` under the exact contract, whether or
   not it carries pressure (`MBF-SI-CORROSION-ALLOWANCE-MISSING`, VER-002 r2). The solve
   refuses such a model (`EXACT_PRESSURE_CORROSION_ALLOWANCE_REQUIRED`), and the MBF's
-  written 0 would author an allowance on import.
+  written 0 would author an allowance on import;
+- a region the model's values admit but the printed values would not
+  (`MBF-SI-PRESSURE-REGION-FORMAT`, naming the region; VER-002 r4). The writer's preflight
+  imports its own text, bound to its own sidecar, so the printed values are read exactly as
+  an import reads them (positions summed from the printed offsets, bend tangent nodes
+  rebuilt, OD and wall as printed). The restored regions then take the same whole-region
+  checks in their declared order. The writer refuses rather than printing more digits. The
+  10-significant-digit print is the profile's established form, and the §18.2 bounds and
+  byte reproduction rest on it. More digits would not settle the geometry either: an offset
+  is a binary64 difference of two positions, so its exact decimal does not, summed, give the
+  authored position back. The region is never cut or reordered.
 
 A zero-pressure region writes Pressure 1 = 0 and is listed as omitted
 (`MBF-SI-PRESSURE-REGION-ZERO`), since it imports as no region.
@@ -1011,7 +1035,8 @@ the manual does not make clear which kind a record is, it is refused.
 stays for unknown tokens; §5.1), a positive Pressure 1 no longer refuses (§9.4), and the
 writer no longer refuses the exact pressure contract or its regions
 (`MBF-SI-PRESSURE-UNSUPPORTED` stays for the cases §9.4 lists and for pressure primitives).
-The writer's new codes are `MBF-SI-PRESSURE-CASE-UNSUPPORTED` (refusal),
+The writer's new codes are `MBF-SI-PRESSURE-CASE-UNSUPPORTED`, `MBF-SI-CORROSION-ALLOWANCE-MISSING`
+and `MBF-SI-PRESSURE-REGION-FORMAT` (refusals),
 `MBF-SI-PRESSURE-REGION-ZERO` and `MBF-SI-SHEAR-MODEL-NOT-EXPORTED` (omitted).
 
 The writer refuses the corresponding cases of its own conversions as
@@ -1268,7 +1293,9 @@ declares it invented. The boundary guard (§18.4) requires the sidecar.
    subnormal norm rounded once. VER-002 r3 adds: equal decimal bores the route's guard
    refuses in metres (refused by name; the route refuses them as one region too), and a run
    the route admits only reversed (emitted reversed, solved; refused by the route in file
-   order).
+   order). VER-002 r4 adds the review's two round trips (bores, geometry): each imports and
+   solves, the writer refuses it as `MBF-SI-PRESSURE-REGION-FORMAT`, and without that
+   preflight the bound import of its text refuses the restored region by name.
 
 The weight-density conversion, the G derivation, the ΔT mapping and the rational
 summation change numerical meaning. They therefore get targeted regression tests (items
