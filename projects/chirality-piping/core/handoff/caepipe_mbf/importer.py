@@ -740,7 +740,8 @@ class _SidecarParser:
         return self.fail(path, "must be a finite binary64 number" + (" or null" if nullable else ""))
 
     def count(self, value: Any, path: str) -> Any:
-        return value if type(value) is int and value >= 0 else self.fail(path, "must be a non-negative integer")
+        return value if type(value) is int and 0 <= value <= 2 ** 53 else self.fail(
+            path, "must be a non-negative integer no larger than 2^53 (exact in binary64)")
 
     def flag(self, value: Any, path: str) -> Any:
         return value if type(value) is bool else self.fail(path, "must be true or false")
@@ -754,15 +755,9 @@ class _SidecarParser:
         return parse
 
     # -- containers -----------------------------------------------------
-    def record(self, value: Any, path: str, required: Mapping[str, Any], optional: Mapping[str, Any] = {},
-               conditional: tuple[str, ...] = ()) -> Any:
-        """`optional` fields are optional only in a legacy sidecar; in format 2 every field is required except the
-        `conditional` ones, whose presence the caller checks."""
+    def record(self, value: Any, path: str, required: Mapping[str, Any], optional: Mapping[str, Any] = {}) -> Any:
         if type(value) is not dict:
             return self.fail(path, "must be an object")
-        if self.current:
-            required = {**required, **{key: parse for key, parse in optional.items() if key not in conditional}}
-            optional = {key: parse for key, parse in optional.items() if key in conditional}
         out: dict[str, Any] = {}
         field = lambda key: f"{path}.{key}" if path else str(key)  # noqa: E731
         for key, item in value.items():
@@ -797,48 +792,58 @@ class _SidecarParser:
         return parse_list
 
     # -- the writer's records ---------------------------------------------
+    # Format 2 requires every field, with its effective value (no null); a legacy sidecar requires what main's
+    # tranche-1 writer always recorded and allows only its documented omissions: y_reference (an unauthored straight),
+    # family, origin and direction (earlier versions), and a null direction or digest.
     def vector(self, value: Any, path: str) -> Any:
         return self.record(value, path, {axis: self.number for axis in "xyz"})
 
     def bend(self, value: Any, path: str) -> Any:
-        return self.record(value, path, {"component": self.text}, {
-            "radius_mm": self.number, "angle_deg": self.number,
-            "flexibility_factor": lambda item, where: self.number(item, where, nullable=True),
-            "tangent_intersection_mm": self.items(self.number, length=3), "caepipe_row_node": self.text})
+        return self.record(value, path, {
+            "component": self.text, "radius_mm": self.number, "angle_deg": self.number,
+            "flexibility_factor": self.number, "tangent_intersection_mm": self.items(self.number, length=3),
+            "caepipe_row_node": self.text})
 
     def element(self, value: Any, path: str) -> Any:
-        orientation = ((lambda item, where: None if item is None else self.vector(item, where)) if self.current
-                       else self.vector)
-        entry = self.record(value, path, {"from": self.text, "to": self.text, "reversed": self.flag}, {
-            "layout_order": self.count, "layout_row": self.count, "material": self.text, "section": self.text,
-            "load": self.text, "y_reference": orientation, "bend": self.bend}, conditional=("y_reference", "bend"))
-        if self.current and type(value) is dict and ("y_reference" in value) == ("bend" in value):
-            return self.fail(f"{path}.y_reference", "a straight records its y_reference (a vector or null) and a "
-                             "bend its bend record, exactly one of the two")
-        return entry
+        common = {"from": self.text, "to": self.text, "reversed": self.flag, "layout_order": self.count,
+                  "layout_row": self.count, "material": self.text, "section": self.text, "load": self.text}
+        if type(value) is dict and "bend" in value:
+            return self.record(value, path, {**common, "bend": self.bend})
+        if self.current:  # a straight records its effective orientation and whether it was authored
+            return self.record(value, path, {**common, "y_reference": self.vector, "y_reference_authored": self.flag})
+        return self.record(value, path, common, {"y_reference": self.vector})
 
     def support(self, value: Any, path: str) -> Any:
-        entry = self.record(value, path, {"node": self.text, "restrained": self.items(self.choice(DOFS))}, {
-            "caepipe_kind": self.choice(("anchor", "restraint")),
-            "family": self.choice(RESTORABLE_SUPPORT_FAMILIES)})
+        common = {"node": self.text, "caepipe_kind": self.choice(("anchor", "restraint")),
+                  "restrained": self.items(self.choice(DOFS))}
+        if self.current:
+            entry = self.record(value, path, {**common, "family": self.choice(_RIGID_FAMILIES),
+                                              "family_authored": self.flag})
+        else:
+            entry = self.record(value, path, common, {"family": self.choice(RESTORABLE_SUPPORT_FAMILIES)})
         if entry is _BAD or any(item is _BAD for item in entry.values()) or "restrained" not in entry:
             return entry
         if len(set(entry["restrained"])) != len(entry["restrained"]):
             return self.fail(f"{path}.restrained", "repeats a DOF")
         if entry.get("family") == "anchor" and len(entry["restrained"]) != len(DOFS):
             return self.fail(f"{path}.family", "an anchor restrains all six DOFs, as the writer exports it")
+        inferred = "anchor" if len(entry["restrained"]) == len(DOFS) else "guide"
+        if self.current and entry.get("family_authored") is False and entry.get("family") != inferred:
+            return self.fail(f"{path}.family", f"an unauthored family is the solve's inference, {inferred}")
         return entry
 
     def material(self, value: Any, path: str) -> Any:
-        return self.record(value, path, {"swbpipe_material": self.text}, {
-            "weight_density_kgf_per_m3": self.number, "poisson_ratio": self.number,
-            "elastic_modulus_n_per_mm2": self.number, "thermal_expansion_mm_per_mm_per_c": self.number,
-            "temperatures_c": self.items(self.number), "elements": self.items(self.text, nonempty=False),
-            "origin": self.choice(((None,) if self.current else ()) + MATERIAL_ORIGINS)})
+        common = {"swbpipe_material": self.text, "weight_density_kgf_per_m3": self.number,
+                  "poisson_ratio": self.number, "elastic_modulus_n_per_mm2": self.number,
+                  "thermal_expansion_mm_per_mm_per_c": self.number, "temperatures_c": self.items(self.number),
+                  "elements": self.items(self.text)}
+        if self.current:
+            return self.record(value, path, {**common, "origin": self.choice((*MATERIAL_ORIGINS, "undeclared"))})
+        return self.record(value, path, common, {"origin": self.choice(MATERIAL_ORIGINS)})
 
     def section(self, value: Any, path: str) -> Any:
-        return self.record(value, path, {}, {"outside_diameter_mm": self.number, "wall_thickness_mm": self.number,
-                                             "elements": self.items(self.text, nonempty=False)})
+        return self.record(value, path, {"outside_diameter_mm": self.number, "wall_thickness_mm": self.number,
+                                         "elements": self.items(self.text)})
 
     def target(self, value: Any, path: str) -> Any:
         if type(value) is dict and set(value) in ({"node"}, {"pipe"}):
@@ -848,43 +853,44 @@ class _SidecarParser:
         return self.fail(path, "must be an object naming a node, a pipe, or a support and its DOF")
 
     def load(self, value: Any, path: str) -> Any:
-        entry = self.record(value, path, {
-            "load_case": self.text, "category": self.choice(_LOAD_CATEGORIES), "target": self.target}, {
-            "caepipe_load_case": self.text, "direction": self.choice((None, *RESTORABLE_DIRECTIONS)),
-            "mbf": self.text, "caepipe_node": self.text, "caepipe_element": self.element},
-            conditional=("caepipe_node", "caepipe_element"))
-        if self.current and type(value) is dict and type(value.get("target")) is dict:
-            wanted = "caepipe_element" if "pipe" in value["target"] else "caepipe_node"
-            other = "caepipe_node" if wanted == "caepipe_element" else "caepipe_element"
-            if wanted not in value:
-                return self.fail(f"{path}.{wanted}", "is missing")
-            if other in value:
-                return self.fail(f"{path}.{other}", "is not a field the writer records for this target")
-        return entry
+        common = {"load_case": self.text, "caepipe_load_case": self.text, "category": self.choice(_LOAD_CATEGORIES),
+                  "target": self.target, "mbf": self.text}
+        if type(value) is dict and type(value.get("target")) is dict and "pipe" in value["target"]:
+            common["caepipe_element"] = self.element
+        else:
+            common["caepipe_node"] = self.text
+        if self.current:
+            return self.record(value, path, {**common, "direction": self.choice(RESTORABLE_DIRECTIONS)})
+        return self.record(value, path, common, {"direction": self.choice((None, *RESTORABLE_DIRECTIONS))})
 
     def contract(self, value: Any, path: str) -> Any:
+        if value == "none":
+            return value
         return self.record(value, path, {"version": self.choice((PRESSURE_CONTRACT["version"],)),
-                                         "mode": self.choice((PRESSURE_CONTRACT["mode"],)),
-                                         "shear_model": self.choice(SHEAR_MODELS)})
+                                         "mode": self.choice((PRESSURE_CONTRACT["mode"],))})
 
     def region(self, value: Any, path: str) -> Any:
         terminal = lambda item, where: self.record(item, where, {  # noqa: E731
             "node_ref": self.text, "closure_transfer": self.choice(CLOSURE_TRANSFERS), "provenance": self.text})
         return self.record(value, path, {"id": self.text, "members": self.items(self.text),
-                                         "terminals": self.items(terminal, length=2)},
-                           {"provenance": self.free_text, "pressure_bar": self.number})
+                                         "terminals": self.items(terminal, length=2), "provenance": self.free_text,
+                                         "pressure_bar": self.number})
 
     def pressure(self, value: Any, path: str) -> Any:
-        """Format 2: null for no contract, or the contract with its shear model, its regions (possibly none) and
-        its load case. A legacy sidecar has none: main's writer exported no pressure."""
+        """Format 2: the effective pressure state of every model: `contract` (the exact contract, or "none"), the
+        effective `shear_model` (the route's euler_bernoulli without a contract) and the regions (none without a
+        contract). A legacy sidecar has none: main's writer exported no pressure."""
         if not self.current:
             return self.fail(path, "is not a field main's tranche-1 writer records; a sidecar with pressure has "
-                             "sidecar_format 2")
-        if value is None:
-            return None
-        return self.record(value, path, {"contract": self.contract, "regions": self.items(self.region,
-                                                                                          nonempty=False)},
-                           {"load_case": lambda item, where: None if item is None else self.text(item, where)})
+                             f"sidecar_format {SIDECAR_FORMAT}")
+        entry = self.record(value, path, {"contract": self.contract, "shear_model": self.choice(SHEAR_MODELS),
+                                          "regions": self.items(self.region, nonempty=False)})
+        if entry is _BAD or len(entry) != 3 or any(item is _BAD for item in entry.values()):
+            return entry
+        if entry["contract"] == "none" and (entry["shear_model"] != "euler_bernoulli" or entry["regions"]):
+            return self.fail(path, "without a contract the shear model is the route's euler_bernoulli and there "
+                             "is no region")
+        return entry
 
     def digest(self, value: Any, path: str) -> Any:
         if (value is None and not self.current) or (type(value) is str and _SHA256.match(value)):
@@ -909,12 +915,19 @@ class _SidecarParser:
             self.fail("sidecar", "must be an object")
             return None
         self.current = "sidecar_format" in sidecar
-        parsed = self.record(sidecar, "", {}, {**maps, "mbf_sha256": self.digest, "sidecar_format": self.format})
+        if self.current:  # every map, the digest and the format
+            parsed = self.record(sidecar, "", {**maps, "mbf_sha256": self.digest, "sidecar_format": self.format})
+        else:  # main's run_pilot wrote the seven maps; earlier runs kept the digest in mbf_render.json
+            legacy = {name: parse for name, parse in maps.items() if name != "pressure_map"}
+            parsed = self.record(sidecar, "", legacy, {"mbf_sha256": self.digest, "pressure_map": self.pressure})
         if self.errors:
             return None
-        parsed.pop("sidecar_format", None)
         out = {name: parsed.get(name, {}) for name in maps}
         out["mbf_sha256"] = parsed.get("mbf_sha256")
+        # The importer reads the restored pressure state as the contract (with its shear model) and regions, or None.
+        state = parsed.get("pressure_map")
+        out["pressure_map"] = None if state is None or state["contract"] == "none" else {
+            "contract": {**state["contract"], "shear_model": state["shear_model"]}, "regions": state["regions"]}
         # Across entries: each load id is its case's ("<case>/<id>") and unique (DUPLICATE_ID); supports as the
         # solve admits them, together at each node.
         seen: dict[str, str] = {}
@@ -2360,6 +2373,13 @@ class _Importer:
                                     "orientation from on the MBF's positions in m (finite, a part perpendicular to "
                                     "the element above 1e-12, and orthonormal right-handed axes within 1e-12); "
                                     "nothing is substituted")
+                    elif entry.get("y_reference_authored") is False:
+                        self.diagnostics.append({
+                            "code": "MBF-IMPORT-ORIENTATION-DEFAULTED", "severity": "info", "line": element.line,
+                            "location": swb_id,
+                            "message": f"{swb_id} has no authored y_reference; the sidecar records the effective "
+                                       "one, CAEPIPE's documented pipe local y (CAEPIPE-LOCAL-AXES), restored as "
+                                       "recorded"})
                 else:
                     documented = local_y_reference(point_of[a], point_of[b], z_vertical=self.z_vertical)
                     pipe["y_reference"] = dict(zip("xyz", documented))
@@ -2600,7 +2620,7 @@ class _Importer:
         if self.bound:
             entry = self.maps.get("material_map", {}).get(name)
             origin = entry.get("origin") if entry is not None else None
-            if origin is not None:
+            if origin in MATERIAL_ORIGINS:  # "undeclared": the caller's declaration is needed
                 return origin, "material origin recorded by the SWBPIPE MBF writer sidecar", (
                     "private_only" if origin == "user_supplied" else None)
         return None
@@ -2719,7 +2739,8 @@ class _Importer:
                     continue
                 entries = []
                 for swb_id, entry in restored:
-                    family = entry.get("family") if "family" in entry else None
+                    # An unauthored family is recorded as the solve's inference and restored as absent.
+                    family = entry.get("family") if entry.get("family_authored", True) else None
                     if "family" not in entry:
                         self.listed("approximated", "MBF-IMPORT-ID-UNRECOVERABLE", line, f"support_map[{swb_id}]",
                                     f"the sidecar entry for {swb_id} carries no family, which is not recoverable")

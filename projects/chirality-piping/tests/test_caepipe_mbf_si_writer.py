@@ -617,9 +617,12 @@ def test_support_map_records_each_support_family():
     model["supports"][0]["family"] = "anchor"
     result = render_caepipe_mbf_si(model, title="FAMILY")
     assert result.status == "written", result.diagnostics
-    assert result.support_map["A1"]["family"] == "anchor"
-    assert result.support_map["A3"]["family"] is None  # authored without a family
-    assert result.support_map["R4"]["family"] is None
+    # The effective family (Design §15, format 2): the authored one, or the solve's inference, with the flag.
+    assert (result.support_map["A1"]["family"], result.support_map["A1"]["family_authored"]) == ("anchor", True)
+    assert (result.support_map["A3"]["family"], result.support_map["A3"]["family_authored"]) == ("anchor", False)
+    restraints = result.support_map["R4"]["restrained"]
+    assert len(restraints) < 6  # fewer than six DOFs and no family: the solve's guide
+    assert (result.support_map["R4"]["family"], result.support_map["R4"]["family_authored"]) == ("guide", False)
 
 
 def test_load_map_records_each_primitive_direction():
@@ -637,7 +640,8 @@ def test_material_map_origin_only_from_affirmative_provenance():
             model["materials"][0]["provenance_record"] = record
         result = render_caepipe_mbf_si(model, title="ORIGIN")
         assert result.status == "written", result.diagnostics
-        return result.material_map["M1"].get("origin")
+        found = result.material_map["M1"]["origin"]
+        return None if found == "undeclared" else found  # format 2 records "undeclared", never null
 
     invented = {"source_name": "invented", "contributor_certification": "invented non-engineering example",
                 "redistribution_status": "public_permissive"}
@@ -842,7 +846,8 @@ def test_a_pressure_region_is_written_as_pressure_1_in_bar():
     assert lines[lines.index("OPPRES") + 1] == "0,0,0,1,0" and lines.index("OPPRES") == lines.index("OPTEMP") + 2
     assert lines[lines.index("LOADS") + 1] == "L1,120,25,0"  # 2.5e6 Pa = 25 bar; T1 = 20 + 100
     assert result.load_case_map == {"case:p": "Sustained (W+P)", "case:th": "Expansion (T1)"}
-    assert result.pressure_map == {"contract": EXACT, "load_case": "case:p", "regions": [
+    assert result.pressure_map == {"contract": {"version": "3.0.0", "mode": "exact_pressure_v3"},
+                                   "shear_model": EXACT["shear_model"], "regions": [
         {"id": "region:L", "members": ["S1", "BEND", "S2"], "pressure_bar": 25.0,
          "provenance": "invented pressure for this test",
          "terminals": [{"node_ref": node_id, "closure_transfer": "transfers_to_wall",
@@ -875,11 +880,13 @@ def test_unpressurized_elements_and_models_write_pressure_0_and_no_oppres():
     lines = tee.text.split("\r\n")
     assert lines[lines.index("LOADS") + 1:lines.index("LAYOUT")] == ["L1,100,10,0", "L2,20,10,0"]
     plain = render_caepipe_mbf_si(cantilever(), title="PLAIN")
-    assert "OPPRES" not in plain.text.split("\r\n") and plain.pressure_map is None
+    assert "OPPRES" not in plain.text.split("\r\n")
+    assert plain.pressure_map == {"contract": "none", "shear_model": "euler_bernoulli", "regions": []}
     no_regions = exact(cantilever())  # the contract alone: Pressure 1 = 0 everywhere, the contract in the sidecar
     result = render_caepipe_mbf_si(no_regions, title="CONTRACT ONLY")
     assert "OPPRES" not in result.text.split("\r\n")
-    assert result.pressure_map == {"contract": EXACT, "load_case": None, "regions": []}
+    assert result.pressure_map == {"contract": {"version": "3.0.0", "mode": "exact_pressure_v3"},
+                                   "shear_model": EXACT["shear_model"], "regions": []}
 
 
 def test_pressure_refusals_and_omissions():

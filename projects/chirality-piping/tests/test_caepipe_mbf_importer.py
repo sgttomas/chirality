@@ -311,7 +311,9 @@ def test_optemp_and_opmisc_records():
 
 def test_the_gravitational_direction_is_refused_in_a_bound_import_too():
     data = mbf(extra=("OPMISC", "33,20,1,1,1,2,2,1,9.80665,1"))
-    sidecar = {"mbf_sha256": hashlib.sha256(data).hexdigest(), "node_map": {}}
+    sidecar = {"mbf_sha256": hashlib.sha256(data).hexdigest(),
+               **{name: {} for name in ("node_map", "element_map", "support_map", "load_case_map", "material_map",
+                                        "section_map", "load_map")}}  # a legacy sidecar holds the seven maps
     assert run(data, sidecar=sidecar).source["binding"] == "bound"
     refused(run(data, sidecar=sidecar), "MBF-IMPORT-TBD-17-04-005")
 
@@ -691,8 +693,11 @@ def test_unbound_ids_are_formed_from_caepipe_names():
 def test_a_sidecar_with_another_hash_is_not_applied_unless_rebinding_is_requested():
     data = mbf(*L_BEND)
     sidecar = {"mbf_sha256": "0" * 64, "node_map": {"A": "10", "T1": "20A", "T2": "20B", "B": "30"},
-               "support_map": {"SA": {"node": "10", "restrained": ["UX", "UY", "UZ", "RX", "RY", "RZ"], "family": "anchor"},
-                               "GONE": {"node": "99", "restrained": ["UY"], "family": None}}}
+               "support_map": {"SA": {"node": "10", "caepipe_kind": "anchor",
+                                      "restrained": ["UX", "UY", "UZ", "RX", "RY", "RZ"], "family": "anchor"},
+                               "GONE": {"node": "99", "caepipe_kind": "restraint", "restrained": ["UY"],
+                                        "family": None}},
+               **{name: {} for name in ("element_map", "load_case_map", "material_map", "section_map", "load_map")}}
     plain = run(data, sidecar=sidecar)
     assert plain.source["binding"] == "unbound" and plain.model["nodes"][0]["id"] == "node:10"
     assert any(item["code"] == "MBF-IMPORT-SIDECAR-NOT-APPLIED" for item in plain.diagnostics)

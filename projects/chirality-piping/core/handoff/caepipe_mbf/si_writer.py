@@ -117,8 +117,8 @@ MATERIAL_ORIGINS = ("project_invented", "user_supplied")
 
 _TITLE_MAX = 70
 _DESCRIPTION_MAX = 30
-# The writer sidecar's format (Design §15). Format 2 records every field, with explicit null where there is nothing to
-# record; a sidecar without `sidecar_format` is a legacy one, from main's tranche-1 writer.
+# The writer sidecar's format (Design §15). Format 2 records the effective value of every field, never null or another
+# sentinel for a default to fill; a sidecar without `sidecar_format` is a legacy one, from main's tranche-1 writer.
 SIDECAR_FORMAT = 2
 _MAX_NODES = 9999  # node numbers 10, 20, ... stay below 99999
 
@@ -135,7 +135,7 @@ class MbfSiResult:
     material_map: dict[str, dict[str, Any]] = field(default_factory=dict)
     section_map: dict[str, dict[str, Any]] = field(default_factory=dict)
     load_map: dict[str, dict[str, Any]] = field(default_factory=dict)
-    pressure_map: dict[str, Any] | None = None
+    pressure_map: dict[str, Any] = field(default_factory=dict)
     layout_row_count: int = 0
     loss_report: list[dict[str, Any]] = field(default_factory=list)
     assumptions: list[str] = field(default_factory=list)
@@ -170,6 +170,13 @@ class MbfSiResult:
 def _known(value: Any, table: Mapping[str, Any]) -> bool:
     """`value` is a string key of `table`: a model value of another type (a list, say) is never looked up."""
     return isinstance(value, str) and value in table
+
+
+def local_y_reference(start, end) -> tuple[float, float, float]:
+    """CAEPIPE's documented local y of a straight (the importer's, Design §10.5); deferred: the importer imports
+    this module."""
+    from .importer import local_y_reference as documented
+    return documented(start, end)
 
 
 def current_model_schema_version() -> str:
@@ -953,8 +960,11 @@ class _Writer:
             return
         direction = load.get("direction")
         dimension = load.get("dimension")
+        # The effective direction: the authored one, or the token the import forms (it reads no thermal or weight
+        # direction from the MBF).
         record: dict[str, Any] = {"load_case": case_id, "caepipe_load_case": label, "category": category,
-                                  "direction": direction}
+                                  "direction": direction if direction is not None else
+                                  {"thermal": "global_x", "weight": "global_y"}.get(category)}
         if category in {"concentrated_force", "concentrated_moment"}:
             force = category == "concentrated_force"
             node = target.get("node")
@@ -1158,7 +1168,7 @@ class _Writer:
                 "temperatures_c": temperatures,
                 "elements": [],
             }
-            material_map[name]["origin"] = material["origin"]  # null where the model declares none
+            material_map[name]["origin"] = material["origin"] or "undeclared"  # the import then needs a declaration
         section_key = (_num(pipe["od"]), _num(pipe["thk"]))
         if section_key not in sections:
             name = f"P{len(sections) + 1}"
@@ -1241,11 +1251,14 @@ class _Writer:
                     "load": attributes[member_id][2],
                 }
                 if member_id not in self.bends:
-                    # Straight-pipe orientation is not in the MBF; the sidecar carries it for bound imports, null
-                    # where the model authors none.
+                    # Straight-pipe orientation is not in the MBF; the sidecar carries the effective one for bound
+                    # imports: the authored vector, or else CAEPIPE's documented local y the import would assign.
+                    authored = _is_vector(member["y_reference"])
                     element_map[member_id]["y_reference"] = (
-                        {axis: float(member["y_reference"][axis]) for axis in "xyz"}
-                        if _is_vector(member["y_reference"]) else None)
+                        {axis: float(member["y_reference"][axis]) for axis in "xyz"} if authored else
+                        dict(zip("xyz", local_y_reference(*(tuple(float(value) for value in self.nodes[member[end]])
+                                                             for end in ("from", "to"))))))
+                    element_map[member_id]["y_reference_authored"] = authored
                 order += 1
             if "bend" in row:
                 bend = self.bends[row["bend"]]
@@ -1334,7 +1347,9 @@ class _Writer:
                 "node": node_map[support["node"]],
                 "caepipe_kind": "anchor" if self.is_anchor(support["node"]) else "restraint",
                 "restrained": [dof for dof in DOFS if dof in support["dofs"]],
-                "family": support["family"],
+                # the effective family: the authored one, or the solve's inference (anchor with six DOFs, else guide)
+                "family": support["family"] or ("anchor" if len(support["dofs"]) == len(DOFS) else "guide"),
+                "family_authored": support["family"] is not None,
             }
         if self.normalized:
             self.diag("MBF-SI-UNITS-NORMALIZED", "info", "project.units",
@@ -1355,9 +1370,12 @@ class _Writer:
             else:
                 entry["caepipe_node"] = node_map[self.supports[target["support"]]["node"]]
             load_map[key] = entry
-        pressure_map: dict[str, Any] | None = None
+        # The effective pressure state of every model: the contract or "none", the shear model (the route's
+        # Euler-Bernoulli without a contract) and the regions.
+        pressure_map: dict[str, Any] = {"contract": "none", "shear_model": "euler_bernoulli", "regions": []}
         if self.contract is not None:
-            pressure_map = {"contract": dict(self.contract), "load_case": self.pressure_case, "regions": [
+            pressure_map = {"contract": {"version": self.contract["version"], "mode": self.contract["mode"]},
+                            "shear_model": self.contract["shear_model"], "regions": [
                 {"id": region["id"], "members": list(region["member_pipe_ids"]),
                  "terminals": [{key: terminal[key] for key in ("node_ref", "closure_transfer", "provenance")}
                                for terminal in region["terminals"]],
