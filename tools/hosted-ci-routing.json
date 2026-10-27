@@ -284,9 +284,9 @@
       "core/loads/self_weight_wasm/Cargo.toml": "ec35ef66523c63247f5395d7b5645a4044a666ed11e1f4d19ade3a956ca902c9",
       "core/loads/stress_recovery/Cargo.toml": "0b9812c9f5fde6e4faca7ac318c2098e526dd015a6117863a1d04b7951548ff0",
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
-      "core/model_operations/operation_applier/Cargo.toml": "12b2582e234c372d78daa7f388d5f5ea8edee757c6b5363407185da9f346c9c0",
+      "core/model_operations/operation_applier/Cargo.toml": "bd657b4e5ecbdb9a721d2bf1721814edf37ff4d494fa66023f6d868dbcd8c772",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "33488602f08f78f8ca8a7b77d15007aeb10ce585c2084dad5534be63e40d9a94",
+      "core/product_physics/Cargo.toml": "3e0f70d5e9c92ff16ae3c1c1cb21e7136739cd4cb6cd71bb5ffd82974b6bcaa3",
       "core/reporting/audit_manifest/Cargo.toml": "b8bc4623a383ed2c22205326bc737486becd9d931bf869e1e8cf40e147f4fad7",
       "core/reporting/pdf_emitter/Cargo.toml": "9f75adef21b2ea44cf2904ae02636f050b28cc2faef1c17f592acfc9a2cdba9d",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
@@ -608,7 +608,7 @@
         ]
       },
       "core/model_operations/operation_applier/tests/model_data_authoring.rs": {
-        "sha256": "4398eea065d310ff721724bd0d85362098dc76e6fc08f89eef79ae7758a3e478",
+        "sha256": "818f90233ab902713093b0fce9d7610692650b210bde9ec766713f50e15f14a4",
         "source_trees": [
           "core/model_operations/operation_applier/Cargo.toml"
         ],
@@ -4710,6 +4710,9 @@
               "fixtures/pcf_export/invented/source_pcf_payload.json",
               "fixtures/persistence/invented_persisted_preview_project.json",
               "fixtures/persistence/model_state_record_witness.json",
+              "fixtures/persistence/recorded_model_0_7_0/exact_pressure_connected_request.json",
+              "fixtures/persistence/recorded_model_0_7_0/pressure_connected_mechanics_sparse.json",
+              "fixtures/persistence/recorded_model_0_7_0/pressure_plain_connected_sparse.analysis_run.json",
               "fixtures/persistence/recorded_run_witness.json",
               "fixtures/persistence/recorded_run_witness_rule_packs.json",
               "fixtures/persistence/s2_unresolved_rule_pack_run.json",
