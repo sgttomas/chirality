@@ -75,8 +75,11 @@ stop growing, then stops the instance it started. It reports the SHA-256 of the 
 opened and of the MBF it wrote. The step uses the stored solve rather than a fresh round
 trip: the run record already binds `model.mod` to the current MBF, and the export only
 reads that model. `run_pilot --export-mbf` runs the step after each case's live round
-trip. `--export-only` runs it alone from each case's stored solve, needs no SWBPIPE
-runner, and writes only in `caepipe_out/`. The step's route is `mbf_exported` or the
+trip. `--export-only` runs it alone from each case's stored solve and needs no SWBPIPE
+runner. It writes the case's `caepipe_out/` files (the export, its guest logs and the
+run record's export entry) and the harness copy of the guest script and run lock in
+`_harness/`, and creates missing layer folders. When the stored solve is no longer bound,
+any earlier export is removed and the run record's export entry states why. The step's route is `mbf_exported` or the
 reason none was written: `not_bound`, `prepare_failed`, `timeout`, `no_guest_json`,
 `input_hash_mismatch`, `export_failed`, `mbf_not_written`, `mbf_not_collected` or
 `export_hash_mismatch`.

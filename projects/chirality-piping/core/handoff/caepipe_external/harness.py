@@ -564,7 +564,8 @@ def run_caepipe_mbf_export(config: HarnessConfig, case_id: str, mbf_sha256: str,
     """Export one case's stored solved model back to MBF with the user's CAEPIPE (Design §3, §5).
 
     The stored solve must be bound to the MBF with `mbf_sha256` by its run record; otherwise the route is
-    `not_bound` and nothing is written or run. The guest opens a copy of `caepipe_out/model.mod` in a CAEPIPE
+    `not_bound`, nothing is run, any earlier export outputs are removed and the run record's export entry
+    states why. The guest opens a copy of `caepipe_out/model.mod` in a CAEPIPE
     instance it starts, exports it with File > Export to MBF... and stops that instance. The harness collects
     `caepipe_out/exported.mbf` only when the guest reports opening a model whose SHA-256 equals the stored one,
     keeps it only when its SHA-256 equals the one the guest reported, and records the export in the run record's
