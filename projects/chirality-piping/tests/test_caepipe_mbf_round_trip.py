@@ -713,14 +713,14 @@ def test_restored_region_ids_must_be_present_and_unique(trips):
         assert ("MBF-IMPORT-SIDECAR-CONFLICT", "pressure_map") in refusals(result), change
 
 
-def test_a_restored_orientation_the_frame_cannot_use_takes_the_documented_one():
+def test_a_restored_orientation_the_frame_cannot_use_is_refused():
     # frame_kernel: the y_reference's part perpendicular to the axis must exceed 1e-12; one along the axis has none.
+    # The sidecar is the user's binding record: refused by name with the element, nothing substituted.
     trip = Trip("parallel", writer_tests.cantilever(), "PARALLEL", 20.0)
     sidecar = deepcopy(trip.sidecar)
     sidecar["element_map"]["S1"]["y_reference"] = {"x": 2.0, "y": 0.0, "z": 0.0}  # S1 runs along +x
     result = import_caepipe_mbf(trip.data, sidecar=sidecar, material_provenance=INVENTED, source_label="parallel")
-    assert result.model["pipe_segments"][0]["y_reference"] == {"x": 0.0, "y": 1.0, "z": 0.0}
-    assert "MBF-IMPORT-ORIENTATION-DEFAULTED" in {item["code"] for item in result.diagnostics}
+    assert refusals(result) == {("MBF-IMPORT-ORIENTATION-UNUSABLE", "S1")}
     assert importer_module.frame_y_reference_usable((0, 0, 0), (3, 0, 0), (0.0, 1e-12, 0.0)) is False
     assert importer_module.frame_y_reference_usable((0, 0, 0), (3, 0, 0), (0.0, 2e-12, 0.0)) is True
 
@@ -1035,34 +1035,34 @@ def test_a_bend_whose_arc_in_metres_is_not_tangent_is_refused_whole_on_both_rout
     assert error and "PRESSURE_REGION_MITRE_UNSUPPORTED" in json.dumps(output)
 
 
-def test_a_restored_y_reference_the_frame_kernel_refuses_is_replaced_and_listed():
+def test_a_restored_y_reference_the_frame_kernel_refuses_is_refused_by_name():
     # Codex VER-002 r6 (P2): the straight 10 -> 20 runs along (1, 2, 0) m and the sidecar's y_reference is
     # (1, 2.00000001, 0). Its part perpendicular to the axis is exactly 1e-8 (-2, 1, 0)/5, of norm 4.47e-9, but the
     # binary64 projection y.x carries an error of order 1e-16, which the subtraction leaves in y: the kernel's y is
-    # about 4e-8 from orthogonal to x, far above its 1e-12 ("local axes must be mutually orthogonal"). The pipe takes
-    # the documented local y: Y - (Y.x)x for x = (1, 2, 0)/sqrt 5 is (-2/5, 1/5, 0), normalized (-2, 1, 0)/sqrt 5.
+    # about 4e-8 from orthogonal to x, far above its 1e-12 ("local axes must be mutually orthogonal"). The import is
+    # refused by name with the element, nothing substituted. Without a sidecar the documented local y applies:
+    # Y - (Y.x)x for x = (1, 2, 0)/sqrt 5 is (-2/5, 1/5, 0), normalized (-2, 1, 0)/sqrt 5.
     data = importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X1000,Y2000", loads=("L1,20,10,0",))
     restored = {"x": 1.0, "y": 2.00000001, "z": 0.0}
     sidecar = {"mbf_sha256": hashlib.sha256(data).hexdigest(),
                "element_map": {"s": {"from": "10", "to": "20", "y_reference": restored}}}
     result = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="parallel",
                                 pressure_closure=importer_tests.CLOSURE)
-    assert result.status == "imported", result.diagnostics
-    assert tuple(result.model["pipe_segments"][0]["y_reference"].values()) == pytest.approx(
-        (-2 / math.sqrt(5), 1 / math.sqrt(5), 0.0), abs=1e-15)
-    assert [(item["location"], item["category"]) for item in result.loss_report
-            if item["code"] == "MBF-IMPORT-ORIENTATION-DEFAULTED"] == [("s", "approximated")]
+    assert refusals(result) == {("MBF-IMPORT-ORIENTATION-UNUSABLE", "s")}
     assert importer_module.frame_y_reference_usable((0, 0, 0), (1.0, 2.0, 0), (1.0, 2.00000001, 0.0)) is False
+    unbound = importer_tests.run(data, pressure_closure=importer_tests.CLOSURE)
+    assert tuple(unbound.model["pipe_segments"][0]["y_reference"].values()) == pytest.approx(
+        (-2 / math.sqrt(5), 1 / math.sqrt(5), 0.0), abs=1e-15)
     runner = runner_binary()
-    authored = deepcopy(result.model)
+    authored = deepcopy(unbound.model)
     authored["pipe_segments"][0]["y_reference"] = restored
     _, output, error = solve_swbpipe(runner, {"case_id": "parallel-authored", "model": authored})
     assert error and "mutually orthogonal" in json.dumps(output)
-    _, _, error = solve_swbpipe(runner, {"case_id": "parallel-replaced", "model": result.model})
+    _, _, error = solve_swbpipe(runner, {"case_id": "parallel-documented", "model": unbound.model})
     assert error == ""
 
 
-def test_the_preflight_refuses_an_orientation_its_printed_positions_would_replace(monkeypatch):
+def test_the_preflight_refuses_an_orientation_its_printed_positions_would_break(monkeypatch):
     # A y_reference 8.1e-8 off the straight's axis: the kernel forms orthonormal axes from it on the authored end
     # (434.3743180726007, 2006.440216234222, 0) mm, but not on the printed one (434.3743181, 2006.440216, 0), where
     # the rounding left in y exceeds 1e-12. The solve is the judge of both.
@@ -1076,15 +1076,37 @@ def test_the_preflight_refuses_an_orientation_its_printed_positions_would_replac
     assert error == ""
     written = render_caepipe_mbf_si(model, title="ORIENTATION")
     assert written.status == "refused"
-    assert {(item["code"], item["entity"]) for item in written.diagnostics if item["severity"] == "error"} == {
-        ("MBF-SI-PREFLIGHT-REFUSED", "model.pipe_segments[pipe:10-20].y_reference")}
-    data, sidecar = bound_parts(model, monkeypatch)  # printed, the import replaces it
+    errors = [item for item in written.diagnostics if item["severity"] == "error"]
+    assert {(item["code"], item["entity"]) for item in errors} == {("MBF-SI-PREFLIGHT-REFUSED", "pipe:10-20")}
+    assert "MBF-IMPORT-ORIENTATION-UNUSABLE" in errors[0]["message"]
+    data, sidecar = bound_parts(model, monkeypatch)  # printed, the bound import refuses it
     bound = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="printed")
-    assert bound.model["pipe_segments"][0]["y_reference"] != restored
-    printed = deepcopy(bound.model)
+    assert refusals(bound) == {("MBF-IMPORT-ORIENTATION-UNUSABLE", "pipe:10-20")}
+    printed = deepcopy(importer_tests.run(data, pressure_closure=importer_tests.CLOSURE).model)
     printed["pipe_segments"][0]["y_reference"] = restored
     _, output, error = solve_swbpipe(runner, {"case_id": "orientation-printed", "model": printed})
     assert error and "local axes" in json.dumps(output)
+
+
+def test_the_documented_y_the_frame_kernel_cannot_use_in_metres_is_refused():
+    # Near 8.96e15 mm the file's spacing is 1 mm, but read to m (8.96e12, in [2^43, 2^44)) the spacing is 2^-9 m,
+    # about twice the 1e-3 m step: the X step of 1 mm vanishes (both ends read as the same binary64), so the axis in
+    # m is (0, 1.08e-7, 3.52e-12) m, nearly +Y. The documented y, perpendicular to the file's axis (nearly +X), is
+    # nearly +Y too, about 1.1e-4 rad from that axis, and the rounding left in y after removing its axis part exceeds
+    # the kernel's 1e-12. The MBF states no other y, so the import is refused; the solve is the judge.
+    rows = ("F10,KA,MM1,PP1,X8960000000167142,CL=L1", "T20,KA,X1,Y0.000108,Z3.52e-09")
+    assert 8960000000167142 * 0.001 == 8960000000167143 * 0.001
+    data = importer_tests.mbf(*rows)
+    importer_tests.refused(importer_tests.run(data), "MBF-IMPORT-ORIENTATION-UNUSABLE",
+                           importer_tests.layout_line(data, "T20"))
+    model = importer_tests.run(importer_tests.mbf(rows[0], "T20,KA,X1000")).model
+    end = (8960000000167143.0, 0.000108, 3.52e-09)
+    model["nodes"][1]["position"] = dict(zip("xyz", end))
+    model["pipe_segments"][0]["y_reference"] = dict(zip("xyz", importer_module.local_y_reference(
+        (8960000000167142.0, 0.0, 0.0), end)))
+    _, output, error = solve_swbpipe(runner_binary(), {"case_id": "documented-unusable",
+                                                       "model": authored_region(model, ("node:10", "node:20"))})
+    assert error and "PIPE_ELEMENT_INPUT_INVALID" in json.dumps(output)
 
 
 def test_blank_restored_ids_are_refused_by_kind():

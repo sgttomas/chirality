@@ -759,7 +759,7 @@ re-imports bound, so B covers exports too.
 | `_PRESSURE_INVALID` | the file's value read finite (§4.3), and finite in Pa as the route reads it, value × 10⁵ or × `PSI_IN_PASCALS` + 0 (`MBF-IMPORT-VALUE-UNREPRESENTABLE`, new in r6) | U, B |
 | `EXACT_PRESSURE_CORROSION_ALLOWANCE_REQUIRED` | `MBF-IMPORT-CORROSION-ALLOWANCE-MISSING`; the writer's `MBF-SI-CORROSION-ALLOWANCE-MISSING` | U, B |
 | `EXACT_PRESSURE_RESULT_ID_COLLISION` | ported per kind, ':' read as '-' (`MBF-IMPORT-PRESSURE-ID-COLLISION`, new in r5) | U, B |
-| `_GEOMETRY_INVALID` | ends coinciding in metres refused (`MBF-IMPORT-GEOMETRY-ZERO-LENGTH`); each straight's y_reference passes the frame kernel's complete orientation check on the positions in metres (§10.5, r6): a restored one that fails is replaced by the documented one and listed, and a documented one that fails is refused (`MBF-IMPORT-ORIENTATION-UNUSABLE`); bend tangents, junction angles and member orientations are formed as the route forms them, in metres (**Bends**; `MBF-IMPORT-PRESSURE-GEOMETRY-INVALID`, new in r6). A straight no longer than the frame kernel's 1e-12 m is left to the solve's named refusal (§10.1: no minimum length) | U, B |
+| `_GEOMETRY_INVALID` | ends coinciding in metres refused (`MBF-IMPORT-GEOMETRY-ZERO-LENGTH`); each straight's y_reference passes the frame kernel's complete orientation check on the positions in metres (§10.5, r6): a restored one that fails is refused by name with the element, nothing substituted, and so is a documented one that fails (`MBF-IMPORT-ORIENTATION-UNUSABLE`); bend tangents, junction angles and member orientations are formed as the route forms them, in metres (**Bends**; `MBF-IMPORT-PRESSURE-GEOMETRY-INVALID`, new in r6). A straight no longer than the frame kernel's 1e-12 m is left to the solve's named refusal (§10.1: no minimum length) | U, B |
 | `EXACT_PRESSURE_MATERIAL_INVALID` | E > 0 and 0 < ν < 0.5 (`MBF-IMPORT-VALUE-OUT-OF-RANGE`) | U, B |
 | `PRESSURE_REGION_MITRE_UNSUPPORTED` | ported tangency check at each junction beside a bend, on the arc formed in metres (**Bends**; `MBF-IMPORT-PRESSURE-MITRE`, new in r6). r5 listed it as unable to arise, reasoning in the file's unit; the metre reading breaks that (VER-002 r6) | U, B |
 | `PRESSURE_MODEL_REAUTHOR_REQUIRED`, `PRESSURE_CONTRACT_UNSUPPORTED`, `EXACT_PRESSURE_SHEAR_MODEL_REQUIRED`, `PREVIEW_SCHEMA_VERSION_UNSUPPORTED`, `PREVIEW_CONTRACT_VERSION_MISMATCH`, `_BASIS_UNSUPPORTED`, `CORROSION_ALLOWANCE_WITHOUT_PRESSURE_CONTRACT`, `EXACT_PRESSURE_REQUIRES_REGION`, `EXACT_PRESSURE_REGIONS_REQUIRED` | cannot arise: the importer writes only the current schema version, the one contract (a restored shear model only if admitted), the one basis, the allowance only under the contract, no pressure primitive, and a region list on every case | — |
@@ -811,10 +811,11 @@ refuses:
   are read exactly as an import reads them (positions summed from the printed offsets, bend
   tangent nodes rebuilt, OD and wall as printed). The restored regions then take the same
   whole-region checks in their declared order, and the re-import must restore every written
-  region and restore every recorded straight y_reference unchanged (§10.5). A region the
-  model's values admit but the printed values would not, by any region check (bend junctions
-  included), is refused as `MBF-SI-PRESSURE-REGION-FORMAT`, naming the region; a
-  y_reference the re-import would replace, as `MBF-SI-PREFLIGHT-REFUSED` naming the pipe. Any other re-import refusal, at any
+  region. A region the model's values admit but the printed values would not, by any region
+  check (bend junctions included), is refused as `MBF-SI-PRESSURE-REGION-FORMAT`, naming the
+  region. A recorded y_reference the frame kernel cannot use on the printed positions is
+  refused by the re-import (`MBF-IMPORT-ORIENTATION-UNUSABLE`, §10.5), so the export is
+  refused as `MBF-SI-PREFLIGHT-REFUSED`, naming the pipe and carrying that code. Any other re-import refusal, at any
   stage, is refused as `MBF-SI-PREFLIGHT-REFUSED`, carrying the importer's code, location
   and line: for example OD 100.00000004 with wall 50 prints as 100, which the import
   refuses (`MBF-IMPORT-VALUE-OUT-OF-RANGE`), and a region through a tee
@@ -933,11 +934,13 @@ the solve requires, so the importer assigns one deterministically:
   each above 1e-12, then unit, mutually orthogonal and right-handed axes, each within 1e-12.
   A vector nearly parallel to its straight can fail only the last checks: along (1, 2, 0) m,
   (1, 2.00000001, 0) leaves y about 4e-8 from orthogonal to x (independent review VER-002
-  r6). Anything else takes the documented local y below, and the replacement is listed
-  (`MBF-IMPORT-ORIENTATION-DEFAULTED`, `approximated`, naming the pipe). Replacing rather
-  than refusing is held for the owner (§20.2 O-5). The writer's preflight refuses an export
-  whose own bound re-import would replace a recorded y_reference (§9.4), so a sidecar the
-  writer wrote is always restored as written.
+  r6). Any other recorded y_reference is refused by name with the element
+  (`MBF-IMPORT-ORIENTATION-UNUSABLE`), and nothing is substituted: the sidecar is the user's
+  binding record (the lane manager's decision after independent review VER-002 r6). The
+  writer's preflight refuses an export whose own bound re-import refuses so (§9.4), so a
+  sidecar the writer wrote is always restored as written.
+- **Bound imports without a recorded y_reference**, and imports without a sidecar, take
+  the documented local y below.
 - **Otherwise** the straight takes the local y axis CAEPIPE documents for pipe elements
   (documented: `CAEPIPE-LOCAL-AXES`, technical reference *Local Coordinate System*). With
   global Y vertical, a non-vertical element's local y lies in the plane of its local x and
@@ -955,11 +958,12 @@ the solve requires, so the importer assigns one deterministically:
   rotated direction.
 - For a vertical element the manual fixes y; z follows from x × y, so a downward element's
   z is the opposite of the one the manual names. This holds for both conventions.
-- Each assignment is reported as `MBF-IMPORT-ORIENTATION-DEFAULTED` (info, by element;
-  `approximated` when it replaces a sidecar's y_reference).
+- Each assignment is reported as `MBF-IMPORT-ORIENTATION-DEFAULTED` (info, by element).
 - The documented y is checked the same way, on the positions in metres, whose direction can
   differ from the file's own values at extreme coordinates. One the kernel cannot use is
-  refused (`MBF-IMPORT-ORIENTATION-UNUSABLE`). A straight no longer than 1e-12 m, which no
+  refused (`MBF-IMPORT-ORIENTATION-UNUSABLE`): near 8.96e15 mm a 1 mm X step vanishes in m
+  (spacing 2⁻⁹ m there), so a straight with a 1.08e-4 mm Y step has its axis in m nearly
+  along the documented y. A straight no longer than 1e-12 m, which no
   orientation fits, is left to the solve's named refusal (§10.1).
   A circular section's stiffness does not depend on the orientation; only local-axis results
   (local forces, moments and stresses) depend on the convention.
@@ -1131,8 +1135,7 @@ Loss entries and information (do not block):
   `MBF-IMPORT-RECORD-UNUSED` (a record no element references), `MBF-IMPORT-TAG-WITHOUT-SUPPORT`
   and `MBF-IMPORT-SIDECAR-ENTRY-ABSENT` (`omitted`);
 - `MBF-IMPORT-SIDECAR-NOT-APPLIED` (info: the hashes differ and no rebinding was requested)
-  and `MBF-IMPORT-ORIENTATION-DEFAULTED` (info, §10.5; `approximated` when it replaces a
-  sidecar's y_reference);
+  and `MBF-IMPORT-ORIENTATION-DEFAULTED` (info, §10.5);
 - `MBF-IMPORT-LOAD-SLOT-INACTIVE` (info, by record and slot, §9.1);
 - `MBF-IMPORT-PRESSURE-EFFECTS-OMITTED` (`omitted`, §9.4).
 
@@ -1644,11 +1647,6 @@ dossier as CQ-17-01-011 to -015.
   VER-002 r1 found the corner terminals and Euler–Bernoulli defensible.
 - **O-4.** How CAEPIPE-exported MBFs are produced for §18.3: by hand by the owner, or by a
   guest automation step.
-- **O-5.** Whether a bound import refuses, by name, a restored straight y_reference the
-  frame kernel cannot use, instead of replacing it with the documented local y and listing
-  the replacement (§10.5; replacement since VER-002 r5, pinned by public tests). Refusing
-  keeps the sidecar binding, with no substituted orientation; it turns imports of such
-  sidecars that succeed today into refusals. The writer never writes one (§9.4).
 
 ### 20.3 Next tranches
 

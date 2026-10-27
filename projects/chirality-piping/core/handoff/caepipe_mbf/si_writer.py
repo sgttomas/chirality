@@ -1396,14 +1396,6 @@ class _Writer:
                 self.refuse("MBF-SI-PREFLIGHT-REFUSED", item["location"] or "MBF",
                             f"the bound re-import of this MBF refuses it ({item['code']} at {item['location']}, line "
                             f"{item['line']}): {item['message']}")
-        if back.status == "imported":  # every recorded straight orientation restored as written, never replaced
-            restored = {pipe["id"]: pipe.get("y_reference") for pipe in back.model["pipe_segments"]}
-            for pipe_id, entry in result.element_map.items():
-                if "y_reference" in entry and restored.get(pipe_id) != entry["y_reference"]:
-                    self.refuse("MBF-SI-PREFLIGHT-REFUSED", f"model.pipe_segments[{pipe_id}].y_reference",
-                                f"the bound re-import of this MBF does not restore {pipe_id}'s y_reference: the "
-                                "frame kernel forms no orientation from it on the printed positions in m, so the "
-                                "import replaces it (MBF-IMPORT-ORIENTATION-DEFAULTED)")
         if back.status == "imported" and back.summary.get("pressure_regions") != len(self.regions):
             self.refuse("MBF-SI-PREFLIGHT-REFUSED", "pressure_map",
                         f"the bound re-import restored {back.summary.get('pressure_regions')} pressure regions, not "

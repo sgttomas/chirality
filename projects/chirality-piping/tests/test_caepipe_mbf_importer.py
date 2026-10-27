@@ -788,12 +788,12 @@ def test_a_bound_import_restores_straight_orientation_from_the_sidecar():
     assert bound.model["pipe_segments"][0]["y_reference"] == {"x": 0.0, "y": 0.0, "z": 1.0}
     assert "MBF-IMPORT-ORIENTATION-DEFAULTED" not in {item["code"] for item in bound.diagnostics}
     assert run(data).model["pipe_segments"][0]["y_reference"] == {"x": 0.0, "y": 1.0, "z": 0.0}  # unbound: default
-    # A sidecar orientation that is not a usable vector (here zero length) is not restored: the documented local y
-    # for a straight along +X is global Y, and the assignment is reported.
+    # A sidecar orientation that is not a usable vector (here zero length) is the user's binding record, so the import
+    # is refused by name with the element, and nothing is substituted (lane manager, after VER-002 r6).
     sidecar["element_map"]["S"]["y_reference"] = {"x": 0.0, "y": 0.0, "z": 0.0}
     zero = run(data, sidecar=sidecar)
-    assert zero.model["pipe_segments"][0]["y_reference"] == {"x": 0.0, "y": 1.0, "z": 0.0}
-    assert "MBF-IMPORT-ORIENTATION-DEFAULTED" in {item["code"] for item in zero.diagnostics}
+    assert refused(zero, "MBF-IMPORT-ORIENTATION-UNUSABLE")["location"] == "S"
+    assert "MBF-IMPORT-ORIENTATION-DEFAULTED" not in {item["code"] for item in zero.diagnostics}
 
 
 # --- command line (§3, §16.4) -------------------------------------------------------------------------------------------

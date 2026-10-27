@@ -2052,28 +2052,28 @@ class _Importer:
                           for name in ((b, a) if reversed_ else (a, b))]
                 if bend is not None:
                     pipe["y_reference"] = dict(zip("xyz", bend["y_reference"]))
-                elif isinstance(restored, Mapping) and all(
+                elif restored is not None:  # the sidecar's binding record: restored as written, or refused
+                    usable = isinstance(restored, Mapping) and all(
                         isinstance(restored.get(axis), (int, float)) and not isinstance(restored.get(axis), bool)
                         and math.isfinite(restored[axis]) for axis in "xyz") and runtime_frame_axes(
-                        *ends_m, [float(restored[axis]) for axis in "xyz"]) is not None:
-                    pipe["y_reference"] = {axis: float(restored[axis]) for axis in "xyz"}
+                        *ends_m, [float(restored[axis]) for axis in "xyz"]) is not None
+                    pipe["y_reference"] = {axis: float(restored[axis]) for axis in "xyz"} if usable else None
+                    if not usable:
+                        self.refuse("MBF-IMPORT-ORIENTATION-UNUSABLE", element.line, swb_id,
+                                    f"the sidecar's y_reference for {swb_id} is not one the frame kernel forms an "
+                                    "orientation from on the MBF's positions in m (finite, a part perpendicular to "
+                                    "the element above 1e-12, and orthonormal right-handed axes within 1e-12); "
+                                    "nothing is substituted")
                 else:
                     documented = local_y_reference(point_of[a], point_of[b], z_vertical=self.z_vertical)
                     pipe["y_reference"] = dict(zip("xyz", documented))
                     vertical = ("global Z vertical, in the rotated axes" if self.z_vertical else "global Y vertical")
-                    documented_y = (f"CAEPIPE's documented pipe local y axis (CAEPIPE-LOCAL-AXES, {vertical}). A "
-                                    "circular section's stiffness does not depend on it; only local-axis results do")
-                    if restored is not None:  # the sidecar's record is replaced, and the replacement is listed
-                        self.listed("approximated", "MBF-IMPORT-ORIENTATION-DEFAULTED", element.line, swb_id,
-                                    f"the sidecar's y_reference for {swb_id} is not one the frame kernel forms an "
-                                    "orientation from on the MBF's positions in m (finite, a part perpendicular to "
-                                    "the element above 1e-12, and orthonormal right-handed axes within 1e-12); it is "
-                                    f"replaced by {documented_y}")
-                    else:
-                        self.diagnostics.append({
-                            "code": "MBF-IMPORT-ORIENTATION-DEFAULTED", "severity": "info", "line": element.line,
-                            "location": swb_id,
-                            "message": f"{swb_id} has no y_reference in the MBF; it takes {documented_y}"})
+                    self.diagnostics.append({
+                        "code": "MBF-IMPORT-ORIENTATION-DEFAULTED", "severity": "info", "line": element.line,
+                        "location": swb_id,
+                        "message": f"{swb_id} has no y_reference in the MBF; it takes CAEPIPE's documented pipe "
+                                   f"local y axis (CAEPIPE-LOCAL-AXES, {vertical}). A circular section's "
+                                   "stiffness does not depend on it; only local-axis results do"})
                     axis = [ends_m[1][index] - ends_m[0][index] for index in range(3)]
                     if runtime_frame_axes(*ends_m, documented) is None and math.sqrt(_dot(axis, axis)) > AXIS_TOLERANCE:
                         self.refuse("MBF-IMPORT-ORIENTATION-UNUSABLE", element.line, swb_id,
@@ -2116,6 +2116,8 @@ class _Importer:
             if a == b:
                 self.refuse("MBF-IMPORT-GEOMETRY-ZERO-LENGTH", pressures[pipe["id"]][1].line,
                             pipe["id"], f"{pipe['id']} has zero length in metres, the unit the solve reads")
+                continue
+            if pipe["y_reference"] is None:  # refused above (MBF-IMPORT-ORIENTATION-UNUSABLE)
                 continue
             y_reference = [pipe["y_reference"][axis] for axis in "xyz"]
             axes = runtime_frame_axes(a, b, y_reference)
