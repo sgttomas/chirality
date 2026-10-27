@@ -102,6 +102,11 @@ OPMISC_EXPORT_FIELDS = 13
 # The gravitational setting every observed export writes for the default (earth) environment, Y vertical: 386.4
 # (in/s^2, in SI files too) and direction (0, -1, 0). Only this setting is read (Design §6, TBD-17-04-005).
 EARTH_GRAVITY = (Fraction("386.4"), (Fraction(0), Fraction(-1), Fraction(0)))
+# The documented 10-field layout gives the acceleration in the file's unit (Format of .MBF, OPMISC: in/sec2 or
+# m/sec2). It is read only as standard gravity, 9.80665 m/s^2 or 9.80665 / 0.0254 in/s^2, printed correctly rounded
+# to its own digits with at least three significant digits (Design §6).
+STANDARD_GRAVITY_BY_MODE = {True: Fraction("9.80665"), False: Fraction("9.80665") / Fraction("0.0254")}
+GRAVITY_MIN_DIGITS = 3
 FIELD_COUNTS = {"OPCODE": 9, "OPTEMP": 5, "OPPRES": 5, "OPMISC": 10, "MATERIAL_FIRST": 13,
                 "MATERIAL_TEMPERATURE": 7, "PIPE": 10, "LOADS": 35}
 _MATERIAL_FRP_TYPES = ("FR", "F1", "F2")
@@ -280,6 +285,13 @@ def local_y_reference(start: Iterable[float], end: Iterable[float]) -> tuple[flo
     # Y - (Y.x) x, with 1 - x_y^2 written as x_x^2 + x_z^2 so a near-vertical element keeps its precision.
     projected = (-x[1] * x[0], x[0] * x[0] + x[2] * x[2], -x[1] * x[2])
     return tuple(value + 0.0 for value in _unit(projected))  # + 0.0 writes no negative zero
+
+
+def standard_gravity_as_printed(text: str, standard: Fraction) -> bool:
+    """True when `text` is `standard` correctly rounded to its own printed digits, with at least three significant
+    digits: |p - g0| <= half a unit in p's last digit."""
+    mantissa = text.lstrip("+-").lower().partition("e")[0].replace(".", "").lstrip("0")
+    return len(mantissa) >= GRAVITY_MIN_DIGITS and abs(Fraction(text) - standard) <= half_unit(text)
 
 
 def split_fields(text: str) -> list[str] | None:
@@ -776,10 +788,15 @@ class _Importer:
         components = [self.real(value, line, "OPMISC gravitational direction") for value in direction]
         if g is None or None in components:
             return
-        if g.exact != EARTH_GRAVITY[0] or (components and tuple(c.exact for c in components) != EARTH_GRAVITY[1]):
+        if len(fields) == OPMISC_EXPORT_FIELDS:  # the export's layout: its observed default only
+            earth = g.exact == EARTH_GRAVITY[0] and tuple(c.exact for c in components) == EARTH_GRAVITY[1]
+        else:  # the documented layout: standard gravity in the file's documented unit
+            earth = standard_gravity_as_printed(g.text, STANDARD_GRAVITY_BY_MODE[self.si])
+        if not earth:
             self.refuse("MBF-IMPORT-GRAVITY-UNSUPPORTED", line, "OPMISC gravitational acceleration and direction",
-                        "only the default earth gravity setting the export writes is read; another acceleration or "
-                        "direction scales or turns the weights, and SWBPIPE has no gravity setting (TBD-17-04-005)")
+                        "only earth gravity is read (the export's default setting, or standard gravity in the "
+                        "documented layout's unit); another acceleration or direction scales or turns the weights, "
+                        "and SWBPIPE has no gravity setting (TBD-17-04-005)")
             return
         self.listed("delegated", "MBF-IMPORT-TARGET-OPTION-DELEGATED", line, "OPMISC gravity",
                     "OPMISC gravitational acceleration and direction are the default earth setting; SWBPIPE has no "
@@ -2125,8 +2142,9 @@ class _Importer:
                                 "written as absent.")
         if ("gravity", "the earth gravity setting") in self.used_conventions:
             self.used_conventions.discard(("gravity", "the earth gravity setting"))
-            self.assumptions.append("OPMISC gives the default earth gravity setting (386.4, direction (0, -1, 0)); "
-                                    "weights are imported as earth weights along -Y.")
+            self.assumptions.append("OPMISC gives earth gravity (the export's default setting 386.4 with direction "
+                                    "(0, -1, 0), or standard gravity in the documented layout's unit); weights are "
+                                    "imported as earth weights along -Y.")
         for basis, what in sorted(self.used_conventions):
             source = ("the writer's convention (bound import)" if basis == "bound" else
                       f"profile decision PD-1 for MBF version {self.version} (TBD-17-04-007 stays open)")

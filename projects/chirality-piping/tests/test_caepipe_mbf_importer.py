@@ -301,12 +301,9 @@ def test_optemp_and_opmisc_records():
     refused(run(mbf(extra=("OPMISC", "33,20,1,1,1,2,2,1,9.80665,1,0"))), "MBF-IMPORT-FIELD-UNDOCUMENTED")
     result = run(mbf(extra=("OPMISC", "", "OPPRES", "")))
     assert result.target_options["OPMISC"] == result.target_options["OPPRES"] == "section present with CAEPIPE defaults"
-    result = run(mbf(extra=("OPCODE", "1,1,1", "OPMISC", "33,20,1,1,1,2,2,1,386.4")))
+    result = run(mbf(extra=("OPCODE", "1,1,1", "OPMISC", "33,20,1,1,1,2,2,1,9.80665")))
     assert result.target_options["OPCODE"] == {"fields": ["1", "1", "1"]}
     listed(result, "MBF-IMPORT-TARGET-OPTION-DELEGATED", "delegated")
-    # Only the default earth setting is read: the manual gives m/s^2 for SI files, but the export writes 386.4 in SI
-    # files too, so another value's unit and meaning are ambiguous.
-    refused(run(mbf(extra=("OPMISC", "33,20,1,1,1,2,2,1,9.80665"))), "MBF-IMPORT-GRAVITY-UNSUPPORTED")
 
 
 def test_the_gravitational_direction_is_refused_in_a_bound_import_too():
@@ -940,7 +937,7 @@ def test_an_export_shaped_file_imports_with_inactive_slots_dropped_by_slot():
     assert result.model["nodes"][0]["position"] == {"x": -2000.0, "y": 0.0, "z": 0.0}
     locations = {item["location"] for item in result.loss_report if item["category"] == "delegated"}
     assert {"OPMISC fields 1-8", "OPMISC field 9", "OPMISC gravity", "OPTIONS piping_code", "FCYCLE"} <= locations
-    assert any("default earth gravity" in note for note in result.assumptions)
+    assert any("earth gravity" in note for note in result.assumptions)
 
 
 def test_the_default_earth_gravity_leaves_the_weights_unchanged():
@@ -992,3 +989,75 @@ def test_from_rows_with_some_coordinates_read_the_missing_axes_as_zero():
         (0.0, 300.0, 0.0), (1000.0, 300.0, 0.0), (0.0, 0.0, -50.0), (10.0, 0.0, -50.0)]
     data = mbf("F10,KA,MM1,PP1,CL=L1", "T20,X1000", "F30", "T40,X10")
     refused(run(data), "MBF-IMPORT-NODE-POSITION-MISSING", layout_line(data, "F30"))
+
+
+
+# Codex VER-002 r5 (invented probe): the documented 10-field OPMISC layout gives the acceleration in the file's unit
+# (m/s^2 in SI, in/s^2 in English); the export's 386.4 reading applies only to its 13-field layout.
+GRAVITY_PROBE = """INVENTED GRAVITY PROBE
+VERSION
+15.10
+OPTIONS
+HGRA,{options}
+OPTEMP
+20,7000,1
+OPMISC
+33,20,1,1,1,2,2,2,{g}
+MATERIAL
+M1,7000,.3,1,1,CS,Invented
+M1,20,200000,.000012
+PIPE
+P1,114.3,6.02
+LOADS
+L1,20,0,0
+LAYOUT
+F10,KA,MM1,PP1,CL=L1
+T20,X1000
+"""
+
+
+def gravity_probe(g: str, *, si: bool = True) -> bytes:
+    return GRAVITY_PROBE.format(options="SI" if si else "B311", g=g).replace("\n", "\r\n").encode("ascii")
+
+
+def test_the_documented_layout_reads_386_4_in_an_si_file_as_m_per_s2_and_refuses_it():
+    # By hand: 386.4 m/s^2 is 386.4 / 9.80665 = 39.4 g, not earth gravity. It imported before as 1 g with a weight of
+    # -140.58 N/m; at the documented unit the weight would be 7000 x 386.4 x 2.0478e-3 = -5538.98 N/m.
+    assert 386.4 / 9.80665 == pytest.approx(39.4016, rel=1e-5)
+    data = gravity_probe("386.4")
+    refused(run(data), "MBF-IMPORT-GRAVITY-UNSUPPORTED", layout_line(data, "33,20"))
+
+
+@pytest.mark.parametrize("g, si", [
+    ("9.80665", True), ("9.807", True), ("9.81", True), ("9.8066500", True),  # SI: m/s^2
+    ("386.0886", False), ("386.09", False), ("386.1", False), ("386", False),  # English: 9.80665 / 0.0254 in/s^2
+])
+def test_the_documented_layout_accepts_standard_gravity_in_its_unit(g, si):
+    # By hand: 9.80665 / 0.0254 = 386.08858267... in/s^2. Each printed value is that, or 9.80665 m/s^2, correctly
+    # rounded to its own digits (|p - g0| <= half a unit in p's last digit), with at least three significant digits.
+    data = gravity_probe(g, si=si)
+    if not si:  # an English file: lengths in feet-inch, so the layout offset is 10 ft
+        data = data.replace(b"T20,X1000", b"T20,X10")
+    result = run(data)
+    assert result.status == "imported", result.diagnostics
+    assert any("earth gravity" in note for note in result.assumptions)
+
+
+@pytest.mark.parametrize("g, si, why", [
+    ("9.8", True, "two significant digits"),
+    ("9.82", True, "|9.82 - 9.80665| = 0.01335 > 0.005"),
+    ("386.4", False, "|386.4 - 386.0886| = 0.3114 > 0.05 (the export's own value, in the documented layout)"),
+    ("32.2", False, "ft/s^2 is not the documented unit"),
+    ("9.80665", False, "m/s^2 in an English file"),
+    ("386.0886", True, "in/s^2 in an SI file"),
+])
+def test_the_documented_layout_refuses_other_accelerations(g, si, why):
+    data = gravity_probe(g, si=si)
+    if not si:
+        data = data.replace(b"T20,X1000", b"T20,X10")
+    refused(run(data), "MBF-IMPORT-GRAVITY-UNSUPPORTED", layout_line(data, "33,20"))
+
+
+def test_the_export_layout_alone_reads_386_4():
+    assert run(export_shaped()).status == "imported"  # 13 fields: 386.4 with direction (0, -1, 0)
+    refused(run(export_shaped(opmisc="33,20,1,1,1,2,2,2,0,9.80665,0.00,-1.00,0.00")), "MBF-IMPORT-GRAVITY-UNSUPPORTED")
