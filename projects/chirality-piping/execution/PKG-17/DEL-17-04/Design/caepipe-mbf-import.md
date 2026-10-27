@@ -215,7 +215,11 @@ only", for the straight-pipe orientation of §10.5.
 - Non-finite values are refused. Range checks match the writer's: E > 0; 0 < ν < 0.5;
   0 < t < OD/2; R > 0; k > 0; non-negative material weight densities; negative values are refused. They are applied before any
   derived value is formed, so an out-of-range input is refused by name, never clamped
-  (`MBF-IMPORT-VALUE-OUT-OF-RANGE`).
+  (`MBF-IMPORT-VALUE-OUT-OF-RANGE`). 0 < t < OD/2 is checked on the decimals and again, by
+  the same code, on the binary64 values read to metres as the build compares them
+  (`derive_pipe_section`, `validate_wall`, `SourceAnnulus::from_od_wall`): OD 504 mm with
+  wall 251.99999999999997 mm passes in mm but reads as 2t = OD in m, and a wall of
+  0.49999999999999999 reads as 0.5 (independent review VER-002 r6).
 - **Binary64 range.** A value whose binary64 reading overflows, or a non-zero value that
   reads as 0, is refused (`MBF-IMPORT-VALUE-UNREPRESENTABLE`); it never imports as zero or
   infinity. Every derived value is rounded through the same guard, which refuses by the same
@@ -632,8 +636,8 @@ a cut adds closure terminals the file never had):
 - **Chains.** A chain continues through a node only when the node joins exactly two
   elements with the same Pressure 1 and the same bore OD − 2t, both compared exactly. It
   therefore ends at a free end, a tee, a change of pressure or bore, or an element with
-  Pressure 1 = 0, which belongs to no region. A bend continues its chain: §11 builds its
-  tangent nodes exactly, so its end junctions are within the route's tangency tolerance.
+  Pressure 1 = 0, which belongs to no region. A bend continues its chain, and its end
+  junctions are checked as the route checks them (**Bends**, below).
 - **The route's check.** The route checks each straight run of a region, between its
   terminals or between bends, as a whole (`collinear_run`): from the run's first node, every
   later node's offset divided by the span must lie within 64ε = 64 × 2⁻⁵² of the span
@@ -660,6 +664,20 @@ a cut adds closure terminals the file never had):
   about 5.55e-14 relative (independent review VER-002 r3). The chain still needs exactly
   equal decimal bores, so it may end where the route would admit one region; such a junction
   is a real, if tiny, bore change.
+- **Bends.** The route forms each realized bend's arc from its tangent nodes, radius and
+  y_reference in metres (`curved_bend` `objective_arc`). At each junction beside a bend it
+  requires θ = kink(t_in, t_out) ≤ α_tan between the bend's end tangent and the adjacent
+  member's direction (a straight's frame axis or the next bend's tangent), and refuses a
+  larger θ as a mitre (`PRESSURE_REGION_MITRE_UNSUPPORTED`). A tangent, angle or member
+  orientation it cannot form is `PRESSURE_REGION_GEOMETRY_INVALID`. §11 builds the tangent
+  nodes in the file's unit, and the metre reading need not keep them tangent: near
+  1e15 mm the binary64 spacing in m is 2⁻¹³, so a 50 mm bend's chord moves by about 1e-3
+  relative and its start tangent leaves its straight by 1.46e-3 rad (independent review
+  VER-002 r6). The importer ports these checks operation for operation on the values read
+  to metres: product_physics's curved-bend screen, `objective_arc` with its exact sums, the
+  frame orientation (§10.5) and `kink` with the runtime's arc angle 2·atan2, evaluated to 90
+  digits and rounded once (it reproduces the runtime's frozen table bit for bit). kink is
+  the same in either traversal order, so a refused junction refuses both orders.
 - **The rule.** Each straight run of a chain is checked whole, in either traversal order. If
   it passes, it stays in one region. If it fails both ways, the region ends at each of its
   corners. Each region is then checked whole as the route checks it, its straight runs and
@@ -667,8 +685,10 @@ a cut adds closure terminals the file never had):
   The first order the checks admit is emitted. A region that neither order admits is refused
   by name with its elements, and never cut: `MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR` for a
   straight run refused both ways (a run without a corner included),
-  `MBF-IMPORT-PRESSURE-BORE-MISMATCH` for bores refused both ways, and the first code with
-  each order's failing check named when the two orders fail different checks. So a kink of
+  `MBF-IMPORT-PRESSURE-BORE-MISMATCH` for bores refused both ways,
+  `MBF-IMPORT-PRESSURE-MITRE` or `MBF-IMPORT-PRESSURE-GEOMETRY-INVALID` at a bend, naming
+  the node or element, and the first code with each order's failing check named when the
+  two orders fail different checks. So a kink of
   1e-4 or 5e-4 rad in a run is refused, one of 2e-3 rad is a corner, and the review's run from
   (0, 0) through (2, 3.0000000000924) to (2000, 3000) mm, refused traversed from its first
   node, is emitted from its last.
@@ -707,21 +727,23 @@ file. A bound sidecar with a contract and no regions restores the contract and e
 lists.
 
 A restored region is then checked whole as the route checks it, with the same ported checks
-as an unbound region (its straight runs and its bores, on the MBF's values read to metres),
+as an unbound region (its straight runs, its bores and its bend junctions, on the MBF's
+values read to metres),
 in its declared traversal order: from its first terminal, through its members, to its
 second. It is never cut or reordered. A region that is not one chain between its terminals
-is refused as `MBF-IMPORT-SIDECAR-CONFLICT`, as is a region id that is empty or repeated; one
-the checks refuse is refused as `MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR`,
-`MBF-IMPORT-PRESSURE-BORE-MISMATCH` or, where another pipe joins an internal node,
-`MBF-IMPORT-PRESSURE-INTERNAL-BRANCH`, located at `pressure_map region <id>` (independent
-review VER-002 r4, r5). A byte-bound file can fail these
+is refused as `MBF-IMPORT-SIDECAR-CONFLICT`, as is a region id that is repeated or that
+Rust's `trim` leaves empty (§15); one the checks refuse is refused as
+`MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR`, `MBF-IMPORT-PRESSURE-BORE-MISMATCH`,
+`MBF-IMPORT-PRESSURE-MITRE`, `MBF-IMPORT-PRESSURE-GEOMETRY-INVALID` or, where another pipe
+joins an internal node, `MBF-IMPORT-PRESSURE-INTERNAL-BRANCH`, located at `pressure_map
+region <id>` (independent review VER-002 r4, r5, r6). A byte-bound file can fail these
 checks although its source model passed them, because the writer prints 10 significant
 digits: OD 168.30000004 and wall 7.11000002 give the same bore radius in metres as 170.3
 and 8.11, but print as 168.3 and 7.11000002; and two offsets collinear as authored need not
 be collinear as printed. The writer's preflight below refuses such an export, so a bound
 import fails these checks only if the file was not written by the current writer.
 
-**Guard map (VER-002 r5).** Every refusal `pressure_runtime.rs` raises for a model, region or
+**Guard map (VER-002 r5, r6).** Every refusal `pressure_runtime.rs` raises for a model, region or
 member (46 codes, with the two admission-seam codes it raises), and what keeps an import from
 reaching it. U is the unbound route, B the bound (restored) route; the writer's preflight
 re-imports bound, so B covers exports too.
@@ -731,18 +753,18 @@ re-imports bound, so B covers exports too.
 | `PRESSURE_REGION_NONCOLLINEAR` | ported `collinear_run` per straight run (`MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR`) | U, B |
 | `PRESSURE_REGION_BORE_MISMATCH` | ported bore guard (`MBF-IMPORT-PRESSURE-BORE-MISMATCH`) | U, B |
 | `PRESSURE_REGION_INTERNAL_BRANCH` | U: a chain continues only through a node joining exactly two pipes; B: ported (`MBF-IMPORT-PRESSURE-INTERNAL-BRANCH`, new in r5) | U, B |
-| `_TOPOLOGY_INVALID`, `PRESSURE_TERMINALS_INVALID`, `PRESSURE_TERMINAL_NODE_UNKNOWN`, `_MEMBER_UNKNOWN`, `_MEMBERS_INVALID`, `_PIPE_OVERLAP` | U: chains of existing pipes, each in one region, with their two ends as terminals; B: membership, ownership and one chain from the first terminal to the second (`MBF-IMPORT-SIDECAR-CONFLICT`) | U, B |
-| `_INPUT_MISSING`, `_ID_DUPLICATE` | U: formed ids, provenance, pressure and members; B: as restored, with ids non-empty and unique (new in r5) | U, B |
+| `_TOPOLOGY_INVALID`, `PRESSURE_TERMINALS_INVALID`, `PRESSURE_TERMINAL_NODE_UNKNOWN`, `_MEMBER_UNKNOWN`, `_MEMBERS_INVALID`, `_PIPE_OVERLAP` | U: chains of existing pipes, each in one region, with their two ends as terminals; B: membership, ownership and one chain from the first terminal to the second, and every restored id non-empty after Rust's `trim` (§15, new in r6) (`MBF-IMPORT-SIDECAR-CONFLICT`) | U, B |
+| `_INPUT_MISSING`, `_ID_DUPLICATE` | U: formed ids, provenance, pressure and members; B: as restored, with ids and provenance non-empty after Rust's `trim` and ids unique (r5, r6) | U, B |
 | `PRESSURE_TERMINAL_INPUT_MISSING`, `PRESSURE_TERMINAL_CLOSURE_INVALID` | U: the closure declaration (`MBF-IMPORT-PRESSURE-CLOSURE-REQUIRED`, `-INVALID`); B: restored node, closure and provenance checked | U, B |
-| `_PRESSURE_INVALID` | the file's value read finite (§4.3) | U, B |
+| `_PRESSURE_INVALID` | the file's value read finite (§4.3), and finite in Pa as the route reads it, value × 10⁵ or × `PSI_IN_PASCALS` + 0 (`MBF-IMPORT-VALUE-UNREPRESENTABLE`, new in r6) | U, B |
 | `EXACT_PRESSURE_CORROSION_ALLOWANCE_REQUIRED` | `MBF-IMPORT-CORROSION-ALLOWANCE-MISSING`; the writer's `MBF-SI-CORROSION-ALLOWANCE-MISSING` | U, B |
 | `EXACT_PRESSURE_RESULT_ID_COLLISION` | ported per kind, ':' read as '-' (`MBF-IMPORT-PRESSURE-ID-COLLISION`, new in r5) | U, B |
-| `_GEOMETRY_INVALID` | ends coinciding in metres refused (`MBF-IMPORT-GEOMETRY-ZERO-LENGTH`); a restored `y_reference` the frame kernel cannot use is replaced by the documented one and reported (new in r5); bend tangents by construction (below). A straight shorter than the frame kernel's 1e-12 m is left to the solve's named refusal (§10.1: no minimum length) | U, B |
+| `_GEOMETRY_INVALID` | ends coinciding in metres refused (`MBF-IMPORT-GEOMETRY-ZERO-LENGTH`); each straight's y_reference passes the frame kernel's complete orientation check on the positions in metres (§10.5, r6): a restored one that fails is replaced by the documented one and listed, and a documented one that fails is refused (`MBF-IMPORT-ORIENTATION-UNUSABLE`); bend tangents, junction angles and member orientations are formed as the route forms them, in metres (**Bends**; `MBF-IMPORT-PRESSURE-GEOMETRY-INVALID`, new in r6). A straight no longer than the frame kernel's 1e-12 m is left to the solve's named refusal (§10.1: no minimum length) | U, B |
 | `EXACT_PRESSURE_MATERIAL_INVALID` | E > 0 and 0 < ν < 0.5 (`MBF-IMPORT-VALUE-OUT-OF-RANGE`) | U, B |
-| `PRESSURE_REGION_MITRE_UNSUPPORTED` and the bend-tangent `_GEOMETRY_INVALID` | cannot arise: §11 builds each bend's tangent nodes exactly from its TI, so a bend's end tangents meet its straights within rounding, far below α_tan | — |
+| `PRESSURE_REGION_MITRE_UNSUPPORTED` | ported tangency check at each junction beside a bend, on the arc formed in metres (**Bends**; `MBF-IMPORT-PRESSURE-MITRE`, new in r6). r5 listed it as unable to arise, reasoning in the file's unit; the metre reading breaks that (VER-002 r6) | U, B |
 | `PRESSURE_MODEL_REAUTHOR_REQUIRED`, `PRESSURE_CONTRACT_UNSUPPORTED`, `EXACT_PRESSURE_SHEAR_MODEL_REQUIRED`, `PREVIEW_SCHEMA_VERSION_UNSUPPORTED`, `PREVIEW_CONTRACT_VERSION_MISMATCH`, `_BASIS_UNSUPPORTED`, `CORROSION_ALLOWANCE_WITHOUT_PRESSURE_CONTRACT`, `EXACT_PRESSURE_REQUIRES_REGION`, `EXACT_PRESSURE_REGIONS_REQUIRED` | cannot arise: the importer writes only the current schema version, the one contract (a restored shear model only if admitted), the one basis, the allowance only under the contract, no pressure primitive, and a region list on every case | — |
 | `OBJECTIVE_CONNECTOR_VERSION_UNSUPPORTED`, `OBJECTIVE_CONNECTOR_NOT_IMPLEMENTED`, `EXACT_PRESSURE_FAMILY_NOT_ADMITTED`, `EXACT_PRESSURE_REDUCER_IN_REGION` | cannot arise: the importer writes only realized bends and rigid restraints and anchors (no hanger, nonlinear support, connector, reducer, combination or equivalent-static load) | — |
-| `EXACT_PRESSURE_MATERIAL_AMBIGUOUS`, `_MATERIAL_MISSING`, `_MATERIAL_BASIS_REQUIRED`, `_POISSON_RATIO_REQUIRED`, `THERMAL_EXPANSION_INPUT_MISSING`, `LOAD_STATE_MEMBER_MATERIAL_MISSING`, `_SECTION_MISSING`, `_NOT_NORMALIZED`, `EXACT_PRESSURE_REGION_MEMBER_NOT_STRAIGHT` | cannot arise: each pipe names one imported E/ν material with explicit ν and α; no load-state case; every pipe has a section; bar and psi normalize to Pa in the solve's own seam; the last is an unreachable guard by its source comment | — |
+| `EXACT_PRESSURE_MATERIAL_AMBIGUOUS`, `_MATERIAL_MISSING`, `_MATERIAL_BASIS_REQUIRED`, `_POISSON_RATIO_REQUIRED`, `THERMAL_EXPANSION_INPUT_MISSING`, `LOAD_STATE_MEMBER_MATERIAL_MISSING`, `_SECTION_MISSING`, `_NOT_NORMALIZED`, `EXACT_PRESSURE_REGION_MEMBER_NOT_STRAIGHT` | cannot arise: each pipe names one imported E/ν material with explicit ν and α; no load-state case; every pipe has a section, whose 0 < t < OD/2 is checked again on the values in m (§4.3, new in r6); bar and psi normalize to Pa in the solve's own seam; the last is an unreachable guard by its source comment | — |
 | `EXACT_PRESSURE_OUTPUT_UNREPRESENTABLE`, `PRESSURE_LEDGER_SUM_UNREPRESENTABLE`, `PRESSURE_ASSEMBLY_COEFFICIENT_UNREPRESENTABLE`, `PRESSURE_ASSEMBLY_SOURCE_UNREPRESENTABLE`, `PRESSURE_ASSEMBLY_CANCELLATION_UNRESOLVED` | not an import guard: solve-time arithmetic of the assembled loads, refused by name by the solve; the importer keeps every input finite | — |
 
 Related: the exact route's `EXACT_IMPOSED_DISPLACEMENT_PRIMITIVE_UNSUPPORTED` is kept out by
@@ -789,8 +811,10 @@ refuses:
   are read exactly as an import reads them (positions summed from the printed offsets, bend
   tangent nodes rebuilt, OD and wall as printed). The restored regions then take the same
   whole-region checks in their declared order, and the re-import must restore every written
-  region. A region the model's values admit but the printed values would not is refused as
-  `MBF-SI-PRESSURE-REGION-FORMAT`, naming the region. Any other re-import refusal, at any
+  region and restore every recorded straight y_reference unchanged (§10.5). A region the
+  model's values admit but the printed values would not, by any region check (bend junctions
+  included), is refused as `MBF-SI-PRESSURE-REGION-FORMAT`, naming the region; a
+  y_reference the re-import would replace, as `MBF-SI-PREFLIGHT-REFUSED` naming the pipe. Any other re-import refusal, at any
   stage, is refused as `MBF-SI-PREFLIGHT-REFUSED`, carrying the importer's code, location
   and line: for example OD 100.00000004 with wall 50 prints as 100, which the import
   refuses (`MBF-IMPORT-VALUE-OUT-OF-RANGE`), and a region through a tee
@@ -902,8 +926,18 @@ The MBF carries no element orientation. A straight pipe still needs a `y_referen
 the solve requires, so the importer assigns one deterministically:
 
 - **Bound imports** restore it from the writer's sidecar: `element_map[pipe].y_reference`,
-  which the writer records for every straight with an authored `y_reference`. Only a finite,
-  non-zero vector is restored; anything else takes the documented local y below.
+  which the writer records for every straight with an authored `y_reference`. It is restored
+  only if it is a finite vector from which the frame kernel forms an orientation on the MBF's
+  positions in metres, checked as the kernel checks it (`FrameElement::orientation`, ported
+  operation for operation): the element axis and the y_reference's part perpendicular to it
+  each above 1e-12, then unit, mutually orthogonal and right-handed axes, each within 1e-12.
+  A vector nearly parallel to its straight can fail only the last checks: along (1, 2, 0) m,
+  (1, 2.00000001, 0) leaves y about 4e-8 from orthogonal to x (independent review VER-002
+  r6). Anything else takes the documented local y below, and the replacement is listed
+  (`MBF-IMPORT-ORIENTATION-DEFAULTED`, `approximated`, naming the pipe). Replacing rather
+  than refusing is held for the owner (§20.2 O-5). The writer's preflight refuses an export
+  whose own bound re-import would replace a recorded y_reference (§9.4), so a sidecar the
+  writer wrote is always restored as written.
 - **Otherwise** the straight takes the local y axis CAEPIPE documents for pipe elements
   (documented: `CAEPIPE-LOCAL-AXES`, technical reference *Local Coordinate System*). With
   global Y vertical, a non-vertical element's local y lies in the plane of its local x and
@@ -921,7 +955,12 @@ the solve requires, so the importer assigns one deterministically:
   rotated direction.
 - For a vertical element the manual fixes y; z follows from x × y, so a downward element's
   z is the opposite of the one the manual names. This holds for both conventions.
-- Each assignment is reported as `MBF-IMPORT-ORIENTATION-DEFAULTED` (info, by element).
+- Each assignment is reported as `MBF-IMPORT-ORIENTATION-DEFAULTED` (info, by element;
+  `approximated` when it replaces a sidecar's y_reference).
+- The documented y is checked the same way, on the positions in metres, whose direction can
+  differ from the file's own values at extreme coordinates. One the kernel cannot use is
+  refused (`MBF-IMPORT-ORIENTATION-UNUSABLE`). A straight no longer than 1e-12 m, which no
+  orientation fits, is left to the solve's named refusal (§10.1).
   A circular section's stiffness does not depend on the orientation; only local-axis results
   (local forces, moments and stresses) depend on the convention.
 
@@ -957,6 +996,9 @@ reference *Bend*; *Node*). The inverse:
      from the TI and from each other, the TI must differ from the chord middle (the bend-plane
      direction), and the straights beside the bend must keep a non-zero length; otherwise
      `MBF-IMPORT-BEND-GEOMETRY-INVALID`.
+   - **In metres.** Within a pressure region the bend is also formed as the solve forms it,
+     from its tangent nodes and radius read to metres, and its end tangents must meet its
+     neighbours within α_tan (§9.4, **Bends**).
 4. **Members.**
    - Straight `pipe:P-nA`, from P to N.
    - Bend pipe `pipe:nA-nB`, from N to F, with `y_reference` = unit(TI − (N+F)/2). The
@@ -1061,7 +1103,8 @@ the manual does not make clear which kind a record is, it is refused.
 - tranche 2: `MBF-IMPORT-PRESSURE-CLOSURE-REQUIRED`, `MBF-IMPORT-PRESSURE-CLOSURE-INVALID`,
   `MBF-IMPORT-PRESSURE-DISPLACEMENT-UNSUPPORTED`, `MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR`,
   `MBF-IMPORT-PRESSURE-BORE-MISMATCH`, `MBF-IMPORT-PRESSURE-INTERNAL-BRANCH`,
-  `MBF-IMPORT-PRESSURE-ID-COLLISION` (§9.4)
+  `MBF-IMPORT-PRESSURE-ID-COLLISION`, `MBF-IMPORT-PRESSURE-MITRE`,
+  `MBF-IMPORT-PRESSURE-GEOMETRY-INVALID` (§9.4), `MBF-IMPORT-ORIENTATION-UNUSABLE` (§10.5)
   and `MBF-IMPORT-CORROSION-ALLOWANCE-MISSING` (§8). `MBF-IMPORT-GEOMETRY-ZERO-LENGTH` also
   refuses an element whose ends coincide in metres, the unit the solve reads (VER-002 r2). `MBF-IMPORT-PRESSURE-UNSUPPORTED`
   now refuses only a negative Pressure 1.
@@ -1088,7 +1131,8 @@ Loss entries and information (do not block):
   `MBF-IMPORT-RECORD-UNUSED` (a record no element references), `MBF-IMPORT-TAG-WITHOUT-SUPPORT`
   and `MBF-IMPORT-SIDECAR-ENTRY-ABSENT` (`omitted`);
 - `MBF-IMPORT-SIDECAR-NOT-APPLIED` (info: the hashes differ and no rebinding was requested)
-  and `MBF-IMPORT-ORIENTATION-DEFAULTED` (info, §10.5);
+  and `MBF-IMPORT-ORIENTATION-DEFAULTED` (info, §10.5; `approximated` when it replaces a
+  sidecar's y_reference);
 - `MBF-IMPORT-LOAD-SLOT-INACTIVE` (info, by record and slot, §9.1);
 - `MBF-IMPORT-PRESSURE-EFFECTS-OMITTED` (`omitted`, §9.4).
 
@@ -1120,6 +1164,12 @@ the identities, and the splits, that it explicitly preserves:
 - straight-pipe orientation, from `element_map[...].y_reference` (§10.5);
 - the pressure contract and pressure regions, from `pressure_map`, checked against the
   file (§9.4).
+
+A restored id of any kind that Rust's `trim` leaves empty (only Unicode White_Space:
+U+3000 is, U+001C to U+001F are not, although Python's `strip` removes them) is refused
+(`MBF-IMPORT-SIDECAR-CONFLICT`, naming the kind), since the solve refuses it (`EMPTY_ID`,
+and `PRESSURE_REGION_MEMBERS_INVALID` for a region member); so are two primitive loads
+restored with one id (`DUPLICATE_ID`) (independent review VER-002 r6).
 
 **What a bound sidecar cannot restore.** Many-to-one mappings and identities the sidecar
 does not preserve are reported, never guessed. Each is listed in the loss report as
@@ -1594,6 +1644,11 @@ dossier as CQ-17-01-011 to -015.
   VER-002 r1 found the corner terminals and Euler–Bernoulli defensible.
 - **O-4.** How CAEPIPE-exported MBFs are produced for §18.3: by hand by the owner, or by a
   guest automation step.
+- **O-5.** Whether a bound import refuses, by name, a restored straight y_reference the
+  frame kernel cannot use, instead of replacing it with the documented local y and listing
+  the replacement (§10.5; replacement since VER-002 r5, pinned by public tests). Refusing
+  keeps the sidecar binding, with no substituted orientation; it turns imports of such
+  sidecars that succeed today into refusals. The writer never writes one (§9.4).
 
 ### 20.3 Next tranches
 
