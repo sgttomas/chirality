@@ -815,13 +815,3 @@ our reasoning, not observed.
   shape of a chosen case as a second node set. That is useful for clash
   review, and its privacy follows the result-export gating.
 - *Touches:* DEL-17-08, DEL-12-02.
-
-## What the survey could not see
-
-- Most support and component editors in hands-on use (documentation covers
-  them).
-- Dynamic, fatigue, hanger, flange and equipment result screens (no pilot
-  model exercises them).
-- Mouse-only context menus and toolbar-only commands.
-
-These would need a richer invented pilot model.

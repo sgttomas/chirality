@@ -462,3 +462,25 @@ def test_private_tokens_are_screened_inside_exempt_spans_and_the_checks_own_file
     assert run(tmp_path / "o", {"doc/a.md": text}) == ["doc/a.md:1: private token #1"]
     files = {"tools/caepipe_correlation/check_public_observations.py": "# Widget overflow at start\n"}
     assert run(tmp_path / "s", files) == ["tools/caepipe_correlation/check_public_observations.py:1: private token #1"]
+
+
+
+def test_signed_results_are_blocked(tmp_path):
+    assert run(tmp_path, {"doc/a.md": "The Acmepipe residual is -3 mm against SWBPIPE.\n"}) == [
+        "doc/a.md:1: result about the target tool"]
+
+
+@pytest.mark.parametrize("text", [
+    "The Acmepipe importer matches 3 values to X/Y/Z.\n",
+    "Acmepipe units differ: 1 in = 25.4 mm.\n",
+    "Acmepipe writes no delimiter after the final field.\n",
+    "See [REQ-018](notes.md): Acmepipe records match per DEL-17-04.\n",
+])
+def test_mapping_counts_equations_and_format_omissions_pass(tmp_path, text):
+    assert run(tmp_path, {"doc/a.md": text}) == []
+
+
+def test_image_links_of_the_target_are_screenshot_references(tmp_path):
+    assert run(tmp_path, {"doc/a.md": "![Acmepipe dialog](screenshots/result.png)\n"}) == [
+        "doc/a.md:1: screenshot reference"]
+    assert run(tmp_path / "d", {"doc/a.md": "![Load path diagram](diagram.png)\n"}) == []

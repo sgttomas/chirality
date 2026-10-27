@@ -376,7 +376,8 @@ def _link_end(text: str, index: int) -> int | None:
 
 
 def _unlinked(text: str, owners: list[int]) -> tuple[str, list[int]]:
-    """Inline links and images reduced to their labels; the destination's parentheses are balanced."""
+    """Inline links and images reduced to their labels (an image also to a screenshot marker); the
+    destination's parentheses are balanced."""
 
     out: list[str] = []
     own: list[int] = []
@@ -391,6 +392,10 @@ def _unlinked(text: str, owners: list[int]) -> tuple[str, list[int]]:
         own.extend(owners[position:match.start()])
         out.append(match.group(1))
         own.extend(owners[match.start(1):match.end(1)])
+        if match.group().startswith("!"):
+            # An image may be a screenshot; the invisible marker lets the screenshot rule judge it in context.
+            out.append(IMAGE_MARK)
+            own.append(owners[match.start()])
         position = index
     out.append(text[position:])
     own.extend(owners[position:])
@@ -474,6 +479,7 @@ def _token_findings(label: str, lines: dict[int, str], tokens: list[tuple[int, s
                     kind: str, blank_breaks: bool = True) -> list[str]:
     findings: list[str] = []
     for text, owners, _ in _paragraphs(lines, blank_breaks):
+        text, owners = _rewrite(re.compile(IMAGE_MARK), "", text, owners)
         for index, term in tokens:
             for match in _phrase(term).finditer(text):
                 span = _span(owners, match.start(), match.end())
@@ -495,23 +501,27 @@ DEFECT = _alternation(r"crash(?:es|ed|ing)?", r"access violations?", r"defects?"
                       r"freez(?:es|ing)", r"froze(?:n)?", r"unresponsive", r"workarounds?", r"work around", r"broken",
                       r"fail(?:s|ed)? to", r"does not work", r"did not work", r"unreliable", r"unstable",
                       r"stop(?:s|ped)? early", r"abort(?:s|ed)?", r"quits?", r"terminat(?:es|ed) unexpectedly",
-                      r"(?:writes|wrote|produces|produced|leaves|left) no",
+                      r"(?:writes|wrote|produces|produced|leaves|left) no (?:CSV|output|outputs|results?|result files?|files?|records?)",
                       r"(?:row|size|model[ -]size|node|element|layout)[ -]limits?",
                       r"limits? (?:on|of) (?:the )?(?:model|models|rows?|size|nodes?|elements?)",
                       r"limited to (?:\d+|small)", r"(?:more than|at most|up to|maximum(?: of)?|max\.?|over) \d+ (?:layout )?rows?",
                       r"trial", r"evaluation (?:version|build|copy|stamp|period)",
                       r"watermark\w*", r"stamp(?:s|ed)?", r"expir(?:es|ed|y|ation)", r"slow(?:er|ly|s)?", r"performance",
                       r"faster", r"speed")
-SCREENSHOT = _alternation(r"screen ?shots?", r"screen (?:captures?|grabs?|recordings?)", r"screengrabs?")
+IMAGE_MARK = "\u2063"  # an invisible separator placed after an image's label
+SCREENSHOT = re.compile(_alternation(r"screen ?shots?", r"screen (?:captures?|grabs?|recordings?)",
+                                     r"screengrabs?").pattern + "|" + IMAGE_MARK, re.IGNORECASE)
 SURVEY = _alternation(r"survey(?:s|ed)?")
 _UNIT = r"(?:%|‰|percent|per cent|ppm|parts per million|mm|cm|m|N|kN|N[·*]m|Nm|kN[·*]?m|MPa|rad|deg|°)"
 # Numeric results: counts (`20 of 35`, `35/35`, `20 matched`), percentages and ppm, decimals with a unit, and
 # scientific notation. Ids, dates, section numbers and bare integers are not results.
+EQUATION = re.compile(r"[-+−]?\d+(?:[.,]\d+)?\s*[^\s=,;]*\s*=\s*[-+−]?\d+(?:[.,]\d+)?(?:[eE][-+]?\d+)?(?:\s*[^\s,;.]+)?")
+SIGN = re.compile(r"(?:(?<=^)|(?<=[\s(=:]))[-+−](?=\d)")
 _COUNTED = r"(?:quantities|quantity|cases?|values?|checks?|nodes?|results?|records?|reactions?|displacements?|members?)"
 RESULT_NUMBER = re.compile(
     r"(?<![\w\-§./])(?:\d+\s*(?:/|of|out of)\s*\d+(?![\w\-]|\.\d)"
     r"|\d+\s+(?:matched|agreed|exceeded|differed|mismatched|deviated)"
-    r"|\d+\s+" + _COUNTED + r"(?![\w-])"
+    r"|(?:all|only|just|in|for|across)\s+\d+\s+" + _COUNTED + r"(?![\w-])"
     r"|\d+(?:[.,]\d+)?\s*(?:%|‰|percent|per cent|ppm|parts per million)"
     r"|\d+(?:[.,]\d+)?(?:[eE][-+]?\d+)?\s*" + _UNIT + r"(?![\w/])(?!\s*(?:per|/)(?![\w]))"
     r"|\d+(?:\.\d+)?[eE][-+]?\d+)", re.IGNORECASE)
@@ -541,6 +551,10 @@ def scan(label: str, lines: dict[int, str], terms: dict[str, list[str]], added: 
         masked = text
         for pattern in names:
             masked = pattern.sub(lambda m: "@" * len(m.group()), masked)
+        # Conversion equations (`1 in = 25.4 mm`) are format facts; a sign before a number (`-3 mm`) is kept
+        # apart from ids (`REQ-018`) by requiring a space, bracket or start before it.
+        masked = EQUATION.sub(lambda m: " " * len(m.group()), masked)
+        masked = SIGN.sub(" ", masked)
         numbers = [(_span(owners, m.start(), m.end()), sentences[m.start()]) for m in RESULT_NUMBER.finditer(masked)]
 
         def near(span: list[int], sentence: int, targets: list[tuple[list[int], int]]) -> list[int]:
