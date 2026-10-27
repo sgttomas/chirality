@@ -301,9 +301,12 @@ def test_optemp_and_opmisc_records():
     refused(run(mbf(extra=("OPMISC", "33,20,1,1,1,2,2,1,9.80665,1,0"))), "MBF-IMPORT-FIELD-UNDOCUMENTED")
     result = run(mbf(extra=("OPMISC", "", "OPPRES", "")))
     assert result.target_options["OPMISC"] == result.target_options["OPPRES"] == "section present with CAEPIPE defaults"
-    result = run(mbf(extra=("OPCODE", "1,1,1", "OPMISC", "33,20,1,1,1,2,2,1,9.80665")))
+    result = run(mbf(extra=("OPCODE", "1,1,1", "OPMISC", "33,20,1,1,1,2,2,1,386.4")))
     assert result.target_options["OPCODE"] == {"fields": ["1", "1", "1"]}
     listed(result, "MBF-IMPORT-TARGET-OPTION-DELEGATED", "delegated")
+    # Only the default earth setting is read: the manual gives m/s^2 for SI files, but the export writes 386.4 in SI
+    # files too, so another value's unit and meaning are ambiguous.
+    refused(run(mbf(extra=("OPMISC", "33,20,1,1,1,2,2,1,9.80665"))), "MBF-IMPORT-GRAVITY-UNSUPPORTED")
 
 
 def test_the_gravitational_direction_is_refused_in_a_bound_import_too():
@@ -424,9 +427,10 @@ def test_load_records(record, code):
     refused(run(data), code, layout_line(data, "L1,"))
 
 
-def test_a_second_thermal_load_at_the_reference_is_omitted_and_peak_values_delegated():
+def test_a_second_thermal_load_at_the_reference_is_inactive_and_peak_values_delegated():
     result = run(mbf(loads=("L1,100,0,0,20,0,,,0,150,10",)))
-    listed(result, "MBF-IMPORT-THERMAL-LOAD-OMITTED", "omitted")
+    inactive = [item for item in result.diagnostics if item["code"] == "MBF-IMPORT-LOAD-SLOT-INACTIVE"]
+    assert [(item["severity"], item["location"]) for item in inactive] == [("info", "LOADS L1 T2/P2")]
     assert any(item["code"] == "MBF-IMPORT-TARGET-OPTION-DELEGATED" and "peak" in item["location"]
                for item in result.loss_report)
     assert ("case:mbf-expansion-t1", "thermal", "pipe:10-20", "global_x", 80.0, "degC") in loads_of(result)
@@ -904,3 +908,87 @@ def test_absolute_coordinates_and_english_fractions_are_read_exactly():
     # Exact fractions sum without rounding: three offsets of 0'0-1/3" make exactly 1 in.
     result = run(mbf("F10,KA,MM1,PP1,CL=L1", 'T20,X0\'0-1/3"', 'T30,X0\'0-1/3"', 'T40,X0\'0-1/3"', options="HGRA"))
     assert result.model["nodes"][3]["position"]["x"] == 1.0
+
+
+
+# --- CAEPIPE's own MBF export: full positional records (Design §6, §9.1, §10.1) -------------------------------------
+# Invented values in the shape the export writes (observed format behaviour): every OPTIONS, OPCODE, OPTEMP, OPPRES
+# and OPMISC field present, an empty FCYCLE, full MATERIAL rows with zero strength columns, and LOADS with every
+# T1..T10 and pressure slot filled; unused temperature slots hold a default temperature and unused pressures 0.
+def export_shaped(*, optemp="15.5,5000,1,0,1", opmisc="33,20,1,1,1,2,2,2,0,386.4000,0.00,-1.00,0.00",
+                  loads_record=None, layout=("F10,KA,X-2000,CTAG=,LTAG=", "T20,MM1,PP1,X2000,CL=L1",
+                                             "T30,KA,X2500,CTAG=,LTAG=")) -> bytes:
+    inactive = ",".join(["17.25,0"] * 7)
+    record = loads_record or f"L1,95.5,0,0,15.5,0,15.5,0,0,95.5,0,{inactive},0,0,0,0"
+    lines = ["INVENTED EXPORT-SHAPED MODEL", "", "VERSION", "15.10", "OPTIONS", "HGRA,B311,SI", "OPCODE",
+             "1,0,1,0,0,0,1,0,1.20", "OPTEMP", optemp, "OPPRES", "1,0,1,1.00,0", "OPMISC", opmisc, "FCYCLE",
+             "MATERIAL", "M1,7000,0.300,1.00,1.00,CS,INVENTED-STEEL,0.000,0.000,0.00,0.000,0.000",
+             "M1,15.5,190000,11.00E-6,0.000", "M1,115.5,190000,11.00E-6,0.000", "PIPE", "P1,114.3,6.02,0,0.0",
+             "LOADS", record, "LAYOUT", *layout]
+    return "".join(line + "\r\n" for line in lines).encode("ascii")
+
+
+def test_an_export_shaped_file_imports_with_inactive_slots_dropped_by_slot():
+    result = run(export_shaped())
+    assert result.status == "imported", result.diagnostics
+    inactive = [item for item in result.diagnostics if item["code"] == "MBF-IMPORT-LOAD-SLOT-INACTIVE"]
+    assert [item["location"] for item in inactive] == [f"LOADS L1 T{n}/P{n}" for n in range(2, 11)]
+    assert all(item["severity"] == "info" and "OPTEMP gives 1 thermal load" in item["message"] for item in inactive)
+    # By hand: only T1 is active, so the thermal change is T1 - T_ref = 95.5 - 15.5 = 80 C on each element.
+    assert [load[4] for load in loads_of(result) if load[1] == "thermal"] == [80.0, 80.0]
+    # The From row gives only X: Y and Z are 0, and the node lies at (-2000, 0, 0).
+    assert result.model["nodes"][0]["position"] == {"x": -2000.0, "y": 0.0, "z": 0.0}
+    locations = {item["location"] for item in result.loss_report if item["category"] == "delegated"}
+    assert {"OPMISC fields 1-8", "OPMISC field 9", "OPMISC gravity", "OPTIONS piping_code", "FCYCLE"} <= locations
+    assert any("default earth gravity" in note for note in result.assumptions)
+
+
+def test_the_default_earth_gravity_leaves_the_weights_unchanged():
+    # By hand: 0.1143^2 - 0.10226^2 = 0.0026073824 m^2, x pi/4 = 2.04782e-3 m^2; x 7000 kgf/m3 x 9.80665 m/s^2 =
+    # 140.577 N/m, with or without the OPMISC default.
+    weights = []
+    for opmisc in ("33,20,1,1,1,2,2,2,0,386.4000,0.00,-1.00,0.00", "33,20,1,1,1,2,2,2"):
+        result = run(export_shaped(opmisc=opmisc))
+        weights.append([load[4] for load in loads_of(result) if load[1] == "weight"])
+    expected = -7000 * 9.80665 * math.pi / 4 * (0.1143**2 - 0.10226**2)
+    assert weights[0] == weights[1] == [pytest.approx(expected, rel=1e-15)] * 2
+    assert expected == pytest.approx(-140.577, rel=1e-5)
+
+
+@pytest.mark.parametrize("opmisc, code", [
+    ("33,20,1,1,1,2,2,2,1,386.4000,0.00,-1.00,0.00", "MBF-IMPORT-FIELD-UNDOCUMENTED"),  # field 9 not 0
+    ("33,20,1,1,1,2,2,2,0,193.2,0.00,-1.00,0.00", "MBF-IMPORT-GRAVITY-UNSUPPORTED"),  # half gravity
+    ("33,20,1,1,1,2,2,2,0,386.4,0.00,0.00,-1.00", "MBF-IMPORT-GRAVITY-UNSUPPORTED"),  # along -Z
+    ("33,20,1,1,1,2,2,2,0,,0.00,-1.00,0.00", "MBF-IMPORT-FIELD-MISSING"),  # a direction without an acceleration
+    ("33,20,1,1,1,2,2,2,0,386.4,0.00,-1.00", "MBF-IMPORT-FIELD-UNDOCUMENTED"),  # 12 fields
+    ("33,20,1,1,1,2,2,2,0,386.4,0.00,-1.00,0.00,0", "MBF-IMPORT-FIELD-UNDOCUMENTED"),  # 14 fields
+])
+def test_opmisc_in_the_export_layout_reads_only_the_default_setting(opmisc, code):
+    data = export_shaped(opmisc=opmisc)
+    refused(run(data), code, layout_line(data, opmisc))
+
+
+def test_slots_follow_the_thermal_load_count_or_else_the_conservative_rule():
+    # With OPTEMP's count of 1, an inactive slot is dropped even with a non-zero pressure (no load case uses it),
+    # but its fields must still be numbers.
+    inactive = ",".join(["17.25,0"] * 6)
+    result = run(export_shaped(loads_record=f"L1,95.5,0,0,15.5,0,15.5,0,0,95.5,0,{inactive},17.25,3.5,0,0,0,0"))
+    assert result.status == "imported", result.diagnostics
+    data = export_shaped(loads_record=f"L1,95.5,0,0,15.5,0,15.5,0,0,95.5,0,{inactive},17.25,x,0,0,0,0")
+    refused(run(data), "MBF-IMPORT-NUMBER-INVALID", layout_line(data, "L1,"))
+    # Without a count (OPTEMP gives only the reference temperature), a slot is inactive only when its temperature is
+    # the reference and its pressure 0; the export's default 17.25 differs, so the slot is ambiguous and refused.
+    data = export_shaped(optemp="15.5")
+    refused(run(data), "MBF-IMPORT-THERMAL-LOADS-UNSUPPORTED", layout_line(data, "L1,"))
+    data = export_shaped(optemp="15.5", loads_record="L1,95.5,0,0,15.5,0,15.5,0,0,95.5,0")
+    inactive_locations = [item["location"] for item in run(data).diagnostics
+                          if item["code"] == "MBF-IMPORT-LOAD-SLOT-INACTIVE"]
+    assert inactive_locations == ["LOADS L1 T2/P2", "LOADS L1 T3/P3"]
+
+
+def test_from_rows_with_some_coordinates_read_the_missing_axes_as_zero():
+    result = run(mbf("F10,KA,MM1,PP1,Y300,CL=L1", "T20,X1000", "F30,Z-50", "T40,X10"))
+    assert [tuple(node["position"].values()) for node in result.model["nodes"]] == [
+        (0.0, 300.0, 0.0), (1000.0, 300.0, 0.0), (0.0, 0.0, -50.0), (10.0, 0.0, -50.0)]
+    data = mbf("F10,KA,MM1,PP1,CL=L1", "T20,X1000", "F30", "T40,X10")
+    refused(run(data), "MBF-IMPORT-NODE-POSITION-MISSING", layout_line(data, "F30"))

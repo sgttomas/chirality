@@ -95,6 +95,13 @@ PIPING_CODE_OPTIONS = (
     "STOOMWEZEN", "Z183", "Z184", "Z662", "EUROPEAN", "EN13941", "ISO14692",
 )
 # Documented field counts per record for VERSION 15.10.
+# OPMISC's documented layout has 10 fields; the layout CAEPIPE's MBF export writes has 13 (observed format
+# behaviour, Design §6): fields 1-8 as documented, field 9 not publicly described, field 10 the gravitational
+# acceleration and fields 11-13 the gravitational direction as three components.
+OPMISC_EXPORT_FIELDS = 13
+# The gravitational setting every observed export writes for the default (earth) environment, Y vertical: 386.4
+# (in/s^2, in SI files too) and direction (0, -1, 0). Only this setting is read (Design §6, TBD-17-04-005).
+EARTH_GRAVITY = (Fraction("386.4"), (Fraction(0), Fraction(-1), Fraction(0)))
 FIELD_COUNTS = {"OPCODE": 9, "OPTEMP": 5, "OPPRES": 5, "OPMISC": 10, "MATERIAL_FIRST": 13,
                 "MATERIAL_TEMPERATURE": 7, "PIPE": 10, "LOADS": 35}
 _MATERIAL_FRP_TYPES = ("FR", "F1", "F2")
@@ -384,6 +391,7 @@ class _Importer:
         self.maps: dict[str, Any] = {}
         self.node_ids: dict[str, str] = {}
         self.used_conventions: set[tuple[str, str]] = set()
+        self.thermal_load_count: Fraction | None = None
         self.unconfirmed: list[str] = []
 
     # -- reporting -------------------------------------------------------
@@ -697,6 +705,7 @@ class _Importer:
                     self.t_ref_line = line
                     if len(fields) > 2 and fields[2] != "":
                         count = self.real(fields[2], line, "OPTEMP field 3 (number of thermal loads)")
+                        self.thermal_load_count = count.exact if count is not None else None
                         if count is not None and count.exact != 1:
                             self.refuse("MBF-IMPORT-THERMAL-LOADS-UNSUPPORTED", line, "OPTEMP field 3",
                                         "more than one thermal load is not read in tranche 1")
@@ -725,6 +734,9 @@ class _Importer:
                 continue
             line, text = lines[0]
             fields = self.fields(line, text, name) or []
+            if name == "OPMISC":
+                self.read_opmisc(line, fields)
+                continue
             if self.too_many(fields, FIELD_COUNTS[name], line, name):
                 continue
             if name == "OPMISC" and len(fields) >= 10 and fields[9] != "":
@@ -735,6 +747,44 @@ class _Importer:
             self.target_options[name] = {"fields": fields}
             self.listed("delegated", "MBF-IMPORT-TARGET-OPTION-DELEGATED", line, name,
                         f"{name} configures CAEPIPE's own analysis; pass-through target configuration only")
+
+    def read_opmisc(self, line: int, fields: list[str]) -> None:
+        """OPMISC (§6): dynamics options pass through; the gravitational setting is read only as the earth default."""
+        if len(fields) != OPMISC_EXPORT_FIELDS and self.too_many(fields, FIELD_COUNTS["OPMISC"], line, "OPMISC"):
+            return
+        self.target_options["OPMISC"] = {"fields": fields[:8]}
+        self.listed("delegated", "MBF-IMPORT-TARGET-OPTION-DELEGATED", line, "OPMISC fields 1-8",
+                    "OPMISC dynamics and hanger options configure CAEPIPE's own analysis; pass-through only")
+        if len(fields) == OPMISC_EXPORT_FIELDS:
+            if not self.is_zero(fields[8], line, "OPMISC field 9"):
+                self.refuse("MBF-IMPORT-FIELD-UNDOCUMENTED", line, "OPMISC field 9",
+                            "OPMISC field 9 has no public description; only the 0 the export writes is read")
+                return
+            self.listed("delegated", "MBF-IMPORT-TARGET-OPTION-DELEGATED", line, "OPMISC field 9",
+                        "OPMISC field 9 (no public description) is read only as 0 and passes through")
+            acceleration, direction = fields[9], fields[10:13]
+        else:
+            if len(fields) == 10 and fields[9] != "":
+                self.refuse("MBF-IMPORT-TBD-17-04-005", line, "OPMISC field 10 (gravitational direction)",
+                            "a gravitational direction in one field has no documented encoding (TBD-17-04-005, "
+                            "CQ-17-01-011); weight direction is a mechanics input and is not assumed")
+                return
+            acceleration, direction = (fields[8] if len(fields) > 8 else ""), []
+        if acceleration == "" and not any(direction):
+            return
+        g = self.real(acceleration, line, "OPMISC gravitational acceleration")
+        components = [self.real(value, line, "OPMISC gravitational direction") for value in direction]
+        if g is None or None in components:
+            return
+        if g.exact != EARTH_GRAVITY[0] or (components and tuple(c.exact for c in components) != EARTH_GRAVITY[1]):
+            self.refuse("MBF-IMPORT-GRAVITY-UNSUPPORTED", line, "OPMISC gravitational acceleration and direction",
+                        "only the default earth gravity setting the export writes is read; another acceleration or "
+                        "direction scales or turns the weights, and SWBPIPE has no gravity setting (TBD-17-04-005)")
+            return
+        self.listed("delegated", "MBF-IMPORT-TARGET-OPTION-DELEGATED", line, "OPMISC gravity",
+                    "OPMISC gravitational acceleration and direction are the default earth setting; SWBPIPE has no "
+                    "gravity setting and carries weight as explicit primitives along -Y")
+        self.used_conventions.add(("gravity", "the earth gravity setting"))
 
     # -- §7 MATERIAL -----------------------------------------------------------
     def read_materials(self) -> None:
@@ -923,7 +973,10 @@ class _Importer:
                 ok = False
             tail = dict(zip(_LOADS_TAIL, fields[4:]))
             for n in (2, 3, *range(4, 11)):
-                ok = self.thermal_pair(name, tail[f"T{n}"], tail[f"P{n}"], n, line, location) and ok
+                if self.thermal_load_count is not None and n > self.thermal_load_count:
+                    ok = self.inactive_pair(name, tail[f"T{n}"], tail[f"P{n}"], n, line, location) and ok
+                else:
+                    ok = self.thermal_pair(name, tail[f"T{n}"], tail[f"P{n}"], n, line, location) and ok
             for label in ("additional weight", "Wind 1", "Wind 2", "Wind 3", "Wind 4", "Snow", "Ice", "Wave",
                           "Wave 2", "Wave 3", "Wave 4"):
                 zero = self.is_zero(tail[label], line, f"{location} {label}")
@@ -947,12 +1000,27 @@ class _Importer:
         if temperature is None:
             return False
         if self.t_ref is not None and temperature.exact == self.t_ref.exact and p_zero:
-            self.listed("omitted", "MBF-IMPORT-THERMAL-LOAD-OMITTED", line, f"{location} T{n}",
-                        f"load {name} gives no thermal load {n} (temperature {n} equals the reference)")
+            self.slot_inactive(name, n, line, location, f"T{n} equals the reference temperature and P{n} is 0")
             return True
         self.refuse("MBF-IMPORT-THERMAL-LOADS-UNSUPPORTED", line, f"{location} T{n}",
                     f"load {name} defines thermal load {n}; multiple thermal cases are tranche 2")
         return False
+
+    def inactive_pair(self, name: str, t_text: str, p_text: str, n: int, line: int, location: str) -> bool:
+        """A slot beyond OPTEMP's number of thermal loads: no load case uses it; its values must still be numbers."""
+        if t_text and self.real(t_text, line, f"{location} T{n}") is None:
+            return False
+        if p_text and self.real(p_text, line, f"{location} P{n}") is None:
+            return False
+        if t_text or p_text:
+            self.slot_inactive(name, n, line, location, "OPTEMP gives 1 thermal load, so no load case uses it")
+        return True
+
+    def slot_inactive(self, name: str, n: int, line: int, location: str, reason: str) -> None:
+        self.diagnostics.append({"code": "MBF-IMPORT-LOAD-SLOT-INACTIVE", "severity": "info", "line": line,
+                                 "location": f"{location} T{n}/P{n}",
+                                 "message": f"load {name}: thermal load {n} (T{n}, P{n}) is inactive and dropped: "
+                                            f"{reason}"})
 
     # -- §14 other sections -------------------------------------------------
     def read_other_sections(self) -> None:
@@ -1212,14 +1280,17 @@ class _Importer:
                                 f"F{row.number} {_AXES[index]} does not equal the node's position within the "
                                 "half-unit bounds of the printed digits")
             return
-        if len(values) == 3:
-            exact = [values[index][0] for index in range(3)]
-            bound = [values[index][1] for index in range(3)]
-        elif not values and first:
+        if values:
+            # A missing axis on a From row that gives coordinates is 0: CAEPIPE's MBF export writes only the
+            # non-zero absolute coordinates (observed format behaviour, Design §10.1).
+            exact = [values.get(index, (Fraction(0), Fraction(0)))[0] for index in range(3)]
+            bound = [values.get(index, (Fraction(0), Fraction(0)))[1] for index in range(3)]
+        elif first:
             exact, bound = [Fraction(0)] * 3, [Fraction(0)] * 3
         else:
             self.refuse("MBF-IMPORT-NODE-POSITION-MISSING", row.line, location,
-                        f"F{row.number} starts a new run and needs X, Y and Z (only the first From row may omit them)")
+                        f"F{row.number} starts a new run and needs its coordinates (only the first From row may omit "
+                        "them all)")
             return
         self.add_node(row.number, exact, bound, row.line)
 
@@ -2052,6 +2123,10 @@ class _Importer:
         self.assumptions.append("Thermal change per element is T1 - T_ref (OPTEMP); zero changes give no primitive. "
                                 "Section corrosion, mill tolerance, insulation and lining fields given as zero are "
                                 "written as absent.")
+        if ("gravity", "the earth gravity setting") in self.used_conventions:
+            self.used_conventions.discard(("gravity", "the earth gravity setting"))
+            self.assumptions.append("OPMISC gives the default earth gravity setting (386.4, direction (0, -1, 0)); "
+                                    "weights are imported as earth weights along -Y.")
         for basis, what in sorted(self.used_conventions):
             source = ("the writer's convention (bound import)" if basis == "bound" else
                       f"profile decision PD-1 for MBF version {self.version} (TBD-17-04-007 stays open)")
