@@ -784,6 +784,12 @@ def test_a_bound_import_restores_straight_orientation_from_the_sidecar():
     assert bound.model["pipe_segments"][0]["y_reference"] == {"x": 0.0, "y": 0.0, "z": 1.0}
     assert "MBF-IMPORT-ORIENTATION-DEFAULTED" not in {item["code"] for item in bound.diagnostics}
     assert run(data).model["pipe_segments"][0]["y_reference"] == {"x": 0.0, "y": 1.0, "z": 0.0}  # unbound: default
+    # A sidecar orientation that is not a usable vector (here zero length) is not restored: the documented local y
+    # for a straight along +X is global Y, and the assignment is reported.
+    sidecar["element_map"]["S"]["y_reference"] = {"x": 0.0, "y": 0.0, "z": 0.0}
+    zero = run(data, sidecar=sidecar)
+    assert zero.model["pipe_segments"][0]["y_reference"] == {"x": 0.0, "y": 1.0, "z": 0.0}
+    assert "MBF-IMPORT-ORIENTATION-DEFAULTED" in {item["code"] for item in zero.diagnostics}
 
 
 # --- command line (§3, §16.4) -------------------------------------------------------------------------------------------
@@ -848,3 +854,20 @@ def test_a_tiny_but_representable_density_still_gives_weight():
     result = run(mbf(material=("M1,1e-300,0.3", "M1,20,200000,1.2e-05")))
     weight = next(load for load in loads_of(result) if load[1] == "weight")
     assert weight[4] == pytest.approx(-1e-300 * 9.80665 * math.pi / 4 * (0.1683**2 - 0.15408**2), rel=1e-14)
+
+
+def test_derived_bend_geometry_is_validated_after_rounding():
+    # Codex VER-002 r2: R = 5e-324 mm (the smallest subnormal); legs X3000 then X3000,Z1, so theta = atan(1/3000)
+    # = 3.33e-4 rad and t = 5e-324 x tan(1.67e-4) = 8e-328 mm, below half the smallest subnormal: it rounds to 0.
+    # It raised ZeroDivisionError before.
+    data = mbf("F10,KA,MM1,PP1,CL=L1", "T20,KI,B5e-324,X3000,CFF=1", "T30,X3000,Z1")
+    diagnostic = refused(run(data), "MBF-IMPORT-VALUE-UNREPRESENTABLE", layout_line(data, "T20"))
+    assert "tangent length" in diagnostic["message"]
+    # R = 1e-20 mm at a 90 degree corner: t = 1e-20 mm, but 3000 - 1e-20 rounds to 3000 (the binary64 spacing at 3000
+    # is 4.5e-13), so the near tangent node collapses onto the tangent intersection.
+    data = mbf("F10,KA,MM1,PP1,CL=L1", "T20,KI,B1e-20,X3000,CFF=1", "T30,Z3000")
+    refused(run(data), "MBF-IMPORT-BEND-GEOMETRY-INVALID", layout_line(data, "T20"))
+    # A small but resolvable bend still imports: R = 1e-6 mm at x = 3000 gives near = 2999.999999 mm.
+    result = run(mbf("F10,KA,MM1,PP1,CL=L1", "T20,KI,B1e-6,X3000,CFF=1", "T30,Z3000"))
+    assert result.status == "imported", result.diagnostics
+    assert result.model["nodes"][1]["position"]["x"] == 3000 - 1e-6

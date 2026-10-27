@@ -1459,7 +1459,8 @@ class _Importer:
                 self.refuse("MBF-IMPORT-BEND-GEOMETRY-INVALID", element.line, location,
                             f"the legs at tangent intersection {n} are parallel or reversed; there is no bend angle")
                 continue
-            t = self.binary64(element.radius.value * math.tan(theta / 2.0), element.line, location, "tangent length")
+            t = self.binary64(element.radius.value * math.tan(theta / 2.0), element.line, location, "tangent length",
+                              nonzero=True)  # R > 0 and theta > 0: a zero tangent length is an underflow
             self.bend_geometry[n] = {"theta": theta, "t": t, "d_in": d_in, "d_out": d_out, "ti": ti,
                                      "element": index, "start": element.start, "next": outgoing.end}
         tol = _BEND_RELATIVE_TOLERANCE
@@ -1480,7 +1481,22 @@ class _Importer:
             near = tuple(self.binary64(value, line, f"bend {n}", "tangent node") for value in near)
             far = tuple(self.binary64(value, line, f"bend {n}", "tangent node") for value in far)
             middle = tuple(near[axis] / 2.0 + far[axis] / 2.0 for axis in range(3))
+            if min(_norm(_sub(ti, near)), _norm(_sub(far, ti)), _norm(_sub(far, near)), _norm(_sub(ti, middle))) == 0:
+                self.refuse("MBF-IMPORT-BEND-GEOMETRY-INVALID", line, f"bend {n}",
+                            f"bend {n}'s tangent nodes collapse onto the tangent intersection or each other once "
+                            "rounded to binary64")
+                raise _Refused
             bend.update(near=near, far=far, y_reference=_unit(_sub(ti, middle)))
+        for element in self.elements:  # the generated straights, from tangent node to tangent node
+            start = self.bend_geometry[element.start]["far"] if element.start in self.bend_geometry \
+                else self.positions[element.start]
+            end = self.bend_geometry[element.end]["near"] if element.end in self.bend_geometry \
+                else self.positions[element.end]
+            if not (0 < _norm(_sub(end, start)) < math.inf):
+                self.refuse("MBF-IMPORT-BEND-GEOMETRY-INVALID", element.line, f"LAYOUT line {element.line}",
+                            f"the straight to node {element.end} beside a bend has zero length once its generated "
+                            "tangent nodes are rounded to binary64")
+                raise _Refused
 
     # -- assembly (§15, §16) --------------------------------------------------------------
     def node_name_id(self, name: str) -> str:
@@ -1569,7 +1585,8 @@ class _Importer:
                     pipe["y_reference"] = dict(zip("xyz", bend["y_reference"]))
                 elif isinstance(restored, Mapping) and all(
                         isinstance(restored.get(axis), (int, float)) and not isinstance(restored.get(axis), bool)
-                        and math.isfinite(restored[axis]) for axis in "xyz"):
+                        and math.isfinite(restored[axis]) for axis in "xyz") and 0 < _norm(
+                        tuple(float(restored[axis]) for axis in "xyz")) < math.inf:
                     pipe["y_reference"] = {axis: float(restored[axis]) for axis in "xyz"}
                 else:
                     pipe["y_reference"] = dict(zip("xyz", local_y_reference(point_of[a], point_of[b])))
