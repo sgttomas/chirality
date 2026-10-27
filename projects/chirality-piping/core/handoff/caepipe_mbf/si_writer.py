@@ -1624,13 +1624,13 @@ class _Writer:
         except SidecarNotCanonical as error:
             self.invalid(error.path, f"the sidecar's {error.path} {error.reason}; the sidecar has no self-digest")
             return self.refused()
-        if ((self.contract is not None or self.node_springs) and self.regenerating is None
-                and not self.survives_reimport(result)):
+        # The preflight is total (Design §14): every export but the regeneration route's, whose caller is the import.
+        if self.regenerating is None and not self.survives_reimport(result):
             return self.refused()
         return result
 
     def survives_reimport(self, result: MbfSiResult) -> bool:
-        """Design §9.4 and §12: an exact-pressure or spring export as the printed MBF gives it back. The writer's own bound re-import
+        """Design §9.4, §12 and §14: every export as the printed MBF gives it back. The writer's own bound re-import
         reads the printed values exactly as an import will (positions summed from the printed offsets, bend tangent
         nodes rebuilt, OD and wall as printed) and applies the exact route's whole-region checks to the restored
         regions in their declared order. The export stands only if that re-import succeeds completely and checks
@@ -1713,7 +1713,7 @@ class _Writer:
         if self.node_springs:
             notes.append("Spring supports are written as flexible anchors KA,TRAK(kx,ky,kz),ROTK(0,0,0), stiffness "
                          "in N/mm; a zero component leaves its DOF free and ROTK(0,0,0) leaves rotations free "
-                         "(technical reference, Anchor). The export is checked by its own bound re-import.")
+                         "(technical reference, Anchor).")
         if self.pipe_pressure:
             notes.append(f"OPPRES is written {OPPRES_LINE}: PD/4t, Bourdon effect off, pressure correction for bends "
                          "off, peak pressure factor 1. SWBPIPE's exact pressure route models neither effect (DEL-04-07 "

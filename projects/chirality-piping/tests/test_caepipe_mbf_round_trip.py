@@ -331,13 +331,19 @@ def test_summed_primitives_are_many_to_one_and_reported():
     assert found is not None and found[0] in reported(trip.bound)
 
 
-def test_a_merged_anchor_split_the_solve_refuses_is_not_restored():
+def test_a_merged_anchor_split_the_solve_refuses_is_not_restored(monkeypatch):
     # The writer writes two rigid supports at one node, translations T and rotations R, as one KA row. With no
     # family the solve reads R as a guide (fewer than six DOFs), which restrains translations only, so it refuses the
-    # source model (SUPPORT_INPUT_INVALID); the bound import refuses the split by name rather than restore it.
+    # source model (SUPPORT_INPUT_INVALID); the bound import refuses the split by name rather than restore it. The
+    # writer's total preflight refuses the export for that reason (VER-002 r3); it is bypassed here to reach the import.
     model = writer_tests.cantilever()
     model["supports"] = [{"id": "T", "node": "N0", "restraints": ["UX", "UY", "UZ"], "family": None},
                          {"id": "R", "node": "N0", "restraints": ["RX", "RY", "RZ"]}]
+    refused = render_caepipe_mbf_si(model, title="SPLIT")
+    assert refused.status == "refused" and {item["code"] for item in refused.diagnostics
+                                            if item["severity"] == "error"} == {"MBF-SI-PREFLIGHT-REFUSED"}
+    from core.handoff.caepipe_mbf import si_writer
+    monkeypatch.setattr(si_writer._Writer, "survives_reimport", lambda self, result: True)
     trip = Trip("split", model, "SPLIT", 20.0)
     assert "KA" in trip.text.split("\r\n")[trip.text.split("\r\n").index("LAYOUT") + 1]
     assert refusals(trip.bound) == {("MBF-IMPORT-SIDECAR-INVALID", "support_map[R]")}
@@ -1666,9 +1672,8 @@ def summed_model() -> dict:
 MUTATION_BASES = {"pressurized": lambda: writer_tests.pressurized_l(), "pressure-free": lambda: writer_tests.bent_l(),
                   "summed": summed_model, "springs": lambda: writer_tests.sprung_cantilever(),
                   "contract-only": contract_only_model, "authored-orientation": authored_orientation_model}
-# Bases without a pressure contract, and those whose export runs no preflight (no pressure and no spring).
+# Bases without a pressure contract. Every base's export runs the preflight, which is total (VER-002 r3).
 PRESSURE_FREE_BASES = ("pressure-free", "summed", "springs")
-UNCHECKED_BASES = ("pressure-free", "summed")
 
 
 @pytest.mark.parametrize("base_model", sorted(MUTATION_BASES))
@@ -1776,7 +1781,7 @@ def test_every_mutated_sidecar_is_refused_by_name_or_restores_the_same_model(bas
             outcomes["equal"] += 1
             pytest.fail(f"{label} imported bound")
         if "writer" not in captured or not label.split("/")[0].split(":")[0].endswith("_map"):
-            continue  # the preflight runs with pressure, binds its own text by its own hash and reads only the maps
+            continue  # the preflight binds its own text by its own hash and reads only the maps
         writer, result = captured["writer"], captured["result"]
         writer.diagnostics[:], writer.loss[:] = list(captured["diagnostics"]), list(captured["loss"])
         maps = {key: value for key, value in sidecar.items() if key != "mbf_sha256"}
@@ -1788,7 +1793,7 @@ def test_every_mutated_sidecar_is_refused_by_name_or_restores_the_same_model(bas
             assert not survives and refusals_ and all(code.startswith("MBF-SI-") for code in refusals_), label
         else:
             assert survives, label
-    assert ("writer" in captured) == (base_model not in UNCHECKED_BASES)
+    assert "writer" in captured
     assert len(mutations) > 300 and outcomes["refused"] > 0, outcomes
     # VER-002 r12, r13: each field set to a different well-formed value. A value the MBF or a derivation determines
     # must agree with it, and the regeneration identity alone refuses it too. A value the writer copies from the model
@@ -2330,7 +2335,7 @@ def test_a_declared_origin_other_than_the_recorded_one_is_refused():
 
 
 # --- VER-002 r14: a summed primitive's entries are compared but for its identity ------------------------------------
-def test_a_restored_id_that_a_summed_primitive_would_also_take_is_refused():
+def test_a_restored_id_that_a_summed_primitive_would_also_take_is_refused(monkeypatch):
     # Codex VER-002 r14 (finding 1): with a second Y force on the tip and a +500 N X force named
     # load:concentrated_force:N1:global_y, the MBF prints FOR(500,-7000,0). The X primitive restores that id and the
     # summed Y primitive forms it too: two primitives under one id, which the solve refuses (DUPLICATE_ID). The
@@ -2339,7 +2344,10 @@ def test_a_restored_id_that_a_summed_primitive_would_also_take_is_refused():
     model["load_cases"][0]["primitive_loads"] += [
         writer_tests.force("tip2", "N1", "global_y", -1000.0),
         writer_tests.force("load:concentrated_force:N1:global_y", "N1", "global_x", 500.0)]
-    data, sidecar = bound_parts(model)
+    refused = render_caepipe_mbf_si(model, title="GUARD")  # the total preflight refuses it (VER-002 r3)
+    assert any(item["code"] == "MBF-SI-PREFLIGHT-REFUSED" and "DUPLICATE_ID" in item["message"]
+               for item in refused.diagnostics)
+    data, sidecar = bound_parts(model, monkeypatch)  # the preflight bypassed, to reach the import
     assert "CFOR(500,-7000,0)" in data.decode()
     result = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="collision")
     assert refusals(result) == {("MBF-IMPORT-SIDECAR-CONFLICT",

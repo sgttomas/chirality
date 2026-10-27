@@ -886,8 +886,8 @@ refuses:
   stage, is refused as `MBF-SI-PREFLIGHT-REFUSED`, carrying the importer's code, location
   and line: for example OD 100.00000004 with wall 50 prints as 100, which the import
   refuses (`MBF-IMPORT-VALUE-OUT-OF-RANGE`), and a region through a tee
-  (`MBF-IMPORT-PRESSURE-INTERNAL-BRANCH`). The preflight runs for every export under the
-  exact contract. The writer refuses rather than printing more digits. The
+  (`MBF-IMPORT-PRESSURE-INTERNAL-BRANCH`). The preflight runs for every export (it is total,
+  §14). The writer refuses rather than printing more digits. The
   10-significant-digit print is the profile's established form, and the §18.2 bounds and
   byte reproduction rest on it. More digits would not settle the geometry either: an offset
   is a binary64 difference of two positions, so its exact decimal does not, summed, give the
@@ -1170,7 +1170,7 @@ a node with springs and rigid restraints (the importer reads a flexible anchor a
 stiffness that is not positive is `MBF-SI-VALUE-OUT-OF-RANGE`, an imposed displacement on a
 spring `MBF-SI-IMPOSED-DISPLACEMENT-UNSUPPORTED`. `support_map` records each spring with its
 DOF, `family: spring` and `family_authored: true`. The export preflight of §9.4, the writer's
-own bound re-import, runs for every export with a spring too, so a stiffness whose printed value
+own bound re-import, runs for every export (§14), so a stiffness whose printed value
 the import refuses (1e306 N/mm, which reads as 1e309 N/m) is refused as
 `MBF-SI-PREFLIGHT-REFUSED`.
 
@@ -1204,7 +1204,18 @@ or bear on authorship.
 **The regeneration identity** is the exact-digest route's guard of record. After assembly,
 a bound import of a format-2 or format-3 sidecar has the writer regenerate the sidecar from the imported
 model (`regenerate_caepipe_sidecar`). No MBF is written and the writer's export preflight
-is not run. The one input beyond the model is the import's record of which straights'
+is not run.
+
+**The writer's preflight is total** (tranche 3, independent review VER-002 r3). Every export
+other than the regeneration route's, whose caller is the import, is checked by its own bound
+re-import (§9.4), whatever it holds: pressure or none, springs or none. Any refusal of that
+re-import is a named export refusal carrying the importer's code and location
+(`MBF-SI-PREFLIGHT-REFUSED`, or `MBF-SI-PRESSURE-REGION-FORMAT` for a region check). It adds a
+check only: an export it admits is the text it would have written without it. Printing and unit
+normalization can each break a value that the model holds validly. For example, a force of
+2⁵³ − 1 N prints to 10 significant digits as 9.007199255e+15, and 1e14 kN is written as 1e17 N.
+Each is an integral float beyond 2⁵³ − 1, which the solve's checked-JSON reader refuses (§9.4
+guard map), so the export is refused. The one input beyond the model is the import's record of which straights'
 `y_reference` it derived (`id_map` `y_reference_derived`), so a derived orientation
 regenerates as derived. The two sidecars are compared without the digests (`mbf_sha256`
 and the self-digest `sidecar_sha256`), in the given sidecar's format, with key order
@@ -1641,7 +1652,7 @@ given the model the file and the unmutated sidecar determine, refuses each mutat
 mutated digest is the parser's: it decides the route; a mutated self-digest is the
 self-digest's). The writer's own sidecar regenerates
 exactly, as a positive control, and so does that of every model in the reversible subset
-(§18.2). With pressure, the writer's preflight given the same maps refuses with a named
+(§18.2). The writer's preflight, given the same maps, refuses with a named
 `MBF-SI-*` code exactly where the import refuses. Each field is also set to a different
 well-formed value; a single-DOF support entry also reads as the other kind (a spring as a line stop,
 a rigid entry as a spring), which the MBF's spring and rigid DOFs refuse. One the MBF or a derivation determines is refused, and the identity alone
