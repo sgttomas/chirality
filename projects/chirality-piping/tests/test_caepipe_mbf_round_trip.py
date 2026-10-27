@@ -200,19 +200,7 @@ def test_unbound_import_under_pd1_equals_by_caepipe_name(trips, name):
     assert result.status == "imported", result.diagnostics
     assert any("PD-1" in note for note in result.assumptions)
     reference = trip.reference()
-    reference_unoriented = canon.Canonical(
-        {(key[0], tuple(sorted(key[1])), *key[2:]) if key[0] in ("pipe", "bend") else
-         (key[:3] + (tuple(sorted(key[3])),) if key[0] == "load" and isinstance(key[3], tuple) else key): value
-         for key, value in reference.values.items()},
-        {(key[0], tuple(sorted(key[1])), *key[2:]) if key[0] == "bend" else key: value
-         for key, value in reference.sets.items() if key[0] != "support"})
-    limits = {}
-    for key, value in trip.limits(reference).items():
-        if key[0] in ("pipe", "bend"):
-            key = (key[0], tuple(sorted(key[1])), *key[2:])
-        elif key[0] == "load" and isinstance(key[3], tuple):
-            key = key[:3] + (tuple(sorted(key[3])),)
-        limits[key] = value
+    reference_unoriented, limits = canon.unoriented(reference, trip.limits(reference))
     comparison = canon.compare(reference_unoriented, trip.imported(result, oriented=False), limits)
     assert comparison.failures == []
 

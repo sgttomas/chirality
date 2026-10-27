@@ -446,3 +446,18 @@ def compare(reference: Canonical, imported: Canonical, limits: Mapping[tuple, fl
         elif a != b:
             failures.append(f"{key}: {a!r} != {b!r}")
     return Comparison(failures, r_in, len(reference.values))
+
+
+def _unoriented_key(key: tuple) -> tuple:
+    if key[0] in ("pipe", "bend"):
+        return (key[0], tuple(sorted(key[1])), *key[2:])
+    if key[0] == "load" and isinstance(key[3], tuple):
+        return key[:3] + (tuple(sorted(key[3])),) + key[4:]
+    return key
+
+
+def unoriented(form: Canonical, limits: Mapping[tuple, float]) -> tuple[Canonical, dict[tuple, float]]:
+    """A canonical form and its bounds with pipe ends unordered and per-support identities dropped (unbound)."""
+    return (Canonical({_unoriented_key(key): value for key, value in form.values.items()},
+                      {_unoriented_key(key): value for key, value in form.sets.items() if key[0] != "support"}),
+            {_unoriented_key(key): value for key, value in limits.items()})
