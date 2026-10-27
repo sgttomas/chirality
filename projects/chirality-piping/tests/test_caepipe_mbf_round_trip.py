@@ -245,9 +245,14 @@ def test_bound_import_restores_the_sidecar_identities_and_reports_the_rest(trips
             if load["magnitude"]["value"] == 0:
                 continue
             assert load["id"] in restored or "keeps its formed id" in unrecoverable, load["id"]
+    for pipe in source["pipe_segments"]:  # straight orientation travels in the sidecar
+        if pipe.get("y_reference") is not None and pipe["id"] not in {
+                component["geometry"]["bend_pipe_ref"] for component in source.get("components") or []}:
+            restored = next(item for item in imported["pipe_segments"] if item["id"] == pipe["id"])
+            assert restored["y_reference"] == {axis: float(pipe["y_reference"][axis]) for axis in "xyz"}
     for component in imported["components"]:  # the component's tangent node is not in the sidecar
         assert f"bend {component['label'].split()[-1]}" in unrecoverable
-    assert "y_reference" in unrecoverable and "not export" in unrecoverable
+    assert "not export" in unrecoverable
 
 
 def test_summed_primitives_are_many_to_one_and_reported():
@@ -348,8 +353,9 @@ def runner_binary() -> str:
 
 
 def oriented(model: dict) -> dict:
-    """A copy the solve accepts: an explicit y_reference on every pipe that lacks one (global Y, or global X for a
-    pipe along Y) and a provenance string on every record that lacks one; the writer-test models omit both."""
+    """The source model A as the solve accepts it: an explicit y_reference on every pipe that lacks one (global Y,
+    or global X for a pipe along Y) and a provenance string on every record that lacks one; the writer-test models
+    omit both. The import needs no such help: it assigns the documented local y (MBF-IMPORT-ORIENTATION-DEFAULTED)."""
     model = deepcopy(model)
     records = [*model["nodes"], *model["pipe_segments"], *model["supports"], *(model.get("materials") or []),
                *(model.get("components") or []), *(model.get("load_cases") or []),
@@ -365,15 +371,6 @@ def oriented(model: dict) -> dict:
     return model
 
 
-def with_orientation(imported: dict, orientation: dict[str, dict]) -> dict:
-    """Straight pipes carry no y_reference after import (MBF-IMPORT-ORIENTATION-ABSENT); the solve needs one, so
-    the test enters A's own orientation, as a user would. A circular section's stiffness does not depend on it."""
-    model = deepcopy(imported)
-    for pipe in model["pipe_segments"]:
-        pipe.setdefault("y_reference", orientation[pipe["id"]])
-    return model
-
-
 @pytest.mark.parametrize("name", REVERSIBLE)
 def test_solves_of_source_and_bound_import_agree_within_the_provisional_threshold(trips, name):
     trip = trips[name]
@@ -384,11 +381,9 @@ def test_solves_of_source_and_bound_import_agree_within_the_provisional_threshol
     if r_in > SOLVE_R_IN_LIMIT:
         pytest.skip(f"{name} is excluded from solve equality: r_in = {r_in:.3g} > {SOLVE_R_IN_LIMIT}")
     runner = runner_binary()
-    source_model = oriented(trip.model)
-    _, source, error = solve_swbpipe(runner, {"case_id": name, "model": source_model})
+    _, source, error = solve_swbpipe(runner, {"case_id": name, "model": oriented(trip.model)})
     assert error == ""
-    orientation = {pipe["id"]: pipe["y_reference"] for pipe in source_model["pipe_segments"]}
-    _, imported, error = solve_swbpipe(runner, {"case_id": name, "model": with_orientation(trip.bound.model, orientation)})
+    _, imported, error = solve_swbpipe(runner, {"case_id": name, "model": trip.bound.model})  # as imported
     assert error == ""
     a, b = result_table(source), result_table(imported)
     assert set(a) == set(b)
@@ -575,9 +570,7 @@ def test_english_and_si_imports_of_one_model_agree():
     runner = runner_binary()
     tables = []
     for stem, result in imports.items():
-        model = with_orientation(result.model, {pipe["id"]: {"x": 0.0, "y": 1.0, "z": 0.0}
-                                                for pipe in result.model["pipe_segments"]})
-        _, output, error = solve_swbpipe(runner, {"case_id": stem, "model": model})
+        _, output, error = solve_swbpipe(runner, {"case_id": stem, "model": result.model})
         assert error == ""
         tables.append(result_table(output))
     for family, rows in tables[0].items():
@@ -586,13 +579,22 @@ def test_english_and_si_imports_of_one_model_agree():
         assert max(abs(rows[key] - tables[1][family][key]) for key in rows) <= 1e-9 * scale, family
 
 
-def test_the_si_writer_refuses_an_english_import_and_the_import_says_so():
+def test_an_english_import_round_trips_through_the_si_writer_by_exact_normalization():
+    # O-2: the SI writer normalizes the English import by exact definitions; importing its MBF again (bound)
+    # reproduces the English import within the Design's tolerances.
     data, declaration = fixture("units_english")
-    result = import_caepipe_mbf(data, material_provenance=declaration["material_provenance"], source_label="english")
-    assert any("cannot be re-exported through the current SI writer" in note for note in result.assumptions)
-    again = render_caepipe_mbf_si(result.model, title="ENGLISH")
-    assert again.status == "refused"
-    assert "MBF-SI-PROJECT-UNIT-UNSUPPORTED" in {item["code"] for item in again.diagnostics}
+    english = import_caepipe_mbf(data, material_provenance=declaration["material_provenance"], source_label="english")
+    assert any("exact normalization" in note for note in english.assumptions)
+    trip = Trip("english-round-trip", english.model, "ENGLISH", 20.0)
+    normalized = [item for item in trip.writer.diagnostics if item["code"] == "MBF-SI-UNITS-NORMALIZED"]
+    assert normalized and all(text in normalized[0]["message"] for text in ("1 in = 25.4 mm", "1 psi", "1 lbf*ft",
+                                                                           "1/degF = 9/5 per degC", "1 lbf/in"))
+    lines = trip.text.split("\r\n")
+    assert "T20,X3200.4,CFOR(0,-4448.221615,0),MOM(0,0,677.9089742)" in lines  # 126 in; 1000 lbf; 500 lbf*ft
+    assert trip.bound.status == "imported", trip.bound.diagnostics
+    assert trip.bound.model["project"]["units"]["length"] == "mm"
+    reference = trip.reference()
+    assert canon.compare(reference, trip.imported(trip.bound, oriented=True), trip.limits(reference)).failures == []
 
 
 # --- schema (§18.1 item 6) -----------------------------------------------------------------------------------------

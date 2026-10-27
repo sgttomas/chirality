@@ -18,7 +18,8 @@ from typing import Any, Mapping
 
 
 EXCLUDED_LOSSES = (
-    "y_reference on straight pipes (the writer omits it)",
+    "y_reference on straight pipes (not in the MBF; bound imports restore it from the sidecar, unbound imports take "
+    "the documented local y; a circular section's stiffness does not depend on it)",
     "support families (Design §12; restored as identity by bound imports, checked separately)",
     "labels, provenance and the members the writer does not export (Design §17 last rows)",
     "several primitives on one target (compared as their sum)",

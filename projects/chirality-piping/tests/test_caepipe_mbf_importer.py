@@ -364,7 +364,8 @@ def test_a_bound_sidecar_origin_qualifies_and_a_rebound_one_does_not():
              "materials": [{"id": "steel", "elastic_modulus": {"value": 200000, "unit": "MPa"},
                             "poisson_ratio": {"value": 0.3, "unit": "1"},
                             "provenance_record": {"source_name": "invented",
-                                                  "redistribution_status": "invented_non_engineering_example"}}],
+                                                  "contributor_certification": "invented non-engineering example",
+                                                  "redistribution_status": "public_permissive"}}],
              "pipe_segments": [{"id": "S", "from": "A", "to": "B", "material": "steel",
                                 "section": {"outside_diameter": {"value": 100, "unit": "mm"},
                                             "wall_thickness": {"value": 5, "unit": "mm"}}}],
@@ -724,9 +725,65 @@ def test_a_refused_import_reports_no_values_from_refused_records():
     assert "12.345" not in result.report_bytes().decode()
 
 
-def test_straight_pipes_without_orientation_are_listed():
-    entry = listed(run(mbf()), "MBF-IMPORT-ORIENTATION-ABSENT", "omitted")
-    assert "y_reference" in entry["reason"]
+@pytest.mark.parametrize("end, expected", [
+    ((3000.0, 0.0, 0.0), (0.0, 1.0, 0.0)),  # horizontal: global Y
+    ((0.0, 0.0, -3000.0), (0.0, 1.0, 0.0)),
+    ((1000.0, 1000.0, 0.0), (-math.sqrt(0.5), math.sqrt(0.5), 0.0)),  # skew: Y projected off the axis
+    ((0.0, 3000.0, 0.0), (-1.0, 0.0, 0.0)),  # vertical: global -X
+    ((0.0, -3000.0, 0.0), (-1.0, 0.0, 0.0)),
+])
+def test_documented_local_y_of_a_straight(end, expected):
+    # CAEPIPE Technical Reference, Local Coordinate System (CAEPIPE-LOCAL-AXES), global Y vertical.
+    assert importer_module.local_y_reference((0.0, 0.0, 0.0), end) == pytest.approx(expected, abs=1e-15)
+
+
+def test_the_vertical_threshold_of_the_local_y_rule():
+    assert importer_module.VERTICAL_SINE == 1e-6
+    inside = importer_module.local_y_reference((0, 0, 0), (1e-7, 1.0, 0.0))  # horizontal part 1e-7 <= 1e-6
+    assert inside == (-1.0, 0.0, 0.0)
+    outside = importer_module.local_y_reference((0, 0, 0), (1e-5, 1.0, 0.0))  # 1e-5 > 1e-6: Y projected
+    # x = (s, c, 0) = (1e-5, 1, 0)/sqrt(1 + 1e-10): Y - (Y.x) x = (-c s, s^2, 0), whose unit vector is (-c, s, 0).
+    norm = math.sqrt(1 + 1e-10)
+    assert outside == pytest.approx((-1.0 / norm, 1e-5 / norm, 0.0), abs=1e-15)
+
+
+def test_imported_straights_take_the_documented_local_y_and_report_it():
+    result = run(mbf("F10,KA,MM1,PP1,CL=L1", "T20,X3000", "T30,Y3000", "T40,X1000,Z1000"))
+    assert [tuple(pipe["y_reference"].values()) for pipe in result.model["pipe_segments"]] == [
+        (0.0, 1.0, 0.0), (-1.0, 0.0, 0.0), pytest.approx((0.0, 1.0, 0.0))]
+    defaulted = [item for item in result.diagnostics if item["code"] == "MBF-IMPORT-ORIENTATION-DEFAULTED"]
+    assert [item["location"] for item in defaulted] == ["pipe:10-20", "pipe:20-30", "pipe:30-40"]
+    assert all(item["severity"] == "info" and "CAEPIPE-LOCAL-AXES" in item["message"]
+               and "only local-axis results" in item["message"] for item in defaulted)
+    assert '"-0.0' not in result.model_bytes().decode()
+    bend = run(mbf(*L_BEND))  # the bend pipe's y_reference comes from its geometry, not the default
+    assert [item["location"] for item in bend.diagnostics if item["code"] == "MBF-IMPORT-ORIENTATION-DEFAULTED"] == [
+        "pipe:10-20A", "pipe:20B-30"]
+
+
+def test_a_bound_import_restores_straight_orientation_from_the_sidecar():
+    model = {"schema_version": "0.7.0", "document_kind": "openpipestress.product_preview.model",
+             "project": {"id": "invented", "units": {"length": "mm", "force": "N", "temperature": "degC"}},
+             "analysis_status": {"mechanics": "x", "rule_check": "x", "professional_acceptance": "x"},
+             "nodes": [{"id": "A", "position": {"x": 0, "y": 0, "z": 0}}, {"id": "B", "position": {"x": 1000, "y": 0, "z": 0}}],
+             "materials": [{"id": "steel", "elastic_modulus": {"value": 200000, "unit": "MPa"},
+                            "poisson_ratio": {"value": 0.3, "unit": "1"}}],
+             "pipe_segments": [{"id": "S", "from": "A", "to": "B", "material": "steel", "y_reference": {"x": 0, "y": 0, "z": 1},
+                                "section": {"outside_diameter": {"value": 100, "unit": "mm"},
+                                            "wall_thickness": {"value": 5, "unit": "mm"}}}],
+             "supports": [{"id": "anchor", "node": "A", "restraints": ["UX", "UY", "UZ", "RX", "RY", "RZ"]}],
+             "load_cases": [{"id": "c", "primitive_loads": [{"id": "f", "category": "concentrated_force",
+                                                             "target": {"type": "node", "node": "B"}, "direction": "global_y",
+                                                             "magnitude": {"value": -1, "unit": "N"}, "dimension": "force"}]}]}
+    written = render_caepipe_mbf_si(model, title="ORIENTATION")
+    assert written.element_map["S"]["y_reference"] == {"x": 0.0, "y": 0.0, "z": 1.0}
+    data = written.text.encode()
+    sidecar = {**{key: value for key, value in written.to_dict().items() if key.endswith("_map")},
+               "mbf_sha256": hashlib.sha256(data).hexdigest()}
+    bound = run(data, sidecar=sidecar)
+    assert bound.model["pipe_segments"][0]["y_reference"] == {"x": 0.0, "y": 0.0, "z": 1.0}
+    assert "MBF-IMPORT-ORIENTATION-DEFAULTED" not in {item["code"] for item in bound.diagnostics}
+    assert run(data).model["pipe_segments"][0]["y_reference"] == {"x": 0.0, "y": 1.0, "z": 0.0}  # unbound: default
 
 
 # --- command line (§3, §16.4) -------------------------------------------------------------------------------------------

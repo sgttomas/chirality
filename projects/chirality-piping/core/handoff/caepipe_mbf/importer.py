@@ -257,6 +257,24 @@ def english_length_bound(text: str) -> Fraction:
     return Fraction(1, 2)
 
 
+# CAEPIPE's documented local y axis of a straight element with global Y vertical (Technical Reference, Local
+# Coordinate System; DEL-17-01 CAEPIPE-LOCAL-AXES): a non-vertical element's local y lies in the plane of its
+# local x and global Y, toward +Y; a vertical element's local y is global -X. The manual gives no angle for
+# "vertical"; this profile treats an element as vertical when the horizontal part of its unit direction is at
+# most VERTICAL_SINE (selected interpretation, Design §11.8).
+VERTICAL_SINE = 1e-6
+
+
+def local_y_reference(start: Iterable[float], end: Iterable[float]) -> tuple[float, float, float]:
+    """The documented local y of a straight from `start` to `end` (global Y vertical)."""
+    x = _unit(_sub(tuple(end), tuple(start)))
+    if math.hypot(x[0], x[2]) <= VERTICAL_SINE:
+        return (-1.0, 0.0, 0.0)
+    # Y - (Y.x) x, with 1 - x_y^2 written as x_x^2 + x_z^2 so a near-vertical element keeps its precision.
+    projected = (-x[1] * x[0], x[0] * x[0] + x[2] * x[2], -x[1] * x[2])
+    return tuple(value + 0.0 for value in _unit(projected))  # + 0.0 writes no negative zero
+
+
 def split_fields(text: str) -> list[str] | None:
     """Comma-separated fields, keeping commas inside parentheses; None when parentheses do not balance."""
     fields, depth, current = [], 0, []
@@ -1466,6 +1484,7 @@ class _Importer:
         # nodes
         nodes = []
         node_names: dict[int, tuple[str, ...]] = {}
+        point_of: dict[str, tuple[float, float, float]] = {}
         for number in self.node_order:
             node = self.nodes[number]
             if number in self.bend_geometry:
@@ -1476,6 +1495,7 @@ class _Importer:
                 names, points = (str(number),), (self.positions[number],)
             node_names[number] = names
             for name, point in zip(names, points):
+                point_of[name] = point
                 swb_id = claim(self.node_name_id(name), f"CAEPIPE node {name}", node["line"])
                 id_map["node_map"][name] = swb_id
                 nodes.append({"id": swb_id, "label": name, "position": dict(zip("xyz", point)),
@@ -1500,7 +1520,7 @@ class _Importer:
                 members.append(node_names[element.end] + (self.bend_geometry[element.end],))
             for a, b, bend in members:
                 caepipe_name = f"{a}-{b}"
-                swb_id, reversed_ = f"pipe:{caepipe_name}", False
+                swb_id, reversed_, entry = f"pipe:{caepipe_name}", False, {}
                 if (self.bound or self.rebound) and (a, b) in element_lookup:
                     swb_id, entry = element_lookup[(a, b)]
                     reversed_ = entry.get("reversed") is True
@@ -1516,8 +1536,22 @@ class _Importer:
                     "section": {"outside_diameter": {"value": section["od"].value, "unit": length_unit},
                                 "wall_thickness": {"value": section["thk"].value, "unit": length_unit}},
                     "provenance": provenance(element.line)}
+                restored = entry.get("y_reference") if self.bound else None
                 if bend is not None:
                     pipe["y_reference"] = dict(zip("xyz", bend["y_reference"]))
+                elif isinstance(restored, Mapping) and all(
+                        isinstance(restored.get(axis), (int, float)) and not isinstance(restored.get(axis), bool)
+                        and math.isfinite(restored[axis]) for axis in "xyz"):
+                    pipe["y_reference"] = {axis: float(restored[axis]) for axis in "xyz"}
+                else:
+                    pipe["y_reference"] = dict(zip("xyz", local_y_reference(point_of[a], point_of[b])))
+                    self.diagnostics.append({
+                        "code": "MBF-IMPORT-ORIENTATION-DEFAULTED", "severity": "info", "line": element.line,
+                        "location": swb_id,
+                        "message": f"{swb_id} has no y_reference in the MBF; it takes CAEPIPE's documented pipe "
+                                   "local y axis (CAEPIPE-LOCAL-AXES, global Y vertical). A circular section's "
+                                   "stiffness does not depend on it; only local-axis results do"})
+                if bend is not None:
                     components.append(self.bend_component(element, swb_id, node_id[a], length_unit, provenance,
                                                           unresolved, id_map, claim))
                 pipes.append(pipe)
@@ -1534,11 +1568,6 @@ class _Importer:
                         raise _Refused
                     if delta != 0:
                         thermals.append((swb_id, delta, element.line))
-        straights = [pipe["id"] for pipe in pipes if "y_reference" not in pipe]
-        if straights:
-            self.listed("omitted", "MBF-IMPORT-ORIENTATION-ABSENT", self.sections["LAYOUT"][0], "pipe_segments",
-                        f"{len(straights)} straight pipes carry no y_reference: the MBF gives none, and the importer "
-                        "does not supply one; enter each pipe's orientation before solving")
         if self.elements and all(element.load is None for element in self.elements):
             self.listed("tbd", "MBF-IMPORT-LOADS-ABSENT", self.sections["LAYOUT"][0], "LAYOUT",
                         "the file has no LOADS section; elements are imported with no temperature, pressure or "
@@ -1926,8 +1955,6 @@ class _Importer:
     def report_unrecoverable(self) -> None:
         if not self.bound:
             return
-        self.listed("approximated", "MBF-IMPORT-ID-UNRECOVERABLE", 0, "pipe_segments.y_reference",
-                    "the writer does not export y_reference on straight pipes, so it is not recoverable")
         self.listed("approximated", "MBF-IMPORT-ID-UNRECOVERABLE", 0, "unexported members",
                     "members the writer does not export (labels, provenance, combinations, lines, unresolved "
                     "assumptions, constraints, equipment interfaces, rule-pack references, model settings) are not "
@@ -1943,9 +1970,9 @@ class _Importer:
         self.assumptions.append("Node positions are summed from the printed offsets as exact rationals and rounded "
                                 "to binary64 once per node.")
         if not self.si:
-            self.assumptions.append("English imports cannot be re-exported through the current SI writer, which "
-                                    "refuses non-SI project units (MBF-SI-PROJECT-UNIT-UNSUPPORTED); bidirectional "
-                                    "English iteration needs a separately selected writer extension or normalization.")
+            self.assumptions.append("English imports keep their US-customary units; the SI writer re-exports them by "
+                                    "its exact normalization to the SI profile (O-2, MBF-SI-UNITS-NORMALIZED), "
+                                    "with the reference temperature passed in degF.")
         if self.si and any(record.get("density") is not None and record["density"].exact != 0
                            for record in self.materials.values()):
             self.assumptions.append(f"Weight density in kgf/m3 becomes weight per length w = -rho * "
