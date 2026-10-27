@@ -626,7 +626,7 @@ nodes join no other pipe and which changes direction only at a realized bend
 `_BORE_MISMATCH`, `_NONCOLLINEAR`). The route defines no boundaries itself: it admits or
 refuses the regions a document states. The importer forms regions only at boundaries the
 model has, checks each straight run whole with the route's own check, and never cuts a
-straight run that the check admits (Agent 0's manager ruling, independent review VER-002 r2:
+straight run that the check admits (the lane manager's ruling after independent review VER-002 r2:
 a cut adds closure terminals the file never had):
 
 - **Chains.** A chain continues through a node only when the node joins exactly two
