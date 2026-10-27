@@ -11,14 +11,14 @@ performance; screenshots and survey notes. This check screens what a change adds
 - a defect or limit: defect, crash, limit, trial, stamp or performance language in a sentence that refers to
   the target;
 - a screenshot reference in a sentence that refers to the target or to the survey;
-- a private token (a distinctive string from the private notes), anywhere in prose, and on every added line
-  of tests and fixtures.
+- a private token (a distinctive string from the private notes), anywhere in prose, owner-words and
+  policy-text included, and on every added line of tests and fixtures.
 
 A sentence refers to the target when it, or a line next to the hit, names the product, its vendor or version
 (the private terms file's `[names]`), or says "external prover", "target tool" or "the prover" (or, for
-screenshots, "survey"). A numeric result is a count (`20 of 35`, `35/35`, `20 matched`), a percentage or
-ppm, a decimal with a unit, or scientific notation; ids, dates, section numbers, bare integers and the
-product's version are not. The terms file's sections are `[names]`
+screenshots, "survey"). A numeric result is a count (`20 of 35`, `35/35`, `20 matched`, `12 quantities`),
+a percentage or ppm, a number with a unit, or scientific notation; ids, dates, section numbers, bare
+integers, conversion rates (`25.4 mm per inch`) and the product's version are not. The terms file's sections are `[names]`
 and `[tokens]`, one term per line; `#` comments and blank lines are ignored. Terms are never printed; a
 finding names the place and the kind.
 
@@ -32,7 +32,7 @@ reported when a match involves an added line. Paths and file names are not scree
 `--base..--head` and any `--file` given whole are prose too. In Markdown, the owner's verbatim words between
 `<!-- owner-words -->` and `<!-- /owner-words -->`, and text stating the data rule itself between
 `<!-- policy-text -->` and `<!-- /policy-text -->`, are not screened; an unpaired marker is an operational
-error. The check's own source and tests are not screened.
+error. The check's own source and tests are screened for private tokens only.
 
 The check is a lexical aid to review, not a proof that text is clean; review of the change remains the control.
 
@@ -300,10 +300,13 @@ ABBREVIATIONS = {"i.e", "e.g", "w.r.t", "ver", "etc", "vs", "cf", "approx", "inc
 LAST_WORD = re.compile(r"[\w.]+$")
 
 
-def prose_of(path: str, text: str) -> dict[int, str]:
+def prose_of(path: str, text: str, exempt: bool = True) -> dict[int, str]:
+    """The prose lines of a file; with `exempt`, Markdown owner-words and policy-text spans are dropped."""
+
     suffix = Path(path).suffix.lower()
     if suffix == ".md":
-        return _without_owner_words({number: line for number, line in enumerate(text.splitlines(), 1)})
+        lines = {number: line for number, line in enumerate(text.splitlines(), 1)}
+        return _without_owner_words(lines) if exempt else lines
     if suffix == ".py":
         return python_prose_lines(text)
     if suffix in CODE_SUFFIXES:
@@ -491,9 +494,12 @@ COMPARISON = _alternation(r"agree[sd]?", r"agreements?", r"agreeing", r"match(?:
 DEFECT = _alternation(r"crash(?:es|ed|ing)?", r"access violations?", r"defects?", r"bugs?", r"buggy", r"hangs?", r"hung",
                       r"freez(?:es|ing)", r"froze(?:n)?", r"unresponsive", r"workarounds?", r"work around", r"broken",
                       r"fail(?:s|ed)? to", r"does not work", r"did not work", r"unreliable", r"unstable",
+                      r"stop(?:s|ped)? early", r"abort(?:s|ed)?", r"quits?", r"terminat(?:es|ed) unexpectedly",
+                      r"(?:writes|wrote|produces|produced|leaves|left|gives|gave) no",
                       r"(?:row|size|model[ -]size|node|element|layout)[ -]limits?",
                       r"limits? (?:on|of) (?:the )?(?:model|models|rows?|size|nodes?|elements?)",
-                      r"limited to (?:\d+|small)", r"\d+[ -]rows?", r"trial", r"evaluation (?:version|build|copy|stamp|period)",
+                      r"limited to (?:\d+|small)", r"(?:more than|at most|up to|maximum(?: of)?|max\.?|over) \d+ (?:layout )?rows?",
+                      r"trial", r"evaluation (?:version|build|copy|stamp|period)",
                       r"watermark\w*", r"stamp(?:s|ed)?", r"expir(?:es|ed|y|ation)", r"slow(?:er|ly|s)?", r"performance",
                       r"faster", r"speed")
 SCREENSHOT = _alternation(r"screen ?shots?", r"screen (?:captures?|grabs?|recordings?)", r"screengrabs?")
@@ -501,33 +507,43 @@ SURVEY = _alternation(r"survey(?:s|ed)?")
 _UNIT = r"(?:%|‰|percent|per cent|ppm|parts per million|mm|cm|m|N|kN|N[·*]m|Nm|kN[·*]?m|MPa|rad|deg|°)"
 # Numeric results: counts (`20 of 35`, `35/35`, `20 matched`), percentages and ppm, decimals with a unit, and
 # scientific notation. Ids, dates, section numbers and bare integers are not results.
+_COUNTED = r"(?:quantities|quantity|cases?|values?|checks?|nodes?|results?|records?|reactions?|displacements?|members?)"
 RESULT_NUMBER = re.compile(
     r"(?<![\w\-§./])(?:\d+\s*(?:/|of|out of)\s*\d+(?![\w\-]|\.\d)"
     r"|\d+\s+(?:matched|agreed|exceeded|differed|mismatched|deviated)"
+    r"|\d+\s+" + _COUNTED + r"(?![\w-])"
     r"|\d+(?:[.,]\d+)?\s*(?:%|‰|percent|per cent|ppm|parts per million)"
-    r"|\d+[.,]\d+(?:[eE][-+]?\d+)?\s*" + _UNIT + r"(?![\w/])"
+    r"|\d+(?:[.,]\d+)?(?:[eE][-+]?\d+)?\s*" + _UNIT + r"(?![\w/])(?!\s*(?:per|/)(?![\w]))"
     r"|\d+(?:\.\d+)?[eE][-+]?\d+)", re.IGNORECASE)
+
+
+def scan_tokens(label: str, lines: dict[int, str], terms: dict[str, list[str]], added: set[int] | None = None,
+                blank_breaks: bool = True) -> list[str]:
+    """Private tokens in `lines`; callers pass prose before any owner-words or policy-text exemption."""
+
+    return _token_findings(label, lines, list(enumerate(terms["tokens"], 1)), added, "private token", blank_breaks)
 
 
 def scan(label: str, lines: dict[int, str], terms: dict[str, list[str]], added: set[int] | None = None,
          blank_breaks: bool = True) -> list[str]:
     """Findings in `lines` (the whole prose); with `added`, only matches that involve an added line."""
 
-    findings = _token_findings(label, lines, list(enumerate(terms["tokens"], 1)), added, "private token", blank_breaks)
+    findings = scan_tokens(label, lines, terms, added, blank_breaks)
     names = [_word(term) for term in terms["names"]]
     for text, owners, starts in _paragraphs(lines, blank_breaks):
         text = _unpathed(text)
         sentences = _sentences(text, owners, starts)
-        targets = [(_span(owners, m.start(), m.end()), sentences[m.start()])
-                   for pattern in names + [TARGET_REFERENCE, SURVEY] for m in pattern.finditer(text)]
-        if not targets:
+        named = [(_span(owners, m.start(), m.end()), sentences[m.start()])
+                 for pattern in names + [TARGET_REFERENCE] for m in pattern.finditer(text)]
+        surveyed = [(_span(owners, m.start(), m.end()), sentences[m.start()]) for m in SURVEY.finditer(text)]
+        if not named and not surveyed:
             continue
         masked = text
         for pattern in names:
             masked = pattern.sub(lambda m: "@" * len(m.group()), masked)
         numbers = [(_span(owners, m.start(), m.end()), sentences[m.start()]) for m in RESULT_NUMBER.finditer(masked)]
 
-        def near(span: list[int], sentence: int) -> list[int]:
+        def near(span: list[int], sentence: int, targets: list[tuple[list[int], int]]) -> list[int]:
             """Lines of the target references in the hit's sentence, else of those within one line of it."""
 
             same = [line for target_span, target_sentence in targets if target_sentence == sentence for line in target_span]
@@ -538,7 +554,7 @@ def scan(label: str, lines: dict[int, str], terms: dict[str, list[str]], added: 
                               ("result about the target tool", COMPARISON), ("screenshot reference", SCREENSHOT)):
             for match in pattern.finditer(text):
                 span, sentence = _span(owners, match.start(), match.end()), sentences[match.start()]
-                involved = near(span, sentence)
+                involved = near(span, sentence, named + surveyed if pattern is SCREENSHOT else named)
                 if not involved:
                     continue
                 if pattern is COMPARISON:
@@ -591,12 +607,13 @@ def check_range(repo: Path, base: str, head: str, terms: dict[str, list[str]],
                 messages_base: str | None = None) -> list[str]:
     findings: list[str] = []
     for path, numbers in sorted(added_line_numbers(repo, base, head).items()):
-        if path.endswith(SELF_PATHS):
-            continue
         text = _git(repo, "show", f"{head}:{path}")
+        blank_breaks = Path(path).suffix.lower() not in CODE_SUFFIXES
+        # Private tokens are screened in every file, before the owner-words and policy-text exemptions.
+        findings += scan_tokens(path, prose_of(path, text, exempt=False), terms, numbers, blank_breaks)
         # A fixture data file (CSV) is consumed by code like code itself; only the private-token rule applies.
-        if not (_data_path(path) and Path(path).suffix.lower() == ".csv"):
-            findings += scan(path, prose_of(path, text), terms, numbers, Path(path).suffix.lower() not in CODE_SUFFIXES)
+        if not path.endswith(SELF_PATHS) and not (_data_path(path) and Path(path).suffix.lower() == ".csv"):
+            findings += scan(path, prose_of(path, text), terms, numbers, blank_breaks)
         if _data_path(path):
             findings += scan_data_tokens(path, dict(enumerate(text.splitlines(), 1)), terms, numbers)
     # Commit messages already published cannot change; a pre-push run screens only the new ones.
@@ -621,8 +638,11 @@ def main(argv: list[str] | None = None) -> int:
         if args.base:
             findings += check_range(args.repo, args.base, args.head, terms, args.messages_base)
         for path in args.file:
-            findings += scan(str(path), prose_of(str(path), path.read_text(encoding="utf-8")), terms,
-                             blank_breaks=path.suffix.lower() not in CODE_SUFFIXES)
+            text = path.read_text(encoding="utf-8")
+            blank_breaks = path.suffix.lower() not in CODE_SUFFIXES
+            findings += scan_tokens(str(path), prose_of(str(path), text, exempt=False), terms, blank_breaks=blank_breaks)
+            findings += [item for item in scan(str(path), prose_of(str(path), text), terms, blank_breaks=blank_breaks)
+                         if item not in findings]
     except (OSError, ValueError, UnicodeDecodeError, subprocess.CalledProcessError):
         print("check_public_observations: operational error (terms file, refs or files unreadable)", file=sys.stderr)
         return 2

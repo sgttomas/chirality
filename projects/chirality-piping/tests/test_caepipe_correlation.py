@@ -951,7 +951,7 @@ def test_l_bend_and_branch_hand_calcs_satisfy_equilibrium():
 PRINT_RESOLUTION = {"rel": 1e-6, "abs": {"m": 5e-7, "rad": 8.7266e-7, "N": 0.5, "N*m": 0.5}}
 
 
-def test_case_files_render_within_the_evaluation_row_limit_and_match_hand_calcs():
+def test_case_files_render_within_the_configured_layout_row_threshold_and_match_hand_calcs():
     paths = sorted(CASES_DIR.glob("*.json"))
     assert [path.stem for path in paths] == sorted(hand_calcs.HAND_CALCS)
     for path in paths:

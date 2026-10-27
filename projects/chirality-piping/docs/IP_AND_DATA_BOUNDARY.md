@@ -102,20 +102,10 @@ Importers, examples, reports, telemetry, and issue templates must default to exc
 
 The default-exclusion rule above governs *public redistribution and committed/exported artifacts* — it is unchanged. It is distinct from *runtime data residency*. Per the owner's tier-0 ruling `D-T0-04` (open residency), an embedded agent worker MAY read the owner's own private model and private Class-B inputs (allowables, SIFs, design basis) at runtime, and once the owner configures a model provider (local, Anthropic, or other) that data MAY be transmitted to it; the app does not enforce privacy/residency on this channel. This is owner-configured runtime handling of the owner's *own* data — it is NOT a public commit, NOT redistribution, and creates NO exception to §3 (public repository must not contain), §5 (quarantine), or the third-party protected-content prohibitions (`OPS-K-IP-1/2/3`). Third-party copyrighted standards content remains barred from the public repository regardless of this ruling; the owner cannot waive third parties' rights by configuration.
 
-### 6.2 External-prover evaluation (owner, 2026-10-26)
+### 6.2 CAEPIPE evaluation (owner, 2026-10-26)
 
 <!-- policy-text -->
-<!-- owner-words -->"I want: **interoperate openly, evaluate privately**".<!-- /owner-words --> Public text (the
-repository, PRs and commits) may name an external prover such as CAEPIPE and state the file-format and
-interface facts SWBPIPE's code needs to interoperate with it: record syntax, result-file layout, labels, sign
-and unit conventions, and how the importer and exporter map records. Each fact is cited to the vendor's
-public manual where it covers the fact, or otherwise stated plainly as observed format behaviour. Code may
-contain whatever it needs. Anything that evaluates the external prover stays in the user's private exchange
-folder and is never committed: result values, differences, agreement counts and classifications, tolerances
-measured from results; its defects and crashes, trial limits, evaluation stamps and performance; screenshots
-and survey notes. No public text claims agreement with an external prover. Survey proposals describe
-features in the project's own words, without attributing them to the surveyed tool. DEL-17-05
-`Design/caepipe-correlation-pilot.md` §8 applies this to the correlation pilot.
+<!-- owner-words -->"I want: **interoperate openly, evaluate privately**".<!-- /owner-words --> This rule governs CAEPIPE, the external prover the correlation work uses. Public text (the repository, PRs and commits) may name CAEPIPE and state the file-format and interface facts SWBPIPE's code needs to interoperate with it: record syntax, result-file layout, labels, sign and unit conventions, and how the importer and exporter map records. Each fact is cited to the vendor's public manual where it covers the fact, or otherwise stated plainly as observed format behaviour. Code may contain whatever it needs. Anything that evaluates CAEPIPE stays in the user's private exchange folder and is never committed: result values, differences, agreement counts and classifications, tolerances measured from results; its defects and crashes, trial limits, evaluation stamps and performance; screenshots and survey notes. No public text claims agreement with CAEPIPE. Survey proposals describe features in the project's own words, without attributing them to CAEPIPE. DEL-17-05 `Design/caepipe-correlation-pilot.md` §8 applies this to the correlation pilot.
 <!-- /policy-text -->
 
 ## 7. Report boundary

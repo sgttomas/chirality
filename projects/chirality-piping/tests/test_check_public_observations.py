@@ -74,8 +74,9 @@ def test_named_observation_in_prose_is_blocked_and_terms_are_not_printed(tmp_pat
     assert any(item.startswith("doc/design.md:2:") for item in findings)
 
 
-def test_generic_wording_passes(tmp_path):
-    assert run(tmp_path, {"doc/design.md": "The target tool stops early (private notes).\n"}) == []
+def test_generic_wording_about_the_target_is_still_screened(tmp_path):
+    assert run(tmp_path, {"doc/design.md": "The target tool stops early (private notes).\n"}) == [
+        "doc/design.md:1: defect or limit about the target tool"]
 
 
 def test_name_without_observation_marker_passes(tmp_path):
@@ -389,7 +390,7 @@ def test_results_about_the_target_are_blocked(tmp_path, text):
 
 
 @pytest.mark.parametrize("text", [
-    "The batch route of Acmepipe crashes with an access violation.\n",
+    "The batch route of Acmepipe crashes with a gadget fault.\n",
     "The external prover's evaluation build limits models to a small size.\n",
     "Acmepipe solves are slow on large models.\n",
     "Outputs of the target tool carry an evaluation stamp.\n",
@@ -427,3 +428,36 @@ def test_the_check_does_not_screen_its_own_source(tmp_path):
 
 def test_a_unit_ratio_is_not_a_result(tmp_path):
     assert run(tmp_path, {"doc/a.md": "An Acmepipe difference uses standard gravity 9.80665 m/s2 as assumed.\n"}) == []
+
+
+
+@pytest.mark.parametrize("text", [
+    "Acmepipe differs from SWBPIPE by 3 mm at the tip.\n",
+    "Acmepipe matched all 12 quantities.\n",
+])
+def test_integer_results_and_counts_are_blocked(tmp_path, text):
+    assert run(tmp_path, {"doc/a.md": text}) == ["doc/a.md:1: result about the target tool"]
+
+
+@pytest.mark.parametrize("text", [
+    "Acmepipe CSV sections have 2 rows of headers.\n",
+    "The importer converts Acmepipe inch lengths at 25.4 mm per inch, so values match exactly.\n",
+    "Acmepipe weights in kgf convert at 9.80665 N/kgf, and the writer differs only in units.\n",
+    "The survey notes list a trial of the editor's undo stack.\n",
+])
+def test_format_facts_conversions_and_survey_context_pass(tmp_path, text):
+    assert run(tmp_path, {"doc/a.md": text}) == []
+
+
+def test_a_row_limit_is_blocked(tmp_path):
+    assert run(tmp_path, {"doc/a.md": "Acmepipe imports at most 20 rows.\n"}) == [
+        "doc/a.md:1: defect or limit about the target tool"]
+
+
+def test_private_tokens_are_screened_inside_exempt_spans_and_the_checks_own_files(tmp_path):
+    text = "<!-- policy-text -->Rule text: Widget overflow at start.<!-- /policy-text -->\n"
+    assert run(tmp_path, {"doc/a.md": text}) == ["doc/a.md:1: private token #1"]
+    text = "<!-- owner-words -->\"Widget overflow at start\"<!-- /owner-words -->\n"
+    assert run(tmp_path / "o", {"doc/a.md": text}) == ["doc/a.md:1: private token #1"]
+    files = {"tools/caepipe_correlation/check_public_observations.py": "# Widget overflow at start\n"}
+    assert run(tmp_path / "s", files) == ["tools/caepipe_correlation/check_public_observations.py:1: private token #1"]

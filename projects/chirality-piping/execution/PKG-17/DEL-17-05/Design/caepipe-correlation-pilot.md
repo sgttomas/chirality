@@ -280,11 +280,13 @@ survey notes. The lane-local check `tools/caepipe_correlation/check_public_obser
 screens added public text for those kinds of content; review remains the control.
 <!-- /policy-text -->
 
-CAEPIPE's outputs and everything derived from them (parsed values, differences,
-agreement counts, tolerances measured from them) stay in the exchange folder and are
-never committed, pushed, or written into PR, issue or other GitHub text. Public
-material is limited to invented models, SWBPIPE-generated MBF, code, this Design, and
-invented parser fixtures. Vendor files in the CAEPIPE install folder are read locally
+CAEPIPE's output files and the values parsed or derived from them (results,
+differences, agreement counts and classifications, tolerances measured from them) stay in
+the exchange folder and are never committed, pushed, or written into PR, issue or other
+GitHub text. The format and interface facts the code needs, including those learned
+from CAEPIPE's outputs, are public as stated above. Public material is otherwise limited
+to invented models, SWBPIPE-generated MBF, code, this Design, and invented parser
+fixtures. Vendor files in the CAEPIPE install folder are read locally
 only and never copied. No public text claims agreement with CAEPIPE. The pilot
 command's standard output carries operational status only (case, route, the record's
 path in the exchange folder or the reason none was written); outcome and cause counts
