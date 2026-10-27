@@ -291,8 +291,8 @@
       "core/reporting/pdf_emitter/Cargo.toml": "2683fe2c51222fcaa4da2a793a14cc1c9af376bf0e1676eaef932ebd35a79250",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
       "core/reporting/report_generator/Cargo.toml": "c85ec217b8b711222aa47bd13e926292e224ce2e5543719e77983a1053385ea3",
-      "core/reporting/report_package/Cargo.toml": "fce6d5fc4f72d39f3b1e4b8a86472aaf34f091b6836dd8912253fedd673ef8dc",
-      "core/reporting/report_renderer/Cargo.toml": "3466c2e5c935f43d2b6f03fca3865452bef2a2c71cb0577771965e6cbc67d1ae",
+      "core/reporting/report_package/Cargo.toml": "7cbc411ae411dc497f4dfb77627258aae130bf29c7307359abee8501b7283f89",
+      "core/reporting/report_renderer/Cargo.toml": "b8ce3970b0fffdc3a1c7dcaed7a2c79c53302191408f3c41461819c67f471ed7",
       "core/reporting/report_sections/Cargo.toml": "44acb66312edbc9bfd77aa2980a898511ac34de67fba0fc773b70007a3aad0f1",
       "core/reporting/result_export/Cargo.toml": "964c86b48be07df4fb01515ddcb9beb44c16de831a134f409788a8bddf874c0a",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
@@ -300,7 +300,7 @@
       "core/rules/rule_check_runner/Cargo.toml": "88971098b7a02b7cd79ee97788e76d31425865b98a0e51dbdd7d6e8711fb9dc1",
       "core/rules/rule_pack_document/Cargo.toml": "4f7c86c11d3106f5e8ddb32f542784c0913c135011e07f4e6ae1eca976961ae9",
       "core/rules/rule_pack_lifecycle/Cargo.toml": "811d32918f3d13d8d2a9115ebb6ce9b0243078626bc426d8dbd97224eb2dbd56",
-      "core/runner/headless/Cargo.toml": "991bd893114ee92981366bcf852b25445fd231fbe4a6cd68a95a04ce5b4ec284",
+      "core/runner/headless/Cargo.toml": "fc25e33755604e46114e1dbc15ce03d2e5e8e0c31feac162219fa8ed3d71619a",
       "core/serialization/canonical_json/Cargo.toml": "fb2259bdfcb6adebc877b46e4e1b3126fdf1b08c0b6441a5e4ba49ab75e670a0",
       "core/solver/curved_bend/Cargo.toml": "5d7cf1288eac698c209aa4fd7493fa669aa57494950e75374ac07248001502d8",
       "core/solver/diagnostics/Cargo.toml": "11db1409fcfd3b0312ef80085e36eac4d7a66eb0f4298832137119835b1c92e8",
@@ -3270,7 +3270,7 @@
         ]
       },
       "core/runner/headless/src/bin/openpipestress-runner.rs": {
-        "sha256": "eca58effce73817aec2335819fd77d34150428ec36ffeff127061e912e0ef5f3",
+        "sha256": "4dd5a1b84cf7d6e2b88c27a3eabb826d27b2fd83dbc9cefd7dd719fb70cab21a",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
@@ -5226,7 +5226,7 @@
         ]
       },
       "core/runner/headless/tests/del1005_package_witness.rs": {
-        "sha256": "cfea331b53e0d6ae61c8ed79f1163042a697a1ff9e53613bec2e90b0c34fbc8d",
+        "sha256": "ec26cd0f9338a0ec241f1f33ff471a5383b2fb692cf701c61f481a9fd5d1deaf",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
@@ -5298,7 +5298,7 @@
         ]
       },
       "core/reporting/report_package/src/admitted_tests.rs": {
-        "sha256": "6177d872538ac64adbdebe9bd92a9b89773370c37c3a911d5a8108ec5a1952c2",
+        "sha256": "855676370507b1312e2f8c0ba773cf7dd81774526371ff9f88e162d9124ce302",
         "source_trees": [
           "core/reporting/report_package/Cargo.toml",
           "core/runner/headless/Cargo.toml"
