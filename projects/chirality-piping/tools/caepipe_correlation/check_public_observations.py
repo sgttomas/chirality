@@ -267,10 +267,15 @@ VISIBLE_TEXT = (
     (BLOCK_TAG, " "),
     (re.compile(r"</?[A-Za-z]" + TAG_BODY + r"|<[a-z][a-z0-9+.-]*:[^<>\s]*>"), ""),
     (re.compile(r"&(?:#[0-9]+|#[xX][0-9a-fA-F]+|[A-Za-z][A-Za-z0-9]*);"), html.unescape),
+    (re.compile(r"\\(?=\s|$)"), " "),  # a Markdown hard line break
     (re.compile(r"[*~`]+|(?<![A-Za-z0-9])_+|_+(?![A-Za-z0-9])"), ""),
     (re.compile(r"\s+"), " "),
 )
 SENTENCE_END = re.compile(r"[.!?](?=\s|$)")
+# Abbreviations whose full stop does not end a sentence (compared without the final stop, lower case).
+ABBREVIATIONS = {"i.e", "e.g", "etc", "vs", "cf", "approx", "incl", "excl", "resp", "viz", "al", "fig", "figs",
+                 "eq", "eqs", "sec", "no", "nos", "ref", "refs", "vol", "ch", "p", "pp", "dr", "mr", "ms", "st"}
+LAST_WORD = re.compile(r"[\w.]+$")
 
 
 def prose_of(path: str, text: str) -> dict[int, str]:
@@ -426,7 +431,13 @@ def _sentences(text: str, owners: list[int], starts: set[int]) -> list[int]:
     """The sentence number of every character; a sentence ends at a full stop, question or exclamation
     mark, and before every line in `starts`."""
 
-    numbers, current, ends = [], 0, {match.end() for match in SENTENCE_END.finditer(text)}
+    ends = set()
+    for match in SENTENCE_END.finditer(text):
+        word = LAST_WORD.search(text, 0, match.start())
+        if match.group() == "." and word and word.group().lower().rstrip(".") in ABBREVIATIONS:
+            continue
+        ends.add(match.end())
+    numbers, current = [], 0
     for index in range(len(text)):
         if index in ends or index and owners[index] != owners[index - 1] and owners[index] in starts:
             current += 1

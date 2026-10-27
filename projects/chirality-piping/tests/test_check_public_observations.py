@@ -343,3 +343,22 @@ def test_link_titles_escapes_and_quoted_attributes_do_not_hide_a_phrase(tmp_path
 def test_whitespace_before_a_continuation_still_separates_words(tmp_path):
     code = '"""Acmepipe \\\nwas observed."""\n'
     assert run(tmp_path, {"pkg/mod.py": code}) == ["pkg/mod.py:1: name #1 near observation marker #1"]
+
+
+
+@pytest.mark.parametrize("name, text", [
+    ("doc/a.md", "The Acmepipe run used default settings, i.e.\nunchanged tolerances and limits,\nand was observed to stop early.\n"),
+    ("pkg/mod.py", "# The Acmepipe run used defaults, e.g.\n# unchanged tolerances and limits,\n# and was observed to stop.\n"),
+    ("src/lib.rs", "// The Acmepipe run (cf. the notes, etc.)\n// with unchanged tolerances and limits\n// was observed to stop.\n"),
+])
+def test_abbreviations_do_not_end_a_sentence(tmp_path, name, text):
+    assert run(tmp_path, {name: text}) == [f"{name}:1: name #1 near observation marker #1"]
+
+
+def test_real_sentence_ends_still_separate(tmp_path):
+    text = "The Acmepipe manual is public. It has\nmany chapters on\ninputs. A run was observed.\n"
+    assert run(tmp_path, {"doc/a.md": text}) == []
+
+
+def test_a_markdown_hard_break_does_not_hide_a_phrase(tmp_path):
+    assert run(tmp_path, {"doc/a.md": "It printed Widget\\\noverflow at startup.\n"}) == ["doc/a.md:1: observed token #1"]
