@@ -406,8 +406,7 @@ def _unlinked(text: str, owners: list[int]) -> tuple[str, list[int]]:
 
 def _unimaged(text: str, owners: list[int], references: dict[str, tuple[str, int]]) -> tuple[str, list[int]]:
     """Reference, collapsed and shortcut images reduced to their labels, with the screenshot marker when the
-    label and the resolved destination make the image a screenshot candidate. The marker belongs to the
-    definition's line, so a change to the definition alone is screened too."""
+    label and the resolved destination make the image a screenshot candidate."""
 
     out: list[str] = []
     own: list[int] = []
@@ -420,8 +419,13 @@ def _unimaged(text: str, owners: list[int], references: dict[str, tuple[str, int
         own.extend(owners[match.start(1):match.end(1)])
         destination, line = references.get(key.lower(), ("", owners[match.start()]))
         if _screenshot_candidate(label + " " + destination):
+            # One marker on the image's line keeps its context; one on the definition's line screens a
+            # change to the definition alone.
             out.append(IMAGE_MARK)
-            own.append(line)
+            own.append(owners[match.start()])
+            if line != owners[match.start()]:
+                out.append(IMAGE_MARK)
+                own.append(line)
         position = match.end()
     out.append(text[position:])
     own.extend(owners[position:])
@@ -550,7 +554,8 @@ SCREENSHOT = re.compile(_alternation(r"screen ?shots?", r"screen (?:captures?|gr
                                      r"screengrabs?").pattern + "|" + IMAGE_MARK, re.IGNORECASE)
 SURVEY = _alternation(r"survey(?:s|ed)?")
 # "matches ... to <record, field, column, id, axis or a capitalised or slashed name>" maps records.
-MAPPING_TO = re.compile(r"[^,;.:]{0,60}?\bto\s+(?:the\s+)?(?:[A-Z][\w/]*|\S*/\S*|[\w ,]{0,60}?\b"
+MAPPING_TO = re.compile(r"[^,;.:]{0,60}?\bto\s+(?:the\s+)?(?!\d)(?!\S*\s*(?:decimal|digit|place|precision|significant))"
+                        r"(?:[A-Z][\w/]*|\S*/\S*|(?:(?!decimal|digit|place|precision)[A-Za-z_ ,]){0,60}?\b"
                         r"(?:fields?|records?|columns?|ids?|nodes?|keys?|names?|entries|labels?|axes|axis))\b")
 _UNIT = r"(?:%|‰|percent|per cent|ppm|parts per million|mm|cm|m|N|kN|N[·*]m|Nm|kN[·*]?m|MPa|rad|deg|°)"
 # Numeric results: counts (`20 of 35`, `35/35`, `20 matched`), percentages and ppm, decimals with a unit, and

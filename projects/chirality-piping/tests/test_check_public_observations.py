@@ -543,3 +543,14 @@ def test_equations_reporting_agreement_are_results(tmp_path):
 
 def test_a_mapping_to_listed_fields_passes(tmp_path):
     assert run(tmp_path, {"doc/a.md": "The Acmepipe importer matches all 3 values to `x`, `y`, and `z` fields.\n"}) == []
+
+
+
+def test_a_reference_image_keeps_its_own_line_context(tmp_path):
+    assert run(tmp_path, {"doc/a.md": "Acmepipe output.\n![View][d]\n\n[d]: run.png\n"}) == [
+        "doc/a.md:1: screenshot reference"]
+
+
+def test_a_precision_clause_is_not_a_mapping(tmp_path):
+    text = "Acmepipe matches all 12 values to 3 decimal places in the output fields.\n"
+    assert run(tmp_path, {"doc/a.md": text}) == ["doc/a.md:1: result about the target tool"]
