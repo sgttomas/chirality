@@ -9,6 +9,7 @@ asserts that the model is produced and the entry is listed.
 
 from __future__ import annotations
 
+import decimal
 from fractions import Fraction
 import hashlib
 import json
@@ -1301,3 +1302,87 @@ def test_a_z_vertical_file_and_its_hand_rotated_y_vertical_twin_import_alike():
         return [unprovenanced(item) for item in value] if isinstance(value, list) else value
 
     assert unprovenanced(strip(z.model)) == unprovenanced(strip(y.model))  # bit-equal positions, bend and loads
+
+
+# --- §9.4 regions by the exact route's own collinearity check (VER-002 r1, item 1) ------------------------------------
+# Codex's reproduction: 16 rows each 1000 mm along X, with Y offsets k e-11 mm (k = 1..16). Each adjacent pair turns
+# by about 1e-14 rad, below 64 eps = 1.42e-14, but the run bows: its whole-span residual is about 2e-14.
+DRIFT = tuple(f"T{10 * (k + 1)},X1000,Y{k}e-11" for k in range(1, 16)) + ("T170,KA,X1000,Y16e-11",)
+# Two straights 1000 mm long meeting at 1.5e-11 mm off the line: they turn by 2 x 1.5e-14 = 3e-14 rad (above 64 eps),
+# but the middle node lies 1.5e-14 m / 2 m = 7.5e-15 of the span off the chord, within 64 eps.
+ZIGZAG = ("T20,X1000,Y1.5e-11", "T30,KA,X1000,Y-1.5e-11")
+
+
+def test_correctly_rounded_norm_and_the_ported_collinear_run():
+    assert importer_module.correct_norm3(3.0, 4.0, 0.0) == 5.0
+    assert importer_module.correct_norm3(1.0, 1.0, 1.0) == math.sqrt(3.0)  # sqrt is correctly rounded
+    # Squares below the binary64 range: the exact root of 2 x (1e-200)^2, to 60 digits, then rounded once.
+    with decimal.localcontext() as context:
+        context.prec = 60
+        expected = float(decimal.Decimal(1e-200) * decimal.Decimal(2).sqrt())
+    assert importer_module.correct_norm3(1e-200, 1e-200, 0.0) == expected
+    assert importer_module.REPRESENTATION_GUARD == 64 * 2.0 ** -52
+    collinear = importer_module.runtime_collinear
+    assert collinear([(0.0, 0.0, 0.0), (1.0, 1.5e-14, 0.0), (2.0, 0.0, 0.0)])  # residual 7.5e-15 <= 1.42e-14
+    assert not collinear([(0.0, 0.0, 0.0), (1.0, 3e-14, 0.0), (2.0, 0.0, 0.0)])  # 1.5e-14 > 1.42e-14
+    assert not collinear([(0.0, 0.0, 0.0), (2.0, 0.0, 0.0), (1.0, 0.0, 0.0)])  # passes its end: backtracks
+
+
+def test_a_run_the_exact_route_refuses_is_cut_where_its_own_check_stops_passing():
+    result = run(mbf("F10,KA,MM1,PP1,CL=L1", *DRIFT, loads=("L1,20,10,0",)), pressure_closure=CLOSURE)
+    assert result.status == "imported", result.diagnostics
+    found = regions_of(result)
+    assert len(found) > 1
+    positions = {node["id"]: tuple(value * 0.001 for value in node["position"].values())
+                 for node in result.model["nodes"]}
+    ends = {pipe["id"]: (pipe["from"], pipe["to"]) for pipe in result.model["pipe_segments"]}
+    for _, members, _, _, terminals in found:  # each piece passes the runtime's check; one more element would not
+        chain = [terminals[0][0]] + [ends[member][1] for member in members]
+        assert importer_module.runtime_collinear([positions[node] for node in chain])
+    first = found[0][1]
+    longer = [found[0][4][0][0]] + [ends[member][1] for member in first] + [ends[found[1][1][0]][1]]
+    assert not importer_module.runtime_collinear([positions[node] for node in longer])
+    assert [member for region in found for member in region[1]] == [pipe["id"] for pipe in result.model["pipe_segments"]]
+
+
+def test_a_run_the_exact_route_admits_stays_one_region():
+    result = run(mbf("F10,KA,MM1,PP1,CL=L1", *ZIGZAG, loads=("L1,20,10,0",)), pressure_closure=CLOSURE)
+    assert [(region[0], region[1]) for region in regions_of(result)] == [
+        ("region:mbf-10-30", ["pipe:10-20", "pipe:20-30"])]
+    # The adjacent-pair test this replaces split it: the two unit directions differ by about 3e-14 > 64 eps.
+    a, b = (1000.0, 1.5e-11, 0.0), (1000.0, -1.5e-11, 0.0)
+    d1, d2 = (tuple(value / math.hypot(*v) for value in v) for v in (a, b))
+    assert abs(d1[0] * d2[1] - d1[1] * d2[0]) > importer_module.REPRESENTATION_GUARD
+
+
+# Run 1 (10 -> 30A) is straight along X; the bend at 30 turns to +Z; run 2 (30B -> 200) drifts in X like DRIFT.
+BEND_DRIFT = ("F10,KA,MM1,PP1,CL=L1", "T20,X1000", "T30,KI,B250,X2000,CFF=1",
+              *(f"T{10 * (k + 3)},Z1000,X{k}e-11" for k in range(1, 17)), "T200,KA,Z1000,X17e-11")
+
+
+def test_straight_runs_between_bends_are_checked_each_from_its_own_start():
+    # Only run 2 is cut; the bend stays in the region of the straights it joins.
+    result = run(mbf(*BEND_DRIFT, loads=("L1,20,10,0",)), pressure_closure=CLOSURE)
+    assert result.status == "imported", result.diagnostics
+    found = regions_of(result)
+    assert len(found) > 1
+    assert found[0][1][:4] == ["pipe:10-20", "pipe:20-30A", "pipe:30A-30B", "pipe:30B-40"]
+
+
+# --- §9.4 corrosion allowance: field presence (VER-002 r1, item 2) ------------------------------------------------------
+@pytest.mark.parametrize("record", ["P1,168.3,7.11", "P1,168.3,7.11,,0"])
+def test_a_section_without_a_corrosion_allowance_is_refused_under_pressure(record):
+    # The manual's PIPE record documents no default for an omitted field, so none is supplied.
+    data = mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X3000", pipe=(record,), loads=("L1,20,10,0",))
+    error = refused(run(data, pressure_closure=CLOSURE), "MBF-IMPORT-CORROSION-ALLOWANCE-MISSING",
+                    layout_line(data, "P1,"))
+    assert error["location"] == "PIPE P1 field 4"
+    assert run(mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X3000", pipe=(record,))).status == "imported"  # no pressure
+
+
+def test_a_stated_allowance_is_carried_and_an_unused_section_needs_none():
+    result = run(mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X3000", pipe=("P1,168.3,7.11,0", "P2,100,5"),
+                     loads=("L1,20,10,0",)), pressure_closure=CLOSURE)
+    assert result.status == "imported", result.diagnostics
+    assert result.model["pipe_segments"][0]["section"]["corrosion_allowance"] == {"value": 0.0, "unit": "mm"}
+    assert any("0 its PIPE record states in field 4" in note for note in result.assumptions)

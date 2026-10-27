@@ -37,6 +37,7 @@ from core.handoff.caepipe_mbf.importer import import_caepipe_mbf  # noqa: E402
 from schema_validation import JsonSchemaDependencyMissing, _skip_or_note_missing_jsonschema, validate_instance  # noqa: E402
 from test_model_schema import desktop_entity_requirements  # noqa: E402
 import test_caepipe_mbf_si_writer as writer_tests  # noqa: E402
+import test_caepipe_mbf_importer as importer_tests  # noqa: E402
 from tools.caepipe_correlation.run_pilot import load_cases, solve_swbpipe  # noqa: E402
 
 
@@ -510,6 +511,31 @@ def test_the_bend_boundary_case_is_excluded_from_solve_equality(trips):
     trip = trips["bend-boundary"]
     reference = trip.reference()
     assert canon.compare(reference, trip.imported(trip.bound, oriented=True), trip.limits(reference)).r_in > SOLVE_R_IN_LIMIT
+
+
+def test_the_runtime_admits_every_region_the_importer_forms():
+    # VER-002 r1 item 1, judged by the exact route itself. The drifting run imported as one region is refused by
+    # name (PRESSURE_REGION_NONCOLLINEAR); its import, cut by the ported check, the zigzag run the route admits as
+    # one region, and a drifting run after a bend all solve.
+    runner = runner_binary()
+    files = {"drift": ("F10,KA,MM1,PP1,CL=L1", *importer_tests.DRIFT),
+             "zigzag": ("F10,KA,MM1,PP1,CL=L1", *importer_tests.ZIGZAG), "bend-drift": importer_tests.BEND_DRIFT}
+    for name, rows in files.items():
+        result = importer_tests.run(importer_tests.mbf(*rows, loads=("L1,20,10,0",)),
+                                    pressure_closure=importer_tests.CLOSURE)
+        assert result.status == "imported", result.diagnostics
+        _, _, error = solve_swbpipe(runner, {"case_id": name, "model": result.model})
+        assert error == "", name
+        if name == "drift":
+            merged = deepcopy(result.model)
+            case = merged["load_cases"][0]
+            regions = case["pressure_regions"]
+            assert len(regions) > 1
+            regions[0]["member_pipe_ids"] = [pipe for region in regions for pipe in region["member_pipe_ids"]]
+            regions[0]["terminals"][1] = regions[-1]["terminals"][1]
+            case["pressure_regions"] = regions[:1]
+            _, output, error = solve_swbpipe(runner, {"case_id": "drift-merged", "model": merged})
+            assert error and "PRESSURE_REGION_NONCOLLINEAR" in json.dumps(output)
 
 
 # --- (e) determinism ----------------------------------------------------------------------------------

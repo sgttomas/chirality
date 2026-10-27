@@ -80,7 +80,7 @@ _THERMAL_DIRECTION = "global_x"  # the token the invented correlation cases use;
 # Exact catalog factors to Pa (core/units: MPa = 1e6 Pa; psi = lbf / in^2), used only to derive G in Pa.
 _PA_PER_UNIT = {"MPa": 1_000_000.0, "psi": 4.448_221_615_260_5 / 0.000_645_16}
 # Pressure (Design §9.4). LOADS Pressure 1 is in bar in SI files and psi in English files (Format of .MBF, LOADS);
-# it keeps that unit, which the units catalog defines exactly (1 bar = 1e5 Pa; 1 psi = 1 lbf/in^2).
+# it keeps that unit, which the units catalog reads to Pa by its binary64 factors (bar 1e5; psi PSI_IN_PASCALS).
 PRESSURE_UNIT = {True: "bar", False: "psi"}
 # A document with pressure takes the exact pressure contract (schemas/model.schema.yaml, PressureContract) with
 # Euler-Bernoulli straights, the beam theory SWBPIPE solves the same model with when it has no pressure.
@@ -92,9 +92,10 @@ CLOSURE_TRANSFERS = ("transfers_to_wall", "separately_supported_or_compensated")
 # gives "0, 1, 1, 1.00, 0", both on (Format of .MBF, OPPRES). SWBPIPE's exact route models neither (DEL-04-07 D-3).
 OPPRES_EFFECTS = {1: "Bourdon effect", 2: "pressure correction for bends"}
 OPPRES_DEFAULTS = ("0", "1", "1", "1.00", "0")
-# Two straights continue one pressure region only when collinear within the exact route's 64-epsilon guard
-# (pressure_runtime.rs: a straight-straight kink is PRESSURE_REGION_NONCOLLINEAR); otherwise the region ends there.
-COLLINEAR_SINE = 64 * 2.0 ** -52
+# The exact route's straight-run guard (pressure_runtime.rs REPRESENTATION_GUARD = 64 * f64::EPSILON, used by
+# collinear_run), and the catalog factors (core/units: value * factor + 0.0) by which it reads node positions in m.
+REPRESENTATION_GUARD = 64 * 2.0 ** -52
+_METRES_PER_UNIT = {"mm": 0.001, "in": 0.0254}
 
 # --- MBF format vocabulary (CAEPIPE User's Manual, Import MBF, Format of .MBF; DEL-17-01 CAEPIPE-IMPORT-MBF) ---
 SECTION_KEYWORDS = {
@@ -372,6 +373,59 @@ def _unit_exact(vector: Iterable[Fraction]) -> tuple[float, float, float]:
     shift = largest.numerator.bit_length() - largest.denominator.bit_length()
     scale = Fraction(2) ** -shift
     return _unit(tuple(float(value * scale) for value in vector))
+
+
+def correct_norm3(a: float, b: float, c: float) -> float:
+    """RN(sqrt(a^2 + b^2 + c^2)): one rounding of the exact norm, as core/numerics/correct_norm `norm3`."""
+    if any(math.isinf(value) for value in (a, b, c)):
+        return math.inf
+    if any(math.isnan(value) for value in (a, b, c)):
+        return math.nan
+    square = Fraction(a) ** 2 + Fraction(b) ** 2 + Fraction(c) ** 2
+    if square == 0:
+        return 0.0
+    # Scale by 4^k so the root's integer part r lies in [2^52, 2^53), then round to nearest, ties to even.
+    k = (105 - (square.numerator.bit_length() - square.denominator.bit_length())) // 2
+    while True:
+        scaled = square * Fraction(4) ** k
+        root = math.isqrt(scaled.numerator // scaled.denominator)  # floor(sqrt(scaled)), exactly
+        if root >= 2 ** 53:
+            k -= 1
+        elif root < 2 ** 52:
+            k += 1
+        else:
+            break
+    midpoint = Fraction(root * root + root) + Fraction(1, 4)  # (root + 1/2)^2
+    if scaled > midpoint or (scaled == midpoint and root % 2 == 1):
+        root += 1
+    try:
+        return math.ldexp(root, -k)
+    except OverflowError:
+        return math.inf
+
+
+def runtime_collinear(points: list[tuple[float, float, float]]) -> bool:
+    """The exact route's straight-run check (pressure_runtime.rs `collinear_run`), ported operation for operation:
+    `points` are the run's nodes in traversal order, in m. Every later node's offset from the first, divided by the
+    span, must lie within 64 epsilon of the span direction and advance along it without passing its end."""
+    origin, end = points[0], points[-1]
+    chord = [end[axis] - origin[axis] for axis in range(3)]
+    length = correct_norm3(*chord)
+    if not math.isfinite(length) or length <= 0.0:
+        return False
+    direction = [value / length for value in chord]
+    previous = 0.0
+    for point in points[1:]:
+        delta = [(point[axis] - origin[axis]) / length for axis in range(3)]
+        projection = 0.0
+        for axis in range(3):
+            projection += delta[axis] * direction[axis]
+        residual = correct_norm3(*(delta[axis] - projection * direction[axis] for axis in range(3)))
+        if (not math.isfinite(projection) or not math.isfinite(residual) or residual > REPRESENTATION_GUARD
+                or projection <= previous or projection > 1.0 + REPRESENTATION_GUARD):
+            return False
+        previous = projection
+    return True
 
 
 def _negated(number: "Num") -> "Num":
@@ -994,6 +1048,7 @@ class _Importer:
             self.pipes[name] = record
             if self.too_many(fields, FIELD_COUNTS["PIPE"], line, location):
                 continue
+            allowance_given = len(fields) > 3 and fields[3] != ""  # field 4 present, for the pressure contract (§9.4)
             fields = fields + [""] * (FIELD_COUNTS["PIPE"] - len(fields))
             od = self.real(fields[1], line, f"{location} field 2 (OD)")
             thk = self.real(fields[2], line, f"{location} field 3 (thickness)")
@@ -1013,7 +1068,7 @@ class _Importer:
                             f"section {name} names a soil; buried pipe is tranche 2")
                 ok = False
             if ok:
-                record.update(refused=False, od=od, thk=thk)
+                record.update(refused=False, od=od, thk=thk, allowance_given=allowance_given)
 
     # -- §9 LOADS ------------------------------------------------------------
     def read_loads(self) -> None:
@@ -1816,7 +1871,17 @@ class _Importer:
                             "motion only in load-state form (EXACT_IMPOSED_DISPLACEMENT_PRIMITIVE_UNSUPPORTED), which "
                             "this importer does not write")
                 raise _Refused
-            for pipe in pipes:  # PIPE field 4 is read only as 0 (§8): the file's own explicit allowance
+            # The contract needs an explicit allowance on every section. PIPE field 4 is read only as 0 (§8); the
+            # manual documents no default for an omitted field, so a section without it is refused, not zeroed.
+            missing = sorted({element.section for element in self.elements
+                              if not self.pipes[element.section]["allowance_given"]})
+            for name in missing:
+                self.refuse("MBF-IMPORT-CORROSION-ALLOWANCE-MISSING", self.pipes[name]["line"], f"PIPE {name} field 4",
+                            f"section {name} gives no corrosion allowance; the exact pressure contract needs an "
+                            "explicit allowance on every section, and none is supplied")
+            if missing:
+                raise _Refused
+            for pipe in pipes:  # each section's own explicit 0 (field 4)
                 pipe["section"]["corrosion_allowance"] = {"value": 0.0, "unit": length_unit}
         self.report_unrecoverable()
 
@@ -2194,9 +2259,10 @@ class _Importer:
             how = "restored from the sidecar's pressure_map (bound import)"
         else:
             members = self.form_regions(active, pressures, ends, arcs, point_of, name_of)
-            how = ("formed as maximal chains of elements with equal Pressure 1 and bore, ended at tees, at "
-                   "straight-straight corners and where pressure or bore changes; closure transfer at every terminal "
-                   "is the caller's declaration (pressure_closure), never inferred")
+            how = ("formed as maximal chains of elements with equal Pressure 1 and bore, ended at tees and where "
+                   "pressure or bore changes, and cut where a straight run stops passing the exact route's own "
+                   "collinearity check (64 epsilon of the run's span); closure transfer at every terminal is the "
+                   "caller's declaration (pressure_closure), never inferred")
         if members is None:
             raise _Refused
         regions, region_map = [], {}
@@ -2216,8 +2282,8 @@ class _Importer:
         self.pressure_notes.append(
             f"Pressure 1 is kept in {unit} as exact pressure regions ({len(regions)}) under the contract "
             f"{contract['version']}/{contract['mode']} with shear_model {contract['shear_model']}; regions are {how}. "
-            "Pressure acts in the sustained case; the expansion case states an empty region list. Section corrosion "
-            "allowance is written as the explicit 0 the file gives.")
+            "Pressure acts in the sustained case; the expansion case states an empty region list. Each section's "
+            "corrosion allowance is the 0 its PIPE record states in field 4; a section that omits it is refused.")
         return contract, regions
 
     def pressure_effects(self) -> None:
@@ -2268,13 +2334,31 @@ class _Importer:
             other = next(item for item in incident[node] if item != pipe_id)
             if other not in active or active[other].exact != active[pipe_id].exact or bore(other) != bore(pipe_id):
                 return None
-            if pipe_id in arcs or other in arcs:
-                return other  # tangent at a realized bend's ends (§11)
-            d1 = _unit(_sub(point_of[name_of[node]], point_of[name_of[far(pipe_id, node)]]))
-            d2 = _unit(_sub(point_of[name_of[far(other, node)]], point_of[name_of[node]]))
-            cross = (d1[1] * d2[2] - d1[2] * d2[1], d1[2] * d2[0] - d1[0] * d2[2], d1[0] * d2[1] - d1[1] * d2[0])
-            collinear = _norm(cross) <= COLLINEAR_SINE and sum(d1[i] * d2[i] for i in range(3)) > 0
-            return other if collinear else None
+            return other
+
+        factor = _METRES_PER_UNIT["mm" if self.si else "in"]
+
+        def metres(node: str) -> tuple[float, float, float]:
+            return tuple(value * factor + 0.0 for value in point_of[name_of[node]])  # type: ignore[return-value]
+
+        def split(members: list[str], start: str) -> list[tuple[list[str], str, str]]:
+            """The chain cut where a straight run (between bends, or between the chain's ends) stops passing the
+            runtime's collinear_run with its origin at the run's first node; a bend continues the region (§11)."""
+            nodes = [start]
+            for member in members:
+                nodes.append(far(member, nodes[-1]))
+            pieces, current, piece_start, run_origin = [], [], start, None
+            for index, member in enumerate(members):
+                if member in arcs:
+                    run_origin = None
+                elif run_origin is None:
+                    run_origin = index
+                elif not runtime_collinear([metres(node) for node in nodes[run_origin:index + 2]]):
+                    pieces.append((current, piece_start, nodes[index]))
+                    current, piece_start, run_origin = [], nodes[index], index
+                current.append(member)
+            pieces.append((current, piece_start, nodes[-1]))
+            return pieces
 
         chains, seen = [], set()
         for pipe_id in sorted(active, key=order.__getitem__):
@@ -2293,7 +2377,7 @@ class _Importer:
             members = back[::-1] + [pipe_id] + ahead
             if order[members[-1]] < order[members[0]]:
                 members, start, end = members[::-1], end, start
-            chains.append((members, start, end))
+            chains.extend(split(members, start))
         declared = self.closure_declaration()
         if declared is None:
             return None
