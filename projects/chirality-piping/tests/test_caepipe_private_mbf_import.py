@@ -54,6 +54,7 @@ from tools.caepipe_correlation.run_pilot import (  # noqa: E402
 
 ENV_VAR = "SWBPIPE_CAEPIPE_EXCHANGE"
 RECORD_VAR = "SWBPIPE_CAEPIPE_IMPORT_RECORD"
+CASES_VAR = "SWBPIPE_CAEPIPE_IMPORT_CASES"
 OUTCOME_KIND = "swbpipe.caepipe_mbf_import_outcome"
 CLASSIFICATIONS = ("equal_within_writer_tolerance", "differs", "refused")
 AUTHORED_CLASSIFICATIONS = ("equal_within_writer_tolerance", "differs", "refused_alike", "refused_differently",
@@ -214,11 +215,27 @@ def check_exchange(root: Path, *, record: bool, emit: Callable[[str], None] = pr
     return statuses
 
 
+def selected_cases(environ: Mapping[str, str]) -> tuple[list[Mapping[str, Any]], list[Mapping[str, Any]]] | str:
+    """(writer cases, authored cases): all of them, or only those SWBPIPE_CAEPIPE_IMPORT_CASES names (comma-separated
+    ids), so that a recording run can re-record named cases alone; the reason when it names an unknown id."""
+    writer, authored = load_cases(), load_authored_cases()
+    named = {item.strip() for item in environ.get(CASES_VAR, "").split(",") if item.strip()}
+    if not named:
+        return writer, authored
+    unknown = sorted(named - {case["case_id"] for case in writer + authored})
+    if unknown:
+        return f"{CASES_VAR} names unknown case id(s): {', '.join(unknown)}"
+    return [case for case in writer if case["case_id"] in named], [case for case in authored if case["case_id"] in named]
+
+
 def test_private_exported_mbfs_keep_their_recorded_classification():
     root = exchange_root(os.environ)
     if isinstance(root, str):
         pytest.skip(root)
-    statuses = check_exchange(root, record=os.environ.get(RECORD_VAR) == "1")
+    selected = selected_cases(os.environ)
+    if isinstance(selected, str):
+        pytest.fail(selected)
+    statuses = check_exchange(root, record=os.environ.get(RECORD_VAR) == "1", cases=selected[0], authored=selected[1])
     if all(status.status == "skipped" for status in statuses):
         pytest.skip("no correlation case in the exchange folder has an exported MBF and a recorded classification")
     moved = [f"{status.case_id} ({status.detail})" for status in statuses if status.status == "moved"]
@@ -226,6 +243,15 @@ def test_private_exported_mbfs_keep_their_recorded_classification():
 
 
 # --- public tests of the skip and the operational-only output (invented data only) -----------------------------
+def test_the_case_selection_names_writer_and_authored_cases():
+    writer, authored = selected_cases({})
+    assert len(writer) == len(load_cases()) and len(authored) == len(load_authored_cases())
+    writer, authored = selected_cases({CASES_VAR: "cpc-04-l-bend-thermal, cpa-05-guide"})
+    assert [case["case_id"] for case in writer] == ["cpc-04-l-bend-thermal"]
+    assert [case["case_id"] for case in authored] == ["cpa-05-guide"]
+    assert "cpa-99-absent" in selected_cases({CASES_VAR: "cpa-05-guide,cpa-99-absent"})
+
+
 def test_the_check_skips_with_its_reason_when_no_exchange_folder_is_configured(tmp_path):
     assert ENV_VAR in exchange_root({})
     assert "missing or empty" in exchange_root({ENV_VAR: str(tmp_path / "absent")})
