@@ -436,6 +436,22 @@ def runtime_collinear(points: list[tuple[float, float, float]]) -> bool:
     return True
 
 
+def runtime_bore_radius_m(od: float, wall: float, factor: float) -> float:
+    """The exact route's pressure bore r_i,r of an imported section (pressure_exact `ExactSectionBases::derive` and
+    `SourceAnnulus::from_od_wall`): OD and wall read to m as the catalog does, the reduced wall (t - c_m) - c_a with
+    mill tolerance absent (0) and the stated corrosion allowance 0, and r_i = OD/2 - t_r."""
+    od_m, wall_m = od * factor + 0.0, wall * factor + 0.0
+    reduced = (wall_m - 0.0) - (0.0 * factor + 0.0)
+    return od_m * 0.5 - reduced
+
+
+def runtime_bores_equal(bores: list[float]) -> bool:
+    """The exact route's equal-bore guard (pressure_runtime.rs): every bore within 64 epsilon of max(|first|,
+    |bore|) of the first, the region's first member in traversal order."""
+    reference = bores[0]
+    return all(abs(reference - bore) <= REPRESENTATION_GUARD * max(abs(reference), abs(bore)) for bore in bores[1:])
+
+
 def _negated(number: "Num") -> "Num":
     """`number` with its sign changed: value, exact rational and printed text (0 stays 0)."""
     text = number.text[1:] if number.text.startswith("-") else "-" + number.text.lstrip("+")
@@ -2366,17 +2382,9 @@ class _Importer:
             theta = 2 * math.atan2(correct_norm3(*_sub(a, t)), correct_norm3(*(a[i] + t[i] for i in range(3))))
             return theta > TANGENCY_TOLERANCE_RAD
 
-        failing: list[list[str]] = []
-
-        def split(members: list[str], start: str) -> list[tuple[list[str], str, str]]:
-            """The chain cut only at its corners. Each straight run (between bends, or between the chain's ends) is
-            checked whole with the runtime's collinear_run; one that passes is never cut. One that fails is cut at
-            its corners, and each piece must then pass; a piece that does not is recorded in `failing`."""
-            nodes = [start]
-            for member in members:
-                nodes.append(far(member, nodes[-1]))
-            cuts: set[int] = set()
-            index = 0
+        def runs(members: list[str], nodes: list[str]) -> list[tuple[int, int]]:
+            """(first, past-last) member indices of each straight run: between bends or the piece's ends."""
+            found, index = [], 0
             while index < len(members):
                 if members[index] in arcs:
                     index += 1
@@ -2384,14 +2392,28 @@ class _Importer:
                 end = index
                 while end < len(members) and members[end] not in arcs:
                     end += 1
-                if not runtime_collinear([metres(node) for node in nodes[index:end + 1]]):
-                    corners = [k for k in range(index + 1, end) if corner(nodes[k - 1], nodes[k], nodes[k + 1])]
-                    bounds = [index, *corners, end]
-                    for low, high in zip(bounds, bounds[1:]):
-                        if not runtime_collinear([metres(node) for node in nodes[low:high + 1]]):
-                            failing.append(members[low:high])
-                    cuts.update(corners)
+                found.append((index, end))
                 index = end
+            return found
+
+        def collinear(nodes: list[str]) -> bool:
+            return runtime_collinear([metres(node) for node in nodes])
+
+        def bore_m(pipe_id: str) -> float:
+            section = self.pipes[pressures[pipe_id][1].section]
+            return runtime_bore_radius_m(section["od"].value, section["thk"].value, factor)
+
+        def split(members: list[str], start: str) -> list[tuple[list[str], str, str]]:
+            """The chain cut only at its corners: a straight run the runtime's collinear_run admits whole, in either
+            traversal order, is never cut; one it refuses both ways is cut at its corners."""
+            nodes = [start]
+            for member in members:
+                nodes.append(far(member, nodes[-1]))
+            cuts: set[int] = set()
+            for low, high in runs(members, nodes):
+                stretch = nodes[low:high + 1]
+                if not collinear(stretch) and not collinear(stretch[::-1]):
+                    cuts.update(k for k in range(low + 1, high) if corner(nodes[k - 1], nodes[k], nodes[k + 1]))
             pieces, current, piece_start = [], [], start
             for index, member in enumerate(members):
                 if index in cuts:
@@ -2400,6 +2422,14 @@ class _Importer:
                 current.append(member)
             pieces.append((current, piece_start, nodes[-1]))
             return pieces
+
+        def failures(members: list[str], start: str) -> tuple[list[list[str]], bool]:
+            """The straight runs the runtime refuses, and whether its bore guard refuses, for this traversal."""
+            nodes = [start]
+            for member in members:
+                nodes.append(far(member, nodes[-1]))
+            bad = [members[low:high] for low, high in runs(members, nodes) if not collinear(nodes[low:high + 1])]
+            return bad, not runtime_bores_equal([bore_m(member) for member in members])
 
         chains, seen = [], set()
         for pipe_id in sorted(active, key=order.__getitem__):
@@ -2419,16 +2449,44 @@ class _Importer:
             if order[members[-1]] < order[members[0]]:
                 members, start, end = members[::-1], end, start
             chains.extend(split(members, start))
-        for run in failing:
-            labels = [label_of[pipe_id] for pipe_id in run]
-            self.refuse("MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR", pressures[run[0]][1].line,
-                        f"elements {', '.join(labels)}",
-                        f"the straight run {', '.join(labels)} carries one pressure but is not collinear within the "
-                        "exact route's check (64 epsilon of the run's span) and has no corner (a direction change "
-                        f"above {TANGENCY_TOLERANCE_RAD} rad) to end a region at; a region is never cut inside a "
-                        "straight run")
-        if failing:
+        # The runtime traverses a region from its first terminal: its straight-run check and its bore reference (the
+        # first member) depend on the order. Each region takes its file order, or else the reversed order; it is
+        # refused only when neither is admitted.
+        admitted, refused = [], False
+        for members, start, end in chains:
+            forward = failures(members, start)
+            if forward == ([], False):
+                admitted.append((members, start, end))
+                continue
+            backward = failures(members[::-1], end)
+            if backward == ([], False):
+                admitted.append((members[::-1], end, start))
+                continue
+            refused = True
+            line = pressures[members[0]][1].line
+            names = lambda items: ", ".join(label_of[pipe_id] for pipe_id in items)  # noqa: E731
+            backward_runs = {frozenset(run) for run in backward[0]}
+            both = [run for run in forward[0] if frozenset(run) in backward_runs]
+            for run in both:
+                self.refuse("MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR", line, f"elements {names(run)}",
+                            f"the straight run {names(run)} carries one pressure but the exact route's check (64 "
+                            "epsilon of the run's span) refuses it in both traversal orders, and it has no corner (a "
+                            f"direction change above {TANGENCY_TOLERANCE_RAD} rad) to end a region at; a region is "
+                            "never cut inside a straight run")
+            if forward[1] and backward[1]:
+                self.refuse("MBF-IMPORT-PRESSURE-BORE-MISMATCH", line, f"elements {names(members)}",
+                            f"the region {names(members)} has equal bores in the file's decimals, but in metres they "
+                            "differ by more than the exact route's guard (64 epsilon of the radius) in both traversal "
+                            "orders; a region is never cut to separate them")
+            if not both and not (forward[1] and backward[1]):
+                checks = lambda result: ", ".join(  # noqa: E731
+                    [f"the straight-run check on {names(run)}" for run in result[0]] + ["the bore guard"] * result[1])
+                self.refuse("MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR", line, f"elements {names(members)}",
+                            f"the region {names(members)} is admitted in neither traversal order: in file order "
+                            f"{checks(forward)} refuses it, reversed {checks(backward)}")
+        if refused:
             return None
+        chains = admitted
         declared = self.closure_declaration()
         if declared is None:
             return None

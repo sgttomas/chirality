@@ -520,9 +520,10 @@ def test_the_runtime_admits_every_region_the_importer_forms():
     runner = runner_binary()
     files = {"nonmonotonic": ("F10,KA,MM1,PP1,CL=L1", *importer_tests.NONMONOTONIC),
              "zigzag": ("F10,KA,MM1,PP1,CL=L1", *importer_tests.ZIGZAG),
-             "corner": ("F10,KA,MM1,PP1,CL=L1", "T20,X1000", "T30,KA,X1000,Y2")}
+             "corner": ("F10,KA,MM1,PP1,CL=L1", "T20,X1000", "T30,KA,X1000,Y2"),
+             "reversed": importer_tests.REVERSED}  # VER-002 r3: emitted 30 -> 10, the order the route admits
     for name, rows in files.items():
-        result = importer_tests.run(importer_tests.mbf(*rows, loads=("L1,20,10,0",)),
+        result = importer_tests.run(importer_tests.mbf(*rows, pipe=("P1,168.3,7.11,0",), loads=("L1,20,10,0",)),
                                     pressure_closure=importer_tests.CLOSURE)
         assert result.status == "imported", result.diagnostics
         _, _, error = solve_swbpipe(runner, {"case_id": name, "model": result.model})
@@ -540,6 +541,22 @@ def test_the_runtime_admits_every_region_the_importer_forms():
              for node in ("node:10", "node:170")]}]}]
     _, output, error = solve_swbpipe(runner, {"case_id": "drift-one-region", "model": drift})
     assert error and "PRESSURE_REGION_NONCOLLINEAR" in json.dumps(output)
+    # The reversed run as the file orders it (10 -> 30) is refused by the route; and Codex's equal-decimal bores
+    # (VER-002 r3), which the importer refuses, are refused by the route as one region too.
+    for name, rows, pipes, code in (
+            ("reversed-file-order", importer_tests.REVERSED, ("P1,168.3,7.11,0",), "PRESSURE_REGION_NONCOLLINEAR"),
+            ("bores", importer_tests.BORE_ROWS, importer_tests.BORE_PIPES, "PRESSURE_REGION_BORE_MISMATCH")):
+        model = importer_tests.run(importer_tests.mbf(*rows, pipe=pipes)).model
+        model["pressure_contract"] = drift["pressure_contract"]
+        for pipe in model["pipe_segments"]:
+            pipe["section"]["corrosion_allowance"] = {"value": 0.0, "unit": "mm"}
+        region = deepcopy(drift["load_cases"][0])
+        region["pressure_regions"][0]["member_pipe_ids"] = [pipe["id"] for pipe in model["pipe_segments"]]
+        for terminal, node in zip(region["pressure_regions"][0]["terminals"], ("node:10", "node:30")):
+            terminal["node_ref"] = node
+        model["load_cases"] = [region]
+        _, output, error = solve_swbpipe(runner, {"case_id": name, "model": model})
+        assert error and code in json.dumps(output), name
 
 
 def test_an_import_whose_allowance_is_deleted_is_not_round_tripped_with_an_authored_zero():

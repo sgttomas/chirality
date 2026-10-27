@@ -1435,3 +1435,45 @@ def test_a_subnormal_norm_is_rounded_once_on_the_subnormal_lattice():
     result = run(mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X5.562684977829851e-306,Y1.6578092611e-313",
                      loads=("L1,20,10,0",)), pressure_closure=CLOSURE)
     assert result.status == "imported", result.diagnostics
+
+
+# --- VER-002 r3: the route's bore guard and traversal order -------------------------------------------------------------
+# Codex's sections: 128.2 - 2 x 63.6 = 1 = 128.3 - 2 x 63.65 mm exactly in decimals, so one chain.
+BORE_PIPES = ("P1,128.2,63.6,0", "P2,128.3,63.65,0")
+BORE_ROWS = ("F10,KA,MM1,PP1,CL=L1", "T20,X1000", "T30,KA,X1000,PP2")
+
+
+def test_bores_equal_in_decimals_but_not_within_the_routes_guard_in_metres_are_refused_not_cut():
+    radius = importer_module.runtime_bore_radius_m
+    r1, r2 = radius(128.2, 63.6, 0.001), radius(128.3, 63.65, 0.001)
+    # In m: 0.1282 x 0.5 - 0.0636 and 0.1283 x 0.5 - 0.06365, each rounded, differ by about 5.55e-14 relative.
+    assert r1 != r2 and abs(r1 - r2) > importer_module.REPRESENTATION_GUARD * max(r1, r2)
+    assert not importer_module.runtime_bores_equal([r1, r2]) and not importer_module.runtime_bores_equal([r2, r1])
+    data = mbf(*BORE_ROWS, pipe=BORE_PIPES, loads=("L1,20,10,0",))
+    error = refused(run(data, pressure_closure=CLOSURE), "MBF-IMPORT-PRESSURE-BORE-MISMATCH", layout_line(data, "T20"))
+    assert error["location"] == "elements 10-20, 20-30"
+    assert run(mbf(*BORE_ROWS, pipe=BORE_PIPES)).status == "imported"  # without pressure there is no region
+    # The same bore from another OD and wall within the guard (168.3/7.11 and 170.3/8.11) stays one region.
+    same = run(mbf(*BORE_ROWS, pipe=("P1,168.3,7.11,0", "P2,170.3,8.11,0"), loads=("L1,20,10,0",)),
+               pressure_closure=CLOSURE)
+    assert [region[1] for region in regions_of(same)] == [["pipe:10-20", "pipe:20-30"]]
+
+
+# Codex's run: refused by the route traversed 10 -> 30, admitted 30 -> 10.
+REVERSED = ("F10,KA,MM1,PP1,CL=L1", "T20,X2,Y3.0000000000924", "T30,KA,X1998,Y2996.9999999999076")
+
+
+def test_a_region_the_route_admits_only_reversed_is_emitted_reversed():
+    positions = {"10": (0.0, 0.0, 0.0), "20": (2.0, 3.0000000000924, 0.0),
+                 "30": (2000.0, 3000.0, 0.0)}
+    metres = {name: tuple(value * 0.001 + 0.0 for value in point) for name, point in positions.items()}
+    assert not importer_module.runtime_collinear([metres["10"], metres["20"], metres["30"]])
+    assert importer_module.runtime_collinear([metres["30"], metres["20"], metres["10"]])
+    declaration = {**CLOSURE, "nodes": {"30": "separately_supported_or_compensated"}}
+    result = run(mbf(*REVERSED, pipe=("P1,168.3,7.11,0",), loads=("L1,20,10,0",)), pressure_closure=declaration)
+    assert result.status == "imported", result.diagnostics
+    assert [node["position"]["y"] for node in result.model["nodes"]] == [0.0, 3.0000000000924, 3000.0]
+    # Reversal changes only the order: the same members, and each terminal keeps its own node's closure transfer.
+    assert regions_of(result) == [("region:mbf-30-10", ["pipe:20-30", "pipe:10-20"], 10.0, "bar",
+                                   [("node:30", "separately_supported_or_compensated"),
+                                    ("node:10", "transfers_to_wall")])]
