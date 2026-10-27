@@ -294,7 +294,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 5,
+        "order": 6,
         "group": {
           "key": "plan-organize",
           "label": "Plan & organize",
@@ -690,7 +690,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 1,
+        "order": 2,
         "group": {
           "key": "plan-organize",
           "label": "Plan & organize",
@@ -759,7 +759,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 6,
+        "order": 7,
         "group": {
           "key": "plan-organize",
           "label": "Plan & organize",
@@ -1951,7 +1951,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 3,
+        "order": 4,
         "group": {
           "key": "plan-organize",
           "label": "Plan & organize",
@@ -1965,6 +1965,35 @@
           "WORKING_ITEMS",
           "HELPS_HUMANS"
         ]
+      }
+    },
+    {
+      "kind": "workflow",
+      "name": "integrated-engineering-estimate-schedule",
+      "source": "bundled",
+      "sourceRootId": "chirality-root",
+      "description": "Construct or revise one coupled engineering effort/cost and resource-loaded schedule case from accepted work inputs, with distinct reconciled projections and consumer outputs.",
+      "central": false,
+      "compatibility": "canonical",
+      "executionRoleIds": [
+        "HELP_HUMAN",
+        "HELPS_HUMANS",
+        "WORKING_ITEMS",
+        "TASK"
+      ],
+      "resources": [
+        "METHODS.md",
+        "WORKFLOW.md"
+      ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 1,
+        "group": {
+          "key": "plan-organize",
+          "label": "Plan & organize",
+          "order": 0
+        }
       }
     },
     {
@@ -2029,7 +2058,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 4,
+        "order": 5,
         "group": {
           "key": "plan-organize",
           "label": "Plan & organize",
@@ -2720,7 +2749,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 2,
+        "order": 3,
         "group": {
           "key": "plan-organize",
           "label": "Plan & organize",
