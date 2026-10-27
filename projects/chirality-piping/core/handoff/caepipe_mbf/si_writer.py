@@ -97,7 +97,8 @@ _CLOSURE_TRANSFERS = ("transfers_to_wall", "separately_supported_or_compensated"
 # OPPRES as written with pressure: PD/4t, Bourdon effect off, pressure correction for bends off, peak pressure
 # factor 1, Bourdon (off) in expansion cases. SWBPIPE's exact pressure route models neither effect (DEL-04-07 D-3).
 OPPRES_LINE = "0,0,0,1,0"
-# The importer's refusals of a restored region by the exact route's checks, which the writer's preflight reads.
+# The importer's refusals of a restored region by the exact route's value checks (straight runs, bores), which the
+# printed digits can change; the writer's preflight reports them as MBF-SI-PRESSURE-REGION-FORMAT.
 _REGION_CHECK_CODES = ("MBF-IMPORT-PRESSURE-RUN-NONCOLLINEAR", "MBF-IMPORT-PRESSURE-BORE-MISMATCH")
 _BEND_SOLVER_CONSUMPTION = "curved_bend_macro_element"
 _BEND_RELATIVE_TOLERANCE = 1e-9  # tangent lengths, line intersection, bend angle and bend plane
@@ -1361,16 +1362,17 @@ class _Writer:
             loss_report=self.loss,
             assumptions=self.assumptions,
         )
-        if self.regions and not self.regions_survive_formatting(result):
+        if self.contract is not None and not self.survives_reimport(result):
             return self.refused()
         return result
 
-    def regions_survive_formatting(self, result: MbfSiResult) -> bool:
-        """Design §9.4: each pressure region as the printed MBF gives it back. The writer's own bound re-import
+    def survives_reimport(self, result: MbfSiResult) -> bool:
+        """Design §9.4: the exact-pressure export as the printed MBF gives it back. The writer's own bound re-import
         reads the printed values exactly as an import will (positions summed from the printed offsets, bend tangent
         nodes rebuilt, OD and wall as printed) and applies the exact route's whole-region checks to the restored
-        regions in their declared order. A region the model's values admit but the printed values do not is refused
-        by name (MBF-SI-PRESSURE-REGION-FORMAT); the writer never cuts or reorders it."""
+        regions in their declared order. The export stands only if that re-import succeeds completely and checks
+        every region. A failed region check is refused as MBF-SI-PRESSURE-REGION-FORMAT; any other refusal, at any
+        stage, as MBF-SI-PREFLIGHT-REFUSED carrying the importer's code. Nothing is cut or reordered."""
         from hashlib import sha256
         from .importer import import_caepipe_mbf  # deferred: the importer imports this module
 
@@ -1382,11 +1384,23 @@ class _Writer:
                                                              "source_name": "writer preflight; never output"}})
         prefix = "pressure_map region "
         for item in back.diagnostics:
+            if item["severity"] != "error":
+                continue
             if item["code"] in _REGION_CHECK_CODES and item["location"].startswith(prefix):
                 region = item["location"][len(prefix):]
                 self.refuse("MBF-SI-PRESSURE-REGION-FORMAT", f"region:{region}",
                             f"region {region} passes the exact route's checks on the model's values but not on the "
-                            f"MBF's printed values (10 significant digits): {item['message']}")
+                            f"MBF's printed values (10 significant digits): {item['code']}: {item['message']}")
+            else:
+                self.refuse("MBF-SI-PREFLIGHT-REFUSED", item["location"] or "MBF",
+                            f"the bound re-import of this MBF refuses it ({item['code']} at {item['location']}, line "
+                            f"{item['line']}): {item['message']}")
+        if back.status == "imported" and back.summary.get("pressure_regions") != len(self.regions):
+            self.refuse("MBF-SI-PREFLIGHT-REFUSED", "pressure_map",
+                        f"the bound re-import restored {back.summary.get('pressure_regions')} pressure regions, not "
+                        f"the {len(self.regions)} written; the region checks did not cover every region")
+        if back.status != "imported" and not self.has_errors():
+            self.refuse("MBF-SI-PREFLIGHT-REFUSED", "MBF", "the bound re-import of this MBF did not complete")
         return not self.has_errors()
 
     def node_comments(self, node: str) -> list[str]:

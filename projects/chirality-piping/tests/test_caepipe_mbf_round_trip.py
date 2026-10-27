@@ -606,7 +606,7 @@ def test_the_writer_refuses_a_region_its_printed_values_would_break(name, monkey
     # Without the preflight, the bound import of the printed file refuses the restored region by name, in its
     # declared order, without cutting it.
     from core.handoff.caepipe_mbf import si_writer
-    monkeypatch.setattr(si_writer._Writer, "regions_survive_formatting", lambda self, result: True)
+    monkeypatch.setattr(si_writer._Writer, "survives_reimport", lambda self, result: True)
     unchecked = render_caepipe_mbf_si(model, title="FORMAT")
     data = unchecked.text.encode("ascii")
     sidecar = {**{key: value for key, value in unchecked.to_dict().items() if key.endswith("_map")},
@@ -622,6 +622,107 @@ def test_the_runtime_solves_the_format_cases_as_imported():
     for name in FORMAT_CASES:
         _, _, error = solve_swbpipe(runner, {"case_id": name, "model": format_case(name)})
         assert error == "", name
+
+
+# --- VER-002 r5: the closed guard set ----------------------------------------------------------------------------------
+TEE_ROWS = ("F10,KA,MM1,PP1,CL=L1", "T20,X1000", "T30,KA,X1000", "F20", "T40,KA,Y1000")
+
+
+def bound_parts(model: dict, monkeypatch=None):
+    """The writer's text and byte-bound sidecar for `model`, with the preflight bypassed when `monkeypatch` is given."""
+    if monkeypatch is not None:
+        from core.handoff.caepipe_mbf import si_writer
+        monkeypatch.setattr(si_writer._Writer, "survives_reimport", lambda self, result: True)
+    written = render_caepipe_mbf_si(model, title="GUARD")
+    assert written.status == "written", written.diagnostics
+    data = written.text.encode("ascii")
+    return data, {**{key: value for key, value in written.to_dict().items() if key.endswith("_map")},
+                  "mbf_sha256": hashlib.sha256(data).hexdigest()}
+
+
+def refusals(result) -> set[tuple[str, str]]:
+    return {(item["code"], item["location"]) for item in result.diagnostics if item["severity"] == "error"}
+
+
+def test_a_restored_region_through_a_tee_is_refused_by_name_and_by_the_route():
+    # Codex's case: the tee imports as three regions; a sidecar joining 10-20-30 passes through 20, where 20-40 joins.
+    model = importer_tests.run(importer_tests.mbf(*TEE_ROWS, loads=("L1,20,10,0",)),
+                               pressure_closure=importer_tests.CLOSURE).model
+    assert [region["id"] for region in model["load_cases"][0]["pressure_regions"]] == [
+        "region:mbf-10-20", "region:mbf-20-30", "region:mbf-20-40"]
+    data, sidecar = bound_parts(model)
+    stored = sidecar["pressure_map"]["regions"]
+    stored[0]["members"] = stored[0]["members"] + stored[1]["members"]
+    stored[0]["terminals"][1] = stored[1]["terminals"][1]
+    del stored[1]
+    bound = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="tee")
+    assert refusals(bound) == {("MBF-IMPORT-PRESSURE-INTERNAL-BRANCH", "pressure_map region region:mbf-10-20")}
+    joined = deepcopy(model)  # the same region authored in the model: the writer refuses it, and so does the route
+    regions = joined["load_cases"][0]["pressure_regions"]
+    regions[0]["member_pipe_ids"] += regions[1]["member_pipe_ids"]
+    regions[0]["terminals"][1] = regions[1]["terminals"][1]
+    del regions[1]
+    written = render_caepipe_mbf_si(joined, title="TEE")
+    assert written.status == "refused"
+    assert {item["code"] for item in written.diagnostics if item["severity"] == "error"} == {"MBF-SI-PREFLIGHT-REFUSED"}
+    assert "MBF-IMPORT-PRESSURE-INTERNAL-BRANCH" in " ".join(item["message"] for item in written.diagnostics)
+    _, output, error = solve_swbpipe(runner_binary(), {"case_id": "tee-joined", "model": joined})
+    assert error and "PRESSURE_REGION_INTERNAL_BRANCH" in json.dumps(output)
+
+
+def test_the_preflight_refuses_any_failed_reimport_with_its_code():
+    # Codex's case: OD 100.00000004 and wall 50 import (2t < OD) and solve; printed, the OD is 100 = 2t.
+    data = importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X1000", pipe=("P1,100.00000004,50,0",),
+                              loads=("L1,20,10,0",))
+    model = importer_tests.run(data, pressure_closure=importer_tests.CLOSURE).model
+    _, _, error = solve_swbpipe(runner_binary(), {"case_id": "thin-od", "model": model})
+    assert error == ""
+    written = render_caepipe_mbf_si(model, title="THIN")
+    assert written.status == "refused" and written.text is None
+    errors = [item for item in written.diagnostics if item["severity"] == "error"]
+    assert {item["code"] for item in errors} == {"MBF-SI-PREFLIGHT-REFUSED"}
+    assert any("MBF-IMPORT-VALUE-OUT-OF-RANGE" in item["message"] for item in errors)
+
+
+def renamed(model: dict, names: dict[str, str]) -> dict:
+    text = json.dumps(model)
+    for old, new in names.items():
+        text = text.replace(f'"{old}"', f'"{new}"')
+    return json.loads(text)
+
+
+def test_ids_equal_once_colons_read_as_hyphens_are_refused(monkeypatch):
+    # The route's check_suffixes reads ':' as '-' per kind (EXACT_PRESSURE_RESULT_ID_COLLISION): pipes P:1 and P-1.
+    model = renamed(writer_tests.pressurized_l(), {"S1": "P:1", "S2": "P-1"})
+    written = render_caepipe_mbf_si(model, title="IDS")
+    assert written.status == "refused"
+    assert "MBF-IMPORT-PRESSURE-ID-COLLISION" in " ".join(item["message"] for item in written.diagnostics)
+    data, sidecar = bound_parts(model, monkeypatch)
+    bound = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="ids")
+    assert refusals(bound) == {("MBF-IMPORT-PRESSURE-ID-COLLISION", "pipe P:1, P-1")}
+
+
+def test_restored_region_ids_must_be_present_and_unique(trips):
+    trip = trips["pressure-tee-bar"]
+    for change in ("empty", "duplicate"):
+        sidecar = deepcopy(trip.sidecar)
+        stored = sidecar["pressure_map"]["regions"]
+        stored[1]["id"] = " " if change == "empty" else stored[0]["id"]
+        result = import_caepipe_mbf(trip.data, sidecar=sidecar, material_provenance=INVENTED, source_label=change)
+        assert result.status == "refused"
+        assert ("MBF-IMPORT-SIDECAR-CONFLICT", "pressure_map") in refusals(result), change
+
+
+def test_a_restored_orientation_the_frame_cannot_use_takes_the_documented_one():
+    # frame_kernel: the y_reference's part perpendicular to the axis must exceed 1e-12; one along the axis has none.
+    trip = Trip("parallel", writer_tests.cantilever(), "PARALLEL", 20.0)
+    sidecar = deepcopy(trip.sidecar)
+    sidecar["element_map"]["S1"]["y_reference"] = {"x": 2.0, "y": 0.0, "z": 0.0}  # S1 runs along +x
+    result = import_caepipe_mbf(trip.data, sidecar=sidecar, material_provenance=INVENTED, source_label="parallel")
+    assert result.model["pipe_segments"][0]["y_reference"] == {"x": 0.0, "y": 1.0, "z": 0.0}
+    assert "MBF-IMPORT-ORIENTATION-DEFAULTED" in {item["code"] for item in result.diagnostics}
+    assert importer_module.frame_y_reference_usable((0, 0, 0), (3, 0, 0), (0.0, 1e-12, 0.0)) is False
+    assert importer_module.frame_y_reference_usable((0, 0, 0), (3, 0, 0), (0.0, 2e-12, 0.0)) is True
 
 
 # --- (e) determinism ----------------------------------------------------------------------------------

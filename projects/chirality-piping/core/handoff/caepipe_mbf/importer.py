@@ -98,6 +98,8 @@ REPRESENTATION_GUARD = 64 * 2.0 ** -52
 # The exact route's mitre threshold alpha_tan (curved_bend TANGENCY_TOLERANCE_RAD): a direction change above it,
 # measured as its `kink`, 2 atan2(|a - t|, |a + t|) of the unit directions, is a corner (Design §9.4).
 TANGENCY_TOLERANCE_RAD = 1.0e-3
+# frame_kernel AXIS_TOLERANCE: a vector whose norm (sqrt of the dot product) is at most this cannot be normalized.
+AXIS_TOLERANCE = 1.0e-12
 _METRES_PER_UNIT = {"mm": 0.001, "in": 0.0254}
 
 # --- MBF format vocabulary (CAEPIPE User's Manual, Import MBF, Format of .MBF; DEL-17-01 CAEPIPE-IMPORT-MBF) ---
@@ -443,6 +445,19 @@ def runtime_bore_radius_m(od: float, wall: float, factor: float) -> float:
     od_m, wall_m = od * factor + 0.0, wall * factor + 0.0
     reduced = (wall_m - 0.0) - (0.0 * factor + 0.0)
     return od_m * 0.5 - reduced
+
+
+def frame_y_reference_usable(start_m, end_m, y_reference) -> bool:
+    """frame_kernel `FrameOrientation::from_x_axis_and_y_reference` on positions in m: the element axis and the
+    y_reference's part perpendicular to it must each have a norm above AXIS_TOLERANCE."""
+    delta = [end_m[axis] - start_m[axis] for axis in range(3)]
+    length = math.sqrt(delta[0] * delta[0] + delta[1] * delta[1] + delta[2] * delta[2])
+    if not length > AXIS_TOLERANCE:
+        return False
+    x = [value * (1.0 / length) for value in delta]
+    along = y_reference[0] * x[0] + y_reference[1] * x[1] + y_reference[2] * x[2]
+    side = [y_reference[axis] - x[axis] * along for axis in range(3)]
+    return math.sqrt(side[0] * side[0] + side[1] * side[1] + side[2] * side[2]) > AXIS_TOLERANCE
 
 
 def runtime_bores_equal(bores: list[float]) -> bool:
@@ -1843,7 +1858,9 @@ class _Importer:
                 elif isinstance(restored, Mapping) and all(
                         isinstance(restored.get(axis), (int, float)) and not isinstance(restored.get(axis), bool)
                         and math.isfinite(restored[axis]) for axis in "xyz") and 0 < _norm(
-                        tuple(float(restored[axis]) for axis in "xyz")) < math.inf:
+                        tuple(float(restored[axis]) for axis in "xyz")) < math.inf and frame_y_reference_usable(
+                        *([value * _METRES_PER_UNIT[length_unit] + 0.0 for value in point_of[name]] for name in (a, b)),
+                        [float(restored[axis]) for axis in "xyz"]):
                     pipe["y_reference"] = {axis: float(restored[axis]) for axis in "xyz"}
                 else:
                     pipe["y_reference"] = dict(zip("xyz", local_y_reference(point_of[a], point_of[b],
@@ -1917,6 +1934,19 @@ class _Importer:
                 raise _Refused
             for pipe in pipes:  # each section's own explicit 0 (field 4)
                 pipe["section"]["corrosion_allowance"] = {"value": 0.0, "unit": length_unit}
+            # The exact route's stable-suffix check (pressure_runtime.rs check_suffixes, ':' -> '-'), per kind.
+            for kind, ids in (("pipe", [pipe["id"] for pipe in pipes]), ("node", [node["id"] for node in nodes]),
+                              ("support", [support["id"] for support in supports]),
+                              ("load_case", [case["id"] for case in load_cases])):
+                seen: dict[str, str] = {}
+                for identity in ids:
+                    previous = seen.setdefault(identity.replace(":", "-"), identity)
+                    if previous != identity:
+                        self.refuse("MBF-IMPORT-PRESSURE-ID-COLLISION", 0, f"{kind} {previous}, {identity}",
+                                    f"{kind} ids {previous} and {identity} are equal once ':' is read as '-', which "
+                                    "the exact route refuses (EXACT_PRESSURE_RESULT_ID_COLLISION)")
+            if self.has_errors():
+                raise _Refused
         self.report_unrecoverable()
 
         units = ({"length": "mm", "force": "N", "moment": "N*m", "pressure": "MPa", "stress": "Pa",
@@ -2413,6 +2443,19 @@ class _Importer:
                 self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", line, location,
                             f"the sidecar's region {region_id} is not one chain from its first terminal to its second")
                 continue
+            inner, node = set(), start
+            for pipe_id in ordered[:-1]:
+                a, b = ends[pipe_id]
+                node = b if node == a else a
+                inner.add(node)
+            branching = sorted(name_of[node] for node in inner
+                               if any(node in pair and pipe_id not in members for pipe_id, pair in ends.items()))
+            if branching:
+                self.refuse("MBF-IMPORT-PRESSURE-INTERNAL-BRANCH", line, location,
+                            f"region {region_id} as the sidecar declares it passes through {', '.join(branching)}, "
+                            "where another pipe joins; the exact route admits no internal branch "
+                            "(PRESSURE_REGION_INTERNAL_BRANCH), and the region is not cut")
+                continue
             runs, bores = failures(ordered, start)
             for run in runs:
                 names = ", ".join(label_of[pipe_id] for pipe_id in run)
@@ -2586,7 +2629,9 @@ class _Importer:
         for entry in stored:
             members = entry.get("members") if isinstance(entry, Mapping) else None
             terminals = entry.get("terminals") if isinstance(entry, Mapping) else None
-            valid = (isinstance(entry, Mapping) and isinstance(entry.get("id"), str) and isinstance(members, list)
+            valid = (isinstance(entry, Mapping) and isinstance(entry.get("id"), str) and entry["id"].strip() != ""
+                     and entry["id"] not in {region_id for region_id, _, _ in restored}
+                     and isinstance(members, list)
                      and members and all(isinstance(item, str) and item in active and item not in owned
                                          for item in members)
                      and len(set(members)) == len(members)
