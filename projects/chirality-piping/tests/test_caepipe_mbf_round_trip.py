@@ -99,6 +99,27 @@ def bend_boundary(residual: bool = True):
     return model
 
 
+CLOSURE = {"closure_transfer": "transfers_to_wall", "provenance": "invented round-trip declaration"}
+# Invented Z-vertical files (Design §5.1) with pressure (§9.4), in SI (bar) and English (psi) units. The SI file's
+# skew straight meets the next straight at a corner, so its import has two regions.
+Z_VERTICAL_SI = (
+    "INVENTED Z-VERTICAL SI", "VERSION", "15.10", "OPTIONS", "HGRA,SI,Z", "OPTEMP", "20", "MATERIAL",
+    "M1,7850,0.3,1,1,CS,invented steel", "M1,20,200000,1.2e-05", "PIPE", "P1,168.3,7.11,0,0,0,0,0,0", "LOADS",
+    "L1,120,15,0", "LAYOUT", "F10,KA,MM1,PP1,CL=L1", "T20,X1000,Y2000,Z3000,CFOR(10,20,30),FLC=1",
+    "T30,KI,B250,X4000,CFF=1.5", "T40,KA,Z3000")
+Z_VERTICAL_ENGLISH = (
+    "INVENTED Z-VERTICAL ENGLISH", "VERSION", "15.10", "OPTIONS", "HGRA,Z", "OPTEMP", "70", "MATERIAL",
+    "M1,0.283,0.3,1,1,CS,invented steel", "M1,70,29000000,6.5e-06", "PIPE", "P1,6.625,0.28,0,0,0,0,0,0", "LOADS",
+    "L1,250,150,0", "LAYOUT", "F10,KA,MM1,PP1,CL=L1", "T20,X10'6\",CFOR(0,0,-1000),FLC=1", "T30,KA,Y8")
+
+
+def z_import(lines: tuple[str, ...]):
+    data = "".join(line + "\r\n" for line in lines).encode("ascii")
+    result = import_caepipe_mbf(data, material_provenance=INVENTED, pressure_closure=CLOSURE, source_label=lines[0])
+    assert result.status == "imported", result.diagnostics
+    return result
+
+
 def models() -> dict[str, tuple[dict, str, float]]:
     found = {case["case_id"]: (case["model"], case["title"], case["reference_temperature_c"]) for case in load_cases()}
     found.update({
@@ -111,6 +132,11 @@ def models() -> dict[str, tuple[dict, str, float]]:
         "writer-straight-run": (writer_tests.straight_run(20), "RUN", 20.0),
         "bend-boundary": (bend_boundary(), "BEND BOUNDARY", 20.0),
         "writer-cancelling-forces": (writer_tests.cancelling_cantilever(), "CANCEL", 20.0),
+        "pressure-l-pa": (writer_tests.pressurized_l(), "PRESSURE L", 20.0),
+        "pressure-tee-bar": (writer_tests.pressurized_tee(), "PRESSURE TEE", 20.0),
+        "pressure-us-psi": (writer_tests.pressurized_us_cantilever(), "PRESSURE US", 20.0),
+        "z-vertical-si": (z_import(Z_VERTICAL_SI).model, "Z VERTICAL SI", 20.0),
+        "z-vertical-english": (z_import(Z_VERTICAL_ENGLISH).model, "Z VERTICAL ENGLISH", 20.0),
     })
     return found
 
@@ -130,6 +156,17 @@ SOLVE_EXCLUDED = {
     "writer-branched": "A authors nu without G or a constitutive basis, which the solve refuses",
     "writer-straight-run": "A has no primitive load",
 }
+PRESSURE_MODELS = {name for name, (model, _, _) in MODELS.items() if model.get("pressure_contract")}
+
+
+def unbound_closure(trip) -> dict | None:
+    """The closure declaration an unbound import of `trip` needs: its source's, by CAEPIPE node name."""
+    if trip.name not in PRESSURE_MODELS:
+        return None
+    nodes = {trip.writer.node_map[terminal["node_ref"]]: terminal["closure_transfer"]
+             for case in trip.model["load_cases"] for region in case.get("pressure_regions") or []
+             for terminal in region["terminals"] if terminal["closure_transfer"] != "transfers_to_wall"}
+    return {**CLOSURE, "nodes": nodes}
 
 
 class Trip:
@@ -184,7 +221,7 @@ def test_bound_import_equals_the_source_within_the_derived_bounds(trips, name):
 
 
 def test_every_excluded_loss_and_model_is_listed():
-    assert len(canon.EXCLUDED_LOSSES) == 7
+    assert len(canon.EXCLUDED_LOSSES) == 8
     assert set(EXCLUDED) == {"writer-bent-l-reversed"}
     trip = Trip("writer-bent-l-reversed", *([EXCLUDED["writer-bent-l-reversed"][0], "REVERSED L", 20.0]))
     reference = trip.reference()
@@ -197,7 +234,8 @@ def test_every_excluded_loss_and_model_is_listed():
 @pytest.mark.parametrize("name", REVERSIBLE)
 def test_unbound_import_under_pd1_equals_by_caepipe_name(trips, name):
     trip = trips[name]
-    result = import_caepipe_mbf(trip.data, material_provenance=INVENTED, source_label=name)
+    result = import_caepipe_mbf(trip.data, material_provenance=INVENTED, pressure_closure=unbound_closure(trip),
+                                source_label=name)
     assert result.status == "imported", result.diagnostics
     assert any("PD-1" in note for note in result.assumptions)
     reference = trip.reference()
@@ -287,6 +325,78 @@ def test_a_sidecar_without_family_reports_the_family_unrecoverable():
     result = import_caepipe_mbf(trip.data, sidecar=sidecar, material_provenance=INVENTED, source_label="old")
     assert any(item["code"] == "MBF-IMPORT-ID-UNRECOVERABLE" and "family" in item["reason"]
                for item in result.loss_report)
+
+
+def regions(model: dict) -> list[tuple]:
+    return [(case["id"], region["id"], region["member_pipe_ids"], region["terminals"])
+            for case in model["load_cases"] for region in case.get("pressure_regions") or []]
+
+
+@pytest.mark.parametrize("name", sorted(PRESSURE_MODELS))
+def test_bound_import_restores_the_pressure_contract_and_regions(trips, name):
+    trip = trips[name]
+    imported = trip.bound.model
+    assert imported["pressure_contract"] == trip.model["pressure_contract"]
+    assert regions(imported) == regions(trip.model)  # ids, member order, terminals, closure and their provenance
+    assert all(case.get("pressure_regions") is not None for case in imported["load_cases"])
+    assert all(pipe["section"]["corrosion_allowance"]["value"] == 0.0 for pipe in imported["pipe_segments"])
+
+
+def test_the_shear_model_travels_only_in_the_sidecar():
+    trip = Trip("timoshenko", writer_tests.pressurized_l(shear="timoshenko_annulus_energy_v1"), "TIMOSHENKO", 20.0)
+    assert trip.bound.model["pressure_contract"]["shear_model"] == "timoshenko_annulus_energy_v1"
+    unbound = import_caepipe_mbf(trip.data, material_provenance=INVENTED, pressure_closure=CLOSURE, source_label="t")
+    assert unbound.model["pressure_contract"]["shear_model"] == "euler_bernoulli"
+    assert "MBF-SI-SHEAR-MODEL-NOT-EXPORTED" in {item["code"] for item in trip.writer.loss_report}
+
+
+def test_a_pressure_map_that_does_not_match_the_file_is_refused(trips):
+    trip = trips["pressure-tee-bar"]
+    for change in ("merge", "drop", "terminal"):
+        sidecar = deepcopy(trip.sidecar)
+        stored = sidecar["pressure_map"]["regions"]
+        if change == "merge":  # one region over two legs at a tee: members still pressurized, but owned twice
+            stored[1]["members"] = stored[0]["members"] + stored[1]["members"]
+        elif change == "drop":  # a pressurized leg in no region
+            stored.pop()
+        else:
+            stored[0]["terminals"][0]["closure_transfer"] = "open"
+        result = import_caepipe_mbf(trip.data, sidecar=sidecar, material_provenance=INVENTED, source_label="tamper")
+        assert result.status == "refused", change
+        assert any(item["code"] == "MBF-IMPORT-SIDECAR-CONFLICT" and item["location"] == "pressure_map"
+                   for item in result.diagnostics), change
+
+
+def test_the_pressure_bound_is_half_a_unit_of_the_printed_bar_value(trips):
+    # 150 psi = 150 x 4.4482216152605 / 0.00064516 Pa = 1034213.5939752541... Pa, printed as 10.34213594 bar.
+    # delta(10.34213594) = 0.5e-8 bar = 5e-4 Pa, plus 4 eps |p|; the import reads 1034213.594 Pa.
+    trip = trips["pressure-us-psi"]
+    lines = trip.text.split("\r\n")
+    assert lines[lines.index("LOADS") + 1] == "L1,120,10.34213594,0"  # T1 = 20 C + 180 degF x 5/9
+    reference = trip.reference()
+    key = next(key for key in reference.values if key[0] == "pressure")
+    assert reference.values[key] == float(150 * Fraction("4.4482216152605") / Fraction("0.00064516"))
+    imported = trip.imported(trip.bound, oriented=True)
+    assert imported.values[key] == 1034213.594
+    limit = trip.limits(reference)[key]
+    assert limit == pytest.approx(5e-4 + 4 * canon.EPS * 10.34213594 * 1e5, rel=1e-12)
+    assert abs(imported.values[key] - reference.values[key]) < limit
+
+
+def test_z_vertical_positions_are_the_exact_rotation_of_the_printed_coordinates():
+    # The test's own exact sum of the printed offsets, rotated (X, Y, Z) -> (X, Z, -Y) and rounded once, equals
+    # every imported position bit for bit.
+    lines = ("INVENTED ROTATION", "VERSION", "15.10", "OPTIONS", "HGRA,SI,Z", "OPTEMP", "20", "MATERIAL",
+             "M1,0,0.3,1,1,CS,invented", "M1,20,200000,1.2e-05", "PIPE", "P1,168.3,7.11,0,0,0,0,0,0", "LOADS",
+             "L1,20,0,0", "LAYOUT", "F10,KA,MM1,PP1,X0.1,Y-0.2,Z0.3,CL=L1", "T20,X1000.1,Y2000.2,Z-3000.3",
+             "T30,X0.7,Y0.1,Z0.2", "T40,KA,Y-1e-3")
+    text = "".join(line + "\r\n" for line in lines)
+    result = import_caepipe_mbf(text.encode("ascii"), material_provenance=INVENTED, source_label="rotation")
+    assert result.status == "imported", result.diagnostics
+    expected = {name: tuple(float(value) for value in canon.rotate_z_vertical(position))
+                for name, position in canon.printed_positions(text).items()}
+    assert {node["label"]: tuple(node["position"].values()) for node in result.model["nodes"]} == expected
+    assert expected["20"] == (1000.2, -3000.0, -2000.0)  # (0.1 + 1000.1, 0.3 - 3000.3, -(-0.2 + 2000.2))
 
 
 # --- (c) byte reproduction ---------------------------------------------------------------------------
@@ -605,6 +715,8 @@ def all_imports(trips):
         data, declaration = fixture(stem)
         found.append((stem, import_caepipe_mbf(data, material_provenance=declaration["material_provenance"],
                                                source_label=stem).model))
+    found += [("z-vertical-si-file", z_import(Z_VERTICAL_SI).model),
+              ("z-vertical-english-file", z_import(Z_VERTICAL_ENGLISH).model)]
     return found
 
 

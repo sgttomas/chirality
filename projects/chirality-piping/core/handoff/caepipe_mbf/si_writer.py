@@ -2,7 +2,7 @@
 
 `render_caepipe_mbf_si` turns the SWBPIPE headless preview model (the
 `solve.preview_model.model` object, of the current model-document version) into MBF text in the
-SI unit set (mm, N, N*m, MPa, C), following the public CAEPIPE User's Manual
+SI unit set (mm, N, N*m, MPa, C, and bar for pressure), always Y vertical, following the public CAEPIPE User's Manual
 appendix "Import MBF". Only a narrow pilot subset is written; everything else
 is refused by name and listed in the loss report, never silently dropped.
 
@@ -86,6 +86,17 @@ _MOMENT_TO_NM.update({"lbf*in": NORMALIZATION["lbf*in"][0], "lbf*ft": NORMALIZAT
 _FORCE_PER_LENGTH_TO_N_PER_M["lbf/in"] = NORMALIZATION["lbf/in"][0]
 _EXPANSION_TO_PER_C["1/degF"] = NORMALIZATION["1/degF"][0]
 _TEMPERATURE_INTERVAL_TO_C["degF"] = NORMALIZATION["degF"][0]
+# Pressure regions become LOADS Pressure 1 in bar (Format of .MBF, LOADS, SI): 1 bar = 1e5 Pa exactly, and psi by
+# its exact definition (Design §9.4).
+_PRESSURE_TO_BAR: dict[str, int | Fraction] = {"Pa": -5, "kPa": -2, "MPa": 1, "bar": 0,
+                                                 "psi": NORMALIZATION["psi"][0] * 10}
+PRESSURE_CONTRACT_VERSION = ("3.0.0", "exact_pressure_v3")
+_SHEAR_MODELS = ("euler_bernoulli", "timoshenko_annulus_energy_v1")
+_PRESSURE_BASIS = "internal_differential_zero_external_v1"
+_CLOSURE_TRANSFERS = ("transfers_to_wall", "separately_supported_or_compensated")
+# OPPRES as written with pressure: PD/4t, Bourdon effect off, pressure correction for bends off, peak pressure
+# factor 1, Bourdon (off) in expansion cases. SWBPIPE's exact pressure route models neither effect (DEL-04-07 D-3).
+OPPRES_LINE = "0,0,0,1,0"
 _BEND_SOLVER_CONSUMPTION = "curved_bend_macro_element"
 _BEND_RELATIVE_TOLERANCE = 1e-9  # tangent lengths, line intersection, bend angle and bend plane
 _PROJECT_UNITS = {"length": ("m", "mm", "in"), "force": ("N", "lbf"), "temperature": ("degC", "degF")}
@@ -117,6 +128,7 @@ class MbfSiResult:
     material_map: dict[str, dict[str, Any]] = field(default_factory=dict)
     section_map: dict[str, dict[str, Any]] = field(default_factory=dict)
     load_map: dict[str, dict[str, Any]] = field(default_factory=dict)
+    pressure_map: dict[str, Any] = field(default_factory=dict)
     layout_row_count: int = 0
     loss_report: list[dict[str, Any]] = field(default_factory=list)
     assumptions: list[str] = field(default_factory=list)
@@ -134,6 +146,7 @@ class MbfSiResult:
             "material_map": {key: dict(value) for key, value in self.material_map.items()},
             "section_map": {key: dict(value) for key, value in self.section_map.items()},
             "load_map": {key: dict(value) for key, value in self.load_map.items()},
+            "pressure_map": json.loads(json.dumps(self.pressure_map)),
             "layout_row_count": self.layout_row_count,
             "loss_report": [dict(item) for item in self.loss_report],
             "assumptions": list(self.assumptions),
@@ -210,6 +223,10 @@ class _Writer:
         self.bends: dict[str, dict[str, Any]] = {}
         self.tangent_points: dict[str, str] = {}
         self.rotation_converted = False
+        self.contract: dict[str, Any] | None = None
+        self.pipe_pressure: dict[str, float] = {}
+        self.regions: list[dict[str, Any]] = []
+        self.pressure_case: str | None = None
 
     # -- diagnostics -----------------------------------------------------
     def diag(self, code: str, severity: str, entity: str, message: str) -> None:
@@ -352,9 +369,20 @@ class _Writer:
         if version != current:
             self.diag("MBF-SI-SCHEMA-VERSION", "warning", "model.schema_version",
                       f"model schema_version {version!r} is not {current}, the version this writer reads")
-        if self.model.get("pressure_contract") is not None:
-            self.refuse("MBF-SI-PRESSURE-UNSUPPORTED", "model.pressure_contract",
-                        "pressure_contract is present; pressure is not exported by the pilot writer")
+        contract = self.model.get("pressure_contract")
+        if contract is not None:
+            if not (isinstance(contract, Mapping)
+                    and (contract.get("version"), contract.get("mode")) == PRESSURE_CONTRACT_VERSION
+                    and contract.get("shear_model") in _SHEAR_MODELS and set(contract) == {"version", "mode",
+                                                                                             "shear_model"}):
+                self.refuse("MBF-SI-PRESSURE-UNSUPPORTED", "model.pressure_contract",
+                            "only the exact pressure contract 3.0.0/exact_pressure_v3 with an admitted shear_model "
+                            "is exported")
+            else:
+                self.contract = dict(contract)
+                self.omit("MBF-SI-SHEAR-MODEL-NOT-EXPORTED", "model.pressure_contract.shear_model",
+                          f"shear_model {contract['shear_model']} is not in the MBF; the target program applies its "
+                          "own beam theory, and the sidecar's pressure_map keeps the contract for a bound import")
         if self.model.get("shear_model") is not None:
             self.refuse("MBF-SI-SHEAR-MODEL-UNSUPPORTED", "model.shear_model", "shear_model is not exported")
         if self.model.get("reference_configurations"):
@@ -768,8 +796,7 @@ class _Writer:
                 self.invalid(entity, f"load case id {case['id']!r} is repeated")
                 continue
             seen.add(case["id"])
-            if case.get("pressure_regions") is not None:
-                self.refuse("MBF-SI-PRESSURE-UNSUPPORTED", entity, f"{entity} has pressure_regions; pressure is not exported")
+            regions = self.read_regions(case.get("pressure_regions"), entity)
             for name in ("equivalent_static", "modulus_basis_ref", "modulus_basis_temperature", "analysis_state"):
                 if case.get(name) is not None:
                     self.refuse("MBF-SI-LOAD-CASE-FEATURE-UNSUPPORTED", entity, f"{entity} {name} is not exported")
@@ -785,11 +812,17 @@ class _Writer:
                     self.refuse(code, f"load:{case['id']}/{load.get('id')}",
                                 f"load {load.get('id')!r} in {entity} has category {load['category']!r}, which the pilot "
                                 "writer does not export")
-            if not loads:
+            if not loads and not regions:
                 self.omit("MBF-SI-LOAD-CASE-EMPTY", entity, f"{entity} has no primitive loads and is not exported")
                 continue
-            mechanical = bool(categories & _MECHANICAL_CATEGORIES)
+            mechanical = bool(categories & _MECHANICAL_CATEGORIES) or bool(regions)
             thermal = bool(categories & _THERMAL_CATEGORIES)
+            if regions and thermal:
+                self.refuse("MBF-SI-PRESSURE-CASE-UNSUPPORTED", entity,
+                            f"{entity} has pressure regions and thermal or displacement primitives; the target program "
+                            f"applies Pressure 1 with {LOAD_CASE_LABELS['sustained']!r} and its operating cases, not "
+                            f"with {LOAD_CASE_LABELS['expansion']!r}")
+                continue
             if mechanical and thermal:
                 self.refuse("MBF-SI-LOAD-CASE-MAPPING-UNSUPPORTED", entity,
                             f"{entity} mixes mechanical (force, moment, weight) and thermal/displacement primitives; "
@@ -804,6 +837,12 @@ class _Writer:
                             f"{entity} and load_case:{other} both map to {label!r}; at most one case of each kind is exported")
                 continue
             kinds[case["id"]] = label
+            if regions:
+                self.pressure_case = case["id"]
+                for region, pressure in regions:
+                    self.regions.append(region)
+                    for pipe_id in region["member_pipe_ids"]:
+                        self.pipe_pressure[pipe_id] = pressure
             for load in loads:
                 if isinstance(load, Mapping) and load.get("category") not in unsupported:
                     self.read_load(case["id"], label, load)
@@ -813,6 +852,58 @@ class _Writer:
             identity = combination.get("id") if isinstance(combination, Mapping) else None
             self.omit("MBF-SI-COMBINATION-NOT-EXPORTED", f"combination:{identity}",
                       f"combination {identity!r} is not exported; the target program forms its own combinations")
+
+    def read_regions(self, regions: Any, entity: str) -> list[tuple[dict[str, Any], float]]:
+        """The case's non-zero pressure regions with their pressure in bar, rounded once (Design §9.4)."""
+        if regions is None:
+            return []
+        if not isinstance(regions, list):
+            self.invalid(entity, f"{entity} pressure_regions must be a list")
+            return []
+        if regions and self.contract is None:
+            self.refuse("MBF-SI-PRESSURE-UNSUPPORTED", entity,
+                        f"{entity} has pressure_regions without the exact pressure contract, which are not solved "
+                        "and not exported")
+            return []
+        out, owned = [], set()
+        for region in regions:
+            identity = region.get("id") if isinstance(region, Mapping) else None
+            where = f"{entity}/region:{identity}"
+            members = region.get("member_pipe_ids") if isinstance(region, Mapping) else None
+            terminals = region.get("terminals") if isinstance(region, Mapping) else None
+            if not (isinstance(identity, str) and isinstance(members, list) and members
+                    and all(isinstance(item, str) and item in self.pipes and item not in owned for item in members)
+                    and len(set(members)) == len(members)
+                    and region.get("pressure_basis") == _PRESSURE_BASIS
+                    and isinstance(region.get("provenance"), str)
+                    and isinstance(terminals, list) and len(terminals) == 2
+                    and all(isinstance(item, Mapping) and item.get("node_ref") in self.nodes
+                            and item.get("closure_transfer") in _CLOSURE_TRANSFERS
+                            and isinstance(item.get("provenance"), str) and item["provenance"].strip()
+                            for item in terminals)):
+                self.invalid(where, f"{where} needs an id, unique exported member pipes, the basis {_PRESSURE_BASIS}, "
+                             "a provenance and two terminals at model nodes with a closure transfer and provenance")
+                continue
+            if region.get("member_connector_ids"):
+                self.refuse("MBF-SI-PRESSURE-UNSUPPORTED", where, f"{where} has member connectors, which are not "
+                            "exported")
+                continue
+            owned.update(members)
+            value = self.quantity(region.get("pressure"), _PRESSURE_TO_BAR, "bar", where, "pressure", exact=True)
+            if value is None:
+                continue
+            if value < 0:
+                self.refuse("MBF-SI-PRESSURE-UNSUPPORTED", where,
+                            f"{where} has a negative (external) pressure differential, which is not exported")
+                continue
+            if value == 0:
+                self.omit("MBF-SI-PRESSURE-REGION-ZERO", where,
+                          f"{where} has zero pressure; it writes Pressure 1 = 0, which imports as no region")
+                continue
+            pressure = self.rounded(value, where, "pressure")
+            if pressure is not None:
+                out.append((region, pressure))
+        return out
 
     def round_sums(self) -> None:
         """Round each summed load once: the primitives on one target were added as exact rationals in the MBF
@@ -1050,12 +1141,14 @@ class _Writer:
             sections[section_key] = name
             section_map[name] = {"outside_diameter_mm": pipe["od"], "wall_thickness_mm": pipe["thk"], "elements": []}
         delta = self.delta_t.get(pipe_id, 0.0)
-        if _num(delta) not in loads:
+        pressure = self.pipe_pressure.get(pipe_id, 0.0)
+        load_key = (_num(delta), _num(pressure))
+        if load_key not in loads:
             name = f"L{len(loads) + 1}"
-            loads[_num(delta)] = name
-            load_entries[name] = self.t_ref + delta
-            self.finite(load_entries[name], f"pipe:{pipe_id}", "operating temperature (reference + thermal change)")
-        names = (materials[material_key], sections[section_key], loads[_num(delta)])
+            loads[load_key] = name
+            load_entries[name] = (self.t_ref + delta, pressure)
+            self.finite(load_entries[name][0], f"pipe:{pipe_id}", "operating temperature (reference + thermal change)")
+        names = (materials[material_key], sections[section_key], loads[load_key])
         material_map[names[0]]["elements"].append(pipe_id)
         section_map[names[1]]["elements"].append(pipe_id)
         return names
@@ -1083,11 +1176,11 @@ class _Writer:
 
         materials: dict[tuple[str, str], str] = {}
         sections: dict[tuple[str, str], str] = {}
-        loads: dict[str, str] = {}
+        loads: dict[tuple[str, str], str] = {}
         material_map: dict[str, dict[str, Any]] = {}
         section_map: dict[str, dict[str, Any]] = {}
         element_map: dict[str, dict[str, Any]] = {}
-        load_entries: dict[str, float] = {}
+        load_entries: dict[str, tuple[float, float]] = {}
         attributes: dict[str, tuple[str, str, str]] = {}
         order = 0
         start = rows[0]["end"]
@@ -1107,7 +1200,7 @@ class _Writer:
                 if bend_names != names:
                     self.refuse("MBF-SI-BEND-UNSUPPORTED", self.bends[bend_id]["entity"],
                                 f"{self.bends[bend_id]['entity']}: pipe:{bend_id} and its incoming straight pipe:{pipe_id} "
-                                "differ in material, weight, section or temperature; the target program writes them as "
+                                "differ in material, weight, section, temperature or pressure; the target program writes them as "
                                 "one layout row with one set of properties")
                 attributes[bend_id] = bend_names
                 members.append((bend_id, row["near"], row["far"]))
@@ -1141,7 +1234,10 @@ class _Writer:
         if self.has_errors():
             return self.refused()
 
-        lines = [_title(self.title), "VERSION", MBF_VERSION, "OPTIONS", "HGRA,SI", "OPTEMP", _num(self.t_ref), "MATERIAL"]
+        lines = [_title(self.title), "VERSION", MBF_VERSION, "OPTIONS", "HGRA,SI", "OPTEMP", _num(self.t_ref)]
+        if self.pipe_pressure:
+            lines += ["OPPRES", OPPRES_LINE]
+        lines.append("MATERIAL")
         for name, record in material_map.items():
             description = _sanitize(record["swbpipe_material"], _DESCRIPTION_MAX) or name
             lines.append(f"{name},{_num(record['weight_density_kgf_per_m3'])},{_num(record['poisson_ratio'])},1,1,CS,{description}")
@@ -1152,8 +1248,8 @@ class _Writer:
         for name, record in section_map.items():
             lines.append(f"{name},{_num(record['outside_diameter_mm'])},{_num(record['wall_thickness_mm'])},0,0,0,0,0,0")
         lines.append("LOADS")
-        for name, temperature in load_entries.items():
-            lines.append(f"{name},{_num(temperature)},0,0")
+        for name, (temperature, pressure) in load_entries.items():
+            lines.append(f"{name},{_num(temperature)},{_num(pressure)},0")
         lines.append("LAYOUT")
 
         carried: tuple[str | None, str | None, str | None] = (None, None, None)
@@ -1232,6 +1328,14 @@ class _Writer:
             else:
                 entry["caepipe_node"] = node_map[self.supports[target["support"]]["node"]]
             load_map[key] = entry
+        pressure_map: dict[str, Any] = {}
+        if self.contract is not None:
+            pressure_map = {"contract": dict(self.contract), "load_case": self.pressure_case, "regions": [
+                {"id": region["id"], "members": list(region["member_pipe_ids"]),
+                 "terminals": [{key: terminal[key] for key in ("node_ref", "closure_transfer", "provenance")}
+                               for terminal in region["terminals"]],
+                 "provenance": region["provenance"], "pressure_bar": self.pipe_pressure[region["member_pipe_ids"][0]]}
+                for region in self.regions]}
         self.add_assumptions(temperatures)
         return MbfSiResult(
             status="written",
@@ -1244,6 +1348,7 @@ class _Writer:
             material_map=material_map,
             section_map=section_map,
             load_map=load_map,
+            pressure_map=pressure_map,
             layout_row_count=layout_row_count,
             loss_report=self.loss,
             assumptions=self.assumptions,
@@ -1268,7 +1373,9 @@ class _Writer:
     def add_assumptions(self, temperatures: list[float]) -> None:
         notes = [
             f"Profile {MBF_SI_PROFILE_ID}: MBF version {MBF_VERSION}, OPTIONS SI with the default vertical axis Y; "
-            "SWBPIPE global X, Y, Z are written unchanged as the target program's X, Y, Z, with gravity along -Y.",
+            "SWBPIPE global X, Y, Z are written unchanged as the target program's X, Y, Z, with gravity along -Y. "
+            "The writer always writes Y vertical: SWBPIPE has one vertical convention (weight along -Y) and the model "
+            "document records no vertical axis, so a Z-vertical import, which arrives rotated, is written Y-vertical.",
             "Lengths are written in mm, forces in N, moments in N*m, modulus in N/mm2 (= MPa), temperatures in C; "
             "SI source units scale to these by an exact power of ten, and US-customary units by the exact definitions "
             "listed in MBF-SI-UNITS-NORMALIZED (Design caepipe-mbf-import.md section 5.2).",
@@ -1277,9 +1384,19 @@ class _Writer:
             "Materials are written temperature-independent: identical E and expansion coefficient at "
             + ", ".join(f"{_num(value)} C" for value in temperatures)
             + "; the optional allowable, yield and rupture columns are omitted.",
-            "Every LOADS entry has Pressure 1 = 0 and specific gravity 0 (empty pipe); Temperature 1 = reference "
+            ("Every LOADS entry has Pressure 1 = the element's pressure-region pressure in the sustained case, in bar "
+             "(1 bar = 1e5 Pa exactly; psi by its exact definition), or 0 outside every region"
+             if self.pipe_pressure else "Every LOADS entry has Pressure 1 = 0")
+            + " and specific gravity 0 (empty pipe); Temperature 1 = reference "
             "temperature + the element's SWBPIPE thermal change (summed when several primitives act on one element).",
         ]
+        if self.pipe_pressure:
+            notes.append(f"OPPRES is written {OPPRES_LINE}: PD/4t, Bourdon effect off, pressure correction for bends "
+                         "off, peak pressure factor 1. SWBPIPE's exact pressure route models neither effect (DEL-04-07 "
+                         "D-3).")
+        if self.contract is not None:
+            notes.append("The pressure contract, region ids, members, terminals with their closure transfer and the "
+                         "provenance are not in the MBF; the sidecar's pressure_map carries them for a bound import.")
         if self.weight:
             notes.append(
                 f"Weight per length w (global -Y) is written as material weight density rho = |w| / (A * {STANDARD_GRAVITY} m/s^2) "

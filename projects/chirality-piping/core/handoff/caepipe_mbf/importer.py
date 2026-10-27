@@ -9,8 +9,9 @@ MBF construct exactly. It reads model input only, never analysis results.
 Every section, record, key letter, comment, field or value outside the subset
 is refused by name (the import produces no model) or listed in the import loss
 report; nothing is silently dropped, defaulted or inferred. Quantities keep
-their MBF unit. The only conversions are the two exact definitions of Design
-§5.3: feet and inches to inches, and kilogram-force to newton.
+their MBF unit (pressure too: bar or psi). The only conversions are the two exact definitions of Design
+§5.3: feet and inches to inches, and kilogram-force to newton. A Z-vertical
+file is turned into SWBPIPE's Y-vertical axes by an exact rotation (§5.1).
 
 An import is bound when the writer sidecar's `mbf_sha256` equals the SHA-256 of
 the input bytes; only then are the writer's own conventions applied (§1).
@@ -18,7 +19,8 @@ the input bytes; only then are the writer's own conventions applied (§1).
 From the project root:
 
     python3 -m core.handoff.caepipe_mbf.importer <in.mbf> --out <dir> [--sidecar <id_map.json>]
-        [--material-provenance <declaration.json>] [--rebind-by-node-number] [--source-label <text>]
+        [--material-provenance <declaration.json>] [--pressure-closure <declaration.json>]
+        [--rebind-by-node-number] [--source-label <text>]
 """
 
 from __future__ import annotations
@@ -69,10 +71,30 @@ _ANALYSIS_STATUS = {"mechanics": "ready_for_preview_diagnostics",
                     "professional_acceptance": "not_provided"}
 DOFS = ("UX", "UY", "UZ", "RX", "RY", "RZ")
 _AXES = "XYZ"
+# OPTIONS Z (Design §5.1): the file's global (X, Y, Z) becomes SWBPIPE's Y-vertical (x, y, z) = (X, Z, -Y), the
+# proper rotation by -90 degrees about X that takes the file's vertical +Z to +y. It permutes axes and changes one
+# sign, so it is exact. File axis j goes to SWBPIPE axis _Z_TARGET[j][0] with sign _Z_TARGET[j][1].
+_Z_TARGET = {0: (0, 1), 1: (2, -1), 2: (1, 1)}
 _FORCE_DIRECTIONS = ("global_x", "global_y", "global_z")
 _THERMAL_DIRECTION = "global_x"  # the token the invented correlation cases use; the solve does not read it
 # Exact catalog factors to Pa (core/units: MPa = 1e6 Pa; psi = lbf / in^2), used only to derive G in Pa.
 _PA_PER_UNIT = {"MPa": 1_000_000.0, "psi": 4.448_221_615_260_5 / 0.000_645_16}
+# Pressure (Design §9.4). LOADS Pressure 1 is in bar in SI files and psi in English files (Format of .MBF, LOADS);
+# it keeps that unit, which the units catalog defines exactly (1 bar = 1e5 Pa; 1 psi = 1 lbf/in^2).
+PRESSURE_UNIT = {True: "bar", False: "psi"}
+# A document with pressure takes the exact pressure contract (schemas/model.schema.yaml, PressureContract) with
+# Euler-Bernoulli straights, the beam theory SWBPIPE solves the same model with when it has no pressure.
+PRESSURE_CONTRACT = {"version": "3.0.0", "mode": "exact_pressure_v3", "shear_model": "euler_bernoulli"}
+SHEAR_MODELS = ("euler_bernoulli", "timoshenko_annulus_energy_v1")
+PRESSURE_BASIS = "internal_differential_zero_external_v1"
+CLOSURE_TRANSFERS = ("transfers_to_wall", "separately_supported_or_compensated")
+# OPPRES fields 2 and 3 switch CAEPIPE's Bourdon effect and pressure correction for bends; a blank OPPRES line
+# gives "0, 1, 1, 1.00, 0", both on (Format of .MBF, OPPRES). SWBPIPE's exact route models neither (DEL-04-07 D-3).
+OPPRES_EFFECTS = {1: "Bourdon effect", 2: "pressure correction for bends"}
+OPPRES_DEFAULTS = ("0", "1", "1", "1.00", "0")
+# Two straights continue one pressure region only when collinear within the exact route's 64-epsilon guard
+# (pressure_runtime.rs: a straight-straight kink is PRESSURE_REGION_NONCOLLINEAR); otherwise the region ends there.
+COLLINEAR_SINE = 64 * 2.0 ** -52
 
 # --- MBF format vocabulary (CAEPIPE User's Manual, Import MBF, Format of .MBF; DEL-17-01 CAEPIPE-IMPORT-MBF) ---
 SECTION_KEYWORDS = {
@@ -102,6 +124,9 @@ OPMISC_EXPORT_FIELDS = 13
 # The gravitational setting every observed export writes for the default (earth) environment, Y vertical: 386.4
 # (in/s^2, in SI files too) and direction (0, -1, 0). Only this setting is read (Design §6, TBD-17-04-005).
 EARTH_GRAVITY = (Fraction("386.4"), (Fraction(0), Fraction(-1), Fraction(0)))
+# In a Z-vertical file the same setting is read only with its direction along the file's -Z, the vertical the
+# option declares (selected interpretation, Design §6; no Z-vertical export has been observed).
+EARTH_GRAVITY_DIRECTION_Z = (Fraction(0), Fraction(0), Fraction(-1))
 # The documented 10-field layout gives the acceleration in the file's unit (Format of .MBF, OPMISC: in/sec2 or
 # m/sec2). It is read only as standard gravity, 9.80665 m/s^2 or 9.80665 / 0.0254 in/s^2, printed correctly rounded
 # to its own digits with at least three significant digits (Design §6).
@@ -210,12 +235,19 @@ def import_caepipe_mbf(
     *,
     sidecar: Mapping[str, Any] | None = None,
     material_provenance: Mapping[str, Any] | None = None,
+    pressure_closure: Mapping[str, Any] | None = None,
     rebind_by_node_number: bool = False,
     source_label: str,
 ) -> MbfImportResult:
-    """Import the declared MBF subset into a SWBPIPE model document, or refuse by name."""
+    """Import the declared MBF subset into a SWBPIPE model document, or refuse by name.
 
-    return _Importer(data, sidecar, material_provenance, rebind_by_node_number, source_label).run()
+    `pressure_closure` is the caller's closure-transfer declaration for the terminals of pressure regions an
+    unbound import forms (Design §9.4): {"closure_transfer": "transfers_to_wall" or
+    "separately_supported_or_compensated", "provenance": "<basis>", "nodes": {"<CAEPIPE node>": <closure>}}, with
+    "nodes" optional. Closure transfer is never inferred: without it, a file with pressure is refused."""
+
+    return _Importer(data, sidecar, material_provenance, rebind_by_node_number, source_label,
+                     pressure_closure).run()
 
 
 # ---------------------------------------------------------------------------
@@ -277,11 +309,19 @@ def english_length_bound(text: str) -> Fraction:
 VERTICAL_SINE = 1e-6
 
 
-def local_y_reference(start: Iterable[float], end: Iterable[float]) -> tuple[float, float, float]:
-    """The documented local y of a straight from `start` to `end` (global Y vertical)."""
+def local_y_reference(start: Iterable[float], end: Iterable[float], *,
+                      z_vertical: bool = False) -> tuple[float, float, float]:
+    """The documented local y of a straight from `start` to `end`, in SWBPIPE's Y-vertical axes.
+
+    With `z_vertical`, the file's vertical was Z and the points are already rotated (§5.1): the documented local z
+    is then the projected vertical +y and local y = z x x = (x_z, 0, -x_x) / |(x_x, x_z)|, horizontal; a vertical
+    element's local y is the file's global Y, which is SWBPIPE's -z."""
     x = _unit(_sub(tuple(end), tuple(start)))
-    if math.hypot(x[0], x[2]) <= VERTICAL_SINE:
-        return (-1.0, 0.0, 0.0)
+    horizontal = math.hypot(x[0], x[2])
+    if horizontal <= VERTICAL_SINE:
+        return (0.0, 0.0, -1.0) if z_vertical else (-1.0, 0.0, 0.0)
+    if z_vertical:
+        return (x[2] / horizontal + 0.0, 0.0, -x[0] / horizontal + 0.0)  # + 0.0 writes no negative zero
     # Y - (Y.x) x, with 1 - x_y^2 written as x_x^2 + x_z^2 so a near-vertical element keeps its precision.
     projected = (-x[1] * x[0], x[0] * x[0] + x[2] * x[2], -x[1] * x[2])
     return tuple(value + 0.0 for value in _unit(projected))  # + 0.0 writes no negative zero
@@ -334,6 +374,12 @@ def _unit_exact(vector: Iterable[Fraction]) -> tuple[float, float, float]:
     return _unit(tuple(float(value * scale) for value in vector))
 
 
+def _negated(number: "Num") -> "Num":
+    """`number` with its sign changed: value, exact rational and printed text (0 stays 0)."""
+    text = number.text[1:] if number.text.startswith("-") else "-" + number.text.lstrip("+")
+    return Num(0.0 - number.value, -number.exact, text)
+
+
 def _sub(a, b):
     return (a[0] - b[0], a[1] - b[1], a[2] - b[2])
 
@@ -374,8 +420,12 @@ class _Refused(Exception):
 
 
 class _Importer:
-    def __init__(self, data: Any, sidecar: Any, provenance: Any, rebind: bool, source_label: Any) -> None:
+    def __init__(self, data: Any, sidecar: Any, provenance: Any, rebind: bool, source_label: Any,
+                 closure: Any = None) -> None:
         self.data = data
+        self.closure = closure
+        self.oppres: tuple[int, list[str], bool] | None = None
+        self.pressure_notes: list[str] = []
         self.sidecar = sidecar
         self.provenance = provenance
         self.rebind = rebind
@@ -389,6 +439,7 @@ class _Importer:
         self.version: str | None = None
         self.si = False
         self.rad = False
+        self.z_vertical = False
         self.lines: list[tuple[int, str]] = []
         self.heading: list[tuple[int, str]] = []
         self.sections: dict[str, tuple[int, list[tuple[int, str]]]] = {}
@@ -426,7 +477,8 @@ class _Importer:
     def result(self, model: dict[str, Any] | None, id_map: dict[str, Any]) -> MbfImportResult:
         refused = self.has_errors()
         source = {"mbf_sha256": self.sha, "mbf_version": self.version, "unit_mode": "SI" if self.si else "English",
-                  "angles": "rad" if self.rad else "deg", "line_count": len(self.lines),
+                  "angles": "rad" if self.rad else "deg", "vertical_axis": "Z" if self.z_vertical else "Y",
+                  "line_count": len(self.lines),
                   "source_label": self.source_label,
                   "binding": "bound" if self.bound else ("rebound_unconfirmed" if self.rebound else "unbound")}
         return MbfImportResult(
@@ -632,8 +684,7 @@ class _Importer:
                 elif token == "RAD":
                     self.rad = True
                 elif token == "Z":
-                    self.refuse("MBF-IMPORT-OPTION-UNSUPPORTED", line, "OPTIONS Z",
-                                "vertical axis Z is not read in tranche 1; the writer writes Y vertical")
+                    self.z_vertical = True
                 elif token in HANGER_OPTIONS:
                     options["hanger_design"].append(token)
                 elif token in PIPING_CODE_OPTIONS:
@@ -657,7 +708,8 @@ class _Importer:
         if not isinstance(self.sidecar, Mapping):
             self.refuse("MBF-IMPORT-SIDECAR-INVALID", 0, "sidecar", "the sidecar must be an object")
             return
-        names = ("node_map", "element_map", "support_map", "load_case_map", "material_map", "load_map")
+        names = ("node_map", "element_map", "support_map", "load_case_map", "material_map", "load_map",
+                 "pressure_map")
         for name in names:
             value = self.sidecar.get(name, {})
             if not isinstance(value, Mapping):
@@ -732,6 +784,8 @@ class _Importer:
                 continue
             header, entries = self.sections[name]
             if entries and entries[0][1] == "" and name in ("OPPRES", "OPMISC"):
+                if name == "OPPRES":
+                    self.oppres = (header, list(OPPRES_DEFAULTS), True)
                 self.target_options[name] = "section present with CAEPIPE defaults"
                 self.listed("delegated", "MBF-IMPORT-TARGET-OPTION-DELEGATED", header, name,
                             f"{name} is present with a blank line (CAEPIPE defaults); pass-through only")
@@ -756,6 +810,8 @@ class _Importer:
                             "the gravitational direction field's encoding and default are open (TBD-17-04-005, "
                             "CQ-17-01-011); weight direction is a mechanics input and is not assumed")
                 continue
+            if name == "OPPRES":
+                self.oppres = (line, fields, False)
             self.target_options[name] = {"fields": fields}
             self.listed("delegated", "MBF-IMPORT-TARGET-OPTION-DELEGATED", line, name,
                         f"{name} configures CAEPIPE's own analysis; pass-through target configuration only")
@@ -789,7 +845,8 @@ class _Importer:
         if g is None or None in components:
             return
         if len(fields) == OPMISC_EXPORT_FIELDS:  # the export's layout: its observed default only
-            earth = g.exact == EARTH_GRAVITY[0] and tuple(c.exact for c in components) == EARTH_GRAVITY[1]
+            down = EARTH_GRAVITY_DIRECTION_Z if self.z_vertical else EARTH_GRAVITY[1]
+            earth = g.exact == EARTH_GRAVITY[0] and tuple(c.exact for c in components) == down
         else:  # the documented layout: standard gravity in the file's documented unit
             earth = standard_gravity_as_printed(g.text, STANDARD_GRAVITY_BY_MODE[self.si])
         if not earth:
@@ -800,7 +857,8 @@ class _Importer:
             return
         self.listed("delegated", "MBF-IMPORT-TARGET-OPTION-DELEGATED", line, "OPMISC gravity",
                     "OPMISC gravitational acceleration and direction are the default earth setting; SWBPIPE has no "
-                    "gravity setting and carries weight as explicit primitives along -Y")
+                    "gravity setting and carries weight as explicit primitives along -Y"
+                    + (" (the file's -Z, rotated)" if self.z_vertical else ""))
         self.used_conventions.add(("gravity", "the earth gravity setting"))
 
     # -- §7 MATERIAL -----------------------------------------------------------
@@ -980,9 +1038,10 @@ class _Importer:
             p1 = self.real(fields[2], line, f"{location} field 3 (pressure 1)")
             sg = self.real(fields[3], line, f"{location} field 4 (specific gravity)")
             ok = t1 is not None and p1 is not None and sg is not None
-            if p1 is not None and p1.exact != 0:
+            if p1 is not None and p1.exact < 0:
                 self.refuse("MBF-IMPORT-PRESSURE-UNSUPPORTED", line, f"{location} field 3",
-                            f"load {name} has a non-zero pressure 1; pressure is tranche 2")
+                            f"load {name} has a negative pressure 1; the manual gives no sign convention for "
+                            "external pressure, so it is not read")
                 ok = False
             if sg is not None and sg.exact != 0:
                 self.refuse("MBF-IMPORT-CONTENTS-UNSUPPORTED", line, f"{location} field 4",
@@ -1005,7 +1064,7 @@ class _Importer:
                 self.listed("delegated", "MBF-IMPORT-TARGET-OPTION-DELEGATED", line, f"{location} peak values",
                             f"load {name} peak temperature and pressure only feed CAEPIPE's peak case")
             if ok:
-                record.update(refused=False, t1=t1)
+                record.update(refused=False, t1=t1, p1=p1)
 
     def thermal_pair(self, name: str, t_text: str, p_text: str, n: int, line: int, location: str) -> bool:
         p_zero = self.is_zero(p_text, line, f"{location} P{n}")
@@ -1281,7 +1340,24 @@ class _Importer:
                 if parsed is None:
                     return None
                 values[index] = parsed
-        return values
+        return self.to_swb(values)
+
+    def to_swb(self, values: dict[int, Any], *, signed: bool = True) -> dict[int, Any]:
+        """Per-axis values keyed by file axis, keyed by SWBPIPE axis: unchanged for Y vertical; for Z vertical
+        rotated by _Z_TARGET (§5.1). A signed value is a Num or a (value, bound) pair; a flag only moves."""
+        if not self.z_vertical:
+            return values
+        out: dict[int, Any] = {}
+        for axis, value in values.items():
+            target, sign = _Z_TARGET[axis]
+            if signed and sign < 0:
+                value = _negated(value) if isinstance(value, Num) else (-value[0], value[1])
+            out[target] = value
+        return out
+
+    def file_axis(self, index: int) -> str:
+        """The file's name for SWBPIPE axis `index`."""
+        return ("XZY" if self.z_vertical else _AXES)[index]
 
     def from_row(self, row: _Row, first: bool) -> None:
         location = f"LAYOUT line {row.line}"
@@ -1293,8 +1369,8 @@ class _Importer:
             node = self.nodes[row.number]
             for index, (value, bound) in values.items():
                 if abs(value - node["exact"][index]) > bound + node["bound"][index]:
-                    self.refuse("MBF-IMPORT-FROM-COORDINATES-CONFLICT", row.line, f"{location} {_AXES[index]}",
-                                f"F{row.number} {_AXES[index]} does not equal the node's position within the "
+                    self.refuse("MBF-IMPORT-FROM-COORDINATES-CONFLICT", row.line, f"{location} {self.file_axis(index)}",
+                                f"F{row.number} {self.file_axis(index)} does not equal the node's position within the "
                                 "half-unit bounds of the printed digits")
             return
         if values:
@@ -1430,6 +1506,7 @@ class _Importer:
                 table = _FORCE_NAMES if name in _FORCE_NAMES else _MOMENT_NAMES
                 values = self.comment_values(name, args, value, table[name], line, where)
                 if values is not None:
+                    values = self.to_swb(values)
                     loads.append(("forces" if table is _FORCE_NAMES else "moments", values, line))
             elif name == "FLC":
                 number = self.real(value or "", line, where)
@@ -1444,7 +1521,7 @@ class _Importer:
                 values = self.comment_values(name, args, value, table[name], line, where)
                 if values is not None:
                     store = record["rot" if rotation else "disp"]
-                    for axis, number in values.items():
+                    for axis, number in self.to_swb(values).items():
                         if number.exact != 0:
                             store.setdefault(axis, []).append((number, line))
             elif name in _FIXD_NAMES or name in _FIXR_NAMES:
@@ -1456,7 +1533,7 @@ class _Importer:
                 values = self.comment_values(name, args, value, table[name], line, where, flag=True)
                 if values is None:
                     continue
-                for axis, number in values.items():
+                for axis, number in self.to_swb(values, signed=False).items():
                     if number.exact not in (0, 1):
                         self.refuse("MBF-IMPORT-COMMENT-INVALID", line, where, f"{name} values must be 0 or 1")
                         break
@@ -1654,6 +1731,7 @@ class _Importer:
             if isinstance(entry, Mapping):
                 element_lookup[(str(entry.get("from")), str(entry.get("to")))] = (swb_id, entry)
         pipes, components, unresolved = [], [], []
+        pressures: dict[str, tuple[Num | None, _Element]] = {}
         weights: list[tuple[str, float, int]] = []
         thermals: list[tuple[str, float, int]] = []
         for element in self.elements:
@@ -1689,17 +1767,20 @@ class _Importer:
                         tuple(float(restored[axis]) for axis in "xyz")) < math.inf:
                     pipe["y_reference"] = {axis: float(restored[axis]) for axis in "xyz"}
                 else:
-                    pipe["y_reference"] = dict(zip("xyz", local_y_reference(point_of[a], point_of[b])))
+                    pipe["y_reference"] = dict(zip("xyz", local_y_reference(point_of[a], point_of[b],
+                                                                            z_vertical=self.z_vertical)))
+                    vertical = ("global Z vertical, in the rotated axes" if self.z_vertical else "global Y vertical")
                     self.diagnostics.append({
                         "code": "MBF-IMPORT-ORIENTATION-DEFAULTED", "severity": "info", "line": element.line,
                         "location": swb_id,
                         "message": f"{swb_id} has no y_reference in the MBF; it takes CAEPIPE's documented pipe "
-                                   "local y axis (CAEPIPE-LOCAL-AXES, global Y vertical). A circular section's "
+                                   f"local y axis (CAEPIPE-LOCAL-AXES, {vertical}). A circular section's "
                                    "stiffness does not depend on it; only local-axis results do"})
                 if bend is not None:
                     components.append(self.bend_component(element, swb_id, node_id[a], length_unit, provenance,
                                                           unresolved, id_map, claim))
                 pipes.append(pipe)
+                pressures[swb_id] = (self.loads[element.load]["p1"] if element.load is not None else None, element)
                 weight = self.weight_per_length(element)
                 if weight != 0 or self.materials[element.material]["density"].exact != 0:
                     weight = self.binary64(weight, element.line, f"LAYOUT line {element.line}", "weight per length",
@@ -1722,8 +1803,21 @@ class _Importer:
                         "contents load, and CAEPIPE's treatment of an element without a load record is not documented")
         self.list_unused(material_ids)
         supports, support_ids = self.assemble_supports(node_id, provenance, id_map, claim)
+        arcs = {component["geometry"]["bend_pipe_ref"] for component in components}
+        pressure = self.assemble_pressure(pipes, pressures, arcs, point_of, id_map, claim)
         load_cases = self.assemble_loads(node_id, support_ids, weights, thermals, length_unit, angle_unit,
-                                         provenance, id_map, claim)
+                                         provenance, id_map, claim, None if pressure is None else pressure[1])
+        if pressure is not None:
+            moved = [load["id"] for case in load_cases for load in case["primitive_loads"]
+                     if load["category"] == "imposed_displacement"]
+            if moved:
+                self.refuse("MBF-IMPORT-PRESSURE-DISPLACEMENT-UNSUPPORTED", 0, ", ".join(moved),
+                            "the file has pressure and anchor displacements; the exact pressure route takes boundary "
+                            "motion only in load-state form (EXACT_IMPOSED_DISPLACEMENT_PRIMITIVE_UNSUPPORTED), which "
+                            "this importer does not write")
+                raise _Refused
+            for pipe in pipes:  # PIPE field 4 is read only as 0 (§8): the file's own explicit allowance
+                pipe["section"]["corrosion_allowance"] = {"value": 0.0, "unit": length_unit}
         self.report_unrecoverable()
 
         units = ({"length": "mm", "force": "N", "moment": "N*m", "pressure": "MPa", "stress": "Pa",
@@ -1741,6 +1835,7 @@ class _Importer:
         model: dict[str, Any] = {
             "schema_version": current_model_schema_version(),
             "document_kind": MODEL_KIND,
+            **({} if pressure is None else {"pressure_contract": pressure[0]}),
             "data_boundary": {**_BLANK_BOUNDARY,
                               "private_data_policy": f"imported from MBF sha256:{self.sha} ({binding}); local user "
                                                      "document not committed to repository"},
@@ -1982,7 +2077,7 @@ class _Importer:
         return ids
 
     def assemble_loads(self, node_id, support_ids, weights, thermals, length_unit, angle_unit, provenance,
-                       id_map, claim):
+                       id_map, claim, regions=None):
         cases = self.case_ids(id_map)
         force_unit, moment_unit = ("N", "N*m") if self.si else ("lbf", "lbf*ft")
         primitives: dict[str, list[dict[str, Any]]] = {"sustained": [], "expansion": []}
@@ -2039,7 +2134,7 @@ class _Importer:
         load_cases = []
         for kind, label_key, case_kind in (("sustained", "sustained", "sustained"),
                                            ("expansion", "expansion", "thermal")):
-            if not primitives[kind]:
+            if not primitives[kind] and not (regions and kind == "sustained"):
                 continue
             case_id = claim(cases[kind], f"CAEPIPE load case {LOAD_CASE_LABELS[label_key]}", 0)
             id_map["load_case_map"][LOAD_CASE_LABELS[label_key]] = case_id
@@ -2064,10 +2159,209 @@ class _Importer:
                 loads.append({"id": load_id, "category": item["category"], "target": target, "direction": direction,
                               "magnitude": {"value": item["magnitude"], "unit": item["unit"]},
                               "dimension": item["dimension"], "provenance": provenance(item["line"])})
-            load_cases.append({"id": case_id, "label": LOAD_CASE_LABELS[label_key], "kind": case_kind,
-                               "status": "draft", "primitive_loads": loads, "provenance":
-                               f"imported from MBF sha256:{self.sha}; CAEPIPE load case {LOAD_CASE_LABELS[label_key]}"})
+            case = {"id": case_id, "label": LOAD_CASE_LABELS[label_key], "kind": case_kind, "status": "draft",
+                    "primitive_loads": loads, "provenance":
+                    f"imported from MBF sha256:{self.sha}; CAEPIPE load case {LOAD_CASE_LABELS[label_key]}"}
+            if regions is not None:  # Pressure 1 acts in the sustained case, not in the expansion case (§9.4)
+                case["pressure_regions"] = regions if kind == "sustained" else []
+            load_cases.append(case)
         return load_cases
+
+    # -- §9.4 pressure ----------------------------------------------------------
+    def assemble_pressure(self, pipes, pressures, arcs, point_of, id_map, claim):
+        """(contract, regions) from LOADS Pressure 1, or None when the model has no pressure."""
+        active = {pipe_id: number for pipe_id, (number, _) in pressures.items()
+                  if number is not None and number.exact != 0}
+        stored = self.maps.get("pressure_map") if self.bound else None
+        stored = stored if isinstance(stored, Mapping) and isinstance(stored.get("contract"), Mapping) else None
+        if not active and stored is None:
+            return None
+        contract = dict(PRESSURE_CONTRACT)
+        if stored is not None:
+            shear = stored["contract"].get("shear_model")
+            if shear in SHEAR_MODELS:
+                contract["shear_model"] = shear
+            else:
+                self.listed("approximated", "MBF-IMPORT-ID-UNRECOVERABLE", 0, "pressure_map.contract",
+                            "the sidecar gives no admitted shear_model; euler_bernoulli is used")
+        if active:
+            self.pressure_effects()
+        ends = {pipe["id"]: (pipe["from"], pipe["to"]) for pipe in pipes}
+        name_of = {swb_id: name for name, swb_id in id_map["node_map"].items()}
+        unit = PRESSURE_UNIT[self.si]
+        if stored is not None and isinstance(stored.get("regions"), list):
+            members = self.restore_regions(stored["regions"], active, ends, name_of)
+            how = "restored from the sidecar's pressure_map (bound import)"
+        else:
+            members = self.form_regions(active, pressures, ends, arcs, point_of, name_of)
+            how = ("formed as maximal chains of elements with equal Pressure 1 and bore, ended at tees, at "
+                   "straight-straight corners and where pressure or bore changes; closure transfer at every terminal "
+                   "is the caller's declaration (pressure_closure), never inferred")
+        if members is None:
+            raise _Refused
+        regions, region_map = [], {}
+        element_name = {swb_id: name for name, swb_id in id_map["element_map"].items()}
+        for region_id, member_ids, terminals in members:
+            first = pressures[member_ids[0]][1]
+            number = active[member_ids[0]]
+            claim(region_id, f"pressure region of {element_name[member_ids[0]]}", first.line)
+            regions.append({"id": region_id, "member_pipe_ids": member_ids, "pressure_basis": PRESSURE_BASIS,
+                            "pressure": {"value": number.value, "unit": unit}, "terminals": terminals,
+                            "provenance": f"imported from MBF sha256:{self.sha}, LOADS {first.load} line "
+                                          f"{self.loads[first.load]['line']} (Pressure 1)"})
+            region_map[region_id] = [element_name[pipe_id] for pipe_id in member_ids]
+        if active:
+            id_map["region_map"] = region_map
+        self.summary["pressure_regions"] = len(regions)
+        self.pressure_notes.append(
+            f"Pressure 1 is kept in {unit} as exact pressure regions ({len(regions)}) under the contract "
+            f"{contract['version']}/{contract['mode']} with shear_model {contract['shear_model']}; regions are {how}. "
+            "Pressure acts in the sustained case; the expansion case states an empty region list. Section corrosion "
+            "allowance is written as the explicit 0 the file gives.")
+        return contract, regions
+
+    def pressure_effects(self) -> None:
+        """Lists the CAEPIPE pressure effects OPPRES turns on, or leaves unstated, that SWBPIPE does not model."""
+        if self.oppres is None:
+            self.listed("omitted", "MBF-IMPORT-PRESSURE-EFFECTS-OMITTED", self.sections["LOADS"][0], "OPPRES",
+                        "the file has pressure and no OPPRES section, so it does not state CAEPIPE's Bourdon effect "
+                        "or pressure correction for bends (a blank OPPRES line turns both on); SWBPIPE's exact "
+                        "pressure route models neither (DEL-04-07 D-3)")
+            return
+        line, fields, defaults = self.oppres
+        on = []
+        for index, effect in OPPRES_EFFECTS.items():
+            text = fields[index] if len(fields) > index else ""
+            if text == "":
+                on.append(f"{effect} (unstated)")
+                continue
+            number = self.real(text, line, f"OPPRES field {index + 1} ({effect})")
+            if number is not None and number.exact not in (0, 1):
+                self.refuse("MBF-IMPORT-FIELD-UNDOCUMENTED", line, f"OPPRES field {index + 1}",
+                            f"OPPRES {effect} is 0 (off) or 1 (on)")
+            elif number is not None and number.exact == 1:
+                on.append(f"{effect} (on{' by the blank-line default' if defaults else ''})")
+        if on:
+            self.listed("omitted", "MBF-IMPORT-PRESSURE-EFFECTS-OMITTED", line, "OPPRES",
+                        f"OPPRES gives {', '.join(on)}; SWBPIPE's exact pressure route models neither the Bourdon "
+                        "effect nor pressure stiffening of bends (DEL-04-07 D-3)")
+
+    def form_regions(self, active, pressures, ends, arcs, point_of, name_of):
+        """Unbound regions: [(id, member pipe ids in chain order, two terminals)], or None after a refusal."""
+        incident: dict[str, list[str]] = {}
+        for pipe_id, (a, b) in ends.items():
+            incident.setdefault(a, []).append(pipe_id)
+            incident.setdefault(b, []).append(pipe_id)
+        order = {pipe_id: index for index, pipe_id in enumerate(ends)}
+
+        def bore(pipe_id: str) -> Fraction:
+            section = self.pipes[pressures[pipe_id][1].section]
+            return section["od"].exact - 2 * section["thk"].exact
+
+        def far(pipe_id: str, node: str) -> str:
+            a, b = ends[pipe_id]
+            return b if node == a else a
+
+        def continues(pipe_id: str, node: str) -> str | None:
+            if len(incident[node]) != 2:
+                return None  # a free end or a tee ends the region
+            other = next(item for item in incident[node] if item != pipe_id)
+            if other not in active or active[other].exact != active[pipe_id].exact or bore(other) != bore(pipe_id):
+                return None
+            if pipe_id in arcs or other in arcs:
+                return other  # tangent at a realized bend's ends (§11)
+            d1 = _unit(_sub(point_of[name_of[node]], point_of[name_of[far(pipe_id, node)]]))
+            d2 = _unit(_sub(point_of[name_of[far(other, node)]], point_of[name_of[node]]))
+            cross = (d1[1] * d2[2] - d1[2] * d2[1], d1[2] * d2[0] - d1[0] * d2[2], d1[0] * d2[1] - d1[1] * d2[0])
+            collinear = _norm(cross) <= COLLINEAR_SINE and sum(d1[i] * d2[i] for i in range(3)) > 0
+            return other if collinear else None
+
+        chains, seen = [], set()
+        for pipe_id in sorted(active, key=order.__getitem__):
+            if pipe_id in seen:
+                continue
+            seen.add(pipe_id)
+            sides = []
+            for node in ends[pipe_id]:
+                walked, current = [], pipe_id
+                while (following := continues(current, node)) is not None and following not in seen:
+                    walked.append(following)
+                    seen.add(following)
+                    node, current = far(following, node), following
+                sides.append((walked, node))
+            (back, start), (ahead, end) = sides
+            members = back[::-1] + [pipe_id] + ahead
+            if order[members[-1]] < order[members[0]]:
+                members, start, end = members[::-1], end, start
+            chains.append((members, start, end))
+        declared = self.closure_declaration()
+        if declared is None:
+            return None
+        default, provenance, by_node = declared
+        terminal_names = {name_of[node] for _, start, end in chains for node in (start, end)}
+        unknown = sorted(set(by_node) - terminal_names)
+        if unknown:
+            self.refuse("MBF-IMPORT-PRESSURE-CLOSURE-INVALID", 0, "pressure_closure.nodes",
+                        f"the closure declaration names {', '.join(unknown)}, which is not a pressure-region "
+                        "terminal")
+            return None
+        formed = []
+        for members, start, end in chains:
+            terminals = [{"node_ref": node, "closure_transfer": by_node.get(name_of[node], default),
+                          "provenance": f"closure transfer declared at import: {provenance}"} for node in (start, end)]
+            formed.append((f"region:mbf-{name_of[start]}-{name_of[end]}", members, terminals))
+        return formed
+
+    def closure_declaration(self) -> tuple[str, str, dict[str, str]] | None:
+        declared = self.closure
+        line = self.sections["LOADS"][0]
+        if declared is None:
+            self.refuse("MBF-IMPORT-PRESSURE-CLOSURE-REQUIRED", line, "LOADS Pressure 1",
+                        "the file has pressure; each pressure-region terminal needs a closure transfer "
+                        "(transfers_to_wall or separately_supported_or_compensated), which the MBF does not state "
+                        "and SWBPIPE never infers: pass pressure_closure")
+            return None
+        nodes = declared.get("nodes", {}) if isinstance(declared, Mapping) else None
+        if not (isinstance(declared, Mapping) and set(declared) <= {"closure_transfer", "provenance", "nodes"}
+                and declared.get("closure_transfer") in CLOSURE_TRANSFERS
+                and isinstance(declared.get("provenance"), str) and declared["provenance"].strip()
+                and isinstance(nodes, Mapping)
+                and all(isinstance(name, str) and value in CLOSURE_TRANSFERS for name, value in nodes.items())):
+            self.refuse("MBF-IMPORT-PRESSURE-CLOSURE-INVALID", line, "pressure_closure",
+                        "the closure declaration needs closure_transfer (transfers_to_wall or "
+                        "separately_supported_or_compensated), a non-empty provenance and optionally nodes, a map "
+                        "from CAEPIPE node names to a closure transfer")
+            return None
+        return declared["closure_transfer"], declared["provenance"].strip(), dict(nodes)
+
+    def restore_regions(self, stored, active, ends, name_of):
+        """Bound regions from the sidecar, checked against the file's Pressure 1 values; None after a refusal."""
+        restored, owned = [], set()
+        for entry in stored:
+            members = entry.get("members") if isinstance(entry, Mapping) else None
+            terminals = entry.get("terminals") if isinstance(entry, Mapping) else None
+            valid = (isinstance(entry, Mapping) and isinstance(entry.get("id"), str) and isinstance(members, list)
+                     and members and all(isinstance(item, str) and item in active and item not in owned
+                                         for item in members)
+                     and len(set(members)) == len(members)
+                     and len({active[item].exact for item in members}) == 1
+                     and isinstance(terminals, list) and len(terminals) == 2
+                     and all(isinstance(item, Mapping) and item.get("node_ref") in name_of
+                             and item.get("closure_transfer") in CLOSURE_TRANSFERS
+                             and isinstance(item.get("provenance"), str) and item["provenance"].strip()
+                             for item in terminals))
+            if not valid:
+                break
+            owned.update(members)
+            restored.append((entry["id"], list(members), [
+                {"node_ref": item["node_ref"], "closure_transfer": item["closure_transfer"],
+                 "provenance": item["provenance"]} for item in terminals]))
+        else:
+            if owned == set(active):
+                return restored
+        self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", self.sections["LOADS"][0], "pressure_map",
+                    "the sidecar's pressure regions do not match the MBF's Pressure 1 values")
+        return None
 
     def displacement_target(self, name: str, dof: str, candidates: list[str]) -> str | None:
         found = {entry.get("target", {}).get("support") for entry in self.maps.get("load_map", {}).values()
@@ -2119,8 +2413,11 @@ class _Importer:
                 if self.si else
                 "English: lengths in in (feet-inch notation evaluated exactly, 1 ft = 12 in), forces in lbf, "
                 "moments in lbf*ft, E in psi, temperatures in degF")
+        vertical = ("Z vertical, turned into SWBPIPE's Y-vertical axes by the exact rotation (X, Y, Z) -> (X, Z, -Y) "
+                    "of every coordinate, offset, force, moment, displacement, rotation and restraint axis; the SI "
+                    "writer re-exports the rotated model Y-vertical" if self.z_vertical else "Y vertical")
         self.assumptions.append(f"Profile {IMPORT_PROFILE_ID}: MBF version {self.version}, unit mode {mode}; angles "
-                                f"in {'rad' if self.rad else 'deg'}; Y vertical; quantities keep their MBF unit.")
+                                f"in {'rad' if self.rad else 'deg'}; {vertical}; quantities keep their MBF unit.")
         self.assumptions.append("Node positions are summed from the printed offsets as exact rationals and rounded "
                                 "to binary64 once per node.")
         if not self.si:
@@ -2139,7 +2436,9 @@ class _Importer:
                                 "(identical E and expansion coefficient on every temperature line).")
         self.assumptions.append("Thermal change per element is T1 - T_ref (OPTEMP); zero changes give no primitive. "
                                 "Section corrosion, mill tolerance, insulation and lining fields given as zero are "
-                                "written as absent.")
+                                "written as absent" + (", except the corrosion allowance under pressure."
+                                                       if self.pressure_notes else "."))
+        self.assumptions.extend(self.pressure_notes)
         if ("gravity", "the earth gravity setting") in self.used_conventions:
             self.used_conventions.discard(("gravity", "the earth gravity setting"))
             self.assumptions.append("OPMISC gives earth gravity (the export's default setting 386.4 with direction "
@@ -2196,6 +2495,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--sidecar", type=Path)
     parser.add_argument("--material-provenance", type=Path)
+    parser.add_argument("--pressure-closure", type=Path)
     parser.add_argument("--rebind-by-node-number", action="store_true")
     parser.add_argument("--source-label")
     args = parser.parse_args(argv)
@@ -2208,6 +2508,8 @@ def main(argv: list[str] | None = None) -> int:
         sidecar=load_sidecar(args.sidecar) if args.sidecar else None,
         material_provenance=json.loads(args.material_provenance.read_text(encoding="utf-8"))
         if args.material_provenance else None,
+        pressure_closure=json.loads(args.pressure_closure.read_text(encoding="utf-8"))
+        if args.pressure_closure else None,
         rebind_by_node_number=args.rebind_by_node_number,
         source_label=args.source_label or args.mbf.name,
     )
