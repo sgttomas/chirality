@@ -312,6 +312,21 @@ def half_unit(text: str) -> Fraction:
     return Fraction(1, 2) * Fraction(10) ** (int(exponent or 0) - decimals)
 
 
+def tenth_digit(value: Fraction) -> Fraction:
+    """Half a unit in the tenth significant digit of the decimal `value`, 0 for 0: the writer's printing bound. It
+    prints ten significant digits correctly rounded (si_writer _num, `.10g`, trailing zeros dropped, so "4000" stands
+    for 4000.000000), and a value printed as p lies within this bound of p."""
+    if value == 0:
+        return Fraction(0)
+    size = abs(value)
+    exponent = math.floor(math.log10(float(size)))
+    while Fraction(10) ** exponent > size:
+        exponent -= 1
+    while Fraction(10) ** (exponent + 1) <= size:
+        exponent += 1
+    return Fraction(1, 2) * Fraction(10) ** (exponent - 9)
+
+
 def parse_english_length(text: str) -> Fraction | None:
     """Exact inches for one documented English length form (§5.4), or None when the form is not documented."""
     match = _FEET_ONLY.match(text)
@@ -1170,6 +1185,7 @@ class _Element:
     ti: bool = False
     radius: Num | None = None
     factor: Num | None = None
+    row: int = -1  # its T row's index among the layout's F and T rows (a legacy sidecar's layout_row)
 
 
 class _Refused(Exception):
@@ -1500,6 +1516,10 @@ class _Importer:
             self.rebound = True
         elif digest == self.sha:
             self.bound = True
+            if not parser.current and (not self.si or self.z_vertical):
+                self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", 0, "sidecar_format",
+                            "the sidecar is legacy, from main's tranche-1 writer, which wrote only SI files with Y "
+                            "vertical; this file is " + ("Z-vertical" if self.z_vertical else "English"))
         else:
             self.diagnostics.append({"code": "MBF-IMPORT-SIDECAR-NOT-APPLIED", "severity": "info", "line": 0,
                                      "location": "sidecar",
@@ -2038,6 +2058,7 @@ class _Importer:
         first_from = True
         run_refused = False
         self.layout_present = "LAYOUT" in self.sections
+        layout_index = -1
         for row in rows:
             if isinstance(row, tuple):
                 line, text = row
@@ -2055,6 +2076,7 @@ class _Importer:
                 self.location_rows.setdefault(row.number, []).append(row.line)
                 self.row_comments(row, row.number, allow_load=False)
                 continue
+            layout_index += 1
             if self.elements:
                 if row.kind == "F":
                     self.run_end_after.add(len(self.elements) - 1)
@@ -2074,6 +2096,7 @@ class _Importer:
                 if not self.to_row(row, current, carried):
                     current, run_refused = None, True
                     continue
+                self.elements[-1].row = layout_index
                 current = row.number
             self.row_comments(row, row.number, allow_load=True)
         if self.elements:
@@ -2577,6 +2600,7 @@ class _Importer:
         weights: list[tuple[str, float, int]] = []
         thermals: list[tuple[str, float, int]] = []
         element_pairs: list[tuple[str, str]] = []
+        self.carriers: dict[tuple[str, str], list[str]] = {}  # (MATERIAL or PIPE, name) -> pipe ids, layout order
         derived_y: list[str] = []  # straights whose y_reference is CAEPIPE's documented local y, derived
         for element in self.elements:
             start = node_names[element.start][-1]
@@ -2599,13 +2623,8 @@ class _Importer:
                         self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", element.line, f"element_map[{swb_id}].bend",
                                     f"the sidecar records {'a' if 'bend' in entry else 'no'} bend for {swb_id}, but "
                                     f"the file's element {caepipe_name} is {'straight' if bend is None else 'a bend'}")
-                    # A legacy entry repeats the element's MBF record names; they must be the file's.
-                    for name, given in (("material", element.material), ("section", element.section),
-                                        ("load", element.load)):
-                        if self.bound and not self.sidecar_current and entry[name] != given:
-                            self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", element.line, f"element_map[{swb_id}].{name}",
-                                        f"the sidecar records {name} {entry[name]} for {swb_id}, but the file's "
-                                        f"element {caepipe_name} has {given}")
+                    if self.bound and not self.sidecar_current:
+                        self.legacy_element(swb_id, entry, element, caepipe_name, len(element_pairs) - 1, bend)
                 claim(swb_id, f"CAEPIPE element {caepipe_name}", element.line)
                 id_map["element_map"][caepipe_name] = swb_id
                 section = self.pipes[element.section]
@@ -2671,6 +2690,8 @@ class _Importer:
                     components.append(self.bend_component(element, swb_id, node_id[a], length_unit, provenance,
                                                           unresolved, id_map, claim))
                 pipes.append(pipe)
+                self.carriers.setdefault(("material", element.material), []).append(swb_id)
+                self.carriers.setdefault(("section", element.section), []).append(swb_id)
                 pressures[swb_id] = (self.loads[element.load]["p1"] if element.load is not None else None, element)
                 weight = self.weight_per_length(element)
                 if weight != 0 or self.materials[element.material]["density"].exact != 0:
@@ -2720,6 +2741,7 @@ class _Importer:
         sections_used = dict.fromkeys(element.section for element in self.elements)
         if self.bound and not self.sidecar_current:  # format 2 leaves sections to the MBF
             self.incomplete("section_map", sections_used, self.maps["section_map"], "sections")
+            self.legacy_tables()
         for name in sections_used:
             section = self.pipes[name]
             if not runtime_section_valid(section["od"].value, section["thk"].value, factor):
@@ -3030,6 +3052,11 @@ class _Importer:
                         self.listed("approximated", "MBF-IMPORT-ID-UNRECOVERABLE", line, f"support_map[{swb_id}]",
                                     f"the sidecar entry for {swb_id} carries no family, which is not recoverable")
                     entries.append((swb_id, [dof for dof in DOFS if dof in entry["restrained"]], family))
+                    kind = "anchor" if record["anchor"] else "restraint"
+                    if self.bound and not self.sidecar_current and entry["caepipe_kind"] != kind:
+                        self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", line, f"support_map[{swb_id}].caepipe_kind",
+                                    f"the sidecar records {swb_id} as an {entry['caepipe_kind']}, but the file "
+                                    f"writes node {name} as {'an anchor (KA)' if kind == 'anchor' else 'a restraint'}")
                     matched_sidecar.add(swb_id)
                     if self.rebound:
                         self.unconfirmed.append(swb_id)
@@ -3199,7 +3226,7 @@ class _Importer:
             load_cases.append(case)
         if self.bound:
             self.incomplete("load_map", sorted(matched, key=repr), sorted(restorable, key=repr), "primitives")
-        if self.bound and self.sidecar_current:  # format 2 names exactly the file's cases
+        if self.bound:  # a bound sidecar names exactly the file's cases
             self.incomplete("load_case_map", [case["label"] for case in load_cases],
                             list(self.maps["load_case_map"].values()), "load cases")
         return load_cases
@@ -3649,22 +3676,130 @@ class _Importer:
         found &= set(candidates)
         return found.pop() if len(found) == 1 else None
 
+    def printed(self, recorded: float, number: Num | None, path: str, line: int) -> None:
+        """A legacy record of a number the MBF prints. The writer printed it correctly rounded to ten significant
+        digits, so the record lies within half a unit in the tenth significant digit of the printed value
+        (tenth_digit, §15), or is refused by path."""
+        if number is not None and abs(Fraction(recorded) - number.exact) <= tenth_digit(number.exact):
+            return
+        shown = "nothing" if number is None else number.text
+        self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", line, path,
+                    f"the sidecar records {recorded!r}, but the MBF prints {shown}; a writer's record lies within half a "
+                    "unit in the tenth significant digit of the printed value")
+
+    def writer_bound(self, number: int) -> list[Fraction]:
+        """How far the writer's position of node `number` can lie from the MBF's, per axis: the printing bound
+        (tenth_digit) of each printed offset, or the printed coordinates of a run's From row, summed from the root."""
+        parent = {element.end: element.start for element in self.elements}
+        bound = [Fraction(0)] * 3
+        while True:
+            exact = self.nodes[number]["exact"]
+            above = parent.get(number)
+            base = [Fraction(0)] * 3 if above is None else self.nodes[above]["exact"]
+            bound = [bound[axis] + tenth_digit(exact[axis] - base[axis]) for axis in range(3)]
+            if above is None:
+                return bound
+            number = above
+
+    def legacy_element(self, swb_id: str, entry: Mapping[str, Any], element: _Element, name: str, order: int,
+                       bend: Mapping[str, Any] | None) -> None:
+        """What a legacy element entry repeats of the file (§15): its MBF record names, its member order and row, and
+        for a bend its radius and factor (printed), its TI (summed printed offsets, within their accumulated
+        printing bounds), its angle (from those positions, within the angle the bounds subtend) and row node."""
+        where = f"element_map[{swb_id}]"
+        conflict = lambda field, recorded, given: self.refuse(  # noqa: E731
+            "MBF-IMPORT-SIDECAR-CONFLICT", element.line, f"{where}.{field}",
+            f"the sidecar records {field} {recorded!r} for {swb_id}, but the file's element {name} has {given!r}")
+        for field, given in (("material", element.material), ("section", element.section), ("load", element.load),
+                             ("layout_order", order), ("layout_row", element.row)):
+            if entry[field] != given:
+                conflict(field, entry[field], given)
+        record = entry.get("bend")
+        if record is None or bend is None:
+            return
+        n = element.end
+        if record["caepipe_row_node"] != str(n):
+            conflict("bend.caepipe_row_node", record["caepipe_row_node"], str(n))
+        self.printed(record["radius_mm"], element.radius, f"{where}.bend.radius_mm", element.line)
+        self.printed(record["flexibility_factor"], element.factor, f"{where}.bend.flexibility_factor", element.line)
+        node, reach = self.nodes[n], self.writer_bound(n)
+        slack = 1 + Fraction(1, 2 ** 20)  # binary64 offsets of binary64 positions: far below a printing bound
+        for axis in range(3):
+            if abs(Fraction(record["tangent_intersection_mm"][axis]) - node["exact"][axis]) > reach[axis] * slack:
+                self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", element.line, f"{where}.bend.tangent_intersection_mm[{axis}]",
+                            f"the sidecar records the TI of bend {n} at {record['tangent_intersection_mm'][axis]!r} on "
+                            "this axis, beyond the printing bounds of the offsets that place it")
+        geometry = self.bend_geometry[n]
+
+        def subtended(a: int, b: int) -> float:
+            spread = sum(math.hypot(*(float(value) for value in self.writer_bound(k))) for k in (a, b))
+            spread += 4 * 2.0 ** -52 * (_norm(self.positions[a]) + _norm(self.positions[b]))
+            length = _norm(_sub(self.positions[b], self.positions[a]))
+            return math.asin(min(1.0, spread / length))
+
+        theta = geometry["theta"]
+        allowed = (subtended(geometry["start"], n) + subtended(n, geometry["next"])
+                   + 64 * 2.0 ** -52 / max(math.sin(theta), 2.0 ** -26))
+        if not abs(math.radians(record["angle_deg"]) - theta) <= allowed:
+            self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", element.line, f"{where}.bend.angle_deg",
+                        f"the sidecar records bend {n}'s angle as {record['angle_deg']!r} deg, but its legs in the MBF "
+                        f"meet at {math.degrees(theta)!r} deg, beyond the {math.degrees(allowed)!r} deg their printed "
+                        "positions allow")
+
+    def legacy_tables(self) -> None:
+        """What legacy material and section entries repeat of the file (§15): each printed number within its printing
+        bound, the temperatures in order, and the elements that carry the record, in layout order."""
+        for name, entry in self.maps["material_map"].items():
+            record, where = self.materials.get(name), f"material_map[{name}]"
+            if record is None or record.get("refused"):
+                continue
+            line = record["line"]
+            self.printed(entry["weight_density_kgf_per_m3"], record["density"], f"{where}.weight_density_kgf_per_m3", line)
+            self.printed(entry["poisson_ratio"], record["nu"], f"{where}.poisson_ratio", line)
+            for modulus, alpha, _ in record["rows"]:
+                self.printed(entry["elastic_modulus_n_per_mm2"], modulus, f"{where}.elastic_modulus_n_per_mm2", line)
+                self.printed(entry["thermal_expansion_mm_per_mm_per_c"], alpha,
+                             f"{where}.thermal_expansion_mm_per_mm_per_c", line)
+            temperatures = [temperature for _, _, temperature in record["rows"]]
+            if len(entry["temperatures_c"]) != len(temperatures):
+                self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", line, f"{where}.temperatures_c",
+                            f"the sidecar records {len(entry['temperatures_c'])} temperatures for {name}; the MBF "
+                            f"prints {len(temperatures)}")
+            else:
+                for index, (recorded, printed) in enumerate(zip(entry["temperatures_c"], temperatures)):
+                    self.printed(recorded, printed, f"{where}.temperatures_c[{index}]", line)
+            if entry["elements"] != self.carriers.get(("material", name), []):
+                self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", line, f"{where}.elements",
+                            f"the sidecar's elements of {name} are not the file's, in layout order")
+        for name, entry in self.maps["section_map"].items():
+            record, where = self.pipes.get(name), f"section_map[{name}]"
+            if record is None:
+                continue
+            self.printed(entry["outside_diameter_mm"], record["od"], f"{where}.outside_diameter_mm", record["line"])
+            self.printed(entry["wall_thickness_mm"], record["thk"], f"{where}.wall_thickness_mm", record["line"])
+            if entry["elements"] != self.carriers.get(("section", name), []):
+                self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", record["line"], f"{where}.elements",
+                            f"the sidecar's elements of {name} are not the file's, in layout order")
+
     def thermal_direction(self, entries: list[tuple[str, Any]], formed: str, line: int) -> str:
         """The direction a restored thermal primitive keeps (the MBF carries none): the one its sidecar entries
         record, which must name one axis when the MBF sums several (summing across directions is not meaningful),
         else refused by name; an entry without one (legacy) is reported, and the import's global_x stands."""
         recorded = [(key, direction) for key, direction in entries if direction is not None]
-        for key, direction in entries:
-            if direction is None:
-                self.listed("approximated", "MBF-IMPORT-DIRECTION-UNRECOVERABLE", line, f"load_map[{key}].direction",
-                            f"load_map[{key}] records no direction; {formed} takes {_THERMAL_DIRECTION}")
         axes = {_DIRECTION_AXIS[direction] for _, direction in recorded}
         if len(axes) > 1:
             self.refuse("MBF-IMPORT-SIDECAR-CONFLICT", line, f"load_map[{recorded[-1][0]}].direction",
                         f"the sidecar entries the MBF sums into {formed} record different directions ("
                         + ", ".join(f"{key}: {direction}" for key, direction in recorded) + "); a sum across "
                         "directions is not meaningful")
-        return recorded[0][1] if recorded else _THERMAL_DIRECTION
+        effective = recorded[0][1] if recorded else _THERMAL_DIRECTION
+        why = ("the direction the other entries it sums record" if recorded else
+               "the import's token, as no entry records one")
+        for key, direction in entries:
+            if direction is None:
+                self.listed("approximated", "MBF-IMPORT-DIRECTION-UNRECOVERABLE", line, f"load_map[{key}].direction",
+                            f"load_map[{key}] records no direction; {formed} takes {effective}, {why}")
+        return effective
 
     def restorable_primitives(self, cases: Mapping[str, str]) -> dict[tuple, tuple[str, int, Any]]:
         """primitive_key -> (sidecar primitive id, count, direction, [(map key, direction)]) for bound imports; a

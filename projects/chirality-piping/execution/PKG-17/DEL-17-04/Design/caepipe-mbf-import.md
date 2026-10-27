@@ -1173,7 +1173,8 @@ agreement rule (a recorded value the MBF or a derivation also determines must ag
 it; neither side is silently preferred, VER-002 r12). The seeded mutation test (§15) shows
 that each mutation it makes is refused, and would be refused by the identity alone, except
 the consistent edits below. A legacy
-sidecar, which the writer no longer writes, keeps the supporting checks only.
+sidecar, which the writer no longer writes, is closed instead by the agreement of every
+MBF-determined field it retains (§15).
 
 **Consistent edits.** The digest binds only the MBF, and the MBF has no carrier for the
 sidecar (TBD-17-01-003, TBD-17-04-003; O-6). Some values pass from the model to the sidecar
@@ -1341,6 +1342,37 @@ unrecoverable. A legacy sidecar carrying a field main's writer never wrote, such
 writer at 42a86df92f is kept as an invented fixture in the round-trip tests and imports
 bound.
 
+**A legacy sidecar is closed like format 2** (independent review VER-002 r15). The
+regeneration identity does not apply to it: the writer no longer writes it. Instead, every
+value it retains that the MBF also determines must agree with the MBF, or the import is
+refused by field and JSON path (`MBF-IMPORT-SIDECAR-CONFLICT`, or `-INVALID` where the
+parser compares one repetition with another). Main's writer wrote only SI, Y-vertical
+files, so a legacy sidecar of an English or Z-vertical file is refused. Numbers are
+compared within the writer's printing bound. The writer prints ten significant digits,
+correctly rounded, with trailing zeros dropped (`_num`, `.10g`; "4000" stands for
+4000.000000). A recorded value therefore lies within half a unit in the tenth significant
+digit of its printed value (`tenth_digit`). A derived value is allowed the bound its
+printed inputs give it. The TI is allowed the sum of those bounds over the offsets that
+place it, from its run's From row, and the bend angle the angle that those position bounds
+subtend on each leg (asin(e/L)), plus binary64 slack. A mutation test sets every
+MBF-determined field of the fixture and of a weighted-cantilever legacy sidecar to a
+different valid value: each number just outside its bound (×1.01; 10⁻⁶ relative for a
+derived one) is refused, and just inside (×0.99; four binary64 steps) imports the same
+model. The fixture is the positive control. Every field main's writer recorded:
+
+| Map | MBF-determined (checked) | Identity (restored) | Authored (restored) |
+|---|---|---|---|
+| `node_map` | the CAEPIPE name | the id | |
+| `element_map` | `from`, `to`, `layout_order`, `layout_row`, `material`, `section`, `load`; for a bend `radius_mm`, `angle_deg`, `flexibility_factor`, `tangent_intersection_mm`, `caepipe_row_node` | the id; `bend.component` | `reversed`, `y_reference` (frame-checked, §10.5) |
+| `support_map` | `node`, `caepipe_kind`, `restrained` (their union per node; the split is restored) | the id | `family` (held to the solve's rules) |
+| `load_case_map` | the label (the set is the file's cases) | the id | |
+| `material_map` | the name, `weight_density_kgf_per_m3`, `poisson_ratio`, `elastic_modulus_n_per_mm2` and `thermal_expansion_mm_per_mm_per_c` (against every temperature row), `temperatures_c` (in order), `elements` (in layout order) | `swbpipe_material` | `origin` |
+| `section_map` | the name, `outside_diameter_mm`, `wall_thickness_mm`, `elements` | | |
+| `load_map` | `caepipe_load_case`, `category`, `target`, `direction` (but a thermal one), `mbf`, `caepipe_node`, `caepipe_element` | the load id; `load_case` | a thermal `direction` |
+
+That is 35 MBF-determined fields, 8 identities and 5 authored values, with `direction`
+counted by category, and `mbf_sha256`, which decides the route.
+
 **Bound** (the sidecar's `mbf_sha256` equals the input's). A byte-bound sidecar restores
 the identities, and the splits, that it explicitly preserves:
 
@@ -1459,9 +1491,12 @@ involved.
   direction its sidecar entries record. When the MBF sums several, they must name one axis
   (aliases agree), and it is kept; entries naming different axes are refused by name
   (`MBF-IMPORT-SIDECAR-CONFLICT` at `load_map[<key>].direction`), since a sum across
-  directions is not meaningful. A legacy entry without a direction cannot represent one:
-  its loss is reported by name (`MBF-IMPORT-DIRECTION-UNRECOVERABLE`), and the import's
-  `global_x` stands.
+  directions is not meaningful. The effective direction is resolved before anything is
+  reported. A legacy entry without a direction records none. In a set where the other
+  entries agree on one, the sum keeps it. Where no entry records one, the import's
+  `global_x` stands. Either way each entry without a direction is reported by name
+  (`MBF-IMPORT-DIRECTION-UNRECOVERABLE`), stating the direction the primitive takes and why
+  (independent review VER-002 r15).
 - **Support families** when the sidecar entry has no `family` (§12).
 - **Bend component nodes** (§11 item 5).
 - **Members the writer does not export** (§17's last rows).

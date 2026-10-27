@@ -2331,3 +2331,171 @@ def test_summed_thermal_entries_keep_their_common_direction_or_are_refused():
         assert regeneration_difference(changed, result) is None
         assert set_aside(result) == reported(result)
 
+
+
+# --- VER-002 r15: a legacy sidecar's repetitions of the file agree with it ---------------------------------------
+def printed_text(value: float) -> str:
+    """The writer's printed form of `value` (si_writer _num: ten significant digits, 0 for 0)."""
+    return "0" if value == 0 else format(value, ".10g")
+
+
+def legacy_replacements(sidecar: dict) -> list[tuple[str, dict, str]]:
+    """Each MBF-determined field of a legacy `sidecar` (Design §15's table) set to a different valid value, with what
+    the import must do. A printed number goes just outside (1.01) and just inside (0.99) the writer's printing bound,
+    half a unit in the tenth significant digit; a derived one (TI, angle) moves 1e-6 relative (outside) and four
+    binary64 steps (inside)."""
+    from core.handoff.caepipe_mbf.importer import tenth_digit
+    found: list[tuple[str, dict, str]] = []
+
+    def at(label: str, expected: str, change) -> None:
+        mutated = deepcopy(sidecar)
+        change(mutated)
+        if label.startswith("element_map"):  # a primitive's caepipe_element repeats its element entry: kept in step
+            for entry in mutated["load_map"].values():
+                if "caepipe_element" in entry:
+                    entry["caepipe_element"] = deepcopy(mutated["element_map"][entry["target"]["pipe"]])
+        found.append((label, mutated, expected))
+
+    def number(label: str, holder, key, derived: bool = False) -> None:
+        value = holder(sidecar)[key]
+        if derived:  # a zero coordinate is placed by no printed offset: its bound is 0, and it has no inside
+            inside = value
+            for _ in range(4 if value else 0):
+                inside = math.nextafter(inside, math.inf)
+            outside = value * (1 + 1e-6) if value else 1e-6
+        else:
+            text = printed_text(value)
+            half = tenth_digit(Fraction(text))
+            inside = float(Fraction(text) + Fraction(99, 100) * half) if half else value
+            outside = float(Fraction(text) + Fraction(101, 100) * half) if half else 1e-9
+        at(f"{label}: outside", "refused", lambda s: holder(s).__setitem__(key, outside))
+        if inside != value:
+            at(f"{label}: inside", "imported", lambda s: holder(s).__setitem__(key, inside))
+
+    labels = {"Sustained (W+P)": "Expansion (T1)", "Expansion (T1)": "Sustained (W+P)"}
+    for swb_id in sidecar["node_map"]:
+        at(f"node_map[{swb_id}]", "refused", lambda s, k=swb_id: s["node_map"].update({k: "99"}))
+    for swb_id, entry in sidecar["element_map"].items():
+        where = f"element_map[{swb_id}]"
+        for key, value in (("from", "99"), ("to", "99"), ("layout_order", entry["layout_order"] + 1),
+                           ("layout_row", entry["layout_row"] + 1), ("material", "M9"), ("section", "P9"),
+                           ("load", "L9")):
+            at(f"{where}.{key}", "refused", lambda s, k=swb_id, f=key, v=value: s["element_map"][k].update({f: v}))
+        if "bend" in entry:
+            bend = lambda s, k=swb_id: s["element_map"][k]["bend"]  # noqa: E731
+            at(f"{where}.bend.caepipe_row_node", "refused", lambda s, b=bend: b(s).update(caepipe_row_node="99"))
+            for key in ("radius_mm", "flexibility_factor"):
+                number(f"{where}.bend.{key}", bend, key)
+            number(f"{where}.bend.angle_deg", bend, "angle_deg", derived=True)
+            for axis in range(3):
+                number(f"{where}.bend.tangent_intersection_mm[{axis}]",
+                       lambda s, b=bend: b(s)["tangent_intersection_mm"], axis, derived=True)
+    for swb_id, entry in sidecar["support_map"].items():
+        where = f"support_map[{swb_id}]"
+        at(f"{where}.node", "refused", lambda s, k=swb_id: s["support_map"][k].update(node="99"))
+        at(f"{where}.restrained", "refused", lambda s, k=swb_id: s["support_map"][k].update(restrained=["UX"]))
+        other = "restraint" if entry["caepipe_kind"] == "anchor" else "anchor"
+        at(f"{where}.caepipe_kind", "refused", lambda s, k=swb_id, v=other: s["support_map"][k].update(caepipe_kind=v))
+    for swb_id, label in sidecar["load_case_map"].items():
+        at(f"load_case_map[{swb_id}]", "refused", lambda s, k=swb_id, v=labels[label]: s["load_case_map"].update({k: v}))
+    for name, entry in sidecar["material_map"].items():
+        material = lambda s, k=name: s["material_map"][k]  # noqa: E731
+        for key in ("weight_density_kgf_per_m3", "poisson_ratio", "elastic_modulus_n_per_mm2",
+                    "thermal_expansion_mm_per_mm_per_c"):
+            number(f"material_map[{name}].{key}", material, key)
+        for index in range(len(entry["temperatures_c"])):
+            number(f"material_map[{name}].temperatures_c[{index}]", lambda s, m=material: m(s)["temperatures_c"], index)
+        at(f"material_map[{name}].temperatures_c (one fewer)", "refused",
+           lambda s, m=material: m(s).update(temperatures_c=m(s)["temperatures_c"][:-1] or [20.0, 20.0]))
+        at(f"material_map[{name}].elements", "refused", lambda s, m=material: m(s).update(elements=["zz"]))
+    for name in sidecar["section_map"]:
+        section = lambda s, k=name: s["section_map"][k]  # noqa: E731
+        for key in ("outside_diameter_mm", "wall_thickness_mm"):
+            number(f"section_map[{name}].{key}", section, key)
+        at(f"section_map[{name}].elements", "refused", lambda s, m=section: m(s).update(elements=["zz"]))
+    for key, entry in sidecar["load_map"].items():
+        where, load = f"load_map[{key}]", (lambda s, k=key: s["load_map"][k])  # noqa: E731
+        at(f"{where}.caepipe_load_case", "refused",
+           lambda s, l=load: l(s).update(caepipe_load_case=labels[l(s)["caepipe_load_case"]]))
+        other = next(item for item in ("weight", "thermal", "concentrated_force") if item != entry["category"])
+        at(f"{where}.category", "refused", lambda s, l=load, v=other: l(s).update(category=v))
+        target = {"node": "zz"} if "node" in entry["target"] else {"pipe": "zz"}
+        at(f"{where}.target", "refused", lambda s, l=load, v=target: l(s).update(target=v))
+        at(f"{where}.mbf", "refused", lambda s, l=load: l(s).update(mbf="zz"))
+        if entry["category"] != "thermal":  # a thermal direction is authored (the MBF carries none)
+            at(f"{where}.direction", "refused", lambda s, l=load: l(s).update(
+                direction="global_z" if l(s)["direction"] not in ("global_z", "UZ") else "global_x"))
+        if "caepipe_node" in entry:
+            at(f"{where}.caepipe_node", "refused", lambda s, l=load: l(s).update(caepipe_node="99"))
+        else:
+            others = [item for item in sidecar["element_map"] if item != entry["target"]["pipe"]]
+            at(f"{where}.caepipe_element", "refused", lambda s, l=load, o=others[0]: l(s).update(
+                caepipe_element=deepcopy(s["element_map"][o])))
+    return found
+
+
+def legacy_bases() -> dict[str, tuple[bytes, dict]]:
+    """The legacy fixture from main's writer (a bend and thermal loads), and legacy sidecars of the invented weighted
+    cantilever (weight density, a force at the tip) as main's writer recorded them."""
+    model = weighted()
+    model["load_cases"][0]["primitive_loads"].append(writer_tests.force("tip2", "N2", "global_x", 250.0))
+    trip = Trip("legacy-weighted", model, "LEGACY", 20.0)
+    return {"fixture": (LEGACY_MBF_TEXT.encode("ascii"), deepcopy(LEGACY_SIDECAR)),
+            "weighted": (trip.data, legacy(trip.writer, trip.data))}
+
+
+@pytest.mark.parametrize("base_name", ["fixture", "weighted"])
+def test_every_mbf_determined_legacy_field_is_checked_against_the_file(base_name):
+    # Codex VER-002 r15 (P2): a legacy sidecar's physical numbers were not checked (a 1 mm wall or a 1000 MPa modulus
+    # imported the MBF's values silently). Each value it repeats of the file is refused by path when it disagrees, a
+    # printed number beyond half a unit in its last printed digit; within that bound it imports the same model.
+    data, base = legacy_bases()[base_name]
+    run = lambda sidecar, label: import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED,  # noqa: E731
+                                                    source_label=label)
+    expected = run(base, "base")  # the positive control
+    assert expected.status == "imported" and expected.source["binding"] == "bound", expected.diagnostics
+    replaced = legacy_replacements(base)
+    for label, sidecar, outcome in replaced:
+        result = run(sidecar, label)
+        if outcome == "refused":
+            assert result.status == "refused", label
+            assert all(code.startswith("MBF-IMPORT-") for _, code in [(0, item["code"]) for item in result.diagnostics
+                                                                         if item["severity"] == "error"]), label
+        else:
+            assert result.status == "imported", (label, refusals(result))
+            assert result.model == expected.model, label
+    outcomes = {outcome for _, _, outcome in replaced}
+    assert outcomes == {"refused", "imported"} and len(replaced) > 40
+
+
+def test_codexs_legacy_section_and_modulus_conflicts_are_refused_by_path():
+    trip = Trip("legacy-numbers", writer_tests.cantilever(), "LEGACY", 20.0)
+    base = legacy(trip.writer, trip.data)
+    for path, change in (("section_map[P1].wall_thickness_mm",
+                          lambda s: s["section_map"]["P1"].update(wall_thickness_mm=1)),
+                         ("material_map[M1].elastic_modulus_n_per_mm2",
+                          lambda s: s["material_map"]["M1"].update(elastic_modulus_n_per_mm2=1000))):
+        sidecar = deepcopy(base)
+        change(sidecar)
+        result = import_caepipe_mbf(trip.data, sidecar=sidecar, material_provenance=INVENTED, source_label=path)
+        assert ("MBF-IMPORT-SIDECAR-CONFLICT", path) in refusals(result), refusals(result)
+
+
+def test_a_mixed_legacy_thermal_set_keeps_the_agreed_direction_and_says_so():
+    # Codex VER-002 r15 (P3): two legacy thermal entries on one straight, one global_z and one without a direction.
+    # The formed load keeps global_z, and the report on the entry without one says it takes global_z.
+    data = importer_tests.mbf("F10,KA,MM1,PP1,CL=L1", "T20,KA,X1000", loads=("L1,120,0,0",))
+    written = render_caepipe_mbf_si(importer_tests.run(data).model, title="MIXED")
+    data = written.text.encode("ascii")
+    sidecar = legacy(written, data)
+    (key, entry), = sidecar["load_map"].items()
+    sidecar["load_map"][key]["direction"] = "global_z"
+    other = {name: value for name, value in deepcopy(entry).items() if name != "direction"}
+    sidecar["load_map"][f"{entry['load_case']}/t2"] = other
+    result = import_caepipe_mbf(data, sidecar=sidecar, material_provenance=INVENTED, source_label="mixed")
+    assert result.status == "imported", result.diagnostics
+    (load,) = [load for case in result.model["load_cases"] for load in case["primitive_loads"]]
+    assert load["direction"] == "global_z"
+    (report,) = [item for item in result.loss_report if item["code"] == "MBF-IMPORT-DIRECTION-UNRECOVERABLE"]
+    assert report["location"] == f"load_map[{entry['load_case']}/t2].direction"
+    assert "takes global_z" in report["reason"] and "global_x" not in report["reason"]
