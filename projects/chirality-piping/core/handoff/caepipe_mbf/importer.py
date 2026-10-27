@@ -1118,8 +1118,8 @@ class _Importer:
         for comment_line, text in row.comments:
             if text.startswith("L=") or text == "L":
                 name = text[2:].strip()
-                if not self.convention("the load reference L=", comment_line, f"{location} comment L="):
-                    continue
+                # A refused L= still names the element's load, so later rows report their own refusals.
+                self.convention("the load reference L=", comment_line, f"{location} comment L=")
                 if name not in self.loads:
                     self.refuse("MBF-IMPORT-REFERENCE-UNRESOLVED", comment_line, f"{location} comment L=",
                                 "L= names no LOADS record")
