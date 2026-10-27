@@ -302,7 +302,7 @@ def _num(value: float) -> str:
 
 def _unit(vector: Iterable[float]) -> tuple[float, float, float]:
     x, y, z = vector
-    length = math.sqrt(x * x + y * y + z * z)
+    length = math.hypot(x, y, z)  # scaled: no overflow or underflow in the squares
     return (x / length, y / length, z / length)
 
 
@@ -311,7 +311,7 @@ def _sub(a, b):
 
 
 def _norm(a) -> float:
-    return math.sqrt(a[0] * a[0] + a[1] * a[1] + a[2] * a[2])
+    return math.hypot(a[0], a[1], a[2])
 
 
 # ---------------------------------------------------------------------------
@@ -544,11 +544,27 @@ class _Importer:
         if not _REAL.match(text):
             self.refuse("MBF-IMPORT-NUMBER-INVALID", line, location, f"{location} is not a real number")
             return None
+        exact = Fraction(text)
         value = float(text)
-        if not math.isfinite(value):
-            self.refuse("MBF-IMPORT-NUMBER-INVALID", line, location, f"{location} is not finite")
+        if not math.isfinite(value) or (exact != 0 and value == 0):
+            self.refuse("MBF-IMPORT-VALUE-UNREPRESENTABLE", line, location,
+                        f"{location} is outside the binary64 range: it overflows, or a non-zero value underflows to 0")
             return None
-        return Num(value, Fraction(text), text)
+        return Num(value, exact, text)
+
+    def binary64(self, value: Fraction | float, line: int, location: str, what: str, *,
+                 nonzero: bool = False) -> float:
+        """A derived value rounded to binary64; overflow, a non-finite result or a non-zero value that underflows to
+        0 is refused by name and stops the import."""
+        try:
+            result = float(value)
+        except OverflowError:
+            result = math.inf
+        if not math.isfinite(result) or ((value != 0 or nonzero) and result == 0):
+            self.refuse("MBF-IMPORT-VALUE-UNREPRESENTABLE", line, location,
+                        f"the derived {what} is outside the binary64 range")
+            raise _Refused
+        return result
 
     def is_zero(self, text: str, line: int, location: str) -> bool | None:
         """True for empty or zero, False for a non-zero number, None (refused) for anything else."""
@@ -1410,7 +1426,16 @@ class _Importer:
 
     # -- §11 bends ---------------------------------------------------------------
     def resolve_bends(self) -> None:
-        self.positions = {number: tuple(float(value) for value in node["exact"]) for number, node in self.nodes.items()}
+        self.positions = {number: tuple(self.binary64(value, node["line"], f"node {number}", "node coordinate")
+                                        for value in node["exact"]) for number, node in self.nodes.items()}
+        for element in self.elements:  # distinct exact positions may round to one binary64 point
+            length = _norm(_sub(self.positions[element.end], self.positions[element.start]))
+            if not (0 < length < math.inf):
+                self.refuse("MBF-IMPORT-GEOMETRY-ZERO-LENGTH" if length == 0 else "MBF-IMPORT-VALUE-UNREPRESENTABLE",
+                            element.line, f"LAYOUT line {element.line}",
+                            f"the element to node {element.end} has a length of zero or beyond binary64 once its end "
+                            "positions are rounded")
+                raise _Refused
         self.bend_geometry: dict[int, dict[str, Any]] = {}
         for index, element in enumerate(self.elements):
             if not element.ti:
@@ -1434,7 +1459,7 @@ class _Importer:
                 self.refuse("MBF-IMPORT-BEND-GEOMETRY-INVALID", element.line, location,
                             f"the legs at tangent intersection {n} are parallel or reversed; there is no bend angle")
                 continue
-            t = element.radius.value * math.tan(theta / 2.0)
+            t = self.binary64(element.radius.value * math.tan(theta / 2.0), element.line, location, "tangent length")
             self.bend_geometry[n] = {"theta": theta, "t": t, "d_in": d_in, "d_out": d_out, "ti": ti,
                                      "element": index, "start": element.start, "next": outgoing.end}
         tol = _BEND_RELATIVE_TOLERANCE
@@ -1451,7 +1476,10 @@ class _Importer:
             ti, t = bend["ti"], bend["t"]
             near = tuple(ti[axis] - t * bend["d_in"][axis] for axis in range(3))
             far = tuple(ti[axis] + t * bend["d_out"][axis] for axis in range(3))
-            middle = tuple((near[axis] + far[axis]) / 2.0 for axis in range(3))
+            line = self.elements[bend["element"]].line
+            near = tuple(self.binary64(value, line, f"bend {n}", "tangent node") for value in near)
+            far = tuple(self.binary64(value, line, f"bend {n}", "tangent node") for value in far)
+            middle = tuple(near[axis] / 2.0 + far[axis] / 2.0 for axis in range(3))
             bend.update(near=near, far=far, y_reference=_unit(_sub(ti, middle)))
 
     # -- assembly (§15, §16) --------------------------------------------------------------
@@ -1556,10 +1584,13 @@ class _Importer:
                                                           unresolved, id_map, claim))
                 pipes.append(pipe)
                 weight = self.weight_per_length(element)
-                if weight != 0:
+                if weight != 0 or self.materials[element.material]["density"].exact != 0:
+                    weight = self.binary64(weight, element.line, f"LAYOUT line {element.line}", "weight per length",
+                                           nonzero=True)  # a non-zero density must not lose its weight
                     weights.append((swb_id, weight, element.line))
                 if element.load is not None:
-                    delta = float(self.loads[element.load]["t1"].exact - self.t_ref.exact) \
+                    delta = self.binary64(self.loads[element.load]["t1"].exact - self.t_ref.exact, element.line,
+                                          f"LOADS {element.load}", "temperature change") \
                         if self.t_ref is not None else None
                     if delta is None:
                         self.refuse("MBF-IMPORT-REFERENCE-TEMPERATURE-MISSING", element.line,
@@ -1656,10 +1687,13 @@ class _Importer:
             return 0.0
         section = self.pipes[element.section]
         od, thk = section["od"].value, section["thk"].value
-        if self.si:
-            od, thk = od / 1000.0, thk / 1000.0
-            return -density * (math.pi / 4.0 * (od**2 - (od - 2.0 * thk) ** 2)) * STANDARD_GRAVITY
-        return -density * (math.pi / 4.0 * (od**2 - (od - 2.0 * thk) ** 2))
+        try:
+            if self.si:
+                od, thk = od / 1000.0, thk / 1000.0
+                return -density * (math.pi / 4.0 * (od**2 - (od - 2.0 * thk) ** 2)) * STANDARD_GRAVITY
+            return -density * (math.pi / 4.0 * (od**2 - (od - 2.0 * thk) ** 2))
+        except OverflowError:
+            return -math.inf  # refused as unrepresentable by the caller
 
     def material_qualifies(self, name: str) -> tuple[str, str, str | None] | None:
         """(origin, source name, redistribution status) from the declaration or a bound sidecar, else None."""
@@ -1720,8 +1754,9 @@ class _Importer:
                 continue
             claim(swb_id, f"MBF material {name}", record["line"])
             merged[swb_id] = key
-            e_pa = modulus.value * _PA_PER_UNIT[e_unit]
-            shear = float(Fraction(e_pa) / (2 * (1 + Fraction(nu.value))))
+            e_pa = self.binary64(modulus.value * _PA_PER_UNIT[e_unit], record["line"], f"MATERIAL {name}", "E in Pa")
+            shear = self.binary64(Fraction(e_pa) / (2 * (1 + Fraction(nu.value))), record["line"], f"MATERIAL {name}",
+                                  "shear modulus")
             origin, source, status = qualified
             note = (f"G derived from E and nu (isotropic): G = E/(2(1+nu)) with E in Pa, from MBF MATERIAL {name} "
                     f"E = {modulus.text} {e_unit} and nu = {nu.text}")
@@ -1848,7 +1883,8 @@ class _Importer:
                                                     ("moments", "concentrated_moment", moment_unit, "moment")):
                 for axis in sorted(record[kind]):
                     items = record[kind][axis]
-                    total = float(sum(number_.exact for number_, _ in items))
+                    total = sum(number_.exact for number_, _ in items)
+                    total = self.binary64(total, items[0][1], f"node {number}", "summed load") if total else 0.0
                     if total == 0:
                         continue
                     direction = _FORCE_DIRECTIONS[axis] if kind == "forces" else DOFS[3 + axis]
@@ -1869,7 +1905,8 @@ class _Importer:
                                                   ("rot", 3, angle_unit, "rotation")):
                 for axis in sorted(record[kind]):
                     items = record[kind][axis]
-                    total = float(sum(number_.exact for number_, _ in items))
+                    total = sum(number_.exact for number_, _ in items)
+                    total = self.binary64(total, items[0][1], f"node {number}", "summed load") if total else 0.0
                     if total == 0:
                         continue
                     dof = DOFS[offset + axis]

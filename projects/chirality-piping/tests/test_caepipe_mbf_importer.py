@@ -803,3 +803,48 @@ def test_command_line_refuses_outputs_in_a_git_work_tree_for_an_undeclared_input
     assert main([str(FIXTURE), "--out", str(repo / "fixture-out"), "--material-provenance", str(declaration)]) == 0
     out = capsys.readouterr().out
     assert out.strip().splitlines()[-1].startswith("importer: imported; outputs in ")
+
+
+# --- binary64 range (independent review VER-002 r1, point 2) -----------------------------------------------------
+@pytest.mark.parametrize("change, at, why", [
+    # E = 1e303 MPa is 1e309 Pa, beyond the largest binary64 (1.80e308); it raised OverflowError before.
+    (dict(material=("M1,0,0.3", "M1,20,1e303,1.2e-05")), "M1,0", "derived E in Pa overflows"),
+    # Density 1e-400 underflows to 0 when read; it imported before with no weight.
+    (dict(material=("M1,1e-400,0.3", "M1,20,200000,1.2e-05")), "M1,1e-400", "a non-zero value read as 0"),
+    # Density 5e-324 (the smallest subnormal) is readable, but 5e-324 x 9.80665 x 3.6e-3 m^2 underflows to 0.
+    (dict(material=("M1,5e-324,0.3", "M1,20,200000,1.2e-05")), "T20", "derived weight underflows to 0"),
+    # 1e308 + 1e308 = 2e308 mm overflows the node coordinate.
+    (dict(layout=("F10,KA,MM1,PP1,X1e308,Y0,Z0,CL=L1", "T20,X1e308")), "T20", "node coordinate overflows"),
+    # T1 - T_ref = 1e308 - (-1e308) = 2e308 C overflows the temperature change.
+    (dict(loads=("L1,1e308,0,0",), optemp="-1e308"), "T20", "temperature change overflows"),
+    # Two forces of 1e308 N on one node sum to 2e308 N.
+    (dict(layout=("F10,KA,MM1,PP1,CL=L1", "T20,X3000,CFOR(0,1e308,0),FLC=1", "L20,CFOR(0,1e308,0),FLC=1")),
+     "T20", "summed load overflows"),
+    # A value beyond binary64 in the file itself.
+    (dict(pipe=("P1,1e400,7.11",)), "P1,", "a value read as infinity"),
+])
+def test_values_outside_the_binary64_range_are_refused_by_name(change, at, why):
+    layout = change.pop("layout", ())
+    data = mbf(*layout, **change)
+    refused(run(data), "MBF-IMPORT-VALUE-UNREPRESENTABLE", layout_line(data, at))
+
+
+def test_positions_are_validated_after_rounding():
+    # 1e20 + 1e-10 mm rounds back to 1e20 (the binary64 spacing at 1e20 is 16384): distinct exact positions, zero
+    # length once rounded.
+    data = mbf("F10,KA,MM1,PP1,X1e20,Y0,Z0,CL=L1", "T20,X1e-10")
+    refused(run(data), "MBF-IMPORT-GEOMETRY-ZERO-LENGTH", layout_line(data, "T20"))
+    # A 1e-200 mm straight is representable; its unit direction uses a scaled norm (hypot) and no longer divides
+    # by zero: length 1e-200, direction +X, documented local y = global Y.
+    result = run(mbf("F10,KA,MM1,PP1,CL=L1", "T20,X1e-200"))
+    assert result.status == "imported", result.diagnostics
+    assert result.model["nodes"][1]["position"] == {"x": 1e-200, "y": 0.0, "z": 0.0}
+    assert result.model["pipe_segments"][0]["y_reference"] == {"x": 0.0, "y": 1.0, "z": 0.0}
+    assert importer_module.local_y_reference((0, 0, 0), (0, 1e-200, 0)) == (-1.0, 0.0, 0.0)
+
+
+def test_a_tiny_but_representable_density_still_gives_weight():
+    # 1e-300 kgf/m3 x 9.80665 x A (3.6005e-3 m^2) = 3.53e-302 N/m, a normal binary64: kept, not dropped.
+    result = run(mbf(material=("M1,1e-300,0.3", "M1,20,200000,1.2e-05")))
+    weight = next(load for load in loads_of(result) if load[1] == "weight")
+    assert weight[4] == pytest.approx(-1e-300 * 9.80665 * math.pi / 4 * (0.1683**2 - 0.15408**2), rel=1e-14)
