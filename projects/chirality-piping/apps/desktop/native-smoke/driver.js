@@ -42,10 +42,23 @@
   }
   const treeRow = (projectId) => byTestId(`tree-row-project-${encodeURIComponent(projectId)}`);
   const message = () => text("local-project-message") ?? "";
+  // Choosing the page that is already open closes it (View menu), so the command
+  // is sent only when the section is not shown; then the wait is for it to show.
+  // Sending it regardless raced: right after a second choice of an open page the
+  // wait passed only if its first sample ran before the close was drawn, and
+  // otherwise timed out (DEL-07-11 Design `model-document-open-and-native-smoke.md`).
+  const sectionShown = (section) => {
+    const element = byTestId(`workspace-section-${section}`);
+    return Boolean(element && element.offsetParent !== null);
+  };
   async function showSection(section) {
+    if (sectionShown(section)) {
+      await log(`show section ${section} (already shown)`);
+      return;
+    }
     await log(`show section ${section}`);
     await menu(`view.section.${section}`);
-    await waitFor(`section ${section}`, () => byTestId(`workspace-section-${section}`)?.offsetParent !== null);
+    await waitFor(`section ${section}`, () => sectionShown(section));
   }
 
   // File > Open Model Document…, answering the chooser with `path`.
@@ -216,6 +229,47 @@
     return record;
   }
 
+  // A3 (DEL-07-05 Design stress-ratio-table.md): the stress and ratio table's structure; no values are read.
+  function stressRatioStructure() {
+    const panel = byTestId("stress-ratio-panel");
+    if (!panel) return null;
+    const table = byTestId("stress-ratio-table");
+    const rows = table ? [...table.querySelectorAll("tbody tr[data-part]")] : [];
+    const group = byTestId("stress-ratio-group");
+    return {
+      table: Boolean(table),
+      group: group?.value ?? null,
+      mode: byTestId("stress-ratio-mode")?.getAttribute("data-mode") ?? null,
+      ratio_disabled: Boolean(byTestId("stress-ratio-mode-ratio")?.disabled),
+      rule_groups: group ? group.querySelectorAll('option[value^="rule:"]').length : 0,
+      stress_groups: group ? group.querySelectorAll('option[value^="stress:"]').length : 0,
+      rows: rows.length,
+      ranked: rows.filter((row) => row.getAttribute("data-part") === "ranked").length,
+      pinned_incomplete: rows.filter((row) => row.getAttribute("data-part") === "pinned" && row.getAttribute("data-status") === "RULE_INPUTS_INCOMPLETE").length,
+      sorted: Boolean(table?.querySelector('th[aria-sort="descending"]'))
+    };
+  }
+
+  // A8 (DEL-07-05 Design displacement-extremes.md): the displacement extremes panel's structure; no values are read.
+  function displacementExtremesStructure() {
+    const panel = byTestId("displacement-extremes-panel");
+    if (!panel) return null;
+    const table = byTestId("displacement-extremes-table");
+    const rows = table ? [...table.querySelectorAll("tbody tr")] : [];
+    const cases = [...(byTestId("displacement-extremes-cases")?.querySelectorAll('input[type="checkbox"]') ?? [])];
+    return {
+      table: Boolean(table),
+      rows: rows.length,
+      cells_per_row: rows.map((row) => row.querySelectorAll('td[data-testid^="displacement-extremes-cell-"]').length),
+      page: text("displacement-extremes-page"),
+      cases: cases.length,
+      cases_chosen: cases.filter((input) => input.checked).length,
+      cases_disabled: cases.filter((input) => input.disabled).length,
+      no_case: Boolean(byTestId("displacement-extremes-no-case")),
+      filters: byTestId("displacement-extremes-filter")?.options.length ?? 0
+    };
+  }
+
   async function observe(label, projectId, probe) {
     await showSection("results");
     const standing = await waitFor("result standing", () => text("numerical-result-standing"));
@@ -242,7 +296,22 @@
       proof_model_sha256: field("model_sha256"),
       proof_project: field("project"),
       retained_precision_codes: [...new Set(dom.match(/RETAINED_PRECISION_[A-Z_]+/g) ?? [])],
-      retained_precision_elements: document.querySelectorAll('[data-testid*="retained-precision"]').length
+      retained_precision_elements: document.querySelectorAll('[data-testid*="retained-precision"]').length,
+      // A2: the per-support load summary's structure (no values are read).
+      support_load: (() => {
+        const panel = byTestId("support-load-summary");
+        if (!panel) return null;
+        const rows = panel.querySelectorAll("tbody tr[data-standing]");
+        return {
+          position: text("support-load-position"),
+          table: Boolean(byTestId("support-load-table")),
+          rows: rows.length,
+          rows_stated: [...rows].filter((row) => row.getAttribute("data-standing") === "admitted" || row.querySelector('[data-testid^="support-load-withheld-"]')?.textContent?.trim()).length,
+          extreme_rows: panel.querySelectorAll('[data-testid="support-load-extreme-max"], [data-testid="support-load-extreme-min"]').length
+        };
+      })(),
+      stress_ratio: stressRatioStructure(),
+      displacement_extremes: displacementExtremesStructure()
     };
     if (probe) fill("result-filter-input", "");
     await log(`${label}: ${JSON.stringify(observation)}`);
@@ -660,6 +729,10 @@
     run.click();
     const aggregate = await waitFor(`${label}: rule-check aggregate`, () => text("rule-check-aggregate-status"), 120000);
     const observation = { label, aggregate, status: text("rule-check-run-status"), outcomes: text("rule-check-outcomes")?.slice(0, 600) ?? null };
+    // A3: the session's run reaches the Results section's stress and ratio table.
+    await showSection("results");
+    observation.stress_ratio = await waitFor(`${label}: stress and ratio table`, () => (stressRatioStructure()?.rule_groups > 0 ? stressRatioStructure() : null), 15000)
+      .catch(() => stressRatioStructure());
     await log(`${label}: ${JSON.stringify(observation)}`);
     return observation;
   }
@@ -836,7 +909,7 @@
   // Under the driver's node test only: hand over the helpers instead of running.
   const testHooks = globalThis.__SWBPIPE_NATIVE_SMOKE_DRIVER_TEST__;
   if (testHooks) {
-    Object.assign(testHooks, { waitFor, waitForSolve, solveDone, solveJobDiagnostics, composeSolveDiagnostics, awaitBlankProject });
+    Object.assign(testHooks, { waitFor, waitForSolve, solveDone, solveJobDiagnostics, composeSolveDiagnostics, awaitBlankProject, showSection });
     return;
   }
 
