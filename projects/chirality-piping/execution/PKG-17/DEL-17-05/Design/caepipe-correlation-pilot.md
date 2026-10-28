@@ -671,9 +671,18 @@ tightened:
 - a_k = one printed unit: 1e-6 m, 0.0001° (1.745e-6 rad), 1 N, 1 N·m;
 - Q_k = the case maximum of kind k.
 
-Each result is classed `within_profile`, `finding` (outside the profile), `unmatched` (one side
-only, or a printed row that binds to nothing) or `status_mismatch` (a case solved on one side but
-not printed on the other). A closed-form value is kept as the third value with two checks:
+Each result is classed `within_profile`, `finding` (outside the profile), `unmatched` or
+`status_mismatch` (a case solved on one side but not printed on the other). `unmatched` covers:
+- a value on one side only;
+- a printed row that binds to nothing;
+- a SWBPIPE value with a contribution that is missing from one of the summed cases, is not a
+  finite number, or sums to a non-finite value. It is never screened on a partial sum;
+- each parser error, such as a refused section or a conflicting duplicate row, as one row
+  under case `parser`.
+
+No non-finite value is ever `within_profile` (record version 2). The parser skips the fx..mz
+local element-force layout only when its unit labels are valid and of one system; otherwise it
+refuses the section (parser `caepipe-print-csv-4`). A closed-form value is kept as the third value with two checks:
 against SWBPIPE (rel 1e-6, binary64 scale) and against CAEPIPE (the profile). A closed form that
 disagrees with SWBPIPE makes the result a finding.
 

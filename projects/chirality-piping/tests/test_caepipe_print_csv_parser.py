@@ -184,6 +184,13 @@ def test_the_local_axes_layout_is_skipped_never_read_by_guess():
     # Any other header in that section is still an error.
     other = parse_caepipe_print_csv(text.replace(",fx,fy,fz,mx,my,mz,SIF", ",fx,fy,fz,mx,mz,my,SIF"))
     assert [item["code"] for item in errors(other)] == ["CAEPIPE-PRINT-COLUMN-HEADER-MISMATCH"]
+    # The skip needs valid, consistent unit labels: a length in a force column, or two systems, is refused.
+    units = "Node,(N),(N),(N),(Nm),(Nm),(Nm),,,,"
+    for label, code in (("Node,(mm),(N),(N),(Nm),(Nm),(Nm),,,,", "CAEPIPE-PRINT-COLUMN-HEADER-MISMATCH"),
+                        ("Node,(lb),(N),(N),(Nm),(Nm),(Nm),,,,", "CAEPIPE-PRINT-UNITS-MIXED")):
+        refused = parse_caepipe_print_csv(text.replace(units, label))
+        assert [item["code"] for item in errors(refused)] == [code]
+        assert "local_axes_layout" not in {item["reason"] for item in refused["sections_skipped"]}
 
 
 def test_unparseable_number_is_an_error_for_that_row():

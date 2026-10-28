@@ -174,7 +174,7 @@ def mirror_tables(payload: dict, mbf, case_ids: list[str]) -> dict:
     record = mbf.to_dict()
     support_nodes = {support: str(entry["node"]) for support, entry in record["support_map"].items()}
     anchors = {str(entry["node"]) for entry in record["support_map"].values() if entry["caepipe_kind"] == "anchor"}
-    values = swbpipe_values(payload["mechanics_envelope"]["results"], case_ids, support_nodes, anchors)
+    values, _ = swbpipe_values(payload["mechanics_envelope"]["results"], case_ids, support_nodes, anchors)
 
     def get(*key, scale=1.0, digits=0):
         return f"{round(values.get(key, 0.0) * scale, digits):.{digits}f}"
@@ -417,6 +417,54 @@ def test_unmatched_rows_and_status_mismatches_are_findings_never_dropped():
     missing = compare(invented_print().replace("30,4.8,", "31,4.8,").replace("30,0,-4,", "31,0,-4,"))
     only = find(missing, "case:sustained", "displacement", "node:B", "y")
     assert only["classification"] == UNMATCHED and only["reason"] == "only SWBPIPE has this value"
+
+
+def edited_payload(edit) -> dict:
+    payload = invented_payload()
+    payload["mechanics_envelope"]["results"] = [row for row in map(edit, payload["mechanics_envelope"]["results"])
+                                                if row is not None]
+    return payload
+
+
+def compare_payload(payload: dict, text: str | None = None) -> dict:
+    document = invented_cantilever()
+    mbf = render_caepipe_mbf_si(document["model"], title="INVENTED", piping_code=document["piping_code"])
+    return build_benchmark_record(document, swbpipe_result_payload=payload, mbf_result=mbf, mbf_text=mbf.text,
+                                  parsed_caepipe=parse_caepipe_print_csv(text or invented_print()))
+
+
+def tip_x(row: dict) -> bool:
+    return row["kind"] == "global_nodal_displacement_x" and row["entity_ref"] == "node:B"
+
+
+def test_an_operating_sum_that_overflows_is_unmatched_never_within():
+    huge = edited_payload(lambda row: {**row, "value": 1.5e308, "unit": "m"} if tip_x(row) else row)
+    row = find(compare_payload(huge), "operating", "displacement", "node:B", "x")
+    assert row["classification"] == UNMATCHED and row["values"]["swbpipe"] is None
+    assert screen(math.inf, math.inf, "m", "exact", math.inf)["within"] is False
+    assert screen(0.0, 1.0, "m", "exact", math.nan)["within"] is False
+
+
+@pytest.mark.parametrize("edit", [
+    lambda row: None if tip_x(row) and row["basis_ref"]["ref_id"] == "case:expansion" else row,
+    lambda row: {**row, "value": math.nan} if tip_x(row) and row["basis_ref"]["ref_id"] == "case:expansion" else row,
+])
+def test_an_operating_sum_with_a_missing_or_invalid_contribution_is_unmatched(edit):
+    record = compare_payload(edited_payload(edit))
+    row = find(record, "operating", "displacement", "node:B", "x")
+    assert row["classification"] == UNMATCHED and row["values"]["swbpipe"] is None
+    assert "missing from a case or not a finite number" in row["reason"]
+    assert find(record, "case:sustained", "displacement", "node:B", "x")["classification"] == WITHIN
+
+
+def test_a_parser_error_is_counted_unmatched_never_dropped():
+    text = invented_print().replace("30,0,-4,0,0,0,0,,", "30,0,-4,0,0,0,0,,\r\n30,0,-5,0,0,0,0,,", 1)
+    parsed = parse_caepipe_print_csv(text)
+    assert [item for item in parsed["diagnostics"] if item["severity"] == "error"]
+    record = compare_payload(invented_payload(), text)
+    errors = [row for row in record["results"] if row["kind"] == "parser_error"]
+    assert errors and all(row["classification"] == UNMATCHED for row in errors)
+    assert record["summary"]["by_classification"].get(UNMATCHED, 0) >= len(errors)
 
 
 # -- run_pilot --benchmark -------------------------------------------------------------------------------------------

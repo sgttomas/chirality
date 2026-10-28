@@ -26,7 +26,7 @@ import re
 from typing import Any
 
 
-PARSER_VERSION = "caepipe-print-csv-3"
+PARSER_VERSION = "caepipe-print-csv-4"
 DOCUMENT_KIND = "openpipestress.caepipe_print_csv.parsed"
 PAIRING_BASIS = "row_order_from_to_pairs"
 BINDING_BASIS = "writer_id_map_node_pairs"
@@ -276,6 +276,32 @@ class _Parser:
             "diagnostics": self.diagnostics,
         }
 
+    def units_refused(self, matched: dict[int, tuple[str, str]], title: str, title_line: int) -> str | None:
+        """Refuses (error, section skipped) a section whose unit labels are not labels of the print layout, or mix
+        systems or angle units within it or against the sections read before it; None when they are valid."""
+        unknown = [(quantity, label) for quantity, label in matched.values() if label not in _QUANTITY_LABELS[quantity]]
+        if unknown:
+            quantity, label = unknown[0]
+            self.diag("CAEPIPE-PRINT-COLUMN-HEADER-MISMATCH", "error", title, title_line,
+                      f"unit label {label!r} in {title!r} is not a {quantity} label of the print layout "
+                      f"({', '.join(_QUANTITY_LABELS[quantity])}); the section is not parsed")
+            self.sections_skipped.append({"title": title, "line": title_line, "reason": "header_mismatch"})
+            return "header_mismatch"
+        systems = {_QUANTITY_LABELS[q][label] for q, label in matched.values()} - {None}
+        angles = {label for q, label in matched.values() if q == "rotation"}
+        if systems:
+            systems |= {self.system} - {None}
+        if angles and self.angle is not None:
+            angles |= {self.angle}
+        if len(systems) > 1 or len(angles) > 1:
+            self.diag("CAEPIPE-PRINT-UNITS-MIXED", "error", title, title_line,
+                      f"{title!r} prints units of more than one system or angle unit "
+                      f"({', '.join(sorted(systems | angles))}) within the section or against the sections read "
+                      "before it; the section is not parsed")
+            self.sections_skipped.append({"title": title, "line": title_line, "reason": "units_mixed"})
+            return "units_mixed"
+        return None
+
     def skip(self, title: str, index: int, reason: str, code: str, message: str) -> None:
         self.sections_skipped.append({"title": title, "line": index + 1, "reason": reason})
         self.diag(code, "info", title, index + 1, message)
@@ -319,42 +345,29 @@ class _Parser:
                 found.append(self.rows[cursor])
             cursor += 1
         matched = _match_headers(spec["headers"], tuple(found))
-        if (matched is None and kind == "element_forces_local"
-                and _match_headers(_LOCAL_AXES_HEADERS, tuple(found[:2])) is not None):
-            self.skip(title, index, "local_axes_layout", "CAEPIPE-PRINT-SECTION-SKIPPED",
-                      f"{title!r} is printed in the fx..mz layout with one SIF column, whose bending-moment planes "
-                      "are not documented; its rows are not read")
-            return index + 1
-        problem = None
+        if matched is None and kind == "element_forces_local":
+            # The fx..mz layout is skipped only when its unit labels are valid and consistent; otherwise refused.
+            local = _match_headers(_LOCAL_AXES_HEADERS, tuple(found[:2]))
+            if local is not None and self.units_refused(local, title, title_line) is None:
+                self.skip(title, index, "local_axes_layout", "CAEPIPE-PRINT-SECTION-SKIPPED",
+                          f"{title!r} is printed in the fx..mz layout with one SIF column, whose bending-moment "
+                          "planes are not documented; its rows are not read")
+                return index + 1
+            if local is not None:
+                return index + 1
         if matched is None:
             expected = " / ".join(",".join(row) for row in spec["headers"][0])
             got = " / ".join(",".join(row) for row in found)
-            problem = (f"column-header and unit rows of {title!r} do not match the recognized layout "
-                       f"(expected {expected!r}, got {got!r}); the section is not parsed")
-        else:
-            unknown = [(quantity, label) for quantity, label in matched.values()
-                       if label not in _QUANTITY_LABELS[quantity]]
-            if unknown:
-                quantity, label = unknown[0]
-                problem = (f"unit label {label!r} in {title!r} is not a {quantity} label of the print layout "
-                           f"({', '.join(_QUANTITY_LABELS[quantity])}); the section is not parsed")
-        if problem is not None:
-            self.diag("CAEPIPE-PRINT-COLUMN-HEADER-MISMATCH", "error", title, title_line, problem)
+            self.diag("CAEPIPE-PRINT-COLUMN-HEADER-MISMATCH", "error", title, title_line,
+                      f"column-header and unit rows of {title!r} do not match the recognized layout "
+                      f"(expected {expected!r}, got {got!r}); the section is not parsed")
             self.sections_skipped.append({"title": title, "line": title_line, "reason": "header_mismatch"})
+            return index + 1
+        refused = self.units_refused(matched, title, title_line)
+        if refused is not None:
             return index + 1
         systems = {_QUANTITY_LABELS[q][label] for q, label in matched.values()} - {None}
         angles = {label for q, label in matched.values() if q == "rotation"}
-        if systems:
-            systems |= {self.system} - {None}
-        if angles and self.angle is not None:
-            angles |= {self.angle}
-        if len(systems) > 1 or len(angles) > 1:
-            self.diag("CAEPIPE-PRINT-UNITS-MIXED", "error", title, title_line,
-                      f"{title!r} prints units of more than one system or angle unit "
-                      f"({', '.join(sorted(systems | angles))}) within the section or against the sections read "
-                      "before it; the section is not parsed")
-            self.sections_skipped.append({"title": title, "line": title_line, "reason": "units_mixed"})
-            return index + 1
         self.system = next(iter(systems), self.system)
         self.angle = next(iter(angles), self.angle)
         self.section_units = {key: matched[position][1] for position, key in spec["columns"]}

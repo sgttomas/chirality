@@ -24,7 +24,7 @@ from .print_csv import bind_element_rows
 
 
 BENCHMARK_RECORD_KIND = "openpipestress.caepipe_benchmark.comparison_record"
-BENCHMARK_RECORD_VERSION = "1"
+BENCHMARK_RECORD_VERSION = "2"
 EVIDENCE_CLASSIFICATION = ("private screening evidence for review; not validation, compatibility proof, code "
                            "compliance or professional acceptance")
 
@@ -71,7 +71,8 @@ def _si(value: Any, unit: Any) -> float | None:
     if unit == "deg":
         return math.radians(value)
     factor = _TO_SI.get(unit)
-    return None if factor is None else value * factor
+    converted = None if factor is None else value * factor
+    return converted if converted is not None and math.isfinite(converted) else None
 
 
 def screening_class(inexact_inputs: list[str] | None) -> str:
@@ -86,8 +87,9 @@ def screen(swbpipe: float, caepipe: float, unit: str, cls: str, case_maximum: fl
     scale = max(abs(swbpipe), abs(caepipe), SCREENING_PROFILE["near_zero_fraction"] * case_maximum)
     allowed = floor + rel * scale
     difference = caepipe - swbpipe
+    finite = all(math.isfinite(value) for value in (swbpipe, caepipe, case_maximum, difference, allowed))
     return {"difference": difference, "allowed": allowed, "relative": rel, "floor": floor,
-            "within": abs(difference) <= allowed}
+            "within": finite and abs(difference) <= allowed}
 
 
 def _close(a: float, b: float, unit: str) -> bool:
@@ -99,33 +101,39 @@ Key = tuple[str, str, str, str]  # (kind, entity, end or "", component)
 
 
 def swbpipe_values(results: list[Any], case_ids: list[str], support_nodes: Mapping[str, str],
-                   anchor_nodes: set[str] | frozenset[str] = frozenset()) -> dict[Key, float]:
-    """SWBPIPE's values of the named cases, summed over the cases (one case, or the operating sum), in SI.
+                   anchor_nodes: set[str] | frozenset[str] = frozenset()) -> tuple[dict[Key, float], set[Key]]:
+    """SWBPIPE's values of the named cases, summed over the cases (one case, or the operating sum), in SI, and the
+    keys that cannot be screened: a contribution that is missing from one of the cases, not a finite number in a
+    known unit, or a sum that is not finite. Those keys carry no value and are classed unmatched, never screened on
+    a partial sum.
 
     Support reactions are summed per CAEPIPE node (`support_nodes`: support id -> node label) because the target
     program prints one row per node; displacements are keyed by SWBPIPE node, element ends by member and end. The
     moment components of supports at a node that is not written as an anchor (`anchor_nodes`) are left out: the
     printed restraint rows give forces only."""
-    values: dict[Key, float] = {}
-    wanted = set(case_ids)
+    per_case: dict[str, dict[Key, float]] = {case: {} for case in case_ids}
+    invalid: set[Key] = set()
 
-    def add(key: Key, value: float | None) -> None:
-        if value is not None:
-            values[key] = values.get(key, 0.0) + value
+    def add(case: str, key: Key, value: float | None) -> None:
+        if value is None:
+            invalid.add(key)
+        else:
+            per_case[case][key] = per_case[case].get(key, 0.0) + value
 
     for row in results:
-        if not isinstance(row, Mapping) or (row.get("basis_ref") or {}).get("ref_id") not in wanted:
+        if not isinstance(row, Mapping) or (row.get("basis_ref") or {}).get("ref_id") not in per_case:
             continue
+        case = (row.get("basis_ref") or {}).get("ref_id")
         kind = row.get("kind")
         value = _si(row.get("value"), row.get("unit"))
         if kind in _SWBPIPE_NODAL:
             name, axis, _ = _SWBPIPE_NODAL[kind]
-            add((name, str(row.get("entity_ref")), "", axis), value)
+            add(case, (name, str(row.get("entity_ref")), "", axis), value)
         elif kind in _SWBPIPE_END:
             location = (row.get("metadata") or {}).get("location")
             component = str((row.get("metadata") or {}).get("component", "")).lower()
             if location in ("end_i", "end_j") and len(component) == 2 and component[1] in _AXES:
-                add((_SWBPIPE_END[kind][0], str(row.get("entity_ref")), location, component[1]), value)
+                add(case, (_SWBPIPE_END[kind][0], str(row.get("entity_ref")), location, component[1]), value)
         elif kind == _SWBPIPE_SUPPORT:
             component = str((row.get("metadata") or {}).get("component", ""))
             node = support_nodes.get(str(row.get("entity_ref")))
@@ -133,8 +141,19 @@ def swbpipe_values(results: list[Any], case_ids: list[str], support_nodes: Mappi
                 name = "support_force" if component[0] == "F" else "support_moment"
                 if name == "support_moment" and node not in anchor_nodes:
                     continue
-                add((name, f"node:{node}", "", component[1].lower()), value)
-    return values
+                add(case, (name, f"node:{node}", "", component[1].lower()), value)
+    values: dict[Key, float] = {}
+    for key in set().union(*per_case.values()) - invalid:
+        if all(key in case_values for case_values in per_case.values()):
+            try:
+                total = math.fsum(case_values[key] for case_values in per_case.values())
+            except OverflowError:
+                total = math.inf
+            if math.isfinite(total) and all(math.isfinite(v[key]) for v in per_case.values()):
+                values[key] = total
+                continue
+        invalid.add(key)
+    return values, invalid
 
 
 def caepipe_values(tables: Mapping[str, Any], units: Mapping[str, Any], mbf: Mapping[str, Any]
@@ -184,7 +203,11 @@ def caepipe_values(tables: Mapping[str, Any], units: Mapping[str, Any], mbf: Map
 
 def add_value(values: dict[Key, float], key: Key, value: float | None, sign: float) -> None:
     if value is not None:
-        values[key] = values.get(key, 0.0) + sign * value
+        total = values.get(key, 0.0) + sign * value
+        if math.isfinite(total):
+            values[key] = total
+        else:
+            values.pop(key, None)  # not screenable: the key is then classed unmatched
 
 
 def _expected_keys(mbf: Mapping[str, Any]) -> set[Key]:
@@ -265,7 +288,7 @@ def build_benchmark_record(benchmark_model: Mapping[str, Any], *, swbpipe_result
             rows.append({"case": case_name, "kind": "load_case", "entity": label, "classification": STATUS_MISMATCH,
                          "reason": reason})
             continue
-        swb = swbpipe_values(results, swbpipe_cases, support_nodes, anchor_nodes)
+        swb, swb_invalid = swbpipe_values(results, swbpipe_cases, support_nodes, anchor_nodes)
         cae, unbound, binding = caepipe_values(parsed_cases[label], units, mbf)
         bindings[case_name] = {key: binding[key] for key in ("basis", "unmatched_rows", "unmatched_members", "notes")}
         unbound_rows.extend({"case": case_name, **item} for item in unbound)
@@ -280,7 +303,7 @@ def build_benchmark_record(benchmark_model: Mapping[str, Any], *, swbpipe_result
                 value = _si(entry.get("value"), entry.get("unit"))
                 if key is not None and value is not None:
                     case_closed[key] = (value, entry)
-        for key in sorted(expected | set(swb) | set(cae)):
+        for key in sorted(expected | set(swb) | set(cae) | swb_invalid):
             kind, entity, end, axis = key
             unit = _UNIT[kind]
             row: dict[str, Any] = {"case": case_name, "kind": kind, "entity": entity, "component": axis, "unit": unit,
@@ -292,8 +315,9 @@ def build_benchmark_record(benchmark_model: Mapping[str, Any], *, swbpipe_result
                 row["classification"] = WITHIN if check["within"] else FINDING
             else:
                 row["classification"] = UNMATCHED
-                row["reason"] = ("only SWBPIPE has this value" if key in swb else "only CAEPIPE has this value"
-                                 if key in cae else "neither side has this value")
+                row["reason"] = ("a SWBPIPE contribution is missing from a case or not a finite number"
+                                 if key in swb_invalid else "only SWBPIPE has this value" if key in swb else
+                                 "only CAEPIPE has this value" if key in cae else "neither side has this value")
             if key in case_closed:
                 value, entry = case_closed[key]
                 row["values"]["closed_form"] = value
@@ -308,6 +332,12 @@ def build_benchmark_record(benchmark_model: Mapping[str, Any], *, swbpipe_result
                     row["classification"] = FINDING
                     row["reason"] = "SWBPIPE differs from the model's closed form"
             rows.append(row)
+    # A parser error (a refused section or row) is never silent: one unmatched row each, so the counts show it.
+    for item in (parsed_caepipe or {}).get("diagnostics") or []:
+        if isinstance(item, Mapping) and item.get("severity") == "error":
+            rows.append({"case": "parser", "kind": "parser_error", "entity": str(item.get("section")),
+                         "classification": UNMATCHED, "code": item.get("code"), "line": item.get("line"),
+                         "reason": item.get("message")})
     for item in unbound_rows:
         rows.append({"case": item["case"], "kind": "unbound_row", "entity": str(item.get("caepipe_node") or
                      f"{item.get('node_from')}-{item.get('node_to')}"), "classification": UNMATCHED,
