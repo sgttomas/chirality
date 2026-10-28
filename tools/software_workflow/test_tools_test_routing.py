@@ -172,3 +172,40 @@ def test_dependency_edits_select_structure_check_without_product_tests(tmp_path,
         subprocess.run([sys.executable, str(RUNNER), '--dry-run', '--paths', path],
                        cwd=REPO_ROOT, check=True, capture_output=True)
         assert f"deliverables={str(expected).lower()}" in output.read_text()
+
+
+def test_claims_language_step_follows_the_validator_inputs(tmp_path, monkeypatch):
+    # GEN-13 runs in Repository checks when a changed path is an input the
+    # validator declares, and on schedule or dispatch (--all); not otherwise.
+    spec = importlib.util.spec_from_file_location(
+        'claims_validator', REPO_ROOT / 'tools/validation/validate_claims_language.py')
+    validator = importlib.util.module_from_spec(spec)
+    monkeypatch.setitem(sys.modules, spec.name, validator)
+    spec.loader.exec_module(validator)
+    project = 'projects/chirality-piping'
+    anchors = [f'{project}/{rel}' for _code, rel, _fragment in validator.ANCHORS]
+    assert anchors == [f'{project}/docs/PRD.md', f'{project}/core/reporting/report_renderer/src/lib.rs']
+    output = tmp_path / 'outputs'
+    monkeypatch.setenv('GITHUB_OUTPUT', str(output))
+    for args, expected in [
+        (['--paths', f'{project}/apps/desktop/src/features/x/Panel.tsx'], True),
+        (['--paths', f'{project}/docs/user_guide/index.md'], True),
+        (['--paths', f'{project}/execution/PKG-04/DEL-04-08/ScopeOfWork.md'], True),
+        (['--paths', 'tools/validation/validate_claims_language.py'], True),
+        (['--paths', f'{project}/docs/claims_registry.md'], True),
+        *((['--paths', anchor], True) for anchor in anchors),
+        (['--all'], True),  # schedule and workflow_dispatch select with --all
+        (['--paths', 'projects/chirality-app-v4/apps/desktop/src/App.tsx',
+          'projects/chirality-app-v4/docs/PRD.md',
+          'projects/chirality-app-v4/execution/PKG-01/DEL-01-01/ScopeOfWork.md'], False),
+        (['--paths', f'{project}/core/solver/src/lib.rs',
+          f'{project}/execution/PKG-04/DEL-04-08/deliverable.yaml'], False),
+    ]:
+        output.write_text('')
+        subprocess.run([sys.executable, str(RUNNER), '--dry-run', *args],
+                       cwd=REPO_ROOT, check=True, capture_output=True)
+        assert f"claims_language={str(expected).lower()}" in output.read_text(), args
+    output.write_text('')
+    subprocess.run([sys.executable, str(RUNNER), '--dry-run', '--base', 'no-such-ref-for-test'],
+                   cwd=REPO_ROOT, check=True, capture_output=True)
+    assert 'claims_language=true' in output.read_text()
