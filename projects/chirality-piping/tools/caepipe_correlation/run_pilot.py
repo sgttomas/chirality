@@ -7,7 +7,7 @@ From the project root:
     python3 -m tools.caepipe_correlation.run_pilot --authored [--case ID ...] [--export-only | --no-export]
     python3 -m tools.caepipe_correlation.run_pilot --authored --authored-dir PATH [--case ID ...]
     python3 -m tools.caepipe_correlation.run_pilot --benchmark MANIFEST [--case ID ...] [--batch N]
-        [--batch-size N] [--offline] [--runner PATH]
+        [--batch-size N] [--runner PATH] (--offline | --freeze-file PATH --exclusive-file PATH [--pace-s S])
 
 Per case: the independent hand calculation, the SWBPIPE solve (headless runner),
 the SI MBF (with the case's deliberate fault injection, if any), the live
@@ -66,10 +66,16 @@ the guarded batch round trip, the parsed CSV and the two-way comparison record
 (comparison/benchmark_comparison.json), with the case manifest as the model's
 run record, all in the exchange folder. Models run one at a time in serial
 batches of --batch-size (default 4); --batch N runs only the N-th batch. A live
-benchmark run needs the configuration's settings_guard, checks before each batch
-that no instance of the tool is running, never lets the guest fall back to the
-GUI, and stops at the first round trip whose guard is not clean, that raised, or
-that left no CSV. --offline rebuilds the records from the stored, bound CSVs.
+benchmark run needs the configuration's settings_guard, --freeze-file and
+--exclusive-file. It paces the models --pace-s apart (default 60 s). Before each
+model it stops if the freeze file exists, holds while the exclusive file names a
+running process (up to 30 min), checks that the guest answers `cmd /c ver`
+(once more after 2 min) and that no instance of the tool is running. A model
+whose round trip raised or left no CSV, with a clean settings check, is retried
+once 2 min later. The run stops at the first unclean settings check, a failed
+check before a model, or a round trip that raised twice; the GUI print fallback
+is used only with restore_scope "key" (Design §5). --offline rebuilds the records
+from the stored, bound CSVs.
 
 Standard output carries operational status only: per case its id, route and
 either the comparison record's path relative to the exchange folder or the
@@ -86,6 +92,7 @@ step that wrote no exported MBF; 2 for a usage error.
 from __future__ import annotations
 
 import argparse
+from dataclasses import dataclass
 from datetime import datetime, timezone
 import hashlib
 import importlib.util
@@ -94,6 +101,7 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import time
 from typing import Any, Callable, Mapping
 
 
@@ -116,6 +124,7 @@ from core.handoff.caepipe_external import (  # noqa: E402
 from core.handoff.caepipe_external.correlation import evaluate_hypothesis_series, series_summary  # noqa: E402
 from core.handoff.caepipe_external.harness import (  # noqa: E402
     CONFIG_NAME,
+    check_guest_alive,
     check_no_foreign_instance,
     BOUNDARY_NOTE,
     SETTINGS_KEEP_GOING,
@@ -142,6 +151,12 @@ RUNNER_ENV = "OPENPIPESTRESS_RUNNER_BIN"
 BENCHMARK_MANIFEST_KIND = "openpipestress.caepipe_benchmark.manifest"
 BENCHMARK_MODEL_KIND = "openpipestress.caepipe_benchmark.model"
 BENCHMARK_BATCH_SIZE = 4
+# Live benchmark pacing (Design §11.6): seconds between models, the wait before the one retry of a failed model or
+# liveness check, and the longest hold for a pending exclusive job, polled every BENCHMARK_POLL_S.
+BENCHMARK_PACE_S = 60.0
+BENCHMARK_RETRY_WAIT_S = 120.0
+BENCHMARK_EXCLUSIVE_WAIT_S = 1800.0
+BENCHMARK_POLL_S = 30.0
 BENCHMARK_RECORD = "benchmark_comparison.json"
 MANIFEST_KIND = "openpipestress.caepipe_correlation.case_manifest"
 PARSER_DIAGNOSTICS_KIND = "openpipestress.caepipe_print_csv.parser_diagnostics"
@@ -671,26 +686,91 @@ def benchmark_batches(models: list[Mapping[str, Any]], size: int) -> list[list[M
     return [list(models[start:start + size]) for start in range(0, len(models), size)]
 
 
+RECORDED, NOT_RUN, RETRY = "recorded", "not_run", "retry"
+
+
+@dataclass(frozen=True)
+class BenchmarkStops:
+    """Host files checked before each live benchmark model: `freeze` present stops the run; `exclusive` naming a
+    running process holds it (polled, up to BENCHMARK_EXCLUSIVE_WAIT_S, then stops)."""
+
+    freeze: Path
+    exclusive: Path
+
+
+def _exclusive_pending(path: Path) -> bool:
+    """Whether `path` names a running process by its id (a missing, unreadable or stale file is not pending)."""
+    try:
+        pid = int(path.read_text(encoding="ascii").strip())
+    except (OSError, UnicodeDecodeError, ValueError):
+        return False
+    if pid <= 0:
+        return False
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    return True
+
+
 def run_benchmark_model(entry: Mapping[str, Any], config: HarnessConfig, *, runner: str, offline: bool,
                         emit: Callable[[str], None] = print,
-                        round_trip: Callable[..., dict[str, Any]] = run_caepipe_round_trip) -> bool:
+                        round_trip: Callable[..., dict[str, Any]] = run_caepipe_round_trip,
+                        gui_fallback: bool = False, attempt: int = 1) -> tuple[str, str, str]:
     """One benchmark model: solve, write, guarded batch round trip (or the stored bound CSV), parse, compare.
 
-    Raises RunStopped when the round trip's saved-settings check is not clean, the round trip raised, or the batch
-    run left no CSV (the GUI fallback is refused)."""
+    Returns (status, route, reason): `recorded`, `not_run` (SWBPIPE not solved, MBF refused, containment, or no
+    stored bound CSV offline), or `retry` (the round trip raised, or left no bound CSV, with a clean settings check).
+    Raises RunStopped when the round trip's saved-settings check is not clean, or when the batch run left no CSV and
+    the GUI fallback is off."""
     model_id = entry["model_id"]
     try:
-        return _run_benchmark_model(entry, config, runner=runner, offline=offline, emit=emit, round_trip=round_trip)
+        return _run_benchmark_model(entry, config, runner=runner, offline=offline, emit=emit, round_trip=round_trip,
+                                    gui_fallback=gui_fallback, attempt=attempt)
     except ContainmentError as error:
         emit(f"{model_id}: route=containment_violation; {error}; no benchmark record")
-        return False
+        return NOT_RUN, "containment_violation", str(error)
+
+
+def _benchmark_manifest(root: Path, paths: Mapping[str, Path], entry: Mapping[str, Any], *, offline: bool,
+                        outcome: str, route: str, attempt: int, **extra: Any) -> None:
+    """The model's private run record (the case manifest), written for every live attempt and every record."""
+    _write_json(root, paths["manifest"], {
+        "document_kind": MANIFEST_KIND,
+        "case_id": entry["model_id"],
+        "created": _now(),
+        "mode": "benchmark_offline" if offline else "benchmark_live",
+        "outcome": outcome,
+        "route": route,
+        "attempt": attempt,
+        "benchmark_model": f"validation/caepipe_benchmark/models/{entry['model_id']}.json",
+        "family": entry.get("family"),
+        "generator": entry.get("generator"),
+        "piping_code": entry["piping_code"],
+        "internal_model_hash": canonical_model_hash(entry["model"]),
+        **extra,
+        "layer_privacy": LAYER_PRIVACY,
+        "boundary_note": BOUNDARY_NOTE,
+    })
 
 
 def _run_benchmark_model(entry: Mapping[str, Any], config: HarnessConfig, *, runner: str, offline: bool,
-                         emit: Callable[[str], None], round_trip: Callable[..., dict[str, Any]]) -> bool:
+                         emit: Callable[[str], None], round_trip: Callable[..., dict[str, Any]], gui_fallback: bool,
+                         attempt: int) -> tuple[str, str, str]:
     model_id = entry["model_id"]
     root = config.exchange_root.resolve()
     paths = case_paths(config, model_id)
+
+    def outcome(status: str, route: str, reason: str, **extra: Any) -> tuple[str, str, str]:
+        if not offline:
+            _benchmark_manifest(root, paths, entry, offline=offline, outcome="no_record", route=route,
+                                attempt=attempt, reason=reason, **extra)
+        if status == NOT_RUN:
+            emit(f"{model_id}: route={route}; {reason}; no benchmark record")
+        return status, route, reason
+
     body, output, error = solve_swbpipe(runner, {
         "case_id": model_id, "model": entry["model"],
         "source_location": f"validation/caepipe_benchmark/models/{model_id}.json"})
@@ -698,22 +778,20 @@ def _run_benchmark_model(entry: Mapping[str, Any], config: HarnessConfig, *, run
     if output is not None:
         _write_json(root, paths["swbpipe"] / "result.json", output)
     if error:
-        emit(f"{model_id}: route=not_run; SWBPIPE not solved ({error})")
-        return False
+        return outcome(NOT_RUN, "not_run", f"SWBPIPE not solved ({error})")
     mbf = render_caepipe_mbf_si(entry["model"], title=entry["model_id"],
                                 reference_temperature_c=entry.get("reference_temperature_c", 20.0),
                                 piping_code=entry["piping_code"])
     if mbf.status != "written":
         codes = sorted({item["code"] for item in mbf.diagnostics if item["severity"] == "error"})
-        emit(f"{model_id}: route=not_run; MBF refused ({', '.join(codes)})")
-        return False
+        return outcome(NOT_RUN, "not_run", f"MBF refused ({', '.join(codes)})")
     mbf_text = mbf.text
     mbf_sha256 = _sha256(mbf_text)
     if offline:
+        # Checked before caepipe_in/ is rewritten, so the MBF that produced a stale output is kept.
         csv_path, route, reason = bound_csv(root, paths, stored_run_record(root, paths["caepipe_out"]), mbf_sha256)
         if csv_path is None:
-            emit(f"{model_id}: route={route}; {reason}; no benchmark record")
-            return False
+            return outcome(NOT_RUN, route, reason)
     in_dir = paths["caepipe_in"]
     write_private(root, in_dir / "model.mbf", mbf_text.encode("utf-8"))
     _write_json(root, in_dir / "id_map.json", mbf.sidecar(mbf_sha256))
@@ -723,20 +801,20 @@ def _run_benchmark_model(entry: Mapping[str, Any], config: HarnessConfig, *, run
         "assumptions": mbf.assumptions, "mbf_sha256": mbf_sha256})
     if not offline:
         try:
-            record = round_trip(config, model_id, mbf_text, gui_fallback=False)
+            record = round_trip(config, model_id, mbf_text, gui_fallback=gui_fallback)
         except Exception as error:
             emit(f"{model_id}: round trip raised {type(error).__name__}: {error}")
             _guard_stop(config, model_id, getattr(error, "settings_guard", None), emit)
-            emit(f"{model_id}: the round trip did not end cleanly; stopped")
-            raise RunStopped(model_id) from error
+            return outcome(RETRY, "round_trip_raised", f"the round trip raised {type(error).__name__}")
+        # The guard comes first: any other outcome still stops the run on it.
         _guard_stop(config, model_id, record.get("settings_guard"), emit)
-        if record.get("route") == "batch_no_csv":
-            emit(f"{model_id}: route=batch_no_csv; the GUI fallback is refused for benchmark runs; stopped")
+        if not gui_fallback and record.get("route") == "batch_no_csv":
+            outcome(RETRY, "batch_no_csv", "the batch run left no CSV and the GUI fallback is off")
+            emit(f"{model_id}: route=batch_no_csv; the GUI fallback is off for this run; stopped")
             raise RunStopped(model_id)
         csv_path, route, reason = bound_csv(root, paths, record, mbf_sha256)
         if csv_path is None:
-            emit(f"{model_id}: route={route}; {reason}; no benchmark record")
-            return False
+            return outcome(RETRY, route, reason)
     parsed = read_caepipe_print_csv(csv_path)
     _write_json(root, paths["parsed"] / "caepipe_results.json", parsed)
     _write_json(root, paths["parsed"] / "parser_diagnostics.json", {
@@ -746,37 +824,65 @@ def _run_benchmark_model(entry: Mapping[str, Any], config: HarnessConfig, *, run
                                         mbf_text=mbf_text, parsed_caepipe=parsed)
     comparison_path = paths["comparison"] / BENCHMARK_RECORD
     _write_json(root, comparison_path, comparison)
-    _write_json(root, paths["manifest"], {
-        "document_kind": MANIFEST_KIND,
-        "case_id": model_id,
-        "created": _now(),
-        "mode": "benchmark_offline" if offline else "benchmark_live",
-        "benchmark_model": f"validation/caepipe_benchmark/models/{model_id}.json",
-        "family": entry.get("family"),
-        "generator": entry.get("generator"),
-        "piping_code": entry["piping_code"],
-        "internal_model_hash": canonical_model_hash(entry["model"]),
-        "exported_model_hash": mbf_sha256,
-        "target_tool": comparison["target_tool"],
-        "target_version": comparison["target_version"],
-        "product_label": comparison["product_label"],
-        "trial_first_launch_date": config.trial_first_launch_date,
-        "route": route,
-        "csv": str(csv_path.relative_to(paths["root"])),
-        "layer_privacy": LAYER_PRIVACY,
-        "boundary_note": BOUNDARY_NOTE,
-    })
+    _benchmark_manifest(root, paths, entry, offline=offline, outcome="recorded", route=route, attempt=attempt,
+                        exported_model_hash=mbf_sha256, target_tool=comparison["target_tool"],
+                        target_version=comparison["target_version"], product_label=comparison["product_label"],
+                        trial_first_launch_date=config.trial_first_launch_date,
+                        csv=str(csv_path.relative_to(paths["root"])),
+                        comparison=str(comparison_path.relative_to(paths["root"])))
     # Operational status only: the classification counts stay in the private record (Design §8).
     emit(f"{model_id}: route={route}; benchmark record written: {comparison_path.relative_to(root)}")
-    return True
+    return RECORDED, route, ""
+
+
+def _benchmark_gate(model_id: str, config: HarnessConfig, stops: BenchmarkStops, *,
+                    liveness: Callable[[HarnessConfig], dict[str, Any]],
+                    precondition: Callable[[HarnessConfig], dict[str, Any]], sleep: Callable[[float], None],
+                    emit: Callable[[str], None]) -> str | None:
+    """Before each live model: the freeze file, a pending exclusive job, the guest's liveness (checked again once
+    after BENCHMARK_RETRY_WAIT_S) and the no-foreign-instance precondition. None when the model may start, else why
+    the run stops."""
+    if stops.freeze.exists():
+        return "the freeze file is present"
+    waited = 0.0
+    while _exclusive_pending(stops.exclusive):
+        if waited >= BENCHMARK_EXCLUSIVE_WAIT_S:
+            return f"an exclusive job was still pending after {waited:g} s"
+        if waited == 0.0:
+            emit(f"{model_id}: an exclusive job is pending; waiting for it (up to {BENCHMARK_EXCLUSIVE_WAIT_S:g} s)")
+        sleep(BENCHMARK_POLL_S)
+        waited += BENCHMARK_POLL_S
+    alive = liveness(config)
+    if alive["status"] != "alive":
+        emit(f"{model_id}: liveness {alive['status']}; {alive.get('reason', '')}; "
+             f"checking again in {BENCHMARK_RETRY_WAIT_S:g} s")
+        sleep(BENCHMARK_RETRY_WAIT_S)
+        alive = liveness(config)
+        if alive["status"] != "alive":
+            return f"liveness {alive['status']}; {alive.get('reason', '')}"
+    if stops.freeze.exists():
+        return "the freeze file is present"
+    pre = precondition(config)
+    if pre["status"] != "clear":
+        return f"{pre['status']}; {pre.get('reason', '')}"
+    return None
 
 
 def run_benchmark(models: list[Mapping[str, Any]], config: HarnessConfig, *, runner: str, offline: bool,
                   batch_size: int = BENCHMARK_BATCH_SIZE, batch: int | None = None,
                   emit: Callable[[str], None] = print,
                   round_trip: Callable[..., dict[str, Any]] = run_caepipe_round_trip,
-                  precondition: Callable[[HarnessConfig], dict[str, Any]] | None = None) -> int:
-    """Run the models in serial batches; the exit status of main."""
+                  precondition: Callable[[HarnessConfig], dict[str, Any]] | None = None,
+                  liveness: Callable[[HarnessConfig], dict[str, Any]] | None = None,
+                  stops: BenchmarkStops | None = None, pace_s: float = BENCHMARK_PACE_S,
+                  sleep: Callable[[float], None] | None = None) -> int:
+    """Run the models one at a time, in serial batches; the exit status of main.
+
+    A live run paces the models `pace_s` apart, passes `_benchmark_gate` before each attempt, and retries a model
+    once, BENCHMARK_RETRY_WAIT_S later, when its round trip raised or left no bound CSV with a clean settings check.
+    A model that still left no CSV is recorded as such and the run goes on; a round trip that raised twice, a gate
+    that fails, or an unclean settings check stops the run. The GUI fallback is on only when the settings guard
+    restores the whole key, whose restore covers the settings that route writes (Design §5)."""
     batches = benchmark_batches(models, batch_size)
     if batch is not None:
         if not 1 <= batch <= len(batches):
@@ -785,22 +891,45 @@ def run_benchmark(models: list[Mapping[str, Any]], config: HarnessConfig, *, run
         chosen = [(batch, batches[batch - 1])]
     else:
         chosen = list(enumerate(batches, start=1))
+    if not offline and stops is None:
+        raise ValueError("a live benchmark run needs its stop files")
     check = precondition or check_no_foreign_instance
-    results = []
+    alive = liveness or check_guest_alive
+    sleep = sleep or time.sleep
+    gui_fallback = bool(config.settings_guard is not None and config.settings_guard.restores_whole_key)
+    results, started = [], False
     for number, members in chosen:
         emit(f"batch {number}/{len(batches)}: {', '.join(entry['model_id'] for entry in members)}")
-        if not offline:
-            pre = check(config)
-            if pre["status"] != "clear":
-                emit(f"stopped before batch {number}: {pre['status']}; {pre.get('reason', '')}")
+        for entry in members:
+            model_id = entry["model_id"]
+            status, route, reason = NOT_RUN, "not_run", ""
+            try:
+                for attempt in (1, 2):
+                    if not offline:
+                        if started:
+                            sleep(pace_s if attempt == 1 else BENCHMARK_RETRY_WAIT_S)
+                        stop = _benchmark_gate(model_id, config, stops, liveness=alive, precondition=check,
+                                               sleep=sleep, emit=emit)
+                        if stop is not None:
+                            emit(f"stopped before {model_id}: {stop}")
+                            return 1
+                        started = True
+                    status, route, reason = run_benchmark_model(entry, config, runner=runner, offline=offline,
+                                                                emit=emit, round_trip=round_trip,
+                                                                gui_fallback=gui_fallback, attempt=attempt)
+                    if status != RETRY:
+                        break
+                    if attempt == 1:
+                        emit(f"{model_id}: route={route}; {reason}; retrying once in {BENCHMARK_RETRY_WAIT_S:g} s")
+            except RunStopped as stopped:
+                emit(f"stopped after {stopped}: the guarded round trip did not end cleanly; no further model ran")
                 return 1
-        try:
-            for entry in members:
-                results.append(run_benchmark_model(entry, config, runner=runner, offline=offline, emit=emit,
-                                                   round_trip=round_trip))
-        except RunStopped as stopped:
-            emit(f"stopped after {stopped}: the guarded round trip did not end cleanly; no further model ran")
-            return 1
+            if status == RETRY:
+                if route == "round_trip_raised":
+                    emit(f"stopped after {model_id}: the round trip raised again after one retry; no further model ran")
+                    return 1
+                emit(f"{model_id}: route={route}; {reason}; no benchmark record after one retry")
+            results.append(status == RECORDED)
     return 0 if all(results) else 1
 
 
@@ -823,19 +952,33 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] = os.environ)
                         help="with --authored, run the round trip only (no export step)")
     parser.add_argument("--runner", help=f"openpipestress-runner executable (default: ${RUNNER_ENV})")
     parser.add_argument("--benchmark", metavar="MANIFEST",
-                        help="run the generated benchmark models of this manifest (two-way comparison, guarded batch "
-                             "route only); takes --case, --offline, --batch and --batch-size")
+                        help="run the generated benchmark models of this manifest (two-way comparison, guarded "
+                             "round trips, paced one at a time)")
     parser.add_argument("--batch", type=int, metavar="N", help="with --benchmark, run only the N-th batch")
     parser.add_argument("--batch-size", type=int, default=BENCHMARK_BATCH_SIZE, metavar="N",
                         help=f"with --benchmark, models per serial batch (default {BENCHMARK_BATCH_SIZE})")
+    parser.add_argument("--freeze-file", metavar="PATH",
+                        help="with a live --benchmark run (required): a host file whose presence stops the run")
+    parser.add_argument("--exclusive-file", metavar="PATH",
+                        help="with a live --benchmark run (required): a host file naming the process id of a pending "
+                             "exclusive job, which holds the run")
+    parser.add_argument("--pace-s", type=float, default=BENCHMARK_PACE_S, metavar="S",
+                        help=f"with a live --benchmark run, seconds between models (default {BENCHMARK_PACE_S:g})")
     args = parser.parse_args(argv)
+    benchmark_only = (args.batch is not None or args.batch_size != BENCHMARK_BATCH_SIZE or args.freeze_file
+                      or args.exclusive_file or args.pace_s != BENCHMARK_PACE_S)
     if args.benchmark and (args.authored or args.authored_dir or args.no_export or args.export_mbf
                            or args.export_only):
-        parser.error("--benchmark takes only --case, --offline, --batch, --batch-size and --runner")
-    if not args.benchmark and (args.batch is not None or args.batch_size != BENCHMARK_BATCH_SIZE):
-        parser.error("--batch and --batch-size need --benchmark")
+        parser.error("--benchmark takes only --case, --offline, --batch, --batch-size, --freeze-file, "
+                     "--exclusive-file, --pace-s and --runner")
+    if not args.benchmark and benchmark_only:
+        parser.error("--batch, --batch-size, --freeze-file, --exclusive-file and --pace-s need --benchmark")
     if args.batch_size < 1:
         parser.error("--batch-size must be at least 1")
+    if not (args.pace_s >= 0.0):
+        parser.error("--pace-s must be a non-negative number")
+    if args.benchmark and not args.offline and not (args.freeze_file and args.exclusive_file):
+        parser.error("a live --benchmark run needs --freeze-file and --exclusive-file")
     if args.benchmark:
         return benchmark_main(args, environ)
     if args.authored and (args.offline or args.export_mbf):
@@ -921,8 +1064,10 @@ def benchmark_main(args: argparse.Namespace, environ: Mapping[str, str]) -> int:
         return 2
     for warning in config.warnings:
         print(f"warning: {warning}")
+    stops = None if args.offline else BenchmarkStops(freeze=Path(args.freeze_file),
+                                                     exclusive=Path(args.exclusive_file))
     return run_benchmark(models, config, runner=runner, offline=args.offline, batch_size=args.batch_size,
-                         batch=args.batch)
+                         batch=args.batch, stops=stops, pace_s=args.pace_s)
 
 
 if __name__ == "__main__":

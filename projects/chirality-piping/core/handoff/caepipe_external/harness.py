@@ -880,6 +880,22 @@ def check_no_foreign_instance(config: HarnessConfig, *, timeout_s: float | None 
                          "session_process_list")
 
 
+def check_guest_alive(config: HarnessConfig, *, timeout_s: float = GUARD_CALL_TIMEOUT_S,
+                      runner: Callable[..., subprocess.CompletedProcess] = subprocess.run) -> dict[str, Any]:
+    """Liveness check: `alive` when the guest answers `cmd /c ver` with exit status 0 and some output. Starts and
+    stops nothing; the guest's output is not kept."""
+
+    steps: list[dict[str, Any]] = []
+    try:
+        record = _guest_step(config, runner, timeout_s, steps, "liveness", "ver")
+    except Exception as failure:
+        return {"status": "unreachable", "reason": f"the liveness call failed: {type(failure).__name__}"}
+    if record["exit_status"] != 0 or not record["stdout"].strip():
+        return {"status": "unreachable",
+                "reason": f"the guest did not answer the liveness check (exit status {record['exit_status']})"}
+    return {"status": "alive"}
+
+
 def _owned_processes(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]], work: str,
                      guest_log: Any) -> dict[str, Any]:
     """Whether every process the guest script started has exited, and no other instance of the tool appeared.

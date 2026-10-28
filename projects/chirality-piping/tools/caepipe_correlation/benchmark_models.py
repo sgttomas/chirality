@@ -12,9 +12,10 @@ standard or CAEPIPE output. `--check` regenerates in memory and compares with th
 (exit 1 on any difference).
 
 Families G1-G8 (Design §11.1): straight spans, single bends, Z and U loops, multi-plane runs, branch tees, risers,
-support mixes and anchor movements. Each family takes its corner or series points plus a Latin hypercube
-drawn from `random.Random(seed)`; the generator uses only `random()` from it, whose sequence for an integer seed
-is stable across Python versions, and prints every float through `repr`, so the same seed gives the same bytes.
+support mixes and anchor movements. G1-G4 take their corner or series points plus a Latin hypercube drawn from
+`random.Random(seed)`; G5-G8 enumerate their configurations (and G5 its tee series) and sample the rest by the
+hypercube. The generator uses only `random()` from it, whose sequence for an integer seed is stable across Python
+versions, and prints every float through `repr`, so the same seed gives the same bytes.
 Closed-form Euler-Bernoulli values are attached to the straight members whose response has one (G1, G8); they
 are the third, independent value of the comparison.
 
@@ -257,6 +258,11 @@ class Builder:
         }
 
 
+def _corner(low: bool) -> Callable[[tuple[float, float]], float]:
+    """The low or the high end of each parameter range."""
+    return lambda span: span[0] if low else span[1]
+
+
 def section(unit_od: float, unit_dt: float) -> tuple[float, float, float]:
     """(OD mm, D/t, wall mm) from two unit samples; OD and D/t log-uniform over the family ranges."""
     od = scale(unit_od, *OD_RANGE, log=True)
@@ -421,8 +427,15 @@ def build_g2(model_id: str, spec: Spec) -> tuple[dict, list[dict], dict]:
 
 def g3_loops(rng: random.Random) -> list[Spec]:
     specs = []
-    for config, count in (("z", 6), ("u", 6)):
-        for point in latin_hypercube(rng, count, 9):
+    for config in ("z", "u"):
+        # Two opposite corners of (OD, D/t, R/D, k, leg lengths, delta T), then four Latin hypercube points.
+        for low, material in ((True, 1), (False, 2)):
+            pick = _corner(low)
+            specs.append({"config": config, "sampling": "corner", "od": pick(OD_RANGE), "dt": pick(DT_RANGE),
+                          "rd": pick((1.0, 5.0)), "k": pick((1.0, 10.0)), "clear_1": pick((1.0, 4.0)),
+                          "height": pick((1.0, 4.0)), "width": pick((1.0, 4.0)), "material": material,
+                          "delta_t": pick(DELTA_T_RANGE), "force": -1000.0})
+        for point in latin_hypercube(rng, 4, 9):
             od, dt, _ = section(point[0], point[1])
             specs.append({"config": config, "sampling": "lhs", "od": od, "dt": dt,
                           "rd": scale(point[2], 1.0, 5.0, digits=3), "k": scale(point[3], 1.0, 10.0, digits=3),
@@ -494,7 +507,14 @@ def build_g3(model_id: str, spec: Spec) -> tuple[dict, list[dict], dict]:
 
 def g4_multiplane(rng: random.Random) -> list[Spec]:
     specs = []
-    for point in latin_hypercube(rng, 6, 9):
+    # Two opposite corners, then four Latin hypercube points.
+    for low, material in ((True, 0), (False, 2)):
+        pick = _corner(low)
+        specs.append({"sampling": "corner", "od": pick(OD_RANGE), "dt": pick(DT_RANGE), "rd": pick((1.0, 5.0)),
+                      "k": pick((1.0, 10.0)), "clear_1": pick((1.0, 4.0)), "rise": pick((1.0, 4.0)),
+                      "clear_3": pick((1.0, 4.0)), "material": material, "delta_t": pick(DELTA_T_RANGE),
+                      "force": -1500.0})
+    for point in latin_hypercube(rng, 4, 9):
         od, dt, _ = section(point[0], point[1])
         specs.append({"sampling": "lhs", "od": od, "dt": dt, "rd": scale(point[2], 1.0, 5.0, digits=3),
                       "k": scale(point[3], 1.0, 10.0, digits=3), "clear_1": scale(point[4], 1.0, 4.0, digits=3),

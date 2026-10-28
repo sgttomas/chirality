@@ -33,7 +33,7 @@ from core.handoff.caepipe_external.benchmark import (  # noqa: E402
     build_benchmark_record,
     screen,
 )
-from core.handoff.caepipe_external.harness import RUN_RECORD_KIND  # noqa: E402
+from core.handoff.caepipe_external.harness import RUN_RECORD_KIND, check_guest_alive  # noqa: E402
 from core.handoff.caepipe_external.print_csv import bind_element_rows  # noqa: E402
 from core.handoff.caepipe_mbf import render_caepipe_mbf_si  # noqa: E402
 from tools.caepipe_correlation import benchmark_models, run_pilot  # noqa: E402
@@ -93,6 +93,10 @@ def test_the_manifest_records_seed_family_parameters_and_hashes():
     assert [member["value"] for member in series["tee-ratio"]["members"]] == [0.3, 0.5, 0.75, 1.0]
     bend_k = [name for name in series if name.startswith("bend-k-")]
     assert len(bend_k) == 8 and all(series[name]["members"][0]["value"] == 1.0 for name in bend_k)
+    sampling = {(entry["family"], entry["sampling"]) for entry in manifest["models"]}
+    assert {("G1", "corner"), ("G2", "corner"), ("G3", "corner"), ("G4", "corner")} <= sampling
+    assert {("G1", "lhs"), ("G3", "lhs"), ("G4", "lhs"), ("G5", "lhs"), ("G6", "lhs"), ("G7", "lhs"),
+            ("G8", "lhs")} <= sampling
 
 
 def test_sections_materials_and_bends_span_the_proposed_ranges():
@@ -430,15 +434,18 @@ def benchmark_manifest(tmp_path: Path, count: int = 5) -> Path:
 
 @pytest.fixture
 def fake_benchmark(tmp_path, monkeypatch):
-    """A configured harness with a fake SWBPIPE solve and a fake guarded round trip that prints an invented CSV."""
+    """A configured harness with a fake SWBPIPE solve, a fake guarded round trip that prints an invented CSV, a fake
+    guest liveness check and a recorded sleep (nothing waits and no guest is reached)."""
     config = dataclasses.replace(fake_config(tmp_path), settings_guard=INVENTED_GUARD)
     monkeypatch.setattr(run_pilot, "resolve_harness_config", lambda environ, require_vm_tools: config)
     monkeypatch.setattr(run_pilot, "solve_swbpipe", lambda runner, case: (
         {"invented": case["source_location"]}, {"payload": invented_payload()}, ""))
-    state = {"calls": [], "outcomes": [], "session": [], "clean": {"settings_guard": {"status": "unchanged"}}}
+    state = {"calls": [], "outcomes": [], "session": [], "alive": [], "sleeps": [], "events": [],
+             "clean": {"settings_guard": {"status": "unchanged"}}}
 
     def round_trip(config_, case_id, mbf_text, **kwargs):
         state["calls"].append((case_id, kwargs))
+        state["events"].append(("round_trip", case_id))
         outcome = state["outcomes"].pop(0) if state["outcomes"] else state["clean"]
         if isinstance(outcome, BaseException):
             raise outcome
@@ -450,72 +457,215 @@ def fake_benchmark(tmp_path, monkeypatch):
         (out / "run_record.json").write_text(json.dumps(record), encoding="utf-8")
         return record
 
+    def alive(config_):
+        state["events"].append(("liveness",))
+        return state["alive"].pop(0) if state["alive"] else {"status": "alive"}
+
+    def precondition(config_):
+        state["session"].append(1)
+        state["events"].append(("precondition",))
+        return {"status": state.get("pre", "clear")}
+
     real = run_pilot.run_benchmark_model
     monkeypatch.setattr(run_pilot, "run_benchmark_model",
                         lambda entry, config_, **kw: real(entry, config_, **{**kw, "round_trip": round_trip}))
-    monkeypatch.setattr(run_pilot, "check_no_foreign_instance",
-                        lambda config_: state["session"].append(1) or {"status": state.get("pre", "clear")})
+    monkeypatch.setattr(run_pilot, "check_no_foreign_instance", precondition)
+    monkeypatch.setattr(run_pilot, "check_guest_alive", alive)
+    monkeypatch.setattr(run_pilot.time, "sleep", lambda seconds: (state["sleeps"].append(seconds),
+                                                                  state["events"].append(("sleep", seconds))))
     runner = tmp_path / "runner"
     runner.write_text("invented", encoding="utf-8")
-    state.update(config=config, runner=str(runner), manifest=benchmark_manifest(tmp_path / "set"))
+    stops = tmp_path / "stops"
+    stops.mkdir()
+    state.update(config=config, runner=str(runner), manifest=benchmark_manifest(tmp_path / "set"),
+                 freeze=stops / "FREEZE", exclusive=stops / "exclusive.pending")
+    state["argv"] = ["--benchmark", str(state["manifest"]), "--runner", str(runner), "--freeze-file",
+                     str(state["freeze"]), "--exclusive-file", str(state["exclusive"])]
     return state
 
 
-def test_the_benchmark_option_writes_a_private_record_per_model_in_serial_batches(fake_benchmark, capsys):
+def test_the_benchmark_option_writes_a_private_record_per_model_one_at_a_time(fake_benchmark, capsys):
     state = fake_benchmark
-    argv = ["--benchmark", str(state["manifest"]), "--runner", state["runner"]]
-    assert run_pilot.main(argv, environ={}) == 0
+    assert run_pilot.main(state["argv"], environ={}) == 0
     assert [call[0] for call in state["calls"]] == ["cpb-g1-01", "cpb-g1-02", "cpb-g1-03", "cpb-g1-04", "cpb-g1-05"]
+    # The invented guard restores the recent-files subkey only, so the GUI print fallback is off.
     assert all(call[1] == {"gui_fallback": False} for call in state["calls"])
-    assert len(state["session"]) == 2  # the precondition before each batch of four
+    # Before each model: liveness, then the no-foreign-instance precondition; 60 s between models.
+    first = [("liveness",), ("precondition",), ("round_trip", "cpb-g1-01")]
+    assert state["events"][:3] == first
+    assert state["events"][3:7] == [("sleep", 60.0), ("liveness",), ("precondition",), ("round_trip", "cpb-g1-02")]
+    assert state["sleeps"] == [60.0] * 4 and len(state["session"]) == 5
     out = capsys.readouterr().out
     assert "batch 1/2: cpb-g1-01, cpb-g1-02, cpb-g1-03, cpb-g1-04" in out and "batch 2/2: cpb-g1-05" in out
     root = state["config"].exchange_root
     record = json.loads((root / "cases" / "cpb-g1-01" / "comparison" / "benchmark_comparison.json").read_text())
     assert record["document_kind"] == BENCHMARK_RECORD_KIND and record["piping_code"] == "B311-80"
     manifest = json.loads((root / "cases" / "cpb-g1-01" / "case_manifest.json").read_text())
-    assert manifest["mode"] == "benchmark_live" and manifest["route"] == "csv_from_batch"
+    assert (manifest["mode"], manifest["outcome"], manifest["route"], manifest["attempt"]) == (
+        "benchmark_live", "recorded", "csv_from_batch", 1)
     rendered = (root / "cases" / "cpb-g1-01" / "caepipe_in" / "model.mbf").read_text()
     assert "HGRA,B311-80,SI" in rendered
     # Operational status only on standard output: no classification or count.
     assert "within_profile" not in out and "finding" not in out
-    # One batch alone; then the stored, bound CSVs rebuild the records offline with no round trip.
+    # One batch alone; then the stored, bound CSVs rebuild the records offline with no round trip and no wait.
     state["calls"].clear()
-    assert run_pilot.main(argv + ["--batch", "2"], environ={}) == 0
+    assert run_pilot.main(state["argv"] + ["--batch", "2", "--pace-s", "90"], environ={}) == 0
     assert [call[0] for call in state["calls"]] == ["cpb-g1-05"]
     state["calls"].clear()
-    assert run_pilot.main(argv + ["--offline", "--case", "cpb-g1-02"], environ={}) == 0
-    assert state["calls"] == []
+    state["sleeps"].clear()
+    offline = ["--benchmark", str(state["manifest"]), "--runner", state["runner"], "--offline"]
+    assert run_pilot.main(offline + ["--case", "cpb-g1-02"], environ={}) == 0
+    assert state["calls"] == [] and state["sleeps"] == []
     assert "cpb-g1-02: route=csv_from_batch; benchmark record written" in capsys.readouterr().out
+
+
+def test_the_pace_is_the_callers(fake_benchmark):
+    state = fake_benchmark
+    assert run_pilot.main(state["argv"] + ["--pace-s", "90", "--batch-size", "2", "--batch", "1"], environ={}) == 0
+    assert state["sleeps"] == [90.0]
+
+
+def test_the_gui_fallback_is_on_when_the_guard_restores_the_whole_key(fake_benchmark, monkeypatch):
+    state = fake_benchmark
+    whole = dataclasses.replace(state["config"], settings_guard=dataclasses.replace(INVENTED_GUARD, restore_scope="key"))
+    monkeypatch.setattr(run_pilot, "resolve_harness_config", lambda environ, require_vm_tools: whole)
+    assert run_pilot.main(state["argv"] + ["--case", "cpb-g1-01"], environ={}) == 0
+    assert state["calls"] == [("cpb-g1-01", {"gui_fallback": True})]
 
 
 @pytest.mark.parametrize("outcome", [
     {"settings_guard": {"status": "settings_changed"}},
     {"route": "batch_no_csv", "settings_guard": {"status": "unchanged"}},
     {"route": "timeout", "settings_guard": {"status": "owned_process_running"}},
-    RuntimeError("invented"),
+    RuntimeError("invented"),  # raised before any settings check was recorded
 ])
 def test_the_benchmark_run_stops_at_the_first_unclean_round_trip(fake_benchmark, outcome):
     state = fake_benchmark
     state["outcomes"][:] = [outcome]
-    assert run_pilot.main(["--benchmark", str(state["manifest"]), "--runner", state["runner"]], environ={}) == 1
+    assert run_pilot.main(state["argv"], environ={}) == 1
     assert [call[0] for call in state["calls"]] == ["cpb-g1-01"]
 
 
-def test_the_benchmark_run_starts_no_batch_while_another_instance_runs(fake_benchmark):
+def raised_after_a_clean_check() -> RuntimeError:
+    error = RuntimeError("invented transport failure")
+    error.settings_guard = {"status": "unchanged"}
+    return error
+
+
+def test_a_failed_model_is_retried_once_after_two_minutes(fake_benchmark, capsys):
+    state = fake_benchmark
+    state["outcomes"][:] = [raised_after_a_clean_check()]
+    assert run_pilot.main(state["argv"] + ["--case", "cpb-g1-01", "--case", "cpb-g1-02"], environ={}) == 0
+    assert [call[0] for call in state["calls"]] == ["cpb-g1-01", "cpb-g1-01", "cpb-g1-02"]
+    assert state["sleeps"] == [120.0, 60.0]
+    assert "cpb-g1-01: route=round_trip_raised; the round trip raised RuntimeError; retrying once in 120 s" in \
+        capsys.readouterr().out
+    manifest = json.loads((state["config"].exchange_root / "cases" / "cpb-g1-01" / "case_manifest.json").read_text())
+    assert (manifest["outcome"], manifest["attempt"]) == ("recorded", 2)
+
+
+def test_a_model_that_leaves_no_csv_twice_is_recorded_and_the_run_goes_on(fake_benchmark, capsys):
+    state = fake_benchmark
+    no_csv = {"route": "csv_missing", "observed_csv_path": {}, "settings_guard": {"status": "unchanged"}}
+    state["outcomes"][:] = [no_csv, no_csv]
+    assert run_pilot.main(state["argv"] + ["--case", "cpb-g1-01", "--case", "cpb-g1-02"], environ={}) == 1
+    assert [call[0] for call in state["calls"]] == ["cpb-g1-01", "cpb-g1-01", "cpb-g1-02"]
+    assert "cpb-g1-01: route=csv_missing; the run record names no collected CAEPIPE CSV; no benchmark record after " \
+           "one retry" in capsys.readouterr().out
+    root = state["config"].exchange_root
+    manifest = json.loads((root / "cases" / "cpb-g1-01" / "case_manifest.json").read_text())
+    assert (manifest["outcome"], manifest["route"], manifest["attempt"]) == ("no_record", "csv_missing", 2)
+    assert not (root / "cases" / "cpb-g1-01" / "comparison" / "benchmark_comparison.json").exists()
+
+
+def test_a_round_trip_that_raises_twice_stops_the_run(fake_benchmark):
+    state = fake_benchmark
+    state["outcomes"][:] = [raised_after_a_clean_check(), raised_after_a_clean_check()]
+    assert run_pilot.main(state["argv"], environ={}) == 1
+    assert [call[0] for call in state["calls"]] == ["cpb-g1-01", "cpb-g1-01"]
+
+
+def test_the_benchmark_run_starts_no_model_while_another_instance_runs(fake_benchmark):
     state = fake_benchmark
     state["pre"] = "foreign_instance_running"
-    assert run_pilot.main(["--benchmark", str(state["manifest"]), "--runner", state["runner"]], environ={}) == 1
+    assert run_pilot.main(state["argv"], environ={}) == 1
     assert state["calls"] == []
+
+
+def test_an_unresponsive_guest_is_checked_again_after_two_minutes_then_stops_the_run(fake_benchmark, capsys):
+    state = fake_benchmark
+    down = {"status": "unreachable", "reason": "invented"}
+    state["alive"][:] = [down]
+    assert run_pilot.main(state["argv"] + ["--case", "cpb-g1-01"], environ={}) == 0
+    assert state["sleeps"] == [120.0] and [call[0] for call in state["calls"]] == ["cpb-g1-01"]
+    state["alive"][:] = [down, down]
+    state["calls"].clear()
+    assert run_pilot.main(state["argv"] + ["--case", "cpb-g1-01"], environ={}) == 1
+    assert state["calls"] == []
+    assert "stopped before cpb-g1-01: liveness unreachable; invented" in capsys.readouterr().out
+
+
+def test_the_freeze_file_stops_the_run_before_the_next_model(fake_benchmark, monkeypatch, capsys):
+    state = fake_benchmark
+    # The freeze file appears during the pause after the first model.
+    monkeypatch.setattr(run_pilot.time, "sleep", lambda seconds: state["freeze"].write_text("", encoding="ascii"))
+    assert run_pilot.main(state["argv"], environ={}) == 1
+    assert [call[0] for call in state["calls"]] == ["cpb-g1-01"]
+    assert "stopped before cpb-g1-02: the freeze file is present" in capsys.readouterr().out
+
+
+def test_a_pending_exclusive_job_holds_the_run(fake_benchmark, monkeypatch, capsys):
+    state = fake_benchmark
+    state["exclusive"].write_text(f"{os.getpid()}\n", encoding="ascii")  # a running process: this test's
+    polls = []
+
+    def poll(seconds):
+        polls.append(seconds)
+        if len(polls) == 2:
+            state["exclusive"].write_text("not a process id\n", encoding="ascii")
+    monkeypatch.setattr(run_pilot.time, "sleep", poll)
+    assert run_pilot.main(state["argv"] + ["--case", "cpb-g1-01"], environ={}) == 0
+    assert polls == [30.0, 30.0] and [call[0] for call in state["calls"]] == ["cpb-g1-01"]
+    assert "cpb-g1-01: an exclusive job is pending; waiting for it (up to 1800 s)" in capsys.readouterr().out
+    state["calls"].clear()
+    state["exclusive"].write_text(f"{os.getpid()}\n", encoding="ascii")
+    monkeypatch.setattr(run_pilot.time, "sleep", lambda seconds: None)
+    assert run_pilot.main(state["argv"] + ["--case", "cpb-g1-01"], environ={}) == 1
+    assert state["calls"] == []
+    assert "stopped before cpb-g1-01: an exclusive job was still pending after 1800 s" in capsys.readouterr().out
+
+
+@pytest.mark.parametrize("answer, status", [
+    ((0, "Invented Guest [Version 0.0]\r\n", ""), "alive"),
+    ((1, "", "invented"), "unreachable"),
+    ((0, "  \r\n", ""), "unreachable"),
+    (subprocess.TimeoutExpired("prlctl", 1.0), "unreachable"),
+])
+def test_the_liveness_check_asks_the_guest_for_ver_and_starts_nothing(tmp_path, answer, status):
+    calls = []
+
+    def runner(argv, **kwargs):
+        calls.append(argv)
+        if isinstance(answer, BaseException):
+            raise answer
+        return subprocess.CompletedProcess(argv, answer[0], stdout=answer[1], stderr=answer[2])
+    result = check_guest_alive(fake_config(tmp_path), runner=runner)
+    assert result["status"] == status
+    assert calls == [["/invented/prlctl", "exec", "invented-vm", "--current-user", "cmd", "/c", "ver"]]
+    assert "Invented Guest" not in json.dumps(result)
 
 
 def test_benchmark_refusals(fake_benchmark, monkeypatch, capsys, tmp_path):
     state = fake_benchmark
-    base = ["--benchmark", str(state["manifest"]), "--runner", state["runner"]]
+    base = state["argv"]
     for argv, message in ((base + ["--authored"], "--benchmark takes only"),
                           (base + ["--export-mbf"], "--benchmark takes only"),
-                          (["--batch", "1"], "--batch and --batch-size need --benchmark"),
-                          (base + ["--batch-size", "0"], "--batch-size must be at least 1")):
+                          (["--batch", "1"], "need --benchmark"),
+                          (["--freeze-file", "x"], "need --benchmark"),
+                          (base + ["--batch-size", "0"], "--batch-size must be at least 1"),
+                          (base + ["--pace-s", "-1"], "--pace-s must be a non-negative number"),
+                          (base[:4], "a live --benchmark run needs --freeze-file and --exclusive-file"),
+                          (base[:6], "a live --benchmark run needs --freeze-file and --exclusive-file")):
         with pytest.raises(SystemExit) as raised:
             run_pilot.main(argv, environ={})
         assert raised.value.code == 2 and message in capsys.readouterr().err

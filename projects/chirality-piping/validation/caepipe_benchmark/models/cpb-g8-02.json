@@ -8,7 +8,7 @@
       "quantity": "reaction_force",
       "support": "support:B",
       "unit": "N",
-      "value": 61236.329642919554
+      "value": 576.8550906590402
     },
     {
       "basis": "Euler-Bernoulli closed form; invented inputs",
@@ -18,7 +18,7 @@
       "quantity": "reaction_force",
       "support": "support:A",
       "unit": "N",
-      "value": -61236.329642919554
+      "value": -576.8550906590402
     },
     {
       "basis": "Euler-Bernoulli closed form; invented inputs",
@@ -28,7 +28,7 @@
       "node": "node:M",
       "quantity": "displacement",
       "unit": "m",
-      "value": 0.0175
+      "value": 0.0137
     }
   ],
   "document_kind": "openpipestress.caepipe_benchmark.model",
@@ -69,7 +69,7 @@
             "id": "load:weight:pipe:P1",
             "magnitude": {
               "unit": "N/m",
-              "value": -219.83158379372983
+              "value": -118.99858860582353
             },
             "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data; w = -rho A g with g = 9.80665 m/s2 and A the bare metal area",
             "target": {
@@ -84,7 +84,7 @@
             "id": "load:weight:pipe:P2",
             "magnitude": {
               "unit": "N/m",
-              "value": -219.83158379372983
+              "value": -118.99858860582353
             },
             "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data; w = -rho A g with g = 9.80665 m/s2 and A the bare metal area",
             "target": {
@@ -105,7 +105,7 @@
             "id": "load:b-uz",
             "magnitude": {
               "unit": "m",
-              "value": 0.035
+              "value": 0.0274
             },
             "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data",
             "target": {
@@ -122,18 +122,18 @@
       {
         "elastic_modulus": {
           "unit": "Pa",
-          "value": 200000000000.0
+          "value": 70000000000.0
         },
-        "id": "material:bench-a",
+        "id": "material:bench-c",
         "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data",
         "shear_modulus": {
           "unit": "Pa",
-          "value": 76923076923.07692
+          "value": 26315789473.684208
         },
         "temperature_points": [],
         "thermal_expansion_coefficient": {
           "unit": "1/degC",
-          "value": 1.2e-05
+          "value": 2.3e-05
         }
       }
     ],
@@ -150,7 +150,7 @@
       {
         "id": "node:M",
         "position": {
-          "x": 1.18,
+          "x": 4.69,
           "y": 0.0,
           "z": 0.0
         },
@@ -159,7 +159,7 @@
       {
         "id": "node:B",
         "position": {
-          "x": 2.36,
+          "x": 9.38,
           "y": 0.0,
           "z": 0.0
         },
@@ -170,16 +170,16 @@
       {
         "from": "node:A",
         "id": "pipe:P1",
-        "material": "material:bench-a",
+        "material": "material:bench-c",
         "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data",
         "section": {
           "outside_diameter": {
             "unit": "m",
-            "value": 0.1693
+            "value": 0.1992
           },
           "wall_thickness": {
             "unit": "m",
-            "value": 0.005551
+            "value": 0.007461000000000001
           }
         },
         "to": "node:M",
@@ -192,16 +192,16 @@
       {
         "from": "node:M",
         "id": "pipe:P2",
-        "material": "material:bench-a",
+        "material": "material:bench-c",
         "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data",
         "section": {
           "outside_diameter": {
             "unit": "m",
-            "value": 0.1693
+            "value": 0.1992
           },
           "wall_thickness": {
             "unit": "m",
-            "value": 0.005551
+            "value": 0.007461000000000001
           }
         },
         "to": "node:B",
@@ -260,12 +260,12 @@
   "parameters": {
     "config": "move_uz",
     "dof": "UZ",
-    "dt": 30.5,
-    "material": 0,
-    "movement": 0.035,
-    "od": 169.3,
-    "rotation": 0.00608,
-    "span": 2.36
+    "dt": 26.7,
+    "material": 2,
+    "movement": 0.0274,
+    "od": 199.2,
+    "rotation": 0.00406,
+    "span": 9.38
   },
   "piping_code": "B311-80",
   "provenance": {

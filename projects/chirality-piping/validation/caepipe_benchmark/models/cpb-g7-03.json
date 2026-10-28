@@ -51,7 +51,7 @@
             "id": "load:weight:pipe:P1",
             "magnitude": {
               "unit": "N/m",
-              "value": -267.8559460807549
+              "value": -2008.73681916002
             },
             "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data; w = -rho A g with g = 9.80665 m/s2 and A the bare metal area",
             "target": {
@@ -66,7 +66,7 @@
             "id": "load:weight:pipe:P2",
             "magnitude": {
               "unit": "N/m",
-              "value": -267.8559460807549
+              "value": -2008.73681916002
             },
             "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data; w = -rho A g with g = 9.80665 m/s2 and A the bare metal area",
             "target": {
@@ -81,7 +81,7 @@
             "id": "load:weight:pipe:P3",
             "magnitude": {
               "unit": "N/m",
-              "value": -267.8559460807549
+              "value": -2008.73681916002
             },
             "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data; w = -rho A g with g = 9.80665 m/s2 and A the bare metal area",
             "target": {
@@ -96,7 +96,7 @@
             "id": "load:weight:pipe:P4",
             "magnitude": {
               "unit": "N/m",
-              "value": -267.8559460807549
+              "value": -2008.73681916002
             },
             "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data; w = -rho A g with g = 9.80665 m/s2 and A the bare metal area",
             "target": {
@@ -111,7 +111,7 @@
             "id": "load:weight:pipe:P5",
             "magnitude": {
               "unit": "N/m",
-              "value": -267.8559460807549
+              "value": -2008.73681916002
             },
             "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data; w = -rho A g with g = 9.80665 m/s2 and A the bare metal area",
             "target": {
@@ -126,7 +126,7 @@
             "id": "load:weight:pipe:P6",
             "magnitude": {
               "unit": "N/m",
-              "value": -267.8559460807549
+              "value": -2008.73681916002
             },
             "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data; w = -rho A g with g = 9.80665 m/s2 and A the bare metal area",
             "target": {
@@ -147,7 +147,7 @@
             "id": "load:thermal:pipe:P1",
             "magnitude": {
               "unit": "degC",
-              "value": 163.3
+              "value": 128.3
             },
             "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data",
             "target": {
@@ -162,7 +162,7 @@
             "id": "load:thermal:pipe:P2",
             "magnitude": {
               "unit": "degC",
-              "value": 163.3
+              "value": 128.3
             },
             "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data",
             "target": {
@@ -177,7 +177,7 @@
             "id": "load:thermal:pipe:P3",
             "magnitude": {
               "unit": "degC",
-              "value": 163.3
+              "value": 128.3
             },
             "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data",
             "target": {
@@ -192,7 +192,7 @@
             "id": "load:thermal:pipe:P4",
             "magnitude": {
               "unit": "degC",
-              "value": 163.3
+              "value": 128.3
             },
             "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data",
             "target": {
@@ -207,7 +207,7 @@
             "id": "load:thermal:pipe:P5",
             "magnitude": {
               "unit": "degC",
-              "value": 163.3
+              "value": 128.3
             },
             "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data",
             "target": {
@@ -222,7 +222,7 @@
             "id": "load:thermal:pipe:P6",
             "magnitude": {
               "unit": "degC",
-              "value": 163.3
+              "value": 128.3
             },
             "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data",
             "target": {
@@ -266,7 +266,7 @@
       {
         "id": "node:N1",
         "position": {
-          "x": 2.58333333333,
+          "x": 2.31666666667,
           "y": 0.0,
           "z": 0.0
         },
@@ -275,7 +275,7 @@
       {
         "id": "node:N2",
         "position": {
-          "x": 5.16666666667,
+          "x": 4.63333333333,
           "y": 0.0,
           "z": 0.0
         },
@@ -284,7 +284,7 @@
       {
         "id": "node:N3",
         "position": {
-          "x": 7.75,
+          "x": 6.95,
           "y": 0.0,
           "z": 0.0
         },
@@ -293,7 +293,7 @@
       {
         "id": "node:N4",
         "position": {
-          "x": 10.3333333333,
+          "x": 9.26666666667,
           "y": 0.0,
           "z": 0.0
         },
@@ -302,7 +302,7 @@
       {
         "id": "node:N5",
         "position": {
-          "x": 12.9166666667,
+          "x": 11.5833333333,
           "y": 0.0,
           "z": 0.0
         },
@@ -311,7 +311,7 @@
       {
         "id": "node:N6",
         "position": {
-          "x": 15.5,
+          "x": 13.9,
           "y": 0.0,
           "z": 0.0
         },
@@ -327,11 +327,11 @@
         "section": {
           "outside_diameter": {
             "unit": "m",
-            "value": 0.32539999999999997
+            "value": 0.36419999999999997
           },
           "wall_thickness": {
             "unit": "m",
-            "value": 0.003418
+            "value": 0.02428
           }
         },
         "to": "node:N1",
@@ -349,11 +349,11 @@
         "section": {
           "outside_diameter": {
             "unit": "m",
-            "value": 0.32539999999999997
+            "value": 0.36419999999999997
           },
           "wall_thickness": {
             "unit": "m",
-            "value": 0.003418
+            "value": 0.02428
           }
         },
         "to": "node:N2",
@@ -371,11 +371,11 @@
         "section": {
           "outside_diameter": {
             "unit": "m",
-            "value": 0.32539999999999997
+            "value": 0.36419999999999997
           },
           "wall_thickness": {
             "unit": "m",
-            "value": 0.003418
+            "value": 0.02428
           }
         },
         "to": "node:N3",
@@ -393,11 +393,11 @@
         "section": {
           "outside_diameter": {
             "unit": "m",
-            "value": 0.32539999999999997
+            "value": 0.36419999999999997
           },
           "wall_thickness": {
             "unit": "m",
-            "value": 0.003418
+            "value": 0.02428
           }
         },
         "to": "node:N4",
@@ -415,11 +415,11 @@
         "section": {
           "outside_diameter": {
             "unit": "m",
-            "value": 0.32539999999999997
+            "value": 0.36419999999999997
           },
           "wall_thickness": {
             "unit": "m",
-            "value": 0.003418
+            "value": 0.02428
           }
         },
         "to": "node:N5",
@@ -437,11 +437,11 @@
         "section": {
           "outside_diameter": {
             "unit": "m",
-            "value": 0.32539999999999997
+            "value": 0.36419999999999997
           },
           "wall_thickness": {
             "unit": "m",
-            "value": 0.003418
+            "value": 0.02428
           }
         },
         "to": "node:N6",
@@ -516,13 +516,13 @@
   "model_id": "cpb-g7-03",
   "parameters": {
     "config": "run_stops",
-    "delta_t": 163.3,
-    "dt": 95.2,
+    "delta_t": 128.3,
+    "dt": 15.0,
     "force": -2000.0,
-    "length": 15.5,
+    "length": 13.9,
     "material": 1,
-    "od": 325.4,
-    "spring": 3740000.0
+    "od": 364.2,
+    "spring": 99600000.0
   },
   "piping_code": "B311-80",
   "provenance": {

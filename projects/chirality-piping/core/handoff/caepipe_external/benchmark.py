@@ -259,9 +259,11 @@ def build_benchmark_record(benchmark_model: Mapping[str, Any], *, swbpipe_result
                                f"CAEPIPE: its {OPERATING_LABEL!r} case")
         cases_out.append(status)
         if not (status["swbpipe_solved"] and status["caepipe_printed"]):
+            reason = ("SWBPIPE solved the case but CAEPIPE printed no such case" if status["swbpipe_solved"] else
+                      "CAEPIPE printed the case but SWBPIPE did not solve all of it" if status["caepipe_printed"] else
+                      "neither side has the case")
             rows.append({"case": case_name, "kind": "load_case", "entity": label, "classification": STATUS_MISMATCH,
-                         "reason": "SWBPIPE solved the case but CAEPIPE printed no such case"
-                         if status["swbpipe_solved"] else "CAEPIPE printed the case but SWBPIPE solved none of it"})
+                         "reason": reason})
             continue
         swb = swbpipe_values(results, swbpipe_cases, support_nodes, anchor_nodes)
         cae, unbound, binding = caepipe_values(parsed_cases[label], units, mbf)

@@ -38,7 +38,7 @@
             "id": "load:branch-mid",
             "magnitude": {
               "unit": "N",
-              "value": -1500.0
+              "value": -4220.0
             },
             "provenance": "invented CAEPIPE benchmark input (DEL-17-05, RT-V2); seeded generator; not library, component, catalog, standard or code-rule data",
             "target": {
@@ -396,7 +396,7 @@
     "config": "in_plane_anchored",
     "delta_t": 150.0,
     "dt": 30.0,
-    "force": -1500.0,
+    "force": -4220.0,
     "material": 0,
     "od": 323.9,
     "ratio": 1.0,

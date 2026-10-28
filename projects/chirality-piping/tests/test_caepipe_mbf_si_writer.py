@@ -199,6 +199,22 @@ def test_a_chosen_b31_piping_code_is_written_with_b31j_off():
     assert result.node_map == default.node_map and result.element_map == default.element_map
 
 
+def test_without_a_piping_code_every_pilot_mbf_is_unchanged_and_a_code_changes_only_options_and_opcode():
+    cases = sorted((ROOT / "validation" / "caepipe_correlation" / "cases").glob("*.json"))
+    assert cases
+    for path in cases:
+        case = json.loads(path.read_text(encoding="utf-8"))
+        arguments = {"title": case.get("title", case["case_id"]),
+                     "reference_temperature_c": case.get("reference_temperature_c", 20.0)}
+        default = render_caepipe_mbf_si(case["model"], **arguments)
+        assert render_caepipe_mbf_si(case["model"], **arguments, piping_code=None).text == default.text
+        assert "MBF-SI-PIPING-CODE-NOT-WRITTEN" in {item["code"] for item in default.diagnostics}
+        assert "\r\nOPTIONS\r\nHGRA,SI\r\nOPTEMP\r\n" in default.text
+        chosen = render_caepipe_mbf_si(case["model"], **arguments, piping_code="B311-80")
+        assert chosen.text.replace("HGRA,B311-80,SI\r\nOPCODE\r\n0,0,0\r\n", "HGRA,SI\r\n") == default.text
+        assert chosen.sidecar("x") == default.sidecar("x")
+
+
 def test_a_non_b31_piping_code_is_written_without_opcode():
     result = render_caepipe_mbf_si(cantilever(), title="INVENTED CANTILEVER", piping_code="EUROPEAN")
     assert result.status == "written", result.diagnostics

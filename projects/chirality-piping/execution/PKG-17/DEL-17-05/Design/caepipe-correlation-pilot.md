@@ -584,20 +584,21 @@ compares the tracked files with a fresh generation. The default seed is 20261028
 |---|---|---|
 | G1 straight spans | 10 | cantilevers (the shear D/t series and two opposite corners), guided cantilever, two- and three-span continuous, fixed–fixed |
 | G2 single bends | 16 | anchored L; R/D 1, 1.5, 3, 5 × 45°, 90° × k = 1 and a sampled k of 3–15 |
-| G3 Z and U loops | 12 | six of each, Latin hypercube |
-| G4 multi-plane | 6 | X leg, riser, Z leg, Latin hypercube |
+| G3 Z and U loops | 12 | six of each: two opposite corners and four Latin hypercube points |
+| G4 multi-plane | 6 | X leg, riser, Z leg: two opposite corners and four Latin hypercube points |
 | G5 branch tees | 6 | the tee-ratio series (0.3, 0.5, 0.75, 1.0) and two vertical branches |
 | G6, G7 support mixes | 3 + 3 | risers with guides, a spring and a line stop; runs with restraints, guides, line stops and springs |
 | G8 anchor movement | 4 | fixed–fixed translations and a rotation; an L with a general movement |
 
-Sections span OD 60–610 mm and D/t 10–100 (log-uniform). The three invented materials are
-temperature-independent (E 200, 195 and 70 GPa class). Each model has a sustained case (weight
+G1 to G4 take their corner or series points plus a Latin hypercube. G5 to G8 enumerate their
+configurations (and G5 its tee series) and sample the rest by the hypercube. Run sections span
+OD 60–610 mm and D/t 10–100 (log-uniform); a tee branch is the run OD times its ratio. The three
+invented materials are temperature-independent (E 200, 195 and 70 GPa class). Each model has a sustained case (weight
 and forces) and an expansion case (a uniform thermal change, or the anchor movement for G8). Every
 bend carries a user flexibility factor. Closed-form Euler–Bernoulli values are attached to the
 straight members where one exists (G1 cantilevers and fixed–fixed; G8). They are the third,
-independent value, and each was checked against SWBPIPE's solve to binary64 round-off. Forces
-are applied only at free nodes, so each layout row carries one data item. Every model is a tree of
-at most 20 layout rows.
+independent value, and each agrees with SWBPIPE's solve to binary64 round-off (a focused test).
+Concentrated forces act only at nodes that carry no support.
 
 Each model names, per case, the inputs that cannot be held exactly equal (§11.3). A case with none
 is in the exact class.
@@ -615,12 +616,13 @@ states that B31.1 (2020 or later) computes SIFs and flexibility factors by B31J 
 Without a code, the text is unchanged (no code token), byte for byte. The info diagnostic
 `MBF-SI-PIPING-CODE-NOT-WRITTEN` then states that the target program's default code applies.
 
-The generator chooses `B311-80`. This is an ASME B31.1 edition that predates B31J, so OPCODE's
-B31J off stands. It is not `NONE`, under which a single static case applies every load together
-(*Analysis*). Pressure correction does not arise, because tranche 1 has no pressure. Gravity is
-the earth default, with Y vertical, as the writer always writes. A user-entered k replaces the
-code's bend flexibility factor (*Bend*). With temperature-independent materials the code's hot or
-cold modulus choice has no effect.
+The generator chooses `B311-80` for every model. This is an ASME B31.1 edition that predates
+B31J, so OPCODE's B31J off stands. It is not `NONE`, under which a single static case applies every
+load together (*Analysis*), and the benchmark never relies on the code the target program would
+otherwise take from its saved settings. Pressure correction does not arise, because tranche 1
+has no pressure. Gravity is the earth default, with Y vertical, as the writer always writes. A
+user-entered k replaces the code's bend flexibility factor (*Bend*). With temperature-independent
+materials the code's hot or cold modulus choice has no effect.
 
 ### 11.3 Inputs not held exactly
 
@@ -631,7 +633,7 @@ cold modulus choice has no effect.
 | `bend_transverse_shear`: SWBPIPE's curved bend has none | bends | R/D 1–5 across G2 |
 
 Branch flexibility is held equal (B31J off, and SWBPIPE assembles none). The `tee-ratio` series
-confirms it.
+checks that.
 
 ### 11.4 Binding
 
@@ -679,24 +681,31 @@ The nonlinear and modal classes of RT-V2 §3 wait for their tranches. The triage
 
 ### 11.6 Running
 
-`run_pilot --benchmark <manifest> [--case ID …] [--batch N] [--batch-size N] [--offline]` checks
-each model file against the manifest's hashes, then runs the selected models one at a time in
-serial batches of four by default. For each model it:
+`run_pilot --benchmark <manifest>` checks each model file against the manifest's hashes, then
+runs the selected models one at a time (`--case`, and serial batches by `--batch-size` and
+`--batch`). For each model it:
 
-1. solves the model in SWBPIPE;
+1. solves the model in SWBPIPE (headless runner);
 2. writes the MBF with the model's piping code;
-3. runs the guarded batch round trip;
-4. parses the CSV and builds the record.
+3. runs the guarded round trip and collects the batch print (`model.csv` or `model.txt`);
+4. parses the print and builds the two-way record.
 
 It writes `comparison/benchmark_comparison.json` and the case manifest, which is the model's run
-record, to the model's case folder in the exchange folder.
+record (outcome, route and attempt), to the model's case folder in the exchange folder.
 
-A live run:
+A live run needs `settings_guard`, `--freeze-file` and `--exclusive-file`. It uses the GUI print
+fallback only with `restore_scope` `"key"`, whose restore covers the settings that route writes
+(§5). Models are paced `--pace-s` apart, 60 s by default. Before each model, the run:
 
-- needs `settings_guard`;
-- checks before each batch that no instance of the tool is running;
-- never falls back to the GUI;
-- stops at the first round trip whose guard is not clean, that raised, or that left no CSV (§5).
+- stops if the freeze file exists;
+- holds, polling every 30 s for up to 30 min, while the exclusive file names a running process;
+- asks the guest for `cmd /c ver`, and asks once more 2 min later before it stops;
+- checks that no instance of the tool is running (§5).
 
-`--offline` rebuilds the records from the stored, bound CSVs. Standard output carries operational
-status only.
+A model whose round trip raised, or left no CSV, with a clean settings check is retried once,
+2 min later. A model that again leaves no CSV is recorded as such and the run goes on. The run
+stops at the first settings check that is not clean, at a check before a model that fails, and at
+a round trip that raised twice.
+
+`--offline` rebuilds the records from the stored, bound prints, with no wait. Standard output
+carries operational status only.
