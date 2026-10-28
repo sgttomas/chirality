@@ -223,7 +223,7 @@ def changed_paths(repo, value):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--project', default='projects/chirality-app-v4')
+    parser.add_argument('--project', required=True)
     sub = parser.add_subparsers(dest='command', required=True)
     for command in ('neighborhood', 'impact'):
         sub.add_parser(command).add_argument('id')
