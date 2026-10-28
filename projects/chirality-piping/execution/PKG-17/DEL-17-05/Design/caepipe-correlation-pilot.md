@@ -155,7 +155,12 @@ an `HKCU\…` path; `recent_files_subkey`, the list's subkey; `restore_recent_fi
 set, which needs the subkey; `restore_scope`, `"recent_files"` unless set to `"key"`, which enables
 restoring by itself and widens it to the whole key; `call_timeout_s`, default 20, and `section_budget_s`, default 120, both in
 seconds); `--authored-dir` runs require it. Every guard call (registry reads and writes, process
-queries) runs with `call_timeout_s`; the solve keeps its own timeout.
+queries) runs with `call_timeout_s`; the solve keeps its own timeout. Guard reads (process lists,
+registry readings, the restore's read-back) have no side effect, so a transport failure of the prlctl
+client (exit 255) is retried up to six attempts in all, 2 s apart, every attempt within the call's
+`call_timeout_s` (and, in the restore, the section budget); no attempt starts that would pass either
+limit, and a read that still fails stops the run as before. Writes keep the single settled retry
+described under **Restore**.
 
 - **Precondition.** Before the first case and again before each round trip, the guest's process
   list (`tasklist`) must be readable and show no instance of the tool: none is the run's own yet, so
@@ -274,9 +279,9 @@ callee and recovery step, that case is not designed for.
   subkey read there has values). If it does not, such a subkey added or removed during a round trip is
   not seen; every value change is. With `restore_scope` `"key"` this includes an empty parent left
   behind when a subkey that appeared is deleted.
-- Each process check, the session precondition before the first case included, runs with the guard
-  call timeout; a transport failure is retried, up to three attempts, so one check can take up to
-  three times `call_timeout_s` (60 s by default). It writes nothing and stays interruptible.
+- Each process check, the session precondition before the first case included, is a guard read: all
+  its attempts together take at most `call_timeout_s` (20 s by default). It writes nothing and stays
+  interruptible.
 
 The restore is safe only because no other instance of the tool runs during the round trip: the
 precondition admits none before it, and the checks inside the restore look again before each write

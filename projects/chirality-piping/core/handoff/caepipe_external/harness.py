@@ -102,6 +102,11 @@ GUARD_RESULT_FILE = "settings_guard.json"
 # registry-mutation section may take. The solve keeps its own timeout.
 GUARD_CALL_TIMEOUT_S = 20.0
 GUARD_SECTION_BUDGET_S = 120.0
+# Guard reads (process lists, registry readings, read-backs) have no side effect, so a transport failure of the
+# prlctl client is retried more patiently than other steps: up to this many attempts, this far apart, all within
+# the call's timeout (and the section budget inside the restore). Writes keep their single settled retry.
+GUARD_READ_ATTEMPTS = 6
+GUARD_READ_BACKOFF_S = 2.0
 
 
 class ContainmentError(RuntimeError):
@@ -482,21 +487,42 @@ def _clear_outputs(root: Path, out: Path) -> None:
             contained(root, entry).unlink()
 
 
-def _guest_step(config: HarnessConfig, runner: Callable[..., subprocess.CompletedProcess], timeout_s: float,
+def _guest_read(config: HarnessConfig, runner: Callable[..., subprocess.CompletedProcess], timeout_s: float,
                 steps: list[dict[str, Any]], name: str, command: str, deadline: float | None = None) -> dict[str, Any]:
+    """A guard read (`_guest_step`): up to `GUARD_READ_ATTEMPTS` attempts `GUARD_READ_BACKOFF_S` apart, all within
+    `timeout_s` and `deadline`."""
+
+    return _guest_step(config, runner, timeout_s, steps, name, command, deadline, attempts=GUARD_READ_ATTEMPTS,
+                       backoff_s=GUARD_READ_BACKOFF_S, within_timeout=True)
+
+
+def _backoff(seconds: float) -> None:
+    time.sleep(seconds)
+
+
+def _guest_step(config: HarnessConfig, runner: Callable[..., subprocess.CompletedProcess], timeout_s: float,
+                steps: list[dict[str, Any]], name: str, command: str, deadline: float | None = None, *,
+                attempts: int = PRLCTL_ATTEMPTS, backoff_s: float = 0.0,
+                within_timeout: bool = False) -> dict[str, Any]:
     """Run one guest command through `prlctl exec`, append its record to `steps` and return it.
 
-    With `deadline` (a `time.monotonic()` value) no attempt runs past it: each attempt's timeout is cut to what
-    remains, and no further attempt starts once it has passed.
+    A transport failure of the prlctl client (exit 255, `PrlJob_`) is retried, up to `attempts` in all, `backoff_s`
+    apart. With `deadline` (a `time.monotonic()` value), and with `within_timeout` (all attempts together within
+    `timeout_s`), no attempt runs past the limit: each attempt's timeout is cut to what remains, and no further
+    attempt starts when the limit would be reached before it does; the last attempt's result is then returned.
     """
 
     argv = [config.prlctl, "exec", config.vm_name, "--current-user", "cmd", "/c", command]
     record: dict[str, Any] = {"name": name, "guest_command": command, "started": _now(), "attempts": 0}
+    limit = deadline
+    if within_timeout:
+        call_end = time.monotonic() + timeout_s
+        limit = call_end if limit is None else min(limit, call_end)
     # The prlctl client intermittently fails a call before or after the guest command with exit 255 and a
     # "PrlJob_..." message. Every step is idempotent (each clears its old outputs first), so retry.
     while True:
         record["attempts"] += 1
-        attempt_timeout = timeout_s if deadline is None else max(0.001, min(timeout_s, deadline - time.monotonic()))
+        attempt_timeout = timeout_s if limit is None else max(0.001, min(timeout_s, limit - time.monotonic()))
         try:
             completed = runner(argv, capture_output=True, text=True, check=False, timeout=attempt_timeout)
             record.update(exit_status=completed.returncode, stdout=completed.stdout or "", stderr=completed.stderr or "")
@@ -504,10 +530,13 @@ def _guest_step(config: HarnessConfig, runner: Callable[..., subprocess.Complete
             record.update(exit_status="timeout", stdout=_text(error.stdout), stderr=_text(error.stderr))
         except OSError as error:
             record.update(exit_status="launch_failed", stdout="", stderr=str(error))
-        if not (record["exit_status"] == 255 and "PrlJob_" in record["stderr"]) or record["attempts"] >= PRLCTL_ATTEMPTS:
+        if not (record["exit_status"] == 255 and "PrlJob_" in record["stderr"]) or record["attempts"] >= attempts:
             break
-        if deadline is not None and time.monotonic() >= deadline:
+        if limit is not None and time.monotonic() + backoff_s >= limit:
+            record["attempts_stopped_by"] = "deadline"
             break
+        if backoff_s:
+            _backoff(backoff_s)
     record["finished"] = _now()
     steps.append(record)
     return record
@@ -814,7 +843,7 @@ def check_no_foreign_instance(config: HarnessConfig, *, timeout_s: float | None 
     if timeout_s is None:
         timeout_s = config.settings_guard.call_timeout_s if config.settings_guard else GUARD_CALL_TIMEOUT_S
     steps: list[dict[str, Any]] = []
-    return _precondition(config, lambda name, command: _guest_step(config, runner, timeout_s, steps, name, command),
+    return _precondition(config, lambda name, command: _guest_read(config, runner, timeout_s, steps, name, command),
                          "session_process_list")
 
 
@@ -1306,7 +1335,7 @@ def restore_recorded_settings(config: HarnessConfig, changed_values: list[Mappin
     state: dict[str, Any] = {}
 
     def step(name: str, command: str, deadline: float | None = None) -> dict[str, Any]:
-        return _guest_step(config, runner, guard.call_timeout_s, steps, name, command, deadline)
+        return _guest_read(config, runner, guard.call_timeout_s, steps, name, command, deadline)
 
     def write(name: str, command: str, deadline: float | None = None) -> dict[str, Any]:
         return _guest_write(config, runner, guard.call_timeout_s, steps, name, command, state, deadline)
@@ -1429,7 +1458,7 @@ def _round_trip_body(config: HarnessConfig, case_id: str, mbf_text: str, paths: 
     guard_timeout = config.settings_guard.call_timeout_s if config.settings_guard else timeout_s
 
     def guard_step(name: str, command: str, deadline: float | None = None) -> dict[str, Any]:
-        return _guest_step(config, runner, guard_timeout, steps, name, command, deadline)
+        return _guest_read(config, runner, guard_timeout, steps, name, command, deadline)
 
     def write(name: str, command: str, deadline: float | None = None) -> dict[str, Any]:
         return _guest_write(config, runner, guard_timeout, steps, name, command, guard_state, deadline)

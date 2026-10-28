@@ -1228,6 +1228,7 @@ class FakeGuest:
         self.write_results: dict[int, tuple[int, str, str]] = {}  # write number -> (exit, stdout, stderr), not applied
         self.applied_anyway: set[int] = set()  # write numbers in write_results that take effect all the same
         self.readback: dict[int, tuple[str, str] | None] = {}  # read-back number -> what it shows (None: unreadable)
+        self.flaky: dict[str, int] = {}  # kind -> how many of its next calls fail in the prlctl transport (exit 255)
         self.signal_on_write: dict[int, int] = {}  # write number -> a real signal raised from inside that command
         self.signal_on: dict[tuple[str, int], int] = {}  # (kind, number) -> a real signal raised from that command
         self.timeouts: list[tuple[str, float]] = []      # (command, timeout passed to the runner)
@@ -1262,6 +1263,9 @@ class FakeGuest:
             self.timeouts.append((command, kwargs.get("timeout")))
             if self.tick is not None:
                 self.tick()
+            if kind and self.flaky.get(kind):
+                self.flaky[kind] -= 1
+                return subprocess.CompletedProcess(argv, 255, "", "Failed to exec: PrlJob_invented transport")
             if kind:
                 self.counts[kind] += 1
                 if kind == "write" and self.counts[kind] in self.signal_on_write:
@@ -1549,7 +1553,7 @@ def test_settings_guard_starts_nothing_while_another_instance_runs(tmp_path):
     guest.foreign = []
     assert check_no_foreign_instance(session_config, runner=guest.runner(solved, session_config)) == {"status": "clear"}
     assert set(guest.commands) == {"tasklist /FO CSV /NH"}
-    assert guest.timeouts and all(timeout == 20.0 for _, timeout in guest.timeouts)  # the guard's call timeout
+    assert guest.timeouts and all(0 < timeout <= 20.0 for _, timeout in guest.timeouts)  # the guard's call timeout
 
 
 def test_settings_guard_restores_a_recent_files_only_change_and_verifies_it(tmp_path):
@@ -2152,6 +2156,53 @@ def test_settings_guard_log_stays_on_the_exception_when_its_file_write_is_interr
     assert [entry["completed"] for entry in carried["write_log"]] == [True] * 4
     assert carried["guard_result_file"].startswith("not written: TerminationRequested")
     assert not (tmp_path / "exchange" / "cases" / "cx-g" / "caepipe_out" / harness.GUARD_RESULT_FILE).exists()
+
+
+def test_settings_guard_reads_retry_transport_failures_with_a_backoff(tmp_path, monkeypatch):
+    waits = []
+    monkeypatch.setattr(harness, "_backoff", waits.append)
+    guest = FakeGuest()
+    guest.flaky = {"tasklist": 5, "query": 3}  # the precondition's list succeeds at attempt 6, the reading at 4
+    record_ = guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    attempts = {step["name"]: step["attempts"] for step in record_["steps"]}
+    assert attempts["precondition_process_list"] == 6 and attempts["settings_before"] == 4
+    assert waits == [2.0] * 8 and record_["settings_guard"]["status"] == "recent_files_restored"
+    # Within the restore the read-back and the checks take the same patience; a write never does.
+    second = tmp_path / "second"
+    second.mkdir()
+    guest = FakeGuest()
+    guest.write_results[2] = TRANSPORT
+    guest.flaky = {}
+
+    def solve(guest_, argv, config):
+        guest_.flaky = {"readback": 2}
+        return _open_model(guest_, argv, config)
+
+    record_ = guarded(second, guest, solve, guard=RESTORING_GUARD)
+    assert record_["settings_guard"]["status"] == "recent_files_restored"
+    attempts = {step["name"]: step["attempts"] for step in record_["steps"]}
+    assert attempts["settings_readback_2"] == 3 and attempts["settings_restore_2_attempt_2"] == 1
+
+
+def test_settings_guard_read_that_keeps_failing_stops_the_run(tmp_path, monkeypatch):
+    monkeypatch.setattr(harness, "_backoff", lambda seconds: None)
+    guest = FakeGuest()
+    guest.flaky = {"tasklist": 6}
+    record_ = guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    assert record_["route"] == "precondition_unknown" and guest.writes == [] and not guest.solved
+    assert [(step["name"], step["attempts"]) for step in record_["steps"]] == [("precondition_process_list", 6)]
+    # The attempts stay within the call's timeout: with 2 s between attempts and a 7 s call, four attempts at most.
+    clock = {"t": 1000.0}
+    monkeypatch.setattr(harness, "time", SimpleNamespace(monotonic=lambda: clock["t"]))
+    monkeypatch.setattr(harness, "_backoff", lambda seconds: clock.__setitem__("t", clock["t"] + seconds))
+    second = tmp_path / "second"
+    second.mkdir()
+    guest = FakeGuest()
+    guest.flaky = {"tasklist": 6}
+    record_ = guarded(second, guest, _open_model, guard=dataclasses.replace(RESTORING_GUARD, call_timeout_s=7.0))
+    step = record_["steps"][0]
+    assert record_["route"] == "precondition_unknown" and step["attempts"] == 4
+    assert step["attempts_stopped_by"] == "deadline" and all(timeout <= 7.0 for _, timeout in guest.timeouts)
 
 
 def test_settings_guard_calls_use_the_guard_timeout_not_the_solve_timeout(tmp_path):
