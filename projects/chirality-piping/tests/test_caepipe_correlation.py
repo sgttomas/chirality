@@ -1165,6 +1165,7 @@ class FakeGuest:
         self.foreign_on_query: dict[int, list[int]] = {}     # query number -> an instance that appears then
         self.foreign_on_tasklist: dict[int, list[int]] = {}  # process-list number -> an instance that appears then
         self.faults: dict[tuple[str, int], BaseException] = {}  # (kind, number) -> raised by that command
+        self.write_results: dict[int, tuple[int, str, str]] = {}  # write number -> (exit, stdout, stderr), not applied
 
     def query(self) -> str:
         lines = ["", INVENTED_KEY, ""]
@@ -1201,6 +1202,9 @@ class FakeGuest:
                 return subprocess.CompletedProcess(argv, 0, self.query(), "")
             if command.startswith(("reg add", "reg delete")):
                 self.writes.append(command)
+                if self.counts["write"] in self.write_results:
+                    code, out, err = self.write_results[self.counts["write"]]
+                    return subprocess.CompletedProcess(argv, code, out, err)
                 add = re.fullmatch(r'reg add "([^"]+)" /v "([^"]+)" /t (REG_\w+) /d "([^"]*)" /f', command)
                 delete = re.fullmatch(r'reg delete "([^"]+)" /v "([^"]+)" /f', command)
                 assert add or delete, command
@@ -1208,7 +1212,7 @@ class FakeGuest:
                     self.values[(add[1], add[2])] = (add[3], add[4])
                 if self.apply_writes and delete:
                     del self.values[(delete[1], delete[2])]
-                return subprocess.CompletedProcess(argv, 0, "", "")
+                return subprocess.CompletedProcess(argv, 0, "The operation completed successfully.\r\n", "")
             if command.startswith("type ") and "owned_pids.txt" in command:
                 if self.pid_text is not None:
                     return subprocess.CompletedProcess(argv, 0, self.pid_text, "")
@@ -1579,7 +1583,7 @@ def test_settings_restore_failure_path_keeps_the_original_outcome_when_its_own_r
             guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
         assert raised.value is error
         guard = raised.value.settings_guard
-        assert guard["recovery_error"].startswith("KeyboardInterrupt")
+        assert guard["secondary_errors"][0].startswith("KeyboardInterrupt")
         assert guard["writes_completed"] == 1 and len(guard["write_log"]) == 2
     else:
         guest.foreign_on_tasklist[4] = [18000]
@@ -1590,6 +1594,110 @@ def test_settings_restore_failure_path_keeps_the_original_outcome_when_its_own_r
         assert guard["writes_completed"] == 1 and len(guard["write_log"]) == 1
     assert guard["status"] == "settings_restore_failed" and guard["final_reading"].startswith("interrupted")
     assert "nothing was written" not in guard["reason"]
+
+
+WRITE_FAILURES = {  # kind -> (how the write ends, the outcome logged, the error raised is the injected one)
+    "reg reports failure": (dict(result=(1, "", "ERROR: Access is denied.")), "failed", False),
+    "transport failure": (dict(result=(255, "", "PrlJob_GetRetCode: Invalid argument")), "unknown", False),
+    "unexpected output": (dict(result=(0, "", "")), "unknown", False),
+    "launch failure": (dict(error=OSError("invented launch failure")), "failed", True),
+    "host timeout": (dict(error=subprocess.TimeoutExpired(["invented"], 600)), "unknown", True),
+    "cancellation": (dict(error=KeyboardInterrupt("invented")), "unknown", True),
+}
+
+
+@pytest.mark.parametrize("kind", list(WRITE_FAILURES))
+@pytest.mark.parametrize("number", [1, 2, 3, 4])
+def test_settings_restore_write_runs_once_and_its_failure_stops_the_restore(tmp_path, number, kind):
+    how, outcome, injected = WRITE_FAILURES[kind]
+    guest = FakeGuest()
+    if "result" in how:
+        guest.write_results[number] = how["result"]
+        expected_type = harness.RestoreWriteFailed
+    else:
+        guest.faults[("write", number)] = how["error"]
+        expected_type = type(how["error"])
+    with pytest.raises(expected_type) as raised:
+        guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    if injected:
+        assert raised.value is how["error"]  # the first error, unchanged
+    else:
+        assert raised.value.outcome == outcome
+    guard = raised.value.settings_guard
+    assert guard["status"] == "settings_restore_failed" and guard["final_reading"] == "read"
+    log = guard["write_log"]
+    assert len(log) == number and guard["writes_completed"] == number - 1
+    assert [entry["outcome"] for entry in log] == ["completed"] * (number - 1) + [outcome]
+    assert all(entry["attempts"] == 1 for entry in log)
+    # Written once, and nothing after the failed write.
+    assert len(guest.writes) == number and len(set(guest.writes)) == number
+    assert ("nothing was written" in guard["reason"]) is False
+
+
+def test_settings_restore_never_retries_a_write_after_a_transport_failure(tmp_path):
+    guest = FakeGuest()
+    guest.write_results[2] = (255, "", "PrlJob_GetRetCode: Invalid argument")
+    with pytest.raises(harness.RestoreWriteFailed):
+        guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    record_ = json.loads((tmp_path / "exchange" / "cases" / "cx-g" / "caepipe_out" / "run_record.json")
+                         .read_text(encoding="utf-8"))
+    writes = [step for step in record_["steps"] if step.get("mutating")]
+    assert [(step["name"], step["attempts"]) for step in writes] == [("settings_restore_1", 1), ("settings_restore_2", 1)]
+    assert guest.counts["write"] == 2  # the client's retry rule for reads does not apply to writes
+
+
+RECOVERY_STEPS = ["bookkeeping", "final reading", "final comparison", "reason", "record", "attachment"]
+
+
+@pytest.mark.parametrize("where", RECOVERY_STEPS)
+def test_settings_restore_recovery_keeps_the_primary_error_through_a_later_cancellation(tmp_path, monkeypatch, where):
+    guest = FakeGuest()
+    primary = RuntimeError("invented primary failure")
+    guest.faults[("write", 2)] = primary
+    late = KeyboardInterrupt(f"invented, during the {where}")
+    if where == "bookkeeping":
+        monkeypatch.setattr(harness, "_restore_log_summary", lambda result, state: (_ for _ in ()).throw(late))
+    elif where == "final reading":
+        guest.faults[("query", 3)] = late  # readings: before, after, then the failure path's own
+    elif where == "final comparison":
+        real, calls = harness.settings_difference, []
+
+        def failing(before, after):
+            calls.append(1)
+            if len(calls) == 2:  # 1: the guard's comparison; 2: the failure path's
+                raise late
+            return real(before, after)
+
+        monkeypatch.setattr(harness, "settings_difference", failing)
+    elif where == "reason":
+        monkeypatch.setattr(harness, "_restore_reason", lambda result, state: (_ for _ in ()).throw(late))
+    elif where == "record":
+        real_write = harness.write_private
+
+        def failing_write(root, path, data):
+            if Path(path).name == "run_record.json":
+                raise late
+            return real_write(root, path, data)
+
+        monkeypatch.setattr(harness, "write_private", failing_write)
+    else:
+        monkeypatch.setattr(harness, "_attach_guard", lambda error, settings: (_ for _ in ()).throw(late))
+    with pytest.raises(RuntimeError) as raised:
+        guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    assert raised.value is primary  # never replaced by the later cancellation
+    record_path = tmp_path / "exchange" / "cases" / "cx-g" / "caepipe_out" / "run_record.json"
+    if where == "record":
+        assert not record_path.exists()
+        guard = raised.value.settings_guard
+    else:
+        guard = json.loads(record_path.read_text(encoding="utf-8"))["settings_guard"]
+    assert guard["status"] == "settings_restore_failed"
+    assert guard["write_log"] and guard["write_log"][-1]["outcome"] == "unknown"
+    if where in ("bookkeeping", "final reading", "final comparison", "reason"):
+        assert any(text.startswith("KeyboardInterrupt") for text in guard["secondary_errors"])
+    # The final reading is attempted whatever failed before it.
+    assert guest.counts["query"] == 3
+    assert guard.get("final_reading") == ("interrupted" if where == "final reading" else "read")
 
 
 def test_settings_restore_verified_when_no_fault_is_injected(tmp_path):

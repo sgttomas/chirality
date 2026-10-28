@@ -464,6 +464,60 @@ def _guest_step(config: HarnessConfig, runner: Callable[..., subprocess.Complete
     return record
 
 
+# What `reg add` and `reg delete` print on success; a write counts as completed only with exit 0 and this text.
+REG_WRITE_OK = "The operation completed successfully"
+
+
+class RestoreWriteFailed(RuntimeError):
+    """A registry write of the restore did not complete: `outcome` is `failed` (the command reported failure) or
+    `unknown` (the transport failed, or the output was not the expected one; the write may or may not have taken)."""
+
+    def __init__(self, name: str, outcome: str, exit_status: Any):
+        super().__init__(f"{name}: write {outcome} (exit status {exit_status})")
+        self.outcome = outcome
+        self.exit_status = exit_status
+
+
+def _guest_write(config: HarnessConfig, runner: Callable[..., subprocess.CompletedProcess], timeout_s: float,
+                 steps: list[dict[str, Any]], name: str, command: str) -> dict[str, Any]:
+    """Run one mutating guest command exactly once: never retried, whatever the transport reports.
+
+    The step is recorded before anything is raised. Exit 0 with `REG_WRITE_OK` in its output is the only success.
+    Exit 255 with a `PrlJob_` message (the client's transport failure) or exit 0 with other output is `unknown`; any
+    other exit is `failed`; both raise RestoreWriteFailed. An exception from the runner (a timeout, a launch
+    failure, cancellation) is recorded and re-raised unchanged.
+    """
+
+    argv = [config.prlctl, "exec", config.vm_name, "--current-user", "cmd", "/c", command]
+    record: dict[str, Any] = {"name": name, "guest_command": command, "started": _now(), "attempts": 1,
+                              "mutating": True}
+    try:
+        completed = runner(argv, capture_output=True, text=True, check=False, timeout=timeout_s)
+    except BaseException as error:
+        record.update(exit_status=type(error).__name__, stdout=_text(getattr(error, "stdout", None)),
+                      stderr=_text(getattr(error, "stderr", None)) or str(error), finished=_now())
+        steps.append(record)
+        raise
+    record.update(exit_status=completed.returncode, stdout=completed.stdout or "", stderr=completed.stderr or "",
+                  finished=_now())
+    steps.append(record)
+    if completed.returncode == 0 and REG_WRITE_OK.lower() in record["stdout"].lower():
+        record["outcome"] = "completed"
+        return record
+    transport = completed.returncode == 255 and "PrlJob_" in record["stderr"]
+    record["outcome"] = "unknown" if transport or completed.returncode == 0 else "failed"
+    raise RestoreWriteFailed(name, record["outcome"], completed.returncode)
+
+
+def _write_outcome(error: BaseException) -> str:
+    """The write log's outcome for a write that raised: a launch failure never reached the guest."""
+    if isinstance(error, RestoreWriteFailed):
+        return error.outcome
+    if isinstance(error, OSError):
+        return "failed"
+    return "unknown"
+
+
 def _registry_key_id(key: str) -> str:
     """A registry key for comparison: lower-cased, with `HKEY_CURRENT_USER` (as `reg query` prints it) as `HKCU`."""
 
@@ -647,22 +701,21 @@ class _RestoreStopped(Exception):
         self.check = check
 
 
-def _restore_recent_files(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]], settings_before,
-                          plan: list[dict[str, Any]], state: dict[str, Any]) -> tuple[dict[str, Any], BaseException | None]:
+def _restore_recent_files(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]],
+                          write: Callable[[str, str], dict[str, Any]], settings_before, plan: list[dict[str, Any]],
+                          state: dict[str, Any]) -> tuple[dict[str, Any], BaseException | None]:
     """Write the recent-files subkey back to the first reading, as one routine with one failure path.
 
     Steps: the precondition before each write; the write, logged in `state["write_log"]` (value, action, the value
-    it restores and the one it replaces, completed or not) before it is issued; the precondition after the last
-    write; the third reading and its exact comparison with the first; the precondition once more before success is
-    declared. `recent_files_restored` only when every step completed and the comparison found no difference. Any
-    other outcome, a check that is not clear, or any exception or cancellation at any step (the comparison and the
-    recovery included), takes the one failure path: the key is read once more on its own (best effort), the result
-    is `settings_restore_failed` with the write log, and the original exception, if any, is returned unchanged for
-    the caller to raise after recording. A check's finding stops the restore without an exception.
+    it restores and the one it replaces, attempts, outcome) before it is issued, and issued exactly once through
+    `write`; the precondition after the last write; the third reading and its exact comparison with the first; the
+    precondition once more before success is declared. `recent_files_restored` only when every step completed and
+    the comparison found no difference. Any other outcome takes the one failure path: a check that is not clear
+    (no exception), or any exception or cancellation at any step. The first exception is kept in
+    `state["primary_error"]` from the moment it is caught, so nothing later can replace it.
     """
 
     log: list[dict[str, Any]] = state.setdefault("write_log", [])
-    failure: BaseException | None = None
     reason = None
 
     def check(name: str) -> None:
@@ -678,10 +731,16 @@ def _restore_recent_files(config: HarnessConfig, step: Callable[[str, str], dict
     try:
         for number, entry in enumerate(plan, 1):
             check(f"restore_check_before_write_{number}")
-            logged = {key: entry[key] for key in ("value", "action", "restores", "replaces")} | {"completed": False}
+            logged = {key: entry[key] for key in ("value", "action", "restores", "replaces")} | {
+                "attempts": 1, "outcome": "issued", "completed": False}
             log.append(logged)
-            step(f"settings_restore_{number}", entry["command"])
-            logged["completed"] = True
+            try:
+                write(f"settings_restore_{number}", entry["command"])
+            except BaseException as error:
+                state.setdefault("primary_error", error)
+                logged["outcome"] = _write_outcome(error)
+                raise
+            logged["outcome"], logged["completed"] = "completed", True
         check("restore_check_after_writes")
         third = _settings_snapshot(config, step, "settings_verify")
         if third is None:
@@ -698,41 +757,74 @@ def _restore_recent_files(config: HarnessConfig, step: Callable[[str, str], dict
         reason = f"{stopped.check['status']}: {stopped.check.get('reason', '')}"
         state["stopped_by"] = stopped.check
     except BaseException as caught:  # cancellation included
-        failure = caught
+        state.setdefault("primary_error", caught)
         reason = f"the restore was interrupted ({type(caught).__name__}: {caught})"
-    return _failed_restore(config, step, settings_before, state, reason, failure)
+    state["reason"] = reason
+    return _failed_restore(config, step, settings_before, state)
 
 
-def _failed_restore(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]], settings_before,
-                    state: dict[str, Any], reason: str, failure: BaseException | None) -> tuple[dict[str, Any], BaseException | None]:
-    """The restore's one failure path: read the key once more (best effort, guarded), record
-    `settings_restore_failed` with the write log, and hand back the original exception unchanged."""
-
+def _restore_log_summary(result: dict[str, Any], state: dict[str, Any]) -> None:
     log = state.get("write_log", [])
-    result: dict[str, Any] = {"status": "settings_restore_failed", "write_log": log,
-                              "writes_completed": sum(1 for entry in log if entry["completed"])}
+    result["write_log"] = log
+    result["writes_completed"] = sum(1 for entry in log if entry["completed"])
     for key in ("stopped_by", "remaining_differences"):
         if key in state:
             result[key] = state[key]
-    try:
-        final = _settings_snapshot(config, step, "settings_after_failed_restore")
-        result["final_reading"] = "read" if final is not None else "could not be read"
-        if final is not None:
-            result["remaining_differences"] = settings_difference(settings_before, final)
-    except BaseException as caught:  # the recovery itself failed or was cancelled
-        result["final_reading"] = f"interrupted ({type(caught).__name__}: {caught})"
-        if failure is None:
-            failure = caught
-        else:
-            result["recovery_error"] = f"{type(caught).__name__}: {caught}"
-    attempted = len(log)
-    result["reason"] = (f"{reason}; {result['writes_completed']} of {attempted} attempted writes completed"
-                        if attempted else f"{reason}; nothing was written")
-    return result, failure
+
+
+def _restore_reason(result: dict[str, Any], state: dict[str, Any]) -> None:
+    log = state.get("write_log", [])
+    done = sum(1 for entry in log if entry["completed"])
+    reason = state.get("reason") or "the restore did not complete"
+    result["reason"] = f"{reason}; {done} of {len(log)} attempted writes completed" if log else \
+        f"{reason}; nothing was written"
+
+
+def _failed_restore(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]], settings_before,
+                    state: dict[str, Any]) -> tuple[dict[str, Any], BaseException | None]:
+    """The restore's one failure path. `settings_restore_failed` and the write log are in `state["result"]` before
+    anything else runs;
+    the bookkeeping, the final reading, its comparison and the reason then run each under its own guard, so an
+    exception or cancellation in one is recorded as secondary and neither skips the others nor replaces the primary
+    error. Returns the result and the error to raise: the primary one, else the first secondary one."""
+
+    result = state.setdefault("result", {})
+    result["status"] = "settings_restore_failed"
+    result["write_log"] = state.setdefault("write_log", [])  # what was written, before anything else can fail
+    secondary: list[BaseException] = state.setdefault("secondary_errors", [])
+
+    def guarded(work: Callable[[], None]) -> None:
+        try:
+            work()
+        except BaseException as caught:
+            secondary.append(caught)
+
+    def final_reading() -> None:
+        result["final_reading"] = "interrupted"
+        state["final"] = _settings_snapshot(config, step, "settings_after_failed_restore")
+        result["final_reading"] = "read" if state["final"] is not None else "could not be read"
+
+    def final_difference() -> None:
+        if state.get("final") is not None:
+            result["remaining_differences"] = settings_difference(settings_before, state["final"])
+
+    guarded(lambda: _restore_log_summary(result, state))
+    guarded(final_reading)
+    guarded(final_difference)
+    guarded(lambda: _restore_reason(result, state))
+    if secondary:
+        result["secondary_errors"] = [f"{type(error).__name__}: {error}" for error in secondary]
+    primary = state.get("primary_error")
+    return result, primary if primary is not None else (secondary[0] if secondary else None)
+
+
+def _attach_guard(error: BaseException, settings: dict[str, Any]) -> None:
+    error.settings_guard = settings
 
 
 def _guard_check(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]], settings_before, after,
-                 processes, state: dict[str, Any] | None = None) -> tuple[dict[str, Any], BaseException | None]:
+                 processes, state: dict[str, Any] | None = None,
+                 write: Callable[[str, str], dict[str, Any]] | None = None) -> tuple[dict[str, Any], BaseException | None]:
     """The run record's `settings_guard`, and an exception (cancellation included) deferred from the restore.
 
     `unchanged` when the whole snapshot is equal and no instance of the tool is left. A difference confined to the
@@ -781,7 +873,7 @@ def _guard_check(config: HarnessConfig, step: Callable[[str, str], dict[str, Any
     except ValueError as error:
         result.update(status="settings_restore_failed", reason=f"{error}; nothing was written")
         return result, None
-    restored, failure = _restore_recent_files(config, step, settings_before, plan, state)
+    restored, failure = _restore_recent_files(config, step, write, settings_before, plan, state)
     result.update(restored)
     return result, failure
 
@@ -817,6 +909,9 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
 
     def step(name: str, command: str) -> dict[str, Any]:
         return _guest_step(config, runner, timeout_s, steps, name, command)
+
+    def write(name: str, command: str) -> dict[str, Any]:
+        return _guest_write(config, runner, timeout_s, steps, name, command)
 
     # The guest work copy of the MBF is deleted before the copy, so a failed copy can never leave an older MBF
     # to be solved; a failed prepare step stops the round trip before solving.
@@ -885,20 +980,33 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
                 if blocked is not None:
                     settings = blocked
                 else:
-                    settings, deferred = _guard_check(config, step, settings_before, after, processes, guard_state)
-            except BaseException as caught:  # cancellation during the checks or the restore's own failure path
-                deferred = caught
+                    settings, deferred = _guard_check(config, step, settings_before, after, processes, guard_state,
+                                                      write)
+            except BaseException as caught:  # cancellation during the checks or escaping the restore's failure path
+                primary = guard_state.get("primary_error")
+                deferred = primary if primary is not None else caught
                 log = guard_state.get("write_log") or []
-                if log:
-                    settings = {"status": "settings_restore_failed", "write_log": log,
-                                "writes_completed": sum(1 for entry in log if entry["completed"]),
-                                "reason": f"interrupted ({type(caught).__name__}) during the restore; "
-                                          f"{sum(1 for entry in log if entry['completed'])} of {len(log)} attempted "
-                                          "writes completed"}
+                settings = dict(guard_state.get("result") or {})
+                if log or settings:
+                    settings.setdefault("write_log", log)
+                    settings.setdefault("writes_completed", sum(1 for entry in log if entry["completed"]))
+                    settings["status"] = "settings_restore_failed"
+                    settings.setdefault("reason", f"interrupted ({type(caught).__name__}) during the restore; "
+                                                  f"{settings['writes_completed']} of {len(log)} attempted writes "
+                                                  "completed")
+                    if "final_reading" not in settings:
+                        try:
+                            final = _settings_snapshot(config, step, "settings_after_failed_restore")
+                            settings["final_reading"] = "read" if final is not None else "could not be read"
+                        except BaseException as late:
+                            settings["final_reading"] = f"interrupted ({type(late).__name__})"
                 else:
                     settings = {"status": "settings_check_failed",
                                 "reason": f"the checks after the run were interrupted ({type(caught).__name__}); "
                                           "nothing was written"}
+                if caught is not deferred:
+                    settings["secondary_errors"] = list(settings.get("secondary_errors", [])) + [
+                        f"{type(caught).__name__}: {caught}"]
             if deferred is not None:
                 if error is None:
                     error = deferred
@@ -996,13 +1104,17 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
         if settings is not None:
             record["settings_guard"] = settings
         write_private(root, out / "run_record.json", json.dumps(record, indent=2, sort_keys=True) + "\n")
-    except Exception:
+    except BaseException:
         if error is None:
             raise
-        # The record could not be written (for example the same containment refusal); the original error stands.
+        # The record could not be written (the same containment refusal, or an interruption); the primary error
+        # stands and is raised below.
     if error is not None:
         if settings is not None:
-            error.settings_guard = settings  # the caller stops on it like on a record's guard result
+            try:
+                _attach_guard(error, settings)  # the caller stops on it like on a record's guard result
+            except BaseException:
+                pass  # the record holds the guard result; the primary error is raised unchanged
         raise error
     return record
 

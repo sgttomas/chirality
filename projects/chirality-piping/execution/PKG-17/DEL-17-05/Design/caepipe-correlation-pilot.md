@@ -172,15 +172,22 @@ set, which needs the subkey); `--authored-dir` runs require it.
   writes (values that changed or were removed are set to their earlier type and data, in the first
   reading's order; values that appeared are deleted; a value that cannot be written back exactly
   stops it before any write) and keeps a write log: each value, what it restores and what it replaces,
-  and whether the write completed. It checks the process list before each write, after the last write,
+  its attempts and its outcome. Each write is issued exactly once, never retried (the retry the harness
+  applies to reads on a transport failure does not apply to writes), and counts as completed only on
+  exit 0 with the command's success message; a reported failure is logged `failed`, a transport
+  failure, a timeout or other output `unknown`, and either stops the restore at that write. It checks
+  the process list before each write, after the last write,
   and once more before declaring success, reads the key a third time and compares it exactly with the
   first reading. The result is `recent_files_restored` only when every step completed and the
   comparison found no difference. Any other outcome, a check that finds another instance or cannot
   tell, or an exception or cancellation at any step, the comparison and the failure path itself
   included, takes one failure path: the key is read once more (best effort), the result is
   `settings_restore_failed` with the write log, so the record shows exactly which writes happened, the
-  run record is written, and the original exception, if any, is raised afterwards unchanged with the
-  result attached. A record never says nothing was written when its log shows writes. A difference
+  run record is written, and the first exception, if any, is raised afterwards unchanged with the
+  result attached. The first exception is kept from the moment it occurs; the failure path's
+  bookkeeping, its reading, its comparison, the record and the attachment each run under their own
+  guard, so a later exception or cancellation is recorded as secondary and neither replaces the first
+  nor skips the reading. A record never says nothing was written when its log shows writes. A difference
   anywhere else is `settings_changed`, and nothing is written.
 
 The restore is safe only because no other instance of the tool runs during the round trip: the
