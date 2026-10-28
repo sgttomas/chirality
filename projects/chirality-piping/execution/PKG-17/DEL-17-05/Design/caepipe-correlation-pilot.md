@@ -144,7 +144,8 @@ the export out of a tracked authored run too.
 **Saved settings.** The tool keeps saved settings in the guest registry, among them a recent-files
 list that a solve may update. The configuration may name that registry key (`settings_guard`: `key`,
 an `HKCU\…` path; `recent_files_subkey`, the list's subkey; `restore_recent_files`, `false` unless
-set, which needs the subkey; `call_timeout_s`, default 20, and `section_budget_s`, default 120, both in
+set, which needs the subkey; `restore_scope`, `"recent_files"` unless set to `"key"`, which enables
+restoring by itself and widens it to the whole key; `call_timeout_s`, default 20, and `section_budget_s`, default 120, both in
 seconds); `--authored-dir` runs require it. Every guard call (registry reads and writes, process
 queries) runs with `call_timeout_s`; the solve keeps its own timeout.
 
@@ -159,8 +160,10 @@ queries) runs with `call_timeout_s`; the solve keeps its own timeout.
   values of its own (observed on the guest); its printed subkeys show that it exists, so it is recorded
   as present. An output that prints no key at all is no reading.
 - **During.** The guest script appends the id of each process it starts to `owned_pids.txt` in the
-  case's work folder (and lists them in its report), and never falls back to printing through the
-  GUI: a batch run that leaves no CSV ends `batch_no_csv`.
+  case's work folder (and lists them in its report), the GUI print instance included. An
+  `--authored-dir` run falls back to printing through the GUI only with `restore_scope` `"key"`, whose
+  restore covers the settings that route writes; otherwise a batch run that leaves no CSV ends
+  `batch_no_csv`.
 - **After**, whatever happened in between (a timeout of the host's call or an error while collecting
   included), in checks guarded separately so that a failure in one skips neither the other nor the
   result:
@@ -172,18 +175,26 @@ queries) runs with `call_timeout_s`; the solve keeps its own timeout.
   - the whole key is read again. When the two readings are identical (keys and values) the result is
     `unchanged`.
 - **Restore.** Only when the configuration enables it, the process checks are clean, and every
-  difference lies in the values of the recent-files subkey (no key added or removed, nothing else
-  changed), the harness writes those values back to the first reading in one routine. It plans the
-  writes (values that changed or were removed are set to their earlier type and data, in the first
-  reading's order; values that appeared are deleted; a value that cannot be written back exactly
-  stops it before any write) and keeps a write log: each value, what it restores and what it replaces,
+  difference lies in the restore scope, the harness writes the scope back to the first reading in one
+  routine. With `"recent_files"` the scope is the values of the recent-files subkey (no key added or
+  removed, nothing else changed); with `"key"` it is everything strictly inside the configured key: its
+  values, and its subkeys at any depth, which may be created or deleted. The configured key itself, its
+  parent and anything else are never written; the plan checks every difference against the scope and
+  refuses the whole restore, before any write, when one lies outside it (with `"recent_files"` such a
+  difference is `settings_changed`). It plans the writes (subkeys that were removed are created,
+  shallowest first; values that changed or were removed are set to their earlier type and data, in the
+  first reading's order; values that appeared are deleted, except inside a subkey that appeared;
+  subkeys that appeared are deleted with their contents, deepest first; a key or value name outside
+  the allowed characters, or a value that cannot be written back exactly, stops it before any write)
+  and keeps a write log: each value or subkey, what it restores and what it replaces,
   its attempts and its outcome. Each write is issued exactly once, never retried (the retry the harness
   applies to reads on a transport failure does not apply to writes), and counts as completed only on
   exit 0 with the command's success message; a reported failure is logged `failed`, a transport
   failure, a timeout or other output `unknown`, and either stops the restore at that write. It checks
   the process list before each write, after the last write,
   and once more before declaring success, reads the key a third time and compares it exactly with the
-  first reading. The result is `recent_files_restored` only when every step completed and the
+  first reading. The result is `recent_files_restored` (`settings_restored` with `"key"`) only when every
+  step completed and the
   comparison found no difference. Any other outcome, a check that finds another instance or cannot
   tell, or an exception or cancellation at any step, the comparison and the failure path itself
   included, takes one failure path: the key is read once more (best effort), the result is
@@ -195,6 +206,12 @@ queries) runs with `call_timeout_s`; the solve keeps its own timeout.
   neither replaces the first nor skips the reading. Once the restore has been entered, the final
   reading is attempted whether or not anything was logged. A record never says nothing was written
   when its log shows writes. A difference anywhere else is `settings_changed`, and nothing is written.
+- **Recorded restore.** With `restore_scope` `"key"`, value differences that an earlier round trip
+  recorded but did not restore can be written back to their recorded `before` values through the same
+  plan and routine (`restore_recorded_settings`), outside any round trip: only after the precondition is
+  clear, the key reads whole, and every recorded value still has its recorded `after` state
+  (`changed_since_record` otherwise, nothing written); the third reading is compared with the intended
+  one, and each recorded value's status is listed.
 
 **Interruption (threat model).** For the whole guarded round trip, SIGTERM (and SIGBREAK where it
 exists) is made catchable on the main thread: it raises a cancellation (`TerminationRequested`, a kind
@@ -241,7 +258,8 @@ callee and recovery step, that case is not designed for.
   record says deferral is unavailable (`signal_deferral`) and signals act as they normally do.
 - Whether `reg query /s` prints a subkey that holds no values has not been observed on the guest (every
   subkey read there has values). If it does not, such a subkey added or removed during a round trip is
-  not seen; every value change is.
+  not seen; every value change is. With `restore_scope` `"key"` this includes an empty parent left
+  behind when a subkey that appeared is deleted.
 - Each process check, the session precondition before the first case included, runs with the guard
   call timeout; a transport failure is retried, up to three attempts, so one check can take up to
   three times `call_timeout_s` (60 s by default). It writes nothing and stays interruptible.
@@ -255,8 +273,9 @@ because, under the operating agreement, no other instance runs during these sess
 is detected after the fact by the following check or by the comparison, and is recorded as
 `settings_restore_failed` with the write log; it is never reported as a successful restore.
 
-The run stops at the first case whose result is anything but `unchanged` or `recent_files_restored`, whose round
-trip raised (the guard result travels with the exception), or that ended `batch_no_csv`. The guard
+The run stops at the first case whose result is anything but `unchanged`, `recent_files_restored` or
+`settings_restored`, whose round trip raised (the guard result travels with the exception), or that ended
+`batch_no_csv` where the GUI fallback is refused. The guard
 result is checked before any other test of the record, so a rejected input hash does not pass over it.
 
 `caepipe_in/` holds only SWBPIPE-derived content or the invented authored file. Every layer from `caepipe_out/` on

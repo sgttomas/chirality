@@ -1227,11 +1227,19 @@ class FakeGuest:
                     return subprocess.CompletedProcess(argv, code, out, err)
                 add = re.fullmatch(r'reg add "([^"]+)" /v "([^"]+)" /t (REG_\w+) /d "([^"]*)" /f', command)
                 delete = re.fullmatch(r'reg delete "([^"]+)" /v "([^"]+)" /f', command)
-                assert add or delete, command
+                add_key = re.fullmatch(r'reg add "([^"]+)" /f', command)
+                delete_key = re.fullmatch(r'reg delete "([^"]+)" /f', command)
+                assert add or delete or add_key or delete_key, command
                 if self.apply_writes and add:
                     self.values[(add[1], add[2])] = (add[3], add[4])
                 if self.apply_writes and delete:
                     del self.values[(delete[1], delete[2])]
+                if self.apply_writes and add_key:
+                    self.empty_keys.add(add_key[1])
+                if self.apply_writes and delete_key:  # the subkey and everything in it
+                    gone = lambda key: key == delete_key[1] or key.startswith(delete_key[1] + "\\")  # noqa: E731
+                    self.values = {item: value for item, value in self.values.items() if not gone(item[0])}
+                    self.empty_keys = {key for key in self.empty_keys if not gone(key)}
                 return subprocess.CompletedProcess(argv, 0, "The operation completed successfully.\r\n", "")
             if command.startswith("type ") and "owned_pids.txt" in command:
                 if self.pid_text is not None:
@@ -2135,6 +2143,135 @@ def test_settings_guard_reads_a_reading_without_the_queried_key_header_as_unchan
     assert record_["settings_guard"]["status"] == "unchanged"
 
 
+KEY_GUARD = dataclasses.replace(INVENTED_GUARD, restore_scope="key")
+
+
+def _wide_change(guest_, argv, config):
+    """A solve that changes settings across the whole key: the recent-files list, a value in another subkey, a new
+    subkey with a value, and the removal of an empty subkey."""
+    guest_.open_model("C:\\work\\case.mod")
+    guest_.values[(INVENTED_KEY + "\\Options", "Use something")] = ("REG_BINARY", "00")
+    guest_.values[(INVENTED_KEY + "\\Window\\Placement", "Last")] = ("REG_BINARY", "2C000000")
+    guest_.empty_keys.discard(INVENTED_KEY + "\\Empty sub")
+    return solved(guest_, argv, config)
+
+
+def test_settings_guard_key_scope_restores_inside_the_key_only_and_verifies(tmp_path):
+    guest = FakeGuest()
+    before = (dict(guest.values), set(guest.empty_keys))
+    record_ = guarded(tmp_path, guest, _wide_change, guard=KEY_GUARD)
+    guard = record_["settings_guard"]
+    assert guard["status"] == "settings_restored" and (guest.values, guest.empty_keys) == before
+    assert [entry["completed"] for entry in guard["write_log"]] == [True] * len(guest.writes)
+    actions = [entry["action"] for entry in guard["write_log"]]
+    assert actions[0] == "create_key" and actions[-1] == "delete_key" and "set" in actions and "delete" in actions
+    # Every write names a key strictly inside the configured key: never the key itself, its parent or a sibling.
+    named = [re.match(r'reg (?:add|delete) "([^"]+)"', command)[1] for command in guest.writes]
+    assert named and all(key.startswith(INVENTED_KEY + "\\") for key in named)
+    # The new subkey goes as a whole (its value is not deleted on its own); the removed empty one is created again.
+    assert f'reg delete "{INVENTED_KEY}\\Window\\Placement" /f' in guest.writes
+    assert f'reg add "{INVENTED_KEY}\\Empty sub" /f' in guest.writes
+    assert not any("Placement" in command and "/v" in command for command in guest.writes)
+    # The checks ran before each write and after the last, and the key was read a third time.
+    assert guest.counts["query"] == 3 and guest.counts["tasklist"] >= len(guest.writes) + 3
+
+
+def test_settings_guard_recent_files_scope_still_writes_nothing_for_a_wider_change(tmp_path):
+    guest = FakeGuest()
+    record_ = guarded(tmp_path, guest, _wide_change, guard=RESTORING_GUARD)
+    assert record_["settings_guard"]["status"] == "settings_changed" and guest.writes == []
+
+
+def test_restore_plan_refuses_anything_outside_the_configured_key_before_any_write(tmp_path):
+    root = harness._registry_key_id(INVENTED_GUARD.key)
+
+    def snapshot(extra_values=(), extra_keys=()):
+        values = {(harness._registry_key_id(key), name): (key, kind, data) for key, name, kind, data in (
+            (INVENTED_KEY + "\\Options", "Use something", "REG_BINARY", "01"), *extra_values)}
+        keys = {harness._registry_key_id(key): key for key in (INVENTED_KEY, INVENTED_KEY + "\\Options",
+                                                              *extra_keys, *(v[0] for v in extra_values))}
+        return {"keys": keys, "values": values}
+
+    before = snapshot()
+    inside = snapshot([(INVENTED_KEY + "\\Options", "New", "REG_BINARY", "02")])
+    assert [entry["action"] for entry in harness._restore_plan(before, inside, root, whole_key=True)] == ["delete"]
+    parent = INVENTED_KEY.rsplit("\\", 1)[0]
+    for outside in ([(parent, "Up", "REG_BINARY", "02")],                                  # the parent's value
+                    [(INVENTED_KEY + "-other\\Options", "X", "REG_BINARY", "02")],        # a sibling's subkey
+                    [("HKEY_CURRENT_USER\\Software\\Elsewhere", "Y", "REG_BINARY", "02")]):
+        with pytest.raises(ValueError, match="outside the restore scope"):
+            harness._restore_plan(before, snapshot(outside), root, whole_key=True)
+        with pytest.raises(ValueError, match="outside the restore scope"):  # also mixed with a change inside
+            harness._restore_plan(inside, snapshot(outside), root, whole_key=True)
+    # The configured key itself is never created or deleted.
+    without_root = {"keys": {k: v for k, v in before["keys"].items() if k != root}, "values": before["values"]}
+    with pytest.raises(ValueError, match="outside the restore scope"):
+        harness._restore_plan(before, without_root, root, whole_key=True)
+    # A name a guest command could not carry exactly is refused too.
+    odd = snapshot([(INVENTED_KEY + "\\Options", "a&b", "REG_BINARY", "02")])
+    with pytest.raises(ValueError):
+        harness._restore_plan(before, odd, root, whole_key=True)
+
+    # In a round trip a reading that prints a key outside the configured one is no reading: nothing is written.
+    guest = FakeGuest()
+
+    def outside_solve(guest_, argv, config):
+        guest_.values[("HKEY_CURRENT_USER\\Software\\Invented Vendor\\Tool\\Other", "Z")] = ("REG_BINARY", "01")
+        return _wide_change(guest_, argv, config)
+
+    record_ = guarded(tmp_path, guest, outside_solve, guard=KEY_GUARD)
+    assert record_["settings_guard"]["status"] == "settings_check_failed" and guest.writes == []
+
+
+def test_restore_recorded_settings_goes_through_the_restore_routine(tmp_path):
+    guest = FakeGuest()
+
+    def value_changes(guest_, argv, config):  # values only, one of them new, across two subkeys
+        guest_.open_model("C:\\work\\case.mod")
+        guest_.values[(INVENTED_KEY + "\\Options", "Use something")] = ("REG_BINARY", "00")
+        return solved(guest_, argv, config)
+
+    record_ = guarded(tmp_path, guest, value_changes, guard=INVENTED_GUARD)  # detect only: nothing restored
+    recorded = [entry for entry in record_["settings_guard"]["changed_values"] if "value" in entry]
+    second = tmp_path / "second"
+    second.mkdir()
+    config = dataclasses.replace(fake_config(second), settings_guard=KEY_GUARD)
+    # Changed since the record: nothing is written.
+    guest.values[(INVENTED_KEY + "\\Options", "Use something")] = ("REG_BINARY", "07")
+    stopped = harness.restore_recorded_settings(config, recorded, runner=guest.runner(solved, config))
+    assert stopped["status"] == "changed_since_record" and guest.writes == []
+    assert [item["value"] for item in stopped["values"]] == [INVENTED_KEY + "\\Options\\Use something"]
+    guest.values[(INVENTED_KEY + "\\Options", "Use something")] = ("REG_BINARY", "00")
+    # Without the whole-key scope it is not enabled.
+    narrow = dataclasses.replace(config, settings_guard=RESTORING_GUARD)
+    assert harness.restore_recorded_settings(narrow, recorded, runner=guest.runner(solved, narrow))["status"] == \
+        "not_enabled"
+    result = harness.restore_recorded_settings(config, recorded, runner=guest.runner(solved, config))
+    assert result["status"] == "settings_restored"
+    assert {item["status"] for item in result["values"]} == {"restored_and_verified"}
+    assert len(result["values"]) == len(recorded) and len(result["write_log"]) == len(recorded)
+    for entry in recorded:  # every recorded value is back at its before-value
+        key, name = entry["value"].rsplit("\\", 1)
+        found = guest.values.get((key, name))
+        assert (None if found is None else {"type": found[0], "data": found[1]}) == entry["before"]
+    assert [step["name"] for step in result["steps"]][:2] == ["precondition_process_list", "settings_current"]
+
+
+def test_pilot_authored_dir_allows_the_gui_fallback_only_with_the_whole_key_restore(tmp_path, monkeypatch):
+    seen = []
+    for guard, expected in ((RESTORING_GUARD, False), (KEY_GUARD, True)):
+        place = tmp_path / guard.restore_scope
+        place.mkdir()
+        config = dataclasses.replace(fake_config(place), settings_guard=guard)
+        directory = authored_dir(config.exchange_root, ("cx-01-invented",))
+        monkeypatch.setattr(run_pilot, "resolve_harness_config", lambda environ, require_vm_tools, c=config: c)
+        monkeypatch.setattr(run_pilot, "check_no_foreign_instance", lambda config_: {"status": "clear"})
+        monkeypatch.setattr(run_pilot, "run_authored_case",
+                            lambda case, config_, **kw: seen.append(kw["gui_fallback"]) or True)
+        assert run_pilot.main(["--authored", "--authored-dir", str(directory)], environ={}) == 0
+        assert seen[-1] is expected
+
+
 def test_harness_config_reads_and_checks_the_settings_guard(tmp_path):
     base = {"vm_name": "invented-vm", "guest_executable": "C:\\Invented\\tool.exe",
             "guest_exchange_root": "Z:\\invented", "guest_work_root": "C:\\invented-work",
@@ -2159,6 +2296,12 @@ def test_harness_config_reads_and_checks_the_settings_guard(tmp_path):
         "key": "HKCU\\Software\\Invented Vendor\\Tool\\1.0", "call_timeout_s": 7, "section_budget_s": 45.5}})
     resolved = resolve_harness_config({ENV_VAR: str(limited), "PATH": path}, require_vm_tools=False).settings_guard
     assert (resolved.call_timeout_s, resolved.section_budget_s) == (7.0, 45.5)
+    assert resolved.restore_scope == "recent_files" and not resolved.restores_whole_key  # the default
+    whole = exchange(place("k"), config=base | {"settings_guard": {
+        "key": "HKCU\\Software\\Invented Vendor\\Tool\\1.0", "recent_files_subkey": "Recent list",
+        "restore_scope": "key"}})
+    assert resolve_harness_config({ENV_VAR: str(whole), "PATH": path},
+                                  require_vm_tools=False).settings_guard == KEY_GUARD
     for number, bad in enumerate(({"key": "HKLM\\Software\\X", "recent_files_subkey": "R"},
                                   {"key": "HKCU\\Software\\X\" & del", "recent_files_subkey": "R"},
                                   {"key": "HKCU\\Software\\X", "recent_files_subkey": "R\\S"}, "HKCU\\Software\\X",
@@ -2168,7 +2311,9 @@ def test_harness_config_reads_and_checks_the_settings_guard(tmp_path):
                                   {"key": "HKCU\\Software\\X", "call_timeout_s": 0},
                                   {"key": "HKCU\\Software\\X", "call_timeout_s": True},
                                   {"key": "HKCU\\Software\\X", "section_budget_s": "120"},
-                                  {"key": "HKCU\\Software\\X", "section_budget_s": -1})):
+                                  {"key": "HKCU\\Software\\X", "section_budget_s": -1},
+                                  {"key": "HKCU\\Software\\X", "restore_scope": "everything"},
+                                  {"key": "HKCU\\Software\\X", "restore_scope": None})):
         root = exchange(place(f"b{number}"), config=base | {"settings_guard": bad})
         assert "settings_guard must give key" in skip_reason({ENV_VAR: str(root), "PATH": path})
     plain = resolve_harness_config({ENV_VAR: str(exchange(place("c"))), "PATH": path}, require_vm_tools=False)

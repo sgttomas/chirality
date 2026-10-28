@@ -50,10 +50,12 @@ need the configuration's settings_guard. Before the first case and before each r
 trip no instance of the tool may be running that the run did not start. Each round
 trip reads the tool's whole saved-settings key before and after and confirms that
 the processes it started have ended; when the configuration enables it, a
-difference confined to the recent-files subkey is written back and verified, and
-nothing else is ever written. The run stops at the first case whose check is not
-clean, whose round trip raised, or whose batch run left no CSV (these runs never
-fall back to the GUI; Design §5).
+difference confined to the recent-files subkey (or, with restore_scope "key", any
+difference strictly inside the key) is written back and verified, and nothing else
+is ever written. The run stops at the first case whose check is not clean, whose
+round trip raised, or whose batch run left no CSV. These runs fall back to the GUI
+print only with restore_scope "key", whose restore covers the settings that route
+writes (Design §5).
 
 Standard output carries operational status only: per case its id, route and
 either the comparison record's path relative to the exchange folder or the
@@ -674,7 +676,8 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] = os.environ)
             for case in cases:
                 results.append(run_authored_case(case, config, export_only=args.export_only, directory=directory,
                                                  no_export=args.no_export or bool(args.authored_dir),
-                                                 gui_fallback=not args.authored_dir))
+                                                 gui_fallback=not args.authored_dir
+                                                 or config.settings_guard.restores_whole_key))
         except RunStopped as stopped:
             print(f"stopped after {stopped}: the guarded round trip did not end cleanly; no further case ran")
             return 1

@@ -23,9 +23,11 @@ whole key before the guest work (no reading, no run) and again afterwards, after
 confirming from the guest's process list that every process the guest script
 started has ended and that no other instance appeared. Any difference, and any
 uncertain process state, is recorded in the run record for the caller to stop on.
-Only when the configuration enables `restore_recent_files` and the difference lies
-wholly in the recent-files subkey are that subkey's values written back, and the key
-is read a third time and must equal the first reading; nothing else is ever written.
+Only when the configuration enables restoring are differences written back: with
+`restore_recent_files` only a difference lying wholly in the recent-files subkey's values,
+with `restore_scope` `"key"` any difference strictly inside the configured key (values,
+and subkeys created or deleted, never the key itself or anything outside it). The key is
+then read a third time and must equal the first reading; nothing else is ever written.
 The restore is safe only because the precondition admits no other instance of the
 tool that could be changing its settings at the same time (Design §5).
 """
@@ -80,7 +82,12 @@ SETTINGS_KEY_PATTERN = re.compile(r"^HKCU(\\[A-Za-z0-9 ._()-]+)+\Z")
 SETTINGS_SUBKEY_PATTERN = re.compile(r"^[A-Za-z0-9 ._()-]+\Z")
 # A value line of `reg query`: four spaces, name, four spaces, type, then four spaces and the data (absent when empty).
 REG_VALUE_LINE = re.compile(r"^ {4}(?P<name>.+?) {4}(?P<type>REG_[A-Z_]+)(?: {4}(?P<data>.*))?\Z")
-SETTINGS_KEEP_GOING = ("unchanged", "recent_files_restored")
+SETTINGS_KEEP_GOING = ("unchanged", "recent_files_restored", "settings_restored")
+# What a restore may cover: the recent-files subkey's values, or everything strictly inside the configured key.
+RESTORE_SCOPES = ("recent_files", "key")
+# Names a restore writes into a guest command: printed keys and value names within this character set only.
+REG_PRINTED_KEY_PATTERN = re.compile(r"^HKEY_CURRENT_USER(\\[A-Za-z0-9 ._()-]+)+\Z")
+REG_VALUE_NAME_PATTERN = re.compile(r"^[A-Za-z0-9 ._()-]+\Z")
 # Data a restore can write back exactly through `reg add` (REG_SZ only within the guest-command allow-list).
 RESTORABLE_DATA = {"REG_BINARY": re.compile(r"^[0-9A-Fa-f]*\Z"), "REG_DWORD": re.compile(r"^0x[0-9A-Fa-f]{1,8}\Z"),
                    "REG_SZ": re.compile(r"^[A-Za-z0-9 \\._()*:-]*\Z")}
@@ -126,7 +133,9 @@ class SettingsGuard:
     """The guest registry key of the tool's saved settings, read whole, and its recent-files subkey.
 
     `restore_recent_files` (off unless configured) lets a round trip write back the recent-files subkey alone when
-    nothing else changed; it is safe only because the precondition admits no instance of the tool but our own.
+    nothing else changed; `restore_scope` `"key"` lets it write back any difference strictly inside `key` (and
+    enables restoring by itself). Either is safe only because the precondition admits no instance of the tool but
+    our own.
     """
 
     key: str
@@ -134,10 +143,15 @@ class SettingsGuard:
     restore_recent_files: bool = False
     call_timeout_s: float = GUARD_CALL_TIMEOUT_S
     section_budget_s: float = GUARD_SECTION_BUDGET_S
+    restore_scope: str = "recent_files"
 
     @property
     def recent_files_key(self) -> str | None:
         return f"{self.key}\\{self.recent_files_subkey}" if self.recent_files_subkey else None
+
+    @property
+    def restores_whole_key(self) -> bool:
+        return self.restore_scope == "key"
 
 
 def resolve_harness_config(environ: Mapping[str, str] = os.environ, *,
@@ -212,18 +226,20 @@ def resolve_harness_config(environ: Mapping[str, str] = os.environ, *,
         limits = {name: (raw_guard.get(name, default) if isinstance(raw_guard, dict) else None)
                   for name, default in (("call_timeout_s", GUARD_CALL_TIMEOUT_S),
                                         ("section_budget_s", GUARD_SECTION_BUDGET_S))}
+        scope = raw_guard.get("restore_scope", "recent_files") if isinstance(raw_guard, dict) else None
         limits_valid = all(isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
                            and value > 0 for value in limits.values())
         if not (isinstance(key, str) and SETTINGS_KEY_PATTERN.match(key)
                 and (subkey is None or isinstance(subkey, str) and SETTINGS_SUBKEY_PATTERN.match(subkey))
-                and isinstance(restore, bool) and (subkey is not None or not restore) and limits_valid):
+                and isinstance(restore, bool) and (subkey is not None or not restore) and limits_valid
+                and scope in RESTORE_SCOPES):
             return skip(f"{CONFIG_NAME} settings_guard must give key (HKCU\\..., letters, digits, space and "
                         ". _ ( ) - only), optionally recent_files_subkey (the same characters), "
-                        "restore_recent_files (true or false; true needs recent_files_subkey) and positive "
-                        "call_timeout_s and section_budget_s (seconds)")
+                        "restore_recent_files (true or false; true needs recent_files_subkey), restore_scope "
+                        "(\"recent_files\" or \"key\") and positive call_timeout_s and section_budget_s (seconds)")
         guard = SettingsGuard(key=key, recent_files_subkey=subkey, restore_recent_files=restore,
                               call_timeout_s=float(limits["call_timeout_s"]),
-                              section_budget_s=float(limits["section_budget_s"]))
+                              section_budget_s=float(limits["section_budget_s"]), restore_scope=scope)
     prlctl = None
     if require_vm_tools:
         checked.append("prlctl on PATH")
@@ -799,30 +815,73 @@ def _owned_processes(config: HarnessConfig, step: Callable[[str, str], dict[str,
     return {"status": "exited", "owned_pids": pids}
 
 
-def _restore_plan(before: Mapping[str, Mapping], after: Mapping[str, Mapping], recent_id: str) -> list[dict[str, Any]]:
-    """The writes that take the recent-files subkey back to `before`, in its listing order: values that changed or
-    were removed are set to their first-reading type and data, values that appeared are deleted.
+def _restore_plan(before: Mapping[str, Mapping], after: Mapping[str, Mapping], scope_id: str, *,
+                  whole_key: bool = False) -> list[dict[str, Any]]:
+    """The writes that take the restore scope back to `before`.
 
-    ValueError (nothing is written) when a value cannot be written back exactly.
+    The scope is the key `scope_id`: its own values alone, or (`whole_key`) its values and everything strictly
+    inside it. Subkeys that were removed are created first (shallowest first); then values that changed or were
+    removed are set to their first-reading type and data, in the first reading's order, and values that appeared
+    are deleted (except inside a subkey that appeared); last, subkeys that appeared are deleted (deepest first).
+    `scope_id` itself is never created or deleted.
+
+    ValueError (nothing is written) when any difference lies outside the scope, when a key or value name falls
+    outside the allowed characters, or when a value cannot be written back exactly.
     """
 
+    def inside(key_id: str, *, strictly: bool = False) -> bool:
+        if not whole_key:
+            return key_id == scope_id and not strictly
+        return key_id.startswith(scope_id + "\\") or (key_id == scope_id and not strictly)
+
+    def printed_key(printed: str, key_id: str) -> str:
+        if not REG_PRINTED_KEY_PATTERN.match(printed) or _registry_key_id(printed) != key_id:
+            raise ValueError(f"{printed} cannot be named in a guest command")
+        return printed
+
+    differing_values = [item for item in set(before["values"]) | set(after["values"])
+                        if before["values"].get(item, (None,))[1:] != after["values"].get(item, (None,))[1:]]
+    differing_keys = set(before["keys"]) ^ set(after["keys"])
+    # Containment first: any difference outside the scope refuses the whole restore before any write.
+    for key_id in differing_keys:
+        if not inside(key_id, strictly=True):
+            raise ValueError(f"{(before['keys'].get(key_id) or after['keys'].get(key_id))} lies outside the restore "
+                             "scope")
+    for item in differing_values:
+        if not inside(item[0]):
+            raise ValueError(f"{(before['values'].get(item) or after['values'][item])[0]}\\{item[1]} lies outside "
+                             "the restore scope")
+    added = sorted((key for key in after["keys"] if key not in before["keys"]), key=lambda key: -key.count("\\"))
+    removed = sorted((key for key in before["keys"] if key not in after["keys"]), key=lambda key: key.count("\\"))
+
     plan = []
+    for key_id in removed:
+        printed = printed_key(before["keys"][key_id], key_id)
+        plan.append({"key": printed, "action": "create_key", "restores": "present", "replaces": None,
+                     "command": f"reg add {_quote(printed)} /f"})
     for item, (printed, kind, data) in before["values"].items():
-        if item[0] == recent_id and after["values"].get(item, (None,))[1:] != (kind, data):
-            if kind not in RESTORABLE_DATA or not RESTORABLE_DATA[kind].match(data) or item[1] == "(Default)":
+        if item in differing_values:
+            if kind not in RESTORABLE_DATA or not RESTORABLE_DATA[kind].match(data) or item[1] == "(Default)" \
+                    or not REG_VALUE_NAME_PATTERN.match(item[1]):
                 raise ValueError(f"{printed}\\{item[1]} ({kind}) cannot be written back exactly")
+            printed = printed_key(printed, item[0])
             found = after["values"].get(item)
             plan.append({"value": f"{printed}\\{item[1]}", "action": "set",
                          "restores": {"type": kind, "data": data},
                          "replaces": {"type": found[1], "data": found[2]} if found else None,
                          "command": f"reg add {_quote(printed)} /v {_quote(item[1])} /t {kind} /d {_quote(data)} /f"})
     for item, (printed, kind, data) in after["values"].items():
-        if item[0] == recent_id and item not in before["values"]:
-            if item[1] == "(Default)":
-                raise ValueError("a default value appeared")
+        if item not in before["values"] and item[0] not in added:
+            if item[1] == "(Default)" or not REG_VALUE_NAME_PATTERN.match(item[1]):
+                raise ValueError(f"{printed}\\{item[1]} cannot be deleted exactly")
+            printed = printed_key(printed, item[0])
             plan.append({"value": f"{printed}\\{item[1]}", "action": "delete", "restores": None,
                          "replaces": {"type": kind, "data": data},
                          "command": f"reg delete {_quote(printed)} /v {_quote(item[1])} /f"})
+    for key_id in added:
+        printed = printed_key(after["keys"][key_id], key_id)
+        plan.append({"key": printed, "action": "delete_key", "restores": None, "replaces": "present",
+                     "command": f"reg delete {_quote(printed)} /f"})
     return plan
 
 
@@ -837,7 +896,7 @@ class _RestoreStopped(Exception):
 def _restore_recent_files(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]],
                           write: Callable[[str, str], dict[str, Any]], settings_before, plan: list[dict[str, Any]],
                           state: dict[str, Any]) -> tuple[dict[str, Any], BaseException | None]:
-    """Write the recent-files subkey back to the first reading, as one routine with one failure path.
+    """Write the restore scope (`_restore_plan`) back to the first reading, as one routine with one failure path.
 
     Steps: the precondition before each write; the write, logged in `state["write_log"]` (value, action, the value
     it restores and the one it replaces, attempts, outcome) before it is issued, and issued exactly once through
@@ -887,7 +946,8 @@ def _restore_recent_files(config: HarnessConfig, step: Callable[[str, str], dict
                 state["section_budget_s"] = guard.section_budget_s
                 for number, entry in enumerate(plan, 1):
                     check(f"restore_check_before_write_{number}", budgeted_step)
-                    logged = {key: entry[key] for key in ("value", "action", "restores", "replaces")} | {
+                    logged = {key: entry[key] for key in ("value", "key", "action", "restores", "replaces")
+                              if key in entry} | {
                         "attempts": 1, "outcome": "issued", "completed": False}
                     log.append(logged)
                     try:
@@ -915,7 +975,8 @@ def _restore_recent_files(config: HarnessConfig, step: Callable[[str, str], dict
                 state["remaining_differences"] = remaining
         if reason is None:
             check("restore_check_before_success")
-            done = {"status": "recent_files_restored", "write_log": log, "restored_values": len(plan)}
+            done = {"status": "settings_restored" if guard.restores_whole_key else "recent_files_restored",
+                    "write_log": log, "restored_values": len(plan)}
             for key in ("signal_deferral", "deferred_signals"):
                 if key in state:
                     done[key] = state[key]
@@ -1084,7 +1145,8 @@ def _guard_check(config: HarnessConfig, step: Callable[[str, str], dict[str, Any
     """The run record's `settings_guard`, and an exception (cancellation included) deferred from the restore.
 
     `unchanged` when the whole snapshot is equal and no instance of the tool is left. A difference confined to the
-    values of the recent-files subkey is written back only when the configuration enables it and the process
+    values of the recent-files subkey (or, with `restore_scope` `"key"`, any difference strictly inside the
+    configured key) is written back only when the configuration enables it and the process
     checks are clean (no instance of ours or anyone else's running), through `_restore_recent_files`; `state`
     carries its write log, so a caller that is itself interrupted can still report what was written. Any other
     difference is `settings_changed` and nothing is written.
@@ -1115,17 +1177,21 @@ def _guard_check(config: HarnessConfig, step: Callable[[str, str], dict[str, Any
     if not changed:
         result["status"] = "unchanged"
         return result, None
-    recent_id = _registry_key_id(guard.recent_files_key) if guard.recent_files_key else None
-    keys_equal = set(settings_before["keys"]) == set(after["keys"])
-    outside = [item for item in set(settings_before["values"]) | set(after["values"])
-               if item[0] != recent_id
-               and settings_before["values"].get(item, (None,))[1:] != after["values"].get(item, (None,))[1:]]
-    if not (guard.restore_recent_files and recent_id and keys_equal and not outside):
+    if guard.restores_whole_key:
+        scope_id, enabled = _registry_key_id(guard.key), True
+    else:
+        scope_id = _registry_key_id(guard.recent_files_key) if guard.recent_files_key else None
+        keys_equal = set(settings_before["keys"]) == set(after["keys"])
+        outside = [item for item in set(settings_before["values"]) | set(after["values"])
+                   if item[0] != scope_id
+                   and settings_before["values"].get(item, (None,))[1:] != after["values"].get(item, (None,))[1:]]
+        enabled = guard.restore_recent_files and scope_id and keys_equal and not outside
+    if not enabled:
         result.update(status="settings_changed", reason="the saved settings differ after the run"
                       + ("" if guard.restore_recent_files else " (restoring is not enabled)") + "; nothing was written")
         return result, None
     try:
-        plan = _restore_plan(settings_before, after, recent_id)
+        plan = _restore_plan(settings_before, after, scope_id, whole_key=guard.restores_whole_key)
     except ValueError as error:
         result.update(status="settings_restore_failed", reason=f"{error}; nothing was written")
         return result, None
@@ -1133,6 +1199,91 @@ def _guard_check(config: HarnessConfig, step: Callable[[str, str], dict[str, Any
     restored, failure = _restore_recent_files(config, step, write, settings_before, plan, state)
     result.update(restored)
     return result, failure
+
+
+def restore_recorded_settings(config: HarnessConfig, changed_values: list[Mapping[str, Any]], *,
+                              runner: Callable[..., subprocess.CompletedProcess] = subprocess.run) -> dict[str, Any]:
+    """Write back the value differences a round trip recorded (`changed_values` of its guard result) to their
+    `before` values, through the round trip's own restore routine (`_restore_plan`, `_restore_recent_files`).
+
+    Needs `restore_scope` `"key"`. Nothing is written unless: no instance of the tool is running; the key reads
+    whole; every recorded entry is a value (not a subkey) inside the key; and every recorded value still has its
+    recorded `after` type and data (absent where `after` is None). Otherwise the status says why
+    (`changed_since_record` lists the values that differ). The intended reading is the current one with each
+    recorded value at its `before`; the routine checks before each write and after the last, reads a third time
+    and compares exactly. Each recorded value's status is listed in `values`. An exception or cancellation from
+    the routine is raised with the result attached.
+    """
+
+    guard = config.settings_guard
+    if guard is None or not guard.restores_whole_key:
+        return {"status": "not_enabled", "reason": "restoring recorded values needs restore_scope \"key\""}
+    steps: list[dict[str, Any]] = []
+    state: dict[str, Any] = {}
+
+    def step(name: str, command: str, deadline: float | None = None) -> dict[str, Any]:
+        return _guest_step(config, runner, guard.call_timeout_s, steps, name, command, deadline)
+
+    def write(name: str, command: str, deadline: float | None = None) -> dict[str, Any]:
+        return _guest_write(config, runner, guard.call_timeout_s, steps, name, command, state, deadline)
+
+    def finish(result: dict[str, Any]) -> dict[str, Any]:
+        result["steps"] = [{key: value for key, value in item.items() if key not in ("stdout", "stderr")}
+                           for item in steps]
+        return result
+
+    live: dict[str, Any] = {"guard_state": state}
+    with _catchable_termination(True, live):
+        pre = _precondition(config, step, "precondition_process_list")
+        if pre["status"] != "clear":
+            return finish(pre | {"write_log": []})
+        current = _settings_snapshot(config, step, "settings_current")
+        if current is None:
+            return finish({"status": "settings_check_failed", "reason": "the key could not be read; nothing was "
+                                                                        "written", "write_log": []})
+        root = _registry_key_id(guard.key)
+        printed_keys = sorted(current["keys"].values(), key=len, reverse=True)
+        intended = {"keys": dict(current["keys"]), "values": dict(current["values"])}
+        located, differs = [], []
+        for entry in changed_values:
+            value = entry.get("value") if isinstance(entry, Mapping) else None
+            printed = next((key for key in printed_keys if isinstance(value, str) and value.startswith(key + "\\")),
+                           None)
+            if printed is None or not (_registry_key_id(printed) == root
+                                       or _registry_key_id(printed).startswith(root + "\\")):
+                return finish({"status": "not_restorable", "reason": f"a recorded entry is not a value inside the "
+                                                                     f"key: {value or entry}", "write_log": []})
+            item = (_registry_key_id(printed), value[len(printed) + 1:])
+            found = current["values"].get(item)
+            after, before = entry.get("after"), entry.get("before")
+            if (None if found is None else {"type": found[1], "data": found[2]}) != after:
+                differs.append(value)
+            if before is None:
+                intended["values"].pop(item, None)
+            else:
+                intended["values"][item] = (printed, before["type"], before["data"])
+            located.append((value, item))
+        if differs:
+            return finish({"status": "changed_since_record", "reason": "these recorded values no longer have their "
+                                                                       "recorded after-state; nothing was written",
+                           "values": [{"value": value, "status": "changed_since_record"} for value in differs],
+                           "write_log": []})
+        try:
+            plan = _restore_plan(intended, current, root, whole_key=True)
+        except ValueError as error:
+            return finish({"status": "settings_restore_failed", "reason": f"{error}; nothing was written",
+                           "write_log": []})
+        state["restore_entered"] = True
+        result, failure = _restore_recent_files(config, step, write, intended, plan, state)
+        written = {entry["value"]: entry["outcome"] for entry in result.get("write_log", []) if "value" in entry}
+        verified = result["status"] == "settings_restored"
+        result["values"] = [{"value": value, "status": "restored_and_verified" if verified else
+                             written.get(value, "not_written")} for value, _ in located]
+        finish(result)
+        if failure is not None:
+            _attach_guard(failure, result)
+            raise failure
+        return result
 
 
 def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[str, Path], harness_dir: Path,
