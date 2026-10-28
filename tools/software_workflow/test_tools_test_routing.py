@@ -184,7 +184,8 @@ def test_claims_language_step_follows_the_validator_inputs(tmp_path, monkeypatch
     spec.loader.exec_module(validator)
     project = 'projects/chirality-piping'
     anchors = [f'{project}/{rel}' for _code, rel, _fragment in validator.ANCHORS]
-    assert anchors == [f'{project}/docs/PRD.md', f'{project}/core/reporting/report_renderer/src/lib.rs']
+    assert anchors == [f'{project}/docs/PRD.md', f'{project}/core/reporting/report_renderer/src/lib.rs',
+                       f'{project}/apps/desktop/src/features/result-export/csvTable.ts']
     output = tmp_path / 'outputs'
     monkeypatch.setenv('GITHUB_OUTPUT', str(output))
     for args, expected in [
