@@ -708,16 +708,49 @@ def _transport_failure(error: BaseException) -> bool:
         or isinstance(error, subprocess.TimeoutExpired)
 
 
-def _read_value(step: Callable[..., dict[str, Any]], name: str, key: str, value_name: str) -> tuple[str, str] | None:
-    """One value's (type, data), read back alone (`reg query <key> /v <name>`); None when the read fails, does not
-    parse whole, or does not show exactly that one value."""
+# What `reg query` reports, exit 1, for a key or value that does not exist; any other failure is unreadable.
+REG_NOT_FOUND = "unable to find the specified registry key or value"
+
+
+def _not_found(record: Mapping[str, Any]) -> bool:
+    return record["exit_status"] == 1 and REG_NOT_FOUND in (record["stdout"] + record["stderr"]).lower()
+
+
+def _read_value(step: Callable[..., dict[str, Any]], name: str, key: str,
+                value_name: str) -> tuple[str, tuple[str, str] | None]:
+    """One value read back alone (`reg query <key> /v <name>`): ("present", (type, data)), ("absent", None) when
+    reg reports that it does not exist, or ("unreadable", None) when the read fails otherwise, does not parse
+    whole, or does not show exactly that one value."""
 
     record = step(name, f"reg query {_quote(key)} /v {_quote(value_name)}")
+    if _not_found(record):
+        return "absent", None
     parsed = parse_reg_query(record["stdout"]) if record["exit_status"] == 0 else None
     if parsed is None or list(parsed["values"]) != [(_registry_key_id(key), value_name)]:
-        return None
+        return "unreadable", None
     found = parsed["values"][(_registry_key_id(key), value_name)]
-    return found[1], found[2]
+    return "present", (found[1], found[2])
+
+
+def _read_subtree(step: Callable[..., dict[str, Any]], name: str,
+                  key: str) -> tuple[str, dict[tuple[str, str], tuple[str, str]] | None]:
+    """A subkey read back whole (`reg query <key> /s`): ("present", {(key id, value name): (type, data)}) for
+    every value in it and below, ("absent", None) when reg reports that it does not exist, or ("unreadable",
+    None) otherwise (a failed read, output that does not parse whole, or a key printed outside it). A present
+    subkey without values prints nothing."""
+
+    record = step(name, f"reg query {_quote(key)} /s")
+    if _not_found(record):
+        return "absent", None
+    if record["exit_status"] != 0:
+        return "unreadable", None
+    if not record["stdout"].strip():
+        return "present", {}
+    parsed = parse_reg_query(record["stdout"])
+    key_id = _registry_key_id(key)
+    if parsed is None or not all(found == key_id or found.startswith(key_id + "\\") for found in parsed["keys"]):
+        return "unreadable", None
+    return "present", {item: value[1:] for item, value in parsed["values"].items()}
 
 
 def _write_outcome(error: BaseException) -> str:
@@ -945,12 +978,16 @@ def _restore_plan(before: Mapping[str, Mapping], after: Mapping[str, Mapping], s
             if item[1] == "(Default)" or not REG_VALUE_NAME_PATTERN.match(item[1]):
                 raise ValueError(f"{printed}\\{item[1]} cannot be deleted exactly")
             printed = printed_key(printed, item[0])
-            plan.append({"value": f"{printed}\\{item[1]}", "action": "delete", "restores": None,
+            plan.append({"value": f"{printed}\\{item[1]}", "action": "delete", "target": (printed, item[1]),
+                         "restores": None,
                          "replaces": {"type": kind, "data": data},
                          "command": f"reg delete {_quote(printed)} /v {_quote(item[1])} /f"})
     for key_id in added:
         printed = printed_key(after["keys"][key_id], key_id)
-        plan.append({"key": printed, "action": "delete_key", "restores": None, "replaces": "present",
+        subtree = {item: value[1:] for item, value in after["values"].items()
+                   if item[0] == key_id or item[0].startswith(key_id + "\\")}
+        plan.append({"key": printed, "action": "delete_key", "subtree": subtree, "restores": None,
+                     "replaces": "present",
                      "command": f"reg delete {_quote(printed)} /f"})
     return plan
 
@@ -1007,18 +1044,20 @@ def _restore_recent_files(config: HarnessConfig, step: Callable[[str, str], dict
                                    "reason": "an instance of the tool this run did not start is running"})
 
     def settled_write(number: int, entry: dict[str, Any], logged: dict[str, Any]) -> None:
-        """Issue one write. A value set whose outcome the transport left unknown (exit 255, timeout) is settled
-        before anything is issued again: the foreign-instance check, then that one value read back. Equal to the
-        target: completed. Still equal to the value it replaces: issued once more (attempt 2). Anything else (a
-        third value, an unreadable value, another instance): the first error stops the restore. At most two
-        attempts; every attempt and the read-back are logged."""
+        """Issue one write. A value set, value delete or subkey delete whose outcome the transport left unknown
+        (exit 255, timeout) is settled before anything is issued again: the foreign-instance check, then the value
+        or subkey read back. Already as intended (the value set to its target; the value or subkey absent):
+        completed. Still as the run left it (the value it replaces; for a subkey, every value in it as read after
+        the run): issued once more (attempt 2). Anything else (another value or content, an unreadable read-back,
+        another instance): the first error stops the restore. At most two attempts; every attempt and the
+        read-back are logged. Creating a subkey is not retried."""
 
         name = f"settings_restore_{number}"
         try:
             budgeted_write(name, entry["command"])
             return
         except BaseException as error:
-            if entry["action"] != "set" or not _transport_failure(error):
+            if entry["action"] not in ("set", "delete", "delete_key") or not _transport_failure(error):
                 raise
             first = error
         if state.get("primary_error") is first:  # a timeout the write recorded: not yet the restore's error
@@ -1026,15 +1065,22 @@ def _restore_recent_files(config: HarnessConfig, step: Callable[[str, str], dict
         logged["attempt_log"] = [{"attempt": 1, "outcome": "unknown", "error": f"{type(first).__name__}: {first}"}]
         check(f"restore_check_before_retry_{number}", budgeted_step)
         within(f"settings_readback_{number}")
-        found = _read_value(budgeted_step, f"settings_readback_{number}", *entry["target"])
-        restores = (entry["restores"]["type"], entry["restores"]["data"])
-        replaces = (entry["replaces"]["type"], entry["replaces"]["data"]) if entry["replaces"] else None
-        if found is not None and found == restores:
+        if entry["action"] == "delete_key":
+            state_found, found = _read_subtree(budgeted_step, f"settings_readback_{number}", entry["key"])
+            intended = state_found == "absent"
+            as_left = state_found == "present" and found == entry["subtree"]
+        else:
+            state_found, found = _read_value(budgeted_step, f"settings_readback_{number}", *entry["target"])
+            target = (entry["restores"]["type"], entry["restores"]["data"]) if entry["restores"] else None
+            left = (entry["replaces"]["type"], entry["replaces"]["data"]) if entry["replaces"] else None
+            intended = (state_found == "present" and found == target) or (state_found == "absent" and target is None)
+            as_left = (state_found == "present" and found == left) or (state_found == "absent" and left is None)
+        if intended:
             logged["readback"] = "target"
             logged["attempt_log"][0]["outcome"] = "completed (read back)"
             return
-        if found is None or found != replaces:
-            logged["readback"] = "unreadable" if found is None else "third_value"
+        if not as_left:
+            logged["readback"] = "unreadable" if state_found == "unreadable" else "third_value"
             raise first
         logged["readback"] = "unchanged"
         logged["attempts"] = 2

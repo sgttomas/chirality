@@ -203,13 +203,14 @@ described under **Restore**.
   its attempts and its outcome. Each write counts as completed only on exit 0 with the command's success
   message, and is never repeated blindly (the retry the harness applies to reads does not apply to
   writes). A reported failure is logged `failed` and other output `unknown`; either stops the restore
-  at that write. A value set whose outcome a transport failure (the client's exit 255, or a timeout)
-  left unknown is settled first: the process list is checked, and that one value is read back. If it
-  already has the value being restored, the write is completed; if it still has the value it replaces,
-  the write is issued once more (attempt 2), at most once; any other read-back (a third value, an
-  unreadable value) or another instance stops the restore with the write `unknown`. Every attempt and
-  the read-back are logged. Other writes (deleting a value, creating or deleting a subkey) are not
-  retried. It checks
+  at that write. A value set, value delete or subkey delete whose outcome a transport failure (the
+  client's exit 255, or a timeout) left unknown is settled first: the process list is checked, and the
+  value or subkey is read back (a subkey with every value in it). If it is already as intended (the
+  value at its restored data; the value or subkey absent, as reg reports a missing key or value), the
+  write is completed; if it is still as the run left it, the write is issued once more (attempt 2), at
+  most once; any other read-back (other data or content, an unreadable read-back) or another instance
+  stops the restore with the write `unknown`. Every attempt and the read-back are logged. Creating a
+  subkey is not retried. It checks
   the process list before each write, after the last write,
   and once more before declaring success, reads the key a third time and compares it exactly with the
   first reading. The result is `recent_files_restored` (`settings_restored` with `"key"`) only when every

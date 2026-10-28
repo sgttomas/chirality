@@ -1227,7 +1227,9 @@ class FakeGuest:
         self.faults: dict[tuple[str, int], BaseException] = {}  # (kind, number) -> raised by that command
         self.write_results: dict[int, tuple[int, str, str]] = {}  # write number -> (exit, stdout, stderr), not applied
         self.applied_anyway: set[int] = set()  # write numbers in write_results that take effect all the same
-        self.readback: dict[int, tuple[str, str] | None] = {}  # read-back number -> what it shows (None: unreadable)
+        # read-back number -> what it shows: a (type, data) value, None (absent), "unreadable", or for a subkey a
+        # dict of its values {(key, name): (type, data)}
+        self.readback: dict[int, object] = {}
         self.flaky: dict[str, int] = {}  # kind -> how many of its next calls fail in the prlctl transport (exit 255)
         self.signal_on_write: dict[int, int] = {}  # write number -> a real signal raised from inside that command
         self.signal_on: dict[tuple[str, int], int] = {}  # (kind, number) -> a real signal raised from that command
@@ -1257,7 +1259,8 @@ class FakeGuest:
         def run(argv, **kwargs):
             command = argv[6]
             self.commands.append(command)
-            kind = ("readback" if command.startswith("reg query ") and " /v " in command
+            kind = ("readback" if command.startswith("reg query ") and (" /v " in command
+                                                                       or command.startswith('reg query "HKEY_'))
                     else "query" if command.startswith("reg query ") else "write" if command.startswith(("reg add", "reg delete"))
                     else "tasklist" if command == "tasklist /FO CSV /NH" else None)
             self.timeouts.append((command, kwargs.get("timeout")))
@@ -1279,16 +1282,30 @@ class FakeGuest:
                     raise self.faults[(kind, self.counts[kind])]
             if kind == "tasklist":
                 self.foreign += self.foreign_on_tasklist.get(self.counts[kind], [])
-            if kind == "readback":  # one value: `reg query "<key>" /v "<name>"`
-                key, name = re.fullmatch(r'reg query "([^"]+)" /v "([^"]+)"', command).groups()
-                found = self.values.get((key, name))
-                if self.counts["readback"] in self.readback:
-                    found = self.readback[self.counts["readback"]]
-                if found is None:
-                    return subprocess.CompletedProcess(argv, 1, "", "ERROR: The system was unable to find the "
-                                                                    "specified registry key or value.")
-                return subprocess.CompletedProcess(argv, 0, f"\r\n{key}\r\n    {name}    {found[0]}    {found[1]}"
-                                                            "\r\n\r\n", "")
+            if kind == "readback":  # one value (`reg query "<key>" /v "<name>"`) or one subkey (`... /s`)
+                not_found = subprocess.CompletedProcess(argv, 1, "", "ERROR: The system was unable to find the "
+                                                                     "specified registry key or value.")
+                one = re.fullmatch(r'reg query "([^"]+)" /v "([^"]+)"', command)
+                override = self.readback.get(self.counts["readback"], "none")
+                if override == "unreadable":
+                    return subprocess.CompletedProcess(argv, 2, "garbled", "")
+                if one:
+                    key, name = one.groups()
+                    found = self.values.get((key, name)) if override == "none" else override
+                    if found is None:
+                        return not_found
+                    return subprocess.CompletedProcess(argv, 0, f"\r\n{key}\r\n    {name}    {found[0]}    "
+                                                                f"{found[1]}\r\n\r\n", "")
+                key = re.fullmatch(r'reg query "([^"]+)" /s', command)[1]
+                inside = lambda k: k == key or k.startswith(key + "\\")  # noqa: E731
+                values = ({item: value for item, value in self.values.items() if inside(item[0])}
+                          if override == "none" else override)
+                if values is None or (not values and not any(inside(k) for k in self.empty_keys)):
+                    return not_found
+                lines = [""]
+                for k in sorted({k for k, _ in values}):
+                    lines += [k] + [f"    {n}    {t}    {d}" for (kk, n), (t, d) in sorted(values.items()) if kk == k] + [""]
+                return subprocess.CompletedProcess(argv, 0, "\r\n".join(lines), "")
             if command.startswith("reg query "):
                 self.foreign += self.foreign_on_query.get(self.counts["query"], [])
                 return subprocess.CompletedProcess(argv, 0, self.query(), "")
@@ -1715,11 +1732,11 @@ WRITE_FAILURES = {  # kind -> (how the write ends, the outcome logged, the error
 }
 
 
-SETTLED = ("transport failure", "host timeout")  # on a value set (writes 1-3 here) these are settled, not final
+SETTLED = ("transport failure", "host timeout")  # on a set or a delete these are settled, not final
 
 
 @pytest.mark.parametrize(("kind", "number"), [(kind, number) for kind in WRITE_FAILURES for number in (1, 2, 3, 4)
-                                              if kind not in SETTLED or number == 4])
+                                              if kind not in SETTLED])
 def test_settings_restore_write_runs_once_and_its_failure_stops_the_restore(tmp_path, number, kind):
     how, outcome, injected = WRITE_FAILURES[kind]
     guest = FakeGuest()
@@ -1792,7 +1809,7 @@ def test_settings_restore_completes_a_write_the_read_back_shows_already_applied(
 def test_settings_restore_stops_when_the_read_back_shows_neither_value(tmp_path, found):
     guest = FakeGuest()
     guest.write_results[2] = TRANSPORT
-    guest.readback[1] = ("REG_BINARY", "DEAD") if found == "third value" else None
+    guest.readback[1] = ("REG_BINARY", "DEAD") if found == "third value" else "unreadable"
     with pytest.raises(harness.RestoreWriteFailed) as raised:
         guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
     guard = raised.value.settings_guard
@@ -1800,6 +1817,95 @@ def test_settings_restore_stops_when_the_read_back_shows_neither_value(tmp_path,
     entry = guard["write_log"][1]
     assert entry["readback"] == found.replace(" ", "_") and entry["outcome"] == "unknown" and not entry["completed"]
     assert entry["attempts"] == 1
+
+
+def _delete_entry(guard_result: dict, action: str = "delete") -> dict:
+    return next(entry for entry in guard_result["write_log"] if entry["action"] == action)
+
+
+def test_settings_restore_retries_a_value_delete_once_when_the_value_is_still_there(tmp_path):
+    guest = FakeGuest()
+    before = dict(guest.values)
+    guest.write_results[4] = TRANSPORT  # write 4 deletes the value the run added
+    record_ = guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    guard = record_["settings_guard"]
+    assert guard["status"] == "recent_files_restored" and guest.values == before
+    entry = _delete_entry(guard)
+    assert entry["attempts"] == 2 and entry["readback"] == "unchanged" and entry["completed"]
+    assert [item["outcome"] for item in entry["attempt_log"]] == ["unknown", "completed"]
+    assert _write_steps(tmp_path)[-3:] == ["restore_check_before_retry_4", "settings_readback_4",
+                                           "settings_restore_4_attempt_2"]
+
+
+def test_settings_restore_completes_a_delete_the_read_back_shows_already_absent(tmp_path):
+    guest = FakeGuest()
+    before = dict(guest.values)
+    guest.write_results[4], guest.applied_anyway = TRANSPORT, {4}
+    record_ = guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    guard = record_["settings_guard"]
+    entry = _delete_entry(guard)
+    assert guard["status"] == "recent_files_restored" and guest.values == before
+    assert entry["attempts"] == 1 and entry["readback"] == "target" and len(guest.writes) == 4
+
+
+def test_settings_restore_stops_when_a_deleted_value_reads_back_different(tmp_path):
+    guest = FakeGuest()
+    guest.write_results[4] = TRANSPORT
+    guest.readback[1] = ("REG_BINARY", "BEEF")  # neither absent nor the value the run left
+    with pytest.raises(harness.RestoreWriteFailed):
+        guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    guard = _guard_file(tmp_path)
+    entry = _delete_entry(guard)
+    assert guard["status"] == "settings_restore_failed" and entry["readback"] == "third_value"
+    assert entry["attempts"] == 1 and not entry["completed"] and len(guest.writes) == 4
+
+
+def test_settings_restore_stops_when_the_second_delete_fails_too(tmp_path):
+    guest = FakeGuest()
+    guest.write_results[4] = TRANSPORT
+    guest.write_results[5] = TRANSPORT  # attempt 2 of the same delete
+    with pytest.raises(harness.RestoreWriteFailed):
+        guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    guard = _guard_file(tmp_path)
+    entry = _delete_entry(guard)
+    assert guard["status"] == "settings_restore_failed" and entry["attempts"] == 2 and not entry["completed"]
+    assert [item["outcome"] for item in entry["attempt_log"]] == ["unknown", "unknown"] and len(guest.writes) == 5
+
+
+@pytest.mark.parametrize("found", ["still there", "already absent", "different content", "second failure"])
+def test_settings_restore_settles_a_subkey_delete(tmp_path, found):
+    guest = FakeGuest()
+    before = (dict(guest.values), set(guest.empty_keys))
+    # The whole-key restore of `_wide_change` ends by deleting the subkey that appeared; make that write fail.
+    probe, probe_dir = FakeGuest(), tmp_path / "probe"
+    probe_dir.mkdir()
+    guarded(probe_dir, probe, _wide_change, guard=KEY_GUARD)
+    number = len(probe.writes)
+    guest.write_results[number] = TRANSPORT
+    if found == "already absent":
+        guest.applied_anyway = {number}
+    if found == "different content":
+        guest.readback[1] = {(INVENTED_KEY + "\\Window\\Placement", "Last"): ("REG_BINARY", "FF")}
+    if found == "second failure":
+        guest.write_results[number + 1] = TRANSPORT
+    run = tmp_path / "run"
+    run.mkdir()
+    if found in ("still there", "already absent"):
+        guard = guarded(run, guest, _wide_change, guard=KEY_GUARD)["settings_guard"]
+        entry = _delete_entry(guard, "delete_key")
+        assert guard["status"] == "settings_restored" and (guest.values, guest.empty_keys) == before
+        assert entry["completed"] and entry["attempts"] == (2 if found == "still there" else 1)
+        assert entry["readback"] == ("unchanged" if found == "still there" else "target")
+        return
+    with pytest.raises(harness.RestoreWriteFailed):
+        guarded(run, guest, _wide_change, guard=KEY_GUARD)
+    guard = _guard_file(run)
+    entry = _delete_entry(guard, "delete_key")
+    assert guard["status"] == "settings_restore_failed" and not entry["completed"]
+    if found == "different content":
+        assert entry["readback"] == "third_value" and entry["attempts"] == 1
+    else:
+        assert entry["attempts"] == 2 and [item["outcome"] for item in entry["attempt_log"]] == ["unknown", "unknown"]
 
 
 def test_settings_restore_stops_when_another_instance_appears_before_the_retry(tmp_path):
