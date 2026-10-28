@@ -4807,6 +4807,8 @@
               "fixtures/redaction_export_controls/cases.json",
               "fixtures/redaction_export_controls/input_contract_sweep.json",
               "fixtures/redaction_export_controls/input_contract_sweep_decisions.json",
+              "fixtures/redaction_export_controls/value_record_sweep.json",
+              "fixtures/redaction_export_controls/value_record_sweep_decisions.json",
               "fixtures/report_lint/invented/lint_run_fixture.json",
               "fixtures/reports/exact_report_statements.json",
               "fixtures/reports/exact_route_limitations.json",
