@@ -46,10 +46,11 @@ with no symbolic link on the way, so private authored files stay private, and it
 case ids must not name a tracked writer or authored case, whose case folders the
 run would otherwise replace. --no-export leaves out the export step; --authored-dir
 runs never export (only the solve and its printed results are wanted there), and
-need the configuration's settings_guard: each round trip then reads the tool's saved
-settings before and after, writes back the recent-files list alone when only it
-changed (Design §5), and the run stops at the first case whose check reports
-anything else.
+need the configuration's settings_guard: each round trip then reads the tool's whole
+saved-settings key before and after and confirms that the processes it started have
+ended; the guard never writes the settings, and the run stops at the first case
+whose check shows any difference or an uncertain state, whose round trip raised,
+or whose batch run left no CSV (these runs never fall back to the GUI; Design §5).
 
 Standard output carries operational status only: per case its id, route and
 either the comparison record's path relative to the exchange folder or the
@@ -518,36 +519,59 @@ def export_case(case: Mapping[str, Any], config: HarnessConfig, *, emit: Callabl
     return False
 
 
-class SettingsChanged(RuntimeError):
-    """A round trip's saved-settings check reported a change it did not write back; the run stops."""
+class RunStopped(RuntimeError):
+    """A guarded round trip ended in a state the run must not continue from; no further case runs."""
+
+
+def _guard_stop(config: HarnessConfig, case_id: str, settings: Mapping[str, Any] | None,
+                emit: Callable[[str], None]) -> None:
+    """Raise RunStopped unless the round trip's saved-settings check (configuration `settings_guard`) is clean."""
+    if config.settings_guard is None:
+        return
+    status = (settings or {}).get("status")
+    if status not in SETTINGS_KEEP_GOING:
+        emit(f"{case_id}: settings check {status or 'missing'}; "
+             f"{(settings or {}).get('reason', 'no settings check recorded')}; stopped")
+        raise RunStopped(case_id)
 
 
 def run_authored_case(case: Mapping[str, Any], config: HarnessConfig, *, export_only: bool = False,
                       emit: Callable[[str], None] = print,
                       round_trip: Callable[..., dict[str, Any]] = run_caepipe_round_trip,
                       export: Callable[..., dict[str, Any]] = run_caepipe_mbf_export,
-                      directory: Path = AUTHORED_DIR, no_export: bool = False) -> bool:
+                      directory: Path = AUTHORED_DIR, no_export: bool = False, gui_fallback: bool = True) -> bool:
     """Import (and solve) one authored MBF as written, then export the model back to caepipe_out/exported.mbf.
 
-    With `no_export` the round trip alone runs. A round trip whose saved-settings check (configuration
-    `settings_guard`) reports anything other than unchanged or the recent-files list written back raises
-    SettingsChanged, so no further case runs.
+    With `no_export` the round trip alone runs. With `settings_guard` configured, the saved-settings check is
+    enforced before anything else is looked at: any status but `unchanged`, an exception during the round trip,
+    or (with `gui_fallback=False`) a batch run that left no CSV raises RunStopped, so no further case runs.
     """
     case_id = case["case_id"]
     data = authored_mbf_bytes(case, directory)
     mbf_sha256 = hashlib.sha256(data).hexdigest()
+    guarded = config.settings_guard is not None
     try:
         if not export_only:
-            record = round_trip(config, case_id, data.decode("ascii"))
+            try:
+                record = (round_trip(config, case_id, data.decode("ascii")) if gui_fallback else
+                          round_trip(config, case_id, data.decode("ascii"), gui_fallback=False))
+            except Exception as error:
+                if not guarded:
+                    raise
+                emit(f"{case_id}: round trip raised {type(error).__name__}: {error}")
+                _guard_stop(config, case_id, getattr(error, "settings_guard", None), emit)
+                emit(f"{case_id}: the round trip did not end cleanly; stopped")
+                raise RunStopped(case_id) from error
+            # The guard comes first: a rejected hash or any other early return still stops the run on it.
+            _guard_stop(config, case_id, record.get("settings_guard"), emit)
+            if not gui_fallback and record.get("route") == "batch_no_csv":
+                emit(f"{case_id}: route=batch_no_csv; the GUI fallback is refused for this run; stopped")
+                raise RunStopped(case_id)
             if record.get("mbf", {}).get("sha256") != mbf_sha256 or record.get("guest_mbf_sha256") != mbf_sha256:
                 emit(f"{case_id}: route={record.get('route')}; the guest did not report importing this MBF; "
                      "no exported MBF")
                 return False
             settings = record.get("settings_guard")
-            if config.settings_guard is not None and (settings or {}).get("status") not in SETTINGS_KEEP_GOING:
-                emit(f"{case_id}: settings check {(settings or {}).get('status', 'missing')}; "
-                     f"{(settings or {}).get('reason', 'no settings check recorded')}; stopped")
-                raise SettingsChanged(case_id)
             emit(f"{case_id}: route={record.get('route')}; round trip recorded: "
                  f"cases/{case_id}/caepipe_out/run_record.json"
                  + (f"; settings {settings['status']}" if settings else ""))
@@ -639,9 +663,10 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] = os.environ)
         try:
             for case in cases:
                 results.append(run_authored_case(case, config, export_only=args.export_only, directory=directory,
-                                                 no_export=args.no_export or bool(args.authored_dir)))
-        except SettingsChanged as stopped:
-            print(f"stopped after {stopped}: the saved-settings check reported a change; no further case ran")
+                                                 no_export=args.no_export or bool(args.authored_dir),
+                                                 gui_fallback=not args.authored_dir))
+        except RunStopped as stopped:
+            print(f"stopped after {stopped}: the guarded round trip did not end cleanly; no further case ran")
             return 1
         return 0 if all(results) else 1
     if args.export_only:

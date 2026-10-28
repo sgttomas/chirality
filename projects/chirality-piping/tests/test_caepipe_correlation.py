@@ -1112,7 +1112,7 @@ def test_pilot_authored_option_needs_no_runner_and_refuses_comparison_modes(tmp_
     monkeypatch.setattr(run_pilot, "run_cases", lambda *a, **k: pytest.fail("comparison run"))
     calls = []
     monkeypatch.setattr(run_pilot, "run_authored_case",
-                        lambda case, config_, export_only, directory, no_export: calls.append(
+                        lambda case, config_, export_only, directory, no_export, gui_fallback: calls.append(
                             (case["case_id"], export_only)) or True)
     assert run_pilot.main(["--authored", "--case", "cpa-12-guide-gap"], environ={}) == 0
     assert run_pilot.main(["--authored", "--export-only", "--case", "cpa-12-guide-gap"], environ={}) == 0
@@ -1133,8 +1133,11 @@ def _hex(text: str) -> str:
     return (text.encode("latin-1") + b"\x00").hex().upper()
 
 
-class FakeRegistry:
-    """An invented guest registry answering `reg query /s`, `reg add` and `reg delete` as the harness issues them."""
+class FakeGuest:
+    """An invented guest: a registry answering `reg query /s`, the owned-process id file and `tasklist`.
+
+    Any `reg add`/`reg delete` is recorded as a write; the guard must never issue one.
+    """
 
     def __init__(self):
         self.values = {
@@ -1143,6 +1146,10 @@ class FakeRegistry:
             (INVENTED_KEY + "\\Recent list", "1"): ("REG_BINARY", _hex("C:\\invented-work\\old-a\\model.mod")),
             (INVENTED_KEY + "\\Recent list", "2"): ("REG_BINARY", _hex("D:\\user files\\plant.mod")),
         }
+        self.owned: list[int] = []      # ids the guest script recorded
+        self.running: list[int] = []    # ids of the tool's image still listed
+        self.writes: list[str] = []
+        self.commands: list[str] = []
 
     def query(self) -> str:
         lines = ["", INVENTED_KEY, ""]
@@ -1150,19 +1157,6 @@ class FakeRegistry:
             lines += [key] + [f"    {name}    {kind}    {data}" if data else f"    {name}    {kind}"
                               for (k, name), (kind, data) in sorted(self.values.items()) if k == key] + [""]
         return "\r\n".join(lines)
-
-    def handle(self, command: str) -> str | None:
-        if command.startswith("reg query "):
-            return self.query()
-        match = re.fullmatch(r'reg add "([^"]+)" /v "([^"]+)" /t (REG_\w+) /d (\S*) /f', command)
-        if match:
-            self.values[(match[1], match[2])] = (match[3], match[4])
-            return ""
-        match = re.fullmatch(r'reg delete "([^"]+)" /v "([^"]+)" /f', command)
-        if match:
-            del self.values[(match[1], match[2])]
-            return ""
-        return None
 
     def open_model(self, path: str) -> None:
         """What a tool that keeps a recent-files list does when it opens `path`: shift the list, put it first."""
@@ -1173,69 +1167,130 @@ class FakeRegistry:
         self.values[(recent, "3")] = old[1]
         self.values[(recent, "N")] = ("REG_BINARY", "03000000")
 
+    def runner(self, on_solve, config: HarnessConfig):
+        def run(argv, **kwargs):
+            command = argv[6]
+            self.commands.append(command)
+            if command.startswith("reg query "):
+                return subprocess.CompletedProcess(argv, 0, self.query(), "")
+            if command.startswith(("reg add", "reg delete")):
+                self.writes.append(command)
+                return subprocess.CompletedProcess(argv, 0, "", "")
+            if command.startswith("type ") and "owned_pids.txt" in command:
+                if not self.owned:
+                    return subprocess.CompletedProcess(argv, 1, "", "The system cannot find the file specified.")
+                return subprocess.CompletedProcess(argv, 0, "".join(f"{pid}\r\n" for pid in self.owned), "")
+            if command == "tasklist /FO CSV /NH":
+                rows = ['"tool.exe","9999","Console","2","61,744 K"',  # another instance, not ours: ignored
+                        '"other.exe","4243","Console","2","1,000 K"']
+                rows += [f'"tool.exe","{pid}","Console","2","12,000 K"' for pid in self.running]
+                return subprocess.CompletedProcess(argv, 0, "\r\n".join(rows) + "\r\n", "")
+            if command.startswith("powershell"):
+                self.owned.append(4242)
+                return on_solve(self, argv, config)
+            return subprocess.CompletedProcess(argv, 0, "", "")
+        return run
 
-def guarded_round_trip(tmp_path, registry: FakeRegistry, on_solve) -> tuple[dict, list[str]]:
+
+def solved(guest, argv, config):
+    """A solve step that ends normally, its own process exited, with a batch CSV."""
+    return subprocess.CompletedProcess(argv, 0, json.dumps({"status": "csv_from_batch", "mbf_sha256": MBF_SHA,
+                                                            "csv_path": "C:\\invented-work\\cx-g\\model.csv"}), "")
+
+
+def guarded(tmp_path, guest: FakeGuest, on_solve, **kwargs) -> dict:
     config = dataclasses.replace(fake_config(tmp_path), settings_guard=INVENTED_GUARD)
-    commands: list[str] = []
-
-    def runner(argv, **kwargs):
-        command = argv[6]
-        commands.append(command)
-        answer = registry.handle(command)
-        if answer is not None:
-            return subprocess.CompletedProcess(argv, 0, answer, "")
-        stdout = ""
-        if command.startswith("powershell"):
-            on_solve(registry)
-            stdout = json.dumps({"status": "csv_from_batch", "mbf_sha256": MBF_SHA,
-                                 "csv_path": "C:\\invented-work\\cx-g\\model.csv"})
-        return subprocess.CompletedProcess(argv, 0, stdout, "")
-
-    return run_caepipe_round_trip(config, "cx-g", MBF_TEXT, runner=runner), commands
+    return run_caepipe_round_trip(config, "cx-g", MBF_TEXT, runner=guest.runner(on_solve, config), **kwargs)
 
 
-def test_settings_guard_writes_back_only_the_recent_list_it_changed(tmp_path):
-    registry = FakeRegistry()
-    before = dict(registry.values)
-    record_, commands = guarded_round_trip(tmp_path, registry,
-                                           lambda reg: reg.open_model("C:\\invented-work\\cx-g\\model.mod"))
-    assert record_["settings_guard"]["status"] == "recent_files_restored"
-    assert registry.values == before
-    names = [step["name"] for step in record_["steps"]]
-    assert names[0] == "settings_before" and names[1] == "prepare"
-    assert names[-1] == "settings_verify" and "settings_after" in names
-    restores = [command for command in commands if command.startswith(("reg add", "reg delete"))]
-    assert restores and all("\\Recent list" in command for command in restores)
-    assert any(command.startswith("reg delete") and '/v "3"' in command for command in restores)
+def test_settings_guard_reads_the_whole_key_confirms_exit_and_never_writes(tmp_path):
+    guest = FakeGuest()
+    record_ = guarded(tmp_path, guest, solved, gui_fallback=False)
+    assert record_["settings_guard"]["status"] == "unchanged"
+    assert record_["settings_guard"]["owned_processes"] == {"status": "exited", "owned_pids": [4242]}
+    assert [step["name"] for step in record_["steps"]] == ["settings_before", "prepare", "solve", "collect",
+                                                           "owned_pids", "process_list", "settings_after"]
+    # The whole version key with every subkey, not the recent-files subkey alone.
+    assert guest.commands[0] == 'reg query "HKCU\\Software\\Invented Vendor\\Tool\\1.0" /s'
+    solve = next(command for command in guest.commands if command.startswith("powershell"))
+    assert '-PidFile "C:\\invented-work\\cx-g\\owned_pids.txt"' in solve and solve.endswith(" -NoGuiFallback")
+    assert record_["command_shape"]["gui_print_fallback"]["allowed"] is False
+    assert guest.writes == []
 
 
-def test_settings_guard_writes_nothing_when_unchanged(tmp_path):
-    registry = FakeRegistry()
-    record_, commands = guarded_round_trip(tmp_path, registry, lambda reg: None)
-    assert record_["settings_guard"] == {"status": "unchanged"}
-    assert not [command for command in commands if command.startswith(("reg add", "reg delete"))]
+def test_settings_guard_reports_a_recent_list_change_and_writes_nothing(tmp_path):
+    guest = FakeGuest()
+
+    def solve(guest_, argv, config):
+        guest_.open_model("C:\\invented-work\\cx-g\\model.mod")  # the solve route itself updates the list
+        return solved(guest_, argv, config)
+
+    record_ = guarded(tmp_path, guest, solve)
+    guard = record_["settings_guard"]
+    assert guard["status"] == "settings_changed" and "nothing was written back" in guard["reason"]
+    changed = {item["value"]: item for item in guard["changed_values"]}
+    assert set(changed) == {INVENTED_KEY + "\\Recent list\\" + name for name in ("1", "2", "3", "N")}
+    assert changed[INVENTED_KEY + "\\Recent list\\3"]["before"] is None
+    assert guest.writes == []
 
 
-def test_settings_guard_reports_other_changes_and_writes_nothing(tmp_path):
-    def solve(reg):
-        reg.open_model("C:\\invented-work\\cx-g\\model.mod")
-        # Another program (or the user's own instance) changes a setting during the run.
-        reg.values[(INVENTED_KEY + "\\Options", "Use something")] = ("REG_BINARY", "00")
+def test_settings_guard_stops_on_a_concurrent_change_with_no_write(tmp_path):
+    guest = FakeGuest()
 
-    registry = FakeRegistry()
-    record_, commands = guarded_round_trip(tmp_path, registry, solve)
-    assert record_["settings_guard"]["status"] == "changed_reported"
-    assert INVENTED_KEY + "\\Options\\Use something" in record_["settings_guard"]["changed_values"]
-    assert not [command for command in commands if command.startswith(("reg add", "reg delete"))]
-    assert registry.values[(INVENTED_KEY + "\\Options", "Use something")] == ("REG_BINARY", "00")
+    def solve(guest_, argv, config):
+        # The user's own instance changes a setting while the run is under way.
+        guest_.values[(INVENTED_KEY + "\\Options", "Use something")] = ("REG_BINARY", "00")
+        return solved(guest_, argv, config)
+
+    record_ = guarded(tmp_path, guest, solve)
+    assert record_["settings_guard"]["status"] == "settings_changed"
+    assert record_["settings_guard"]["changed_values"] == [{
+        "value": INVENTED_KEY + "\\Options\\Use something", "before": {"type": "REG_BINARY", "data": "01"},
+        "after": {"type": "REG_BINARY", "data": "00"}}]
+    assert guest.writes == []
+    assert guest.values[(INVENTED_KEY + "\\Options", "Use something")] == ("REG_BINARY", "00")
 
 
-def test_settings_guard_reports_a_recent_entry_it_did_not_cause(tmp_path):
-    registry = FakeRegistry()
-    record_, commands = guarded_round_trip(tmp_path, registry, lambda reg: reg.open_model("E:\\elsewhere\\x.mod"))
-    assert record_["settings_guard"]["status"] == "changed_reported"
-    assert "outside the guest work folder" in record_["settings_guard"]["reason"]
-    assert not [command for command in commands if command.startswith(("reg add", "reg delete"))]
+def test_settings_guard_still_checks_after_a_collection_exception(tmp_path):
+    guest = FakeGuest()
+
+    def solve(guest_, argv, config):
+        # A link appears in the output layer, so the harness refuses to collect into it and raises.
+        out = config.exchange_root / "cases" / "cx-g" / "caepipe_out"
+        (out / "model.csv").symlink_to(tmp_path / "elsewhere.csv")
+        return solved(guest_, argv, config)
+
+    with pytest.raises(ContainmentError) as raised:
+        guarded(tmp_path, guest, solve)
+    after_solve = guest.commands[guest.commands.index(next(c for c in guest.commands if c.startswith("powershell"))):]
+    assert [c.split(" ")[0] for c in after_solve] == ["powershell", "type", "tasklist", "reg"]
+    assert raised.value.settings_guard["status"] == "unchanged"
+    assert guest.writes == []
+
+
+def test_settings_guard_stops_when_a_host_timeout_leaves_our_process_running_or_unknown(tmp_path):
+    def timed_out(guest_, argv, config):
+        raise subprocess.TimeoutExpired(argv, 600)
+
+    guest = FakeGuest()
+    guest.running = [4242]
+    record_ = guarded(tmp_path, guest, timed_out)
+    assert record_["route"] == "timeout"
+    assert record_["settings_guard"]["status"] == "owned_process_running"
+    assert record_["settings_guard"]["owned_processes"]["running"] == [4242]
+
+    # The guest's record of its processes cannot be read after a timeout: nothing shows they ended.
+    guest = FakeGuest()
+
+    def timed_out_unrecorded(guest_, argv, config):
+        guest_.owned.clear()
+        raise subprocess.TimeoutExpired(argv, 600)
+
+    second = tmp_path / "second"
+    second.mkdir()
+    record_ = guarded(second, guest, timed_out_unrecorded)
+    assert record_["settings_guard"]["status"] == "owned_process_state_unknown"
+    assert guest.writes == []
 
 
 def test_settings_guard_runs_nothing_when_the_settings_cannot_be_read(tmp_path):
@@ -1248,7 +1303,7 @@ def test_settings_guard_runs_nothing_when_the_settings_cannot_be_read(tmp_path):
 
     record_ = run_caepipe_round_trip(config, "cx-h", MBF_TEXT, runner=runner)
     assert record_["route"] == "settings_check_failed"
-    assert record_["settings_guard"]["status"] == "check_failed"
+    assert record_["settings_guard"]["status"] == "settings_check_failed"
     assert commands == ['reg query "HKCU\\Software\\Invented Vendor\\Tool\\1.0" /s']
 
 
@@ -1302,11 +1357,13 @@ def test_pilot_authored_dir_runs_the_cases_of_a_directory_inside_the_exchange_fo
     monkeypatch.setattr(run_pilot, "resolve_harness_config", lambda environ, require_vm_tools: config)
     calls = []
 
-    def round_trip(config_, case_id, mbf_text):
+    def round_trip(config_, case_id, mbf_text, **kwargs):
         sha = hashlib.sha256(mbf_text.encode("ascii")).hexdigest()
-        calls.append(("round_trip", case_id, mbf_text))
-        return {"route": "csv_from_batch", "mbf": {"sha256": sha}, "guest_mbf_sha256": sha,
-                "settings_guard": {"status": statuses.pop(0)}}
+        calls.append(("round_trip", case_id, mbf_text, kwargs))
+        outcome = outcomes.pop(0)
+        if isinstance(outcome, BaseException):
+            raise outcome
+        return {"route": "csv_from_batch", "mbf": {"sha256": sha}, "guest_mbf_sha256": sha} | outcome
 
     def export(config_, case_id, mbf_sha256):
         calls.append(("export", case_id))
@@ -1315,26 +1372,47 @@ def test_pilot_authored_dir_runs_the_cases_of_a_directory_inside_the_exchange_fo
     real = run_pilot.run_authored_case
     monkeypatch.setattr(run_pilot, "run_authored_case",
                         lambda case, config_, **kw: real(case, config_, round_trip=round_trip, export=export, **kw))
-    # An --authored-dir run never exports: only the solve and its printed results are wanted.
-    statuses = ["recent_files_restored"]
+    clean = {"settings_guard": {"status": "unchanged"}}
+    # An --authored-dir run never exports and never lets the guest fall back to the GUI.
+    outcomes = [clean]
     assert run_pilot.main(["--authored", "--authored-dir", str(directory), "--case", "cx-02-invented"],
                           environ={}) == 0
-    assert calls == [("round_trip", "cx-02-invented", "INVENTED AUTHORED FIXTURE\r\ncx-02-invented\r\n")]
+    assert calls == [("round_trip", "cx-02-invented", "INVENTED AUTHORED FIXTURE\r\ncx-02-invented\r\n",
+                      {"gui_fallback": False})]
 
-    # The first case whose saved-settings check reports a change it did not write back stops the run.
+    def first_case_only(outcome) -> list:
+        calls.clear()
+        outcomes[:] = [outcome, clean]
+        assert run_pilot.main(["--authored", "--authored-dir", str(directory)], environ={}) == 1
+        return [call[:2] for call in calls]
+
+    # Any difference in the saved settings stops the run before the next case.
+    assert first_case_only({"settings_guard": {"status": "settings_changed"}}) == [("round_trip", "cx-01-invented")]
+    # A rejected hash does not bypass the guard: the guard is enforced first.
+    assert first_case_only({"guest_mbf_sha256": "0" * 64, "route": "input_hash_mismatch",
+                            "settings_guard": {"status": "settings_check_failed"}}) == [("round_trip", "cx-01-invented")]
+    # A round trip that raised stops the run, whatever its guard result.
+    error = ContainmentError("invented")
+    error.settings_guard = {"status": "unchanged"}
+    assert first_case_only(error) == [("round_trip", "cx-01-invented")]
+    # A batch run that left no CSV is not rescued by the GUI: the run stops.
+    assert first_case_only({"route": "batch_no_csv", **clean}) == [("round_trip", "cx-01-invented")]
+    # A host timeout whose guest processes are not confirmed ended stops the run.
+    assert first_case_only({"route": "timeout", "settings_guard": {"status": "owned_process_running"}}) == [
+        ("round_trip", "cx-01-invented")]
+    # A rejected hash with a clean guard is an ordinary failed case: the run goes on.
     calls.clear()
-    statuses = ["changed_reported", "unchanged"]
+    outcomes[:] = [{"guest_mbf_sha256": "0" * 64, **clean}, clean]
     assert run_pilot.main(["--authored", "--authored-dir", str(directory)], environ={}) == 1
-    assert [call[:2] for call in calls] == [("round_trip", "cx-01-invented")]
+    assert [call[:2] for call in calls] == [("round_trip", "cx-01-invented"), ("round_trip", "cx-02-invented")]
 
     # --no-export applies to the tracked authored cases too.
     calls.clear()
-    statuses = ["unchanged"]
+    outcomes[:] = [clean]
     case = next(item for item in run_pilot.load_authored_cases() if item["case_id"] == "cpa-05-guide")
+    sha = hashlib.sha256(run_pilot.authored_mbf_bytes(case)).hexdigest()
     assert real(case, config, round_trip=lambda c, i, t: round_trip(c, i, t) | {
-        "mbf": {"sha256": hashlib.sha256(run_pilot.authored_mbf_bytes(case)).hexdigest()},
-        "guest_mbf_sha256": hashlib.sha256(run_pilot.authored_mbf_bytes(case)).hexdigest()},
-        export=export, no_export=True, emit=lambda line: None)
+        "mbf": {"sha256": sha}, "guest_mbf_sha256": sha}, export=export, no_export=True, emit=lambda line: None)
     assert [call[0] for call in calls] == ["round_trip"]
 
 

@@ -17,19 +17,22 @@ regression. Everything it writes under
 Its records are regression and handoff evidence only.
 
 An optional `settings_guard` in the configuration names the guest registry key under
-which the user's tool keeps its saved settings and the subkey of its recent-files
-list. When it is set, every round trip reads that key before and after the guest
-work. If only the recent-files list changed, and every new entry lies under the
-guest work folder, the list alone is written back to its earlier values and read
-again to confirm; any other change is reported in the run record and nothing is
-written (Design §5).
+which the user's tool keeps its saved settings. When it is set, every round trip
+reads the whole key before the guest work (no reading, no run) and again afterwards,
+after confirming from the guest's process list that every process the guest script
+started has ended. Any difference, and any process of ours still running or of
+unknown state, is recorded in the run record for the caller to stop on. The guard
+only reads: it never writes the settings, since the user's own instance may change
+them at the same time (Design §5).
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
+import csv
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
@@ -67,8 +70,9 @@ SETTINGS_KEY_PATTERN = re.compile(r"^HKCU(\\[A-Za-z0-9 ._()-]+)+\Z")
 SETTINGS_SUBKEY_PATTERN = re.compile(r"^[A-Za-z0-9 ._()-]+\Z")
 # A value line of `reg query`: four spaces, name, four spaces, type, then four spaces and the data (absent when empty).
 REG_VALUE_LINE = re.compile(r"^ {4}(?P<name>.+?) {4}(?P<type>REG_[A-Z_]+)(?: {4}(?P<data>.*))?\Z")
-RESTORABLE_DATA = {"REG_BINARY": re.compile(r"^[0-9A-Fa-f]*\Z"), "REG_DWORD": re.compile(r"^0x[0-9A-Fa-f]{1,8}\Z")}
-SETTINGS_KEEP_GOING = ("unchanged", "recent_files_restored")
+SETTINGS_KEEP_GOING = ("unchanged",)
+# Written by the guest script in the case's work folder: one id per process it starts (guarded runs only).
+OWNED_PIDS_FILE = "owned_pids.txt"
 
 
 class ContainmentError(RuntimeError):
@@ -100,14 +104,10 @@ class HarnessConfig:
 
 @dataclass(frozen=True)
 class SettingsGuard:
-    """The guest registry key of the tool's saved settings and the subkey of its recent-files list."""
+    """The guest registry key of the tool's saved settings, read whole; the recent-files subkey only labels."""
 
     key: str
-    recent_files_subkey: str
-
-    @property
-    def recent_files_key(self) -> str:
-        return f"{self.key}\\{self.recent_files_subkey}"
+    recent_files_subkey: str | None = None
 
 
 def resolve_harness_config(environ: Mapping[str, str] = os.environ, *,
@@ -174,14 +174,14 @@ def resolve_harness_config(environ: Mapping[str, str] = os.environ, *,
                         "\\ . - _ ( ) only")
     guard = None
     if "settings_guard" in config:
-        checked.append("settings_guard names an HKCU key and a subkey")
+        checked.append("settings_guard names an HKCU key")
         raw_guard = config["settings_guard"]
         key = raw_guard.get("key") if isinstance(raw_guard, dict) else None
         subkey = raw_guard.get("recent_files_subkey") if isinstance(raw_guard, dict) else None
-        if not (isinstance(key, str) and SETTINGS_KEY_PATTERN.match(key) and isinstance(subkey, str)
-                and SETTINGS_SUBKEY_PATTERN.match(subkey)):
+        if not (isinstance(key, str) and SETTINGS_KEY_PATTERN.match(key)
+                and (subkey is None or isinstance(subkey, str) and SETTINGS_SUBKEY_PATTERN.match(subkey))):
             return skip(f"{CONFIG_NAME} settings_guard must give key (HKCU\\..., letters, digits, space and "
-                        ". _ ( ) - only) and recent_files_subkey (the same characters)")
+                        ". _ ( ) - only) and, optionally, recent_files_subkey (the same characters)")
         guard = SettingsGuard(key=key, recent_files_subkey=subkey)
     prlctl = None
     if require_vm_tools:
@@ -342,7 +342,8 @@ def _win(*parts: str) -> str:
 
 
 def run_caepipe_round_trip(config: HarnessConfig, case_id: str, mbf_text: str, *, timeout_s: float = 600,
-                           runner: Callable[..., subprocess.CompletedProcess] = subprocess.run) -> dict[str, Any]:
+                           runner: Callable[..., subprocess.CompletedProcess] = subprocess.run,
+                           gui_fallback: bool = True) -> dict[str, Any]:
     """Solve one MBF with the user's CAEPIPE in the configured virtual machine and record what happened.
 
     The guest work is done in three `prlctl exec <vm> --current-user cmd /c <command>`
@@ -350,10 +351,14 @@ def run_caepipe_round_trip(config: HarnessConfig, case_id: str, mbf_text: str, *
     own. A failed prepare step stops before solving (`prepare_failed`). Outputs are
     collected, even when the solve step fails, only when the guest reports solving
     an MBF whose SHA-256 equals the host's (otherwise `input_hash_mismatch`).
+
+    `gui_fallback=False` tells the guest script not to fall back to printing through the GUI when the batch route
+    leaves no CSV (route `batch_no_csv`). With `settings_guard` configured, the run record's `settings_guard`
+    holds the detect-only check; an exception raised after the guest work started carries it as `settings_guard`.
     """
 
     return _locked(config, case_id, lambda paths, harness_dir: _round_trip(
-        config, case_id, mbf_text, paths, harness_dir, timeout_s, runner))
+        config, case_id, mbf_text, paths, harness_dir, timeout_s, runner, gui_fallback))
 
 
 def _locked(config: HarnessConfig, case_id: str, work: Callable[[dict[str, Path], Path], dict[str, Any]]) -> dict[str, Any]:
@@ -466,87 +471,87 @@ def parse_reg_query(text: str) -> dict[tuple[str, str], tuple[str, str, str]] | 
     return values if current is not None else None
 
 
-def _registry_text(kind: str, data: str) -> str:
-    """The text a recent-files value holds: REG_BINARY decoded up to its first NUL, other types as printed."""
-
-    if kind == "REG_BINARY" and RESTORABLE_DATA["REG_BINARY"].match(data) and len(data) % 2 == 0:
-        return bytes.fromhex(data).decode("latin-1").split("\x00")[0]
-    return data
-
-
 def _settings_snapshot(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]],
                        name: str) -> dict[tuple[str, str], tuple[str, str, str]] | None:
-    """Read the configured settings key, with its subkeys, through one guest step."""
+    """Read the whole configured settings key, every subkey included, through one guest step."""
 
     record = step(name, f"reg query {_quote(config.settings_guard.key)} /s")
     return parse_reg_query(record["stdout"]) if record["exit_status"] == 0 else None
 
 
-def _settings_guard(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]],
-                    before: dict[tuple[str, str], tuple[str, str, str]]) -> dict[str, Any]:
-    """Compare the settings with `before`; write back the recent-files list alone when only it changed, and ours.
+def settings_difference(before: Mapping[tuple[str, str], tuple[str, str, str]],
+                        after: Mapping[tuple[str, str], tuple[str, str, str]]) -> list[dict[str, Any]]:
+    """Every value that differs between two whole snapshots: added, removed or changed in type or data."""
 
-    Status: `unchanged`; `recent_files_restored` (written back and read again equal); `changed_reported` (a change
-    outside the recent-files list, or a new recent entry outside the guest work folder: nothing is written);
-    `restore_not_possible` (a value the restore cannot write exactly: nothing is written); `restore_failed` (the
-    read after the restore differs); `check_failed` (the settings could not be read).
+    changed = []
+    for item in sorted(set(before) | set(after)):
+        old, new = before.get(item), after.get(item)
+        if (old or (None, None, None))[1:] != (new or (None, None, None))[1:]:
+            changed.append({"value": f"{(new or old)[0]}\\{item[1]}",
+                            "before": {"type": old[1], "data": old[2]} if old else None,
+                            "after": {"type": new[1], "data": new[2]} if new else None})
+    return changed
+
+
+def _owned_processes(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]], work: str,
+                     solve: Mapping[str, Any], guest_log: Any) -> dict[str, Any]:
+    """Whether every process the guest script started has exited, from the guest's process list.
+
+    The guest script appends the id of each process it starts to `OWNED_PIDS_FILE` in the work folder. Only those
+    ids, with the tool's image name, are looked for; no process is stopped or signalled here. `exited` when none
+    is listed; `running` when one is; `unknown` when the ids or the list cannot be read and the solve step did not
+    end with the guest's report (a timeout, a failed launch), so nothing establishes that the guest's processes
+    ended.
     """
 
-    guard = config.settings_guard
-    after = _settings_snapshot(config, step, "settings_after")
+    clean = isinstance(guest_log, dict) and solve.get("exit_status") not in ("timeout", "launch_failed")
+    ids = step("owned_pids", f"type {_quote(_win(work, OWNED_PIDS_FILE))}")
+    if ids["exit_status"] != 0:
+        if clean:
+            return {"status": "exited", "owned_pids": [], "reason": "the guest reported no process it started"}
+        return {"status": "unknown", "reason": "the ids of the processes the guest started could not be read"}
+    pids = sorted({int(pid) for pid in re.findall(r"^\s*(\d+)\s*$", ids["stdout"], re.M)})
+    listing = step("process_list", "tasklist /FO CSV /NH")
+    if listing["exit_status"] != 0:
+        return {"status": "unknown", "owned_pids": pids, "reason": "the guest's process list could not be read"}
+    image = config.guest_executable.split("\\")[-1].lower()
+    running = []
+    for row in csv.reader(io.StringIO(listing["stdout"])):
+        if len(row) >= 2 and row[0].strip().lower() == image and row[1].strip().isdigit() and int(row[1]) in pids:
+            running.append(int(row[1]))
+    if running:
+        return {"status": "running", "owned_pids": pids, "running": sorted(running)}
+    return {"status": "exited", "owned_pids": pids}
+
+
+def _guard_result(settings_before, after, processes) -> dict[str, Any]:
+    """The run record's `settings_guard`: `unchanged` only when the whole snapshot is equal and nothing we
+    started is left running; otherwise the reason the run must stop. Nothing is ever written to the settings."""
+
+    if settings_before is None:
+        return {"status": "settings_check_failed", "reason": "the settings could not be read before the run; "
+                                                             "nothing ran"}
+    result: dict[str, Any] = {"owned_processes": processes}
     if after is None:
-        return {"status": "check_failed", "reason": "the settings could not be read after the run"}
-    changed = sorted(item for item in set(before) | set(after)
-                     if (before.get(item) or (None, None, None))[1:] != (after.get(item) or (None, None, None))[1:])
-    if not changed:
-        return {"status": "unchanged"}
-    recent = _registry_key_id(guard.recent_files_key)
-    names = [f"{(after.get(item) or before[item])[0]}\\{item[1]}" for item in changed]
-    outside = [name for item, name in zip(changed, names) if item[0] != recent]
-    if outside:
-        return {"status": "changed_reported", "changed_values": names,
-                "reason": "settings outside the recent-files list changed; nothing was written back"}
-    work = config.guest_work_root.lower() + "\\"
-    earlier = {_registry_text(kind, data) for (key, _), (_, kind, data) in before.items() if key == recent}
-    added = {_registry_text(kind, data) for (key, _), (_, kind, data) in after.items() if key == recent} - earlier
-    foreign = sorted(text for text in added if re.match(r"^[A-Za-z]:\\", text) and not text.lower().startswith(work))
-    if foreign:
-        return {"status": "changed_reported", "changed_values": names,
-                "reason": "the recent-files list gained entries outside the guest work folder; nothing was written back"}
-    try:
-        commands = _restore_commands(changed, before, after)
-    except ValueError as error:
-        return {"status": "restore_not_possible", "changed_values": names, "reason": f"{error}; nothing was written"}
-    for number, command in enumerate(commands, 1):
-        step(f"settings_restore_{number}", command)
-    check = _settings_snapshot(config, step, "settings_verify")
-    restored = check is not None and all(check.get(item, (None,))[1:] == before.get(item, (None,))[1:]
-                                         for item in changed)
-    return {"status": "recent_files_restored" if restored else "restore_failed", "changed_values": names,
-            "restored_values": len(commands)}
-
-
-def _restore_commands(changed, before, after) -> list[str]:
-    """The `reg add`/`reg delete` commands writing each changed value back to `before`; ValueError when one cannot
-    be written back exactly (a type or data outside RESTORABLE_DATA, a default value, a name outside the allow-list)."""
-
-    commands = []
-    for item in changed:
-        if item in before:
-            printed, kind, data = before[item]
-            if kind not in RESTORABLE_DATA or not RESTORABLE_DATA[kind].match(data) or item[1] == "(Default)":
-                raise ValueError(f"{printed}\\{item[1]} ({kind}) cannot be written back exactly")
-            commands.append(f"reg add {_quote(printed)} /v {_quote(item[1])} /t {kind} /d {data} /f")
-        else:
-            printed = after[item][0]
-            if item[1] == "(Default)":
-                raise ValueError("a default value appeared")
-            commands.append(f"reg delete {_quote(printed)} /v {_quote(item[1])} /f")
-    return commands
+        result.update(status="settings_check_failed", reason="the settings could not be read after the run")
+        return result
+    changed = settings_difference(settings_before, after)
+    result["changed_values"] = changed
+    if changed:
+        result.update(status="settings_changed", reason="the saved settings differ after the run; nothing was "
+                                                        "written back")
+    elif processes["status"] == "running":
+        result.update(status="owned_process_running", reason="a process the guest started is still running")
+    elif processes["status"] == "unknown":
+        result.update(status="owned_process_state_unknown", reason=processes["reason"])
+    else:
+        result["status"] = "unchanged"
+    return result
 
 
 def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[str, Path], harness_dir: Path,
-                timeout_s: float, runner: Callable[..., subprocess.CompletedProcess]) -> dict[str, Any]:
+                timeout_s: float, runner: Callable[..., subprocess.CompletedProcess],
+                gui_fallback: bool = True) -> dict[str, Any]:
     started = _now()
     root = config.exchange_root
     mbf_bytes = mbf_text.encode("utf-8")
@@ -563,10 +568,13 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
     guest_mbf = _win(work, "model.mbf")
     share_script = _win(config.guest_exchange_root, HARNESS_DIR, GUEST_SCRIPT.name)
     work_script = _win(work, GUEST_SCRIPT.name)
+    guarded = config.settings_guard is not None
 
     def solve_command(script: str) -> str:
         return (f"powershell -NoProfile -ExecutionPolicy Bypass -File {_quote(script)} "
-                f"-Exe {_quote(config.guest_executable)} -Mbf {_quote(guest_mbf)}")
+                f"-Exe {_quote(config.guest_executable)} -Mbf {_quote(guest_mbf)}"
+                + (f" -PidFile {_quote(_win(work, OWNED_PIDS_FILE))}" if guarded else "")
+                + ("" if gui_fallback else " -NoGuiFallback"))
 
     steps: list[dict[str, Any]] = []
 
@@ -575,124 +583,149 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
 
     # The guest work copy of the MBF is deleted before the copy, so a failed copy can never leave an older MBF
     # to be solved; a failed prepare step stops the round trip before solving.
-    stale_guest = " ".join(_quote(_win(work, name)) for name in ("model*.csv", "model.mbf", *OUTPUT_NAMES))
+    stale_guest = " ".join(_quote(_win(work, name)) for name in ("model*.csv", "model.mbf", *OUTPUT_NAMES,
+                                                                  OWNED_PIDS_FILE))
     # The saved settings are read before anything starts the tool; without that reading nothing runs.
-    settings_before = _settings_snapshot(config, step, "settings_before") if config.settings_guard else None
-    if config.settings_guard and settings_before is None:
-        prepare = {"exit_status": "not_run", "stdout": "", "stderr": ""}
-    else:
-        prepare = step("prepare", f"{_ensure_dir(work)} & del /Q {stale_guest} 2>nul & "
-                                  f"copy /Y {_quote(_win(guest_in, 'model.mbf'))} {_quote(guest_mbf)}")
-    script_location = "exchange_share"
+    settings_before = _settings_snapshot(config, step, "settings_before") if guarded else None
+    prepare: dict[str, Any] = {"exit_status": "not_run", "stdout": "", "stderr": ""}
     solve: dict[str, Any] = {"exit_status": None, "stdout": "", "stderr": ""}
+    script_location = "exchange_share"
     guest_log = None
-    if prepare["exit_status"] == 0:
-        solve = step("solve", solve_command(share_script))
-        guest_log = last_json_object(solve["stdout"])
-        if guest_log is None and solve["exit_status"] != "timeout":
-            script_location = "guest_work_dir"
-            step("stage_script", f"copy /Y {_quote(share_script)} {_quote(work_script)}")
-            solve = step("solve_from_work_dir", solve_command(work_script))
-            guest_log = last_json_object(solve["stdout"])
-    # The guest script reports the SHA-256 of the MBF it actually solved; outputs are attributed to this MBF only
-    # when that hash equals the host's.
-    guest_mbf_sha256 = guest_log.get("mbf_sha256") if isinstance(guest_log, dict) else None
-    guest_mbf_sha256 = guest_mbf_sha256.lower() if isinstance(guest_mbf_sha256, str) else None
-    input_verified = guest_mbf_sha256 == mbf_sha256
-    if guest_log is not None and input_verified:
-        _refuse_links(root, out)  # again just before the guest writes into the layer
-        step("collect", " & ".join([
-            f"copy /Y {_quote(_win(work, 'model*.csv'))} {_quote(guest_out)}",
-            *(f"copy /Y {_quote(_win(work, name))} {_quote(_win(guest_out, name))}" for name in OUTPUT_NAMES),
-        ]))
-
+    guest_mbf_sha256 = None
+    input_verified = False
     settings = None
-    if config.settings_guard:
-        settings = (_settings_guard(config, step, settings_before) if settings_before is not None else
-                    {"status": "check_failed", "reason": "the settings could not be read before the run; nothing ran"})
+    error: BaseException | None = None
+    try:
+        if not guarded or settings_before is not None:
+            prepare = step("prepare", f"{_ensure_dir(work)} & del /Q {stale_guest} 2>nul & "
+                                      f"copy /Y {_quote(_win(guest_in, 'model.mbf'))} {_quote(guest_mbf)}")
+        if prepare["exit_status"] == 0:
+            solve = step("solve", solve_command(share_script))
+            guest_log = last_json_object(solve["stdout"])
+            if guest_log is None and solve["exit_status"] != "timeout":
+                script_location = "guest_work_dir"
+                step("stage_script", f"copy /Y {_quote(share_script)} {_quote(work_script)}")
+                solve = step("solve_from_work_dir", solve_command(work_script))
+                guest_log = last_json_object(solve["stdout"])
+        # The guest script reports the SHA-256 of the MBF it actually solved; outputs are attributed to this MBF
+        # only when that hash equals the host's.
+        guest_mbf_sha256 = guest_log.get("mbf_sha256") if isinstance(guest_log, dict) else None
+        guest_mbf_sha256 = guest_mbf_sha256.lower() if isinstance(guest_mbf_sha256, str) else None
+        input_verified = guest_mbf_sha256 == mbf_sha256
+        if guest_log is not None and input_verified:
+            _refuse_links(root, out)  # again just before the guest writes into the layer
+            step("collect", " & ".join([
+                f"copy /Y {_quote(_win(work, 'model*.csv'))} {_quote(guest_out)}",
+                *(f"copy /Y {_quote(_win(work, name))} {_quote(_win(guest_out, name))}" for name in OUTPUT_NAMES),
+            ]))
+    except BaseException as caught:  # re-raised below, after the checks
+        error = caught
+    finally:
+        # Whatever happened above: confirm that what the guest started has ended, then compare the whole settings
+        # key with its reading before the run. Nothing is written to the settings.
+        if guarded:
+            processes = (_owned_processes(config, step, work, solve, guest_log)
+                         if prepare["exit_status"] == 0 else {"status": "not_started"})
+            after = _settings_snapshot(config, step, "settings_after") if settings_before is not None else None
+            settings = _guard_result(settings_before, after, processes)
 
-    write_private(root, out / "guest_stdout.txt", solve["stdout"])
-    write_private(root, out / "guest_stderr.txt", solve["stderr"])
-    if guest_log is not None:
-        write_private(root, out / "guest_log.json", json.dumps(guest_log, indent=2, sort_keys=True) + "\n")
+    try:
+        write_private(root, out / "guest_stdout.txt", solve["stdout"])
+        write_private(root, out / "guest_stderr.txt", solve["stderr"])
+        if guest_log is not None:
+            write_private(root, out / "guest_log.json", json.dumps(guest_log, indent=2, sort_keys=True) + "\n")
 
-    guest_csv = guest_log.get("csv_path") if isinstance(guest_log, dict) else None
-    observed = None
-    csv_name = guest_csv.replace("/", "\\").split("\\")[-1] if isinstance(guest_csv, str) else ""
-    if csv_name not in ("", ".", "..") and input_verified:
-        candidate = contained(root, out / csv_name)
-        if candidate.is_file():
-            observed = candidate
-    status = guest_log.get("status") if isinstance(guest_log, dict) else None
-    if prepare["exit_status"] == "not_run":
-        route = "settings_check_failed"
-    elif prepare["exit_status"] != 0:
-        route = "prepare_failed"
-    elif solve["exit_status"] == "timeout":
-        route = "timeout"
-    elif guest_log is None:
-        route = "no_guest_json"
-    elif not input_verified:
-        route = "input_hash_mismatch"
-    elif status in CSV_ROUTES and observed is not None:
-        route = status
-    elif status in CSV_ROUTES:
-        route = "csv_not_collected"
-    else:
-        route = str(status or "unknown_guest_status")
-    gui_used = bool(isinstance(guest_log, dict) and isinstance(guest_log.get("gui"), dict) and guest_log["gui"].get("used"))
+        guest_csv = guest_log.get("csv_path") if isinstance(guest_log, dict) else None
+        observed = None
+        csv_name = guest_csv.replace("/", "\\").split("\\")[-1] if isinstance(guest_csv, str) else ""
+        if csv_name not in ("", ".", "..") and input_verified and error is None:
+            candidate = contained(root, out / csv_name)
+            if candidate.is_file():
+                observed = candidate
+        status = guest_log.get("status") if isinstance(guest_log, dict) else None
+        if error is not None:
+            route = "harness_error"
+        elif guarded and settings_before is None:
+            route = "settings_check_failed"
+        elif prepare["exit_status"] != 0:
+            route = "prepare_failed"
+        elif solve["exit_status"] == "timeout":
+            route = "timeout"
+        elif guest_log is None:
+            route = "no_guest_json"
+        elif not input_verified:
+            route = "input_hash_mismatch"
+        elif status in CSV_ROUTES and observed is not None:
+            route = status
+        elif status in CSV_ROUTES:
+            route = "csv_not_collected"
+        else:
+            route = str(status or "unknown_guest_status")
+        gui_used = bool(isinstance(guest_log, dict) and isinstance(guest_log.get("gui"), dict)
+                        and guest_log["gui"].get("used"))
 
-    collected = [path.name for path in out.iterdir()
-                 if path.name.startswith("model") and path.is_file() and not path.is_symlink()]
-    record = {
-        "document_kind": RUN_RECORD_KIND,
-        "schema_version": "1",
-        "deliverable": "DEL-17-05",
-        "case_id": case_id,
-        "configuration_surface": {
-            "environment_variable": ENV_VAR,
-            "config_file": CONFIG_NAME,
-            "checked": list(config.checked),
-            "warnings": list(config.warnings),
-        },
-        "executable_path_as_configured": config.guest_executable,
-        ACKNOWLEDGEMENT_KEY: config.acknowledged,
-        "mbf": {"path": "caepipe_in/model.mbf", "guest_path": guest_mbf, "sha256": mbf_sha256,
-                "bytes": len(mbf_bytes)},
-        "guest_mbf_sha256": guest_mbf_sha256,
-        "input_hash_verified": input_verified,
-        "guest_script": {"repository_path": GUEST_SCRIPT_REPOSITORY_PATH,
-                         "exchange_copy": f"{HARNESS_DIR}/{GUEST_SCRIPT.name}",
-                         "sha256": _sha256(script_bytes), "run_from": script_location},
-        "command_shape": {
-            "batch": BATCH_COMMAND_SHAPE,
-            "gui_print_fallback": {
-                "used": gui_used,
-                "label": "print_to_file_fallback",
-                "description": "fallback when the batch route yields no result file: the guest script stops the "
-                               "batch process it started, opens the solved .res in a CAEPIPE instance it starts "
-                               "itself and prints the results to CSV via Print > To File",
+        collected = [path.name for path in out.iterdir()
+                     if path.name.startswith("model") and path.is_file() and not path.is_symlink()]
+        record = {
+            "document_kind": RUN_RECORD_KIND,
+            "schema_version": "1",
+            "deliverable": "DEL-17-05",
+            "case_id": case_id,
+            "configuration_surface": {
+                "environment_variable": ENV_VAR,
+                "config_file": CONFIG_NAME,
+                "checked": list(config.checked),
+                "warnings": list(config.warnings),
             },
-            "host_invocation": "prlctl exec <vm_name> --current-user cmd /c <guest command>",
-        },
-        "steps": [{key: value for key, value in item.items() if key not in ("stdout", "stderr")}
-                  | {"stdout_chars": len(item["stdout"]), "stderr_chars": len(item["stderr"])} for item in steps],
-        "working_directory": work,
-        "expected_batch_csv_path": _win(work, "model.csv"),
-        "observed_csv_path": {"guest": guest_csv, "host": f"caepipe_out/{observed.name}" if observed else None},
-        "route": route,
-        "exit_status": solve["exit_status"],
-        "stdout_file": "caepipe_out/guest_stdout.txt",
-        "stderr_file": "caepipe_out/guest_stderr.txt",
-        "guest_log": guest_log,
-        "outputs_collected": sorted(collected),
-        "outputs_sha256": {name: _sha256((out / name).read_bytes()) for name in sorted(collected)},
-        "timestamps": {"started": started, "finished": _now()},
-        "boundary_note": BOUNDARY_NOTE,
-    }
-    if settings is not None:
-        record["settings_guard"] = settings
-    write_private(root, out / "run_record.json", json.dumps(record, indent=2, sort_keys=True) + "\n")
+            "executable_path_as_configured": config.guest_executable,
+            ACKNOWLEDGEMENT_KEY: config.acknowledged,
+            "mbf": {"path": "caepipe_in/model.mbf", "guest_path": guest_mbf, "sha256": mbf_sha256,
+                    "bytes": len(mbf_bytes)},
+            "guest_mbf_sha256": guest_mbf_sha256,
+            "input_hash_verified": input_verified,
+            "guest_script": {"repository_path": GUEST_SCRIPT_REPOSITORY_PATH,
+                             "exchange_copy": f"{HARNESS_DIR}/{GUEST_SCRIPT.name}",
+                             "sha256": _sha256(script_bytes), "run_from": script_location},
+            "command_shape": {
+                "batch": BATCH_COMMAND_SHAPE,
+                "gui_print_fallback": {
+                    "allowed": gui_fallback,
+                    "used": gui_used,
+                    "label": "print_to_file_fallback",
+                    "description": "fallback when the batch route yields no result file: the guest script stops "
+                                   "the batch process it started, opens the solved .res in a CAEPIPE instance it "
+                                   "starts itself and prints the results to CSV via Print > To File",
+                },
+                "host_invocation": "prlctl exec <vm_name> --current-user cmd /c <guest command>",
+            },
+            "steps": [{key: value for key, value in item.items() if key not in ("stdout", "stderr")}
+                      | {"stdout_chars": len(item["stdout"]), "stderr_chars": len(item["stderr"])} for item in steps],
+            "working_directory": work,
+            "expected_batch_csv_path": _win(work, "model.csv"),
+            "observed_csv_path": {"guest": guest_csv, "host": f"caepipe_out/{observed.name}" if observed else None},
+            "route": route,
+            "exit_status": solve["exit_status"],
+            "stdout_file": "caepipe_out/guest_stdout.txt",
+            "stderr_file": "caepipe_out/guest_stderr.txt",
+            "guest_log": guest_log,
+            "outputs_collected": sorted(collected),
+            "outputs_sha256": {name: _sha256((out / name).read_bytes()) for name in sorted(collected)},
+            "timestamps": {"started": started, "finished": _now()},
+            "boundary_note": BOUNDARY_NOTE,
+        }
+        if error is not None:
+            record["harness_error"] = f"{type(error).__name__}: {error}"
+        if settings is not None:
+            record["settings_guard"] = settings
+        write_private(root, out / "run_record.json", json.dumps(record, indent=2, sort_keys=True) + "\n")
+    except Exception:
+        if error is None:
+            raise
+        # The record could not be written (for example the same containment refusal); the original error stands.
+    if error is not None:
+        if settings is not None:
+            error.settings_guard = settings  # the caller stops on it like on a record's guard result
+        raise error
     return record
 
 

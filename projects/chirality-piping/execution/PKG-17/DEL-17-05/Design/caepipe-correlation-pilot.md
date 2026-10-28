@@ -141,22 +141,28 @@ name a tracked writer or authored case, whose case folders the run would otherwi
 wants only the solve and its printed results, so it never runs the export step; `--no-export` leaves
 the export out of a tracked authored run too.
 
-**Saved settings.** The tool keeps saved settings, among them a recent-files list that opening a model
-updates. The configuration may name the guest registry key of those settings and the subkey of the
-list (`settings_guard`: `key`, an `HKCU\…` path, and `recent_files_subkey`); `--authored-dir` runs
-require it. Each round trip then reads the key with its subkeys (`reg query /s`) before anything
-starts the tool (when that reading fails nothing runs: `settings_check_failed`) and again after the
-outputs are collected, and records the result as `settings_guard` in the run record:
-- `unchanged`: nothing is written;
-- `recent_files_restored`: only values of the recent-files list changed and every entry the list gained
-  lies under the guest work folder, so those values alone are written back to their earlier type and
-  data (`reg add`, or `reg delete` for a value that appeared) and read again to confirm;
-- `changed_reported`: any other value changed, or the list gained an entry outside the guest work
-  folder; nothing is written, since the user's own instance may change its settings at the same time;
-- `restore_not_possible`, `restore_failed`, `check_failed`: as named; nothing further is written.
+**Saved settings.** The tool keeps saved settings in the guest registry, among them a recent-files
+list. The configuration may name that registry key (`settings_guard`: `key`, an `HKCU\…` path; an
+optional `recent_files_subkey` only labels the record); `--authored-dir` runs require it. The guard
+only reads; it never writes the settings, because the user's own instance may change them at the
+same time and any write-back could overwrite that change. Around each round trip:
+- the whole key, every subkey included, is read (`reg query /s`) before anything starts the tool;
+  when that reading fails nothing runs (`settings_check_failed`);
+- the guest script appends the id of each process it starts to `owned_pids.txt` in the case's work
+  folder, and runs without the GUI print fallback (a batch run that leaves no CSV ends as
+  `batch_no_csv`);
+- whatever happens in between, including a timeout of the host's call or an error while collecting,
+  the harness then reads those ids and the guest's process list (`tasklist`), looking only for those
+  ids with the tool's image name, and reads the whole key again;
+- the run record's `settings_guard` is `unchanged` only when the second reading equals the first
+  exactly and no process the script started is listed. Otherwise it is `settings_changed` (with each
+  differing value, before and after), `owned_process_running`, `owned_process_state_unknown` (the ids
+  or the list could not be read after a call that did not end with the script's report) or
+  `settings_check_failed`.
 
-The run stops at the first case whose result is not `unchanged` or `recent_files_restored`. Settings
-are never written wholesale.
+The run stops at the first case whose guard result is anything but `unchanged`, whose round trip
+raised (the guard result travels with the exception), or that ended `batch_no_csv`. The guard result
+is checked before any other test of the record, so a rejected input hash does not pass over it.
 
 `caepipe_in/` holds only SWBPIPE-derived content or the invented authored file. Every layer from `caepipe_out/` on
 is CAEPIPE output or derived from it and stays private (§8). Every directory and

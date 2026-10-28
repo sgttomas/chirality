@@ -11,6 +11,11 @@ With -ExportMod it instead opens that solved model in a fresh instance (File >
 Open...), writes it as MBF through File > Export to MBF... into -ExportName
 beside the model, and stops the instance (DEL-17-05 Design §3).
 
+With -PidFile the script appends the id of every process it starts to that file at
+once, so the host can confirm from the process list that each has ended even when
+it never receives this script's report. With -NoGuiFallback a batch run that leaves
+no CSV ends as batch_no_csv instead of falling back to the GUI.
+
 Output: one JSON object on stdout describing what happened, including the
 SHA-256 of the MBF actually solved (mbf_sha256), or for an export the SHA-256
 of the model opened (mod_sha256) and of the MBF written (exported_mbf_sha256).
@@ -24,7 +29,9 @@ param(
     [string]$ExportMod = "",
     [string]$ExportName = "exported.mbf",
     [int]$BatchTimeoutSec = 120,
-    [int]$GuiTimeoutSec = 120
+    [int]$GuiTimeoutSec = 120,
+    [string]$PidFile = "",
+    [switch]$NoGuiFallback
 )
 $ErrorActionPreference = "Stop"
 
@@ -122,6 +129,7 @@ $log = [ordered]@{
     diagnostics = @()
 }
 function Note([string]$m) { $script:log.diagnostics += $m }
+function Record-Owned($p) { if ($PidFile) { Add-Content -LiteralPath $PidFile -Value $p.Id -Encoding Ascii } }
 function Caption([string]$t) { ($t -replace '&', '') -replace "`t.*$", '' }
 
 function Wait-Window([uint32]$ProcId, [scriptblock]$Match, [int]$Sec) {
@@ -291,6 +299,7 @@ foreach ($p in @($resPath, $batchCsv, $guiCsv)) { if (Test-Path $p) { Remove-Ite
 # 1. Batch import and solve.
 $started = Get-Date
 $proc = Start-Process -FilePath $Exe -ArgumentList ('"' + $Mbf + '";batchmode=yes') -WorkingDirectory $workDir -PassThru
+Record-Owned $proc
 $log.batch.command_shape = '<exe> "<mbf>";batchmode=yes'
 $deadline = $started.AddSeconds($BatchTimeoutSec)
 while ((Get-Date) -lt $deadline -and -not $proc.HasExited) {
@@ -312,10 +321,12 @@ $log.batch.res_present = Test-Path $resPath
 $log.batch.csv_present = Test-Path $batchCsv
 if ($log.batch.csv_present) { $log.csv_path = $batchCsv; $log.status = "csv_from_batch"; $log | ConvertTo-Json -Depth 6; exit 0 }
 if (-not $log.batch.res_present) { $log.status = "no_results_after_batch"; $log | ConvertTo-Json -Depth 6; exit 2 }
+if ($NoGuiFallback) { $log.status = "batch_no_csv"; $log | ConvertTo-Json -Depth 6; exit 3 }
 
 # 2. Fallback when the batch route yields no result file: print the solved results to CSV through the GUI.
 $log.gui.used = $true
 $gui = Start-Process -FilePath $Exe -WorkingDirectory (Split-Path $Exe) -PassThru
+Record-Owned $gui
 $gp = [uint32]$gui.Id
 try {
     $layout = Wait-Window $gp { param($h) [CaepipeUi]::Cls($h) -eq $Ui.LayoutClass } 60
