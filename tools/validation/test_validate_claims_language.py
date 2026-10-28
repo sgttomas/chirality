@@ -310,3 +310,58 @@ def test_scope_of_work_not_scanned_when_wave2_gate_off(tmp_path, monkeypatch):
         "No certification, sealing, approval, or code-compliance claim.\n",
     )
     assert _codes(repo) == []
+
+
+def _uncovered_reads(repo_root: Path) -> list[str]:
+    """Every path the check reads at `repo_root` (scanned surfaces, anchors,
+    registry, validator) that `reads_input` does not select."""
+    read = [p.relative_to(repo_root).as_posix() for p in validator.iter_scanned_files(repo_root)]
+    read += [(PROJECT / rel).as_posix() for _code, rel, _fragment in validator.ANCHORS]
+    read += [(PROJECT / validator.REGISTRY_RELPATH).as_posix(),
+             "tools/validation/validate_claims_language.py"]
+    return [rel for rel in read if not validator.reads_input(rel)]
+
+
+def test_input_patterns_cover_every_file_the_check_reads_in_this_repository():
+    # Code review r1 on #1705: the synthetic tree below cannot see a surface
+    # that exists only in the real tree, so the gate is also checked here.
+    repo_root = Path(__file__).resolve().parents[2]
+    assert validator.iter_scanned_files(repo_root), "no scanned files found"
+    assert _uncovered_reads(repo_root) == []
+
+
+def test_an_uncovered_scanned_surface_fails_the_drift_guard(tmp_path, monkeypatch):
+    # A surface added to the scan without a matching input pattern is caught.
+    repo = _repo(tmp_path)
+    readme = _write(repo, "README.md", "Ordinary prose.\n")
+    scanned = validator.iter_scanned_files
+    monkeypatch.setattr(validator, "iter_scanned_files",
+                        lambda root: scanned(root) + [readme])
+    assert _uncovered_reads(repo) == [(PROJECT / "README.md").as_posix()]
+
+
+def test_input_patterns_cover_every_file_the_check_reads(tmp_path, capsys):
+    # The hosted CI gate is input_patterns(); it must cover each scanned
+    # surface, each anchor, the registry and the validator itself.
+    repo = _repo(tmp_path)
+    for rel in (
+        "docs/user_guide/index.md",
+        "docs/claims_registry.md",
+        "apps/desktop/src/features/x/Panel.tsx",
+        "execution/PKG-01/DEL-01-01/ScopeOfWork.md",
+    ):
+        _write(repo, rel, "Ordinary prose.\n")
+    read = [p.relative_to(repo).as_posix() for p in validator.iter_scanned_files(repo)]
+    read += [(PROJECT / rel).as_posix() for _code, rel, _fragment in validator.ANCHORS]
+    read += [(PROJECT / validator.REGISTRY_RELPATH).as_posix(),
+             "tools/validation/validate_claims_language.py"]
+    assert len(read) == 8
+    assert [rel for rel in read if not validator.reads_input(rel)] == []
+    for outside in (
+        "projects/chirality-app-v4/docs/PRD.md",
+        "projects/chirality-piping/core/solver/src/lib.rs",
+        "projects/chirality-piping/execution/PKG-01/DEL-01-01/deliverable.yaml",
+    ):
+        assert not validator.reads_input(outside), outside
+    assert validator.main(["--list-inputs"]) == 0
+    assert tuple(capsys.readouterr().out.splitlines()) == validator.input_patterns()
