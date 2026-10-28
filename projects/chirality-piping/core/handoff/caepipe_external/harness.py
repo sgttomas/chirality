@@ -633,40 +633,43 @@ def _restore_commands(before: Mapping[str, Mapping], after: Mapping[str, Mapping
 
 
 def _guard_check(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]], settings_before, after,
-                 processes) -> dict[str, Any]:
-    """The run record's `settings_guard`.
+                 processes) -> tuple[dict[str, Any], BaseException | None]:
+    """The run record's `settings_guard`, and an exception (cancellation included) deferred from the restore.
 
     `unchanged` when the whole snapshot is equal and no instance of the tool is left. A difference confined to the
     values of the recent-files subkey is written back only when the configuration enables it and the process
-    checks are clean (no instance of ours or anyone else's running), then read a third time, which must equal the
-    first reading exactly: `recent_files_restored`, else `settings_restore_failed`. Any other difference is
-    `settings_changed` and nothing is written.
+    checks are clean (no instance of ours or anyone else's running), and the precondition is checked once more
+    immediately before the first write; then the key is read a third time, which must equal the first reading
+    exactly: `recent_files_restored`, else `settings_restore_failed`. Any other difference is `settings_changed`
+    and nothing is written. An exception during the writes or the third reading, cancellation included, does not
+    lose the record: the key is read once more on its own, the result is `settings_restore_failed` with what
+    remains different, and the exception is returned for the caller to raise after recording.
     """
 
     guard = config.settings_guard
     if settings_before is None:
         return {"status": "settings_check_failed", "reason": "the settings could not be read before the run; "
-                                                             "nothing ran"}
+                                                             "nothing ran"}, None
     result: dict[str, Any] = {"owned_processes": processes}
     if after is None:
         result.update(status="settings_check_failed", reason="the settings could not be read after the run")
-        return result
+        return result, None
     changed = settings_difference(settings_before, after)
     result["changed_values"] = changed
     if processes["status"] == "running":
         result.update(status="owned_process_running", reason="a process the guest started is still running; "
                                                              "nothing was written")
-        return result
+        return result, None
     if processes["status"] == "unknown":
         result.update(status="owned_process_state_unknown", reason=processes["reason"])
-        return result
+        return result, None
     if processes["status"] == "foreign":
         result.update(status="foreign_instance_running", reason="an instance of the tool this run did not start "
                                                                 "appeared; nothing was written")
-        return result
+        return result, None
     if not changed:
         result["status"] = "unchanged"
-        return result
+        return result, None
     recent_id = _registry_key_id(guard.recent_files_key) if guard.recent_files_key else None
     keys_equal = set(settings_before["keys"]) == set(after["keys"])
     outside = [item for item in set(settings_before["values"]) | set(after["values"])
@@ -675,20 +678,36 @@ def _guard_check(config: HarnessConfig, step: Callable[[str, str], dict[str, Any
     if not (guard.restore_recent_files and recent_id and keys_equal and not outside):
         result.update(status="settings_changed", reason="the saved settings differ after the run"
                       + ("" if guard.restore_recent_files else " (restoring is not enabled)") + "; nothing was written")
-        return result
+        return result, None
     try:
         commands = _restore_commands(settings_before, after, recent_id)
     except ValueError as error:
         result.update(status="settings_restore_failed", reason=f"{error}; nothing was written")
-        return result
+        return result, None
+    # The precondition once more, immediately before the first write: nothing may have started since the last check.
+    pre = _precondition(config, step, "restore_precondition_process_list")
+    if pre["status"] != "clear":
+        result.update(status=pre["status"], restore_precondition=pre,
+                      reason=f"{pre['reason']}; checked immediately before restoring, nothing was written")
+        return result, None
+    completed = 0
     try:
         for number, command in enumerate(commands, 1):
             step(f"settings_restore_{number}", command)
+            completed = number
         third = _settings_snapshot(config, step, "settings_verify")
-    except Exception as failure:
-        result.update(status="settings_restore_failed", restored_values=len(commands),
-                      reason=f"the restore or its check failed: {type(failure).__name__}: {failure}")
-        return result
+    except BaseException as caught:  # cancellation included: recorded first, raised by the caller afterwards
+        try:
+            third = _settings_snapshot(config, step, "settings_after_interrupted_restore")
+        except Exception:
+            third = None
+        result.update(status="settings_restore_failed", restore_commands=len(commands),
+                      restore_commands_completed=completed,
+                      remaining_differences=settings_difference(settings_before, third) if third is not None else None,
+                      reason=f"the restore was interrupted ({type(caught).__name__}) after {completed} of "
+                             f"{len(commands)} writes; "
+                             + ("the key was read again" if third is not None else "the key could not be read again"))
+        return result, caught
     remaining = settings_difference(settings_before, third) if third is not None else None
     result["restored_values"] = len(commands)
     if remaining == []:
@@ -696,7 +715,7 @@ def _guard_check(config: HarnessConfig, step: Callable[[str, str], dict[str, Any
     else:
         result.update(status="settings_restore_failed", remaining_differences=remaining,
                       reason="the reading after the restore does not equal the reading before the run")
-    return result
+    return result, None
 
 
 def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[str, Path], harness_dir: Path,
@@ -781,18 +800,30 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
         # key with its reading before the run. Nothing is written to the settings.
         # Each check is guarded on its own, so a failure of one never skips the other or the result.
         if guarded:
+            deferred = None
             try:
-                processes = (_owned_processes(config, step, work, guest_log)
-                             if prepare["exit_status"] == 0 else {"status": "not_started"})
-            except Exception as failure:
-                processes = _unknown(f"the process check failed: {type(failure).__name__}: {failure}")
-            after = None
-            if settings_before is not None:
                 try:
-                    after = _settings_snapshot(config, step, "settings_after")
+                    processes = (_owned_processes(config, step, work, guest_log)
+                                 if prepare["exit_status"] == 0 else {"status": "not_started"})
                 except Exception as failure:
-                    processes = processes | {"settings_read_error": f"{type(failure).__name__}: {failure}"}
-            settings = blocked if blocked is not None else _guard_check(config, step, settings_before, after, processes)
+                    processes = _unknown(f"the process check failed: {type(failure).__name__}: {failure}")
+                after = None
+                if settings_before is not None:
+                    try:
+                        after = _settings_snapshot(config, step, "settings_after")
+                    except Exception as failure:
+                        processes = processes | {"settings_read_error": f"{type(failure).__name__}: {failure}"}
+                if blocked is not None:
+                    settings = blocked
+                else:
+                    settings, deferred = _guard_check(config, step, settings_before, after, processes)
+            except BaseException as caught:  # cancellation during the checks: nothing was written; stop on it
+                deferred = caught
+                settings = {"status": "settings_check_failed",
+                            "reason": f"the checks after the run were interrupted ({type(caught).__name__}); "
+                                      "nothing was written"}
+            if deferred is not None and error is None:
+                error = deferred
 
     try:
         write_private(root, out / "guest_stdout.txt", solve["stdout"])

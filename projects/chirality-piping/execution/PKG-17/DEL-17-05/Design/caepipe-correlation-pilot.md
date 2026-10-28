@@ -168,12 +168,17 @@ set, which needs the subkey); `--authored-dir` runs require it.
     `unchanged`.
 - **Restore.** Only when the configuration enables it, the process checks are clean, and every
   difference lies in the values of the recent-files subkey (no key added or removed, nothing else
-  changed), the harness writes those values back to the first reading: values that changed or were
-  removed are written with their earlier type and data, in the first reading's order, and values that
-  appeared are deleted. It then reads the key a third time, which must equal the first reading
-  exactly (`recent_files_restored`); otherwise, or when a value cannot be written back exactly (in
-  which case nothing is written), the result is `settings_restore_failed`. A difference anywhere
-  else is `settings_changed`, and nothing is written.
+  changed), the harness checks the precondition once more immediately before the first write (another
+  instance, or an unreadable list, stops it with nothing written), then writes those values back to the
+  first reading: values that changed or were removed are written with their earlier type and data, in
+  the first reading's order, and values that appeared are deleted. It then reads the key a third time,
+  which must equal the first reading exactly (`recent_files_restored`); otherwise, or when a value
+  cannot be written back exactly (in which case nothing is written), the result is
+  `settings_restore_failed`. An exception during the writes or that reading, cancellation included, is
+  deferred like one during the solve: the key is read once more on its own, the result
+  `settings_restore_failed` records how many writes completed and what remains different, the run
+  record is written, and the exception is raised afterwards with the result attached. A difference
+  anywhere else is `settings_changed`, and nothing is written.
 
 The restore is safe only because no other instance of the tool runs during the round trip: the
 precondition, before and after, admits none, so no concurrent change can be overwritten. The run stops

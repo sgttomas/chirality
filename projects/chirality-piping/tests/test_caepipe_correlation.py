@@ -1160,6 +1160,9 @@ class FakeGuest:
         self.foreign_after: list[int] = []     # another instance that appears during the solve
         self.apply_writes = True               # False: writes are accepted but change nothing
         self.solved = False
+        self.queries = 0
+        self.foreign_on_query: dict[int, list[int]] = {}  # query number -> an instance that appears then
+        self.interrupt_on_write: int | None = None         # raise KeyboardInterrupt at this write
 
     def query(self) -> str:
         lines = ["", INVENTED_KEY, ""]
@@ -1182,9 +1185,13 @@ class FakeGuest:
             command = argv[6]
             self.commands.append(command)
             if command.startswith("reg query "):
+                self.queries += 1
+                self.foreign += self.foreign_on_query.get(self.queries, [])
                 return subprocess.CompletedProcess(argv, 0, self.query(), "")
             if command.startswith(("reg add", "reg delete")):
                 self.writes.append(command)
+                if len(self.writes) == self.interrupt_on_write:
+                    raise KeyboardInterrupt
                 add = re.fullmatch(r'reg add "([^"]+)" /v "([^"]+)" /t (REG_\w+) /d "([^"]*)" /f', command)
                 delete = re.fullmatch(r'reg delete "([^"]+)" /v "([^"]+)" /f', command)
                 assert add or delete, command
@@ -1472,6 +1479,44 @@ def test_settings_guard_restores_nothing_when_more_than_recent_files_changed(tmp
     assert record_["settings_guard"]["status"] == "foreign_instance_running"
     assert record_["settings_guard"]["owned_processes"]["foreign_pids"] == [17000]
     assert guest.writes == []
+
+
+def test_settings_guard_rechecks_for_another_instance_immediately_before_restoring(tmp_path):
+    guest = FakeGuest()
+    guest.foreign_on_query = {2: [18000]}  # appears during the second reading, after the process check
+
+    def solve(guest_, argv, config):
+        guest_.open_model("C:\\invented-work\\cx-g\\model.mod")
+        return solved(guest_, argv, config)
+
+    record_ = guarded(tmp_path, guest, solve, guard=RESTORING_GUARD)
+    guard = record_["settings_guard"]
+    assert guard["status"] == "foreign_instance_running"
+    assert guard["restore_precondition"]["foreign_pids"] == [18000]
+    assert "immediately before restoring, nothing was written" in guard["reason"]
+    assert guest.writes == []
+    assert [step["name"] for step in record_["steps"]][-2:] == ["settings_after", "restore_precondition_process_list"]
+
+
+def test_settings_guard_records_an_interrupted_restore_then_raises(tmp_path):
+    guest = FakeGuest()
+    guest.interrupt_on_write = 2
+
+    def solve(guest_, argv, config):
+        guest_.open_model("C:\\invented-work\\cx-g\\model.mod")
+        return solved(guest_, argv, config)
+
+    with pytest.raises(KeyboardInterrupt) as raised:
+        guarded(tmp_path, guest, solve, guard=RESTORING_GUARD)
+    guard = raised.value.settings_guard
+    assert guard["status"] == "settings_restore_failed"
+    assert guard["restore_commands_completed"] == 1 and guard["restore_commands"] == 4
+    assert guard["remaining_differences"]  # the partial restore is reported, not hidden
+    assert len(guest.writes) == 2 and guest.commands[-1].startswith("reg query ")  # read again on its own
+    record_ = json.loads((tmp_path / "exchange" / "cases" / "cx-g" / "caepipe_out" / "run_record.json")
+                         .read_text(encoding="utf-8"))
+    assert record_["route"] == "harness_error" and record_["harness_error"].startswith("KeyboardInterrupt")
+    assert record_["settings_guard"] == guard
 
 
 def test_settings_guard_stops_when_the_restore_cannot_be_verified(tmp_path):
