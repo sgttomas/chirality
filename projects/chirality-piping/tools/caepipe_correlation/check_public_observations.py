@@ -34,6 +34,15 @@ reported when a match involves an added line. Paths and file names are not scree
 `<!-- policy-text -->` and `<!-- /policy-text -->`, are not screened; an unpaired marker is an operational
 error. The check's own source and tests are screened for private tokens only.
 
+Benchmark agreement is published in one surface (owner, 2026-10-28): the Markdown files under
+`PUBLISHED_SURFACE`. There, once the surface's manifest (`PUBLICATION_MANIFEST` at `--head`) records that the
+owner has ruled the tolerance class, a result about the target is allowed; every other kind above is still
+refused. A missing manifest or `tolerance_class_ruled: false` leaves the gate unset; a malformed manifest, or a
+set gate without its ruling's date and an existing record path, is an operational error. Every file in the
+surface is also screened for agreement framed as acceptance, validation, compliance or compatibility; the
+reliance statement that disclaims these belongs in a policy-text span. Files given with `--file` and commit
+messages are never in the surface.
+
 The check is a lexical aid to review, not a proof that text is clean; review of the change remains the control.
 
 Exit 1 on a finding, 2 on an operational error, 0 otherwise.
@@ -45,6 +54,7 @@ import argparse
 import ast
 import html
 import io
+import json
 import re
 import subprocess
 import sys
@@ -584,8 +594,9 @@ def scan_tokens(label: str, lines: dict[int, str], terms: dict[str, list[str]], 
 
 
 def scan(label: str, lines: dict[int, str], terms: dict[str, list[str]], added: set[int] | None = None,
-         blank_breaks: bool = True) -> list[str]:
-    """Findings in `lines` (the whole prose); with `added`, only matches that involve an added line."""
+         blank_breaks: bool = True, published: bool = False) -> list[str]:
+    """Findings in `lines` (the whole prose); with `added`, only matches that involve an added line. With
+    `published` (a surface file whose gate is set), results about the target are allowed."""
 
     findings = scan_tokens(label, lines, terms, added, blank_breaks)
     names = [_word(term) for term in terms["names"]]
@@ -618,6 +629,8 @@ def scan(label: str, lines: dict[int, str], terms: dict[str, list[str]], added: 
 
         for kind, pattern in (("defect or limit about the target tool", DEFECT),
                               ("result about the target tool", COMPARISON), ("screenshot reference", SCREENSHOT)):
+            if published and pattern is COMPARISON:
+                continue
             for match in pattern.finditer(text):
                 span, sentence = _span(owners, match.start(), match.end()), sentences[match.start()]
                 # "matches ... to X" maps records; it does not compare results.
@@ -672,18 +685,72 @@ def _data_path(path: str) -> bool:
 # The check's own source and tests necessarily name the kinds of content it screens.
 SELF_PATHS = ("tools/caepipe_correlation/check_public_observations.py", "tests/test_check_public_observations.py")
 
+# The one public surface for benchmark agreement with the target (owner, 2026-10-28; DEL-17-05 Design §8.1),
+# and the manifest whose gate records the owner's tolerance-class ruling.
+PUBLISHED_SURFACE = "projects/chirality-piping/validation/caepipe_benchmark/published/"
+PUBLICATION_MANIFEST = PUBLISHED_SURFACE + "publication.json"
+PUBLICATION_KIND = "swbpipe.caepipe_benchmark_publication"
+RULING_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
+# Published agreement is never framed as acceptance, validation, compliance or compatibility (F-PIP-3).
+FRAMING = _alternation(r"accept(?:s|ed|ing|ance|able)?", r"approv(?:e|es|ed|ing|al)", r"endors(?:e|es|ed|ement)",
+                       r"certif(?:y|ies|ied|ication|icates?)", r"validat(?:e|es|ed|ing|ion|ions)",
+                       r"qualif(?:y|ies|ied|ication)", r"complian(?:t|ce)", r"compl(?:y|ies|ied|ying)",
+                       r"compatib(?:le|ility)", r"issu(?:ed|ance)", r"fit for (?:use|purpose)")
+
+
+def _exists(repo: Path, head: str, path: str) -> bool:
+    return subprocess.run(["git", "-C", str(repo), "cat-file", "-e", f"{head}:{path}"],
+                          capture_output=True, check=False).returncode == 0
+
+
+def publication_gate(repo: Path, head: str) -> bool:
+    """True when the surface's manifest at `head` records the owner's tolerance-class ruling. A missing
+    manifest or `tolerance_class_ruled: false` is unset; anything else that is not a complete ruling raises
+    ValueError."""
+
+    if not _exists(repo, head, PUBLICATION_MANIFEST):
+        return False
+    manifest = json.loads(_git(repo, "show", f"{head}:{PUBLICATION_MANIFEST}"))
+    if not isinstance(manifest, dict) or manifest.get("document_kind") != PUBLICATION_KIND:
+        raise ValueError("publication manifest of the wrong kind")
+    ruled = manifest.get("tolerance_class_ruled")
+    if ruled is False:
+        return False
+    recorded = manifest.get("recorded_in")
+    if ruled is not True or not RULING_DATE.fullmatch(str(manifest.get("ruled_on", ""))) \
+            or not isinstance(recorded, str) or not recorded or not _exists(repo, head, recorded):
+        raise ValueError("publication gate set without a complete ruling")
+    return True
+
+
+def scan_framing(label: str, lines: dict[int, str], added: set[int] | None = None) -> list[str]:
+    """Acceptance, validation, compliance or compatibility words anywhere in a surface file's prose."""
+
+    findings: list[str] = []
+    for text, owners, _ in _paragraphs(lines):
+        for match in FRAMING.finditer(_unpathed(text)):
+            span = _span(owners, match.start(), match.end())
+            if added is None or added.intersection(span):
+                findings.append(f"{label}:{span[0]}: acceptance or compliance framing in the published surface")
+    return list(dict.fromkeys(findings))
+
 
 def check_range(repo: Path, base: str, head: str, terms: dict[str, list[str]],
                 messages_base: str | None = None) -> list[str]:
     findings: list[str] = []
+    gate = publication_gate(repo, head)
     for path, numbers in sorted(added_line_numbers(repo, base, head).items()):
         text = _git(repo, "show", f"{head}:{path}")
         blank_breaks = Path(path).suffix.lower() not in CODE_SUFFIXES
+        surface = path.startswith(PUBLISHED_SURFACE)
         # Private tokens are screened in every file, before the owner-words and policy-text exemptions.
         findings += scan_tokens(path, prose_of(path, text, exempt=False), terms, numbers, blank_breaks)
         # A fixture data file (CSV) is consumed by code like code itself; only the private-token rule applies.
         if not path.endswith(SELF_PATHS) and not (_data_path(path) and Path(path).suffix.lower() == ".csv"):
-            findings += scan(path, prose_of(path, text), terms, numbers, blank_breaks)
+            findings += scan(path, prose_of(path, text), terms, numbers, blank_breaks,
+                             published=gate and surface and path.endswith(".md"))
+        if surface:
+            findings += scan_framing(path, prose_of(path, text), numbers)
         if _data_path(path):
             findings += scan_data_tokens(path, dict(enumerate(text.splitlines(), 1)), terms, numbers)
     # Commit messages already published cannot change; a pre-push run screens only the new ones.

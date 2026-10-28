@@ -126,6 +126,7 @@ code_paths:
 - core/handoff/caepipe_external/
 - tools/caepipe_correlation/
 - validation/caepipe_correlation/
+- validation/caepipe_benchmark/published/
 - apps/desktop/src/features/caepipe-external/CaepipeExternalHarnessPanel.tsx
 checks:
 - tests/test_caepipe_external_run_package.py

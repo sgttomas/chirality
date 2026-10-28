@@ -327,31 +327,60 @@ Public text (the repository, PRs and commits) may name CAEPIPE and state the fil
 and interface facts the code needs to interoperate: record syntax, CSV section layout,
 labels, sign and unit conventions, and how the importer and exporter map records. A fact
 the public manual covers is cited to it (DEL-17-01 `Source_Basis_Register.md`); any other
-is stated plainly as observed format behaviour. Code may contain whatever it needs.
-Anything that evaluates CAEPIPE stays in the exchange folder: result values, differences,
-agreement counts and classifications, tolerances measured from results; its defects and
-crashes, the trial's limits, the evaluation stamp, its performance; screenshots and
-survey notes. The lane-local check `tools/caepipe_correlation/check_public_observations.py`
-screens added public text for those kinds of content. A lexical check is only a backstop, so
-every pull request in this lane that adds public text also gets an independent content pass for
-evaluation material on its final diff (Agent 0, 2026-10-27); that review is the control.
+is stated plainly as observed format behaviour. Code may contain whatever it needs. Apart
+from the benchmark agreement §8.1 publishes, anything that evaluates CAEPIPE stays in the
+exchange folder: result values, differences, agreement counts and classifications,
+tolerances measured from results; its defects and crashes, the trial's limits, the
+evaluation stamp, its performance; screenshots and survey notes. The lane-local check
+`tools/caepipe_correlation/check_public_observations.py` screens added public text for
+those kinds of content. A lexical check is only a backstop, so every pull request in this
+lane that adds public text also gets an independent content pass for evaluation material
+on its final diff (Agent 0, 2026-10-27); that review is the control.
 <!-- /policy-text -->
 
-CAEPIPE's output files and the values parsed or derived from them (results,
-differences, agreement counts and classifications, tolerances measured from them) stay in
-the exchange folder and are never committed, pushed, or written into PR, issue or other
-GitHub text. The format and interface facts the code needs, including those learned
-from CAEPIPE's outputs, are public as stated above. Public material is otherwise limited
-to invented models, SWBPIPE-generated MBF, code, this Design, and invented parser
-fixtures. Vendor files in the CAEPIPE install folder are read locally
-only and never copied. No public text claims agreement with CAEPIPE. The pilot
-command's standard output carries operational status only (case, route, the record's
-path in the exchange folder or the reason none was written); outcome and cause counts
-stay in the private record. A guard test checks that no tracked file sits under an
-exchange-style path, carries the CAEPIPE CSV header of a real run, or is a parsed,
-comparison or run-record artefact (by document kind or private-layer file name)
-unless a provenance sidecar declares it invented, and that the harness refuses an
-exchange folder inside a Git work tree.
+CAEPIPE's output files and the values parsed or derived from them (results, differences,
+agreement counts and classifications, tolerances measured from them) stay in the exchange
+folder and are never committed, pushed, or written into PR, issue or other GitHub text,
+except the agreement and differences §8.1 publishes. The format and interface facts the
+code needs, including those learned from CAEPIPE's outputs, are public as stated above.
+Public material is otherwise limited to invented models, SWBPIPE-generated MBF, code, this
+Design, and invented parser fixtures. Vendor files in the CAEPIPE install folder are read
+locally only and never copied. Outside §8.1's surface, no public text claims agreement
+with CAEPIPE. The pilot command's standard output carries operational status only (case,
+route, the record's path in the exchange folder or the reason none was written); outcome
+and cause counts stay in the private record. A guard test checks that no tracked file sits
+under an exchange-style path, carries the CAEPIPE CSV header of a real run, or is a
+parsed, comparison or run-record artefact (by document kind or private-layer file name)
+unless a provenance sidecar declares it invented, and that the harness refuses an exchange
+folder inside a Git work tree.
+
+### 8.1 Published benchmark agreement
+
+<!-- policy-text -->
+Benchmark agreement with CAEPIPE is published (owner, 2026-10-28): <!-- owner-words -->"Benchmark agreement with CAEPIPE will indeed be published. That part should be out in the open because the whole point is to feed into CAEPIPE and expect the results to come out the same (but validated to Code and to the reputation of CAEPIPE)."<!-- /owner-words -->
+It appears in one surface: the Markdown files in `validation/caepipe_benchmark/published/`.
+Other public text, PRs and commits included, may point to the surface but does not restate
+agreement. A report there may state agreement and differences on the benchmark set's
+non-code mechanical outputs, the tolerances and decision rules applied, the model and case
+counts, and the CAEPIPE version. CAEPIPE's output files and the result values parsed from
+them stay in the exchange folder. Defects, crashes, trial limits, the evaluation stamp,
+performance, screenshots, survey notes and user-interface critique stay private, in the
+surface too.
+
+Nothing is published before the owner rules the external-oracle tolerance class (§7). The
+surface's `publication.json` carries the gate: `tolerance_class_ruled` stays `false` until
+the ruling, and setting it `true` records the ruling's date in `ruled_on` and, in
+`recorded_in`, the repository path of the text that records the ruling. Only while the gate
+at the checked head is set does the check allow a result about CAEPIPE, and only in the
+surface's Markdown; there it still refuses every other kind. A missing manifest leaves the
+gate unset; a malformed one, or a set gate without its date and an existing record, is an
+operational error. In every surface file the check also refuses acceptance, validation,
+compliance and compatibility words outside owner-words and policy-text spans: published
+agreement is not acceptance, validation of a user's design, code compliance or
+compatibility (F-PIP-3; AC-001). Reliance on SWBPIPE's results stays with the user, and
+acceptance, issuance and release remain the owner's acts; the surface's `README.md` states
+this in a policy-text span.
+<!-- /policy-text -->
 
 ## 9. Regression check
 
