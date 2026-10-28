@@ -635,6 +635,38 @@ def test_bend_is_written_at_its_tangent_intersection():
     assert omitted and "BEND" not in omitted[0]["reason"]
 
 
+def bent_l_with_sifs(in_plane=2.5, out_of_plane=2.0, unit="none"):
+    model = bent_l()
+    model["components"][0]["modifiers"]["sif_in_plane_user_value"] = q(in_plane, unit)
+    model["components"][0]["modifiers"]["sif_out_of_plane_user_value"] = q(out_of_plane, unit)
+    return model
+
+
+def test_bend_user_sifs_are_never_dropped_silently():
+    """W-17's probe: a bend's directional SIF pair either changes the text or is listed by name in the loss report."""
+    base = render_caepipe_mbf_si(bent_l(), title="INVENTED L")
+    result = render_caepipe_mbf_si(bent_l_with_sifs(), title="INVENTED L")
+    listed = [item for item in result.loss_report if item["entity"] == "component:bend-1"
+              and "sif_in_plane_user_value" in item["reason"] and "sif_out_of_plane_user_value" in item["reason"]]
+    assert result.text != base.text or listed
+
+
+def test_bend_user_sifs_are_written_as_bsif():
+    # Format of .MBF (users_manual/import_mbf.htm): BSIF(in-plane,out-plane) is a bend's SIF comment.
+    result = render_caepipe_mbf_si(bent_l_with_sifs(), title="INVENTED L")
+    assert result.status == "written", result.diagnostics
+    lines = result.text.split("\r\n")
+    assert lines[lines.index("LAYOUT") + 1:] == [
+        "F10,KA,MM1,PP1,CL=L1",
+        "T20,KI,B250,X4000,CFF=1,BSIF(2.5,2)",
+        "T30,KA,Z3000",
+        "",
+    ]
+    bend = result.element_map["BEND"]["bend"]
+    assert (bend["sif_in_plane"], bend["sif_out_of_plane"]) == (2.5, 2.0)
+    assert not [item for item in result.loss_report if "sif" in item["reason"].lower()]
+
+
 def test_bend_traversed_from_the_far_side_swaps_a_and_b():
     model = bent_l()
     model["supports"] = [{"id": "SB", "node": "B", "restraints": list(SIX)}]
