@@ -2371,6 +2371,7 @@
               "apps/desktop/src-tauri/src/atomic_report_package_save.rs",
               "apps/desktop/src-tauri/src/autosave.rs",
               "apps/desktop/src-tauri/src/autosave_tests.rs",
+              "apps/desktop/src-tauri/src/close_guard.rs",
               "apps/desktop/src-tauri/src/command_ingress.rs",
               "apps/desktop/src-tauri/src/exact_source_binding.rs",
               "apps/desktop/src-tauri/src/export_disposition_screen.rs",
