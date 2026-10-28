@@ -680,13 +680,18 @@ def _settings_snapshot(config: HarnessConfig, step: Callable[[str, str], dict[st
                        name: str) -> dict[str, dict] | None:
     """Read the whole configured settings key, every subkey included, through one guest step.
 
-    None unless the step succeeded, its output parses whole and it includes the configured key itself.
+    None unless the step succeeded, its output parses whole and every key it prints is the configured key or lies
+    under it. `reg query /s` prints no header for the queried key when that key holds no values of its own (only
+    its subkeys); a successful query that prints subkeys of it shows that it exists, so it is then recorded as
+    printed in `HKEY_CURRENT_USER` form. An output that prints no key at all is no reading.
     """
 
     record = step(name, f"reg query {_quote(config.settings_guard.key)} /s")
     snapshot = parse_reg_query(record["stdout"]) if record["exit_status"] == 0 else None
-    if snapshot is None or _registry_key_id(config.settings_guard.key) not in snapshot["keys"]:
+    root = _registry_key_id(config.settings_guard.key)
+    if snapshot is None or not all(key == root or key.startswith(root + "\\") for key in snapshot["keys"]):
         return None
+    snapshot["keys"].setdefault(root, "HKEY_CURRENT_USER" + config.settings_guard.key[len("HKCU"):])
     return snapshot
 
 

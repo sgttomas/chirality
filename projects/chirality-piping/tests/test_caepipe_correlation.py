@@ -1178,7 +1178,9 @@ class FakeGuest:
         self.raised = False                         # set once an injected fault has been raised
 
     def query(self) -> str:
-        lines = ["", INVENTED_KEY, ""]
+        # As `reg query /s` prints it: CRLF lines, a blank line first, and no header for the queried key itself
+        # while it holds no values of its own.
+        lines = [""]
         for key in sorted({key for key, _ in self.values} | self.empty_keys):
             lines += [key] + [f"    {name}    {kind}    {data}" if data else f"    {name}    {kind}"
                               for (k, name), (kind, data) in sorted(self.values.items()) if k == key] + [""]
@@ -2083,6 +2085,54 @@ def test_parse_reg_query_keeps_empty_keys_and_refuses_what_it_does_not_understan
                    ("hkcu\\software\\x", "Empty"): ("HKEY_CURRENT_USER\\Software\\X", "REG_SZ", "")}}
     assert parse_reg_query("ERROR: The system was unable to find the specified registry key or value.") is None
     assert parse_reg_query("HKEY_CURRENT_USER\\Software\\X\r\nsomething unexpected\r\n") is None
+
+
+# Invented `reg query <key> /s` output in the structure the guest prints: CRLF lines, a leading blank line, no
+# header for the queried key while it holds no values, REG_BINARY data as hex.
+ROOTLESS_READING = ("\r\n" + INVENTED_KEY + "\\Options\r\n    Use something    REG_BINARY    01\r\n\r\n"
+                    + INVENTED_KEY + "\\Recent list\r\n    1    REG_BINARY    "
+                    + _hex("C:\\work\\case.mod") + "\r\n    N    REG_BINARY    01000000\r\n\r\n\r\n")
+
+
+def _snapshot_of(text: str, exit_status: int = 0):
+    return harness._settings_snapshot(fake_config_with_guard(), lambda name, command: {
+        "exit_status": exit_status, "stdout": text, "stderr": ""}, "settings_before")
+
+
+def fake_config_with_guard() -> HarnessConfig:
+    return SimpleNamespace(settings_guard=INVENTED_GUARD)
+
+
+def test_settings_snapshot_accepts_a_queried_key_printed_without_a_header():
+    snapshot = _snapshot_of(ROOTLESS_READING)
+    root = harness._registry_key_id(INVENTED_GUARD.key)
+    assert snapshot is not None and snapshot["keys"][root] == INVENTED_KEY  # implied by its printed subkeys
+    assert set(snapshot["keys"]) == {root, root + "\\options", root + "\\recent list"}
+    assert snapshot["values"][(root + "\\recent list", "N")] == (INVENTED_KEY + "\\Recent list", "REG_BINARY",
+                                                                   "01000000")
+    # Printed with values of its own, the queried key is read as printed; the result is the same shape.
+    with_root = "\r\n" + INVENTED_KEY + "\r\n    Own    REG_DWORD    0x1\r\n" + ROOTLESS_READING
+    assert set(_snapshot_of(with_root)["keys"]) == set(snapshot["keys"])
+    # The same text with LF line endings (as decoded in text mode) reads the same.
+    assert _snapshot_of(ROOTLESS_READING.replace("\r\n", "\n")) == snapshot
+
+
+def test_settings_snapshot_still_refuses_what_it_cannot_place_or_parse():
+    outside = ROOTLESS_READING + "HKEY_CURRENT_USER\\Software\\Elsewhere\r\n    A    REG_BINARY    00\r\n"
+    assert _snapshot_of(outside) is None                    # a key not under the configured one
+    assert _snapshot_of("\r\n\r\n") is None                   # no key printed at all
+    assert _snapshot_of(ROOTLESS_READING, exit_status=1) is None
+    assert _snapshot_of(ROOTLESS_READING + "    orphan text\r\n") is None  # a line that is not understood
+    assert _snapshot_of(ROOTLESS_READING.replace("REG_BINARY    01\r\n", "REG_BINARY\t01\r\n")) is None
+    sibling = ROOTLESS_READING.replace(INVENTED_KEY + "\\Options", INVENTED_KEY + "-other\\Options")
+    assert _snapshot_of(sibling) is None                    # a name that merely starts like the configured key
+
+
+def test_settings_guard_reads_a_reading_without_the_queried_key_header_as_unchanged(tmp_path):
+    guest = FakeGuest()
+    assert not guest.query().splitlines()[1] == INVENTED_KEY  # the fake prints no header for the queried key
+    record_ = guarded(tmp_path, guest, solved, gui_fallback=False)
+    assert record_["settings_guard"]["status"] == "unchanged"
 
 
 def test_harness_config_reads_and_checks_the_settings_guard(tmp_path):

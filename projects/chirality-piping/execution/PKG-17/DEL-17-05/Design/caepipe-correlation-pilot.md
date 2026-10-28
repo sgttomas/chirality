@@ -153,8 +153,11 @@ queries) runs with `call_timeout_s`; the solve keeps its own timeout.
   any one is another user's instance (`foreign_instance_running`), and an unreadable or malformed list
   is `precondition_unknown`. Either way nothing starts. The check starts, closes and signals nothing.
 - **Before.** The whole key, every subkey included, is read (`reg query /s`). The reading keeps every
-  key, empty ones included, and every value, and counts only when every line of it is understood;
-  when it fails nothing runs (`settings_check_failed`).
+  key it prints, empty ones included, and every value, and counts only when every line of it is
+  understood and every key it prints is the configured key or lies under it; when it fails nothing runs
+  (`settings_check_failed`). `reg query /s` prints no header for the queried key while that key holds no
+  values of its own (observed on the guest); its printed subkeys show that it exists, so it is recorded
+  as present. An output that prints no key at all is no reading.
 - **During.** The guest script appends the id of each process it starts to `owned_pids.txt` in the
   case's work folder (and lists them in its report), and never falls back to printing through the
   GUI: a batch run that leaves no CSV ends `batch_no_csv`.
@@ -236,6 +239,9 @@ callee and recovery step, that case is not designed for.
   `settings_guard.json` and the run record, not on the error.
 - Signal deferral, and the catchable SIGTERM, are available only on the main thread; elsewhere the
   record says deferral is unavailable (`signal_deferral`) and signals act as they normally do.
+- Whether `reg query /s` prints a subkey that holds no values has not been observed on the guest (every
+  subkey read there has values). If it does not, such a subkey added or removed during a round trip is
+  not seen; every value change is.
 - Each process check, the session precondition before the first case included, runs with the guard
   call timeout; a transport failure is retried, up to three attempts, so one check can take up to
   three times `call_timeout_s` (60 s by default). It writes nothing and stays interruptible.
