@@ -358,28 +358,59 @@ folder inside a Git work tree.
 
 <!-- policy-text -->
 Benchmark agreement with CAEPIPE is published (owner, 2026-10-28): <!-- owner-words -->"Benchmark agreement with CAEPIPE will indeed be published. That part should be out in the open because the whole point is to feed into CAEPIPE and expect the results to come out the same (but validated to Code and to the reputation of CAEPIPE)."<!-- /owner-words -->
-It appears in one surface: the Markdown files in `validation/caepipe_benchmark/published/`.
-Other public text, PRs and commits included, may point to the surface but does not restate
-agreement. A report there may state agreement and differences on the benchmark set's
-non-code mechanical outputs, the tolerances and decision rules applied, the model and case
-counts, and the CAEPIPE version. CAEPIPE's output files and the result values parsed from
-them stay in the exchange folder. Defects, crashes, trial limits, the evaluation stamp,
-performance, screenshots, survey notes and user-interface critique stay private, in the
-surface too.
+It appears in one surface, `validation/caepipe_benchmark/published/`, and only as agreement
+summaries in this form, each its own paragraph:
 
-Nothing is published before the owner rules the external-oracle tolerance class (§7). The
-surface's `publication.json` carries the gate: `tolerance_class_ruled` stays `false` until
-the ruling, and setting it `true` records the ruling's date in `ruled_on` and, in
-`recorded_in`, the repository path of the text that records the ruling. Only while the gate
-at the checked head is set does the check allow a result about CAEPIPE, and only in the
-surface's Markdown; there it still refuses every other kind. A missing manifest leaves the
-gate unset; a malformed one, or a set gate without its date and an existing record, is an
-operational error. In every surface file the check also refuses acceptance, validation,
-compliance and compatibility words outside owner-words and policy-text spans: published
-agreement is not acceptance, validation of a user's design, code compliance or
-compatibility (F-PIP-3; AC-001). Reliance on SWBPIPE's results stays with the user, and
-acceptance, issuance and release remain the owner's acts; the surface's `README.md` states
-this in a policy-text span.
+```markdown
+<!-- benchmark-agreement -->
+- Benchmark set: <benchmark_set>
+- CAEPIPE version: <target_version>
+- Models: <count>; cases: <count>
+- Tolerance class: <tolerance_class>, ruled <ruled_on>
+- Agreement: <agreed> of <total> quantities agree within the ruled <tolerance_class> class.
+- Displacements: maximum difference <measured> against the ruled <tolerance_class> threshold <threshold>
+<!-- /benchmark-agreement -->
+```
+
+The first five lines appear once each. A family line (Displacements, Rotations, Forces,
+Moments or Reactions) appears at most once per family and supports the agreement statement
+with the family's maximum difference against the ruled threshold; quantities are a number
+with `%`, `ppm`, `mm`, `m`, `mrad`, `rad`, `deg`, `N`, `kN`, `N·m` or `kN·m`. The identifiers,
+version, class and date are those of the gate below. A threshold is a value the owner ruled,
+and appears in the owner's ruling words; a difference or tolerance measured from results is
+never presented as a threshold. Nothing else goes in a summary: raw result values,
+per-model listings, customer and other non-benchmark models, and CAEPIPE's output files stay
+in the exchange folder. Outside a summary, no public text, PRs and commits included,
+restates agreement; it may point to the surface. Defects, crashes, trial limits, the evaluation stamp, performance, screenshots, survey notes and
+user-interface critique stay private, in the surface too.
+
+Nothing is published before two owner acts: the owner rules the external-oracle tolerance
+class (§7), and the owner checks CAEPIPE's full licence and any trial-download terms for the
+publication of benchmark results (Agent 0, 2026-10-28). Both are recorded in one section of
+the governing record `loop/LOOP_INIT.md`, in the owner's words, each with its marker inside
+the owner-words span (`<!-- owner-ruling: tolerance-class -->` and
+`<!-- owner-ruling: licence-terms-checked -->`); the section cites the ruling's date and the
+tolerance class's identifier. The surface's `publication.json` carries the gate:
+`tolerance_class_ruled` and `licence_terms_checked` stay `false` until then. Setting the gate
+sets both `true` and records `ruled_on` (a calendar date), `recorded_in`
+(`projects/chirality-piping/loop/LOOP_INIT.md#<section anchor>`), `benchmark_set`,
+`tolerance_class` and `target_version`. A missing manifest or `tolerance_class_ruled: false`
+leaves the gate unset. Anything else short of a complete gate is an operational error of the
+check: a malformed manifest, a manifest or record that is not a regular file, any other
+record (the manifest, a README, a directory), a missing or ambiguous section, or a section
+without both markers in owner-words, the date or the class.
+
+While the gate at the checked head is set, the check allows a result about CAEPIPE only on
+the lines of a well-formed summary in the surface's Markdown, and refuses every other kind
+there as elsewhere; a malformed summary line is a finding. In the surface, owner-words and
+policy-text spans exempt nothing, and the check refuses acceptance, validation, compliance,
+compatibility and release words: published agreement is not acceptance, validation of a
+user's design, code compliance, compatibility or a release (F-PIP-3; AC-001). Reliance on
+SWBPIPE's results stays with the user, and acceptance, issuance and release remain the
+owner's acts. The surface's `README.md` states this in the one canonical sentence, inside a
+`<!-- reliance -->` span; any other wording there is a finding. A symlink in the surface, on
+its path, or pointing into it is a finding. Everywhere, the check also refuses agreement
+stated without a number and critique of CAEPIPE's user interface.
 <!-- /policy-text -->
 
 ## 9. Regression check

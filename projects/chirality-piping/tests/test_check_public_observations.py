@@ -567,99 +567,268 @@ def test_an_equation_stated_as_cross_tool_agreement_is_a_result(tmp_path):
     assert run(tmp_path / "d", {"doc/a.md": "Acmepipe units differ: 1 in = 25.4 mm.\n"}) == []
 
 
-# Benchmark agreement is published only in the designated surface, once its gate records the owner's
-# tolerance-class ruling (owner, 2026-10-28). Every sentence below is invented.
+
+# Benchmark agreement is published only in the designated surface, in the defined summary form, once its gate
+# records the owner's tolerance-class and licence-terms rulings (owner, 2026-10-28). Every sentence, identifier,
+# value and ruling below is invented.
 SURFACE = check.PUBLISHED_SURFACE
-RECORD = "projects/chirality-piping/execution/ruling.md"
+RECORD = check.GATE_RECORD
+REPORT_PATH = SURFACE + "report.md"
+RULING = ("# Loop\n\n## Benchmark tolerance ruling\n\n"
+          "Owner, 2026-11-02, class TC-1: <!-- owner-words --><!-- owner-ruling: tolerance-class -->"
+          "\"Use 0.5 % for displacements and 1 N for forces.\"<!-- /owner-words -->\n"
+          "Owner, 2026-11-02: <!-- owner-words --><!-- owner-ruling: licence-terms-checked -->"
+          "\"I have read the licence and download terms.\"<!-- /owner-words -->\n\n## Next\n\nOther text.\n")
+GATE = {"document_kind": check.PUBLICATION_KIND, "tolerance_class_ruled": True, "licence_terms_checked": True,
+        "ruled_on": "2026-11-02", "recorded_in": RECORD + "#benchmark-tolerance-ruling", "benchmark_set": "BS-1",
+        "tolerance_class": "TC-1", "target_version": "9.99"}
+SUMMARY_LINES = ["- Benchmark set: BS-1", "- Acmepipe version: 9.99", "- Models: 12; cases: 35",
+                 "- Tolerance class: TC-1, ruled 2026-11-02",
+                 "- Agreement: 35 of 35 quantities agree within the ruled TC-1 class.",
+                 "- Displacements: maximum difference 0.12 % against the ruled TC-1 threshold 0.5 %",
+                 "- Forces: maximum difference 0.3 N against the ruled TC-1 threshold 1 N"]
 AGREEMENT_TEXT = "SWBPIPE and Acmepipe 9.99 agree within 0.5 % on 35 of 35 quantities.\n"
+RELIANCE = ("<!-- reliance -->\n" + check.RELIANCE_STATEMENT + "\n<!-- /reliance -->\n")
 
 
-def manifest(ruled, ruled_on="2026-11-02", recorded_in=RECORD, kind=check.PUBLICATION_KIND) -> str:
-    return check.json.dumps({"document_kind": kind, "tolerance_class_ruled": ruled, "ruled_on": ruled_on,
-                             "recorded_in": recorded_in})
+def manifest(**changes) -> str:
+    return check.json.dumps({**GATE, **changes})
 
 
-def gated(ruled=True, **more: str) -> dict[str, str]:
-    return {check.PUBLICATION_MANIFEST: manifest(ruled), RECORD: "Invented ruling record.\n", **more}
+def summary(lines=SUMMARY_LINES) -> str:
+    return "# Report\n\n<!-- benchmark-agreement -->\n" + "\n".join(lines) + "\n<!-- /benchmark-agreement -->\n"
 
 
-def test_agreement_in_the_surface_passes_once_the_gate_is_set(tmp_path):
-    assert run(tmp_path, gated(**{SURFACE + "report.md": AGREEMENT_TEXT})) == []
+def gated(record: str = RULING, **files: str) -> dict[str, str]:
+    return {check.PUBLICATION_MANIFEST: manifest(), RECORD: record, **files}
 
 
-def test_agreement_in_the_surface_is_refused_while_the_gate_is_unset(tmp_path):
-    expected = [SURFACE + "report.md:1: result about the target tool"]
-    assert run(tmp_path / "f", gated(ruled=False, **{SURFACE + "report.md": AGREEMENT_TEXT})) == expected
-    assert run(tmp_path / "m", {SURFACE + "report.md": AGREEMENT_TEXT}) == expected
+def kinds(findings: list[str]) -> set[str]:
+    return {item.split(": ", 1)[1] for item in findings}
+
+
+def commit_links(repo: Path, links: dict[str, str]) -> None:
+    for name, target in links.items():
+        path = repo / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.symlink_to(target)
+    git(repo, "add", "-A")
+    git(repo, "commit", "-q", "-m", "links")
+
+
+def run_links(tmp_path: Path, files: dict[str, str], links: dict[str, str]) -> list[str]:
+    repo = repo_with(tmp_path, files)
+    commit_links(repo, links)
+    return check.check_range(repo, "main", "topic", check.load_terms(write_terms(tmp_path)))
+
+
+def test_a_well_formed_summary_passes_once_the_gate_is_set(tmp_path):
+    assert run(tmp_path, gated(**{REPORT_PATH: summary() + "\n" + RELIANCE})) == []
+
+
+def test_a_summary_is_refused_while_the_gate_is_unset(tmp_path):
+    unset = {check.PUBLICATION_MANIFEST: manifest(tolerance_class_ruled=False), REPORT_PATH: summary()}
+    assert "result about the target tool" in kinds(run(tmp_path / "f", unset))
+    assert "result about the target tool" in kinds(run(tmp_path / "m", {REPORT_PATH: summary()}))
 
 
 @pytest.mark.parametrize("path", ["doc/report.md", "projects/chirality-piping/validation/caepipe_benchmark/report.md",
                                   "projects/chirality-piping/validation/caepipe_benchmark/published-draft/report.md",
                                   SURFACE + "report.txt"])
-def test_agreement_outside_the_surface_is_refused_with_the_gate_set(tmp_path, path):
-    assert run(tmp_path, gated(**{path: AGREEMENT_TEXT})) == [f"{path}:1: result about the target tool"]
+def test_a_summary_outside_the_surface_is_refused_with_the_gate_set(tmp_path, path):
+    assert "result about the target tool" in kinds(run(tmp_path, gated(**{path: summary()})))
+
+
+def test_agreement_in_the_surface_outside_a_summary_is_refused(tmp_path):
+    findings = run(tmp_path, gated(**{REPORT_PATH: summary() + "\n" + AGREEMENT_TEXT}))
+    assert findings == [f"{REPORT_PATH}:{len(SUMMARY_LINES) + 6}: result about the target tool"]
+
+
+@pytest.mark.parametrize("line", [
+    "- n1_uy: SWBPIPE 1.234 mm, Acmepipe 1.236 mm",  # a raw result value
+    "- Model cpc-01: 12 of 12 quantities agree within the ruled TC-1 class",  # a per-model listing
+    "- Benchmark set: CUSTOMER-7",  # a customer or non-benchmark model set
+    "- Moments: maximum difference 0.4 N·m against the ruled TC-1 threshold 0.4 N·m",  # a measured threshold
+    "- Rotations: maximum difference 0.1 % against the ruled TC-2 threshold 0.5 %",  # another class
+    "- Acmepipe version: 9.98",
+    "- Tolerance class: TC-1, ruled 2026-11-03",
+    "- Agreement: 36 of 35 quantities agree within the ruled TC-1 class",
+    "- Forces: maximum difference 0.2 N against the ruled TC-1 threshold 1 N",  # a second line for one family
+    "- Displacements agree closely",
+])
+def test_a_line_outside_the_summary_form_is_refused(tmp_path, line):
+    findings = run(tmp_path, gated(**{REPORT_PATH: summary(SUMMARY_LINES + [line])}))
+    assert "benchmark agreement line outside the defined form" in kinds(findings)
+    assert "result about the target tool" in kinds(findings) or "qualitative result about the target tool" in kinds(findings) \
+        or not any(word in line for word in ("agree", "difference"))
+
+
+def test_a_summary_lacking_a_required_line_or_standing_in_a_paragraph_is_refused(tmp_path):
+    findings = run(tmp_path / "r", gated(**{REPORT_PATH: summary([SUMMARY_LINES[0]] + SUMMARY_LINES[3:])}))
+    assert "benchmark agreement summary lacks a required line" in kinds(findings)
+    joined = summary().replace("# Report\n\n", "Intro text.\n")
+    assert "benchmark agreement summary not set apart by blank lines" in kinds(
+        run(tmp_path / "p", gated(**{REPORT_PATH: joined})))
+
+
+def test_a_defect_inside_a_summary_is_refused(tmp_path):
+    findings = run(tmp_path, gated(**{REPORT_PATH: summary(SUMMARY_LINES + ["- Acmepipe 9.99 crashed on 3 models"])}))
+    assert {"defect or limit about the target tool", "benchmark agreement line outside the defined form"} <= kinds(findings)
+
+
+@pytest.mark.parametrize("text", ["<!-- benchmark-agreement -->\n- Benchmark set: BS-1\n",
+                                  "Text <!-- benchmark-agreement --> inline.\n"])
+def test_a_misplaced_summary_marker_is_an_operational_error(tmp_path, text):
+    with pytest.raises(ValueError):
+        run(tmp_path, gated(**{REPORT_PATH: text}))
+
+
+@pytest.mark.parametrize("changes, record", [
+    ({"recorded_in": check.PUBLICATION_MANIFEST}, RULING),  # the manifest itself
+    ({"recorded_in": SURFACE + "README.md#benchmark-tolerance-ruling"}, RULING),  # a README
+    ({"recorded_in": "projects/chirality-piping/loop#benchmark-tolerance-ruling"}, RULING),  # a directory
+    ({"recorded_in": RECORD}, RULING),  # no section
+    ({"recorded_in": RECORD + "#missing"}, RULING),
+    ({"ruled_on": "2026-99-99"}, RULING),
+    ({"ruled_on": "2026-02-30"}, RULING),
+    ({"ruled_on": "2026-11-03"}, RULING),  # a date the section does not cite
+    ({"licence_terms_checked": False}, RULING),
+    ({"tolerance_class": "TC-9"}, RULING),
+    ({"benchmark_set": None}, RULING),
+    ({"tolerance_class_ruled": "yes"}, RULING),
+    ({"document_kind": "swbpipe.other"}, RULING),
+    ({}, RULING.replace("<!-- owner-ruling: licence-terms-checked -->", "")),
+    ({}, RULING.replace("<!-- owner-words --><!-- owner-ruling: tolerance-class -->",
+                        "<!-- owner-ruling: tolerance-class --><!-- owner-words -->")),  # outside owner-words
+    ({}, RULING.replace("## Next", "## Benchmark tolerance ruling")),  # an ambiguous section
+])
+def test_a_gate_without_its_governing_ruling_is_an_operational_error(tmp_path, changes, record):
+    files = {check.PUBLICATION_MANIFEST: manifest(**changes), RECORD: record, "doc/a.md": "generic\n"}
+    with pytest.raises(ValueError):
+        run(tmp_path, files)
+    assert check.main(["--terms-file", str(write_terms(tmp_path)), "--repo", str(tmp_path / "repo"), "--base", "main",
+                       "--head", "topic"]) == 2
+
+
+def test_a_malformed_manifest_is_an_operational_error(tmp_path):
+    with pytest.raises(ValueError):
+        run(tmp_path, {check.PUBLICATION_MANIFEST: "{not json", "doc/a.md": "generic\n"})
+
+
+def test_a_symlinked_gate_record_or_manifest_is_an_operational_error(tmp_path):
+    record = {check.PUBLICATION_MANIFEST: manifest(), "projects/chirality-piping/loop/real.md": RULING}
+    with pytest.raises(ValueError):
+        run_links(tmp_path / "r", record, {RECORD: "real.md"})
+    surface = {SURFACE + "real.json": manifest(), RECORD: RULING}
+    with pytest.raises(ValueError):
+        run_links(tmp_path / "m", surface, {check.PUBLICATION_MANIFEST: "real.json"})
+
+
+@pytest.mark.parametrize("links", [
+    {SURFACE + "alias.md": "../../../../doc/a.md"},  # in the surface
+    {"doc/alias": "../projects/chirality-piping/validation/caepipe_benchmark/published"},  # into it
+    {"doc/deep": "../projects/chirality-piping/validation"},  # above it
+    {"projects/chirality-piping/validation/caepipe_benchmark": "../../../doc"},  # on its path
+    {"doc/absolute": "/elsewhere/projects/chirality-piping/validation/caepipe_benchmark/published/x.md"},
+])
+def test_a_symlink_in_or_into_the_surface_is_refused(tmp_path, links):
+    findings = run_links(tmp_path, {"doc/a.md": "generic\n"}, links)
+    assert "symlink in or into the published surface" in kinds(findings)
+
+
+def test_an_unrelated_symlink_passes(tmp_path):
+    assert run_links(tmp_path, {"doc/a.md": "generic\n"}, {"doc/alias.md": "a.md"}) == []
+
+
+def test_policy_text_and_owner_words_exempt_nothing_in_the_surface(tmp_path):
+    text = "<!-- policy-text -->\nAcmepipe 9.99 crashed.\n<!-- /policy-text -->\n"
+    assert kinds(run(tmp_path / "s", gated(**{SURFACE + "notes.md": text}))) == {"defect or limit about the target tool"}
+    assert run(tmp_path / "o", gated(**{"doc/notes.md": text})) == []
 
 
 def test_agreement_in_a_commit_message_is_refused_with_the_gate_set(tmp_path):
-    repo = repo_with(tmp_path, gated(**{SURFACE + "report.md": "Invented report.\n"}))
+    repo = repo_with(tmp_path, gated(**{REPORT_PATH: summary()}))
     (repo / "doc").mkdir()
     (repo / "doc/b.md").write_text("generic\n", encoding="utf-8")
     git(repo, "add", "-A")
     git(repo, "commit", "-q", "-m", AGREEMENT_TEXT)
     findings = check.check_range(repo, "main", "topic", check.load_terms(write_terms(tmp_path)))
-    assert [item.split(": ", 1)[1] for item in findings] == ["result about the target tool"]
-    assert findings[0].startswith("commit ")
-
-
-@pytest.mark.parametrize("text, kind", [
-    ("Acmepipe 9.99 crashed on 3 of 35 models.\n", "defect or limit about the target tool"),
-    ("Acmepipe 9.99 agrees within 0.5 % on the trial build.\n", "defect or limit about the target tool"),
-    ("Acmepipe 9.99 agrees within 0.5 % on 35 of 35 quantities; see the screenshot.\n", "screenshot reference"),
-    ("Agreement on 35 of 35 quantities; Widget overflow at none.\n", "private token #1"),
-])
-def test_other_evaluation_stays_refused_inside_the_gated_surface(tmp_path, text, kind):
-    assert run(tmp_path, gated(**{SURFACE + "report.md": text})) == [f"{SURFACE}report.md:1: {kind}"]
+    assert findings and all(item.startswith("commit ") for item in findings)
+    assert kinds(findings) == {"result about the target tool"}
 
 
 @pytest.mark.parametrize("ruled", [True, False])
-def test_agreement_framed_as_acceptance_or_compliance_is_refused_in_the_surface(tmp_path, ruled):
-    text = "The 35 of 35 agreement with Acmepipe 9.99 validates the design.\n"
-    findings = run(tmp_path, gated(ruled=ruled, **{SURFACE + "report.md": text}))
-    assert f"{SURFACE}report.md:1: acceptance or compliance framing in the published surface" in findings
-    # Outside the surface the framing class does not apply; the result class still does.
-    assert run(tmp_path / "o", gated(**{"doc/a.md": "The checks validate the parser.\n"})) == []
+@pytest.mark.parametrize("text", [
+    "The 35 of 35 agreement validates the design.\n",
+    "This benchmark marks the release of SWBPIPE.\n",
+    "SWBPIPE is production-ready.\n",
+    check.RELIANCE_STATEMENT + "\n",  # the canonical sentence without its marker
+])
+def test_framing_as_acceptance_compliance_or_release_is_refused_in_the_surface(tmp_path, ruled, text):
+    files = gated(**{SURFACE + "notes.md": text})
+    files[check.PUBLICATION_MANIFEST] = manifest(tolerance_class_ruled=ruled)
+    assert "acceptance or compliance framing in the published surface" in kinds(run(tmp_path, files))
 
 
-def test_the_reliance_statement_in_a_policy_text_span_passes(tmp_path):
-    text = ("<!-- policy-text -->\nAgreement is not acceptance, validation or code compliance; reliance stays with "
-            "the user.\n<!-- /policy-text -->\n" + AGREEMENT_TEXT)
-    assert run(tmp_path, gated(**{SURFACE + "report.md": text})) == []
+def test_framing_words_outside_the_surface_are_not_screened(tmp_path):
+    assert run(tmp_path, gated(**{"doc/a.md": "The checks validate the parser before the release.\n"})) == []
+
+
+def test_only_the_canonical_reliance_sentence_is_exempt(tmp_path):
+    assert run(tmp_path / "c", gated(**{SURFACE + "README.md": "# Folder\n\n" + RELIANCE})) == []
+    altered = RELIANCE.replace("stays with the user", "stays with the user; the design is validated")
+    findings = run(tmp_path / "a", gated(**{SURFACE + "README.md": "# Folder\n\n" + altered}))
+    assert "reliance statement differs from the canonical sentence" in kinds(findings)
+    assert "acceptance or compliance framing in the published surface" in kinds(findings)
 
 
 @pytest.mark.parametrize("text", [
-    "{not json",
-    manifest(True, kind="swbpipe.other"),
-    manifest("yes"),
-    manifest(True, ruled_on=None),
-    manifest(True, recorded_in=None),
-    manifest(True, recorded_in="projects/chirality-piping/execution/missing.md"),
+    "Acmepipe and SWBPIPE agree closely.\n",
+    "Acmepipe 9.99 shows no significant differences from SWBPIPE.\n",
+    "The results are identical in Acmepipe.\n",
+    "SWBPIPE stays within tolerance of Acmepipe.\n",
 ])
-def test_a_malformed_or_incomplete_gate_is_an_operational_error(tmp_path, text):
-    files = {check.PUBLICATION_MANIFEST: text, RECORD: "Invented ruling record.\n", "doc/a.md": "generic\n"}
-    with pytest.raises(ValueError):
-        run(tmp_path, files)
-    repo = tmp_path / "repo"
-    assert check.main(["--terms-file", str(write_terms(tmp_path)), "--repo", str(repo), "--base", "main",
-                       "--head", "topic"]) == 2
+@pytest.mark.parametrize("path", ["doc/a.md", SURFACE + "notes.md"])
+def test_qualitative_agreement_is_refused_in_and_outside_the_surface(tmp_path, text, path):
+    assert kinds(run(tmp_path, gated(**{path: text}))) == {"qualitative result about the target tool"}
+
+
+@pytest.mark.parametrize("text", [
+    "The Acmepipe load dialog is clunky.\n",
+    "Acmepipe has a steep learning curve.\n",
+    "Survey note: the results window is hard to navigate.\n",
+])
+@pytest.mark.parametrize("path", ["doc/a.md", SURFACE + "notes.md"])
+def test_user_interface_critique_is_refused_in_and_outside_the_surface(tmp_path, text, path):
+    assert kinds(run(tmp_path, gated(**{path: text}))) == {"user-interface critique of the target tool"}
+
+
+@pytest.mark.parametrize("text", [
+    "The Acmepipe importer uses the same sign convention as SWBPIPE.\n",
+    "The Acmepipe batch dialog writes the CSV.\n",
+])
+def test_format_facts_near_the_new_classes_pass(tmp_path, text):
+    assert run(tmp_path, {"doc/a.md": text}) == []
+
+
+@pytest.mark.parametrize("text", [
+    '[manual](https://example.invalid/m "Acmepipe crashed here")\n',
+    '<span title="Acmepipe crashed">note</span>\n',
+    "<abbr title='Acmepipe trial build'>TB</abbr>\n",
+    '<td title="Acmepipe crashed">x</td>\n',
+])
+def test_link_titles_and_tag_attributes_are_screened(tmp_path, text):
+    assert kinds(run(tmp_path, {"doc/a.md": text})) == {"defect or limit about the target tool"}
 
 
 def test_whole_file_mode_has_no_surface(tmp_path):
     report = tmp_path / "report.md"
-    report.write_text(AGREEMENT_TEXT, encoding="utf-8")
+    report.write_text(summary(), encoding="utf-8")
     assert check.main(["--terms-file", str(write_terms(tmp_path)), "--file", str(report)]) == 1
 
 
 def test_the_committed_gate_is_unset():
-    # Nothing is published before the owner rules the tolerance class (DEL-17-05 Design §8.1).
+    # Nothing is published before the owner rules the tolerance class and checks the licence terms (Design §8.1).
     manifest = check.json.loads((ROOT.parents[1] / check.PUBLICATION_MANIFEST).read_text(encoding="utf-8"))
-    assert manifest["document_kind"] == check.PUBLICATION_KIND and manifest["tolerance_class_ruled"] is False
+    assert manifest["document_kind"] == check.PUBLICATION_KIND
+    assert manifest["tolerance_class_ruled"] is False and manifest["licence_terms_checked"] is False

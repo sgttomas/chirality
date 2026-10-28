@@ -34,14 +34,19 @@ reported when a match involves an added line. Paths and file names are not scree
 `<!-- policy-text -->` and `<!-- /policy-text -->`, are not screened; an unpaired marker is an operational
 error. The check's own source and tests are screened for private tokens only.
 
-Benchmark agreement is published in one surface (owner, 2026-10-28): the Markdown files under
-`PUBLISHED_SURFACE`. There, once the surface's manifest (`PUBLICATION_MANIFEST` at `--head`) records that the
-owner has ruled the tolerance class, a result about the target is allowed; every other kind above is still
-refused. A missing manifest or `tolerance_class_ruled: false` leaves the gate unset; a malformed manifest, or a
-set gate without its ruling's date and an existing record path, is an operational error. Every file in the
-surface is also screened for agreement framed as acceptance, validation, compliance or compatibility; the
-reliance statement that disclaims these belongs in a policy-text span. Files given with `--file` and commit
-messages are never in the surface.
+Agreement is also screened when stated without a number (`agrees closely`, `no significant differences`), and so
+is critique of the target's user interface in a sentence that refers to the target or the survey. Link titles and
+the alt, title and label attributes of HTML tags are read as visible text.
+
+Benchmark agreement is published in one surface (owner, 2026-10-28): regular files under `PUBLISHED_SURFACE`,
+where owner-words and policy-text spans exempt nothing. Its gate is the manifest `PUBLICATION_MANIFEST` at
+`--head` (`publication_gate`): unset while missing or `tolerance_class_ruled: false`; set only with both owner
+rulings recorded in a section of `GATE_RECORD`; anything in between is an operational error. While it is set, a
+result about the target is allowed only inside a Markdown agreement summary of the defined form
+(`<!-- benchmark-agreement -->`, `SUMMARY_LINES`), and every other kind stays refused there too. Every surface
+file is screened for agreement framed as acceptance, validation, compliance, compatibility or a release, except
+the one canonical sentence in a `<!-- reliance -->` span. A symlink in, on the path to, or into the surface is a
+finding. Files given with `--file` and commit messages are never in the surface.
 
 The check is a lexical aid to review, not a proof that text is clean; review of the change remains the control.
 
@@ -52,9 +57,11 @@ from __future__ import annotations
 
 import argparse
 import ast
+import datetime
 import html
 import io
 import json
+import posixpath
 import re
 import subprocess
 import sys
@@ -293,6 +300,10 @@ BLOCK_TAG = re.compile(r"</?(?:br|p|div|li|ul|ol|dl|dt|dd|tr|td|th|table|thead|t
                        r"|section|details|summary)\b" + TAG_BODY, re.IGNORECASE)
 REFERENCE_IMAGE = re.compile(r"!\[([^\[\]]*)\](?:\[([^\[\]]*)\])?(?!\()")
 REFERENCE_DEFINITION = re.compile(r"^\s*\[([^\[\]]+)\]:\s*<?(\S+?)>?(?:\s.*)?$")
+TAG = re.compile(r"</?[A-Za-z]" + TAG_BODY)
+# Attributes a reader sees on hover or in place of an image; their values are read as paragraphs of their own.
+TAG_ATTRIBUTE = re.compile(r"""(?<![\w-])(?:alt|title|aria-label|aria-description|label|summary|placeholder)\s*=\s*"""
+                           r"""(?:"([^"]*)"|'([^']*)'|([^\s"'>]+))""", re.IGNORECASE)
 VISIBLE_TEXT = (
     (re.compile(r"\[([^\[\]]*)\]\[[^\[\]]*\]"), 1),
     (re.compile(r"!?\[|\]"), ""),
@@ -346,10 +357,11 @@ def _rewrite(pattern: re.Pattern[str], replacement, text: str, owners: list[int]
     return "".join(out), own
 
 
-def _link_end(text: str, index: int) -> int | None:
-    """The index just past an inline link's closing parenthesis, given the index after its opening one:
-    an optional `<...>` or balanced destination, then an optional quoted or parenthesized title, with
-    backslash escapes honoured. None when the text is not a well-formed inline link."""
+def _link_end(text: str, index: int) -> tuple[int, int, int] | None:
+    """The index just past an inline link's closing parenthesis, given the index after its opening one, and
+    the bounds of its title (equal when it has none): an optional `<...>` or balanced destination, then an
+    optional quoted or parenthesized title, with backslash escapes honoured. None when the text is not a
+    well-formed inline link."""
 
     size = len(text)
 
@@ -378,32 +390,50 @@ def _link_end(text: str, index: int) -> int | None:
                 depth -= 1
             index += 1
     index = blank(index)
+    title = (index, index)
     if index < size and text[index] in "\"'(":
         close = ")" if text[index] == "(" else text[index]
         index += 1
+        start = index
         while index < size and text[index] != close:
             index += 2 if text[index] == "\\" else 1
+        title = (start, min(index, size))
         index = blank(index + 1)
-    return index + 1 if index < size and text[index] == ")" else None
+    return (index + 1, *title) if index < size and text[index] == ")" else None
 
 
-def _unlinked(text: str, owners: list[int]) -> tuple[str, list[int]]:
-    """Inline links and images reduced to their labels (an image also to a screenshot marker); the
-    destination's parentheses are balanced."""
+def _attributes(text: str, owners: list[int]) -> list[tuple[str, list[int]]]:
+    """The visible attribute values of every tag in `text`, each with the source lines of its characters."""
+
+    values = []
+    for tag in TAG.finditer(text):
+        for match in TAG_ATTRIBUTE.finditer(text, tag.start(), tag.end()):
+            group = next(index for index in (1, 2, 3) if match.group(index) is not None)
+            values.append((match.group(group), owners[match.start(group):match.end(group)]))
+    return values
+
+
+def _unlinked(text: str, owners: list[int]) -> tuple[str, list[int], list[tuple[str, list[int]]]]:
+    """Inline links and images reduced to their labels (an image also to a screenshot marker), and their
+    titles, which are shown on hover, apart; the destination's parentheses are balanced."""
 
     out: list[str] = []
     own: list[int] = []
+    titles: list[tuple[str, list[int]]] = []
     position = 0
     for match in LINK_OPEN.finditer(text):
         if match.start() < position:
             continue
-        index = _link_end(text, match.end())
-        if index is None:
+        found = _link_end(text, match.end())
+        if found is None:
             continue
+        index, title_start, title_end = found
         out.append(text[position:match.start()])
         own.extend(owners[position:match.start()])
         out.append(match.group(1))
         own.extend(owners[match.start(1):match.end(1)])
+        if title_end > title_start:
+            titles.append((text[title_start:title_end], owners[title_start:title_end]))
         if match.group().startswith("!") and _screenshot_candidate(text[match.start():index]):
             # An image may be a screenshot; the invisible marker lets the screenshot rule judge it in context.
             out.append(IMAGE_MARK)
@@ -411,7 +441,7 @@ def _unlinked(text: str, owners: list[int]) -> tuple[str, list[int]]:
         position = index
     out.append(text[position:])
     own.extend(owners[position:])
-    return "".join(out), own
+    return "".join(out), own, titles
 
 
 def _unimaged(text: str, owners: list[int], references: dict[str, tuple[str, int]]) -> tuple[str, list[int]]:
@@ -459,10 +489,14 @@ def _paragraphs(lines: dict[int, str], blank_breaks: bool = True) -> list[tuple[
         if text:
             comments = [(match.group(1), owners[match.start(1):match.end(1)]) for match in HTML_COMMENT.finditer(text)]
             text, owners = _rewrite(HTML_COMMENT, " ", text, owners)
-            for part, part_owners in [(text, owners)] + comments:
+            # Comments, link titles and tag attributes are read as paragraphs of their own.
+            pending = [(text, owners)] + comments
+            while pending:
+                part, part_owners = pending.pop(0)
                 if not part.strip():
                     continue
-                part, part_owners = _unlinked(part, part_owners)
+                part, part_owners, titles = _unlinked(part, part_owners)
+                pending += titles + _attributes(part, part_owners)
                 part, part_owners = _unimaged(part, part_owners, references)
                 for pattern, replacement in VISIBLE_TEXT:
                     part, part_owners = _rewrite(pattern, replacement, part, part_owners)
@@ -551,6 +585,28 @@ DEFECT = _alternation(r"crash(?:es|ed|ing)?", r"access violations?", r"defects?"
                       r"trial", r"evaluation (?:version|build|copy|stamp|period)",
                       r"watermark\w*", r"stamp(?:s|ed)?", r"expir(?:es|ed|y|ation)", r"slow(?:er|ly|s)?", r"performance",
                       r"faster", r"speed")
+# Agreement stated without a number (`agrees closely`, `no significant differences`, `within tolerance`). Values
+# that "match exactly" after a stated conversion are a format fact, so `match` takes only the looser adverbs.
+QUALITATIVE = _alternation(
+    r"(?:agree[sd]?|agreeing|correlat(?:es|ed|ing)?)(?: very)? (?:closely|well|exactly|perfectly|fully|completely"
+    r"|precisely)",
+    r"match(?:es|ed|ing)?(?: very)? (?:closely|well|perfectly)",
+    r"(?:close|good|excellent|full|perfect|complete|exact|near|strong|reasonable) (?:agreement|match|correlation"
+    r"|correspondence)",
+    r"(?:identical|indistinguishable|the same|same) (?:results?|values?|outputs?|answers?|numbers?|displacements?"
+    r"|forces?|moments?|stresses|reactions?)",
+    r"(?:results?|values?|outputs?|answers?|numbers?) (?:are|were|is|was) (?:identical|indistinguishable|the same"
+    r"|consistent|equivalent)",
+    r"no (?:significant |material |meaningful |measurable |notable )?(?:differences?|discrepanc(?:y|ies)|deviations?"
+    r"|mismatch(?:es)?)",
+    r"(?:within|inside) (?:the |its |our )?tolerances?", r"indistinguishable")
+# Critique of the target's user interface or workflow, as survey notes make it.
+UI_CRITIQUE = _alternation(
+    r"clunky", r"awkward(?:ly)?", r"confusing", r"clutter(?:ed)?", r"outdated", r"old[- ]fashioned",
+    r"(?:un|counter[- ]?)?intuitive", r"cumbersome", r"tedious", r"fiddly", r"frustrat(?:es|ed|ing)", r"annoying", r"ugly",
+    r"slick", r"polished", r"user[- ]friendly", r"(?:hard|difficult|easy|easier|painful) to (?:use|learn|navigate|read|find)",
+    r"usability", r"ergonomic(?:s|ally)?", r"learning curve", r"(?:poorly|badly|well) (?:designed|laid out|organi[sz]ed)",
+    r"(?:better|worse|nicer) (?:user )?(?:interface|UI|GUI|layout|workflow|dialogs?|menus?)")
 IMAGE_MARK = "\u2063"  # an invisible separator placed after an image's label
 # An image is a screenshot candidate unless its label or file names an original drawing (or is an SVG);
 # screenshot cues in either win.
@@ -594,9 +650,10 @@ def scan_tokens(label: str, lines: dict[int, str], terms: dict[str, list[str]], 
 
 
 def scan(label: str, lines: dict[int, str], terms: dict[str, list[str]], added: set[int] | None = None,
-         blank_breaks: bool = True, published: bool = False) -> list[str]:
-    """Findings in `lines` (the whole prose); with `added`, only matches that involve an added line. With
-    `published` (a surface file whose gate is set), results about the target are allowed."""
+         blank_breaks: bool = True, allowed: set[int] | None = None) -> list[str]:
+    """Findings in `lines` (the whole prose); with `added`, only matches that involve an added line. A result
+    about the target whose lines all lie in `allowed` (a gated surface's well-formed agreement summaries) is
+    allowed; every other kind is not."""
 
     findings = scan_tokens(label, lines, terms, added, blank_breaks)
     names = [_word(term) for term in terms["names"]]
@@ -628,16 +685,16 @@ def scan(label: str, lines: dict[int, str], terms: dict[str, list[str]], added: 
                             if not (target_span[-1] < span[0] - 1 or target_span[0] > span[-1] + 1) for line in target_span]
 
         for kind, pattern in (("defect or limit about the target tool", DEFECT),
-                              ("result about the target tool", COMPARISON), ("screenshot reference", SCREENSHOT)):
-            if published and pattern is COMPARISON:
-                continue
+                              ("result about the target tool", COMPARISON), ("screenshot reference", SCREENSHOT),
+                              ("qualitative result about the target tool", QUALITATIVE),
+                              ("user-interface critique of the target tool", UI_CRITIQUE)):
             for match in pattern.finditer(text):
                 span, sentence = _span(owners, match.start(), match.end()), sentences[match.start()]
                 # "matches ... to X" maps records; it does not compare results.
                 if pattern is COMPARISON and match.group().lower() in ("match", "matches") \
                         and MAPPING_TO.match(text, match.end()):
                     continue
-                involved = near(span, sentence, named + surveyed if pattern is SCREENSHOT else named)
+                involved = near(span, sentence, named + surveyed if pattern in (SCREENSHOT, UI_CRITIQUE) else named)
                 if not involved:
                     continue
                 if pattern is COMPARISON:
@@ -645,6 +702,8 @@ def scan(label: str, lines: dict[int, str], terms: dict[str, list[str]], added: 
                     if not values:
                         continue
                     involved += [line for value in values for line in value]
+                    if allowed and allowed.issuperset(span + involved):
+                        continue
                 if added is None or added.intersection(span + involved):
                     findings.append(f"{label}:{min(span + involved)}: {kind}")
     return list(dict.fromkeys(findings))
@@ -685,46 +744,212 @@ def _data_path(path: str) -> bool:
 # The check's own source and tests necessarily name the kinds of content it screens.
 SELF_PATHS = ("tools/caepipe_correlation/check_public_observations.py", "tests/test_check_public_observations.py")
 
-# The one public surface for benchmark agreement with the target (owner, 2026-10-28; DEL-17-05 Design §8.1),
-# and the manifest whose gate records the owner's tolerance-class ruling.
+# The one public surface for benchmark agreement with the target (owner, 2026-10-28; DEL-17-05 Design §8.1), the
+# manifest that carries its gate, and the one governing record whose section holds the owner's rulings.
 PUBLISHED_SURFACE = "projects/chirality-piping/validation/caepipe_benchmark/published/"
 PUBLICATION_MANIFEST = PUBLISHED_SURFACE + "publication.json"
 PUBLICATION_KIND = "swbpipe.caepipe_benchmark_publication"
+GATE_RECORD = "projects/chirality-piping/loop/LOOP_INIT.md"
+TOLERANCE_RULING = "<!-- owner-ruling: tolerance-class -->"
+LICENCE_RULING = "<!-- owner-ruling: licence-terms-checked -->"
+REGULAR_MODES = ("100644", "100755")
 RULING_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
-# Published agreement is never framed as acceptance, validation, compliance or compatibility (F-PIP-3).
+IDENTIFIER = re.compile(r"[A-Za-z0-9][\w.-]*")
+HEADING = re.compile(r"^(#{1,6})\s+(.+?)\s*#*\s*$")
+OWNER_WORDS_SPAN = re.compile(re.escape(OWNER_WORDS_OPEN) + r"(.*?)" + re.escape(OWNER_WORDS_CLOSE), re.DOTALL)
+SUMMARY_OPEN = "<!-- benchmark-agreement -->"
+SUMMARY_CLOSE = "<!-- /benchmark-agreement -->"
+RELIANCE_OPEN = "<!-- reliance -->"
+RELIANCE_CLOSE = "<!-- /reliance -->"
+RELIANCE_STATEMENT = ("Agreement on the benchmark set is not acceptance, validation of a user's design, code compliance, "
+                      "compatibility or a release; reliance on SWBPIPE's results stays with the user, and acceptance, "
+                      "issuance and release remain the owner's acts.")
+# The lines an agreement summary may hold, one each except a family line per family. Identifiers, the version,
+# the class and its date must be the manifest's; a family's threshold must be a value in the owner's ruling, so a
+# measured difference cannot be presented as a threshold.
+_QUANTITY = r"\d+(?:\.\d+)?(?:[eE][-+]?\d+)? ?(?:%|ppm|mm|m|mrad|rad|deg|N|kN|N·m|kN·m)"
+SUMMARY_LINES = {
+    "set": re.compile(r"Benchmark set: (?P<value>\S+)"),
+    "version": re.compile(r"(?P<name>.+?) version: (?P<value>\S+)"),
+    "counts": re.compile(r"Models: (?P<models>\d+); cases: (?P<cases>\d+)"),
+    "class": re.compile(r"Tolerance class: (?P<value>\S+), ruled (?P<date>\S+)"),
+    "agreement": re.compile(r"Agreement: (?P<agreed>\d+)(?: of |/)(?P<total>\d+) (?:quantities|outputs|cases) agree "
+                            r"within the ruled (?P<value>\S+) class"),
+    "family": re.compile(r"(?P<family>Displacements|Rotations|Forces|Moments|Reactions): maximum difference "
+                         r"(?P<measured>" + _QUANTITY + r") against the ruled (?P<value>\S+) threshold (?P<threshold>"
+                         + _QUANTITY + r")"),
+}
+# Published agreement is never framed as acceptance, validation, compliance, compatibility or a release (F-PIP-3).
 FRAMING = _alternation(r"accept(?:s|ed|ing|ance|able)?", r"approv(?:e|es|ed|ing|al)", r"endors(?:e|es|ed|ement)",
                        r"certif(?:y|ies|ied|ication|icates?)", r"validat(?:e|es|ed|ing|ion|ions)",
                        r"qualif(?:y|ies|ied|ication)", r"complian(?:t|ce)", r"compl(?:y|ies|ied|ying)",
-                       r"compatib(?:le|ility)", r"issu(?:ed|ance)", r"fit for (?:use|purpose)")
+                       r"compatib(?:le|ility)", r"issu(?:ed|ance)", r"fit for (?:use|purpose)",
+                       r"releas(?:e|es|ed|ing)", r"(?:production|release|publication)[- ]ready")
 
 
-def _exists(repo: Path, head: str, path: str) -> bool:
-    return subprocess.run(["git", "-C", str(repo), "cat-file", "-e", f"{head}:{path}"],
-                          capture_output=True, check=False).returncode == 0
+def _mode(repo: Path, head: str, path: str) -> str | None:
+    """The Git mode of `path` at `head` (`100644`, `120000` for a symlink, `040000` for a directory), or None."""
+
+    listed = _git(repo, "--literal-pathspecs", "ls-tree", "--full-tree", head, "--", path)
+    return listed.split()[0] if listed else None
 
 
-def publication_gate(repo: Path, head: str) -> bool:
-    """True when the surface's manifest at `head` records the owner's tolerance-class ruling. A missing
-    manifest or `tolerance_class_ruled: false` is unset; anything else that is not a complete ruling raises
-    ValueError."""
+def _cites(text: str, term: str) -> bool:
+    return re.search(r"(?<![\w.-])" + re.escape(term) + r"(?![\w-])", text) is not None
 
-    if not _exists(repo, head, PUBLICATION_MANIFEST):
-        return False
+
+def _slug(heading: str) -> str:
+    return re.sub(r"[^\w\- ]", "", heading.strip().lower()).replace(" ", "-")
+
+
+def _section(text: str, anchor: str) -> str:
+    """The text under the one heading whose anchor is `anchor`, up to the next heading of its level or higher."""
+
+    lines, fenced, headings = text.splitlines(), False, []
+    for number, line in enumerate(lines):
+        if line.strip().startswith(("```", "~~~")):
+            fenced = not fenced
+        elif not fenced and (match := HEADING.match(line)):
+            headings.append((number, len(match.group(1)), _slug(match.group(2))))
+    found = [(number, level) for number, level, slug in headings if slug == anchor]
+    if len(found) != 1:
+        raise ValueError("ruling record section not found")
+    start, level = found[0]
+    end = next((number for number, other, _ in headings if number > start and other <= level), len(lines))
+    return "\n".join(lines[start + 1:end])
+
+
+def publication_gate(repo: Path, head: str) -> dict | None:
+    """The surface's manifest at `head` when its gate is set, with the owner's tolerance-class ruling words under
+    `ruling_words`; None when the manifest is missing or `tolerance_class_ruled` is false. Anything else that is
+    not a complete gate raises ValueError: a regular-file manifest of the publication kind; both owner rulings
+    marked true; a calendar `ruled_on`; identifiers for the benchmark set, tolerance class and target version;
+    and `recorded_in` naming a section of the governing record (`GATE_RECORD#anchor`, a regular file) that cites
+    the date and class and holds both ruling markers inside owner-words spans."""
+
+    mode = _mode(repo, head, PUBLICATION_MANIFEST)
+    if mode is None:
+        return None
+    if mode not in REGULAR_MODES:
+        raise ValueError("publication manifest is not a regular file")
     manifest = json.loads(_git(repo, "show", f"{head}:{PUBLICATION_MANIFEST}"))
     if not isinstance(manifest, dict) or manifest.get("document_kind") != PUBLICATION_KIND:
         raise ValueError("publication manifest of the wrong kind")
-    ruled = manifest.get("tolerance_class_ruled")
-    if ruled is False:
-        return False
-    recorded = manifest.get("recorded_in")
-    if ruled is not True or not RULING_DATE.fullmatch(str(manifest.get("ruled_on", ""))) \
-            or not isinstance(recorded, str) or not recorded or not _exists(repo, head, recorded):
-        raise ValueError("publication gate set without a complete ruling")
-    return True
+    if manifest.get("tolerance_class_ruled") is False:
+        return None
+    ruled_on = manifest.get("ruled_on")
+    if manifest.get("tolerance_class_ruled") is not True or manifest.get("licence_terms_checked") is not True \
+            or not isinstance(ruled_on, str) or not RULING_DATE.fullmatch(ruled_on):
+        raise ValueError("publication gate set without the owner's rulings")
+    datetime.date.fromisoformat(ruled_on)
+    if not all(isinstance(manifest.get(key), str) and IDENTIFIER.fullmatch(manifest[key])
+               for key in ("benchmark_set", "tolerance_class", "target_version")):
+        raise ValueError("publication gate without its identifiers")
+    path, _, anchor = str(manifest.get("recorded_in", "")).partition("#")
+    if path != GATE_RECORD or not anchor or _mode(repo, head, path) not in REGULAR_MODES:
+        raise ValueError("publication gate not recorded in the governing record")
+    section = _section(_git(repo, "show", f"{head}:{path}"), anchor)
+    words = [match.group(1) for match in OWNER_WORDS_SPAN.finditer(section)]
+    ruling = next((text for text in words if TOLERANCE_RULING in text), None)
+    if ruling is None or not any(LICENCE_RULING in text for text in words) or not _cites(section, ruled_on) \
+            or not _cites(section, manifest["tolerance_class"]):
+        raise ValueError("ruling record section lacks the owner's rulings")
+    return {**manifest, "ruling_words": ruling}
+
+
+def _marked_spans(lines: list[str], opener: str, closer: str) -> list[tuple[int, int]]:
+    """The (opening, closing) line numbers of each span; a marker stands alone on its line."""
+
+    spans, start = [], None
+    for number, line in enumerate(lines, 1):
+        if opener not in line and closer not in line:
+            continue
+        marker = line.strip()
+        if marker not in (opener, closer) or (marker == opener) == (start is not None):
+            raise ValueError("misplaced span marker")
+        if marker == opener:
+            start = number
+        else:
+            spans.append((start, number))
+            start = None
+    if start is not None:
+        raise ValueError("unpaired span marker")
+    return spans
+
+
+def _summary_line(line: str, gate: dict, names: list[str]) -> str | None:
+    """The kind of a well-formed agreement-summary line, or None."""
+
+    for kind, pattern in SUMMARY_LINES.items():
+        match = pattern.fullmatch(line)
+        if match is None:
+            continue
+        value = match.groupdict().get("value")
+        if kind == "set":
+            good = value == gate["benchmark_set"]
+        elif kind == "version":
+            good = match.group("name").lower() in {name.lower() for name in names} and value == gate["target_version"]
+        elif kind == "counts":
+            good = int(match.group("models")) > 0 and int(match.group("cases")) > 0
+        elif kind == "class":
+            good = value == gate["tolerance_class"] and match.group("date") == gate["ruled_on"]
+        elif kind == "agreement":
+            good = value == gate["tolerance_class"] and 0 <= int(match.group("agreed")) <= int(match.group("total")) \
+                and int(match.group("total")) > 0
+        else:
+            threshold = re.sub(r"\s+", "", match.group("threshold"))
+            good = value == gate["tolerance_class"] and re.search(
+                r"(?<![\d.])" + re.escape(threshold) + r"(?![\d])", re.sub(r"\s+", "", gate["ruling_words"])) is not None
+        return (match.group("family") if kind == "family" else kind) if good else None
+    return None
+
+
+def summary_findings(label: str, lines: list[str], gate: dict, names: list[str],
+                     added: set[int] | None = None) -> tuple[list[str], set[int]]:
+    """Findings on a gated surface file's agreement summaries, and the lines of the well-formed ones. A summary
+    is its own paragraph and holds the set, version, counts, class and agreement lines once each, and at most one
+    line per family; any other line, a raw value, a model listing or a measured threshold included, is refused."""
+
+    findings: list[str] = []
+    allowed: set[int] = set()
+    for start, end in _marked_spans(lines, SUMMARY_OPEN, SUMMARY_CLOSE):
+        span = set(range(start, end + 1))
+        problems: list[tuple[int, str]] = []
+        if start > 1 and lines[start - 2].strip() or end < len(lines) and lines[end].strip():
+            problems.append((start, "benchmark agreement summary not set apart by blank lines"))
+        seen: set[str] = set()
+        for number in range(start + 1, end):
+            line = _normal(re.sub(r"^\s*[-*+]\s+", "", lines[number - 1])).removesuffix(".")
+            if not line:
+                continue
+            kind = _summary_line(line, gate, names)
+            if kind is None or kind in seen:
+                problems.append((number, "benchmark agreement line outside the defined form"))
+            else:
+                seen.add(kind)
+        if not {"set", "version", "counts", "class", "agreement"} <= seen:
+            problems.append((start, "benchmark agreement summary lacks a required line"))
+        if not problems:
+            allowed |= span
+        findings += [f"{label}:{number}: {kind}" for number, kind in problems if added is None or added & span]
+    return findings, allowed
+
+
+def reliance_findings(label: str, lines: list[str], added: set[int] | None = None) -> tuple[list[str], set[int]]:
+    """Reliance spans that differ from the canonical statement, and the lines of those that do not."""
+
+    findings: list[str] = []
+    exempt: set[int] = set()
+    for start, end in _marked_spans(lines, RELIANCE_OPEN, RELIANCE_CLOSE):
+        if _normal(" ".join(lines[start:end - 1])) == RELIANCE_STATEMENT:
+            exempt |= set(range(start, end + 1))
+        elif added is None or added & set(range(start, end + 1)):
+            findings.append(f"{label}:{start}: reliance statement differs from the canonical sentence")
+    return findings, exempt
 
 
 def scan_framing(label: str, lines: dict[int, str], added: set[int] | None = None) -> list[str]:
-    """Acceptance, validation, compliance or compatibility words anywhere in a surface file's prose."""
+    """Acceptance, validation, compliance, compatibility or release words anywhere in a surface file's prose."""
 
     findings: list[str] = []
     for text, owners, _ in _paragraphs(lines):
@@ -735,6 +960,24 @@ def scan_framing(label: str, lines: dict[int, str], added: set[int] | None = Non
     return list(dict.fromkeys(findings))
 
 
+def _touches_surface(path: str) -> bool:
+    surface = PUBLISHED_SURFACE.rstrip("/")
+    path = path.rstrip("/")
+    return path in ("", ".") or path == surface or path.startswith(surface + "/") or surface.startswith(path + "/")
+
+
+def symlink_into_surface(path: str, target: str) -> bool:
+    """True when a symlink lies in the surface or on its path, or points into, at or above it."""
+
+    target = target.strip()
+    if _touches_surface(path) or "caepipe_benchmark" in target:
+        return True
+    if target.startswith("/"):
+        parts = [part for part in target.split("/") if part]
+        return any(_touches_surface("/".join(parts[index:])) for index in range(1, len(parts)))
+    return _touches_surface(posixpath.normpath(posixpath.join(posixpath.dirname(path), target)))
+
+
 def check_range(repo: Path, base: str, head: str, terms: dict[str, list[str]],
                 messages_base: str | None = None) -> list[str]:
     findings: list[str] = []
@@ -742,15 +985,30 @@ def check_range(repo: Path, base: str, head: str, terms: dict[str, list[str]],
     for path, numbers in sorted(added_line_numbers(repo, base, head).items()):
         text = _git(repo, "show", f"{head}:{path}")
         blank_breaks = Path(path).suffix.lower() not in CODE_SUFFIXES
-        surface = path.startswith(PUBLISHED_SURFACE)
+        mode = _mode(repo, head, path)
+        if mode == "120000" and symlink_into_surface(path, text):
+            findings.append(f"{path}:1: symlink in or into the published surface")
+        # In the surface only regular files count, and owner-words and policy-text spans exempt nothing.
+        surface = path.startswith(PUBLISHED_SURFACE) and mode in REGULAR_MODES
+        markdown = surface and path.endswith(".md")
+        allowed: set[int] = set()
+        exempt: set[int] = set()
+        if markdown:
+            source = text.splitlines()
+            if gate is not None:
+                found, allowed = summary_findings(path, source, gate, terms["names"], numbers)
+                findings += found
+            found, exempt = reliance_findings(path, source, numbers)
+            findings += found
         # Private tokens are screened in every file, before the owner-words and policy-text exemptions.
         findings += scan_tokens(path, prose_of(path, text, exempt=False), terms, numbers, blank_breaks)
         # A fixture data file (CSV) is consumed by code like code itself; only the private-token rule applies.
         if not path.endswith(SELF_PATHS) and not (_data_path(path) and Path(path).suffix.lower() == ".csv"):
-            findings += scan(path, prose_of(path, text), terms, numbers, blank_breaks,
-                             published=gate and surface and path.endswith(".md"))
+            findings += scan(path, prose_of(path, text, exempt=not surface), terms, numbers, blank_breaks, allowed)
         if surface:
-            findings += scan_framing(path, prose_of(path, text), numbers)
+            prose = prose_of(path, text, exempt=False)
+            findings += scan_framing(path, {number: line for number, line in prose.items() if number not in exempt},
+                                     numbers)
         if _data_path(path):
             findings += scan_data_tokens(path, dict(enumerate(text.splitlines(), 1)), terms, numbers)
     # Commit messages already published cannot change; a pre-push run screens only the new ones.
