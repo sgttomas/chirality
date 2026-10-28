@@ -360,9 +360,22 @@ refuse such a run (`input_hash_mismatch`); the bracket makes the re-run replace 
   diagnostic, and pairs element-force rows in from/to order (a weak, row-order
   correlation per REQ-010, bound back to SWBPIPE ids through the writer's id map).
 
-  The section titles, header and unit rows, the blank-as-zero rule and the row order
-  are observed format behaviour of the CSV CAEPIPE writes; the public documentation
-  does not list them. The public test fixture is invented and labelled.
+  Unit labels: each unit-bearing column must carry a label the layout prints for its
+  quantity: length `mm` or `inch`, rotation `deg` or `rad`, force `N` or `lb`, moment
+  `Nm` or `ft-lb`, stress (checked, not read) `MPa` or `psi`. A file prints one system
+  (SI or English) and one angle unit; a section that mixes them, or departs from the
+  sections read before it, is refused (`CAEPIPE-PRINT-UNITS-MIXED`), and any other
+  label is refused by name (`CAEPIPE-PRINT-COLUMN-HEADER-MISMATCH`). English and radian
+  values are normalized to the output units (mm, deg, N, N·m) with the unit catalog's
+  exact definitions (`core/units`: inch 0.0254 m, foot 0.3048 m, pound-force
+  4.4482216152605 N, degree π/180 rad), each factor formed exactly and rounded once;
+  SI values are read unchanged. Each parsed section records the label every value was
+  printed in (`source_units`), and the result records the file's system and angle unit.
+
+  The section titles, header and unit rows (the English and radian labels included),
+  the blank-as-zero rule and the row order are observed format behaviour of the CSV
+  CAEPIPE writes; the public documentation does not list them. The public test fixture
+  and the English and radian test texts are invented and labelled.
 - **Comparison record.** Each case produces one record naming what PRD §22.5 lists:
   internal model hash, exported MBF hash, target tool and version, import/export
   assumptions, manual changes (none), load-case mapping, support mapping, comparison
