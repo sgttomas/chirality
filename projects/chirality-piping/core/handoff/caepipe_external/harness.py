@@ -503,10 +503,12 @@ class SectionBudgetExceeded(RuntimeError):
 
 
 @contextlib.contextmanager
-def _catchable_termination(active: bool):
+def _catchable_termination(active: bool, live: dict[str, Any] | None = None):
     """For a guarded round trip, make SIGTERM (and SIGBREAK where it exists) raise TerminationRequested instead of
-    ending the process unrecorded; inside the mutation section `_deferred_signals` defers it as before. The
-    previous handlers are restored on exit. Main thread only (elsewhere nothing changes)."""
+    ending the process unrecorded; inside the mutation section `_deferred_signals` defers it as before. Each
+    TerminationRequested carries the guard result as it stands when the signal arrives (`_live_guard_result`), so
+    a termination request at any statement, a second one included, never leaves an exception without the write
+    log. The previous handlers are restored on exit. Main thread only (elsewhere nothing changes)."""
 
     if not active or threading.current_thread() is not threading.main_thread():
         yield
@@ -514,7 +516,13 @@ def _catchable_termination(active: bool):
     previous: dict[int, Any] = {}
 
     def terminate(signum, frame):  # noqa: ARG001
-        raise TerminationRequested(f"signal {signal.Signals(signum).name}")
+        error = TerminationRequested(f"signal {signal.Signals(signum).name}")
+        if live is not None and live.get("guard_state") is not None:
+            try:
+                _attach_guard(error, _live_guard_result(live))
+            except Exception:  # the request is raised whatever happens; the round trip's recovery attaches again
+                pass
+        raise error
 
     try:
         for name in ("SIGTERM", "SIGBREAK"):
@@ -736,10 +744,13 @@ def _precondition(config: HarnessConfig, step: Callable[[str, str], dict[str, An
     return {"status": "clear"}
 
 
-def check_no_foreign_instance(config: HarnessConfig, *, timeout_s: float = 600,
+def check_no_foreign_instance(config: HarnessConfig, *, timeout_s: float | None = None,
                               runner: Callable[..., subprocess.CompletedProcess] = subprocess.run) -> dict[str, Any]:
-    """Session precondition: `clear` when no instance of the tool is running in the guest. Starts and stops nothing."""
+    """Session precondition: `clear` when no instance of the tool is running in the guest. Starts and stops nothing.
+    Each attempt has the guard's call timeout (`call_timeout_s`, default `GUARD_CALL_TIMEOUT_S`)."""
 
+    if timeout_s is None:
+        timeout_s = config.settings_guard.call_timeout_s if config.settings_guard else GUARD_CALL_TIMEOUT_S
     steps: list[dict[str, Any]] = []
     return _precondition(config, lambda name, command: _guest_step(config, runner, timeout_s, steps, name, command),
                          "session_process_list")
@@ -998,6 +1009,59 @@ def _persist_guard_result(root: Path, out: Path, settings: dict[str, Any]) -> Ba
     return interrupted
 
 
+def _live_guard_result(live: dict[str, Any]) -> dict[str, Any]:
+    """The guard result as it stands, without guest or file I/O: the round trip's own result once it has one; else
+    the restore's failure-path result; else one built from the write log (`settings_restore_failed` when the
+    restore was entered, else `settings_check_failed` with nothing written). The write log is always included."""
+
+    state = live.get("guard_state") or {}
+    log = state.get("write_log") or []
+    result = live.get("settings")
+    if result is None:
+        result = state.get("result")
+    if result is None:
+        done = sum(1 for entry in log if entry["completed"])
+        if log or state.get("restore_entered"):
+            result = {"status": "settings_restore_failed",
+                      "reason": f"interrupted before the guard result was complete; {done} of {len(log)} attempted "
+                                "writes completed"}
+        else:
+            result = {"status": "settings_check_failed",
+                      "reason": "interrupted before the guard result was complete; nothing was written"}
+    if log or "write_log" in result or state.get("restore_entered"):
+        result.setdefault("write_log", log)
+        result.setdefault("writes_completed", sum(1 for entry in result["write_log"] if entry["completed"]))
+    return result
+
+
+def _recover_guard_result(error: BaseException, live: dict[str, Any], root: Path, out: Path) -> None:
+    """For an exception leaving a guarded round trip before its reporting finished: attach the guard result, with
+    its write log, to the exception before anything else, then write it to `GUARD_RESULT_FILE` once more, best
+    effort and interruptible. A second cancellation during the write is kept beside the first, which is the one
+    raised. After the reporting finished only a missing attachment is supplied."""
+
+    def attach(result: dict[str, Any]) -> None:
+        try:
+            _attach_guard(error, result)
+        except BaseException as caught:  # the error is raised all the same; the result names the failure
+            _secondary(result, "attachment", caught)
+
+    if live.get("reported"):
+        if getattr(error, "settings_guard", None) is None:
+            attach(_live_guard_result(live))
+        return
+    result = live.get("settings")
+    if result is None:
+        result = getattr(error, "settings_guard", None)
+    if result is None:
+        result = _live_guard_result(live)
+    attach(result)
+    result.setdefault("round_trip_error", f"{type(error).__name__}: {error}")
+    again = _persist_guard_result(root, out, result)
+    if again is not None and again is not error:
+        _secondary(result, "guard result file", again)
+
+
 def _attach_after_record_failure(error: BaseException, settings: dict[str, Any] | None) -> None:
     """A record failure that becomes the error (there was none before) still carries the guard result, with its
     write log, and the result names the failure."""
@@ -1071,13 +1135,23 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
                 gui_fallback: bool = True) -> dict[str, Any]:
     # A guarded round trip turns SIGTERM into a catchable cancellation for its whole lifetime, so a termination
     # request is recorded like a Ctrl-C instead of ending the process with the guard's log unwritten.
-    with _catchable_termination(config.settings_guard is not None):
-        return _round_trip_body(config, case_id, mbf_text, paths, harness_dir, timeout_s, runner, gui_fallback)
+    # The same holds for an exception at any reporting or persistence step: it leaves with the guard result attached
+    # and written once more (`_recover_guard_result`).
+    guarded = config.settings_guard is not None
+    live: dict[str, Any] = {}
+    with _catchable_termination(guarded, live):
+        try:
+            return _round_trip_body(config, case_id, mbf_text, paths, harness_dir, timeout_s, runner, gui_fallback,
+                                    live)
+        except BaseException as error:
+            if guarded and live.get("guard_state") is not None:
+                _recover_guard_result(error, live, config.exchange_root, paths["caepipe_out"])
+            raise
 
 
 def _round_trip_body(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[str, Path], harness_dir: Path,
                      timeout_s: float, runner: Callable[..., subprocess.CompletedProcess],
-                     gui_fallback: bool = True) -> dict[str, Any]:
+                     gui_fallback: bool = True, live: dict[str, Any] | None = None) -> dict[str, Any]:
     started = _now()
     root = config.exchange_root
     mbf_bytes = mbf_text.encode("utf-8")
@@ -1108,6 +1182,8 @@ def _round_trip_body(config: HarnessConfig, case_id: str, mbf_text: str, paths: 
         return _guest_step(config, runner, timeout_s, steps, name, command)
 
     guard_state: dict[str, Any] = {}
+    live = {} if live is None else live
+    live["guard_state"] = guard_state  # what the outer recovery and the termination handler report from
     # Every guard call (registry reads and writes, process queries) has the guard's own short timeout; the solve
     # keeps `timeout_s`.
     guard_timeout = config.settings_guard.call_timeout_s if config.settings_guard else timeout_s
@@ -1218,11 +1294,12 @@ def _round_trip_body(config: HarnessConfig, case_id: str, mbf_text: str, paths: 
             if caught is not deferred:
                 settings["secondary_errors"] = list(settings.get("secondary_errors", [])) + [
                     f"{type(caught).__name__}: {caught}"]
+        live["settings"] = settings
         if deferred is not None:
             if error is None:
                 error = deferred
             elif deferred is not error:
-                settings = settings | {"guard_error": f"{type(deferred).__name__}: {deferred}"}
+                settings["guard_error"] = f"{type(deferred).__name__}: {deferred}"
         for failure in post_run_errors:  # the first error stays primary; later ones are kept beside it
             if error is None:
                 error = failure
@@ -1361,6 +1438,7 @@ def _round_trip_body(config: HarnessConfig, case_id: str, mbf_text: str, paths: 
                 error = caught
                 _attach_after_record_failure(error, settings)
             _secondary(settings, "run record", caught)
+    live["reported"] = True  # the records are done: the outer recovery has nothing left to write
     if error is not None:
         raise error
     return record

@@ -1463,6 +1463,7 @@ def test_settings_guard_starts_nothing_while_another_instance_runs(tmp_path):
     guest.foreign = []
     assert check_no_foreign_instance(session_config, runner=guest.runner(solved, session_config)) == {"status": "clear"}
     assert set(guest.commands) == {"tasklist /FO CSV /NH"}
+    assert guest.timeouts and all(timeout == 20.0 for _, timeout in guest.timeouts)  # the guard's call timeout
 
 
 def test_settings_guard_restores_a_recent_files_only_change_and_verifies_it(tmp_path):
@@ -1919,6 +1920,79 @@ def test_settings_guard_keeps_the_write_log_through_a_real_sigterm(tmp_path, mon
     if status == "recent_files_restored" and kind != "record":
         assert saved["deferred_signals"] == ["SIGTERM"]
     assert signal.getsignal(signal.SIGTERM) is handler_before  # restored when the round trip ends
+
+
+# The reporting transitions after the guard's checks, named by their statement in `_round_trip_body`.
+REPORTING_POINTS = {
+    "merging the guard's deferred error": "if deferred is not None:",
+    "attaching the guard result": "if error is not None and settings is not None:",
+    "persisting the guard result": "if guarded and settings is not None:",
+}
+
+
+def _signal_at_statement(statement: str, signum: int, times: int = 1):
+    """A tracer that raises a real signal when `_round_trip_body` reaches the line of `statement`."""
+
+    import inspect
+    lines, first = inspect.getsourcelines(harness._round_trip_body)
+    found = [first + index for index, line in enumerate(lines) if line.strip() == statement]
+    assert len(found) == 1, statement
+    fired: list[int] = []
+
+    def local(frame, event, arg):  # noqa: ARG001
+        if event == "line" and frame.f_lineno == found[0] and len(fired) < times:
+            fired.append(signum)
+            signal.raise_signal(signum)
+        return local
+
+    def tracer(frame, event, arg):  # noqa: ARG001
+        return local if frame.f_code is harness._round_trip_body.__code__ else None
+
+    return tracer, fired
+
+
+@pytest.mark.parametrize("where", list(REPORTING_POINTS))
+def test_settings_guard_keeps_the_write_log_through_a_sigterm_while_reporting(tmp_path, where):
+    handler_before = signal.getsignal(signal.SIGTERM)
+    tracer, fired = _signal_at_statement(REPORTING_POINTS[where], signal.SIGTERM)
+    guest = FakeGuest()
+    sys.settrace(tracer)
+    try:
+        with pytest.raises(harness.TerminationRequested) as raised:
+            guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    finally:
+        sys.settrace(None)
+    assert fired == [signal.SIGTERM] and len(guest.writes) == 4
+    carried = raised.value.settings_guard  # the exception carries the log
+    assert carried["status"] == "recent_files_restored"
+    assert [entry["completed"] for entry in carried["write_log"]] == [True] * 4
+    saved = _guard_file(tmp_path)  # and at least the guard result is on file
+    assert saved["write_log"] == carried["write_log"] and saved["status"] == "recent_files_restored"
+    assert saved["round_trip_error"].startswith("TerminationRequested")
+    assert signal.getsignal(signal.SIGTERM) is handler_before
+
+
+def test_settings_guard_log_stays_on_the_exception_when_its_file_write_is_interrupted_again(tmp_path, monkeypatch):
+    real_write = harness.write_private
+
+    def terminating_write(root, path, data):
+        if Path(path).name == harness.GUARD_RESULT_FILE:
+            signal.raise_signal(signal.SIGTERM)  # every attempt to write the guard result is interrupted
+        return real_write(root, path, data)
+
+    monkeypatch.setattr(harness, "write_private", terminating_write)
+    tracer, _ = _signal_at_statement(REPORTING_POINTS["attaching the guard result"], signal.SIGTERM)
+    guest = FakeGuest()
+    sys.settrace(tracer)
+    try:
+        with pytest.raises(harness.TerminationRequested) as raised:
+            guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    finally:
+        sys.settrace(None)
+    carried = raised.value.settings_guard
+    assert [entry["completed"] for entry in carried["write_log"]] == [True] * 4
+    assert carried["guard_result_file"].startswith("not written: TerminationRequested")
+    assert not (tmp_path / "exchange" / "cases" / "cx-g" / "caepipe_out" / harness.GUARD_RESULT_FILE).exists()
 
 
 def test_settings_guard_calls_use_the_guard_timeout_not_the_solve_timeout(tmp_path):

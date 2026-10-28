@@ -191,7 +191,7 @@ queries) runs with `call_timeout_s`; the solve keeps its own timeout.
   each run under their own guard, so a later exception or cancellation is recorded as secondary and
   neither replaces the first nor skips the reading. Once the restore has been entered, the final
   reading is attempted whether or not anything was logged. A record never says nothing was written
-  when its log shows writes.
+  when its log shows writes. A difference anywhere else is `settings_changed`, and nothing is written.
 
 **Interruption (threat model).** For the whole guarded round trip, SIGTERM (and SIGBREAK where it
 exists) is made catchable on the main thread: it raises a cancellation (`TerminationRequested`, a kind
@@ -215,7 +215,14 @@ ordinary error there leaves the state unknown and stops the run. The guard resul
 log, is attached to the error before any record I/O begins and is then written on its own to
 `caepipe_out/settings_guard.json` before the run record. That write stays interruptible; a cancellation
 during it is retried once and is then raised. So a signal or failure during the record (the first such
-failure included, recorded as `run_record_error`) cannot lose the log. Exceptions raised by callees take
+failure included, recorded as `run_record_error`) cannot lose the log. The reporting and persistence
+steps between the checks and the end of the round trip are covered by an outer recovery as well: an
+exception leaving the round trip before its records are done first has the guard result attached (the
+round trip's own, else the restore's, else one built from the write log), and that result is then
+written to `settings_guard.json` once more, best effort and still interruptible, naming the exception
+(`round_trip_error`). Each `TerminationRequested` also carries the guard result as it stands when the
+signal arrives, so a second termination request, during that write or anywhere else, still leaves with
+the write log. Exceptions raised by callees take
 the deferred path above, with the first one raised. An exception raised by one of the guard's own
 bookkeeping statements would be a defect in the harness; beyond the tests that inject failures at each
 callee and recovery step, that case is not designed for.
@@ -224,11 +231,14 @@ callee and recovery step, that case is not designed for.
 - A failure inside the recovery's own callbacks (its bookkeeping, final reading, comparison or reason)
   can leave out the diagnostics that step would have added; the failed status and the write log are
   kept.
-- If attaching the guard result to the raised error fails, the result is only in
+- If every attachment of the guard result to the raised error fails (the signal handler's, the round
+  trip's and the outer recovery's), the result is only in
   `settings_guard.json` and the run record, not on the error.
 - Signal deferral, and the catchable SIGTERM, are available only on the main thread; elsewhere the
-  record says deferral is unavailable (`signal_deferral`) and signals act as they normally do. A difference
-  anywhere else is `settings_changed`, and nothing is written.
+  record says deferral is unavailable (`signal_deferral`) and signals act as they normally do.
+- Each process check, the session precondition before the first case included, runs with the guard
+  call timeout; a transport failure is retried, up to three attempts, so one check can take up to
+  three times `call_timeout_s` (60 s by default). It writes nothing and stays interruptible.
 
 The restore is safe only because no other instance of the tool runs during the round trip: the
 precondition admits none before it, and the checks inside the restore look again before each write
