@@ -191,17 +191,28 @@ set, which needs the subkey); `--authored-dir` runs require it.
   reading is attempted whether or not anything was logged. A record never says nothing was written
   when its log shows writes.
 
-**Interruption (threat model).** From the checks after the guest work to the raise at the end (the
-checks, any restore and its recovery, the attachment and the record), SIGINT, SIGTERM and, where it
-exists, SIGBREAK are deferred: their handlers only record the signal, the previous handlers are
-restored on leaving, and a received signal is then raised as `KeyboardInterrupt`, or kept as a
-secondary error beside a primary error that is raised instead; the record lists it
-(`deferred_signals`). Handlers can be installed only on the main thread; elsewhere the record says
-deferral is unavailable (`signal_deferral`). So a Ctrl-C or a termination request cannot cut into
-the guard's own bookkeeping. Exceptions raised by callees (the guest commands, the reads, the
-comparison, the record write) take the deferred path above, with the first one raised. An exception
-raised by one of the guard's own bookkeeping statements would be a defect in the harness; beyond the
-tests that inject failures at each callee and recovery step, that case is not designed for. A difference
+**Interruption (threat model).** Signals are deferred only across the restore's registry-mutation
+section: the check before each write, the writes, the check after them and the verification reading.
+There SIGINT, SIGTERM and, where it exists, SIGBREAK only record themselves, so no signal can cut
+between a check and its write or leave a write half-logged; the previous handlers are restored when
+the section closes, and the signals it deferred are reported then (`deferred_signals`) and stop the run
+as a `KeyboardInterrupt` raised after the restore's outcome is recorded in memory, or are kept as a
+secondary error beside a primary error that is raised instead. The section consists of guest calls
+only, each with its own timeout, so the deferral is bounded: for n writes its maximum is the sum of
+those calls' timeouts, that is (n + 2) reads (n + 1 process lists and the verification reading), each
+up to the read retry's three attempts of the call timeout, plus n writes of one attempt each (600 s per
+call by default). Handlers can be installed only on the main thread; elsewhere the record says
+deferral is unavailable (`signal_deferral`). Everything else, the post-run checks, the recovery, the
+attachment and the record I/O, runs in normal signal context: a signal there interrupts as usual.
+The post-run checks (the process query, the precondition, the readings) are each guarded against any
+exception, so a cancellation raised by one is kept (raised as the first error, or kept beside it) and
+the settings reading still runs; an ordinary error there leaves the state unknown and stops the run.
+The guard result, with its write log, is attached to the error before any record I/O begins, so a
+signal or failure during the record (the first such failure included, recorded as `run_record_error`)
+cannot lose it. Exceptions raised by callees take the deferred path above, with the first one raised.
+An exception raised by one of the guard's own bookkeeping statements would be a defect in the harness;
+beyond the tests that inject failures at each callee and recovery step, that case is not designed
+for. A difference
   anywhere else is `settings_changed`, and nothing is written.
 
 The restore is safe only because no other instance of the tool runs during the round trip: the

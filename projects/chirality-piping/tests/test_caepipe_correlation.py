@@ -18,6 +18,7 @@ import signal
 import subprocess
 import sys
 import threading
+import time
 
 import pytest
 
@@ -1716,21 +1717,23 @@ def _record_of(tmp_path) -> dict:
                       .read_text(encoding="utf-8"))
 
 
-def test_settings_guard_defers_a_real_signal_until_the_restore_is_recorded(tmp_path):
-    handler_before = signal.getsignal(signal.SIGINT)
+@pytest.mark.parametrize("signum", [signal.SIGINT, signal.SIGTERM], ids=["SIGINT", "SIGTERM"])
+def test_settings_guard_defers_a_real_signal_until_the_restore_is_recorded(tmp_path, signum):
+    handler_before = signal.getsignal(signum)
     guest = FakeGuest()
-    guest.signal_on_write[1] = signal.SIGINT  # a real Ctrl-C arrives while the first write runs
+    guest.signal_on_write[1] = signum  # a real Ctrl-C or termination request arrives while the first write runs
     with pytest.raises(KeyboardInterrupt) as raised:
         guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
-    assert "deferred signal SIGINT" in str(raised.value)
+    name = signal.Signals(signum).name
+    assert f"deferred signal {name}" in str(raised.value)
     record_ = _record_of(tmp_path)
     guard = record_["settings_guard"]
     # The restore ran to its verified end and was recorded before the interrupt was acted on.
     assert guard["status"] == "recent_files_restored"
     assert [entry["completed"] for entry in guard["write_log"]] == [True] * 4
-    assert guard["signal_deferral"] == "active" and guard["deferred_signals"] == ["SIGINT"]
+    assert guard["signal_deferral"] == "active" and guard["deferred_signals"] == [name]
     assert raised.value.settings_guard == guard
-    assert signal.getsignal(signal.SIGINT) is handler_before  # the previous handler is back
+    assert signal.getsignal(signum) is handler_before  # the previous handler is back
 
 
 def test_settings_guard_keeps_a_deferred_signal_beside_a_primary_error(tmp_path):
@@ -1802,6 +1805,69 @@ def test_settings_guard_recovers_after_a_check_failure_and_an_interrupted_recove
     assert guard["final_reading"] == "read" and guest.counts["query"] == 3  # the final read still happened
     assert any(text.startswith("KeyboardInterrupt") for text in guard["secondary_errors"])
     assert guest.writes == []
+
+
+def test_settings_guard_cancellation_in_the_process_query_still_reads_the_settings(tmp_path):
+    guest = FakeGuest()
+    interrupt = KeyboardInterrupt("invented, from the process query")
+    guest.faults[("tasklist", 2)] = interrupt  # 1: precondition; 2: the post-run process query
+    with pytest.raises(KeyboardInterrupt) as raised:
+        guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    assert raised.value is interrupt
+    assert guest.counts["query"] == 2  # the reading after the run was still taken
+    guard = _record_of(tmp_path)["settings_guard"]
+    assert guard["status"] == "owned_process_state_unknown" and guest.writes == []
+    assert raised.value.settings_guard == guard
+
+
+@pytest.mark.parametrize("first_failing", ["guest_stdout.txt", "run_record.json"])
+def test_settings_guard_result_survives_the_first_record_write_failure(tmp_path, monkeypatch, first_failing):
+    guest = FakeGuest()
+    failure = OSError(f"invented failure writing {first_failing}")
+    real_write = harness.write_private
+
+    def failing_write(root, path, data):
+        if Path(path).name == first_failing:
+            raise failure
+        return real_write(root, path, data)
+
+    monkeypatch.setattr(harness, "write_private", failing_write)
+    with pytest.raises(OSError) as raised:
+        guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    assert raised.value is failure
+    guard = raised.value.settings_guard  # attached although no record was written
+    assert guard["status"] == "recent_files_restored"
+    assert [entry["completed"] for entry in guard["write_log"]] == [True] * 4
+    assert guard["run_record_error"].startswith("OSError")
+    assert not (tmp_path / "exchange" / "cases" / "cx-g" / "caepipe_out" / "run_record.json").exists()
+
+
+def test_settings_guard_blocked_record_write_is_interruptible_by_a_signal(tmp_path, monkeypatch):
+    guest = FakeGuest()
+    real_write = harness.write_private
+    released = {"after": None}
+
+    def blocking_write(root, path, data):
+        if Path(path).name == "run_record.json":
+            deadline = time.monotonic() + 20.0  # a stuck write, released here only if the signal never arrives
+            while time.monotonic() < deadline:
+                time.sleep(0.02)
+            released["after"] = "deadline"
+        return real_write(root, path, data)
+
+    monkeypatch.setattr(harness, "write_private", blocking_write)
+    timer = threading.Timer(0.5, lambda: os.kill(os.getpid(), signal.SIGINT))
+    started = time.monotonic()
+    timer.start()
+    try:
+        with pytest.raises(KeyboardInterrupt) as raised:
+            guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    finally:
+        timer.cancel()
+    elapsed = time.monotonic() - started
+    assert elapsed < 5.0 and released["after"] is None  # interrupted within the bound, not held to the deadline
+    guard = raised.value.settings_guard  # attached before the record I/O began
+    assert guard["status"] == "recent_files_restored" and guard["run_record_error"].startswith("KeyboardInterrupt")
 
 
 def test_settings_restore_verified_when_no_fault_is_injected(tmp_path):

@@ -470,12 +470,13 @@ def _guest_step(config: HarnessConfig, runner: Callable[..., subprocess.Complete
 
 @contextlib.contextmanager
 def _deferred_signals(active: bool):
-    """Defer SIGINT, SIGTERM and (where it exists) SIGBREAK across the guard's critical section.
+    """Defer SIGINT, SIGTERM and (where it exists) SIGBREAK across the restore's registry-mutation section.
 
     While active, each such signal is recorded in `received` instead of interrupting, so neither a Ctrl-C nor a
-    termination request can cut into the checks, the restore, its recovery, the record or the attachment; the
-    previous handlers are restored on exit and the caller acts on what was received. Python lets handlers be
-    installed only on the main thread: elsewhere `deferral` says so and nothing is deferred.
+    termination request can cut between a check and its write or leave a write half-logged; the previous handlers
+    are restored on exit and the caller acts on what was received. The section is made only of guest calls, each
+    with its own timeout, so the deferral is bounded. Python lets handlers be installed only on the main thread:
+    elsewhere `deferral` says so and nothing is deferred.
     """
 
     state = SimpleNamespace(received=[], deferral="not needed")
@@ -785,20 +786,31 @@ def _restore_recent_files(config: HarnessConfig, step: Callable[[str, str], dict
                                    "reason": "an instance of the tool this run did not start is running"})
 
     try:
-        for number, entry in enumerate(plan, 1):
-            check(f"restore_check_before_write_{number}")
-            logged = {key: entry[key] for key in ("value", "action", "restores", "replaces")} | {
-                "attempts": 1, "outcome": "issued", "completed": False}
-            log.append(logged)
-            try:
-                write(f"settings_restore_{number}", entry["command"])
-            except BaseException as error:
-                state.setdefault("primary_error", error)
-                logged["outcome"] = _write_outcome(error)
-                raise
-            logged["outcome"], logged["completed"] = "completed", True
-        check("restore_check_after_writes")
-        third = _settings_snapshot(config, step, "settings_verify")
+        # The registry-mutation section: the checks, the writes, the check after them and the verification
+        # reading, with signals deferred. Its bound is the sum of these guest calls' timeouts.
+        signals = None
+        try:
+            with _deferred_signals(True) as signals:
+                for number, entry in enumerate(plan, 1):
+                    check(f"restore_check_before_write_{number}")
+                    logged = {key: entry[key] for key in ("value", "action", "restores", "replaces")} | {
+                        "attempts": 1, "outcome": "issued", "completed": False}
+                    log.append(logged)
+                    try:
+                        write(f"settings_restore_{number}", entry["command"])
+                    except BaseException as error:
+                        state.setdefault("primary_error", error)
+                        logged["outcome"] = _write_outcome(error)
+                        raise
+                    logged["outcome"], logged["completed"] = "completed", True
+                check("restore_check_after_writes")
+                third = _settings_snapshot(config, step, "settings_verify")
+        finally:
+            # The section has closed (handlers restored): what it deferred is reported now, before any record.
+            if signals is not None:
+                state["signal_deferral"] = signals.deferral
+                if signals.received:
+                    state["deferred_signals"] = [signal.Signals(number).name for number in signals.received]
         if third is None:
             reason = "the key could not be read after the restore"
         else:
@@ -808,7 +820,11 @@ def _restore_recent_files(config: HarnessConfig, step: Callable[[str, str], dict
                 state["remaining_differences"] = remaining
         if reason is None:
             check("restore_check_before_success")
-            return {"status": "recent_files_restored", "write_log": log, "restored_values": len(plan)}, None
+            done = {"status": "recent_files_restored", "write_log": log, "restored_values": len(plan)}
+            for key in ("signal_deferral", "deferred_signals"):
+                if key in state:
+                    done[key] = state[key]
+            return done, None
     except _RestoreStopped as stopped:
         reason = f"{stopped.check['status']}: {stopped.check.get('reason', '')}"
         state["stopped_by"] = stopped.check
@@ -823,7 +839,7 @@ def _restore_log_summary(result: dict[str, Any], state: dict[str, Any]) -> None:
     log = state.get("write_log", [])
     result["write_log"] = log
     result["writes_completed"] = sum(1 for entry in log if entry["completed"])
-    for key in ("stopped_by", "remaining_differences"):
+    for key in ("stopped_by", "remaining_differences", "signal_deferral", "deferred_signals"):
         if key in state:
             result[key] = state[key]
 
@@ -876,6 +892,17 @@ def _failed_restore(config: HarnessConfig, step: Callable[[str, str], dict[str, 
 
 def _attach_guard(error: BaseException, settings: dict[str, Any]) -> None:
     error.settings_guard = settings
+
+
+def _attach_after_record_failure(error: BaseException, settings: dict[str, Any] | None) -> None:
+    """A record failure that becomes the error (there was none before) still carries the guard result, with its
+    write log, and the result names the failure."""
+    if settings is not None:
+        settings["run_record_error"] = f"{type(error).__name__}: {error}"
+        try:
+            _attach_guard(error, settings)
+        except BaseException as caught:
+            _secondary(settings, "attachment", caught)
 
 
 def _guard_check(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]], settings_before, after,
@@ -1017,191 +1044,191 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
             ]))
     except BaseException as caught:  # re-raised below, after the checks
         error = caught
-    # From here to the raise below: the guard's critical section. Signals are deferred while it runs (main thread),
-    # so a Ctrl-C or a termination request is acted on only once the checks, any restore and its recovery, the
-    # record and the attachment are done. Callee exceptions take the deferred path inside.
-    with _deferred_signals(guarded) as signals:
-        # Whatever happened above: confirm that what the guest started has ended, then compare the whole settings
-        # key with its reading before the run. Each check is guarded on its own, so a failure of one never skips the
-        # other or the result.
-        if guarded:
-            deferred = None
-            try:
-                try:
-                    processes = (_owned_processes(config, step, work, guest_log)
-                                 if prepare["exit_status"] == 0 else {"status": "not_started"})
-                except Exception as failure:
-                    processes = _unknown(f"the process check failed: {type(failure).__name__}: {failure}")
-                after = None
-                if settings_before is not None:
-                    try:
-                        after = _settings_snapshot(config, step, "settings_after")
-                    except Exception as failure:
-                        processes = processes | {"settings_read_error": f"{type(failure).__name__}: {failure}"}
-                if blocked is not None:
-                    settings = blocked
-                else:
-                    settings, deferred = _guard_check(config, step, settings_before, after, processes, guard_state,
-                                                      write)
-            except BaseException as caught:  # cancellation during the checks or escaping the restore's failure path
-                primary = guard_state.get("primary_error")
-                deferred = primary if primary is not None else caught
-                log = guard_state.get("write_log") or []
-                settings = dict(guard_state.get("result") or {})
-                if log or settings or guard_state.get("restore_entered"):
-                    settings.setdefault("write_log", log)
-                    settings.setdefault("writes_completed", sum(1 for entry in log if entry["completed"]))
-                    settings["status"] = "settings_restore_failed"
-                    settings.setdefault("reason", f"interrupted ({type(caught).__name__}) during the restore; "
-                                                  f"{settings['writes_completed']} of {len(log)} attempted writes "
-                                                  "completed")
-                    if "final_reading" not in settings:
-                        try:
-                            final = _settings_snapshot(config, step, "settings_after_failed_restore")
-                            settings["final_reading"] = "read" if final is not None else "could not be read"
-                        except BaseException as late:
-                            settings["final_reading"] = f"interrupted ({type(late).__name__})"
-                else:
-                    settings = {"status": "settings_check_failed",
-                                "reason": f"the checks after the run were interrupted ({type(caught).__name__}); "
-                                          "nothing was written"}
-                if caught is not deferred:
-                    settings["secondary_errors"] = list(settings.get("secondary_errors", [])) + [
-                        f"{type(caught).__name__}: {caught}"]
-            if deferred is not None:
-                if error is None:
-                    error = deferred
-                elif deferred is not error:
-                    settings = settings | {"guard_error": f"{type(deferred).__name__}: {deferred}"}
-
-        if settings is not None and guarded:
-            settings["signal_deferral"] = signals.deferral
+    # The guard's post-run work runs in normal signal context: only the restore's registry-mutation section defers
+    # signals. Callee exceptions here are kept (the first one raised), and the guard result is attached to the
+    # error before any record I/O, so a signal or a failure during the record cannot lose it.
+    # Whatever happened above: confirm that what the guest started has ended, then compare the whole settings
+    # key with its reading before the run. Each check is guarded on its own, so a failure of one never skips the
+    # other or the result.
+    if guarded:
+        deferred = None
+        post_run_errors: list[BaseException] = []
         try:
-            write_private(root, out / "guest_stdout.txt", solve["stdout"])
-            write_private(root, out / "guest_stderr.txt", solve["stderr"])
-            if guest_log is not None:
-                write_private(root, out / "guest_log.json", json.dumps(guest_log, indent=2, sort_keys=True) + "\n")
-
-            guest_csv = guest_log.get("csv_path") if isinstance(guest_log, dict) else None
-            observed = None
-            csv_name = guest_csv.replace("/", "\\").split("\\")[-1] if isinstance(guest_csv, str) else ""
-            if csv_name not in ("", ".", "..") and input_verified and error is None:
-                candidate = contained(root, out / csv_name)
-                if candidate.is_file():
-                    observed = candidate
-            status = guest_log.get("status") if isinstance(guest_log, dict) else None
-            if error is not None:
-                route = "harness_error"
-            elif blocked is not None:
-                route = blocked["status"]
-            elif guarded and settings_before is None:
-                route = "settings_check_failed"
-            elif prepare["exit_status"] != 0:
-                route = "prepare_failed"
-            elif solve["exit_status"] == "timeout":
-                route = "timeout"
-            elif guest_log is None:
-                route = "no_guest_json"
-            elif not input_verified:
-                route = "input_hash_mismatch"
-            elif status in CSV_ROUTES and observed is not None:
-                route = status
-            elif status in CSV_ROUTES:
-                route = "csv_not_collected"
+            try:
+                processes = (_owned_processes(config, step, work, guest_log)
+                             if prepare["exit_status"] == 0 else {"status": "not_started"})
+            except BaseException as failure:  # a callee's cancellation included: the reading still runs
+                if not isinstance(failure, Exception):
+                    post_run_errors.append(failure)  # a cancellation is kept and raised; an error stops as unknown
+                processes = _unknown(f"the process check failed: {type(failure).__name__}: {failure}")
+            after = None
+            if settings_before is not None:
+                try:
+                    after = _settings_snapshot(config, step, "settings_after")
+                except BaseException as failure:
+                    if not isinstance(failure, Exception):
+                        post_run_errors.append(failure)
+                    processes = processes | {"settings_read_error": f"{type(failure).__name__}: {failure}"}
+            if blocked is not None:
+                settings = blocked
             else:
-                route = str(status or "unknown_guest_status")
-            gui_used = bool(isinstance(guest_log, dict) and isinstance(guest_log.get("gui"), dict)
-                            and guest_log["gui"].get("used"))
-
-            collected = [path.name for path in out.iterdir()
-                         if path.name.startswith("model") and path.is_file() and not path.is_symlink()]
-            record = {
-                "document_kind": RUN_RECORD_KIND,
-                "schema_version": "1",
-                "deliverable": "DEL-17-05",
-                "case_id": case_id,
-                "configuration_surface": {
-                    "environment_variable": ENV_VAR,
-                    "config_file": CONFIG_NAME,
-                    "checked": list(config.checked),
-                    "warnings": list(config.warnings),
-                },
-                "executable_path_as_configured": config.guest_executable,
-                ACKNOWLEDGEMENT_KEY: config.acknowledged,
-                "mbf": {"path": "caepipe_in/model.mbf", "guest_path": guest_mbf, "sha256": mbf_sha256,
-                        "bytes": len(mbf_bytes)},
-                "guest_mbf_sha256": guest_mbf_sha256,
-                "input_hash_verified": input_verified,
-                "guest_script": {"repository_path": GUEST_SCRIPT_REPOSITORY_PATH,
-                                 "exchange_copy": f"{HARNESS_DIR}/{GUEST_SCRIPT.name}",
-                                 "sha256": _sha256(script_bytes), "run_from": script_location},
-                "command_shape": {
-                    "batch": BATCH_COMMAND_SHAPE,
-                    "gui_print_fallback": {
-                        "allowed": gui_fallback,
-                        "used": gui_used,
-                        "label": "print_to_file_fallback",
-                        "description": "fallback when the batch route yields no result file: the guest script stops "
-                                       "the batch process it started, opens the solved .res in a CAEPIPE instance it "
-                                       "starts itself and prints the results to CSV via Print > To File",
-                    },
-                    "host_invocation": "prlctl exec <vm_name> --current-user cmd /c <guest command>",
-                },
-                "steps": [{key: value for key, value in item.items() if key not in ("stdout", "stderr")}
-                          | {"stdout_chars": len(item.get("stdout") or ""), "stderr_chars": len(item.get("stderr") or "")}
-                      for item in steps],
-                "working_directory": work,
-                "expected_batch_csv_path": _win(work, "model.csv"),
-                "observed_csv_path": {"guest": guest_csv, "host": f"caepipe_out/{observed.name}" if observed else None},
-                "route": route,
-                "exit_status": solve["exit_status"],
-                "stdout_file": "caepipe_out/guest_stdout.txt",
-                "stderr_file": "caepipe_out/guest_stderr.txt",
-                "guest_log": guest_log,
-                "outputs_collected": sorted(collected),
-                "outputs_sha256": {name: _sha256((out / name).read_bytes()) for name in sorted(collected)},
-                "timestamps": {"started": started, "finished": _now()},
-                "boundary_note": BOUNDARY_NOTE,
-            }
-            if error is not None:
-                record["harness_error"] = f"{type(error).__name__}: {error}"
-            if settings is not None:
-                record["settings_guard"] = settings
+                settings, deferred = _guard_check(config, step, settings_before, after, processes, guard_state,
+                                                  write)
+        except BaseException as caught:  # cancellation during the checks or escaping the restore's failure path
+            primary = guard_state.get("primary_error")
+            deferred = primary if primary is not None else caught
+            log = guard_state.get("write_log") or []
+            settings = dict(guard_state.get("result") or {})
+            if log or settings or guard_state.get("restore_entered"):
+                settings.setdefault("write_log", log)
+                settings.setdefault("writes_completed", sum(1 for entry in log if entry["completed"]))
+                settings["status"] = "settings_restore_failed"
+                settings.setdefault("reason", f"interrupted ({type(caught).__name__}) during the restore; "
+                                              f"{settings['writes_completed']} of {len(log)} attempted writes "
+                                              "completed")
+                if "final_reading" not in settings:
+                    try:
+                        final = _settings_snapshot(config, step, "settings_after_failed_restore")
+                        settings["final_reading"] = "read" if final is not None else "could not be read"
+                    except BaseException as late:
+                        settings["final_reading"] = f"interrupted ({type(late).__name__})"
+            else:
+                settings = {"status": "settings_check_failed",
+                            "reason": f"the checks after the run were interrupted ({type(caught).__name__}); "
+                                      "nothing was written"}
+            if caught is not deferred:
+                settings["secondary_errors"] = list(settings.get("secondary_errors", [])) + [
+                    f"{type(caught).__name__}: {caught}"]
+        if deferred is not None:
+            if error is None:
+                error = deferred
+            elif deferred is not error:
+                settings = settings | {"guard_error": f"{type(deferred).__name__}: {deferred}"}
+        for failure in post_run_errors:  # the first error stays primary; later ones are kept beside it
+            if error is None:
+                error = failure
+            elif failure is not error:
+                _secondary(settings, "post-run check", failure)
+        # A signal the restore's mutation section deferred stops the run now, after the restore is recorded in memory.
+        if guard_state.get("deferred_signals"):
+            interrupt = KeyboardInterrupt(f"deferred signal {guard_state['deferred_signals'][0]}")
+            if error is None:
+                error = interrupt
+            else:
+                _secondary(settings, "deferred signal", interrupt)
+    # The guard result is attached to the error before any record I/O, so no record failure can lose it.
+    if error is not None and settings is not None:
+        try:
+            _attach_guard(error, settings)
         except BaseException as caught:
-            record = None
+            _secondary(settings, "attachment", caught)
+
+    try:
+        write_private(root, out / "guest_stdout.txt", solve["stdout"])
+        write_private(root, out / "guest_stderr.txt", solve["stderr"])
+        if guest_log is not None:
+            write_private(root, out / "guest_log.json", json.dumps(guest_log, indent=2, sort_keys=True) + "\n")
+
+        guest_csv = guest_log.get("csv_path") if isinstance(guest_log, dict) else None
+        observed = None
+        csv_name = guest_csv.replace("/", "\\").split("\\")[-1] if isinstance(guest_csv, str) else ""
+        if csv_name not in ("", ".", "..") and input_verified and error is None:
+            candidate = contained(root, out / csv_name)
+            if candidate.is_file():
+                observed = candidate
+        status = guest_log.get("status") if isinstance(guest_log, dict) else None
+        if error is not None:
+            route = "harness_error"
+        elif blocked is not None:
+            route = blocked["status"]
+        elif guarded and settings_before is None:
+            route = "settings_check_failed"
+        elif prepare["exit_status"] != 0:
+            route = "prepare_failed"
+        elif solve["exit_status"] == "timeout":
+            route = "timeout"
+        elif guest_log is None:
+            route = "no_guest_json"
+        elif not input_verified:
+            route = "input_hash_mismatch"
+        elif status in CSV_ROUTES and observed is not None:
+            route = status
+        elif status in CSV_ROUTES:
+            route = "csv_not_collected"
+        else:
+            route = str(status or "unknown_guest_status")
+        gui_used = bool(isinstance(guest_log, dict) and isinstance(guest_log.get("gui"), dict)
+                        and guest_log["gui"].get("used"))
+
+        collected = [path.name for path in out.iterdir()
+                     if path.name.startswith("model") and path.is_file() and not path.is_symlink()]
+        record = {
+            "document_kind": RUN_RECORD_KIND,
+            "schema_version": "1",
+            "deliverable": "DEL-17-05",
+            "case_id": case_id,
+            "configuration_surface": {
+                "environment_variable": ENV_VAR,
+                "config_file": CONFIG_NAME,
+                "checked": list(config.checked),
+                "warnings": list(config.warnings),
+            },
+            "executable_path_as_configured": config.guest_executable,
+            ACKNOWLEDGEMENT_KEY: config.acknowledged,
+            "mbf": {"path": "caepipe_in/model.mbf", "guest_path": guest_mbf, "sha256": mbf_sha256,
+                    "bytes": len(mbf_bytes)},
+            "guest_mbf_sha256": guest_mbf_sha256,
+            "input_hash_verified": input_verified,
+            "guest_script": {"repository_path": GUEST_SCRIPT_REPOSITORY_PATH,
+                             "exchange_copy": f"{HARNESS_DIR}/{GUEST_SCRIPT.name}",
+                             "sha256": _sha256(script_bytes), "run_from": script_location},
+            "command_shape": {
+                "batch": BATCH_COMMAND_SHAPE,
+                "gui_print_fallback": {
+                    "allowed": gui_fallback,
+                    "used": gui_used,
+                    "label": "print_to_file_fallback",
+                    "description": "fallback when the batch route yields no result file: the guest script stops "
+                                   "the batch process it started, opens the solved .res in a CAEPIPE instance it "
+                                   "starts itself and prints the results to CSV via Print > To File",
+                },
+                "host_invocation": "prlctl exec <vm_name> --current-user cmd /c <guest command>",
+            },
+            "steps": [{key: value for key, value in item.items() if key not in ("stdout", "stderr")}
+                      | {"stdout_chars": len(item.get("stdout") or ""), "stderr_chars": len(item.get("stderr") or "")}
+                  for item in steps],
+            "working_directory": work,
+            "expected_batch_csv_path": _win(work, "model.csv"),
+            "observed_csv_path": {"guest": guest_csv, "host": f"caepipe_out/{observed.name}" if observed else None},
+            "route": route,
+            "exit_status": solve["exit_status"],
+            "stdout_file": "caepipe_out/guest_stdout.txt",
+            "stderr_file": "caepipe_out/guest_stderr.txt",
+            "guest_log": guest_log,
+            "outputs_collected": sorted(collected),
+            "outputs_sha256": {name: _sha256((out / name).read_bytes()) for name in sorted(collected)},
+            "timestamps": {"started": started, "finished": _now()},
+            "boundary_note": BOUNDARY_NOTE,
+        }
+        if error is not None:
+            record["harness_error"] = f"{type(error).__name__}: {error}"
+        if settings is not None:
+            record["settings_guard"] = settings
+    except BaseException as caught:
+        record = None
+        if error is None:
+            error = caught
+            _attach_after_record_failure(error, settings)
+        else:
+            _secondary(settings, "run record", caught)
+    if record is not None:
+        try:
+            write_private(root, out / "run_record.json", json.dumps(record, indent=2, sort_keys=True) + "\n")
+        except BaseException as caught:
             if error is None:
                 error = caught
-            else:
-                _secondary(settings, "run record", caught)
-        # The guard result goes on the error before the record is written, so a failed attachment is in the record
-        # and a failed record write is in the attached result (the same object).
-        if error is not None and settings is not None:
-            try:
-                _attach_guard(error, settings)  # the caller stops on it like on a record's guard result
-            except BaseException as caught:
-                _secondary(settings, "attachment", caught)
-        if settings is not None and signals.received:
-            settings["deferred_signals"] = [signal.Signals(number).name for number in signals.received]
-        if record is not None:
-            try:
-                write_private(root, out / "run_record.json", json.dumps(record, indent=2, sort_keys=True) + "\n")
-            except BaseException as caught:
-                if error is None:
-                    error = caught
-                _secondary(settings, "run record", caught)
-    # Left the critical section: the previous signal handlers are back. A deferred signal is raised now as the
-    # KeyboardInterrupt it would have been, or kept beside a primary error that is raised instead.
-    if signals.received:
-        interrupt = KeyboardInterrupt(f"deferred signal {signal.Signals(signals.received[0]).name}")
-        if error is None:
-            error = interrupt
-            if settings is not None:
-                try:
-                    _attach_guard(error, settings)
-                except BaseException as caught:
-                    _secondary(settings, "attachment", caught)
-        else:
-            _secondary(settings, "deferred signal", interrupt)
+                _attach_after_record_failure(error, settings)
+            _secondary(settings, "run record", caught)
     if error is not None:
         raise error
     return record
