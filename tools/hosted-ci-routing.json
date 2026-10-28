@@ -2727,7 +2727,9 @@
               "validation/benchmarks/numerical_robustness/src/sha256.rs",
               "validation/benchmarks/physics_audit_regression/src/lib.rs",
               "validation/benchmarks/stress/src/lib.rs",
-              "validation/references/kd5_timoshenko/runner/src/main.rs"
+              "validation/references/kd5_timoshenko/runner/src/main.rs",
+              "validation/references/m3_judge/runner/build.rs",
+              "validation/references/m3_judge/runner/src/main.rs"
             ],
             "scan": {
               "suffix": ".rs",
@@ -4337,7 +4339,8 @@
               "validation/benchmarks/numerical_robustness/Cargo.toml",
               "validation/benchmarks/physics_audit_regression/Cargo.toml",
               "validation/benchmarks/stress/Cargo.toml",
-              "validation/references/kd5_timoshenko/runner/Cargo.toml"
+              "validation/references/kd5_timoshenko/runner/Cargo.toml",
+              "validation/references/m3_judge/runner/Cargo.toml"
             ],
             "scan": {
               "name": "Cargo.toml",
