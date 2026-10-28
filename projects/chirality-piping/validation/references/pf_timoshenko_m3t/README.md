@@ -111,7 +111,8 @@ reference: it links the product crate by path and calls only `run_linear_static_
 | `pft_engine.py` | Exact PF reference engine: a PF request in, every expected published row out (110-digit `decimal`; ν, κ_E and φ exact rationals). `--check` runs its self-check (130 checks; one of them runs kd5t_engine's 58). |
 | `pft_generate.py` | Judged-set generator: `full <dir>` writes the set, `freeze` the frozen subset, `split` runner inputs, `probes` the format probes, `precision` a re-solve at more digits, `composition` the counts, `check` verifies everything. |
 | `pft_compare.py` | A shim: the judging lives in `../m3_judge/` (route `pf`). `--selftest <frozen subset>` runs the shared judge's self-test. |
-| `pft_census.py` | Premise census: kd5t_census with its engine bound to the PF reference (`hager`, `probe`, `standings`, `--selftest`). |
+| `pft_census.py` | Premise census: kd5t_census with its engine bound to the PF reference (`hager`, `probe`, `standings`, `--selftest`), and `bound`, the census of B ≥ \|error\| (below, "Census"; `bound --selftest`). |
+| `pft_intended.py` | The census's second reference: the exact solution of the product's intended system, from the solver's binary64 section and material operands. |
 | `run.sh` | Driver: `../m3_judge/run.sh pf`, which builds the shared runner (`../m3_judge/runner/`) from a clean checkout, runs it over every chunk (raw outputs only, fresh each time), then the judging pass. |
 | `frozen/pft_frozen_subset.jsonl` | 100 models (50 designs in both theories), each line `{tag, meta, ref, request}`, with exact expected rows. |
 | `SHA256SUMS` | Digests of the files above, except this README. |
@@ -469,6 +470,74 @@ product against the Euler–Bernoulli reference must fail at high φ. The stale-
 observable here, as on the exact route: every member load is full span, where the two vectors are
 identical, and PF refuses Timoshenko partial spans by name (pf-timoshenko.md §3).
 
+## Census (`pft_census.py bound`, `pft_intended.py`)
+
+**What B certifies.** In K-D5's Design (DEL-04-01 `Design/kd5-member-relative-bound.md`), line 28:
+"\"Certified\" means against K-D5's intended system"; §1's intended system is the re-formation at
+p = 128 "of the stiffness and of every formed load term from its binary64 primitives"; and §3 (line
+208): "The bound is B_g = ‖v_g − m_g‖ + ‖r_g‖ + ‖R_g‖, rounded upward." The census reference is
+therefore the exact solution of that system (Agent 0, option 2): `pft_intended.py` solves each model
+with `pft_engine`'s element, loads, recovery and stresses, replacing only each member's section and
+material operands with the solver's binary64 E, G, A, Iy, Iz, J and A_s from the probe's `frames`.
+The frames are bound to the run: every evaluation line of a model carries the same frames, one per
+pipe, with E and G bit-equal to the reference's Pa operands. B does not certify the section-property
+rounding of those operands against the annulus of the authored OD and wall; M3's 1e-9 criterion
+judges that gap.
+
+**Criterion.** B ≥ |published − intended exact|, exactly, on every judged resultant and pipe-wall group
+of every Passed case (PF publishes no pipe-wall group), B read from the probe's groups line and the
+group's norm the M3 judge's. The section cuts `cut_i`/`cut_j` are checked with their own B against the
+end rows. Inputs: the stage-B raw records of `b52900b3ef` (runner `86acccd7…`), judged by the shared
+judge, and the dumps of the probe build of the same head, whose raw records are byte-identical to
+them apart from `ns`, runner and head.
+
+| Batch | Bound held (judged groups) | Section cuts | ε_E go (no-go), ε_E/‖K̃_s‖₁ max | A1 held, min margin |
+|---|---|---|---|---|
+| (a) the 16 models recomputed in round 1, both theories | 5,308 of 5,308 | 1,824 of 1,824 | 60 of 60 (0), 5.5e-16 | 60 of 60, 999 |
+| (b) near-cancellation (170 models) | 12,664 of 12,664 | 3,488 of 3,488 | 302 of 302 (0), 5.0e-16 | 302 of 302, 999 |
+| (c) the full set (906 models, 3,560 runs) | 179,392 of 179,392 | 61,288 of 61,288 | 1,706 of 1,706 (0), 9.2e-16 | 1,706 of 1,706, 563 |
+
+ε_E and A1 are over the typed entries' evaluation lines (the gate is entry-independent); go is
+ε_E ≤ 2^-40 ‖K̃_s‖₁ and A1 is ‖K̃_s^-1‖₁ ≤ 2^10 est. Judged displacement and rotation groups (24,190 in
+(c)) have no product bound; C3 judges them.
+
+**Stress rows.** Line 224: "**Stress rows** are scaled at p from the certified resultants and judged
+through the resultant they scale." Each stress row is judged against B_resultant/(c·10^6) + 4 ulps of
+the published stress, with c the intended section's A (axial), Z = I/r_o (bending) or J/r_o
+(torsion) (Agent 0). The first term is the resultant's certified error carried through the scaling;
+the second covers the product's binary64 representation of the section modulus and the final
+rounding of the stress. Every stress row of a judged stress group of a Passed case held: 4,556, 8,680
+and 154,080 in (a), (b) and (c), with the worst usage 0.304 (`NCauxff|S7NC|o|m0|eb`, N01 end_j,
+bending y, 1.22 ulps). Among the near-zero rows below, the worst usage is 0.096.
+
+*Information: |error| in ulps of the published stress, maximum per kind.*
+
+| Kind | (a) | (b) | (c) |
+|---|---|---|---|
+| axial | 0.49 | 0.47 | 0.50 |
+| bending y | 1.03 | 1.22 | 1,044 rows in (1, 2], 880 beyond 4 |
+| bending z | 1.23 | 1.28 | 952 rows in (1, 2], 344 beyond 4 |
+| torsional | 0.49 | 0.37 | 0.50 |
+
+No row lies in (2, 4]. The 1,224 rows beyond 4 ulps are near-zero stresses (|published| ≤ 7.3e-34 MPa,
+352 with an intended exact value of exactly 0), where an ulp of the published value says nothing:
+46 models of 12 designs, FF06 (16 rows), FF12 (40), L00 (288), L01 (240), L06 (48), PHI2S4FF (32),
+PHI2S5FF (24), SOFTUY00 (98), SOFTUY01 (144), SOFTUY02 (98), SOFTUY03 (144) and SOFTUY04 (52). Each
+lies within the stress rule.
+
+**NCcodexS8: closed.** `pft|NCcodexS8|S8NC|o|m0|eb`, N01 end_i: the resultant is exact (bending_moment_y
+−5e-19 published, intended and physical; B 4.4e-57), and the stress is 1 ulp off. The earlier "B
+1.63e-59" of that stress group was the census's assignment B/(Z·10^6), not a product bound.
+
+**Information: the physical system.** Against this set's rows (the exact annulus of OD and wall), B
+falls short on part of the groups (124,608 of 240,680 checks hold in (c)), by at most 8.5e-15 of the
+group's q: the section-property rounding of the binary64 A, I, J and A_s, which B does not claim and
+M3's 1e-9 criterion judges.
+
+**Open item.** The probe does not dump the product's Z or the stress operands. With them the census
+could check each stress row as the product's scaling of the certified resultant, bit for bit, instead
+of through the allowance above.
+
 ## Premise census (`pft_census.py`)
 
 Its `hager` mode solves the set's requests with the engine, which reads Pa moduli only; on the 48
@@ -480,6 +549,136 @@ Passed, Sensitive, fail-closed and refused counts by shear model, with the EB �
 `probe` gives the ε_E figures from an instrumented build's dump. Its self-test passes on the format
 probes (6 models, 0 failures), and on those probes diag(D·K·D) lies in [1, 4), confirming the
 mapping.
+
+## Census probe (`census-probe.patch`)
+
+`census-probe.patch` is test-only product instrumentation, kept here as a reproducibility artifact of
+this reference set (Agent 0's route (A)). It exposes what PF does not publish: the gate's values, ε_E
+and its parts, and every judged group's bound B, so that a census can check B ≥ |error| against this
+set's exact rows. Nothing in the repository compiles or reads it. Product source and every pin are
+unchanged; the patch applies only in a scratch checkout.
+
+- **Base:** `b52900b3efdd68ab301131c6a9da8076fd504c16` (#1663's head).
+- **sha256:** `a8b2b9de4da1b3f82d28203d493ae7406c27233d416b0166bc2f9292cf858fd5`.
+- **Not in `SHA256SUMS`.** That file lists, by name, the reference files `pft_generate.py check`
+  verifies, and those files must stay outside every pin and read list. The patch is not a reference
+  input, and its digest is stated here instead.
+
+**Apply, build and run.** The runner is the shared `../m3_judge/runner/`. A patched checkout is
+dirty, so the build records the head as `<base>-dirty`, and the judging pass refuses those records.
+They are census inputs, not judged outputs.
+
+```
+git worktree add --detach <scratch> b52900b3efdd68ab301131c6a9da8076fd504c16
+git -C <scratch> apply <this dir>/census-probe.patch
+M3J_ALLOW_DIRTY=1 <scratch>/projects/chirality-piping/validation/references/m3_judge/runner/build.sh \
+    <scratch> <target dir> <runner>
+KD5_PROBE_OUT=<dump.jsonl> KD5_IN=<chunk>.in.jsonl KD5_OUT=<raw>.jsonl [KD5_ENTRIES=typed] <runner>
+```
+
+**Inert.** Unless `KD5_PROBE_OUT` names a file, every probe entry point is a no-op. When it is set,
+the probe only appends lines to that file. It re-forms ε_E with the product's own `epsilon_e` where
+the product formed none, and discards the result after writing it. Nothing it computes returns to the
+product. Built at the base from the unpatched checkout and from the patched one:
+
+- the 12 models used here are 6 Timoshenko, `CANT09` in both theories, `SPAN04` in both, `SHORTL01` in
+  both, `NCcodexS8` (GPa moduli) and `NCedge2m54+0S8` (an expected refusal, typed entry only).
+  The 6 Timoshenko models are `L13`, `SOFTRX03`, `PHI2S4FF`, `FF07` and the two twins above. The set
+  includes `SOFTRX03` and `SHORTL01`, both near the Sensitive boundary. The raw records, with `ns`,
+  `runner_sha256` and `product_head` removed, are byte-identical across four runs: unpatched, patched
+  with the probe unset, patched with it set, and unpatched with it set. That is 46 records and 12,532
+  rows, both entries and both modes;
+- the same holds for the whole frozen subset (100 models, 372 records, 73,464 rows), unpatched against
+  patched with the probe unset and set;
+- the same holds for two invented models outside the set: PP's D5C-1 true positive
+  `RF-SKEW-T-CANT-OFF-122` (`core/product_physics/tests/formation_check_runtime.rs`) and its Timoshenko
+  twin (8 records). These exercise the line for an evaluation that ends before step 7.
+
+The dumps parse strictly (no duplicate keys, NaN or Infinity), with one evaluation line per K-D5
+evaluation. Every `_bits` field equals its decimal. Every groups line binds to its evaluation by
+`lambda_sigma_bits`. Every group's q equals the 2-norm of the published rows it names. Over all 394
+evaluation lines, max(parts) ≤ ε_E ≤ the sum of the parts. The elements part lies between the largest
+and the sum of its by-theory parts, and a theory's part is nonzero only where that theory is present.
+`pft_census.py probe` reads the evaluation lines unchanged.
+
+**Instrumented sites.**
+
+- FK `structural/formation_check.rs`:
+  - `check_at` writes the evaluation line once `evaluate` returns, or when the source is unavailable.
+    `evaluate` has no other caller, and `check_at` is reached from `check` (dense and sparse) and
+    from the nonlinear confirmation's `evaluate_at`, so every K-D5 evaluation passes through it.
+  - `evaluate` records σ, ε_E, 2^10·est·ε_E, Λ and Λ·σ as step 7 forms them.
+  - `epsilon_e` optionally charges each part's row and column sums with the same upward values it
+    charges ε_E with. Its return value is unchanged.
+- FK `kd5_probe.rs` (new): the switch, the labels, the sequence number and the line writer.
+- PP `lib.rs`:
+  - `solve_prepared_load_case` labels the case. Every PF load case enters there.
+  - just before `formation_guard::recovery_finding`, the groups line is written. The case's complete
+    recovery records exist there, and they are the input of the unified predicate's decision.
+- PP `formation_guard.rs` (`probe_groups`): forms each group's s_star and decision exactly as
+  `recovery_finding` does.
+- `formation_check_tests.rs`: one call takes the new argument, so FK's tests still build.
+
+**Dump format.** One JSON object per line, in two kinds. Every binary64 is written twice: as a JSON
+number (shortest round-trip decimal, which is exact as binary64; `null` if not finite) and as
+`<name>_bits`, its 16 hex digits.
+
+*Evaluation line* (`"record":"evaluation"`), one per K-D5 evaluation:
+
+| Field | Content |
+|---|---|
+| `tag`, `entry`, `mode` | the runner's `KD5_ACTIVE_TAG`, `_ENTRY`, `_MODE` (`SparseInteractive`, `DenseScrutiny`) |
+| `case` | the load case being solved |
+| `eval` | sequence number, 1, 2, … within the runner process (contiguous) |
+| `judged` | the D5C-1 row rule is on (false only for the nonlinear influence system) |
+| `step7`, `outcome` | whether step 7 was reached; `bound`, `sensitive:estimate` (D5C-1) or `fail_closed:<detail>` (the product's own detail, e.g. `Neumann`, `contraction`) |
+| `n_free` | free DOFs |
+| `r_hat`, `est`, `norm1_Ks` | the gate's (r̂, est, ‖K̃_s‖₁) |
+| `epsilon_E`, `epsilon_E_source` | ε_E. The source is `step7` (the product's own), `cache` (the attempt's cached value) or `probe` (formed with `epsilon_e` on the same inputs, before step 7). Null means it could not be formed, and `epsilon_E_error` says why |
+| `neumann_2p10_est_epsE` | 2^10·est·ε_E: the product's at step 7, otherwise the same two upward products |
+| `epsilon_E_parts` | [elements, assembly rounding, projection change], each the larger of its own row- and column-sum norms (with `epsilon_E_parts_bits`) |
+| `epsilon_E_element_parts` | the elements part over `euler_bernoulli` frames, `timoshenko` frames and `other` elements (connectors, tie rods, arcs) |
+| `sigma`, `lambda`, `lambda_sigma` | σ, Λ and Λ·σ of step 7; null where not formed |
+| `demotion` | on `sensitive:estimate`: the D5C-1 row's `global_dof`, `doubled_correction`, `scale`, `ratio` |
+| `scale_exponents` | D, one exponent per free DOF in free-DOF order |
+| `elements` | counts of frames, connectors, tie rods, arcs and springs |
+| `frames` | per straight member in formation order: `member` (`member:{len}:{id}:`; the published `entity_ref` is `{id}`), `node_i`, `node_j`, `theory`, and the resolved binary64 `E`, `G` (Pa), `A`, `Iy`, `Iz`, `J` (m², m⁴) and `A_s` (null for Euler–Bernoulli) that K-D5 re-formed with. A GPa request carries its resolved Pa values here |
+| `Ks` | K̃_s, the prepared scaled symmetric matrix the factor sees, by rows in free-DOF order; only when `n_free` ≤ 160 |
+
+*Groups line* (`"record":"groups"`), one per recovery decision of a load case:
+
+| Field | Content |
+|---|---|
+| `tag`, `entry`, `mode`, `case`, `case_id` | labels as above; `case_id` is the decision's own load case |
+| `eval` | the last evaluation line's `eval` before this line |
+| `pre_guard_passed`, `load_row_finding`, `member_bound` | the decision's preconditions |
+| `lambda_sigma` | Λ·σ of the member bound used (null without one). It equals the producing evaluation's `lambda_sigma_bits`, which binds the two lines when a case has several evaluations |
+| `groups` | every judged group, in the product's order. Each has `entity`, `body`, `location`, `kind`, `moment`, `q`, `q_hat`, `B`, `s_star` (the body's coupled force or moment scale the decision uses), `absolute_scale`, `published_scale`, `zero_compatible`, `fires` and `unavailable`. `fires` is the unified predicate's decision for that group; an unavailable bound or comparison sets `fires` true and gives the reason, with `B` null if the bound itself is unavailable |
+
+**Matching B to published rows.** A group is named in the published namespace as
+(`entity` = `entity_ref`, `location`, `kind`). In kd5t_compare's group names:
+
+- `axial`, `shear`, `torsion` and `bending` are the groups of the same name, at `end_i`, `end_j`,
+  `quarter_1`, `midspan` and `quarter_3`;
+- on supports (`location` `node`), `support_force` and `support_moment` are `reactF` and `reactM`.
+  `support_force_magnitude` and `support_moment_magnitude` are `reactFmag` and `reactMmag`;
+- the product forms no stress group. Stress rows are judged through the resultant they scale (K-D5
+  §3.2): `s_axial`, `s_bending` and `s_torsion` take the B of `axial`, `bending` and `torsion` at the
+  same entity and location, divided by the reference's conversion;
+- `cut_i` and `cut_j` (the endpoint section cuts) are judged groups with no published row. In every
+  dumped case their q equals, bit for bit, the q of `end_i` or `end_j`, but their B is their own (it
+  differed in 32 of the 12 models' 960). A consumer judges them against the end rows' values with
+  their own B.
+
+**Limits.**
+
+- No evaluation line is written for a case K-D5 does not evaluate: the ordinary gate is already
+  Sensitive (as for `SHORTL01`'s Euler–Bernoulli twin), or the model is refused.
+- The case label and the sequence number are process-wide, which suits the sequential runner. A
+  caller that runs cases concurrently would interleave them.
+- A probe that panics re-forming ε_E is caught and reported in `epsilon_E_error`; no run raised one.
+- `pft_census.py probe` reads every line, so pass it the evaluation lines only (filter on
+  `"record":"evaluation"`). Groups lines are for the B consumer.
 
 ## Runner and probes (`runner/`, `pft_generate.py probes`)
 
