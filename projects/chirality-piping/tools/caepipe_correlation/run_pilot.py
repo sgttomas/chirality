@@ -46,11 +46,14 @@ with no symbolic link on the way, so private authored files stay private, and it
 case ids must not name a tracked writer or authored case, whose case folders the
 run would otherwise replace. --no-export leaves out the export step; --authored-dir
 runs never export (only the solve and its printed results are wanted there), and
-need the configuration's settings_guard: each round trip then reads the tool's whole
-saved-settings key before and after and confirms that the processes it started have
-ended; the guard never writes the settings, and the run stops at the first case
-whose check shows any difference or an uncertain state, whose round trip raised,
-or whose batch run left no CSV (these runs never fall back to the GUI; Design §5).
+need the configuration's settings_guard. Before the first case and before each round
+trip no instance of the tool may be running that the run did not start. Each round
+trip reads the tool's whole saved-settings key before and after and confirms that
+the processes it started have ended; when the configuration enables it, a
+difference confined to the recent-files subkey is written back and verified, and
+nothing else is ever written. The run stops at the first case whose check is not
+clean, whose round trip raised, or whose batch run left no CSV (these runs never
+fall back to the GUI; Design §5).
 
 Standard output carries operational status only: per case its id, route and
 either the comparison record's path relative to the exchange folder or the
@@ -96,6 +99,7 @@ from core.handoff.caepipe_external import (  # noqa: E402
 from core.handoff.caepipe_external.correlation import evaluate_hypothesis_series, series_summary  # noqa: E402
 from core.handoff.caepipe_external.harness import (  # noqa: E402
     CONFIG_NAME,
+    check_no_foreign_instance,
     BOUNDARY_NOTE,
     SETTINGS_KEEP_GOING,
     CASE_ID_PATTERN,
@@ -659,6 +663,12 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] = os.environ)
                 return 2
         for warning in config.warnings:
             print(f"warning: {warning}")
+        if args.authored_dir:
+            # Session precondition: no instance of the tool may be running that this run did not start.
+            pre = check_no_foreign_instance(config)
+            if pre["status"] != "clear":
+                print(f"stopped before the first case: {pre['status']}; {pre.get('reason', '')}")
+                return 1
         results = []
         try:
             for case in cases:

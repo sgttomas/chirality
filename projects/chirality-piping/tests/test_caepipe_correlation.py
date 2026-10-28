@@ -42,6 +42,7 @@ from core.handoff.caepipe_external.harness import (  # noqa: E402
     ContainmentError,
     SettingsGuard,
     _quote,
+    check_no_foreign_instance,
     last_json_object,
     parse_reg_query,
 )
@@ -1126,6 +1127,7 @@ def test_pilot_authored_option_needs_no_runner_and_refuses_comparison_modes(tmp_
 
 
 INVENTED_GUARD = SettingsGuard(key="HKCU\\Software\\Invented Vendor\\Tool\\1.0", recent_files_subkey="Recent list")
+RESTORING_GUARD = dataclasses.replace(INVENTED_GUARD, restore_recent_files=True)
 INVENTED_KEY = "HKEY_CURRENT_USER\\Software\\Invented Vendor\\Tool\\1.0"
 
 
@@ -1152,8 +1154,12 @@ class FakeGuest:
         self.commands: list[str] = []
         self.empty_keys: set[str] = {INVENTED_KEY + "\\Empty sub"}  # a subkey with no values
         self.pid_text: str | None = None       # replaces the owned-process record when set
-        self.tasklist_text: str | None = None  # replaces the process list when set
-        self.tasklist_error: Exception | None = None
+        self.tasklist_text: str | None = None  # replaces the process list after the solve when set
+        self.tasklist_error: Exception | None = None  # raised by the process list after the solve when set
+        self.foreign: list[int] = []           # another instance of the tool, listed throughout
+        self.foreign_after: list[int] = []     # another instance that appears during the solve
+        self.apply_writes = True               # False: writes are accepted but change nothing
+        self.solved = False
 
     def query(self) -> str:
         lines = ["", INVENTED_KEY, ""]
@@ -1179,6 +1185,13 @@ class FakeGuest:
                 return subprocess.CompletedProcess(argv, 0, self.query(), "")
             if command.startswith(("reg add", "reg delete")):
                 self.writes.append(command)
+                add = re.fullmatch(r'reg add "([^"]+)" /v "([^"]+)" /t (REG_\w+) /d "([^"]*)" /f', command)
+                delete = re.fullmatch(r'reg delete "([^"]+)" /v "([^"]+)" /f', command)
+                assert add or delete, command
+                if self.apply_writes and add:
+                    self.values[(add[1], add[2])] = (add[3], add[4])
+                if self.apply_writes and delete:
+                    del self.values[(delete[1], delete[2])]
                 return subprocess.CompletedProcess(argv, 0, "", "")
             if command.startswith("type ") and "owned_pids.txt" in command:
                 if self.pid_text is not None:
@@ -1187,15 +1200,16 @@ class FakeGuest:
                     return subprocess.CompletedProcess(argv, 1, "", "The system cannot find the file specified.")
                 return subprocess.CompletedProcess(argv, 0, "".join(f"{pid}\r\n" for pid in self.owned), "")
             if command == "tasklist /FO CSV /NH":
-                if self.tasklist_error is not None:
+                if self.solved and self.tasklist_error is not None:
                     raise self.tasklist_error
-                if self.tasklist_text is not None:
+                if self.solved and self.tasklist_text is not None:
                     return subprocess.CompletedProcess(argv, 0, self.tasklist_text, "")
-                rows = ['"tool.exe","9999","Console","2","61,744 K"',  # another instance, not ours: ignored
-                        '"other.exe","4243","Console","2","1,000 K"']
-                rows += [f'"tool.exe","{pid}","Console","2","12,000 K"' for pid in self.running]
+                rows = ['"other.exe","9999","Console","2","61,744 K"']  # another program: never ours, never foreign
+                tool = self.foreign + (self.foreign_after + self.running if self.solved else [])
+                rows += [f'"tool.exe","{pid}","Console","2","12,000 K"' for pid in tool]
                 return subprocess.CompletedProcess(argv, 0, "\r\n".join(rows) + "\r\n", "")
             if command.startswith("powershell"):
+                self.solved = True
                 self.owned.append(4242)
                 return on_solve(self, argv, config)
             return subprocess.CompletedProcess(argv, 0, "", "")
@@ -1209,8 +1223,8 @@ def solved(guest, argv, config):
                                                             "csv_path": "C:\\invented-work\\cx-g\\model.csv"}), "")
 
 
-def guarded(tmp_path, guest: FakeGuest, on_solve, **kwargs) -> dict:
-    config = dataclasses.replace(fake_config(tmp_path), settings_guard=INVENTED_GUARD)
+def guarded(tmp_path, guest: FakeGuest, on_solve, guard: SettingsGuard = INVENTED_GUARD, **kwargs) -> dict:
+    config = dataclasses.replace(fake_config(tmp_path), settings_guard=guard)
     return run_caepipe_round_trip(config, "cx-g", MBF_TEXT, runner=guest.runner(on_solve, config), **kwargs)
 
 
@@ -1219,10 +1233,11 @@ def test_settings_guard_reads_the_whole_key_confirms_exit_and_never_writes(tmp_p
     record_ = guarded(tmp_path, guest, solved, gui_fallback=False)
     assert record_["settings_guard"]["status"] == "unchanged"
     assert record_["settings_guard"]["owned_processes"] == {"status": "exited", "owned_pids": [4242]}
-    assert [step["name"] for step in record_["steps"]] == ["settings_before", "prepare", "solve", "collect",
-                                                           "owned_pids", "process_list", "settings_after"]
+    assert [step["name"] for step in record_["steps"]] == [
+        "precondition_process_list", "settings_before", "prepare", "solve", "collect", "owned_pids", "process_list",
+        "settings_after"]
     # The whole version key with every subkey, not the recent-files subkey alone.
-    assert guest.commands[0] == 'reg query "HKCU\\Software\\Invented Vendor\\Tool\\1.0" /s'
+    assert guest.commands[1] == 'reg query "HKCU\\Software\\Invented Vendor\\Tool\\1.0" /s'
     solve = next(command for command in guest.commands if command.startswith("powershell"))
     assert '-PidFile "C:\\invented-work\\cx-g\\owned_pids.txt"' in solve and solve.endswith(" -NoGuiFallback")
     assert record_["command_shape"]["gui_print_fallback"]["allowed"] is False
@@ -1238,7 +1253,7 @@ def test_settings_guard_reports_a_recent_list_change_and_writes_nothing(tmp_path
 
     record_ = guarded(tmp_path, guest, solve)
     guard = record_["settings_guard"]
-    assert guard["status"] == "settings_changed" and "nothing was written back" in guard["reason"]
+    assert guard["status"] == "settings_changed" and "restoring is not enabled" in guard["reason"]
     changed = {item["value"]: item for item in guard["changed_values"]}
     assert set(changed) == {INVENTED_KEY + "\\Recent list\\" + name for name in ("1", "2", "3", "N")}
     assert changed[INVENTED_KEY + "\\Recent list\\3"]["before"] is None
@@ -1372,12 +1387,118 @@ def test_settings_guard_runs_nothing_when_the_settings_cannot_be_read(tmp_path):
 
     def runner(argv, **kwargs):
         commands.append(argv[6])
+        if argv[6] == "tasklist /FO CSV /NH":
+            return subprocess.CompletedProcess(argv, 0, '"other.exe","9999","Console","2","1 K"\r\n', "")
         return subprocess.CompletedProcess(argv, 1, "", "ERROR: invented")
 
     record_ = run_caepipe_round_trip(config, "cx-h", MBF_TEXT, runner=runner)
     assert record_["route"] == "settings_check_failed"
     assert record_["settings_guard"]["status"] == "settings_check_failed"
-    assert commands == ['reg query "HKCU\\Software\\Invented Vendor\\Tool\\1.0" /s']
+    assert commands == ["tasklist /FO CSV /NH", 'reg query "HKCU\\Software\\Invented Vendor\\Tool\\1.0" /s']
+
+
+def test_settings_guard_starts_nothing_while_another_instance_runs(tmp_path):
+    guest = FakeGuest()
+    guest.foreign = [16000]
+    record_ = guarded(tmp_path, guest, solved, guard=RESTORING_GUARD)
+    assert record_["route"] == "foreign_instance_running"
+    assert record_["settings_guard"]["status"] == "foreign_instance_running"
+    assert record_["settings_guard"]["foreign_pids"] == [16000]
+    assert guest.commands == ["tasklist /FO CSV /NH"] and guest.writes == []
+
+    # An unreadable process list is no precondition either.
+    second = tmp_path / "second"
+    second.mkdir()
+    guest = FakeGuest()
+    guest.tasklist_text, guest.solved = "garbage\r\n", True
+    record_ = guarded(second, guest, solved, guard=RESTORING_GUARD)
+    assert record_["route"] == "precondition_unknown" and guest.commands == ["tasklist /FO CSV /NH"]
+
+    # The session precondition reads the same list and starts nothing.
+    third = tmp_path / "third"
+    third.mkdir()
+    session_config = dataclasses.replace(fake_config(third), settings_guard=RESTORING_GUARD)
+    guest = FakeGuest()
+    guest.foreign = [16000]
+    assert check_no_foreign_instance(session_config, runner=guest.runner(solved, session_config))["status"] == \
+        "foreign_instance_running"
+    guest.foreign = []
+    assert check_no_foreign_instance(session_config, runner=guest.runner(solved, session_config)) == {"status": "clear"}
+    assert set(guest.commands) == {"tasklist /FO CSV /NH"}
+
+
+def test_settings_guard_restores_a_recent_files_only_change_and_verifies_it(tmp_path):
+    guest = FakeGuest()
+    before = dict(guest.values)
+
+    def solve(guest_, argv, config):
+        guest_.open_model("C:\\invented-work\\cx-g\\model.mod")
+        return solved(guest_, argv, config)
+
+    record_ = guarded(tmp_path, guest, solve, guard=RESTORING_GUARD)
+    guard = record_["settings_guard"]
+    assert guard["status"] == "recent_files_restored" and guard["restored_values"] == 4
+    assert guest.values == before
+    assert guest.writes and all('\\Recent list" /v' in command for command in guest.writes)
+    assert any(command.startswith("reg delete") and '/v "3"' in command for command in guest.writes)
+    # Written back in the first reading's order (1, 2, N), then the value that appeared is deleted.
+    assert [re.search(r'/v "([^"]+)"', command)[1] for command in guest.writes] == ["1", "2", "N", "3"]
+    assert [step["name"] for step in record_["steps"]][-1] == "settings_verify"
+
+
+def test_settings_guard_restores_nothing_when_more_than_recent_files_changed(tmp_path):
+    guest = FakeGuest()
+
+    def solve(guest_, argv, config):
+        guest_.open_model("C:\\invented-work\\cx-g\\model.mod")
+        guest_.values[(INVENTED_KEY + "\\Options", "Use something")] = ("REG_BINARY", "00")
+        return solved(guest_, argv, config)
+
+    record_ = guarded(tmp_path, guest, solve, guard=RESTORING_GUARD)
+    assert record_["settings_guard"]["status"] == "settings_changed"
+    assert guest.writes == []
+
+    # Nor when another instance appeared during the run, however small the change.
+    second = tmp_path / "second"
+    second.mkdir()
+    guest = FakeGuest()
+
+    def solve_with_visitor(guest_, argv, config):
+        guest_.open_model("C:\\invented-work\\cx-g\\model.mod")
+        guest_.foreign_after = [17000]
+        return solved(guest_, argv, config)
+
+    record_ = guarded(second, guest, solve_with_visitor, guard=RESTORING_GUARD)
+    assert record_["settings_guard"]["status"] == "foreign_instance_running"
+    assert record_["settings_guard"]["owned_processes"]["foreign_pids"] == [17000]
+    assert guest.writes == []
+
+
+def test_settings_guard_stops_when_the_restore_cannot_be_verified(tmp_path):
+    guest = FakeGuest()
+    guest.apply_writes = False  # the writes go nowhere: the third reading still differs
+
+    def solve(guest_, argv, config):
+        guest_.open_model("C:\\invented-work\\cx-g\\model.mod")
+        return solved(guest_, argv, config)
+
+    record_ = guarded(tmp_path, guest, solve, guard=RESTORING_GUARD)
+    assert record_["settings_guard"]["status"] == "settings_restore_failed"
+    assert record_["settings_guard"]["remaining_differences"]
+
+    # A value that cannot be written back exactly is not written at all.
+    second = tmp_path / "second"
+    second.mkdir()
+    guest = FakeGuest()
+    guest.values[(INVENTED_KEY + "\\Recent list", "Odd")] = ("REG_MULTI_SZ", "a\\0b")
+
+    def solve_odd(guest_, argv, config):
+        del guest_.values[(INVENTED_KEY + "\\Recent list", "Odd")]
+        return solved(guest_, argv, config)
+
+    record_ = guarded(second, guest, solve_odd, guard=RESTORING_GUARD)
+    assert record_["settings_guard"]["status"] == "settings_restore_failed"
+    assert guest.writes == []
 
 
 def test_parse_reg_query_keeps_empty_keys_and_refuses_what_it_does_not_understand():
@@ -1406,10 +1527,18 @@ def test_harness_config_reads_and_checks_the_settings_guard(tmp_path):
         "key": "HKCU\\Software\\Invented Vendor\\Tool\\1.0", "recent_files_subkey": "Recent list"}})
     resolved = resolve_harness_config({ENV_VAR: str(good), "PATH": path}, require_vm_tools=False)
     assert resolved.settings_guard == INVENTED_GUARD
-    for bad in ({"key": "HKLM\\Software\\X", "recent_files_subkey": "R"},
-                {"key": "HKCU\\Software\\X\" & del", "recent_files_subkey": "R"},
-                {"key": "HKCU\\Software\\X", "recent_files_subkey": "R\\S"}, "HKCU\\Software\\X"):
-        root = exchange(place(f"b{len(str(bad))}"), config=base | {"settings_guard": bad})
+    restoring = exchange(place("r"), config=base | {"settings_guard": {
+        "key": "HKCU\\Software\\Invented Vendor\\Tool\\1.0", "recent_files_subkey": "Recent list",
+        "restore_recent_files": True}})
+    assert resolve_harness_config({ENV_VAR: str(restoring), "PATH": path},
+                                  require_vm_tools=False).settings_guard == RESTORING_GUARD
+    for number, bad in enumerate(({"key": "HKLM\\Software\\X", "recent_files_subkey": "R"},
+                                  {"key": "HKCU\\Software\\X\" & del", "recent_files_subkey": "R"},
+                                  {"key": "HKCU\\Software\\X", "recent_files_subkey": "R\\S"}, "HKCU\\Software\\X",
+                                  {"key": "HKCU\\Software\\X", "restore_recent_files": True},
+                                  {"key": "HKCU\\Software\\X", "recent_files_subkey": "R",
+                                   "restore_recent_files": "yes"})):
+        root = exchange(place(f"b{number}"), config=base | {"settings_guard": bad})
         assert "settings_guard must give key" in skip_reason({ENV_VAR: str(root), "PATH": path})
     plain = resolve_harness_config({ENV_VAR: str(exchange(place("c"))), "PATH": path}, require_vm_tools=False)
     assert plain.settings_guard is None
@@ -1449,6 +1578,8 @@ def test_pilot_authored_dir_runs_the_cases_of_a_directory_inside_the_exchange_fo
     real = run_pilot.run_authored_case
     monkeypatch.setattr(run_pilot, "run_authored_case",
                         lambda case, config_, **kw: real(case, config_, round_trip=round_trip, export=export, **kw))
+    session = {"status": "clear"}
+    monkeypatch.setattr(run_pilot, "check_no_foreign_instance", lambda config_: session)
     clean = {"settings_guard": {"status": "unchanged"}}
     # An --authored-dir run never exports and never lets the guest fall back to the GUI.
     outcomes = [clean]
@@ -1477,6 +1608,17 @@ def test_pilot_authored_dir_runs_the_cases_of_a_directory_inside_the_exchange_fo
     # A host timeout whose guest processes are not confirmed ended stops the run.
     assert first_case_only({"route": "timeout", "settings_guard": {"status": "owned_process_running"}}) == [
         ("round_trip", "cx-01-invented")]
+    # A restored recent-files list is clean: the run goes on.
+    calls.clear()
+    outcomes[:] = [{"settings_guard": {"status": "recent_files_restored"}}, clean]
+    assert run_pilot.main(["--authored", "--authored-dir", str(directory)], environ={}) == 0
+    assert len(calls) == 2
+    # Another instance of the tool before the session: no case starts.
+    calls.clear()
+    session = {"status": "foreign_instance_running", "reason": "invented"}
+    assert run_pilot.main(["--authored", "--authored-dir", str(directory)], environ={}) == 1
+    assert calls == []
+    session = {"status": "clear"}
     # A rejected hash with a clean guard is an ordinary failed case: the run goes on.
     calls.clear()
     outcomes[:] = [{"guest_mbf_sha256": "0" * 64, **clean}, clean]

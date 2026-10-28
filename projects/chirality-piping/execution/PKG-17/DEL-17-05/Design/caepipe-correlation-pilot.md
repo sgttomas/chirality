@@ -142,32 +142,44 @@ wants only the solve and its printed results, so it never runs the export step; 
 the export out of a tracked authored run too.
 
 **Saved settings.** The tool keeps saved settings in the guest registry, among them a recent-files
-list. The configuration may name that registry key (`settings_guard`: `key`, an `HKCU\…` path; an
-optional `recent_files_subkey` only labels the record); `--authored-dir` runs require it. The guard
-only reads; it never writes the settings, because the user's own instance may change them at the
-same time and any write-back could overwrite that change. Around each round trip:
-- the whole key, every subkey included, is read (`reg query /s`) before anything starts the tool;
-  the reading keeps every key, empty ones included, and every value, and counts only when every
-  line of it is understood; when it fails nothing runs (`settings_check_failed`);
-- the guest script appends the id of each process it starts to `owned_pids.txt` in the case's work
-  folder, and runs without the GUI print fallback (a batch run that leaves no CSV ends as
-  `batch_no_csv`);
-- whatever happens in between, including a timeout of the host's call or an error while collecting,
-  the harness then reads those ids and the guest's process list (`tasklist`), looking only for those
-  ids with the tool's image name, and reads the whole key again. The two checks are guarded
-  separately, so a failure in one neither skips the other nor the result. The record of ids counts
-  only when it is complete and valid: readable, at least one id, one decimal id per line, and equal
-  to the list in the script's report when there is one; the process list counts only when every row
-  is a valid `tasklist` CSV row;
-- the run record's `settings_guard` is `unchanged` only when the second reading equals the first
-  exactly (keys and values) and no process the script started is listed. Otherwise it is
-  `settings_changed` (with each key added or removed and each differing value, before and after),
-  `owned_process_running`, `owned_process_state_unknown` (the record of ids, the process list or the
-  process check itself fell short) or `settings_check_failed`.
+list that a solve may update. The configuration may name that registry key (`settings_guard`: `key`,
+an `HKCU\…` path; `recent_files_subkey`, the list's subkey; `restore_recent_files`, `false` unless
+set, which needs the subkey); `--authored-dir` runs require it.
 
-The run stops at the first case whose guard result is anything but `unchanged`, whose round trip
-raised (the guard result travels with the exception), or that ended `batch_no_csv`. The guard result
-is checked before any other test of the record, so a rejected input hash does not pass over it.
+- **Precondition.** Before the first case and again before each round trip, the guest's process
+  list (`tasklist`) must be readable and show no instance of the tool: none is the run's own yet, so
+  any one is another user's instance (`foreign_instance_running`), and an unreadable or malformed list
+  is `precondition_unknown`. Either way nothing starts. The check starts, closes and signals nothing.
+- **Before.** The whole key, every subkey included, is read (`reg query /s`). The reading keeps every
+  key, empty ones included, and every value, and counts only when every line of it is understood;
+  when it fails nothing runs (`settings_check_failed`).
+- **During.** The guest script appends the id of each process it starts to `owned_pids.txt` in the
+  case's work folder (and lists them in its report), and never falls back to printing through the
+  GUI: a batch run that leaves no CSV ends `batch_no_csv`.
+- **After**, whatever happened in between (a timeout of the host's call or an error while collecting
+  included), in checks guarded separately so that a failure in one skips neither the other nor the
+  result:
+  - the record of ids must be complete and valid (readable, at least one id, one decimal id per line,
+    equal to the report's list when there is one), and the process list valid `tasklist` CSV. A
+    process of ours still listed is `owned_process_running`; another instance of the tool, the
+    precondition checked again, is `foreign_instance_running`; a record or list that falls short is
+    `owned_process_state_unknown`;
+  - the whole key is read again. When the two readings are identical (keys and values) the result is
+    `unchanged`.
+- **Restore.** Only when the configuration enables it, the process checks are clean, and every
+  difference lies in the values of the recent-files subkey (no key added or removed, nothing else
+  changed), the harness writes those values back to the first reading: values that changed or were
+  removed are written with their earlier type and data, in the first reading's order, and values that
+  appeared are deleted. It then reads the key a third time, which must equal the first reading
+  exactly (`recent_files_restored`); otherwise, or when a value cannot be written back exactly (in
+  which case nothing is written), the result is `settings_restore_failed`. A difference anywhere
+  else is `settings_changed`, and nothing is written.
+
+The restore is safe only because no other instance of the tool runs during the round trip: the
+precondition, before and after, admits none, so no concurrent change can be overwritten. The run stops
+at the first case whose result is anything but `unchanged` or `recent_files_restored`, whose round
+trip raised (the guard result travels with the exception), or that ended `batch_no_csv`. The guard
+result is checked before any other test of the record, so a rejected input hash does not pass over it.
 
 `caepipe_in/` holds only SWBPIPE-derived content or the invented authored file. Every layer from `caepipe_out/` on
 is CAEPIPE output or derived from it and stays private (§8). Every directory and

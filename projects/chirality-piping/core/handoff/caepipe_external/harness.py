@@ -17,13 +17,17 @@ regression. Everything it writes under
 Its records are regression and handoff evidence only.
 
 An optional `settings_guard` in the configuration names the guest registry key under
-which the user's tool keeps its saved settings. When it is set, every round trip
-reads the whole key before the guest work (no reading, no run) and again afterwards,
-after confirming from the guest's process list that every process the guest script
-started has ended. Any difference, and any process of ours still running or of
-unknown state, is recorded in the run record for the caller to stop on. The guard
-only reads: it never writes the settings, since the user's own instance may change
-them at the same time (Design §5).
+which the user's tool keeps its saved settings. When it is set, no round trip starts
+while any instance of the tool is running in the guest; every round trip reads the
+whole key before the guest work (no reading, no run) and again afterwards, after
+confirming from the guest's process list that every process the guest script
+started has ended and that no other instance appeared. Any difference, and any
+uncertain process state, is recorded in the run record for the caller to stop on.
+Only when the configuration enables `restore_recent_files` and the difference lies
+wholly in the recent-files subkey are that subkey's values written back, and the key
+is read a third time and must equal the first reading; nothing else is ever written.
+The restore is safe only because the precondition admits no other instance of the
+tool that could be changing its settings at the same time (Design §5).
 """
 
 from __future__ import annotations
@@ -70,7 +74,10 @@ SETTINGS_KEY_PATTERN = re.compile(r"^HKCU(\\[A-Za-z0-9 ._()-]+)+\Z")
 SETTINGS_SUBKEY_PATTERN = re.compile(r"^[A-Za-z0-9 ._()-]+\Z")
 # A value line of `reg query`: four spaces, name, four spaces, type, then four spaces and the data (absent when empty).
 REG_VALUE_LINE = re.compile(r"^ {4}(?P<name>.+?) {4}(?P<type>REG_[A-Z_]+)(?: {4}(?P<data>.*))?\Z")
-SETTINGS_KEEP_GOING = ("unchanged",)
+SETTINGS_KEEP_GOING = ("unchanged", "recent_files_restored")
+# Data a restore can write back exactly through `reg add` (REG_SZ only within the guest-command allow-list).
+RESTORABLE_DATA = {"REG_BINARY": re.compile(r"^[0-9A-Fa-f]*\Z"), "REG_DWORD": re.compile(r"^0x[0-9A-Fa-f]{1,8}\Z"),
+                   "REG_SZ": re.compile(r"^[A-Za-z0-9 \\._()*:-]*\Z")}
 # Written by the guest script in the case's work folder: one id per process it starts (guarded runs only).
 OWNED_PIDS_FILE = "owned_pids.txt"
 
@@ -104,10 +111,19 @@ class HarnessConfig:
 
 @dataclass(frozen=True)
 class SettingsGuard:
-    """The guest registry key of the tool's saved settings, read whole; the recent-files subkey only labels."""
+    """The guest registry key of the tool's saved settings, read whole, and its recent-files subkey.
+
+    `restore_recent_files` (off unless configured) lets a round trip write back the recent-files subkey alone when
+    nothing else changed; it is safe only because the precondition admits no instance of the tool but our own.
+    """
 
     key: str
     recent_files_subkey: str | None = None
+    restore_recent_files: bool = False
+
+    @property
+    def recent_files_key(self) -> str | None:
+        return f"{self.key}\\{self.recent_files_subkey}" if self.recent_files_subkey else None
 
 
 def resolve_harness_config(environ: Mapping[str, str] = os.environ, *,
@@ -178,11 +194,14 @@ def resolve_harness_config(environ: Mapping[str, str] = os.environ, *,
         raw_guard = config["settings_guard"]
         key = raw_guard.get("key") if isinstance(raw_guard, dict) else None
         subkey = raw_guard.get("recent_files_subkey") if isinstance(raw_guard, dict) else None
+        restore = raw_guard.get("restore_recent_files", False) if isinstance(raw_guard, dict) else None
         if not (isinstance(key, str) and SETTINGS_KEY_PATTERN.match(key)
-                and (subkey is None or isinstance(subkey, str) and SETTINGS_SUBKEY_PATTERN.match(subkey))):
+                and (subkey is None or isinstance(subkey, str) and SETTINGS_SUBKEY_PATTERN.match(subkey))
+                and isinstance(restore, bool) and (subkey is not None or not restore)):
             return skip(f"{CONFIG_NAME} settings_guard must give key (HKCU\\..., letters, digits, space and "
-                        ". _ ( ) - only) and, optionally, recent_files_subkey (the same characters)")
-        guard = SettingsGuard(key=key, recent_files_subkey=subkey)
+                        ". _ ( ) - only), optionally recent_files_subkey (the same characters) and "
+                        "restore_recent_files (true or false; true needs recent_files_subkey)")
+        guard = SettingsGuard(key=key, recent_files_subkey=subkey, restore_recent_files=restore)
     prlctl = None
     if require_vm_tools:
         checked.append("prlctl on PATH")
@@ -515,16 +534,57 @@ def _unknown(reason: str, **extra: Any) -> dict[str, Any]:
     return {"status": "unknown", "reason": reason, **extra}
 
 
+def _tool_processes(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]], name: str) -> list[int] | None:
+    """The ids of every process of the tool's image in the guest's process list, or None when the list cannot be
+    read or is not valid `tasklist /FO CSV /NH` output (no row, or a row that is not five fields with a decimal id)."""
+
+    listing = step(name, "tasklist /FO CSV /NH")
+    if listing["exit_status"] != 0:
+        return None
+    rows = [line for line in listing["stdout"].splitlines() if line.strip()]
+    parsed = [next(csv.reader([line])) for line in rows]
+    if not parsed or not all(len(row) == 5 and re.fullmatch(r"[0-9]{1,10}", row[1].strip()) for row in parsed):
+        return None
+    image = config.guest_executable.split("\\")[-1].lower()
+    return sorted(int(row[1]) for row in parsed if row[0].strip().lower() == image)
+
+
+def _precondition(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]], name: str) -> dict[str, Any]:
+    """Before anything starts the tool: no instance of it may be running (none is ours yet). Read only."""
+
+    try:
+        found = _tool_processes(config, step, name)
+    except Exception as failure:
+        return {"status": "precondition_unknown", "reason": f"the process check failed: {type(failure).__name__}"}
+    if found is None:
+        return {"status": "precondition_unknown", "reason": "the guest's process list could not be read or is "
+                                                            "malformed"}
+    if found:
+        return {"status": "foreign_instance_running", "foreign_pids": found,
+                "reason": "an instance of the tool this run did not start is running; nothing ran"}
+    return {"status": "clear"}
+
+
+def check_no_foreign_instance(config: HarnessConfig, *, timeout_s: float = 600,
+                              runner: Callable[..., subprocess.CompletedProcess] = subprocess.run) -> dict[str, Any]:
+    """Session precondition: `clear` when no instance of the tool is running in the guest. Starts and stops nothing."""
+
+    steps: list[dict[str, Any]] = []
+    return _precondition(config, lambda name, command: _guest_step(config, runner, timeout_s, steps, name, command),
+                         "session_process_list")
+
+
 def _owned_processes(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]], work: str,
                      guest_log: Any) -> dict[str, Any]:
-    """Whether every process the guest script started has exited, from the guest's process list.
+    """Whether every process the guest script started has exited, and no other instance of the tool appeared.
 
     The guest script appends the id of each process it starts to `OWNED_PIDS_FILE` in the work folder (and lists
     them in its report as `owned_pids`). The record must be complete and valid: readable, at least one id (every
     round trip that reaches the guest script starts the tool), one decimal id per line, and equal to the report's
-    list when there is a report. The process list must be valid `tasklist /FO CSV /NH` output. Only our ids with
-    the tool's image name are looked for; no process is stopped or signalled here. `exited` when none is listed,
-    `running` when one is, `unknown` whenever the record or the list falls short.
+    list when there is a report. The process list must be valid `tasklist /FO CSV /NH` output. No process is
+    stopped or signalled here. `exited` when no instance of the tool is listed; `running` when one of ours is;
+    `foreign` when one that is not ours is (the precondition checked again); `unknown` whenever the record or the
+    list falls short.
     """
 
     ids = step("owned_pids", f"type {_quote(_win(work, OWNED_PIDS_FILE))}")
@@ -540,24 +600,50 @@ def _owned_processes(config: HarnessConfig, step: Callable[[str, str], dict[str,
         if not (isinstance(reported, list) and all(isinstance(pid, int) for pid in reported)
                 and sorted(set(reported)) == pids):
             return _unknown("the guest's report and its record of the processes it started disagree", owned_pids=pids)
-    listing = step("process_list", "tasklist /FO CSV /NH")
-    if listing["exit_status"] != 0:
-        return _unknown("the guest's process list could not be read", owned_pids=pids)
-    rows = [line for line in listing["stdout"].splitlines() if line.strip()]
-    parsed = [next(csv.reader([line])) for line in rows]
-    if not parsed or not all(len(row) == 5 and re.fullmatch(r"[0-9]{1,10}", row[1].strip()) for row in parsed):
-        return _unknown("the guest's process list is empty or malformed", owned_pids=pids)
-    image = config.guest_executable.split("\\")[-1].lower()
-    running = sorted(int(row[1]) for row in parsed if row[0].strip().lower() == image and int(row[1]) in pids)
+    found = _tool_processes(config, step, "process_list")
+    if found is None:
+        return _unknown("the guest's process list could not be read or is malformed", owned_pids=pids)
+    running = [pid for pid in found if pid in pids]
+    foreign = [pid for pid in found if pid not in pids]
     if running:
-        return {"status": "running", "owned_pids": pids, "running": running}
+        return {"status": "running", "owned_pids": pids, "running": running, "foreign_pids": foreign}
+    if foreign:
+        return {"status": "foreign", "owned_pids": pids, "foreign_pids": foreign}
     return {"status": "exited", "owned_pids": pids}
 
 
-def _guard_result(settings_before, after, processes) -> dict[str, Any]:
-    """The run record's `settings_guard`: `unchanged` only when the whole snapshot is equal and nothing we
-    started is left running; otherwise the reason the run must stop. Nothing is ever written to the settings."""
+def _restore_commands(before: Mapping[str, Mapping], after: Mapping[str, Mapping], recent_id: str) -> list[str]:
+    """`reg add`/`reg delete` commands writing the recent-files subkey back to `before`, in its listing order.
 
+    ValueError (nothing is written) when a value cannot be written back exactly.
+    """
+
+    commands = []
+    for item, (printed, kind, data) in before["values"].items():
+        if item[0] == recent_id and after["values"].get(item, (None,))[1:] != (kind, data):
+            if kind not in RESTORABLE_DATA or not RESTORABLE_DATA[kind].match(data) or item[1] == "(Default)":
+                raise ValueError(f"{printed}\\{item[1]} ({kind}) cannot be written back exactly")
+            commands.append(f"reg add {_quote(printed)} /v {_quote(item[1])} /t {kind} /d {_quote(data)} /f")
+    for item, (printed, _, _) in after["values"].items():
+        if item[0] == recent_id and item not in before["values"]:
+            if item[1] == "(Default)":
+                raise ValueError("a default value appeared")
+            commands.append(f"reg delete {_quote(printed)} /v {_quote(item[1])} /f")
+    return commands
+
+
+def _guard_check(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]], settings_before, after,
+                 processes) -> dict[str, Any]:
+    """The run record's `settings_guard`.
+
+    `unchanged` when the whole snapshot is equal and no instance of the tool is left. A difference confined to the
+    values of the recent-files subkey is written back only when the configuration enables it and the process
+    checks are clean (no instance of ours or anyone else's running), then read a third time, which must equal the
+    first reading exactly: `recent_files_restored`, else `settings_restore_failed`. Any other difference is
+    `settings_changed` and nothing is written.
+    """
+
+    guard = config.settings_guard
     if settings_before is None:
         return {"status": "settings_check_failed", "reason": "the settings could not be read before the run; "
                                                              "nothing ran"}
@@ -567,15 +653,49 @@ def _guard_result(settings_before, after, processes) -> dict[str, Any]:
         return result
     changed = settings_difference(settings_before, after)
     result["changed_values"] = changed
-    if changed:
-        result.update(status="settings_changed", reason="the saved settings differ after the run; nothing was "
-                                                        "written back")
-    elif processes["status"] == "running":
-        result.update(status="owned_process_running", reason="a process the guest started is still running")
-    elif processes["status"] == "unknown":
+    if processes["status"] == "running":
+        result.update(status="owned_process_running", reason="a process the guest started is still running; "
+                                                             "nothing was written")
+        return result
+    if processes["status"] == "unknown":
         result.update(status="owned_process_state_unknown", reason=processes["reason"])
-    else:
+        return result
+    if processes["status"] == "foreign":
+        result.update(status="foreign_instance_running", reason="an instance of the tool this run did not start "
+                                                                "appeared; nothing was written")
+        return result
+    if not changed:
         result["status"] = "unchanged"
+        return result
+    recent_id = _registry_key_id(guard.recent_files_key) if guard.recent_files_key else None
+    keys_equal = set(settings_before["keys"]) == set(after["keys"])
+    outside = [item for item in set(settings_before["values"]) | set(after["values"])
+               if item[0] != recent_id
+               and settings_before["values"].get(item, (None,))[1:] != after["values"].get(item, (None,))[1:]]
+    if not (guard.restore_recent_files and recent_id and keys_equal and not outside):
+        result.update(status="settings_changed", reason="the saved settings differ after the run"
+                      + ("" if guard.restore_recent_files else " (restoring is not enabled)") + "; nothing was written")
+        return result
+    try:
+        commands = _restore_commands(settings_before, after, recent_id)
+    except ValueError as error:
+        result.update(status="settings_restore_failed", reason=f"{error}; nothing was written")
+        return result
+    try:
+        for number, command in enumerate(commands, 1):
+            step(f"settings_restore_{number}", command)
+        third = _settings_snapshot(config, step, "settings_verify")
+    except Exception as failure:
+        result.update(status="settings_restore_failed", restored_values=len(commands),
+                      reason=f"the restore or its check failed: {type(failure).__name__}: {failure}")
+        return result
+    remaining = settings_difference(settings_before, third) if third is not None else None
+    result["restored_values"] = len(commands)
+    if remaining == []:
+        result["status"] = "recent_files_restored"
+    else:
+        result.update(status="settings_restore_failed", remaining_differences=remaining,
+                      reason="the reading after the restore does not equal the reading before the run")
     return result
 
 
@@ -616,7 +736,13 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
     stale_guest = " ".join(_quote(_win(work, name)) for name in ("model*.csv", "model.mbf", *OUTPUT_NAMES,
                                                                   OWNED_PIDS_FILE))
     # The saved settings are read before anything starts the tool; without that reading nothing runs.
-    settings_before = _settings_snapshot(config, step, "settings_before") if guarded else None
+    # Precondition: no instance of the tool may be running before ours starts; then the saved settings are read.
+    # Without both, nothing runs.
+    blocked = None
+    if guarded:
+        pre = _precondition(config, step, "precondition_process_list")
+        blocked = None if pre["status"] == "clear" else pre
+    settings_before = _settings_snapshot(config, step, "settings_before") if guarded and blocked is None else None
     prepare: dict[str, Any] = {"exit_status": "not_run", "stdout": "", "stderr": ""}
     solve: dict[str, Any] = {"exit_status": None, "stdout": "", "stderr": ""}
     script_location = "exchange_share"
@@ -626,7 +752,7 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
     settings = None
     error: BaseException | None = None
     try:
-        if not guarded or settings_before is not None:
+        if not guarded or (blocked is None and settings_before is not None):
             prepare = step("prepare", f"{_ensure_dir(work)} & del /Q {stale_guest} 2>nul & "
                                       f"copy /Y {_quote(_win(guest_in, 'model.mbf'))} {_quote(guest_mbf)}")
         if prepare["exit_status"] == 0:
@@ -666,7 +792,7 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
                     after = _settings_snapshot(config, step, "settings_after")
                 except Exception as failure:
                     processes = processes | {"settings_read_error": f"{type(failure).__name__}: {failure}"}
-            settings = _guard_result(settings_before, after, processes)
+            settings = blocked if blocked is not None else _guard_check(config, step, settings_before, after, processes)
 
     try:
         write_private(root, out / "guest_stdout.txt", solve["stdout"])
@@ -684,6 +810,8 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
         status = guest_log.get("status") if isinstance(guest_log, dict) else None
         if error is not None:
             route = "harness_error"
+        elif blocked is not None:
+            route = blocked["status"]
         elif guarded and settings_before is None:
             route = "settings_check_failed"
         elif prepare["exit_status"] != 0:
