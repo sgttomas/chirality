@@ -5,9 +5,10 @@ Work from the repository root. Root maintains `AGENTS.md`, `agents/`,
 technical references in `docs/`. The conversation supplies the undertaking;
 Root is not a standing project-wide audit or backlog.
 
-Locate the shared component and its affected consumers. Change those consumers
-in the same PR and check the actual connecting path, including App v4 resources
-when they consume the changed source. Do not send propagation notices or update
+Locate the shared component and its affected consumers. Change local consumers in the same PR and check the actual connecting path.
+For external consumers such as App v4, identify the shared revision and coordinate
+adoption through independently reviewable changes in their owning repositories.
+App v4 lives in `sgttomas/chirality-app` and remains on development hold. Do not send propagation notices or update
 unaffected projects. Project product work and `_DomainEngines/` changes require
 a steer covering that scope; frozen products are not maintenance targets.
 

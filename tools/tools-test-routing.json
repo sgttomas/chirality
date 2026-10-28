@@ -301,8 +301,7 @@
     },
     {
       "paths": [
-        "tools/deliverables/*",
-        "projects/chirality-app-v4/execution/PKG-*/DEL-*/deliverable.yaml"
+        "tools/deliverables/*"
       ],
       "checks": [
         "deliverables"
@@ -331,7 +330,6 @@
     },
     {
       "paths": [
-        ".github/workflows/app-v4.yml",
         ".github/workflows/piping-desktop-e2e.yml",
         ".github/workflows/shared-build-cache.yml",
         ".github/actions/restore-build-cache/**"

@@ -21,6 +21,8 @@ import threading
 import time
 
 import pytest
+from types import SimpleNamespace
+from typing import Callable
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -1170,10 +1172,15 @@ class FakeGuest:
         self.faults: dict[tuple[str, int], BaseException] = {}  # (kind, number) -> raised by that command
         self.write_results: dict[int, tuple[int, str, str]] = {}  # write number -> (exit, stdout, stderr), not applied
         self.signal_on_write: dict[int, int] = {}  # write number -> a real signal raised from inside that command
+        self.signal_on: dict[tuple[str, int], int] = {}  # (kind, number) -> a real signal raised from that command
+        self.timeouts: list[tuple[str, float]] = []      # (command, timeout passed to the runner)
+        self.tick: Callable[[], None] | None = None      # called on every command (a fake clock)
         self.raised = False                         # set once an injected fault has been raised
 
     def query(self) -> str:
-        lines = ["", INVENTED_KEY, ""]
+        # As `reg query /s` prints it: CRLF lines, a blank line first, and no header for the queried key itself
+        # while it holds no values of its own.
+        lines = [""]
         for key in sorted({key for key, _ in self.values} | self.empty_keys):
             lines += [key] + [f"    {name}    {kind}    {data}" if data else f"    {name}    {kind}"
                               for (k, name), (kind, data) in sorted(self.values.items()) if k == key] + [""]
@@ -1194,10 +1201,15 @@ class FakeGuest:
             self.commands.append(command)
             kind = ("query" if command.startswith("reg query ") else "write" if command.startswith(("reg add", "reg delete"))
                     else "tasklist" if command == "tasklist /FO CSV /NH" else None)
+            self.timeouts.append((command, kwargs.get("timeout")))
+            if self.tick is not None:
+                self.tick()
             if kind:
                 self.counts[kind] += 1
                 if kind == "write" and self.counts[kind] in self.signal_on_write:
                     signal.raise_signal(self.signal_on_write[self.counts[kind]])  # the callee receives a real signal
+                if (kind, self.counts[kind]) in self.signal_on:
+                    signal.raise_signal(self.signal_on[(kind, self.counts[kind])])
                 if (kind, self.counts[kind]) in self.faults:
                     self.raised = True
                     if kind == "write":
@@ -1453,6 +1465,7 @@ def test_settings_guard_starts_nothing_while_another_instance_runs(tmp_path):
     guest.foreign = []
     assert check_no_foreign_instance(session_config, runner=guest.runner(solved, session_config)) == {"status": "clear"}
     assert set(guest.commands) == {"tasklist /FO CSV /NH"}
+    assert guest.timeouts and all(timeout == 20.0 for _, timeout in guest.timeouts)  # the guard's call timeout
 
 
 def test_settings_guard_restores_a_recent_files_only_change_and_verifies_it(tmp_path):
@@ -1870,6 +1883,162 @@ def test_settings_guard_blocked_record_write_is_interruptible_by_a_signal(tmp_pa
     assert guard["status"] == "recent_files_restored" and guard["run_record_error"].startswith("KeyboardInterrupt")
 
 
+def _guard_file(tmp_path) -> dict:
+    return json.loads((tmp_path / "exchange" / "cases" / "cx-g" / "caepipe_out" / "settings_guard.json")
+                      .read_text(encoding="utf-8"))
+
+
+SIGTERM_POINTS = {  # where a real SIGTERM arrives -> (how, status, raised type)
+    "during the verification reading": ("query", 3, "recent_files_restored", KeyboardInterrupt),
+    "during the check after the writes": ("tasklist", 7, "recent_files_restored", KeyboardInterrupt),
+    "at the check before success, after the section": ("tasklist", 8, "settings_restore_failed",
+                                                       harness.TerminationRequested),
+    "during the record write": ("record", 0, "recent_files_restored", harness.TerminationRequested),
+}
+
+
+@pytest.mark.parametrize("where", list(SIGTERM_POINTS))
+def test_settings_guard_keeps_the_write_log_through_a_real_sigterm(tmp_path, monkeypatch, where):
+    kind, number, status, raised_type = SIGTERM_POINTS[where]
+    handler_before = signal.getsignal(signal.SIGTERM)
+    guest = FakeGuest()
+    if kind == "record":
+        real_write = harness.write_private
+
+        def terminating_write(root, path, data):
+            if Path(path).name == "run_record.json":
+                signal.raise_signal(signal.SIGTERM)  # a termination request while the record is written
+            return real_write(root, path, data)
+
+        monkeypatch.setattr(harness, "write_private", terminating_write)
+    else:
+        guest.signal_on[(kind, number)] = signal.SIGTERM
+    with pytest.raises(raised_type) as raised:
+        guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    assert isinstance(raised.value, KeyboardInterrupt)  # a cancellation, never a silent end of the process
+    saved = _guard_file(tmp_path)  # persisted on its own, before the run record
+    assert saved["status"] == status and [entry["completed"] for entry in saved["write_log"]] == [True] * 4
+    assert raised.value.settings_guard["write_log"] == saved["write_log"]
+    if status == "recent_files_restored" and kind != "record":
+        assert saved["deferred_signals"] == ["SIGTERM"]
+    assert signal.getsignal(signal.SIGTERM) is handler_before  # restored when the round trip ends
+
+
+# The reporting transitions after the guard's checks, named by their statement in `_round_trip_body`.
+REPORTING_POINTS = {
+    "merging the guard's deferred error": "if deferred is not None:",
+    "attaching the guard result": "if error is not None and settings is not None:",
+    "persisting the guard result": "if guarded and settings is not None:",
+}
+
+
+def _signal_at_statement(statement: str, signum: int, times: int = 1):
+    """A tracer that raises a real signal when `_round_trip_body` reaches the line of `statement`."""
+
+    import inspect
+    lines, first = inspect.getsourcelines(harness._round_trip_body)
+    found = [first + index for index, line in enumerate(lines) if line.strip() == statement]
+    assert len(found) == 1, statement
+    fired: list[int] = []
+
+    def local(frame, event, arg):  # noqa: ARG001
+        if event == "line" and frame.f_lineno == found[0] and len(fired) < times:
+            fired.append(signum)
+            signal.raise_signal(signum)
+        return local
+
+    def tracer(frame, event, arg):  # noqa: ARG001
+        return local if frame.f_code is harness._round_trip_body.__code__ else None
+
+    return tracer, fired
+
+
+@pytest.mark.parametrize("where", list(REPORTING_POINTS))
+def test_settings_guard_keeps_the_write_log_through_a_sigterm_while_reporting(tmp_path, where):
+    handler_before = signal.getsignal(signal.SIGTERM)
+    tracer, fired = _signal_at_statement(REPORTING_POINTS[where], signal.SIGTERM)
+    guest = FakeGuest()
+    sys.settrace(tracer)
+    try:
+        with pytest.raises(harness.TerminationRequested) as raised:
+            guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    finally:
+        sys.settrace(None)
+    assert fired == [signal.SIGTERM] and len(guest.writes) == 4
+    carried = raised.value.settings_guard  # the exception carries the log
+    assert carried["status"] == "recent_files_restored"
+    assert [entry["completed"] for entry in carried["write_log"]] == [True] * 4
+    saved = _guard_file(tmp_path)  # and at least the guard result is on file
+    assert saved["write_log"] == carried["write_log"] and saved["status"] == "recent_files_restored"
+    assert saved["round_trip_error"].startswith("TerminationRequested")
+    assert signal.getsignal(signal.SIGTERM) is handler_before
+
+
+def test_settings_guard_log_stays_on_the_exception_when_its_file_write_is_interrupted_again(tmp_path, monkeypatch):
+    real_write = harness.write_private
+
+    def terminating_write(root, path, data):
+        if Path(path).name == harness.GUARD_RESULT_FILE:
+            signal.raise_signal(signal.SIGTERM)  # every attempt to write the guard result is interrupted
+        return real_write(root, path, data)
+
+    monkeypatch.setattr(harness, "write_private", terminating_write)
+    tracer, _ = _signal_at_statement(REPORTING_POINTS["attaching the guard result"], signal.SIGTERM)
+    guest = FakeGuest()
+    sys.settrace(tracer)
+    try:
+        with pytest.raises(harness.TerminationRequested) as raised:
+            guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    finally:
+        sys.settrace(None)
+    carried = raised.value.settings_guard
+    assert [entry["completed"] for entry in carried["write_log"]] == [True] * 4
+    assert carried["guard_result_file"].startswith("not written: TerminationRequested")
+    assert not (tmp_path / "exchange" / "cases" / "cx-g" / "caepipe_out" / harness.GUARD_RESULT_FILE).exists()
+
+
+def test_settings_guard_calls_use_the_guard_timeout_not_the_solve_timeout(tmp_path):
+    guest = FakeGuest()
+    guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    solve = [timeout for command, timeout in guest.timeouts if command.startswith("powershell")]
+    guard = [timeout for command, timeout in guest.timeouts if not command.startswith(("powershell", "(if", "copy"))]
+    assert solve == [600] and guard and all(0 < timeout <= 20.0 for timeout in guard)
+    assert {command.split(" ")[0] for command, _ in guest.timeouts} >= {"reg", "tasklist", "type"}
+
+    # Configured: every guard call takes the configured timeout.
+    second = tmp_path / "second"
+    second.mkdir()
+    guest = FakeGuest()
+    guarded(second, guest, _open_model, guard=dataclasses.replace(RESTORING_GUARD, call_timeout_s=7.0))
+    guard = [timeout for command, timeout in guest.timeouts if not command.startswith(("powershell", "(if", "copy"))]
+    assert all(0 < timeout <= 7.0 for timeout in guard)
+
+
+def test_settings_guard_read_that_times_out_stops_the_restore_with_nothing_written(tmp_path):
+    guest = FakeGuest()
+    guest.faults[("tasklist", 3)] = subprocess.TimeoutExpired(["invented"], 20)  # the check before write 1
+    record_ = guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    guard = record_["settings_guard"]
+    assert guard["status"] == "settings_restore_failed" and guard["stopped_by"]["status"] == "precondition_unknown"
+    assert guard["write_log"] == [] and "nothing was written" in guard["reason"] and guest.writes == []
+
+
+def test_settings_guard_section_budget_stops_the_restore_with_the_log_kept(tmp_path, monkeypatch):
+    clock = {"t": 1000.0}
+    monkeypatch.setattr(harness, "time", SimpleNamespace(monotonic=lambda: clock["t"]))
+    guest = FakeGuest()
+    guest.tick = lambda: clock.__setitem__("t", clock["t"] + 30.0)  # every guest call takes 30 s
+    with pytest.raises(harness.SectionBudgetExceeded):
+        guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)  # budget 120 s: two checks and two writes
+    saved = _guard_file(tmp_path)
+    assert saved["status"] == "settings_restore_failed"
+    assert saved["section_budget_exceeded"] == "restore_check_before_write_3"
+    assert [entry["completed"] for entry in saved["write_log"]] == [True, True] and len(guest.writes) == 2
+    # Within the section no call was given more time than remained.
+    section = [timeout for command, timeout in guest.timeouts if command.startswith("reg add")]
+    assert all(timeout <= 20.0 for timeout in section)
+
+
 def test_settings_restore_verified_when_no_fault_is_injected(tmp_path):
     guest = FakeGuest()
     before = dict(guest.values)
@@ -1918,6 +2087,54 @@ def test_parse_reg_query_keeps_empty_keys_and_refuses_what_it_does_not_understan
     assert parse_reg_query("HKEY_CURRENT_USER\\Software\\X\r\nsomething unexpected\r\n") is None
 
 
+# Invented `reg query <key> /s` output in the structure the guest prints: CRLF lines, a leading blank line, no
+# header for the queried key while it holds no values, REG_BINARY data as hex.
+ROOTLESS_READING = ("\r\n" + INVENTED_KEY + "\\Options\r\n    Use something    REG_BINARY    01\r\n\r\n"
+                    + INVENTED_KEY + "\\Recent list\r\n    1    REG_BINARY    "
+                    + _hex("C:\\work\\case.mod") + "\r\n    N    REG_BINARY    01000000\r\n\r\n\r\n")
+
+
+def _snapshot_of(text: str, exit_status: int = 0):
+    return harness._settings_snapshot(fake_config_with_guard(), lambda name, command: {
+        "exit_status": exit_status, "stdout": text, "stderr": ""}, "settings_before")
+
+
+def fake_config_with_guard() -> HarnessConfig:
+    return SimpleNamespace(settings_guard=INVENTED_GUARD)
+
+
+def test_settings_snapshot_accepts_a_queried_key_printed_without_a_header():
+    snapshot = _snapshot_of(ROOTLESS_READING)
+    root = harness._registry_key_id(INVENTED_GUARD.key)
+    assert snapshot is not None and snapshot["keys"][root] == INVENTED_KEY  # implied by its printed subkeys
+    assert set(snapshot["keys"]) == {root, root + "\\options", root + "\\recent list"}
+    assert snapshot["values"][(root + "\\recent list", "N")] == (INVENTED_KEY + "\\Recent list", "REG_BINARY",
+                                                                   "01000000")
+    # Printed with values of its own, the queried key is read as printed; the result is the same shape.
+    with_root = "\r\n" + INVENTED_KEY + "\r\n    Own    REG_DWORD    0x1\r\n" + ROOTLESS_READING
+    assert set(_snapshot_of(with_root)["keys"]) == set(snapshot["keys"])
+    # The same text with LF line endings (as decoded in text mode) reads the same.
+    assert _snapshot_of(ROOTLESS_READING.replace("\r\n", "\n")) == snapshot
+
+
+def test_settings_snapshot_still_refuses_what_it_cannot_place_or_parse():
+    outside = ROOTLESS_READING + "HKEY_CURRENT_USER\\Software\\Elsewhere\r\n    A    REG_BINARY    00\r\n"
+    assert _snapshot_of(outside) is None                    # a key not under the configured one
+    assert _snapshot_of("\r\n\r\n") is None                   # no key printed at all
+    assert _snapshot_of(ROOTLESS_READING, exit_status=1) is None
+    assert _snapshot_of(ROOTLESS_READING + "    orphan text\r\n") is None  # a line that is not understood
+    assert _snapshot_of(ROOTLESS_READING.replace("REG_BINARY    01\r\n", "REG_BINARY\t01\r\n")) is None
+    sibling = ROOTLESS_READING.replace(INVENTED_KEY + "\\Options", INVENTED_KEY + "-other\\Options")
+    assert _snapshot_of(sibling) is None                    # a name that merely starts like the configured key
+
+
+def test_settings_guard_reads_a_reading_without_the_queried_key_header_as_unchanged(tmp_path):
+    guest = FakeGuest()
+    assert not guest.query().splitlines()[1] == INVENTED_KEY  # the fake prints no header for the queried key
+    record_ = guarded(tmp_path, guest, solved, gui_fallback=False)
+    assert record_["settings_guard"]["status"] == "unchanged"
+
+
 def test_harness_config_reads_and_checks_the_settings_guard(tmp_path):
     base = {"vm_name": "invented-vm", "guest_executable": "C:\\Invented\\tool.exe",
             "guest_exchange_root": "Z:\\invented", "guest_work_root": "C:\\invented-work",
@@ -1937,12 +2154,21 @@ def test_harness_config_reads_and_checks_the_settings_guard(tmp_path):
         "restore_recent_files": True}})
     assert resolve_harness_config({ENV_VAR: str(restoring), "PATH": path},
                                   require_vm_tools=False).settings_guard == RESTORING_GUARD
+    assert (RESTORING_GUARD.call_timeout_s, RESTORING_GUARD.section_budget_s) == (20.0, 120.0)  # the defaults
+    limited = exchange(place("l"), config=base | {"settings_guard": {
+        "key": "HKCU\\Software\\Invented Vendor\\Tool\\1.0", "call_timeout_s": 7, "section_budget_s": 45.5}})
+    resolved = resolve_harness_config({ENV_VAR: str(limited), "PATH": path}, require_vm_tools=False).settings_guard
+    assert (resolved.call_timeout_s, resolved.section_budget_s) == (7.0, 45.5)
     for number, bad in enumerate(({"key": "HKLM\\Software\\X", "recent_files_subkey": "R"},
                                   {"key": "HKCU\\Software\\X\" & del", "recent_files_subkey": "R"},
                                   {"key": "HKCU\\Software\\X", "recent_files_subkey": "R\\S"}, "HKCU\\Software\\X",
                                   {"key": "HKCU\\Software\\X", "restore_recent_files": True},
                                   {"key": "HKCU\\Software\\X", "recent_files_subkey": "R",
-                                   "restore_recent_files": "yes"})):
+                                   "restore_recent_files": "yes"},
+                                  {"key": "HKCU\\Software\\X", "call_timeout_s": 0},
+                                  {"key": "HKCU\\Software\\X", "call_timeout_s": True},
+                                  {"key": "HKCU\\Software\\X", "section_budget_s": "120"},
+                                  {"key": "HKCU\\Software\\X", "section_budget_s": -1})):
         root = exchange(place(f"b{number}"), config=base | {"settings_guard": bad})
         assert "settings_guard must give key" in skip_reason({ENV_VAR: str(root), "PATH": path})
     plain = resolve_harness_config({ENV_VAR: str(exchange(place("c"))), "PATH": path}, require_vm_tools=False)

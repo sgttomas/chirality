@@ -9,7 +9,7 @@ remains accountable for acceptance and reliance.
 | Scope | Entry | Standing |
 |---|---|---|
 | Root: shared instructions, workflows, skills, tools and CI | `execution/_Coordination/LOOP_INIT.md` | Work as steered |
-| App v4: Chirality within applications and the workflow-authoring exemplar | `projects/chirality-app-v4/loop/LOOP_INIT.md` | Active |
+| App v4: independent project | [chirality-app](https://github.com/sgttomas/chirality-app) | Development on hold; consult its local instructions |
 | SWBPIPE: piping design and stress-model authoring | `projects/chirality-piping/loop/LOOP_INIT.md` | Active |
 | App v3, Runtime, PEC | [Recovery](projects/FROZEN.md) | Frozen; no development or verification without explicit reactivation |
 | `_DomainEngines/` | Owning project's instructions | Write only under a steer for that work |
@@ -47,8 +47,8 @@ locally. Make maturity and issue status explicit. Code and other outputs may
 retain their actual product/source homes, referenced from the locality. The
 consumer states its needs; tools derive reverse links and graphs.
 
-App v4 and `chirality-piping` retain their existing `Design/` convention under
-their project loop entries. Shared methods follow the selected project's
+`chirality-piping` retains its existing `Design/` convention under
+its project loop entry; App v4 retains that convention in its separate repository. Shared methods follow the selected project's
 adopted convention; the new default does not rename those localities or create
 an additional directory. Technical design concepts and filenames are unchanged.
 

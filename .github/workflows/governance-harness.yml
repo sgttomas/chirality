@@ -234,6 +234,12 @@ jobs:
         run: |
           python3 tools/validation/validate_agent_instructions.py --json
           python3 tools/validation/validate_workflow_metadata.py --json
+      # GEN-13 (DEC-081 claims language; SWBPIPE surfaces only). Selected when
+      # a changed path matches the validator's own input_patterns() (its
+      # scanned surfaces, anchors, registry and itself), and on dispatch.
+      - name: Claims-language surfaces (GEN-13)
+        if: steps.selection.outputs.claims_language == 'true'
+        run: python3 tools/validation/validate_claims_language.py
       - name: Unresolved conflict markers
         env:
           CONFLICT_BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
@@ -286,13 +292,11 @@ jobs:
             python3 tools/run_affected_tests.py --base "$CHECKS_BASE"
           fi
 
-  app-v4:
-    uses: ./.github/workflows/app-v4.yml
   piping:
     uses: ./.github/workflows/piping-desktop-e2e.yml
   harness:
     name: harness
-    needs: [repository-checks, app-v4, piping]
+    needs: [repository-checks, piping]
     if: always()
     runs-on: ubuntu-latest
     steps:
