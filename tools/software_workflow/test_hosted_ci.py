@@ -362,6 +362,10 @@ class HostedCITests(unittest.TestCase):
             ('fixtures/model_document/invented_every_slot_model.json', 'desktop-rust-compile-read'),
             ('fixtures/product_preview/r2_from_blank_rehearsal.json', 'desktop-rust-source-reference'),
             ('fixtures/results/new_exact_source.json', 'desktop-rust-source-reference'),
+            # The user-release reach scan reads the headless runner's sources, an allowed
+            # dependent of report_package (code review r9 at #1682), so a runner change re-runs it.
+            ('core/runner/headless/src/lib.rs', 'desktop-rust-source-reference'),
+            ('core/runner/headless/src/bin/openpipestress-runner.rs', 'desktop-rust-source-reference'),
             # Files a path dependency's compiled source or build script reads (declared): the
             # product_physics build script reads its own sources.
             ('fixtures/rule_expressions/checksum_binding/payload_grammar_v1_0_0.json', 'path-dependency-runtime-read'),
@@ -373,9 +377,11 @@ class HostedCITests(unittest.TestCase):
                 self.assertIn('piping-desktop-rust', selection['checks'])
                 self.assertEqual(selection['piping_desktop_rust_selection']['reasons'], [{'path': project + path, 'kind': kind}])
         for paths in [
-            # Desktop TypeScript, a crate outside the path dependencies, Python, docs and another product.
+            # Desktop TypeScript, a crate outside the path dependencies and the scanned crates, Python,
+            # docs and another product. (The headless runner left this list in code review r9 at
+            # #1682: the reach scan reads its sources.)
             [project + 'apps/desktop/src/App.tsx', project + 'apps/desktop/package.json'],
-            [project + 'core/runner/headless/src/lib.rs', project + 'core/solver/performance_harness/src/lib.rs'],
+            [project + 'core/solver/performance_harness/src/lib.rs'],
             [project + 'tests/test_export_public_openpipestress.py', project + 'tools/release/run_evidence_sweep.py'],
             [project + 'docs/note.md'],
             # A dependency's own `.cargo/` is never read by Cargo.
