@@ -324,6 +324,10 @@ def desktop_rust_plan(root: Path, paths: list[str], selection: dict, profile: di
         elif (any(relative.startswith(crate + "/") for crate in dependencies)
               and (PurePosixPath(relative).suffix == ".rs" or PurePosixPath(relative).name in {"Cargo.toml", "Cargo.lock"})):
             kind = "path-dependency-source"
+        elif PurePosixPath(relative).name in {"Cargo.toml", "Cargo.lock"}:
+            # The shell's reach scan reads every project manifest's dependencies (W-18b
+            # r2c), so any manifest or lock change can change its result.
+            kind = "cargo-manifest"
         else:
             continue
         reasons.append({"path": path, "kind": kind})
