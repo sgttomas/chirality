@@ -125,11 +125,15 @@ $log = [ordered]@{
     batch = [ordered]@{}
     gui = [ordered]@{ used = $false }
     csv_path = $null
+    owned_pids = @()
     status = "started"
     diagnostics = @()
 }
 function Note([string]$m) { $script:log.diagnostics += $m }
-function Record-Owned($p) { if ($PidFile) { Add-Content -LiteralPath $PidFile -Value $p.Id -Encoding Ascii } }
+function Record-Owned($p) {
+    $script:log.owned_pids += [int]$p.Id
+    if ($PidFile) { Add-Content -LiteralPath $PidFile -Value $p.Id -Encoding Ascii }
+}
 function Caption([string]$t) { ($t -replace '&', '') -replace "`t.*$", '' }
 
 function Wait-Window([uint32]$ProcId, [scriptblock]$Match, [int]$Sec) {

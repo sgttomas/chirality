@@ -147,18 +147,23 @@ optional `recent_files_subkey` only labels the record); `--authored-dir` runs re
 only reads; it never writes the settings, because the user's own instance may change them at the
 same time and any write-back could overwrite that change. Around each round trip:
 - the whole key, every subkey included, is read (`reg query /s`) before anything starts the tool;
-  when that reading fails nothing runs (`settings_check_failed`);
+  the reading keeps every key, empty ones included, and every value, and counts only when every
+  line of it is understood; when it fails nothing runs (`settings_check_failed`);
 - the guest script appends the id of each process it starts to `owned_pids.txt` in the case's work
   folder, and runs without the GUI print fallback (a batch run that leaves no CSV ends as
   `batch_no_csv`);
 - whatever happens in between, including a timeout of the host's call or an error while collecting,
   the harness then reads those ids and the guest's process list (`tasklist`), looking only for those
-  ids with the tool's image name, and reads the whole key again;
+  ids with the tool's image name, and reads the whole key again. The two checks are guarded
+  separately, so a failure in one neither skips the other nor the result. The record of ids counts
+  only when it is complete and valid: readable, at least one id, one decimal id per line, and equal
+  to the list in the script's report when there is one; the process list counts only when every row
+  is a valid `tasklist` CSV row;
 - the run record's `settings_guard` is `unchanged` only when the second reading equals the first
-  exactly and no process the script started is listed. Otherwise it is `settings_changed` (with each
-  differing value, before and after), `owned_process_running`, `owned_process_state_unknown` (the ids
-  or the list could not be read after a call that did not end with the script's report) or
-  `settings_check_failed`.
+  exactly (keys and values) and no process the script started is listed. Otherwise it is
+  `settings_changed` (with each key added or removed and each differing value, before and after),
+  `owned_process_running`, `owned_process_state_unknown` (the record of ids, the process list or the
+  process check itself fell short) or `settings_check_failed`.
 
 The run stops at the first case whose guard result is anything but `unchanged`, whose round trip
 raised (the guard result travels with the exception), or that ended `batch_no_csv`. The guard result

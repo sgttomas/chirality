@@ -1150,10 +1150,14 @@ class FakeGuest:
         self.running: list[int] = []    # ids of the tool's image still listed
         self.writes: list[str] = []
         self.commands: list[str] = []
+        self.empty_keys: set[str] = {INVENTED_KEY + "\\Empty sub"}  # a subkey with no values
+        self.pid_text: str | None = None       # replaces the owned-process record when set
+        self.tasklist_text: str | None = None  # replaces the process list when set
+        self.tasklist_error: Exception | None = None
 
     def query(self) -> str:
         lines = ["", INVENTED_KEY, ""]
-        for key in sorted({key for key, _ in self.values}):
+        for key in sorted({key for key, _ in self.values} | self.empty_keys):
             lines += [key] + [f"    {name}    {kind}    {data}" if data else f"    {name}    {kind}"
                               for (k, name), (kind, data) in sorted(self.values.items()) if k == key] + [""]
         return "\r\n".join(lines)
@@ -1177,10 +1181,16 @@ class FakeGuest:
                 self.writes.append(command)
                 return subprocess.CompletedProcess(argv, 0, "", "")
             if command.startswith("type ") and "owned_pids.txt" in command:
+                if self.pid_text is not None:
+                    return subprocess.CompletedProcess(argv, 0, self.pid_text, "")
                 if not self.owned:
                     return subprocess.CompletedProcess(argv, 1, "", "The system cannot find the file specified.")
                 return subprocess.CompletedProcess(argv, 0, "".join(f"{pid}\r\n" for pid in self.owned), "")
             if command == "tasklist /FO CSV /NH":
+                if self.tasklist_error is not None:
+                    raise self.tasklist_error
+                if self.tasklist_text is not None:
+                    return subprocess.CompletedProcess(argv, 0, self.tasklist_text, "")
                 rows = ['"tool.exe","9999","Console","2","61,744 K"',  # another instance, not ours: ignored
                         '"other.exe","4243","Console","2","1,000 K"']
                 rows += [f'"tool.exe","{pid}","Console","2","12,000 K"' for pid in self.running]
@@ -1195,6 +1205,7 @@ class FakeGuest:
 def solved(guest, argv, config):
     """A solve step that ends normally, its own process exited, with a batch CSV."""
     return subprocess.CompletedProcess(argv, 0, json.dumps({"status": "csv_from_batch", "mbf_sha256": MBF_SHA,
+                                                            "owned_pids": list(guest.owned),
                                                             "csv_path": "C:\\invented-work\\cx-g\\model.csv"}), "")
 
 
@@ -1293,6 +1304,68 @@ def test_settings_guard_stops_when_a_host_timeout_leaves_our_process_running_or_
     assert guest.writes == []
 
 
+def test_settings_guard_sees_an_empty_subkey_added_or_deleted(tmp_path):
+    def add_empty(guest_, argv, config):
+        guest_.empty_keys.add(INVENTED_KEY + "\\Another empty sub")
+        return solved(guest_, argv, config)
+
+    def delete_empty(guest_, argv, config):
+        guest_.empty_keys.clear()
+        return solved(guest_, argv, config)
+
+    for name, solve, before, after in (("added", add_empty, None, "present"),
+                                       ("deleted", delete_empty, "present", None)):
+        (tmp_path / name).mkdir()
+        guest = FakeGuest()
+        record_ = guarded(tmp_path / name, guest, solve)
+        assert record_["settings_guard"]["status"] == "settings_changed", name
+        assert [item for item in record_["settings_guard"]["changed_values"] if "key" in item] == [{
+            "key": INVENTED_KEY + ("\\Another empty sub" if name == "added" else "\\Empty sub"),
+            "before": before, "after": after}]
+        assert guest.writes == []
+
+
+def test_settings_guard_needs_a_complete_valid_ownership_record_and_process_list(tmp_path):
+    def timed_out(guest_, argv, config):
+        raise subprocess.TimeoutExpired(argv, 600)
+
+    variants = {
+        # A timeout with our tool still running, and an empty or malformed record of what the guest started.
+        "empty_record": dict(pid_text="\r\n", running=[4242], solve=timed_out),
+        "malformed_record": dict(pid_text="4242\r\n42x\r\n", running=[4242], solve=timed_out),
+        # The guest's own report names a process the record lacks.
+        "record_short_of_report": dict(
+            pid_text="4242\r\n", solve=lambda g, a, c: subprocess.CompletedProcess(a, 0, json.dumps(
+                {"status": "csv_from_batch", "mbf_sha256": MBF_SHA, "owned_pids": [4242, 4300],
+                 "csv_path": "C:\\invented-work\\cx-g\\model.csv"}), "")),
+        "empty_process_list": dict(tasklist_text="\r\n", solve=solved),
+        "malformed_process_list": dict(tasklist_text="INFO: No tasks are running which match the specified criteria.\r\n",
+                                       solve=solved),
+    }
+    for name, variant in variants.items():
+        (tmp_path / name).mkdir()
+        guest = FakeGuest()
+        guest.pid_text = variant.get("pid_text")
+        guest.tasklist_text = variant.get("tasklist_text")
+        guest.running = variant.get("running", [])
+        record_ = guarded(tmp_path / name, guest, variant["solve"])
+        assert record_["settings_guard"]["status"] == "owned_process_state_unknown", name
+        assert record_["settings_guard"]["owned_processes"]["status"] == "unknown", name
+        assert guest.writes == []
+
+
+def test_settings_guard_reads_the_settings_and_attaches_a_result_when_the_process_query_raises(tmp_path):
+    guest = FakeGuest()
+    guest.tasklist_error = UnicodeDecodeError("utf-8", b"\xff", 0, 1, "invented decoding failure")
+    record_ = guarded(tmp_path, guest, solved)
+    guard = record_["settings_guard"]
+    assert guard["status"] == "owned_process_state_unknown"
+    assert "UnicodeDecodeError" in guard["owned_processes"]["reason"]
+    assert guest.commands[-1] == 'reg query "HKCU\\Software\\Invented Vendor\\Tool\\1.0" /s'
+    assert [step["name"] for step in record_["steps"]][-1] == "settings_after"
+    assert guest.writes == []
+
+
 def test_settings_guard_runs_nothing_when_the_settings_cannot_be_read(tmp_path):
     config = dataclasses.replace(fake_config(tmp_path), settings_guard=INVENTED_GUARD)
     commands: list[str] = []
@@ -1307,12 +1380,16 @@ def test_settings_guard_runs_nothing_when_the_settings_cannot_be_read(tmp_path):
     assert commands == ['reg query "HKCU\\Software\\Invented Vendor\\Tool\\1.0" /s']
 
 
-def test_parse_reg_query_reads_names_with_spaces_and_empty_data():
+def test_parse_reg_query_keeps_empty_keys_and_refuses_what_it_does_not_understand():
     parsed = parse_reg_query("\r\nHKEY_CURRENT_USER\\Software\\X\r\n    A name    REG_BINARY    0A0B\r\n"
-                             "    Empty    REG_SZ\r\n")
-    assert parsed == {("hkcu\\software\\x", "A name"): ("HKEY_CURRENT_USER\\Software\\X", "REG_BINARY", "0A0B"),
-                      ("hkcu\\software\\x", "Empty"): ("HKEY_CURRENT_USER\\Software\\X", "REG_SZ", "")}
+                             "    Empty    REG_SZ\r\n\r\nHKEY_CURRENT_USER\\Software\\X\\No values\r\n")
+    assert parsed == {
+        "keys": {"hkcu\\software\\x": "HKEY_CURRENT_USER\\Software\\X",
+                 "hkcu\\software\\x\\no values": "HKEY_CURRENT_USER\\Software\\X\\No values"},
+        "values": {("hkcu\\software\\x", "A name"): ("HKEY_CURRENT_USER\\Software\\X", "REG_BINARY", "0A0B"),
+                   ("hkcu\\software\\x", "Empty"): ("HKEY_CURRENT_USER\\Software\\X", "REG_SZ", "")}}
     assert parse_reg_query("ERROR: The system was unable to find the specified registry key or value.") is None
+    assert parse_reg_query("HKEY_CURRENT_USER\\Software\\X\r\nsomething unexpected\r\n") is None
 
 
 def test_harness_config_reads_and_checks_the_settings_guard(tmp_path):

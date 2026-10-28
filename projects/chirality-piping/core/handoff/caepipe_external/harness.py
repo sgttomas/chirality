@@ -452,40 +452,58 @@ def _registry_key_id(key: str) -> str:
     return "hkcu" + key[len("hkey_current_user"):] if key.startswith("hkey_current_user\\") else key
 
 
-def parse_reg_query(text: str) -> dict[tuple[str, str], tuple[str, str, str]] | None:
-    """`reg query <key> /s` output as {(key id, value name): (key as printed, type, data)} (`_registry_key_id`).
+def parse_reg_query(text: str) -> dict[str, dict] | None:
+    """`reg query <key> /s` output as a whole snapshot: {"keys": {key id: key as printed}, "values": {(key id,
+    value name): (key as printed, type, data)}} (`_registry_key_id`). Every key is kept, empty ones included.
 
-    None when the output names no key (the query failed or printed something else).
+    None when the output names no key, or has a line that is neither blank, a key nor a value line: a reading
+    that is not understood whole is no reading.
     """
 
+    keys: dict[str, str] = {}
     values: dict[tuple[str, str], tuple[str, str, str]] = {}
     current = None
     for line in text.splitlines():
         line = line.rstrip("\r")
+        if not line.strip():
+            continue
         if line.startswith("HKEY_"):
             current = line.strip()
+            keys[_registry_key_id(current)] = current
             continue
         match = REG_VALUE_LINE.match(line)
-        if match and current is not None:
-            values[(_registry_key_id(current), match["name"])] = (current, match["type"], match["data"] or "")
-    return values if current is not None else None
+        if not match or current is None:
+            return None
+        values[(_registry_key_id(current), match["name"])] = (current, match["type"], match["data"] or "")
+    return {"keys": keys, "values": values} if keys else None
 
 
 def _settings_snapshot(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]],
-                       name: str) -> dict[tuple[str, str], tuple[str, str, str]] | None:
-    """Read the whole configured settings key, every subkey included, through one guest step."""
+                       name: str) -> dict[str, dict] | None:
+    """Read the whole configured settings key, every subkey included, through one guest step.
+
+    None unless the step succeeded, its output parses whole and it includes the configured key itself.
+    """
 
     record = step(name, f"reg query {_quote(config.settings_guard.key)} /s")
-    return parse_reg_query(record["stdout"]) if record["exit_status"] == 0 else None
+    snapshot = parse_reg_query(record["stdout"]) if record["exit_status"] == 0 else None
+    if snapshot is None or _registry_key_id(config.settings_guard.key) not in snapshot["keys"]:
+        return None
+    return snapshot
 
 
-def settings_difference(before: Mapping[tuple[str, str], tuple[str, str, str]],
-                        after: Mapping[tuple[str, str], tuple[str, str, str]]) -> list[dict[str, Any]]:
-    """Every value that differs between two whole snapshots: added, removed or changed in type or data."""
+def settings_difference(before: Mapping[str, Mapping], after: Mapping[str, Mapping]) -> list[dict[str, Any]]:
+    """Every difference between two whole snapshots: a key added or removed (empty ones included), and a value
+    added, removed or changed in type or data."""
 
-    changed = []
-    for item in sorted(set(before) | set(after)):
-        old, new = before.get(item), after.get(item)
+    changed: list[dict[str, Any]] = []
+    for key in sorted(set(before["keys"]) | set(after["keys"])):
+        if (key in before["keys"]) != (key in after["keys"]):
+            changed.append({"key": (after["keys"].get(key) or before["keys"][key]),
+                            "before": "present" if key in before["keys"] else None,
+                            "after": "present" if key in after["keys"] else None})
+    for item in sorted(set(before["values"]) | set(after["values"])):
+        old, new = before["values"].get(item), after["values"].get(item)
         if (old or (None, None, None))[1:] != (new or (None, None, None))[1:]:
             changed.append({"value": f"{(new or old)[0]}\\{item[1]}",
                             "before": {"type": old[1], "data": old[2]} if old else None,
@@ -493,34 +511,46 @@ def settings_difference(before: Mapping[tuple[str, str], tuple[str, str, str]],
     return changed
 
 
+def _unknown(reason: str, **extra: Any) -> dict[str, Any]:
+    return {"status": "unknown", "reason": reason, **extra}
+
+
 def _owned_processes(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]], work: str,
-                     solve: Mapping[str, Any], guest_log: Any) -> dict[str, Any]:
+                     guest_log: Any) -> dict[str, Any]:
     """Whether every process the guest script started has exited, from the guest's process list.
 
-    The guest script appends the id of each process it starts to `OWNED_PIDS_FILE` in the work folder. Only those
-    ids, with the tool's image name, are looked for; no process is stopped or signalled here. `exited` when none
-    is listed; `running` when one is; `unknown` when the ids or the list cannot be read and the solve step did not
-    end with the guest's report (a timeout, a failed launch), so nothing establishes that the guest's processes
-    ended.
+    The guest script appends the id of each process it starts to `OWNED_PIDS_FILE` in the work folder (and lists
+    them in its report as `owned_pids`). The record must be complete and valid: readable, at least one id (every
+    round trip that reaches the guest script starts the tool), one decimal id per line, and equal to the report's
+    list when there is a report. The process list must be valid `tasklist /FO CSV /NH` output. Only our ids with
+    the tool's image name are looked for; no process is stopped or signalled here. `exited` when none is listed,
+    `running` when one is, `unknown` whenever the record or the list falls short.
     """
 
-    clean = isinstance(guest_log, dict) and solve.get("exit_status") not in ("timeout", "launch_failed")
     ids = step("owned_pids", f"type {_quote(_win(work, OWNED_PIDS_FILE))}")
     if ids["exit_status"] != 0:
-        if clean:
-            return {"status": "exited", "owned_pids": [], "reason": "the guest reported no process it started"}
-        return {"status": "unknown", "reason": "the ids of the processes the guest started could not be read"}
-    pids = sorted({int(pid) for pid in re.findall(r"^\s*(\d+)\s*$", ids["stdout"], re.M)})
+        return _unknown("the record of the processes the guest started could not be read")
+    lines = [line.strip() for line in ids["stdout"].splitlines() if line.strip()]
+    if not lines or not all(re.fullmatch(r"[0-9]{1,10}", line) for line in lines):
+        return _unknown("the record of the processes the guest started is empty or malformed")
+    pids = sorted({int(line) for line in lines})
+    if isinstance(guest_log, dict):
+        reported = guest_log.get("owned_pids")
+        reported = [reported] if isinstance(reported, int) else reported
+        if not (isinstance(reported, list) and all(isinstance(pid, int) for pid in reported)
+                and sorted(set(reported)) == pids):
+            return _unknown("the guest's report and its record of the processes it started disagree", owned_pids=pids)
     listing = step("process_list", "tasklist /FO CSV /NH")
     if listing["exit_status"] != 0:
-        return {"status": "unknown", "owned_pids": pids, "reason": "the guest's process list could not be read"}
+        return _unknown("the guest's process list could not be read", owned_pids=pids)
+    rows = [line for line in listing["stdout"].splitlines() if line.strip()]
+    parsed = [next(csv.reader([line])) for line in rows]
+    if not parsed or not all(len(row) == 5 and re.fullmatch(r"[0-9]{1,10}", row[1].strip()) for row in parsed):
+        return _unknown("the guest's process list is empty or malformed", owned_pids=pids)
     image = config.guest_executable.split("\\")[-1].lower()
-    running = []
-    for row in csv.reader(io.StringIO(listing["stdout"])):
-        if len(row) >= 2 and row[0].strip().lower() == image and row[1].strip().isdigit() and int(row[1]) in pids:
-            running.append(int(row[1]))
+    running = sorted(int(row[1]) for row in parsed if row[0].strip().lower() == image and int(row[1]) in pids)
     if running:
-        return {"status": "running", "owned_pids": pids, "running": sorted(running)}
+        return {"status": "running", "owned_pids": pids, "running": running}
     return {"status": "exited", "owned_pids": pids}
 
 
@@ -623,10 +653,19 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
     finally:
         # Whatever happened above: confirm that what the guest started has ended, then compare the whole settings
         # key with its reading before the run. Nothing is written to the settings.
+        # Each check is guarded on its own, so a failure of one never skips the other or the result.
         if guarded:
-            processes = (_owned_processes(config, step, work, solve, guest_log)
-                         if prepare["exit_status"] == 0 else {"status": "not_started"})
-            after = _settings_snapshot(config, step, "settings_after") if settings_before is not None else None
+            try:
+                processes = (_owned_processes(config, step, work, guest_log)
+                             if prepare["exit_status"] == 0 else {"status": "not_started"})
+            except Exception as failure:
+                processes = _unknown(f"the process check failed: {type(failure).__name__}: {failure}")
+            after = None
+            if settings_before is not None:
+                try:
+                    after = _settings_snapshot(config, step, "settings_after")
+                except Exception as failure:
+                    processes = processes | {"settings_read_error": f"{type(failure).__name__}: {failure}"}
             settings = _guard_result(settings_before, after, processes)
 
     try:
