@@ -781,6 +781,36 @@ def test_project_units_the_import_restores_are_not_listed():
     assert "model.project.units" not in {item["entity"] for item in render_caepipe_mbf_si(model, title="C").loss_report}
 
 
+def test_a_pressure_region_provenance_is_listed_as_omitted():
+    result = render_caepipe_mbf_si(pressurized_l(), title="PRESSURE L")
+    assert result.status == "written", result.diagnostics
+    [entry] = [item for item in result.loss_report if item["entity"] == "model.load_cases.pressure_regions.provenance"]
+    assert entry["category"] == "omitted" and "case:p/region:region:L" in entry["reason"], entry
+
+
+def test_an_authored_shear_modulus_the_poisson_ratio_overrides_is_listed_as_omitted():
+    model = cantilever()
+    model["materials"][0]["poisson_ratio"] = q(0.25, "1")
+    model["materials"][0]["shear_modulus"] = q(7.0e10, "Pa")  # E/(2(1+nu)) = 80 GPa
+    result = render_caepipe_mbf_si(model, title="NU")
+    assert result.status == "written", result.diagnostics
+    [entry] = [item for item in result.loss_report if item["code"] == "MBF-SI-SHEAR-MODULUS-NOT-EXPORTED"]
+    assert entry["category"] == "omitted" and entry["entity"] == "material:mat:CS", entry
+    model["materials"][0]["shear_modulus"] = q(8.0e10, "Pa")  # consistent: nothing lost
+    assert "MBF-SI-SHEAR-MODULUS-NOT-EXPORTED" not in {
+        item["code"] for item in render_caepipe_mbf_si(model, title="NU").loss_report}
+
+
+def test_a_material_no_pipe_segment_uses_is_listed_as_omitted():
+    model = cantilever()
+    model["materials"].append(dict(model["materials"][0], id="mat:unused"))
+    result = render_caepipe_mbf_si(model, title="C")
+    assert result.status == "written", result.diagnostics
+    [entry] = [item for item in result.loss_report if item["entity"] == "model.materials"]
+    assert entry["category"] == "omitted" and "mat:unused" in entry["reason"] and "mat:CS" not in entry["reason"]
+    assert result.text == render_caepipe_mbf_si(cantilever(), title="C").text
+
+
 def test_bend_traversed_from_the_far_side_swaps_a_and_b():
     model = bent_l()
     model["supports"] = [{"id": "SB", "node": "B", "restraints": list(SIX)}]

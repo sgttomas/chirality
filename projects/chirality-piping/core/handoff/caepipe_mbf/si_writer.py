@@ -147,7 +147,7 @@ _HANDLED_FIELDS = {
                    "modulus_basis_temperature", "analysis_state"},
     "load_cases.primitive_loads": {"id", "category", "target", "direction", "magnitude", "dimension"},
     "load_cases.pressure_regions": {"id", "member_pipe_ids", "member_connector_ids", "pressure_basis", "pressure",
-                                    "terminals", "provenance"},
+                                    "terminals"},
     "project": {"units"},
 }
 _NOT_CARRIED = "the MBF has no field for it and the sidecar does not carry it"
@@ -167,6 +167,7 @@ _OMITTED_REASONS = {
     "load_cases.label": "the import labels each case by the target program's case (load_case_map)",
     "load_cases.kind": "the import forms each case's kind from the target program's case (load_case_map)",
     "load_cases.status": "the import sets each case's status",
+    "load_cases.pressure_regions.provenance": "the import names the MBF line as the region's provenance",
 }
 # The project units an import of this writer's text sets (importer, SI mode, rotations in degrees); a model unit
 # other than these is a display choice the MBF does not keep.
@@ -696,7 +697,7 @@ class _Writer:
                 if nu is not None and e_mpa is not None and g_mpa is not None and g_mpa > 0:
                     implied = e_mpa / (2.0 * (1.0 + nu))
                     if abs(implied - g_mpa) > 1e-9 * g_mpa:
-                        self.diag("MBF-SI-SHEAR-MODULUS-NOT-EXPORTED", "warning", entity,
+                        self.omit("MBF-SI-SHEAR-MODULUS-NOT-EXPORTED", entity,
                                   f"{entity} gives both poisson_ratio and shear_modulus; the MBF carries the Poisson "
                                   f"ratio {_num(nu)}, whose implied G = {_num(implied)} MPa differs from the authored "
                                   f"G = {_num(g_mpa)} MPa")
@@ -1335,6 +1336,12 @@ class _Writer:
             if name not in _HANDLED_MEMBERS and _present(value):
                 self.omit("MBF-SI-MEMBER-NOT-EXPORTED", f"model.{name}",
                           f"model.{name} is not exported; {_OMITTED_REASONS.get(name, _NOT_CARRIED)}")
+        unused = [material_id for material_id in self.materials
+                  if material_id not in {pipe["material"] for pipe in self.pipes.values()}]
+        if unused:
+            self.omit("MBF-SI-FIELD-NOT-EXPORTED", "model.materials",
+                      f"materials {', '.join(unused)} are not exported; the MBF writes only the materials its pipe "
+                      "segments use")
         found: dict[str, list[str]] = {}
 
         def sweep(record: Any, path: str, entity: str) -> None:

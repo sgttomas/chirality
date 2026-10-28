@@ -1835,7 +1835,9 @@ writer sidecar for a bound import (§15).
 | `lines`, `unresolved_assumptions`, `rule_pack_refs`, `constraints`, `equipment_interfaces` | Omitted | No MBF record |
 | `combinations` | Omitted (`MBF-SI-COMBINATION-NOT-EXPORTED`) | The target program forms its own |
 | `model_settings` | Omitted (`MBF-SI-MODEL-SETTINGS-NOT-EXPORTED`) | Input validation settings |
-| `materials` `id`, `elastic_modulus`, `shear_modulus`, `poisson_ratio`, `thermal_expansion_coefficient` | Written | `MATERIAL` (§7); id as description and in the sidecar |
+| `materials` `id`, `elastic_modulus`, `poisson_ratio`, `thermal_expansion_coefficient` | Written | `MATERIAL` (§7) for each material a pipe segment uses; id as description and in the sidecar |
+| `materials` `shear_modulus` | Written as ν = E/(2G) − 1 when no `poisson_ratio` is given; omitted (`MBF-SI-SHEAR-MODULUS-NOT-EXPORTED`) when both are given and E/(2(1+ν)) differs from G | The MBF carries ν; the import derives G from E and ν |
+| `materials` that no pipe segment uses | Omitted (`MBF-SI-FIELD-NOT-EXPORTED`, entity `model.materials`, naming each id) | The MBF writes only the materials its pipes use |
 | `materials` `temperature_points`, `expansion_laws` | Refused | Temperature-dependent properties |
 | `materials` `constitutive_basis` | Omitted | The import forms its own basis from E and ν |
 | `materials` `provenance_record` | Omitted | Only its origin classification travels, in the sidecar (§7.4) |
@@ -1860,7 +1862,8 @@ writer sidecar for a bound import (§15).
 | `load_cases` `equivalent_static`, `modulus_basis_ref`, `modulus_basis_temperature`, `analysis_state` | Refused | Not exported |
 | `load_cases` `label`, `kind`, `status` | Omitted | The import forms them from the target program's case |
 | `primitive_loads` `id`, `category`, `target`, `direction`, `magnitude`, `dimension` | Written / refused | §9, §13; summed per target |
-| Pressure region fields | Written (sidecar) / refused | `member_connector_ids` refused |
+| Pressure region fields other than `provenance` | Written (sidecar) / refused | `member_connector_ids` refused |
+| Pressure region `provenance` | Omitted | The import names the MBF line as the region's provenance |
 | `label`, `provenance`, `tags`, `notes`, `provenance_record` of any entity not named above | Omitted | No MBF field, and the sidecar does not carry it |
 
 ## 18. How the importer is exercised
