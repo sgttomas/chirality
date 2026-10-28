@@ -35,7 +35,9 @@ hosted suite locally without a new change or unresolved concern.
 Repository checks retain conflict/secret detection and relevant tool tests.
 Dependency YAML edits select the structural deliverable check; unresolved needs
 and cycles are reported without failing. Role and workflow package changes
-select the checks for those consumed formats. The tool-test mapping is
+select the checks for those consumed formats. Piping's claims-language check
+(GEN-13) runs when a changed path matches its validator's own declared inputs;
+see Piping's CI strategy. The tool-test mapping is
 [tools-test-routing.json](../tools/tools-test-routing.json).
 
 Piping's [CI strategy](../projects/chirality-piping/docs/CI_STRATEGY.md) describes
