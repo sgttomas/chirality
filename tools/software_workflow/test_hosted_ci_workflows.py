@@ -14,7 +14,7 @@ def workflow(name):
 
 def test_changes_to_hosted_workflows_select_their_structural_tests():
     profile = json.loads((ROOT / "tools/tools-test-routing.json").read_text())
-    for name in ["app-v4.yml", "piping-desktop-e2e.yml"]:
+    for name in ["shared-build-cache.yml", "piping-desktop-e2e.yml"]:
         selection = select_checks(profile, [f".github/workflows/{name}"])
         assert "software_workflow" in selection["checks"]
 
@@ -27,8 +27,8 @@ def test_every_pr_reaches_single_required_aggregate_and_reusable_products():
     assert 'push' not in root['on']  # no duplicate post-merge product run
     jobs = root['jobs']
     assert jobs['harness']['if'] == 'always()'
-    assert set(jobs['harness']['needs']) == {'repository-checks', 'app-v4', 'piping'}
-    for job, name in [('app-v4', 'app-v4.yml'), ('piping', 'piping-desktop-e2e.yml')]:
+    assert set(jobs['harness']['needs']) == {'repository-checks', 'piping'}
+    for job, name in [('piping', 'piping-desktop-e2e.yml')]:
         config = workflow(name)
         assert 'workflow_call' in config['on']
         assert 'workflow_dispatch' in config['on']
@@ -43,21 +43,21 @@ def test_single_required_result_fails_for_any_unsuccessful_child(tmp_path):
     import subprocess
     step = workflow('governance-harness.yml')['jobs']['harness']['steps'][0]
     for state in ['success', 'failure', 'cancelled', 'skipped']:
-        results = {name: {'result': 'success'} for name in ['repository-checks', 'app-v4', 'piping']}
+        results = {name: {'result': 'success'} for name in ['repository-checks', 'piping']}
         results['piping']['result'] = state
         process = subprocess.run(['bash', '-c', step['run']], env={**os.environ, 'RESULTS': json.dumps(results)}, capture_output=True)
         assert (process.returncode == 0) == (state == 'success')
 
 
-def test_retired_products_have_no_workflows():
-    for name in ('harness-premerge.yml', 'pec-tests.yml', 'desktop-release-template.yml'):
+def test_detached_and_retired_products_have_no_workflows():
+    for name in ('app-v4.yml', 'harness-premerge.yml', 'pec-tests.yml', 'desktop-release-template.yml'):
         assert not (ROOT / '.github/workflows' / name).exists()
 
 
 def test_runner_context_is_not_evaluated_in_job_level_environment():
     # Runner context is available in step env, but not in jobs.<id>.env.
     # The old whole-file substring ban rejected valid step-level usage too.
-    for name in ["app-v4.yml", "piping-desktop-e2e.yml"]:
+    for name in ["shared-build-cache.yml", "piping-desktop-e2e.yml"]:
         for job in workflow(name)["jobs"].values():
             assert all("${{ runner." not in str(value) for value in job.get("env", {}).values())
 
@@ -221,3 +221,9 @@ def test_selected_browser_specs_drive_the_product_job_and_key_its_reuse(tmp_path
     for missing in ([], ['--browser-project', 'chromium-desktop'], ['--browser-project', 'chromium-desktop', '--browser-specs', ''],
                     ['--browser-project', 'chromium-desktop', '--browser-specs', 'x.spec.ts;true']):
         assert subprocess.run(command + missing, env=env, capture_output=True).returncode != 0
+
+
+def test_repository_checks_run_claims_language_on_its_selection():
+    steps = workflow('governance-harness.yml')['jobs']['repository-checks']['steps']
+    [step] = [s for s in steps if s.get('run') == 'python3 tools/validation/validate_claims_language.py']
+    assert step['if'] == "steps.selection.outputs.claims_language == 'true'"
