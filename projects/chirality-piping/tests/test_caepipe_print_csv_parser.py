@@ -266,3 +266,15 @@ def test_unknown_unit_labels_are_refused_by_name():
         found = errors(result)
         assert [item["code"] for item in found] == ["CAEPIPE-PRINT-COLUMN-HEADER-MISMATCH"]
         assert f"unit label {label!r}" in found[0]["message"] and result["load_cases"] == {}
+
+
+def test_a_value_that_overflows_on_conversion_is_refused():
+    # 1e307 in x 25.4 mm/in and 4e306 rad x 180/pi deg/rad both exceed the largest binary64 (about 1.8e308).
+    for block, row in ((displacement_block(SUSTAINED, "Node,(inch),(inch),(inch),(deg),(deg),(deg),,")[:4],
+                        "20,1e307,,,,,,,"),
+                       (displacement_block(SUSTAINED, "Node,(mm),(mm),(mm),(rad),(rad),(rad),,")[:4],
+                        "20,,,,4e306,,,,")):
+        result = parse_caepipe_print_csv(text_of(*block, row))
+        assert [item["code"] for item in errors(result)] == ["CAEPIPE-PRINT-VALUE-UNREPRESENTABLE"]
+        assert result["load_cases"][SUSTAINED]["displacements"] == {}  # the row is not read
+        json.dumps(result, allow_nan=False)                              # strictly serializable

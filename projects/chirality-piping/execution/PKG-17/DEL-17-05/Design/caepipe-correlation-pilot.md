@@ -369,7 +369,8 @@ refuse such a run (`input_hash_mismatch`); the bracket makes the re-run replace 
   values are normalized to the output units (mm, deg, N, N·m) with the unit catalog's
   exact definitions (`core/units`: inch 0.0254 m, foot 0.3048 m, pound-force
   4.4482216152605 N, degree π/180 rad), each factor formed exactly and rounded once;
-  SI values are read unchanged. Each parsed section records the label every value was
+  SI values are read unchanged. A value that is not finite after conversion refuses its
+  row (`CAEPIPE-PRINT-VALUE-UNREPRESENTABLE`). Each parsed section records the label every value was
   printed in (`source_units`), and the result records the file's system and angle unit.
 
   The section titles, header and unit rows (the English and radian labels included),

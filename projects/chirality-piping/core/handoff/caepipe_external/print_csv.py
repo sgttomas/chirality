@@ -375,7 +375,13 @@ class _Parser:
                 self.diag("CAEPIPE-PRINT-NUMBER-INVALID", "error", title, line,
                           f"field {position + 1} ({key}) {text!r} is not a finite number; the row is not read")
                 return None
-            values[key] = _to_output(value, self.section_units.get(key))
+            converted = _to_output(value, self.section_units.get(key))
+            if not math.isfinite(converted):
+                self.diag("CAEPIPE-PRINT-VALUE-UNREPRESENTABLE", "error", title, line,
+                          f"field {position + 1} ({key}) {text!r} in {self.section_units.get(key)!r} is not finite in "
+                          "the output unit; the row is not read")
+                return None
+            values[key] = converted
         return values
 
     def case_tables(self, case: str) -> dict[str, Any]:
