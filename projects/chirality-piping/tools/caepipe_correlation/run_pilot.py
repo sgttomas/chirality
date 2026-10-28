@@ -4,7 +4,8 @@ From the project root:
 
     python3 -m tools.caepipe_correlation.run_pilot [--case ID ...] [--offline | --export-mbf | --export-only]
         [--runner PATH]
-    python3 -m tools.caepipe_correlation.run_pilot --authored [--authored-dir PATH] [--case ID ...] [--export-only]
+    python3 -m tools.caepipe_correlation.run_pilot --authored [--case ID ...] [--export-only | --no-export]
+    python3 -m tools.caepipe_correlation.run_pilot --authored --authored-dir PATH [--case ID ...]
 
 Per case: the independent hand calculation, the SWBPIPE solve (headless runner),
 the SI MBF (with the case's deliberate fault injection, if any), the live
@@ -43,7 +44,12 @@ and no runner is needed. --authored-dir takes the cases from another directory
 with the same manifest layout instead; it must lie inside the exchange folder,
 with no symbolic link on the way, so private authored files stay private, and its
 case ids must not name a tracked writer or authored case, whose case folders the
-run would otherwise replace.
+run would otherwise replace. --no-export leaves out the export step; --authored-dir
+runs never export (only the solve and its printed results are wanted there), and
+need the configuration's settings_guard: each round trip then reads the tool's saved
+settings before and after, writes back the recent-files list alone when only it
+changed (Design §5), and the run stops at the first case whose check reports
+anything else.
 
 Standard output carries operational status only: per case its id, route and
 either the comparison record's path relative to the exchange folder or the
@@ -88,7 +94,9 @@ from core.handoff.caepipe_external import (  # noqa: E402
 )
 from core.handoff.caepipe_external.correlation import evaluate_hypothesis_series, series_summary  # noqa: E402
 from core.handoff.caepipe_external.harness import (  # noqa: E402
+    CONFIG_NAME,
     BOUNDARY_NOTE,
+    SETTINGS_KEEP_GOING,
     CASE_ID_PATTERN,
     CSV_ROUTES,
     EXPORT_ROUTE,
@@ -510,12 +518,21 @@ def export_case(case: Mapping[str, Any], config: HarnessConfig, *, emit: Callabl
     return False
 
 
+class SettingsChanged(RuntimeError):
+    """A round trip's saved-settings check reported a change it did not write back; the run stops."""
+
+
 def run_authored_case(case: Mapping[str, Any], config: HarnessConfig, *, export_only: bool = False,
                       emit: Callable[[str], None] = print,
                       round_trip: Callable[..., dict[str, Any]] = run_caepipe_round_trip,
                       export: Callable[..., dict[str, Any]] = run_caepipe_mbf_export,
-                      directory: Path = AUTHORED_DIR) -> bool:
-    """Import (and solve) one authored MBF as written, then export the model back to caepipe_out/exported.mbf."""
+                      directory: Path = AUTHORED_DIR, no_export: bool = False) -> bool:
+    """Import (and solve) one authored MBF as written, then export the model back to caepipe_out/exported.mbf.
+
+    With `no_export` the round trip alone runs. A round trip whose saved-settings check (configuration
+    `settings_guard`) reports anything other than unchanged or the recent-files list written back raises
+    SettingsChanged, so no further case runs.
+    """
     case_id = case["case_id"]
     data = authored_mbf_bytes(case, directory)
     mbf_sha256 = hashlib.sha256(data).hexdigest()
@@ -526,8 +543,16 @@ def run_authored_case(case: Mapping[str, Any], config: HarnessConfig, *, export_
                 emit(f"{case_id}: route={record.get('route')}; the guest did not report importing this MBF; "
                      "no exported MBF")
                 return False
+            settings = record.get("settings_guard")
+            if config.settings_guard is not None and (settings or {}).get("status") not in SETTINGS_KEEP_GOING:
+                emit(f"{case_id}: settings check {(settings or {}).get('status', 'missing')}; "
+                     f"{(settings or {}).get('reason', 'no settings check recorded')}; stopped")
+                raise SettingsChanged(case_id)
             emit(f"{case_id}: route={record.get('route')}; round trip recorded: "
-                 f"cases/{case_id}/caepipe_out/run_record.json")
+                 f"cases/{case_id}/caepipe_out/run_record.json"
+                 + (f"; settings {settings['status']}" if settings else ""))
+            if no_export:
+                return True
         entry = export(config, case_id, mbf_sha256)
     except ContainmentError as error:
         emit(f"{case_id}: route=containment_violation; {error}; no exported MBF")
@@ -574,13 +599,17 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] = os.environ)
                              "only their export step)")
     parser.add_argument("--authored-dir", metavar="PATH",
                         help="with --authored, take the cases from this directory's manifest.json (inside the exchange "
-                             "folder) instead of the tracked ones")
+                             "folder) instead of the tracked ones; implies --no-export and needs settings_guard")
+    parser.add_argument("--no-export", action="store_true",
+                        help="with --authored, run the round trip only (no export step)")
     parser.add_argument("--runner", help=f"openpipestress-runner executable (default: ${RUNNER_ENV})")
     args = parser.parse_args(argv)
     if args.authored and (args.offline or args.export_mbf):
         parser.error("--authored takes only --case and --export-only")
-    if args.authored_dir and not args.authored:
-        parser.error("--authored-dir needs --authored")
+    if (args.authored_dir or args.no_export) and not args.authored:
+        parser.error("--authored-dir and --no-export need --authored")
+    if args.export_only and (args.authored_dir or args.no_export):
+        parser.error("--export-only is not allowed with --authored-dir or --no-export")
     try:
         cases = [] if args.authored_dir else load_authored_cases(args.cases) if args.authored else load_cases(args.cases)
         load_series()
@@ -595,6 +624,9 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] = os.environ)
         directory = AUTHORED_DIR
         if args.authored_dir:
             # Checked only once the exchange folder is known: the directory must lie inside it.
+            if config.settings_guard is None:
+                print(f"error: --authored-dir runs need settings_guard in {CONFIG_NAME}", file=sys.stderr)
+                return 2
             try:
                 directory = external_authored_dir(config.exchange_root, args.authored_dir)
                 cases = load_authored_cases(args.cases, directory)
@@ -603,8 +635,15 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] = os.environ)
                 return 2
         for warning in config.warnings:
             print(f"warning: {warning}")
-        return 0 if all([run_authored_case(case, config, export_only=args.export_only, directory=directory)
-                         for case in cases]) else 1
+        results = []
+        try:
+            for case in cases:
+                results.append(run_authored_case(case, config, export_only=args.export_only, directory=directory,
+                                                 no_export=args.no_export or bool(args.authored_dir)))
+        except SettingsChanged as stopped:
+            print(f"stopped after {stopped}: the saved-settings check reported a change; no further case ran")
+            return 1
+        return 0 if all(results) else 1
     if args.export_only:
         for warning in config.warnings:
             print(f"warning: {warning}")

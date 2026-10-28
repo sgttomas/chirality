@@ -15,6 +15,14 @@ model back to MBF (`caepipe_out/exported.mbf`) for the DEL-17-04 import
 regression. Everything it writes under
 `caepipe_out/` is CAEPIPE output or derived from it and stays private (§8).
 Its records are regression and handoff evidence only.
+
+An optional `settings_guard` in the configuration names the guest registry key under
+which the user's tool keeps its saved settings and the subkey of its recent-files
+list. When it is set, every round trip reads that key before and after the guest
+work. If only the recent-files list changed, and every new entry lies under the
+guest work folder, the list alone is written back to its earlier values and read
+again to confirm; any other change is reported in the run record and nothing is
+written (Design §5).
 """
 
 from __future__ import annotations
@@ -55,6 +63,12 @@ EXPORT_ROUTE = "mbf_exported"
 # and control characters can never reach the guest shell.
 GUEST_PATH_KEYS = ("guest_executable", "guest_exchange_root", "guest_work_root")
 GUEST_PATH_PATTERN = re.compile(r"^[A-Za-z]:\\[A-Za-z0-9 \\._()-]*\Z")
+SETTINGS_KEY_PATTERN = re.compile(r"^HKCU(\\[A-Za-z0-9 ._()-]+)+\Z")
+SETTINGS_SUBKEY_PATTERN = re.compile(r"^[A-Za-z0-9 ._()-]+\Z")
+# A value line of `reg query`: four spaces, name, four spaces, type, then four spaces and the data (absent when empty).
+REG_VALUE_LINE = re.compile(r"^ {4}(?P<name>.+?) {4}(?P<type>REG_[A-Z_]+)(?: {4}(?P<data>.*))?\Z")
+RESTORABLE_DATA = {"REG_BINARY": re.compile(r"^[0-9A-Fa-f]*\Z"), "REG_DWORD": re.compile(r"^0x[0-9A-Fa-f]{1,8}\Z")}
+SETTINGS_KEEP_GOING = ("unchanged", "recent_files_restored")
 
 
 class ContainmentError(RuntimeError):
@@ -81,6 +95,19 @@ class HarnessConfig:
     trial_first_launch_date: str | None
     checked: tuple[str, ...] = ()
     warnings: tuple[str, ...] = field(default_factory=tuple)
+    settings_guard: "SettingsGuard | None" = None
+
+
+@dataclass(frozen=True)
+class SettingsGuard:
+    """The guest registry key of the tool's saved settings and the subkey of its recent-files list."""
+
+    key: str
+    recent_files_subkey: str
+
+    @property
+    def recent_files_key(self) -> str:
+        return f"{self.key}\\{self.recent_files_subkey}"
 
 
 def resolve_harness_config(environ: Mapping[str, str] = os.environ, *,
@@ -145,6 +172,17 @@ def resolve_harness_config(environ: Mapping[str, str] = os.environ, *,
         if not valid_guest_path(config[key], directory=key != "guest_executable"):
             return skip(f"{CONFIG_NAME} {key} is not an absolute Windows path (X:\\...) of letters, digits, space and "
                         "\\ . - _ ( ) only")
+    guard = None
+    if "settings_guard" in config:
+        checked.append("settings_guard names an HKCU key and a subkey")
+        raw_guard = config["settings_guard"]
+        key = raw_guard.get("key") if isinstance(raw_guard, dict) else None
+        subkey = raw_guard.get("recent_files_subkey") if isinstance(raw_guard, dict) else None
+        if not (isinstance(key, str) and SETTINGS_KEY_PATTERN.match(key) and isinstance(subkey, str)
+                and SETTINGS_SUBKEY_PATTERN.match(subkey)):
+            return skip(f"{CONFIG_NAME} settings_guard must give key (HKCU\\..., letters, digits, space and "
+                        ". _ ( ) - only) and recent_files_subkey (the same characters)")
+        guard = SettingsGuard(key=key, recent_files_subkey=subkey)
     prlctl = None
     if require_vm_tools:
         checked.append("prlctl on PATH")
@@ -167,6 +205,7 @@ def resolve_harness_config(environ: Mapping[str, str] = os.environ, *,
         trial_first_launch_date=first_launch if isinstance(first_launch, str) else None,
         checked=tuple(checked),
         warnings=tuple(warnings),
+        settings_guard=guard,
     )
 
 
@@ -401,6 +440,111 @@ def _guest_step(config: HarnessConfig, runner: Callable[..., subprocess.Complete
     return record
 
 
+def _registry_key_id(key: str) -> str:
+    """A registry key for comparison: lower-cased, with `HKEY_CURRENT_USER` (as `reg query` prints it) as `HKCU`."""
+
+    key = key.strip().lower()
+    return "hkcu" + key[len("hkey_current_user"):] if key.startswith("hkey_current_user\\") else key
+
+
+def parse_reg_query(text: str) -> dict[tuple[str, str], tuple[str, str, str]] | None:
+    """`reg query <key> /s` output as {(key id, value name): (key as printed, type, data)} (`_registry_key_id`).
+
+    None when the output names no key (the query failed or printed something else).
+    """
+
+    values: dict[tuple[str, str], tuple[str, str, str]] = {}
+    current = None
+    for line in text.splitlines():
+        line = line.rstrip("\r")
+        if line.startswith("HKEY_"):
+            current = line.strip()
+            continue
+        match = REG_VALUE_LINE.match(line)
+        if match and current is not None:
+            values[(_registry_key_id(current), match["name"])] = (current, match["type"], match["data"] or "")
+    return values if current is not None else None
+
+
+def _registry_text(kind: str, data: str) -> str:
+    """The text a recent-files value holds: REG_BINARY decoded up to its first NUL, other types as printed."""
+
+    if kind == "REG_BINARY" and RESTORABLE_DATA["REG_BINARY"].match(data) and len(data) % 2 == 0:
+        return bytes.fromhex(data).decode("latin-1").split("\x00")[0]
+    return data
+
+
+def _settings_snapshot(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]],
+                       name: str) -> dict[tuple[str, str], tuple[str, str, str]] | None:
+    """Read the configured settings key, with its subkeys, through one guest step."""
+
+    record = step(name, f"reg query {_quote(config.settings_guard.key)} /s")
+    return parse_reg_query(record["stdout"]) if record["exit_status"] == 0 else None
+
+
+def _settings_guard(config: HarnessConfig, step: Callable[[str, str], dict[str, Any]],
+                    before: dict[tuple[str, str], tuple[str, str, str]]) -> dict[str, Any]:
+    """Compare the settings with `before`; write back the recent-files list alone when only it changed, and ours.
+
+    Status: `unchanged`; `recent_files_restored` (written back and read again equal); `changed_reported` (a change
+    outside the recent-files list, or a new recent entry outside the guest work folder: nothing is written);
+    `restore_not_possible` (a value the restore cannot write exactly: nothing is written); `restore_failed` (the
+    read after the restore differs); `check_failed` (the settings could not be read).
+    """
+
+    guard = config.settings_guard
+    after = _settings_snapshot(config, step, "settings_after")
+    if after is None:
+        return {"status": "check_failed", "reason": "the settings could not be read after the run"}
+    changed = sorted(item for item in set(before) | set(after)
+                     if (before.get(item) or (None, None, None))[1:] != (after.get(item) or (None, None, None))[1:])
+    if not changed:
+        return {"status": "unchanged"}
+    recent = _registry_key_id(guard.recent_files_key)
+    names = [f"{(after.get(item) or before[item])[0]}\\{item[1]}" for item in changed]
+    outside = [name for item, name in zip(changed, names) if item[0] != recent]
+    if outside:
+        return {"status": "changed_reported", "changed_values": names,
+                "reason": "settings outside the recent-files list changed; nothing was written back"}
+    work = config.guest_work_root.lower() + "\\"
+    earlier = {_registry_text(kind, data) for (key, _), (_, kind, data) in before.items() if key == recent}
+    added = {_registry_text(kind, data) for (key, _), (_, kind, data) in after.items() if key == recent} - earlier
+    foreign = sorted(text for text in added if re.match(r"^[A-Za-z]:\\", text) and not text.lower().startswith(work))
+    if foreign:
+        return {"status": "changed_reported", "changed_values": names,
+                "reason": "the recent-files list gained entries outside the guest work folder; nothing was written back"}
+    try:
+        commands = _restore_commands(changed, before, after)
+    except ValueError as error:
+        return {"status": "restore_not_possible", "changed_values": names, "reason": f"{error}; nothing was written"}
+    for number, command in enumerate(commands, 1):
+        step(f"settings_restore_{number}", command)
+    check = _settings_snapshot(config, step, "settings_verify")
+    restored = check is not None and all(check.get(item, (None,))[1:] == before.get(item, (None,))[1:]
+                                         for item in changed)
+    return {"status": "recent_files_restored" if restored else "restore_failed", "changed_values": names,
+            "restored_values": len(commands)}
+
+
+def _restore_commands(changed, before, after) -> list[str]:
+    """The `reg add`/`reg delete` commands writing each changed value back to `before`; ValueError when one cannot
+    be written back exactly (a type or data outside RESTORABLE_DATA, a default value, a name outside the allow-list)."""
+
+    commands = []
+    for item in changed:
+        if item in before:
+            printed, kind, data = before[item]
+            if kind not in RESTORABLE_DATA or not RESTORABLE_DATA[kind].match(data) or item[1] == "(Default)":
+                raise ValueError(f"{printed}\\{item[1]} ({kind}) cannot be written back exactly")
+            commands.append(f"reg add {_quote(printed)} /v {_quote(item[1])} /t {kind} /d {data} /f")
+        else:
+            printed = after[item][0]
+            if item[1] == "(Default)":
+                raise ValueError("a default value appeared")
+            commands.append(f"reg delete {_quote(printed)} /v {_quote(item[1])} /f")
+    return commands
+
+
 def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[str, Path], harness_dir: Path,
                 timeout_s: float, runner: Callable[..., subprocess.CompletedProcess]) -> dict[str, Any]:
     started = _now()
@@ -432,8 +576,13 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
     # The guest work copy of the MBF is deleted before the copy, so a failed copy can never leave an older MBF
     # to be solved; a failed prepare step stops the round trip before solving.
     stale_guest = " ".join(_quote(_win(work, name)) for name in ("model*.csv", "model.mbf", *OUTPUT_NAMES))
-    prepare = step("prepare", f"{_ensure_dir(work)} & del /Q {stale_guest} 2>nul & "
-                              f"copy /Y {_quote(_win(guest_in, 'model.mbf'))} {_quote(guest_mbf)}")
+    # The saved settings are read before anything starts the tool; without that reading nothing runs.
+    settings_before = _settings_snapshot(config, step, "settings_before") if config.settings_guard else None
+    if config.settings_guard and settings_before is None:
+        prepare = {"exit_status": "not_run", "stdout": "", "stderr": ""}
+    else:
+        prepare = step("prepare", f"{_ensure_dir(work)} & del /Q {stale_guest} 2>nul & "
+                                  f"copy /Y {_quote(_win(guest_in, 'model.mbf'))} {_quote(guest_mbf)}")
     script_location = "exchange_share"
     solve: dict[str, Any] = {"exit_status": None, "stdout": "", "stderr": ""}
     guest_log = None
@@ -457,6 +606,11 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
             *(f"copy /Y {_quote(_win(work, name))} {_quote(_win(guest_out, name))}" for name in OUTPUT_NAMES),
         ]))
 
+    settings = None
+    if config.settings_guard:
+        settings = (_settings_guard(config, step, settings_before) if settings_before is not None else
+                    {"status": "check_failed", "reason": "the settings could not be read before the run; nothing ran"})
+
     write_private(root, out / "guest_stdout.txt", solve["stdout"])
     write_private(root, out / "guest_stderr.txt", solve["stderr"])
     if guest_log is not None:
@@ -470,7 +624,9 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
         if candidate.is_file():
             observed = candidate
     status = guest_log.get("status") if isinstance(guest_log, dict) else None
-    if prepare["exit_status"] != 0:
+    if prepare["exit_status"] == "not_run":
+        route = "settings_check_failed"
+    elif prepare["exit_status"] != 0:
         route = "prepare_failed"
     elif solve["exit_status"] == "timeout":
         route = "timeout"
@@ -534,6 +690,8 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
         "timestamps": {"started": started, "finished": _now()},
         "boundary_note": BOUNDARY_NOTE,
     }
+    if settings is not None:
+        record["settings_guard"] = settings
     write_private(root, out / "run_record.json", json.dumps(record, indent=2, sort_keys=True) + "\n")
     return record
 

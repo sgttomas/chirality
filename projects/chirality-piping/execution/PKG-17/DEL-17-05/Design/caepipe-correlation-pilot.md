@@ -137,7 +137,26 @@ stay empty. Its `caepipe_out/` and `imported/` layers are as above and equally p
 the same `manifest.json` layout instead of the tracked one, so authored files that are themselves
 private are run without entering the repository. The directory must lie inside the exchange folder
 with no symbolic link on the way (else the run stops before any case), and its case ids must not
-name a tracked writer or authored case, whose case folders the run would otherwise replace.
+name a tracked writer or authored case, whose case folders the run would otherwise replace. Such a run
+wants only the solve and its printed results, so it never runs the export step; `--no-export` leaves
+the export out of a tracked authored run too.
+
+**Saved settings.** The tool keeps saved settings, among them a recent-files list that opening a model
+updates. The configuration may name the guest registry key of those settings and the subkey of the
+list (`settings_guard`: `key`, an `HKCU\…` path, and `recent_files_subkey`); `--authored-dir` runs
+require it. Each round trip then reads the key with its subkeys (`reg query /s`) before anything
+starts the tool (when that reading fails nothing runs: `settings_check_failed`) and again after the
+outputs are collected, and records the result as `settings_guard` in the run record:
+- `unchanged`: nothing is written;
+- `recent_files_restored`: only values of the recent-files list changed and every entry the list gained
+  lies under the guest work folder, so those values alone are written back to their earlier type and
+  data (`reg add`, or `reg delete` for a value that appeared) and read again to confirm;
+- `changed_reported`: any other value changed, or the list gained an entry outside the guest work
+  folder; nothing is written, since the user's own instance may change its settings at the same time;
+- `restore_not_possible`, `restore_failed`, `check_failed`: as named; nothing further is written.
+
+The run stops at the first case whose result is not `unchanged` or `recent_files_restored`. Settings
+are never written wholesale.
 
 `caepipe_in/` holds only SWBPIPE-derived content or the invented authored file. Every layer from `caepipe_out/` on
 is CAEPIPE output or derived from it and stays private (§8). Every directory and

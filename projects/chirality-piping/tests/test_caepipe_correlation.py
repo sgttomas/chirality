@@ -12,6 +12,7 @@ import json
 import math
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -39,8 +40,10 @@ from core.handoff.caepipe_external.correlation import (  # noqa: E402
 from core.handoff.caepipe_external.harness import (  # noqa: E402
     ENV_VAR,
     ContainmentError,
+    SettingsGuard,
     _quote,
     last_json_object,
+    parse_reg_query,
 )
 from core.handoff.caepipe_mbf import render_caepipe_mbf_si  # noqa: E402
 from tools.caepipe_correlation import run_pilot  # noqa: E402
@@ -1109,8 +1112,8 @@ def test_pilot_authored_option_needs_no_runner_and_refuses_comparison_modes(tmp_
     monkeypatch.setattr(run_pilot, "run_cases", lambda *a, **k: pytest.fail("comparison run"))
     calls = []
     monkeypatch.setattr(run_pilot, "run_authored_case",
-                        lambda case, config_, export_only, directory: calls.append((case["case_id"], export_only))
-                        or True)
+                        lambda case, config_, export_only, directory, no_export: calls.append(
+                            (case["case_id"], export_only)) or True)
     assert run_pilot.main(["--authored", "--case", "cpa-12-guide-gap"], environ={}) == 0
     assert run_pilot.main(["--authored", "--export-only", "--case", "cpa-12-guide-gap"], environ={}) == 0
     assert calls == [("cpa-12-guide-gap", False), ("cpa-12-guide-gap", True)]
@@ -1120,6 +1123,164 @@ def test_pilot_authored_option_needs_no_runner_and_refuses_comparison_modes(tmp_
             run_pilot.main(["--authored", mode], environ={})
         assert raised.value.code == 2
     assert "--authored takes only --case and --export-only" in capsys.readouterr().err
+
+
+INVENTED_GUARD = SettingsGuard(key="HKCU\\Software\\Invented Vendor\\Tool\\1.0", recent_files_subkey="Recent list")
+INVENTED_KEY = "HKEY_CURRENT_USER\\Software\\Invented Vendor\\Tool\\1.0"
+
+
+def _hex(text: str) -> str:
+    return (text.encode("latin-1") + b"\x00").hex().upper()
+
+
+class FakeRegistry:
+    """An invented guest registry answering `reg query /s`, `reg add` and `reg delete` as the harness issues them."""
+
+    def __init__(self):
+        self.values = {
+            (INVENTED_KEY + "\\Options", "Use something"): ("REG_BINARY", "01"),
+            (INVENTED_KEY + "\\Recent list", "N"): ("REG_BINARY", "02000000"),
+            (INVENTED_KEY + "\\Recent list", "1"): ("REG_BINARY", _hex("C:\\invented-work\\old-a\\model.mod")),
+            (INVENTED_KEY + "\\Recent list", "2"): ("REG_BINARY", _hex("D:\\user files\\plant.mod")),
+        }
+
+    def query(self) -> str:
+        lines = ["", INVENTED_KEY, ""]
+        for key in sorted({key for key, _ in self.values}):
+            lines += [key] + [f"    {name}    {kind}    {data}" if data else f"    {name}    {kind}"
+                              for (k, name), (kind, data) in sorted(self.values.items()) if k == key] + [""]
+        return "\r\n".join(lines)
+
+    def handle(self, command: str) -> str | None:
+        if command.startswith("reg query "):
+            return self.query()
+        match = re.fullmatch(r'reg add "([^"]+)" /v "([^"]+)" /t (REG_\w+) /d (\S*) /f', command)
+        if match:
+            self.values[(match[1], match[2])] = (match[3], match[4])
+            return ""
+        match = re.fullmatch(r'reg delete "([^"]+)" /v "([^"]+)" /f', command)
+        if match:
+            del self.values[(match[1], match[2])]
+            return ""
+        return None
+
+    def open_model(self, path: str) -> None:
+        """What a tool that keeps a recent-files list does when it opens `path`: shift the list, put it first."""
+        recent = INVENTED_KEY + "\\Recent list"
+        old = [self.values[(recent, str(i))] for i in (1, 2)]
+        self.values[(recent, "1")] = ("REG_BINARY", _hex(path))
+        self.values[(recent, "2")] = old[0]
+        self.values[(recent, "3")] = old[1]
+        self.values[(recent, "N")] = ("REG_BINARY", "03000000")
+
+
+def guarded_round_trip(tmp_path, registry: FakeRegistry, on_solve) -> tuple[dict, list[str]]:
+    config = dataclasses.replace(fake_config(tmp_path), settings_guard=INVENTED_GUARD)
+    commands: list[str] = []
+
+    def runner(argv, **kwargs):
+        command = argv[6]
+        commands.append(command)
+        answer = registry.handle(command)
+        if answer is not None:
+            return subprocess.CompletedProcess(argv, 0, answer, "")
+        stdout = ""
+        if command.startswith("powershell"):
+            on_solve(registry)
+            stdout = json.dumps({"status": "csv_from_batch", "mbf_sha256": MBF_SHA,
+                                 "csv_path": "C:\\invented-work\\cx-g\\model.csv"})
+        return subprocess.CompletedProcess(argv, 0, stdout, "")
+
+    return run_caepipe_round_trip(config, "cx-g", MBF_TEXT, runner=runner), commands
+
+
+def test_settings_guard_writes_back_only_the_recent_list_it_changed(tmp_path):
+    registry = FakeRegistry()
+    before = dict(registry.values)
+    record_, commands = guarded_round_trip(tmp_path, registry,
+                                           lambda reg: reg.open_model("C:\\invented-work\\cx-g\\model.mod"))
+    assert record_["settings_guard"]["status"] == "recent_files_restored"
+    assert registry.values == before
+    names = [step["name"] for step in record_["steps"]]
+    assert names[0] == "settings_before" and names[1] == "prepare"
+    assert names[-1] == "settings_verify" and "settings_after" in names
+    restores = [command for command in commands if command.startswith(("reg add", "reg delete"))]
+    assert restores and all("\\Recent list" in command for command in restores)
+    assert any(command.startswith("reg delete") and '/v "3"' in command for command in restores)
+
+
+def test_settings_guard_writes_nothing_when_unchanged(tmp_path):
+    registry = FakeRegistry()
+    record_, commands = guarded_round_trip(tmp_path, registry, lambda reg: None)
+    assert record_["settings_guard"] == {"status": "unchanged"}
+    assert not [command for command in commands if command.startswith(("reg add", "reg delete"))]
+
+
+def test_settings_guard_reports_other_changes_and_writes_nothing(tmp_path):
+    def solve(reg):
+        reg.open_model("C:\\invented-work\\cx-g\\model.mod")
+        # Another program (or the user's own instance) changes a setting during the run.
+        reg.values[(INVENTED_KEY + "\\Options", "Use something")] = ("REG_BINARY", "00")
+
+    registry = FakeRegistry()
+    record_, commands = guarded_round_trip(tmp_path, registry, solve)
+    assert record_["settings_guard"]["status"] == "changed_reported"
+    assert INVENTED_KEY + "\\Options\\Use something" in record_["settings_guard"]["changed_values"]
+    assert not [command for command in commands if command.startswith(("reg add", "reg delete"))]
+    assert registry.values[(INVENTED_KEY + "\\Options", "Use something")] == ("REG_BINARY", "00")
+
+
+def test_settings_guard_reports_a_recent_entry_it_did_not_cause(tmp_path):
+    registry = FakeRegistry()
+    record_, commands = guarded_round_trip(tmp_path, registry, lambda reg: reg.open_model("E:\\elsewhere\\x.mod"))
+    assert record_["settings_guard"]["status"] == "changed_reported"
+    assert "outside the guest work folder" in record_["settings_guard"]["reason"]
+    assert not [command for command in commands if command.startswith(("reg add", "reg delete"))]
+
+
+def test_settings_guard_runs_nothing_when_the_settings_cannot_be_read(tmp_path):
+    config = dataclasses.replace(fake_config(tmp_path), settings_guard=INVENTED_GUARD)
+    commands: list[str] = []
+
+    def runner(argv, **kwargs):
+        commands.append(argv[6])
+        return subprocess.CompletedProcess(argv, 1, "", "ERROR: invented")
+
+    record_ = run_caepipe_round_trip(config, "cx-h", MBF_TEXT, runner=runner)
+    assert record_["route"] == "settings_check_failed"
+    assert record_["settings_guard"]["status"] == "check_failed"
+    assert commands == ['reg query "HKCU\\Software\\Invented Vendor\\Tool\\1.0" /s']
+
+
+def test_parse_reg_query_reads_names_with_spaces_and_empty_data():
+    parsed = parse_reg_query("\r\nHKEY_CURRENT_USER\\Software\\X\r\n    A name    REG_BINARY    0A0B\r\n"
+                             "    Empty    REG_SZ\r\n")
+    assert parsed == {("hkcu\\software\\x", "A name"): ("HKEY_CURRENT_USER\\Software\\X", "REG_BINARY", "0A0B"),
+                      ("hkcu\\software\\x", "Empty"): ("HKEY_CURRENT_USER\\Software\\X", "REG_SZ", "")}
+    assert parse_reg_query("ERROR: The system was unable to find the specified registry key or value.") is None
+
+
+def test_harness_config_reads_and_checks_the_settings_guard(tmp_path):
+    base = {"vm_name": "invented-vm", "guest_executable": "C:\\Invented\\tool.exe",
+            "guest_exchange_root": "Z:\\invented", "guest_work_root": "C:\\invented-work",
+            "license_and_environment_responsibility_acknowledged": True}
+    path = git_only_path(tmp_path)
+
+    def place(name: str) -> Path:
+        (tmp_path / name).mkdir()
+        return tmp_path / name
+
+    good = exchange(place("a"), config=base | {"settings_guard": {
+        "key": "HKCU\\Software\\Invented Vendor\\Tool\\1.0", "recent_files_subkey": "Recent list"}})
+    resolved = resolve_harness_config({ENV_VAR: str(good), "PATH": path}, require_vm_tools=False)
+    assert resolved.settings_guard == INVENTED_GUARD
+    for bad in ({"key": "HKLM\\Software\\X", "recent_files_subkey": "R"},
+                {"key": "HKCU\\Software\\X\" & del", "recent_files_subkey": "R"},
+                {"key": "HKCU\\Software\\X", "recent_files_subkey": "R\\S"}, "HKCU\\Software\\X"):
+        root = exchange(place(f"b{len(str(bad))}"), config=base | {"settings_guard": bad})
+        assert "settings_guard must give key" in skip_reason({ENV_VAR: str(root), "PATH": path})
+    plain = resolve_harness_config({ENV_VAR: str(exchange(place("c"))), "PATH": path}, require_vm_tools=False)
+    assert plain.settings_guard is None
 
 
 def authored_dir(root: Path, case_ids: tuple[str, ...] = ("cx-01-invented",), name: str = "authored-private") -> Path:
@@ -1136,7 +1297,7 @@ def authored_dir(root: Path, case_ids: tuple[str, ...] = ("cx-01-invented",), na
 
 
 def test_pilot_authored_dir_runs_the_cases_of_a_directory_inside_the_exchange_folder(tmp_path, monkeypatch):
-    config = fake_config(tmp_path)
+    config = dataclasses.replace(fake_config(tmp_path), settings_guard=INVENTED_GUARD)
     directory = authored_dir(config.exchange_root, ("cx-01-invented", "cx-02-invented"))
     monkeypatch.setattr(run_pilot, "resolve_harness_config", lambda environ, require_vm_tools: config)
     calls = []
@@ -1144,7 +1305,8 @@ def test_pilot_authored_dir_runs_the_cases_of_a_directory_inside_the_exchange_fo
     def round_trip(config_, case_id, mbf_text):
         sha = hashlib.sha256(mbf_text.encode("ascii")).hexdigest()
         calls.append(("round_trip", case_id, mbf_text))
-        return {"route": "csv_from_batch", "mbf": {"sha256": sha}, "guest_mbf_sha256": sha}
+        return {"route": "csv_from_batch", "mbf": {"sha256": sha}, "guest_mbf_sha256": sha,
+                "settings_guard": {"status": statuses.pop(0)}}
 
     def export(config_, case_id, mbf_sha256):
         calls.append(("export", case_id))
@@ -1153,23 +1315,48 @@ def test_pilot_authored_dir_runs_the_cases_of_a_directory_inside_the_exchange_fo
     real = run_pilot.run_authored_case
     monkeypatch.setattr(run_pilot, "run_authored_case",
                         lambda case, config_, **kw: real(case, config_, round_trip=round_trip, export=export, **kw))
+    # An --authored-dir run never exports: only the solve and its printed results are wanted.
+    statuses = ["recent_files_restored"]
     assert run_pilot.main(["--authored", "--authored-dir", str(directory), "--case", "cx-02-invented"],
                           environ={}) == 0
-    assert calls == [("round_trip", "cx-02-invented", "INVENTED AUTHORED FIXTURE\r\ncx-02-invented\r\n"),
-                     ("export", "cx-02-invented")]
+    assert calls == [("round_trip", "cx-02-invented", "INVENTED AUTHORED FIXTURE\r\ncx-02-invented\r\n")]
+
+    # The first case whose saved-settings check reports a change it did not write back stops the run.
     calls.clear()
-    assert run_pilot.main(["--authored", "--export-only", "--authored-dir", str(directory)], environ={}) == 0
-    assert calls == [("export", "cx-01-invented"), ("export", "cx-02-invented")]
+    statuses = ["changed_reported", "unchanged"]
+    assert run_pilot.main(["--authored", "--authored-dir", str(directory)], environ={}) == 1
+    assert [call[:2] for call in calls] == [("round_trip", "cx-01-invented")]
+
+    # --no-export applies to the tracked authored cases too.
+    calls.clear()
+    statuses = ["unchanged"]
+    case = next(item for item in run_pilot.load_authored_cases() if item["case_id"] == "cpa-05-guide")
+    assert real(case, config, round_trip=lambda c, i, t: round_trip(c, i, t) | {
+        "mbf": {"sha256": hashlib.sha256(run_pilot.authored_mbf_bytes(case)).hexdigest()},
+        "guest_mbf_sha256": hashlib.sha256(run_pilot.authored_mbf_bytes(case)).hexdigest()},
+        export=export, no_export=True, emit=lambda line: None)
+    assert [call[0] for call in calls] == ["round_trip"]
 
 
 def test_pilot_authored_dir_refusals(tmp_path, monkeypatch, capsys):
     config = fake_config(tmp_path)
     monkeypatch.setattr(run_pilot, "resolve_harness_config", lambda environ, require_vm_tools: config)
     monkeypatch.setattr(run_pilot, "run_authored_case", lambda *a, **k: pytest.fail("ran a case"))
-    with pytest.raises(SystemExit) as raised:
-        run_pilot.main(["--authored-dir", str(tmp_path)], environ={})
-    assert raised.value.code == 2
-    assert "--authored-dir needs --authored" in capsys.readouterr().err
+    for argv, message in ((["--authored-dir", str(tmp_path)], "--authored-dir and --no-export need --authored"),
+                          (["--no-export"], "--authored-dir and --no-export need --authored"),
+                          (["--authored", "--export-only", "--no-export"], "--export-only is not allowed with"),
+                          (["--authored", "--export-only", "--authored-dir", str(tmp_path)],
+                           "--export-only is not allowed with")):
+        with pytest.raises(SystemExit) as raised:
+            run_pilot.main(argv, environ={})
+        assert raised.value.code == 2
+        assert message in capsys.readouterr().err
+
+    # Without a settings guard in the configuration an --authored-dir run does not start.
+    assert run_pilot.main(["--authored", "--authored-dir", str(tmp_path)], environ={}) == 2
+    assert "--authored-dir runs need settings_guard in harness_config.json" in capsys.readouterr().err
+    config = dataclasses.replace(config, settings_guard=INVENTED_GUARD)
+    monkeypatch.setattr(run_pilot, "resolve_harness_config", lambda environ, require_vm_tools: config)
 
     outside = tmp_path / "outside"
     outside.mkdir()
