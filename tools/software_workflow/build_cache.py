@@ -11,13 +11,10 @@ import shutil
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
-SUITES = ('piping-numerical', 'piping-desktop-rust', 'app-v4')
+SUITES = ('piping-numerical', 'piping-desktop-rust')
 
 
 def inputs(root, suite):
-    if suite == 'app-v4':
-        project = root / 'projects/chirality-app-v4/app/src-tauri'
-        return project, [project / 'Cargo.toml'], project / 'target'
     if suite == 'piping-desktop-rust':
         project = root / 'projects/chirality-piping/apps/desktop/src-tauri'
         return project, [project / 'Cargo.toml'], project / 'target'

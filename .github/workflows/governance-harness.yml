@@ -292,13 +292,11 @@ jobs:
             python3 tools/run_affected_tests.py --base "$CHECKS_BASE"
           fi
 
-  app-v4:
-    uses: ./.github/workflows/app-v4.yml
   piping:
     uses: ./.github/workflows/piping-desktop-e2e.yml
   harness:
     name: harness
-    needs: [repository-checks, app-v4, piping]
+    needs: [repository-checks, piping]
     if: always()
     runs-on: ubuntu-latest
     steps:
