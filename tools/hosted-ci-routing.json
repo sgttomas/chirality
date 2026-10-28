@@ -6,9 +6,6 @@
     "records": {
       "description": "No active product input; repository checks still apply"
     },
-    "app-v4": {
-      "description": "App v4 native/frontend build and behavioral checks"
-    },
     "piping": {
       "description": "Piping build, unit tests and core workflow smoke"
     },
@@ -27,6 +24,15 @@
   },
   "always_checks": [],
   "path_rules": [
+    {
+      "paths": [
+        "projects/chirality-app-v4/**",
+        ".github/workflows/app-v4.yml"
+      ],
+      "checks": [
+        "records"
+      ]
+    },
     {
       "paths": [
         "projects/pec/**",
@@ -129,7 +135,6 @@
         ".github/workflows/governance-harness.yml"
       ],
       "checks": [
-        "app-v4",
         "piping",
         "piping-numerical",
         "piping-python"
@@ -161,15 +166,6 @@
         "projects/chirality-runtime/README.md",
         "projects/pec/AGENTS.md",
         "projects/pec/README.md",
-        "projects/chirality-app-v4/execution/**",
-        "projects/chirality-app-v4/docs/**",
-        "projects/chirality-app-v4/conceptual/**",
-        "projects/chirality-app-v4/foundation/**",
-        "projects/chirality-app-v4/reference/**",
-        "projects/chirality-app-v4/loop/**",
-        "projects/chirality-app-v4/init/**",
-        "projects/chirality-app-v4/AGENTS.md",
-        "projects/chirality-app-v4/README.md",
         "plans/**",
         "execution/**",
         "init/**",
@@ -187,22 +183,6 @@
       ],
       "checks": [
         "records"
-      ]
-    },
-    {
-      "paths": [
-        "projects/chirality-app-v4/app/**",
-        "projects/chirality-app-v4/execution/PKG-*/DEL-*/Design/**",
-        "projects/chirality-app-v4/execution/PKG-02/DEL-02-04/ScopeOfWork.md",
-        "projects/chirality-app-v4/execution/PKG-09/DEL-09-01/ScopeOfWork.md",
-        "AGENTS.md",
-        "agents/**",
-        "workflows/**",
-        "docs/AGENT_WORKFLOW_RUNTIME.md",
-        ".github/workflows/app-v4.yml"
-      ],
-      "checks": [
-        "app-v4"
       ]
     },
     {
@@ -269,7 +249,6 @@
         "tools/software_workflow/build_cache.py"
       ],
       "checks": [
-        "app-v4",
         "piping-desktop-rust",
         "piping-numerical"
       ]
@@ -286,7 +265,7 @@
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "128b567ca0bf5e4bd2a3340c436b7fcaeb35958e2b377e3e4abd4f427eea6574",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "b8da37624f9220850c4bd89f57acce3059e9674a8f5dc4897a4fcf3115baec4d",
+      "core/product_physics/Cargo.toml": "14b8dc611b26d74a606802f350416886003baf0d0018f5292b7da3e852b358ea",
       "core/reporting/audit_manifest/Cargo.toml": "b8bc4623a383ed2c22205326bc737486becd9d931bf869e1e8cf40e147f4fad7",
       "core/reporting/pdf_emitter/Cargo.toml": "9f75adef21b2ea44cf2904ae02636f050b28cc2faef1c17f592acfc9a2cdba9d",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
@@ -294,7 +273,7 @@
       "core/reporting/report_package/Cargo.toml": "9418f4b74738df46dfa645a9a35f9dc023751ad118b3df1e86851ad308acf019",
       "core/reporting/report_renderer/Cargo.toml": "0cf1acbab841bbc6e81a0a688f481f7ad4efd3689082fb79601f3bab319558aa",
       "core/reporting/report_sections/Cargo.toml": "44acb66312edbc9bfd77aa2980a898511ac34de67fba0fc773b70007a3aad0f1",
-      "core/reporting/result_export/Cargo.toml": "83871fd1be47eabf9ba0f1d9a3ddc16c5d57e6deb96013417bfb179d3f6164df",
+      "core/reporting/result_export/Cargo.toml": "35970f61b64e2dedcb5d390f2d6d408a816733e712d4e2683f85e51560070e15",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "7018210dadfb7c2b855298730f5f8cddedbe09f7f03b05421b81c3694f873b18",
       "core/rules/rule_check_runner/Cargo.toml": "88971098b7a02b7cd79ee97788e76d31425865b98a0e51dbdd7d6e8711fb9dc1",
@@ -2389,6 +2368,8 @@
               "apps/desktop/src-tauri/src/analysis_runs.rs",
               "apps/desktop/src-tauri/src/analysis_runs_tests.rs",
               "apps/desktop/src-tauri/src/atomic_report_package_save.rs",
+              "apps/desktop/src-tauri/src/autosave.rs",
+              "apps/desktop/src-tauri/src/autosave_tests.rs",
               "apps/desktop/src-tauri/src/command_ingress.rs",
               "apps/desktop/src-tauri/src/exact_source_binding.rs",
               "apps/desktop/src-tauri/src/export_disposition_screen.rs",
@@ -2594,6 +2575,7 @@
               "core/reporting/result_export/src/section_basis.rs",
               "core/reporting/result_export/src/semantic_contract.rs",
               "core/reporting/result_export/src/source_blocks.rs",
+              "core/reporting/result_export/src/source_blocks_spring_tests.rs",
               "core/reporting/result_export/src/u4b_evidence.rs",
               "core/rules/completeness_checker/src/lib.rs",
               "core/rules/expression_evaluator/src/lib.rs",

@@ -17,7 +17,7 @@ from software_workflow_common import load_profile, matches
 
 ROOT = Path(__file__).resolve().parents[2]
 PROFILE = ROOT / "tools/hosted-ci-routing.json"
-SUITES = ("app-v4", "piping", "piping-desktop", "piping-desktop-rust", "piping-numerical", "piping-python")
+SUITES = ("piping", "piping-desktop", "piping-desktop-rust", "piping-numerical", "piping-python")
 PIPING = "projects/chirality-piping/"
 # The crates `apps/desktop/scripts/build-wasm-engine.mjs` compiles into the
 # engines the desktop suite executes.
@@ -324,6 +324,11 @@ def desktop_rust_plan(root: Path, paths: list[str], selection: dict, profile: di
         elif (any(relative.startswith(crate + "/") for crate in dependencies)
               and (PurePosixPath(relative).suffix == ".rs" or PurePosixPath(relative).name in {"Cargo.toml", "Cargo.lock"})):
             kind = "path-dependency-source"
+        elif PurePosixPath(relative).name.isascii() and PurePosixPath(relative).name.lower() in {"cargo.toml", "cargo.lock"}:
+            # The shell's reach scan reads every project manifest's dependencies (W-18b
+            # r2c), finding manifests by name case-insensitively, so any manifest or lock
+            # change, in any letter case, can change its result.
+            kind = "cargo-manifest"
         else:
             continue
         reasons.append({"path": path, "kind": kind})
@@ -403,7 +408,7 @@ def route_paths(paths: list[str], profile: dict) -> dict:
     for path in unmatched:
         owners = ([] if path.startswith("projects/chirality-app-dev/") else
                   [] if path.startswith("projects/pec/") else
-                  ["app-v4"] if path.startswith("projects/chirality-app-v4/") else
+                  [] if path.startswith("projects/chirality-app-v4/") else
                   ["piping", "piping-numerical", "piping-python"] if path.startswith("projects/chirality-piping/") else
                   [] if path.startswith("projects/chirality-runtime/") else list(SUITES))
         checks.update(owners)

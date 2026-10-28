@@ -2,7 +2,7 @@ name: Restore shared build dependencies
 description: Restore main-scoped registry and compiled dependencies without saving PR outputs
 inputs:
   suite:
-    description: Dependency family (piping-numerical, piping-desktop-rust or app-v4)
+    description: Dependency family (piping-numerical or piping-desktop-rust)
     required: true
 outputs:
   key:
