@@ -296,9 +296,11 @@ $workDir = $mbfItem.DirectoryName
 $stem = [IO.Path]::GetFileNameWithoutExtension($mbfItem.Name)
 $resPath = Join-Path $workDir ($stem + ".res")
 $batchCsv = Join-Path $workDir ($stem + ".csv")
+# The batch print takes the extension saved in the tool's preferences: .csv or .txt.
+$batchTxt = Join-Path $workDir ($stem + ".txt")
 if (-not $CsvName) { $CsvName = $stem + "_results.csv" }
 $guiCsv = Join-Path $workDir $CsvName
-foreach ($p in @($resPath, $batchCsv, $guiCsv)) { if (Test-Path $p) { Remove-Item $p -Force } }
+foreach ($p in @($resPath, $batchCsv, $batchTxt, $guiCsv)) { if (Test-Path $p) { Remove-Item $p -Force } }
 
 # 1. Batch import and solve.
 $started = Get-Date
@@ -323,7 +325,12 @@ if ($proc.HasExited) {
 }
 $log.batch.res_present = Test-Path $resPath
 $log.batch.csv_present = Test-Path $batchCsv
+$log.batch.txt_present = Test-Path $batchTxt
+# Two print files: which one is the print cannot be told, so neither is reported (the host refuses both).
+if ($log.batch.csv_present -and $log.batch.txt_present) { $log.status = "print_file_ambiguous"; $log | ConvertTo-Json -Depth 6; exit 5 }
 if ($log.batch.csv_present) { $log.csv_path = $batchCsv; $log.status = "csv_from_batch"; $log | ConvertTo-Json -Depth 6; exit 0 }
+# A .txt print is reported as the batch print; the host accepts it only if it parses as the print-CSV layout.
+if ($log.batch.txt_present) { $log.csv_path = $batchTxt; $log.status = "csv_from_batch"; $log | ConvertTo-Json -Depth 6; exit 0 }
 if (-not $log.batch.res_present) { $log.status = "no_results_after_batch"; $log | ConvertTo-Json -Depth 6; exit 2 }
 if ($NoGuiFallback) { $log.status = "batch_no_csv"; $log | ConvertTo-Json -Depth 6; exit 3 }
 

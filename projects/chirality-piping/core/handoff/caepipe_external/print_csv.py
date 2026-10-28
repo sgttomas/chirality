@@ -4,7 +4,12 @@ The recognized section layout follows the public documentation of the
 print-to-file output and private notes; the public fixture that exercises it is
 invented. Each recognized section's
 column-header and unit rows are verified exactly before any value is read, so no
-unit is ever assumed. Unknown sections are skipped with an info diagnostic.
+unit is ever assumed: every unit label must be one the layout prints for that
+column's quantity (SI or English; angles in deg or rad), one system and one angle
+unit per file. English and radian values are normalized to the parser's output
+units (mm, deg, N, N*m) with the unit catalog's exact definitions, and each
+section records the label every value was printed in. Unknown sections are skipped
+with an info diagnostic.
 
 Parsed values are correlation evidence only. Nothing here asserts agreement or
 compatibility with CAEPIPE, solver validation, code compliance or professional
@@ -14,13 +19,14 @@ reliance.
 from __future__ import annotations
 
 import csv
+from fractions import Fraction
 import math
 from pathlib import Path
 import re
 from typing import Any
 
 
-PARSER_VERSION = "caepipe-print-csv-1"
+PARSER_VERSION = "caepipe-print-csv-2"
 DOCUMENT_KIND = "openpipestress.caepipe_print_csv.parsed"
 PAIRING_BASIS = "row_order_from_to_pairs"
 BINDING_BASIS = "writer_id_map_node_pairs"
@@ -30,6 +36,36 @@ _BLANK_NOTE = "A blank numeric field inside a recognized data row is read as 0.0
 # The target tool's print-to-file layout: units, the version header, stress labels and the sections below.
 VERSION_PREFIX = "Version "
 UNITS = {"length": "mm", "rotation": "deg", "force": "N", "moment": "N*m"}
+
+# Unit labels the print layout uses, per quantity: the SI labels of the documented layout and the English ones,
+# and radians where the model uses them (observed format behaviour: an English model prints "(inch)", "(lb)",
+# "(ft-lb)" and "(psi)"; a model with the radian option prints "(rad)" in the rotation columns). Each label's
+# system: a file is printed in one system and one angle unit. Stress labels are checked, never read.
+_QUANTITY_LABELS = {
+    "length": {"mm": "SI", "inch": "English"},
+    "rotation": {"deg": None, "rad": None},
+    "force": {"N": "SI", "lb": "English"},
+    "moment": {"Nm": "SI", "ft-lb": "English"},
+    "stress": {"MPa": "SI", "psi": "English"},
+}
+# The unit catalog's exact definitions (core/units: INCH_IN_METERS 0.0254, FOOT_IN_METERS 0.3048,
+# POUND_FORCE_IN_NEWTONS 4.4482216152605, degree = pi/180 rad), combined exactly and rounded once to binary64.
+_INCH_IN_METRES = Fraction("0.0254")
+_FOOT_IN_METRES = Fraction("0.3048")
+_POUND_FORCE_IN_NEWTONS = Fraction("4.4482216152605")
+_TO_OUTPUT = {  # label -> factor to the output unit (None: already the output unit)
+    "mm": None, "deg": None, "N": None, "Nm": None,
+    "inch": float(_INCH_IN_METRES / Fraction("0.001")),
+    "lb": float(_POUND_FORCE_IN_NEWTONS),
+    "ft-lb": float(_POUND_FORCE_IN_NEWTONS * _FOOT_IN_METRES),
+}
+_RADIANS_PER_DEGREE = math.pi / 180.0  # the catalog's degree definition; radians are divided by it
+# The SI label in the documented layout -> the quantity of that column.
+_SI_SLOTS = {"N": "force", "Nm": "moment", "mm": "length", "deg": "rotation", "MPa": "stress"}
+_KEY_QUANTITY = {**{key: "force" for key in ("fx", "fy", "fz", "axial", "shear_y", "shear_z")},
+                 **{key: "moment" for key in ("mx", "my", "mz", "torque", "moment_in_plane", "moment_out_of_plane")},
+                 **{key: "length" for key in ("ux", "uy", "uz")}, **{key: "rotation" for key in ("rx", "ry", "rz")}}
+_SLOT = re.compile(r"\((N|Nm|mm|deg|MPa)\)")
 
 _FORCE_KEYS = ("fx", "fy", "fz", "mx", "my", "mz")
 _LOCAL_KEYS = ("axial", "shear_y", "shear_z", "torque", "moment_in_plane", "moment_out_of_plane")
@@ -110,8 +146,10 @@ def _coverage() -> list[dict[str, Any]]:
             continue
         variants = spec["headers"]
         unit_row = ",".join(variants[0][-1])
-        notes = f"Output member {kind}. Header and unit rows must match exactly after stripping spaces; " \
-                f"otherwise the section is not parsed. {_BLANK_NOTE}"
+        notes = f"Output member {kind}. Header and unit rows must match exactly after stripping spaces, each unit " \
+                "label being one the layout prints for that quantity (SI or English; deg or rad), one system and " \
+                "one angle unit per file; otherwise the section is not parsed. English and radian values are " \
+                f"normalized to mm, deg, N and N*m by the unit catalog's exact definitions. {_BLANK_NOTE}"
         if kind == "element_forces_local":
             unit_row = " | ".join(",".join(variant[-1]) for variant in variants)
             notes += (" Accepted stress-column variants: none (Empty Weight), SL, SE, Sopr. Columns read: axial, "
@@ -183,6 +221,9 @@ class _Parser:
         self.load_cases: dict[str, dict[str, Any]] = {}
         self.options: list[str] = []
         self.header = {"product_label": None, "version": None, "model_name": None, "title": None, "analyzed": None}
+        self.system: str | None = None  # "SI" or "English", fixed by the first section read
+        self.angle: str | None = None   # "deg" or "rad", likewise
+        self.section_units: dict[str, str] = {}
 
     def diag(self, code: str, severity: str, section: str | None, line: int | None, message: str) -> None:
         self.diagnostics.append({"code": code, "severity": severity, "section": section, "line": line, "message": message})
@@ -216,6 +257,7 @@ class _Parser:
             "header": self.header,
             "options": self.options,
             "units": dict(UNITS),
+            "source_units": {"system": self.system, "rotation": self.angle},
             "load_cases": self.load_cases,
             "pairing_basis": PAIRING_BASIS,
             "sections_parsed": self.sections_parsed,
@@ -265,14 +307,40 @@ class _Parser:
             if self.rows[cursor]:
                 found.append(self.rows[cursor])
             cursor += 1
-        if tuple(found) not in spec["headers"]:
+        matched = _match_headers(spec["headers"], tuple(found))
+        problem = None
+        if matched is None:
             expected = " / ".join(",".join(row) for row in spec["headers"][0])
             got = " / ".join(",".join(row) for row in found)
-            self.diag("CAEPIPE-PRINT-COLUMN-HEADER-MISMATCH", "error", title, title_line,
-                      f"column-header and unit rows of {title!r} do not match the recognized layout "
-                      f"(expected {expected!r}, got {got!r}); the section is not parsed")
+            problem = (f"column-header and unit rows of {title!r} do not match the recognized layout "
+                       f"(expected {expected!r}, got {got!r}); the section is not parsed")
+        else:
+            unknown = [(quantity, label) for quantity, label in matched.values()
+                       if label not in _QUANTITY_LABELS[quantity]]
+            if unknown:
+                quantity, label = unknown[0]
+                problem = (f"unit label {label!r} in {title!r} is not a {quantity} label of the print layout "
+                           f"({', '.join(_QUANTITY_LABELS[quantity])}); the section is not parsed")
+        if problem is not None:
+            self.diag("CAEPIPE-PRINT-COLUMN-HEADER-MISMATCH", "error", title, title_line, problem)
             self.sections_skipped.append({"title": title, "line": title_line, "reason": "header_mismatch"})
             return index + 1
+        systems = {_QUANTITY_LABELS[q][label] for q, label in matched.values()} - {None}
+        angles = {label for q, label in matched.values() if q == "rotation"}
+        if systems:
+            systems |= {self.system} - {None}
+        if angles and self.angle is not None:
+            angles |= {self.angle}
+        if len(systems) > 1 or len(angles) > 1:
+            self.diag("CAEPIPE-PRINT-UNITS-MIXED", "error", title, title_line,
+                      f"{title!r} prints units of more than one system or angle unit "
+                      f"({', '.join(sorted(systems | angles))}) within the section or against the sections read "
+                      "before it; the section is not parsed")
+            self.sections_skipped.append({"title": title, "line": title_line, "reason": "units_mixed"})
+            return index + 1
+        self.system = next(iter(systems), self.system)
+        self.angle = next(iter(angles), self.angle)
+        self.section_units = {key: matched[position][1] for position, key in spec["columns"]}
         header_width = max(len(row) for row in found)
         data: list[tuple[int, str, dict[str, float] | None]] = []
         while cursor < len(self.rows):
@@ -312,7 +380,13 @@ class _Parser:
                 self.diag("CAEPIPE-PRINT-NUMBER-INVALID", "error", title, line,
                           f"field {position + 1} ({key}) {text!r} is not a finite number; the row is not read")
                 return None
-            values[key] = value
+            converted = _to_output(value, self.section_units.get(key))
+            if not math.isfinite(converted):
+                self.diag("CAEPIPE-PRINT-VALUE-UNREPRESENTABLE", "error", title, line,
+                          f"field {position + 1} ({key}) {text!r} in {self.section_units.get(key)!r} is not finite in "
+                          "the output unit; the row is not read")
+                return None
+            values[key] = converted
         return values
 
     def case_tables(self, case: str) -> dict[str, Any]:
@@ -365,7 +439,53 @@ class _Parser:
                               f"node {node} appears twice; the later row is not read")
                     continue
                 table[node] = values
-        self.sections_parsed.append({"title": title, "kind": kind, "load_case": case, "line": line, "rows": len(data)})
+        self.sections_parsed.append({"title": title, "kind": kind, "load_case": case, "line": line, "rows": len(data),
+                                     "source_units": dict(self.section_units)})
+
+
+def _template(row: tuple[str, ...]) -> tuple[tuple[str, re.Pattern | None, str | None], ...]:
+    """A header row of the documented (SI) layout as cells; a cell carrying a unit becomes a slot for its quantity."""
+    cells = []
+    for cell in row:
+        slot = _SLOT.search(cell)
+        if slot is None:
+            cells.append((cell, None, None))
+        else:
+            pattern = re.compile(re.escape(cell[:slot.start()]) + r"\((?P<label>[^()]*)\)" + re.escape(cell[slot.end():]) + r"\Z")
+            cells.append((cell, pattern, _SI_SLOTS[slot.group(1)]))
+    return tuple(cells)
+
+
+def _match_headers(variants, found: tuple[tuple[str, ...], ...]) -> dict[int, tuple[str, str]] | None:
+    """The unit label of each unit-bearing column of the last header row ({position: (quantity, label)}, plus the
+    stress columns), for the first variant whose rows match `found` cell by cell with any label in the unit slots;
+    None when no variant matches."""
+    for variant in variants:
+        if len(variant) != len(found) or any(len(a) != len(b) for a, b in zip(variant, found)):
+            continue
+        labels: dict[int, tuple[str, str]] = {}
+        ok = True
+        for number, (expected, got) in enumerate(zip(variant, found)):
+            for position, ((text, pattern, quantity), cell) in enumerate(zip(_template(expected), got)):
+                if pattern is None:
+                    ok = ok and cell == text
+                    continue
+                hit = pattern.match(cell)
+                if hit is None:
+                    ok = False
+                elif number == len(variant) - 1 or quantity != "stress":
+                    labels[position if number == len(variant) - 1 else -1 - position] = (quantity, hit.group("label"))
+        if ok:
+            return labels
+    return None
+
+
+def _to_output(value: float, label: str | None) -> float:
+    """A printed value in its column's unit, in the parser's output unit (exact catalog definitions)."""
+    if label == "rad":
+        return value / _RADIANS_PER_DEGREE
+    factor = _TO_OUTPUT.get(label) if label is not None else None
+    return value if factor is None else value * factor
 
 
 def bind_element_rows(elements: list[dict[str, Any]], element_map: dict[str, Any]) -> dict[str, Any]:
