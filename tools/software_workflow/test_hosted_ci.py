@@ -389,6 +389,8 @@ class HostedCITests(unittest.TestCase):
             [project + 'core/runner/headless/src/lib.rs', project + 'core/solver/performance_harness/src/lib.rs'],
             # Non-Cargo files beside a manifest stay unselected.
             [project + 'validation/benchmarks/mechanics/src/lib.rs', project + 'core/runner/headless/README.md'],
+            # ASCII case only, as Rust's eq_ignore_ascii_case: a Kelvin sign is not a `k`.
+            [project + 'core/runner/new_dependent/Cargo.loc\u212a'],
             [project + 'tests/test_export_public_openpipestress.py', project + 'tools/release/run_evidence_sweep.py'],
             [project + 'docs/note.md'],
             # A dependency's own `.cargo/` is never read by Cargo.
