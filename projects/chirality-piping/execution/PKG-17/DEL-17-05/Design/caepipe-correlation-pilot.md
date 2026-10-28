@@ -144,7 +144,9 @@ the export out of a tracked authored run too.
 **Saved settings.** The tool keeps saved settings in the guest registry, among them a recent-files
 list that a solve may update. The configuration may name that registry key (`settings_guard`: `key`,
 an `HKCU\…` path; `recent_files_subkey`, the list's subkey; `restore_recent_files`, `false` unless
-set, which needs the subkey); `--authored-dir` runs require it.
+set, which needs the subkey; `call_timeout_s`, default 20, and `section_budget_s`, default 120, both in
+seconds); `--authored-dir` runs require it. Every guard call (registry reads and writes, process
+queries) runs with `call_timeout_s`; the solve keeps its own timeout.
 
 - **Precondition.** Before the first case and again before each round trip, the guest's process
   list (`tasklist`) must be readable and show no instance of the tool: none is the run's own yet, so
@@ -191,28 +193,41 @@ set, which needs the subkey); `--authored-dir` runs require it.
   reading is attempted whether or not anything was logged. A record never says nothing was written
   when its log shows writes.
 
-**Interruption (threat model).** Signals are deferred only across the restore's registry-mutation
-section: the check before each write, the writes, the check after them and the verification reading.
-There SIGINT, SIGTERM and, where it exists, SIGBREAK only record themselves, so no signal can cut
+**Interruption (threat model).** For the whole guarded round trip, SIGTERM (and SIGBREAK where it
+exists) is made catchable on the main thread: it raises a cancellation (`TerminationRequested`, a kind
+of `KeyboardInterrupt`) as SIGINT does, instead of ending the process unrecorded; the previous handler
+is restored when the round trip ends. Signals are deferred only across the restore's
+registry-mutation section: the check before each write, the writes, the check after them and the
+verification reading. There SIGINT, SIGTERM and SIGBREAK only record themselves, so no signal can cut
 between a check and its write or leave a write half-logged; the previous handlers are restored when
-the section closes, and the signals it deferred are reported then (`deferred_signals`) and stop the run
-as a `KeyboardInterrupt` raised after the restore's outcome is recorded in memory, or are kept as a
-secondary error beside a primary error that is raised instead. The section consists of guest calls
-only, each with its own timeout, so the deferral is bounded: for n writes its maximum is the sum of
-those calls' timeouts, that is (n + 2) reads (n + 1 process lists and the verification reading), each
-up to the read retry's three attempts of the call timeout, plus n writes of one attempt each (600 s per
-call by default). Handlers can be installed only on the main thread; elsewhere the record says
-deferral is unavailable (`signal_deferral`). Everything else, the post-run checks, the recovery, the
-attachment and the record I/O, runs in normal signal context: a signal there interrupts as usual.
-The post-run checks (the process query, the precondition, the readings) are each guarded against any
-exception, so a cancellation raised by one is kept (raised as the first error, or kept beside it) and
-the settings reading still runs; an ordinary error there leaves the state unknown and stops the run.
-The guard result, with its write log, is attached to the error before any record I/O begins, so a
-signal or failure during the record (the first such failure included, recorded as `run_record_error`)
-cannot lose it. Exceptions raised by callees take the deferred path above, with the first one raised.
-An exception raised by one of the guard's own bookkeeping statements would be a defect in the harness;
-beyond the tests that inject failures at each callee and recovery step, that case is not designed
-for. A difference
+the section closes, and the signals it deferred are reported then (`deferred_signals`) and stop the
+run as a `KeyboardInterrupt` raised after the restore's outcome is recorded in memory, or are kept as
+a secondary error beside a primary error that is raised instead. **Bound:** the section has a total
+budget, `section_budget_s` (120 s by default). Each call in it is given at most the guard call timeout
+and never more than the budget still remaining, and no retry starts after the budget has run out; when
+it runs out the restore stops as `settings_restore_failed` with its write log and the stop is raised
+(`SectionBudgetExceeded`). The worst case of the deferred section is therefore the section budget.
+Everything else (the post-run checks, the recovery, the attachment and the record I/O) runs in
+normal signal context: a signal there interrupts as usual. The post-run checks (the process query,
+the precondition, the readings) are each guarded against any exception, so a cancellation raised by
+one is kept (raised as the first error, or kept beside it) and the settings reading still runs; an
+ordinary error there leaves the state unknown and stops the run. The guard result, with its write
+log, is attached to the error before any record I/O begins and is then written on its own to
+`caepipe_out/settings_guard.json` before the run record. That write stays interruptible; a cancellation
+during it is retried once and is then raised. So a signal or failure during the record (the first such
+failure included, recorded as `run_record_error`) cannot lose the log. Exceptions raised by callees take
+the deferred path above, with the first one raised. An exception raised by one of the guard's own
+bookkeeping statements would be a defect in the harness; beyond the tests that inject failures at each
+callee and recovery step, that case is not designed for.
+
+**Known limits.**
+- A failure inside the recovery's own callbacks (its bookkeeping, final reading, comparison or reason)
+  can leave out the diagnostics that step would have added; the failed status and the write log are
+  kept.
+- If attaching the guard result to the raised error fails, the result is only in
+  `settings_guard.json` and the run record, not on the error.
+- Signal deferral, and the catchable SIGTERM, are available only on the main thread; elsewhere the
+  record says deferral is unavailable (`signal_deferral`) and signals act as they normally do. A difference
   anywhere else is `settings_changed`, and nothing is written.
 
 The restore is safe only because no other instance of the tool runs during the round trip: the

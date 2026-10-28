@@ -39,6 +39,7 @@ import csv
 import hashlib
 import io
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -47,6 +48,7 @@ import signal
 import stat
 import subprocess
 import threading
+import time
 from types import SimpleNamespace
 from typing import Any, Callable, Mapping
 
@@ -84,6 +86,12 @@ RESTORABLE_DATA = {"REG_BINARY": re.compile(r"^[0-9A-Fa-f]*\Z"), "REG_DWORD": re
                    "REG_SZ": re.compile(r"^[A-Za-z0-9 \\._()*:-]*\Z")}
 # Written by the guest script in the case's work folder: one id per process it starts (guarded runs only).
 OWNED_PIDS_FILE = "owned_pids.txt"
+# The guard's result, with its write log, persisted on its own before the run record (guarded runs only).
+GUARD_RESULT_FILE = "settings_guard.json"
+# Guard call limits (configurable in settings_guard): each guard call's timeout, and the total time the restore's
+# registry-mutation section may take. The solve keeps its own timeout.
+GUARD_CALL_TIMEOUT_S = 20.0
+GUARD_SECTION_BUDGET_S = 120.0
 
 
 class ContainmentError(RuntimeError):
@@ -124,6 +132,8 @@ class SettingsGuard:
     key: str
     recent_files_subkey: str | None = None
     restore_recent_files: bool = False
+    call_timeout_s: float = GUARD_CALL_TIMEOUT_S
+    section_budget_s: float = GUARD_SECTION_BUDGET_S
 
     @property
     def recent_files_key(self) -> str | None:
@@ -199,13 +209,21 @@ def resolve_harness_config(environ: Mapping[str, str] = os.environ, *,
         key = raw_guard.get("key") if isinstance(raw_guard, dict) else None
         subkey = raw_guard.get("recent_files_subkey") if isinstance(raw_guard, dict) else None
         restore = raw_guard.get("restore_recent_files", False) if isinstance(raw_guard, dict) else None
+        limits = {name: (raw_guard.get(name, default) if isinstance(raw_guard, dict) else None)
+                  for name, default in (("call_timeout_s", GUARD_CALL_TIMEOUT_S),
+                                        ("section_budget_s", GUARD_SECTION_BUDGET_S))}
+        limits_valid = all(isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+                           and value > 0 for value in limits.values())
         if not (isinstance(key, str) and SETTINGS_KEY_PATTERN.match(key)
                 and (subkey is None or isinstance(subkey, str) and SETTINGS_SUBKEY_PATTERN.match(subkey))
-                and isinstance(restore, bool) and (subkey is not None or not restore)):
+                and isinstance(restore, bool) and (subkey is not None or not restore) and limits_valid):
             return skip(f"{CONFIG_NAME} settings_guard must give key (HKCU\\..., letters, digits, space and "
-                        ". _ ( ) - only), optionally recent_files_subkey (the same characters) and "
-                        "restore_recent_files (true or false; true needs recent_files_subkey)")
-        guard = SettingsGuard(key=key, recent_files_subkey=subkey, restore_recent_files=restore)
+                        ". _ ( ) - only), optionally recent_files_subkey (the same characters), "
+                        "restore_recent_files (true or false; true needs recent_files_subkey) and positive "
+                        "call_timeout_s and section_budget_s (seconds)")
+        guard = SettingsGuard(key=key, recent_files_subkey=subkey, restore_recent_files=restore,
+                              call_timeout_s=float(limits["call_timeout_s"]),
+                              section_budget_s=float(limits["section_budget_s"]))
     prlctl = None
     if require_vm_tools:
         checked.append("prlctl on PATH")
@@ -413,6 +431,7 @@ def _locked(config: HarnessConfig, case_id: str, work: Callable[[dict[str, Path]
 
 # A new solve also clears the previous solve's MBF export, which no longer describes the solved model.
 _CLEARED_OUTPUTS = {name.lower() for name in (*OUTPUT_NAMES, "guest_stdout.txt", "guest_stderr.txt", "guest_log.json",
+                                               GUARD_RESULT_FILE,
                                                "run_record.json", *EXPORT_OUTPUTS)}
 
 
@@ -445,8 +464,12 @@ def _clear_outputs(root: Path, out: Path) -> None:
 
 
 def _guest_step(config: HarnessConfig, runner: Callable[..., subprocess.CompletedProcess], timeout_s: float,
-                steps: list[dict[str, Any]], name: str, command: str) -> dict[str, Any]:
-    """Run one guest command through `prlctl exec`, append its record to `steps` and return it."""
+                steps: list[dict[str, Any]], name: str, command: str, deadline: float | None = None) -> dict[str, Any]:
+    """Run one guest command through `prlctl exec`, append its record to `steps` and return it.
+
+    With `deadline` (a `time.monotonic()` value) no attempt runs past it: each attempt's timeout is cut to what
+    remains, and no further attempt starts once it has passed.
+    """
 
     argv = [config.prlctl, "exec", config.vm_name, "--current-user", "cmd", "/c", command]
     record: dict[str, Any] = {"name": name, "guest_command": command, "started": _now(), "attempts": 0}
@@ -454,8 +477,9 @@ def _guest_step(config: HarnessConfig, runner: Callable[..., subprocess.Complete
     # "PrlJob_..." message. Every step is idempotent (each clears its old outputs first), so retry.
     while True:
         record["attempts"] += 1
+        attempt_timeout = timeout_s if deadline is None else max(0.001, min(timeout_s, deadline - time.monotonic()))
         try:
-            completed = runner(argv, capture_output=True, text=True, check=False, timeout=timeout_s)
+            completed = runner(argv, capture_output=True, text=True, check=False, timeout=attempt_timeout)
             record.update(exit_status=completed.returncode, stdout=completed.stdout or "", stderr=completed.stderr or "")
         except subprocess.TimeoutExpired as error:
             record.update(exit_status="timeout", stdout=_text(error.stdout), stderr=_text(error.stderr))
@@ -463,9 +487,44 @@ def _guest_step(config: HarnessConfig, runner: Callable[..., subprocess.Complete
             record.update(exit_status="launch_failed", stdout="", stderr=str(error))
         if not (record["exit_status"] == 255 and "PrlJob_" in record["stderr"]) or record["attempts"] >= PRLCTL_ATTEMPTS:
             break
+        if deadline is not None and time.monotonic() >= deadline:
+            break
     record["finished"] = _now()
     steps.append(record)
     return record
+
+
+class TerminationRequested(KeyboardInterrupt):
+    """SIGTERM (or SIGBREAK) received during a guarded round trip, raised as a cancellation like Ctrl-C."""
+
+
+class SectionBudgetExceeded(RuntimeError):
+    """The restore's registry-mutation section used up its time budget (`section_budget_s`)."""
+
+
+@contextlib.contextmanager
+def _catchable_termination(active: bool):
+    """For a guarded round trip, make SIGTERM (and SIGBREAK where it exists) raise TerminationRequested instead of
+    ending the process unrecorded; inside the mutation section `_deferred_signals` defers it as before. The
+    previous handlers are restored on exit. Main thread only (elsewhere nothing changes)."""
+
+    if not active or threading.current_thread() is not threading.main_thread():
+        yield
+        return
+    previous: dict[int, Any] = {}
+
+    def terminate(signum, frame):  # noqa: ARG001
+        raise TerminationRequested(f"signal {signal.Signals(signum).name}")
+
+    try:
+        for name in ("SIGTERM", "SIGBREAK"):
+            number = getattr(signal, name, None)
+            if number is not None:
+                previous[number] = signal.signal(number, terminate)
+        yield
+    finally:
+        for number, handler in previous.items():
+            signal.signal(number, handler)
 
 
 @contextlib.contextmanager
@@ -526,7 +585,7 @@ class RestoreWriteFailed(RuntimeError):
 
 def _guest_write(config: HarnessConfig, runner: Callable[..., subprocess.CompletedProcess], timeout_s: float,
                  steps: list[dict[str, Any]], name: str, command: str,
-                 state: dict[str, Any] | None = None) -> dict[str, Any]:
+                 state: dict[str, Any] | None = None, deadline: float | None = None) -> dict[str, Any]:
     """Run one mutating guest command exactly once: never retried, whatever the transport reports.
 
     The step is recorded before anything is raised. Exit 0 with `REG_WRITE_OK` in its output is the only success.
@@ -540,6 +599,8 @@ def _guest_write(config: HarnessConfig, runner: Callable[..., subprocess.Complet
     # Complete from the start, so the step stays recordable however its own logging ends.
     record: dict[str, Any] = {"name": name, "guest_command": command, "started": _now(), "attempts": 1,
                               "mutating": True, "exit_status": "not_returned", "stdout": "", "stderr": ""}
+    if deadline is not None:
+        timeout_s = max(0.001, min(timeout_s, deadline - time.monotonic()))
     try:
         completed = runner(argv, capture_output=True, text=True, check=False, timeout=timeout_s)
     except BaseException as error:
@@ -774,10 +835,25 @@ def _restore_recent_files(config: HarnessConfig, step: Callable[[str, str], dict
     state["restore_entered"] = True
     log: list[dict[str, Any]] = state.setdefault("write_log", [])
     reason = None
+    guard = config.settings_guard
+    deadline = None  # set when the mutation section starts
 
-    def check(name: str) -> None:
+    def within(name: str) -> None:
+        if deadline is not None and time.monotonic() >= deadline:
+            state["section_budget_exceeded"] = name
+            raise SectionBudgetExceeded(f"the section budget of {guard.section_budget_s:g} s ran out before {name}")
+
+    def budgeted_step(name: str, command: str) -> dict[str, Any]:
+        within(name)
+        return step(name, command, deadline=deadline)
+
+    def budgeted_write(name: str, command: str) -> dict[str, Any]:
+        within(name)
+        return write(name, command, deadline=deadline)
+
+    def check(name: str, caller: Callable[..., dict[str, Any]] | None = None) -> None:
         # Not `_precondition`: an exception here must reach the failure path unchanged, not become a finding.
-        found = _tool_processes(config, step, name)
+        found = _tool_processes(config, caller or step, name)
         if found is None:
             raise _RestoreStopped({"status": "precondition_unknown",
                                    "reason": "the guest's process list could not be read or is malformed"})
@@ -791,20 +867,23 @@ def _restore_recent_files(config: HarnessConfig, step: Callable[[str, str], dict
         signals = None
         try:
             with _deferred_signals(True) as signals:
+                deadline = time.monotonic() + guard.section_budget_s
+                state["section_budget_s"] = guard.section_budget_s
                 for number, entry in enumerate(plan, 1):
-                    check(f"restore_check_before_write_{number}")
+                    check(f"restore_check_before_write_{number}", budgeted_step)
                     logged = {key: entry[key] for key in ("value", "action", "restores", "replaces")} | {
                         "attempts": 1, "outcome": "issued", "completed": False}
                     log.append(logged)
                     try:
-                        write(f"settings_restore_{number}", entry["command"])
+                        budgeted_write(f"settings_restore_{number}", entry["command"])
                     except BaseException as error:
                         state.setdefault("primary_error", error)
                         logged["outcome"] = _write_outcome(error)
                         raise
                     logged["outcome"], logged["completed"] = "completed", True
-                check("restore_check_after_writes")
-                third = _settings_snapshot(config, step, "settings_verify")
+                check("restore_check_after_writes", budgeted_step)
+                within("settings_verify")
+                third = _settings_snapshot(config, budgeted_step, "settings_verify")
         finally:
             # The section has closed (handlers restored): what it deferred is reported now, before any record.
             if signals is not None:
@@ -839,7 +918,8 @@ def _restore_log_summary(result: dict[str, Any], state: dict[str, Any]) -> None:
     log = state.get("write_log", [])
     result["write_log"] = log
     result["writes_completed"] = sum(1 for entry in log if entry["completed"])
-    for key in ("stopped_by", "remaining_differences", "signal_deferral", "deferred_signals"):
+    for key in ("stopped_by", "remaining_differences", "signal_deferral", "deferred_signals", "section_budget_s",
+                "section_budget_exceeded"):
         if key in state:
             result[key] = state[key]
 
@@ -892,6 +972,30 @@ def _failed_restore(config: HarnessConfig, step: Callable[[str, str], dict[str, 
 
 def _attach_guard(error: BaseException, settings: dict[str, Any]) -> None:
     error.settings_guard = settings
+
+
+def _persist_guard_result(root: Path, out: Path, settings: dict[str, Any]) -> BaseException | None:
+    """Write the guard result, with its write log, to `GUARD_RESULT_FILE` before the run record (interruptible).
+
+    A cancellation during the write is retried once, so a termination request arriving then does not lose the
+    log; it is returned for the caller to raise (or keep beside a primary error). An I/O error is not retried; it
+    is named in the result and also returned.
+    """
+
+    interrupted: BaseException | None = None
+    for _ in range(2):
+        try:
+            write_private(root, out / GUARD_RESULT_FILE,
+                          json.dumps(settings, indent=2, sort_keys=True, default=str) + "\n")
+            if interrupted is not None:
+                settings["guard_result_file"] = f"written after {type(interrupted).__name__}"
+            return interrupted
+        except BaseException as caught:
+            interrupted = interrupted or caught
+            if isinstance(caught, Exception):
+                break
+    settings["guard_result_file"] = f"not written: {type(interrupted).__name__}: {interrupted}"
+    return interrupted
 
 
 def _attach_after_record_failure(error: BaseException, settings: dict[str, Any] | None) -> None:
@@ -965,6 +1069,15 @@ def _guard_check(config: HarnessConfig, step: Callable[[str, str], dict[str, Any
 def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[str, Path], harness_dir: Path,
                 timeout_s: float, runner: Callable[..., subprocess.CompletedProcess],
                 gui_fallback: bool = True) -> dict[str, Any]:
+    # A guarded round trip turns SIGTERM into a catchable cancellation for its whole lifetime, so a termination
+    # request is recorded like a Ctrl-C instead of ending the process with the guard's log unwritten.
+    with _catchable_termination(config.settings_guard is not None):
+        return _round_trip_body(config, case_id, mbf_text, paths, harness_dir, timeout_s, runner, gui_fallback)
+
+
+def _round_trip_body(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[str, Path], harness_dir: Path,
+                     timeout_s: float, runner: Callable[..., subprocess.CompletedProcess],
+                     gui_fallback: bool = True) -> dict[str, Any]:
     started = _now()
     root = config.exchange_root
     mbf_bytes = mbf_text.encode("utf-8")
@@ -995,9 +1108,15 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
         return _guest_step(config, runner, timeout_s, steps, name, command)
 
     guard_state: dict[str, Any] = {}
+    # Every guard call (registry reads and writes, process queries) has the guard's own short timeout; the solve
+    # keeps `timeout_s`.
+    guard_timeout = config.settings_guard.call_timeout_s if config.settings_guard else timeout_s
 
-    def write(name: str, command: str) -> dict[str, Any]:
-        return _guest_write(config, runner, timeout_s, steps, name, command, guard_state)
+    def guard_step(name: str, command: str, deadline: float | None = None) -> dict[str, Any]:
+        return _guest_step(config, runner, guard_timeout, steps, name, command, deadline)
+
+    def write(name: str, command: str, deadline: float | None = None) -> dict[str, Any]:
+        return _guest_write(config, runner, guard_timeout, steps, name, command, guard_state, deadline)
 
     # The guest work copy of the MBF is deleted before the copy, so a failed copy can never leave an older MBF
     # to be solved; a failed prepare step stops the round trip before solving.
@@ -1008,9 +1127,9 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
     # Without both, nothing runs.
     blocked = None
     if guarded:
-        pre = _precondition(config, step, "precondition_process_list")
+        pre = _precondition(config, guard_step, "precondition_process_list")
         blocked = None if pre["status"] == "clear" else pre
-    settings_before = _settings_snapshot(config, step, "settings_before") if guarded and blocked is None else None
+    settings_before = _settings_snapshot(config, guard_step, "settings_before") if guarded and blocked is None else None
     prepare: dict[str, Any] = {"exit_status": "not_run", "stdout": "", "stderr": ""}
     solve: dict[str, Any] = {"exit_status": None, "stdout": "", "stderr": ""}
     script_location = "exchange_share"
@@ -1055,7 +1174,7 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
         post_run_errors: list[BaseException] = []
         try:
             try:
-                processes = (_owned_processes(config, step, work, guest_log)
+                processes = (_owned_processes(config, guard_step, work, guest_log)
                              if prepare["exit_status"] == 0 else {"status": "not_started"})
             except BaseException as failure:  # a callee's cancellation included: the reading still runs
                 if not isinstance(failure, Exception):
@@ -1064,7 +1183,7 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
             after = None
             if settings_before is not None:
                 try:
-                    after = _settings_snapshot(config, step, "settings_after")
+                    after = _settings_snapshot(config, guard_step, "settings_after")
                 except BaseException as failure:
                     if not isinstance(failure, Exception):
                         post_run_errors.append(failure)
@@ -1072,7 +1191,7 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
             if blocked is not None:
                 settings = blocked
             else:
-                settings, deferred = _guard_check(config, step, settings_before, after, processes, guard_state,
+                settings, deferred = _guard_check(config, guard_step, settings_before, after, processes, guard_state,
                                                   write)
         except BaseException as caught:  # cancellation during the checks or escaping the restore's failure path
             primary = guard_state.get("primary_error")
@@ -1088,7 +1207,7 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
                                               "completed")
                 if "final_reading" not in settings:
                     try:
-                        final = _settings_snapshot(config, step, "settings_after_failed_restore")
+                        final = _settings_snapshot(config, guard_step, "settings_after_failed_restore")
                         settings["final_reading"] = "read" if final is not None else "could not be read"
                     except BaseException as late:
                         settings["final_reading"] = f"interrupted ({type(late).__name__})"
@@ -1116,12 +1235,25 @@ def _round_trip(config: HarnessConfig, case_id: str, mbf_text: str, paths: dict[
                 error = interrupt
             else:
                 _secondary(settings, "deferred signal", interrupt)
-    # The guard result is attached to the error before any record I/O, so no record failure can lose it.
+    # The guard result is attached to the error before any record I/O, so no record failure can lose it, and then
+    # persisted on its own (with its write log) before the run record, so a cancellation during the record does not
+    # lose it either.
     if error is not None and settings is not None:
         try:
             _attach_guard(error, settings)
         except BaseException as caught:
             _secondary(settings, "attachment", caught)
+    if guarded and settings is not None:
+        interrupted = _persist_guard_result(root, out, settings)
+        if interrupted is not None:
+            if error is None:
+                error = interrupted
+                try:
+                    _attach_guard(error, settings)
+                except BaseException as caught:
+                    _secondary(settings, "attachment", caught)
+            elif interrupted is not error:
+                _secondary(settings, "guard result file", interrupted)
 
     try:
         write_private(root, out / "guest_stdout.txt", solve["stdout"])
