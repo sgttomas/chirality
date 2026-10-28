@@ -1,7 +1,8 @@
 # Development verification
 
 `harness` is the single required GitHub result. It combines repository checks
-with the selected App v4 and Piping workflows.
+with the selected Piping workflows. App v4 has independent CI in
+`sgttomas/chirality-app`; detached App paths do not select product jobs here.
 Branch protection does not require an up-to-date branch merely because main
 advanced; checks still apply to the candidate head.
 
@@ -26,8 +27,7 @@ Each job reports its
 selection and reasons; unrelated product jobs are explicitly skipped. Failed,
 cancelled or missing selected work fails the aggregate result.
 
-Routine PRs use focused checks of consequential behaviour. Full App v4 suites,
-broad browser matrices and other expanded checks are available through manual
+Routine PRs use focused checks of consequential behaviour. Broad browser matrices and other expanded checks are available through manual
 workflow dispatch or release preparation. There is no blanket local sweep,
 nightly duplicate or post-merge duplicate requirement. Do not repeat a passing
 hosted suite locally without a new change or unresolved concern.
@@ -35,7 +35,9 @@ hosted suite locally without a new change or unresolved concern.
 Repository checks retain conflict/secret detection and relevant tool tests.
 Dependency YAML edits select the structural deliverable check; unresolved needs
 and cycles are reported without failing. Role and workflow package changes
-select the checks for those consumed formats. The tool-test mapping is
+select the checks for those consumed formats. Piping's claims-language check
+(GEN-13) runs when a changed path matches its validator's own declared inputs;
+see Piping's CI strategy. The tool-test mapping is
 [tools-test-routing.json](../tools/tools-test-routing.json).
 
 Piping's [CI strategy](../projects/chirality-piping/docs/CI_STRATEGY.md) describes
@@ -45,11 +47,10 @@ runner/language environment. A reused pass names its original run and says no
 tests executed. Manual runs bypass result reuse. Dependency/build caches are
 separate and do not themselves establish a passing result.
 
-`shared-build-cache.yml` warms Piping numerical, Piping desktop Rust and App v4
+`shared-build-cache.yml` warms Piping numerical and Piping desktop Rust
 Cargo dependencies on main pushes without executing tests. Piping numerical uses
 `numerical_ci.py --build-only`, derived from the numerical job's own selected
-profiles. Piping desktop Rust compiles its test profile. App v4 compiles its
-test and check profiles. Only registry/Git dependencies and their
+profiles. Piping desktop Rust compiles its test profile. Only registry/Git dependencies and their
 compiled artifacts are saved; local path crates, test executables and incremental
 output are removed. Product jobs restore these main-scoped caches without saving
 PR build caches. Small exact-result verification records retain their existing
