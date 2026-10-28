@@ -12,17 +12,17 @@ def load(name):
 
 
 def test_keys_are_independent_of_pr_and_workspace_source(tmp_path):
-    project = tmp_path / 'projects/chirality-app-v4/app/src-tauri'
+    project = tmp_path / 'projects/chirality-piping/apps/desktop/src-tauri'
     project.mkdir(parents=True)
     (project / 'Cargo.toml').write_text('[package]\nname="app"\nversion="1"\n')
     (project / 'Cargo.lock').write_text('version = 4\n')
     env = {'RUNNER_OS': 'macOS', 'RUNNER_ARCH': 'ARM64', 'ImageOS': 'macos26', 'CARGO_INCREMENTAL': '0'}
-    first = build_cache.cache_key(tmp_path, 'app-v4', env, 'rustc 1.97.1')
+    first = build_cache.cache_key(tmp_path, 'piping-desktop-rust', env, 'rustc 1.97.1')
     (project / 'source.rs').write_text('changed own source')
-    assert build_cache.cache_key(tmp_path, 'app-v4', dict(env, GITHUB_REF='refs/pull/999/merge'), 'rustc 1.97.1') == first
-    assert build_cache.cache_key(tmp_path, 'app-v4', env, 'rustc 1.98')[:2] != first[:2]
+    assert build_cache.cache_key(tmp_path, 'piping-desktop-rust', dict(env, GITHUB_REF='refs/pull/999/merge'), 'rustc 1.97.1') == first
+    assert build_cache.cache_key(tmp_path, 'piping-desktop-rust', env, 'rustc 1.98')[:2] != first[:2]
     (project / 'Cargo.lock').write_text('version = 4\n# new dependencies\n')
-    changed = build_cache.cache_key(tmp_path, 'app-v4', env, 'rustc 1.97.1')
+    changed = build_cache.cache_key(tmp_path, 'piping-desktop-rust', env, 'rustc 1.97.1')
     assert changed[0] != first[0] and changed[1] == first[1]
 
 
@@ -83,7 +83,7 @@ def test_only_main_warmer_saves_build_caches_and_runs_no_tests():
                 assert '--no-run' in line
             if 'numerical_ci.py' in line:
                 assert '--build-only' in line
-    for workflow, job in [('app-v4.yml', 'product'), ('piping-desktop-e2e.yml', 'numerical'), ('piping-desktop-e2e.yml', 'desktop-rust')]:
+    for workflow, job in [('piping-desktop-e2e.yml', 'numerical'), ('piping-desktop-e2e.yml', 'desktop-rust')]:
         steps = load(workflow)['jobs'][job]['steps']
         assert any(step.get('uses') == './.github/actions/restore-build-cache' for step in steps)
         # Exact-result records may still save; full Cargo target caches may not.
@@ -97,7 +97,7 @@ def test_only_main_warmer_saves_build_caches_and_runs_no_tests():
 
 def test_warmer_and_consumer_compiler_environment_match():
     warmer = load('shared-build-cache.yml')
-    for suite, filename, job in [('piping-numerical', 'piping-desktop-e2e.yml', 'numerical'), ('app-v4', 'app-v4.yml', 'product'),
+    for suite, filename, job in [('piping-numerical', 'piping-desktop-e2e.yml', 'numerical'),
                                  ('piping-desktop-rust', 'piping-desktop-e2e.yml', 'desktop-rust')]:
         consumer = load(filename)['jobs'][job]
         assert warmer['jobs'][suite]['runs-on'] == consumer['runs-on']
