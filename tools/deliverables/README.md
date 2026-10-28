@@ -2,7 +2,7 @@
 
 Run from the selected Git repository with Python 3 and PyYAML. The repository
 must have a resolvable `HEAD`; `--project` names an existing directory within it
-and defaults to `projects/chirality-app-v4`:
+and requires an explicit `--project` path:
 
 ```sh
 python3 -m tools.deliverables --project projects/example check
