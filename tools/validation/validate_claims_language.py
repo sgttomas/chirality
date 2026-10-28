@@ -33,10 +33,19 @@ import argparse
 import re
 import sys
 from dataclasses import dataclass
+from fnmatch import fnmatchcase
 from pathlib import Path
 
 
 PROJECT_RELPATH = Path("projects/chirality-piping")
+# Scanned surfaces (project-relative). input_patterns() derives the hosted CI
+# gate from these and ANCHORS, so the gate reads what the scan reads.
+DESKTOP_SRC_RELPATH = Path("apps/desktop/src")
+DOCS_RELPATH = Path("docs")
+SCOPE_OF_WORK_GLOB = "execution/PKG-*/DEL-*/ScopeOfWork.md"
+# The governed registry the registered texts below are copied from. The scan
+# does not open it, but a registry change must re-run the check.
+REGISTRY_RELPATH = Path("docs/claims_registry.md")
 
 # Litany vocabulary (matched case-insensitively as substrings). A line with
 # >= LITANY_THRESHOLD distinct terms is an ad-hoc prohibition litany unless it
@@ -215,7 +224,7 @@ def _litany_terms_on(normalized_line: str) -> list[str]:
 
 
 def _iter_desktop_sources(project_root: Path) -> list[Path]:
-    src = project_root / "apps" / "desktop" / "src"
+    src = project_root / DESKTOP_SRC_RELPATH
     if not src.is_dir():
         return []
     return [
@@ -242,7 +251,7 @@ def _doc_excluded(rel_to_docs: Path) -> bool:
 
 
 def _iter_docs(project_root: Path) -> list[Path]:
-    docs = project_root / "docs"
+    docs = project_root / DOCS_RELPATH
     if not docs.is_dir():
         return []
     candidates = [
@@ -264,9 +273,7 @@ def _iter_scopes_of_work(project_root: Path) -> list[Path]:
         return []
     return [
         p
-        for p in project_root.glob(
-            "execution/PKG-*/DEL-*/ScopeOfWork.md"
-        )
+        for p in project_root.glob(SCOPE_OF_WORK_GLOB)
         if p.is_file()
     ]
 
@@ -279,6 +286,30 @@ def iter_scanned_files(repo_root: Path) -> list[Path]:
         + _iter_scopes_of_work(project_root)
     )
     return sorted(set(files))
+
+
+def input_patterns() -> tuple[str, ...]:
+    """Repository-relative fnmatch patterns covering every path this check
+    reads: the scanned surfaces, the anchor surfaces, the registry and this
+    validator. `*` also matches `/`, so a directory pattern covers its tree
+    (a superset of the scan's suffix and exclusion filters). Hosted CI
+    (tools/run_affected_tests.py) runs the check when a changed path
+    matches one."""
+    project = PROJECT_RELPATH.as_posix()
+    here = Path(__file__).resolve()
+    return (
+        f"{project}/{DESKTOP_SRC_RELPATH.as_posix()}/*",
+        f"{project}/{DOCS_RELPATH.as_posix()}/*",
+        f"{project}/{SCOPE_OF_WORK_GLOB}",
+        *(f"{project}/{rel_path}" for _code, rel_path, _fragment in ANCHORS),
+        f"{project}/{REGISTRY_RELPATH.as_posix()}",
+        here.relative_to(here.parents[2]).as_posix(),
+    )
+
+
+def reads_input(rel: str) -> bool:
+    """Whether a repository-relative posix path is an input of this check."""
+    return any(fnmatchcase(rel, pattern) for pattern in input_patterns())
 
 
 def _scan_file(path: Path, rel: str) -> list[Finding]:
@@ -348,7 +379,7 @@ def _line_at(marks: list[tuple[int, int]], position: int) -> int:
 
 
 def _is_product_source(rel: str) -> bool:
-    prefix = (PROJECT_RELPATH / "apps" / "desktop" / "src").as_posix() + "/"
+    prefix = (PROJECT_RELPATH / DESKTOP_SRC_RELPATH).as_posix() + "/"
     return rel.startswith(prefix)
 
 
@@ -430,7 +461,15 @@ def validate_claims_language(repo_root: Path) -> list[Finding]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo-root", type=Path, default=Path.cwd())
+    parser.add_argument(
+        "--list-inputs", action="store_true",
+        help="print the input path patterns (one per line) and exit",
+    )
     args = parser.parse_args(argv)
+
+    if args.list_inputs:
+        print("\n".join(input_patterns()))
+        return 0
 
     try:
         repo_root = args.repo_root.resolve()

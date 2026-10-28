@@ -370,6 +370,20 @@ class HostedCITests(unittest.TestCase):
             # product_physics build script reads its own sources.
             ('fixtures/rule_expressions/checksum_binding/payload_grammar_v1_0_0.json', 'path-dependency-runtime-read'),
             ('core/product_physics/src/bend_pressure.rs', 'path-dependency-runtime-read'),
+            # Any other project manifest or lock: the shell's reach scan reads every project
+            # package's dependencies from `cargo metadata` (W-18b r2c), so a new package that
+            # depends on a reporting crate must run it.
+            ('core/reporting/new_dependent/Cargo.toml', 'cargo-manifest'),
+            ('validation/benchmarks/mechanics/Cargo.toml', 'cargo-manifest'),
+            # (The headless runner's manifest and lock, main's examples, are under the reach scan's
+            # source reference since code review r9 at #1682; performance_harness's stand in.)
+            ('core/solver/performance_harness/Cargo.lock', 'cargo-manifest'),
+            ('core/solver/performance_harness/Cargo.toml', 'cargo-manifest'),
+            ('core/runner/headless/Cargo.toml', 'desktop-rust-source-reference'),
+            # The scan finds manifests case-insensitively (code review r1 of #1706).
+            ('core/runner/new_dependent/cargo.toml', 'cargo-manifest'),
+            ('core/runner/new_dependent/CARGO.TOML', 'cargo-manifest'),
+            ('core/runner/new_dependent/cargo.lock', 'cargo-manifest'),
         ]:
             with self.subTest(path=path):
                 selection = select_paths([project + path], PROFILE)
@@ -382,6 +396,12 @@ class HostedCITests(unittest.TestCase):
             # #1682: the reach scan reads its sources.)
             [project + 'apps/desktop/src/App.tsx', project + 'apps/desktop/package.json'],
             [project + 'core/solver/performance_harness/src/lib.rs'],
+            # Non-Cargo files beside a manifest stay unselected. (The headless runner's README,
+            # main's example, is under the reach scan's source reference since code review r9 at
+            # #1682, as the reporting crates' directories are; performance_harness's stands in.)
+            [project + 'validation/benchmarks/mechanics/src/lib.rs', project + 'core/solver/performance_harness/README.md'],
+            # ASCII case only, as Rust's eq_ignore_ascii_case: a Kelvin sign is not a `k`.
+            [project + 'core/runner/new_dependent/Cargo.loc\u212a'],
             [project + 'tests/test_export_public_openpipestress.py', project + 'tools/release/run_evidence_sweep.py'],
             [project + 'docs/note.md'],
             # A dependency's own `.cargo/` is never read by Cargo.
