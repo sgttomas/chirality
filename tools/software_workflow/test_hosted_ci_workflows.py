@@ -221,3 +221,9 @@ def test_selected_browser_specs_drive_the_product_job_and_key_its_reuse(tmp_path
     for missing in ([], ['--browser-project', 'chromium-desktop'], ['--browser-project', 'chromium-desktop', '--browser-specs', ''],
                     ['--browser-project', 'chromium-desktop', '--browser-specs', 'x.spec.ts;true']):
         assert subprocess.run(command + missing, env=env, capture_output=True).returncode != 0
+
+
+def test_repository_checks_run_claims_language_on_its_selection():
+    steps = workflow('governance-harness.yml')['jobs']['repository-checks']['steps']
+    [step] = [s for s in steps if s.get('run') == 'python3 tools/validation/validate_claims_language.py']
+    assert step['if'] == "steps.selection.outputs.claims_language == 'true'"
