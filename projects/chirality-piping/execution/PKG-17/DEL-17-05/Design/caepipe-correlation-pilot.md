@@ -168,21 +168,31 @@ set, which needs the subkey); `--authored-dir` runs require it.
     `unchanged`.
 - **Restore.** Only when the configuration enables it, the process checks are clean, and every
   difference lies in the values of the recent-files subkey (no key added or removed, nothing else
-  changed), the harness checks the precondition once more immediately before the first write (another
-  instance, or an unreadable list, stops it with nothing written), then writes those values back to the
-  first reading: values that changed or were removed are written with their earlier type and data, in
-  the first reading's order, and values that appeared are deleted. It then reads the key a third time,
-  which must equal the first reading exactly (`recent_files_restored`); otherwise, or when a value
-  cannot be written back exactly (in which case nothing is written), the result is
-  `settings_restore_failed`. An exception during the writes or that reading, cancellation included, is
-  deferred like one during the solve: the key is read once more on its own, the result
-  `settings_restore_failed` records how many writes completed and what remains different, the run
-  record is written, and the exception is raised afterwards with the result attached. A difference
+  changed), the harness writes those values back to the first reading in one routine. It plans the
+  writes (values that changed or were removed are set to their earlier type and data, in the first
+  reading's order; values that appeared are deleted; a value that cannot be written back exactly
+  stops it before any write) and keeps a write log: each value, what it restores and what it replaces,
+  and whether the write completed. It checks the process list before each write, after the last write,
+  and once more before declaring success, reads the key a third time and compares it exactly with the
+  first reading. The result is `recent_files_restored` only when every step completed and the
+  comparison found no difference. Any other outcome, a check that finds another instance or cannot
+  tell, or an exception or cancellation at any step, the comparison and the failure path itself
+  included, takes one failure path: the key is read once more (best effort), the result is
+  `settings_restore_failed` with the write log, so the record shows exactly which writes happened, the
+  run record is written, and the original exception, if any, is raised afterwards unchanged with the
+  result attached. A record never says nothing was written when its log shows writes. A difference
   anywhere else is `settings_changed`, and nothing is written.
 
 The restore is safe only because no other instance of the tool runs during the round trip: the
-precondition, before and after, admits none, so no concurrent change can be overwritten. The run stops
-at the first case whose result is anything but `unchanged` or `recent_files_restored`, whose round
+precondition admits none before it, and the checks inside the restore look again before each write
+and before success. A check and the write after it are not atomic: another instance starting in
+between would not be seen until the next check, and excluding other writers outright would need a
+change to the guest environment, which the harness does not make. That residual window is accepted
+because, under the operating agreement, no other instance runs during these sessions. A breach of it
+is detected after the fact by the following check or by the comparison, and is recorded as
+`settings_restore_failed` with the write log; it is never reported as a successful restore.
+
+The run stops at the first case whose result is anything but `unchanged` or `recent_files_restored`, whose round
 trip raised (the guard result travels with the exception), or that ended `batch_no_csv`. The guard
 result is checked before any other test of the record, so a rejected input hash does not pass over it.
 

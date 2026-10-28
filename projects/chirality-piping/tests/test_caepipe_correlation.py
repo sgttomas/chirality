@@ -37,6 +37,7 @@ from core.handoff.caepipe_external.correlation import (  # noqa: E402
     ALTERNATIVE_CHECK,
     evaluate_hypothesis_series,
 )
+from core.handoff.caepipe_external import harness  # noqa: E402
 from core.handoff.caepipe_external.harness import (  # noqa: E402
     ENV_VAR,
     ContainmentError,
@@ -1160,9 +1161,10 @@ class FakeGuest:
         self.foreign_after: list[int] = []     # another instance that appears during the solve
         self.apply_writes = True               # False: writes are accepted but change nothing
         self.solved = False
-        self.queries = 0
-        self.foreign_on_query: dict[int, list[int]] = {}  # query number -> an instance that appears then
-        self.interrupt_on_write: int | None = None         # raise KeyboardInterrupt at this write
+        self.counts = {"tasklist": 0, "query": 0, "write": 0}
+        self.foreign_on_query: dict[int, list[int]] = {}     # query number -> an instance that appears then
+        self.foreign_on_tasklist: dict[int, list[int]] = {}  # process-list number -> an instance that appears then
+        self.faults: dict[tuple[str, int], BaseException] = {}  # (kind, number) -> raised by that command
 
     def query(self) -> str:
         lines = ["", INVENTED_KEY, ""]
@@ -1184,14 +1186,21 @@ class FakeGuest:
         def run(argv, **kwargs):
             command = argv[6]
             self.commands.append(command)
+            kind = ("query" if command.startswith("reg query ") else "write" if command.startswith(("reg add", "reg delete"))
+                    else "tasklist" if command == "tasklist /FO CSV /NH" else None)
+            if kind:
+                self.counts[kind] += 1
+                if (kind, self.counts[kind]) in self.faults:
+                    if kind == "write":
+                        self.writes.append(command)  # issued, not applied
+                    raise self.faults[(kind, self.counts[kind])]
+            if kind == "tasklist":
+                self.foreign += self.foreign_on_tasklist.get(self.counts[kind], [])
             if command.startswith("reg query "):
-                self.queries += 1
-                self.foreign += self.foreign_on_query.get(self.queries, [])
+                self.foreign += self.foreign_on_query.get(self.counts["query"], [])
                 return subprocess.CompletedProcess(argv, 0, self.query(), "")
             if command.startswith(("reg add", "reg delete")):
                 self.writes.append(command)
-                if len(self.writes) == self.interrupt_on_write:
-                    raise KeyboardInterrupt
                 add = re.fullmatch(r'reg add "([^"]+)" /v "([^"]+)" /t (REG_\w+) /d "([^"]*)" /f', command)
                 delete = re.fullmatch(r'reg delete "([^"]+)" /v "([^"]+)" /f', command)
                 assert add or delete, command
@@ -1450,7 +1459,13 @@ def test_settings_guard_restores_a_recent_files_only_change_and_verifies_it(tmp_
     assert any(command.startswith("reg delete") and '/v "3"' in command for command in guest.writes)
     # Written back in the first reading's order (1, 2, N), then the value that appeared is deleted.
     assert [re.search(r'/v "([^"]+)"', command)[1] for command in guest.writes] == ["1", "2", "N", "3"]
-    assert [step["name"] for step in record_["steps"]][-1] == "settings_verify"
+    assert [entry["value"].rsplit("\\", 1)[1] for entry in guard["write_log"]] == ["1", "2", "N", "3"]
+    assert all(entry["completed"] for entry in guard["write_log"])
+    names = [step["name"] for step in record_["steps"]]
+    assert names[-11:] == ["restore_check_before_write_1", "settings_restore_1", "restore_check_before_write_2",
+                           "settings_restore_2", "restore_check_before_write_3", "settings_restore_3",
+                           "restore_check_before_write_4", "settings_restore_4", "restore_check_after_writes",
+                           "settings_verify", "restore_check_before_success"][-11:]
 
 
 def test_settings_guard_restores_nothing_when_more_than_recent_files_changed(tmp_path):
@@ -1481,42 +1496,109 @@ def test_settings_guard_restores_nothing_when_more_than_recent_files_changed(tmp
     assert guest.writes == []
 
 
-def test_settings_guard_rechecks_for_another_instance_immediately_before_restoring(tmp_path):
+def _open_model(guest_, argv, config):
+    guest_.open_model("C:\\invented-work\\cx-g\\model.mod")  # four restore writes: set 1, 2, N; delete 3
+    return solved(guest_, argv, config)
+
+
+# Process-list numbers: 1 precondition, 2 our processes, 3-6 before writes 1-4, 7 after the writes, 8 before
+# success. Readings: 1 before, 2 after, 3 verification, 4 the failure path's own reading.
+FOREIGN_ARRIVALS = [  # (where, injection, writes completed)
+    ("before write 1", ("tasklist", 3), 0), ("before write 2", ("tasklist", 4), 1),
+    ("before write 3", ("tasklist", 5), 2), ("before write 4", ("tasklist", 6), 3),
+    ("after write 4", ("tasklist", 7), 4), ("during verification", ("query", 3), 4),
+]
+FAULT_STEPS = [  # (where, injection, writes attempted, writes completed)
+    ("write 1", ("write", 1), 1, 0), ("write 2", ("write", 2), 2, 1), ("write 3", ("write", 3), 3, 2),
+    ("write 4", ("write", 4), 4, 3), ("check before write 1", ("tasklist", 3), 0, 0),
+    ("check before write 2", ("tasklist", 4), 1, 1), ("check before write 3", ("tasklist", 5), 2, 2),
+    ("check before write 4", ("tasklist", 6), 3, 3), ("check after the writes", ("tasklist", 7), 4, 4),
+    ("verification reading", ("query", 3), 4, 4), ("verification comparison", ("compare", 2), 4, 4),
+    ("check before success", ("tasklist", 8), 4, 4),
+]
+
+
+@pytest.mark.parametrize("where, injection, completed", FOREIGN_ARRIVALS, ids=[f[0] for f in FOREIGN_ARRIVALS])
+def test_settings_restore_stops_on_another_instance_at_any_check(tmp_path, where, injection, completed):
     guest = FakeGuest()
-    guest.foreign_on_query = {2: [18000]}  # appears during the second reading, after the process check
-
-    def solve(guest_, argv, config):
-        guest_.open_model("C:\\invented-work\\cx-g\\model.mod")
-        return solved(guest_, argv, config)
-
-    record_ = guarded(tmp_path, guest, solve, guard=RESTORING_GUARD)
+    kind, number = injection
+    (guest.foreign_on_tasklist if kind == "tasklist" else guest.foreign_on_query)[number] = [18000]
+    record_ = guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
     guard = record_["settings_guard"]
-    assert guard["status"] == "foreign_instance_running"
-    assert guard["restore_precondition"]["foreign_pids"] == [18000]
-    assert "immediately before restoring, nothing was written" in guard["reason"]
-    assert guest.writes == []
-    assert [step["name"] for step in record_["steps"]][-2:] == ["settings_after", "restore_precondition_process_list"]
+    assert guard["status"] == "settings_restore_failed" and guard["stopped_by"]["status"] == "foreign_instance_running"
+    assert guard["writes_completed"] == completed and len(guard["write_log"]) == completed
+    assert all(entry["completed"] for entry in guard["write_log"]) and len(guest.writes) == completed
+    assert ("nothing was written" in guard["reason"]) == (completed == 0)
+    # A partial restore is shown as what remains different; a complete one (then interrupted) leaves nothing.
+    assert guard["final_reading"] == "read" and bool(guard["remaining_differences"]) == (completed < 4)
+    assert guest.commands[-1].startswith("reg query ")
 
 
-def test_settings_guard_records_an_interrupted_restore_then_raises(tmp_path):
+@pytest.mark.parametrize("error_type", [RuntimeError, KeyboardInterrupt])
+@pytest.mark.parametrize("where, injection, attempted, completed", FAULT_STEPS, ids=[f[0] for f in FAULT_STEPS])
+def test_settings_restore_records_an_exception_at_any_step_then_raises_it(tmp_path, monkeypatch, where, injection,
+                                                                         attempted, completed, error_type):
     guest = FakeGuest()
-    guest.interrupt_on_write = 2
+    error = error_type("invented failure")
+    if injection[0] == "compare":
+        real, calls = harness.settings_difference, []
 
-    def solve(guest_, argv, config):
-        guest_.open_model("C:\\invented-work\\cx-g\\model.mod")
-        return solved(guest_, argv, config)
+        def failing(before, after):
+            calls.append(1)
+            if len(calls) == injection[1]:
+                raise error
+            return real(before, after)
 
-    with pytest.raises(KeyboardInterrupt) as raised:
-        guarded(tmp_path, guest, solve, guard=RESTORING_GUARD)
+        monkeypatch.setattr(harness, "settings_difference", failing)
+    else:
+        guest.faults[injection] = error
+    with pytest.raises(error_type) as raised:
+        guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    assert raised.value is error  # the original error, unchanged
     guard = raised.value.settings_guard
     assert guard["status"] == "settings_restore_failed"
-    assert guard["restore_commands_completed"] == 1 and guard["restore_commands"] == 4
-    assert guard["remaining_differences"]  # the partial restore is reported, not hidden
-    assert len(guest.writes) == 2 and guest.commands[-1].startswith("reg query ")  # read again on its own
+    assert len(guard["write_log"]) == attempted and guard["writes_completed"] == completed
+    assert [entry["completed"] for entry in guard["write_log"]] == [True] * completed + [False] * (attempted - completed)
+    assert ("nothing was written" in guard["reason"]) == (attempted == 0)
+    assert guard["final_reading"] == "read"
     record_ = json.loads((tmp_path / "exchange" / "cases" / "cx-g" / "caepipe_out" / "run_record.json")
                          .read_text(encoding="utf-8"))
-    assert record_["route"] == "harness_error" and record_["harness_error"].startswith("KeyboardInterrupt")
-    assert record_["settings_guard"] == guard
+    assert record_["settings_guard"] == guard and record_["route"] == "harness_error"
+
+
+@pytest.mark.parametrize("primary", ["exception at write 2", "another instance before write 2"])
+def test_settings_restore_failure_path_keeps_the_original_outcome_when_its_own_reading_is_interrupted(tmp_path,
+                                                                                                    primary):
+    guest = FakeGuest()
+    # Readings: 1 before, 2 after; the restore stops before verifying, so 3 is the failure path's own reading.
+    guest.faults[("query", 3)] = KeyboardInterrupt("invented, during the failure path's own reading")
+    if primary.startswith("exception"):
+        error = RuntimeError("invented failure")
+        guest.faults[("write", 2)] = error
+        with pytest.raises(RuntimeError) as raised:
+            guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+        assert raised.value is error
+        guard = raised.value.settings_guard
+        assert guard["recovery_error"].startswith("KeyboardInterrupt")
+        assert guard["writes_completed"] == 1 and len(guard["write_log"]) == 2
+    else:
+        guest.foreign_on_tasklist[4] = [18000]
+        with pytest.raises(KeyboardInterrupt) as raised:  # nothing else to raise: the cancellation is kept
+            guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+        guard = raised.value.settings_guard
+        assert guard["stopped_by"]["status"] == "foreign_instance_running"
+        assert guard["writes_completed"] == 1 and len(guard["write_log"]) == 1
+    assert guard["status"] == "settings_restore_failed" and guard["final_reading"].startswith("interrupted")
+    assert "nothing was written" not in guard["reason"]
+
+
+def test_settings_restore_verified_when_no_fault_is_injected(tmp_path):
+    guest = FakeGuest()
+    before = dict(guest.values)
+    record_ = guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    guard = record_["settings_guard"]
+    assert guard["status"] == "recent_files_restored" and guard["restored_values"] == 4
+    assert [entry["completed"] for entry in guard["write_log"]] == [True] * 4 and guest.values == before
 
 
 def test_settings_guard_stops_when_the_restore_cannot_be_verified(tmp_path):
