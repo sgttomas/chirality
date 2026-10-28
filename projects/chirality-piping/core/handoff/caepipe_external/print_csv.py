@@ -26,7 +26,7 @@ import re
 from typing import Any
 
 
-PARSER_VERSION = "caepipe-print-csv-2"
+PARSER_VERSION = "caepipe-print-csv-3"
 DOCUMENT_KIND = "openpipestress.caepipe_print_csv.parsed"
 PAIRING_BASIS = "row_order_from_to_pairs"
 BINDING_BASIS = "writer_id_map_node_pairs"
@@ -72,6 +72,15 @@ _LOCAL_KEYS = ("axial", "shear_y", "shear_z", "torque", "moment_in_plane", "mome
 _DISPLACEMENT_KEYS = ("ux", "uy", "uz", "rx", "ry", "rz")
 _NODE = re.compile(r"^[0-9]+[A-Za-z0-9]*$")
 _STRESS_LABELS = ("", "SL", "SE", "Sopr")
+
+
+# The local element-force section in a second layout (observed format behaviour, with an ASME B31.1 (1980) code):
+# columns fx..mz, one SIF column and the case's stress column, as in the other layout. Which bending moment is in
+# plane is not documented, so the section is recognized and skipped (info), never read by guess.
+_LOCAL_AXES_HEADERS = [
+    (("", "fx", "fy", "fz", "mx", "my", "mz", "SIF") + ((label,) if label else ()),
+     ("Node", "(N)", "(N)", "(N)", "(Nm)", "(Nm)", "(Nm)") + (("", "(MPa)") if label else ()))
+    for label in _STRESS_LABELS]
 
 
 def _local_headers(label: str) -> tuple[tuple[str, ...], ...]:
@@ -154,7 +163,9 @@ def _coverage() -> list[dict[str, Any]]:
             unit_row = " | ".join(",".join(variant[-1]) for variant in variants)
             notes += (" Accepted stress-column variants: none (Empty Weight), SL, SE, Sopr. Columns read: axial, "
                       "y shear, z shear, torque, in-plane and out-of-plane bending moment; SIF and stress columns are "
-                      f"not read. Rows pair as (from node, to node) in layout order ({PAIRING_BASIS}).")
+                      f"not read. Rows pair as (from node, to node) in layout order ({PAIRING_BASIS}). The fx..mz "
+                      "layout with one SIF column is skipped with an info diagnostic: its bending-moment planes are "
+                      "not documented.")
         if kind == "element_forces_global":
             notes += f" Rows pair as (from node, to node) in layout order ({PAIRING_BASIS})."
         if kind.startswith("element_forces"):
@@ -308,6 +319,12 @@ class _Parser:
                 found.append(self.rows[cursor])
             cursor += 1
         matched = _match_headers(spec["headers"], tuple(found))
+        if (matched is None and kind == "element_forces_local"
+                and _match_headers(_LOCAL_AXES_HEADERS, tuple(found[:2])) is not None):
+            self.skip(title, index, "local_axes_layout", "CAEPIPE-PRINT-SECTION-SKIPPED",
+                      f"{title!r} is printed in the fx..mz layout with one SIF column, whose bending-moment planes "
+                      "are not documented; its rows are not read")
+            return index + 1
         problem = None
         if matched is None:
             expected = " / ".join(",".join(row) for row in spec["headers"][0])

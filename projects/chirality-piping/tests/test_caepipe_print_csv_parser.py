@@ -161,6 +161,31 @@ def test_empty_weight_and_operating_header_variants_are_accepted():
     assert set(result["load_cases"]) == {"Empty Weight (W)", "Operating (W+P1+T1)"}
 
 
+def test_the_local_axes_layout_is_skipped_never_read_by_guess():
+    text = text_of(
+        "Sustained (W+P): Pipe element forces (local),",
+        ",fx,fy,fz,mx,my,mz,SIF,,,",
+        "Node,(N),(N),(N),(Nm),(Nm),(Nm),,,,",
+        "10,,-1.5,,,12.25,,1,,,",
+        "20,,1.5,,,-8.75,,1,,,",
+        "",
+        *displacement_block("Sustained (W+P)"),
+    )
+    result = parse_caepipe_print_csv(text)
+    assert errors(result) == []
+    assert {"title": "Sustained (W+P): Pipe element forces (local)", "line": 4, "reason": "local_axes_layout"} in \
+        result["sections_skipped"]
+    tables = result["load_cases"]["Sustained (W+P)"]
+    assert not tables["element_forces_local"] and set(tables["displacements"]) == {"10"}
+    # With the case's stress column, as the other layout prints it.
+    stressed = parse_caepipe_print_csv(text.replace(",fx,fy,fz,mx,my,mz,SIF,,,", ",fx,fy,fz,mx,my,mz,SIF,SL,,")
+                                       .replace("Node,(N),(N),(N),(Nm),(Nm),(Nm),,,,", "Node,(N),(N),(N),(Nm),(Nm),(Nm),,(MPa),,"))
+    assert errors(stressed) == [] and "local_axes_layout" in {item["reason"] for item in stressed["sections_skipped"]}
+    # Any other header in that section is still an error.
+    other = parse_caepipe_print_csv(text.replace(",fx,fy,fz,mx,my,mz,SIF", ",fx,fy,fz,mx,mz,my,SIF"))
+    assert [item["code"] for item in errors(other)] == ["CAEPIPE-PRINT-COLUMN-HEADER-MISMATCH"]
+
+
 def test_unparseable_number_is_an_error_for_that_row():
     lines = displacement_block(SUSTAINED)
     lines.append("20,*****,,,,,,,")
