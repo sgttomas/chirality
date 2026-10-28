@@ -6,9 +6,6 @@
     "records": {
       "description": "No active product input; repository checks still apply"
     },
-    "app-v4": {
-      "description": "App v4 native/frontend build and behavioral checks"
-    },
     "piping": {
       "description": "Piping build, unit tests and core workflow smoke"
     },
@@ -27,6 +24,15 @@
   },
   "always_checks": [],
   "path_rules": [
+    {
+      "paths": [
+        "projects/chirality-app-v4/**",
+        ".github/workflows/app-v4.yml"
+      ],
+      "checks": [
+        "records"
+      ]
+    },
     {
       "paths": [
         "projects/pec/**",
@@ -129,7 +135,6 @@
         ".github/workflows/governance-harness.yml"
       ],
       "checks": [
-        "app-v4",
         "piping",
         "piping-numerical",
         "piping-python"
@@ -161,15 +166,6 @@
         "projects/chirality-runtime/README.md",
         "projects/pec/AGENTS.md",
         "projects/pec/README.md",
-        "projects/chirality-app-v4/execution/**",
-        "projects/chirality-app-v4/docs/**",
-        "projects/chirality-app-v4/conceptual/**",
-        "projects/chirality-app-v4/foundation/**",
-        "projects/chirality-app-v4/reference/**",
-        "projects/chirality-app-v4/loop/**",
-        "projects/chirality-app-v4/init/**",
-        "projects/chirality-app-v4/AGENTS.md",
-        "projects/chirality-app-v4/README.md",
         "plans/**",
         "execution/**",
         "init/**",
@@ -187,22 +183,6 @@
       ],
       "checks": [
         "records"
-      ]
-    },
-    {
-      "paths": [
-        "projects/chirality-app-v4/app/**",
-        "projects/chirality-app-v4/execution/PKG-*/DEL-*/Design/**",
-        "projects/chirality-app-v4/execution/PKG-02/DEL-02-04/ScopeOfWork.md",
-        "projects/chirality-app-v4/execution/PKG-09/DEL-09-01/ScopeOfWork.md",
-        "AGENTS.md",
-        "agents/**",
-        "workflows/**",
-        "docs/AGENT_WORKFLOW_RUNTIME.md",
-        ".github/workflows/app-v4.yml"
-      ],
-      "checks": [
-        "app-v4"
       ]
     },
     {
@@ -269,7 +249,6 @@
         "tools/software_workflow/build_cache.py"
       ],
       "checks": [
-        "app-v4",
         "piping-desktop-rust",
         "piping-numerical"
       ]
@@ -2389,6 +2368,8 @@
               "apps/desktop/src-tauri/src/analysis_runs.rs",
               "apps/desktop/src-tauri/src/analysis_runs_tests.rs",
               "apps/desktop/src-tauri/src/atomic_report_package_save.rs",
+              "apps/desktop/src-tauri/src/autosave.rs",
+              "apps/desktop/src-tauri/src/autosave_tests.rs",
               "apps/desktop/src-tauri/src/command_ingress.rs",
               "apps/desktop/src-tauri/src/exact_source_binding.rs",
               "apps/desktop/src-tauri/src/export_disposition_screen.rs",
