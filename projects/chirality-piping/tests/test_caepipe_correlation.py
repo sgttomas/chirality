@@ -14,8 +14,10 @@ import os
 from pathlib import Path
 import re
 import shutil
+import signal
 import subprocess
 import sys
+import threading
 
 import pytest
 
@@ -1166,6 +1168,8 @@ class FakeGuest:
         self.foreign_on_tasklist: dict[int, list[int]] = {}  # process-list number -> an instance that appears then
         self.faults: dict[tuple[str, int], BaseException] = {}  # (kind, number) -> raised by that command
         self.write_results: dict[int, tuple[int, str, str]] = {}  # write number -> (exit, stdout, stderr), not applied
+        self.signal_on_write: dict[int, int] = {}  # write number -> a real signal raised from inside that command
+        self.raised = False                         # set once an injected fault has been raised
 
     def query(self) -> str:
         lines = ["", INVENTED_KEY, ""]
@@ -1191,7 +1195,10 @@ class FakeGuest:
                     else "tasklist" if command == "tasklist /FO CSV /NH" else None)
             if kind:
                 self.counts[kind] += 1
+                if kind == "write" and self.counts[kind] in self.signal_on_write:
+                    signal.raise_signal(self.signal_on_write[self.counts[kind]])  # the callee receives a real signal
                 if (kind, self.counts[kind]) in self.faults:
+                    self.raised = True
                     if kind == "write":
                         self.writes.append(command)  # issued, not applied
                     raise self.faults[(kind, self.counts[kind])]
@@ -1695,9 +1702,106 @@ def test_settings_restore_recovery_keeps_the_primary_error_through_a_later_cance
     assert guard["write_log"] and guard["write_log"][-1]["outcome"] == "unknown"
     if where in ("bookkeeping", "final reading", "final comparison", "reason"):
         assert any(text.startswith("KeyboardInterrupt") for text in guard["secondary_errors"])
+    elif where == "record":  # kept in the result attached to the raised error
+        assert any(text.startswith("run record: KeyboardInterrupt") for text in guard["secondary_errors"])
+    else:  # the attachment failed first, so the written record says so
+        assert any(text.startswith("attachment: KeyboardInterrupt") for text in guard["secondary_errors"])
     # The final reading is attempted whatever failed before it.
     assert guest.counts["query"] == 3
     assert guard.get("final_reading") == ("interrupted" if where == "final reading" else "read")
+
+
+def _record_of(tmp_path) -> dict:
+    return json.loads((tmp_path / "exchange" / "cases" / "cx-g" / "caepipe_out" / "run_record.json")
+                      .read_text(encoding="utf-8"))
+
+
+def test_settings_guard_defers_a_real_signal_until_the_restore_is_recorded(tmp_path):
+    handler_before = signal.getsignal(signal.SIGINT)
+    guest = FakeGuest()
+    guest.signal_on_write[1] = signal.SIGINT  # a real Ctrl-C arrives while the first write runs
+    with pytest.raises(KeyboardInterrupt) as raised:
+        guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    assert "deferred signal SIGINT" in str(raised.value)
+    record_ = _record_of(tmp_path)
+    guard = record_["settings_guard"]
+    # The restore ran to its verified end and was recorded before the interrupt was acted on.
+    assert guard["status"] == "recent_files_restored"
+    assert [entry["completed"] for entry in guard["write_log"]] == [True] * 4
+    assert guard["signal_deferral"] == "active" and guard["deferred_signals"] == ["SIGINT"]
+    assert raised.value.settings_guard == guard
+    assert signal.getsignal(signal.SIGINT) is handler_before  # the previous handler is back
+
+
+def test_settings_guard_keeps_a_deferred_signal_beside_a_primary_error(tmp_path):
+    handler_before = signal.getsignal(signal.SIGINT)
+    guest = FakeGuest()
+    guest.signal_on_write[1] = signal.SIGINT
+    primary = RuntimeError("invented primary failure")
+    guest.faults[("write", 2)] = primary
+    with pytest.raises(RuntimeError) as raised:
+        guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    assert raised.value is primary
+    guard = raised.value.settings_guard
+    assert guard["status"] == "settings_restore_failed" and guard["deferred_signals"] == ["SIGINT"]
+    assert any(text.startswith("deferred signal: KeyboardInterrupt") for text in guard["secondary_errors"])
+    assert signal.getsignal(signal.SIGINT) is handler_before
+
+
+def test_settings_guard_reports_signal_deferral_unavailable_off_the_main_thread(tmp_path):
+    outcome = {}
+
+    def run():
+        outcome["record"] = guarded(tmp_path, FakeGuest(), _open_model, guard=RESTORING_GUARD)
+
+    worker = threading.Thread(target=run)
+    worker.start()
+    worker.join()
+    guard = outcome["record"]["settings_guard"]
+    assert guard["status"] == "recent_files_restored"
+    assert guard["signal_deferral"] == "unavailable off the main thread"
+
+
+def test_settings_guard_write_error_logging_interrupted_by_a_callee_keeps_the_primary(tmp_path, monkeypatch):
+    guest = FakeGuest()
+    primary = RuntimeError("invented primary failure")
+    guest.faults[("write", 2)] = primary
+    real_now = harness._now
+
+    def now():
+        if guest.raised:  # the first diagnostic after the write failed is interrupted
+            guest.raised = False
+            raise KeyboardInterrupt("invented, during the write's error logging")
+        return real_now()
+
+    monkeypatch.setattr(harness, "_now", now)
+    with pytest.raises(RuntimeError) as raised:
+        guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    assert raised.value is primary
+    guard = raised.value.settings_guard
+    assert guard["status"] == "settings_restore_failed"
+    assert any(text.startswith("KeyboardInterrupt") for text in guard["secondary_errors"])
+    assert [entry["outcome"] for entry in guard["write_log"]] == ["completed", "unknown"]
+    assert "settings_restore_2" in [step["name"] for step in _record_of(tmp_path)["steps"]]  # the step is kept
+
+
+def test_settings_guard_recovers_after_a_check_failure_and_an_interrupted_recovery_entry(tmp_path, monkeypatch):
+    guest = FakeGuest()
+    primary = RuntimeError("invented check failure")
+    guest.faults[("tasklist", 3)] = primary  # the check before the first write: nothing logged yet
+
+    def entering(*args, **kwargs):
+        raise KeyboardInterrupt("invented, entering recovery")
+
+    monkeypatch.setattr(harness, "_failed_restore", entering)
+    with pytest.raises(RuntimeError) as raised:
+        guarded(tmp_path, guest, _open_model, guard=RESTORING_GUARD)
+    assert raised.value is primary
+    guard = _record_of(tmp_path)["settings_guard"]
+    assert guard["status"] == "settings_restore_failed" and guard["write_log"] == []
+    assert guard["final_reading"] == "read" and guest.counts["query"] == 3  # the final read still happened
+    assert any(text.startswith("KeyboardInterrupt") for text in guard["secondary_errors"])
+    assert guest.writes == []
 
 
 def test_settings_restore_verified_when_no_fault_is_injected(tmp_path):

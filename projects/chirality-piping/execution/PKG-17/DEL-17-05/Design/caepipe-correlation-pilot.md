@@ -184,10 +184,24 @@ set, which needs the subkey); `--authored-dir` runs require it.
   included, takes one failure path: the key is read once more (best effort), the result is
   `settings_restore_failed` with the write log, so the record shows exactly which writes happened, the
   run record is written, and the first exception, if any, is raised afterwards unchanged with the
-  result attached. The first exception is kept from the moment it occurs; the failure path's
-  bookkeeping, its reading, its comparison, the record and the attachment each run under their own
-  guard, so a later exception or cancellation is recorded as secondary and neither replaces the first
-  nor skips the reading. A record never says nothing was written when its log shows writes. A difference
+  result attached. The first exception is kept from the moment it occurs, before any diagnostic or
+  logging; the failure path's bookkeeping, its reading, its comparison, the attachment and the record
+  each run under their own guard, so a later exception or cancellation is recorded as secondary and
+  neither replaces the first nor skips the reading. Once the restore has been entered, the final
+  reading is attempted whether or not anything was logged. A record never says nothing was written
+  when its log shows writes.
+
+**Interruption (threat model).** From the checks after the guest work to the raise at the end (the
+checks, any restore and its recovery, the attachment and the record), SIGINT, SIGTERM and, where it
+exists, SIGBREAK are deferred: their handlers only record the signal, the previous handlers are
+restored on leaving, and a received signal is then raised as `KeyboardInterrupt`, or kept as a
+secondary error beside a primary error that is raised instead; the record lists it
+(`deferred_signals`). Handlers can be installed only on the main thread; elsewhere the record says
+deferral is unavailable (`signal_deferral`). So a Ctrl-C or a termination request cannot cut into
+the guard's own bookkeeping. Exceptions raised by callees (the guest commands, the reads, the
+comparison, the record write) take the deferred path above, with the first one raised. An exception
+raised by one of the guard's own bookkeeping statements would be a defect in the harness; beyond the
+tests that inject failures at each callee and recovery step, that case is not designed for. A difference
   anywhere else is `settings_changed`, and nothing is written.
 
 The restore is safe only because no other instance of the tool runs during the round trip: the
