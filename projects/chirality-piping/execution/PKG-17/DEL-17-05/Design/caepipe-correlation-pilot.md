@@ -187,10 +187,16 @@ queries) runs with `call_timeout_s`; the solve keeps its own timeout.
   subkeys that appeared are deleted with their contents, deepest first; a key or value name outside
   the allowed characters, or a value that cannot be written back exactly, stops it before any write)
   and keeps a write log: each value or subkey, what it restores and what it replaces,
-  its attempts and its outcome. Each write is issued exactly once, never retried (the retry the harness
-  applies to reads on a transport failure does not apply to writes), and counts as completed only on
-  exit 0 with the command's success message; a reported failure is logged `failed`, a transport
-  failure, a timeout or other output `unknown`, and either stops the restore at that write. It checks
+  its attempts and its outcome. Each write counts as completed only on exit 0 with the command's success
+  message, and is never repeated blindly (the retry the harness applies to reads does not apply to
+  writes). A reported failure is logged `failed` and other output `unknown`; either stops the restore
+  at that write. A value set whose outcome a transport failure (the client's exit 255, or a timeout)
+  left unknown is settled first: the process list is checked, and that one value is read back. If it
+  already has the value being restored, the write is completed; if it still has the value it replaces,
+  the write is issued once more (attempt 2), at most once; any other read-back (a third value, an
+  unreadable value) or another instance stops the restore with the write `unknown`. Every attempt and
+  the read-back are logged. Other writes (deleting a value, creating or deleting a subkey) are not
+  retried. It checks
   the process list before each write, after the last write,
   and once more before declaring success, reads the key a third time and compares it exactly with the
   first reading. The result is `recent_files_restored` (`settings_restored` with `"key"`) only when every

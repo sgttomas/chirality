@@ -610,7 +610,8 @@ class RestoreWriteFailed(RuntimeError):
 def _guest_write(config: HarnessConfig, runner: Callable[..., subprocess.CompletedProcess], timeout_s: float,
                  steps: list[dict[str, Any]], name: str, command: str,
                  state: dict[str, Any] | None = None, deadline: float | None = None) -> dict[str, Any]:
-    """Run one mutating guest command exactly once: never retried, whatever the transport reports.
+    """Run one mutating guest command exactly once: this call never retries, whatever the transport reports (the
+    restore may issue a value set once more, only after settling its outcome; `_restore_recent_files`).
 
     The step is recorded before anything is raised. Exit 0 with `REG_WRITE_OK` in its output is the only success.
     Exit 255 with a `PrlJob_` message (the client's transport failure) or exit 0 with other output is `unknown`; any
@@ -648,6 +649,24 @@ def _guest_write(config: HarnessConfig, runner: Callable[..., subprocess.Complet
     transport = completed.returncode == 255 and "PrlJob_" in record["stderr"]
     record["outcome"] = "unknown" if transport or completed.returncode == 0 else "failed"
     raise RestoreWriteFailed(name, record["outcome"], completed.returncode)
+
+
+def _transport_failure(error: BaseException) -> bool:
+    """A write whose outcome the transport left unknown: the prlctl client's exit 255 (`PrlJob_`), or a timeout."""
+    return (isinstance(error, RestoreWriteFailed) and error.outcome == "unknown" and error.exit_status == 255) \
+        or isinstance(error, subprocess.TimeoutExpired)
+
+
+def _read_value(step: Callable[..., dict[str, Any]], name: str, key: str, value_name: str) -> tuple[str, str] | None:
+    """One value's (type, data), read back alone (`reg query <key> /v <name>`); None when the read fails, does not
+    parse whole, or does not show exactly that one value."""
+
+    record = step(name, f"reg query {_quote(key)} /v {_quote(value_name)}")
+    parsed = parse_reg_query(record["stdout"]) if record["exit_status"] == 0 else None
+    if parsed is None or list(parsed["values"]) != [(_registry_key_id(key), value_name)]:
+        return None
+    found = parsed["values"][(_registry_key_id(key), value_name)]
+    return found[1], found[2]
 
 
 def _write_outcome(error: BaseException) -> str:
@@ -866,7 +885,7 @@ def _restore_plan(before: Mapping[str, Mapping], after: Mapping[str, Mapping], s
                 raise ValueError(f"{printed}\\{item[1]} ({kind}) cannot be written back exactly")
             printed = printed_key(printed, item[0])
             found = after["values"].get(item)
-            plan.append({"value": f"{printed}\\{item[1]}", "action": "set",
+            plan.append({"value": f"{printed}\\{item[1]}", "action": "set", "target": (printed, item[1]),
                          "restores": {"type": kind, "data": data},
                          "replaces": {"type": found[1], "data": found[2]} if found else None,
                          "command": f"reg add {_quote(printed)} /v {_quote(item[1])} /t {kind} /d {_quote(data)} /f"})
@@ -936,6 +955,46 @@ def _restore_recent_files(config: HarnessConfig, step: Callable[[str, str], dict
             raise _RestoreStopped({"status": "foreign_instance_running", "foreign_pids": found,
                                    "reason": "an instance of the tool this run did not start is running"})
 
+    def settled_write(number: int, entry: dict[str, Any], logged: dict[str, Any]) -> None:
+        """Issue one write. A value set whose outcome the transport left unknown (exit 255, timeout) is settled
+        before anything is issued again: the foreign-instance check, then that one value read back. Equal to the
+        target: completed. Still equal to the value it replaces: issued once more (attempt 2). Anything else (a
+        third value, an unreadable value, another instance): the first error stops the restore. At most two
+        attempts; every attempt and the read-back are logged."""
+
+        name = f"settings_restore_{number}"
+        try:
+            budgeted_write(name, entry["command"])
+            return
+        except BaseException as error:
+            if entry["action"] != "set" or not _transport_failure(error):
+                raise
+            first = error
+        if state.get("primary_error") is first:  # a timeout the write recorded: not yet the restore's error
+            del state["primary_error"]
+        logged["attempt_log"] = [{"attempt": 1, "outcome": "unknown", "error": f"{type(first).__name__}: {first}"}]
+        check(f"restore_check_before_retry_{number}", budgeted_step)
+        within(f"settings_readback_{number}")
+        found = _read_value(budgeted_step, f"settings_readback_{number}", *entry["target"])
+        restores = (entry["restores"]["type"], entry["restores"]["data"])
+        replaces = (entry["replaces"]["type"], entry["replaces"]["data"]) if entry["replaces"] else None
+        if found is not None and found == restores:
+            logged["readback"] = "target"
+            logged["attempt_log"][0]["outcome"] = "completed (read back)"
+            return
+        if found is None or found != replaces:
+            logged["readback"] = "unreadable" if found is None else "third_value"
+            raise first
+        logged["readback"] = "unchanged"
+        logged["attempts"] = 2
+        logged["attempt_log"].append({"attempt": 2, "outcome": "issued"})
+        try:
+            budgeted_write(f"{name}_attempt_2", entry["command"])
+        except BaseException as error:
+            logged["attempt_log"][1]["outcome"] = _write_outcome(error)
+            raise
+        logged["attempt_log"][1]["outcome"] = "completed"
+
     try:
         # The registry-mutation section: the checks, the writes, the check after them and the verification
         # reading, with signals deferred. Its bound is the sum of these guest calls' timeouts.
@@ -951,7 +1010,10 @@ def _restore_recent_files(config: HarnessConfig, step: Callable[[str, str], dict
                         "attempts": 1, "outcome": "issued", "completed": False}
                     log.append(logged)
                     try:
-                        budgeted_write(f"settings_restore_{number}", entry["command"])
+                        settled_write(number, entry, logged)
+                    except _RestoreStopped:
+                        logged["outcome"] = "unknown"  # the write's outcome was never settled
+                        raise
                     except BaseException as error:
                         state.setdefault("primary_error", error)
                         logged["outcome"] = _write_outcome(error)
