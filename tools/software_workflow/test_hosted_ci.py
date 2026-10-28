@@ -373,6 +373,10 @@ class HostedCITests(unittest.TestCase):
             ('validation/benchmarks/mechanics/Cargo.toml', 'cargo-manifest'),
             ('core/runner/headless/Cargo.lock', 'cargo-manifest'),
             ('core/runner/headless/Cargo.toml', 'cargo-manifest'),
+            # The scan finds manifests case-insensitively (code review r1 of #1706).
+            ('core/runner/new_dependent/cargo.toml', 'cargo-manifest'),
+            ('core/runner/new_dependent/CARGO.TOML', 'cargo-manifest'),
+            ('core/runner/new_dependent/cargo.lock', 'cargo-manifest'),
         ]:
             with self.subTest(path=path):
                 selection = select_paths([project + path], PROFILE)
