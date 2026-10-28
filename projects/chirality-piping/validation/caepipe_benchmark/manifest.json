@@ -1,0 +1,1474 @@
+{
+  "document_kind": "openpipestress.caepipe_benchmark.manifest",
+  "generator": {
+    "module": "tools/caepipe_correlation/benchmark_models.py",
+    "rng": "random.Random(seed).random() only",
+    "seed": 20261028,
+    "version": "caepipe-benchmark-generator-1"
+  },
+  "materials": [
+    {
+      "density_kg_per_m3": 7850.0,
+      "elastic_modulus_pa": 200000000000.0,
+      "id": "material:bench-a",
+      "poisson_ratio": 0.3,
+      "thermal_expansion_per_k": 1.2e-05
+    },
+    {
+      "density_kg_per_m3": 7900.0,
+      "elastic_modulus_pa": 195000000000.0,
+      "id": "material:bench-b",
+      "poisson_ratio": 0.3,
+      "thermal_expansion_per_k": 1.6e-05
+    },
+    {
+      "density_kg_per_m3": 2700.0,
+      "elastic_modulus_pa": 70000000000.0,
+      "id": "material:bench-c",
+      "poisson_ratio": 0.33,
+      "thermal_expansion_per_k": 2.3e-05
+    }
+  ],
+  "models": [
+    {
+      "family": "G1",
+      "file": "models/cpb-g1-01.json",
+      "file_sha256": "c49f23a69b6c52295813616bb18e7c2e34000b223e6c2682a788f768c8d1acca",
+      "model_hash": "f3804a5eedb583aa295527d87e154ae28c76f6060f725318dd280b10e4c9619e",
+      "model_id": "cpb-g1-01",
+      "parameters": {
+        "config": "cantilever",
+        "delta_t": 150.0,
+        "dt": 10.0,
+        "material": 0,
+        "od": 219.1,
+        "span": 3.0,
+        "tip_force": -2000.0
+      },
+      "sampling": "series",
+      "series": [
+        "shear-dt"
+      ]
+    },
+    {
+      "family": "G1",
+      "file": "models/cpb-g1-02.json",
+      "file_sha256": "a6f7d47bfe3f44130a9c92ff7915d1eeac26cfb9ff1b5a24529f05a540db00b0",
+      "model_hash": "1eb2e8168e8227db953464ce25b57fa694a11f7e3a60dc6117f502a08cc4babb",
+      "model_id": "cpb-g1-02",
+      "parameters": {
+        "config": "cantilever",
+        "delta_t": 150.0,
+        "dt": 20.0,
+        "material": 0,
+        "od": 219.1,
+        "span": 3.0,
+        "tip_force": -2000.0
+      },
+      "sampling": "series",
+      "series": [
+        "shear-dt"
+      ]
+    },
+    {
+      "family": "G1",
+      "file": "models/cpb-g1-03.json",
+      "file_sha256": "86f937e2e4d47221d5216595d7c19905a5725068c1e1b83c4b82931f216981b1",
+      "model_hash": "f3e7cd64db845cbcbf6c4723dc54415ed3f967a4d1733411f5bcfc7ed3de6100",
+      "model_id": "cpb-g1-03",
+      "parameters": {
+        "config": "cantilever",
+        "delta_t": 150.0,
+        "dt": 40.0,
+        "material": 0,
+        "od": 219.1,
+        "span": 3.0,
+        "tip_force": -2000.0
+      },
+      "sampling": "series",
+      "series": [
+        "shear-dt"
+      ]
+    },
+    {
+      "family": "G1",
+      "file": "models/cpb-g1-04.json",
+      "file_sha256": "e476d1d29342ede3e901525a17c1d64ce72fe5f2627ea8dbb83b4ee4c4ac0358",
+      "model_hash": "ec6a1b741dd915d072ff822b5186d07c1c6985705fbe82bda9227f317e6e3817",
+      "model_id": "cpb-g1-04",
+      "parameters": {
+        "config": "cantilever",
+        "delta_t": 150.0,
+        "dt": 100.0,
+        "material": 0,
+        "od": 219.1,
+        "span": 3.0,
+        "tip_force": -2000.0
+      },
+      "sampling": "series",
+      "series": [
+        "shear-dt"
+      ]
+    },
+    {
+      "family": "G1",
+      "file": "models/cpb-g1-05.json",
+      "file_sha256": "0a67402cbf3ce392267076b4069485f2372a994b56ae019924d5c488ed4b02a3",
+      "model_hash": "b26c49baa498446013e77143785a9a7c7ff8ae7ab30bc4c081bd5150279d74cb",
+      "model_id": "cpb-g1-05",
+      "parameters": {
+        "config": "cantilever",
+        "delta_t": 50.0,
+        "dt": 10.0,
+        "material": 1,
+        "od": 60.0,
+        "span": 1.0,
+        "tip_force": -500.0
+      },
+      "sampling": "corner",
+      "series": []
+    },
+    {
+      "family": "G1",
+      "file": "models/cpb-g1-06.json",
+      "file_sha256": "4897c1f6883850aaaa7eab2432ef9f2ad78ae6e16d3b3b25f2a3ec5339e7e839",
+      "model_hash": "db2a6c2d691252ab836c7fb02b3d66bab5bdc04f711c61291d7ebbbec12b2f93",
+      "model_id": "cpb-g1-06",
+      "parameters": {
+        "config": "cantilever",
+        "delta_t": 250.0,
+        "dt": 100.0,
+        "material": 2,
+        "od": 610.0,
+        "span": 12.0,
+        "tip_force": -20000.0
+      },
+      "sampling": "corner",
+      "series": []
+    },
+    {
+      "family": "G1",
+      "file": "models/cpb-g1-07.json",
+      "file_sha256": "027e49dd97a0687d026745eab753a7e581691da82765b4dc3675fe9515ad9dee",
+      "model_hash": "158fdf765e6a0a91173e073c92ee9a79aaac393923f93a08c96962cac6b37204",
+      "model_id": "cpb-g1-07",
+      "parameters": {
+        "config": "guided",
+        "delta_t": 107.8,
+        "dt": 35.7,
+        "material": 0,
+        "od": 122.6,
+        "span": 3.58,
+        "tip_force": -3120.0
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G1",
+      "file": "models/cpb-g1-08.json",
+      "file_sha256": "de54ad8bbc992d97b548e8b26e18910eda200da87371a2cb5fc3a78d122ac2ea",
+      "model_hash": "609604f36c65d417e17ca91fbbb84fe2badc24b084d300325568663fd9ab23c9",
+      "model_id": "cpb-g1-08",
+      "parameters": {
+        "config": "continuous_2",
+        "delta_t": 207.1,
+        "dt": 22.5,
+        "material": 2,
+        "od": 309.1,
+        "span": 8.09,
+        "tip_force": -323.0
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G1",
+      "file": "models/cpb-g1-09.json",
+      "file_sha256": "db0beebb142a61b585c5ff726249a8bd6e7f33cefcbd8e042cbb8b3dcc059b47",
+      "model_hash": "90cf6f73708e96f2d6b4b6b8efc7d0b54dec3a634635d8c3aee63bbd9ac9ace1",
+      "model_id": "cpb-g1-09",
+      "parameters": {
+        "config": "continuous_3",
+        "delta_t": 186.9,
+        "dt": 14.8,
+        "material": 2,
+        "od": 479.5,
+        "span": 4.33,
+        "tip_force": -1400.0
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G1",
+      "file": "models/cpb-g1-10.json",
+      "file_sha256": "aca1d8fffc56c9f8d59000c9e28d4dae9519b1b578c174b21fe90bba5c88629d",
+      "model_hash": "f04f3529049eae276a0487b2d14aedaa311f05920816ceaae8bd45418edf5bd7",
+      "model_id": "cpb-g1-10",
+      "parameters": {
+        "config": "fixed_fixed",
+        "delta_t": 85.56,
+        "dt": 63.2,
+        "material": 0,
+        "od": 94.13,
+        "span": 10.6,
+        "tip_force": -15700.0
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G2",
+      "file": "models/cpb-g2-01.json",
+      "file_sha256": "98783986cf5887d35e35b958b4a72b5f889de8c7c213f9764e915f53b7fc1668",
+      "model_hash": "b153180fc3a570bd4fa936dba4c03986cb110bd64dd8b87a09ea8224f34159ef",
+      "model_id": "cpb-g2-01",
+      "parameters": {
+        "angle": 45.0,
+        "clear_1": 2.8,
+        "clear_2": 4.91,
+        "delta_t": 55.74,
+        "dt": 49.6,
+        "force": -16600.0,
+        "k": 1.0,
+        "material": 1,
+        "od": 188.7,
+        "rd": 1.0
+      },
+      "sampling": "corner",
+      "series": [
+        "bend-k-rd1-a45"
+      ]
+    },
+    {
+      "family": "G2",
+      "file": "models/cpb-g2-02.json",
+      "file_sha256": "678fecb91ddfea7ac58ddd87a8549f559adaa09b94b810eec729392eece015c7",
+      "model_hash": "6df6425d50697abf963cbb5827df9619265b46b440f56621b160b303ade17d9d",
+      "model_id": "cpb-g2-02",
+      "parameters": {
+        "angle": 45.0,
+        "clear_1": 2.8,
+        "clear_2": 4.91,
+        "delta_t": 55.74,
+        "dt": 49.6,
+        "force": -16600.0,
+        "k": 3.41,
+        "material": 1,
+        "od": 188.7,
+        "rd": 1.0
+      },
+      "sampling": "corner",
+      "series": [
+        "bend-k-rd1-a45"
+      ]
+    },
+    {
+      "family": "G2",
+      "file": "models/cpb-g2-03.json",
+      "file_sha256": "59b83f6c2b8f817e031409a04af20616c81b3ddb975d5ac68cafca726c315bf0",
+      "model_hash": "bedb346625c12e46a75fcd4df7dbb1522583141d3880a9e08c9f24655b82d32e",
+      "model_id": "cpb-g2-03",
+      "parameters": {
+        "angle": 90.0,
+        "clear_1": 3.4,
+        "clear_2": 1.19,
+        "delta_t": 229.6,
+        "dt": 16.5,
+        "force": -2400.0,
+        "k": 1.0,
+        "material": 0,
+        "od": 498.7,
+        "rd": 1.0
+      },
+      "sampling": "corner",
+      "series": [
+        "bend-k-rd1-a90"
+      ]
+    },
+    {
+      "family": "G2",
+      "file": "models/cpb-g2-04.json",
+      "file_sha256": "4045feab62305340afea46e58ca61a1aa0bff371fe455cb4b69927ce31f2a6f0",
+      "model_hash": "3dc7c61b1fea49a72097c0b66b89ff1668d20964561e3ccd85e825160e7e96a0",
+      "model_id": "cpb-g2-04",
+      "parameters": {
+        "angle": 90.0,
+        "clear_1": 3.4,
+        "clear_2": 1.19,
+        "delta_t": 229.6,
+        "dt": 16.5,
+        "force": -2400.0,
+        "k": 9.1,
+        "material": 0,
+        "od": 498.7,
+        "rd": 1.0
+      },
+      "sampling": "corner",
+      "series": [
+        "bend-k-rd1-a90"
+      ]
+    },
+    {
+      "family": "G2",
+      "file": "models/cpb-g2-05.json",
+      "file_sha256": "1db57c6a2dd6963de7650094a210629d309c63e71df2fb3e5a000d0bc68a8410",
+      "model_hash": "fa9fc0fbdf2ba35ecd3e44aebb83bd47733fccb48e3a0e710f1d4fceea390a8e",
+      "model_id": "cpb-g2-05",
+      "parameters": {
+        "angle": 45.0,
+        "clear_1": 3.83,
+        "clear_2": 2.61,
+        "delta_t": 222.1,
+        "dt": 38.3,
+        "force": -366.0,
+        "k": 1.0,
+        "material": 1,
+        "od": 198.8,
+        "rd": 1.5
+      },
+      "sampling": "corner",
+      "series": [
+        "bend-k-rd1.5-a45"
+      ]
+    },
+    {
+      "family": "G2",
+      "file": "models/cpb-g2-06.json",
+      "file_sha256": "6b32af19853cc14eed54015746220026cabf620fc542b916f0c0d031d932e75e",
+      "model_hash": "c1d778ab8116d4c0ab8f85fadab34d96e0eba2670dbb91b8e82641cfe4617c88",
+      "model_id": "cpb-g2-06",
+      "parameters": {
+        "angle": 45.0,
+        "clear_1": 3.83,
+        "clear_2": 2.61,
+        "delta_t": 222.1,
+        "dt": 38.3,
+        "force": -366.0,
+        "k": 14.8,
+        "material": 1,
+        "od": 198.8,
+        "rd": 1.5
+      },
+      "sampling": "corner",
+      "series": [
+        "bend-k-rd1.5-a45"
+      ]
+    },
+    {
+      "family": "G2",
+      "file": "models/cpb-g2-07.json",
+      "file_sha256": "102beb48e39e80cedd2a6f5eaa6f6c846d3df2d84053e846114f1d12c063e26b",
+      "model_hash": "acc0c417e64c84a57e0ff36a1989139c16d3f75e8d7cca6c74462d2e5a005835",
+      "model_id": "cpb-g2-07",
+      "parameters": {
+        "angle": 90.0,
+        "clear_1": 4.77,
+        "clear_2": 4.05,
+        "delta_t": 166.6,
+        "dt": 27.7,
+        "force": -8310.0,
+        "k": 1.0,
+        "material": 2,
+        "od": 347.0,
+        "rd": 1.5
+      },
+      "sampling": "corner",
+      "series": [
+        "bend-k-rd1.5-a90"
+      ]
+    },
+    {
+      "family": "G2",
+      "file": "models/cpb-g2-08.json",
+      "file_sha256": "c2df8cefd9c22e83e770e810ca159764e16ab1425667e4b68ab0c0b3c35fdda1",
+      "model_hash": "8420ddd12710a5693e5394f17ceaff8a30718afd3b0ebcb21a3022d9f646c4e7",
+      "model_id": "cpb-g2-08",
+      "parameters": {
+        "angle": 90.0,
+        "clear_1": 4.77,
+        "clear_2": 4.05,
+        "delta_t": 166.6,
+        "dt": 27.7,
+        "force": -8310.0,
+        "k": 4.95,
+        "material": 2,
+        "od": 347.0,
+        "rd": 1.5
+      },
+      "sampling": "corner",
+      "series": [
+        "bend-k-rd1.5-a90"
+      ]
+    },
+    {
+      "family": "G2",
+      "file": "models/cpb-g2-09.json",
+      "file_sha256": "7bfec94181226cdd9bbecf82dfe6fc91e2689188199dd10960b6818c34d52523",
+      "model_hash": "b84d4f07ded73f8fb58785b629f50034db8b679fd006eaaf1cd280d716515352",
+      "model_id": "cpb-g2-09",
+      "parameters": {
+        "angle": 45.0,
+        "clear_1": 1.09,
+        "clear_2": 3.11,
+        "delta_t": 199.7,
+        "dt": 22.6,
+        "force": -1140.0,
+        "k": 1.0,
+        "material": 1,
+        "od": 321.0,
+        "rd": 3.0
+      },
+      "sampling": "corner",
+      "series": [
+        "bend-k-rd3-a45"
+      ]
+    },
+    {
+      "family": "G2",
+      "file": "models/cpb-g2-10.json",
+      "file_sha256": "b4075083faf11c66a9b3119349c403e723e39ee4756b1d4005c49a0a052a555a",
+      "model_hash": "24146b4a36aabb4c6dd24e4e55faaabb2559fd28277cfe8e3724ce99be111d48",
+      "model_id": "cpb-g2-10",
+      "parameters": {
+        "angle": 45.0,
+        "clear_1": 1.09,
+        "clear_2": 3.11,
+        "delta_t": 199.7,
+        "dt": 22.6,
+        "force": -1140.0,
+        "k": 13.1,
+        "material": 1,
+        "od": 321.0,
+        "rd": 3.0
+      },
+      "sampling": "corner",
+      "series": [
+        "bend-k-rd3-a45"
+      ]
+    },
+    {
+      "family": "G2",
+      "file": "models/cpb-g2-11.json",
+      "file_sha256": "dd88d8036f117232849c3a8aff0133ae487bd2d371b367ab167842a91db7ff9a",
+      "model_hash": "390a32fe687363597c4f51799f593fb9d5f42de28a905125d3a98a53f8475dd2",
+      "model_id": "cpb-g2-11",
+      "parameters": {
+        "angle": 90.0,
+        "clear_1": 2.46,
+        "clear_2": 1.56,
+        "delta_t": 117.1,
+        "dt": 73.9,
+        "force": -684.0,
+        "k": 1.0,
+        "material": 2,
+        "od": 135.3,
+        "rd": 3.0
+      },
+      "sampling": "corner",
+      "series": [
+        "bend-k-rd3-a90"
+      ]
+    },
+    {
+      "family": "G2",
+      "file": "models/cpb-g2-12.json",
+      "file_sha256": "0939a83b5c255c10cba567d8eb6c077d19d25249e60f8b259606d9e6b4b59ea7",
+      "model_hash": "0d30e816dba905a67eec830216f248567c8044b7df54567c33a3ffeb8428bf40",
+      "model_id": "cpb-g2-12",
+      "parameters": {
+        "angle": 90.0,
+        "clear_1": 2.46,
+        "clear_2": 1.56,
+        "delta_t": 117.1,
+        "dt": 73.9,
+        "force": -684.0,
+        "k": 11.7,
+        "material": 2,
+        "od": 135.3,
+        "rd": 3.0
+      },
+      "sampling": "corner",
+      "series": [
+        "bend-k-rd3-a90"
+      ]
+    },
+    {
+      "family": "G2",
+      "file": "models/cpb-g2-13.json",
+      "file_sha256": "e0bd64aab4f13378098315dbf48235bc5b6c607db407c02465e77badfec529cc",
+      "model_hash": "3ad02f7396c1ac07579c8f404db9282aa9bffb183f2ea2ec17e6042502cf9602",
+      "model_id": "cpb-g2-13",
+      "parameters": {
+        "angle": 45.0,
+        "clear_1": 1.69,
+        "clear_2": 3.76,
+        "delta_t": 136.1,
+        "dt": 10.7,
+        "force": -205.0,
+        "k": 1.0,
+        "material": 2,
+        "od": 63.33,
+        "rd": 5.0
+      },
+      "sampling": "corner",
+      "series": [
+        "bend-k-rd5-a45"
+      ]
+    },
+    {
+      "family": "G2",
+      "file": "models/cpb-g2-14.json",
+      "file_sha256": "dd87e5ba2d0e9db475d530df489b4a502a9569a011e8a6c818dfc07ca4e2ca57",
+      "model_hash": "4c6d00d44803942ff53fe5fcbc1b5a482503215100a51bbc22606779548e3374",
+      "model_id": "cpb-g2-14",
+      "parameters": {
+        "angle": 45.0,
+        "clear_1": 1.69,
+        "clear_2": 3.76,
+        "delta_t": 136.1,
+        "dt": 10.7,
+        "force": -205.0,
+        "k": 6.29,
+        "material": 2,
+        "od": 63.33,
+        "rd": 5.0
+      },
+      "sampling": "corner",
+      "series": [
+        "bend-k-rd5-a45"
+      ]
+    },
+    {
+      "family": "G2",
+      "file": "models/cpb-g2-15.json",
+      "file_sha256": "b993a423f6147e05c96e593d369cbebc16856d658b874140307633f3651944ea",
+      "model_hash": "de6885ead4574facd0852a622b454fb54c744183533ab57458e4419576563991",
+      "model_id": "cpb-g2-15",
+      "parameters": {
+        "angle": 90.0,
+        "clear_1": 4.43,
+        "clear_2": 2.49,
+        "delta_t": 80.03,
+        "dt": 89.8,
+        "force": -6040.0,
+        "k": 1.0,
+        "material": 0,
+        "od": 88.78,
+        "rd": 5.0
+      },
+      "sampling": "corner",
+      "series": [
+        "bend-k-rd5-a90"
+      ]
+    },
+    {
+      "family": "G2",
+      "file": "models/cpb-g2-16.json",
+      "file_sha256": "391241df265aa1bc9d705b10e30de21d20a647f0c94504387648a7bc6640fcbd",
+      "model_hash": "dde0ae083a7b63231b5ddfffc737f8df7b159fea9c5079083d0a83e1ee2c9631",
+      "model_id": "cpb-g2-16",
+      "parameters": {
+        "angle": 90.0,
+        "clear_1": 4.43,
+        "clear_2": 2.49,
+        "delta_t": 80.03,
+        "dt": 89.8,
+        "force": -6040.0,
+        "k": 7.69,
+        "material": 0,
+        "od": 88.78,
+        "rd": 5.0
+      },
+      "sampling": "corner",
+      "series": [
+        "bend-k-rd5-a90"
+      ]
+    },
+    {
+      "family": "G3",
+      "file": "models/cpb-g3-01.json",
+      "file_sha256": "60278286be729352a9ef98632d870fecbc60bf7030983f045d2e522f3c5c0bbc",
+      "model_hash": "995e668929633a6be027decd2f32b3117f181198767fe3f5e3ffe7b6aa4b3689",
+      "model_id": "cpb-g3-01",
+      "parameters": {
+        "clear_1": 1.37,
+        "config": "z",
+        "delta_t": 142.3,
+        "dt": 86.2,
+        "force": -1000.0,
+        "height": 2.36,
+        "k": 2.26,
+        "material": 2,
+        "od": 149.5,
+        "rd": 3.09,
+        "width": 1.64
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G3",
+      "file": "models/cpb-g3-02.json",
+      "file_sha256": "5720716d26f076d72c5f6fc4609b8b96bc291eb14835c680b7836d37fa1d8f60",
+      "model_hash": "285971c08b215ac6f889332983a03fa4c69964f5aa368807901c0b54b1d82d60",
+      "model_id": "cpb-g3-02",
+      "parameters": {
+        "clear_1": 3.84,
+        "config": "z",
+        "delta_t": 233.4,
+        "dt": 56.5,
+        "force": -1000.0,
+        "height": 2.64,
+        "k": 9.02,
+        "material": 1,
+        "od": 81.87,
+        "rd": 4.02,
+        "width": 1.06
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G3",
+      "file": "models/cpb-g3-03.json",
+      "file_sha256": "698f509bcd8996d6860cbcf746c28b72ca483002a0a3c13176684006628a2199",
+      "model_hash": "2fc82a2a5d03c1cb4b8e1e01d2337fbfe1ed04a294b2f87398d3d5eb4c440d49",
+      "model_id": "cpb-g3-03",
+      "parameters": {
+        "clear_1": 2.01,
+        "config": "z",
+        "delta_t": 100.9,
+        "dt": 32.3,
+        "force": -1000.0,
+        "height": 3.31,
+        "k": 5.03,
+        "material": 2,
+        "od": 206.0,
+        "rd": 1.55,
+        "width": 3.69
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G3",
+      "file": "models/cpb-g3-04.json",
+      "file_sha256": "a03625435af20e83110c20513d411e9e48490ff233a5236936c311206d673068",
+      "model_hash": "24e9c13889f2fb7deaa27a2264597e8d82e3053155c467f37ddab19e4cf15188",
+      "model_id": "cpb-g3-04",
+      "parameters": {
+        "clear_1": 1.56,
+        "config": "z",
+        "delta_t": 209.0,
+        "dt": 18.2,
+        "force": -1000.0,
+        "height": 1.91,
+        "k": 7.84,
+        "material": 1,
+        "od": 315.0,
+        "rd": 1.89,
+        "width": 2.4
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G3",
+      "file": "models/cpb-g3-05.json",
+      "file_sha256": "2aed0dedb399bd2a72d1c5abd7b558e29d038770ab6e31f4c058bec27139f622",
+      "model_hash": "ecf540e992ae319b1550140776faf63fcf2527a236627c487d862ec8ee9bc959",
+      "model_id": "cpb-g3-05",
+      "parameters": {
+        "clear_1": 2.86,
+        "config": "z",
+        "delta_t": 54.2,
+        "dt": 22.9,
+        "force": -1000.0,
+        "height": 1.4,
+        "k": 2.95,
+        "material": 0,
+        "od": 100.4,
+        "rd": 4.61,
+        "width": 2.94
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G3",
+      "file": "models/cpb-g3-06.json",
+      "file_sha256": "ce776b85f76d311856b216f5884c08a95be3afac004f5439d303d9d4aae7b7c4",
+      "model_hash": "7e14cfbc20ff4ada511c390d29204a4952436b05235563996a487f8749c97ed2",
+      "model_id": "cpb-g3-06",
+      "parameters": {
+        "clear_1": 3.28,
+        "config": "z",
+        "delta_t": 159.2,
+        "dt": 11.4,
+        "force": -1000.0,
+        "height": 3.72,
+        "k": 6.1,
+        "material": 0,
+        "od": 551.4,
+        "rd": 2.51,
+        "width": 3.14
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G3",
+      "file": "models/cpb-g3-07.json",
+      "file_sha256": "9dd0c966c2e6573fa9d4efa3211bf5f60fb10365693b685d0df419f885cf4807",
+      "model_hash": "3c913e07e440e743981675253f9d8766147f7b848915a669f8d2e3d67c69d655",
+      "model_id": "cpb-g3-07",
+      "parameters": {
+        "clear_1": 3.58,
+        "config": "u",
+        "delta_t": 54.91,
+        "dt": 11.4,
+        "force": -1000.0,
+        "height": 1.78,
+        "k": 6.21,
+        "material": 2,
+        "od": 63.06,
+        "rd": 2.0,
+        "width": 3.69
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G3",
+      "file": "models/cpb-g3-08.json",
+      "file_sha256": "c34e5f7b41bdd0d6f11445456def1b9f85cd58b66b36bcc36e6268afcacf236c",
+      "model_hash": "c953bfd0a30647dd19d52a67654f55552e3be30b1725a448c1dd2aa33aede43d",
+      "model_id": "cpb-g3-08",
+      "parameters": {
+        "clear_1": 3.49,
+        "config": "u",
+        "delta_t": 214.6,
+        "dt": 66.1,
+        "force": -1000.0,
+        "height": 1.48,
+        "k": 9.68,
+        "material": 1,
+        "od": 475.3,
+        "rd": 2.56,
+        "width": 2.15
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G3",
+      "file": "models/cpb-g3-09.json",
+      "file_sha256": "b8bc955b2dc0f4d18d004b44a657d661a70ed6cbc1f00687338615b09c26d01e",
+      "model_hash": "d4bd23b45b268f52c04a035b0c24c6757fcdbfd0da971c381e9c1c0d20903168",
+      "model_id": "cpb-g3-09",
+      "parameters": {
+        "clear_1": 2.93,
+        "config": "u",
+        "delta_t": 146.2,
+        "dt": 45.8,
+        "force": -1000.0,
+        "height": 3.85,
+        "k": 2.47,
+        "material": 0,
+        "od": 282.0,
+        "rd": 3.69,
+        "width": 2.74
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G3",
+      "file": "models/cpb-g3-10.json",
+      "file_sha256": "80126b6f0654e68802f9b138cc162d4745fee271694916197f6299c87dc7b0c4",
+      "model_hash": "bb601c195ec086faac76fef40ba5455fa72af6c03a6611bb20b98ba814c4af67",
+      "model_id": "cpb-g3-10",
+      "parameters": {
+        "clear_1": 1.62,
+        "config": "u",
+        "delta_t": 158.0,
+        "dt": 73.0,
+        "force": -1000.0,
+        "height": 3.4,
+        "k": 7.62,
+        "material": 0,
+        "od": 164.5,
+        "rd": 1.14,
+        "width": 1.18
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G3",
+      "file": "models/cpb-g3-11.json",
+      "file_sha256": "a57f6b3940b63b42604f5a80f7a52b642e227446c441e8e9b82386813b74b634",
+      "model_hash": "a4dbba32e6e1a55c27edaa9ac32676da766d5aa96a806b4c984a7a696dbf0c68",
+      "model_id": "cpb-g3-11",
+      "parameters": {
+        "clear_1": 2.09,
+        "config": "u",
+        "delta_t": 227.5,
+        "dt": 30.6,
+        "force": -1000.0,
+        "height": 2.12,
+        "k": 5.12,
+        "material": 1,
+        "od": 280.2,
+        "rd": 4.77,
+        "width": 1.79
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G3",
+      "file": "models/cpb-g3-12.json",
+      "file_sha256": "1b1d0d19a8eb90f66aecbd70556f7ac98c8206affc695e88016716a5a9784f9c",
+      "model_hash": "32fbefe053f394c3bec40e9dcaea4ec38cae52c74cd25e3938ab7fa8e1a8c11f",
+      "model_id": "cpb-g3-12",
+      "parameters": {
+        "clear_1": 1.43,
+        "config": "u",
+        "delta_t": 115.1,
+        "dt": 15.0,
+        "force": -1000.0,
+        "height": 2.94,
+        "k": 2.92,
+        "material": 2,
+        "od": 99.24,
+        "rd": 3.58,
+        "width": 3.03
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G4",
+      "file": "models/cpb-g4-01.json",
+      "file_sha256": "a277016131dee9abc77c92eb5e6de3aa25a9076948980f4a6d64de414cd12f19",
+      "model_hash": "cdc81d81da36c9571cc7face0590592fd8b7bb753ab566828073d1614f1c6855",
+      "model_id": "cpb-g4-01",
+      "parameters": {
+        "clear_1": 1.38,
+        "clear_3": 3.01,
+        "delta_t": 96.39,
+        "dt": 15.7,
+        "force": -1500.0,
+        "k": 3.2,
+        "material": 2,
+        "od": 180.9,
+        "rd": 1.36,
+        "rise": 3.55
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G4",
+      "file": "models/cpb-g4-02.json",
+      "file_sha256": "5f83af503435454e07e46480d9a9fc1206d53da12d013e62606802908d71dc29",
+      "model_hash": "8560105ed0913f42054b86d6fd7f20c6751a3b5884d4b30b999604e99b10759a",
+      "model_id": "cpb-g4-02",
+      "parameters": {
+        "clear_1": 1.74,
+        "clear_3": 2.04,
+        "delta_t": 127.5,
+        "dt": 32.1,
+        "force": -1500.0,
+        "k": 4.03,
+        "material": 0,
+        "od": 249.3,
+        "rd": 2.34,
+        "rise": 1.27
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G4",
+      "file": "models/cpb-g4-03.json",
+      "file_sha256": "b7b5997a3258308beb29db39eb1e6713ca7b3e8c3117adb94a2e0f4f6140c772",
+      "model_hash": "69850c49a4912398844b9369e7fb0ef1946ac15d963cc9978e7d15214e09df18",
+      "model_id": "cpb-g4-03",
+      "parameters": {
+        "clear_1": 2.02,
+        "clear_3": 1.87,
+        "delta_t": 234.8,
+        "dt": 94.7,
+        "force": -1500.0,
+        "k": 9.06,
+        "material": 1,
+        "od": 474.0,
+        "rd": 3.55,
+        "rise": 3.48
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G4",
+      "file": "models/cpb-g4-04.json",
+      "file_sha256": "1efd9a82c66a30f481b04309b327c27f4ec97ae13a0c50d2dbaa63f2ef39a89e",
+      "model_hash": "18c189dcae646a561d87f5fc5b01d7d3b9c7fa704db662297f93169d216b4ec4",
+      "model_id": "cpb-g4-04",
+      "parameters": {
+        "clear_1": 3.83,
+        "clear_3": 2.8,
+        "delta_t": 200.9,
+        "dt": 11.9,
+        "force": -1500.0,
+        "k": 2.16,
+        "material": 1,
+        "od": 110.0,
+        "rd": 1.76,
+        "rise": 1.78
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G4",
+      "file": "models/cpb-g4-05.json",
+      "file_sha256": "823a9e447b66a1429c4918703086af9ba632df4bf56001ee4921d22e12cd8537",
+      "model_hash": "db0766bb94757a42de53eac82099a4d3349a75344ae6ad6671aed669a81e490e",
+      "model_id": "cpb-g4-05",
+      "parameters": {
+        "clear_1": 3.42,
+        "clear_3": 3.76,
+        "delta_t": 83.25,
+        "dt": 24.4,
+        "force": -1500.0,
+        "k": 6.97,
+        "material": 0,
+        "od": 73.78,
+        "rd": 4.29,
+        "rise": 2.3
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G4",
+      "file": "models/cpb-g4-06.json",
+      "file_sha256": "1a728dad2b7ba99424d35a59b808818e79a056d00b80f2a5ed12bf2e4af0f559",
+      "model_hash": "f986395c931f5210b0f6f8071e780d70bf2aa6baa8fcab16781514eb20d6c6cb",
+      "model_id": "cpb-g4-06",
+      "parameters": {
+        "clear_1": 2.68,
+        "clear_3": 1.33,
+        "delta_t": 167.2,
+        "dt": 57.0,
+        "force": -1500.0,
+        "k": 7.03,
+        "material": 2,
+        "od": 378.2,
+        "rd": 4.98,
+        "rise": 2.95
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G5",
+      "file": "models/cpb-g5-01.json",
+      "file_sha256": "1b0fe8759adeb3ca45838a3a76b98019fce9c99d50a5d819bc29ead1750ce7bd",
+      "model_hash": "b1dc1cfa8412cd7fa2bc0b1e38ae0eaa420b7d6e3841141fdf5960695040777c",
+      "model_id": "cpb-g5-01",
+      "parameters": {
+        "branch": 3.0,
+        "config": "in_plane_anchored",
+        "delta_t": 150.0,
+        "dt": 30.0,
+        "force": -3640.0,
+        "material": 0,
+        "od": 323.9,
+        "ratio": 0.3,
+        "run": 6.0
+      },
+      "sampling": "series",
+      "series": [
+        "tee-ratio"
+      ]
+    },
+    {
+      "family": "G5",
+      "file": "models/cpb-g5-02.json",
+      "file_sha256": "68676a15ab1b21a063736ca2231e078338238bdae3511ca3695108f1864f8008",
+      "model_hash": "8e17addf5f8566381f8feecfe53bd2993874fa31bb6708f487219da0fe607e94",
+      "model_id": "cpb-g5-02",
+      "parameters": {
+        "branch": 3.0,
+        "config": "in_plane_anchored",
+        "delta_t": 150.0,
+        "dt": 30.0,
+        "force": -3280.0,
+        "material": 0,
+        "od": 323.9,
+        "ratio": 0.5,
+        "run": 6.0
+      },
+      "sampling": "series",
+      "series": [
+        "tee-ratio"
+      ]
+    },
+    {
+      "family": "G5",
+      "file": "models/cpb-g5-03.json",
+      "file_sha256": "c241a6dc205f3967309502c6407dabd3ff39222522471c3a89fb038c7a974f2b",
+      "model_hash": "37484fa363507dc6ce697dd56479419e821cc46e59aab85efdf2f4deb6e04c22",
+      "model_id": "cpb-g5-03",
+      "parameters": {
+        "branch": 3.0,
+        "config": "in_plane_anchored",
+        "delta_t": 150.0,
+        "dt": 30.0,
+        "force": -2190.0,
+        "material": 0,
+        "od": 323.9,
+        "ratio": 0.75,
+        "run": 6.0
+      },
+      "sampling": "series",
+      "series": [
+        "tee-ratio"
+      ]
+    },
+    {
+      "family": "G5",
+      "file": "models/cpb-g5-04.json",
+      "file_sha256": "e1e8c34868eb26f727f9ac065a39e6149068a11ab662c9679b239b5b334d7146",
+      "model_hash": "960eb1634b7ae150911f22ba562f83e65abcd1726607e59d579da28a751c002d",
+      "model_id": "cpb-g5-04",
+      "parameters": {
+        "branch": 3.0,
+        "config": "in_plane_anchored",
+        "delta_t": 150.0,
+        "dt": 30.0,
+        "force": -1500.0,
+        "material": 0,
+        "od": 323.9,
+        "ratio": 1.0,
+        "run": 6.0
+      },
+      "sampling": "series",
+      "series": [
+        "tee-ratio"
+      ]
+    },
+    {
+      "family": "G5",
+      "file": "models/cpb-g5-05.json",
+      "file_sha256": "120835f4f1e28dff126b0f0a8ec5b73e7a485659e2d5e8a6ea25b1d8795de847",
+      "model_hash": "73fdde0b1dd5f8547424d103cb43d23026c0956876d4cf59bbe826aacad62793",
+      "model_id": "cpb-g5-05",
+      "parameters": {
+        "branch": 3.7,
+        "config": "vertical_anchored",
+        "delta_t": 100.0,
+        "dt": 18.6,
+        "force": -1000.0,
+        "material": 1,
+        "od": 454.1,
+        "ratio": 0.968,
+        "run": 2.1
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G5",
+      "file": "models/cpb-g5-06.json",
+      "file_sha256": "e6d9e0529e3fde5c7bc0aaa4c4efb627890883d75515ee47acd328c2185ca400",
+      "model_hash": "d6e9d66ef723c24e7129cc4d0c9509a05d7da4e5b978d0bde2f7c410211bff7b",
+      "model_id": "cpb-g5-06",
+      "parameters": {
+        "branch": 3.12,
+        "config": "vertical_free",
+        "delta_t": 100.0,
+        "dt": 14.5,
+        "force": -1000.0,
+        "material": 2,
+        "od": 80.45,
+        "ratio": 0.307,
+        "run": 7.49
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G6",
+      "file": "models/cpb-g6-01.json",
+      "file_sha256": "57967013759d81c7c57dacfb659534083c2a279ffa5b9b1ad4fee1c9c902e5b2",
+      "model_hash": "8e6955a8167666377fa4fd2fc56f44be60af395d257c09c01206e31e3b1491e8",
+      "model_id": "cpb-g6-01",
+      "parameters": {
+        "config": "riser_guides",
+        "delta_t": 126.1,
+        "dt": 74.6,
+        "force": -2000.0,
+        "length": 9.92,
+        "material": 2,
+        "od": 60.42,
+        "spring": 423000.0
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G6",
+      "file": "models/cpb-g6-02.json",
+      "file_sha256": "22d9a6be0a948de82d4600cec3f8a26eb1e2041eb22d010dab1c6a7b8d3b3e92",
+      "model_hash": "2ece3231192650344ad2ca04f14a99c3bca6e11001aae0603776807710f99ab3",
+      "model_id": "cpb-g6-02",
+      "parameters": {
+        "config": "riser_spring",
+        "delta_t": 249.1,
+        "dt": 27.0,
+        "force": -2000.0,
+        "length": 9.12,
+        "material": 1,
+        "od": 578.9,
+        "spring": 60500000.0
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G6",
+      "file": "models/cpb-g6-03.json",
+      "file_sha256": "cbae8c305ab55916d031a9e52c7d38f1617bdac0fd1f0a272df4bf18b571a436",
+      "model_hash": "b4f0923b67660c7e20fb19a98a50051b429c1d4f9faf641d836fa746dcbc6f49",
+      "model_id": "cpb-g6-03",
+      "parameters": {
+        "config": "riser_stop",
+        "delta_t": 68.0,
+        "dt": 12.3,
+        "force": -2000.0,
+        "length": 13.6,
+        "material": 0,
+        "od": 130.1,
+        "spring": 4690000.0
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G7",
+      "file": "models/cpb-g7-01.json",
+      "file_sha256": "5e9a41f1c83afd963908dac381c1686bd95c4415f683ccb14bccbcd81e062f02",
+      "model_hash": "c3e2ca42ed6bcf8fed894113c663166b1660897c02ffe4d9f6a29563b87065bb",
+      "model_id": "cpb-g7-01",
+      "parameters": {
+        "config": "run_mix",
+        "delta_t": 59.53,
+        "dt": 26.0,
+        "force": -2000.0,
+        "length": 12.6,
+        "material": 0,
+        "od": 80.82,
+        "spring": 1140000.0
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G7",
+      "file": "models/cpb-g7-02.json",
+      "file_sha256": "1c2c1b016c2086a007a1a366983211cc37a55c727b6fffb75aa6ab530a158e36",
+      "model_hash": "d53f1230fc8bf2bae37bc313539ddaf6849601bf00fe642c6c5b0cbaefd6971d",
+      "model_id": "cpb-g7-02",
+      "parameters": {
+        "config": "run_springs",
+        "delta_t": 183.3,
+        "dt": 14.2,
+        "force": -2000.0,
+        "length": 6.14,
+        "material": 2,
+        "od": 227.5,
+        "spring": 439000000.0
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G7",
+      "file": "models/cpb-g7-03.json",
+      "file_sha256": "b9b6d5547756f33c8059e59df05185af362b8b7e8402e410c33a0af6247836ec",
+      "model_hash": "43629a50271db58c8f798442f2a4ac8899df95cfbd4b0c800fea508bf29516f0",
+      "model_id": "cpb-g7-03",
+      "parameters": {
+        "config": "run_stops",
+        "delta_t": 163.3,
+        "dt": 95.2,
+        "force": -2000.0,
+        "length": 15.5,
+        "material": 1,
+        "od": 325.4,
+        "spring": 3740000.0
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G8",
+      "file": "models/cpb-g8-01.json",
+      "file_sha256": "947b4728a7f17adaea8faeb6a2410a1e78522e0a0193052fa549eb39aee95d3d",
+      "model_hash": "354ce14e1b77cf09a3c15485a886ce92a67331c992550ee2b673acde79037b64",
+      "model_id": "cpb-g8-01",
+      "parameters": {
+        "config": "move_uy",
+        "dof": "UY",
+        "dt": 63.4,
+        "material": 2,
+        "movement": 0.0404,
+        "od": 69.57,
+        "rotation": 0.0143,
+        "span": 4.69
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G8",
+      "file": "models/cpb-g8-02.json",
+      "file_sha256": "23d12ae11de90dd95652f9b7dad03a9b642131d8fd92e3be9ba0850ad7a957af",
+      "model_hash": "a15d9c26eb2448af1c018b2bbd50e01f1768f12bdbdc87a2c845684ad83b7a60",
+      "model_id": "cpb-g8-02",
+      "parameters": {
+        "config": "move_uz",
+        "dof": "UZ",
+        "dt": 30.5,
+        "material": 0,
+        "movement": 0.035,
+        "od": 169.3,
+        "rotation": 0.00608,
+        "span": 2.36
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G8",
+      "file": "models/cpb-g8-03.json",
+      "file_sha256": "defc024e890c1e50d4da4ff14fa267a9d1ac2f9d645dc8a8601535394ad4e16e",
+      "model_hash": "44bc306f20c6b7dd4c01338c4def9f03695443dc2535941e2a00d4173e19dd29",
+      "model_id": "cpb-g8-03",
+      "parameters": {
+        "config": "rotate_rz",
+        "dof": "RZ",
+        "dt": 41.6,
+        "material": 1,
+        "movement": 0.0101,
+        "od": 285.3,
+        "rotation": 0.00366,
+        "span": 9.91
+      },
+      "sampling": "lhs",
+      "series": []
+    },
+    {
+      "family": "G8",
+      "file": "models/cpb-g8-04.json",
+      "file_sha256": "22210145b2d33b9d85a67ecfd55b2e3a9d6ba412853046b4e8f5d665012ece6e",
+      "model_hash": "3febc8eb8f016f728e247a319cb89961099e6d8b6b177e1d50d32083b63238cb",
+      "model_id": "cpb-g8-04",
+      "parameters": {
+        "config": "l_general",
+        "dof": null,
+        "dt": 13.0,
+        "material": 2,
+        "movement": 0.0141,
+        "od": 483.9,
+        "rotation": 0.0174,
+        "span": 7.18
+      },
+      "sampling": "lhs",
+      "series": []
+    }
+  ],
+  "piping_code": "B311-80",
+  "provenance": {
+    "note": "invented inputs only; no result of either program is recorded here",
+    "origin": "invented",
+    "produced_by_caepipe": false
+  },
+  "requirement": "RT-V2 (docs/RELEASE_TARGET_v1.0.md section 3); DEL-17-05 Design section 11",
+  "series": {
+    "bend-k-rd1-a45": {
+      "description": "one bend geometry with k = 1 and a higher k",
+      "hypothesis": "bend_flexibility_application",
+      "members": [
+        {
+          "model_id": "cpb-g2-01",
+          "value": 1.0
+        },
+        {
+          "model_id": "cpb-g2-02",
+          "value": 3.41
+        }
+      ],
+      "swept": "k"
+    },
+    "bend-k-rd1-a90": {
+      "description": "one bend geometry with k = 1 and a higher k",
+      "hypothesis": "bend_flexibility_application",
+      "members": [
+        {
+          "model_id": "cpb-g2-03",
+          "value": 1.0
+        },
+        {
+          "model_id": "cpb-g2-04",
+          "value": 9.1
+        }
+      ],
+      "swept": "k"
+    },
+    "bend-k-rd1.5-a45": {
+      "description": "one bend geometry with k = 1 and a higher k",
+      "hypothesis": "bend_flexibility_application",
+      "members": [
+        {
+          "model_id": "cpb-g2-05",
+          "value": 1.0
+        },
+        {
+          "model_id": "cpb-g2-06",
+          "value": 14.8
+        }
+      ],
+      "swept": "k"
+    },
+    "bend-k-rd1.5-a90": {
+      "description": "one bend geometry with k = 1 and a higher k",
+      "hypothesis": "bend_flexibility_application",
+      "members": [
+        {
+          "model_id": "cpb-g2-07",
+          "value": 1.0
+        },
+        {
+          "model_id": "cpb-g2-08",
+          "value": 4.95
+        }
+      ],
+      "swept": "k"
+    },
+    "bend-k-rd3-a45": {
+      "description": "one bend geometry with k = 1 and a higher k",
+      "hypothesis": "bend_flexibility_application",
+      "members": [
+        {
+          "model_id": "cpb-g2-09",
+          "value": 1.0
+        },
+        {
+          "model_id": "cpb-g2-10",
+          "value": 13.1
+        }
+      ],
+      "swept": "k"
+    },
+    "bend-k-rd3-a90": {
+      "description": "one bend geometry with k = 1 and a higher k",
+      "hypothesis": "bend_flexibility_application",
+      "members": [
+        {
+          "model_id": "cpb-g2-11",
+          "value": 1.0
+        },
+        {
+          "model_id": "cpb-g2-12",
+          "value": 11.7
+        }
+      ],
+      "swept": "k"
+    },
+    "bend-k-rd5-a45": {
+      "description": "one bend geometry with k = 1 and a higher k",
+      "hypothesis": "bend_flexibility_application",
+      "members": [
+        {
+          "model_id": "cpb-g2-13",
+          "value": 1.0
+        },
+        {
+          "model_id": "cpb-g2-14",
+          "value": 6.29
+        }
+      ],
+      "swept": "k"
+    },
+    "bend-k-rd5-a90": {
+      "description": "one bend geometry with k = 1 and a higher k",
+      "hypothesis": "bend_flexibility_application",
+      "members": [
+        {
+          "model_id": "cpb-g2-15",
+          "value": 1.0
+        },
+        {
+          "model_id": "cpb-g2-16",
+          "value": 7.69
+        }
+      ],
+      "swept": "k"
+    },
+    "shear-dt": {
+      "description": "cantilevers of one span and OD with D/t 10, 20, 40, 100",
+      "hypothesis": "shear_deformation",
+      "members": [
+        {
+          "model_id": "cpb-g1-01",
+          "value": 10.0
+        },
+        {
+          "model_id": "cpb-g1-02",
+          "value": 20.0
+        },
+        {
+          "model_id": "cpb-g1-03",
+          "value": 40.0
+        },
+        {
+          "model_id": "cpb-g1-04",
+          "value": 100.0
+        }
+      ],
+      "swept": "dt"
+    },
+    "tee-ratio": {
+      "description": "anchored in-plane tees with branch/run OD ratio 0.3, 0.5, 0.75, 1.0",
+      "hypothesis": "branch_flexibility",
+      "members": [
+        {
+          "model_id": "cpb-g5-01",
+          "value": 0.3
+        },
+        {
+          "model_id": "cpb-g5-02",
+          "value": 0.5
+        },
+        {
+          "model_id": "cpb-g5-03",
+          "value": 0.75
+        },
+        {
+          "model_id": "cpb-g5-04",
+          "value": 1.0
+        }
+      ],
+      "swept": "ratio"
+    }
+  },
+  "tranche": "1"
+}

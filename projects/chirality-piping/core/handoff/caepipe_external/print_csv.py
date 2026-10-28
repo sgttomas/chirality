@@ -23,6 +23,7 @@ from typing import Any
 PARSER_VERSION = "caepipe-print-csv-1"
 DOCUMENT_KIND = "openpipestress.caepipe_print_csv.parsed"
 PAIRING_BASIS = "row_order_from_to_pairs"
+BINDING_BASIS = "writer_id_map_node_pairs"
 _BASIS = "public CAEPIPE-EXPORT-DATA / Print To File page + invented fixture"
 _BLANK_NOTE = "A blank numeric field inside a recognized data row is read as 0.0."
 
@@ -118,6 +119,10 @@ def _coverage() -> list[dict[str, Any]]:
                       f"not read. Rows pair as (from node, to node) in layout order ({PAIRING_BASIS}).")
         if kind == "element_forces_global":
             notes += f" Rows pair as (from node, to node) in layout order ({PAIRING_BASIS})."
+        if kind.startswith("element_forces"):
+            notes += (" bind_element_rows binds each pair to a SWBPIPE member through the writer's element_map by "
+                      f"its two node labels, not by position ({BINDING_BASIS}); an unbound row is reported, never "
+                      "dropped.")
         if kind == "restraint_loads_global":
             notes += " Several rows at one node are summed into that node's entry (info diagnostic)."
         records.append({
@@ -361,6 +366,57 @@ class _Parser:
                     continue
                 table[node] = values
         self.sections_parsed.append({"title": title, "kind": kind, "load_case": case, "line": line, "rows": len(data)})
+
+
+def bind_element_rows(elements: list[dict[str, Any]], element_map: dict[str, Any]) -> dict[str, Any]:
+    """Bind parsed element-force rows to SWBPIPE members through the MBF writer's id map (DEL-17-05 Design §11.4).
+
+    Each parsed element is a (from, to) pair of rows. It binds to the one member whose element_map entry names the
+    same two node labels; each row then belongs to the member end at its node: the CAEPIPE node of SWBPIPE's end_i
+    is the entry's `from`, or its `to` when the entry is `reversed` (the layout runs against the member). Binding
+    never depends on row position. A pair whose labels name no member, or more than one, a second pair for an
+    already bound member, and a member no pair names are each listed as unmatched with the reason; nothing is
+    dropped silently. A pair bound in the other row order, or at another position than the member's layout order,
+    is bound and noted.
+    """
+    by_nodes: dict[frozenset[str], list[str]] = {}
+    for member, entry in element_map.items():
+        if isinstance(entry, dict) and isinstance(entry.get("from"), str) and isinstance(entry.get("to"), str):
+            by_nodes.setdefault(frozenset((entry["from"], entry["to"])), []).append(member)
+    bound: dict[str, dict[str, Any]] = {}
+    unmatched_rows: list[dict[str, Any]] = []
+    notes: list[dict[str, Any]] = []
+    for element in elements:
+        labels = (str(element.get("node_from")), str(element.get("node_to")))
+        row = {"element_index": element.get("element_index"), "node_from": labels[0], "node_to": labels[1]}
+        members = by_nodes.get(frozenset(labels), []) if labels[0] != labels[1] else []
+        if len(members) != 1:
+            unmatched_rows.append({**row, "reason": "no member of the writer's element_map joins these nodes"
+                                   if not members else f"{len(members)} members join these nodes: {', '.join(members)}"})
+            continue
+        member = members[0]
+        if member in bound:
+            unmatched_rows.append({**row, "reason": f"a second row pair for {member}"})
+            continue
+        entry = element_map[member]
+        end_i = entry["to"] if entry.get("reversed") else entry["from"]
+        values = {labels[0]: element.get("from"), labels[1]: element.get("to")}
+        bound[member] = {
+            "element_index": element.get("element_index"),
+            "end_i": {"caepipe_node": end_i, "values": values[end_i]},
+            "end_j": {"caepipe_node": labels[1] if end_i == labels[0] else labels[0],
+                      "values": values[labels[1] if end_i == labels[0] else labels[0]]},
+        }
+        if labels != (entry["from"], entry["to"]):
+            notes.append({**row, "member": member, "note": "rows in the other order than the layout's from and to"})
+        if element.get("element_index") != entry.get("layout_order"):
+            notes.append({**row, "member": member,
+                          "note": f"at position {element.get('element_index')}, layout order {entry.get('layout_order')}"})
+    unmatched_members = [{"member": member, "from": entry.get("from"), "to": entry.get("to"),
+                          "reason": "no element-force row pair names this member's nodes"}
+                         for member, entry in element_map.items() if member not in bound]
+    return {"basis": BINDING_BASIS, "bound": bound, "unmatched_rows": unmatched_rows,
+            "unmatched_members": unmatched_members, "notes": notes}
 
 
 def _normalize(fields: list[str]) -> tuple[str, ...]:

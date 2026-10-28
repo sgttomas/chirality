@@ -473,3 +473,146 @@ classification. It never prints external-prover values outside the local run.
   for the writer cases and for the authored cases (§3, §5), whose outcomes are recorded
   privately in `imported/`. The authored set grows with each importer tranche: each new
   mapping or named refusal gets an authored file.
+- Benchmark (§11): the VM batches of tranche 1, under the settings guard; closed forms for G2 (anchored L
+  with k) and G3 (elastic centre); SWBPIPE's own invariants (equilibrium) as triage step 3; a clean
+  one-parameter R/D series for bend transverse shear; probe P1 and the pressure family; parser sections for
+  frequencies and spectra; the later tranches as their constructs land.
+
+## 11. Benchmark set, tranche 1 (RT-V2)
+
+This section records the method for the benchmark set against CAEPIPE that RT-V2 of
+`docs/RELEASE_TARGET_v1.0.md` requires (§2; method in §3). It compares mechanics only:
+displacements, rotations, element forces and moments, and support loads. Stresses and code
+checks are left out. Tranche 1 covers families G1–G8: linear, Y vertical, temperature-independent
+materials, no pressure. The models, the settings, the comparison rule and the code are public.
+Every run, result, comparison and classification stays in the exchange folder (§8). Nothing in
+this section claims agreement, and nothing in it records, implies or derives acceptance (F-PIP-3).
+
+### 11.1 Models
+
+`tools/caepipe_correlation/benchmark_models.py` writes the invented models to
+`validation/caepipe_benchmark/models/` and their `manifest.json` (seed, generator version, family,
+sampling, parameters, series, model hash and file hash). The generator draws only `random()` from
+`random.Random(seed)`, and its JSON is canonical, so the same seed gives the same bytes. `--check`
+compares the tracked files with a fresh generation. The default seed is 20261028.
+
+| Family | Models | Content |
+|---|---|---|
+| G1 straight spans | 10 | cantilevers (the shear D/t series and two opposite corners), guided cantilever, two- and three-span continuous, fixed–fixed |
+| G2 single bends | 16 | anchored L; R/D 1, 1.5, 3, 5 × 45°, 90° × k = 1 and a sampled k of 3–15 |
+| G3 Z and U loops | 12 | six of each, Latin hypercube |
+| G4 multi-plane | 6 | X leg, riser, Z leg, Latin hypercube |
+| G5 branch tees | 6 | the tee-ratio series (0.3, 0.5, 0.75, 1.0) and two vertical branches |
+| G6, G7 support mixes | 3 + 3 | risers with guides, a spring and a line stop; runs with restraints, guides, line stops and springs |
+| G8 anchor movement | 4 | fixed–fixed translations and a rotation; an L with a general movement |
+
+Sections span OD 60–610 mm and D/t 10–100 (log-uniform). The three invented materials are
+temperature-independent (E 200, 195 and 70 GPa class). Each model has a sustained case (weight
+and forces) and an expansion case (a uniform thermal change, or the anchor movement for G8). Every
+bend carries a user flexibility factor. Closed-form Euler–Bernoulli values are attached to the
+straight members where one exists (G1 cantilevers and fixed–fixed; G8). They are the third,
+independent value, and each was checked against SWBPIPE's solve to binary64 round-off. Forces
+are applied only at free nodes, so each layout row carries one data item. Every model is a tree of
+at most 20 layout rows.
+
+Each model names, per case, the inputs that cannot be held exactly equal (§11.3). A case with none
+is in the exact class.
+
+### 11.2 Writer settings
+
+The benchmark writes an explicit piping code, which the writer then honours (DEL-17-04):
+`render_caepipe_mbf_si(..., piping_code=...)` takes one documented OPTIONS piping-code token
+(*Format of .MBF*, OPTIONS) and writes `OPTIONS HGRA,<code>,SI`. For an ASME B31 code it also
+writes `OPCODE 0,0,0`: B31J is off (field 3), and fields 1 and 2 are code-stress settings only.
+An undocumented token is refused (`MBF-SI-PIPING-CODE-UNSUPPORTED`). The current B31.1 token
+`B311` is written with the warning `MBF-SI-PIPING-CODE-B31J-LOCKED`, because the user's manual
+states that B31.1 (2020 or later) computes SIFs and flexibility factors by B31J (*Analysis*).
+
+Without a code, the text is unchanged (no code token), byte for byte. The info diagnostic
+`MBF-SI-PIPING-CODE-NOT-WRITTEN` then states that the target program's default code applies.
+
+The generator chooses `B311-80`. This is an ASME B31.1 edition that predates B31J, so OPCODE's
+B31J off stands. It is not `NONE`, under which a single static case applies every load together
+(*Analysis*). Pressure correction does not arise, because tranche 1 has no pressure. Gravity is
+the earth default, with Y vertical, as the writer always writes. A user-entered k replaces the
+code's bend flexibility factor (*Bend*). With temperature-independent materials the code's hot or
+cold modulus choice has no effect.
+
+### 11.3 Inputs not held exactly
+
+| Input | Where | Carried by |
+|---|---|---|
+| `shear_deformation`: SWBPIPE's frame route is Euler–Bernoulli, and CAEPIPE's pipe element has a shear term (§7.1) | every case with bending | the `shear-dt` series (G1) and the span series (§7) |
+| `bend_flexibility_application`: whether k also applies to torsion is unpublished | bends | the `bend-k-*` pairs (G2) |
+| `bend_transverse_shear`: SWBPIPE's curved bend has none | bends | R/D 1–5 across G2 |
+
+Branch flexibility is held equal (B31J off, and SWBPIPE assembles none). The `tee-ratio` series
+confirms it.
+
+### 11.4 Binding
+
+Results are bound through the writer's id map and never by position:
+
+- **Nodes:** through `node_map`.
+- **Element forces:** `bind_element_rows` binds each element-force row pair to the member whose
+  `element_map` entry names the same two node labels. Each row belongs to the member end at its
+  node, taking `reversed` into account. Pairs in another order or position are bound and noted.
+  A pair that names no member or several members, a second pair for a member, and a member with
+  no pair are each listed as unmatched.
+- **Supports:** through `support_map` by node. SWBPIPE's reactions at one node are summed,
+  because the printed table has one row per node. A restraint row prints forces only, so moments
+  are compared at anchors alone.
+
+The global element-force rows are the end action on the element at its node, which is the same
+sign convention as SWBPIPE's `element_global_end_*_v1` rows (observed format behaviour). The
+printed support loads are the pipe's load on the support, so they are sign-flipped (§6).
+
+### 11.5 Two-way comparison and screening
+
+`core/handoff/caepipe_external/benchmark.py` compares SWBPIPE's own results, from the headless
+runner, with CAEPIPE's printed results. No analytic value is needed. The compared cases are each
+mapped primitive case and the operating case. For the operating case, SWBPIPE's side is the sum
+of its primitive cases (superposition, linear models) and CAEPIPE's side is its
+`Operating (W+P1+T1)` case.
+
+Each scalar is screened with the RT-V2 §3 **screening profile**. Under the owner's ruling,
+Agent 0 screens with it and the owner's review of the full record decides. The values are only
+tightened:
+
+`|S − C| ≤ a_k + r · max(|S|, |C|, 10⁻³ · Q_k)`
+
+- r = 1e-4 when every input is held exactly, and 5e-3 when a named inexact input remains;
+- a_k = one printed unit: 1e-6 m, 0.0001° (1.745e-6 rad), 1 N, 1 N·m;
+- Q_k = the case maximum of kind k.
+
+Each result is classed `within_profile`, `finding` (outside the profile), `unmatched` (one side
+only, or a printed row that binds to nothing) or `status_mismatch` (a case solved on one side but
+not printed on the other). A closed-form value is kept as the third value with two checks:
+against SWBPIPE (rel 1e-6, binary64 scale) and against CAEPIPE (the profile). A closed form that
+disagrees with SWBPIPE makes the result a finding.
+
+The nonlinear and modal classes of RT-V2 §3 wait for their tranches. The triage order is RT-V2's.
+
+### 11.6 Running
+
+`run_pilot --benchmark <manifest> [--case ID …] [--batch N] [--batch-size N] [--offline]` checks
+each model file against the manifest's hashes, then runs the selected models one at a time in
+serial batches of four by default. For each model it:
+
+1. solves the model in SWBPIPE;
+2. writes the MBF with the model's piping code;
+3. runs the guarded batch round trip;
+4. parses the CSV and builds the record.
+
+It writes `comparison/benchmark_comparison.json` and the case manifest, which is the model's run
+record, to the model's case folder in the exchange folder.
+
+A live run:
+
+- needs `settings_guard`;
+- checks before each batch that no instance of the tool is running;
+- never falls back to the GUI;
+- stops at the first round trip whose guard is not clean, that raised, or that left no CSV (§5).
+
+`--offline` rebuilds the records from the stored, bound CSVs. Standard output carries operational
+status only.
