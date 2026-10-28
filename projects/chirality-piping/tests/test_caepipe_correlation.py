@@ -619,6 +619,61 @@ def test_round_trip_records_route_and_never_runs_a_real_prlctl(tmp_path):
     assert not (config.exchange_root / "_harness" / "round_trip.lock").exists()
 
 
+PRINT_FIXTURE = Path(__file__).resolve().parents[1] / "fixtures" / "caepipe_external" / "invented" / \
+    "print_to_file_results.csv"
+
+
+def _batch_print_round_trip(tmp_path, files: dict[str, bytes], status: str = "csv_from_batch",
+                            reported: str | None = "model.txt") -> dict:
+    """A round trip whose batch print leaves `files` in the guest work folder (collected into caepipe_out)."""
+    tmp_path.mkdir(parents=True, exist_ok=True)
+    config = fake_config(tmp_path)
+
+    def runner(argv, **kwargs):
+        command = argv[6]
+        stdout = ""
+        if command.startswith("powershell"):
+            stdout = json.dumps({"status": status, "gui": {"used": False}, "mbf_sha256": MBF_SHA}
+                                | ({"csv_path": f"C:\\invented-work\\cpc-p\\{reported}"} if reported else {}))
+        if command.startswith("copy /Y") and "caepipe_out" in command:
+            for name, data in files.items():
+                (config.exchange_root / "cases" / "cpc-p" / "caepipe_out" / name).write_bytes(data)
+        return subprocess.CompletedProcess(argv, 0, stdout, "")
+
+    return run_caepipe_round_trip(config, "cpc-p", MBF_TEXT, runner=runner)
+
+
+def test_round_trip_accepts_a_txt_batch_print_only_in_the_print_csv_layout(tmp_path):
+    record_ = _batch_print_round_trip(tmp_path / "valid", {"model.txt": PRINT_FIXTURE.read_bytes()})
+    assert record_["route"] == "csv_from_batch"
+    assert record_["observed_csv_path"]["host"] == "caepipe_out/model.txt"
+    assert record_["print_file"] == {"collected": "model.txt", "layout": "print_csv"}
+
+    record_ = _batch_print_round_trip(tmp_path / "invalid", {"model.txt": b"Invented report\r\nplain text, not a print\r\n"})
+    assert record_["route"] == "print_file_unrecognised"  # refused by name, never read as results
+    assert record_["observed_csv_path"]["host"] is None and record_["print_file"]["collected"] is None
+    assert record_["print_file"]["layout"].startswith("not the print-CSV layout")
+
+    # A .csv print is taken as named, as before.
+    record_ = _batch_print_round_trip(tmp_path / "csv", {"model.csv": b"Invented\n"}, reported="model.csv")
+    assert record_["route"] == "csv_from_batch"
+    assert record_["print_file"] == {"collected": "model.csv", "layout": "as_named"}
+
+
+def test_round_trip_refuses_two_batch_print_files(tmp_path):
+    record_ = _batch_print_round_trip(tmp_path, {"model.csv": PRINT_FIXTURE.read_bytes(),
+                                                 "model.txt": PRINT_FIXTURE.read_bytes()},
+                                      status="print_file_ambiguous", reported=None)
+    assert record_["route"] == "print_file_ambiguous" and record_["observed_csv_path"]["host"] is None
+    assert record_["print_file"]["collected"] is None
+    # The guest script refuses both before reporting either, and never falls back to the GUI then.
+    script = harness.GUEST_SCRIPT.read_text(encoding="utf-8")
+    both = script.index('$log.batch.csv_present -and $log.batch.txt_present')
+    assert both < script.index('if ($log.batch.csv_present) { $log.csv_path')
+    assert both < script.index('if ($log.batch.txt_present) { $log.csv_path')
+    assert 'print_file_ambiguous"; $log | ConvertTo-Json -Depth 6; exit 5' in script
+
+
 def test_round_trip_falls_back_to_a_guest_local_script_copy(tmp_path):
     config = fake_config(tmp_path)
     commands = []

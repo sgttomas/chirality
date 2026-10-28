@@ -56,6 +56,14 @@ It imports the MBF, writes `<model>.mod` and `<model>.res`, and is documented to
 `<model>.csv` beside the MBF. The harness always runs this route first and uses its CSV
 whenever one appears.
 
+The batch print's extension follows the print-file extension saved in the tool's preferences,
+so the same print may be written as `<model>.txt`. The harness collects either and records the
+name collected (`print_file`). `<model>.csv` is taken as named; `<model>.txt` is accepted only
+when the print-CSV parser (§6) recognises its header, parses at least one section and reports no
+error, and is otherwise refused as `print_file_unrecognised` and not read as results. When both
+files are written, neither is taken (`print_file_ambiguous`) and no fallback runs. The saved
+extension itself is never changed.
+
 **Fallback when the batch route yields no result file.** The guest script then stops
 the process it started, opens the solved results in a fresh CAEPIPE instance that it
 starts itself, and prints the results to CSV through the documented print-to-file

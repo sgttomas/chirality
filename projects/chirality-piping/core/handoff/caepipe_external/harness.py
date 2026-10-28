@@ -68,6 +68,9 @@ BATCH_COMMAND_SHAPE = '<exe> "<mbf>";batchmode=yes'
 BOUNDARY_NOTE = "regression/handoff evidence only; not validation, compatibility proof or professional acceptance"
 CASE_LAYERS = ("swbpipe", "caepipe_in", "caepipe_out", "parsed", "comparison")
 OUTPUT_NAMES = ("model.res", "model.mod")
+# The batch print written with a .txt extension (the tool's saved print-file extension); accepted only when its
+# content parses as the documented print-CSV layout (`_print_layout_problem`).
+PRINT_TXT_NAME = "model.txt"
 PRLCTL_ATTEMPTS = 3
 CSV_ROUTES = ("csv_from_batch", "csv_from_gui_print")
 EXPORTED_MBF = "exported.mbf"
@@ -446,7 +449,7 @@ def _locked(config: HarnessConfig, case_id: str, work: Callable[[dict[str, Path]
 
 
 # A new solve also clears the previous solve's MBF export, which no longer describes the solved model.
-_CLEARED_OUTPUTS = {name.lower() for name in (*OUTPUT_NAMES, "guest_stdout.txt", "guest_stderr.txt", "guest_log.json",
+_CLEARED_OUTPUTS = {name.lower() for name in (*OUTPUT_NAMES, PRINT_TXT_NAME, "guest_stdout.txt", "guest_stderr.txt", "guest_log.json",
                                                GUARD_RESULT_FILE,
                                                "run_record.json", *EXPORT_OUTPUTS)}
 
@@ -649,6 +652,25 @@ def _guest_write(config: HarnessConfig, runner: Callable[..., subprocess.Complet
     transport = completed.returncode == 255 and "PrlJob_" in record["stderr"]
     record["outcome"] = "unknown" if transport or completed.returncode == 0 else "failed"
     raise RestoreWriteFailed(name, record["outcome"], completed.returncode)
+
+
+def _print_layout_problem(path: Path) -> str | None:
+    """Why a print file is not the documented print-CSV layout, or None when it is: the strict print parser must
+    recognise its header, parse at least one section and report no error."""
+
+    from .print_csv import read_caepipe_print_csv  # the package imports this module; resolved at call time
+
+    try:
+        parsed = read_caepipe_print_csv(path)
+    except Exception as error:  # an unreadable file is not the layout
+        return f"unreadable: {type(error).__name__}"
+    codes = [item["code"] for item in parsed["diagnostics"]
+             if item["severity"] == "error" or item["code"] == "CAEPIPE-PRINT-HEADER-UNRECOGNIZED"]
+    if codes:
+        return "not the print-CSV layout: " + ", ".join(sorted(set(codes)))
+    if not parsed["sections_parsed"]:
+        return "not the print-CSV layout: no section recognised"
+    return None
 
 
 def _transport_failure(error: BaseException) -> bool:
@@ -1414,8 +1436,8 @@ def _round_trip_body(config: HarnessConfig, case_id: str, mbf_text: str, paths: 
 
     # The guest work copy of the MBF is deleted before the copy, so a failed copy can never leave an older MBF
     # to be solved; a failed prepare step stops the round trip before solving.
-    stale_guest = " ".join(_quote(_win(work, name)) for name in ("model*.csv", "model.mbf", *OUTPUT_NAMES,
-                                                                  OWNED_PIDS_FILE))
+    stale_guest = " ".join(_quote(_win(work, name)) for name in ("model*.csv", "model.mbf", PRINT_TXT_NAME,
+                                                                  *OUTPUT_NAMES, OWNED_PIDS_FILE))
     # The saved settings are read before anything starts the tool; without that reading nothing runs.
     # Precondition: no instance of the tool may be running before ours starts; then the saved settings are read.
     # Without both, nothing runs.
@@ -1453,6 +1475,7 @@ def _round_trip_body(config: HarnessConfig, case_id: str, mbf_text: str, paths: 
             _refuse_links(root, out)  # again just before the guest writes into the layer
             step("collect", " & ".join([
                 f"copy /Y {_quote(_win(work, 'model*.csv'))} {_quote(guest_out)}",
+                f"copy /Y {_quote(_win(work, PRINT_TXT_NAME))} {_quote(_win(guest_out, PRINT_TXT_NAME))}",
                 *(f"copy /Y {_quote(_win(work, name))} {_quote(_win(guest_out, name))}" for name in OUTPUT_NAMES),
             ]))
     except BaseException as caught:  # re-raised below, after the checks
@@ -1559,10 +1582,14 @@ def _round_trip_body(config: HarnessConfig, case_id: str, mbf_text: str, paths: 
         guest_csv = guest_log.get("csv_path") if isinstance(guest_log, dict) else None
         observed = None
         csv_name = guest_csv.replace("/", "\\").split("\\")[-1] if isinstance(guest_csv, str) else ""
+        print_problem = None
         if csv_name not in ("", ".", "..") and input_verified and error is None:
             candidate = contained(root, out / csv_name)
             if candidate.is_file():
                 observed = candidate
+                if csv_name.lower() == PRINT_TXT_NAME:
+                    print_problem = _print_layout_problem(candidate)
+                    observed = None if print_problem else observed
         status = guest_log.get("status") if isinstance(guest_log, dict) else None
         if error is not None:
             route = "harness_error"
@@ -1578,6 +1605,8 @@ def _round_trip_body(config: HarnessConfig, case_id: str, mbf_text: str, paths: 
             route = "no_guest_json"
         elif not input_verified:
             route = "input_hash_mismatch"
+        elif print_problem is not None:
+            route = "print_file_unrecognised"
         elif status in CSV_ROUTES and observed is not None:
             route = status
         elif status in CSV_ROUTES:
@@ -1627,6 +1656,9 @@ def _round_trip_body(config: HarnessConfig, case_id: str, mbf_text: str, paths: 
             "working_directory": work,
             "expected_batch_csv_path": _win(work, "model.csv"),
             "observed_csv_path": {"guest": guest_csv, "host": f"caepipe_out/{observed.name}" if observed else None},
+            "print_file": {"collected": observed.name if observed else None,
+                           "layout": ("print_csv" if observed is not None and csv_name.lower() == PRINT_TXT_NAME
+                                      else print_problem or ("as_named" if observed is not None else None))},
             "route": route,
             "exit_status": solve["exit_status"],
             "stdout_file": "caepipe_out/guest_stdout.txt",
