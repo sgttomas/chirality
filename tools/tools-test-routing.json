@@ -330,6 +330,14 @@
     },
     {
       "paths": [
+        "tools/validation/validate_claims_language.py"
+      ],
+      "checks": [
+        "software_workflow"
+      ]
+    },
+    {
+      "paths": [
         ".github/workflows/piping-desktop-e2e.yml",
         ".github/workflows/shared-build-cache.yml",
         ".github/actions/restore-build-cache/**"

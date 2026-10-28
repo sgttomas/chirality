@@ -267,11 +267,11 @@
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
       "core/product_physics/Cargo.toml": "c20c744000681397398ed1ac1cf8b39d83933152a237a11a2cc8627d75dd3ddf",
       "core/reporting/audit_manifest/Cargo.toml": "b8bc4623a383ed2c22205326bc737486becd9d931bf869e1e8cf40e147f4fad7",
-      "core/reporting/pdf_emitter/Cargo.toml": "9f75adef21b2ea44cf2904ae02636f050b28cc2faef1c17f592acfc9a2cdba9d",
+      "core/reporting/pdf_emitter/Cargo.toml": "bdac876fe00cde0e3ba33a557dafe3e76e96dd462f4a710b63012dada23fca50",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
       "core/reporting/report_generator/Cargo.toml": "625a9a604bf91c108cdbd55f650788f319c27c21390ae536d660a0d640d3c81c",
-      "core/reporting/report_package/Cargo.toml": "9418f4b74738df46dfa645a9a35f9dc023751ad118b3df1e86851ad308acf019",
-      "core/reporting/report_renderer/Cargo.toml": "0cf1acbab841bbc6e81a0a688f481f7ad4efd3689082fb79601f3bab319558aa",
+      "core/reporting/report_package/Cargo.toml": "74a9e721bc13903bac3a9961f541f6e817e5e9b23e0e290d404b78045cbdf17e",
+      "core/reporting/report_renderer/Cargo.toml": "786562d8814ce372f44ba4ec1f5ec7e6ecd7d9424a1a1917d18281c8047faf72",
       "core/reporting/report_sections/Cargo.toml": "44acb66312edbc9bfd77aa2980a898511ac34de67fba0fc773b70007a3aad0f1",
       "core/reporting/result_export/Cargo.toml": "cf42a601fd6447c7c1375d2b9fc1afa56c318fcddf0fc1528d3cd9240f5824cb",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
@@ -279,7 +279,7 @@
       "core/rules/rule_check_runner/Cargo.toml": "88971098b7a02b7cd79ee97788e76d31425865b98a0e51dbdd7d6e8711fb9dc1",
       "core/rules/rule_pack_document/Cargo.toml": "4f7c86c11d3106f5e8ddb32f542784c0913c135011e07f4e6ae1eca976961ae9",
       "core/rules/rule_pack_lifecycle/Cargo.toml": "811d32918f3d13d8d2a9115ebb6ce9b0243078626bc426d8dbd97224eb2dbd56",
-      "core/runner/headless/Cargo.toml": "ee36909c840c1afe248b0be729d5df81ffc6a63d57100d5df5f836b62df5c1e1",
+      "core/runner/headless/Cargo.toml": "524a20eec36fa2f3a625d4324d13d290c81e7fbbee1b856be84ba06ce1a456cb",
       "core/serialization/canonical_json/Cargo.toml": "fb2259bdfcb6adebc877b46e4e1b3126fdf1b08c0b6441a5e4ba49ab75e670a0",
       "core/solver/curved_bend/Cargo.toml": "5d7cf1288eac698c209aa4fd7493fa669aa57494950e75374ac07248001502d8",
       "core/solver/diagnostics/Cargo.toml": "11db1409fcfd3b0312ef80085e36eac4d7a66eb0f4298832137119835b1c92e8",
@@ -2371,6 +2371,8 @@
               "apps/desktop/src-tauri/src/atomic_report_package_save.rs",
               "apps/desktop/src-tauri/src/autosave.rs",
               "apps/desktop/src-tauri/src/autosave_tests.rs",
+              "apps/desktop/src-tauri/src/autosave_commands.rs",
+              "apps/desktop/src-tauri/src/autosave_commands_tests.rs",
               "apps/desktop/src-tauri/src/close_guard.rs",
               "apps/desktop/src-tauri/src/command_ingress.rs",
               "apps/desktop/src-tauri/src/exact_source_binding.rs",
@@ -2404,6 +2406,9 @@
               "apps/desktop/src-tauri/src/stored_read.rs",
               "apps/desktop/src-tauri/src/user_release_admission.rs",
               "apps/desktop/src-tauri/src/user_release_admission_tests.rs",
+              "apps/desktop/src-tauri/src/user_release_reach_scan.rs",
+              "apps/desktop/src-tauri/src/user_release_reach_scan_tests.rs",
+              "apps/desktop/src-tauri/src/user_release_save_tests.rs",
               "apps/desktop/src-tauri/src/worker_alloc.rs",
               "core/gui/viewport_editor/src/lib.rs",
               "core/library_import/library_import_document/src/lib.rs",
@@ -2730,7 +2735,9 @@
               "validation/benchmarks/numerical_robustness/src/sha256.rs",
               "validation/benchmarks/physics_audit_regression/src/lib.rs",
               "validation/benchmarks/stress/src/lib.rs",
-              "validation/references/kd5_timoshenko/runner/src/main.rs"
+              "validation/references/kd5_timoshenko/runner/src/main.rs",
+              "validation/references/m3_judge/runner/build.rs",
+              "validation/references/m3_judge/runner/src/main.rs"
             ],
             "scan": {
               "suffix": ".rs",
@@ -3252,7 +3259,7 @@
         ]
       },
       "core/runner/headless/src/bin/headless_preview_runner.rs": {
-        "sha256": "991c736547fa83563d80d05dfecda85c5ffb5d0db0c0c2f7f99f22cc415ef085",
+        "sha256": "3e491c052b702f08c3038dee8c30e20e32f85bc99303038d2cb748af7973836f",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
@@ -3267,7 +3274,7 @@
         ]
       },
       "core/runner/headless/src/bin/openpipestress-runner.rs": {
-        "sha256": "0a067c0211a36b321e85f2dd330aff5494bf9a91ae935473a7ef3b2d3cca05bc",
+        "sha256": "72e50cfb8c3405ec1769d5ad1d255e20d0118b4399220268b36e6283f5df85e1",
         "source_trees": [
           "core/runner/headless/Cargo.toml"
         ],
@@ -4342,7 +4349,8 @@
               "validation/benchmarks/numerical_robustness/Cargo.toml",
               "validation/benchmarks/physics_audit_regression/Cargo.toml",
               "validation/benchmarks/stress/Cargo.toml",
-              "validation/references/kd5_timoshenko/runner/Cargo.toml"
+              "validation/references/kd5_timoshenko/runner/Cargo.toml",
+              "validation/references/m3_judge/runner/Cargo.toml"
             ],
             "scan": {
               "name": "Cargo.toml",
@@ -4831,6 +4839,8 @@
               "fixtures/reports/invented/report_sections_provenance_records.json",
               "fixtures/reports/invented/state_comparison_handoff_desktop_parity.json",
               "fixtures/reports/invented/user_release_derivation_vectors.json",
+              "fixtures/reports/invented/user_release_record.json",
+              "fixtures/reports/invented/user_release_runner_refusal_request.json",
               "fixtures/results/base_reader_outcomes.json",
               "fixtures/results/invented/derivative_binding_producer_cases.json",
               "fixtures/results/invented/tp_phys_015_canonical_solve_result_envelope.json",
@@ -5322,7 +5332,7 @@
         ]
       },
       "core/reporting/report_package/src/admitted_tests.rs": {
-        "sha256": "855676370507b1312e2f8c0ba773cf7dd81774526371ff9f88e162d9124ce302",
+        "sha256": "35910a01c1c14b18c8e8fbab82e80ca1b43266592a1f34131f0f4a7ddb1651da",
         "source_trees": [
           "core/reporting/report_package/Cargo.toml",
           "core/runner/headless/Cargo.toml"
@@ -5351,6 +5361,87 @@
               "core/reporting/report_package/src/wire.rs"
             ]
           }
+        ]
+      },
+      "core/runner/headless/tests/user_release_runner_refused.rs": {
+        "inputs": [
+          {
+            "anchor": "validation/witness/inputs/del1005_export_results_success_input.json",
+            "base": "project",
+            "files": [
+              "validation/witness/inputs/del1005_export_results_success_input.json"
+            ]
+          },
+          {
+            "anchor": "fixtures/reports/invented/user_release_runner_refusal_request.json",
+            "base": "project",
+            "files": [
+              "fixtures/reports/invented/user_release_runner_refusal_request.json"
+            ]
+          },
+          {
+            "anchor": "src",
+            "base": "manifest",
+            "scan": {
+              "suffix": ".rs"
+            },
+            "audit": "no_runner_source_names_the_admitting_entry recursively reads every .rs file under the crate's exact src boundary and checks its identifiers outside comments and string literals; no file is omitted.",
+            "files": [
+              "core/runner/headless/src/benchmark_binding.rs",
+              "core/runner/headless/src/bin/headless_preview_runner.rs",
+              "core/runner/headless/src/bin/openpipestress-runner.rs",
+              "core/runner/headless/src/lib.rs",
+              "core/runner/headless/src/load_reference_route_tests.rs",
+              "core/runner/headless/src/reader_binding.rs",
+              "core/runner/headless/src/redaction_binding.rs",
+              "core/runner/headless/src/result_envelope_binding.rs"
+            ]
+          },
+          {
+            "anchor": "tests",
+            "base": "manifest",
+            "scan": {
+              "suffix": ".rs"
+            },
+            "audit": "no_runner_source_names_the_admitting_entry recursively reads every .rs file under the crate's exact tests boundary and checks its identifiers outside comments and string literals; no file is omitted.",
+            "files": [
+              "core/runner/headless/tests/del1005_package_witness.rs",
+              "core/runner/headless/tests/exact_admission_seam.rs",
+              "core/runner/headless/tests/exact_route_refusals.rs",
+              "core/runner/headless/tests/load_reference_cli.rs",
+              "core/runner/headless/tests/object_form_cli.rs",
+              "core/runner/headless/tests/objective_connector.rs",
+              "core/runner/headless/tests/physics_source_connected.rs",
+              "core/runner/headless/tests/pressure_export.rs",
+              "core/runner/headless/tests/preview_physics_admission.rs",
+              "core/runner/headless/tests/reader_cli.rs",
+              "core/runner/headless/tests/refused_package_ids.rs",
+              "core/runner/headless/tests/retained_precision_admission.rs",
+              "core/runner/headless/tests/s11g_zero_work_receipt.rs",
+              "core/runner/headless/tests/tied_joint_references.rs",
+              "core/runner/headless/tests/untied_joint_pressure_references.rs",
+              "core/runner/headless/tests/user_release_runner_refused.rs"
+            ]
+          }
+        ],
+        "sha256": "910bff8891fb6d32aebbc9fbccbed8fa058c6ae41e1e4388dc5bf0e5689ca10e",
+        "source_trees": [
+          "core/runner/headless/Cargo.toml"
+        ]
+      },
+      "core/reporting/report_package/tests/user_release_package.rs": {
+        "inputs": [
+          {
+            "anchor": "../../../fixtures/reports/invented/user_release_runner_refusal_request.json",
+            "base": "manifest",
+            "files": [
+              "fixtures/reports/invented/user_release_runner_refusal_request.json"
+            ]
+          }
+        ],
+        "sha256": "bd21eafec49c7f785fc3cd0f23a864f74c3e6a3e5e1f860ddd4d4bec456ec12c",
+        "source_trees": [
+          "core/reporting/report_package/Cargo.toml"
         ]
       }
     }
