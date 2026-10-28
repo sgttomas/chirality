@@ -2594,6 +2594,7 @@
               "core/reporting/result_export/src/section_basis.rs",
               "core/reporting/result_export/src/semantic_contract.rs",
               "core/reporting/result_export/src/source_blocks.rs",
+              "core/reporting/result_export/src/source_blocks_spring_tests.rs",
               "core/reporting/result_export/src/u4b_evidence.rs",
               "core/rules/completeness_checker/src/lib.rs",
               "core/rules/expression_evaluator/src/lib.rs",
