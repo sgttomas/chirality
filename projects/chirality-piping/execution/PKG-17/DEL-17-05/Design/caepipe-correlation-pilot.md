@@ -358,59 +358,57 @@ folder inside a Git work tree.
 
 <!-- policy-text -->
 Benchmark agreement with CAEPIPE is published (owner, 2026-10-28): <!-- owner-words -->"Benchmark agreement with CAEPIPE will indeed be published. That part should be out in the open because the whole point is to feed into CAEPIPE and expect the results to come out the same (but validated to Code and to the reputation of CAEPIPE)."<!-- /owner-words -->
-It appears in one surface, `validation/caepipe_benchmark/published/`, and only as agreement
-summaries in this form, each its own paragraph:
+It appears in one surface, `validation/caepipe_benchmark/published/`, and only as one summary,
+published as data and rendered from it:
 
-```markdown
-<!-- benchmark-agreement -->
-- Benchmark set: <benchmark_set>
-- CAEPIPE version: <target_version>
-- Models: <count>; cases: <count>
-- Tolerance class: <tolerance_class>, ruled <ruled_on>
-- Agreement: <agreed> of <total> quantities agree within the ruled <tolerance_class> class.
-- Displacements: maximum difference <measured> against the ruled <tolerance_class> threshold <threshold>
-<!-- /benchmark-agreement -->
-```
+- `summary.json` (schema `schemas/caepipe_benchmark_summary.schema.json`) holds the benchmark
+  set's id and version, the CAEPIPE version, the model and case counts, and for each output
+  family, by family id, the agreement count over the total and the maximum difference in the
+  unit the owner ruled for that family. A maximum difference is a measured number, never a
+  threshold; thresholds come only from the ruling record below.
+- `summary.md` is the check's one fixed rendering of `summary.json` with the ruling record
+  (`check_public_observations.py --render-summary`): the identifiers and counts, the tolerance
+  class and its ruling date, a table of each family's agreement, maximum difference and ruled
+  threshold, and the canonical reliance sentence below. It must equal that rendering exactly.
 
-The first five lines appear once each. A family line (Displacements, Rotations, Forces,
-Moments or Reactions) appears at most once per family and supports the agreement statement
-with the family's maximum difference against the ruled threshold; quantities are a number
-with `%`, `ppm`, `mm`, `m`, `mrad`, `rad`, `deg`, `N`, `kN`, `N·m` or `kN·m`. The identifiers,
-version, class and date are those of the gate below. A threshold is a value the owner ruled,
-and appears in the owner's ruling words; a difference or tolerance measured from results is
-never presented as a threshold. Nothing else goes in a summary: raw result values,
-per-model listings, customer and other non-benchmark models, and CAEPIPE's output files stay
-in the exchange folder. Outside a summary, no public text, PRs and commits included,
-restates agreement; it may point to the surface. Defects, crashes, trial limits, the evaluation stamp, performance, screenshots, survey notes and
-user-interface critique stay private, in the surface too.
+The summary's families and units are the ruling record's exactly. Nothing else is published:
+raw result values, per-model listings, customer and other non-benchmark models, and CAEPIPE's
+output files stay in the exchange folder. Outside the summary, no public text, PRs and commits
+included, restates agreement; it may point to the surface. Defects, crashes, trial limits, the
+evaluation stamp, performance, screenshots, survey notes and user-interface critique stay
+private, in the surface too.
 
 Nothing is published before two owner acts: the owner rules the external-oracle tolerance
 class (§7), and the owner checks CAEPIPE's full licence and any trial-download terms for the
-publication of benchmark results (Agent 0, 2026-10-28). Both are recorded in one section of
-the governing record `loop/LOOP_INIT.md`, in the owner's words, each with its marker inside
-the owner-words span (`<!-- owner-ruling: tolerance-class -->` and
-`<!-- owner-ruling: licence-terms-checked -->`); the section cites the ruling's date and the
-tolerance class's identifier. The surface's `publication.json` carries the gate:
-`tolerance_class_ruled` and `licence_terms_checked` stay `false` until then. Setting the gate
-sets both `true` and records `ruled_on` (a calendar date), `recorded_in`
-(`projects/chirality-piping/loop/LOOP_INIT.md#<section anchor>`), `benchmark_set`,
-`tolerance_class` and `target_version`. A missing manifest or `tolerance_class_ruled: false`
-leaves the gate unset. Anything else short of a complete gate is an operational error of the
-check: a malformed manifest, a manifest or record that is not a regular file, any other
-record (the manifest, a README, a directory), a missing or ambiguous section, or a section
-without both markers in owner-words, the date or the class.
+publication of benchmark results (Agent 0, 2026-10-28). When the owner has done both, Agent 0
+quotes the owner's words in `loop/LOOP_INIT.md` inside owner-words spans and adds the ruling
+record `loop/rulings/caepipe-benchmark-publication.json` (schema
+`schemas/caepipe_benchmark_ruling.schema.json`): the ruling date (a calendar date), the
+tolerance class, for each output family its id, the ruled threshold and its exact unit from the
+closed list the family allows (`%`, `ppm`, `mm`, `m`, `mrad`, `rad`, `deg`, `N`, `kN`, `N·m`,
+`kN·m`), `licence_terms_checked: true` with its date, and the owner's words quoted verbatim.
+Until then the record is absent. The gate is that record: it exists at the checked head as a
+regular file, validates against its schema, and each of its quotes appears verbatim in a live
+owner-words span of `loop/LOOP_INIT.md`, one outside fenced, indented and inline code and
+outside HTML comments. A record that is present and fails any of these is an operational error
+of the check. No marker string or comment is evidence.
 
-While the gate at the checked head is set, the check allows a result about CAEPIPE only on
-the lines of a well-formed summary in the surface's Markdown, and refuses every other kind
-there as elsewhere; a malformed summary line is a finding. In the surface, owner-words and
-policy-text spans exempt nothing, and the check refuses acceptance, validation, compliance,
-compatibility and release words: published agreement is not acceptance, validation of a
+The check verifies the summary structurally at the checked head, whatever a change touched.
+Without a valid ruling record, any `summary.json` or `summary.md` in the surface is refused,
+whatever its whitespace, fences or formatting. With one, `summary.json` must validate and match
+the ruling, and `summary.md` must equal its rendering; the two files are then screened for
+private tokens only. Every other file in the surface, the README included, is screened in full
+as text about CAEPIPE, with no owner-words or policy-text exemption: any numeric result there is
+a finding, as are every other kind of evaluation and acceptance, validation, compliance,
+compatibility and release words. Published agreement is not acceptance, validation of a
 user's design, code compliance, compatibility or a release (F-PIP-3; AC-001). Reliance on
-SWBPIPE's results stays with the user, and acceptance, issuance and release remain the
-owner's acts. The surface's `README.md` states this in the one canonical sentence, inside a
-`<!-- reliance -->` span; any other wording there is a finding. A symlink in the surface, on
-its path, or pointing into it is a finding. Everywhere, the check also refuses agreement
-stated without a number and critique of CAEPIPE's user interface.
+SWBPIPE's results stays with the user, and acceptance, issuance and release remain the owner's
+acts. The surface's `README.md` may state this only in the one canonical sentence, inside a
+`<!-- reliance -->` span. A symlink in the surface or on its path, or one whose resolution at the
+checked head, through any chain of links, enters, leaves or ends at or above the surface, is a
+finding. Everywhere, the check also refuses agreement asserted without a number, survey-note
+text and critique of CAEPIPE's user interface, while format facts such as sign conventions,
+labels and units stay public.
 <!-- /policy-text -->
 
 ## 9. Regression check

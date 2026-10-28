@@ -443,7 +443,7 @@ def test_integer_results_and_counts_are_blocked(tmp_path, text):
     "Acmepipe CSV sections have 2 rows of headers.\n",
     "The importer converts Acmepipe inch lengths at 25.4 mm per inch, so values match exactly.\n",
     "Acmepipe weights in kgf convert at 9.80665 N/kgf, and the writer differs only in units.\n",
-    "The survey notes list a trial of the editor's undo stack.\n",
+    "Survey proposals describe a trial feature in the project's own words.\n",
     "The Acmepipe user's manual gives no default for the gravitational acceleration.\n",
 ])
 def test_format_facts_conversions_and_survey_context_pass(tmp_path, text):
@@ -568,39 +568,48 @@ def test_an_equation_stated_as_cross_tool_agreement_is_a_result(tmp_path):
 
 
 
-# Benchmark agreement is published only in the designated surface, in the defined summary form, once its gate
-# records the owner's tolerance-class and licence-terms rulings (owner, 2026-10-28). Every sentence, identifier,
+# Benchmark agreement is published only in the designated surface, as a summary rendered from data, once the owner's
+# ruling record exists, validates and quotes the owner's words (owner, 2026-10-28). Every sentence, identifier,
 # value and ruling below is invented.
 SURFACE = check.PUBLISHED_SURFACE
-RECORD = check.GATE_RECORD
+LOOP = check.GATE_RECORD
 REPORT_PATH = SURFACE + "report.md"
-RULING = ("# Loop\n\n## Benchmark tolerance ruling\n\n"
-          "Owner, 2026-11-02, class TC-1: <!-- owner-words --><!-- owner-ruling: tolerance-class -->"
-          "\"Use 0.5 % for displacements and 1 N for forces.\"<!-- /owner-words -->\n"
-          "Owner, 2026-11-02: <!-- owner-words --><!-- owner-ruling: licence-terms-checked -->"
-          "\"I have read the licence and download terms.\"<!-- /owner-words -->\n\n## Next\n\nOther text.\n")
-GATE = {"document_kind": check.PUBLICATION_KIND, "tolerance_class_ruled": True, "licence_terms_checked": True,
-        "ruled_on": "2026-11-02", "recorded_in": RECORD + "#benchmark-tolerance-ruling", "benchmark_set": "BS-1",
-        "tolerance_class": "TC-1", "target_version": "9.99"}
-SUMMARY_LINES = ["- Benchmark set: BS-1", "- Acmepipe version: 9.99", "- Models: 12; cases: 35",
-                 "- Tolerance class: TC-1, ruled 2026-11-02",
-                 "- Agreement: 35 of 35 quantities agree within the ruled TC-1 class.",
-                 "- Displacements: maximum difference 0.12 % against the ruled TC-1 threshold 0.5 %",
-                 "- Forces: maximum difference 0.3 N against the ruled TC-1 threshold 1 N"]
+TOLERANCE_WORDS = "Class TC-1: 0.5 % on displacements and 1 N on forces."
+LICENCE_WORDS = "I have read the full licence and the download terms."
+LOOP_TEXT = ("# Loop\n\n## Rulings\n\n"
+             f"Owner, 2026-11-02: <!-- owner-words -->\"{TOLERANCE_WORDS}\"<!-- /owner-words -->\n"
+             f"Owner, 2026-11-01: <!-- owner-words -->{LICENCE_WORDS}<!-- /owner-words -->\n")
+RULING = {"document_kind": "swbpipe.caepipe_benchmark_ruling", "ruled_on": "2026-11-02", "tolerance_class": "TC-1",
+          "families": [{"id": "displacements", "threshold": 0.5, "unit": "%"},
+                       {"id": "forces", "threshold": 1, "unit": "N"}],
+          "licence_terms_checked": True, "licence_terms_checked_on": "2026-11-01",
+          "owner_words": [TOLERANCE_WORDS, LICENCE_WORDS]}
+SUMMARY = {"document_kind": "swbpipe.caepipe_benchmark_summary", "benchmark_set": {"id": "BS-1", "version": "3"},
+           "caepipe_version": "9.99", "models": 12, "cases": 35,
+           "families": [{"id": "forces", "agreed": 34, "total": 35, "max_difference": 1.2, "unit": "N"},
+                        {"id": "displacements", "agreed": 35, "total": 35, "max_difference": 0.12, "unit": "%"}]}
 AGREEMENT_TEXT = "SWBPIPE and Acmepipe 9.99 agree within 0.5 % on 35 of 35 quantities.\n"
 RELIANCE = ("<!-- reliance -->\n" + check.RELIANCE_STATEMENT + "\n<!-- /reliance -->\n")
+SUMMARY_KINDS = {"benchmark summary without the owner's ruling record", "benchmark summary does not validate against its schema",
+                 "benchmark summary families differ from the owner's ruling", "benchmark summary unit differs from the owner's ruling",
+                 "benchmark summary agreement count exceeds its total", "benchmark summary Markdown differs from its rendering",
+                 "benchmark summary missing or not a regular file", "benchmark summary is not well-formed JSON"}
 
 
-def manifest(**changes) -> str:
-    return check.json.dumps({**GATE, **changes})
+def dump(document) -> str:
+    return check.json.dumps(document, indent=2, ensure_ascii=False) + "\n"
 
 
-def summary(lines=SUMMARY_LINES) -> str:
-    return "# Report\n\n<!-- benchmark-agreement -->\n" + "\n".join(lines) + "\n<!-- /benchmark-agreement -->\n"
+def rendered(summary=SUMMARY, ruling=RULING) -> str:
+    return check.render_summary(summary, ruling)
 
 
-def gated(record: str = RULING, **files: str) -> dict[str, str]:
-    return {check.PUBLICATION_MANIFEST: manifest(), RECORD: record, **files}
+def published(ruling=RULING, summary=SUMMARY, loop: str = LOOP_TEXT, text: str | None = None, **files: str) -> dict:
+    out = {LOOP: loop, check.SUMMARY_DATA: dump(summary),
+           check.SUMMARY_TEXT: rendered(summary, RULING) if text is None else text, **files}
+    if ruling is not None:
+        out[check.RULING_RECORD] = dump(ruling)
+    return out
 
 
 def kinds(findings: list[str]) -> set[str]:
@@ -622,106 +631,184 @@ def run_links(tmp_path: Path, files: dict[str, str], links: dict[str, str]) -> l
     return check.check_range(repo, "main", "topic", check.load_terms(write_terms(tmp_path)))
 
 
-def test_a_well_formed_summary_passes_once_the_gate_is_set(tmp_path):
-    assert run(tmp_path, gated(**{REPORT_PATH: summary() + "\n" + RELIANCE})) == []
+def test_a_rendered_summary_passes_with_a_valid_ruling_record(tmp_path):
+    assert run(tmp_path, published(**{SURFACE + "README.md": "# Folder\n\n" + RELIANCE})) == []
+    text = rendered()
+    # Families follow the ruling's order; thresholds and units come from the ruling, differences from the data.
+    assert "| Displacements | 35 of 35 | 0.12 % | 0.5 % |\n| Forces | 34 of 35 | 1.2 N | 1 N |" in text
+    assert "Tolerance class: TC-1, ruled by the owner on 2026-11-02" in text and check.RELIANCE_STATEMENT in text
 
 
-def test_a_summary_is_refused_while_the_gate_is_unset(tmp_path):
-    unset = {check.PUBLICATION_MANIFEST: manifest(tolerance_class_ruled=False), REPORT_PATH: summary()}
-    assert "result about the target tool" in kinds(run(tmp_path / "f", unset))
-    assert "result about the target tool" in kinds(run(tmp_path / "m", {REPORT_PATH: summary()}))
+def blank_after_version(text: str) -> str:
+    return text.replace("- CAEPIPE version: 9.99\n", "- CAEPIPE version: 9.99\n\n")
+
+
+def fenced(text: str) -> str:
+    return "```\n" + text + "```\n"
+
+
+# Round 2, P1: with the gate unset, a summary passed after a blank line after the version or inside a code fence.
+@pytest.mark.parametrize("variant", [lambda text: text, blank_after_version, fenced])
+def test_without_a_ruling_record_any_summary_file_is_refused_whatever_its_formatting(tmp_path, variant):
+    files = published(ruling=None, text=variant(rendered()))
+    findings = run(tmp_path, files)
+    assert {f"{check.SUMMARY_DATA}:1: benchmark summary without the owner's ruling record",
+            f"{check.SUMMARY_TEXT}:1: benchmark summary without the owner's ruling record"} <= set(findings)
+    only_text = {key: value for key, value in files.items() if key != check.SUMMARY_DATA}
+    assert f"{check.SUMMARY_TEXT}:1: benchmark summary without the owner's ruling record" in run(tmp_path / "t", only_text)
+
+
+@pytest.mark.parametrize("variant", [lambda text: text, blank_after_version, fenced])
+@pytest.mark.parametrize("ruled", [True, False])
+def test_a_summary_elsewhere_in_the_surface_is_refused_whatever_its_formatting(tmp_path, variant, ruled):
+    files = published(ruling=RULING if ruled else None, **{REPORT_PATH: variant(rendered())})
+    files.pop(check.SUMMARY_DATA), files.pop(check.SUMMARY_TEXT)
+    assert "result number in the published surface outside the rendered summary" in kinds(run(tmp_path, files))
 
 
 @pytest.mark.parametrize("path", ["doc/report.md", "projects/chirality-piping/validation/caepipe_benchmark/report.md",
-                                  "projects/chirality-piping/validation/caepipe_benchmark/published-draft/report.md",
-                                  SURFACE + "report.txt"])
-def test_a_summary_outside_the_surface_is_refused_with_the_gate_set(tmp_path, path):
-    assert "result about the target tool" in kinds(run(tmp_path, gated(**{path: summary()})))
+                                  "projects/chirality-piping/validation/caepipe_benchmark/published-draft/summary.md"])
+def test_a_summary_outside_the_surface_is_refused_with_the_ruling_recorded(tmp_path, path):
+    assert "result about the target tool" in kinds(run(tmp_path, published(**{path: AGREEMENT_TEXT})))
 
 
-def test_agreement_in_the_surface_outside_a_summary_is_refused(tmp_path):
-    findings = run(tmp_path, gated(**{REPORT_PATH: summary() + "\n" + AGREEMENT_TEXT}))
-    assert findings == [f"{REPORT_PATH}:{len(SUMMARY_LINES) + 6}: result about the target tool"]
+def test_agreement_in_the_surface_outside_the_rendered_summary_is_refused(tmp_path):
+    findings = kinds(run(tmp_path, published(**{SURFACE + "notes.md": "Displacements: 35/35.\n\nForces: 0.3 N.\n"})))
+    assert findings == {"result number in the published surface outside the rendered summary"}
 
 
-@pytest.mark.parametrize("line", [
-    "- n1_uy: SWBPIPE 1.234 mm, Acmepipe 1.236 mm",  # a raw result value
-    "- Model cpc-01: 12 of 12 quantities agree within the ruled TC-1 class",  # a per-model listing
-    "- Benchmark set: CUSTOMER-7",  # a customer or non-benchmark model set
-    "- Moments: maximum difference 0.4 N·m against the ruled TC-1 threshold 0.4 N·m",  # a measured threshold
-    "- Rotations: maximum difference 0.1 % against the ruled TC-2 threshold 0.5 %",  # another class
-    "- Acmepipe version: 9.98",
-    "- Tolerance class: TC-1, ruled 2026-11-03",
-    "- Agreement: 36 of 35 quantities agree within the ruled TC-1 class",
-    "- Forces: maximum difference 0.2 N against the ruled TC-1 threshold 1 N",  # a second line for one family
-    "- Displacements agree closely",
+@pytest.mark.parametrize("edit", [
+    lambda text: text.replace("| 0.5 % |", "| 0.6 % |"),  # a threshold that is not the ruling's
+    lambda text: text.replace("0.12 %", "0.12 mm"),
+    lambda text: text + "\nThe n1 displacement was 1.234 mm in both.\n",  # a raw value
+    lambda text: text.replace("\n\n|", "\n|", 1),
+    lambda text: text.rstrip("\n"),
 ])
-def test_a_line_outside_the_summary_form_is_refused(tmp_path, line):
-    findings = run(tmp_path, gated(**{REPORT_PATH: summary(SUMMARY_LINES + [line])}))
-    assert "benchmark agreement line outside the defined form" in kinds(findings)
-    assert "result about the target tool" in kinds(findings) or "qualitative result about the target tool" in kinds(findings) \
-        or not any(word in line for word in ("agree", "difference"))
+def test_summary_markdown_must_equal_its_rendering_exactly(tmp_path, edit):
+    findings = run(tmp_path, published(text=edit(rendered())))
+    assert f"{check.SUMMARY_TEXT}:1: benchmark summary Markdown differs from its rendering" in findings
 
 
-def test_a_summary_lacking_a_required_line_or_standing_in_a_paragraph_is_refused(tmp_path):
-    findings = run(tmp_path / "r", gated(**{REPORT_PATH: summary([SUMMARY_LINES[0]] + SUMMARY_LINES[3:])}))
-    assert "benchmark agreement summary lacks a required line" in kinds(findings)
-    joined = summary().replace("# Report\n\n", "Intro text.\n")
-    assert "benchmark agreement summary not set apart by blank lines" in kinds(
-        run(tmp_path / "p", gated(**{REPORT_PATH: joined})))
+def family(**changes) -> dict:
+    return {**SUMMARY, "families": [{**SUMMARY["families"][0], **changes}, SUMMARY["families"][1]]}
 
 
-def test_a_defect_inside_a_summary_is_refused(tmp_path):
-    findings = run(tmp_path, gated(**{REPORT_PATH: summary(SUMMARY_LINES + ["- Acmepipe 9.99 crashed on 3 models"])}))
-    assert {"defect or limit about the target tool", "benchmark agreement line outside the defined form"} <= kinds(findings)
-
-
-@pytest.mark.parametrize("text", ["<!-- benchmark-agreement -->\n- Benchmark set: BS-1\n",
-                                  "Text <!-- benchmark-agreement --> inline.\n"])
-def test_a_misplaced_summary_marker_is_an_operational_error(tmp_path, text):
-    with pytest.raises(ValueError):
-        run(tmp_path, gated(**{REPORT_PATH: text}))
-
-
-@pytest.mark.parametrize("changes, record", [
-    ({"recorded_in": check.PUBLICATION_MANIFEST}, RULING),  # the manifest itself
-    ({"recorded_in": SURFACE + "README.md#benchmark-tolerance-ruling"}, RULING),  # a README
-    ({"recorded_in": "projects/chirality-piping/loop#benchmark-tolerance-ruling"}, RULING),  # a directory
-    ({"recorded_in": RECORD}, RULING),  # no section
-    ({"recorded_in": RECORD + "#missing"}, RULING),
-    ({"ruled_on": "2026-99-99"}, RULING),
-    ({"ruled_on": "2026-02-30"}, RULING),
-    ({"ruled_on": "2026-11-03"}, RULING),  # a date the section does not cite
-    ({"licence_terms_checked": False}, RULING),
-    ({"tolerance_class": "TC-9"}, RULING),
-    ({"benchmark_set": None}, RULING),
-    ({"tolerance_class_ruled": "yes"}, RULING),
-    ({"document_kind": "swbpipe.other"}, RULING),
-    ({}, RULING.replace("<!-- owner-ruling: licence-terms-checked -->", "")),
-    ({}, RULING.replace("<!-- owner-words --><!-- owner-ruling: tolerance-class -->",
-                        "<!-- owner-ruling: tolerance-class --><!-- owner-words -->")),  # outside owner-words
-    ({}, RULING.replace("## Next", "## Benchmark tolerance ruling")),  # an ambiguous section
+# Round 2, P1: thresholds are bound to explicit, family-specific owner rulings with exact units.
+@pytest.mark.parametrize("summary, kind", [
+    (family(unit="kN"), "benchmark summary unit differs from the owner's ruling"),  # a unit prefix
+    ({**SUMMARY, "families": [SUMMARY["families"][1], {**SUMMARY["families"][1], "unit": "mm"}]},
+     "benchmark summary families differ from the owner's ruling"),  # one family twice
+    (family(id="moments", unit="N·m"), "benchmark summary families differ from the owner's ruling"),  # not ruled
+    ({**SUMMARY, "families": SUMMARY["families"][1:]}, "benchmark summary families differ from the owner's ruling"),
+    (family(threshold=1), "benchmark summary does not validate against its schema"),  # thresholds are the ruling's
+    (family(max_difference="1.2 N"), "benchmark summary does not validate against its schema"),
+    (family(max_difference=-0.1), "benchmark summary does not validate against its schema"),
+    (family(agreed=36), "benchmark summary agreement count exceeds its total"),
+    (family(unit="mm"), "benchmark summary does not validate against its schema"),  # a displacement unit on forces
+    ({**SUMMARY, "models": 0}, "benchmark summary does not validate against its schema"),
+    ({**SUMMARY, "notes": "per-model listing"}, "benchmark summary does not validate against its schema"),
+    ({**SUMMARY, "caepipe_version": "9.99 (evaluation)"}, "benchmark summary does not validate against its schema"),
 ])
-def test_a_gate_without_its_governing_ruling_is_an_operational_error(tmp_path, changes, record):
-    files = {check.PUBLICATION_MANIFEST: manifest(**changes), RECORD: record, "doc/a.md": "generic\n"}
+def test_summary_data_must_match_the_ruling_and_its_schema(tmp_path, summary, kind):
+    files = published(summary=summary, text=rendered())  # the valid rendering, so only the data is wrong
+    findings = run(tmp_path, files)
+    assert f"{check.SUMMARY_DATA}:1: {kind}" in findings
+
+
+def test_malformed_or_missing_summary_files_are_refused(tmp_path):
+    files = published()
+    files[check.SUMMARY_DATA] = '{"models": 1, "models": 2}\n'
+    assert kinds(run(tmp_path / "d", files)) >= {"benchmark summary is not well-formed JSON"}
+    files = published()
+    files[check.SUMMARY_DATA] = dump(SUMMARY).replace("0.12", "NaN")
+    assert "benchmark summary is not well-formed JSON" in kinds(run(tmp_path / "n", files))
+    files = published()
+    files.pop(check.SUMMARY_TEXT)
+    assert f"{check.SUMMARY_TEXT}:1: benchmark summary missing or not a regular file" in run(tmp_path / "m", files)
+
+
+def test_a_symlinked_summary_is_refused(tmp_path):
+    files = published(**{SURFACE + "real.md": rendered()})
+    files.pop(check.SUMMARY_TEXT)
+    findings = run_links(tmp_path, files, {check.SUMMARY_TEXT: "real.md"})
+    assert f"{check.SUMMARY_TEXT}:1: benchmark summary missing or not a regular file" in findings
+
+
+def ruling(**changes) -> dict:
+    return {**RULING, **changes}
+
+
+@pytest.mark.parametrize("record", [
+    ruling(ruled_on="2026-02-30"), ruling(licence_terms_checked_on="2026-13-01"), ruling(ruled_on="2 Nov 2026"),
+    ruling(licence_terms_checked=False), ruling(licence_terms_checked="yes"),
+    {key: value for key, value in RULING.items() if key != "owner_words"}, ruling(owner_words=[]),
+    ruling(owner_words=["0.5 %"]),  # too short to be the owner's ruling words
+    ruling(owner_words=["Class TC-1: 0.5 % on displacements and 2 N on forces."]),  # not the owner's words
+    ruling(families=[]), ruling(families=RULING["families"] + [RULING["families"][0]]),  # a family twice
+    ruling(families=[{"id": "displacements", "threshold": 0.5, "unit": "N"}]),  # a force unit on displacements
+    ruling(families=[{"id": "displacements", "threshold": 0.5, "unit": "inch"}]),  # outside the closed list
+    ruling(families=[{"id": "displacements", "threshold": "0.5 %", "unit": "%"}]),
+    ruling(families=[{"id": "displacements", "threshold": 0, "unit": "%"}]),
+    ruling(families=[{"id": "stresses", "threshold": 1, "unit": "%"}]),
+    ruling(tolerance_class="TC 1"), ruling(document_kind="swbpipe.other"), ruling(extra="x"),
+])
+def test_an_invalid_ruling_record_is_an_operational_error(tmp_path, record):
+    files = published(ruling=record)
     with pytest.raises(ValueError):
         run(tmp_path, files)
     assert check.main(["--terms-file", str(write_terms(tmp_path)), "--repo", str(tmp_path / "repo"), "--base", "main",
                        "--head", "topic"]) == 2
 
 
-def test_a_malformed_manifest_is_an_operational_error(tmp_path):
+def test_a_ruling_record_with_a_duplicate_key_or_a_symlink_is_an_operational_error(tmp_path):
+    files = published()
+    files[check.RULING_RECORD] = dump(RULING).replace('"ruled_on": "2026-11-02"',
+                                                      '"ruled_on": "2026-11-02", "ruled_on": "2026-11-03"')
     with pytest.raises(ValueError):
-        run(tmp_path, {check.PUBLICATION_MANIFEST: "{not json", "doc/a.md": "generic\n"})
+        run(tmp_path / "k", files)
+    files = published(**{"projects/chirality-piping/loop/rulings/real.json": dump(RULING)})
+    files.pop(check.RULING_RECORD)
+    with pytest.raises(ValueError):
+        run_links(tmp_path / "s", files, {check.RULING_RECORD: "real.json"})
+    files = published(**{"projects/chirality-piping/loop/real.md": LOOP_TEXT})
+    files.pop(LOOP)
+    with pytest.raises(ValueError):
+        run_links(tmp_path / "l", files, {LOOP: "real.md"})
 
 
-def test_a_symlinked_gate_record_or_manifest_is_an_operational_error(tmp_path):
-    record = {check.PUBLICATION_MANIFEST: manifest(), "projects/chirality-piping/loop/real.md": RULING}
+def quoted(words: str) -> str:
+    return "<!-- owner-words -->" + words + "<!-- /owner-words -->"
+
+
+# Round 2, P1: owner markers inside fenced or HTML-commented examples activated the gate.
+@pytest.mark.parametrize("loop", [
+    "# Loop\n\n```markdown\n" + quoted(TOLERANCE_WORDS) + "\n```\n\n" + quoted(LICENCE_WORDS) + "\n",
+    "# Loop\n\n~~~~\n" + quoted(TOLERANCE_WORDS) + "\n~~~~\n\n" + quoted(LICENCE_WORDS) + "\n",
+    "# Loop\n\n<!--\nExample: " + quoted(TOLERANCE_WORDS) + "\n-->\n\n" + quoted(LICENCE_WORDS) + "\n",
+    "# Loop\n\n<!-- " + TOLERANCE_WORDS + " -->\n\n" + quoted(LICENCE_WORDS) + "\n",
+    "# Loop\n\n" + quoted("<!-- " + TOLERANCE_WORDS + " -->") + "\n\n" + quoted(LICENCE_WORDS) + "\n",
+    "# Loop\n\nWrite `" + quoted(TOLERANCE_WORDS) + "` for a ruling.\n\n" + quoted(LICENCE_WORDS) + "\n",
+    "# Loop\n\n    " + quoted(TOLERANCE_WORDS) + "\n\n" + quoted(LICENCE_WORDS) + "\n",  # indented code
+    "# Loop\n\n" + TOLERANCE_WORDS + "\n\n" + quoted(LICENCE_WORDS) + "\n",  # words without the span
+    "# Loop\n\n" + quoted(TOLERANCE_WORDS) + "\n\n<!-- owner-words -->" + LICENCE_WORDS + "\n",  # unpaired
+])
+def test_ruling_words_count_only_in_live_owner_words_spans(tmp_path, loop):
     with pytest.raises(ValueError):
-        run_links(tmp_path / "r", record, {RECORD: "real.md"})
-    surface = {SURFACE + "real.json": manifest(), RECORD: RULING}
-    with pytest.raises(ValueError):
-        run_links(tmp_path / "m", surface, {check.PUBLICATION_MANIFEST: "real.json"})
+        run(tmp_path, published(loop=loop))
+
+
+def test_ruling_words_wrapped_across_lines_in_a_live_span_count(tmp_path):
+    loop = ("# Loop\n\n```text\nan example\n```\n\nOwner: <!-- owner-words -->Class TC-1: 0.5 % on\ndisplacements and "
+            "1 N on forces.<!-- note --><!-- /owner-words --> and " + quoted(LICENCE_WORDS) + "\n")
+    assert run(tmp_path, published(loop=loop)) == []
+
+
+def test_the_render_command_writes_the_rendering_of_the_working_tree(tmp_path, capsys):
+    repo = repo_with(tmp_path, published())
+    assert check.main(["--render-summary", "--repo", str(repo)]) == 0
+    assert capsys.readouterr().out == rendered()
+    (repo / check.SUMMARY_DATA).write_text(dump(family(unit="kN")), encoding="utf-8")
+    assert check.main(["--render-summary", "--repo", str(repo)]) == 2
 
 
 @pytest.mark.parametrize("links", [
@@ -736,18 +823,50 @@ def test_a_symlink_in_or_into_the_surface_is_refused(tmp_path, links):
     assert "symlink in or into the published surface" in kinds(findings)
 
 
-def test_an_unrelated_symlink_passes(tmp_path):
-    assert run_links(tmp_path, {"doc/a.md": "generic\n"}, {"doc/alias.md": "a.md"}) == []
+def repo_with_base_links(tmp_path: Path, links: dict[str, str]) -> Path:
+    """A repository whose main already holds `links` and a surface file."""
+
+    repo = tmp_path / "repo"
+    repo.mkdir(parents=True)
+    git(repo, "init", "-q", "-b", "main")
+    git(repo, "config", "user.email", "invented@example.invalid")
+    git(repo, "config", "user.name", "Invented")
+    (repo / SURFACE).mkdir(parents=True)
+    (repo / SURFACE / "README.md").write_text("generic\n", encoding="utf-8")
+    commit_links(repo, links)
+    git(repo, "checkout", "-q", "-b", "topic")
+    return repo
+
+
+# Round 2, P3: an alias through an existing intermediate symlink passed.
+@pytest.mark.parametrize("base_links, alias", [
+    ({"doc/v": "../projects/chirality-piping/validation"}, "v/caepipe_benchmark/published"),
+    ({"doc/v": "../projects/chirality-piping/validation", "doc/w": "v"}, "w/caepipe_benchmark"),
+    ({"doc/up": "../projects/chirality-piping"}, "up/validation/./caepipe_benchmark/published/../published/README.md"),
+    ({"doc/v": "../projects/chirality-piping/validation/caepipe_benchmark/published"}, "v/../../../../../doc"),
+])
+def test_a_symlink_chain_through_existing_links_into_or_through_the_surface_is_refused(tmp_path, base_links, alias):
+    repo = repo_with_base_links(tmp_path, base_links)
+    commit_links(repo, {"doc/alias": alias})
+    findings = check.check_range(repo, "main", "topic", check.load_terms(write_terms(tmp_path)))
+    assert findings == ["doc/alias:1: symlink in or into the published surface"]
+
+
+def test_an_unrelated_symlink_or_chain_passes(tmp_path):
+    assert run_links(tmp_path / "a", {"doc/a.md": "generic\n"}, {"doc/alias.md": "a.md"}) == []
+    repo = repo_with_base_links(tmp_path / "c", {"doc/v": "../projects/chirality-piping/tools"})
+    commit_links(repo, {"doc/alias": "v/x.py"})
+    assert check.check_range(repo, "main", "topic", check.load_terms(write_terms(tmp_path))) == []
 
 
 def test_policy_text_and_owner_words_exempt_nothing_in_the_surface(tmp_path):
     text = "<!-- policy-text -->\nAcmepipe 9.99 crashed.\n<!-- /policy-text -->\n"
-    assert kinds(run(tmp_path / "s", gated(**{SURFACE + "notes.md": text}))) == {"defect or limit about the target tool"}
-    assert run(tmp_path / "o", gated(**{"doc/notes.md": text})) == []
+    assert kinds(run(tmp_path / "s", published(**{SURFACE + "notes.md": text}))) == {"defect or limit about the target tool"}
+    assert run(tmp_path / "o", published(**{"doc/notes.md": text})) == []
 
 
-def test_agreement_in_a_commit_message_is_refused_with_the_gate_set(tmp_path):
-    repo = repo_with(tmp_path, gated(**{REPORT_PATH: summary()}))
+def test_agreement_in_a_commit_message_is_refused_with_a_summary_published(tmp_path):
+    repo = repo_with(tmp_path, published())
     (repo / "doc").mkdir()
     (repo / "doc/b.md").write_text("generic\n", encoding="utf-8")
     git(repo, "add", "-A")
@@ -759,25 +878,26 @@ def test_agreement_in_a_commit_message_is_refused_with_the_gate_set(tmp_path):
 
 @pytest.mark.parametrize("ruled", [True, False])
 @pytest.mark.parametrize("text", [
-    "The 35 of 35 agreement validates the design.\n",
+    "The benchmark agreement validates the design.\n",
     "This benchmark marks the release of SWBPIPE.\n",
     "SWBPIPE is production-ready.\n",
     check.RELIANCE_STATEMENT + "\n",  # the canonical sentence without its marker
 ])
 def test_framing_as_acceptance_compliance_or_release_is_refused_in_the_surface(tmp_path, ruled, text):
-    files = gated(**{SURFACE + "notes.md": text})
-    files[check.PUBLICATION_MANIFEST] = manifest(tolerance_class_ruled=ruled)
+    files = published(ruling=RULING if ruled else None, **{SURFACE + "notes.md": text})
+    if not ruled:
+        files.pop(check.SUMMARY_DATA), files.pop(check.SUMMARY_TEXT)
     assert "acceptance or compliance framing in the published surface" in kinds(run(tmp_path, files))
 
 
 def test_framing_words_outside_the_surface_are_not_screened(tmp_path):
-    assert run(tmp_path, gated(**{"doc/a.md": "The checks validate the parser before the release.\n"})) == []
+    assert run(tmp_path, published(**{"doc/a.md": "The checks validate the parser before the release.\n"})) == []
 
 
 def test_only_the_canonical_reliance_sentence_is_exempt(tmp_path):
-    assert run(tmp_path / "c", gated(**{SURFACE + "README.md": "# Folder\n\n" + RELIANCE})) == []
+    assert run(tmp_path / "c", {SURFACE + "README.md": "# Folder\n\n" + RELIANCE}) == []
     altered = RELIANCE.replace("stays with the user", "stays with the user; the design is validated")
-    findings = run(tmp_path / "a", gated(**{SURFACE + "README.md": "# Folder\n\n" + altered}))
+    findings = run(tmp_path / "a", {SURFACE + "README.md": "# Folder\n\n" + altered})
     assert "reliance statement differs from the canonical sentence" in kinds(findings)
     assert "acceptance or compliance framing in the published surface" in kinds(findings)
 
@@ -787,10 +907,47 @@ def test_only_the_canonical_reliance_sentence_is_exempt(tmp_path):
     "Acmepipe 9.99 shows no significant differences from SWBPIPE.\n",
     "The results are identical in Acmepipe.\n",
     "SWBPIPE stays within tolerance of Acmepipe.\n",
+    "Acmepipe gives the same displacements as SWBPIPE.\n",
+    # Round 2, P3: bare agreement assertions, without numbers or adverbs.
+    "Acmepipe agrees with SWBPIPE.\n",
+    "The Acmepipe results match SWBPIPE.\n",
+    "SWBPIPE is in agreement with Acmepipe.\n",
+    "Acmepipe corroborates the SWBPIPE model.\n",
+    "Acmepipe reproduces the SWBPIPE results.\n",
+    "The target tool and SWBPIPE agreed.\n",
 ])
 @pytest.mark.parametrize("path", ["doc/a.md", SURFACE + "notes.md"])
 def test_qualitative_agreement_is_refused_in_and_outside_the_surface(tmp_path, text, path):
-    assert kinds(run(tmp_path, gated(**{path: text}))) == {"qualitative result about the target tool"}
+    assert kinds(run(tmp_path, {path: text})) == {"qualitative result about the target tool"}
+
+
+# Round 2, P2: interface facts about formats are not results.
+@pytest.mark.parametrize("text", [
+    "The Acmepipe importer uses the same displacement sign convention as SWBPIPE.\n",
+    "Acmepipe and SWBPIPE use identical force labels.\n",
+    "Acmepipe writes the same moment units as the MBF records.\n",
+    "The Acmepipe CSV keeps the same reaction column order as SWBPIPE.\n",
+    "The Acmepipe importer uses the same sign convention as SWBPIPE.\n",
+    "The Acmepipe batch dialog writes the CSV.\n",
+    "The record states whether the Acmepipe and SWBPIPE values agree.\n",
+    "Acmepipe agrees to the licence prompt only through the dialog.\n",
+])
+def test_format_facts_near_the_result_classes_pass(tmp_path, text):
+    assert run(tmp_path, {"doc/a.md": text}) == []
+
+
+# Round 2, P3: neutral survey notes passed.
+@pytest.mark.parametrize("text", [
+    "Survey note: the editor keeps two undo stacks.\n",
+    "Survey notes — loads are grouped by case.\n",
+    "From the survey, the editor groups loads by case.\n",
+    "According to our survey notes the results view has tabs.\n",
+    "The survey notes record a tabbed results view.\n",
+    "The survey found a tree of load cases.\n",
+])
+@pytest.mark.parametrize("path", ["doc/a.md", SURFACE + "notes.md"])
+def test_survey_note_text_is_refused(tmp_path, text, path):
+    assert kinds(run(tmp_path, {path: text})) == {"survey-note text"}
 
 
 @pytest.mark.parametrize("text", [
@@ -800,15 +957,7 @@ def test_qualitative_agreement_is_refused_in_and_outside_the_surface(tmp_path, t
 ])
 @pytest.mark.parametrize("path", ["doc/a.md", SURFACE + "notes.md"])
 def test_user_interface_critique_is_refused_in_and_outside_the_surface(tmp_path, text, path):
-    assert kinds(run(tmp_path, gated(**{path: text}))) == {"user-interface critique of the target tool"}
-
-
-@pytest.mark.parametrize("text", [
-    "The Acmepipe importer uses the same sign convention as SWBPIPE.\n",
-    "The Acmepipe batch dialog writes the CSV.\n",
-])
-def test_format_facts_near_the_new_classes_pass(tmp_path, text):
-    assert run(tmp_path, {"doc/a.md": text}) == []
+    assert "user-interface critique of the target tool" in kinds(run(tmp_path, {path: text}))
 
 
 @pytest.mark.parametrize("text", [
@@ -823,12 +972,20 @@ def test_link_titles_and_tag_attributes_are_screened(tmp_path, text):
 
 def test_whole_file_mode_has_no_surface(tmp_path):
     report = tmp_path / "report.md"
-    report.write_text(summary(), encoding="utf-8")
+    report.write_text("Acmepipe 9.99 agrees within 0.5 % on 35 of 35 quantities.\n", encoding="utf-8")
     assert check.main(["--terms-file", str(write_terms(tmp_path)), "--file", str(report)]) == 1
 
 
-def test_the_committed_gate_is_unset():
+def test_nothing_is_published_at_the_checked_in_state():
     # Nothing is published before the owner rules the tolerance class and checks the licence terms (Design §8.1).
-    manifest = check.json.loads((ROOT.parents[1] / check.PUBLICATION_MANIFEST).read_text(encoding="utf-8"))
-    assert manifest["document_kind"] == check.PUBLICATION_KIND
-    assert manifest["tolerance_class_ruled"] is False and manifest["licence_terms_checked"] is False
+    root = ROOT.parents[1]
+    assert not (root / check.RULING_RECORD).exists()
+    assert not (root / check.SUMMARY_DATA).exists() and not (root / check.SUMMARY_TEXT).exists()
+
+
+def test_the_schemas_list_the_checks_families_and_units():
+    for name in (check.RULING_SCHEMA, check.SUMMARY_SCHEMA):
+        schema = check.json.loads((check.SCHEMAS / name).read_text(encoding="utf-8"))
+        assert schema["$defs"]["family_id"]["enum"] == list(check.FAMILIES)
+        assert schema["$defs"]["unit"]["enum"] == list(check.UNITS)
+    assert check._valid(RULING, check.RULING_SCHEMA) and check._valid(SUMMARY, check.SUMMARY_SCHEMA)

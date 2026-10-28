@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openpipestress.org/schemas/caepipe_benchmark_summary.schema.json",
+  "title": "Published CAEPIPE benchmark agreement summary",
+  "description": "Benchmark agreement published in validation/caepipe_benchmark/published/summary.json (DEL-17-05 Design §8.1). Families and units are those of the owner's ruling record exactly; each max_difference is measured, in the ruling's unit, and is never a threshold, which only the ruling record carries. summary.md is the checker's rendering of this file and the ruling record. Agreement is not acceptance, validation of a user's design, code compliance, compatibility or a release.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "document_kind",
+    "benchmark_set",
+    "caepipe_version",
+    "models",
+    "cases",
+    "families"
+  ],
+  "properties": {
+    "document_kind": {
+      "const": "swbpipe.caepipe_benchmark_summary"
+    },
+    "benchmark_set": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "version": {
+          "$ref": "#/$defs/identifier"
+        }
+      }
+    },
+    "caepipe_version": {
+      "$ref": "#/$defs/identifier"
+    },
+    "models": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "cases": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "families": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "$ref": "#/$defs/family"
+      }
+    }
+  },
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+      "maxLength": 64
+    },
+    "family_id": {
+      "enum": [
+        "displacements",
+        "rotations",
+        "forces",
+        "moments",
+        "reactions"
+      ]
+    },
+    "unit": {
+      "enum": [
+        "%",
+        "ppm",
+        "mm",
+        "m",
+        "mrad",
+        "rad",
+        "deg",
+        "N",
+        "kN",
+        "N·m",
+        "kN·m"
+      ]
+    },
+    "family": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "agreed",
+        "total",
+        "max_difference",
+        "unit"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/family_id"
+        },
+        "agreed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_difference": {
+          "type": "number",
+          "minimum": 0
+        },
+        "unit": {
+          "$ref": "#/$defs/unit"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "id": {
+                "const": "displacements"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "unit": {
+                "enum": [
+                  "%",
+                  "ppm",
+                  "mm",
+                  "m"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "id": {
+                "const": "rotations"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "unit": {
+                "enum": [
+                  "%",
+                  "ppm",
+                  "mrad",
+                  "rad",
+                  "deg"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "id": {
+                "const": "forces"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "unit": {
+                "enum": [
+                  "%",
+                  "ppm",
+                  "N",
+                  "kN"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "id": {
+                "const": "moments"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "unit": {
+                "enum": [
+                  "%",
+                  "ppm",
+                  "N·m",
+                  "kN·m"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "id": {
+                "const": "reactions"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "unit": {
+                "enum": [
+                  "%",
+                  "ppm",
+                  "N",
+                  "kN",
+                  "N·m",
+                  "kN·m"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

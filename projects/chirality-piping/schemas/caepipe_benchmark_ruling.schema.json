@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openpipestress.org/schemas/caepipe_benchmark_ruling.schema.json",
+  "title": "CAEPIPE benchmark publication ruling record",
+  "description": "The owner's tolerance-class ruling and licence-terms check that gate published benchmark agreement (DEL-17-05 Design §8.1). Agent 0 adds the record at loop/rulings/caepipe-benchmark-publication.json when the owner rules; until then it is absent and nothing is published. Each owner_words entry must appear verbatim in an owner-words span of loop/LOOP_INIT.md outside fenced code, inline code and HTML comments. Each family's threshold is the owner's ruled value in the family's exact unit. The record is not acceptance, validation of a user's design, code compliance or a release.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "document_kind",
+    "ruled_on",
+    "tolerance_class",
+    "families",
+    "licence_terms_checked",
+    "licence_terms_checked_on",
+    "owner_words"
+  ],
+  "properties": {
+    "document_kind": {
+      "const": "swbpipe.caepipe_benchmark_ruling"
+    },
+    "ruled_on": {
+      "$ref": "#/$defs/date",
+      "description": "The date of the owner's tolerance-class ruling."
+    },
+    "tolerance_class": {
+      "$ref": "#/$defs/identifier"
+    },
+    "families": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "$ref": "#/$defs/family"
+      },
+      "description": "One entry per output family; ids are unique."
+    },
+    "licence_terms_checked": {
+      "const": true
+    },
+    "licence_terms_checked_on": {
+      "$ref": "#/$defs/date",
+      "description": "The date the owner checked the full licence and any trial-download terms."
+    },
+    "owner_words": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 20,
+        "pattern": "\\S"
+      },
+      "description": "The owner's words, quoted verbatim from owner-words spans of loop/LOOP_INIT.md."
+    }
+  },
+  "$defs": {
+    "date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+      "format": "date"
+    },
+    "identifier": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+      "maxLength": 64
+    },
+    "family_id": {
+      "enum": [
+        "displacements",
+        "rotations",
+        "forces",
+        "moments",
+        "reactions"
+      ]
+    },
+    "unit": {
+      "enum": [
+        "%",
+        "ppm",
+        "mm",
+        "m",
+        "mrad",
+        "rad",
+        "deg",
+        "N",
+        "kN",
+        "N·m",
+        "kN·m"
+      ]
+    },
+    "family": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "threshold",
+        "unit"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/family_id"
+        },
+        "threshold": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "unit": {
+          "$ref": "#/$defs/unit"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "id": {
+                "const": "displacements"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "unit": {
+                "enum": [
+                  "%",
+                  "ppm",
+                  "mm",
+                  "m"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "id": {
+                "const": "rotations"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "unit": {
+                "enum": [
+                  "%",
+                  "ppm",
+                  "mrad",
+                  "rad",
+                  "deg"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "id": {
+                "const": "forces"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "unit": {
+                "enum": [
+                  "%",
+                  "ppm",
+                  "N",
+                  "kN"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "id": {
+                "const": "moments"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "unit": {
+                "enum": [
+                  "%",
+                  "ppm",
+                  "N·m",
+                  "kN·m"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "id": {
+                "const": "reactions"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "unit": {
+                "enum": [
+                  "%",
+                  "ppm",
+                  "N",
+                  "kN",
+                  "N·m",
+                  "kN·m"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

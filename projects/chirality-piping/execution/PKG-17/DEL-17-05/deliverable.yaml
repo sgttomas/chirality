@@ -127,6 +127,8 @@ code_paths:
 - tools/caepipe_correlation/
 - validation/caepipe_correlation/
 - validation/caepipe_benchmark/published/
+- schemas/caepipe_benchmark_ruling.schema.json
+- schemas/caepipe_benchmark_summary.schema.json
 - apps/desktop/src/features/caepipe-external/CaepipeExternalHarnessPanel.tsx
 checks:
 - tests/test_caepipe_external_run_package.py
