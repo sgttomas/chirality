@@ -2393,6 +2393,7 @@
               "apps/desktop/src-tauri/src/embedded_agent/catalog.rs",
               "apps/desktop/src-tauri/src/embedded_agent/dispatcher.rs",
               "apps/desktop/src-tauri/src/embedded_agent/framing.rs",
+              "apps/desktop/src-tauri/src/embedded_agent/loopback.rs",
               "apps/desktop/src-tauri/src/embedded_agent/macos.rs",
               "apps/desktop/src-tauri/src/embedded_agent/mod.rs",
               "apps/desktop/src-tauri/src/embedded_agent/numeric.rs",
