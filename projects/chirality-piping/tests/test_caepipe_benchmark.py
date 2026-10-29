@@ -457,6 +457,29 @@ def test_an_operating_sum_with_a_missing_or_invalid_contribution_is_unmatched(ed
     assert find(record, "case:sustained", "displacement", "node:B", "x")["classification"] == WITHIN
 
 
+def co_located(values: dict) -> list[dict]:
+    """Invented reactions of supports S1 and S2, both at CAEPIPE node 10: {(support, case): Fy in N}."""
+    return [result_row("support_reaction_component_v2", support, case, "Fy", value, "N")
+            for (support, case), value in values.items()]
+
+
+def test_co_located_supports_are_complete_per_support_before_the_node_sum():
+    from core.handoff.caepipe_external.benchmark import swbpipe_values
+
+    key = ("support_force", "node:10", "", "y")
+    nodes = {"support:S1": "10", "support:S2": "10"}
+    whole = co_located({("support:S1", "c1"): 1.0, ("support:S2", "c1"): 2.0,
+                        ("support:S1", "c2"): 4.0, ("support:S2", "c2"): 8.0})
+    assert swbpipe_values(whole, ["c1", "c2"], nodes) == ({key: 15.0}, set())
+    # S2 is missing from c2: the node total is partial, so it is not screened.
+    partial = [row for row in whole if (row["entity_ref"], row["basis_ref"]["ref_id"]) != ("support:S2", "c2")]
+    assert swbpipe_values(partial, ["c1", "c2"], nodes) == ({}, {key})
+    # Per-case totals that overflow in opposite directions are unmatched, never an exception.
+    huge = co_located({("support:S1", "c1"): 1e308, ("support:S2", "c1"): 1e308,
+                       ("support:S1", "c2"): -1e308, ("support:S2", "c2"): -1e308})
+    assert swbpipe_values(huge, ["c1", "c2"], nodes) == ({}, {key})
+
+
 def test_a_parser_error_is_counted_unmatched_never_dropped():
     text = invented_print().replace("30,0,-4,0,0,0,0,,", "30,0,-4,0,0,0,0,,\r\n30,0,-5,0,0,0,0,,", 1)
     parsed = parse_caepipe_print_csv(text)

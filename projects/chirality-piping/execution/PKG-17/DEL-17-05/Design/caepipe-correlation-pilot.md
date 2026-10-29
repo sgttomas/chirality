@@ -549,7 +549,7 @@ classification. It never prints external-prover values outside the local run.
 - The desktop `.mbf` export (`CaepipeMbfExportPanel.tsx`) still writes the placeholder
   smoke text; it should use the SI writer's record subset.
 - A wider correlation corpus (larger models, more load types) under the full licence.
-- Non-unit bend flexibility factors are untested: the bend case uses k = 1.
+- The pilot's own bend case uses k = 1. Non-unit factors are exercised only by the benchmark's G2 set (§11.1).
 - CAEPIPE's pipe shear shape factor and default gravitational acceleration
   (CQ-17-01-010); κ = 0.5 stays an `ASSUMPTION` until answered.
 - Two-way iteration: the export step (§3) writes `caepipe_out/exported.mbf` for

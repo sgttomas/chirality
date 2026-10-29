@@ -111,14 +111,17 @@ def swbpipe_values(results: list[Any], case_ids: list[str], support_nodes: Mappi
     program prints one row per node; displacements are keyed by SWBPIPE node, element ends by member and end. The
     moment components of supports at a node that is not written as an anchor (`anchor_nodes`) are left out: the
     printed restraint rows give forces only."""
-    per_case: dict[str, dict[Key, float]] = {case: {} for case in case_ids}
+    # Each contribution keeps its own identity (a support's reaction its support id) until it is complete in every
+    # case; only then are contributions summed into the compared key.
+    Source = tuple[Key, str]
+    per_case: dict[str, dict[Source, list[float]]] = {case: {} for case in case_ids}
     invalid: set[Key] = set()
 
-    def add(case: str, key: Key, value: float | None) -> None:
+    def add(case: str, key: Key, value: float | None, source: str = "") -> None:
         if value is None:
             invalid.add(key)
         else:
-            per_case[case][key] = per_case[case].get(key, 0.0) + value
+            per_case[case].setdefault((key, source), []).append(value)
 
     for row in results:
         if not isinstance(row, Mapping) or (row.get("basis_ref") or {}).get("ref_id") not in per_case:
@@ -141,18 +144,26 @@ def swbpipe_values(results: list[Any], case_ids: list[str], support_nodes: Mappi
                 name = "support_force" if component[0] == "F" else "support_moment"
                 if name == "support_moment" and node not in anchor_nodes:
                     continue
-                add(case, (name, f"node:{node}", "", component[1].lower()), value)
+                add(case, (name, f"node:{node}", "", component[1].lower()), value, str(row.get("entity_ref")))
+    sources = set().union(*per_case.values())
+    for key, source in sources:
+        if not all((key, source) in case_values for case_values in per_case.values()):
+            invalid.add(key)  # a contribution missing from one of the summed cases
+    grouped: dict[Key, list[float]] = {}
+    for case_values in per_case.values():
+        for (key, _), items in case_values.items():
+            if key not in invalid:
+                grouped.setdefault(key, []).extend(items)
     values: dict[Key, float] = {}
-    for key in set().union(*per_case.values()) - invalid:
-        if all(key in case_values for case_values in per_case.values()):
-            try:
-                total = math.fsum(case_values[key] for case_values in per_case.values())
-            except OverflowError:
-                total = math.inf
-            if math.isfinite(total) and all(math.isfinite(v[key]) for v in per_case.values()):
-                values[key] = total
-                continue
-        invalid.add(key)
+    for key, parts in grouped.items():
+        try:
+            total = math.fsum(parts) if all(math.isfinite(part) for part in parts) else math.nan
+        except (OverflowError, ValueError):
+            total = math.nan
+        if math.isfinite(total):
+            values[key] = total
+        else:
+            invalid.add(key)
     return values, invalid
 
 
