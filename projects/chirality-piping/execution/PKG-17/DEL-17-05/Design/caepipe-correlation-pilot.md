@@ -564,7 +564,10 @@ classification. It never prints external-prover values outside the local run.
   - closed forms for G2 (anchored L with k) and G3 (elastic centre);
   - a clean one-parameter R/D series for bend transverse shear;
   - the pressure family;
-  - parser sections for frequencies and spectra.
+  - parser sections for frequencies and spectra;
+  - declare rigid stiffness as an inexact input (§11.3) for models with a rigid element or line stop,
+    so their screening class is `named_inexact`;
+  - the VM reruns that the private tranche-1 triage lists.
 - Source rows for the remaining component and support families (Q-3, for W-17's coverage criterion).
   One row per family, citing CAEPIPE's public manual page by URL, in our own words, in reference-system
   order. The families are a tee with user SIF modifiers, an eccentric reducer, valves, flanges, an
