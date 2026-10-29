@@ -2382,6 +2382,7 @@
               "apps/desktop/src-tauri/src/embedded_agent/numeric.rs",
               "apps/desktop/src-tauri/src/embedded_agent/protocol.rs",
               "apps/desktop/src-tauri/src/embedded_agent/sandbox.rs",
+              "apps/desktop/src-tauri/src/embedded_agent/transport.rs",
               "apps/desktop/src-tauri/src/exact_source_binding.rs",
               "apps/desktop/src-tauri/src/export_disposition_screen.rs",
               "apps/desktop/src-tauri/src/handoff_package.rs",
