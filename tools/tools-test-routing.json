@@ -113,6 +113,17 @@
   "path_rules": [
     {
       "paths": [
+        "projects/chirality-piping/execution/PKG-16/DEL-16-06/Design/agent-capability-catalog.json",
+        "projects/chirality-piping/apps/desktop/src-tauri/resources/agent-capability-catalog.json",
+        "projects/chirality-piping/tools/agent_catalog_resource.py",
+        "projects/chirality-piping/software-workflow.json"
+      ],
+      "checks": [
+        "software_workflow"
+      ]
+    },
+    {
+      "paths": [
         "tools/hosted-ci-routing.json",
         ".github/workflows/harness-premerge.yml",
         ".github/workflows/pec-tests.yml"
