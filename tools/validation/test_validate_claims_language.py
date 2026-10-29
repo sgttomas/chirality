@@ -11,6 +11,13 @@ PRD_FRAGMENT = (
 )
 RETIRED_MATURITY = "Technical preview — not a released product."
 RENDERER_FRAGMENT = "decision-support software"
+BS_VALID = (
+    "Candidate designs are validated in the user's accepted professional "
+    "tools (external-prover correlation, PRD §22.5). Internal benchmarks "
+    "and rule checks are development verification and screening evidence."
+)
+CSV_NOTICE_PATH = "apps/desktop/src/features/result-export/csvTable.ts"
+CSV_NOTICE_DECLARATION = f'export const CSV_PREAMBLE_NOTICE = "{BS_VALID}";\n'
 LITANY_LINE = (
     "No certification, no sealing, no approval, and no endorsement is made.\n"
 )
@@ -38,6 +45,7 @@ def _repo(tmp_path: Path) -> Path:
         "core/reporting/report_renderer/src/lib.rs",
         f"// Emits the {RENDERER_FRAGMENT} notice.\n",
     )
+    _write(repo, CSV_NOTICE_PATH, CSV_NOTICE_DECLARATION)
     return repo
 
 
@@ -355,7 +363,7 @@ def test_input_patterns_cover_every_file_the_check_reads(tmp_path, capsys):
     read += [(PROJECT / rel).as_posix() for _code, rel, _fragment in validator.ANCHORS]
     read += [(PROJECT / validator.REGISTRY_RELPATH).as_posix(),
              "tools/validation/validate_claims_language.py"]
-    assert len(read) == 8
+    assert len(read) == 10
     assert [rel for rel in read if not validator.reads_input(rel)] == []
     for outside in (
         "projects/chirality-app-v4/docs/PRD.md",
@@ -365,3 +373,38 @@ def test_input_patterns_cover_every_file_the_check_reads(tmp_path, capsys):
         assert not validator.reads_input(outside), outside
     assert validator.main(["--list-inputs"]) == 0
     assert tuple(capsys.readouterr().out.splitlines()) == validator.input_patterns()
+
+
+def test_csv_notice_anchor_is_bs_valid_verbatim(tmp_path):
+    # RT-R6: the CSV preamble notice constant carries the registry's BS-VALID text.
+    [(code, rel, fragment)] = [a for a in validator.ANCHORS if a[0] == "MISSING_CSV_NOTICE"]
+    assert rel == CSV_NOTICE_PATH
+    assert BS_VALID in validator.REGISTERED_TEXTS
+    assert fragment == f'export const CSV_PREAMBLE_NOTICE = "{BS_VALID}";'
+    assert _codes(_repo(tmp_path)) == []
+
+
+def test_csv_notice_constant_drift_fails(tmp_path):
+    for drifted in (
+        CSV_NOTICE_DECLARATION.replace("screening evidence", "screening results"),
+        CSV_NOTICE_DECLARATION.replace("CSV_PREAMBLE_NOTICE", "CSV_NOTICE"),
+        CSV_NOTICE_DECLARATION.replace("PRD §22.5", "PRD 22.5"),
+        # The text kept only in a comment, with the constant changed, still fails.
+        f"// {BS_VALID}\nexport const CSV_PREAMBLE_NOTICE = \"Other.\";\n",
+        "",
+    ):
+        repo = _repo(tmp_path / str(abs(hash(drifted))))
+        _write(repo, CSV_NOTICE_PATH, drifted)
+        assert _codes(repo) == ["MISSING_CSV_NOTICE"], drifted
+
+
+def test_csv_notice_anchor_fires_when_file_absent(tmp_path):
+    repo = _repo(tmp_path)
+    (repo / PROJECT / CSV_NOTICE_PATH).unlink()
+    assert _codes(repo) == ["MISSING_CSV_NOTICE"]
+
+
+def test_csv_notice_anchor_holds_on_the_real_tree():
+    repo_root = Path(__file__).resolve().parents[2]
+    findings = [f for f in validator.validate_claims_language(repo_root) if f.code == "MISSING_CSV_NOTICE"]
+    assert findings == []

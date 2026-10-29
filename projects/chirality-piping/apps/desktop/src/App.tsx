@@ -98,7 +98,8 @@ import { PcfExportPanel } from "./features/pcf-export/PcfExportPanel";
 import { ProjectStorageAuditPanel } from "./features/project-storage/ProjectStorageAuditPanel";
 import { ReplaceProjectPrompt } from "./features/project-storage/ReplaceProjectPrompt";
 import { HistoryPanel } from "./features/history/HistoryPanel";
-import { UnsavedChangesPrompt } from "./features/project-storage/UnsavedChangesPrompt";
+import { QuitWhileBusyPrompt, UnsavedChangesPrompt } from "./features/project-storage/UnsavedChangesPrompt";
+import { AUTOSAVE_DESKTOP_ONLY, AutosaveRecoveryPrompt } from "./features/autosave";
 import { ProjectUnitsDialog } from "./features/project-units/ProjectUnitsDialog";
 import { ModelDocumentSaveDialog } from "./features/model-file/ModelDocumentSaveDialog";
 import { HandoffSaveDialog } from "./features/handoff/HandoffSaveDialog";
@@ -141,6 +142,8 @@ import {
 } from "./features/viewport/PipeViewport";
 import type { RuleCheckStatus } from "./services/ruleCheckService";
 import { isTauriRuntime } from "./services/nativeMenu";
+import type { RunSheetHost } from "./features/model-tree/runSheet/RunSheet";
+import { useRunSheetStore } from "./features/model-tree/runSheet/runSheetStore";
 import type {
   AgentProposal,
   AnalysisRunEnvelope,
@@ -265,7 +268,10 @@ function AppSession() {
     handleQueueEditorIntent,
     handleClearReviewQueue,
     handleQueueOperationBatch,
+    registerOperationBatch,
     handleRunOperationBatch,
+    handleDismissRetiredBatch,
+    sessionEvents,
     handleAddDraftReview,
     handleApplyDraftReview,
     handleValidateIntent,
@@ -274,6 +280,10 @@ function AppSession() {
     handleRedoSessionModelEdit,
     invalidateDirectDraftContext
   } = session.operations;
+  // Run sheet S2 (DEL-07-02 Design `run-sheet-entry.md` §3.6): the sheet's
+  // transient state follows the session's events whichever surface is shown.
+  const runSheetStore = useRunSheetStore(sessionEvents, activeModelIndex, model?.project.id ?? null);
+  const runSheetHost: RunSheetHost = { store: runSheetStore, queuedBatches, editorIntents, registerBatch: registerOperationBatch };
   const {
     storageCapability,
     projectSummary,
@@ -296,7 +306,7 @@ function AppSession() {
     modelDocumentSaveRequest,
     handoffSaveRequest
   } = session.project;
-  const { unsavedChangesPrompt } = session.project;
+  const { unsavedChangesPrompt, quitWhileBusyPrompt, autosave } = session.project;
   const {
     uiPreferences, setUiPreferences,
     resolvedTheme,
@@ -402,7 +412,7 @@ function AppSession() {
       data-theme-preference={uiPreferences.theme}
       data-testid="desktop-preview-shell"
       // The replace prompt, the unsaved-changes prompt, the units dialog and the model-document save dialog are modal: the workspace takes no focus or input meanwhile.
-      inert={replaceProjectPrompt !== null || blankProjectUnitsRequest !== null || unsavedChangesPrompt !== null || modelDocumentSaveRequest !== null || handoffSaveRequest !== null}
+      inert={replaceProjectPrompt !== null || blankProjectUnitsRequest !== null || unsavedChangesPrompt !== null || quitWhileBusyPrompt !== null || modelDocumentSaveRequest !== null || handoffSaveRequest !== null || autosave.recoveryPrompt !== null}
       ref={workspaceShellRef}
       onFocusCapture={rememberShellFocus}
       onPointerDownCapture={rememberShellFocus}
@@ -498,6 +508,7 @@ function AppSession() {
               showAllAvailable={hiddenEntityKeys.size > 0 || isolationActive}
               onChangeSelected={openBulkChange}
               onSplitPipe={openSplitIntoParts}
+              runSheet={runSheetHost}
               onApplyCellIntent={async (intent) => {
                 const owned: { current?: Readonly<OperationOutcome> } = {};
                 const applied = await handleApplyIntent(intent, owned);
@@ -647,6 +658,7 @@ function AppSession() {
                 revision={modelRevision.current} busy={operationBusy} message={batchMessage}
                 onValidate={(entry) => void handleRunOperationBatch(entry, false)}
                 onApply={(entry) => void handleRunOperationBatch(entry, true)}
+                onDismiss={(entry) => handleDismissRetiredBatch(entry.key)}
                 onSelectRef={(ref) => { const target = resolveEntitySelection(model, ref); if (target) handleSelectEntity(target); }}
               />
               <OperationApplyPanel
@@ -748,6 +760,8 @@ function AppSession() {
               </button>
               {historicalRun ? <HistoricalRunPanel key={historicalRun.runId} context={historicalRun} /> : <ResultsPanel
                 result={result}
+                model={model}
+                exportAnalysisRun={currentSolvedResult !== null && result === currentSolvedResult ? analysisRun : null}
                 knowledge={knowledge}
                 analysisRun={analysisRun}
                 selectedResultId={selectedReviewTarget?.target_type === "result" ? selectedReviewTarget.id : null}
@@ -768,6 +782,7 @@ function AppSession() {
                 <SupportLoadSummaryPanel
                   model={model}
                   result={result}
+                  analysisRun={currentSolvedResult !== null && result === currentSolvedResult ? analysisRun : null}
                   standing={viewportResultStanding}
                   focusSupportId={selection.type === "support" ? selection.id : null}
                   focusRequest={keyResults.supportRequest}
@@ -779,6 +794,7 @@ function AppSession() {
                 <StressRatioTablePanel
                   model={model}
                   result={result}
+                  analysisRun={currentSolvedResult !== null && result === currentSolvedResult ? analysisRun : null}
                   standing={viewportResultStanding}
                   ruleCheckRun={currentSolvedResult !== null && result === currentSolvedResult ? ruleCheckReportRun : null}
                   selectedResultId={selectedReviewTarget?.target_type === "result" ? selectedReviewTarget.id : null}
@@ -796,6 +812,7 @@ function AppSession() {
                 <DisplacementExtremesPanel
                   model={model}
                   result={result}
+                  analysisRun={currentSolvedResult !== null && result === currentSolvedResult ? analysisRun : null}
                   standing={viewportResultStanding}
                   selectedNodeId={selection.type === "node" ? selection.id : null}
                   onSelectNode={(nodeId) => {
@@ -1025,6 +1042,10 @@ function AppSession() {
           <button data-testid="open-model-document" type="button" onClick={() => void handleOpenModelDocument()} disabled={projectBusy}>
             <FolderOpen size={15} aria-hidden="true" />
             Open model file
+          </button>
+          <button data-testid="project-recover-autosave" type="button" onClick={() => void autosave.recoverAutosave()} disabled={projectBusy || !autosave.settings} title={autosave.settings ? "Offer each autosave not shown to be saved" : AUTOSAVE_DESKTOP_ONLY}>
+            <FolderOpen size={15} aria-hidden="true" />
+            Recover autosave…
           </button>
           <button data-testid="open-local-project" type="button" onClick={() => handleOpenProject()} disabled={projectBusy}>
             <FolderOpen size={15} aria-hidden="true" />
@@ -1280,6 +1301,8 @@ function AppSession() {
       ) : null}
       <ReplaceProjectPrompt prompt={replaceProjectPrompt} />
       <UnsavedChangesPrompt prompt={unsavedChangesPrompt} />
+      <QuitWhileBusyPrompt prompt={quitWhileBusyPrompt} />
+      <AutosaveRecoveryPrompt prompt={autosave.recoveryPrompt} />
       <ProjectUnitsDialog request={blankProjectUnitsRequest} />
       <ModelDocumentSaveDialog request={modelDocumentSaveRequest} />
       <HandoffSaveDialog request={handoffSaveRequest} />
@@ -1385,14 +1408,17 @@ function MenuBar({
       id: "file",
       label: "File",
       items: [
-        { kind: "command", id: "file.new-local", label: "New Local Project", disabled: projectBusy },
+        // New Blank Project is the one "new": it starts an empty model (asking
+        // first while the working model has unsaved edits). `file.new-local`
+        // stores the working model itself as a local project, so it is a save.
         { kind: "command", id: "file.new-blank", label: "New Blank Project", disabled: projectBusy },
         { kind: "separator" },
         { kind: "command", id: "file.open-model", label: "Open Model Document…", disabled: projectBusy },
         { kind: "command", id: "file.open-local", label: "Open Local Project…", disabled: projectBusy },
         { kind: "command", id: "file.list-local", label: "List Local Projects", disabled: projectBusy },
         { kind: "separator" },
-        { kind: "command", id: "file.save-local", label: "Save Local Project", disabled: projectBusy },
+        { kind: "command", id: "file.save-local", label: "Save Local Project", disabled: projectBusy, shortcut: { label: "⌘S", aria: "Meta+S Control+S" } },
+        { kind: "command", id: "file.new-local", label: "Save as New Local Project", disabled: projectBusy },
         { kind: "command", id: "file.save-model-document", label: "Save Model Document…", disabled: !modelDocumentSaveReady },
         { kind: "command", id: "file.save-handoff", label: "Save Handoff…", disabled: !modelDocumentSaveReady },
         { kind: "command", id: "file.save-report-package", label: "Save Report Package…", disabled: !reportPackageReady }

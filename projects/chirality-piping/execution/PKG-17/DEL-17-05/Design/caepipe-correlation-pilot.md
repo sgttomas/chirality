@@ -557,10 +557,40 @@ classification. It never prints external-prover values outside the local run.
   for the writer cases and for the authored cases (§3, §5), whose outcomes are recorded
   privately in `imported/`. The authored set grows with each importer tranche: each new
   mapping or named refusal gets an authored file.
-- Benchmark (§11): the VM batches of tranche 1, under the settings guard; closed forms for G2 (anchored L
-  with k) and G3 (elastic centre); SWBPIPE's own invariants (equilibrium) as triage step 3; a clean
-  one-parameter R/D series for bend transverse shear; probe P1 and the pressure family; parser sections for
-  frequencies and spectra; the later tranches as their constructs land.
+- Benchmark (§11): tranche 1 has run under the settings guard. Its screening and §3 triage are held
+  privately (§8), for the owner's review of the full record. Still open:
+  - further VM batches and the later tranches (T2 at scale, then T3–T6 as their constructs land). Each
+    starts only on Agent 0's go-ahead, within the evaluation period;
+  - closed forms for G2 (anchored L with k) and G3 (elastic centre);
+  - a clean one-parameter R/D series for bend transverse shear;
+  - the pressure family;
+  - parser sections for frequencies and spectra.
+- Source rows for the remaining component and support families (Q-3, for W-17's coverage criterion).
+  One row per family, citing CAEPIPE's public manual page by URL, in our own words, in reference-system
+  order. The families are a tee with user SIF modifiers, an eccentric reducer, valves, flanges, an
+  expansion joint with tie rods, a gap, lift-off, friction, a variable spring and a constant-effort
+  support. A family with no public page becomes a limitation candidate.
+- DEL-17-04 importer: map the modulus basis and the thermal-expansion reference under the revised O-7
+  (DEL-17-04 Design §20.2), per CQ-17-01-016 and CQ-17-01-017, which were resolved by experiment, not sent:
+  - map the per-case modulus basis explicitly to DEC-092;
+  - map rotational stiffness units per degree, with English-unit moments in inch-pounds;
+  - refuse by name an element temperature outside the material table;
+  - pin the mapping to version 15.10;
+  - close TBD-17-04-010.
+- DEL-17-04 writer, `OPPRES`: Agent 0's decision (b). Write the pressure-elongation option for the
+  sustained case only when the pressure contract applies `transfers_to_wall` closure, otherwise off. The
+  export report names the remaining modelling differences, with tests.
+- Publication policy and checker for benchmark agreement (D15). Branch
+  `claude/piping-caepipe-publication-20261028` at `bf7a2b9e53` holds the gated design: a structured ruling
+  record and a fixed summary rendering. Still open:
+  - reconcile `IP_AND_DATA_BOUNDARY.md` §6.2 with D15;
+  - fix review r3's findings. A threshold or unit misrepresented, or a partial quote, blocks; the other
+    findings are listed known limits;
+  - cite licence clause numbers only.
+
+  One owner-reserved choice stays open: AC-001's "implying compatibility" could read "implying general
+  compatibility (benchmark agreement may be published only under Design §8.1)". If that wording is not
+  approved, publication relies on reading agreement on stated cases as no compatibility claim.
 
 ## 11. Benchmark set, tranche 1 (RT-V2)
 
