@@ -4846,6 +4846,8 @@
               "fixtures/reports/invented/report_sections_provenance_records.json",
               "fixtures/reports/invented/state_comparison_handoff_desktop_parity.json",
               "fixtures/reports/invented/user_release_derivation_vectors.json",
+              "fixtures/reports/invented/user_release_exact/pressure_2_straight.json",
+              "fixtures/reports/invented/user_release_exact/pressure_source_1.json",
               "fixtures/reports/invented/user_release_record.json",
               "fixtures/reports/invented/user_release_runner_refusal_request.json",
               "fixtures/results/base_reader_outcomes.json",
