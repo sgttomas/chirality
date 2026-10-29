@@ -266,7 +266,7 @@
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "6e65e0c1c33a1f242d3360f6c253c086b738b7228a8b01a7ed310a8db2f39ca3",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "79aa44583929b921498ed8a0cfaf10f087aaeda8c1ef58d6a1030d0b0c07a61e",
+      "core/product_physics/Cargo.toml": "2608f36e4e3fb77746f07e32826da2ecadabb3a6fba227c4c63c72ad6a180526",
       "core/reporting/audit_manifest/Cargo.toml": "b8bc4623a383ed2c22205326bc737486becd9d931bf869e1e8cf40e147f4fad7",
       "core/reporting/pdf_emitter/Cargo.toml": "bdac876fe00cde0e3ba33a557dafe3e76e96dd462f4a710b63012dada23fca50",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
@@ -947,7 +947,7 @@
         }
       },
       "core/product_physics/src/u4b_tests.rs": {
-        "sha256": "d35d797880a73212c61f492a7c2e37a1b2a3ea4f01e77d84f1b198be02a410b3",
+        "sha256": "c30e017b4001591b9778191fb7be4ecce937c793563749d56c980517b178edf6",
         "source_trees": [
           "core/loads/self_weight_wasm/Cargo.toml",
           "core/model_operations/operation_applier/Cargo.toml",
