@@ -78,17 +78,6 @@ jobs:
           if ($LASTEXITCODE -ne 0 -or $rust -notmatch '(?m)^release: 1\.97\.1$' -or $rust -notmatch '(?m)^host: x86_64-pc-windows-msvc$') { throw 'Wrong Rust version/host' }
           $env:CARGO_TARGET_DIR = Join-Path $env:RUNNER_TEMP ('startup-export-linter-' + [Guid]::NewGuid().ToString('N'))
           $export = Join-Path $env:RUNNER_TEMP ('startup-public-export-' + [Guid]::NewGuid().ToString('N'))
-          Write-Host 'START protected-content linter compile/link (unchanged committed source)'
-          cargo build --locked --manifest-path projects/chirality-piping/core/reporting/protected_content_linter/Cargo.toml --bin protected_content_lint_cli 2>&1 | ForEach-Object { "$_".Replace($sourcePath,'<source>').Replace($top,'<source>').Replace($env:USERPROFILE,'<account>').Replace($env:RUNNER_TEMP,'<temp>') }
-          if ($LASTEXITCODE -ne 0) { throw 'Native export linter compile/link failed' }
-          # The unchanged exporter stages every committed public member (git blobs),
-          # even when private historical execution files were not checked out.
-          # cargo run inside it uses the just-built same-source linter on this head.
-          python -u projects/chirality-piping/tools/release/export_public_openpipestress.py --execute --target $export 2>&1 | ForEach-Object { "$_".Replace($sourcePath,'<source>').Replace($top,'<source>').Replace($env:USERPROFILE,'<account>').Replace($env:RUNNER_TEMP,'<temp>') }
-          if ($LASTEXITCODE -ne 0) { throw 'Full raw-candidate export boundary/lint failed' }
-          if ((git rev-parse HEAD) -ne $env:EXPECTED_HEAD -or (git status --porcelain --untracked-files=all)) { throw 'Export/build changed raw candidate inputs' }
-          $record = Get-Content (Join-Path $export 'export-record.json') -Raw | ConvertFrom-Json -Depth 100
-          if ($record.source.git.commit_hash -ne $env:EXPECTED_HEAD -or $record.gate_result -ne 'pass') { throw 'Export record candidate/gate mismatch' }
           # Parent-owned P7 inventory must already include each actual fixture hash.
           $scope = Get-Content projects/chirality-piping/tools/release/provenance_scope.json -Raw | ConvertFrom-Json -Depth 100
           $complete = $true
@@ -97,6 +86,25 @@ jobs:
             $entry = @($scope.members | Where-Object { $_.path -ceq $relative })
             if ($entry.Count -ne 1 -or $entry[0].sha256 -cne (Get-FileHash $file.FullName -Algorithm SHA256).Hash.ToLowerInvariant()) { $complete = $false }
           }
-          if (-not $complete) { throw 'PRELIMINARY export only: parent-generated P7 scope not yet integrated; final candidate evidence unavailable' }
+          if (-not $complete) { throw 'Committed P7 fixture inventory missing or stale; export not started' }
+          Write-Host 'START protected-content linter compile/link (unchanged committed source)'
+          cargo build --locked --manifest-path projects/chirality-piping/core/reporting/protected_content_linter/Cargo.toml --bin protected_content_lint_cli 2>&1 | ForEach-Object { "$_".Replace($sourcePath,'<source>').Replace($top,'<source>').Replace($env:USERPROFILE,'<account>').Replace($env:RUNNER_TEMP,'<temp>') }
+          if ($LASTEXITCODE -ne 0) { throw 'Native export linter compile/link failed' }
+          # The unchanged exporter stages every committed public member (git blobs),
+          # even when private historical execution files were not checked out.
+          # cargo run inside it uses the just-built same-source linter on this head.
+          python -u projects/chirality-piping/tools/release/export_public_openpipestress.py --execute --target $export 2>&1 | ForEach-Object { "$_".Replace($sourcePath,'<source>').Replace($top,'<source>').Replace($env:USERPROFILE,'<account>').Replace($env:RUNNER_TEMP,'<temp>') }
+          $exportCode = $LASTEXITCODE
+          if ($exportCode -ne 0) {
+            $lintPath = Join-Path $export 'lint-run.json'
+            if (Test-Path $lintPath) {
+              $lint = Get-Content $lintPath -Raw | ConvertFrom-Json -Depth 100
+              Write-Host ("export_lint_status={0} note={1}" -f $lint.status,$lint.note)
+            }
+            throw 'Full raw-candidate export boundary/lint failed'
+          }
+          if ((git rev-parse HEAD) -ne $env:EXPECTED_HEAD -or (git status --porcelain --untracked-files=all)) { throw 'Export/build changed raw candidate inputs' }
+          $record = Get-Content (Join-Path $export 'export-record.json') -Raw | ConvertFrom-Json -Depth 100
+          if ($record.source.git.commit_hash -ne $env:EXPECTED_HEAD -or $record.gate_result -ne 'pass') { throw 'Export record candidate/gate mismatch' }
           Write-Host "Full committed export boundary/lint passed candidate=$env:EXPECTED_HEAD; release/owner scan and P7 scanner checks remain separate."
           Remove-Item -Recurse -Force $export,$env:CARGO_TARGET_DIR
