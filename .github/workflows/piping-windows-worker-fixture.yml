@@ -1,0 +1,60 @@
+name: Piping Windows worker fixture
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/piping-windows-worker-fixture.yml
+      - projects/chirality-piping/validation/platform/windows_worker_fixture/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fixture:
+    runs-on: windows-2025
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+          sparse-checkout: |
+            /*
+            !/execution/
+            !/projects/*/execution/
+          sparse-checkout-cone-mode: false
+      - name: Identify candidate and initialize target directory
+        shell: pwsh
+        env:
+          CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $actual = git rev-parse HEAD
+          if ($LASTEXITCODE -ne 0 -or $actual -ne $env:CANDIDATE_SHA) { throw 'checkout does not match candidate' }
+          if ($env:RUNNER_ARCH -ne 'X64' -or -not [Environment]::Is64BitOperatingSystem) { throw 'expected native x64 Windows' }
+          Write-Host "candidate=$actual runner=$env:RUNNER_OS architecture=$env:RUNNER_ARCH"
+          "CARGO_TARGET_DIR=$env:RUNNER_TEMP\windows-worker-fixture-target" >> $env:GITHUB_ENV
+      - name: Select pinned Rust toolchain
+        shell: pwsh
+        run: |
+          rustup toolchain install 1.97.1 --profile minimal --target x86_64-pc-windows-msvc
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          rustup run 1.97.1 rustc -vV
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $version = rustup run 1.97.1 rustc -vV
+          if ($LASTEXITCODE -ne 0 -or $version -notmatch 'host: x86_64-pc-windows-msvc' -or $version -notmatch 'release: 1\.97\.1') { throw 'unexpected Rust host or release' }
+      - name: Exercise checked-in tests
+        shell: pwsh
+        working-directory: projects/chirality-piping/validation/platform/windows_worker_fixture
+        run: |
+          $listing = rustup run 1.97.1 cargo test --locked --target x86_64-pc-windows-msvc -- --list
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $required = @('tests::current_ack_preferred_and_stale_ack', 'tests::transient_samples_and_release_wakeup_resample', 'tests::no_ack_or_late_ack_cannot_extend_the_absolute_window', 'tests::cancellation_dominates_late_ack_and_resume', 'windows_accounting::mapping_commit_touch_and_release_are_distinct_observations')
+          foreach ($test in $required) { if (-not ($listing -match [regex]::Escape("${test}: test"))) { throw "missing case: $test" } }
+          rustup run 1.97.1 cargo test --locked --target x86_64-pc-windows-msvc -- --nocapture --test-threads=1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Fail closed for missing native worker cases
+        shell: pwsh
+        run: |
+          throw 'Incomplete fixture: native cooperative worker, allocator race, Job custody, parent-death and retained-handle cleanup cases are not implemented.'
