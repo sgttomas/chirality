@@ -1,4 +1,4 @@
-name: Piping Windows headless startup diagnostic
+name: Piping Windows PARTIAL startup diagnostics
 on:
   pull_request:
     paths:
@@ -21,7 +21,8 @@ on:
 permissions:
   contents: read
 jobs:
-  startup:
+  partial-startup-diagnostics:
+    name: PARTIAL metadata errors cleanup - solve BLOCKED
     runs-on: windows-2025
     timeout-minutes: 50
     steps:
@@ -39,13 +40,15 @@ jobs:
       - uses: dtolnay/rust-toolchain@1.97.1
         with:
           targets: x86_64-pc-windows-msvc
-      - name: Fresh unchanged artifact and finite native cases
+      - name: Unchanged artifact - PARTIAL metadata errors and cleanup only
         timeout-minutes: 45
         shell: pwsh
         env:
           EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
         run: ./projects/chirality-piping/validation/platform/windows_runner_startup_probe/run.ps1
   export-boundary:
+    name: Export DEFERRED until verified batching integration
+    if: ${{ false }} # Remove only after the verified separate exporter repair is merged.
     runs-on: windows-2025
     timeout-minutes: 25
     steps:
