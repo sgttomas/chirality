@@ -2743,6 +2743,10 @@
               "validation/benchmarks/numerical_robustness/src/sha256.rs",
               "validation/benchmarks/physics_audit_regression/src/lib.rs",
               "validation/benchmarks/stress/src/lib.rs",
+              "validation/platform/windows_worker_fixture/src/lib.rs",
+              "validation/platform/windows_worker_fixture/src/native_fixture.rs",
+              "validation/platform/windows_worker_fixture/src/win32.rs",
+              "validation/platform/windows_worker_fixture/src/windows_accounting.rs",
               "validation/references/kd5_timoshenko/runner/src/main.rs",
               "validation/references/m3_judge/runner/build.rs",
               "validation/references/m3_judge/runner/src/main.rs"
@@ -4361,6 +4365,7 @@
               "validation/benchmarks/numerical_robustness/Cargo.toml",
               "validation/benchmarks/physics_audit_regression/Cargo.toml",
               "validation/benchmarks/stress/Cargo.toml",
+              "validation/platform/windows_worker_fixture/Cargo.toml",
               "validation/references/kd5_timoshenko/runner/Cargo.toml",
               "validation/references/m3_judge/runner/Cargo.toml"
             ],
@@ -5383,23 +5388,6 @@
           }
         ]
       },
-      "core/product_physics/tests/pf_timoshenko_envelopes.rs": {
-        "sha256": "1582ff0f1baaa481a728d232937d63598a5cb8c03420aa603598cfd655770270",
-        "source_trees": [
-          "core/product_physics/Cargo.toml"
-        ],
-        "inputs": [
-          {
-            "anchor": "../../fixtures/results/preview_physics_timoshenko_{name}_sparse.json",
-            "base": "manifest",
-            "files": [
-              "fixtures/results/preview_physics_timoshenko_arc_sparse.json",
-              "fixtures/results/preview_physics_timoshenko_partial_span_blocked_sparse.json",
-              "fixtures/results/preview_physics_timoshenko_straight_sparse.json"
-            ]
-          }
-        ]
-      },
       "core/runner/headless/tests/user_release_runner_refused.rs": {
         "inputs": [
           {
@@ -5479,6 +5467,23 @@
         "sha256": "bd21eafec49c7f785fc3cd0f23a864f74c3e6a3e5e1f860ddd4d4bec456ec12c",
         "source_trees": [
           "core/reporting/report_package/Cargo.toml"
+        ]
+      },
+      "core/product_physics/tests/pf_timoshenko_envelopes.rs": {
+        "sha256": "1582ff0f1baaa481a728d232937d63598a5cb8c03420aa603598cfd655770270",
+        "source_trees": [
+          "core/product_physics/Cargo.toml"
+        ],
+        "inputs": [
+          {
+            "anchor": "../../fixtures/results/preview_physics_timoshenko_{name}_sparse.json",
+            "base": "manifest",
+            "files": [
+              "fixtures/results/preview_physics_timoshenko_arc_sparse.json",
+              "fixtures/results/preview_physics_timoshenko_partial_span_blocked_sparse.json",
+              "fixtures/results/preview_physics_timoshenko_straight_sparse.json"
+            ]
+          }
         ]
       }
     }
