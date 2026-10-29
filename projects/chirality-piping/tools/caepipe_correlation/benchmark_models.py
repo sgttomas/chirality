@@ -15,7 +15,9 @@ Families G1-G8 (Design §11.1): straight spans, single bends, Z and U loops, mul
 support mixes and anchor movements. G1-G4 take their corner or series points plus a Latin hypercube drawn from
 `random.Random(seed)`; G5-G8 enumerate their configurations (and G5 its tee series) and sample the rest by the
 hypercube. The generator uses only `random()` from it, whose sequence for an integer seed is stable across Python
-versions, and prints every float through `repr`, so the same seed gives the same bytes.
+versions, and prints every float through `repr`. Its transcendental functions (exp, log, sin, cos, tan, acos) are
+correctly rounded, computed in decimal at 60 digits and rounded once, never the platform's libm, so the same seed
+gives the same bytes on every platform.
 Closed-form Euler-Bernoulli values are attached to the straight members whose response has one (G1, G8); they
 are the third, independent value of the comparison.
 
@@ -25,6 +27,7 @@ Nothing here runs either program, and nothing here records a result.
 from __future__ import annotations
 
 import argparse
+from decimal import Decimal, localcontext
 import hashlib
 import json
 import math
@@ -32,6 +35,82 @@ from pathlib import Path
 import random
 import sys
 from typing import Any, Callable
+
+
+# -- correctly rounded transcendental functions (platform independent) ----------------------------------------------
+_PREC = 60
+_PI = Decimal("3.14159265358979323846264338327950288419716939937510582097494459230781640628620899862803")
+
+
+def _taylor_sin_cos(x: Decimal) -> tuple[Decimal, Decimal]:
+    """sin and cos of `x` (|x| <= pi after reduction) by their Taylor series, at the current context."""
+    sin, cos, term, n = Decimal(0), Decimal(0), Decimal(1), 0
+    tiny = Decimal(10) ** -(_PREC + 5)
+    while True:
+        if n % 2 == 0:
+            cos += term if n % 4 == 0 else -term
+        else:
+            sin += term if n % 4 == 1 else -term
+        n += 1
+        term = term * x / n
+        if n > 4 and abs(term) < tiny:
+            return sin, cos
+
+
+def _sin_cos(x: float) -> tuple[Decimal, Decimal]:
+    with localcontext() as context:
+        context.prec = _PREC + 10
+        value = Decimal(x)
+        turn = 2 * _PI
+        value -= turn * (value / turn).to_integral_value()
+        if value > _PI:
+            value -= turn
+        elif value < -_PI:
+            value += turn
+        return _taylor_sin_cos(value)
+
+
+def cr_sin(x: float) -> float:
+    return float(_sin_cos(x)[0])
+
+
+def cr_cos(x: float) -> float:
+    return float(_sin_cos(x)[1])
+
+
+def cr_tan(x: float) -> float:
+    sin, cos = _sin_cos(x)
+    with localcontext() as context:
+        context.prec = _PREC
+        return float(sin / cos)
+
+
+def cr_acos(x: float) -> float:
+    if not -1.0 <= x <= 1.0:
+        raise ValueError("math domain error")
+    if x == 1.0:
+        return 0.0
+    if x == -1.0:
+        return float(_PI)
+    with localcontext() as context:
+        context.prec = _PREC + 10
+        target, y = Decimal(x), Decimal(math.acos(x))  # libm's value only seeds Newton's iteration
+        for _ in range(8):
+            sin, cos = _taylor_sin_cos(y)
+            y += (cos - target) / sin
+        return float(y)
+
+
+def cr_exp(x: float) -> float:
+    with localcontext() as context:
+        context.prec = _PREC
+        return float(Decimal(x).exp())
+
+
+def cr_log(x: float) -> float:
+    with localcontext() as context:
+        context.prec = _PREC
+        return float(Decimal(x).ln())
 
 
 PROJECT = Path(__file__).resolve().parents[2]
@@ -88,7 +167,7 @@ def latin_hypercube(rng: random.Random, points: int, dims: int) -> list[list[flo
 
 def scale(unit: float, low: float, high: float, *, log: bool = False, digits: int = 4) -> float:
     """`unit` in [0, 1) mapped to [low, high] (log-uniform with `log`), rounded to `digits` significant digits."""
-    value = math.exp(math.log(low) + unit * (math.log(high) - math.log(low))) if log else low + unit * (high - low)
+    value = cr_exp(cr_log(low) + unit * (cr_log(high) - cr_log(low))) if log else low + unit * (high - low)
     return float(f"{value:.{digits}g}")
 
 
@@ -164,7 +243,7 @@ class Builder:
         toward = _unit(_sub(ti, middle))
         pipe_id = self.pipe(name, near, far, od_mm, wall_mm, y_reference=dict(zip("xyz", toward)))
         d1, d2 = _unit(_sub(ti, p)), _unit(_sub(r, ti))
-        angle = math.acos(max(-1.0, min(1.0, sum(a * b for a, b in zip(d1, d2)))))
+        angle = cr_acos(max(-1.0, min(1.0, sum(a * b for a, b in zip(d1, d2)))))
         self.components.append({
             "id": f"component:{name}", "kind": "bend", "node": near, "provenance": PROVENANCE,
             "geometry": {"bend_pipe_ref": pipe_id, "bend_radius": q(radius_m, "m"), "bend_angle": q(angle, "rad"),
@@ -283,8 +362,8 @@ def corner_bend(builder: Builder, name: str, before: str, ti, after_direction, r
     Returns (near tangent node, far tangent node, bend pipe, the far straight's end position)."""
     incoming = _unit(_sub(ti, builder.positions[before]))
     outgoing = _unit(after_direction)
-    angle = math.acos(max(-1.0, min(1.0, sum(a * b for a, b in zip(incoming, outgoing)))))
-    tangent = radius_m * math.tan(angle / 2.0)
+    angle = cr_acos(max(-1.0, min(1.0, sum(a * b for a, b in zip(incoming, outgoing)))))
+    tangent = radius_m * cr_tan(angle / 2.0)
     near = builder.node(f"{name}-near", _sub(ti, _mul(incoming, tangent)))
     far = builder.node(f"{name}-far", _add(ti, _mul(outgoing, tangent)))
     bend = builder.bend(f"{name}", near, far, ti, radius_m, k, od, wall)
@@ -407,10 +486,10 @@ def build_g2(model_id: str, spec: Spec) -> tuple[dict, list[dict], dict]:
     od, wall = spec["od"], float(f"{spec['od'] / spec['dt']:.4g}")
     radius = spec["rd"] * od / 1000.0
     theta = math.radians(spec["angle"])
-    tangent = radius * math.tan(theta / 2.0)
+    tangent = radius * cr_tan(theta / 2.0)
     a = b.node("A", (0, 0, 0))
     ti = (spec["clear_1"] + tangent, 0.0, 0.0)
-    near, far, _, end = corner_bend(b, "BEND1", a, ti, (math.cos(theta), 0.0, math.sin(theta)), radius,
+    near, far, _, end = corner_bend(b, "BEND1", a, ti, (cr_cos(theta), 0.0, cr_sin(theta)), radius,
                                     spec["clear_2"], spec["k"], od, wall)
     mid = b.node("M", _add(b.positions[far], _mul(_sub(end, b.positions[far]), 0.5)))
     tip = b.node("B", end)
@@ -455,8 +534,8 @@ def _polyline(b: Builder, start, directions: list[tuple[float, ...]], clears: li
     tangents = []
     for index in range(len(directions) - 1):
         d1, d2 = directions[index], directions[index + 1]
-        angle = math.acos(max(-1.0, min(1.0, sum(x * y for x, y in zip(d1, d2)))))
-        tangents.append(radius * math.tan(angle / 2.0))
+        angle = cr_acos(max(-1.0, min(1.0, sum(x * y for x, y in zip(d1, d2)))))
+        tangents.append(radius * cr_tan(angle / 2.0))
     ti = _add(position, _mul(directions[0], clears[0] + tangents[0]))
     counter = 0
     for index in range(len(directions)):

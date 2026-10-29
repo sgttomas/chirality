@@ -36,7 +36,7 @@
         "geometry": {
           "bend_angle": {
             "unit": "rad",
-            "value": 1.5707963267948957
+            "value": 1.570796326794896
           },
           "bend_geometry_source_reference": "invented benchmark bend (seeded generator)",
           "bend_pipe_ref": "pipe:BEND1",

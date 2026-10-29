@@ -611,8 +611,8 @@
     {
       "family": "G3",
       "file": "models/cpb-g3-02.json",
-      "file_sha256": "5d87dc396621bfb321a5412e8b3906127d60def8e3099967c1cffbddae53efd9",
-      "model_hash": "7b7f86890f2e7771365436ab738d4a9130a6967591c663a4c9ae6afae7f140b6",
+      "file_sha256": "0f23356b3ef25d88a4c293acd351796619d961aa12c0fc72a8e31b736d2f04bf",
+      "model_hash": "5fafd6f9d86a2977dd57c1c48587cd4a829aa16829f5ecbbcfa570463c306c68",
       "model_id": "cpb-g3-02",
       "parameters": {
         "clear_1": 4.0,
@@ -655,8 +655,8 @@
     {
       "family": "G3",
       "file": "models/cpb-g3-04.json",
-      "file_sha256": "23df79399197c2bc5cd820a51a4fc4019274f9a8842eb1ec1ebdb0a24a676e2a",
-      "model_hash": "dc5ef0ca2a0a5d3569dcb424d4b5bb694faf18eb1f6e32a91e0840c68f2d44ce",
+      "file_sha256": "56010b2a83a5b7c6ebe6976464e5e249b19a3b2a375b7814b254f70f40654930",
+      "model_hash": "cf270d6fc6e4280e24456acbdcdbc68581616a4093af1457172ff378f45f67ad",
       "model_id": "cpb-g3-04",
       "parameters": {
         "clear_1": 1.19,
@@ -743,8 +743,8 @@
     {
       "family": "G3",
       "file": "models/cpb-g3-08.json",
-      "file_sha256": "cbe2fe74e5d7e65c242144677e1c6cd646a9560908c46eccd46df8ccf62886ad",
-      "model_hash": "2a7b24a448f613b6433a735bfac258dff267b437e5945a2dab7a6f4d1cf126ac",
+      "file_sha256": "600ed2aead0995076be4216b451c36eddadcd746c2782b4585be90053117ef87",
+      "model_hash": "d317d4f1fb576fb03d1380f5a1b974f18816fe35cf2d70773dac59492fbd982a",
       "model_id": "cpb-g3-08",
       "parameters": {
         "clear_1": 4.0,
@@ -765,8 +765,8 @@
     {
       "family": "G3",
       "file": "models/cpb-g3-09.json",
-      "file_sha256": "9510b250dc6172d353ff43dd2deb62cb4aea2199f54a187754a32b1ab133a3b2",
-      "model_hash": "a3926abed5821f3603d3d46b1d3197ec906b4687037829d035554e3f30f8764b",
+      "file_sha256": "dfc8f4ff3ba3a2a6b8631cf4746b2731d3e7b63d3e412ac5a66370fac3491fe9",
+      "model_hash": "7497ad6750c07ab943c343e0c77c0b50f0b9bac776f20dd70ab77f6f9c0250de",
       "model_id": "cpb-g3-09",
       "parameters": {
         "clear_1": 2.88,
@@ -809,8 +809,8 @@
     {
       "family": "G3",
       "file": "models/cpb-g3-11.json",
-      "file_sha256": "a4862c4b8d53df7563f3a374062f9773c9e366de4be7a60e62d518927179ff76",
-      "model_hash": "7e4ed2012aa3869129f6c426c31c848cf6e80f80ce05848ba69ba5f3de5cbd26",
+      "file_sha256": "8527761aed744fbb8dbf5118db9f519b1b1458b632017a8a5ddbc57fb1ca3f70",
+      "model_hash": "ed40b8a86dfbd7c8048068e992c27304abe31be7b72f4c036e9be7de95808dfe",
       "model_id": "cpb-g3-11",
       "parameters": {
         "clear_1": 1.58,
@@ -874,8 +874,8 @@
     {
       "family": "G4",
       "file": "models/cpb-g4-02.json",
-      "file_sha256": "27f3511a34911228558cf7474cffa8cce1b5d68f10de07105e1e8768831c9786",
-      "model_hash": "b2068ac6a5f8fa84a09c090578e92ae2b815d66d13d50f9e3ef4df6c141a3dd4",
+      "file_sha256": "09341ab56620e4cdbc5667de413e87366cbead45d23c6778953c53e7e8e25cf1",
+      "model_hash": "ee0de06977d7aaae55065a5a9147c0dbaa69973fa9cabeca5adf8a9049f5c6a8",
       "model_id": "cpb-g4-02",
       "parameters": {
         "clear_1": 4.0,
