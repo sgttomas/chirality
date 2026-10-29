@@ -266,7 +266,7 @@
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "6e65e0c1c33a1f242d3360f6c253c086b738b7228a8b01a7ed310a8db2f39ca3",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "2608f36e4e3fb77746f07e32826da2ecadabb3a6fba227c4c63c72ad6a180526",
+      "core/product_physics/Cargo.toml": "391b02f003b8381c66e89c93a0811402f7ebe961039f91ad12874de41f0c0774",
       "core/reporting/audit_manifest/Cargo.toml": "b8bc4623a383ed2c22205326bc737486becd9d931bf869e1e8cf40e147f4fad7",
       "core/reporting/pdf_emitter/Cargo.toml": "bdac876fe00cde0e3ba33a557dafe3e76e96dd462f4a710b63012dada23fca50",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
@@ -768,7 +768,7 @@
               "fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
+            "source_sha256": "62be0ab11251fdce4b0ed4e1d9c604d7a322ab19f3ff04b9147eb093ede400e5"
           },
           {
             "anchor": "../../fixtures/results/retained_precision_prepared_combination_v1.json",
@@ -777,7 +777,7 @@
               "fixtures/results/retained_precision_prepared_combination_v1.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
+            "source_sha256": "62be0ab11251fdce4b0ed4e1d9c604d7a322ab19f3ff04b9147eb093ede400e5"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_physics_retained_1.json",
@@ -786,7 +786,7 @@
               "fixtures/results/semantic_contract_v0_3_physics_retained_1.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
+            "source_sha256": "62be0ab11251fdce4b0ed4e1d9c604d7a322ab19f3ff04b9147eb093ede400e5"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_preview_physics_2.json",
@@ -795,7 +795,7 @@
               "fixtures/results/semantic_contract_v0_3_preview_physics_2.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
+            "source_sha256": "62be0ab11251fdce4b0ed4e1d9c604d7a322ab19f3ff04b9147eb093ede400e5"
           },
           {
             "anchor": "../../fixtures/results/retained_precision_prepared_ordinary_v1.json",
@@ -804,7 +804,7 @@
               "fixtures/results/retained_precision_prepared_ordinary_v1.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
+            "source_sha256": "62be0ab11251fdce4b0ed4e1d9c604d7a322ab19f3ff04b9147eb093ede400e5"
           },
           {
             "anchor": "../../fixtures/results/retained_precision_prepared_exact_v1.json",
@@ -813,7 +813,7 @@
               "fixtures/results/retained_precision_prepared_exact_v1.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
+            "source_sha256": "62be0ab11251fdce4b0ed4e1d9c604d7a322ab19f3ff04b9147eb093ede400e5"
           },
           {
             "anchor": "../../schemas/retained_precision_mp_v2.schema.json",
@@ -822,7 +822,7 @@
               "schemas/retained_precision_mp_v2.schema.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
+            "source_sha256": "62be0ab11251fdce4b0ed4e1d9c604d7a322ab19f3ff04b9147eb093ede400e5"
           },
           {
             "anchor": "../../schemas/physics_source_recovery.schema.json",
@@ -831,7 +831,7 @@
               "schemas/physics_source_recovery.schema.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
+            "source_sha256": "62be0ab11251fdce4b0ed4e1d9c604d7a322ab19f3ff04b9147eb093ede400e5"
           },
           {
             "anchor": "Cargo.lock",
@@ -840,7 +840,7 @@
               "core/product_physics/Cargo.lock"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
+            "source_sha256": "62be0ab11251fdce4b0ed4e1d9c604d7a322ab19f3ff04b9147eb093ede400e5"
           },
           {
             "anchor": "../../schemas/results_pressure_2.v0.3.schema.json",
@@ -849,13 +849,13 @@
               "schemas/results_pressure_2.v0.3.schema.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
+            "source_sha256": "62be0ab11251fdce4b0ed4e1d9c604d7a322ab19f3ff04b9147eb093ede400e5"
           },
           {
             "anchor": "../../fixtures/results/semantic_contract_v0_3_pressure_source_1.json",
             "base": "manifest",
             "source": "src/build_identity.rs",
-            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6",
+            "source_sha256": "62be0ab11251fdce4b0ed4e1d9c604d7a322ab19f3ff04b9147eb093ede400e5",
             "files": [
               "fixtures/results/semantic_contract_v0_3_pressure_source_1.json"
             ]
@@ -867,7 +867,16 @@
               "fixtures/results/semantic_contract_v0_3_pressure_2.json"
             ],
             "source": "src/build_identity.rs",
-            "source_sha256": "4ba23f8f4970dc65057c9e3b483865e563de34a94655150ffc003ca903084db6"
+            "source_sha256": "62be0ab11251fdce4b0ed4e1d9c604d7a322ab19f3ff04b9147eb093ede400e5"
+          },
+          {
+            "anchor": "../../fixtures/results/semantic_contract_v0_3_preview_physics_timoshenko_1.json",
+            "base": "manifest",
+            "files": [
+              "fixtures/results/semantic_contract_v0_3_preview_physics_timoshenko_1.json"
+            ],
+            "source": "src/build_identity.rs",
+            "source_sha256": "62be0ab11251fdce4b0ed4e1d9c604d7a322ab19f3ff04b9147eb093ede400e5"
           }
         ]
       },
