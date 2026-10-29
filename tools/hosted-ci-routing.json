@@ -257,7 +257,7 @@
   "piping_runtime_reads": {
     "source_trees": {
       "core/gui/viewport_editor/Cargo.toml": "32de48e1e1afd2bc77f84655a69561bdc96074a31fe17f705e7b3a0d8aa6eddf",
-      "core/handoff/caepipe_mbf_engine/Cargo.toml": "824850bea07f278992b3e97dff8ceb39f5d7600107097cf12286d6c15deea499",
+      "core/handoff/caepipe_mbf_engine/Cargo.toml": "5bef7ece75271f56bc3eecc4c62a100e88e8864f47c875d62c439675f7cac0b1",
       "core/library_import/library_import_document/Cargo.toml": "26b545d7e2d6988d54a256e63f1136b49c4e2fc907af18c9c7affc38cd2498d4",
       "core/loads/load_case_algebra/Cargo.toml": "b75f87e5a708becb0f52d1b9864c6ac7226a9f2d53b1eaf7e101ba6f89293cfe",
       "core/loads/primitive_loads/Cargo.toml": "c62ebd4ac6ad01fe673db598aa412b29c6338fdd25d4d21385c51323d7709818",
@@ -2739,6 +2739,7 @@
               "validation/references/kd5_timoshenko/runner/src/main.rs",
               "validation/references/m3_judge/runner/build.rs",
               "validation/references/m3_judge/runner/src/main.rs",
+              "core/handoff/caepipe_mbf_engine/src/correctly_rounded.rs",
               "core/handoff/caepipe_mbf_engine/src/decimal90.rs",
               "core/handoff/caepipe_mbf_engine/src/importer/assemble.rs",
               "core/handoff/caepipe_mbf_engine/src/importer/build.rs",
@@ -5467,7 +5468,7 @@
         ]
       },
       "core/handoff/caepipe_mbf_engine/tests/parity.rs": {
-        "sha256": "48007bc98dafc179a97551d7ba209cd471981a25d7f782287313e23daa0393e5",
+        "sha256": "4a2d16c3b2c19a92fb18cbeae1e04c1ae9121a5b551c36b569355a276a0d983d",
         "source_trees": [
           "core/handoff/caepipe_mbf_engine/Cargo.toml"
         ],
