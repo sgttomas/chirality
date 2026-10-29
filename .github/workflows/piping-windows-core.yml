@@ -36,7 +36,6 @@ jobs:
         shell: pwsh
         working-directory: projects/chirality-piping
     env:
-      CARGO_TARGET_DIR: ${{ runner.temp }}/swbpipe-windows-core
       CARGO_TERM_COLOR: never
     steps:
       - uses: actions/checkout@v4
@@ -56,6 +55,8 @@ jobs:
           $candidate = git rev-parse HEAD
           if ($LASTEXITCODE -ne 0) { throw 'Cannot identify the checked-out candidate.' }
           "Candidate: $candidate; runner architecture: $env:RUNNER_ARCH"
+          $target = Join-Path $env:RUNNER_TEMP 'swbpipe-windows-core'
+          "CARGO_TARGET_DIR=$target" >> $env:GITHUB_ENV
       - name: Exercise existing core oracles
         run: |
           # No new reference values or tolerances. The curved-bend crate includes
