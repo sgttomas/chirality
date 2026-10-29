@@ -15,6 +15,9 @@ on:
       - projects/chirality-piping/Cargo.lock
       - projects/chirality-piping/rust-toolchain*
       - projects/chirality-piping/core/**
+      - projects/chirality-piping/fixtures/**
+      - projects/chirality-piping/validation/references/**
+      - projects/chirality-piping/schemas/**
   workflow_dispatch:
 
 permissions:
@@ -34,6 +37,7 @@ jobs:
         working-directory: projects/chirality-piping
     env:
       CARGO_TARGET_DIR: ${{ runner.temp }}/swbpipe-windows-core
+      CARGO_TERM_COLOR: never
     steps:
       - uses: actions/checkout@v4
         with:
@@ -63,8 +67,14 @@ jobs:
             'core/serialization/canonical_json/Cargo.toml'
           )
           foreach ($manifest in $manifests) {
-            cargo test --locked --target x86_64-pc-windows-msvc --manifest-path $manifest
-            if ($LASTEXITCODE -ne 0) { throw "Core portability failed: $manifest" }
+            $output = cargo test --locked --target x86_64-pc-windows-msvc --manifest-path $manifest 2>&1
+            $status = $LASTEXITCODE
+            $output
+            if ($status -ne 0) { throw "Core portability failed: $manifest" }
+            if ($manifest -eq 'core/solver/curved_bend/Cargo.toml') {
+              $witness = @($output | Where-Object { "$_" -match '^test platform_bits_tests::formation_bits_are_frozen \.\.\. ok$' })
+              if ($witness.Count -ne 1) { throw 'The frozen formation witness must execute and pass exactly once.' }
+            }
           }
       - name: Check the engineering facade and its dependencies
         run: |
