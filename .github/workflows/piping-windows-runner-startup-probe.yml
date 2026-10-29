@@ -47,8 +47,7 @@ jobs:
           EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
         run: ./projects/chirality-piping/validation/platform/windows_runner_startup_probe/run.ps1
   export-boundary:
-    name: Export DEFERRED until verified batching integration
-    if: ${{ false }} # Remove only after the verified separate exporter repair is merged.
+    name: Full committed export boundary and autocrlf fixtures
     runs-on: windows-2025
     timeout-minutes: 25
     steps:
@@ -109,5 +108,44 @@ jobs:
           if ((git rev-parse HEAD) -ne $env:EXPECTED_HEAD -or (git status --porcelain --untracked-files=all)) { throw 'Export/build changed raw candidate inputs' }
           $record = Get-Content (Join-Path $export 'export-record.json') -Raw | ConvertFrom-Json -Depth 100
           if ($record.source.git.commit_hash -ne $env:EXPECTED_HEAD -or $record.gate_result -ne 'pass') { throw 'Export record candidate/gate mismatch' }
+          $staging = Join-Path $export 'staging'
+          $attributes = Join-Path $staging '.gitattributes'
+          $rule = 'validation/platform/windows_runner_startup_probe/fixtures/*.json -text'
+          if (@(Get-Content $attributes) -cnotcontains $rule) { throw 'Exported attributes lost the fixture byte rule' }
+          $manifest = @(Import-Csv (Join-Path $export 'export-manifest.csv'))
+          $probeFiles = @(git ls-tree -r --name-only HEAD -- projects/chirality-piping/validation/platform/windows_runner_startup_probe)
+          if ($LASTEXITCODE -ne 0 -or $probeFiles.Count -ne 8) { throw 'Committed public probe inventory differs' }
+          foreach ($file in $probeFiles) {
+            $relative = $file.Substring('projects/chirality-piping/'.Length)
+            if (-not (Test-Path (Join-Path $staging $relative) -PathType Leaf) -or @($manifest | Where-Object { $_.path -ceq $relative }).Count -ne 1) { throw 'Full export omitted a committed probe file' }
+          }
+          # A data-only temporary Git index checks the ACTUAL exported attributes
+          # and raw fixture bytes. No commit, identity, remote or global config.
+          $byteRepo = Join-Path $env:RUNNER_TEMP ('startup-byte-index-' + [Guid]::NewGuid().ToString('N'))
+          $materialized = Join-Path $env:RUNNER_TEMP ('startup-autocrlf-' + [Guid]::NewGuid().ToString('N'))
+          git init --quiet $byteRepo
+          if ($LASTEXITCODE -ne 0) { throw 'Fixture materialization index setup failed' }
+          Copy-Item $attributes (Join-Path $byteRepo '.gitattributes')
+          $relativeFixtures = @($scope.members | Where-Object { $_.path.StartsWith('validation/platform/windows_runner_startup_probe/fixtures/') } | ForEach-Object { $_.path })
+          if ($relativeFixtures.Count -ne 3) { throw 'Wrong exported P7 fixture inventory' }
+          foreach ($relative in $relativeFixtures) {
+            $entry = @($scope.members | Where-Object { $_.path -ceq $relative })
+            $staged = Join-Path $staging $relative
+            if ((Get-FileHash $staged -Algorithm SHA256).Hash.ToLowerInvariant() -cne $entry[0].sha256) { throw 'Exported fixture differs from committed P7 bytes' }
+            $destination = Join-Path $byteRepo $relative
+            New-Item -ItemType Directory -Force (Split-Path $destination) | Out-Null
+            Copy-Item $staged $destination
+          }
+          git -C $byteRepo -c core.autocrlf=false add -- .gitattributes @relativeFixtures
+          if ($LASTEXITCODE -ne 0) { throw 'Raw fixture index staging failed' }
+          $prefix = $materialized.Replace([IO.Path]::DirectorySeparatorChar, [char]'/') + '/'
+          git -C $byteRepo -c core.autocrlf=true checkout-index --all "--prefix=$prefix"
+          if ($LASTEXITCODE -ne 0) { throw 'Real autocrlf fixture materialization failed' }
+          foreach ($relative in $relativeFixtures) {
+            $entry = @($scope.members | Where-Object { $_.path -ceq $relative })
+            if ((Get-FileHash (Join-Path $materialized $relative) -Algorithm SHA256).Hash.ToLowerInvariant() -cne $entry[0].sha256) { throw 'Autocrlf materialization changed approved fixture bytes' }
+          }
+          Write-Host "PUBLIC_AUTOCRLF_MATERIALIZATION candidate=$env:EXPECTED_HEAD fixtures=3 matched=3 exported_attributes=true"
+          Remove-Item -Recurse -Force $byteRepo,$materialized
           Write-Host "Full committed export boundary/lint passed candidate=$env:EXPECTED_HEAD; release/owner scan and P7 scanner checks remain separate."
           Remove-Item -Recurse -Force $export,$env:CARGO_TARGET_DIR
