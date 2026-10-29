@@ -12,9 +12,10 @@ Checks:
   1. AD_HOC_CLAIMS_LITANY — a scanned line carries three or more distinct
      litany-vocabulary terms (or "not authoritative"-family phrasing) without
      matching a registered boundary-statement text.
-  2. Anchor presence — the PRD section 19.3 notice fragment and the
-     report-renderer notice fragment exist on their named surfaces
-     (MISSING_PRD_NOTICE / MISSING_RENDERER_NOTICE).
+  2. Anchor presence — the PRD section 19.3 notice fragment, the
+     report-renderer notice fragment and the CSV preamble notice constant
+     (BS-VALID verbatim) exist on their named surfaces
+     (MISSING_PRD_NOTICE / MISSING_RENDERER_NOTICE / MISSING_CSV_NOTICE).
   3. RETIRED_MATURITY_SENTENCE — the retired BS-MATURITY sentence appears on
      a scanned live surface (DEC-105; the former MISSING_MATURITY_BANNER
      anchor is removed).
@@ -131,6 +132,16 @@ ANCHORS = (
         "MISSING_RENDERER_NOTICE",
         "core/reporting/report_renderer/src/lib.rs",
         "decision-support software",
+    ),
+    # RT-R6 (DEL-08-04-R14): the CSV preamble `notice` constant is BS-VALID verbatim.
+    # The fragment is the whole declaration, so a drift in the constant fails here.
+    (
+        "MISSING_CSV_NOTICE",
+        "apps/desktop/src/features/result-export/csvTable.ts",
+        "export const CSV_PREAMBLE_NOTICE = \"Candidate designs are validated in "
+        "the user's accepted professional tools (external-prover correlation, "
+        "PRD §22.5). Internal benchmarks and rule checks are development "
+        "verification and screening evidence.\";",
     ),
 )
 
