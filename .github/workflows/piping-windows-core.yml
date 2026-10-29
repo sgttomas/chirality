@@ -42,6 +42,13 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
+          # Match the existing numerical checkout: historical execution records
+          # are not build inputs and include paths beyond Windows MAX_PATH.
+          sparse-checkout: |
+            /*
+            !/execution/
+            !/projects/*/execution/
+          sparse-checkout-cone-mode: false
       - uses: dtolnay/rust-toolchain@1.97.1
       - name: Identify native x64 Windows evidence
         run: |
