@@ -2391,6 +2391,7 @@
               "apps/desktop/src-tauri/src/close_guard.rs",
               "apps/desktop/src-tauri/src/command_ingress.rs",
               "apps/desktop/src-tauri/src/embedded_agent/catalog.rs",
+              "apps/desktop/src-tauri/src/embedded_agent/dispatcher.rs",
               "apps/desktop/src-tauri/src/embedded_agent/framing.rs",
               "apps/desktop/src-tauri/src/embedded_agent/macos.rs",
               "apps/desktop/src-tauri/src/embedded_agent/mod.rs",
