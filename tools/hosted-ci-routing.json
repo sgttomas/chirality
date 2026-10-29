@@ -2400,6 +2400,7 @@
               "apps/desktop/src-tauri/src/embedded_agent/sandbox.rs",
               "apps/desktop/src-tauri/src/embedded_agent/session_driver.rs",
               "apps/desktop/src-tauri/src/embedded_agent/stdio_pump.rs",
+              "apps/desktop/src-tauri/src/embedded_agent/webview_bridge.rs",
               "apps/desktop/src-tauri/src/exact_source_binding.rs",
               "apps/desktop/src-tauri/src/export_disposition_screen.rs",
               "apps/desktop/src-tauri/src/handoff_package.rs",
