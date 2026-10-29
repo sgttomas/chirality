@@ -570,9 +570,12 @@ classification. It never prints external-prover values outside the local run.
   order. The families are a tee with user SIF modifiers, an eccentric reducer, valves, flanges, an
   expansion joint with tie rods, a gap, lift-off, friction, a variable spring and a constant-effort
   support. A family with no public page becomes a limitation candidate.
-- DEL-17-04 importer: map the modulus basis and the thermal-expansion reference under the revised O-7
-  (DEL-17-04 Design §20.2), per CQ-17-01-016 and CQ-17-01-017, which were resolved by experiment, not sent:
-  - map the per-case modulus basis explicitly to DEC-092;
+- DEL-17-04 importer: the revised O-7 (Agent 0), to be recorded in DEL-17-04 Design §20.2 in place of
+  the hot basis. CQ-17-01-016 and CQ-17-01-017 were resolved by experiment, not sent. The change:
+  - the modulus basis follows the MBF's cold-modulus flag, absent meaning cold, except under the codes
+    whose flag is ignored. For those, map that code's basis and cite it;
+  - map the per-case modulus basis explicitly to DEC-092, never by default;
+  - take thermal expansion as the mean from the `OPTEMP` reference temperature;
   - map rotational stiffness units per degree, with English-unit moments in inch-pounds;
   - refuse by name an element temperature outside the material table;
   - pin the mapping to version 15.10;
