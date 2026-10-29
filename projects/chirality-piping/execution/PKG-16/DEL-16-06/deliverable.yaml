@@ -160,6 +160,7 @@ checks:
 - apps/desktop/src-tauri/src/embedded_agent/dispatcher.rs
 - apps/desktop/src-tauri/src/embedded_agent/webview_bridge.rs
 - apps/desktop/src/services/embeddedAgentBridge.test.ts
+- apps/desktop/src-tauri/src/embedded_agent/loopback.rs
 - apps/desktop/src-tauri/src/embedded_agent/macos.rs
 - apps/desktop/src-tauri/src/embedded_agent/sandbox.rs
 - apps/desktop/src/services/operationService.test.ts

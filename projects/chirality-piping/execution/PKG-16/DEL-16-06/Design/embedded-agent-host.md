@@ -24,8 +24,9 @@ A/B GUI sessions wait for the owner's return. The Decisions API stays excluded.
 providers and generic keychain custody, the Rust-owned loopback relay, runtime
 profile/path derivation, dual-architecture stock supplier packaging, automated
 cleanup/isolation proof and explicit unavailability on unqualified platforms.
-Current fixed-model/endpoint/credential-name launcher code is an unwired
-prototype, not that portable implementation. Historical experiment paragraphs
+The unwired launcher now takes an explicit model and an owned dynamic-loopback
+scope; the HTTP relay, provider configuration/keychain custody and packaged
+supplier selection still need portable implementation. Historical experiment paragraphs
 below retain their actual then-current holds; this activation basis supersedes
 their pending-owner-authorization status, not their unestablished evidence.
 
@@ -418,15 +419,61 @@ prevented. The native process owner must still stop/clean up its supplier, and
 actual disablement/OS isolation remains a separate activation proof obligation.
 
 The macOS-only `macos.rs`/`sandbox.rs` launcher is not connected to product
-startup. It verifies and copies the selected binary, uses private home/cwd and
-an environment-held credential, and denies reads outside fixed OS locations and
-its private runtime. Literal root-directory reading and metadata on fixed OS
-aliases are needed for the selected pin's startup; these do not grant reads of
-descendant user files. Only private home/cwd writes and outbound loopback port
-8000 are offered. No hosted-provider profile is implemented. Production stderr
-is discarded; the native startup test uses an invented credential and checks
-that its bounded diagnostic does not contain it. Real credential acquisition,
-crash-diagnostic absence and a complete native-session witness remain unproved.
+startup. It verifies/copies the selected arm64 pin and derives private home/cwd
+and exact exec paths at runtime. It accepts a validated explicit model identifier
+and an Arc of the Rust-owned loopback scope; the sandbox's only network grant
+uses that scope's runtime TCP port. The child's environment contains a fresh relay
+capability, never the configured provider key. Config files contain neither
+secret. Model strings are escaped before TOML construction. The provider alias
+is now `swbpipe_relay`. The retained EOF fixture needs adaptation to the new
+LaunchConfig/relay custody, probe port and provider alias before reuse; its
+historical report bytes are unchanged.
+The standalone Rust sandbox probe now requires `SWBPIPE_PROBE_ALLOWED_PORT` and
+checks both named loopback families plus an unowned alias. Previous fixed-port
+fixture reports remain historical; they do not qualify this dynamic-port path.
+
+`loopback.rs` explicitly binds `127.0.0.1` and `::1` at the same OS-selected port,
+refuses if either cannot be held, and exposes nonblocking accepts without giving
+out listener ownership. Both listeners and the per-start random 256-bit capability
+share a 64 KiB GENERAL userspace allowance. This does not price kernel socket
+queues or future HTTP buffers, streams, workers and TLS; those require separate
+admission before relay activation. The launcher retains an Arc through supplier
+group cleanup, including retained Runtime custody on an unconfirmed live scope.
+The future relay owner must also retain its Arc through actual worker shutdown.
+
+Literal root-directory reading and metadata on fixed OS aliases are needed for
+the selected pin's startup; these do not grant reads of descendant user files.
+The deny-by-default file restrictions, exact single exec, explicit fork deny and
+accepted libinfo condition are unchanged. The one network line changes from
+`(allow network-outbound (remote ip "localhost:8000"))` to
+`(allow network-outbound (remote tcp "localhost:<owned-port>"))`. TCP-only
+narrows the former IP rule because the scope does not own UDP endpoints.
+Apple's installed `/usr/share/sandbox/com.apple.netbiosd.sb` uses `remote tcp`
+with explicit ports; that is syntax precedent, not qualification of this recipe.
+A test-only 8000 rendering, with only `remote tcp` inverted to `remote ip`,
+reproduces the previously reviewed exact hash. This text guard is not native
+enforcement evidence.
+Alias/address coverage, actual per-start profile bytes, no-fork/exec/filesystem
+and network denial still need native qualification on the selected candidate.
+On code candidate `25228fe0994e5a9cb87292b3d6d5d86ffc3bedf5`, the guarded
+`embedded_agent::sandbox::tests::native_permission_probes --exact --ignored`
+run passed on the current arm64 Mac. The freshly copied standalone Rust probe
+returned success only after all 15 checks passed: private home/cwd writes;
+outside project/document/keychain reads and writes plus symlink-read denial;
+both named loopback TCP endpoints; EPERM for `127.0.0.2` at the same port,
+another loopback port, an off-host endpoint, listener creation and both forbidden
+and self-spawn execution. No supplier, provider/model or credential was used.
+The source-defined 15-check predicate and test exit status establish this bounded
+observation; the generated per-run root/port profile bytes were not retained.
+This is not comprehensive alias/UDP coverage, listener non-inheritance, explicit
+C fork qualification, a stock-Codex round trip, EOF/crash cleanup or Intel proof.
+
+No HTTP service, provider connection, keychain/settings route, credential file,
+new FFI/import, supervisor registration, packaging or platform-minimum change is
+introduced here. Production stderr remains discarded. The ignored startup test
+checks that bounded diagnostic text omits its fresh capability. Actual relay
+credential acquisition, crash-output exclusion, Intel supplier and a complete
+native-session witness remain unproved.
 
 On shutdown the launcher retains the original unreaped `Child` through every
 group observation and signal, then reaps it only after observing no live group
