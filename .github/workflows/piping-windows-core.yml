@@ -6,11 +6,13 @@ on:
   pull_request:
     paths:
       - .github/workflows/piping-windows-core.yml
+      - .gitattributes
       - .cargo/**
       - Cargo.toml
       - Cargo.lock
       - rust-toolchain*
       - projects/chirality-piping/.cargo/**
+      - projects/chirality-piping/.gitattributes
       - projects/chirality-piping/Cargo.toml
       - projects/chirality-piping/Cargo.lock
       - projects/chirality-piping/rust-toolchain*
