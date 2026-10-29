@@ -257,6 +257,7 @@
   "piping_runtime_reads": {
     "source_trees": {
       "core/gui/viewport_editor/Cargo.toml": "32de48e1e1afd2bc77f84655a69561bdc96074a31fe17f705e7b3a0d8aa6eddf",
+      "core/handoff/caepipe_mbf_engine/Cargo.toml": "fe8ca6aa62c9c766b080d97acf5d569b089a78a76c6b45317a37a70b86f06b03",
       "core/library_import/library_import_document/Cargo.toml": "26b545d7e2d6988d54a256e63f1136b49c4e2fc907af18c9c7affc38cd2498d4",
       "core/loads/load_case_algebra/Cargo.toml": "b75f87e5a708becb0f52d1b9864c6ac7226a9f2d53b1eaf7e101ba6f89293cfe",
       "core/loads/primitive_loads/Cargo.toml": "c62ebd4ac6ad01fe673db598aa412b29c6338fdd25d4d21385c51323d7709818",
@@ -265,7 +266,7 @@
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "6e65e0c1c33a1f242d3360f6c253c086b738b7228a8b01a7ed310a8db2f39ca3",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
-      "core/product_physics/Cargo.toml": "4bd351345f1e8546dff6a288f0ba2238fa3b5a5e5f3279e6388b53b38fefdfd6",
+      "core/product_physics/Cargo.toml": "79aa44583929b921498ed8a0cfaf10f087aaeda8c1ef58d6a1030d0b0c07a61e",
       "core/reporting/audit_manifest/Cargo.toml": "b8bc4623a383ed2c22205326bc737486becd9d931bf869e1e8cf40e147f4fad7",
       "core/reporting/pdf_emitter/Cargo.toml": "bdac876fe00cde0e3ba33a557dafe3e76e96dd462f4a710b63012dada23fca50",
       "core/reporting/protected_content_linter/Cargo.toml": "6a11912d00b5c5c502e1f3d6d3036cf60d3e163078afbc3300005fd496a756ef",
@@ -273,7 +274,7 @@
       "core/reporting/report_package/Cargo.toml": "58bed021bfeca6f4d0eb3c9fdfa2bbd8ab899483974479777b5a11e2985e5563",
       "core/reporting/report_renderer/Cargo.toml": "e16d788aa9def79409f139ca48b73f03bde62ce9ff898456aaac697dc00bcb0e",
       "core/reporting/report_sections/Cargo.toml": "44acb66312edbc9bfd77aa2980a898511ac34de67fba0fc773b70007a3aad0f1",
-      "core/reporting/result_export/Cargo.toml": "3d35c3e06fdd60a6b41112b457ea2671ce38e7fc47dcfcd4e077b5a96d667073",
+      "core/reporting/result_export/Cargo.toml": "cf380517d149f3ff96fbb406cf2e2e3315d033eae85055b07c00f9932d566716",
       "core/rules/completeness_checker/Cargo.toml": "95cf7430d70fffc65a984a6841980f2c65f12000e28004da89efc092f1152737",
       "core/rules/expression_evaluator/Cargo.toml": "7018210dadfb7c2b855298730f5f8cddedbe09f7f03b05421b81c3694f873b18",
       "core/rules/rule_check_runner/Cargo.toml": "88971098b7a02b7cd79ee97788e76d31425865b98a0e51dbdd7d6e8711fb9dc1",
@@ -1501,6 +1502,7 @@
               "fixtures/results/preview_physics_connected_sparse.json",
               "fixtures/results/preview_physics_invented_dense.json",
               "fixtures/results/preview_physics_invented_sparse.json",
+              "fixtures/results/preview_physics_nonlinear_operands_corpus.json",
               "fixtures/results/preview_physics_range_envelope_sparse.json",
               "fixtures/results/preview_physics_tamper_vector.json",
               "fixtures/results/preview_physics_timoshenko_arc_sparse.json",
@@ -2035,7 +2037,7 @@
         ]
       },
       "core/reporting/result_export/tests/preview_physics_contract.rs": {
-        "sha256": "a852f0c8a8a49421ae4898f373a5b690cb58cb928d2b78c782eef268a288031b",
+        "sha256": "2ce80d5c5ac1b8ee09749a7db05bf86f261d1b2699d46f7f700731b8ce173620",
         "source_trees": [
           "core/reporting/result_export/Cargo.toml"
         ],
@@ -2416,6 +2418,23 @@
               "apps/desktop/src-tauri/src/user_release_save_tests.rs",
               "apps/desktop/src-tauri/src/worker_alloc.rs",
               "core/gui/viewport_editor/src/lib.rs",
+              "core/handoff/caepipe_mbf_engine/src/correctly_rounded.rs",
+              "core/handoff/caepipe_mbf_engine/src/decimal90.rs",
+              "core/handoff/caepipe_mbf_engine/src/importer/assemble.rs",
+              "core/handoff/caepipe_mbf_engine/src/importer/build.rs",
+              "core/handoff/caepipe_mbf_engine/src/importer/finish.rs",
+              "core/handoff/caepipe_mbf_engine/src/importer/mod.rs",
+              "core/handoff/caepipe_mbf_engine/src/importer/pressure.rs",
+              "core/handoff/caepipe_mbf_engine/src/lib.rs",
+              "core/handoff/caepipe_mbf_engine/src/pyfmt.rs",
+              "core/handoff/caepipe_mbf_engine/src/pyjson.rs",
+              "core/handoff/caepipe_mbf_engine/src/pymath.rs",
+              "core/handoff/caepipe_mbf_engine/src/pystr.rs",
+              "core/handoff/caepipe_mbf_engine/src/rational.rs",
+              "core/handoff/caepipe_mbf_engine/src/runtime.rs",
+              "core/handoff/caepipe_mbf_engine/src/sidecar.rs",
+              "core/handoff/caepipe_mbf_engine/src/unicode_tables.rs",
+              "core/handoff/caepipe_mbf_engine/src/value.rs",
               "core/library_import/library_import_document/src/lib.rs",
               "core/loads/load_case_algebra/src/factor_sum.rs",
               "core/loads/load_case_algebra/src/lib.rs",
@@ -2489,6 +2508,7 @@
               "core/product_physics/src/model_format.rs",
               "core/product_physics/src/model_settings.rs",
               "core/product_physics/src/o4_m3_judging_tests.rs",
+              "core/product_physics/src/op1a_seed_tests.rs",
               "core/product_physics/src/pf_timoshenko.rs",
               "core/product_physics/src/pressure_exact.rs",
               "core/product_physics/src/pressure_exact/source_geometry.rs",
@@ -2584,6 +2604,7 @@
               "core/reporting/result_export/src/load_reference_source.rs",
               "core/reporting/result_export/src/physics_evidence.rs",
               "core/reporting/result_export/src/physics_source.rs",
+              "core/reporting/result_export/src/preview_combination_operands.rs",
               "core/reporting/result_export/src/preview_magnitude_tests.rs",
               "core/reporting/result_export/src/preview_physics_evidence.rs",
               "core/reporting/result_export/src/reader_verdict.rs",
@@ -3816,6 +3837,7 @@
               "core/product_physics/src/model_format.rs",
               "core/product_physics/src/model_settings.rs",
               "core/product_physics/src/o4_m3_judging_tests.rs",
+              "core/product_physics/src/op1a_seed_tests.rs",
               "core/product_physics/src/pf_timoshenko.rs",
               "core/product_physics/src/pressure_exact.rs",
               "core/product_physics/src/pressure_exact/source_geometry.rs",
@@ -3998,6 +4020,7 @@
               "core/product_physics/src/model_format.rs",
               "core/product_physics/src/model_settings.rs",
               "core/product_physics/src/o4_m3_judging_tests.rs",
+              "core/product_physics/src/op1a_seed_tests.rs",
               "core/product_physics/src/pf_timoshenko.rs",
               "core/product_physics/src/pressure_exact.rs",
               "core/product_physics/src/pressure_exact/source_geometry.rs",
@@ -4334,6 +4357,7 @@
             "files": [
               "apps/desktop/src-tauri/Cargo.toml",
               "core/gui/viewport_editor/Cargo.toml",
+              "core/handoff/caepipe_mbf_engine/Cargo.toml",
               "core/library_import/library_import_document/Cargo.toml",
               "core/loads/load_case_algebra/Cargo.toml",
               "core/loads/primitive_loads/Cargo.toml",
@@ -4617,6 +4641,8 @@
               "fixtures/caepipe_mbf/invented/caepipe_mbf_export_package.json",
               "fixtures/caepipe_mbf/invented/import/units_english.provenance.json",
               "fixtures/caepipe_mbf/invented/import/units_si.provenance.json",
+              "fixtures/caepipe_mbf/invented/parity/import_vectors.json",
+              "fixtures/caepipe_mbf/invented/parity/import_vectors.provenance.json",
               "fixtures/canonical_hash/binary64_transport_vectors.json",
               "fixtures/canonical_hash/cases.json",
               "fixtures/comparison/analysis_run_comparison_golden.json",
@@ -4952,6 +4978,7 @@
               "fixtures/results/preview_physics_connected_sparse.json",
               "fixtures/results/preview_physics_invented_dense.json",
               "fixtures/results/preview_physics_invented_sparse.json",
+              "fixtures/results/preview_physics_nonlinear_operands_corpus.json",
               "fixtures/results/preview_physics_range_envelope_sparse.json",
               "fixtures/results/preview_physics_tamper_vector.json",
               "fixtures/results/preview_physics_timoshenko_arc_sparse.json",
@@ -5480,6 +5507,35 @@
         "sha256": "bd21eafec49c7f785fc3cd0f23a864f74c3e6a3e5e1f860ddd4d4bec456ec12c",
         "source_trees": [
           "core/reporting/report_package/Cargo.toml"
+        ]
+      },
+      "core/handoff/caepipe_mbf_engine/tests/parity.rs": {
+        "sha256": "4a2d16c3b2c19a92fb18cbeae1e04c1ae9121a5b551c36b569355a276a0d983d",
+        "source_trees": [
+          "core/handoff/caepipe_mbf_engine/Cargo.toml"
+        ],
+        "inputs": [
+          {
+            "anchor": "fixtures/caepipe_mbf/invented/parity/import_vectors.json",
+            "base": "project",
+            "files": [
+              "fixtures/caepipe_mbf/invented/parity/import_vectors.json"
+            ]
+          },
+          {
+            "anchor": "core/handoff/caepipe_mbf/importer.py",
+            "base": "project",
+            "files": [
+              "core/handoff/caepipe_mbf/importer.py"
+            ]
+          },
+          {
+            "anchor": "schemas/model.schema.yaml",
+            "base": "project",
+            "files": [
+              "schemas/model.schema.yaml"
+            ]
+          }
         ]
       },
       "core/product_physics/tests/pf_timoshenko_envelopes.rs": {
