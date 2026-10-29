@@ -567,7 +567,13 @@ classification. It never prints external-prover values outside the local run.
   - parser sections for frequencies and spectra;
   - declare rigid stiffness as an inexact input (§11.3) for models with a rigid element or line stop,
     so their screening class is `named_inexact`;
-  - the VM reruns that the private tranche-1 triage lists.
+  - the VM reruns that the private tranche-1 triage lists: G4-05 and G6-03, as authored and with every
+    modulus divided by 100;
+  - a possible convention option in SWBPIPE: straight-pipe shear with shape factor 2 (κ = 0.5, the
+    assumption above) and bend transverse shear with the same factor. This is a scope call for Agent 0
+    or the owner, not started;
+  - DEL-17-04 §18.3's private importer round trip on the MBF that benchmark runs export
+    (`--export-mbf`).
 - Source rows for the remaining component and support families (Q-3, for W-17's coverage criterion).
   One row per family, citing CAEPIPE's public manual page by URL, in our own words, in reference-system
   order. The families are a tee with user SIF modifiers, an eccentric reducer, valves, flanges, an
