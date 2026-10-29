@@ -30,7 +30,9 @@ jobs:
   core:
     name: Windows x64 core (MSVC)
     runs-on: windows-2025
-    timeout-minutes: 20
+    # Allow a cold Windows build; keep Cargo output live so a slow compile or
+    # stalled test is visible instead of losing all diagnostics at timeout.
+    timeout-minutes: 45
     defaults:
       run:
         shell: pwsh
@@ -75,9 +77,12 @@ jobs:
             'core/serialization/canonical_json/Cargo.toml'
           )
           foreach ($manifest in $manifests) {
-            $output = cargo test --locked --target x86_64-pc-windows-msvc --manifest-path $manifest 2>&1
+            Write-Host "Starting $manifest"
+            $elapsed = [System.Diagnostics.Stopwatch]::StartNew()
+            cargo test --locked --target x86_64-pc-windows-msvc --manifest-path $manifest 2>&1 | Tee-Object -Variable output
             $status = $LASTEXITCODE
-            $output
+            $elapsed.Stop()
+            Write-Host "Completed $manifest in $($elapsed.Elapsed)"
             if ($status -ne 0) { throw "Core portability failed: $manifest" }
             if ($manifest -eq 'core/solver/curved_bend/Cargo.toml') {
               $witness = @($output | Where-Object { "$_" -match '^test platform_bits_tests::formation_bits_are_frozen \.\.\. ok$' })
