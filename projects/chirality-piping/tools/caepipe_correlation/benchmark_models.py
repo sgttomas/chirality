@@ -15,9 +15,9 @@ Families G1-G8 (Design §11.1): straight spans, single bends, Z and U loops, mul
 support mixes and anchor movements. G1-G4 take their corner or series points plus a Latin hypercube drawn from
 `random.Random(seed)`; G5-G8 enumerate their configurations (and G5 its tee series) and sample the rest by the
 hypercube. The generator uses only `random()` from it, whose sequence for an integer seed is stable across Python
-versions, and prints every float through `repr`. Its transcendental functions (exp, log, sin, cos, tan, acos) are
-correctly rounded, computed in decimal at 60 digits and rounded once, never the platform's libm, so the same seed
-gives the same bytes on every platform.
+versions, and prints every float through `repr`. Its transcendental functions (exp, log, sin, cos, tan, acos) and
+integer powers are correctly rounded, computed in decimal at 60 digits and rounded once, never by the platform's
+libm, so the same seed gives the same bytes on every platform.
 Closed-form Euler-Bernoulli values are attached to the straight members whose response has one (G1, G8); they
 are the third, independent value of the comparison.
 
@@ -99,6 +99,13 @@ def cr_acos(x: float) -> float:
             sin, cos = _taylor_sin_cos(y)
             y += (cos - target) / sin
         return float(y)
+
+
+def cr_pow(x: float, n: int) -> float:
+    """x ** n for an integer n, correctly rounded (CPython's float ** calls the platform's pow)."""
+    with localcontext() as context:
+        context.prec = _PREC
+        return float(Decimal(x) ** n)
 
 
 def cr_exp(x: float) -> float:
@@ -274,7 +281,7 @@ class Builder:
 
     def weight_per_length(self, pipe_id: str) -> float:
         od, wall = self.sections[pipe_id]
-        area = math.pi / 4.0 * ((od / 1000.0) ** 2 - ((od - 2.0 * wall) / 1000.0) ** 2)
+        area = math.pi / 4.0 * (cr_pow(od / 1000.0, 2) - cr_pow((od - 2.0 * wall) / 1000.0, 2))
         return -self.material[4] * area * GRAVITY
 
     def add_weight(self) -> None:
@@ -352,7 +359,7 @@ def section(unit_od: float, unit_dt: float) -> tuple[float, float, float]:
 def section_properties(od_mm: float, wall_mm: float) -> tuple[float, float]:
     """(A m2, I m4) of the bare annulus."""
     ro, ri = od_mm / 2000.0, (od_mm - 2.0 * wall_mm) / 2000.0
-    return math.pi * (ro ** 2 - ri ** 2), math.pi / 4.0 * (ro ** 4 - ri ** 4)
+    return math.pi * (cr_pow(ro, 2) - cr_pow(ri, 2)), math.pi / 4.0 * (cr_pow(ro, 4) - cr_pow(ri, 4))
 
 
 def corner_bend(builder: Builder, name: str, before: str, ti, after_direction, radius_m: float, clear_after: float,
@@ -383,12 +390,12 @@ def cantilever_closed_forms(b: Builder, anchor: str, tip: str, pipe: str, span: 
     w = b.weight_per_length(pipe)
     ei = e * inertia
     return [
-        closed("displacement", "y", SUSTAINED, tip_force * span ** 3 / (3 * ei) + w * span ** 4 / (8 * ei), "m",
+        closed("displacement", "y", SUSTAINED, tip_force * cr_pow(span, 3) / (3 * ei) + w * cr_pow(span, 4) / (8 * ei), "m",
                "P L^3/(3EI) + w L^4/(8EI)", node=tip),
-        closed("rotation", "z", SUSTAINED, tip_force * span ** 2 / (2 * ei) + w * span ** 3 / (6 * ei), "rad",
+        closed("rotation", "z", SUSTAINED, tip_force * cr_pow(span, 2) / (2 * ei) + w * cr_pow(span, 3) / (6 * ei), "rad",
                "P L^2/(2EI) + w L^3/(6EI)", node=tip),
         closed("reaction_force", "y", SUSTAINED, -(tip_force + w * span), "N", "-(P + w L)", support=anchor),
-        closed("reaction_moment", "z", SUSTAINED, -(tip_force * span + w * span ** 2 / 2), "N*m",
+        closed("reaction_moment", "z", SUSTAINED, -(tip_force * span + w * cr_pow(span, 2) / 2), "N*m",
                "-(P L + w L^2/2)", support=anchor),
         closed("displacement", "x", EXPANSION, alpha * delta_t * span, "m", "alpha dT L", node=tip),
         closed("reaction_force", "x", EXPANSION, 0.0, "N", "0 (free thermal growth)", support=anchor),
@@ -754,7 +761,7 @@ def build_g8(model_id: str, spec: Spec) -> tuple[dict, list[dict], dict]:
             closed_forms = [
                 closed("reaction_moment", "z", EXPANSION, 4 * ei * phi / span, "N*m", "4EI phi/L", support=anchor_b),
                 closed("reaction_moment", "z", EXPANSION, 2 * ei * phi / span, "N*m", "2EI phi/L", support=anchor_a),
-                closed("reaction_force", "y", EXPANSION, -6 * ei * phi / span ** 2, "N", "-6EI phi/L^2",
+                closed("reaction_force", "y", EXPANSION, -6 * ei * phi / cr_pow(span, 2), "N", "-6EI phi/L^2",
                        support=anchor_b),
                 closed("rotation", "z", EXPANSION, -phi / 4, "rad",
                        "-phi/4 at midspan (v = phi (x^3/L^2 - x^2/L))", node=mid),
@@ -764,9 +771,9 @@ def build_g8(model_id: str, spec: Spec) -> tuple[dict, list[dict], dict]:
             b.move(f"b-{dof.lower()}", anchor_b, dof, delta)
             axis = dof[1].lower()
             closed_forms = [
-                closed("reaction_force", axis, EXPANSION, 12 * ei * delta / span ** 3, "N", "12EI delta/L^3",
+                closed("reaction_force", axis, EXPANSION, 12 * ei * delta / cr_pow(span, 3), "N", "12EI delta/L^3",
                        support=anchor_b),
-                closed("reaction_force", axis, EXPANSION, -12 * ei * delta / span ** 3, "N", "-12EI delta/L^3",
+                closed("reaction_force", axis, EXPANSION, -12 * ei * delta / cr_pow(span, 3), "N", "-12EI delta/L^3",
                        support=anchor_a),
                 closed("displacement", axis, EXPANSION, delta / 2, "m", "delta/2 at midspan", node=mid),
             ]
