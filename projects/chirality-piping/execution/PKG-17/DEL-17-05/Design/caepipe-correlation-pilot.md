@@ -560,7 +560,7 @@ classification. It never prints external-prover values outside the local run.
 - Benchmark (§11): tranche 1 has run under the settings guard. Its screening and §3 triage are held
   privately (§8), for the owner's review of the full record. Still open:
   - further VM batches and the later tranches (T2 at scale, then T3–T6 as their constructs land). Each
-    starts only on Agent 0's go-ahead, within the evaluation period;
+    starts only on Agent 0's go-ahead;
   - closed forms for G2 (anchored L with k) and G3 (elastic centre);
   - a clean one-parameter R/D series for bend transverse shear;
   - the pressure family;
