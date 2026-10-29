@@ -2738,6 +2738,10 @@
               "validation/benchmarks/numerical_robustness/src/sha256.rs",
               "validation/benchmarks/physics_audit_regression/src/lib.rs",
               "validation/benchmarks/stress/src/lib.rs",
+              "validation/platform/windows_worker_fixture/src/lib.rs",
+              "validation/platform/windows_worker_fixture/src/native_fixture.rs",
+              "validation/platform/windows_worker_fixture/src/win32.rs",
+              "validation/platform/windows_worker_fixture/src/windows_accounting.rs",
               "validation/references/kd5_timoshenko/runner/src/main.rs",
               "validation/references/m3_judge/runner/build.rs",
               "validation/references/m3_judge/runner/src/main.rs"
@@ -4354,6 +4358,7 @@
               "validation/benchmarks/numerical_robustness/Cargo.toml",
               "validation/benchmarks/physics_audit_regression/Cargo.toml",
               "validation/benchmarks/stress/Cargo.toml",
+              "validation/platform/windows_worker_fixture/Cargo.toml",
               "validation/references/kd5_timoshenko/runner/Cargo.toml",
               "validation/references/m3_judge/runner/Cargo.toml"
             ],
