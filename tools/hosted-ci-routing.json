@@ -261,7 +261,7 @@
       "core/loads/load_case_algebra/Cargo.toml": "b75f87e5a708becb0f52d1b9864c6ac7226a9f2d53b1eaf7e101ba6f89293cfe",
       "core/loads/primitive_loads/Cargo.toml": "c62ebd4ac6ad01fe673db598aa412b29c6338fdd25d4d21385c51323d7709818",
       "core/loads/self_weight_wasm/Cargo.toml": "ec35ef66523c63247f5395d7b5645a4044a666ed11e1f4d19ade3a956ca902c9",
-      "core/loads/stress_recovery/Cargo.toml": "0b9812c9f5fde6e4faca7ac318c2098e526dd015a6117863a1d04b7951548ff0",
+      "core/loads/stress_recovery/Cargo.toml": "0d389f7473d9286a9df529c273beadc3cb880977ed8991aa5ce378e6263fea6c",
       "core/loads/user_loads/Cargo.toml": "6c0add4912f9400459da5f89cfccfe6c7419d29a6641ebff65dbb8dc0c6a3ef6",
       "core/model_operations/operation_applier/Cargo.toml": "6e65e0c1c33a1f242d3360f6c253c086b738b7228a8b01a7ed310a8db2f39ca3",
       "core/numerics/correct_norm/Cargo.toml": "57cbcd985c88d79c7ebf198d9a5d3a68fa67fe74bfd11440791be7c9a44c8844",
@@ -946,7 +946,7 @@
         }
       },
       "core/product_physics/src/u4b_tests.rs": {
-        "sha256": "5fdbe0ee7fc149e3f5a14756fc0bc1199efd08bb82550f2f441a6de32f4493c7",
+        "sha256": "d35d797880a73212c61f492a7c2e37a1b2a3ea4f01e77d84f1b198be02a410b3",
         "source_trees": [
           "core/loads/self_weight_wasm/Cargo.toml",
           "core/model_operations/operation_applier/Cargo.toml",
