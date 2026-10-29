@@ -989,7 +989,7 @@
         ]
       },
       "core/product_physics/tests/load_reference_state_runtime_extension.rs": {
-        "sha256": "21babdb5a23650f46b5fb4794f887b400a18d65f41ed53202a87262ac9f5a8b4",
+        "sha256": "215732b6e25058b0e62b912170f463ce53c912f4917dbac9f2f7402d13c65045",
         "source_trees": [
           "core/product_physics/Cargo.toml"
         ],
