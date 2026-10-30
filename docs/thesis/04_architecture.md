@@ -515,7 +515,7 @@ operations. Their correctness belongs to the application, not to Root's method
 library.
 
 So the transfer preserves selected relationships rather than a complete software
-topology. The [App thesis](../../projects/chirality-app-v4/docs/thesis/README.md)
+topology. The [App thesis](https://github.com/sgttomas/chirality-app/blob/main/docs/thesis/README.md)
 examines hosting and workflow authoring; the
 [SWBPIPE thesis](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/README.md) examines
 piping-domain instantiation. A shared kernel gives them an orientation, but it
