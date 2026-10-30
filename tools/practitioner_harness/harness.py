@@ -333,7 +333,8 @@ def main(argv: list[str] | None = None) -> int:
                 roots = [_project_root(repo_root, args.project)]
             else:
                 roots = [root for name in ("app-dev", "piping")
-                         if (root := repo_root / PROJECT_ALIASES[name]).is_dir()]
+                         if (root := repo_root / PROJECT_ALIASES[name]).is_dir()
+                         and root.resolve() in _alias_by_root(repo_root)]
             report = cmd_drift.run_drift(
                 repo_root, roots,
                 include_domain_engines=getattr(args, "include_domain_engines", False))
@@ -385,7 +386,8 @@ def main(argv: list[str] | None = None) -> int:
                 roots = [_project_root(repo_root, args.project)]
             else:
                 roots = [root for name in ("app-dev", "piping")
-                         if (root := repo_root / PROJECT_ALIASES[name]).is_dir()]
+                         if (root := repo_root / PROJECT_ALIASES[name]).is_dir()
+                         and root.resolve() in _alias_by_root(repo_root)]
             report = cmd_next.run_next(repo_root, roots, _alias_by_root(repo_root))
         elif args.command == "run-validations":
             brief_path = Path(args.brief)

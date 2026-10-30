@@ -21,10 +21,15 @@ publication commit `5f0f45c2b`; Option B — the warrant ladder is an audit-time
 diagnostic, implemented by `evidence-check`). Design changes from here
 supersede a D-GOV-* record or arrive as PR review — never a new plan document.
 
-**Pilot scope (D-GOV-03):** `projects/chirality-app-dev`,
+**Historical pilot scope (D-GOV-03):** `projects/chirality-app-dev`,
 `projects/chirality-piping`, and the `_DomainEngines/` control area
 (read + report only). `domains/*` deferred; `projects/chirality-governance/`
 out of scope by construction; `.archive/` trees excluded from every walk.
+
+SWBPIPE has moved to [its independent repository](https://github.com/sgttomas/SWBPIPE).
+Its adapter and portability facts are not live Root inputs. Piping aliases and
+synthetic adapters remain supported for historical fixtures; current Root
+commands direct product work to SWBPIPE's own entry instructions.
 
 **Root reset:** `--project root` and `--project chirality-root` are retired
 CLI targets. Commands refuse them explicitly without loading an adapter;
