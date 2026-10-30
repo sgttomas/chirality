@@ -155,10 +155,10 @@ SWBPIPE's subject is that participation in piping design and in authoring stress
 models. Keeping these questions distinct prevents success in one from being
 reported as proof of the others.
 
-The [App thesis](https://github.com/sgttomas/chirality-app/blob/main/docs/thesis/README.md) can test
+The [App case](08_implementation.md#851-operative-perspective-the-app) can test
 whether discoverable operations, host authority and interaction support useful
 work on workflows. The
-[SWBPIPE thesis](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/README.md) can test
+[engineering case](08_implementation.md#852-evaluative-perspective-piping) can test
 whether domain meaning and numerical evidence remain faithful through the entry
 points used by people and agents. Neither needs to reproduce Root's filesystem
 or all its methods to preserve the common orientation.
@@ -169,12 +169,12 @@ users must understand the resulting operations. Shared schemas alone establish
 at most claims of compatibility. Integration effort, preserved meaning, recovery
 and usefulness provide stronger evidence.
 
-The same kernel can orient all three theses while their architectural arguments
-stay practical and can be examined separately. Appendix D supplies the concise
+The same framework can inform both applications while their architectural
+claims remain open to separate examination. Appendix D supplies the concise
 conjecture; elaborating it further cannot substitute for evidence in a receiving
 application.
 
-The [shared introduction](INTRODUCTION.md#one-undertaking-three-perspectives)
+The [introduction](INTRODUCTION.md#one-undertaking-three-perspectives)
 frames transfer as a relationship among normative reasons, operative
 participation and domain evaluation. So a failure in the receiving practice can
 qualify the shared claim: an understandable method may still impose excessive

@@ -1,8 +1,8 @@
 # Work that can improve its own means
 
-**A conclusion to the three Chirality theses**
+**A conclusion to the Chirality thesis**
 
-The three theses examine a working relationship among purpose, participation,
+The thesis examines a working relationship among purpose, participation,
 and judgment.
 Agents can enlarge what a person investigates and does. Applications can give
 that capability access to meaningful objects and operations. Evidence can show
@@ -79,7 +79,7 @@ no duty to rebuild an arrangement just because a more capable agent could.
 
 ## What has been established
 
-The collection offers a developed philosophical and architectural argument,
+The thesis offers a developed philosophical and architectural argument,
 supported by bounded observations of implementation, examination, and repair.
 The cases show why identified subjects, meaningful operations, appropriate
 evidence, and continuing ownership deserve attention. They also expose failures

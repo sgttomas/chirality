@@ -1,12 +1,12 @@
 # A support arrangement under reconsideration
 
-**An illustrative case followed across the three theses**
+**An illustrative case followed within this thesis**
 
 This example follows a proposed change to a piping support arrangement. It is a
 constructed illustration of the argument: it gives no numerical result and
 recommends no engineering arrangement, and it does not report a completed trial
 of the App working with SWBPIPE. The
-[Piping thesis](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/THESIS.md) supplies
+[engineering case](08_implementation.md#852-evaluative-perspective-piping) supplies
 the domain distinctions it draws on.
 
 ## Establishing what the change is for

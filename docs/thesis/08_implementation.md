@@ -65,8 +65,8 @@ needs and conditions in `deliverable.yaml`. The
 [Root entry](../../execution/_Coordination/LOOP_INIT.md) locates the shared
 component and affected consumers; an active project entry locates product
 commitments. The authorized work directs the inquiry. Current shared locality
-naming is governed by Root `AGENTS.md`: new/adopting projects use `Work/`, while
-App v4 and Piping retain their existing `Design/` convention. This naming change
+naming is governed by Root `AGENTS.md`: `Work/` is the convention going forward.
+The owner will reconcile existing projects that still use `Design/`. This naming change
 does not rewrite the implementation examined here.
 
 The [deliverable CLI](../../tools/deliverables/README.md) exposes
@@ -173,8 +173,7 @@ person's act of reliance.
 ### 8.5.1 Operative Perspective: The App
 
 The [App PRD](https://github.com/sgttomas/chirality-app/blob/main/docs/PRD.md),
-[architecture](https://github.com/sgttomas/chirality-app/blob/main/docs/ARCHITECTURE.md) and
-[App thesis](https://github.com/sgttomas/chirality-app/blob/main/docs/thesis/README.md) define the
+[architecture](https://github.com/sgttomas/chirality-app/blob/main/docs/ARCHITECTURE.md) define the
 application-specific inquiry. Conversations, request cards, workflow authoring,
 trial runs and inspection of returned work supply operative paths through which
 intent and methods can be tried and revised.
@@ -193,13 +192,47 @@ human action can support attribution and identify its subject, but it cannot
 establish that the person understood the consequences or performed adequate
 professional examination.
 
+#### Workflow trials must test the intended instructions
+
+A trial is useful only if its relationship to later use is understood. Earlier
+attachment-based trials supplied instructions differently from a registered
+workflow run. A successful trial could therefore depend on context or wording
+that would not be present when the workflow was used.
+
+The [App's workflow design](https://github.com/sgttomas/chirality/blob/a602024416ace9652f61bb2043889c307fd4e09d/projects/chirality-app-v4/execution/PKG-02/DEL-02-02/Design/WORKSPACE_AND_REGISTRATION.md)
+made this difference explicit. At the identified evidence basis, preparation
+snapshots the draft and compares trial text with the text used for a registered
+run. A trial label and its own references identify the different activity.
+Changed draft content must not silently become a different trial. These checks
+concern what was supplied. They do not establish that the agent followed the
+instructions or that the method was suitable.
+
+Trying a method in its authoring conversation can use helpful context. Trying
+it in a fresh conversation can expose assumptions left out of the instructions.
+Neither is always preferable. The author must know which question the trial
+examines. Native examination of both trial routes remained incomplete at the
+identified basis.
+
+#### An interrupted turn does not prove that its command stopped
+
+The [October 10 native App observation](https://github.com/sgttomas/chirality/blob/a602024416ace9652f61bb2043889c307fd4e09d/projects/chirality-app-v4/execution/PKG-01/DEL-01-02/Design/NATIVE_WITNESS_2026-10-10.md)
+recorded an interrupted turn running `sleep 90`. The live turn ended as
+interrupted, but later supplier history showed that the command completed with
+exit zero after about ninety seconds. The App retained these observations
+separately. It did not establish that interrupting a turn stopped the command.
+
+This matters before retrying work that can change files or affect another
+system. A correct turn-status label can still leave the person without the
+information needed to act. Recovery must examine the operation's actual outcome,
+including uncertainty about whether it completed, rather than infer that outcome
+from the conversation state. This is a bounded observation of that configuration,
+not a claim about every later App or supplier version.
+
 ### 8.5.2 Evaluative Perspective: Piping
 
 The [Piping PRD](https://github.com/sgttomas/SWBPIPE/blob/main/docs/PRD.md) distinguishes
 physical models, analytical models, analysis runs, comparison and handoff. These
-objects need domain definitions, numerical implementation and evidence. The
-[SWBPIPE thesis](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/README.md) examines
-that instantiation, including the limits of its calculations and engineering use.
+objects need domain definitions, numerical implementation and evidence. The cases below examine limits of the software operations and calculations.
 
 Operation validation, numerical verification and engineering adequacy answer
 different questions. Operation validation examines whether a proposed change
@@ -213,6 +246,44 @@ questions to practical alternatives and the person's choice and revision. It is
 an illustration, not measured evidence. Piping is one instance of domain software;
 its numerical results do not establish economical transfer to all domains.
 
+#### Missing inputs must remain visible
+
+The [solver-boundary tests](https://github.com/sgttomas/chirality/blob/a602024416ace9652f61bb2043889c307fd4e09d/projects/chirality-piping/tests/test_analytical_solver_boundary_adapter.py)
+examine missing properties, unrecognized loads and invalid orientations. An
+unknown property must not become an unexplained default merely to make a solve
+possible. The agent can help locate a source or propose an assumption, but its
+basis and proposed use must remain available for examination. These tests cover
+an internal path; they do not establish every graphical or agent entry path.
+
+#### Tests must reach the implementation used for the work
+
+The [operation-engine decision](https://github.com/sgttomas/chirality/blob/a602024416ace9652f61bb2043889c307fd4e09d/projects/chirality-piping/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md)
+describes a native Rust engine and an earlier separate TypeScript implementation.
+Testing each did not establish that both applied the same validation or produced
+the same model. Replacing the browser implementation with a WebAssembly build of
+the Rust engine removed that source of divergence. It did not prove the engine
+correct: both entry paths could still share a defect.
+
+This case distinguishes consistency between entry paths from numerical
+verification and engineering adequacy. Each needs evidence about its own subject.
+A common interface alone cannot establish those results.
+
+#### A numerical repair has a defined scope
+
+The [curved-element numerical account](https://github.com/sgttomas/chirality/blob/a602024416ace9652f61bb2043889c307fd4e09d/projects/chirality-piping/execution/PKG-04/DEL-04-01/Design/curved-numerical-integrity.md)
+describes cancellation in small-angle expressions and repairs using a stable
+half-angle form, explicit geometry and scaled inversion. Short-arc tests compare
+with high-precision references and examine rigid motion and coordinate changes.
+
+The local repair does not remove ill-conditioning caused by a short, stiff bend
+beside longer, softer elements in the assembled system. Some cases remain
+sensitive or are refused. Reporting that limit is more informative than treating
+a passing local test as evidence for the whole solve. The account also records
+removal of tests for a proposed mutation found equivalent under the relevant
+conditions. Test count is not a substitute for a meaningful distinction between
+correct and defective behavior. These are findings in the cited source, not
+numerical examinations newly performed for this manuscript.
+
 ### 8.5.3 Iterative Feedback
 
 A domain finding can reveal a missing distinction in Root's criteria. An App
@@ -220,7 +291,7 @@ refusal or recovery failure can reveal an inadequate operative path. A changed
 physical purpose can require another model or alternative. Iterative feedback
 means that these findings can revise each perspective and their relationships.
 The four philosophical questions recur across that feedback rather than assigning
-one perspective to one thesis or fixing a mandatory sequence.
+one perspective to one application or fixing a mandatory sequence.
 
 A successive implementation also needs examination of retained learning. A new
 PRD or version number cannot establish that prior defects, useful interfaces and

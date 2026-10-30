@@ -36,13 +36,13 @@ record that states only that two objects are linked loses the condition that
 gives the link its practical meaning. Recording a global completion label can
 hide the fact that one consumer's need is met while another's is not.
 
-The shared convention for new/adopting projects organizes work around
+The convention going forward organizes work around
 deliverable localities. `ScopeOfWork.md` holds commitments and acceptance
 criteria; `Work/` holds technical reasoning, execution detail and locally kept
 working artifacts/outputs, with maturity and issue status explicit; and
 `deliverable.yaml` identifies the deliverable and states its needs, with optional
-code paths and check references. Existing App v4 and Piping localities retain
-their recorded `Design/` convention. A consumer
+code paths and check references. The owner will reconcile existing projects that use `Design/` to `Work/`.
+Until then, their actual paths locate the existing material. A consumer
 declares what it needs from a supplier, and tools derive the reverse links and
 graph views.
 
@@ -114,8 +114,8 @@ Root owns shared components in their functional locations: `agents/`,
 references. The conversation defines the current work on Root. There is no
 standing requirement to generate a product decomposition for every shared edit.
 
-New/adopting project deliverables use the following shared convention; existing
-App v4 and Piping localities retain `Design/` under their project entries:
+Deliverables use the following convention going forward. Existing project
+directories await the owner's reconciliation:
 
 ```text
 projects/<project>/execution/
@@ -424,7 +424,7 @@ a failure that matters and would otherwise stay silent.
 ## 4.8 Coordination and Continuing Ownership
 
 The relationship developed in the
-[shared introduction](INTRODUCTION.md#iteration-as-learning) has an architectural
+[introduction](INTRODUCTION.md#iteration-as-learning) has an architectural
 consequence: a correction must reach its actual consumer. A revised method needs
 an adoption path into the App; an engineering finding needs a path back to the
 relevant model, operation or design criterion. Root's sources and queries support
@@ -515,9 +515,9 @@ operations. Their correctness belongs to the application, not to Root's method
 library.
 
 So the transfer preserves selected relationships rather than a complete software
-topology. The [App thesis](https://github.com/sgttomas/chirality-app/blob/main/docs/thesis/README.md)
+topology. The [App case](08_implementation.md#851-operative-perspective-the-app)
 examines hosting and workflow authoring; the
-[SWBPIPE thesis](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/README.md) examines
+[engineering case](08_implementation.md#852-evaluative-perspective-piping) examines
 piping-domain instantiation. A shared kernel gives them an orientation, but it
 does not discharge either application's evidence obligations.
 

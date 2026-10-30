@@ -1,6 +1,6 @@
 # Purpose, Participation, and Judgment
 
-**An introduction to the three Chirality theses**
+**An introduction to the Chirality thesis**
 
 Work begins with something that matters. A person meets a need, describes it
 for the first time, and tries to act. As the work reveals what was overlooked,
@@ -17,18 +17,15 @@ unexamined assumptions, or both. The important question is how that added capaci
 purposeful work whose reasons and consequences people can still understand and
 correct.
 
-The three theses examine this question together, each from a different side.
-The Root thesis sets
-out what should guide the work and the shared means for doing it. The App thesis
-examines how those ideas become actions in software. The SWBPIPE thesis examines
-whether they are adequate in a particular engineering practice, piping design. Iteration connects them: experience can change a single operation, a
-method, how the work is represented, or the understanding of what the work is
-for. The argument concerns how these connections can be sustained as both
-capability and circumstances change.
+This thesis examines that question through the shared methods of Chirality and
+the development of two applications. The App supports workflow authoring;
+SWBPIPE supports piping design. Their cases test whether the methods preserve
+meaning, evidence and responsibility when used in software. Experience can
+change an operation, a method, or the understanding of what the work is for.
 
 ## One undertaking, three perspectives
 
-The [Root thesis](README.md#reading-the-root-thesis) asks what should guide
+The thesis asks what should guide
 human–agent work, and why the means of doing it must stay open to revision. Its
 concern is broader than a set of repository instructions. Any arrangement for
 work embodies choices: what participants can perceive, what they can do, what
@@ -44,7 +41,7 @@ chosen remain design hypotheses. A requirement to preserve responsibility does
 not determine a unique hierarchy of agents, sequence of approvals, or format for
 records.
 
-The [App thesis](https://github.com/sgttomas/chirality-app/blob/main/docs/thesis/THESIS.md) asks how
+The [App case](08_implementation.md#851-operative-perspective-the-app) asks how
 that guidance becomes actionable within software. A
 general-purpose agent needs a meaningful connection to the application's objects
 and operations: a reference must point to the right object, a proposed change
@@ -60,7 +57,7 @@ application can help keep what was learned while leaving room for circumstances
 that the method's author did not foresee. It must also justify the effort that
 its own machinery demands.
 
-The [Piping thesis](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/THESIS.md) asks
+The [engineering case](08_implementation.md#852-evaluative-perspective-piping) asks
 what this arrangement can establish once it enters an engineering practice.
 SWBPIPE is one example of software through which agents take part in domain
 work. Its models describe proposed physical arrangements, its calculations depend
@@ -79,8 +76,7 @@ meant to support it.
 The three emphases are not separate territories. Root needs evidence about its
 own methods. The App makes normative choices in its defaults and permissions.
 Piping depends on workable operations, and on values that cannot be read from a
-results table. Each thesis examines the same relationships from a different
-position.
+results table. The cases examine the same relationships in different settings.
 
 ## Four questions throughout
 
@@ -133,7 +129,7 @@ changes. And when an implementation is replaced, the earlier code, its failures,
 and its successful interactions can hold lessons that its written requirements do
 not fully capture.
 
-So iteration runs among the theses as well as within their subjects. A
+Iteration connects the shared methods and their applications. A
 difficulty in SWBPIPE can expose a weakness in the App's account of perception or
 action. That weakness can require a revised shared method. A burden in that
 method can prompt a fresh examination of the normative reason for requiring it. A
@@ -157,20 +153,20 @@ the work is framed, which evidence is chosen, how an unexpected result is handle
 and whether reliance is accepted. An approval can express that engagement without
 capturing all of it or proving it.
 
-The allocation of responsibility in these theses applies to the professional and
+The allocation of responsibility in this thesis applies to the professional and
 institutional setting they examine. More capable agents can change what
 delegation and supervision are suitable. Capability alone does not transfer the
 person's commitment or supply a new decision right. The
 [shared vocabulary](glossary.md) keeps these distinctions available throughout
-the collection.
+the manuscript.
 
 ## What the reader can expect
 
-The theses combine a philosophical account, architectural proposals, and a
+The thesis combines a philosophical account, architectural proposals, and a
 development case, and each has a different standing. Commitments state an
 adopted orientation. Design hypotheses propose ways of serving it. Observations
 supply evidence about identified implementations and circumstances. The
-collection does not claim a controlled productivity result or a completed
+manuscript does not claim a controlled productivity result or a completed
 demonstration of every proposed integration.
 
 Implementation observations keep the common repository basis
@@ -181,9 +177,8 @@ keeps its separately identified source editions and interpretive limits. The
 behind the argument. The [philosophical conjecture](appendix_d_framework_s.md)
 records a deeper orientation; the practical claims do not require accepting it.
 
-Read Root for the developed account of purpose, knowing, responsibility, and revisable
-means. Read App for the conditions of taking part in work through software. Read
-Piping for the demands that one particular practice places on those conditions.
-The [worked example](WORKED_EXAMPLE.md) follows one illustrative design inquiry
-through both frames. The [shared conclusion](CONCLUSION.md) returns to what the
-three establish together and what further experience must test.
+The chapters develop the account of purpose, knowing, responsibility and
+revisable methods. Chapter 8 examines application cases and their evidence.
+The [worked example](WORKED_EXAMPLE.md) follows an illustrative design inquiry.
+The [conclusion](CONCLUSION.md) returns to what the evidence supports and what
+further experience must test.

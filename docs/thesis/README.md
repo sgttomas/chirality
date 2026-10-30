@@ -1,29 +1,18 @@
 # Purpose, Participation, and Judgment
 
-**The three Chirality theses: one iterative body of work**
+**The Chirality thesis**
 
-The three theses examine how agent capability becomes purposeful work whose
-reasons and consequences people can still understand and correct. Root gives the
-argument its normative emphasis, the App its operative emphasis, and Piping its evaluative emphasis as
-an instance of domain software. Iteration connects
-them: experience can revise the work, its methods, and the understanding of what
-the work is for. Each perspective also requires the others.
+This thesis examines how people direct work with AI agents, how software
+supports that work, and how its results can be examined. Chirality App and
+SWBPIPE provide application cases within the argument. They are not separate
+manuscripts.
 
-Start with the [shared introduction](INTRODUCTION.md). For the full argument,
-read the Root chapters below, then the
-[App thesis](https://github.com/sgttomas/chirality-app/blob/main/docs/thesis/THESIS.md) and
-[Piping thesis](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/THESIS.md). Each can
-also be read for its particular question. The [worked example](WORKED_EXAMPLE.md)
-gives a concrete way into how they relate, through one illustrative piece of
-work. The [shared conclusion](CONCLUSION.md) brings together what they
-contribute and the questions that remain.
+Start with the [introduction](INTRODUCTION.md), then follow the chapters below.
+The [worked example](WORKED_EXAMPLE.md) applies the argument to an illustrative
+engineering task. The [conclusion](CONCLUSION.md) brings the findings and open
+questions together. The [glossary](glossary.md) defines the terms.
 
-Ontology, epistemology, praxeology, and axiology apply throughout this account.
-They ask what the work concerns, what supports understanding, how intent becomes
-usable action, and what makes its consequences worth pursuing. The
-[glossary](glossary.md) states the distinctions used across the collection.
-
-## Root's research question
+## Research question
 
 What makes agent capability into purposeful, accountable work, and why should
 its supporting environment develop through revisable roles, methods, tools and
@@ -36,7 +25,7 @@ nonbinding and does not establish regulatory endorsement, professional
 acceptance or a controlled productivity result. The conversation, repository
 instructions and adopted product commitments still govern development.
 
-## Reading the Root thesis
+## Reading the thesis
 
 | Chapter | Subject |
 |---|---|
@@ -79,14 +68,16 @@ App v4's [foundation copy](https://github.com/sgttomas/chirality-app/blob/main/f
 retains its historical source basis unchanged. January–April history comes from
 the owner's account; surviving Git history begins with the migrated May snapshot.
 
-## Particular applications
+## Maintained source
 
-| Thesis | Subject |
-|---|---|
-| Root (this set) | Shared means for developing work, methods and applications |
-| [App v4](https://github.com/sgttomas/chirality-app/blob/main/docs/thesis/README.md) | Workflow authoring and agent participation within applications |
-| [SWBPIPE](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/README.md) | Engineering design, numerical evidence and professional use |
+This directory is the single maintained thesis manuscript. The App and SWBPIPE
+repositories refer to it. The website publishes a snapshot of a named revision;
+it is not another authoring source.
 
-All three carry the same [kernel](appendix_d_framework_s.md#d1-framework-relationships-with-respect-to-s).
-Its formulas and approved definitions are unchanged; the interpretation follows
-the owner's clarification of temporal contingency. G remains undefined.
+The October 30 revision incorporates the former application manuscripts' lessons
+about workflow trials, interruption, model inputs, operation consistency and
+numerical limits into Chapter 8. Their earlier full texts remain in Git history
+at `sgttomas/chirality-app@40415db3` and `sgttomas/SWBPIPE@2fcd0b526`.
+The App's frozen `foundation/thesis` is an earlier evidence snapshot, not another
+maintained manuscript. Historical implementation observations retain their
+identified basis; this editorial revision reports no new product examination.
