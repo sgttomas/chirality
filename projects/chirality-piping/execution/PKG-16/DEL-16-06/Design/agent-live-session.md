@@ -2,8 +2,8 @@
 
 RT-E1 / DEL-16-06. The owner's activation authority in embedded-agent-host.md
 applies. This increment implements the live binding and native lifecycle while
-its public Start branch remains refused by the compiled `NATIVE_QUALIFIED =
-false` gate. There is no panel, button, automatic supplier start or environment
+the compiled public Start gate permits the qualified ARM pin/profile and
+refuses unqualified Intel. There is no panel, button, automatic supplier start or environment
 bypass. Native qualification uses a separate opt-in native-smoke process mode
 of the actual app executable and the same internal runtime constructor.
 
@@ -116,13 +116,13 @@ relabelled as an EOF pass.
 
 ## Evidence and reconciliation
 
-Source/component candidate only; no new supplier, model or app fixture execution
-has yet occurred. Targeted checks cover controller EOF/cancellation/latching,
+The selected ARM source/native candidate is qualified to the bounded lifecycle
+and isolation extent below; the actual webview command/review journey remains
+unexercised. Targeted checks cover controller EOF/cancellation/latching,
 workspace authority, outcome-before-delivery, stale preparation, source pages,
-late actuals and original native group preservation. The forthcoming run must
-use the retained actual bundle with verified stock 0.160 resource bytes and
-current candidate native-smoke code. ARM evidence cannot qualify Intel; the
-public gate must remain unavailable on any unqualified architecture.
+late actuals and original native group preservation. The native run used the retained actual bundle resources with verified stock
+0.160 bytes and current candidate native-smoke code in a fresh app copy. ARM evidence cannot qualify Intel; the
+public gate remains unavailable on any unqualified architecture.
 
 DEL-16-06 ScopeOfWork claims/ACs and all dependency conditions remain unchanged:
 this implements their existing binding, proposal and cleanup duties, not their
@@ -131,3 +131,65 @@ module list grows from twelve to thirteen only for process_scope, and its comman
 macro pin reflects the new command. No Cargo dependency or foreign block is
 added; exact-set enforcement and report-release reach remain intact. Root routing
 and runtime-read inventories are regenerated from the combined tree.
+
+## Selected ARM native observation
+
+Candidate `75b14f5027692a10d7267b33020ea536f431ab85`, macOS 26.6.2 ARM, used a
+fresh native-smoke executable in a private copy of the retained app bundle.
+The app had a valid ad-hoc hardened seal; deep/strict app verification and the
+unchanged stock supplier's strict signature passed. Actual app SHA-256 was
+`f508271616530b182962f8e07d7c715b49ce1cd191587e2da15cdd6a417ef72f`;
+stock supplier SHA-256 was
+`112fae7a5a1223e673c8a1791d32338f37df8b527ff1159bb8adac6c4dbf1b4b`.
+No acquisition, GUI launch or supplier re-sign occurred.
+
+The standalone no-supplier/no-provider preflight passed three C EPERM checks
+and all seventeen Rust checks. The native run repeated preflight before each
+supplier start, then used the existing oMLX/model pin in agent-witness-pin.json.
+The server ran outside slots under the 50 GiB headroom/exclusive monitor; the
+fixture ran through the required slot wrapper. Only the pinned model was
+requested. Results:
+
+| Case | Original SDK exit | App standing | Cleanup |
+|---|---|---|---|
+| Harmless summary-tool round trip | 0 | Normal exit 0 | Native original group/join confirmed |
+| EOF idle, active turn, pending tool | 0 in each case | Normal exit 0 in each | Native original group/join confirmed |
+| App SIGKILL idle, active turn, pending tool | 0 in each case | SIGKILL in each | Original owned anchor cleanup confirmed |
+
+All seven cases passed their bounded stage, exit, PID-liveness, complete-reader
+and cancellation checks. No NOTE_FORK or observer invalidation occurred. The
+inherited profile's independent fork/self-spawn denial covers the pre-arm
+interval; silence after observer arm is not retrospective ancestry evidence.
+All seven runtime/marker pairs were removed under their retained native or
+fixture anchor authority, with no saved-PID signal. Hard app death still leaves
+a product marker for fail-closed refusal until independently qualified recovery;
+this experiment's external controller is not a product restart/sweeper route.
+
+The matrix result JSON SHA-256 is
+`141641028e0b328cd31fccdbeb1613f6a317b1d9666e8c70d8694b13ea9ffb65`;
+standalone preflight JSON is
+`210add4741bfc68a96654418c0a517dd7595cafdaf2ce1295100bb2c6c7e0906`.
+Their retained local reports identify original app/anchor/supplier roles, stage
+records, statuses and per-check results without credentials or arbitrary
+supplier text. The source fixture and its regressions are maintained under
+tools/ and src-tauri; no permanent check depends on those local report paths.
+
+The outer supervisor returned failure because its own oMLX stop helper did not
+complete its group proof. The raw supervisor result is retained as failed; it
+is not relabelled as a successful original reap. Model unload was requested and
+HTTP-acknowledged before shutdown. Subsequent read-only checks found port 8000
+idle and no matching fixture/oMLX roles. A separate inert server start/stop,
+with no model/supplier, recorded SIGKILL EPERM on the zombie-only group and
+completed the original-group proof before the sole reap. Its JSON SHA-256 is
+`adf56cb7ae756ee060d6a879c5d03e516beaf12135052c998f0e52df009b4b34`.
+This establishes current resource closure without retroactive signal authority.
+
+Independent permissions/session review of `4190ef19be` found one terminal
+retirement defect, repaired with EOF/protocol closure and late-actual retention
+regressions in `2415475d19`. No further source blocker was reported for this
+constructor-based native matrix. Enabling the ARM native gate follows that
+selected pin/profile evidence; there is still no launcher UI. Actual command,
+workspace proposal/review, full operation vocabulary, full numerical source-value
+presentation, AC-005 and criterion 17 remain open. Intel and other operating
+systems remain unavailable; these observations do not widen the support range
+or establish release, acceptance or a universal termination guarantee.

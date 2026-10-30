@@ -317,8 +317,9 @@ Neither standalone App qualification nor workflow-act machinery is inferred.
 
 `Design/agent-live-session.md` describes the native command, private workspace
 producer capability, actual queue/job hooks and original-process observer now
-under qualification. Its public Start branch remains unconditionally refused
-by `NATIVE_QUALIFIED = false`; no panel or automatic start is exposed. The
+with the selected ARM pin/profile now qualified as recorded there. Its public
+Start branch permits ARM and refuses unqualified Intel; no panel or automatic
+start is exposed. The
 following component descriptions retain the evidence limits of their original
 increments. The new candidate does not qualify AC-005 or criterion 17 by source
 integration alone.
@@ -327,8 +328,9 @@ integration alone.
 
 ### Rust component implementation
 
-The desktop declares `embedded_agent` but exposes no agent command, start
-control, session dispatcher or webview route yet. `catalog.rs` embeds a generated
+The earlier component increment declared `embedded_agent` without an agent
+command, start control, session dispatcher or webview route. The current live
+increment above supersedes that unwired standing. `catalog.rs` embeds a generated
 byte-identical product resource of this catalog, expands its references for the
 six dynamic declarations, validates
 inputs/results and checks proposal assumption membership. `protocol.rs` owns

@@ -172,7 +172,7 @@ fn preflight(
         record(
             start,
             "probe_exit",
-            json!({"probe":name,"code":result.status.code(),"signal":result.status.signal(),"firstRecord":first_record,"checks":if result.status.success(){"passed"}else if first_record{"failed"}else{"not_run"}}),
+            json!({"probe":name,"code":result.status.code(),"signal":result.status.signal(),"firstRecord":first_record,"checks":probe_standing(name,result.status.success(),&result.stdout)}),
         )?;
         if name == "boundary" {
             record(
@@ -506,6 +506,21 @@ fn run_inner() -> Result<(), &'static str> {
     Err("fixture_deadline")
 }
 
+fn probe_standing(name: &str, success: bool, raw: &[u8]) -> &'static str {
+    if !raw.contains(&b'\n') {
+        return "not_run";
+    }
+    let valid = match name {
+        "process" => raw == b"fork_errno=1 spawn_errno=1 exec_errno=1\n",
+        "boundary" => boundary_records(raw),
+        _ => false,
+    };
+    if success && valid {
+        "passed"
+    } else {
+        "unknown"
+    }
+}
 const BOUNDARY_NAMES: &[&str] = &[
     "private_home",
     "private_cwd",
@@ -560,6 +575,19 @@ mod tests {
     use super::*;
     #[test]
     fn absent_truncated_or_unexpected_boundary_records_never_pass() {
+        assert_eq!(probe_standing("boundary", true, b""), "not_run");
+        assert_eq!(
+            probe_standing("boundary", true, b"private_home: true\n"),
+            "unknown"
+        );
+        assert_eq!(
+            probe_standing(
+                "process",
+                true,
+                b"fork_errno=1 spawn_errno=1 exec_errno=1\n"
+            ),
+            "passed"
+        );
         assert_eq!(boundary_check_values(b"")["outside_write"], "not_run");
         assert_eq!(
             boundary_check_values(b"outside_write: false\n")["outside_write"],

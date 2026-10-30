@@ -1,5 +1,6 @@
 //! Explicit-start macOS supplier custody. No initializer, worker reuse or threads.
-//! Parent crash termination and absence of escaped descendants are NOT guaranteed.
+//! Selected ARM pin/profile has bounded native EOF/app-death qualification.
+//! Unknown scope standing retains the marker and refuses restart.
 use super::{http_relay::Endpoint, loopback::Loopback, process_scope, sandbox, supplier};
 use crate::memory_pool::{Lease, LeasePurpose};
 use std::fs::{self, DirBuilder, File, OpenOptions};
@@ -103,7 +104,7 @@ pub(crate) struct Launched {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(crate) enum CleanupOutcome {
     /// Original group had no live members, leader reaped, owned files removed.
-    /// Does not establish absence of descendants that escaped the group.
+    /// Whole-scope proof also relies on the qualified inherited no-fork policy.
     GroupStopped,
     /// No more signals will be attempted; marker and runtime remain for refusal.
     Unknown,

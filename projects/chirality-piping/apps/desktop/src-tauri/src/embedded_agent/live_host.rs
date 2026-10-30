@@ -28,8 +28,11 @@ use std::{
     thread::{self, JoinHandle},
     time::Duration,
 };
-/// Deliberately false until the retained-bundle native matrix has passed. The
-/// fixture calls the same internal Live constructor; no environment override.
+/// Selected stock ARM pin/profile passed retained-bundle native qualification.
+/// Intel remains unavailable until its own matrix passes; no env override.
+#[cfg(target_arch = "aarch64")]
+pub(crate) const NATIVE_QUALIFIED: bool = true;
+#[cfg(not(target_arch = "aarch64"))]
 pub(crate) const NATIVE_QUALIFIED: bool = false;
 const STATE_BYTES: u64 = 32 * 1024 * 1024;
 const THREAD_BYTES: u64 = 2 * 1024 * 1024;
@@ -1370,6 +1373,30 @@ mod tests {
             Error::Workspace
         );
     }
+    #[cfg(target_arch = "aarch64")]
+    #[test]
+    fn qualified_launch_still_requires_the_private_owner_before_any_resource_lookup() {
+        let mut owner = registered();
+        let mut authority = auth(&owner);
+        authority.owner_capability = "forged-owner".into();
+        let backing = lease(&owner);
+        assert_eq!(
+            owner
+                .action(
+                    "main",
+                    Action::Start {
+                        authority,
+                        provider_revision: "invented".into()
+                    },
+                    paths(),
+                    backing
+                )
+                .unwrap_err(),
+            Error::Authority
+        );
+        assert!(owner.live.is_none());
+    }
+    #[cfg(not(target_arch = "aarch64"))]
     #[test]
     fn the_unqualified_public_launcher_never_reads_resources() {
         let mut owner = registered();
