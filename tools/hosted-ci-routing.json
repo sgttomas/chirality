@@ -26,6 +26,17 @@
   "path_rules": [
     {
       "paths": [
+        "projects/chirality-piping/tools/agent_supplier_bundle.py",
+        "projects/chirality-piping/tools/agent_supplier_bundle_test.py",
+        "projects/chirality-piping/tools/release/build_signed_app.py",
+        "projects/chirality-piping/tests/test_release_signed_build_script.py"
+      ],
+      "checks": [
+        "piping-python"
+      ]
+    },
+    {
+      "paths": [
         "projects/chirality-piping/tools/agent_supplier_resource.py",
         "projects/chirality-piping/tools/agent_supplier_resource_test.py",
         "projects/chirality-piping/apps/desktop/src-tauri/resources/agent-supplier-pins.json",
@@ -2416,6 +2427,7 @@
               "apps/desktop/src-tauri/src/embedded_agent/sandbox.rs",
               "apps/desktop/src-tauri/src/embedded_agent/session_driver.rs",
               "apps/desktop/src-tauri/src/embedded_agent/stdio_pump.rs",
+              "apps/desktop/src-tauri/src/embedded_agent/supplier.rs",
               "apps/desktop/src-tauri/src/embedded_agent/webview_bridge.rs",
               "apps/desktop/src-tauri/src/exact_source_binding.rs",
               "apps/desktop/src-tauri/src/export_disposition_screen.rs",
