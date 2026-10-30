@@ -19,6 +19,23 @@ remains accountable for acceptance and reliance.
 | App v3, Runtime, PEC | [Recovery](projects/FROZEN.md) | Frozen; no development or verification without explicit reactivation |
 | `_DomainEngines/` | Owning project's instructions | Write only under a steer for that work |
 
+## Coordination between projects
+
+Chirality Root (`sgttomas/chirality`), App v4 (`sgttomas/chirality-app`) and
+SWBPIPE (`sgttomas/SWBPIPE`) each have one top-level Agent 0, working in its own
+T3 Code session. When work here needs App v4 or SWBPIPE, such as a shared interface, a
+library change a consumer will adopt, a defect found in the other project, or a
+shared release gate, this project's Agent 0 messages that project's Agent 0
+directly in T3 Code. Read the recipient's session first to confirm that it is
+that project's current Agent 0; a retired session is not a route.
+
+A message states what is needed, the revision and files it concerns, and
+whether it blocks the sender. The recipient decides and acts within its own
+repository and authority. A message carries no owner authority and changes
+nothing in another repository. Record an agreed decision by editing the
+governing text in the repository that owns it, and take reserved choices to the
+owner. Do not message a project the work does not affect.
+
 ## Working cycle
 
 1. Take the objective, limits and authorization from the conversation. Do not
