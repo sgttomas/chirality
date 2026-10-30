@@ -24,26 +24,25 @@ Chirality makes more of that understanding available for reuse: the method, its 
 
 ## This repository
 
-This repository maintains shared agent instructions, reusable methods and SWBPIPE. App v4 now lives in the independent [chirality-app repository](https://github.com/sgttomas/chirality-app), with development on hold. SWBPIPE continues here at its existing path. App v3, Runtime and PEC are archived. Downloads and user issue reports live in [chirality-app](https://github.com/sgttomas/chirality-app).
+This repository maintains shared agent instructions, reusable methods, tools and its own development. App v4 now lives in the independent [chirality-app repository](https://github.com/sgttomas/chirality-app), with development on hold. SWBPIPE now lives in the independent [SWBPIPE repository](https://github.com/sgttomas/SWBPIPE). App v3, Runtime and PEC are archived. Downloads and user issue reports live in [chirality-app](https://github.com/sgttomas/chirality-app).
 
 | Location | Purpose |
 | --- | --- |
 | [App v4 development](https://github.com/sgttomas/chirality-app/blob/main/loop/LOOP_INIT.md) | Independent App project; development on hold |
 | [App v4 setup and checks](https://github.com/sgttomas/chirality-app/blob/main/app/README.md#developer-start) | Toolchain, build, supplier setup and development launch |
-| [SWBPIPE](projects/chirality-piping/README.md) | Piping workbench source, documentation and development entry |
+| [SWBPIPE](https://github.com/sgttomas/SWBPIPE/blob/main/README.md) | Piping workbench source, documentation and development entry |
 | [Frozen products](projects/FROZEN.md) | Recovery of App v3, Runtime and PEC |
 | [Agents](agents/) | Four roles: HELP_HUMAN, HELPS_HUMANS, WORKING_ITEMS, and TASK |
 | [Workflows](workflows/README.md) | Reusable instructions for coordinating and completing work |
 | [Skills](.agents/skills/) | Bounded methods used by agents during their work |
 | [Tools](tools/) | Deterministic utilities and checks |
-| [Projects](projects/) | Product and integration work, including SWB Piping Designer |
 | [Design documentation](docs/) | Design basis, standards, and contracts |
 
 A role describes how an agent participates. A workflow describes how work is organized and carried through. Skills supply contextual methods; tools perform deterministic operations. The App loads the active role and brings in methods as needed.
 
 ## Develop and contribute
 
-For application setup, start with the [App v4 developer start](https://github.com/sgttomas/chirality-app/blob/main/app/README.md#developer-start). The [App v4 loop](https://github.com/sgttomas/chirality-app/blob/main/loop/LOOP_INIT.md) provides its development context; [SWBPIPE](projects/chirality-piping/README.md) has a separate entry. For agent-assisted work in this repository, read [AGENTS.md](AGENTS.md) and the instructions in the project you are changing.
+For application setup, start with the [App v4 developer start](https://github.com/sgttomas/chirality-app/blob/main/app/README.md#developer-start). The [App v4 loop](https://github.com/sgttomas/chirality-app/blob/main/loop/LOOP_INIT.md) provides its development context; [SWBPIPE](https://github.com/sgttomas/SWBPIPE/blob/main/README.md) has a separate entry. For agent-assisted work in this repository, read [AGENTS.md](AGENTS.md) and the instructions in the project you are changing.
 
 The [alignment manual and agent guide](docs/alignment-manual/README.md) explain how to organize, check, and carry work forward across Chirality projects.
 

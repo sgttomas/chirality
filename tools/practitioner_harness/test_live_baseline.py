@@ -20,13 +20,11 @@ owner direction 2026-07-01)."""
 from __future__ import annotations
 
 import os
-import re
 from pathlib import Path
 
 import pytest
 
 import cmd_bridge_status
-import cmd_drift
 import cmd_self_check
 
 LIVE_REPO = Path(__file__).resolve().parents[2]
@@ -37,17 +35,9 @@ LIVE_REPO = Path(__file__).resolve().parents[2]
 live = pytest.mark.skipif(
     os.environ.get("CHIRALITY_REQUIRE_LIVE_TESTS") != "1" and (
     os.environ.get("CHIRALITY_SKIP_LIVE_TESTS") == "1"
-    or not (LIVE_REPO / "projects" / "chirality-piping" / "_harness" / "adapter.yaml").is_file()
     or not (LIVE_REPO / "_DomainEngines").is_dir()),
-    reason="live pilot roots/manifests absent (or live tests disabled by env)",
+    reason="live Root control area absent (or live tests disabled by env)",
 )
-
-
-def _fact(report, fact_id):
-    for f in report.facts:
-        if f.fact_id == fact_id:
-            return f
-    raise AssertionError(f"fact {fact_id} missing: {[f.fact_id for f in report.facts]}")
 
 
 @pytest.fixture(scope="module")
@@ -56,13 +46,6 @@ def live_self_check():
     read-only and the tree cannot change mid-run, so per-test re-runs (each a
     full repo scan) would assert against byte-identical reports."""
     return cmd_self_check.run_self_check(LIVE_REPO)
-
-
-@live
-def test_live_drift_excludes_migrated_piping_lifecycle():
-    report = cmd_drift.run_drift(LIVE_REPO, [LIVE_REPO / "projects" / "chirality-piping"])
-    assert not any(f.fact_id == "drift.chirality-piping" for f in report.facts)
-    assert report.summary["files_total"] == 0
 
 
 @live
@@ -149,16 +132,6 @@ def test_live_gen8_semantic_portability_invariants(live_self_check):
     }] == []
     assert [f for f in report.findings
             if f.code.startswith("PORTABILITY_POLICY_")] == []
-    piping = _fact(report, "abs_path_lint.chirality-piping.semantic_invariants")
-    assert re.fullmatch(
-        r"unacknowledged_control=0; active_unclassified=0; "
-        r"policy_issues=0; acknowledged_control=[0-9]+",
-        piping.value,
-    )
-    # Valid acknowledged-control and historical growth are telemetry only:
-    # no exact finding count or path set is pinned.
-    historical = _fact(report, "abs_path_lint.chirality-piping.historical")
-    assert re.fullmatch(r"files=\d+; hit_lines=\d+", historical.value)
 
 
 @live

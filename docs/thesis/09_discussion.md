@@ -158,7 +158,7 @@ reported as proof of the others.
 The [App thesis](../../projects/chirality-app-v4/docs/thesis/README.md) can test
 whether discoverable operations, host authority and interaction support useful
 work on workflows. The
-[SWBPIPE thesis](../../projects/chirality-piping/docs/thesis/README.md) can test
+[SWBPIPE thesis](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/README.md) can test
 whether domain meaning and numerical evidence remain faithful through the entry
 points used by people and agents. Neither needs to reproduce Root's filesystem
 or all its methods to preserve the common orientation.

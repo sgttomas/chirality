@@ -513,20 +513,27 @@ domain_profile:
 
 ### OpenPipeStress Example Binding
 
-For OpenPipeStress profiles, the verified 2026-06-21 binding is:
+SWBPIPE (formerly OpenPipeStress) now owns its independent repository at
+`https://github.com/sgttomas/SWBPIPE`. In this example, domain-owned paths are
+relative to the selected SWBPIPE checkout; `_DomainEngines/` proposal/bridge paths
+remain relative to the Chirality library. The source facts below date to the
+verified 2026-06-21 binding. Relocation does not re-verify those facts or grant
+writes to either repository; the brief and owning instructions still apply.
+
+For historical OpenPipeStress profiles, the binding is:
 
 | Class | Real paths/artifacts |
 |---|---|
-| Authoritative domain artifacts | `projects/chirality-piping/core/**` (engine, solver, and model operations); `projects/chirality-piping/schemas/**` (contracts); the engine project store per `projects/chirality-piping/schemas/project_persistence.schema.yaml` (model states, analysis runs, and comparisons; SQLite-backed, not a static directory tree); `projects/chirality-piping/core/handoff/**` |
-| Chirality-readable artifacts | Records conforming to `projects/chirality-piping/schemas/{analysis_run,model_state,comparison_mapping,handoff_package}.schema.*` when produced; on-demand exports under `projects/chirality-piping/core/handoff/*` (`native_json`, `stress_neutral`, `review_geometry`); professional-boundary notices emitted by declared operation and rule-check tooling |
-| Protected write paths | `projects/chirality-piping/core/**`, `projects/chirality-piping/schemas/**`, the engine project store, `projects/chirality-piping/core/handoff/**`, solver outputs, accepted model states |
+| Authoritative domain artifacts | `core/**` (engine, solver, and model operations); `schemas/**` (contracts); the engine project store per `schemas/project_persistence.schema.yaml` (model states, analysis runs, and comparisons; SQLite-backed, not a static directory tree); `core/handoff/**` |
+| Chirality-readable artifacts | Records conforming to `schemas/{analysis_run,model_state,comparison_mapping,handoff_package}.schema.*` when produced; on-demand exports under `core/handoff/*` (`native_json`, `stress_neutral`, `review_geometry`); professional-boundary notices emitted by declared operation and rule-check tooling |
+| Protected write paths | `core/**`, `schemas/**`, the engine project store, `core/handoff/**`, solver outputs, accepted model states |
 | Agent-writable artifacts | `_DomainEngines/proposals/open_pipe_stress/**` for OperationProposals; `_DomainEngines/bridge/**` for review notes, TBD registers, checklists, and framework-maintenance records |
 
 OpenPipeStress persists model, state, run, and comparison records in an engine-owned store
 (SQLite-backed per `project_persistence.schema.yaml`) and emits readable artifacts on demand.
 There is no `project.ops.yaml` file or static `states/`, `runs/`, or `comparisons/`
 directory tree in the verified binding. The instance engineering lifecycle is its
-`AnalysisStatus` vocabulary in `projects/chirality-piping/schemas/model.schema.yaml`.
+`AnalysisStatus` vocabulary in `schemas/model.schema.yaml`.
 
 ### INIT-TASK Brief Example - Read-Only Domain Artifact Review
 

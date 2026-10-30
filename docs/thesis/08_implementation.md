@@ -195,10 +195,10 @@ professional examination.
 
 ### 8.5.2 Evaluative Perspective: Piping
 
-The [Piping PRD](../../projects/chirality-piping/docs/PRD.md) distinguishes
+The [Piping PRD](https://github.com/sgttomas/SWBPIPE/blob/main/docs/PRD.md) distinguishes
 physical models, analytical models, analysis runs, comparison and handoff. These
 objects need domain definitions, numerical implementation and evidence. The
-[SWBPIPE thesis](../../projects/chirality-piping/docs/thesis/README.md) examines
+[SWBPIPE thesis](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/README.md) examines
 that instantiation, including the limits of its calculations and engineering use.
 
 Operation validation, numerical verification and engineering adequacy answer

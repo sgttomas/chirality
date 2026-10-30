@@ -6,7 +6,7 @@ This example follows a proposed change to a piping support arrangement. It is a
 constructed illustration of the argument: it gives no numerical result and
 recommends no engineering arrangement, and it does not report a completed trial
 of the App working with SWBPIPE. The
-[Piping thesis](../../projects/chirality-piping/docs/thesis/THESIS.md) supplies
+[Piping thesis](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/THESIS.md) supplies
 the domain distinctions it draws on.
 
 ## Establishing what the change is for

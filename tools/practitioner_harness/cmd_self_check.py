@@ -208,11 +208,13 @@ def run_self_check(
     gov_root = repo_root / "docs" / "governance_harness"
     default_scope = [
         repo_root / "projects" / "chirality-app-dev",
-        repo_root / "projects" / "chirality-piping",
         repo_root / "projects" / "pec",
         de_root,
         gov_root,
     ]
+    # Piping's adapter is historical fixture input, not a live Root registration.
+    if repo_root != Path(__file__).resolve().parents[2]:
+        default_scope.append(repo_root / "projects" / "chirality-piping")
     scope = [root_filter.resolve()] if root_filter else [p for p in default_scope if p.exists()]
     control_roots = [
         narrowed for area in (de_root, gov_root)
