@@ -8,7 +8,7 @@ asks what should guide work shared between people and agents, and it supplies th
 means to carry that work out: roles, methods, tools and artifacts, kept open to
 revision as experience shows what serves the work and what does not.
 
-[Website](https://chirality.ai) · [Theses](docs/thesis/README.md) · [Alignment manual](docs/alignment-manual/README.md)
+[Website](https://chirality.ai) · [Thesis](docs/thesis/README.md) · [Alignment manual](docs/alignment-manual/README.md)
 
 ## Why Chirality
 
@@ -36,7 +36,7 @@ needs an agent to run it.
 
 The particular mechanisms, such as roles, sequences of review and record formats,
 are design choices in service of these commitments, and are revised when they no
-longer serve them. The [theses](docs/thesis/README.md) develop the argument.
+longer serve them. The [thesis](docs/thesis/README.md) develops the argument.
 
 ## The shared library
 

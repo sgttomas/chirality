@@ -424,7 +424,7 @@ a failure that matters and would otherwise stay silent.
 ## 4.8 Coordination and Continuing Ownership
 
 The relationship developed in the
-[shared introduction](INTRODUCTION.md#iteration-as-learning) has an architectural
+[introduction](INTRODUCTION.md#iteration-as-learning) has an architectural
 consequence: a correction must reach its actual consumer. A revised method needs
 an adoption path into the App; an engineering finding needs a path back to the
 relevant model, operation or design criterion. Root's sources and queries support
@@ -515,9 +515,9 @@ operations. Their correctness belongs to the application, not to Root's method
 library.
 
 So the transfer preserves selected relationships rather than a complete software
-topology. The [App thesis](app/README.md)
+topology. The [App case](08_implementation.md#851-operative-perspective-the-app)
 examines hosting and workflow authoring; the
-[SWBPIPE thesis](piping/README.md) examines
+[engineering case](08_implementation.md#852-evaluative-perspective-piping) examines
 piping-domain instantiation. A shared kernel gives them an orientation, but it
 does not discharge either application's evidence obligations.
 

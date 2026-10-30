@@ -516,8 +516,8 @@ the primary chirality.
 
 ### 3.6.8 Perspectives and Iterative Feedback
 
-The [shared introduction](INTRODUCTION.md#one-undertaking-three-perspectives)
-relates the normative, operative and evaluative emphases of the three theses.
+The [introduction](INTRODUCTION.md#one-undertaking-three-perspectives)
+relates the normative, operative and evaluative emphases of this thesis.
 Philosophically, that relationship keeps a commitment distinct from its
 proposed means and from evidence of its adequacy. A finding about an
 application can change what participants understand or value, as well as how

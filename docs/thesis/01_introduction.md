@@ -79,8 +79,7 @@ in total effort and reliability.
 
 ## 1.4 Thesis structure
 
-The [shared introduction](INTRODUCTION.md) shows where Root's normative
-emphasis fits within the argument of the three theses. The chapters here develop
+The [introduction](INTRODUCTION.md) introduces the question and its application cases. The chapters here develop
 that account in four steps. Chapters 2–3 establish its precedents and
 philosophical distinctions. Chapters 4–5 examine how architecture can make those
 distinctions useful in work. Chapters 6–7 assess how those distinctions are
@@ -88,7 +87,7 @@ interpreted for professional practice, and the systems-engineering methods
 proposed to support them. Chapters 8–10 then distinguish what the development
 evidence supports from the claims that remain open.
 
-The App and SWBPIPE theses take the argument into particular applications. In
+The App and SWBPIPE cases in Chapter 8 examine particular applications. In
 the App, authoring workflows makes method itself a subject of work; in
 SWBPIPE, piping design tests whether shared means preserve engineering meaning,
 numerical grounds and the conditions of use. Experience in either application

@@ -1,6 +1,6 @@
-# Chirality at the Root: A Generative Environment for Human–Agent Work
+# Purpose, Participation, and Judgment
 
-**The Root Thesis: shared means, methods and accountable development**
+**The Chirality thesis: shared methods and accountable work**
 
 ---
 
@@ -42,7 +42,7 @@ approach in an engineering domain through models, operations, calculations and
 handoff. Their development asks whether shared meanings can support different
 practices without prescribing a universal execution system. These are
 normative, operative and evaluative emphases within one iterative body of work.
-The [shared introduction](INTRODUCTION.md) and [conclusion](CONCLUSION.md)
+The [introduction](INTRODUCTION.md) and [conclusion](CONCLUSION.md)
 develop their relationship; Appendix E carries the development history.
 
 The argument distinguishes adopted commitments, design hypotheses and observed

@@ -5,9 +5,9 @@ Chirality AI Ltd. (explanatory research, revised October 2026).
 **An account of professional accountability in agent-assisted work.**
 
 This compact account can be read on its own. The
-[Root thesis](README.md#reading-the-root-thesis) develops its sources,
-architecture and evidence; the [shared introduction](INTRODUCTION.md) relates
-it to the App and Piping theses.
+[Root thesis](README.md#reading-the-thesis) develops its sources,
+architecture and evidence; the [introduction](INTRODUCTION.md) relates
+it to the application cases in Chapter 8.
 
 ---
 
@@ -147,8 +147,7 @@ what occurred and what it supports. The relationship among them is iterative: a
 finding can revise an operation, a method or an adopted criterion through the
 appropriate authority. These are overlapping perspectives, not a prescribed
 hierarchy of agents or a fixed sequence of approval stops. The
-[shared introduction](INTRODUCTION.md) develops this relationship across the
-three theses.
+[introduction](INTRODUCTION.md) develops this relationship through the application cases.
 
 ### 2.7 What the Framework Does and Does Not Cover
 

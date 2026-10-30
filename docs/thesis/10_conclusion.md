@@ -107,6 +107,5 @@ codebase quickly is not the same achievement as carrying learning forward.
 
 The continuing task is to improve the means without letting them consume the
 work. Their grounds remain open to examination, their costs matter, and their
-form must answer to the work. The [shared conclusion](CONCLUSION.md) returns to
-this iterative relationship after the App and Piping theses have developed their
-arguments in their own settings.
+form must answer to the work. The [conclusion](CONCLUSION.md) returns to
+this relationship between shared methods and the application cases.
