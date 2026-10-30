@@ -152,6 +152,7 @@ code_paths:
 - apps/desktop/src/services/operationBatchService.ts
 - apps/desktop/src-tauri/src/lib.rs
 checks:
+- tools/agent_keychain_ui_monitor.swift
 - tools/agent_supplier_resource_test.py
 - tools/agent_host_witness_test.py
 - tools/agent_catalog_resource.py
@@ -166,6 +167,8 @@ checks:
 - apps/desktop/src/services/embeddedAgentBridge.test.ts
 - apps/desktop/src-tauri/src/embedded_agent/loopback.rs
 - apps/desktop/src-tauri/src/embedded_agent/relay_policy.rs
+- apps/desktop/src-tauri/src/embedded_agent/provider_store.rs
+- apps/desktop/src-tauri/src/embedded_agent/keychain_native.rs
 - apps/desktop/src-tauri/src/embedded_agent/http_relay.rs
 - apps/desktop/src-tauri/src/embedded_agent/macos.rs
 - apps/desktop/src-tauri/src/embedded_agent/sandbox.rs
