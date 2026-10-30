@@ -169,10 +169,14 @@ supply evidence about identified implementations and circumstances. The
 manuscript does not claim a controlled productivity result or a completed
 demonstration of every proposed integration.
 
-Implementation observations keep the common repository basis
-`a602024416ace9652f61bb2043889c307fd4e09d`. Publishing this revised argument does
-not move those observations to a later software version. Regulatory discussion
-keeps its separately identified source editions and interpretive limits. The
+The original implementation observations keep repository basis
+`a602024416ace9652f61bb2043889c307fd4e09d`. Chapter 8 separately identifies the
+October 30 evidence extension: the App's traced redevelopment and native-use
+record, and selected stored SWBPIPE comparisons. That extension establishes
+observed continuity and useful evolution while retaining the original subjects
+and limits of earlier evidence. Human purpose, judgment and steering are
+foundational to the undertaking examined. Regulatory discussion keeps its
+separately identified source editions and interpretive limits. The
 [historical appendix](appendix_e_development_history.md) explains the development
 behind the argument. The [philosophical conjecture](appendix_d_framework_s.md)
 records a deeper orientation; the practical claims do not require accepting it.

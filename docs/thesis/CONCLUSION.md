@@ -79,19 +79,29 @@ no duty to rebuild an arrangement just because a more capable agent could.
 
 ## What has been established
 
-The thesis offers a developed philosophical and architectural argument,
-supported by bounded observations of implementation, examination, and repair.
-The cases show why identified subjects, meaningful operations, appropriate
-evidence, and continuing ownership deserve attention. They also expose failures
-and limitations of particular arrangements. These observations are useful within
-their recorded source basis and conditions.
+The thesis offers a developed philosophical and architectural argument and
+substantial longitudinal case evidence for its practical method. The App's
+working predecessor was investigated, useful behavior and governing distinctions
+were expressed in an accepted successor basis, and deliverables carried them
+into a rebuilt application. Native use demonstrated preserved meanings, reuse
+and refinement with added functionality. Findings reached changes in contracts,
+implementation, guidance and checks. Human judgment also redirected the
+development approach while preserving its purpose.
 
-They do not establish a general productivity advantage, sufficient professional
-practice, or completed transfer to every intended application. At the common
-implementation basis, two questions remained open: a complete activity across the
-App and SWBPIPE, and use by another practitioner without the originating author's
-continuing interpretation. Later software development needs its own examination;
-this publication does not quietly update those findings.
+Chapter 8 identifies the October 10 implementation basis separately from the
+evidence extension examined on October 30. The extension includes the October
+14–16 App walkthrough and selected SWBPIPE comparisons with CAEPIPE under
+declared tolerances. It preserves failures and unresolved findings alongside
+successful observations.
+
+These results establish efficacy in the examined human–agent undertaking.
+Human purpose, judgment and steering are foundational to that result. Further
+practitioners would bring those contributions to additional settings. A general
+productivity advantage, sufficient professional practice and a complete
+embedded-agent App–SWBPIPE activity remain distinct claims requiring their own
+evidence. Development-method transfer and temporal continuity have already been
+observed; their standing does not depend on completing every intended runtime
+integration.
 
 The strongest further evidence would concern complete activities and their
 costs. Can a participant understand and revise the intended work? Does an error

@@ -33,10 +33,13 @@ representation and successful integration support different claims. A shared
 correction has to reach its consumers; announcing it is not
 enough. Existing evidence can be reused where its grounds remain applicable.
 
-The means themselves require examination: their reliability, usefulness and
-costs must be assessed through continued work. The case in Chapter 8 gives
-bounded observations; [Appendix E](appendix_e_development_history.md) preserves the
-development history and the limits of the inferences drawn from it.
+The means themselves require examination. Chapter 8 supplies a longitudinal
+case in which the method produced working software and carried selected product
+meanings through redevelopment. It traces abstraction, accepted commitments,
+deliverable ownership, implementation and native use, including functional
+extensions and repairs. [Appendix E](appendix_e_development_history.md) preserves
+the development history. Reliability, usefulness and costs in further settings
+remain subjects for continued examination.
 
 ---
 
@@ -87,9 +90,12 @@ failure and changing capability. A new application is a substantive advance
 when it preserves what matters while improving how that is realised, rather than
 merely reproducing a familiar structure.
 
-These implications leave empirical questions open. Comparable usable results,
-errors that matter, recovery, total effort and another practitioner's use can
-qualify the argument; activity counts and internal consistency alone cannot.
+The observed case establishes useful production and temporal continuity.
+Comparisons of total effort and reliability, and further practitioners' use,
+would establish different claims. Their evidence must concern usable results,
+consequential errors and recovery; activity counts and internal consistency alone
+cannot supply those comparisons. Human steering remains part of every such
+undertaking, giving purpose to the work and informing its course.
 
 ---
 
@@ -100,10 +106,19 @@ the means of work. The App makes method authoring and agent participation usable
 SWBPIPE brings them into a practice with physical objects, numerical consequences
 and professional commitments. Each must earn its usefulness in that setting.
 
-Re-deriving an application from a PRD can preserve purpose while changing an
-implementation. It succeeds when current requirements, prior experience and
-evidence inform what is retained and what is replaced. Generating another
-codebase quickly is not the same achievement as carrying learning forward.
+In the examined App redevelopment, useful behavior and governing distinctions
+were recovered from the predecessor, expressed in an accepted successor basis,
+allocated to deliverables, and realized with extensions in the rebuilt
+application. The meaning of workflows, revisions, trials, execution and human
+acts remained intelligible while their implementation evolved. Recorded findings
+also changed the product and its development method.
+
+This is substantial longitudinal case evidence for the framework's practical
+claim. Development-method transfer to SWBPIPE and selected external numerical
+comparisons add a distinct domain case. Complete embedded-agent integration,
+comparative advantage and professional suitability retain their own evidence
+questions. The person's purpose, judgment and steering are constitutive of the
+demonstrated arrangement.
 
 The continuing task is to improve the means without letting them consume the
 work. Their grounds remain open to examination, their costs matter, and their

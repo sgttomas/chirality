@@ -299,8 +299,11 @@ is mutually corrective, rather than a one-way derivation from philosophy to code
 
 ## 3.6 The Chirality of Knowledge
 
-The project's name points to one explanatory claim: there is a permanent
-accountability gap between externalizable information and accountable knowing.
+The project's name points to a philosophical commitment: externalizable
+information and accountable knowing are not identical. Within this account,
+that distinction is the permanent accountability gap. Its permanence is a
+feature of the position being argued, not an empirical finding proved by the
+software cases.
 The metaphor is deliberately limited. It does not supply a geometry of
 knowledge, divide knowledge into a fixed number of parts, or make every duality
 in the architecture chiral.
@@ -329,8 +332,9 @@ it ultimately is.
 
 ### 3.6.2 The Accountability Gap and Operational `Gap`
 
-The permanent **accountability gap** is the non-identity between information
-and accountable knowing. No artifact, provenance chain, semantic model, or
+The **accountability gap**, understood here as a philosophical distinction, is
+the non-identity between information and accountable knowing. No artifact,
+provenance chain, semantic model, or
 approval record is identical with a person's knowing. More information may
 change what a person knows, but it does not remove the need for a knower or
 make the resulting knowing universal.
@@ -340,8 +344,9 @@ warrant has not been found for a claim. An operational `Gap` can be remedied:
 a source may be located or a claim revised. A ruling may authorize action
 under uncertainty without supplying the missing warrant. The accountability
 gap is not missing evidence and cannot be closed by another citation. Keeping
-the terms separate prevents a permanent feature of knowing from being mistaken
-for a workflow defect.
+the terms separate distinguishes the philosophical account from a remediable
+workflow condition. The observed usefulness of this distinction does not prove
+a metaphysical conclusion about every possible knower or future machine.
 
 ### 3.6.3 Configurational Multiplicity
 

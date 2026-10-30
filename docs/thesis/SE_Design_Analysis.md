@@ -16,8 +16,9 @@ narrower properties.
 ### 1.2 Modularity & Encapsulation
 
 Deliverables maintain ScopeOfWork, material in their adopted work locality
-(`Work/` by the shared default), and dependency conditions. Existing App v4 and
-Piping localities retain `Design/`. They are units of meaning and work, not
+(`Work/` in the current App and SWBPIPE repositories), and dependency conditions.
+Historical sources retain their original `Design/` paths. These localities are
+units of meaning and work, not
 necessarily isolated code modules. Shared code and work that spans deliverables require explicit
 responsibility for integration rather than compulsory staffing bound to folders.
 
@@ -242,11 +243,13 @@ do not prove that no single failure can compromise a result.
 
 ## 10. Assessment
 
-The arrangement preserves purpose, evidence, integration responsibility and
-reserved human decisions through inspectable sources and selected checks.
-Sustained productivity, recovery and transfer to other practitioners remain
-empirical questions. [Appendix E](appendix_e_development_history.md) preserves
-the development evidence and its limits.
+The longitudinal case demonstrates useful production and preserved product
+meaning through specification-led redevelopment, with functional extension and
+correction. Human purpose, judgment and steering are foundational to this
+arrangement. Chapter 8 traces the result through identified sources, deliverables,
+implementation and native use. Comparative productivity, recovery beyond the
+examined cases and outcomes in additional settings remain distinct empirical
+questions. [Appendix E](appendix_e_development_history.md) preserves the history.
 
 ### 10.1 The Revisable Relationship
 

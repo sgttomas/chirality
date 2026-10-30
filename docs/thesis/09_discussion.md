@@ -26,27 +26,30 @@ by naming them. Its adequacy must be examined on actual connecting paths.
 
 ## 9.2 Limitations
 
-### 9.2.1 No Controlled Empirical Validation
+### 9.2.1 Demonstrated Efficacy and Comparative Questions
 
-Root has not been assessed in a controlled comparison of development
-arrangements or in a controlled study with practising engineers. The repository
-demonstrates substantial agent-assisted production, examination and repair, but
-it does not establish that Chirality:
+The longitudinal case demonstrates useful agent-led production, examination,
+repair and preservation of product meaning through redevelopment (§8.5.3).
+Human purpose, judgment and steering are foundational elements of that method.
+Their contribution belongs in the explanation of how it works.
+
+Controlled comparison would address different questions. The case has not
+established that Chirality:
 
 - improves detection of consequential errors compared with other workable
   arrangements;
 - reduces total effort for a comparable accepted result;
 - improves calibration of professional confidence;
-- transfers to another practitioner without its author's continuing help;
+- achieves the same outcomes and costs across further practitioners and settings;
 - meets professional regulatory obligations in a particular deployment.
 
-The production evidence is limited by changing agents and suppliers, work
-started at different times, generated material in some diffs and the owner's
-continued steering. PR, line and file counts describe activity or size rather
-than comparable completed work.
-[Appendix E](appendix_e_development_history.md) retains the owner's reports and
-the development record; neither isolates a causal effect or supplies a
-productivity multiplier.
+Changing agents and suppliers, task mix and work begun at different times
+complicate attribution of comparative gains to any one mechanism. PR, line and
+file counts describe activity or size rather than comparable completed work.
+[Appendix E](appendix_e_development_history.md) retains the development record;
+Chapter 8 traces achieved behavior through its actual sources and examinations.
+Those observations establish the local result without supplying a productivity
+multiplier or an isolated effect size for each part of the arrangement.
 
 ### 9.2.2 Regulatory Interpretation, Not Endorsement
 
@@ -163,11 +166,18 @@ whether domain meaning and numerical evidence remain faithful through the entry
 points used by people and agents. Neither needs to reproduce Root's filesystem
 or all its methods to preserve the common orientation.
 
-Proliferation requires an economically useful transfer. Another application must
-adopt capabilities without rebuilding a large custom governance stack, and its
-users must understand the resulting operations. Shared schemas alone establish
-at most claims of compatibility. Integration effort, preserved meaning, recovery
-and usefulness provide stronger evidence.
+The evidence concerns several forms of transfer (§8.5.5). Shared development
+methods have been used to build both products, and the App has preserved core
+meaning through redevelopment. Embedding agent capability into SWBPIPE is a
+distinct product integration, with remaining connected evidence. Further
+practitioners and domains provide additional settings in which to examine
+outcomes and adaptation costs.
+
+The broader proliferation claim requires an economically useful transfer.
+Integration effort, preserved meaning, recovery and usefulness must be examined
+alongside shared contracts. The demonstrated development and temporal transfers
+are evidence for that inquiry, while their costs and reach remain specific to
+the work examined.
 
 The same framework can inform both applications while their architectural
 claims remain open to separate examination. Appendix D supplies the concise
@@ -198,8 +208,9 @@ necessarily a failure of the framework.
 
 ### 9.3.3 The Four Perspectives as an Evaluation Lens
 
-The framework's value is discriminating attention. Ontology prevents a change in
-representation from passing unnoticed as a change in the work. Epistemology asks
+The framework's value is discriminating attention. Ontological inquiry helps
+expose a change in representation that could otherwise be mistaken for a change
+in the work. Epistemology asks
 whether an available source supports the present claim. Praxeology asks whether
 local success reaches an intended use. Axiology asks whether that use and the
 means chosen remain worth pursuing. These relations help explain a failure that
@@ -450,11 +461,13 @@ The transfer need not include a common daemon, provider wrapper or record store.
 Native supplier capability can remain valuable precisely because Root avoids
 reimplementing it without a consumer.
 
-Successive derivations of an application add a test over time. Does a new PRD-led
-implementation preserve relevant lessons, observed defects and useful behaviour,
-while removing obsolete topology? A new codebase or faster generation is not
-sufficient. Repeatedly rediscovering the same failure would qualify the claim of
-learning even if each rewrite satisfied its textual requirements.
+Successive derivations add evidence over time. The App trace in §8.5.3 follows
+selected predecessor behavior through abstraction, accepted deliverables and
+observed successor use. It establishes continuity and functional extension in
+that redevelopment. Further iterations can examine additional behaviors,
+recovery and adaptation costs. A recurring loss of an already identified useful
+behavior would be relevant contrary evidence, even if the replacement met its
+textual requirements.
 
 One human/agent domain operation can test common validation, meaningful refusal,
 inspectable outcomes and recovery. Broader proliferation should be inferred only
@@ -463,10 +476,11 @@ and remaining limitations visible.
 
 ### 9.4.8 A Second Accountable Professional, Outside Software
 
-The author remains a significant part of the functioning system. The owner
-sets direction, supplies domain interpretation and detects process burdens.
-A second accountable professional undertaking useful work without that
-continuous translation would test whether the framework transfers.
+Human purpose and judgment are foundational to the functioning system. The
+owner sets direction, supplies domain interpretation and detects process burdens;
+these are intended contributions to the work. An additional accountable
+professional would bring their own purpose, interpretation and steering to a
+further case, supported by the shared methods and the people they work with.
 
 The inquiry should observe what the practitioner can understand and use,
 which sources and tools help, what requires explanation, what consequential
@@ -486,10 +500,13 @@ Its central danger is self-confirmation: producers and examiners can inherit the
 same framing, and a polished system of records can obscure the fact that the
 result is absent.
 
-The case supports the feasibility of specific production and correction paths,
-but productivity, sustained transfer and comparative reliability remain open
-empirical questions. The App and SWBPIPE examine different receiving contexts,
-each with its own subject and evidence.
+The case demonstrates useful production and correction, development-method
+transfer, and preservation of core meaning through App redevelopment. Human
+steering is integral to those achievements. Comparative productivity and
+reliability, wider adoption and complete embedded-agent integration remain
+distinct empirical questions. The App and SWBPIPE contribute different evidence
+without requiring success in every intended setting before the observed results
+can count.
 
 The useful way forward is continued production with discriminating examination
 of the means. Root must make its own claims as open to correction as the claims

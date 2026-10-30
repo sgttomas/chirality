@@ -546,7 +546,7 @@ The research question is whether the arrangements make professional examination 
 
 [9] Z. Hou et al., "Position: Trustworthy AI Agents Require the Integration of Large Language Models and Formal Methods," in *Proc. 42nd Int. Conf. on Machine Learning (ICML 2025)*, Vancouver, Canada, Jul. 2025. [Online]. Available: https://zhehou.github.io/papers/Position-Trustworthy-AI-Agents-Require-the-Integration-of-Large-Language-Models-and-Formal-Methods.pdf.
 
-[10] R. Freire et al., "Formal Methods for Safety-Critical Machine Learning: A Systematic Literature Review," *Frontiers in Artificial Intelligence*, 2026. DOI: 10.3389/frai.2026.1749956.
+[10] A. Newcomb and O. Ochoa, "Formal Methods for Safety-Critical Machine Learning: A Systematic Literature Review," *Frontiers in Artificial Intelligence*, vol. 9, article 1749956, 2026. DOI: 10.3389/frai.2026.1749956.
 
 [11] Q. Xu, X. Wen, C. Xu, Z. Li, and J. Zhong, "From Craft to Constitution: A Governance-First Paradigm for Principled Agent Engineering," arXiv preprint arXiv:2510.13857, Oct. 2025. [Online]. Available: https://arxiv.org/abs/2510.13857.
 
@@ -568,9 +568,9 @@ The research question is whether the arrangements make professional examination 
 
 [20] Department for Science, Innovation and Technology (UK), *Implementing the UK's AI Regulatory Principles: Initial Guidance for Regulators*, UK Government, London: DSIT, Feb. 2024. [Online]. Available: https://assets.publishing.service.gov.uk/media/65c0b6bd63a23d0013c821a0/implementing_the_uk_ai_regulatory_principles_guidance_for_regulators.pdf.
 
-[21] R. Freire et al., "Navigating the AI Regulatory Landscape: Balancing Innovation, Ethics, and Global Governance," *Asian Journal of International Law*, vol. 15, no. 1, 2025. DOI: 10.1080/20954816.2025.2569584.
+[21] G. Perboli, N. Simionato, and S. Pratali, "Navigating the AI Regulatory Landscape: Balancing Innovation, Ethics, and Global Governance," *Economic and Political Studies*, vol. 13, no. 4, pp. 367–397, 2025. DOI: 10.1080/20954816.2025.2569584.
 
-[22] M. Dobbe et al., "Investigating Accountability for Artificial Intelligence Through Risk Governance: A Workshop-Based Exploratory Study," *Frontiers in Psychology*, vol. 14, 2023. DOI: 10.3389/fpsyg.2023.1073686. PMC9905430.
+[22] E. Hohma, A. Boch, R. Trauth, and C. Lütge, "Investigating Accountability for Artificial Intelligence Through Risk Governance: A Workshop-Based Exploratory Study," *Frontiers in Psychology*, vol. 14, article 1073686, 2023. DOI: 10.3389/fpsyg.2023.1073686. PMC9905430.
 
 [23] National Society of Professional Engineers (NSPE), "Use of Artificial Intelligence in Engineering Practice," Board of Ethical Review Case, Alexandria, VA: NSPE, 2024. [Online]. Available: https://www.nspe.org/career-growth/ethics/board-ethical-review-cases/use-artificial-intelligence-engineering-practice.
 
@@ -775,11 +775,15 @@ selectively loaded methods, coherent ownership, host-enforced permissions and
 verification proportionate to consequence are design hypotheses for supporting
 them.
 
-The repository supplies observations about particular implementations. Continued
-development supports feasibility in this setting. A controlled productivity
-comparison, demonstrated professional compliance and transfer to another team
-remain separate claims. [Appendix E](appendix_e_development_history.md) preserves
-the developmental observations and their causal limits.
+The repository supplies substantial longitudinal case evidence of useful
+production and preservation of meaning through redevelopment. Chapter 8 traces
+that result from working predecessor behavior through successor definition and
+deliverables to observed use of the rebuilt App, with functional extensions and
+repairs. Human purpose, judgment and steering are foundational to the method
+being examined. Comparative productivity, professional compliance and outcomes
+in additional teams remain separate questions.
+[Appendix E](appendix_e_development_history.md) preserves the history and
+distinguishes observed results from broader causal comparisons.
 
 So the following chapters examine how the philosophical account informs designs
 that are open to revision, what the implementation enforces, what the case
