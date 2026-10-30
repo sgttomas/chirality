@@ -11,7 +11,7 @@ the work is for. Each perspective also requires the others.
 
 Start with the [shared introduction](INTRODUCTION.md). For the full argument,
 read the Root chapters below, then the
-[App thesis](../../projects/chirality-app-v4/docs/thesis/THESIS.md) and
+[App thesis](https://github.com/sgttomas/chirality-app/blob/main/docs/thesis/THESIS.md) and
 [Piping thesis](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/THESIS.md). Each can
 also be read for its particular question. The [worked example](WORKED_EXAMPLE.md)
 gives a concrete way into how they relate, through one illustrative piece of
@@ -75,7 +75,7 @@ editions. Older editions remain in Git; the
 [development history](appendix_e_development_history.md) identifies historical
 sources and distinguishes observations from the owner's account.
 
-App v4's [foundation copy](../../projects/chirality-app-v4/foundation/thesis/README.md)
+App v4's [foundation copy](https://github.com/sgttomas/chirality-app/blob/main/foundation/thesis/README.md)
 retains its historical source basis unchanged. January–April history comes from
 the owner's account; surviving Git history begins with the migrated May snapshot.
 
@@ -84,7 +84,7 @@ the owner's account; surviving Git history begins with the migrated May snapshot
 | Thesis | Subject |
 |---|---|
 | Root (this set) | Shared means for developing work, methods and applications |
-| [App v4](../../projects/chirality-app-v4/docs/thesis/README.md) | Workflow authoring and agent participation within applications |
+| [App v4](https://github.com/sgttomas/chirality-app/blob/main/docs/thesis/README.md) | Workflow authoring and agent participation within applications |
 | [SWBPIPE](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/README.md) | Engineering design, numerical evidence and professional use |
 
 All three carry the same [kernel](appendix_d_framework_s.md#d1-framework-relationships-with-respect-to-s).

@@ -1,54 +1,83 @@
 # Chirality
 
-**Plan your work. Iterate.**
+**Purposeful, accountable work with AI agents.**
 
-Chirality helps professional knowledge workers turn complex tasks into methods they can reuse and adapt. Start a conversation with Help Human, the assistant in Chirality App. Work out what you need, make a plan when it helps, and carry out the work together. Turn a useful plan into a workflow for next time.
+Chirality is a body of principles and practice for turning agent capability into
+work whose reasons and consequences people can still understand and correct. It
+asks what should guide work shared between people and agents, and it supplies the
+means to carry that work out: roles, methods, tools and artifacts, kept open to
+revision as experience shows what serves the work and what does not.
 
-[Download Chirality App](https://github.com/sgttomas/chirality-app/releases/latest) · [Website](https://chirality.ai) · [Release announcement](https://chirality.ai/announcements)
-
-## Use the App
-
-**The published App remains v3.0.1 while App v4 development is on hold.** The v3 fallback runs on Apple Silicon Macs with macOS 15 or newer and uses Codex through your ChatGPT account. App v3 is frozen and no longer developed or verified here; [Frozen products](projects/FROZEN.md) explains source recovery. Local-model support is planned for a later release.
-
-Bring a task such as a monthly update, a proposal, an investigation, or a review. Help Human can organize references, prepare work, and help you check it. You can select a workflow from the library or ask it to turn your plan into one. Return to the conversation to reuse and refine the method as your work changes.
-
-Saved plans, workflows, references, and outputs are ordinary files in your folders. Plans stay in conversation history unless you choose to save them to a file. You can keep and use them outside the App. Task content needed by the model is sent to OpenAI using your account; Chirality AI Ltd does not proxy or retain that content. See [installation and data handling](https://chirality.ai/deployment).
-
-You direct the work and decide what is ready to rely on. Use review appropriate to its consequences.
+[Website](https://chirality.ai) · [Theses](docs/thesis/README.md) · [Alignment manual](docs/alignment-manual/README.md)
 
 ## Why Chirality
 
-Every project should give the next one a better starting point. Often, the understanding stays with the person who did the work, even when the finished document survives.
+Every project should give the next one a better starting point. Often, the
+understanding stays with the person who did the work, even when the finished
+document survives.
 
-Chirality makes more of that understanding available for reuse: the method, its references, and the checks that help someone evaluate the result. Some work becomes a repeatable workflow. Some leads to a purpose-built tool that no longer needs an agent to run it.
+Chirality makes more of that understanding available for reuse: the method, its
+references, and the checks that help someone evaluate the result. Some work
+becomes a repeatable workflow. Some leads to a purpose-built tool that no longer
+needs an agent to run it.
 
-## This repository
+## What it holds to
 
-This repository maintains shared agent instructions, reusable methods, tools and its own development. App v4 now lives in the independent [chirality-app repository](https://github.com/sgttomas/chirality-app), with development on hold. SWBPIPE now lives in the independent [SWBPIPE repository](https://github.com/sgttomas/SWBPIPE). App v3, Runtime and PEC are archived. Downloads and user issue reports live in [chirality-app](https://github.com/sgttomas/chirality-app).
+- **Useful work.** Work begins with something that matters, and its result is
+  judged by its use in the world it serves.
+- **Inspectable reasons.** Why a result looks the way it does, and what it rests
+  on, stays available to the people who rely on it.
+- **Understandable authority.** It is clear who may decide what, and agents act
+  within the authority given to them.
+- **A person who answers for the work.** Accountability, acceptance and reliance
+  remain human acts.
+- **Attention to consequences.** Review is proportionate to what depends on the
+  result.
 
-| Location | Purpose |
+The particular mechanisms, such as roles, sequences of review and record formats,
+are design choices in service of these commitments, and are revised when they no
+longer serve them. The [theses](docs/thesis/README.md) develop the argument.
+
+## The shared library
+
+This repository is the library that Chirality projects draw on:
+
+| Part | What it provides |
 | --- | --- |
-| [App v4 development](https://github.com/sgttomas/chirality-app/blob/main/loop/LOOP_INIT.md) | Independent App project; development on hold |
-| [App v4 setup and checks](https://github.com/sgttomas/chirality-app/blob/main/app/README.md#developer-start) | Toolchain, build, supplier setup and development launch |
-| [SWBPIPE](https://github.com/sgttomas/SWBPIPE/blob/main/README.md) | Piping workbench source, documentation and development entry |
-| [Frozen products](projects/FROZEN.md) | Recovery of App v3, Runtime and PEC |
-| [Agents](agents/) | Four roles: HELP_HUMAN, HELPS_HUMANS, WORKING_ITEMS, and TASK |
-| [Workflows](workflows/README.md) | Reusable instructions for coordinating and completing work |
-| [Skills](.agents/skills/) | Bounded methods used by agents during their work |
+| [Roles](agents/) | Four ways an agent participates: HELP_HUMAN, HELPS_HUMANS, WORKING_ITEMS and TASK |
+| [Workflows](workflows/README.md) | Reusable methods for organizing and carrying work through, selected by name and source |
 | [Tools](tools/) | Deterministic utilities and checks |
-| [Design documentation](docs/) | Design basis, standards, and contracts |
+| [Design documentation](docs/) | Shared references: product boundaries, the agent and workflow runtime, compatibility formats |
+| [Alignment manual](docs/alignment-manual/README.md) | How to organize, check and carry work forward across projects |
 
-A role describes how an agent participates. A workflow describes how work is organized and carried through. Skills supply contextual methods; tools perform deterministic operations. The App loads the active role and brings in methods as needed.
+A role describes how an agent participates. A workflow describes how work is
+organized and carried through. Tools perform deterministic operations. A project
+names the library in its own `AGENTS.md`, keeps its own authority, holds and
+product decisions, and adds methods and tools of its own where it needs them.
+
+## Built with Chirality
+
+Applications built on these principles live in their own repositories, each with
+its own instructions, releases and support:
+
+- [Chirality App](https://github.com/sgttomas/chirality-app): the workflow-authoring
+  application, where a person works with Help Human to plan, carry out and reuse
+  their work. Downloads and App issue reports live there.
+- [SWBPIPE](https://github.com/sgttomas/SWBPIPE): an analysis-grade piping design
+  engine and stress-model authoring environment.
+
+Earlier products (App v3, Runtime and PEC) are archived; [Frozen products](projects/FROZEN.md)
+explains how to recover their source.
 
 ## Develop and contribute
 
-For application setup, start with the [App v4 developer start](https://github.com/sgttomas/chirality-app/blob/main/app/README.md#developer-start). The [App v4 loop](https://github.com/sgttomas/chirality-app/blob/main/loop/LOOP_INIT.md) provides its development context; [SWBPIPE](https://github.com/sgttomas/SWBPIPE/blob/main/README.md) has a separate entry. For agent-assisted work in this repository, read [AGENTS.md](AGENTS.md) and the instructions in the project you are changing.
+For agent-assisted work in this repository, start from [AGENTS.md](AGENTS.md).
+To work on an application, use that application's repository and its instructions.
 
-The [alignment manual and agent guide](docs/alignment-manual/README.md) explain how to organize, check, and carry work forward across Chirality projects.
+This repository contains ongoing development and historical evidence as well as
+the current library.
 
-The repository contains ongoing development and historical evidence as well as released source. Consult the [release notes](https://github.com/sgttomas/chirality-app/releases) for what ships in a particular App version.
-
-[Report an App issue](https://github.com/sgttomas/chirality-app/issues/new/choose) · [Discuss source changes](https://github.com/sgttomas/chirality/issues) · [Work with us](https://chirality.ai/contact)
+[Discuss changes](https://github.com/sgttomas/chirality/issues) · [Work with us](https://chirality.ai/contact)
 
 ## License
 

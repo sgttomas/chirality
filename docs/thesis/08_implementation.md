@@ -172,14 +172,14 @@ person's act of reliance.
 
 ### 8.5.1 Operative Perspective: The App
 
-The [App PRD](../../projects/chirality-app-v4/docs/PRD.md),
-[architecture](../../projects/chirality-app-v4/docs/ARCHITECTURE.md) and
-[App thesis](../../projects/chirality-app-v4/docs/thesis/README.md) define the
+The [App PRD](https://github.com/sgttomas/chirality-app/blob/main/docs/PRD.md),
+[architecture](https://github.com/sgttomas/chirality-app/blob/main/docs/ARCHITECTURE.md) and
+[App thesis](https://github.com/sgttomas/chirality-app/blob/main/docs/thesis/README.md) define the
 application-specific inquiry. Conversations, request cards, workflow authoring,
 trial runs and inspection of returned work supply operative paths through which
 intent and methods can be tried and revised.
 
-The [host-integration contract](../../projects/chirality-app-v4/docs/HOST_INTEGRATION.md)
+The [host-integration contract](https://github.com/sgttomas/chirality-app/blob/main/docs/HOST_INTEGRATION.md)
 proposes making application capabilities discoverable. A common catalog does not
 establish correct domain behaviour, good interfaces, recovery or every transport
 adapter.

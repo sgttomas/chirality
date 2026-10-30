@@ -44,7 +44,7 @@ chosen remain design hypotheses. A requirement to preserve responsibility does
 not determine a unique hierarchy of agents, sequence of approvals, or format for
 records.
 
-The [App thesis](../../projects/chirality-app-v4/docs/thesis/THESIS.md) asks how
+The [App thesis](https://github.com/sgttomas/chirality-app/blob/main/docs/thesis/THESIS.md) asks how
 that guidance becomes actionable within software. A
 general-purpose agent needs a meaningful connection to the application's objects
 and operations: a reference must point to the right object, a proposed change

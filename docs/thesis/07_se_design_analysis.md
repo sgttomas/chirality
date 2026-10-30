@@ -63,7 +63,7 @@ are checkable, but whether an input meets a condition can require
 interpretation.
 
 For products, the relevant interfaces are meaningful application operations and
-supplier protocols. [App v4's architecture](../../projects/chirality-app-v4/docs/ARCHITECTURE.md)
+supplier protocols. [App v4's architecture](https://github.com/sgttomas/chirality-app/blob/main/docs/ARCHITECTURE.md)
 keeps native supplier capabilities and distinguishes common semantics from a
 shared service topology. [SWBPIPE's PRD](https://github.com/sgttomas/SWBPIPE/blob/main/docs/PRD.md)
 requires model changes to pass through the domain engine. These are concrete
