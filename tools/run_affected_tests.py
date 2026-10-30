@@ -33,7 +33,6 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PROFILE = REPO_ROOT / "tools" / "tools-test-routing.json"
 SELECTOR = REPO_ROOT / "tools" / "software_workflow" / "select_affected_checks.py"
-CLAIMS_VALIDATOR = REPO_ROOT / "tools" / "validation" / "validate_claims_language.py"
 
 
 def _git(*args: str) -> str:
@@ -82,22 +81,6 @@ def select_checks(paths: list[str]) -> dict:
         selected['checks'] = sorted(profile['checks'])
         selected['reasons']['unknown-tool-inputs'] = unknown
     return selected
-
-
-def claims_language_selected(selection: dict) -> bool:
-    """GEN-13 runs when a changed path is one of the inputs the validator
-    declares (its input_patterns()), on --all, or when the base is unusable."""
-    paths = selection.get('paths', [])
-    if '--all' in paths or selection.get('reasons', {}).get('*') == ['base-unresolvable']:
-        return True
-    try:
-        spec = spec_from_file_location('chirality_validate_claims_language', CLAIMS_VALIDATOR)
-        module = sys.modules[spec.name] = module_from_spec(spec)  # dataclasses need it
-        spec.loader.exec_module(module)
-        patterns = module.input_patterns()
-    except Exception:  # an unreadable or absent validator fails open
-        return True
-    return any(fnmatchcase(p, pattern) for p in paths for pattern in patterns)
 
 
 def pytest_dirs(check_ids: list[str]) -> list[str]:
@@ -162,7 +145,6 @@ def main() -> int:
                 dependency_inputs = True
             output.write(f"deliverables={'true' if dependency_inputs else 'false'}\n")
             output.write(f"instructions={'true' if instruction_inputs else 'false'}\n")
-            output.write(f"claims_language={'true' if claims_language_selected(selection) else 'false'}\n")
     if args.dry_run:
         return 0
     return run_pytest(dirs)

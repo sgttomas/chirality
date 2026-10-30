@@ -184,6 +184,11 @@ def discover(repo_root: Path) -> dict:
         ),
     ]
 
+    # Product-specific conventions are retained for historical fixtures, not
+    # suggested as runnable commands from the current shared-library checkout.
+    if repo_root == Path(__file__).resolve().parents[2]:
+        surfaces = [item for item in surfaces if not item['id'].startswith('openpipestress-')]
+
     return {
         "schema": "chirality-test-surfaces/v1",
         "repo_root": str(repo_root),

@@ -1,66 +1,21 @@
-# Development verification
+# Shared-library development verification
 
-`harness` is the single required GitHub result. It combines repository checks
-with the selected Piping workflows. App v4 has independent CI in
-`sgttomas/chirality-app`; detached App paths do not select product jobs here.
-Branch protection does not require an up-to-date branch merely because main
-advanced; checks still apply to the candidate head.
+`harness` is the single required result for Chirality's shared library. It joins
+repository/tool verification and fails if that work fails, is cancelled or never
+runs. App v4 and SWBPIPE own their product verification in
+[chirality-app](https://github.com/sgttomas/chirality-app) and
+[SWBPIPE](https://github.com/sgttomas/SWBPIPE); their build jobs, selectors and
+cache warmers no longer execute here.
 
-Selection uses the complete PR diff, including both sides of renamed paths.
-The executable mapping is [hosted-ci-routing.json](../tools/hosted-ci-routing.json),
-interpreted by [hosted_ci.py](../tools/software_workflow/hosted_ci.py).
-Missing or unknown inputs select conservative coverage. Piping Cargo selection
-seeds the owning crate for changed Rust/Cargo files and the readers of each exact
-changed resource, then follows reverse Cargo path dependencies (including dev,
-build and target dependencies and resolved workspace inheritance). Fixture reads
-do not create a dependency on the fixture supplier's whole crate. Dynamic Rust
-reads use source-grounded declarations in the routing file: exact files, literal
-anchors and checked source/caller boundaries. Unknown paths, stale declarations,
-unresolved local dependencies or shared execution controls retain the full suite.
-Nonrepository reads require an `audited-external-inputs` declaration and concrete
-reason. Its source/caller binding invalidates stale audits; independent review
-establishes the external-input claim.
-Python coverage has its own mode, including when no Cargo crate is selected.
-The plan retains classification, reasons and exact selected manifests; execution
-and successful-result reuse recompute them against the candidate's complete diff.
-Each job reports its
-selection and reasons; unrelated product jobs are explicitly skipped. Failed,
-cancelled or missing selected work fails the aggregate result.
+Root tool selection uses the complete merge-base diff, retaining both sides of
+renames/deletions. `tools/tools-test-routing.json` maps inputs; unknown tool
+inputs or missing diffs select the full registered estate. Use
+`python3 tools/run_affected_tests.py --dry-run` to inspect selection, then omit
+`--dry-run` to execute it. Consumed role/workflow checks, deliverable structure,
+conflict, credential and private-term checks remain in the repository job.
 
-Routine PRs use focused checks of consequential behaviour. Broad browser matrices and other expanded checks are available through manual
-workflow dispatch or release preparation. There is no blanket local sweep,
-nightly duplicate or post-merge duplicate requirement. Do not repeat a passing
-hosted suite locally without a new change or unresolved concern.
-
-Repository checks retain conflict/secret detection and relevant tool tests.
-Dependency YAML edits select the structural deliverable check; unresolved needs
-and cycles are reported without failing. Role and workflow package changes
-select the checks for those consumed formats. Piping's claims-language check
-(GEN-13) runs when a changed path matches its validator's own declared inputs;
-see Piping's CI strategy. The tool-test mapping is
-[tools-test-routing.json](../tools/tools-test-routing.json).
-
-Piping's [CI strategy](../projects/chirality-piping/docs/CI_STRATEGY.md) describes
-its numerical, persistence, browser and Python selection. Numerical and browser
-results can be reused only for identical tracked inputs, selected commands and
-runner/language environment. A reused pass names its original run and says no
-tests executed. Manual runs bypass result reuse. Dependency/build caches are
-separate and do not themselves establish a passing result.
-
-`shared-build-cache.yml` warms Piping numerical and Piping desktop Rust
-Cargo dependencies on main pushes without executing tests. Piping numerical uses
-`numerical_ci.py --build-only`, derived from the numerical job's own selected
-profiles. Piping desktop Rust compiles its test profile. Only registry/Git dependencies and their
-compiled artifacts are saved; local path crates, test executables and incremental
-output are removed. Product jobs restore these main-scoped caches without saving
-PR build caches. Small exact-result verification records retain their existing
-save/reuse rules. Cargo logs report build and harness execution durations separately. Piping
-also emits timing totals, retaining its original command order; a cache miss still builds and verifies normally.
-
-Verification is proportional to consequence under Root `AGENTS.md`. CI success
-is not product acceptance, engineering approval or release authorization.
-
-App v3, Runtime and PEC are retired and have no verification jobs or dependency
-builds. Historical App packaging and instruction-root reproduction use a checkout
-of `archive/pre-docs-cleanup-1`. Their source remains available without an ongoing
-CI maintenance obligation.
+Shared changes identify external consumers and their selected library revisions;
+product adoption occurs through their own independently reviewable changes.
+Do not restore a product job here when merging an old monorepo branch. Historical
+product checks and recovery references remain available through original Git
+history; a green Root result does not claim a product's verification or release.

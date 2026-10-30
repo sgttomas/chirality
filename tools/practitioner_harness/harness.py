@@ -112,6 +112,11 @@ ROOT_COMMAND_REFUSALS: dict[str, str] = {
 
 
 def _project_root(repo_root: Path, name: str) -> Path:
+    # These aliases remain for explicit historical checkouts and fixture tests.
+    # The current Chirality library must not reopen a migrated project, even
+    # when ignored build files leave its old directory present locally.
+    if name in {"piping", "chirality-piping"} and repo_root.resolve() == Path(__file__).resolve().parents[2]:
+        raise HarnessOperationalError("SWBPIPE is independent at https://github.com/sgttomas/SWBPIPE; use that repository's local entry")
     rel = PROJECT_ALIASES.get(name)
     if rel is None:
         raise HarnessOperationalError(
@@ -138,6 +143,8 @@ def _alias_by_root(repo_root: Path) -> dict[Path, str]:
     root" refusal into a wrong answer. Root citizenship is observation only."""
     by_root: dict[Path, str] = {}
     for alias, rel in PROJECT_ALIASES.items():
+        if alias in {"piping", "chirality-piping"} and repo_root.resolve() == Path(__file__).resolve().parents[2]:
+            continue
         if rel == ROOT_RELPATH:
             continue
         root = (repo_root / rel).resolve()

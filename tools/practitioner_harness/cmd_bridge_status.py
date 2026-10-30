@@ -226,9 +226,15 @@ def _is_separator(cells: list[str]) -> bool:
     return bool(cells) and all(re.fullmatch(r":?-{2,}:?", c) for c in cells if c)
 
 
+def _migrated_local_input(repo_root: Path, relative: str) -> bool:
+    """Keep historical bridge parsing, but never observe an extracted local product."""
+    return (repo_root.resolve() == Path(__file__).resolve().parents[2]
+            and relative.startswith('projects/chirality-piping'))
+
+
 def _parse_decision_rows(repo_root: Path, label: str, relpath: str) -> list[DecisionRow]:
     path = repo_root / relpath
-    if not path.is_file():
+    if _migrated_local_input(repo_root, relpath) or not path.is_file():
         return []
     rows: list[DecisionRow] = []
     headers: list[str] | None = None
@@ -703,7 +709,7 @@ def _live_binding_gate_tokens(line: str) -> list[str]:
 
 def _find_decision_record_line(repo_root: Path, decision_id: str) -> tuple[str, int] | None:
     path = repo_root / PIPING_DECOMP_RELPATH
-    if not path.is_file():
+    if _migrated_local_input(repo_root, PIPING_DECOMP_RELPATH) or not path.is_file():
         return None
     needle = f"|{decision_id}|"
     for idx, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
@@ -799,6 +805,8 @@ def _add_fact(report: Report, fact_id: str, value: str, source: str, line: int |
 def _blocked_on_records(repo_root: Path) -> list[BlockedOnRecord]:
     records: list[BlockedOnRecord] = []
     for relroot in BLOCKED_ON_PROJECT_RELPATHS:
+        if _migrated_local_input(repo_root, relroot):
+            continue
         project_root = repo_root / relroot
         if not project_root.is_dir():
             continue
@@ -933,6 +941,8 @@ def run_bridge_status(repo_root: Path) -> Report:
     report.md("")
     report.md(BLOCKED_ON_NOTE)
     for relroot in BLOCKED_ON_PROJECT_RELPATHS:
+        if _migrated_local_input(repo_root, relroot):
+            continue
         project_root = repo_root / relroot
         if adapter_project.uses_deliverable_sources(project_root):
             report.md(adapter_project.migrated_project_note(project_root))
