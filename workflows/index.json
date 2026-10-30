@@ -835,7 +835,7 @@
       "name": "dbm-concordance-verify",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Post-synthesis cross-section semantic concordance verification for rewritten DBM package outputs.",
+      "description": "Review semantic consistency across an authored DBM's sections, using current text and available review evidence; supports publication packages and standalone drafts.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [

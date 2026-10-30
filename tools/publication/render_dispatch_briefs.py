@@ -77,7 +77,7 @@ from build_section_map import (  # type: ignore
 
 SECTION_BRIEF_NAME_TEMPLATE = "{section_id}_INIT-TASK.md"
 PACKAGE_BRIEF_NAME = "DBM_PUBLISH_INIT-TASK.md"
-CONCORDANCE_VERIFY_BRIEF_NAME = "DBM_CONCORDANCE_VERIFY_INIT-TASK.md"  # LEGACY — retained for old dispatch index compat
+CONCORDANCE_VERIFY_BRIEF_NAME = "DBM_CONCORDANCE_VERIFY_INIT-TASK.md"
 DEFAULT_DBM_OUTPUT_MODE = "FULL_ENGINEERING_DBM"
 PACKAGE_OUTPUT_NAMES = [
     "Rewritten_DBM.md",
@@ -298,13 +298,14 @@ def render_section_brief(
         f"  PUBLICATION_SCHEMA_PATH: {paths['schema'].resolve()}",
         f"  SECTION_MAP_PATH: {paths['section_map'].resolve()}",
         f"  PUBLICATION_RULES_PATH: {paths['rules'].resolve()}",
-        f"  PUBLICATION_CONCORDANCE_REGISTER_PATH: {paths['concordance_register'].resolve()}",
         f"  MAX_KA_FILES: {max_ka_files}",
         f"  DBM_OUTPUT_MODE: {dbm_output_mode}",
         f"  SOURCE_DOMAIN: {source_domain}",
         f"  ROOT_NAME: {source_domain}",
         f"  SECTION_ORDER: {section['SectionOrder']}",
     ]
+    if paths.get("concordance_register"):
+        lines.append(f"  PUBLICATION_CONCORDANCE_REGISTER_PATH: {paths['concordance_register'].resolve()}")
     if section_context_path:
         lines.append(f"  SECTION_CONTEXT_PATH: {section_context_path.resolve()}")
     if facility_id:
@@ -414,19 +415,28 @@ def render_concordance_verify_brief(
         f"  - {report_path.resolve()}",
         f"  - {findings_path.resolve()}",
         "RuntimeOverrides:",
+        f"  ASSEMBLED_DBM_PATH: {(package_snapshot_dir / 'Rewritten_DBM.md').resolve()}",
+        f"  REVIEW_OUTPUT_DIR: {package_snapshot_dir.resolve()}/",
         f"  SECTIONS_ROOT: {paths['sections_root'].resolve()}/",
-        f"  CONCORDANCE_REGISTER_PATH: {paths['concordance_register'].resolve()}",
-        f"  CONCORDANCE_FINDINGS_PATH: {(package_snapshot_dir / 'Publication_Concordance_Findings.csv').resolve()}",
+        f"  REVIEW_EVIDENCE_ROOT: {(package_snapshot_dir / 'review').resolve()}/",
         f"  OUTPUT_VERIFICATION_PATH: {report_path.resolve()}",
         f"  OUTPUT_VERIFICATION_FINDINGS_PATH: {findings_path.resolve()}",
-        f"  SOURCE_SUPERSESSION_FINDINGS_PATH: {source_supersession_findings.resolve()}",
         f"  PUBLICATION_RULES_PATH: {paths['rules'].resolve()}",
         f"  PUBLICATION_INPUT_MANIFEST: {paths['input_manifest'].resolve()}",
         f"  PACKAGE_SNAPSHOT_PATH: {package_snapshot_dir.resolve()}/",
+    ]
+    if paths.get("section_map"):
+        lines.append(f"  SECTION_MAP_PATH: {paths['section_map'].resolve()}")
+    if paths.get("concordance_register"):
+        lines.append(f"  CONCORDANCE_REGISTER_PATH: {paths['concordance_register'].resolve()}")
+    if paths.get("supersession_map"):
+        lines.append(f"  SOURCE_SUPERSESSION_FINDINGS_PATH: {source_supersession_findings.resolve()}")
+    lines.extend([
+        "CustomInstructions: Run after assembly and post-authoring evidence preparation. Review the complete authored DBM; return observations for human disposition without assigning automatic readiness or blocking decisions.",
         "ExpectedOutputs:",
         f"  - {report_path.resolve()}",
         f"  - {findings_path.resolve()}",
-    ]
+    ])
     return "\n".join(lines).rstrip() + "\n"
 
 
@@ -466,15 +476,14 @@ def main() -> int:
         "schema": Path(args.schema).resolve(),
         "section_map": Path(args.section_map).resolve(),
         "rules": Path(args.rules).resolve(),
-        "concordance_register": Path(args.concordance_register).resolve()
-        if args.concordance_register
-        else (Path(args.input_manifest).resolve().parent / "Publication_Concordance_Register.csv"),
         "section_context_root": Path(args.section_context_root).resolve() if args.section_context_root else (Path(args.input_manifest).resolve().parent / "section-context"),
         "dispatch_root": Path(args.dispatch_root).resolve(),
         "sections_root": Path(args.sections_root).resolve(),
         "package_root": Path(args.package_root).resolve(),
         "skills_root": Path(args.skills_root).resolve(),
     }
+    if args.concordance_register:
+        paths["concordance_register"] = Path(args.concordance_register).resolve()
 
     # Resolve supersession map from the manifest if present.
     manifest = parse_manifest(paths["input_manifest"])
