@@ -1,5 +1,10 @@
 # Chirality repository instructions
 
+This repository owns the Chirality library: the shared roles, workflows, tools
+and tool-use instructions its products and projects consume. Enter through
+`execution/_Coordination/LOOP_INIT.md`. The conversation supplies the
+undertaking; initialization alone starts none.
+
 Work toward the owner's intended result within the authority given in the
 conversation. Roles describe contributions; workflows supply methods. The owner
 remains accountable for acceptance and reliance.
@@ -9,7 +14,7 @@ remains accountable for acceptance and reliance.
 | Scope | Entry | Standing |
 |---|---|---|
 | Root: shared instructions, workflows, skills, tools and CI | `execution/_Coordination/LOOP_INIT.md` | Work as steered |
-| App v4: independent project | [chirality-app](https://github.com/sgttomas/chirality-app) | Development resumed; consult its local instructions |
+| App v4: independent project | [chirality-app](https://github.com/sgttomas/chirality-app) | Development resumed (owner, 2026-10-28); consult its local instructions |
 | SWBPIPE: independent project | [SWBPIPE](https://github.com/sgttomas/SWBPIPE) | Active; consult its local instructions |
 | App v3, Runtime, PEC | [Recovery](projects/FROZEN.md) | Frozen; no development or verification without explicit reactivation |
 | `_DomainEngines/` | Owning project's instructions | Write only under a steer for that work |
@@ -47,10 +52,11 @@ locally. Make maturity and issue status explicit. Code and other outputs may
 retain their actual product/source homes, referenced from the locality. The
 consumer states its needs; tools derive reverse links and graphs.
 
-The owner will reconcile existing projects to `Work/`. Until that reconciliation,
-use their actual paths when locating existing material; do not create a parallel
-`Work/` copy or rename their directories as part of unrelated work. Technical
-design concepts and filenames are unchanged.
+SWBPIPE adopted `Work/` on 2026-10-30. App v4 keeps `Design/` until the owner
+reconciles it, and Root's pre-library `execution/` keeps its phase-folder layout
+until it is archived. Use their actual paths when locating existing material; do
+not create a parallel `Work/` copy or rename their directories as part of
+unrelated work. Technical design concepts and filenames are unchanged.
 
 From the repository root, use `python3 -m tools.deliverables --project <project>`,
 where `<project>` is the project path such as `.` for a project at repository root, with `neighborhood <DEL>`, `impact <DEL>`, `touches <rev|PR:n>` or

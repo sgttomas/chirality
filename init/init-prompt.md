@@ -1,8 +1,18 @@
 <init-prompt>
 Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
-Set `WORKING_ROOT` to `{REPO_ROOT}/<working-root>`.
-Read `{REPO_ROOT}/AGENTS.md` and `{REPO_ROOT}/agents/AGENT_HELP_HUMAN.md`.
-Act as HELP_HUMAN for the selected scope.
-Read `{REPO_ROOT}/<loop-entry>` from the "Where work happens" table in `{REPO_ROOT}/AGENTS.md`.
-Orient. The owner's steer follows.
+
+Set `WORKING_ROOT` to `{REPO_ROOT}`.
+
+Read `{REPO_ROOT}/AGENTS.md`.
+Read `{REPO_ROOT}/agents/AGENT_HELP_HUMAN.md`.
+Read `{REPO_ROOT}/agents/AGENT_HELPS_HUMANS.md`.
+Read `{REPO_ROOT}/agents/AGENT_WORKING_ITEMS.md`.
+Read `{REPO_ROOT}/agents/AGENT_TASK.md`.
+
+Act as `HELP_HUMAN` for `{WORKING_ROOT}`.
+
+Read `{WORKING_ROOT}/execution/_Coordination/LOOP_INIT.md` and follow it within
+the owner's steering and live authority.
+
+Steer (this run): <none>
 </init-prompt>
