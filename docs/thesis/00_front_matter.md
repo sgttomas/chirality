@@ -34,8 +34,12 @@ support.
 Iteration connects inquiry, action, evaluation and revision. A finding can repair
 an output, change its method or show that a purpose needs reconsideration.
 Learning is retained when the correction reaches the place where it matters.
-The development case gives bounded evidence about these relationships, but does
-not establish a general productivity effect.
+The longitudinal development case demonstrates this in a human-directed,
+agent-executed undertaking: useful App behavior was abstracted into a successor
+basis, allocated to deliverables and realized with functional extensions in a
+rebuilt application. Core distinctions and relationships persisted as the
+implementation changed. Human purpose, judgment and steering are foundational
+to that achievement.
 
 The App is the exemplar for workflow authoring. SWBPIPE tests the
 approach in an engineering domain through models, operations, calculations and
@@ -45,10 +49,14 @@ normative, operative and evaluative emphases within one iterative body of work.
 The [introduction](INTRODUCTION.md) and [conclusion](CONCLUSION.md)
 develop their relationship; Appendix E carries the development history.
 
-The argument distinguishes adopted commitments, design hypotheses and observed
-findings. Whether it is adequate remains open to testing through sustained use
-and another practitioner's experience. Appendix D carries the shared
-philosophical kernel.
+Recorded repair cycles show the method changing its own means, and selected
+SWBPIPE quantities agree with an external solver within declared comparison
+tolerances. These findings support the method's efficacy in the examined case.
+Comparative productivity, broader adoption and the adequacy of particular
+professional uses remain distinct questions. The argument keeps adopted
+commitments, design hypotheses and observed findings separate. Appendix D carries
+the shared philosophical kernel as an interpretation, not an empirical result
+established by the applications.
 
 **Keywords:** human–agent work, purpose, meaning, roles, methods, artifacts,
 ontology, epistemology, praxeology, axiology, reckoning, judgment, application

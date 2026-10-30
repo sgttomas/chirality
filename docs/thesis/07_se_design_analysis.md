@@ -480,16 +480,14 @@ score or compulsory sequence resolves these questions.
 
 ### 7.11.3 Bounded Conclusion
 
-An inspectable arrangement can preserve current commitments, reserved decisions
-and verification based on consequences while its mechanisms remain open to
-revision. Architectural coherence supports a candidate explanation of how work
-proceeds. Evidence must establish improved safety, productivity or economical
-transfer to another domain on the actual basis and purpose examined.
+Chapter 8 traces an inspectable arrangement in use: useful predecessor behavior
+and governing distinctions become successor commitments and deliverables, then
+working behavior in the redeveloped App. Findings change the product and its
+production method. Human purpose, judgment and steering are foundational to
+those observed results.
 
-Answering those questions requires use, failure analysis and recovery evidence
-over time. The defensible design claim is that Chirality supplies an
-inspectable, revisable arrangement for reckoning by capable agents within human
-purposes and authority.
-Systems engineering helps examine that arrangement; it does not certify the
-quality of human judgment or settle the philosophical capacities of all future
-machines.
+The evidence supports useful production and temporal continuity in this case.
+Comparative safety, productivity and economical transfer to further settings
+require their own comparisons. Systems engineering helps examine these claims;
+it does not certify the quality of human judgment or settle the philosophical
+capacities of all future machines.

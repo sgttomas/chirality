@@ -351,6 +351,9 @@ or responsibility merely by becoming more capable. People can grant extensive
 authority for action while retaining consequential commitments.
 
 The framework's coherence lies in preserving relevant distinctions and
-responsibilities while examining how best to support them. Its implementations
-remain open to challenge, and their adequacy must be assessed through actual
-work, including the costs they impose and the failures they permit.
+responsibilities while examining how best to support them. The longitudinal case
+in Chapter 8 traces those distinctions from a working App through successor
+specification and deliverables into a redeveloped application, with observed
+extensions and repairs. Human purpose, judgment and steering are foundational
+to that achievement. The implementations remain open to challenge through actual
+work, including their costs, failures and use in further settings.

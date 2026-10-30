@@ -2,12 +2,32 @@
 
 ## 8.1 Subject and Evidence Basis
 
-This chapter evaluates what the available evidence establishes about Root's
-shared instructions, roles, methods, queries and connecting paths. Its source
-basis is commit `a602024416ace9652f61bb2043889c307fd4e09d`. The analysis concerns
-that implementation and its recorded examinations; it is not a fresh audit of
-the current products. [Appendix E](appendix_e_development_history.md) preserves
-the development record, earlier arrangements and the limits of that history.
+This chapter evaluates the use of Chirality to produce software and carry its
+meaning through change. The undertaking joins one developer's purpose, judgment
+and steering with agents' investigation, design, implementation, orchestration
+and examination. Human direction is foundational to this method and to the
+result being evaluated.
+
+The original implementation account retains commit
+`a602024416ace9652f61bb2043889c307fd4e09d` (October 10, 2026) as its basis.
+The dated extension in §§8.5.3–8.5.5 was examined on October 30. It follows
+earlier App behavior through successor definition and redevelopment, incorporates
+the October 14–16 native walkthrough, and examines stored SWBPIPE comparison
+evidence. Its sources have separate identities:
+
+| Subject | Identified source | What was examined |
+|---|---|---|
+| Working App v3 and successor investigation | Chirality `2b0572fe049c8ffaa02d61b7dbbc3ae41bc589f6`; preserved investigation in App `032725d32b67e117b8e1fb2b5fa9aa47b30de12e` | Recorded execution, lessons and selected behaviors |
+| Accepted successor and realized App v4 behavior | App `032725d32b67e117b8e1fb2b5fa9aa47b30de12e`, with the dated changes cited below | Decomposition, deliverable contracts, implementation changes and native-use records |
+| Piping comparison method | SWBPIPE `bc9f7961acee72441ec06c104ed97d4f1c77faa4` | Public pilot design and comparison rules |
+| Executed piping comparisons | Owner-held pilot and benchmark run records of October 26–29, inspected October 30 | Stored input/output bindings, selected comparisons and classification arithmetic; no new solver execution |
+
+The extension is a review of identified records and their connecting paths, with
+separate agent examination and discussion of the findings. Earlier observations
+keep their original scope; the extension does not qualify every later product
+revision. [Appendix E](appendix_e_development_history.md) supplies the history.
+Unpinned repository links provide navigation; empirical sources below identify
+their examined revisions.
 
 Root's principal contribution is normative: purposes, responsibilities, distinctions
 and criteria guide work while remaining open to correction. Its tools also make
@@ -66,8 +86,9 @@ needs and conditions in `deliverable.yaml`. The
 component and affected consumers; an active project entry locates product
 commitments. The authorized work directs the inquiry. Current shared locality
 naming is governed by Root `AGENTS.md`: `Work/` is the convention going forward.
-The owner will reconcile existing projects that still use `Design/`. This naming change
-does not rewrite the implementation examined here.
+App and SWBPIPE adopted `Work/` by the October 30 extension basis. Historical
+`Design/` paths below locate the original evidence; the rename does not change
+what those observations established.
 
 The [deliverable CLI](../../tools/deliverables/README.md) exposes
 `neighborhood`, `impact`, `touches`, `dag-diff` and `check`. It reports source
@@ -172,13 +193,13 @@ person's act of reliance.
 
 ### 8.5.1 Operative Perspective: The App
 
-The [App PRD](https://github.com/sgttomas/chirality-app/blob/main/docs/PRD.md),
-[architecture](https://github.com/sgttomas/chirality-app/blob/main/docs/ARCHITECTURE.md) define the
+The [App PRD](https://github.com/sgttomas/chirality/blob/a602024416ace9652f61bb2043889c307fd4e09d/projects/chirality-app-v4/docs/PRD.md) and
+[architecture](https://github.com/sgttomas/chirality/blob/a602024416ace9652f61bb2043889c307fd4e09d/projects/chirality-app-v4/docs/ARCHITECTURE.md) define the
 application-specific inquiry. Conversations, request cards, workflow authoring,
 trial runs and inspection of returned work supply operative paths through which
 intent and methods can be tried and revised.
 
-The [host-integration contract](https://github.com/sgttomas/chirality-app/blob/main/docs/HOST_INTEGRATION.md)
+The [host-integration contract](https://github.com/sgttomas/chirality/blob/a602024416ace9652f61bb2043889c307fd4e09d/projects/chirality-app-v4/docs/HOST_INTEGRATION.md)
 proposes making application capabilities discoverable. A common catalog does not
 establish correct domain behaviour, good interfaces, recovery or every transport
 adapter.
@@ -230,7 +251,7 @@ not a claim about every later App or supplier version.
 
 ### 8.5.2 Evaluative Perspective: Piping
 
-The [Piping PRD](https://github.com/sgttomas/SWBPIPE/blob/main/docs/PRD.md) distinguishes
+The [Piping PRD](https://github.com/sgttomas/chirality/blob/a602024416ace9652f61bb2043889c307fd4e09d/projects/chirality-piping/docs/PRD.md) distinguishes
 physical models, analytical models, analysis runs, comparison and handoff. These
 objects need domain definitions, numerical implementation and evidence. The cases below examine limits of the software operations and calculations.
 
@@ -284,19 +305,90 @@ conditions. Test count is not a substitute for a meaningful distinction between
 correct and defective behavior. These are findings in the cited source, not
 numerical examinations newly performed for this manuscript.
 
-### 8.5.3 Iterative Feedback
+### 8.5.3 Longitudinal Redevelopment and Retained Learning
 
-A domain finding can reveal a missing distinction in Root's criteria. An App
-refusal or recovery failure can reveal an inadequate operative path. A changed
-physical purpose can require another model or alternative. Iterative feedback
-means that these findings can revise each perspective and their relationships.
-The four philosophical questions recur across that feedback rather than assigning
-one perspective to one application or fixing a mandatory sequence.
+The App case supplies substantial evidence of preserved meaning and useful
+evolution across redevelopment. Its observation unit is the complete path from
+an earlier working behavior, through interpretation and accepted successor
+commitments, to behavior in the rebuilt application. The developer directs the
+undertaking and its consequential choices; agents carry the production and
+examination through the deliverables.
 
-A successive implementation also needs examination of retained learning. A new
-PRD or version number cannot establish that prior defects, useful interfaces and
-owner decisions were considered. The accessibility of Root's sources helps that
-inquiry, but actual receiving-product evidence must establish the result.
+| Stage | Evidence | Finding |
+|---|---|---|
+| Working predecessor | [v3 execution record](https://github.com/sgttomas/chirality/blob/2b0572fe049c8ffaa02d61b7dbbc3ae41bc589f6/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/spike/EVIDENCE.md), September 12 | Native planning, real tool execution, conversational workflow creation, reuse/refinement, interruption and relaunch were exercised. A failed refinement path was repaired and exercised successfully. |
+| Abstraction for a successor | [Investigation record](https://github.com/sgttomas/chirality-app/blob/032725d32b67e117b8e1fb2b5fa9aa47b30de12e/conceptual/WORKING_RECORD.md) and [exemplars and lessons](https://github.com/sgttomas/chirality-app/blob/032725d32b67e117b8e1fb2b5fa9aa47b30de12e/conceptual/EXEMPLARS_AND_LESSONS.md), September 25 | Existing behavior, requirements, failures and unrealized intentions were distinguished. Useful relationships were selected for preservation while obsolete runtime mechanisms were reconsidered. |
+| Accepted production basis | [Composite acceptance](https://github.com/sgttomas/chirality/blob/cea76c2f469350d237c5d579b765113f7569f0e5/projects/chirality-app-v4/execution/_Coordination/Acceptances/APP-V4-BASIS-20260926/ACCEPTANCE.md), [final decomposition decision](https://github.com/sgttomas/chirality-app/blob/032725d32b67e117b8e1fb2b5fa9aa47b30de12e/execution/_Decomposition/checkpoint_snapshots/GROUP3-20260928T001055Z/DECISION.md) and [DEL-02-02](https://github.com/sgttomas/chirality-app/blob/032725d32b67e117b8e1fb2b5fa9aa47b30de12e/execution/PKG-02/DEL-02-02/ScopeOfWork.md) | The successor basis became 11 packages and 41 deliverables, with explicit ownership of the complete create–trial–review–register–reuse–refine experience. The counts identify the subject; they are not outcome measures. |
+| Realized successor behavior | [Native walkthrough](https://github.com/sgttomas/chirality-app/blob/032725d32b67e117b8e1fb2b5fa9aa47b30de12e/execution/PKG-02/DEL-02-02/Work/NATIVE_WALKTHROUGH_2026-10-14.md), October 14–16 | Four registered revisions remained in one lineage. The workflow was tried, reviewed, registered, reused on new inputs and continued after relaunch. Summary and source-line-reference outputs were added while earlier reports remained compatible. |
+| Feedback into production | App changes [08c67c4b](https://github.com/sgttomas/chirality-app/commit/08c67c4bf2dbb33b587931282d21681151b7b6e1), [e1a8e3e7](https://github.com/sgttomas/chirality-app/commit/e1a8e3e7c5e3aac7107f66700ab11abb1bf00083) and [687c78ea](https://github.com/sgttomas/chirality-app/commit/687c78ead04d70cbf2d4bea0a3dec732a9c27829) | Revised trial intent reached requirements, acceptance/verification criteria and Work design; native findings reached implementation and tests; later declaration findings reached supplied guidance and its checks. |
+
+What persisted was a set of meanings and relationships: the person directs and
+accepts; the agent contributes; a draft differs from a registered workflow; a
+workflow revision differs from its execution; source and content identity matter;
+an observed result differs from an attributed human act. Storage, supplier
+hosting, interfaces and some categories changed. This is preservation through
+re-expression, with functional evolution, rather than a requirement to reproduce
+every earlier mechanism.
+
+The walkthrough records actual limitations alongside the successful sequence.
+It used debug candidates; part of its earlier activity was reconstructed from
+session history and persisted artifacts. New guidance reached one installed
+App through the owner's explicit restore, and some child-instruction observations
+were unavailable. These observations identify product behavior and repair needs. The evidence
+supports the observed continuity and extensions, without claiming automatic
+preservation of every behavior or qualification of every later build.
+
+Human direction, examination and correction are constitutive of this
+undertaking. They connect its purpose to what is built and to what experience
+changes next.
+
+The development method was itself revised in use. The [October 4 direction](https://github.com/sgttomas/chirality/blob/24e9117b9c2d9d10f57642da4eef0d13c90bb166/projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GRAPH-CLOSURE-20261004/OWNER_DECISIONS.md)
+redirected dependency rewording toward a coupled contract core, a working
+skeleton and subsequent parallel implementation. The deliverable basis remained,
+while the means of carrying it out changed in response to purpose. This is a
+recorded instance of the framework improving its own means through human
+judgment and agent reckoning.
+
+### 8.5.4 Dated Engineering Comparison Evidence
+
+The October 30 extension also examined SWBPIPE's owner-held CAEPIPE comparison
+records. The [pilot design](https://github.com/sgttomas/SWBPIPE/blob/bc9f7961acee72441ec06c104ed97d4f1c77faa4/execution/PKG-17/DEL-17-05/Work/caepipe-correlation-pilot.md)
+identifies invented inputs, independent analytical witnesses, unit and sign
+mapping, comparison tolerances and a deliberately injected fault. Selected
+quantities in the force-loaded cantilever, anchored thermal and longer-span
+cantilever cases agreed with CAEPIPE within the declared pilot tolerances.
+The injected fault produced discrepancies that the comparison detected.
+
+The examination checked stored input and output identities and independently
+recalculated the recorded pilot tolerance classifications. Raw external-tool
+outputs and detailed comparisons remain in the owner's private evidence
+collection; the public design identifies the method, not a public reproduction
+of those results. This account reports the examined case findings and their
+scope. It reports no fresh solver execution or general equivalence between the
+programs. The larger exploratory set includes discrepancies and unresolved
+findings; its existence is not a claim that every case agreed.
+
+These observations add external numerical evidence to the development case.
+Agreement on identified quantities supports the implementation under those
+conditions, while the detected fault shows that the comparison can distinguish
+a real difference. Neither result establishes professional adequacy or code
+compliance. Investigation of differences, like successful comparison, supplies
+material for the next engineering and software decision.
+
+### 8.5.5 Forms of Transfer
+
+| Transfer | Evidence and standing in this case |
+|---|---|
+| Development method across products | The App and SWBPIPE use shared roles, methods and deliverable contracts to produce distinct applications. Their implementation and examination records demonstrate that use. |
+| Product meaning across time | The App trace in §8.5.3 demonstrates preserved distinctions and useful behavior through successor definition and redevelopment, with recorded extensions and repairs. |
+| Agent capability embedded in a domain product | The [current App–SWBPIPE integration account](https://github.com/sgttomas/chirality-app/blob/032725d32b67e117b8e1fb2b5fa9aa47b30de12e/execution/PKG-09/DEL-09-06/Work/SWBPIPE_CODEX_INTEGRATION.md) identifies implemented contributions and remaining connected evidence. A complete product journey remains to be established. |
+| Use by additional practitioners and organizations | A further empirical setting, in which participants bring their own purpose, judgment and steering. Its outcomes and adaptation costs have not been examined here. |
+
+These transfers have different subjects. An unfinished embedded-agent journey
+does not undo observed use of the development method or the App's temporal
+continuity. Conversely, those achievements do not establish the remaining
+runtime integration. The distinction makes both the attained results and the
+next questions explicit.
 
 ## 8.6 Assessment and Remaining Questions
 
@@ -307,11 +399,16 @@ inquiry, but actual receiving-product evidence must establish the result.
 | Methods can be selected from explicit sources | Resolver operations, resource boundaries and source identities | Delivery, interpretation and adoption by actual consumers |
 | Integration can detect failures beyond component checks | Reference/consumer findings and native-use repair | Common assumptions and interactions outside the examinations |
 | Human acts can have identified subjects | Product commitments and attributable decisions where captured | Competence, understanding and substantive engagement |
-| The arrangement transfers useful means | App and domain-software implementations | Adaptation costs and use by another practitioner |
+| Product meaning survives specification-led redevelopment | Predecessor execution, successor investigation, accepted deliverables and native v4 use (§8.5.3) | The identified behaviors and revisions; preservation of every behavior is not inferred |
+| Experience changes the product and the production method | Traced trial/guidance repairs and the October 4 development correction | Particular observed improvements; no isolated causal estimate for each mechanism |
+| Selected piping quantities agree with an external solver | Stored comparisons, analytical witnesses, identity checks and fault detection (§8.5.4) | Declared cases/tolerances; private raw evidence; broader findings remain |
+| The development method transfers useful means | App and SWBPIPE production/examination records (§8.5.5) | Wider settings, adaptation costs and embedded-agent product integration are distinct subjects |
 
-The basis supports the feasibility of specific mechanisms and production paths.
-Repository instructions, role files, selected methods, deliverable sources and
-the query CLI are in use; the relevant Git and CI paths have been exercised.
+The combined evidence demonstrates useful production, correction and retained
+meaning in this longitudinal case. Repository instructions, role files, selected
+methods, deliverable sources and the query CLI are in use; the relevant Git and
+CI paths have been exercised. More substantively, the App's selected meanings
+and behaviors reached a redeveloped implementation and were extended in use.
 [PR #1238](https://github.com/sgttomas/chirality/pull/1238) provides the accepted
 manuals describing that working model, but their existence does not imply that
 the whole system is fully validated.
@@ -332,18 +429,22 @@ outcomes must concern usable work, errors that matter and total effort, includin
 owner attention. These research questions create no product commitments or
 standing implementation backlog.
 
-Controlled productivity, comparative error detection, professional suitability,
-portability and sustained adoption remain unestablished. The improvements
-reported in the development record do not isolate causal effects from model
-capabilities, accumulated knowledge, work begun earlier or the owner's
-involvement. Activity counts cannot supply those missing comparisons.
+Comparative productivity, comparative error detection, professional suitability
+for a particular deployment and sustained adoption across further settings
+remain separate questions. The observations do not isolate the contribution of
+each mechanism from changing model capabilities, accumulated knowledge or task
+mix. Human purpose, judgment and steering are foundational parts of the method
+whose local efficacy is observed. Activity counts cannot establish the broader
+comparisons, but the executed and traced results establish more than activity.
 
 ## 8.7 Summary
 
-Root's evidence supports a revisable environment in which sources, methods,
-relationships, authorization and continuing ownership can connect production to
-examination and correction. The strength of each finding remains bounded by its
-actual subject, source basis and checked path.
+The development record supplies substantial longitudinal case evidence for a
+human-directed, agent-executed method that produces working software, carries
+core product meaning through redevelopment, and supports functional extension
+and correction. Sources, methods, relationships, authorization and continuing
+ownership connect these observed production and examination paths. Each finding
+retains its actual subject, source basis and checked path.
 
 App and Piping expose operative and evaluative questions that Root alone cannot
 answer. Their findings can revise the shared means through iterative feedback.

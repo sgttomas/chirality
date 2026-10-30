@@ -3,10 +3,11 @@
 ## E.1 Scope and Source Basis
 
 This appendix consolidates developmental history that helps explain the choices
-examined in the main argument. Its implementation basis remains commit
-`a602024416ace9652f61bb2043889c307fd4e09d`. Historical descriptions establish
-what was proposed or recorded at an identified time; they create no present
-obligations and do not update product or regulatory claims.
+examined in the main argument. The original historical account retains commit
+`a602024416ace9652f61bb2043889c307fd4e09d`. Section E.7 and Chapter 8 identify
+the evidence extension examined on October 30 separately. Historical descriptions
+establish what was proposed or recorded at an identified time; their original
+subjects remain intact and they create no present development obligations.
 
 The original January–April repositories were deleted during migration, and
 surviving migrated Git history starts with the May 18 snapshot. The owner
@@ -205,18 +206,32 @@ and attention remain candidate correspondences, not a demonstrated equivalence
 with project practice. Independent comparison and another practitioner's use
 would supply stronger evidence than elaboration of the analogy by its author.
 
-## E.7 Causal Limits and Continuing Inquiry
+## E.7 Longitudinal Findings and Continuing Inquiry
 
-The owner reports improved agent behaviour and productivity following the October
-reset, and subsequent PRs show connected work. Removing duties while preserving
-important distinctions supplies evidence against the necessity of those mechanisms
-for every undertaking. It does not isolate an effect attributable to their removal.
-Stronger models, accumulated product knowledge, work begun earlier, task mix,
-generated material and the owner's continuing involvement remain confounders.
-File counts, line counts and merged-PR totals measure activity or size rather than
-comparable accepted work or a productivity multiplier.
+The October 30 evidence extension follows the App from executed v3 behavior,
+through the September successor investigation and accepted deliverables, to
+native v4 use on October 14–16. [Chapter 8.5.3](08_implementation.md#853-longitudinal-redevelopment-and-retained-learning)
+identifies the sources and changes. The trace establishes preserved product
+meaning, useful functional extensions and repairs that reached their consumers.
+The preserved thesis tree corroborates continuity of the conceptual basis; the
+observed successor behavior supplies the stronger evidence of realized continuity.
 
-The historical record supports learning through production, examination and repair.
-Comparative reliability, professional suitability, sustained productivity and
-transfer to another practitioner remain open. Chapter 8 evaluates the specific
-paths rather than promoting this chronology into those broader findings.
+Human purpose, judgment and steering are foundational to this development method.
+The October 4 redirection from dependency rewording to a coupled contract core
+and walking skeleton is an instance of that contribution. The method changed
+its means while retaining the intended work. Human direction belongs in the
+account of the achieved result.
+
+The owner also reports improved agent behavior and productivity following the
+October reset. Removing duties while preserving useful distinctions supplies
+evidence against the necessity of those mechanisms for every undertaking.
+Attributing a comparative gain to their removal alone would require accounting
+for changing models, accumulated product knowledge, task mix and work begun
+earlier. File, line and PR counts do not establish an effect size.
+
+The record therefore supports more than possible feasibility: it documents
+useful production, examination, correction and continuity through change.
+Comparative efficiency and reliability, the suitability of particular professional
+uses, and outcomes in further practitioners' settings remain distinct questions.
+Chapter 8 separates these from the demonstrated local results and from the
+remaining embedded-agent product integration.

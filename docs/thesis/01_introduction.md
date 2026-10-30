@@ -69,10 +69,16 @@ Participants assess whether the available evidence meets the need. Continuing
 ownership carries findings into repairs and contributions into a usable whole.
 Changes to shared instructions must reach the tools and products that use them.
 
-These are proposed contributions, and whether they are adequate requires
-examination. A record can support continuity or become a competing body of work.
-A method can preserve learning or repeat a cost whose purpose has disappeared.
-Chapter 8 assesses the available evidence;
+These contributions have been exercised through software development and
+redevelopment. Chapter 8 traces working predecessor behavior through successor
+definition, deliverable allocation and native use of the rebuilt App. It finds
+preserved core meanings, functional extensions and corrections that reached
+their consumers. The method's own execution approach also changed through
+human steering and agent work. These are observed achievements in this case.
+
+Their wider value remains open to examination. A record can support continuity
+or become a competing body of work; a method can retain learning or repeat a
+cost whose purpose has disappeared. Chapter 8 assesses both results and limits;
 [Appendix E](appendix_e_development_history.md) retains the development history.
 Neither the presence of a mechanism nor its removal establishes an improvement
 in total effort and reliability.
@@ -97,11 +103,17 @@ whose success can be assumed from the framework.
 
 ## 1.5 Scope and limitations
 
-This is a case followed over time and centred on one owner's direction and
-experience. Another application tests whether the architecture transfers;
-another practitioner tests whether the approach remains useful without its
-author's continuing interpretation. Neither follows from the amount of code or
-from internal consistency.
+This is a case followed over time, joining one developer's purpose, judgment
+and steering with agent-led production and orchestration. That human contribution
+is foundational to the framework and its evidence. Additional practitioners
+would bring their own direction and judgment to further cases.
+
+The evaluation separates transfer of development methods across the App and
+SWBPIPE, preservation of App meaning across implementations, embedded-agent
+product integration, and adoption in further settings. The first two have
+observed results; the latter questions need their own evidence. Comparative
+cost and reliability likewise require more than code volume or internal
+consistency.
 
 The practical argument concerns inspectable work and its consequences. The
 philosophical conjecture in Appendix D preserves the argument's deeper origin;

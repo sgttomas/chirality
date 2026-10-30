@@ -55,14 +55,20 @@ in [AGENTS.md](../../AGENTS.md).
 
 ## Source basis and historical editions
 
-Product and implementation observations use repository revision
-`a602024416ace9652f61bb2043889c307fd4e09d`. Later development may change their
-standing. This revised manuscript does not update the implementation evidence
-to the revision at which the manuscript itself is published.
+The original implementation account retains Chirality revision
+`a602024416ace9652f61bb2043889c307fd4e09d` (October 10, 2026). The
+[dated evidence extension](08_implementation.md#81-subject-and-evidence-basis),
+examined October 30, follows App redevelopment through its October 14–16 native
+walkthrough and examines stored SWBPIPE comparison records. It identifies App
+revision `032725d32b67e117b8e1fb2b5fa9aa47b30de12e`, SWBPIPE revision
+`bc9f7961acee72441ec06c104ed97d4f1c77faa4` and the earlier source subjects
+separately. It reports documentary/source examination and checks of stored
+comparison evidence, not fresh product or solver runs.
+
 Regulatory discussion keeps its identified July 2, 2026 basis and source
 editions. Older editions remain in Git; the
-[development history](appendix_e_development_history.md) identifies historical
-sources and distinguishes observations from the owner's account.
+[development history](appendix_e_development_history.md) distinguishes dated
+observations, owner testimony and the October 30 synthesis.
 
 App v4's [foundation copy](https://github.com/sgttomas/chirality-app/blob/main/foundation/thesis/README.md)
 retains its historical source basis unchanged. January–April history comes from
@@ -79,5 +85,8 @@ about workflow trials, interruption, model inputs, operation consistency and
 numerical limits into Chapter 8. Their earlier full texts remain in Git history
 at `sgttomas/chirality-app@40415db3` and `sgttomas/SWBPIPE@2fcd0b526`.
 The App's frozen `foundation/thesis` is an earlier evidence snapshot, not another
-maintained manuscript. Historical implementation observations retain their
-identified basis; this editorial revision reports no new product examination.
+maintained manuscript. Historical observations retain their identified basis.
+The October 30 evidence extension makes the longitudinal finding explicit:
+working software, preserved core meaning through redevelopment, functional
+extensions and repairs support the method's efficacy in this human-directed,
+agent-executed undertaking. Human steering is foundational throughout.

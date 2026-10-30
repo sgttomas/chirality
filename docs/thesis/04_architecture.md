@@ -41,8 +41,8 @@ deliverable localities. `ScopeOfWork.md` holds commitments and acceptance
 criteria; `Work/` holds technical reasoning, execution detail and locally kept
 working artifacts/outputs, with maturity and issue status explicit; and
 `deliverable.yaml` identifies the deliverable and states its needs, with optional
-code paths and check references. The owner will reconcile existing projects that use `Design/` to `Work/`.
-Until then, their actual paths locate the existing material. A consumer
+code paths and check references. App and SWBPIPE have adopted `Work/`;
+historical `Design/` references retain their source-revision meaning. A consumer
 declares what it needs from a supplier, and tools derive the reverse links and
 graph views.
 
@@ -114,11 +114,11 @@ Root owns shared components in their functional locations: `agents/`,
 references. The conversation defines the current work on Root. There is no
 standing requirement to generate a product decomposition for every shared edit.
 
-Deliverables use the following convention going forward. Existing project
-directories await the owner's reconciliation:
+App and SWBPIPE maintain deliverables at their independent repository roots.
+The shared convention is:
 
 ```text
-projects/<project>/execution/
+<project-root>/execution/
 └── PKG-nn/
     └── DEL-nn-nn/
         ├── ScopeOfWork.md
