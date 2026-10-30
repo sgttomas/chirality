@@ -65,7 +65,7 @@ interpretation.
 For products, the relevant interfaces are meaningful application operations and
 supplier protocols. [App v4's architecture](../../projects/chirality-app-v4/docs/ARCHITECTURE.md)
 keeps native supplier capabilities and distinguishes common semantics from a
-shared service topology. [SWBPIPE's PRD](../../projects/chirality-piping/docs/PRD.md)
+shared service topology. [SWBPIPE's PRD](https://github.com/sgttomas/SWBPIPE/blob/main/docs/PRD.md)
 requires model changes to pass through the domain engine. These are concrete
 design choices whose implementation and usefulness must be examined separately.
 

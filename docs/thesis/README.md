@@ -12,7 +12,7 @@ the work is for. Each perspective also requires the others.
 Start with the [shared introduction](INTRODUCTION.md). For the full argument,
 read the Root chapters below, then the
 [App thesis](../../projects/chirality-app-v4/docs/thesis/THESIS.md) and
-[Piping thesis](../../projects/chirality-piping/docs/thesis/THESIS.md). Each can
+[Piping thesis](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/THESIS.md). Each can
 also be read for its particular question. The [worked example](WORKED_EXAMPLE.md)
 gives a concrete way into how they relate, through one illustrative piece of
 work. The [shared conclusion](CONCLUSION.md) brings together what they
@@ -85,7 +85,7 @@ the owner's account; surviving Git history begins with the migrated May snapshot
 |---|---|
 | Root (this set) | Shared means for developing work, methods and applications |
 | [App v4](../../projects/chirality-app-v4/docs/thesis/README.md) | Workflow authoring and agent participation within applications |
-| [SWBPIPE](../../projects/chirality-piping/docs/thesis/README.md) | Engineering design, numerical evidence and professional use |
+| [SWBPIPE](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/README.md) | Engineering design, numerical evidence and professional use |
 
 All three carry the same [kernel](appendix_d_framework_s.md#d1-framework-relationships-with-respect-to-s).
 Its formulas and approved definitions are unchanged; the interpretation follows

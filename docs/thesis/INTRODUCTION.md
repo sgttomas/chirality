@@ -60,7 +60,7 @@ application can help keep what was learned while leaving room for circumstances
 that the method's author did not foresee. It must also justify the effort that
 its own machinery demands.
 
-The [Piping thesis](../../projects/chirality-piping/docs/thesis/THESIS.md) asks
+The [Piping thesis](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/THESIS.md) asks
 what this arrangement can establish once it enters an engineering practice.
 SWBPIPE is one example of software through which agents take part in domain
 work. Its models describe proposed physical arrangements, its calculations depend

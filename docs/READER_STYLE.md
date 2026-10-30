@@ -3,7 +3,7 @@
 Use this when revising the documents written for people: the course series in
 `docs/human-team-courses/` and the thesis collection in `docs/thesis/`,
 `projects/chirality-app-v4/docs/thesis/` and
-`projects/chirality-piping/docs/thesis/`.
+the independent [SWBPIPE thesis](https://github.com/sgttomas/SWBPIPE/tree/main/docs/thesis).
 
 It does not apply to Appendix D in any thesis, to the manuals written for
 agents, or to the SWBPIPE Engineering Reader and Open Manual.
