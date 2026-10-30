@@ -313,6 +313,16 @@ for this authorized host slice; its matching scope wording must explicitly
 separate the current integration from that older program before integration.
 Neither standalone App qualification nor workflow-act machinery is inferred.
 
+## Live-session integration candidate
+
+`Design/agent-live-session.md` describes the native command, private workspace
+producer capability, actual queue/job hooks and original-process observer now
+under qualification. Its public Start branch remains unconditionally refused
+by `NATIVE_QUALIFIED = false`; no panel or automatic start is exposed. The
+following component descriptions retain the evidence limits of their original
+increments. The new candidate does not qualify AC-005 or criterion 17 by source
+integration alone.
+
 ## Verification sequence and open observations
 
 ### Rust component implementation
