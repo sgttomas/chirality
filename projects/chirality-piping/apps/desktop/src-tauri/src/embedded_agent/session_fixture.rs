@@ -174,6 +174,13 @@ fn preflight(
             "probe_exit",
             json!({"probe":name,"code":result.status.code(),"signal":result.status.signal(),"firstRecord":first_record,"checks":if result.status.success(){"passed"}else if first_record{"failed"}else{"not_run"}}),
         )?;
+        if name == "boundary" {
+            record(
+                start,
+                "boundary_checks",
+                boundary_check_values(&result.stdout),
+            )?;
+        }
         if !result.status.success() {
             return Err(if name == "process" {
                 "process_denial_failed"
@@ -499,29 +506,48 @@ fn run_inner() -> Result<(), &'static str> {
     Err("fixture_deadline")
 }
 
+const BOUNDARY_NAMES: &[&str] = &[
+    "private_home",
+    "private_cwd",
+    "project",
+    "documents",
+    "keychain",
+    "outside_write",
+    "symlink_read",
+    "provider_endpoint",
+    "provider_ipv6_endpoint",
+    "unowned_loopback_alias",
+    "other_loopback",
+    "off_host",
+    "syslog",
+    "users_read",
+    "listener",
+    "other_exec",
+    "same_exec",
+];
+fn boundary_check_values(raw: &[u8]) -> Value {
+    let text = std::str::from_utf8(raw).unwrap_or("");
+    let mut fields = serde_json::Map::new();
+    for name in BOUNDARY_NAMES {
+        let matches: Vec<_> = text
+            .lines()
+            .filter_map(|line| line.strip_prefix(&format!("{name}: ")))
+            .collect();
+        let value = match matches.as_slice() {
+            ["true"] => json!(true),
+            ["false"] => json!(false),
+            [] => json!("not_run"),
+            _ => json!("unknown"),
+        };
+        fields.insert((*name).into(), value);
+    }
+    Value::Object(fields)
+}
 fn boundary_records(raw: &[u8]) -> bool {
     let Ok(text) = std::str::from_utf8(raw) else {
         return false;
     };
-    let expected = [
-        "private_home",
-        "private_cwd",
-        "project",
-        "documents",
-        "keychain",
-        "outside_write",
-        "symlink_read",
-        "provider_endpoint",
-        "provider_ipv6_endpoint",
-        "unowned_loopback_alias",
-        "other_loopback",
-        "off_host",
-        "syslog",
-        "users_read",
-        "listener",
-        "other_exec",
-        "same_exec",
-    ];
+    let expected = BOUNDARY_NAMES;
     let lines: Vec<_> = text.lines().collect();
     lines.len() == expected.len()
         && expected
@@ -534,6 +560,15 @@ mod tests {
     use super::*;
     #[test]
     fn absent_truncated_or_unexpected_boundary_records_never_pass() {
+        assert_eq!(boundary_check_values(b"")["outside_write"], "not_run");
+        assert_eq!(
+            boundary_check_values(b"outside_write: false\n")["outside_write"],
+            false
+        );
+        assert_eq!(
+            boundary_check_values(b"outside_write: false\noutside_write: true\n")["outside_write"],
+            "unknown"
+        );
         assert!(!boundary_records(b""));
         assert!(!boundary_records(b"private_home: true\n"));
         assert!(!boundary_records(b"private_home: false\n"));
