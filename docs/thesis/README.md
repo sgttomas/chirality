@@ -11,8 +11,8 @@ the work is for. Each perspective also requires the others.
 
 Start with the [shared introduction](INTRODUCTION.md). For the full argument,
 read the Root chapters below, then the
-[App thesis](https://github.com/sgttomas/chirality-app/blob/main/docs/thesis/THESIS.md) and
-[Piping thesis](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/THESIS.md). Each can
+[App thesis](app/THESIS.md) and
+[Piping thesis](piping/THESIS.md). Each can
 also be read for its particular question. The [worked example](WORKED_EXAMPLE.md)
 gives a concrete way into how they relate, through one illustrative piece of
 work. The [shared conclusion](CONCLUSION.md) brings together what they
@@ -84,9 +84,23 @@ the owner's account; surviving Git history begins with the migrated May snapshot
 | Thesis | Subject |
 |---|---|
 | Root (this set) | Shared means for developing work, methods and applications |
-| [App v4](https://github.com/sgttomas/chirality-app/blob/main/docs/thesis/README.md) | Workflow authoring and agent participation within applications |
-| [SWBPIPE](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/README.md) | Engineering design, numerical evidence and professional use |
+| [App v4](app/README.md) | Workflow authoring and agent participation within applications |
+| [SWBPIPE](piping/README.md) | Engineering design, numerical evidence and professional use |
 
 All three carry the same [kernel](appendix_d_framework_s.md#d1-framework-relationships-with-respect-to-s).
 Its formulas and approved definitions are unchanged; the interpretation follows
 the owner's clarification of temporal contingency. G remains undefined.
+
+## Maintained source
+
+This directory is the single maintained home of the Root, App and SWBPIPE
+manuscripts. Edit the Root chapters here, the App chapters in `app/`, and the
+SWBPIPE chapters in `piping/`. The product repositories link here. The website
+publishes a snapshot of a named revision; it is not another authoring source.
+
+The App and SWBPIPE manuscripts were brought together here on 2026-10-30 from
+`sgttomas/chirality-app@40415db3` and `sgttomas/SWBPIPE@2fcd0b526`. Their research
+content is retained, with links adjusted for this location. The App
+`foundation/thesis` directory is a frozen earlier source used by its project
+basis, not a current manuscript. Historical implementation evidence keeps its
+original revision.

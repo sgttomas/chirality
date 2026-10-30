@@ -65,8 +65,8 @@ needs and conditions in `deliverable.yaml`. The
 [Root entry](../../execution/_Coordination/LOOP_INIT.md) locates the shared
 component and affected consumers; an active project entry locates product
 commitments. The authorized work directs the inquiry. Current shared locality
-naming is governed by Root `AGENTS.md`: new/adopting projects use `Work/`, while
-App v4 and Piping retain their existing `Design/` convention. This naming change
+naming is governed by Root `AGENTS.md`: `Work/` is the convention going forward.
+The owner will reconcile existing projects that still use `Design/`. This naming change
 does not rewrite the implementation examined here.
 
 The [deliverable CLI](../../tools/deliverables/README.md) exposes
@@ -174,7 +174,7 @@ person's act of reliance.
 
 The [App PRD](https://github.com/sgttomas/chirality-app/blob/main/docs/PRD.md),
 [architecture](https://github.com/sgttomas/chirality-app/blob/main/docs/ARCHITECTURE.md) and
-[App thesis](https://github.com/sgttomas/chirality-app/blob/main/docs/thesis/README.md) define the
+[App thesis](app/README.md) define the
 application-specific inquiry. Conversations, request cards, workflow authoring,
 trial runs and inspection of returned work supply operative paths through which
 intent and methods can be tried and revised.
@@ -198,7 +198,7 @@ professional examination.
 The [Piping PRD](https://github.com/sgttomas/SWBPIPE/blob/main/docs/PRD.md) distinguishes
 physical models, analytical models, analysis runs, comparison and handoff. These
 objects need domain definitions, numerical implementation and evidence. The
-[SWBPIPE thesis](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/README.md) examines
+[SWBPIPE thesis](piping/README.md) examines
 that instantiation, including the limits of its calculations and engineering use.
 
 Operation validation, numerical verification and engineering adequacy answer

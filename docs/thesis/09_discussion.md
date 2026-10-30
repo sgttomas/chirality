@@ -155,10 +155,10 @@ SWBPIPE's subject is that participation in piping design and in authoring stress
 models. Keeping these questions distinct prevents success in one from being
 reported as proof of the others.
 
-The [App thesis](https://github.com/sgttomas/chirality-app/blob/main/docs/thesis/README.md) can test
+The [App thesis](app/README.md) can test
 whether discoverable operations, host authority and interaction support useful
 work on workflows. The
-[SWBPIPE thesis](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/README.md) can test
+[SWBPIPE thesis](piping/README.md) can test
 whether domain meaning and numerical evidence remain faithful through the entry
 points used by people and agents. Neither needs to reproduce Root's filesystem
 or all its methods to preserve the common orientation.

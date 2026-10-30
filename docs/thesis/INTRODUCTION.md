@@ -44,7 +44,7 @@ chosen remain design hypotheses. A requirement to preserve responsibility does
 not determine a unique hierarchy of agents, sequence of approvals, or format for
 records.
 
-The [App thesis](https://github.com/sgttomas/chirality-app/blob/main/docs/thesis/THESIS.md) asks how
+The [App thesis](app/THESIS.md) asks how
 that guidance becomes actionable within software. A
 general-purpose agent needs a meaningful connection to the application's objects
 and operations: a reference must point to the right object, a proposed change
@@ -60,7 +60,7 @@ application can help keep what was learned while leaving room for circumstances
 that the method's author did not foresee. It must also justify the effort that
 its own machinery demands.
 
-The [Piping thesis](https://github.com/sgttomas/SWBPIPE/blob/main/docs/thesis/THESIS.md) asks
+The [Piping thesis](piping/THESIS.md) asks
 what this arrangement can establish once it enters an engineering practice.
 SWBPIPE is one example of software through which agents take part in domain
 work. Its models describe proposed physical arrangements, its calculations depend
