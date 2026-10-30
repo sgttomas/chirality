@@ -87,8 +87,8 @@ concern warrants it, not because work moved between agents or into a PR.
 Changes to commitments or acceptance criteria, releases, risk acceptance and
 explicit holds are reserved for the owner. Present an unresolved reserved choice
 with its consequence. Otherwise continue authorized work; uncertainty alone does
-not require another approval. Honor project fences and keep private data out of
-this public repository. Required secret and private-term checks still apply.
+not require another approval. Keep credentials and private data out of this
+public repository. Required secret and private-term checks still apply.
 Model and effort choices come from session steering, not repository doctrine.
 
 ### Standing Git grant
