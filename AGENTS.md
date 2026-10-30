@@ -69,11 +69,12 @@ locally. Make maturity and issue status explicit. Code and other outputs may
 retain their actual product/source homes, referenced from the locality. The
 consumer states its needs; tools derive reverse links and graphs.
 
-SWBPIPE adopted `Work/` on 2026-10-30. App v4 keeps `Design/` until the owner
-reconciles it, and Root's pre-library `execution/` keeps its phase-folder layout
-until it is archived. Use their actual paths when locating existing material; do
-not create a parallel `Work/` copy or rename their directories as part of
-unrelated work. Technical design concepts and filenames are unchanged.
+App v4 and SWBPIPE use `Work/`; their older references to a deliverable's
+`Design/` mean its `Work/`. Root's pre-library `execution/` keeps its
+phase-folder layout until it is archived. Use its actual paths when locating
+existing material; do not create a parallel `Work/` copy or rename its
+directories as part of unrelated work. Technical design concepts and filenames
+are unchanged.
 
 From the repository root, use `python3 -m tools.deliverables --project <project>`,
 where `<project>` is the project path such as `.` for a project at repository root, with `neighborhood <DEL>`, `impact <DEL>`, `touches <rev|PR:n>` or
