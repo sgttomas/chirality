@@ -201,7 +201,7 @@ def validate_terminal(records, mode, trigger):
             raise Refusal("roundtrip_not_completed")
 
 
-def run_case(args, name, mode, trigger, root):
+def run_case(args, name, mode, trigger, root, key=None):
     state = root / name
     state.mkdir(mode=0o700)
     app = None
@@ -227,7 +227,7 @@ def run_case(args, name, mode, trigger, root):
         result["app"] = {"pid": app.pid}
         records = Records(app.stdout)
         config = {"state": str(state), "model": args.model, "endpoint": args.endpoint,
-                  "key": None, "mode": mode, "processProbe": str(args.process_probe),
+                  "key": key, "mode": mode, "processProbe": str(args.process_probe),
                   "boundaryProbe": str(args.boundary_probe)}
         app.stdin.write(json.dumps(config).encode() + b"\n")
         app.stdin.flush()

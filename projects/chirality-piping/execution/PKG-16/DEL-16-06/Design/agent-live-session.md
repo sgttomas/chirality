@@ -32,7 +32,11 @@ native owner separately retains that record and checks exact completion-byte
 equality, catalog validity, basis and job standing. A completion cannot create
 its own evidence. Queued, detached, lost and unconfirmed delivery do not change
 actual standing. Closed contexts accept late actuals for already claimed work;
-there is no automatic domain replay. Native take_actual transfers a copy of the
+there is no automatic domain replay. Every terminal path retires the workspace and closes its bridge before
+cleanup releases the live runtime. Clean EOF, original supplier exit, requested
+stop and protocol/transport/admission failure retain distinct lifecycle standing;
+successful cleanup never erases a failure class or revives new claims.
+Native take_actual transfers a copy of the
 actual while preserving tombstones and historical references. The four retained
 workspace contexts and their 64-call ledgers refuse capacity explicitly rather
 than evicting outcome evidence; restarting the app loses ephemeral handles.
@@ -83,6 +87,7 @@ is not claimed by that quit hook and must pass the following native matrix.
 The native-smoke mode reads bounded invented configuration from anonymous stdin,
 resolves resources from its actual bundle and runs negative probes first, under
 the very same profile builder with only the probe executable substituted. The
+standalone preflight-only mode starts neither supplier nor relay. The
 C probe requires EPERM for fork, posix_spawn(self) and forbidden exec. The Rust
 probe checks private writes, outside reads/writes/symlink, both owned loopback
 families, an unowned loopback alias/port, off-host, syslog, Users reads, listening

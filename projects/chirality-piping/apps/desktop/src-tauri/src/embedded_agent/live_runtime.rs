@@ -65,6 +65,33 @@ impl Error {
         }
     }
 }
+/// Terminal lifecycle standing is separate from successful cleanup and domain
+/// outcomes. Cleanup must never erase its cause or leave a workspace open.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub(super) enum End {
+    Requested,
+    SupplierExit(Option<i32>),
+    Eof,
+    Failure(Error),
+}
+impl End {
+    pub fn failure(self) -> Option<&'static str> {
+        match self {
+            Self::Failure(reason) => Some(reason.class()),
+            Self::SupplierExit(status) if status != Some(0) => Some("supplier_exit"),
+            _ => None,
+        }
+    }
+    fn driver(terminal: session_driver::Terminal, eof: bool) -> Self {
+        match terminal {
+            session_driver::Terminal::StopRequested => Self::Requested,
+            session_driver::Terminal::Io if eof => Self::Eof,
+            session_driver::Terminal::Protocol => Self::Failure(Error::Protocol),
+            session_driver::Terminal::Admission => Self::Failure(Error::Admission),
+            _ => Self::Failure(Error::Transport),
+        }
+    }
+}
 pub(super) enum StartError {
     Refused(Error),
     Partial(Error, Live),
@@ -77,6 +104,7 @@ pub(super) struct Live {
     stage: u8,
     stopped: bool,
     eof_only: bool,
+    end: Option<End>,
     pub cleanup: Option<CleanupOutcome>,
 }
 impl Live {
@@ -101,6 +129,7 @@ impl Live {
             stage: 0,
             stopped: false,
             eof_only: false,
+            end: None,
             cleanup: None,
         };
         let result = (|| {
@@ -157,6 +186,13 @@ impl Live {
     pub fn driver(&mut self) -> Option<&mut SessionDriver> {
         self.driver.as_mut()
     }
+    pub fn terminal(&self) -> Option<End> {
+        self.end
+    }
+    fn fail(&mut self, error: Error) {
+        self.end.get_or_insert(End::Failure(error));
+        self.stop();
+    }
     pub fn ready(&self) -> bool {
         self.stage == 3 && !self.stopped
     }
@@ -164,10 +200,11 @@ impl Live {
         if let Some(process) = &mut self.process {
             let scope = process.observe_scope();
             if scope.invalid.is_some() {
-                self.stop();
+                self.fail(Error::Observation);
                 return Err(Error::Observation);
             }
             if scope.exit_observed && !self.stopped {
+                self.end = Some(End::SupplierExit(scope.exit_status_raw));
                 self.stop();
             }
         }
@@ -184,7 +221,7 @@ impl Live {
                 Ok(_) => self.stage = 1,
                 Err(session_driver::Refusal::Busy) => {}
                 Err(_) => {
-                    self.stop();
+                    self.fail(Error::Protocol);
                     return Err(Error::Protocol);
                 }
             }
@@ -207,7 +244,7 @@ impl Live {
                 Ok(_) => self.stage = 4,
                 Err(session_driver::Refusal::Busy) => {}
                 Err(_) => {
-                    self.stop();
+                    self.fail(Error::Protocol);
                     return Err(Error::Protocol);
                 }
             }
@@ -216,7 +253,7 @@ impl Live {
             Ok(value) => value,
             Err(session_driver::Refusal::Busy) => return Ok(None),
             Err(_) => {
-                self.stop();
+                self.fail(Error::Transport);
                 return Err(Error::Transport);
             }
         };
@@ -229,8 +266,14 @@ impl Live {
                 }
             }
         }
-        if observation.terminal.is_some() && !self.stopped && !self.eof_only {
-            self.stop();
+        if let Some(terminal) = observation.terminal {
+            if !self.stopped && !self.eof_only {
+                self.end = Some(End::driver(
+                    terminal,
+                    observation.io.reader_io == Some(super::stdio_pump::IoEnd::Eof),
+                ));
+                self.stop();
+            }
         }
         Ok(observation.events)
     }
@@ -253,6 +296,7 @@ impl Live {
         if self.stopped {
             return;
         }
+        self.end.get_or_insert(End::Requested);
         self.stopped = true;
         if let Some(driver) = &mut self.driver {
             driver.stop();
@@ -285,5 +329,23 @@ impl Live {
 impl Drop for Live {
     fn drop(&mut self) {
         self.stop();
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn terminal_eof_and_malformed_protocol_keep_distinct_lifecycle_causes() {
+        assert_eq!(End::driver(session_driver::Terminal::Io, true), End::Eof);
+        assert_eq!(End::Eof.failure(), None);
+        assert_eq!(
+            End::driver(session_driver::Terminal::Protocol, false).failure(),
+            Some("protocol")
+        );
+        assert_eq!(
+            End::driver(session_driver::Terminal::Io, false).failure(),
+            Some("transport")
+        );
     }
 }

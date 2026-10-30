@@ -5,7 +5,7 @@ use super::{
     catalog::{Catalog, Tool},
     dispatcher::{Dispatcher, Evidence, History, Origin},
     keychain_native::NativeKeychain,
-    live_runtime::{Live, Paths as RuntimePaths, StartError},
+    live_runtime::{End, Live, Paths as RuntimePaths, StartError},
     macos::CleanupOutcome,
     numeric,
     protocol::Event,
@@ -410,7 +410,21 @@ impl Owner {
             self.stage = "stopping";
         }
     }
+    fn retire_terminal(&mut self, index: usize, end: End) {
+        let owner = &mut self.workspaces[index];
+        owner.closed = true;
+        owner.bridge.close();
+        owner.notices.clear();
+        if let Some(reason) = end.failure() {
+            self.failure = Some(reason);
+        }
+    }
     fn closed_clean(&mut self) -> bool {
+        if let (Some(index), Some(end)) =
+            (self.live_index, self.live.as_ref().and_then(Live::terminal))
+        {
+            self.retire_terminal(index, end);
+        }
         if let Some(live) = &mut self.live {
             if !live.joined() {
                 return false;
@@ -1248,6 +1262,91 @@ mod tests {
                 .unwrap()["raw"],
             raw
         );
+    }
+    #[test]
+    fn terminal_eof_or_protocol_failure_closes_the_workspace_without_losing_late_actual() {
+        for (end, failure) in [
+            (End::Eof, None),
+            (
+                End::Failure(super::super::live_runtime::Error::Protocol),
+                Some("protocol"),
+            ),
+        ] {
+            let mut owner = registered();
+            let reference = offered(&mut owner);
+            let authority = auth(&owner);
+            let backing = lease(&owner);
+            owner
+                .action(
+                    "main",
+                    Action::Claim {
+                        authority,
+                        request_ref: reference.clone(),
+                    },
+                    paths(),
+                    backing,
+                )
+                .unwrap();
+            owner.retire_terminal(0, end);
+            assert!(owner.closed_clean());
+            let authority = auth(&owner);
+            let backing = lease(&owner);
+            let poll = owner
+                .action("main", Action::Poll { authority }, paths(), backing)
+                .unwrap();
+            assert_eq!(poll["status"], "closed");
+            assert_eq!(poll["closed"], true);
+            assert_eq!(poll["failure"].as_str(), failure);
+            let raw = outcome(&owner);
+            let authority = auth(&owner);
+            let backing = lease(&owner);
+            owner
+                .action(
+                    "main",
+                    Action::PublishActual {
+                        authority,
+                        request_ref: reference.clone(),
+                        outcome: raw.clone(),
+                        proof: Proof::Failure,
+                    },
+                    paths(),
+                    backing,
+                )
+                .unwrap();
+            let authority = auth(&owner);
+            let backing = lease(&owner);
+            assert_eq!(
+                owner
+                    .action(
+                        "main",
+                        Action::Complete {
+                            authority,
+                            request_ref: reference.clone(),
+                            outcome: raw.clone()
+                        },
+                        paths(),
+                        backing
+                    )
+                    .unwrap()["delivery"],
+                "detached"
+            );
+            let authority = auth(&owner);
+            let backing = lease(&owner);
+            assert_eq!(
+                owner
+                    .action(
+                        "main",
+                        Action::TakeActual {
+                            authority,
+                            request_ref: reference
+                        },
+                        paths(),
+                        backing
+                    )
+                    .unwrap()["raw"],
+                raw
+            );
+        }
     }
     #[test]
     fn basis_revisions_cannot_go_backwards_or_change_under_one_revision() {

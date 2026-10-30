@@ -131,7 +131,7 @@ fn preflight(
             sandbox::profile(&root, &home, &cwd, &exe, &scope).map_err(|_| "probe_profile")?;
         let sb = root.join(format!("{name}.sb"));
         fs::write(&sb, &profile).map_err(|_| "probe_profile")?;
-        let outside = root.join("outside");
+        let outside = config.state.join("outside");
         if name == "boundary" {
             fs::DirBuilder::new()
                 .mode(0o700)
@@ -194,6 +194,7 @@ fn preflight(
         )?;
     }
     fs::remove_dir_all(root).map_err(|_| "probe_cleanup")?;
+    fs::remove_dir_all(config.state.join("outside")).map_err(|_| "probe_cleanup")?;
     Ok(())
 }
 // Never exit the sole original owner after unknown cleanup. A retained identity
@@ -246,7 +247,7 @@ fn run_inner() -> Result<(), &'static str> {
     let mut input = io::BufReader::new(io::stdin());
     let first = frame(&mut input)?.ok_or("missing_config")?;
     let mut config: Config = serde_json::from_value(first).map_err(|_| "config_shape")?;
-    if !["idle", "active", "pending"].contains(&config.mode.as_str())
+    if !["preflight", "idle", "active", "pending"].contains(&config.mode.as_str())
         || config.model.len() > 1024
         || !(config.endpoint.starts_with("http://127.0.0.1:")
             || config.endpoint.starts_with("http://[::1]:"))
@@ -265,6 +266,10 @@ fn run_inner() -> Result<(), &'static str> {
         return Err("state_not_fresh_private");
     }
     preflight(&config, &registry, start)?;
+    if config.mode == "preflight" {
+        record(start, "preflight_complete", json!({"passed":true}))?;
+        return Ok(());
+    }
     let (sender, controls) = mpsc::sync_channel(16);
     let _reader_backing = registry
         .acquire_interactive_ingress(2 * 1024 * 1024)
@@ -411,6 +416,14 @@ fn run_inner() -> Result<(), &'static str> {
                     }
                 }
             }
+        }
+        if let Some(reason) = live.terminal().and_then(super::live_runtime::End::failure) {
+            record(
+                start,
+                "session_failure",
+                json!({"class":reason,"rejection":live.driver().and_then(|driver|driver.last_rejection())}),
+            )?;
+            return Err("session_terminal");
         }
         match controls.try_recv() {
             Ok(Ok(Some(command))) => match command.get("cmd").and_then(Value::as_str) {
