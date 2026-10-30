@@ -2,7 +2,9 @@
 
 Standing: RT-E1 source/metadata/tooling implementation, 2026-10-29. Offline check registration and independent packaging/permissions scrutiny are
 complete for this source-preparation slice; its TLS-environment finding is
-repaired. Actual bundle wiring and distribution qualification remain required. No
+repaired. The bundled-loader/canonical-build increment below is implemented in
+source and independently reviewed, with the bounded ARM artifact witness below.
+Distribution qualification remains required. No
 supplier was executed for this work. This document supplements
 [embedded-agent-portability.md](embedded-agent-portability.md); it does not
 change ScopeOfWork, needs, acceptance criteria, platform support or release
@@ -85,6 +87,114 @@ symlink, and removes its private staging on success or failure. It cannot
 overwrite unrelated existing output, including a destination created during
 verification. Output parent directories must be caller-controlled; this is not
 a defense against another principal who controls or can replace those parents.
+
+## Bundled source and canonical app build
+
+`tools/agent_supplier_bundle.py` prepares one fresh private resource directory
+and a Tauri `--config` overlay from one explicit archive, cached binary or
+build-time download choice. It reuses the checked source manifest and bounded
+acquisition functions; copied licence/NOTICE, index and manifest bytes are also
+verified. Source/metadata paths refuse links, preparation never overwrites an
+existing/raced output, and failure removes only its newly claimed directory.
+The overlay uses `bundle.resources`, not `externalBin`:
+
+- `agent-supplier/codex-<target>` contains the original pinned executable;
+- `agent-supplier/pins.json` contains the committed pin document;
+- `THIRD_PARTY_NOTICES.md` and `third-party/codex-0.160.0-{LICENSE,NOTICE}.txt`
+  retain the source index's relative links and exact upstream notice bytes.
+
+The installed CLI is pinned at Tauri 2.11.1 in package-lock.json. Its
+[app bundler](https://github.com/tauri-apps/tauri/blob/tauri-cli-v2.11.1/crates/tauri-bundler/src/bundle/macos/app.rs#L97)
+copies ordinary resources separately from the external binaries added to its
+signing targets. Its
+[signer](https://github.com/tauri-apps/tauri/blob/tauri-cli-v2.11.1/crates/tauri-macos-sign/src/keychain.rs#L207)
+does not pass `--deep`. This is the reason to use ordinary resources: preserve
+upstream code/signature bytes, rather than re-signing a sidecar and invalidating
+the original digest. Source inspection is not actual signed-bundle proof.
+
+The canonical `tools/release/build_signed_app.py` now requires an explicit
+`--supplier-archive`, `--supplier-binary` or `--supplier-download` when executed.
+It fixes `--target aarch64-apple-darwin` to the existing release baseline,
+prepares the private overlay, retains it through the original build's completion,
+and verifies the actual app resource bytes before returning success. Identity
+count/refusal, identity-kind signing selection, redaction and the separate
+notarization route remain intact. Dry run or missing source has no Keychain or
+build effect. Source paths and private overlay locations are masked in forwarded
+output. Full redistribution and release checks are still separate duties.
+
+At runtime `supplier.rs` embeds the committed pin document, rather than trusting
+an editable bundled manifest. The native caller supplies its app resource
+directory; neither model/webview input nor settings supplies an executable path.
+Only the process's macOS architecture selects a pin. After the nominal 4 MiB
+GENERAL startup admission, it opens the fixed named resource, refuses links,
+nonregular/group-or-other-writable input, checks size and thin Mach-O CPU/type,
+and retains that original input File through copying. The hash covers the actual
+copied stream; changed/growing input refuses and removes the partial output.
+An existing destination is preserved. The fresh private copy receives execute
+permission only after exact digest/size and flush succeed. The source and
+Runtime share the same admitted backing through copy and original group cleanup;
+no worker or additional startup allowance is introduced. Parent directories are
+native/caller-owned; malicious same-uid parent replacement is outside this seam.
+
+The launcher now accepts `LaunchConfig.resource_dir` and refuses unavailable
+resources before creating a runtime marker. Its profile, single runtime exec,
+fork denial and process topology are unchanged. The ignored startup probe accepts
+`SWBPIPE_CODEX_RESOURCES` pointing to a selected app's Resources directory; it no
+longer selects a developer/cache binary. This does not expose a Tauri command,
+start control, panel or unsandboxed fallback, and selection is not native Intel
+qualification. Windows/Linux isolation and App's held GUI sessions are unchanged.
+
+Focused tests cover both pin selections, invented source paths, admission/backing
+lifetime, source/destination links, wrong size/CPU/type, source replacement or
+mutation, partial cleanup, no overwrite, exact resource/license layout and
+canonical-build failure standing. A preexisting stdio custody test's occasional
+`Busy` was an observation race: EOF precedes final worker bookkeeping. It now
+joins both finite workers before draining the frame and asserts actual Joined
+standing; frame identity and lease-lifetime expectations remain unchanged.
+
+Independent permissions/packaging review found one build-output failure path:
+forwarding failure could stop pipe draining before an unconditional wait. The
+repair discards remaining output before waiting, retaining private resources
+through original child completion. A real self-bounded synthetic child writes
+more than pipe capacity; the regression fails on the reviewed baseline and
+passes after repair without signing, supplier execution or saved-PID signals.
+Focused evidence is 130 agent passes/five native gates ignored and 55 Python
+passes/19 subtests, plus current-source reach and structural checks. The one new
+consumer condition adds no new strongly connected component to the existing
+graph. No ScopeOfWork/AC or release-matrix change is made.
+
+On source candidate `385bb927424bbef6d7805612c1fa544df56e5123`, the guarded
+ARM debug Tauri build completed offline with the explicit existing stock binary
+and original notice bytes. npm prerequisites were extracted from the existing
+offline cache with install scripts and user/global npm configuration disabled;
+no supplier acquisition occurred. The actual `Contents/Resources` passed the
+same manifest, binary/Mach-O, mode, index and licence/NOTICE checks.
+
+A fresh unexecuted app bundle then received a local ad-hoc hardened-runtime seal,
+without `--deep` signing, entitlements or a Developer ID identity. App
+`codesign --verify --deep --strict`, the supplier's own strict signature check,
+and all post-seal resource digests passed. The original OpenAI-signed supplier
+bytes were unchanged. The gated admitted Rust copy test ran against that actual
+Resources directory: one test passed, preserving the selected original bytes and
+runtime copy mode 0500. Its private test copy was removed on completion.
+Neither app GUI nor supplier/model ran. This is an ARM bundle/copy/signature
+mechanics witness, not owner Developer ID/notarization, Intel/older-OS native
+compatibility, full redistribution review, live native resource binding,
+isolation/cleanup, supported-platform acceptance or release.
+
+The linked tauri-utils 2.9.1 `BundleConfig::to_tokens` emits `resources: None`
+(the source is checksum-pinned through Cargo.lock). Thus private absolute paths
+in the build overlay are not retained as runtime resource configuration. Native
+resource lookup uses the installed app's resource root and compiled pin names;
+this witness does not rely on the cache/build directory existing on another Mac.
+Debug compiler symbols are not a release-artifact privacy qualification.
+
+DEL-10-04 now names DEL-16-06's verified supplier/notice inputs as a gating
+consumer condition for this build route. It is not marked fulfilled by a merge
+or source test. Existing needs and both ScopeOfWork commitments/ACs remain
+unchanged; source/check pointers and BUILD_AND_RELEASE.md describe the new
+explicit preparation and post-build check. Release and matrix decisions remain
+owner acts.
 
 ## Exact upstream evidence
 
