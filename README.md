@@ -40,6 +40,8 @@ longer serve them. The [thesis](docs/thesis/README.md) develops the argument.
 
 ## The shared library
 
+The accepted [Library PRD](docs/PRD.md) defines the current development scope.
+
 This repository is the library that Chirality projects draw on:
 
 | Part | What it provides |
