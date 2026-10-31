@@ -70,11 +70,11 @@ retain their actual product/source homes, referenced from the locality. The
 consumer states its needs; tools derive reverse links and graphs.
 
 App v4 and SWBPIPE use `Work/`; their older references to a deliverable's
-`Design/` mean its `Work/`. Root's pre-library `execution/` keeps its
-phase-folder layout until it is archived. Use its actual paths when locating
-existing material; do not create a parallel `Work/` copy or rename its
-directories as part of unrelated work. Technical design concepts and filenames
-are unchanged.
+`Design/` mean its `Work/`. Root's pre-library execution is archived; recovery
+is described in [projects/FROZEN.md](projects/FROZEN.md#pre-library-root-execution).
+The accepted [Library PRD](docs/PRD.md) supplies the basis for fresh decomposition
+and setup. Until that decomposition is accepted and set up, no new Root
+deliverables or dependency bindings are established.
 
 From the repository root, use `python3 -m tools.deliverables --project <project>`,
 where `<project>` is the project path such as `.` for a project at repository root, with `neighborhood <DEL>`, `impact <DEL>`, `touches <rev|PR:n>` or
@@ -119,6 +119,7 @@ releases. Use `.agents/skills/chirality-change/SKILL.md` for Git conventions.
 
 ## Current contracts
 
+Root's product commitments are in the accepted [Library PRD](docs/PRD.md).
 Product commitments live in the project's PRD, named companions and ScopeOfWork.
 Its adopted work locality holds the related technical and execution material.
 Consult these shared references where applicable:

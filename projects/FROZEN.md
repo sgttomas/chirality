@@ -22,3 +22,13 @@ For App v3's historical instruction documents and packaging basis, use
 dependencies remain obtainable. No history was rewritten. Recovering files does
 not reactivate a product, reinstate its procedures or authorize a release;
 reactivation requires an explicit owner decision.
+
+## Pre-library Root execution
+
+The old Root `execution/` was removed for the fresh Library PRD on 2026-10-31.
+Its complete pre-removal tree is preserved by
+`archive/pre-library-execution-2026-10-31` at
+`f80f1510fb50799764720303b86c36da64b75d19`. Inspect any old file with
+`git show archive/pre-library-execution-2026-10-31:<path>`.
+The new library entry remains at `execution/_Coordination/LOOP_INIT.md`.
+Recovery does not reinstate old plans, commitments or lifecycle state.
