@@ -9,8 +9,8 @@ python3 -m tools.deliverables --project <project> neighborhood DEL-01-02
 python3 -m tools.deliverables --project <project> impact DEL-01-02
 ```
 
-Resolve `<project>` explicitly; the CLI has an App v4 default that must not
-silently select this undertaking's project. The project must be an existing
+Pass `<project>` explicitly; the shared-library CLI requires `--project`.
+The project must be an existing
 directory within the current Git repository, and that repository must have a
 resolvable `HEAD`. When the library is supplied through `PYTHONPATH`, run from
 the target Git repository with the same project/HEAD prerequisites. A new or
