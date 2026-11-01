@@ -23,10 +23,12 @@ needs:
     completion is not a prerequisite for using suitable case evidence.
   when: A real reflection or A3 case relies on formed work and reconciliation
   evidence: execution/PKG-04/DEL-04-02/Work/ReflectiveBasis.md
-- from: unknown
-  condition: Bind the actual human-purpose/framing question, authorized action, owning local goal, input
-    condition, source/candidate revision and affected uses. The present decomposition discussion is context,
-    not a substitute for the required real accepted/set-up application.
+- from: DEL-02-02
+  condition: 'Use the actual F-02 case in owning Work and PR #1783, integrated at 1357d706ea77497903976bf159f3880bea4d1360:
+    accepted goal, current-format caller condition, rejected af78739 interpretation, repaired 4ac85ca
+    candidate and examined affected uses. For reflection retain the actual owner feedback and changed
+    undertaking boundary described in this locality. This binds the selected case only; synthetic recovery
+    evidence and blanket fulfillment are not inferred.'
   when: Establishing reflective application or A3 evidence
   evidence: execution/PKG-04/DEL-04-02/Work/ReflectiveBasis.md
 - from: DEL-05-01

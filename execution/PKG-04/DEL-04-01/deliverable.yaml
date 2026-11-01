@@ -19,10 +19,12 @@ needs:
     gap.
   when: Applying or examining the reconciliation practice
   evidence: execution/PKG-04/DEL-04-01/Work/FormationAndReconciliation.md
-- from: unknown
-  condition: Bind the actual authorized maintenance/action case, candidate revision, meaningful input/use
-    condition, observation and affected-use evidence from its owning locality. A formation snapshot, empty
-    structure or synthetic fixture cannot supply A3 action evidence.
+- from: DEL-02-02
+  condition: 'Use the actual F-02 case in owning Work and PR #1783, integrated at 1357d706ea77497903976bf159f3880bea4d1360:
+    accepted goal, current-format caller condition, rejected af78739 interpretation, repaired 4ac85ca
+    candidate and examined affected uses. For reflection retain the actual owner feedback and changed
+    undertaking boundary described in this locality. This binds the selected case only; synthetic recovery
+    evidence and blanket fulfillment are not inferred.'
   when: Establishing the bounded application and A3 action claims
   evidence: execution/PKG-04/DEL-04-01/Work/FormationAndReconciliation.md
 - from: DEL-04-02

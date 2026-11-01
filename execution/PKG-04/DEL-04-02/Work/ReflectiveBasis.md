@@ -1,7 +1,7 @@
 # Reflective practice and formation basis
 
-Maturity: initial setup assessment. Decomposition formation evidence exists;
-the mature guidance and real application criteria remain to be established.
+Maturity: formation and real reflective application assessed below; owner
+review of this assessment and product acceptance remain separate.
 
 ## Existing formation evidence
 
@@ -36,6 +36,32 @@ in the existing owning material; no transcript or recurring reflection report
 is required.
 
 DEL-04-01 supplies the source-reconciliation/setup contribution; local owners
-retain their material and evidence. The real question, action, condition and
-affected uses remain unbound. Unknown named-consumer and publication bases are
+retain their material and evidence. The selected real question, action, condition and affected uses are bound below. Unknown named-consumer and publication bases are
 conditional inputs, not blanket blockers on reflection or formation evidence.
+
+## Agent 0 assessment of the real framing question
+
+During F-02 the owner questioned whether the first candidate and review boundary
+were too small for a useful undertaking. Agent 0 recognized that an early
+interpretation touchpoint had become an unnecessary stop before connected
+publication work. The owner directed: “give that a try and we'll see how it goes.”
+The same Agent 1 then carried the references, warranted manual change, rendered
+form and reconciliation through as one candidate before independent examination.
+That examination found the actual current-validator counterexample, repaired
+without discarding valid representation evidence. The source/action chain is in
+[DEL-02-02 Work](../../../PKG-02/DEL-02-02/Work/Applicability.md) and
+[PR #1783](https://github.com/sgttomas/chirality/pull/1783), integrated at
+`1357d706ea77497903976bf159f3880bea4d1360`; DEL-04-01 assesses its A3 relationship.
+
+HELP_HUMAN already addresses intended outcome and changed questions, while
+coordinated-knowledge-work §§1–2/5–7 supports coherent ownership, examination and
+useful completion. Agent 0's judgment is to retain that guidance: the problem
+was its application. The subsequent maintenance/recovery assignment adopts the
+coherent-result boundary. That is an actual consequence of the retain/change
+judgment, not merely another explanation or a new monitoring layer.
+
+This case supports bounded reflection and guidance-retention examination. It
+is not measured productivity evidence, proof of all future applications, owner
+product acceptance or a 60% gate decision. This assessment is proposed for owner
+content review. Historical source records remain at their owning homes; no new
+transcript or reflection-report stream is needed.
