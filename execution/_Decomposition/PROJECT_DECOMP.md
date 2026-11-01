@@ -1,14 +1,17 @@
 # Chirality Library — Group 2 decomposition candidate
 
-**Status:** PROPOSAL — reviewed by Agent 0; awaiting owner Group 2 decision.
-**Revision:** G2-candidate-2, 2026-10-31. Agent 0 review annotations; proposed
-scope allocations, package boundaries and deliverable definitions are unchanged.
+**Status:** Working reconciliation of the owner's approved Group 2 directions;
+reviewed by Agent 0 for fidelity and ready for decision/snapshot binding.
+No Group 3 audit or final decomposition acceptance is claimed.
+**Revision:** G2-candidate-6, 2026-10-31. Agent 0 review annotations on the
+approved PKG-04 reframing and DEL-05-02 removal; scope allocations unchanged.
 **Method origin:** `chirality-root:bundled:workflow:project-decomp`.
 
-Five flat Packages and eight Deliverables are proposed below. They organize work
-by the use it must support: finding the library basis, maintaining and reconciling
-holdings, operating its tools, establishing local execution, and independent reuse
-and publication. The three accepted output forms guide concrete artifact kinds;
+Five flat Packages and seven Deliverables express the approved structural
+direction: library access, maintenance practice/shared meaning, executable
+support, self-monitoring and reflective improvement, and independent reuse and
+publication. PKG-01/02/03/05 concern holdings and their maintenance; PKG-04
+contributes their reconciliation and examination of the practice. The three accepted output forms guide concrete artifact kinds;
 they do not determine the partition. A checked revision of an existing holding
 can supply the result. No new companion, universal tool or global graph is proposed.
 
@@ -27,22 +30,34 @@ verified all three manifest entries before using the
 |---|---|
 | Accepted Group 1 | `GROUP1-20261031T231127Z`; payload SHA-256 `dd80227079e29e65a73da4c1650295aeb6e65f45940427bf0b698b6a5e1edddd`. DECISION.md supplies acceptance; submitted proposal wording in the snapshot is historical. |
 | Accepted product intent | [docs/PRD.md](../../docs/PRD.md), revision 2026-10-31, SHA-256 `95c3c25ee36d4d4ddadf54d266a47a2ee58c6b37fbbdef75ad20a97986a718ca`, originally fixed at `d5ca6594ce6010c94c7981fe35cc540a822e9aa8`. |
-| Current inspection basis | `cd81b47b6ba1a29a606caec3d1be691f4691c4e7`, branch `codex/library-decomposition-20261031`. Repository observations in §6 refer to this commit, not a global census. |
+| Current inspection basis | `6865c6eaeed2bbf6b87f96ec45da18d837c6eb7b`, branch `codex/library-decomposition-20261031`, incorporating the merged repair. Affected §6 observations are refreshed against this basis; unchanged observations reuse the earlier inspection at `cd81b47b6ba1a29a606caec3d1be691f4691c4e7`. No global census. |
+| Reused repair basis | [PR #1779](https://github.com/sgttomas/chirality/pull/1779), merge `a052783460f60c76e6fa229500f59a51f67c5265`; final checked head `a0bb0dc77a53b041262571f658f9fd9590d44269`. Source inspection and reused verification are distinguished in §6.1. |
 | Selected method | [Workflow](../../workflows/project-decomp/WORKFLOW.md), [contract](../../workflows/project-decomp/resources/contract.md), [Group 2 method](../../workflows/project-decomp/resources/method.md). Same bytes as the original Group 1 method basis. |
 | Authority and entry | [AGENTS.md](../../AGENTS.md), [TASK](../../agents/AGENT_TASK.md), [Root entry](../_Coordination/LOOP_INIT.md), and this assignment. Owner steering retains Agent 0 coordination/review and this directly managed Type 2 author; no Type 1 layer is introduced. |
 | Historical transition | PR #1778; [recovery route](../../projects/FROZEN.md#pre-library-root-execution); tag `archive/pre-library-execution-2026-10-31` at `f80f1510fb50799764720303b86c36da64b75d19`. Reset already executed; retention only, no repeated removal job. |
 
 The accepted snapshot's relative links resolve from its original source path,
-`execution/_Decomposition/PROJECT_DECOMP.md`, at its recorded basis. The working
-document below uses that same original locality. Scope statements, classifications,
-source mappings, objective meanings, vocabulary and qualifications are preserved;
-only stage-status wording is refreshed. Group 2 allocations are proposed additions.
+`execution/_Decomposition/PROJECT_DECOMP.md`, at its recorded basis. Group 1's
+33 scope statements/classifications, five objective meanings and qualifications
+remain unchanged. The latest direction changes Group 2 allocation and clarifies
+organization; it does not amend the PRD or rewrite snapshot history.
 
-Group 1 acceptance does not accept this structure or authorize setup. No Group 2
-snapshot/pointer, Group 3 audit, production locality, ScopeOfWork or dependency
-binding is created. The preparer changes only this canonical working document.
-Agent 0 owns integration and checkpoint presentation. Owner acceptance, releases,
-commitment changes and additional archive disposition retain their authorities.
+### 1.1 Owner direction applied in this revision
+
+The owner discussed PKG-04 as Chirality's self-monitoring contribution, with
+reflective judgment exercised through human–Agent 0 dialogue. They approved
+“Self-monitoring and reflective improvement”, with “Library reconciliation” and
+“Reflective review of the practice”, and removal of the separate edition/change
+information Deliverable. The discussion concluded: **“Approved. Proceed
+accordingly.”** These decisions are supplied by the conversation/assignment,
+not inferred from a merge or authored as an approval by this preparer.
+
+Agent 0 has reviewed this translation of the approved direction and found no
+material discrepancy. The decision record will bind the resulting representation
+without claiming the owner inspected its hash before approving the structure.
+Agent 0 records the decision and then commissions the separate Group 3 audit.
+No snapshot, pointer, live locality, contract, need declaration, release or final
+acceptance is created by this authoring continuation.
 
 ## 2. Vocabulary map
 
@@ -99,6 +114,25 @@ or an output of every form for each goal. A revised existing holding can be the
 complete output; no new document, program or companion is required merely to
 populate the structure. Conditional tooling remains subject to SOW-0033.
 
+### 2.2 Owner clarification of organization and reflection
+
+| Term | Meaning in this structural direction |
+|---|---|
+| Package | Enduring project organization/accountable scope home; not an episode or a required management tier. |
+| Deliverable | Bounded production commitment with maintained outputs and evaluative evidence; subsequent maintenance uses that basis without making one task or meeting an everlasting Deliverable. |
+| Undertaking | A purposeful authorized episode that realizes or revises contributions; decomposition and setup are formation undertakings. |
+| Task | A bounded Type 2 assignment within an undertaking; it does not delegate or replace a local goal. |
+| Workflow | A reusable method used by an undertaking. Coordinated knowledge work supplies realization/integration practice across contributions; it is not itself an execution undertaking. |
+| Self-monitoring and reflection | Bounded comparison of work with purpose, evidence and commitments, and human–Agent 0 examination of whether that comparison, its goals and framing remain useful. Human judgment bounds this examination; no further monitoring hierarchy is required. |
+| Repository-maintained execution | Descriptions and commitments of Root's actual work, maintained using library methods and inspectable as self-monitoring sources. They are not automatically reusable content that consumers inherit; no export of all local records or transfer of Root authority follows. |
+
+These distinctions clarify the accepted vocabulary; no accepted normalized scope
+statement is changed. Initial formation still supplies the actual decomposition
+and localities required by R07–R10 (§8.1). Instructions and descriptive/explanatory
+material support reflection; dialogue is an activity, not a required report stream.
+Other projects may later adopt matured practice under their own authority; this
+structure commissions no rollout.
+
 ## 3. Accepted objectives
 
 The five OBJ identities retain the five accepted O outcomes and their evaluative
@@ -114,10 +148,10 @@ remains future work; structural mapping is not evidence of satisfaction.
 | OBJ-004 | Accepted local goals support evidence-directed action, meaningful input/use conditions, evolving reasoning and coordinated integration within the wider product without a complete graph. | O4 | A3, A8. Demonstrate an actual condition and a finding that revises the route; continue unaffected work and inspect affected uses. |
 | OBJ-005 | Independent consumers can obtain identified material, inspect consequential changes and choose adoption, while maintainers preserve history, prepare publication and recover retained work. | O5 | A6, A7, A8. Named-contract compatibility, publication preparation and recovery establish different claims; consumer adoption and owner release remain separate. |
 
-## 4. Scope ledger with proposed allocation
+## 4. Scope ledger reconciled to the owner direction
 
 `IN`, `OUT` and `TBD` retain their accepted Group 1 meanings. Every scope item
-has exactly one proposed accountable Package home. Only IN items receive
+has exactly one accountable Package home in this working translation. Only IN items receive
 production Deliverable allocation. A Package home for an exclusion/reservation
 makes its boundary accountable; it does not activate that scope. SOW-0026 maps
 only to preservation of the completed transition's source/recovery conditions.
@@ -135,15 +169,15 @@ cards and §9 summarize it for review and must agree with it.
 | SOW-0003 | IN | Support purposeful search, reference following and structured queries with source identity, declared/inferred/unknown relationships and search limits visible. Retain or deliberately migrate consumed indexes, checking/regenerating from owning sources; read selected material. | R03; §5; A1 | PKG-01 | DEL-01-01_library-discovery-guide | OBJ-001, OBJ-003, OBJ-005 | FALSE. Views may be incomplete, cyclic and revised. |
 | SOW-0004 | IN | Provide usable maintenance instructions for adding or revising holdings with purpose, scope, destination, relevant material, source identity and checks. Reuse/connect applicable methods rather than prescribe a new method per operation. | R04, “Add or revise a holding”; §2.2; A2 | PKG-02 | DEL-02-01_maintenance-procedures | OBJ-002 | FALSE. Classify affected existing means as usable, needing connection/repair or absent during bounded work. |
 | SOW-0005 | IN | Support organization, relocation or retirement using actual references/consumers, replacement or historical standing, recovery and deletion authority. | R04, “Organize, relocate or retire”; §5 | PKG-02 | DEL-02-01_maintenance-procedures | OBJ-002, OBJ-003, OBJ-005 | FALSE. Specific archival removals beyond the completed reset remain SOW-0032. |
-| SOW-0006 | IN | Support diagnosis and reconciliation of conflicting claims, source meaning and observed behavior, identifying the owning material, evidence and repair scope. | R04, “Diagnose and reconcile”; R11; A4 | PKG-02 | DEL-02-01_maintenance-procedures | OBJ-002, OBJ-003 | FALSE. Reusable procedure and its result are distinct obligations. |
-| SOW-0007 | IN | Support assessment of connected changes across relevant inputs, uses and consequences in instructions, tools, publications and execution, bounded by the authorized undertaking. | R04, “Assess connected change”; R11; §2.2 | PKG-02 | DEL-02-01_maintenance-procedures | OBJ-002, OBJ-003 | FALSE. Discovery of further consequences does not silently expand commitments. |
+| SOW-0006 | IN | Support diagnosis and reconciliation of conflicting claims, source meaning and observed behavior, identifying the owning material, evidence and repair scope. | R04, “Diagnose and reconcile”; R11; A4 | PKG-04 | DEL-04-01_library-reconciliation | OBJ-002, OBJ-003 | FALSE. Reusable procedure and its result are distinct obligations. |
+| SOW-0007 | IN | Support assessment of connected changes across relevant inputs, uses and consequences in instructions, tools, publications and execution, bounded by the authorized undertaking. | R04, “Assess connected change”; R11; §2.2 | PKG-04 | DEL-04-01_library-reconciliation | OBJ-002, OBJ-003 | FALSE. Discovery of further consequences does not silently expand commitments. |
 | SOW-0008 | IN | Support review and integration with proportionate scrutiny, the actual checked revision, findings, updates to owning text and the repository change procedure. | R04, “Review and integrate”; R12; R14; A2 | PKG-02 | DEL-02-01_maintenance-procedures | OBJ-002, OBJ-003 | FALSE. Root's grant does not transfer through library consumption. |
 | SOW-0009 | IN | Align tool-use instructions with actual commands/interfaces, dependencies, outputs, write effects, failure behavior and limits. Use available selected-library tools for repeatable operations; state unavailable capabilities and permitted fallbacks, repairing necessary reusable procedure at its source. | R05; R17; §6.1; A2 | PKG-03 | DEL-03-01_maintenance-toolkit | OBJ-002 | FALSE. Existing deliverables CLI requires Git, HEAD and declared dependencies; file-only/namespace adapters are not assumed. |
 | SOW-0010 | IN | Maintain entry, roles, methods, tools and execution under the existing authorized basis; review replacement means, preserve the usable preceding basis and adopt only after verification with actual authority. | R06; R04, “Change the maintenance means”; A5 | PKG-02 | DEL-02-01_maintenance-procedures | OBJ-001, OBJ-002, OBJ-003 | FALSE. Proposed instructions do not authorize themselves or alter their own review basis. |
-| SOW-0011 | IN | Establish an accepted decomposition of bounded contributions with meaningful intended improvements, scope, outputs and evaluative evidence mapped to product objectives, without directory/requirement-driven partitioning or conflicting change ownership. | R07; §2.2; §6.2–6.3; A3 | PKG-04 | DEL-04-01_execution-decomposition | OBJ-001, OBJ-002, OBJ-004 | FALSE. Group 1 basis accepted; Group 2 structure is proposed here; later independent final audit and decomposition acceptance remain outstanding. |
-| SOW-0012 | IN | Set up accepted localities using the library's applicable tools: ScopeOfWork.md for goal, accepted scope/objective references, outputs, boundaries, acceptance criteria and verification; deliverable.yaml for actual needs/conditions and useful source/code/check pointers; Work/ for reasoning, evidence, alternatives, consequential attempts, unresolved conditions and local outputs with maturity explicit. | R08; §6.2–6.3; A3, A8 | PKG-04 | DEL-04-02_local-execution-contracts | OBJ-001, OBJ-002, OBJ-004 | FALSE. Future execution/PKG-nn/DEL-nn-nn/ only after accepted scope; maintained outputs retain source homes and unchanged declarations stay unchanged. |
-| SOW-0013 | IN | Author consumer-local needs after scope exists, identifying input, intended use/condition, trigger/case and source or unresolved binding. Preserve distinct conditions, preliminary/final use, reciprocal relations and technical holds; judge suitability from evidence. | R09; §6.1–6.2; A3 | PKG-04 | DEL-04-02_local-execution-contracts | OBJ-004 | FALSE. No inferred supplier commitments or whole-deliverable finish-to-start constraints; presence, merge and structural checks do not establish suitability. |
-| SOW-0014 | IN | Support authorized local action from goals, evidence and actual input conditions, revising understanding/routes and neighborhoods as findings emerge, continuing unaffected work and checking affected uses with one integration owner. | R10; A3; §4 closing paragraphs | PKG-04 | DEL-04-02_local-execution-contracts | OBJ-002, OBJ-003, OBJ-004 | FALSE. Commitment/acceptance changes and reserved decisions return to the owner; local completion must serve the product. |
+| SOW-0011 | IN | Establish an accepted decomposition of bounded contributions with meaningful intended improvements, scope, outputs and evaluative evidence mapped to product objectives, without directory/requirement-driven partitioning or conflicting change ownership. | R07; §2.2; §6.2–6.3; A3 | PKG-04 | DEL-04-02_reflective-review | OBJ-001, OBJ-002, OBJ-004 | FALSE. Group 1 basis accepted; approved Group 2 direction is translated here, awaiting Agent 0 fidelity review and snapshot binding; independent final audit and decomposition acceptance remain outstanding. |
+| SOW-0012 | IN | Set up accepted localities using the library's applicable tools: ScopeOfWork.md for goal, accepted scope/objective references, outputs, boundaries, acceptance criteria and verification; deliverable.yaml for actual needs/conditions and useful source/code/check pointers; Work/ for reasoning, evidence, alternatives, consequential attempts, unresolved conditions and local outputs with maturity explicit. | R08; §6.2–6.3; A3, A8 | PKG-04 | DEL-04-01_library-reconciliation | OBJ-001, OBJ-002, OBJ-004 | FALSE. Future execution/PKG-nn/DEL-nn-nn/ only after accepted scope; maintained outputs retain source homes and unchanged declarations stay unchanged. |
+| SOW-0013 | IN | Author consumer-local needs after scope exists, identifying input, intended use/condition, trigger/case and source or unresolved binding. Preserve distinct conditions, preliminary/final use, reciprocal relations and technical holds; judge suitability from evidence. | R09; §6.1–6.2; A3 | PKG-04 | DEL-04-01_library-reconciliation | OBJ-004 | FALSE. No inferred supplier commitments or whole-deliverable finish-to-start constraints; presence, merge and structural checks do not establish suitability. |
+| SOW-0014 | IN | Support authorized local action from goals, evidence and actual input conditions, revising understanding/routes and neighborhoods as findings emerge, continuing unaffected work and checking affected uses with one integration owner. | R10; A3; §4 closing paragraphs | PKG-04 | DEL-04-01_library-reconciliation, DEL-04-02_reflective-review | OBJ-002, OBJ-003, OBJ-004 | FALSE. Commitment/acceptance changes and reserved decisions return to the owner; local completion must serve the product. |
 | SOW-0015 | IN | Derive relationship queries and undertaking-specific views from owning declarations, reporting basis, scope, unknowns and partial coverage while preserving actual live-metadata selection and project-root reference semantics. | R03; R10; §6.1–6.2 | PKG-03 | DEL-03-01_maintenance-toolkit | OBJ-001, OBJ-004 | FALSE. No second manual progress graph or required global DAG. |
 | SOW-0016 | IN | Reconcile affected definitions/relationships, warranted claims, actions and values together, recording consequential reasoning in owning work and reconciling affected guidance/publications or identifying an edition's earlier basis. Preserve historical identities and scoped adopted contracts. | R11; §2.3; A4, A5 | PKG-02 | DEL-02-02_shared-meaning-reference | OBJ-002, OBJ-003 | FALSE. Four perspectives do not require four reports/approvals; library definitions remain distinct from product runtime enforcement. |
 | SOW-0017 | IN | Verify the actual candidate proportionately and distinguish content, behavior and consumer-interface claims. Numerical meaning, persistence, permissions and destructive changes require focused regression checks and independent scrutiny; reuse applicable evidence and expose missing evidence as unverified. | R12; §4; A2, A4–A6 | PKG-02 | DEL-02-01_maintenance-procedures | OBJ-002, OBJ-003, OBJ-004 | FALSE. Applicable checks attach to actual future changes, not a blanket product-verification run in this stage. |
@@ -151,11 +185,11 @@ cards and §9 summarize it for review and must agree with it.
 | SOW-0019 | IN | Provide independent paths to consult, invoke or copy identified material through ordinary files, Git, archives and documented interfaces, retaining resources/licenses/source basis and distinguishing local adaptations. | R13; R17; A6 | PKG-05 | DEL-05-01_consumer-use-guide | OBJ-005 | FALSE. Reading the library does not require Git; executable tools declare their own dependencies. |
 | SOW-0020 | IN | Check affected named consumer interfaces at an explicit maintained-contract/fixture revision and supply a supported path or coordinated adapter before incompatible change. | R13; §2.2–2.3; §6.1; A6 | PKG-05 | DEL-05-01_consumer-use-guide | OBJ-003, OBJ-005 | FALSE. Needed input: affected named contract/fixtures at a specified basis, used when an interface change is selected; concrete selection unresolved until that scope is defined. Private evidence stays local; adoption/release are independent. |
 | SOW-0021 | IN | Support exceptional exclusive custody through an existing lock/coordination mechanism stating holder, item, reserved operation and release/recovery condition with honest enforcement limits; resolve interruption through the authorized maintainer. | R14; A8 | PKG-02 | DEL-02-01_maintenance-procedures | OBJ-002, OBJ-005 | FALSE. Readers normally retain checked-in material; elapsed time never authorizes disposal. No new lock service is prescribed. |
-| SOW-0022 | IN | Prepare named publication candidates from verified revisions with source identity, notices, dependencies, limitations and recoverable commit/edition routes; preserve owner publication authority and independent consumer adoption. | R15; R04, “Prepare publication and inspect updates”; A7 | PKG-05 | DEL-05-02_publication-candidate | OBJ-003, OBJ-005 | FALSE. Named publications are downstream default; explicitly following main is development. A merge is not release. Actual release is not this task's work. |
-| SOW-0023 | IN | Explain consequential old/new basis, reason, meaning/use and migration effects in existing review/publication notes, and exercise polling/inspection via existing release/diff facilities. | R16; R04, “Prepare publication and inspect updates”; A7 | PKG-05 | DEL-05-02_publication-candidate | OBJ-003, OBJ-005 | FALSE. Interests stay local; examined is not adopted; partial/failed checks do not prove no change. Scheduling, delivery and unattended operation require actual configuration/authority; no new notice register. |
+| SOW-0022 | IN | Prepare named publication candidates from verified revisions with source identity, notices, dependencies, limitations and recoverable commit/edition routes; preserve owner publication authority and independent consumer adoption. | R15; R04, “Prepare publication and inspect updates”; A7 | PKG-05 | DEL-05-01_consumer-use-guide | OBJ-003, OBJ-005 | FALSE. Named publications are downstream default; explicitly following main is development. A merge is not release. Actual release is not this task's work. |
+| SOW-0023 | IN | Explain consequential old/new basis, reason, meaning/use and migration effects in existing review/publication notes, and exercise polling/inspection via existing release/diff facilities. | R16; R04, “Prepare publication and inspect updates”; A7 | PKG-05 | DEL-05-01_consumer-use-guide | OBJ-003, OBJ-005 | FALSE. Interests stay local; examined is not adopted; partial/failed checks do not prove no change. Scheduling, delivery and unattended operation require actual configuration/authority; no new notice register. |
 | SOW-0024 | IN | Preserve standalone repository use and existing Git/search/review/release/validation/scheduling foundations, classifying affected capabilities as usable, needing connection/repair or absent and implementing only necessary changes. | §1; §2.2; R17 | PKG-03 | DEL-03-01_maintenance-toolkit | OBJ-001, OBJ-002, OBJ-005 | FALSE. Optional bespoke tooling remains conditional under SOW-0033; no permanent capability census. |
 | SOW-0025 | IN | Keep ordinary library use independent of undisclosed sibling checkouts, dated run directories, private inputs and credentials; use cleared public fixtures/summaries and required credential/private-term checks for public changes. | R17; §2.3; §6.3; A6, A7 | PKG-05 | DEL-05-01_consumer-use-guide | OBJ-002, OBJ-005 | FALSE. Private consumer inventory need not be read for this stage. |
-| SOW-0026 | IN | Preserve traceability and recoverability of the authorized pre-library execution transition and original consumer-pinned history, including the App's historical SWBPIPE source bytes, without reinstating prior structure, commitments or lifecycle state. | §2.2; §5; §6.1, §6.3 step 2; R12, R15 | PKG-05 | DEL-05-02_publication-candidate | OBJ-003, OBJ-005 | FALSE. Transition already executed in PR #1778; archive identity verified here. Retention is the ongoing constraint; no repeat removal or migrated backlog. Selected archive bytes must be verified before future reliance. |
+| SOW-0026 | IN | Preserve traceability and recoverability of the authorized pre-library execution transition and original consumer-pinned history, including the App's historical SWBPIPE source bytes, without reinstating prior structure, commitments or lifecycle state. | §2.2; §5; §6.1, §6.3 step 2; R12, R15 | PKG-05 | DEL-05-01_consumer-use-guide | OBJ-003, OBJ-005 | FALSE. Transition already executed in PR #1778; archive identity verified here. Retention is the ongoing constraint; no repeat removal or migrated backlog. Selected archive bytes must be verified before future reliance. |
 | SOW-0027 | OUT | Require a new App, agent runtime, hosted service or compulsory companion as the library product or a prerequisite for repository use. | §1; §2.3; R17 | PKG-03 |  | OBJ-001, OBJ-002, OBJ-005 | FALSE. Optional, justified thin support is distinct; see SOW-0033. |
 | SOW-0028 | OUT | Establish a standing global audit, central relationship graph, subscriber/notice registry, automated project management or a complete DAG/global census requirement. | §2.3; R03, R10, R16 | PKG-01 |  | OBJ-001, OBJ-004, OBJ-005 | FALSE. Existing consumed indexes and bounded derived views remain in scope. |
 | SOW-0029 | OUT | Transfer Root grants, execution authority or runtime policy to consumers, perform independent consumer product work, or require their production adoption/release to accept a verified library interface. | §2.3; R11, R13, R15 | PKG-05 |  | OBJ-003, OBJ-005 | FALSE. App v4 and SWBPIPE remain independent; coordination conveys no owner authority. |
@@ -202,69 +236,136 @@ qualifications and the PRD remain governing; compact mapping does not replace th
 | A8 | SOW-0012, SOW-0018, SOW-0021 | Recover real retained work or a labelled case; verify custody release/recovery and actual enforcement where applicable. |
 
 PRD §2.2 is covered by SOW-0001–0026; §2.3 boundaries by SOW-0002/0012/0016,
-SOW-0025 and SOW-0027–0032. Section 5 is preserved in the pending Group 2 decision, SOW-0003/0026/0032 and the absence of new platform/schema decisions.
+SOW-0025 and SOW-0027–0032. Section 5 is preserved in the Group 2 decision binding
+still to be recorded, SOW-0003/0026/0032 and the absence of new platform/schema decisions.
 Section 6's source conditions, method order and future locality convention are
 preserved in §§1/4/8 here and SOW-0009–0015/0020/0026/0033. The already executed
 §6.3 step 2 is retained as history, not reassigned future transition work.
 
 ## 6. Representative holdings and bounded findings
 
-These source inspections establish useful starting points and specific connection
-or repair needs, not implementation completion. Existing good material is reused;
+These source inspections distinguish available means, bounded completed repair
+and remaining connection or evaluation needs. No whole Deliverable is declared
+complete. Existing good material and applicable repair evidence are reused;
 “not established” below is not a claim that nothing exists elsewhere. No private
 consumer repository, historical execution backlog or frozen product was opened.
 
 | Observed source at current basis | What exists / what needs connecting or repairing | Proposed contribution |
 |---|---|---|
 | [README](../../README.md), Root entry, [workflow guide](../../workflows/README.md) | Entry links already distinguish the library, independent projects and frozen recovery. Workflow source identity, selected-resource loading and generated indexes are documented. Connect these routes to the accepted local execution and a bounded worked discovery route; no new universal catalog. | DEL-01-01_library-discovery-guide |
-| [create-workflow](../../workflows/create-workflow/WORKFLOW.md), [change](../../workflows/change/WORKFLOW.md), [Root change skill](../../.agents/skills/chirality-change/SKILL.md), [bounded-reconciliation](../../workflows/bounded-reconciliation/WORKFLOW.md), [coordinated-knowledge-work](../../workflows/coordinated-knowledge-work/WORKFLOW.md) | Reusable authoring, review/integration, local reconciliation and recovery practices exist. Connect them into the library's maintenance route and establish the R04 operation coverage and R14 custody case. The inspected route does not yet demonstrate a complete custody or library update-inspection procedure. | DEL-02-01_maintenance-procedures; consumer update inspection belongs to DEL-05-02_publication-candidate |
+| [create-workflow](../../workflows/create-workflow/WORKFLOW.md), [change](../../workflows/change/WORKFLOW.md), [Root change skill](../../.agents/skills/chirality-change/SKILL.md), [bounded-reconciliation](../../workflows/bounded-reconciliation/WORKFLOW.md), [coordinated-knowledge-work](../../workflows/coordinated-knowledge-work/WORKFLOW.md) | Reusable authoring, review/integration and recovery practices exist. PR #1779 aligns AGENTS, bounded-reconciliation and package activation: the implementation owner reconciles concrete results/evidence with affected ScopeOfWork, Work and needs in the same PR; Agent 0 checks agreement. Revise changed meaning and connect genuinely new work; preserve unchanged declarations/history. DEL-04-01_library-reconciliation owns that practice; DEL-02-01_maintenance-procedures invokes it while establishing the remaining maintenance-operation coverage and R14 custody case. The inspected route does not yet demonstrate a complete custody or library update-inspection procedure. | DEL-02-01_maintenance-procedures; consumer update inspection belongs to DEL-05-01_consumer-use-guide |
 | [runtime reference](../../docs/AGENT_WORKFLOW_RUNTIME.md), [boundaries](../../docs/PRODUCT_BOUNDARIES.md), [compatibility reference](../../docs/COMPATIBILITY_FORMATS.md) | Existing scoped/historical contracts coexist with statements such as “The Runtime project owns production discovery” and project methods “cannot weaken Root governance.” Their intended applicability needs explicit comparison with independent adoption and frozen Runtime standing; do not erase adopted contracts. | DEL-02-02_shared-meaning-reference; scoped applicability reconciliation, not a runtime redesign |
 | [thesis architecture §4.2](../../docs/thesis/04_architecture.md), [manual entry](../../docs/alignment-manual/README.md) and its current v9 source's vocabulary/recovery/edition passages | Explanations already describe local conditions, derived views, current source homes, recoverability and edition identity. Reuse these as explanatory basis; reconcile only claims affected by the selected boundary/setup changes. A whole thesis/manual/course rewrite is not evidenced. | DEL-02-02_shared-meaning-reference; DEL-01-01_library-discovery-guide links the current editions |
-| [setup](../../workflows/project-setup/WORKFLOW.md), [preparation](../../.agents/skills/preparation/SKILL.md) and [scaffold contract](../../.agents/skills/preparation/references/scaffold-contract.md), [package helper](../../tools/scaffolding/scaffold_package.sh), [deliverable helper](../../tools/scaffolding/scaffold_deliverable.sh) | Concrete mismatch: helpers create labelled package/DEL paths and lifecycle folders/control stubs; preparation requires those files. [Minimum-fileset check](../../tools/validation/check_min_viable_fileset.sh) requires four legacy control files. The accepted Root locality does not. A supported current path must be selected/repaired before live setup; preserve separately scoped legacy callers. | DEL-03-01_maintenance-toolkit owns executable support and direct usage contract; DEL-02-01_maintenance-procedures owns selection/authority guidance; DEL-04-02_local-execution-contracts consumes the verified path |
-| [scope-of-work](../../workflows/scope-of-work/WORKFLOW.md) and [tool policy](../../workflows/scope-of-work/resources/tools.md) | INIT already authors source-grounded SOW_V1 directly and uses existing validators/checklist tools. The tool policy also requires hashing `_STATUS.md`, and other modes retain historical lifecycle obligations. Establish an applicable new-Root INIT route without silently importing these requirements or removing historical compatibility. | Same three contributions as setup; no wholesale conversion or lifecycle revival |
-| [deliverables guide](../../tools/deliverables/README.md) and [loader](../../tools/deliverables/cli.py) `load`, [local graph method](../../workflows/construct-local-work-graph/WORKFLOW.md), [need authoring](../../workflows/dependency-extract/WORKFLOW.md) | Consumer-local conditions, Git/HEAD/PyYAML requirements, working-file discovery and project-root path semantics already exist. Loader walks live deliverable.yaml files and verifies local identity; views remain derived and do not judge suitability. Reuse and verify on adopted localities before proposing repairs. | DEL-03-01_maintenance-toolkit; DEL-04-02_local-execution-contracts |
-| [workflow utility guide](../../tools/workflow_runtime/README.md), [manual rendering route](../../docs/alignment-manual/README.md#read-and-render), [LICENSE](../../LICENSE.md), recovery reference | Identified method resources, explicit host enforcement limits, source-derived publication rendering, notices and recovery routes exist. General library acquisition, selected-consumer qualification and polling need a joined usable path; their end-to-end sufficiency was not exercised here. | DEL-05-01_consumer-use-guide; DEL-05-02_publication-candidate |
+| [setup](../../workflows/project-setup/WORKFLOW.md) and [current route](../../workflows/project-setup/resources/current-project.md), [preparation](../../.agents/skills/preparation/SKILL.md) and [scaffold contract](../../.agents/skills/preparation/references/scaffold-contract.md), [current helper](../../tools/scaffolding/current_locality.py) and shell entrypoints | F-01's current-route mismatch is repaired. Explicit `--current` calls create numeric PKG/DEL paths, Work/ and YAML with accepted id/name and empty needs; no blank ScopeOfWork or legacy control files. [Fileset check](../../tools/validation/check_min_viable_fileset.sh) with `--current --prepared` checks pre-authoring structure; without `--prepared`, it also requires matching ScopeOfWork frontmatter. Full contract validity uses the existing ScopeOfWork validator. Unflagged historical calls and explicitly selected legacy/domain contracts remain separate. No routine current setup log/receipt/handoff is required. | DEL-03-01_maintenance-toolkit and DEL-02-01_maintenance-procedures reuse the implemented means and §6.1 evidence; initial formation (§8.1) still requires accepted scope, authorized live setup and authored content; this does not hold unaffected reconciliation work |
+| [scope-of-work](../../workflows/scope-of-work/WORKFLOW.md) and [tool policy](../../workflows/scope-of-work/resources/tools.md) | Current INIT/VERIFY now explicitly work without `_STATUS.md` or a legacy kit; absent status remains absent and present status is preserved. Ordinary authorized factual reconciliation uses bounded-reconciliation before integration. Formal REVISE/CONVERT retain their selected amendment/lifecycle/source rules; no status act belongs to this workflow. Routine current INIT/VERIFY receipts are removed. | Reuse the applicable authoring/validation route in DEL-04-01_library-reconciliation; broader procedure and tool evaluation remain with DEL-02-01_maintenance-procedures and DEL-03-01_maintenance-toolkit |
+| [deliverables guide](../../tools/deliverables/README.md) and [loader](../../tools/deliverables/cli.py) `load`, [local graph method](../../workflows/construct-local-work-graph/WORKFLOW.md), [need authoring](../../workflows/dependency-extract/WORKFLOW.md) | Consumer-local conditions, Git/HEAD/PyYAML requirements, working-file discovery and project-root path semantics already exist. Loader walks live deliverable.yaml files and verifies local identity; views remain derived and do not judge suitability. Reuse and verify on adopted localities before proposing repairs. | DEL-03-01_maintenance-toolkit; DEL-04-01_library-reconciliation |
+| [workflow utility guide](../../tools/workflow_runtime/README.md), [manual rendering route](../../docs/alignment-manual/README.md#read-and-render), [LICENSE](../../LICENSE.md), recovery reference | Identified method resources, explicit host enforcement limits, source-derived publication rendering, notices and recovery routes exist. General library acquisition, selected-consumer qualification and polling need a joined usable path; their end-to-end sufficiency was not exercised here. | DEL-05-01_consumer-use-guide |
 
-## 7. Proposed flat Packages
+[HELP_HUMAN](../../agents/AGENT_HELP_HUMAN.md) already requires attention to
+purpose, changed questions, current commitments and continuity through the
+conversation and authoritative artifacts. [Coordinated knowledge work](../../workflows/coordinated-knowledge-work/WORKFLOW.md)
+examines premises and combined results, diagnoses waiting before adding mechanisms,
+and returns consequential framing choices to the human. These are the existing
+homes to reuse for DEL-04-02_reflective-review; the direction does not evidence a
+need for another manual, monitoring service or routine review ceremony.
 
-Each Package includes design within the one discipline named below. These are
-work disciplines, not staffing tiers or new role types. Related instructions and
-evidence for a software tool remain part of software engineering; runtime/product
-engineering is excluded. Publications retain the subject's meanings and source
-homes; technical publishing packages only their identified delivery and use.
+### 6.1 Repair evidence available for reuse
+
+[PR #1779](https://github.com/sgttomas/chirality/pull/1779) supplies an actual
+maintenance change, not an unperformed build requirement. The author inspected
+the affected current instructions, current_locality.py, wrapper selection and
+ScopeOfWork changes, verified their identity against the repair, and confirmed
+that merge `a052783460f60c76e6fa229500f59a51f67c5265` has the same tree as final
+checked head `a0bb0dc77a53b041262571f658f9fd9590d44269`.
+
+Agent 0 supplied the verification account: 1382 selected-tool tests passed, five
+historical-source skips and one pre-existing pytest warning; required hosted
+harness/Repository checks passed on the final head. Independent Type 2 review of
+`64ebc86b5e961128ea00e8ac11491e9ea04c4eaa` found no blockers and independently
+exercised filesystem collision cases; the final head adds two nonblocking wording
+repairs in the ScopeOfWork brief. These are reused reports, not tests rerun by
+this author. Agent 0 also reported no blocking compatibility constraint from
+SWBPIPE; that is not named-consumer qualification or adoption evidence for A6.
+
+The material interpretation change is narrow: F-01 no longer requires building a
+current setup path. Use the implemented path and its applicable evidence, assess
+any remaining claim-specific gaps, and repair only a newly demonstrated mismatch.
+The repair supports relevant portions of A2/A5; it does not establish all R04
+operations, custody/recovery, live setup, actual local need suitability, complete
+Deliverables or product acceptance. Final accepted decomposition and activation
+scope are still required before live setup. The repair itself required no structural change; the later owner decisions in
+§1.1 supply the reframing in this revision.
+
+## 7. Packages under the approved direction
+
+Five flat Packages remain. Each design Package declares one discipline; these
+are contribution disciplines, not staffing tiers. The enduring organization is
+separate from the bounded outputs below and from episodes that realize them.
 
 | PackageID | Name / purpose | Discipline | Inclusion criteria and boundaries |
 |---|---|---|---|
 | PKG-01 | Library access — find and interpret the selected basis from a bounded undertaking | Information architecture | Entry/navigation, local intelligibility and purposeful discovery. Owns SOW-0028's no-central-census boundary. Does not implement query algorithms or rewrite every holding. |
-| PKG-02 | Maintenance practice and shared meaning — make changes operable, coherent and recoverable | Knowledge engineering | Maintenance procedure set and reconciled meaning/applicability reference set. Owns frozen-work and extra-removal boundaries. No tool implementation, publication release or general content audit. |
-| PKG-03 | Executable maintenance support — make selected repeatable operations fit the current library contract | Software engineering | Existing selected scaffolding, validation, resolution/query utilities and their direct usage instructions. Owns standalone-use and conditional-tooling boundaries. No new App/service, optional companion allocation, consumer runtime or global query system. |
-| PKG-04 | Root local execution — turn accepted product scope into usable local goals and conditions | Project planning | Decomposition design and the resulting local contract/work set. No code relocation, new lifecycle regime or authoritative global dependency network. Owns actual local setup/use, not implementation of its supporting tools. |
-| PKG-05 | Independent reuse and publication — make identified material usable, inspectable and recoverable by consumers | Technical publishing | Consumer-use/compatibility guide and versioned publication package, notices, change inspection and historical routes. Owns no-transferred-authority/private-publication boundaries. No consumer product development, imposed adoption, owner release act or new archival removals. |
+| PKG-02 | Maintenance practice and shared meaning — make changes operable, coherent and recoverable | Knowledge engineering | Maintenance route and shared concept/applicability reference set. Invoke PKG-04's reconciliation practice as part of carrying a change through; do not duplicate ownership of it. Retain frozen-work and extra-removal boundaries. No tool implementation or global content audit. |
+| PKG-03 | Executable maintenance support — make selected repeatable operations fit the current library contract | Software engineering | Existing selected scaffolding, validation, resolution/query utilities and direct usage instructions. Standalone-use and conditional-tooling boundaries remain. No new App/service, compulsory companion, consumer runtime or global query system. |
+| PKG-04 | Self-monitoring and reflective improvement — reconcile holdings and examine whether the practice, goals and framing serve the work | Knowledge engineering | The actual same-PR reconciliation practice and its human-grounded examination/improvement. Account for initial decomposition/setup obligations in §8.1 while preserving each local owner's commitments and Work. No central control of other localities, global audit/graph, monitoring service, model loop, report stream or extra ceremony. |
+| PKG-05 | Independent reuse and publication — make identified material usable, inspectable and recoverable by consumers | Technical publishing | Consumer/version/update guidance, named compatibility evidence, ordinary publication preparation and historical recovery. Git, PRs and release mechanisms carry version/change information; no separate edition/history product. Source publications remain maintained holdings. No imposed adoption, owner release act, consumer development or additional removals. |
 
-PKG-01 and PKG-05 differ by use: finding material within a selected basis versus
-obtaining and assessing a transferable version. PKG-02 separates the maintenance
-method and meaning of holdings from PKG-03's executable behavior. PKG-04 produces
-particular Root commitments and working conditions rather than a reusable method
-or another software platform. These partitions cross the five objectives and the
-three output forms; neither set has been converted one-for-one into Packages.
+PKG-01 concerns discovery within a selected basis; PKG-05 concerns obtaining and
+inspecting identified material. PKG-02's maintenance route invokes PKG-04's
+practice; it does not also own it. PKG-03 implements actual tool behavior.
+PKG-04 serves the holdings and their local owners, with human judgment directing
+and bounding reflection on the practice. This is not a three-form partition or a new hierarchy.
 
-## 8. Proposed Deliverables and anticipated artifacts
+## 8. Deliverables and formation obligations
 
-`ResponsibleParty` for each Deliverable is **TBD — a Root contributor assigned by
-Agent 0**; the discipline/function is specified below. No current Type 2 author
-or consumer is silently assigned future implementation. Agent 0 remains the
-integration owner for the broader undertaking. Q-03 records this staffing gap.
+Seven bounded production commitments remain. Future contributor assignments are
+**TBD**, made through Agent 0's actual briefs; Agent 0 retains integration and
+human continuity. The reflective activity includes the human and Agent 0, but
+that does not assign every future guidance edit to this Type 2 author.
 
-The eight full IDs below are canonical PROJECT identities. Future native YAML
-and ScopeOfWork bindings use their numeric DEL prefixes, and localities use
-`execution/PKG-nn/DEL-nn-nn/`; descriptive suffixes remain in the accepted identity,
-not an extra phase hierarchy. No path in that future convention is created now.
-Each card's artifact list belongs only to that card's Deliverable. Artifact kind
-is a coherent set; sections, commands, files, cases and editions are instances
-within it, not automatically separate Deliverables. Supporting verification is
-kept in the actual review record or local Work/ when needed, not extra receipt
-sets. Instructions, descriptions and executable behavior are evaluated according
-to their respective claims.
+Canonical suffix-bearing IDs retain their numeric identity. Future paths and
+native bindings use numeric `execution/PKG-nn/DEL-nn-nn/` and DEL prefixes. No
+localities or production files are created here. Concrete artifact sets may mix
+instructions and descriptions, or tools with needed usage information; they do
+not require all three output forms. Files, cases and repeated instances remain
+artifacts within a coherent commitment.
+
+### 8.1 Initial establishment remains required
+
+SOW-0011–0014 / R07–R10 are still accountable to PKG-04. Their initial production
+obligations are allocated with the practices they establish: SOW-0011 to
+DEL-04-02_reflective-review; SOW-0012/0013 to DEL-04-01_library-reconciliation;
+SOW-0014 to both, distinguishing local source reconciliation from examination of
+goals/framing. This allocation does not replace the concrete formation outputs
+with generic guidance or create a central owner of all execution material.
+
+Agent 0 coordinates the current **decomposition undertaking** using project-decomp.
+It must finish the actual normalized/structured design, applicable Group 2 decision
+binding, separate Group 3 audit and final acceptance before downstream setup.
+This working document and required accepted snapshots are real outputs of that
+episode, retained at execution/_Decomposition/. They are not a permanent
+“decomposition product” or a recursively commissioned project.
+
+After final acceptance and selected activation authority, the **setup undertaking**
+uses current project-setup, preparation, scope-of-work and dependency-extract.
+It must materialize the selected accepted localities with real ScopeOfWork.md
+contracts, deliverable.yaml needs/conditions and Work/ content with maturity
+explicit. Accepted scope/objective links, outputs, boundaries, acceptance methods,
+actual input/use conditions, unknown bindings and useful code/check pointers
+remain required. Scope precedes needs. Use the repaired `--current`/`--prepared`
+and authored structural checks, substantive contract validation and bounded query
+checks; structural passes do not determine suitability. PR #1779 is reusable
+supporting evidence, not proof that these localities exist or meet their goals.
+
+The contributor responsible for each local goal owns its contract, Work and needs
+through implementation and repairs. Coordinated-knowledge-work supplies the
+realization/integration method where contributions combine; implementation owners
+reconcile their actual results and verification in the same PR. PKG-04 accounts
+for the practice and formation coverage, not a second copy of everyone's records.
+Unchanged declarations remain unchanged. For A3, use accepted/set-up scope and an
+actual authorized action with a meaningful condition, a finding that changes the
+route or understanding, and examination of affected uses. Neither this structure
+nor a synthetic fixture establishes that evidence.
 
 ### DEL-01-01_library-discovery-guide — A usable route into the selected library
 
@@ -286,9 +387,9 @@ to their respective claims.
   distinctions, search limits and required resources/notices. Establish separately
   whether any invoked command behaved as claimed; no complete-inventory claim.
 - **Needed inputs / use conditions:** Before wiring a current-work link, consume
-  the accepted execution identities and actual usable locality from
-  DEL-04-01_execution-decomposition / DEL-04-02_local-execution-contracts; a
-  proposed path alone cannot claim active work. For method discovery, consume
+  the final accepted decomposition identities and actual usable localities from
+  the formation undertakings (§8.1), at their recorded source basis; a proposed
+  path alone cannot claim active work. For method discovery, consume
   workflows/README.md, catalog/index and selected package metadata/resources at
   the inspected revision (R01–R03). For publication links, resolve the edition at
   docs/alignment-manual/README.md or docs/thesis/README.md; pin it when a claim
@@ -305,39 +406,48 @@ to their respective claims.
 - **Local goal:** A maintainer can add/revise, organize/retire, diagnose, assess
   connected change, review/integrate and recover a holding, including its own
   maintenance means, using an available method with actual authority and evidence.
-- **CoversScopeItems:** SOW-0004, SOW-0005, SOW-0006, SOW-0007, SOW-0008,
-  SOW-0010, SOW-0017, SOW-0018, SOW-0021.
+- **CoversScopeItems:** SOW-0004, SOW-0005, SOW-0008, SOW-0010, SOW-0017, SOW-0018, SOW-0021.
   **SupportsObjectives:** OBJ-001, OBJ-002, OBJ-003, OBJ-004, OBJ-005.
-- **Anticipated artifacts:** Connected/revised applicable workflow/skill/role
-  guidance at its existing homes, beginning with create-workflow, change,
-  bounded-reconciliation, coordinated-knowledge-work and the Root change skill;
-  explicit selection of proportionate content/behavior/interface checks and
-  treatment of unavailable capabilities; an exceptional custody/recovery procedure
-  using an existing coordination/locking mechanism with holder, item, operation,
-  release/recovery condition and truthful enforcement limits. Publication/update
-  inspection refers to DEL-05-02_publication-candidate's path. Repair selected
-  setup/ScopeOfWork instruction clauses identified in §6; retain a usable current
-  basis until replacements are checked and adopted. No workflow per operation.
-- **Evaluation:** A2 and A5 through an actual authorized instruction/tool repair
-  under the preceding method; the known current-locality repair is a candidate
-  case, not yet executed. A8 via retained work or a labelled interrupted-custody
-  case that tests recovery and the mechanism's limits. Keep source/review evidence
-  sufficient to repeat or recover the case; do not create a routine case register.
+- **Anticipated artifacts:** Connected/revised applicable maintenance guidance at
+  its existing homes, beginning with create-workflow, change and the Root change
+  skill, including proportionate verification, unavailable-capability limits and
+  exceptional custody/recovery using an existing mechanism with explicit holder,
+  item, reserved operation, release/recovery conditions and enforcement limits.
+  Invoke the reconciliation practice owned by DEL-04-01_library-reconciliation
+  within carrying changes through; do not clone or separately own that procedure.
+  Reuse coordinated-knowledge-work for realization across contributions and
+  DEL-05-01_consumer-use-guide for version/publication/update guidance. PR #1779's
+  repaired setup/ScopeOfWork instructions are available inputs, not new required
+  builds. Further instruction changes need a demonstrated gap; no workflow per
+  operation or separate reconciliation assessment stage.
+- **Evaluation:** Reuse PR #1779's actual instruction/tool change and
+  review/check evidence (§6.1) for the relevant A2/A5 claims under the preceding
+  basis. Assess that evidence against each claim, including the available reusable
+  procedure; do not declare all operational coverage or either criterion complete
+  from the test count or merge. A8 still needs retained work or a labelled
+  interrupted-custody case that tests recovery and the mechanism's limits. Keep
+  adequate source/review evidence; do not create a routine case register.
 - **Needed inputs / use conditions:** When a method directs a command, consume
-  its verified command/dependency/write/failure contract from
-  DEL-03-01_maintenance-toolkit or the selected existing tool source (R05–R06).
-  For the actual maintenance case, use the authorized diff, checked revision and
-  review evidence for that change; case revision is TBD until work is selected.
-  For custody, use the actual repository/host coordination mechanism available
-  for that operation; specific holder and mechanism are TBD, and no enforcement
-  claim is permitted until examined (R14). For semantic repair use the scoped
-  applicability basis of DEL-02-02_shared-meaning-reference; content disagreement
-  cannot be resolved by replacing a check or applying proposed instructions to
-  their own review.
-- **Boundary:** General procedure and authority clauses belong here; code and
-  direct invocation truth belong to DEL-03-01_maintenance-toolkit. Shared-file
-  changes use one designated editor/integrator per change. No frozen verification,
-  extra removals, commitments or new permissions are authorized by this procedure.
+  its verified command/dependency/write/failure contract from the selected existing
+  tool source (R05–R06), with DEL-03-01_maintenance-toolkit accounting for remaining
+  tool claims. For reconciliation during that change, use the actual maintained
+  bounded-reconciliation basis owned by DEL-04-01_library-reconciliation; do not
+  wait for a whole-Deliverable completion label or re-author the procedure here.
+  The current setup/authoring path and actual maintenance case are
+  now bound to PR #1779's final checked head and current instructions (§6.1), not
+  an unknown future repair. Select additional cases only for claims the available
+  evidence does not establish. For custody, use the actual repository/host
+  coordination mechanism for the operation; specific holder/mechanism remain TBD,
+  and no enforcement claim is permitted until examined (R14). For semantic repair
+  use the scoped applicability basis of DEL-02-02_shared-meaning-reference;
+  content disagreement cannot be resolved by replacing a check or applying
+  proposed instructions to their own review.
+- **Boundary:** The maintenance route invokes reconciliation; PKG-04 owns
+  its practice and examination/improvement. PKG-03 supplies executable support.
+  Implementation owners perform the actual same-PR source reconciliation; a
+  shared-file change has one editor/integrator. This Deliverable does not duplicate
+  bounded-reconciliation or HELP_HUMAN guidance, grant new permissions, reactivate
+  frozen work or authorize extra removals.
 
 ### DEL-02-02_shared-meaning-reference — Make library and adopted-product meanings explicit
 
@@ -371,7 +481,8 @@ to their respective claims.
   that external source is TBD, carried by DEL-05-01_consumer-use-guide. Preserve
   the existing scoped contract while the binding is unresolved. Publications use
   their explicit edition/source, not just a mutable “current” link.
-- **Boundary:** This is a bounded reference improvement, not a global coherence
+- **Boundary:** Use DEL-04-01_library-reconciliation for the comparison; this
+  Deliverable owns the specific reference-content repair. It is not a global coherence
   audit or a rewrite of every publication. Runtime implementation, professional
   acceptance and consumer policy stay outside Root's change authority.
 
@@ -384,349 +495,324 @@ to their respective claims.
   whose inputs, dependencies, effects, failure handling and limits are accurate.
 - **CoversScopeItems:** SOW-0009, SOW-0015, SOW-0024.
   **SupportsObjectives:** OBJ-001, OBJ-002, OBJ-004, OBJ-005.
-- **Anticipated artifacts:** Bounded revisions to the selected existing
-  tools/scaffolding helpers and applicable fileset checks, paired with the
-  preparation skill's direct tool-use instructions, to provide the accepted
-  flat locality without required legacy phase/control scaffolding. Establish
-  applicability of tools/scope_of_work validation/INIT helpers and repair only
-  demonstrated incompatibilities. Reuse tools/deliverables and workflow-runtime
-  utilities; amend their code/README/checks only for an actual connected defect.
-  Retain meaningful focused regression cases in maintained tool tests. This is a
-  set of existing utilities and necessary usage information, not a new unified
-  framework. A new helper is considered only if the existing route demonstrably
-  cannot meet the bounded need; SOW-0033 has no production allocation.
-- **Evaluation:** Exercise current-locality creation, rerun preservation and
-  identity/path/schema checks in an authorized isolated fixture before live setup;
-  targeted regression and independent scrutiny for persistence/containment changes.
-  Exercise live-metadata selection, distinct conditions, partial/unknown/cyclic
-  views and project-root references where affected. Check actual invocation and
-  failure/absence behavior with declared Git/HEAD/PyYAML or other dependencies.
-  Do not alter expected results merely to pass or broaden into frozen products.
+- **Anticipated artifacts:** The supported existing utility set and accurate direct
+  usage instructions at their maintained homes. PR #1779 already supplies
+  tools/scaffolding/current_locality.py, `--current` wrapper/check routes and
+  the preparation/setup/ScopeOfWork instruction alignment; reuse these outputs
+  rather than commission them again. Current structural creation supplies numeric
+  paths, Work/ and accepted id/name/empty needs, leaving the real ScopeOfWork to
+  authoring. Preserve the separate unflagged legacy interfaces. Reuse existing
+  ScopeOfWork validators, tools/deliverables and workflow-runtime utilities;
+  amend code/README/checks only for an actual connected defect or unfulfilled
+  claim. Retain meaningful regression cases in maintained tests. No new unified
+  framework or helper is required to populate this Deliverable; further tooling
+  remains conditional on an evidenced need, and SOW-0033 has no production
+  allocation.
+- **Evaluation:** Reuse the applicable passing repair evidence in §6.1,
+  including current-locality creation/preservation and collision checks, instead
+  of repeating the tool suite because work moved into decomposition. Establish
+  applicability to the selected operation and exercise only changed behavior or
+  unresolved claims. Live-metadata selection, distinct conditions, partial/unknown/
+  cyclic views and project-root references still require evidence for any actual
+  affected query claim. Check invocation/failure limits against declared
+  Python/PyYAML and, for queries, Git/HEAD dependencies. The `--prepared` check
+  does not require a newly authored ScopeOfWork; the authored structural check
+  requires its matching header, while full contract validity uses the existing
+  validator. New persistence/containment changes require targeted regression and
+  independent scrutiny. No expected-result weakening or frozen verification.
 - **Needed inputs / use conditions:** Accepted R08 locality and Group 1 output
-  definitions supply the target contract; existing scaffold/validator sources and
-  any affected legacy caller contract supply preservation conditions before a
-  helper changes. Exact affected caller fixtures are selected from the bounded
-  diff; undiscovered callers stay an uncertainty, not assumed absent. The final
-  accepted DEL identities and selected setup scope from
-  DEL-04-01_execution-decomposition are required before live creation, though
-  current-contract fixture repairs can be developed under separately authorized
-  maintenance work. Named external compatibility evidence is required before any
-  incompatible exported interface change (DEL-05-01_consumer-use-guide).
-- **Boundary:** The executable behavior/direct usage contract is owned here;
-  DEL-02-01_maintenance-procedures supplies the governing method and
-  DEL-04-02_local-execution-contracts performs particular setup/use. No file-only
-  query adapter, companion, graph service or new host enforcement is presumed.
+  definitions supply the target contract. Consume the repaired sources at the
+  current basis and applicable PR #1779 evidence (§6.1) when selecting the current
+  path; no unperformed build condition remains for F-01. Before changing a helper
+  again, inspect the actual affected caller contract and relevant fixtures;
+  undiscovered callers remain uncertain, not assumed absent. Final accepted DEL
+  identities, selected activation scope and actual target contents are still
+  required before live creation in the authorized formation undertaking (§8.1).
+  An absent future locality does not prevent reuse of checked sources or their
+  evidence. Named external compatibility evidence remains required before any
+  incompatible exported-interface change (DEL-05-01_consumer-use-guide).
+- **Boundary:** Executable behavior/direct usage contracts belong here.
+  PKG-02 invokes the maintained methods; PKG-04 owns reconciliation practice and
+  its examination, not the utilities. Formation undertakings and local owners
+  perform actual setup/use (§8.1). No file-only query adapter, companion, graph
+  service or new host enforcement is presumed.
 
-### DEL-04-01_execution-decomposition — An accepted design for Root's local goals
+### DEL-04-01_library-reconciliation — Library reconciliation
 
-- **ParentPackageID:** PKG-04. **Type:** Project decomposition design package.
-  **ResponsibleParty:** TBD — decomposition contributor, coordinated by Agent 0.
-- **Local goal:** Root has bounded, coherent contributions linked to accepted
-  product objectives and usable as the basis for local contract authoring/setup.
-- **CoversScopeItems:** SOW-0011.
-  **SupportsObjectives:** OBJ-001, OBJ-002, OBJ-004.
-- **Anticipated artifacts:** The maintained PROJECT_DECOMP.md and only necessary
-  companion tables, finalized through project-decomp's actual Group 2 decision,
-  independent Group 3 audit and final owner acceptance; accepted snapshots and
-  pointers only when their real decisions occur. This continuing decomposition
-  already supplies part of the output. Group 1 is not repeated, and a new
-  decomposition project is not recursively created to produce this one.
-- **Evaluation:** Coverage, identity/coupling, boundaries, concrete outputs and
-  unresolved choices checked against the accepted basis; separate final audit and
-  owner decision before downstream setup. Acceptance is not authored by the
-  implementation contributor. This Group 2 proposal is partial work toward that
-  result, not a claim that the deliverable is already complete.
-- **Needed inputs / use conditions:** Consume the verified Group 1 snapshot for
-  structure, then the actual accepted Group 2 snapshot for final audit; method
-  resources fix the ordering (PRD §6.2–6.3). An auditor's actual independent return
-  and the owner's final decision are required for the downstream accepted basis;
-  both are pending, no fabricated bindings. Current source changes must be checked
-  for which accepted decisions they affect; do not reopen unaffected identities.
-- **Boundary:** Produces the decomposition basis, not local ScopeOfWork contracts,
-  production files or general project-management automation. The existing
-  authorized decomposition proceeds before its own future locality exists.
-
-### DEL-04-02_local-execution-contracts — Use local goals, conditions and reasoning in Root
-
-- **ParentPackageID:** PKG-04. **Type:** Local execution contract and work set.
-  **ResponsibleParty:** TBD — execution-planning contributor.
-- **Local goal:** Accepted, activated Root contributions have usable local
-  commitments and evidence-informed input/use conditions, and can choose and
-  revise action while checking their effects on neighboring uses.
-- **CoversScopeItems:** SOW-0012, SOW-0013, SOW-0014.
+- **ParentPackageID:** PKG-04. **Type:** Reconciliation procedure and application set.
+  **ResponsibleParty:** TBD — reconciliation-practice contributor; implementation
+  owners carry their own same-PR applications, with Agent 0 integration review.
+- **Local goal:** The reconciliation performed by workers makes the affected
+  holdings, actual result, evidence and local declarations agree before integration,
+  or exposes a consequential unresolved condition to its actual decision owner.
+- **CoversScopeItems:** SOW-0006, SOW-0007, SOW-0012, SOW-0013, SOW-0014.
   **SupportsObjectives:** OBJ-001, OBJ-002, OBJ-003, OBJ-004.
-- **Anticipated artifacts:** For each accepted/activated DEL, the particular
-  ScopeOfWork.md, deliverable.yaml and Work/ locality using the numeric path
-  convention. ScopeOfWork carries accepted scope/objectives, outputs, boundaries,
-  criteria and verification; YAML carries actual consumer needs/conditions and
-  useful code/check/source references; Work/ carries current reasoning, evidence,
-  alternatives, consequential attempts and unresolved conditions with maturity
-  explicit. Distinct DEL localities are instances of this contract/work kind,
-  not new decomposition Deliverables. Their continuing content ownership passes
-  to the contributor responsible for that local goal; this setup contribution
-  does not control everyone's subsequent work.
-- **Evaluation:** After authorized setup, apply applicable ScopeOfWork validation
-  and `python3 -m tools.deliverables --project . check`, then inspect relevant
-  neighborhoods and assess actual conditions. Demonstrate A3 on a real authorized
-  local action whose evidence changes its route/understanding, examining affected
-  uses; retain recovery information sufficient for A8. These checks do not mark
-  suitability automatically and do not require a complete graph.
-- **Needed inputs / use conditions:** The final accepted decomposition and
-  selected activation scope are necessary before materialization (PRD §6.3), from
-  DEL-04-01_execution-decomposition and actual owner/coordinator steering.
-  Consume the checked current-locality path from DEL-03-01_maintenance-toolkit
-  and applicable authoring/authority route from DEL-02-01_maintenance-procedures;
-  the observed legacy mismatch holds live setup, not all planning work. Each
-  consumer's specific needs are authored from its accepted scope and relevant
-  sources; unknown suppliers remain unknown. A3 requires an actual authorized
-  change and evidence, not synthetic empty YAML; select that case with the owning
-  contributor when execution starts.
-- **Boundary:** No legacy phase folders or lifecycle records are silently adopted.
-  Setup does not alter source commitments to fit a validator or move code and
-  publications into Work/. Unchanged declarations stay unchanged. No second
-  progress graph or upstream supplier commitment is manufactured.
+- **Anticipated artifacts:** An applicable maintained reconciliation procedure
+  at workflows/bounded-reconciliation/WORKFLOW.md and its existing invocation
+  points in AGENTS, project-setup/package activation and coordinated-knowledge-work;
+  reuse PR #1779's implemented guidance and change only demonstrated gaps. A
+  bounded application produces warranted edits to the affected ScopeOfWork,
+  Work and needs/pointers alongside the actual change, with consequential reasoning
+  in the owning work. Add new working material only for a real subject and link
+  it from the next contributor's reading path; a no-edit finding needs only a
+  brief return/PR statement. Initial local contracts and needs under §8.1 remain
+  concrete formation outputs at each owning locality. No parallel reconciliation
+  manual, central register or separate routine assessment report is produced.
+- **Evaluation:** In a selected actual maintenance change, compare implementation
+  and evidence with affected declarations before integration, follow relevant
+  uses, and verify that warranted corrections or explicit unresolved conditions
+  remain in the owning sources. Distinguish missing behavior from stale description
+  or missing evidence; do not weaken a commitment to make it appear satisfied.
+  Reuse checked PR #1779 evidence where applicable. A3 additionally requires the
+  formation and actual action/use-condition evidence in §8.1. A4's specific shared
+  reference repair remains DEL-02-02_shared-meaning-reference's content work;
+  this Deliverable supplies and examines the practice used to reconcile it.
+- **Needed inputs / use conditions:** When a concrete change affects a holding,
+  consume its authorized scope, actual candidate/diff and verification, the owning
+  ScopeOfWork/Work/needs, and relevant consumer sources at their real revisions.
+  Select the bounded case and source revision in its execution brief; these are
+  not supplied by a global census. Formation requires the final accepted
+  decomposition and selected activation before live setup (§8.1); existing
+  checked tooling comes from maintained PKG-03 sources. An unknown input/use
+  condition stays explicit and dependent work stays held while unaffected work
+  continues. Goal/framing concerns go to human–Agent 0 reflection supported by
+  DEL-04-02_reflective-review; no automatic escalation loop is established.
+- **Boundary:** This is the SAME pre-merge reconciliation in the implementation
+  PR, not an extra assessment stage. PKG-02 invokes it, PKG-03 supplies tools,
+  and local owners make and retain their source edits. PKG-04 does not manage
+  everyone's Work centrally or require a separate approval after ordinary repairs.
+  Commitments, acceptance criteria, risk and release retain their actual owners.
 
-### DEL-05-01_consumer-use-guide — Obtain and qualify an identified library selection
+### DEL-04-02_reflective-review — Reflective review of the practice
+
+- **ParentPackageID:** PKG-04. **Type:** Reflective-practice guidance and criteria set.
+  **ResponsibleParty:** TBD — practice-guidance contributor; the human and Agent 0
+  conduct the actual dialogue and retain their decision responsibilities.
+- **Local goal:** Human–Agent 0 reflection can examine whether reconciliation,
+  the chosen local goals and the framing of work still help the intended result,
+  and produce a warranted revision or an explicit reason to retain the practice.
+- **CoversScopeItems:** SOW-0011, SOW-0014.
+  **SupportsObjectives:** OBJ-001, OBJ-002, OBJ-003, OBJ-004.
+- **Anticipated artifacts:** Reuse and, where warranted, clarify guidance/criteria
+  in agents/AGENT_HELP_HUMAN.md and the relevant existing
+  workflows/coordinated-knowledge-work/WORKFLOW.md passages. Make it usable to
+  notice a changed question, compare local completion with intended use, examine
+  the cost and warrant of monitoring, and decide whether to retain the route,
+  revise a method or return a commitment/framing choice to the owner. Keep needed
+  explanatory rationale with that guidance or affected owning Work. Initial
+  objective-grounded decomposition and acceptance outputs in §8.1 remain actual
+  formation obligations, not a new enduring product of this Deliverable. A revised
+  existing passage and a bounded warranted application may be sufficient; do not
+  clone these roles/workflows into another manual or require a new program.
+- **Evaluation:** Examine a bounded real framing/practice question with the human
+  and Agent 0 against intended use, evidence, uncertainty and consequences. Assess
+  whether the guidance helped identify a warranted retain/change decision and
+  whether any authorized consequence reached the governing text/local work.
+  The owner's present reframing is available context, not proof that all future
+  guidance or A3 is complete. A3 still requires accepted/set-up scope and the
+  actual local action/use-condition case in §8.1. Check an instruction revision
+  under its preceding basis (R06); proposed guidance cannot authorize itself.
+- **Needed inputs / use conditions:** Use the person's current purpose/steering,
+  accepted objectives and affected local goals, concrete experience from the
+  bounded work/reconciliation, and the actual HELP_HUMAN/coordinated-knowledge-work
+  basis before proposing changes. A burden, repeated mismatch or changed purpose
+  can occasion reflection; no calendar/check-in or exhaustive audit is required.
+  During formation, consume the verified Group 1 basis and actual later decisions
+  for the decomposition; identify gaps rather than fabricate acceptance. Unknown
+  warrants remain unknown, and reserved choices go to the human.
+- **Boundary:** Human judgment directs and bounds reflective review. Dialogue/meetings are
+  activities, not a stream of mandatory reports or successive monitoring levels.
+  Preserve only consequential reasoning and warranted changes in existing owning
+  material; no routine reflection receipts. PKG-04 examines/improves the practice
+  without taking local owners' authority. Other projects may later adopt matured
+  practice; no rollout, consumer policy change or automatic model loop is in scope.
+
+### DEL-05-01_consumer-use-guide — Obtain, qualify and inspect identified library material
 
 - **ParentPackageID:** PKG-05. **Type:** Consumer-use and compatibility guide.
   **ResponsibleParty:** TBD — technical publishing contributor.
-- **Local goal:** A consumer can consult, invoke or copy selected library material
-  with the required resources/notices and actual basis, and assess a claimed
-  interface against a named maintained contract without adopting Root authority.
-- **CoversScopeItems:** SOW-0019, SOW-0020, SOW-0025.
+- **Local goal:** Consumers can obtain/use identified material, assess named
+  compatibility, inspect versions and consequential changes, and choose adoption
+  while maintainers preserve source/recovery and prepare publication through
+  ordinary mechanisms with owner release authority intact.
+- **CoversScopeItems:** SOW-0019, SOW-0020, SOW-0022, SOW-0023, SOW-0025, SOW-0026.
   **SupportsObjectives:** OBJ-002, OBJ-003, OBJ-005.
-- **Anticipated artifacts:** A documented files/Git/archive use path, resource and
-  notice requirements, source/adaptation distinctions and compatibility limits
-  in the existing README and selected tool/workflow/reference guides; add a small
-  owning guide only if those homes cannot make the route usable. Named-consumer
-  qualification evidence at a specified revision, with cleared public fixtures
-  or summaries and private evidence retained locally. Supported path/adapter
-  guidance before incompatibility; implementation of a necessary existing-tool
-  repair remains DEL-03-01_maintenance-toolkit. No new adapter allocation occurs
-  through this guide.
-- **Evaluation:** A6 obtains and uses identified material without an undisclosed
-  checkout/private dependency; resources/notices remain present. Check claimed
-  compatibility against the actual named maintained contract/fixture revision.
-  Generic examples and Root component tests do not substitute. Public-boundary
-  and credential/private-term checks apply to the actual distribution candidate.
-- **Needed inputs / use conditions:** The selected export/use surface and its
-  resources/licenses at the candidate revision are required before qualification.
-  PRD R13/A6 require a named consumer contract/fixtures; **consumer, source location
-  and exact revision are TBD (Q-04)** until the actual interface is selected and
-  authorized evidence is available. App v4/SWBPIPE are possible independent
-  consumers, not assigned suppliers; no private inventory is required now. Before
-  an incompatible change, require an evidenced supported path or coordinated
-  adapter, with the consumer's authority preserved. Without that input, ordinary
-  guide work continues but the named compatibility claim remains unverified.
-- **Boundary:** Consumers own data, adoption, product implementation and release.
-  No undisclosed private input becomes a public build/use dependency; no external
-  project write, contact or verification is authorized by this proposal alone.
+- **Anticipated artifacts:** Obtaining/copying/version-selection and update-
+  inspection guidance in the existing README and selected tool/workflow/reference
+  guides, with resources, notices, dependencies, limitations, source/adaptation
+  distinctions and named compatibility evidence. Git history, actual PR descriptions
+  and ordinary release notes carry the old/new basis, reason, changed meaning/use
+  and migration consequences; no parallel edition/history deliverable or notice
+  register. Retain documented routes to commit-pinned history and editions,
+  including the completed archive transition and original consumer pins. A
+  concrete identifiable publication candidate and meaningful change account are
+  still required for A7: prepare them from verified maintained sources through
+  the ordinary review/publication route as a bounded application of this guide,
+  not a new source home or a release act. Existing publications remain holdings
+  maintained by their responsible contributors.
+- **Evaluation:** A6 obtains/uses identified material with resources/notices and
+  checks the actual named maintained contract/fixtures at a specified revision;
+  generic examples or Root component tests do not substitute. A7 prepares the
+  identifiable candidate and meaningful account, checks its actual delivery form,
+  and exercises the documented release/diff inspection against an identified prior
+  basis. A Git log alone is insufficient. Distinguish proposed, integrated,
+  published, examined and adopted; partial/failed inspection cannot claim no change.
+  Verify historical bytes actually relied on and reuse preservation evidence;
+  do not re-audit all history. Public credential/private-term checks apply.
+- **Needed inputs / use conditions:** Before qualification, require the selected
+  use surface, its resources/licenses and candidate revision. The named consumer,
+  maintained contract/fixture location and exact revision remain TBD (Q-04).
+  Before A7, bind a verified candidate/version label, prior comparison revision
+  and actual affected-holdings account (Q-05); use existing repository/release
+  facilities and publication sources at their maintained homes. For a claimed
+  incompatible interface change, require a supported path or coordinated adapter
+  before that change; PKG-03 owns any separately justified implementation. Historical
+  pins and editions must identify the content used. Scheduling/external delivery
+  applies only if separately selected with actual configuration/authority.
+- **Boundary:** Consumers retain data, authority, adaptation, adoption and product
+  release; the owner publishes named versions, downstream default, while explicitly
+  following main remains development. A merge is not publication. No new adapter
+  mandate, consumer work/contact, private-input export or archival removal is
+  authorized. Source publications and local Root work are not automatically bundled
+  for all consumers. Removing the separate DEL-05-02 does not remove R15/R16/A7.
 
-### DEL-05-02_publication-candidate — An inspectable version and a recoverable change account
+## 9. Interfaces, allocation reasons and evidence coverage
 
-- **ParentPackageID:** PKG-05. **Type:** Versioned library publication package.
-  **ResponsibleParty:** TBD — technical publishing contributor.
-- **Local goal:** The owner can review an identifiable publication candidate and
-  meaningful change account, and consumers can inspect changes from their actual
-  basis while retaining recoverable source/edition history and independent adoption.
-- **CoversScopeItems:** SOW-0022, SOW-0023, SOW-0026.
-  **SupportsObjectives:** OBJ-003, OBJ-005.
-- **Anticipated artifacts:** A named candidate from a selected verified library
-  revision, its required resources/notices/dependencies/limitations and meaningful
-  old/new change account in the existing publication/review route; documented
-  polling/inspection using ordinary release/diff facilities, including failed or
-  partial inspection, examined-versus-used basis and migration consequences.
-  Source-preserving edition/render outputs only for the selected publication
-  form, using existing rendering tools if applicable. Preserve the existing
-  archive recovery route and original consumer pins; do not repeat the reset or
-  remove plans/ or _DomainEngines/. Copies/renders are derivative of the named
-  maintained source, not new source homes.
-- **Evaluation:** A7 exercises the actual documented inspection against a prior
-  identified basis, checking no-change/changed/partial-or-failed reporting as
-  applicable. Verify the candidate's real delivery form and source/notice/resource
-  completeness. For any historical bytes actually relied on, verify reachability
-  and selected content, reusing applicable prior preservation evidence. This is
-  candidate preparation, never an owner release or claimed consumer adoption.
-- **Needed inputs / use conditions:** Require a selected verified candidate
-  revision, prior comparison basis and affected-holdings change descriptions;
-  exact candidate/version label and comparison revision are TBD until preparation
-  (Q-05). The consumer path and declared compatibility limits from
-  DEL-05-01_consumer-use-guide must match the candidate before it is proposed for
-  publication. Retained edition sources and archive references must identify the
-  historical basis relied on; the reset's accepted preservation evidence is an
-  input, not authority for a fresh global history audit. Scheduling or external
-  delivery only applies if separately selected with actual configuration/authority.
-- **Boundary:** Publication describes and packages selected verified holdings.
-  It does not author all their underlying claims or reopen every edition; affected
-  meaning changes route to their owning contribution. A merge is not publication.
+The work uses bounded input/use conditions, not a complete dependency DAG or
+supplier appointments. Preliminary and final uses can differ. Source-file
+relevance does not grant exclusive ownership or create a finish-to-start gate.
 
-## 9. Interfaces, grouping reasons and acceptance coverage
-
-These are bounded use conditions and integration responsibilities, not an execution
-DAG, supplier appointments or finish-to-start promises. Source availability and
-suitability must be assessed for the specific case. Preliminary and final uses
-may differ; no Package completion gate is inferred from an input named above.
-
-| Interface / possible overlap | Proposed treatment |
+| Interface | Ownership / use condition |
 |---|---|
-| Entry and consumer guide both touch README or an owning index | DEL-01-01_library-discovery-guide owns navigation meaning; DEL-05-01_consumer-use-guide supplies obtaining/copying/use conditions. Agent 0 assigns one editor for a shared change and checks the combined result. No directory is exclusively owned by a DEL. |
-| Reference, instruction and tool changes share locality/authority terms | DEL-02-02_shared-meaning-reference establishes the warranted applicability; DEL-02-01_maintenance-procedures changes method/authority clauses; DEL-03-01_maintenance-toolkit changes executable support/direct usage. A single coordinated diff may serve all; file overlap does not license competing writes. |
-| Setup must use means that need repair, while those means may later have a locality | Existing authorized Root maintenance procedure can repair selected means at their actual source before materialization. The accepted decomposition supplies target identity/scope; a verified tool/method path is needed before live setup. Record that actual checked change in the resulting locality later; no recursive setup or fabricated completion. |
-| A repaired output versus available maintenance procedure | Tool/reference authors produce the changed holding; DEL-02-01_maintenance-procedures must establish reusable procedure and A2/A5 evidence. One actual case may support both; reuse its checked evidence rather than create duplicate reports. |
-| Historical retention versus retirement authority | PKG-05 retains source/edition routes and existing pins (SOW-0026); PKG-02 accounts for SOW-0030/0032 exclusions/reservations. Neither creates removal scope. |
-| Generic reusable library surface versus named consumer interface | DEL-05-01_consumer-use-guide requires the actual contract/fixture basis before its compatibility claim. A library component pass cannot qualify an unknown consumer; consumer adoption and release do not gate a verified library interface. |
-| Content meaning versus versioned delivery | DEL-02-02_shared-meaning-reference owns scoped semantic clarification; DEL-05-02_publication-candidate packages/checks identified source and explains changes. Historical editions retain earlier-basis qualifications; no blanket re-render or new release authority. |
+| PKG-02 maintenance route and PKG-04 reconciliation | DEL-02-01_maintenance-procedures invokes the same-PR practice; DEL-04-01_library-reconciliation owns that practice; DEL-04-02_reflective-review supports its examination. SOW-0006/0007 move to PKG-04 to avoid duplicate procedure ownership. Actual content/code corrections remain with the implementation owner, using one shared-file editor. |
+| PKG-04 and coordinated knowledge work | The workflow supplies realization and pre-integration coordination. Its reusable method is not an execution undertaking. PKG-04's practice contribution is carried out through concrete undertakings, bounded briefs and local owners, not a parallel coordinator or assessment stage. |
+| Formation and ongoing self-monitoring | SOW-0011–0014 remain mandatory, accountable to PKG-04, with concrete formation outputs/authority in §8.1. The accepted decomposition and local contracts are inputs to work and reflection; PKG-04 does not centralize or automatically export them. No recursive setup or extra decomposition product. |
+| PKG-04 and PKG-03 | Actual tools and direct usage contracts belong to PKG-03; monitoring uses their truthful, bounded results and human judgment. Reuse the PR #1779 current path/evidence. No self-monitoring application, universal graph or extra helper is implied. |
+| Specific content and general reconciliation | DEL-02-02_shared-meaning-reference owns its bounded reference/publication clarification and F-02; DEL-04-01_library-reconciliation supplies the practice. The same PR carries necessary source edits and evidence; it does not create duplicate reference ownership. |
+| Entry and consumer guidance | PKG-01 owns navigation meaning, PKG-05 supplies obtaining/version/use conditions. Shared README/index edits have one editor and are checked together. Publication sources remain at their homes. |
+| Version information and publication | SOW-0022/0023/0026 now map to DEL-05-01_consumer-use-guide. Ordinary Git/PR/release mechanisms carry the actual change account and candidate identity. A7 still requires a real candidate and exercised inspection. No separate version-history product; actual release remains the owner act. |
+| Historical retention and consumer independence | PKG-05 preserves documented historical routes/pins; PKG-02 retains frozen/additional-removal boundaries. Neither creates removal or consumer-adoption scope. Named compatibility still needs Q-04 evidence; no private inventory or consumer rollout is commissioned. |
 
-All Packages are design-scoped to one discipline. PKG-02's procedure set and
-reference set are different artifact kinds (action guidance versus definitions/
-applicability); PKG-04's decomposition and local contracts are design basis versus
-particular commitments/work; PKG-05's consumer guide and publication package are
-use/compatibility instructions versus a versioned transferable result. PKG-01 and
-PKG-03 each have one kind-level Deliverable. There is no sheet/file/command/edition
-per Deliverable rule. Scope is partitioned by accountable outcome, while each
-contribution remains subject to the applicable authority, coherence, evidence and
-public-boundary constraints regardless of those constraints' Package home.
+PKG-04's two artifact kinds are a usable reconciliation procedure/application set
+and reflective guidance/criteria for judging that practice and framing. Neither is
+an instance-per-task/report split. PKG-02's procedure set remains the broader
+maintenance route, and its reference set remains content clarification. The other
+Packages retain their concrete kinds. All contributions remain subject to the
+accepted evidence, authority and public-boundary constraints regardless of the
+scope item's accountable home.
 
 ### Objective-to-Deliverable view
 
-Derived from the canonical ledger; shared objectives indicate purpose, not input
-edges. Every accepted objective has proposed production support.
+Derived from the canonical ledger; shared objectives indicate purpose, not edges.
 
 | ObjectiveID | MappedDeliverables |
 |---|---|
-| OBJ-001 | DEL-01-01_library-discovery-guide, DEL-02-01_maintenance-procedures, DEL-03-01_maintenance-toolkit, DEL-04-01_execution-decomposition, DEL-04-02_local-execution-contracts |
-| OBJ-002 | DEL-01-01_library-discovery-guide, DEL-02-01_maintenance-procedures, DEL-02-02_shared-meaning-reference, DEL-03-01_maintenance-toolkit, DEL-04-01_execution-decomposition, DEL-04-02_local-execution-contracts, DEL-05-01_consumer-use-guide |
-| OBJ-003 | DEL-01-01_library-discovery-guide, DEL-02-01_maintenance-procedures, DEL-02-02_shared-meaning-reference, DEL-04-02_local-execution-contracts, DEL-05-01_consumer-use-guide, DEL-05-02_publication-candidate |
-| OBJ-004 | DEL-02-01_maintenance-procedures, DEL-03-01_maintenance-toolkit, DEL-04-01_execution-decomposition, DEL-04-02_local-execution-contracts |
-| OBJ-005 | DEL-01-01_library-discovery-guide, DEL-02-01_maintenance-procedures, DEL-03-01_maintenance-toolkit, DEL-05-01_consumer-use-guide, DEL-05-02_publication-candidate |
+| OBJ-001 | DEL-01-01_library-discovery-guide, DEL-02-01_maintenance-procedures, DEL-03-01_maintenance-toolkit, DEL-04-01_library-reconciliation, DEL-04-02_reflective-review |
+| OBJ-002 | DEL-01-01_library-discovery-guide, DEL-02-01_maintenance-procedures, DEL-02-02_shared-meaning-reference, DEL-03-01_maintenance-toolkit, DEL-04-01_library-reconciliation, DEL-04-02_reflective-review, DEL-05-01_consumer-use-guide |
+| OBJ-003 | DEL-01-01_library-discovery-guide, DEL-02-01_maintenance-procedures, DEL-02-02_shared-meaning-reference, DEL-04-01_library-reconciliation, DEL-04-02_reflective-review, DEL-05-01_consumer-use-guide |
+| OBJ-004 | DEL-02-01_maintenance-procedures, DEL-03-01_maintenance-toolkit, DEL-04-01_library-reconciliation, DEL-04-02_reflective-review |
+| OBJ-005 | DEL-01-01_library-discovery-guide, DEL-02-01_maintenance-procedures, DEL-03-01_maintenance-toolkit, DEL-05-01_consumer-use-guide |
 
-### Proposed evidentiary contributions to PRD acceptance
+### Accepted criteria and remaining evidence
 
-These are evaluations of the accepted criteria, not new or amended criteria.
-One authorized case can establish several claims, with limitations explicit.
-
-| PRD criterion | Principal proposed result / evidence |
+| Criterion | Accountable contribution and claim boundary |
 |---|---|
-| A1 | DEL-01-01_library-discovery-guide's bounded route, using actual local conditions from DEL-04-02_local-execution-contracts and query limits from DEL-03-01_maintenance-toolkit |
-| A2 | DEL-02-01_maintenance-procedures's actual maintenance case; DEL-03-01_maintenance-toolkit's current-locality repair is a concrete candidate |
-| A3 | DEL-04-01_execution-decomposition's accepted goal mappings plus DEL-04-02_local-execution-contracts's actual action/condition and revised understanding with affected uses examined |
-| A4 | DEL-02-02_shared-meaning-reference's scoped applicability/meaning reconciliation, using DEL-02-01_maintenance-procedures's evidence and review route |
-| A5 | DEL-02-01_maintenance-procedures's change to maintenance means under the preceding basis, supported by the actual affected tool/entry change; no self-authorization |
-| A6 | DEL-05-01_consumer-use-guide's identified copy/use case and named-contract qualification; Q-04 remains unresolved |
-| A7 | DEL-05-02_publication-candidate's real delivery form and exercised prior-basis inspection, with DEL-05-01_consumer-use-guide's resource/notice/compatibility limits |
-| A8 | DEL-02-01_maintenance-procedures's recovery/custody case and DEL-04-02_local-execution-contracts's actual retained basis/conditions; custody enforcement must be observed, not assumed |
+| A1 | DEL-01-01_library-discovery-guide uses the actual formation outputs/localities (§8.1) and PKG-03's truthful query limits; no complete graph required. |
+| A2 | DEL-02-01_maintenance-procedures and DEL-03-01_maintenance-toolkit reuse the actual PR #1779 case for supported claims; PKG-04 owns the reconciliation practice it invokes. Full operational coverage is not established by its test count. |
+| A3 | PKG-04 accounts for actual accepted decomposition, setup and local conditions through §8.1. DEL-04-01_library-reconciliation examines actual action/evidence and affected uses; DEL-04-02_reflective-review examines changed understanding/framing with human judgment. Neither guidance alone nor a discussion substitutes for the required accepted/set-up case. |
+| A4 | DEL-02-02_shared-meaning-reference's scoped inconsistency/qualification case, using DEL-04-01_library-reconciliation and appropriate verification; preserve historical bases and values. |
+| A5 | DEL-02-01_maintenance-procedures and the affected holding's owner retain preceding-basis verification/adoption authority. PKG-04's practice/guidance revisions use those methods; reuse applicable PR #1779 evidence, with remaining claims explicit. |
+| A6 | DEL-05-01_consumer-use-guide's identified obtaining/use case, resources/notices and named-contract qualification at an explicit revision; Q-04 remains unresolved. |
+| A7 | DEL-05-01_consumer-use-guide's ordinary publication-preparation/update-inspection application produces the identifiable candidate and meaningful account and exercises comparison with a prior basis (Q-05). Actual delivery-form checks, limitations and independent adoption remain; deleting the standalone Deliverable does not waive this criterion. |
+| A8 | DEL-02-01_maintenance-procedures's recovery/custody case, using real retained local work or a labelled case. Formation supplies the local contracts/work; reconciliation preserves current meaning and evidence. Custody release/recovery and actual enforcement limits remain to be demonstrated where applicable. |
 
-## 10. Decisions proposed, findings and open matters
+## 10. Owner decisions translated, correspondence and open matters
 
-Group 1 decisions are already accepted. The choices below propose the Group 2
-structure and its treatment of exceptions; they are not owner rulings. No
-substantive change to the Group 1 basis is proposed or needed to prepare this
-structure. An actual later conflict reopens only the affected decisions through
-the applicable authority.
+The owner approved the discussed structural direction with “Approved. Proceed
+accordingly.” This section records the author's translation, not an invented
+exact-byte approval or a completed checkpoint snapshot. Agent 0 checks fidelity
+and records the actual decision. No accepted Group 1 statement needs revision;
+allocation and vocabulary clarification suffice. Any contrary substantive finding
+must be returned explicitly, not silently amended into the accepted history.
 
-| Ref | Proposal / finding | Consequence and next treatment |
+| Previous proposal identity | Current treatment under owner direction |
+|---|---|
+| PKG-04, Root local execution | PKG-04, Self-monitoring and reflective improvement; initial formation remains explicit in §8.1. |
+| DEL-04-01_execution-decomposition | Numeric identity DEL-04-01 retained; now DEL-04-01_library-reconciliation. Prior decomposition obligation SOW-0011 moves to the formation allocation under DEL-04-02_reflective-review. |
+| DEL-04-02_local-execution-contracts | Numeric identity DEL-04-02 retained; now DEL-04-02_reflective-review. Prior setup/needs obligations SOW-0012/0013 move to DEL-04-01_library-reconciliation's formation allocation; SOW-0014 supports both bounded contributions. |
+| DEL-05-02_publication-candidate (discussed as library editions/change information) | Removed from active structure; ID is not reused. SOW-0022/0023/0026 move to DEL-05-01_consumer-use-guide and ordinary maintenance/publication mechanisms; R15/R16/A7 remain intact. |
+
+SOW-0006/0007 move from PKG-02 to PKG-04 to give reconciliation/connected-change
+practice one accountable home. PKG-02 still invokes it and owns the broader
+maintenance route. SOW-0016/F-02 remains PKG-02's specific content contribution,
+not a competing owner of the general practice. All other Package homes remain
+unchanged. DEL-04-01 and DEL-04-02's shared SOW-0014 mapping separates source
+reconciliation from reflection on goals/framing; it creates no duplicate authority.
+
+| Ref | Current condition | Consequence |
 |---|---|---|
-| G2-01 | Five flat Packages partition scope by intended use, not O/R labels, directories or the three forms. §7 gives discipline and boundaries. | Owner confirms/corrects the partition at Group 2. Every OUT/TBD item has an accountable home without production allocation. |
-| G2-02 | Eight kind-level Deliverables group semantically coupled artifacts and verification. A revised holding is sufficient; repeated files/cases are instances. | Owner confirms/corrects goals and anticipated results. No general application, three-output checklist or one-workflow-per-operation mandate. |
-| G2-03 | SOW-0011 maps to the ongoing decomposition itself; SOW-0026 maps to historical preservation within publication preparation. | Neither is restarted as a duplicate project/removal job. Existing accepted work/evidence remains usable. |
-| F-01 | Known applicability mismatch: phase/control scaffolding and unconditional status references conflict with the selected current Root locality when used as its setup route (§6). | DEL-03-01_maintenance-toolkit and DEL-02-01_maintenance-procedures must establish a compatible selected path before DEL-04-02_local-execution-contracts performs live setup. This is an implementation prerequisite, not a blocker to proposing Group 2. Do not weaken validators or fabricate control files to pass. |
-| F-02 | Shared reference wording needs bounded applicability reconciliation with independent consumer authority and frozen Runtime standing (§6). | DEL-02-02_shared-meaning-reference preserves historical/adopted contracts and compares the affected guidance/publication claims. No wholesale reference or publication rewrite is justified. |
-| Q-01 | RESERVED — SOW-0032, PKG-02: additional plans/, _DomainEngines/ or archival removals. | Retain unless the owner specifically changes disposition. No production Deliverable allocated. |
-| Q-02 | CONTINGENT — SOW-0033, PKG-03: new bespoke tooling/companion/adapter needs a demonstrated gap. | No production Deliverable allocated. Existing-tool repair under SOW-0009/0024 is proposed; that does not assume a new product. A gap can be investigated locally; changed commitments return to the owner. |
-| Q-03 | RESPONSIBILITY — all eight Deliverables have an explicit TBD implementation contributor. Agent 0's integration role is established; no individual assignments have been made. | Assign a capable owner in each bounded execution brief. Does not require a new staffing layer or block structural review; no work is silently assigned to this preparer. |
-| Q-04 | INPUT BINDING — DEL-05-01_consumer-use-guide, SOW-0020: named consumer, maintained contract/fixture location and exact revision remain TBD. | Must be resolved before A6/named compatibility is claimed or an incompatible change proceeds. Continue independent use-guide work. No unauthorized consumer access/contact implied. |
-| Q-05 | CANDIDATE BASIS — DEL-05-02_publication-candidate, SOW-0022/0023: actual verified candidate revision, candidate label and comparison basis remain TBD until publication preparation. | Bind real sources for A7; do not invent a release or assume main was published. Owner release remains a separate act. |
+| F-01 | Repaired for the current route by PR #1779; sources/evidence in §6.1 remain applicable. | Reuse the tools and instructions in formation and maintenance. No unperformed build hold; final accepted scope, activation, authored localities and actual suitability remain necessary. No whole-Deliverable completion claimed. |
+| F-02 | Shared reference applicability still needs bounded reconciliation with independent consumer authority and frozen Runtime standing. | DEL-02-02_shared-meaning-reference owns the particular content repair, using PKG-04's practice. No global publication/reference rewrite. |
+| Q-01 | SOW-0032 / PKG-02: further archival disposition remains reserved. | Retain plans/, _DomainEngines/ and other unselected paths; no production allocation or removal authority. |
+| Q-02 | SOW-0033 / PKG-03: additional bespoke tooling remains conditional on a demonstrated gap. | No production allocation or monitoring-service mandate. Reuse PR #1779; further changes need evidence and actual authority. |
+| Q-03 | Seven future contributor assignments remain TBD. | Agent 0 assigns bounded work under actual authority. Local owners retain their own commitments/Work/needs; human–Agent 0 dialogue supplies reflection, not another staffing tier. |
+| Q-04 | DEL-05-01_consumer-use-guide / SOW-0020: named maintained consumer contract/fixtures and exact revision unresolved. | Required before named compatibility/A6 or an incompatible change; independent guide work can proceed. No rollout or unauthorized external access. |
+| Q-05 | DEL-05-01_consumer-use-guide / SOW-0022/0023: actual verified candidate/version label and prior comparison basis unresolved. | Bind real sources for A7 within ordinary publication preparation/inspection; a history log alone does not establish the criterion. Owner release remains separate. |
 
-The material choice for the owner now is the proposed Package/Deliverable
-structure and exception treatment. Q-01 remains a reserved future disposition;
-Q-02 stays conditional. Staffing, case selection and exact version/input bindings
-are operationally unresolved where stated; they are not concealed scope changes
-or extra approvals. Agent 0 has reviewed this candidate against the accepted
-basis, current sources and the selected method; no blocking finding remains
-before the owner's Group 2 decision.
+No substantive conflict with the approved direction was identified by the author.
+The unresolved matters above retain their meanings; this translation creates no
+new reserved structural choice. Agent 0's fidelity review found no material
+discrepancy. Decision/snapshot binding and the separate final audit remain the
+next steps, not a repeated owner question on the approved structural direction.
 
-## 11. Coverage telemetry and preparation checks
+## 11. Coverage telemetry and checks
 
-| Field | Group 2 candidate value |
+| Field | Current working value |
 |---|---|
-| Revision | G2-candidate-2, 2026-10-31 |
-| ScopeItemCount | 33: 26 IN, 5 OUT, 2 TBD, unchanged from accepted Group 1 |
-| PackageCount | 5 flat Packages, one declared discipline each |
-| DeliverableCount | 8 proposed, each coupled to one parent and one concrete artifact kind |
-| ObjectiveCount | 5 accepted identities/meanings |
-| UnassignedScopeItems / multiply assigned Package homes | 0 / 0 |
-| ScopeItemsWithoutDeliverableMapping | 0 IN items; all seven OUT/TBD items have empty production mapping |
-| UnmappedObjectives | 0; every objective has supporting proposed Deliverables |
-| Responsibility completeness | 8 explicit TBD contributor assignments; Agent 0 integration owner retained |
-| Anticipated artifact completeness | 8 of 8 cards name concrete artifact sets, source homes, evaluation and input/use conditions |
-| OpenIssuesByType | Reserved disposition 1 (Q-01); conditional scope 1 (Q-02); staffing 1 covering 8 assignments (Q-03); external input binding 1 (Q-04); publication candidate basis 1 (Q-05) |
-| Material implementation findings | 2: setup-path applicability (F-01), shared-reference applicability (F-02); neither claims a Group 1 contradiction or completed repair |
-| Source / criterion coverage | O1–O5, R01–R17 including all R04 operations, A1–A8 retained and linked to proposed contributions |
+| Revision | G2-candidate-6, 2026-10-31 |
+| ScopeItemCount | 33: 26 IN, 5 OUT, 2 TBD; accepted statements/classifications unchanged |
+| PackageCount | 5 flat Packages with one declared design discipline each |
+| DeliverableCount | 7 active, numeric identities preserved; DEL-05-02 removed and not reused |
+| ObjectiveCount | 5 accepted identities/meanings; all have production support |
+| UnassignedScopeItems / multiple Package homes | 0 / 0 |
+| IN items without production mapping | 0; all seven OUT/TBD items have no production mapping |
+| Production coverage | All 26 IN items covered; SOW-0014 has two distinct contributions within PKG-04 |
+| Responsibility / artifact fields | 7 explicit contributor TBDs; 7 concrete artifact sets, input/use conditions and evaluations |
+| OpenIssuesByType | Reserved disposition Q-01; conditional scope Q-02; staffing Q-03 (7 assignments); named-consumer input Q-04; publication candidate basis Q-05 |
+| Findings | F-01 repaired for current route; F-02 remains bounded content work |
+| Source coverage | O1–O5, R01–R17 (all eight R04 operations), A1–A8 and §§2/5/6 retained |
 
-Preparation checks on this candidate:
+Preparation checks passed on the saved candidate: immutable manifest and PRD
+identity; all 33 accepted scope statements/classifications/source and objective
+mappings (apart from refreshed checkpoint-standing wording); five objective
+meanings; five single-discipline Package declarations; seven coupled active DEL
+IDs; one Package home per scope item; IN-only production coverage; agreement of
+cards, ledger and objective view; local link targets; sole authorized modification.
+Former suffix-bearing IDs occur only in the historical correspondence table; the
+removed ID has no active allocation. Credential and available local host-term
+screening found no issues, without printing private terms.
 
-- **Identity and accepted-basis fidelity — pass:** all three Group 1 manifest
-  entries verify; the PRD hash, current HEAD and branch match the assignment.
-  The snapshot and Group 1 pointer match their committed bytes. All 33 accepted
-  scope IDs, statements, classifications, source/objective mappings and substantive
-  qualifications are preserved; only SOW-0011's checkpoint-status note changes.
-  The five objective table rows are identical to the accepted rows. Vocabulary
-  changes only update the historical proposal/stage standing.
-- **Allocation and references — pass:** one valid flat Package home per scope
-  item; all IN items map to a same-Package Deliverable; no OUT/TBD production
-  mappings. Eight unique filesystem-safe DEL IDs have sequential within-Package
-  counters and correct coupling. All SOW/OBJ/PKG/DEL references resolve; card
-  scope/objective fields agree with the ledger and the objective summary. All
-  R01–R17 and A1–A8 coverage rows remain present. Local Markdown file targets
-  resolve; no conflict markers are present.
-- **Design and boundary inspection — no blocking structural finding identified
-  by the author:** five single-discipline declarations; eight concrete kind-level
-  artifact sets with explicit goals, evaluation, sources and use conditions.
-  Shared-source editing, bootstrap setup, historical retention and independent
-  adoption are addressed in §9. Repeated instances do not become Deliverables.
-  Responsibility is explicitly TBD in eight cases (Q-03), not falsely assigned.
-  Implementation prerequisites and input gaps remain F-01/F-02 and Q-04/Q-05.
-- **Public-content screening — local checks pass:** the maintained credential
-  scanner's `findings` function screened the candidate bytes without findings.
-  The maintained private-term scanner used its permitted local host-term source
-  without printing terms; candidate content/path and JUnit hostname screening
-  found none. This does not claim checking the hosted `PRIVATE_TERMS` secret set
-  or future commit metadata; required integration checks remain with Agent 0.
-- **Write boundary — pass:** only PROJECT_DECOMP.md is modified; no untracked
-  outputs, staged changes, snapshot edits or live localities were created. Checks
-  ran in memory without modifying validators or creating test artifacts.
+Author semantic inspection retained the concrete formation outputs, R07–R10/A3,
+R15/R16/A7's actual candidate and inspection, local ownership and human-grounded
+reflection. No accepted statement required amendment and no true conflict was
+identified. Agent 0 subsequently reviewed the changed allocation, formation
+coverage, reconciliation ownership, reflective guidance and removal of the
+standalone edition/history product against the owner's directions and the PRD.
+Checks confirmed the accepted statements/objective meanings, five packages,
+seven deliverables and complete IN-only production mapping. This is not the
+independent Group 3 audit, implementation evidence or owner product acceptance.
 
-Agent 0 independently reviewed the package purposes, deliverable goals, concrete
-output kinds, input/use conditions, shared-file boundaries and bootstrap route.
-Source inspection confirmed the setup-path mismatch. Read-only checks verified
-the immutable Group 1 manifest, accepted statement/objective fidelity, scope
-allocation, card/ledger/summary agreement, links and stage boundaries. Candidate
-credential and available local host-term screening passed. The proposal needs no
-substantive repair before presentation; F-01/F-02 and Q-01–Q-05 retain their stated
-treatment. This review does not substitute for the independent Group 3 audit.
-No implementation,
-consumer qualification, setup, publication release or product acceptance is
-claimed by these counts. Sources/tools were inspected, not exercised for product
-behavior; no frozen/product builds or external consumer operations were run.
+The existing XRG checker expects CSV cross-register data and would skip this
+inline representation; DOMAIN checks are inapplicable. In-memory table checks
+supply the applicable structural evidence without fabricating registers or changing
+validators. PR #1779's passing evidence is reused, not rerun for this document edit.
+Hosted secret-set/commit-range checks remain distinct from available local screening.
 
-The existing XRG decomposition checker consumes Deliverables.csv/ScopeLedger.csv
-(and optional context registers); it does not inspect this inline representation.
-Its skipped-family result would not validate this candidate. DOMAIN validation
-is inapplicable. Read-only in-memory checks can validate these Markdown tables
-without inventing companion registers or weakening a validator. Group 3's
-independent final audit and the owner's final acceptance remain outstanding.
-Live locality/ScopeOfWork checks apply after authorized setup, not to this design.
+## 12. Working package and next boundary
 
-## 12. Working-package inventory and next boundary
-
-`execution/_Decomposition/PROJECT_DECOMP.md` remains the sole canonical **Group 2
-candidate**. Scope allocation is in §4; concrete outputs and needed inputs are
-local to each §8 card; summaries derive from those declarations. No CSV/JSON
-companions or separate dependency/review/handoff registers are needed at this size.
-
-The accepted Group 1 snapshot and `_LATEST_GROUP1.md` remain byte-identical and
-continue to govern the basis. There is no Group 2 acceptance snapshot or pointer,
-no final accepted pointer and no setup in this contribution. Agent 0's review is
-complete; the owner's Group 2 decision is pending. After that decision, the
-coordinator finalizes its snapshot before the independent Group 3 audit. Stop
-here until that boundary is crossed under the actual authority.
+Only execution/_Decomposition/PROJECT_DECOMP.md is the mutable working surface.
+No companion tables or dependency/review/receipt register is needed. The accepted
+Group 1 snapshot and pointer remain immutable. The owner's structural decisions
+have been translated here and reviewed by Agent 0 for snapshot binding; no final
+decomposition acceptance is manufactured. Agent 0 then commissions
+the separate Group 3 auditor. No live setup or release is performed in this turn.
