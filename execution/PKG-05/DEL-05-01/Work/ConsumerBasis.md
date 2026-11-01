@@ -236,7 +236,8 @@ connects existing bounded evidence to remaining delivery work. The
 obtaining route, dependencies and limitations and propose `library-v1.0.0` as a
 distinct library edition name. The owner approved their content and edition name
 at `c444ec139e3a65c5707264087ac89022abd190dc` in PR #1790 with “Approved.”
-Final product acceptance and release remain separate decisions. Existing scopes, output homes and criteria are unchanged.
+The subsequent acceptance and release decision is recorded below. Existing
+scopes, output homes and criteria are unchanged.
 
 The preparation basis is `35273905a90ee6c1032a7f49db2236ed19371029`; its complete
 source archive has SHA-256
@@ -247,3 +248,23 @@ changed and operational sources are unchanged. The earlier archive remains its
 own approved subject. This proposal adds publication records only. Its PR binds
 the actual candidate head, archive identity, scoped checks and evidence reuse;
 a later integrated release source requires its own correspondence check.
+
+## Accepted and published library edition
+
+The owner approved final product acceptance and public release of
+`fc73de583d25bf792d5c3abb3bf1ac8e0c38f7d6` as `library-v1.0.0`: “I approve both
+decisions.” [The release](https://github.com/sgttomas/chirality/releases/tag/library-v1.0.0)
+publishes that exact source with approved notes, the 1,054-file tracked-source
+archive and SHA256SUMS. Its SHA-256 is
+`e75ce1396e8bb92d4e2f144ba13336ee93a7ad7579494b2a6d21117857733567`.
+The tag target, anonymous archive download, embedded tar commit identity and
+checksum download were verified on 2026-11-01. Every file matches its Git blob
+and executable mode; operational sources are unchanged from the earlier examined
+archive, so selected behavioral evidence is reused with its original limits.
+Full-archive credential and three locally available private-term checks returned
+zero findings; required hosted checks passed on the identical integrated PR tree.
+
+Current standing and discovery-pointer annotations are later source changes, not
+changes to the published archive. Its pre-release records remain historical.
+The accepted undertaking is complete within its stated scope and qualifications;
+consumer adoption, broader compatibility and future publication remain distinct.

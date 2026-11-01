@@ -1,7 +1,7 @@
 # Library publication roadmap
 
 **Course approved by the owner, 2026-11-01: “Proceed accordingly.”** The owner has approved
-90%; final product acceptance and publication remain undecided. This roadmap
+90%; final product acceptance and publication were subsequently approved below. This roadmap
 checks the seven existing deliverables and organizes the remaining delivery work.
 It changes no output, requirement, acceptance criterion or consumer commitment.
 Agent 0 owns the assembled result and the actions below unless an assignment is
@@ -16,7 +16,7 @@ publication notes. Include the complete tracked source, required resources and
 notices; retain historical and Root-only holdings with their existing standing.
 Do not describe this as an installed agent product, a new manual edition, or
 qualification of every historical tool. No new packaging system is needed.
-The owner selected `library-v1.0.0`; publication remains reserved under
+The owner selected and authorized publication of `library-v1.0.0` under
 [PRD R15 and A7](../../docs/PRD.md). A manual's “Consolidated v9” edition name is
 not a library version.
 
@@ -59,7 +59,25 @@ the assembled examination. This roadmap adds the requested delivery planning,
 not new product commitments. New findings must name the affected claim and
 consequence before expanding the work.
 
-## Remaining work, in order
+## Delivery result
+
+The owner approved final acceptance and release of `fc73de583d25bf792d5c3abb3bf1ac8e0c38f7d6`
+with “I approve both decisions.” [Chirality library 1.0.0](https://github.com/sgttomas/chirality/releases/tag/library-v1.0.0)
+was published on 2026-11-01. The tag resolves to that exact commit. The attached
+1,054-file source archive has SHA-256
+`e75ce1396e8bb92d4e2f144ba13336ee93a7ad7579494b2a6d21117857733567`.
+Anonymous downloads of the archive and SHA256SUMS were verified against the
+prepared bytes; the downloaded tar identifies the same source commit.
+The integrated tree matches the checked PR #1790 head. Operational sources are
+unchanged from the previously examined archive; behavioral evidence retains its
+bounded applicability. Full archive credential and three available local
+private-term checks found no issues; hosted checks passed separately.
+
+The route below is fulfilled for this edition. Later standing/pointer annotations
+do not change the released bytes or automatically become a new edition. No
+remaining publication action is assigned by this roadmap.
+
+## Adopted delivery route
 
 1. **Prepare one publication proposal — Agent 0.** The [publication notes](../PKG-05/DEL-05-01/Work/PublicationNotes.md) now provide the reviewable draft; the owner approved their content and `library-v1.0.0` label at `c444ec139e3a65c5707264087ac89022abd190dc` in PR #1790 with “Approved.” Draft the
    release description under DEL-05-01 Work, using the current source as its

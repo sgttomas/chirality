@@ -31,7 +31,12 @@ publication. The [approved publication roadmap](PUBLICATION_ROADMAP.md) connects
 the existing evidence to remaining delivery work and reserved decisions; the
 owner approved that course with “Proceed accordingly.” The owner subsequently approved the
 publication notes and `library-v1.0.0` edition name at `c444ec139e3a65c5707264087ac89022abd190dc`
-in PR #1790 with “Approved.” Final acceptance and release remain separate decisions.
+in PR #1790 with “Approved.” The owner then approved final acceptance of source
+`fc73de583d25bf792d5c3abb3bf1ac8e0c38f7d6` and its public release: “I approve both decisions.”
+[Chirality library 1.0.0](https://github.com/sgttomas/chirality/releases/tag/library-v1.0.0)
+is published at that exact source. The agreed library undertaking is complete
+within its stated evidence limits; subsequent work comes from new steering.
+Consumer adoption and reliance remain independent.
 
 ## Find and carry the work
 

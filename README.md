@@ -59,6 +59,10 @@ product decisions, and adds methods and tools of its own where it needs them.
 
 ## Obtain and use the library
 
+The current owner-published source edition is [Chirality library 1.0.0](https://github.com/sgttomas/chirality/releases/tag/library-v1.0.0),
+from `fc73de583d25bf792d5c3abb3bf1ac8e0c38f7d6`. Its release supplies the source archive,
+checksum, change account, dependencies and qualification limits.
+
 Select the material and its source basis for the work you intend to do. Use an
 owner-published library version when one is available for that purpose. Following
 `main` is an explicit development choice; a merge, an archive tag or an old App

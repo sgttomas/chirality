@@ -4,8 +4,12 @@
 basis is `c444ec139e3a65c5707264087ac89022abd190dc` in PR #1790.
 Release title: **Chirality library 1.0.0**; selected tag name: `library-v1.0.0`. The prefix distinguishes this library
 edition from historical application versions and the manual's Consolidated v9
-edition. The name is approved; publication remains unapproved. No tag or release has
-been created. This proposal is owned by DEL-05-01 under the
+edition. The owner subsequently approved final acceptance and release: “I approve both
+decisions.” [The published edition](https://github.com/sgttomas/chirality/releases/tag/library-v1.0.0)
+is bound to `fc73de583d25bf792d5c3abb3bf1ac8e0c38f7d6`. Its archive retains the
+pre-release standing at that commit; this current annotation records the later
+decision and publication without altering those bytes. These notes are owned
+by DEL-05-01 under the
 [publication roadmap](../../../_Coordination/PUBLICATION_ROADMAP.md).
 
 ## What this edition provides
@@ -16,10 +20,10 @@ its own maintenance execution material. It supports people and agents locating,
 maintaining, examining and reusing identified holdings under their own authority.
 It requires no companion application merely to read or use its instructions.
 
-The proposed delivery is the complete tracked source archive of the approved
+The delivery is the complete tracked source archive of the approved
 publication revision. Historical and Root-only holdings retain their stated
 standing; inclusion does not make every archived tool a supported current product.
-The exact source commit and archive SHA-256 will accompany the released download.
+The release supplies the exact source commit and archive SHA-256.
 The candidate PR identifies the reviewed source and locally checked archive;
 any later integration revision needs its own correspondence check before release.
 
@@ -129,8 +133,7 @@ selected source, local adaptations, product operations, acceptance and adoption.
 Interrupted Root work follows the existing maintenance recovery instructions;
 elapsed time alone grants no right to discard retained work.
 
-The owner's 90% approval and subsequent approval of these notes and the
-`library-v1.0.0` edition name are recorded. Final product acceptance, the exact
-released subject and authorization for public release remain owner decisions. Upon authorization, publish the identified artifact with these
-notes and its source/checksum, verify the download, and update this standing to
-reflect only the acts actually completed.
+The owner approved acceptance and release of the exact source above. Publication
+and anonymous archive/checksum download verification are complete. The release
+page carries these notes with commit-qualified links and the actual release
+standing. Consumers retain their separate adoption and reliance decisions.
