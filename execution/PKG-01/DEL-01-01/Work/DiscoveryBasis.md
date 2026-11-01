@@ -124,3 +124,60 @@ conditional tooling remain under their accepted authority limits.
 The existing need conditions remain accurate for this undertaking and were left
 unchanged. Code pointers now include AGENTS.md and init/init-prompt.md because
 they are relevant entry holdings, including the unchanged session prompt.
+
+
+## Fresh-reader maintenance use after the 60% decision
+
+A bounded Type 2 contributor without inherited conversation context examined
+how a maintainer should preserve workflow-package identity when revising an
+explanatory companion, identify affected uses and leave the work recoverable.
+The source basis was `047da79894bc5631dca564a30113f2cd26ec7ae1`; the loop also
+contained Agent 0's uncommitted record of the owner's 60% decision. This was
+first-use evidence for this brief, not an independent review or universal
+usability claim. No package amendment was assumed or invented.
+
+The route went from AGENTS and LOOP_INIT to a purpose search of current scopes,
+which selected DEL-02-01. Its scope, Work and needs led through the workflow
+guide and canonical package metadata to create-workflow. The manual index led
+to Consolidated v9 Authorship/use and §§6.1–6.6. AGENTS directly supplied the
+consumer and recovery routes. Reading those sources distinguished mutable
+navigation from exact-content reliance, a content change from consumer adoption,
+and recoverable historical work from authority to restart it. The contributor
+found no substantive gap requiring a package or companion edit.
+
+Actual read-only resolver, neighborhood and impact commands succeeded:
+
+```sh
+python3 -B tools/workflow_runtime/resolve_workflow.py --root . --role TASK --workflow create-workflow
+python3 -B -m tools.deliverables --project . neighborhood DEL-02-01
+python3 -B -m tools.deliverables --project . impact DEL-02-01
+```
+
+The resolver retained source-qualified identity and fingerprints. The direct
+consumer view named DEL-03-01, DEL-04-01 and DEL-05-01; transitive impact reached
+all six other deliverables. The contributor inspected conditions and treated
+that breadth as a discovery lead, not an edit list or suitability verdict.
+The optional execution.json was absent in the selected package; that matched
+its documented optional status and required no invented companion.
+
+The inspected v9 Markdown hash was
+`e7efc7c22515f62964af344fe6058bab96240af3f9a96fe32323d10b8128b6f7`.
+Its bytes matched the HTML's named rendering source at
+`6472b49b2a6c7ebf4db1356d7bf83fa3af412305`. This verifies the selected source
+identity, not a fresh rendering or visual examination.
+
+For the unavailable-command case, one isolated subprocess set PATH to a
+nonexistent controlled location; python3 was unavailable and returned exit127.
+This was a labelled simulation, not an actual host outage. The contributor then
+read the supplier YAML and the three direct consumers' declarations as the
+documented fallback. Their conditions and triggers were inspectable, but this
+manual reading did not reproduce transitive closure or prove complete coverage.
+The host environment and repository source bytes remained unchanged.
+
+Agent 0 retains the existing guidance on this evidence. The needed correction
+is stale present-tense approval/standing elsewhere in the owning work, not a
+new discovery method. Q-04/Q-05 are claim-specific: the named-reader and manual
+cases in ConsumerBasis do not resolve every neighboring adopted-interface need.
+Existing need conditions remain accurate and unchanged. This adds bounded
+publication traversal and fallback evidence toward AC-002/003/004; it does not
+claim all discovery, tool failure, compatibility or product criteria complete.

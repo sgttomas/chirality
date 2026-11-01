@@ -1,6 +1,6 @@
 # Reflective practice and formation basis
 
-Maturity: revised reflective-method proposal with retained formation and actual
+Maturity: adopted reflective method with retained formation and actual
 application assessment. The owner approved this content and its output homes at
 `5b2289d93cd86561818b10e452ffbe4425afce11`; the earlier
 candidate's independent examination does not cover this new design.
@@ -20,7 +20,7 @@ limits rather than commission another decomposition or duplicate its records.
 `agents/AGENT_HELP_HUMAN.md` already directs attention to intended outcome,
 changed questions, commitments, evidence and continuity. HELPS_HUMANS examines
 categories, assumptions and design with the human. Coordinated knowledge work
-supplies orchestration. The new proposed reflect-on-work method below supplies
+supplies orchestration. The adopted reflect-on-work method below supplies
 the bounded reflective examination; none of these contributions creates a
 meeting schedule or monitoring layer.
 
@@ -66,8 +66,7 @@ judgment, not merely another explanation or a new monitoring layer.
 
 This case supports bounded reflection and guidance-retention examination. It
 is not measured productivity evidence, proof of all future applications, owner
-product acceptance or a 60% gate decision. This assessment is proposed for owner
-content review. Historical source records remain at their owning homes; no new
+product acceptance or a 60% gate decision. The owner approved this assessment for integration in PR #1785. Historical source records remain at their owning homes; no new
 transcript or reflection-report stream is needed.
 
 
@@ -123,15 +122,15 @@ rationale, not a second manual. A compact method can keep the human's question
 and reasoned retain/change outcome explicit while preserving separate ordinary
 reconciliation and implementation ownership.
 
-This is an explicit OUT-002 source-home refinement proposed for owner review.
+The owner approved this explicit OUT-002 source-home refinement in PR #1785.
 The accepted requirements/AC/VER and immutable formation sources are unchanged.
 Preceding create-workflow and Root authority govern its drafting/examination;
-new text cannot authorize its own registration/adoption. The candidate index
-makes the proposal inspectable, not accepted or installed in another product.
+new text cannot authorize its own registration/adoption. The index made the candidate inspectable before owner approval; Root integration
+does not install or adopt the method in another product.
 
 ## Bounded reading walkthrough and remaining examination
 
-This is an author walkthrough of the saved proposed method, not a new product
+This records the pre-adoption author walkthrough of the saved method, not a new product
 execution or an independent assessment. It uses the actual questions above:
 
 1. With the F-02 validator counterexample, the input is a concrete unsupported
@@ -153,10 +152,39 @@ execution or an independent assessment. It uses the actual questions above:
    manufacture a retain verdict, a monitoring hierarchy or a new recovery report.
 
 The first two cases are real prior evidence, not executions of this new method.
-The third is the present authorized design action; its use/adoption consequences
-remain proposed. Package/resolver checks establish selection and representation,
+The third was the authorized design action subsequently approved and integrated
+in PR #1785. The walkthrough itself did not establish that adoption. Package/resolver checks establish selection and representation,
 not the quality of human judgment. Claude examined the connected design at e99e7e6 with no authority/containment
 blockers; the bounded repair adds the explicit role companion and declares the
-recovery output home. Agent 0 brings all repaired content to the owner together;
-that review did not pre-approve this repaired head or owner acceptance.
+recovery output home. Agent 0 brought the repaired content to the owner together, and the owner
+approved it before integration. Independent review did not supply that approval.
 No automatic A3 acceptance, product completion or 60% advancement follows.
+
+## Readiness reflection and owner decision
+
+At integrated basis `047da79894bc5631dca564a30113f2cd26ec7ae1`, the owner asked
+Agent 0 to use the adopted reflect-on-work method to gauge readiness against
+manual v9 §§7.1/7.3–7.5. The consequential question was whether further production
+would multiply an unresolved foundational mistake or develop a sufficiently
+established foundation. Existing evidence included the actual F-02 counterexample
+and repair, source-bound App reader exercise, selected copy/comparison, and the
+labelled recovery case. The independent readiness assessment found no blocker,
+while narrowing discovery evidence to the entry case and publication evidence to
+the manual-edition candidate.
+
+The reflection retained the accepted structure and methods. The adverse finding
+was incomplete factual reconciliation: several present-tense local descriptions
+still called approved work proposed. Correcting those descriptions and examining
+the reading path is warranted; more monitoring machinery is not established as
+necessary. Fresh-reader discovery, broader usage-contract coverage and genuine
+use of newly adopted guidance remain production priorities. Named-reader evidence
+stays limited to capture/declaration/identity; historical adoption holds apply to
+incompatible changes; procedural custody is not enforced exclusion.
+
+Agent 0 recommended passage to 60% on that basis, then substantive discovery/use
+work and a broader delivery candidate toward 90%. The owner decided: “I approve
+passing the 60% gate and proceeding as you recommend.” This is the actual gate
+decision and authority to continue that course. It does not accept every local
+criterion, release the library, or establish measured productivity. The current
+loop carries the authorized course; later findings can reopen their affected
+premise without discarding unrelated valid work.

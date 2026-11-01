@@ -1,7 +1,7 @@
 # Formation and reconciliation basis
 
 Maturity: integrated setup with a real reconciliation case assessed below;
-owner review of this assessment remains pending. This note explains
+the owner approved this content in PR #1785; product acceptance remains separate. This note explains
 the concrete formation work and remaining application evidence; it is not a
 central copy of other deliverables' work or a recurring reconciliation report.
 
@@ -71,21 +71,20 @@ The valid manual representation evidence was reused; unknown transitive
 historical adoption continued to hold incompatible changes. Agent 0 assesses
 this chain as concrete support for AC-002/005, with the detailed source account
 retained in [DEL-02-02 Work](../../../PKG-02/DEL-02-02/Work/Applicability.md) and
-[PR #1783](https://github.com/sgttomas/chirality/pull/1783). This assessment is
-proposed for owner content review; it does not accept the product or advance a
-gate. DEL-02-01's labelled extraction/custody case supplies no A3 evidence.
+[PR #1783](https://github.com/sgttomas/chirality/pull/1783). This assessment was approved for integration in PR #1785; it does not itself
+accept the product or advance a gate. DEL-02-01's labelled extraction/custody case supplies no A3 evidence.
 
 
 ## Revised maintenance and reflective source homes
 
-The same PR now proposes retiring the generic change workflow and Root Git skill.
+PR #1785 retired the generic change workflow and Root Git skill.
 AGENTS retains compact repository conventions and links the on-demand
 `docs/MAINTENANCE_RECOVERY.md` instructions for interrupted work/custody;
-ordinary authorized briefs carry Git work. DEL-04-02 proposes reflect-on-work for
+ordinary authorized briefs carry Git work. DEL-04-02 supplies the adopted reflect-on-work method for
 human–Agent 0 examination of purpose, commitments, framing and practice. This
 locality's bounded-reconciliation method remains unchanged: compare the actual
 result under current commitments and return a reserved choice when needed.
 The existing F-02 and formation assessments above retain their original warrant.
 Current source-home/need pointers are reconciled in their owning localities;
-no accepted formation bytes or criteria change. The new method is proposed, not
-adopted by its presence or by the earlier candidate's review.
+no accepted formation bytes or criteria change. The new method was adopted through owner approval and integration in PR #1785,
+not inferred from its presence or the earlier candidate's review.

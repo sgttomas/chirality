@@ -35,11 +35,10 @@ The accepted `docs/PRD.md` revision 2026-10-31 has SHA-256
 | SOW-0002 | Make the traversed holdings intelligible through purpose, applicability, standing, resources, outputs and limits at their own homes. | OBJ-001, OBJ-003, OBJ-005; PRD R02, A1 and the source/resource contribution to A6 |
 | SOW-0003 | Supply directed search, reference following and structured-query guidance with provenance, relationship distinctions and honest search limits. | OBJ-001, OBJ-003, OBJ-005; PRD R03, A1 |
 
-Maturity: initial setup is integrated. The owner has now authorized the bounded
-entry-instruction undertaking described in the linked Work: examine AGENTS,
-session initialization and the course-setting loop, prepare warranted changes,
-and retain owner review before integration. A proposed entry revision does not
-establish full discovery-guide fulfillment, product acceptance or release.
+Maturity: the owner-approved entry revision is integrated. The current authorized
+undertaking examines a fresh reader’s route through maintenance, publication and
+tool instructions, with findings in the linked Work. Product-wide fulfillment,
+acceptance and release remain unestablished.
 
 The source assessment, current proposal and continuation questions are in
 [Work/DiscoveryBasis.md](Work/DiscoveryBasis.md). Consumer-local needs are now
