@@ -47,6 +47,12 @@ In the examination notes, look for checks such as the delivery count from the en
 
 Criterion 6 has two parts: assess the designed arrangement and the learner's own examination record separately. Criterion 7 is the defense. Useful changed premises include: if C03's items excluded actual expenditure, how would the forecast change? If the supplier confirmed a four-week delivery, which date moves and which decisions remain?
 
+### Coordinated-agent comparison
+
+Course 08's added worked arrangement is an optional way to prepare the same C01/C03 comparison. It does not change totals, duration or A01 authority. Ask who supplies the inclusive-cost condition to the child agents and who examines the combined return. If both helpers use a mistaken brief, agreement gives no independent support. Accept one-agent work where it serves the learning purpose better.
+
+Look for the learner's direction, consequential child briefs or recoverable references, the returns relied on and the learner's actual examination. Do not grade a longer message archive as stronger evidence. Apply the existing criteria to those contributions.
+
 ### Nine keyed knowledge-check answers
 
 1. **Readiness and schedule.** A date places an activity on a calendar, but readiness requires the inputs, resources, competence, access, and authority needed for its stated work. Evidence must establish their required conditions.
@@ -395,3 +401,11 @@ Require repair of the relevant claim, coverage, or responsibility. Preserve vali
 Courses 08 to 10 should produce connected packages: schedule readiness must use the technical interface conditions, and assurance must examine the identified configuration and requirements.
 
 Carry remaining matters into Course 11 without declaring them completed. Retain calculations, decisions, observations, and repaired assignments with their relevant revisions, together with the briefs and examination records that show how the agent-assisted work was examined.
+
+## Guidance for the post-acceptance transfer practice
+
+Course 10's added scenario is counterfactual and separate from Northbank. In its first report, the stated behavior appears not to meet an accepted requirement; establish the affected conditions before claiming a diagnosis. In the second, conformity can coexist with failure of fitness for the intended use; the question returns to those responsible for the commitments and reliance. In the third, the requested capability is new scope, not retroactive evidence that the earlier commitment was unmet.
+
+A sound response identifies the accepted subject, source of the report, evidence needed, affected reliance and actual decision authority. Notice, restricted use, repair, withdrawal or a new undertaking depend on consequences and applicable authority, not simply on a new test pass. Accept reasoned combinations of the issues and preserve uncertainty where the scenario lacks facts. Do not supply an actual operating procedure or a simulated approval that changes the Northbank record.
+
+Use this as teaching and changed-premise reasoning, not an eighth Course 10 acceptance criterion. Existing keyed answers and assessed assignment remain unchanged.

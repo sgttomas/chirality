@@ -316,3 +316,27 @@ with an earlier manual. Historical sources and consumer-selected pins remain
 available separately; library 1.0.1 retains its actual published bytes. The
 publication index explicitly distinguishes this later maintained text. The
 change does not publish a replacement archive or adopt it in a consumer project.
+
+## Course source and reading-edition repair
+
+The owner approved preparation of a bounded course revision, including repair of
+the mismatched course README/index.html discovered in the published 1.0.1 and
+1.0.2 source trees. Other existing course pairs matched their source fingerprints
+at investigation. The revised reading files are regenerated from committed
+Markdown; changed course content and the explicit practicum assessment addition
+remain reviewable together in the candidate PR. Northbank's records and keyed
+numeric answers remain their original exercise basis. The courses remain
+host-independent, with no claim of App course integration or improved learner
+outcomes. No released archive is overwritten; a later edition requires its own
+publication decision.
+
+
+The course review identified cross-file inconsistencies in the initial draft.
+Repairs align Course 12 setup, rotation, companion guidance and Criterion 6:
+production direction includes consequential agent-written briefs, and examination
+covers the returns relied on rather than requiring every child message. This is
+an explicit assessment change for owner review. Course 06 and its companion's
+keyed answer 7 now permit retained but stale history; the expected reasoning
+about potentially lossy context transfer remains. No numeric keyed answer or
+Northbank case record changes. A scoped capability/responsibility pass repairs
+categorical memory and transmission claims without transferring A01 appointments.

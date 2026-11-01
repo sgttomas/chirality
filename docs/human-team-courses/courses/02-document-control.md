@@ -12,7 +12,7 @@ Complete Course 01 and read Northbank Packet A. Keep your appointment response a
 
 ### How this course is built
 
-The series index explains [how the series is built](../index.html#how-the-series-is-built). The classical method was developed when each record took a person's time to write, copy, and distribute; with agents, records are cheap, so teams now risk keeping too many, and each surplus record takes the attention of the people who must read and maintain it. Controllers therefore need restraint about which records to keep, and they must govern which basis, by identity, revision, and status, each agent reads. Lesson 5 treats that as an arrangement to design.
+The series index explains [how the series is built](../index.html#how-the-series-is-built). The classical method was examined here in a working arrangement where preparing and checking each record takes people's time to write, copy, and distribute; with agents, records are cheap, so teams now risk keeping too many, and each surplus record takes the attention of the people who must read and maintain it. Controllers therefore need restraint about which records to keep, and they must govern which basis, by identity, revision, and status, each agent reads. Lesson 5 treats that as an arrangement to design.
 
 ### The teaching arrangement
 
@@ -56,6 +56,8 @@ Apply this identification method:
 Preserve earlier revisions according to the actual retention requirements: they help reconstruct a decision and explain a later change. Control access to sensitive information under the applicable arrangements.
 
 ### What it assumes
+
+The 'What it assumes' passages in this course describe working arrangements for comparison. They are not universal facts about human practice; examine whether they hold in the task at hand.
 
 The classical method assumes that copies and extracts multiply at the pace of people's work. It also assumes that a person reading a document brings some context: a draft watermark, an unfamiliar date, or a colleague's remark can make them pause before they use the wrong file.
 

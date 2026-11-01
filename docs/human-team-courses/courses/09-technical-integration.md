@@ -60,6 +60,8 @@ Do not copy an attractive value from an unrelated project, because similar equip
 
 ### What it assumes
 
+The 'What it assumes' passages in this course describe working arrangements for comparison. They are not universal facts about human practice; examine whether they hold in the task at hand.
+
 The classical method assumes that the people who use a basis value have read, or can ask about, its source, so the value's limits travel with it in their understanding. It also assumes that tracing every value to its source and standing is laborious, so projects check provenance when something looks wrong rather than routinely. Northbank shows that the assumption already fails at times: A07 records a design note that cites the legacy schedule without its source note.
 
 ### What changes with agents

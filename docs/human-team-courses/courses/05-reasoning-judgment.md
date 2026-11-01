@@ -59,6 +59,8 @@ Do not fill a missing warrant with confidence, seniority, or repetition. Ask wha
 
 ### What it assumes
 
+The 'What it assumes' passages in this course describe working arrangements for comparison. They are not universal facts about human practice; examine whether they hold in the task at hand.
+
 The classical method assumes that the person who fills in the reasoning table has worked through it. Writing a clear warrant takes effort, so a missing warrant tends to show as a gap or an awkward sentence. The method also assumes that the person who frames the question will also work on the answer, so the framing reaches the work through their own attention.
 
 ### What changes with agents
@@ -122,7 +124,7 @@ The classical method assumes that building and running a model takes effort, so 
 
 Agents can list input identities and units, run a calculation, and prepare a comparison estimate quickly. Precise results become cheap, so the warning about extra decimal places applies to more of the work.
 
-Independence no longer comes by default. Two agents that share a model, a brief, or a mistaken input can share an error. Their agreement shows that the two results are consistent with each other, not that their common basis is correct. A second agent asked to check the first, with the same brief and the same sources, does not provide an independent comparison.
+Independence does not follow automatically from using another participant, human or agent. Two agents that share a model, a brief, or a mistaken input can share an error. Their agreement shows that the two results are consistent with each other, not that their common basis is correct. A second agent asked to check the first, with the same brief and sources, does not establish independence merely by agreeing. Examine whether its preparation and method can expose the consequential shared assumptions.
 
 Agents can also broaden an observation when they summarize it. A04 identifies the existing connection as 600 V, three phase, 60 Hz, and records where and how it was observed. A summary that says “the site supply is 600 V” turns an observation at one connection into a claim about the site. The lesson's distinction between “observed at one connection” and “available throughout the site” now applies to every summary an agent writes.
 

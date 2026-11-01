@@ -12,7 +12,7 @@ This course teaches you how to establish that confidence and carry out that tran
 
 ### How this course is built
 
-The series index explains [how the series is built](../index.html#how-the-series-is-built). In this course the shifted constraint is independence: in a human team an independent review needs a second competent person, so it is expensive and sampled but brings separate reasoning with it, while an agent's review is cheap and repeatable but can share the producer's model, brief, or reference. Commissioning and physical tests still set the pace, and because agents can overstate what an observation supports and can assemble a complete-looking package quickly, the scope of evidence and the identity of the delivered configuration matter more; Lessons 1 to 5 follow the series' four steps, and Lesson 6 treats the design of the assurance arrangement.
+The series index explains [how the series is built](../index.html#how-the-series-is-built). In this course the shifted constraint is independence: in a human team an independent review needs a second competent person, so it is expensive and sampled and can bring separately prepared reasoning, though a different person alone does not establish independence, while an agent's review is cheap and repeatable but can share the producer's model, brief, or reference. Commissioning and physical tests still set the pace, and because agents can overstate what an observation supports and can assemble a complete-looking package quickly, the scope of evidence and the identity of the delivered configuration matter more; Lessons 1 to 5 follow the series' four steps, and Lesson 6 treats the design of the assurance arrangement.
 
 ### The teaching arrangement
 
@@ -56,6 +56,8 @@ Allow time for correction and re-examination. A plan that schedules review immed
 Agree the required records with the people who will use them. Retain enough evidence to understand and challenge the conclusion, but avoid collecting forms that nobody uses.
 
 ### What it assumes
+
+The 'What it assumes' passages in this course describe working arrangements for comparison. They are not universal facts about human practice; examine whether they hold in the task at hand.
 
 The classical method assumes that each examination is a person's work, so examinations cost time and the project chooses where to spend them. An independent review needs a second competent person, so the project reserves it for the most consequential claims and samples elsewhere. It also assumes that each record costs effort to produce, which by itself restrains the number of forms.
 
@@ -116,7 +118,7 @@ The classical method chooses methods partly by their cost. A calculation check o
 
 ### What changes with agents
 
-**Calculation checks and reviews of reasoning become cheap; inspections and tests do not.** An agent can check a calculation or review a test definition many times at little cost. It cannot inspect an installed dimension or exercise a standby changeover. Physical examinations keep their classical cost and duration, and they set the pace of assurance.
+**Check the actual cost and capability of each examination.** An agent can assist calculation checks and reviews of test definitions. In the supplied Northbank exercise it has records, not access to the installation or test equipment. It cannot obtain an installed dimension or exercise changeover merely by reasoning about those records. A system connected to instruments would need its own capability, authorization and evidence. Physical access, competent participation and test conditions still constrain assurance.
 
 **An agent's review answers a narrower question than it may appear to.** An agent reviewing reasoning can establish that the reasoning is consistent with the inputs it was given. It cannot establish that those inputs describe the installation.
 
@@ -393,6 +395,22 @@ Then complete three further exercises:
 1. **Examine an agent's summary.** An agent returns this summary of C04, invented for the exercise: "C04 confirms that the installation meets A02's 18 litres per second requirement. Remaining items are minor documentation updates." Explain each overstatement and what the record actually supports. Then write the sentences in the brief that would have guarded against it.
 2. **Redesign a check.** Suppose, as a teaching assumption, that a second agent on the same model was given the summary above and C04's cover sheet, asked to verify the summary, and returned "verified". State what that check established and why it was not independent. Then redesign the check: its basis, its preparation, its method, and its examiner.
 3. **Design the assurance arrangement.** For four Northbank claims (flow under the established operating cases, standby changeover behavior, the applicability of the operating instructions, and operating readiness), set the examination, who or what performs it, and the source of its independence, in proportion to consequence and detectability. State two tradeoffs in your design.
+
+### Transfer practice: a finding after acceptance
+
+This is a separate constructed teaching scenario. It adds no fact, approval or test result to Northbank, and it does not close C04's gaps. Suppose an installation has an identified accepted configuration, an agreed changeover requirement and recorded examinations for its intended use.
+
+Consider three later reports separately:
+
+1. During an operating condition covered by the accepted requirement, standby changeover fails to perform that requirement.
+2. The installation meets the stated requirement, but operations demonstrates that the requirement does not support the intended service during a needed transition.
+3. The sponsor requests a higher flow that was outside the accepted scope.
+
+Explain the initial interpretation of each report, what evidence is needed, what decision authority would need to be identified and which work could continue. Distinguish an apparent defect, a gap in validation or in the commitments, and a new need. A report can contain more than one issue; these descriptions are not an exhaustive classification.
+
+Use an agent to challenge your reasoning, then explain which parts you retained or changed and why. Identify the accepted subject separately from a possible repair or new configuration. Discuss the consequences for continued reliance and any required notification without inventing authority to operate, withdraw or accept the installation.
+
+This is guided transfer practice, not an additional assessed outcome. Keep the existing Northbank assignment and its keyed answers unchanged.
 
 ## Knowledge check
 

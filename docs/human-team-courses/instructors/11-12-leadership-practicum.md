@@ -207,13 +207,13 @@ Use blank pages or a shared folder for these records:
 - Forecast comparisons and calculations.
 - Findings and examination plans.
 - Receiving recommendation and continuation memorandum.
-- Arrangement table: for each role, the agent system and model, the brief and source set, who wrote or revised each brief, the examiner, and shared bases.
-- Briefs, returns, and examination records for each output.
+- Arrangement table: for each role, the agent system and model, the brief and source set, who supplied production direction and who wrote or revised each consequential brief, the examiner, and shared bases.
+- Production direction, consequential briefs and returns, and examination records for each output (recoverable references may replace copies).
 - Rotation transfers.
 
 Templates are optional, but the necessary relationships must be visible in the saved work.
 
-Assign role numbers and the initial cards. Confirm the rotation rule. Select an independent reviewer for each candidate before examination, and check the arrangement table for a shared model, brief, or source set between the reviewer's agents and the producer's. A participant who wrote or revised any brief that the output descends from, including before a rotation, counts as a producer of it and cannot be its independent reviewer.
+Assign role numbers and the initial cards. Confirm the rotation rule. Select an independent reviewer for each candidate before examination, and check the arrangement table for a shared model, brief, or source set between the reviewer's agents and the producer's. A participant who supplied production direction, directed the agent that wrote a production brief, or wrote or revised a production brief that the output descends from, including before a rotation, counts as a producer of it and cannot be its independent reviewer. Merely selecting shared case records or arranging a separately prepared review does not establish production involvement.
 
 If a reviewer produced an affected item, assign a different reviewer. Another team or an uninvolved mentor can provide this examination. Plan for this from the start: after several rotations, most participants will have written into the briefs behind late-phase outputs, so Phase 5 reviews and the final-package review will normally need you or another team.
 
@@ -241,7 +241,7 @@ In the briefs, check that each event's records were given with their revisions a
 
 In the rotation records, check that the incoming participant received the actual output, briefs, and examination records, and inspected the output rather than a summary.
 
-In the arrangement table, check how independence was provided where agents share a model or brief. "Different participant" is not enough when both participants' agents used the producer's brief, or when the reviewer wrote or revised a brief the output descends from in an earlier phase.
+In the arrangement table, check how independence was provided where agents share a model or brief. "Different participant" is not enough when both participants' agents used the producer's brief, or when the reviewer supplied production direction, directed the agent that wrote a production brief, or wrote or revised a production brief behind the output in an earlier phase.
 
 Criterion 6 has two parts, the team's arrangement and each participant's own examination records; rate them separately. Criterion 7 rests on the Phase 6 and Phase 7 changed premises. Record the medium of each individual examination with its rating.
 
@@ -507,7 +507,7 @@ Use the learner course's seven criteria for the team. Assess each participant ag
 | 3. Authority | Each request names its decision rights and conditions. | Participant distinguishes sponsor, technical, purchase, and receiving decisions. |
 | 4. Assurance | Conclusions fit evidence and preserve continuing obligations. | Participant distinguishes C04's observation from the unsupported acceptance claim. |
 | 5. Findings and ethics | Findings produce visible repairs and truthful recommendations. | Participant responds to adverse evidence, incentive pressure, affected parties, and sharing conditions. |
-| 6. Arrangement and examination | The arrangement table names the director and examiner of each output and accounts for shared models and briefs; rotation records transfer actual outputs, briefs, and examination records. | Participant's own examination records name what they checked in each agent return, what they found, and what they changed. |
+| 6. Arrangement and examination | The arrangement table names the director and examiner of each output and accounts for shared models and briefs; rotation records transfer actual outputs, briefs, and examination records. | Participant's own examination records name what they checked in each agent return they relied on, what they found, and what they changed. |
 | 7. Changed premises | The team traces changed premises through connected outputs in Phase 6. | Participant explains the main conclusions and their grounds, shows what their examination of agents' work found, identifies which judgments are their own, and reasons through an unprepared changed premise in Phase 7. |
 
 Rate each criterion as meets, needs repair, or insufficient evidence. Record the evidence examined, not a numerical average that hides a missing foundation.
@@ -553,3 +553,11 @@ The learner directs their own working agents in every role. Keep your contributi
 Record with the result what the adaptation cannot establish, as the learner course lists, and the medium of the individual defense. You are one system presenting events, playing authorities, and assessing; invite the learner to examine your dispositions and assessments, and treat an error they find as a demonstration of the practice.
 
 Keep the finished result identified as a facilitated individual practicum. Use the same seven criteria and repair process. For Criterion 6, the arrangement is one person's across roles, so assess how the learner accounted for their agents sharing one model and their own premises.
+
+## Coordinated agents and production involvement
+
+Course 11's added arrangement examines a mistaken shared A05 premise. The learner should distinguish correction of that premise and affected outputs from unrelated valid work. A helper that inherits the producing brief is not independent merely because the coordinator asks it to review. More agents are not a learning outcome.
+
+For Course 12, apply the updated production-involvement rule consistently at setup, rotation and final examination. A participant who directs an agent that creates a production brief counts as a producer of the resulting output for this exercise. Identify the actual production contribution; selecting shared case records or arranging a separately prepared review alone does not establish it. An agent-written brief must not make a producer appear independent after rotation.
+
+The arrangement table and evidence list now cover production direction, consequential agent-written briefs and the level of examination. References to recoverable material can replace copied messages. If the necessary basis is unavailable, report insufficient evidence for the affected claim. Do not require a child transcript or a second portfolio. Retain the existing team sizes, phase times, individual defense and independent reviewer provisions.

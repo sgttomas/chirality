@@ -12,7 +12,7 @@ Complete Courses 01 to 05 and bring your decision memorandum from Course 05.
 
 ### How this course is built
 
-The series index explains [how the series is built](../index.html#how-the-series-is-built). In this course the shifted constraint is context: communicating with an agent is cheap, but an agent keeps the project's context only as far as its brief carries it, so context must be transferred at every new session or fresh agent, and some of it can be lost. Agents also do not reliably raise disagreement or negotiate, while relationships with the project's human stakeholders stay with people; Lesson 5 develops the brief and the return.
+The series index explains [how the series is built](../index.html#how-the-series-is-built). In this course the shifted constraint is context: communication and context transfer have costs that depend on the agent system. Where history is not retained, or retained history is stale, the current basis must be supplied or recovered. Agents also do not reliably raise disagreement or negotiate, while relationships with the project's human stakeholders stay with people; Lesson 5 develops the brief and the return.
 
 ### The teaching arrangement
 
@@ -56,13 +56,15 @@ Choose the communication method to suit the question. A short conversation can r
 
 ### What it assumes
 
+The 'What it assumes' passages in this course describe working arrangements for comparison. They are not universal facts about human practice; examine whether they hold in the task at hand.
+
 The classical method assumes that the people who build a shared picture keep it. After a conversation, each participant carries the understanding into later work and can be asked to correct it. It also assumes that an acknowledgment comes from someone who could have objected.
 
 ### What changes with agents
 
 Among people, this lesson carries over unchanged. The sequence of stating, listening, restating, and inviting correction is how people still reach a shared picture.
 
-With an agent, the shared picture lasts only as far as the brief and the conversation carry it. An agent does not keep the project's history between sessions unless someone gives it. An agent also acknowledges a task readily, so its acknowledgment is weaker evidence of understanding than a person's.
+An agent may or may not retain project history between sessions. Retained history can be stale, so establish the current basis either way. An agent also acknowledges a task readily, so its acknowledgment is weaker evidence of understanding than a person's.
 
 The ambiguous terms matter more. An agent that reads “approved” in the records can treat A02's “approved for project development” as if it covered expenditure or technical suitability, unless the brief says which act each approval covers.
 
@@ -258,9 +260,9 @@ The method also assumes that coordination cost grows with team size. Fred Brooks
 
 ### What changes with agents
 
-Agents change both sides of Brooks's observation. Adding an agent does not add a participant who must be kept informed of every conversation, and talking to an agent is cheap. But an agent keeps the project's context only as far as someone gives it, so the cost of bringing a contributor up to date, which a person pays once, an agent pays at every new session or fresh agent. Each transfer can lose some context, because a brief carries less than a colleague who attended the meetings.
+Agents change both sides of Brooks's observation. Adding an agent does not add a participant who must be kept informed of every conversation, and talking to an agent is cheap. Where history is not retained, or retained history is stale, bringing an agent up to date requires context transfer or recovery. Each transfer can lose relevant meaning. People also need renewed context when circumstances change; neither memory nor a brief guarantees current understanding.
 
-The brief and the return therefore become the main instruments of communication with agents. What the agent knows of the project is what the brief gives it, and what you know of its work is what the return tells you.
+The brief and the return therefore become the main instruments of communication with agents. An agent's context can include instructions, conversation, retained history and retrieved sources. A return is an account of its work to examine against the actual outputs and available evidence.
 
 Agents do not reliably identify missing inputs or say that a task is beyond them. An agent asked to compare B01 with the pump duty may fill A02's unresolved suction conditions with a plausible value instead of reporting the gap. A return can also report a check as done without saying what the check examined. The aim of truthful reporting remains, but with agents it depends on what the brief asks for and what the return must show, not on how you respond to bad news.
 

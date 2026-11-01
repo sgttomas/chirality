@@ -46,7 +46,7 @@ Prepare with the relevant companion:
 | 08 to 10 | [Execution and delivery](instructors/08-10-execution-delivery.html) |
 | 11 and 12 | [Leadership and practicum](instructors/11-12-leadership-practicum.html) |
 
-Read answer guidance while you prepare. Use it to anticipate misconceptions and examine responses, not as a script to hand to the learner before their attempt. The materials and worked examples are publicly available. You can manage what you introduce in the session, but you cannot guarantee that a learner has not already seen an answer.
+Read answer guidance while you prepare. Use it to anticipate misconceptions and examine responses, not as a script to hand to the learner before their attempt. The Markdown files are the maintained sources for agents with file access; their matching HTML files are reading editions. The materials and worked examples are publicly available. You can manage what you introduce in the session, but you cannot guarantee that a learner has not already seen an answer.
 
 Provide accessible copies or usable references to the records needed for the current activity. If you cannot access a necessary source or learner output, get it before you make a claim that depends on reading it. Do not reconstruct missing Northbank facts from memory or invent a source to complete the lesson.
 
@@ -121,6 +121,16 @@ State the defense's conditions honestly. In a text conversation you cannot estab
 A learner may find no defect in the agents' work. That is acceptable if their examination would have found one: ask what they checked and what error each check would have caught. Do not require a found defect, because that rewards inventing or planting one.
 
 Keep the classical answers stable. The Northbank totals, sequences, authority conclusions, and keyed answers do not change because agents produced the work. Where a learner claims that agents change a duration, cost, or result, require evidence for that claim.
+
+## Teach contributions carried through delegated work
+
+The early courses can use one agent for one bounded contribution. Courses 08 and 11 also offer arrangements in which a coordinating agent carries a contribution through bounded delegation, repair and integration. Use these when they illuminate the learning purpose; do not require more agents merely because the system supports them.
+
+Help the learner distinguish their direction from the child briefs an agent writes, and distinguish a returned summary from the actual output and checks it reports. Ask how the current basis reached the contributors and how a consequential finding reached its owner. The learner's examination record can link to the relevant direction and returns. It need not reproduce every child exchange.
+
+Course 12's production-involvement rule includes participants who direct agents that create production briefs. This closes an assessment gap; delegation does not erase their production contribution. It does not make everyone who supplies a common source a producer of every output, and it does not assign the person an unexamined universal responsibility for every action an agent system could perform. Evaluate actual production involvement and the independence required by the exercise. Keep A01's human appointments and simulated decisions unchanged.
+
+In Course 10's post-acceptance transfer practice, use the separately stated assumptions. Northbank's C04 remains incomplete. Assess the learner's distinction between nonconformity, inadequate commitments for intended use and a new request, without adding another graded criterion. A live learner session can inform later teaching improvements, but a source or agent rehearsal alone does not establish learning effectiveness.
 
 ## Use the case in stages
 

@@ -51,13 +51,13 @@ Each participant directs agents for the outputs their card assigns, and examines
 
 For each output, keep:
 
-- The brief you gave each agent, with the source set, revisions, and statuses it received.
-- The agent's return.
+- Your direction and the consequential briefs behind the output, including briefs written by an agent under that direction. Identify the source set, revisions and statuses, and retain links or references rather than copies of every message.
+- The consequential returns you relied on and the level at which you examined them.
 - Your examination record: what you checked, what you found, and what you changed.
 
 The participant who holds a card is the producer of that card's outputs and answers for them. An agent's draft becomes the team's work only after that participant has examined it.
 
-Independence needs more care than in a team of people. Agents that share a model, brief, or source set can share an error, and their agreement shows consistency, not correctness ([Course 09 Lesson 5](09-technical-integration.html#lesson-5-examine-integration-and-repair-connected-work)). Two participants whose agents share a basis are therefore not automatically independent, even when neither produced the other's work. A participant who wrote or revised any brief that an output descends from counts as a producer of that output for review, including after rotation. Where every participant uses the same agent system, independence must come from the reviewer: the reviewer examines the work personally against the source records, and briefs any agent check from those records and the decision index, not from the producer's brief or return.
+Independence needs more care than in a team of people. Agents that share a model, brief, or source set can share an error, and their agreement shows consistency, not correctness ([Course 09 Lesson 5](09-technical-integration.html#lesson-5-examine-integration-and-repair-connected-work)). Two participants whose agents share a basis are therefore not automatically independent, even when neither produced the other's work. For this practicum's independent-review condition, a participant who wrote or revised a production brief, or directed the agent that created it, counts as a producer of the resulting output, including after rotation. This condition concerns the production contribution, not merely selecting the shared case records or helping arrange an independent review. Where every participant uses the same agent system, independence must come from the reviewer: the reviewer examines the work personally against the source records, and briefs any agent check from those records and the decision index, not from the producer's brief or return.
 
 ## Learning outcomes
 
@@ -105,6 +105,8 @@ If the reviewer previously produced the affected item, get another reviewer. The
 
 ### What it assumes
 
+The 'What it assumes' passages in this course describe working arrangements for comparison. They are not universal facts about human practice; examine whether they hold in the task at hand.
+
 The classical lesson assumes that each output's producer is a person who prepared it and paid attention to it while doing so, so assigning an output to a producer also assigns attention to it. It assumes that outputs disagree mainly where people interpreted the basis differently, and that a reviewer who did not produce the work brings their own preparation and assumptions to it.
 
 ### What changes with agents
@@ -123,11 +125,13 @@ The classical lesson assumes that each output's producer is a person who prepare
 
 Assign each output to a participant, who briefs its agents with the inputs and their revisions and statuses, the intended use, the boundaries, and the checks to perform. The participant keeps the examination conditions and examines the return before the output enters the working basis.
 
-When an event or decision changes the basis, update the affected briefs before more agent work starts. An agent may or may not keep history between assignments, and a system that keeps memory can carry a superseded premise forward, so brief from the current basis either way. A brief that predates a decision will produce work that ignores it.
+When an event or decision changes the basis, update the affected briefs before more agent work starts. An agent may or may not keep history between assignments, and a system that keeps memory can carry a superseded premise forward, so brief from the current basis either way. A brief that predates a decision can produce work from the superseded basis unless that change reaches the agent.
+
+An agent can carry a coherent contribution and, where the chosen system and brief permit it, delegate bounded parts. Record that arrangement and which returns the participant examined. Child agents can inherit a mistaken basis; their agreement is not proof of independence. Do not require delegation or preserve a transcript of every child exchange. Keep enough of the consequential direction and returns to examine the output and the learner's contribution.
 
 Name the participant who owns integration in each phase. That person checks the outputs against each other, not each agent's report of completion.
 
-When you arrange a review, record whether the reviewer's agents share a model, brief, or source set with the producer's, and whether the reviewer wrote or revised any brief the output descends from. Arrange the review so that its basis differs where the consequence warrants it.
+When you arrange a review, record whether the reviewer's agents share a model, brief, or source set with the producer's, and whether the reviewer supplied production direction or wrote or revised a production brief the output descends from. Arrange the review so that its basis differs where the consequence warrants it.
 
 The producer repairs the work, with agents where useful, and keeps the same brief and contribution owner through ordinary repairs so that context is not lost. The reviewer confirms the affected repair personally.
 
@@ -228,7 +232,7 @@ For Phase 6, assign roles to preserve independent examination of the final packa
 
 Transfer the current revision, open findings, decisions, and next action at each rotation, together with the agent briefs and the examination records for the role's outputs. The next participant must inspect the actual output. Neither the outgoing participant's summary nor an agent's summary of the work replaces it.
 
-Agents do not rotate as people do. An agent may or may not keep project history, and remembered history can be out of date, so the incoming participant briefs their own agents from the current basis either way, using the transferred briefs as a starting point, and checks that the briefs still match the current decisions. Record each brief's authors in the arrangement table. A participant who wrote or revised any brief that an output descends from counts as a producer of that output and cannot be its independent reviewer, even after rotating to the reviewer card. Before relying on an output, the incoming participant reads its examination record and re-examines what the record does not cover, where the consequence warrants it.
+Agents do not rotate as people do. An agent may or may not keep project history, and remembered history can be out of date, so the incoming participant briefs their own agents from the current basis either way, using the transferred briefs as a starting point, and checks that the briefs still match the current decisions. Record who supplied the production direction and which person or agent wrote the consequential briefs. The production-involvement rule under Work with agents in your role still applies after rotation; agent-written child briefs do not erase that involvement. Before relying on an output, the incoming participant reads its examination record and re-examines what the record does not cover, where the consequence warrants it.
 
 For a four-person team, combine project engineering with discipline representation. Combine procurement with information control. Keep production and independent examination separate.
 
@@ -244,7 +248,7 @@ Use A01 to A07 and B03. Treat B03 as an initial coordination input, and preserve
 4. Assign owners to the unresolved interfaces.
 5. Define the conditions for the next dependent activity.
 6. Select a reviewer for the first purchase-package recommendation.
-7. Record the agent arrangement: for each role, the agent system and model, the brief and source set, who wrote or revised each brief, who examines each output, and which participants' agents share a basis.
+7. Record the agent arrangement: for each role, the agent system and model, the brief and source set, who supplied production direction and who wrote or revised each consequential brief, who examines each output, and which participants' agents share a basis.
 
 Produce a one-page project basis, a source index, an interface table, and an arrangement table. Include the missing hydraulic and legal basis.
 
@@ -449,7 +453,7 @@ The assessment uses seven observable criteria:
 3. The decision requests distinguish sponsor, technical, procurement, and operating authority with explicit conditions.
 4. The assurance and handover conclusions match the evidence and preserve unresolved obligations.
 5. Each participant addresses findings and ethical consequences, and shows the affected repairs within the team's integrated result.
-6. The arrangement table shows, for each output, the participant who directed the agents and who examined the return, and where independence was needed and how it accounted for shared models and briefs. Each participant's examination records show what they checked in each agent return, what they found, if anything, and what they changed, and the rotation records show that each incoming participant received the actual output, briefs, and examination records.
+6. The arrangement table shows, for each output, the participant who directed the agents and who examined the return, and where independence was needed and how it accounted for shared models and briefs. Each participant's examination records show what they checked in each agent return they relied on, what they found, if anything, and what they changed, and the rotation records show that each incoming participant received the actual output, briefs, and examination records.
 7. In the Phase 6 defense and the Phase 7 examination, each participant explains the main conclusions and their grounds, shows what their examination of the agents' work found, identifies which judgments are their own, and reasons correctly through the changed premises the facilitator poses.
 
 Meet all seven criteria. A team result does not establish each participant's understanding, and a coherent package can come from agents directed by one or two members of the team, so an unsupported individual explanation requires individual repair.
