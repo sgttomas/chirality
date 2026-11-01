@@ -16,7 +16,7 @@ silently changing the instructions governing an undertaking.
 **Maintained book.**
 [Read HTML](Chirality_in_Practice_Edition_1.html) · [Markdown source and contents](Chirality_in_Practice_Edition_1.md)
 
-*Chirality in Practice: Reflections on Purposeful Work by People and Agents*
+*Chirality in Practice: Extending Human Capability with Agents*
 examines the relationship among the thesis, experience across projects and the shared
 library's means of working. It is also material that reflection can question
 and revise. Reading it is neither an execution prerequisite nor adoption of
