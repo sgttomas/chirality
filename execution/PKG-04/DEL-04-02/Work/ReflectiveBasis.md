@@ -188,3 +188,26 @@ decision and authority to continue that course. It does not accept every local
 criterion, release the library, or establish measured productivity. The current
 loop carries the authorized course; later findings can reopen their affected
 premise without discarding unrelated valid work.
+
+## 90% position and completion boundary
+
+Agent 0 examined the assembled contributions against the 44 local criteria and
+PRD A1–A8. A bounded contributor found applicable claim-specific evidence for all
+criteria; Claude Opus 5.5 independently found no missing mandatory output or
+broken operative relationship. Its final finding corrected two publication
+conditions that still called the already-bound F-02/v9 comparison unresolved.
+PR #1788 integrated that owner-approved factual reconciliation at
+`ce3ae7a405999a730caed807857eecb394ce3be6`.
+
+Agent 0 recommended passing the 90% gate on that basis under manual v9 §7.5,
+explicitly retaining the named-reader, labelled-custody and source-candidate
+limits. The owner answered “Approved.” This is the separate 90% decision, not
+inferred from earlier content approvals or passing checks. Final acceptance,
+release/version choice and publication remain separate owner acts.
+
+The next question is whether any agreed result or required examination remains
+unsupported for the intended delivery. Use PRD §4 and manual §8; do not add a
+new general review solely because the stage changed. The exact approved source
+archive remains `7c334bf5cb529a814e0f96f68bc8d9500b15cdd5`; later source records
+and gate annotations are outside it. Any proposed delivery of a later revision
+must identify that revision and establish which existing evidence still applies.
