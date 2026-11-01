@@ -68,7 +68,7 @@ its own instructions, releases and support:
 - [SWBPIPE](https://github.com/sgttomas/SWBPIPE): an analysis-grade piping design
   engine and stress-model authoring environment.
 
-Earlier products (App v3, Runtime and PEC) are archived; [Frozen products](projects/FROZEN.md)
+Earlier products (App v3 and Runtime) are archived; [Frozen products](projects/FROZEN.md)
 explains how to recover their source.
 
 ## Develop and contribute

@@ -16,7 +16,7 @@ remains accountable for acceptance and reliance.
 | Root: shared instructions, workflows, skills, tools and CI | `execution/_Coordination/LOOP_INIT.md` | Work as steered |
 | App v4: independent project | [chirality-app](https://github.com/sgttomas/chirality-app) | Development resumed (owner, 2026-10-28); consult its local instructions |
 | SWBPIPE: independent project | [SWBPIPE](https://github.com/sgttomas/SWBPIPE) | Active; consult its local instructions |
-| App v3, Runtime, PEC | [Recovery](projects/FROZEN.md) | Frozen; no development or verification without explicit reactivation |
+| App v3, Runtime | [Recovery](projects/FROZEN.md) | Frozen; no development or verification without explicit reactivation |
 | `_DomainEngines/` | Owning project's instructions | Write only under a steer for that work |
 
 ## Coordination between projects

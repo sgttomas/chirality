@@ -34,6 +34,8 @@ needs:
     when: Sharing entry content or repeating a consumer-use or publication claim
     evidence: execution/PKG-01/DEL-01-01/Work/DiscoveryBasis.md::How the parts fit
 code_paths:
+  - AGENTS.md
+  - init/init-prompt.md
   - README.md
   - execution/_Coordination/LOOP_INIT.md
   - workflows/README.md

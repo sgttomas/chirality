@@ -35,14 +35,13 @@ The accepted `docs/PRD.md` revision 2026-10-31 has SHA-256
 | SOW-0002 | Make the traversed holdings intelligible through purpose, applicability, standing, resources, outputs and limits at their own homes. | OBJ-001, OBJ-003, OBJ-005; PRD R02, A1 and the source/resource contribution to A6 |
 | SOW-0003 | Supply directed search, reference following and structured-query guidance with provenance, relationship distinctions and honest search limits. | OBJ-001, OBJ-003, OBJ-005; PRD R03, A1 |
 
-Maturity: newly authored setup contract, not established fulfillment. The initial
-locality has `Work/` and `deliverable.yaml`; an empty needs list establishes no
-input completeness or suitability. Initial ScopeOfWork authoring does not itself
-supply the production guide or A1 evidence. The owner authorized setup, not
-product implementation, acceptance or release. Future production work requires
-its bounded authorization; this author assignment is not permanent staffing.
+Maturity: initial setup is integrated. The owner has now authorized the bounded
+entry-instruction undertaking described in the linked Work: examine AGENTS,
+session initialization and the course-setting loop, prepare warranted changes,
+and retain owner review before integration. A proposed entry revision does not
+establish full discovery-guide fulfillment, product acceptance or release.
 
-The initial source assessment and continuation questions are in
+The source assessment, current proposal and continuation questions are in
 [Work/DiscoveryBasis.md](Work/DiscoveryBasis.md). Consumer-local needs are now
 declared in `deliverable.yaml`; their presence establishes no satisfaction claim.
 
@@ -111,7 +110,7 @@ Parent-managed dependency authoring follows scopes; this contract does not edit
 | `tools/deliverables/README.md` and selected query/tool usage sources | When the discovery route invokes a structured query | Use actual declared prerequisites and limits; preserve source declarations and unknowns. Tool defect/behavior repair belongs to DEL-03-01; method selection does not commission it. |
 | Shared-meaning or consumer guidance, accepted sibling cards | When navigation encounters disputed meaning or shares README/index content | Clarification belongs to DEL-02-02; obtaining/version/use conditions to DEL-05-01. Agent 0 coordinates one shared-file editor. Exact future input/source revisions remain conditional on the affected claim, not on concurrently drafted contracts. |
 
-- **TBD-001** — The production brief, walkthrough case, selected traversed holdings, candidate revision and command evidence are not yet selected. Bind them during authorized production; this setup contract establishes no A1 or A5 fulfillment and no product-wide acceptance.
+- **TBD-001** — The current bounded case is the owner-directed entry-instruction revision from integrated basis `11bdb448323877268c90296a5497fd71ede1baee`, with selected holdings, proposed changes and discovery/query examination in Work/DiscoveryBasis.md. The owner approved the presented entry proposal; its checked revision and integration are identified in the actual PR. Broader discovery-use and publication cases remain unestablished. This case supplies no product-wide acceptance.
 - **TBD-002** — Q-03 future production assignment remains open. Agent 0 assigns bounded work; this setup author appointment does not establish permanent responsibility or an external supplier.
 - **TBD-003** — Q-01 further archival disposition remains reserved: retain `plans/`, `_DomainEngines/` and unselected paths. Q-02 additional bespoke tooling remains conditional: demonstrate a gap before proposing separately authorized implementation. Neither blocks unaffected discovery work or permits a new registry.
 - **TBD-004** — Q-04 named consumer contract/fixture and exact revision, and Q-05 verified publication candidate/version and prior comparison basis, remain unresolved with DEL-05-01. They matter if navigation repeats a compatibility or publication claim; link and qualify such claims rather than imply those inputs or their evidence exist. They do not hold ordinary navigation work.
