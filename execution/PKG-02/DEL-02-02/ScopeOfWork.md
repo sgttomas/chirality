@@ -30,8 +30,12 @@ interfaces/evidence and §10 qualifications. Its payload SHA-256 is
 `DECISION.md` in that snapshot supplies acceptance and setup authority, despite
 historical submission wording in the payload. All four manifest entries were
 verified for this authoring. Snapshot-relative links resolve from the original
-`execution/_Decomposition/PROJECT_DECOMP.md`. The accepted `docs/PRD.md` has
-SHA-256 `95c3c25ee36d4d4ddadf54d266a47a2ee58c6b37fbbdef75ad20a97986a718ca`.
+`execution/_Decomposition/PROJECT_DECOMP.md`. The preceding accepted `docs/PRD.md`
+at `4214db1c0ed04ce5466e65979c215fe018bd19d7` has SHA-256
+`95c3c25ee36d4d4ddadf54d266a47a2ee58c6b37fbbdef75ad20a97986a718ca`.
+The current PRD applies the owner's “There is no PEC” correction to §2.3 and
+identifies that clarification; this historical hash is not the corrected file's hash.
+Accepted snapshot bytes and the original acceptance/source identity are preserved.
 
 - **CLM-001** — Maturity: bounded F-02 production drafting and examination is authorized against AC-001 through AC-004. The connected reference/manual candidate and selected-row findings are proposed in Work/Applicability.md and the actual diff; owner content approval remains required before integration. The locality and its needs do not establish input suitability, an accomplished repair, accepted product or release. Existing qualifications and checked holdings may satisfy part or all of an output; new files are not inherently required. Setup basis: Group 3 DECISION.md/HANDOFF_STATE.md and decomposition §8.1; current production authority: the bounded F-02 undertaking supplied through Agent 0.
 
@@ -75,7 +79,7 @@ These are source-grounded examination bounds, not a prior verdict that every nam
 passage is wrong or must change. Follow a consequential reference only as needed
 to judge this case. No other publication or course is commissioned by association.
 
-- **CON-001** — CONFLICT, proposed qualification awaiting independent examination and owner content approval: the preceding runtime-reference production-ownership/Root-governance wording and compatibility-reference M2/G4/retired-Root clauses permitted a reading inconsistent with current independent adoption and Root library execution under AGENTS.md and PRD §§2.3/6.1. The candidate makes their adopted/historical subjects explicit and aligns the selected manual locality explanation. Work/Applicability.md examines all selected passages and real source uses. Exact transitive historical adoption remains unverified; this source comparison does not adjudicate all adopted meanings. Consequence: preserve existing scoped contracts and hold any incompatible alteration until its warrant and affected adoption are established; continue supported Root-facing clarification. Escalate a genuine commitment conflict with both passages and its consequence to the actual owner.
+- **CON-001** — CONFLICT, proposed qualification awaiting bounded repair verification and owner content approval: the preceding runtime-reference production-ownership/Root-governance wording and compatibility-reference M2/G4/retired-Root clauses permitted a reading inconsistent with current independent adoption and Root library execution under AGENTS.md and PRD §§2.3/6.1. The candidate makes their adopted/historical subjects explicit and aligns the selected manual locality explanation. Work/Applicability.md examines all selected passages and real source uses. Exact transitive historical adoption remains unverified; this source comparison does not adjudicate all adopted meanings. Consequence: preserve existing scoped contracts and hold any incompatible alteration until its warrant and affected adoption are established; continue supported Root-facing clarification. Escalate a genuine commitment conflict with both passages and its consequence to the actual owner.
 
 ### Allocation and actors
 

@@ -308,12 +308,17 @@ historical records until an explicitly authorized transition accounts for them.
 
 ## Legacy production-format resolution
 
-The resolution states and transition obligations below belong to the retained
-legacy conversion contract, including its D-GOV-16 activation basis. They apply
-when that method is selected under its applicable authority. They do not require
-current Root localities to create lifecycle/phase files, enter conversion, or
-restore legacy authoring tools. Current setup follows the opening convention
-and the selected current method; historical formats retain their identities.
+For localities using the current `SOW_V1` method and validator, the classification
+below and the one-canonical-format rule remain applicable. Current setup and
+validation distinguish `SOW_V1`, `INVALID` and `AMBIGUOUS`; invalid or unauthorized
+dual input fails closed. `MIGRATION_DUAL` is permitted only in an isolated
+conversion workspace with the exact migration authority bound in the contract.
+This does not impose the `SOW_V1` schema on independent or domain-specific formats.
+
+The legacy transition/conversion obligations and retirement provisions below
+retain their adopted contract and D-GOV-16 activation basis. They do not require
+current Root setup to create lifecycle/phase files, enter conversion, or restore
+legacy authoring tools. Historical formats retain their identities.
 
 | Files present | Interpretation |
 |---|---|

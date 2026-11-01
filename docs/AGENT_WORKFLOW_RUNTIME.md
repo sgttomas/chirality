@@ -70,7 +70,9 @@ Discovery after selection may report a higher-precedence collision, but it must
 not silently replace the selected workflow. Explicit source qualification
 resolves a collision. In a deployment adopting the Root-governed shared suite,
 project instructions and workflows may specialize it but cannot weaken that
-adopted Root governance or escape the active working root. Root's repository
+adopted Root governance. Wherever this contract is adopted, project instructions
+and workflows cannot escape the active working root; that containment restriction
+does not depend on adopting Root governance. Root's repository
 grants do not transfer to independent consumers. Their governing instructions,
 adopted contracts and authorized undertaking supply authority; actual host
 permissions constrain execution. Source-qualified selection and collision

@@ -4,6 +4,10 @@
 **Revision:** 2026-10-31.  
 **Acceptance:** "I approve this PRD." The approved source, before these acceptance
 annotations, has SHA-256 `0e9c38d1550ebef5aa933efb4dcddd201f325f3b9a04d6a2c2861d581185e70a`.  
+**Owner clarification:** “There is no PEC.” The current §2.3 frozen-product
+list reflects this correction; the original acceptance and source identity above
+remain historical.
+
 **Downstream use:** Project decomposition, project setup, ScopeOfWork authoring
 and consumer-local dependency authoring. Package and deliverable definition
 belongs to decomposition; this PRD assigns neither.
@@ -72,7 +76,7 @@ new permanent register.
   Root holdings. Library consumption does not transfer them to other projects.
 - App v4 and SWBPIPE remain independent. Their production adoption and release
   are not prerequisites for accepting a verified library interface.
-- App v3, Runtime and PEC remain frozen. Recovery does not reactivate them.
+- App v3 and Runtime remain frozen. Recovery does not reactivate them.
 - Private knowledge, consumer operational data and credentials stay outside the
   public library. Public examples and fixtures must be suitable for publication.
 - No standing global audit, central relationship graph, subscriber registry,
