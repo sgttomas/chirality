@@ -160,9 +160,11 @@ editions; do not extend that into a global history audit. Consumer adoption,
 private operational data and product releases stay with their owners. Initial
 native needs preserve these conditional uses and unresolved source bindings.
 
-Neighboring DEL-02-02, DEL-03-01 and DEL-04-01 needs were deliberately left
-unchanged: their unresolved adopted-clause or exported-interface conditions are
-different claims from this bounded package-reader and source-candidate case.
+Neighboring adopted-clause and exported-interface conditions remain unresolved
+where they require evidence beyond the bounded App package-reader case. The
+publication conditions in DEL-02-02 and DEL-04-01 now identify the already-bound
+F-02/v9 candidate and prior comparison; calling those particular Q-05 uses
+unresolved was stale. Other publication uses still require their own bindings.
 
 ## Complete library source candidate after the 60% decision
 

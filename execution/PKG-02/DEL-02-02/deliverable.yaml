@@ -51,8 +51,10 @@ needs:
   evidence: execution/PKG-02/DEL-02-02/Work/Applicability.md
 - from: DEL-05-01
   condition: Bind the verified publication candidate/version, actual delivery form and prior comparison
-    basis before making the distinct A7 preparation/inspection claim. Q-05 is unresolved and does not
-    prevent source-passage comparison.
+    basis before making the distinct A7 preparation/inspection claim. Q-05 is bound for the F-02/Consolidated
+    v9 source candidate at 1357d706ea77497903976bf159f3880bea4d1360 against 257ab4c18014bf872a1c72eeb7593a7ad3d135c0,
+    as recorded in DEL-05-01 Work/ConsumerBasis.md. Other publication claims require their own binding;
+    source-passage comparison can proceed independently.
   when: Relying on a publication-change account or asserting preparation/update-inspection evidence
   evidence: execution/PKG-02/DEL-02-02/Work/Applicability.md
 code_paths:
