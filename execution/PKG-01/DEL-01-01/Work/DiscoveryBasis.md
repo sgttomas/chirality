@@ -126,7 +126,7 @@ unchanged. Code pointers now include AGENTS.md and init/init-prompt.md because
 they are relevant entry holdings, including the unchanged session prompt.
 
 
-## Fresh-reader maintenance use after the 60% decision
+## Fresh-reader maintenance route examination after the 60% decision
 
 A bounded Type 2 contributor without inherited conversation context examined
 how a maintainer should preserve workflow-package identity when revising an

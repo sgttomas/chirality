@@ -30,7 +30,7 @@ The product warrant is `docs/PRD.md`, particularly R06–R12 and A3/A5.
 | SOW-0011 | Actual accepted objective-grounded decomposition, decision bindings and independent audit retained as formation outputs | OBJ-001: discoverable goals and basis; OBJ-002: formation through maintained methods; OBJ-004: bounded contributions and evaluative evidence |
 | SOW-0014 | Guidance and bounded human–Agent 0 examination of goals/framing, evidence-directed action and affected uses | OBJ-002: usable practice; OBJ-003: warranted coherence or explicit unresolved consequence; OBJ-004: revise understanding/routes while continuing unaffected work |
 
-A bounded reflective-method candidate now accompanies the retained formation
+The adopted reflective method accompanies the retained formation
 and real F-02/owner-feedback assessment. Implementation is authorized by the
 current undertaking; owner content approval is recorded in PR #1785; product acceptance remains separate.
 Requirements and evaluation retain their accepted meaning.

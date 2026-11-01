@@ -26,7 +26,7 @@ checklist or create a replacement Git method. Existing README owns publication
 and update inspection; bounded-reconciliation owns actual-result comparison;
 create-workflow governs reusable method design under its preceding basis.
 
-Three output-home changes are explicitly proposed for owner review: DEL-02-01
+Three output-home changes were explicitly proposed for owner review: DEL-02-01
 OUT-001's connected means use AGENTS, create-workflow and the on-demand resource;
 DEL-02-01 OUT-003's recovery/custody detail moves from the maintained change
 route/resources to docs/MAINTENANCE_RECOVERY.md linked from AGENTS; DEL-04-02
@@ -121,7 +121,7 @@ not retroactively execute this proposal.
 - **Review/integrate:** AGENTS retains proportionate scrutiny, actual checked
   revision, owner content review and bounded Git authority. Prior integrated PRs
   support only their own cases. This content was approved and integrated in PR #1785. Claude examined the retirement/reflection
-  design at e99e7e6; its bounded corrections are incorporated for owner review.
+  design at e99e7e6; its bounded corrections were incorporated before owner approval.
 - **Prepare publication/inspect updates:** AGENTS links README's existing consumer
   route. [ConsumerBasis](../../../PKG-05/DEL-05-01/Work/ConsumerBasis.md) and #1784
   retain Q-04's named App-reader and Q-05's F-02/v9 source comparison evidence.
@@ -167,9 +167,11 @@ reported source evidence, not tests, repins or qualification by this author.
   Embedded local catalogs/instructions stay independent; no App loading inference.
 
 Both consumers reported no blocking removal finding within their inspections.
-That is not “no dependencies.” No downstream edits/adoption were requested or
-performed. Agent 0 will supply the final revision to both owners after the actual
-candidate/approval/integration basis is established. Current Root conventions
+That is not “no dependencies.” No product adoption or repinning was requested or performed by Root. Agent 0
+supplied final retirement revision `047da79894bc5631dca564a30113f2cd26ec7ae1`
+to both consumer owners after integration, identifying their own factual pointer/
+wording reconciliation. Those messages do not establish that the consumers
+subsequently edited their sources. Current Root conventions
 are explicitly at AGENTS; historical declarations retain their selected sources.
 
 ## Completed cases: reused evidence and fresh examination
