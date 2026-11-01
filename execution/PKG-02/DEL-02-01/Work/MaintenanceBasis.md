@@ -2,7 +2,7 @@
 
 Maturity: connected maintenance/recovery proposal, under the preceding basis at
 `8d0c5d1a19eec865a8a92750cb3de590d04f9c02`. Agent 1 WORKING_ITEMS owns this
-undertaking through repair; Agent 0 retains owner review and integration. The
+undertaking through repair; Agent 0 brings content to the owner and retains integration. The
 assignment permits investigation, drafting, checks and a draft PR, not merge,
 release or acceptance. Initial setup assessment used
 `fd847ac9ac68250b2f35d2e9c0087c16e86b510a`; its unselected cases are now examined
@@ -65,7 +65,7 @@ are repository-relative. The selected cases' review records are linked below.
 - **Review/integrate:** change contract/method and Root skill bind the actual
   candidate, findings, proportionate checks and authority. The completed PRs
   below supply actual checked/reviewed/integrated cases. This proposal stops at
-  draft PR; Agent 0 commissions the examiner and returns content to the owner.
+  draft PR; independent examination has occurred and Agent 0 brings content to the owner.
 - **Prepare publication/inspect updates:** the Root skill now points to README's
   obtaining and inspection route. Use its selected old/candidate revisions,
   resource/notices and change account; failures are not “no change.” PR #1784's
@@ -137,7 +137,8 @@ pairs and recoverability of selected preceding sources; they cannot establish se
 All five PRs' retrieved hosted `Repository checks` and `harness` results are
 SUCCESS. These corroborate their reported integration checks; the PR descriptions
 carry the independent-review and owner-decision accounts (the GitHub reviews
-arrays are empty). No new independent examination of this candidate is claimed.
+arrays are empty). Independent examination of this candidate is distinguished
+from those prior PR reviews below.
 
 ## Labelled recovery and procedural-custody case
 
@@ -185,9 +186,10 @@ locally for the open review. A hypothetical stale/silent holder does not authori
 a successor to overwrite it: the next action would be Agent 0 resolving actual
 ownership/operation state, not waiting out a timer. That is a procedural decision
 walkthrough, not an enforced timeout test. No live multi-worker exclusion or crash
-recovery is claimed. The usable result is the exact repaired reference plus its
+recovery is claimed. Holder and authorized maintainer were the same agent; transfer
+and timeout were not exercised. The usable result is the exact repaired reference plus its
 owning evidence; remaining historical adoption limits stay in Applicability.
-The next real action is candidate examination/owner content review, not reference
+The next real action is combined assessment and owner content review, not reference
 replacement, release or frozen-work continuation. No extra recovery note was needed.
 
 ## Reflection and neighboring evidence
@@ -238,6 +240,14 @@ all OUT/REQ/AC/VER text and stable IDs. Changed Markdown local links resolve.
 The native structure check has no errors and four unresolved references outside
 this case; its reduction reflects binding this case, not universal suitability.
 The actual draft PR supplies final revision, public-screening results and open
-review matters. The parent commissions one independent examiner; owner content
-approval is required before integration. No content acceptance, 60% decision,
+review matters. Claude's independent examination of
+`7d0933d70ab983068a55c055f31ff2df4423055f`, reported by Agent 0, found no blockers
+and independently inspected the recovered/partial/evidence-copy bytes and all five
+tree-equality pairs. Its four small corrections are incorporated: conditional
+application of deliverable-specific reconciliation in the generic method, precise
+owner-review standing, routing ordinary cross-owner repairs, and claim-specific
+custody evidence with applicable reuse. The review accepts the A8 evidence only
+as the labelled case with the limits above. Unchanged tests and case evidence
+remain applicable; no new examiner or exercise is implied. Owner content
+approval remains pending before integration. No content acceptance, 60% decision,
 release, consumer adoption or enforced custody is established here.

@@ -29,10 +29,12 @@ removing a working copy from deleting unique or uncommitted work. Preserve that
 work and resolve missing deletion authority before removal. Check affected links,
 discovery and consumers after the change; leave unexamined uses explicit.
 
-For conflicting claims or connected changes, use the selected library's
-[bounded reconciliation](../../bounded-reconciliation/WORKFLOW.md): compare
-source meaning, actual behavior, evidence and affected owning declarations in
-the same change. It owns that comparison; this route does not add another audit.
+For conflicting claims or connected changes, compare source meaning, actual
+behavior, evidence and the work's owning material (its locality where the
+repository has one). Where the repository maintains deliverable commitments,
+work material and dependency documents, use the selected library's
+[bounded reconciliation](../../bounded-reconciliation/WORKFLOW.md) for that
+same-change comparison. This route does not add another audit.
 Use the repository's publication and consumer-update guidance for version basis,
 change accounts, dependencies, limitations and independent adoption. Identify
 its actual location through repository conventions. If unavailable, report the
@@ -49,13 +51,14 @@ retroactively govern its review.
 ## Recovery
 
 If a check fails, review finds a blocking issue, or integration conflicts with
-other work, hold the affected integration and repair within scope or return the
-reserved decision. A clearly labelled draft may be shared for review within
-actual authority; failed checks remain visible.
+other work, hold the affected integration and repair within scope, route it to
+its owner, or return the reserved decision. A clearly labelled draft may be
+shared for review within actual authority; failed checks remain visible.
 
-After interruption, restart from step 2 and read the owning locality, current
-steering and actual review record together. Establish the selected source basis,
-usable completed and partial work, applicable checks, open conditions, next
+After interruption, restart from step 2 and read the work's owning material
+(its locality where the repository has one), current steering and actual review
+record together. Establish the selected source basis, usable completed and
+partial work, applicable checks, open conditions, next
 needed action and current authority. Inspect uncommitted/ignored work and any
 active operation before repeating a command whose confirmation was lost. A prior
 report cannot substitute for actual state, and Git state alone does not establish
@@ -76,8 +79,10 @@ operations. The authorized maintainer decides whether to resume, transfer or
 release; silence or elapsed time grants no disposal authority. Resolve uncertain
 ownership before overlapping writes. On completion or authorized transfer, update
 the existing coordination record so the next worker can tell who may proceed.
-Check that retained work and reader access survived. Exercise the selected
-release/recovery behavior and state its observed enforcement limits; a procedural
-walkthrough cannot establish a host-enforced guarantee.
+Check that retained work and reader access survived. Before claiming enforcement,
+exercise the applicable release/recovery behavior and state its observed limits.
+Reuse passing evidence where its basis and conditions support the actual claim;
+this does not require a fresh exercise for every custody use. Procedural
+coordination or a walkthrough cannot establish a host-enforced guarantee.
 
 ---

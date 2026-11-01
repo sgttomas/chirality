@@ -21,7 +21,7 @@ The accepted production target is unchanged. A connected maintenance/recovery
 candidate now has bounded source examination, reused actual change evidence and
 a labelled interruption/custody exercise in Work. The current assignment names
 Agent 1 WORKING_ITEMS as continuing implementation owner and permits drafting,
-checking and a draft PR; Agent 0 retains owner review and integration. Content
+checking and a draft PR; Agent 0 brings content to the owner and retains integration. Content
 approval before integration, product acceptance and release remain distinct.
 
 Project-relative source paths below resolve from the repository root. The basis
@@ -153,7 +153,7 @@ or recovery. Return unsupported claims and reserved choices with consequences.
 - **TBD-002** — Q-01 reserves further disposition of `plans/`, `_DomainEngines/` and other unselected removals; retain them until specific owner authority. Q-02 permits additional bespoke tooling only for a demonstrated selected gap and actual authorization, with no production allocation here. Neither qualification is resolved by this contract.
 - **TBD-003** — Q-04 is bound under DEL-05-01's Work/ConsumerBasis.md for the selected App reader at its named revision only. Other named compatibility or incompatible adopted-clause changes still require their maintained contract/fixture and exact basis, with a supported path/coordinated adapter where needed. Generic Root evidence does not substitute; unaffected procedure work can continue.
 - **TBD-004** — Q-05 is bound under DEL-05-01's Work/ConsumerBasis.md for the F-02/Consolidated v9 source candidate at 1357d706ea77497903976bf159f3880bea4d1360 versus 257ab4c18014bf872a1c72eeb7593a7ad3d135c0 and PR #1783's change account. That reported preparation/inspection evidence is not a published library version; the procedure connection alone does not establish another A7 claim or authorize release.
-- **TBD-005** — Work/MaintenanceBasis.md now assesses claim-level applicability of PRs #1779/#1781–#1784 and the labelled recovery/custody case. This candidate still needs independent examination and owner content approval before integration; no complete product acceptance is asserted. Q-03 future assignments remain separate from this continuing bounded appointment. No substantive source conflict was identified during setup authoring; later genuine ambiguity must remain explicit with its consequence.
+- **TBD-005** — Work/MaintenanceBasis.md now assesses claim-level applicability of PRs #1779/#1781–#1784 and the labelled recovery/custody case. Independent Claude examination of 7d0933d70ab983068a55c055f31ff2df4423055f found no blockers; its four small corrections are incorporated. Owner content approval remains pending before integration; no complete product acceptance is asserted. Q-03 future assignments remain separate from this continuing bounded appointment. No substantive source conflict was identified during setup authoring; later genuine ambiguity must remain explicit with its consequence.
 
 ## Output and Evaluation Matrix
 
