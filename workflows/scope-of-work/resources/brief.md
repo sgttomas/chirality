@@ -18,7 +18,7 @@
 | `RuntimeOverrides.AMENDMENT_REF` | Required only for `REVISE`: the amendment ID, the accepted snapshot path (checkpoint group 3 accepted), the accepted action rows naming this deliverable with `MODIFY` or `RECLASSIFY`, and the action register hash |
 | `RuntimeOverrides.REVISION_SCOPE` | Required only for `REVISE`: the contract parts (sections, IDs, matrix rows, frontmatter references) the amendment changes |
 | `RuntimeOverrides.PRIOR_CONTRACT_SHA256` | Required only for `REVISE`: hash of the `ScopeOfWork.md` being revised |
-| `ExpectedOutputs` | Contract or verification result; for conversion, distinct evidence candidate, clean production contract, and finalization report; applicable claim map/parity/checklist, receipt, and structured return |
+| `ExpectedOutputs` | Contract or verification result, applicable checks and findings through the normal return; conversion additionally needs its distinct evidence candidate, clean production contract and mapping/parity/finalization evidence. No routine receipt for current INIT/VERIFY |
 
 The brief also supplies or authorizes grounded determination of the initial
 `OUT-*`, `AC-*`, and `VER-*` definitions. Tests may implement a verification
@@ -31,7 +31,7 @@ method but may not create scope or acceptance criteria.
 | `RuntimeOverrides.RENDER_HTML` | Produce an on-demand derivative | `false` |
 | `RuntimeOverrides.ISSUED_PREPARATION_BINDING` | Required source commit, four source hashes, status hash, and accepted basis for `ISSUED` preparation; does not satisfy H1 | empty |
 | `CustomInstructions` | Deliverable-specific emphasis within the frozen scope | none |
-| `RuntimeOverrides.STATUS_POLICY` | `PRESERVE_CURRENT`, `ADVANCE_ON_PASS`, or `NO_STATUS_TOUCH`, with the meanings defined in `workflows/semantic-matrix-build/WORKFLOW.md`. `ADVANCE_ON_PASS` additionally requires the brief to authorize `_STATUS.md` writes; absent that authorization the run does not edit status and reports the ruling. `REVISE` accepts only `NO_STATUS_TOUCH` | `NO_STATUS_TOUCH` |
+| `RuntimeOverrides.STATUS_POLICY` | `PRESERVE_CURRENT` or `NO_STATUS_TOUCH`: existing status bytes remain unchanged and absent status remains absent. `REVISE` uses `NO_STATUS_TOUCH`. Any separately authorized status act belongs to its actual actor outside this workflow | `NO_STATUS_TOUCH` |
 | `RuntimeOverrides.DECOMP_VARIANT` | `PROJECT` or `SOFTWARE`, matching the accepted decomposition basis; canonical enum `DECOMP_VARIANT` in `tools/validation/validate_enum.py`. `DOMAIN` is out of this workflow's scope | inferred from `DECOMPOSITION_BASIS` |
 | `RuntimeOverrides.PHASE` | Project-loop phase label carried for run-record attribution only; it grants no authority and changes no tool behavior | empty |
 
@@ -46,8 +46,10 @@ Permitted targets are limited to:
   conversion workspace, plus a separate clean production-candidate
   `ScopeOfWork.md` and external finalization report;
 - a requested untracked/on-demand `ScopeOfWork.html`; and
-- run-local claim-map, parity, deterministic checklist, boundary-owner report
-  (`check_boundary_owner_resolution.py --json`), receipt, and return artifacts.
+- applicable claim-map, parity, deterministic checklist and boundary-owner report
+  (`check_boundary_owner_resolution.py --json`) outputs for an actual review or
+  conversion need. A retained receipt is written only for an explicitly adopted
+  requirement; current INIT/VERIFY return through the host without a routine file.
 
 The four legacy documents and `_STATUS.md` are always read-only inputs.
 
