@@ -13,9 +13,9 @@ needs:
   when: Using or revising reflective-practice guidance
   evidence: execution/PKG-04/DEL-04-02/Work/ReflectiveBasis.md
 - from: doc:workflows/reflect-on-work/WORKFLOW.md
-  condition: Use the proposed bounded human-Agent 0 method for questioning purpose, commitments,
-    explanatory framing or chosen practice. Retain its preceding design/review basis; proposal presence
-    is not adoption or evidence of execution. Reasoned retention and scoped change remain distinct choices.
+  condition: Use the adopted bounded human-Agent 0 method for questioning purpose, commitments,
+    explanatory framing or chosen practice. Retain its preceding design/review basis; a future proposed revision
+    is not adopted or evidenced as executed merely by its presence. Reasoned retention and scoped change remain distinct choices.
   when: A concrete finding calls the basis or practice into question
   evidence: execution/PKG-04/DEL-04-02/Work/ReflectiveBasis.md
 - from: doc:workflows/coordinated-knowledge-work/WORKFLOW.md

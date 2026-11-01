@@ -28,15 +28,18 @@ needs:
   when: Establishing the bounded application and A3 action claims
   evidence: execution/PKG-04/DEL-04-01/Work/FormationAndReconciliation.md
 - from: DEL-04-02
-  condition: Use DEL-04-02's proposed reflect-on-work method with human-purpose and local-experience evidence when a changed question, burden
+  condition: Use DEL-04-02's adopted reflect-on-work method with human-purpose and local-experience evidence when a changed question, burden
     or goal mismatch requires reflective judgment. Any changed commitment returns to its actual owner;
     no recurring review gate is created.
   when: A reconciliation finding calls the goal or framing into question
   evidence: execution/PKG-04/DEL-04-01/Work/FormationAndReconciliation.md
 - from: DEL-05-01
   condition: Bind claim-specific named consumer sources/revisions or the publication candidate/prior basis
-    before the corresponding compatibility or publication consequence is asserted. Q-04/Q-05 remain unresolved;
-    ordinary source reconciliation can continue.
+    before the corresponding compatibility or publication consequence is asserted. Q-05 is bound for the
+    F-02/Consolidated v9 candidate at 1357d706ea77497903976bf159f3880bea4d1360 against 257ab4c18014bf872a1c72eeb7593a7ad3d135c0
+    in DEL-05-01 Work/ConsumerBasis.md; other publication claims need their own binding. Q-04 remains
+    claim-specific because the App package-reader evidence does not establish adopted-clause compatibility.
+    Ordinary source reconciliation can continue.
   when: The selected application affects named compatibility or publication-inspection claims
   evidence: execution/PKG-04/DEL-04-01/Work/FormationAndReconciliation.md
 - from: DEL-01-01
