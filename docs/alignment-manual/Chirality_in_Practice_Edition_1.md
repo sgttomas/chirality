@@ -12,7 +12,9 @@ This book develops the reflective aspects of Chirality. It extends the argument 
 
 The book succeeds *Project Management for Human Agent Teams, Consolidated v9* in the line of this account, without replacing v9's existing uses. The earlier work addressed an executing agent and combined explanations with instructions. Here those explanations are reconsidered as arguments about practice. Particular recommendations retain reasons, circumstances and limitations. The book is available to people and agents as material for thought and criticism; the commitments and selected instructions of their undertaking remain the basis for execution. A disagreement between an explanation and an instruction can be consequential without the explanation automatically superseding the instruction.
 
-The cases have different grounds. Chapter 9 examines identified records of the Root library undertaking. Chapters 10 and 11 contain constructed examples inherited and revised from v9. The thesis supplies a separately dated account of App and SWBPIPE experience. This book does not report new product trials in either application. Its purpose concerns the practice across projects; the direct documentary evidence examined here is predominantly library maintenance. That asymmetry is a limitation of the present account, not a claim that the other projects supply no experience.
+The account distinguishes the author's commitments, interpretations of documented experience, and proposals for how practice could develop. Agreement with the thesis supplies conceptual grounding, not independent empirical confirmation. A plausible arrangement can remain a design hypothesis even when particular cases support some of its relationships.
+
+The cases have different grounds. Chapter 4 examines one owner-mediated App episode; chapter 9 examines the concentrated Root library undertaking. Chapters 10 and 11 contain constructed examples inherited and revised from v9. The thesis supplies a separately dated account of App and SWBPIPE experience. Earlier App and Piping work occurred within a shared repository, before the projects separated. This book selects a small part of those records, predominantly library maintenance; that is a boundary of its inquiry rather than an absence of product experience. It reports no new product trials.
 
 The distinctions developed here are selective. A chapter can make a relationship easier to see while leaving out something that matters in another situation. Agreement with a description is therefore different from an adequate understanding of the work. The contents are an invitation to inquiry, not a checklist of all the questions that might arise.
 
@@ -36,13 +38,15 @@ The distinctions developed here are selective. A chapter can make a relationship
 
 ## 1. A wider undertaking
 
-Chirality is the wider undertaking expressed through its library, App and SWBPIPE projects. The library repository is one particular place where that undertaking develops its shared understanding and means of working. App develops an environment for work with agents. SWBPIPE develops a piping design and stress-analysis product. Each has its own commitments, technical circumstances and responsibilities. Their differences supply part of the experience from which the shared practice can learn.
+Chirality is the wider undertaking expressed through its library, App and SWBPIPE projects. The library repository is one particular place where that undertaking develops its shared understanding and means of working. App develops an environment for work with agents. SWBPIPE develops a piping design and stress-analysis product. Each has its own commitments, technical circumstances and responsibilities. Their differences offer distinct occasions for the shared practice to learn.
 
-A library can be viewed as a supplier of files. That is an important operational relationship: a consumer needs identifiable material, its resources and a way to assess changes. But it is an incomplete account of the relationship between these projects. The shared methods are used, questioned and changed in the course of producing actual results. The projects can reveal a defect in a method, a misleading explanation, or a useful possibility that had not been anticipated by the library's authors.
+A library can be viewed as a supplier of files. That is an important operational relationship: a consumer needs identifiable material, its resources and a way to assess changes. But it is an incomplete account of the relationship between these projects. Shared methods can be questioned and changed through the work of producing actual results. The projects can reveal a defect in a method, a misleading explanation, or a useful possibility that had not been anticipated by the library's authors.
+
+The [thesis introduction](../thesis/INTRODUCTION.md#one-undertaking-three-perspectives) describes a mainly normative emphasis in Root, an operative emphasis in App and an evaluative emphasis in the engineering product. These are emphases, not exclusive allocations: all three involve purposes, action and examination. A difficulty in a receiving practice can qualify a shared claim, rather than merely count as a failure to follow it.
 
 The library gives form to some of that understanding. A role expresses a contribution; a workflow offers a way of carrying work through; a tool performs an operation whose meaning and limits can be examined. Publications develop arguments and cases that cannot be reduced comfortably to short operational instructions. These forms have different uses. Their relationship is more important than their conformity to one document pattern.
 
-The thesis uses *chirality* to name the gap between externalizable information and accountable knowing. An inspectable artifact can support a person's understanding and commitment without becoming identical with them. In practice that gap is encountered whenever a person receives work from an agent: an explanation, a calculation, a proposed change, or a product. The work can be examined and corrected, but its receipt does not settle what the person knows or is willing to stand behind.
+The thesis uses *chirality* to name the gap between externalizable information and accountable knowing. An inspectable artifact can support a person's understanding and commitment without becoming identical with them. In practice that gap is encountered, for example, when a person receives work from an agent: an explanation, a calculation, a proposed change, or a product. The work can be examined and corrected, but its receipt does not settle what the person knows or is willing to stand behind.
 
 The term is not a claim that every distinction in the architecture has a chiral structure. It names a particular difficulty within purposeful work. The significance of roles, source identities and examination follows from how they help people live with that difficulty, not from their resemblance to a metaphor.
 
@@ -82,7 +86,7 @@ Ontology, epistemology, praxeology and axiology are ways of examining the same u
 
 A proposed change can be confused with an accepted requirement, an artifact with the condition it represents, or a passing check with a permitted use. These are distinctions about what the work contains. They also affect evidence, action and value. Treating an approval field as an actual human act, for example, changes both the claim being made and the responsibility attributed to a person.
 
-The perspectives are useful when they expose such a consequential confusion. Turning them into four compulsory reports can leave the confusion untouched while increasing administration. Their adequacy is itself a matter for reflection: the names do not guarantee that the important relationship has been seen.
+The thesis describes these perspectives as [mutually corrective](../thesis/03_philosophical_framework.md#34-mutually-corrective-perspectives). Purpose determines which uncertainty matters; evidence can expose a flawed category or intended use; and the cost of a control can change how examination is carried out. Turning the questions into four compulsory reports can leave those relationships untouched. Their adequacy remains open to reflection through the work they help participants understand and do.
 
 ## 3. Commitments that support action
 
@@ -156,7 +160,11 @@ A graph expresses selected relationships for a purpose. An acyclic graph may omi
 
 A cycle may indicate coupled design, an overbroad contribution or an impossible order. Those interpretations warrant different responses. Defining an interface can allow two implementations to proceed; developing coupled work under one integration responsibility can preserve a relationship that should not be cut. Narrowing an accepted requirement to obtain a cleaner graph changes the commitment while appearing to repair a representation.
 
-The Root library's accepted source at `fc73de583d25bf792d5c3abb3bf1ac8e0c38f7d6` retained reciprocal declarations among its seven deliverables. The [tool-use account](../../execution/PKG-03/DEL-03-01/Work/ToolBasis.md) explains that native cycles are allowed and need a use-specific reading. The library proceeded through local conditions to acceptance without treating removal of every cycle as a product goal. That is a bounded example of a graph serving inquiry rather than deciding the permissible shape of the work.
+The App's October 4, 2026 passage through its 60% position provides a more difficult instance. At that time the App and the shared library occupied the same repository. The agent's [recorded lessons](https://github.com/sgttomas/chirality/blob/34a83250a15d81f0c2239496858e16450cc82840/projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GRAPH-CLOSURE-20261004/LESSONS_60PCT.md) describe attempts to remove cycles by rewording dependencies, finding more coupling while no usable product advanced. Some proposals narrowed obligations to improve the graph. The owner redirected the work toward a coupled contract core and a working path through it.
+
+The [owner-direction record](https://github.com/sgttomas/chirality/blob/24e9117b9c2d9d10f57642da4eef0d13c90bb166/projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GRAPH-CLOSURE-20261004/OWNER_DECISIONS.md) also transcribes an explicit request to enrich the manuals from that experience. The ensuing [manual change account](https://github.com/sgttomas/chirality/blob/a8d835ad7bb687e1d4283fdbda8ca1ce85cfafb1/projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GRAPH-CLOSURE-20261004/MANUAL_CHANGES.md) and [revision](https://github.com/sgttomas/chirality/commit/0c45aba0e987d5c9e65e1786bab680def5d56169) distinguish structural concerns from finer relationships and qualify the guidance as coming from one project's experience, without fixed thresholds or tiers.
+
+The trace connects a project difficulty, the owner's intervention and an actual response in shared explanatory material. It does not establish a routine learning process, subsequent adoption in every project, or an effect on later outcomes. Its importance here is the correction of what the graph was being asked to accomplish—and the person's role in carrying that experience into an account others could examine.
 
 Tools can derive neighbourhoods and potential impact from declarations. Their usefulness depends on the sources and limits they expose. A present supplier file is an observation about a path, not proof of suitability. Missing mappings remain possible. Local inquiry combines those observations with inspection of the relationships that matter to the actual action.
 
@@ -230,7 +238,7 @@ An examination needs an identifiable candidate. A moving branch name, a screensh
 
 Earlier evidence can remain applicable when the conditions supporting its claim remain unchanged. Those conditions can include requirements, inputs, implementation, the check and the environment. A changed document does not necessarily invalidate a previously tested executable path; an unchanged executable can still face a new use that its earlier tests did not address.
 
-This creates a judgment about applicability rather than a choice between universal reuse and universal repetition. A copied table can require placement and rendering checks without requiring another derivation of unchanged numbers. A different consumer may require new interface evidence even when the copied bytes are identical.
+This calls for an assessment of applicability rather than a choice between universal reuse and universal repetition. A copied table can require placement and rendering checks without requiring another derivation of unchanged numbers. A different consumer may require new interface evidence even when the copied bytes are identical.
 
 The library delivery case separated two warrants that are easy to merge in a summary. The complete archive's correspondence with Git established which source was supplied. Selected operations on an extracted archive established bounded behavior. The first result could be exhaustive about file identity while the second remained selective about use. Neither had to be enlarged beyond its actual claim for the combination to be useful to a recipient.
 
@@ -348,15 +356,15 @@ Maintenance therefore allows completion to remain meaningful without making the 
 
 <a id="library-case"></a>
 
-The following episodes concern the Root library undertaking completed in November 2026. They are a documentary examination of identified source and review records, not new executions of the reported tests. The account's conclusions concern these cases. App and SWBPIPE appear through bounded consumer evidence, not as freshly qualified products. The source references at the end of this chapter identify the maintained accounts and actual integrated revisions.
+The following episodes concern the concentrated Root library undertaking from PRD acceptance on October 31 to the release record on November 1, 2026, built on months of earlier development. They are a documentary examination of identified source and review records, not new executions of the reported tests. The account's conclusions concern these cases. App and SWBPIPE appear through bounded consumer evidence, not as freshly qualified products. The source references at the end of this chapter identify the maintained accounts and actual integrated revisions.
 
-### An explanation challenged by its consumer
+### A draft interpretation challenged in review
 
-The F-02 undertaking addressed the applicability of shared references. Some passages mixed reusable concepts with historical product ownership or appeared to impose Root governance on independent projects. A broad qualification initially treated part of the format-validation account as legacy-only.
+The F-02 undertaking addressed the applicability of shared references. Some passages mixed reusable concepts with historical product ownership or appeared to impose Root governance on independent projects. An agent-authored draft qualification treated part of the format-validation account as legacy-only.
 
-Independent examination exposed a counterexample: a current ScopeOfWork caller and validator still depended on the distinction being described. The broad interpretation would have made the explanation easier to simplify by misdescribing a live use. The repair qualified the actual scope without erasing current behavior or historical adopted contracts.
+Before integration, independent examination of the draft against actual code exposed a counterexample: a current ScopeOfWork caller and validator still depended on the distinction being described. The broad interpretation would have made the explanation easier to simplify by misdescribing a live use. The repair qualified the actual scope without erasing current behavior or historical adopted contracts.
 
-This is a small but consequential instance of reciprocal correction. The shared explanation shaped expectations about a tool; inspection of the actual tool and its caller challenged the explanation. The eventual source repair needed both. Consistency among documents alone would not have established the correct applicability, and passing tests alone would not have explained the misleading account.
+The episode supports the value of review with access to the actual code and its consumers. A plausible proposed explanation was corrected before becoming integrated guidance. It was not a deployed interpretation whose failure was discovered through later user experience. Consistency among the draft documents alone would not have exposed the error.
 
 The manual's locality explanation was reconciled in the same undertaking. Current navigation followed project instructions and actual Work homes, while historical Design references retained their identified meaning. The change improved current explanation without relocating the subject of old evidence.
 
@@ -368,17 +376,19 @@ The first reflective conclusion was that existing ownership guidance could be re
 
 The record supports those interpretations and their actual consequences. It supplies no controlled comparison of productivity. A reduction in fragmented returns can be useful to the person without establishing a general numerical claim about efficiency.
 
-### Retiring duplicated instructions
+### Reconsidering where instructions belong
 
-The publication index records the October 2026 retirement of the Field Book and Agent User Manual, including the concern that the latter restated repository instructions. During the later library undertaking, the bundled change workflow and Root change skill were also retired. Concise repository conventions and on-demand recovery material retained the needed local functions.
+The publication index records the October 2026 retirement of the Field Book and Agent User Manual, including the concern that the latter restated repository instructions. The later retirement of the bundled change workflow had a different stated impetus. The owner said: “It's seldom used in the right manner when agents are the ones invoking it. The task is easy for agents to do.” The question concerned the value of that mechanism given the agents' capability and actual use.
+
+The change workflow and Root change skill were removed, while needed Git conventions and a recovery entry were relocated into the every-turn repository instructions. Detailed recovery guidance remained on demand. Removing two packages redistributed guidance; it did not by itself establish a reduction in attention, interruption or maintenance cost.
 
 The retirement was not achieved by silently substituting an unrelated method. Explicit selections of the removed packages and historical CHANGE route failed, while historical identities and source pins remained recoverable. Bounded consumer inspections distinguished known present uses from unsearched or dynamically selected uses.
 
-The general question exposed by the episode is where meaning belongs. Repetition can make material easier to encounter, but duplicated instructions create competing maintenance obligations. Retirement can simplify practice only if the actual useful functions, dependencies and recovery conditions have been understood. Deleting text is not itself evidence of reduced burden.
+These decisions illustrate different reasons for revising a mechanism: competing instruction homes, a poor fit with agent use, and a changed assessment of what agents can carry without a separate procedure. Their consequences depend on the retained functions and actual consumers. Deleting text is not itself evidence of reduced burden.
 
 ### Reflection and the 60% decision
 
-The owner asked for an actual use of the adopted reflective method to examine readiness at 60%. The inquiry considered what had been established, what the next work would rely on, and whether additional activity was necessary. It identified stale standing descriptions alongside bounded evidence that supported proceeding.
+The owner asked for an actual use of the newly adopted reflective method to examine readiness at 60%; its first recorded application here was by the Agent 0 that had developed it. The inquiry considered what had been established, what the next work would rely on, and whether additional activity was necessary. It identified stale standing descriptions alongside bounded evidence that supported proceeding.
 
 The consequence was factual reconciliation and further concrete work, including fresh-reader discovery and a broader source-delivery candidate. The owner made the gate decision. The later 90% assessment assembled claim-specific evidence across the seven deliverables, retaining the limits of named-reader, custody and archive cases.
 
@@ -394,7 +404,7 @@ A useful library edition could therefore be completed without proving every imag
 
 ### After the edition
 
-Publication did not end work on the maintained library. PR #1791 recorded acceptance and the release pointer in current sources while preserving the approved archive. PR #1792 then clarified how readers could select material, follow releases and inspect updates. Its owning records distinguished source-level subscription guidance from an actually configured subscription or tested notification delivery.
+The selected post-completion record is one same-day improvement, rather than a longitudinal maintenance study. PR #1791 recorded acceptance and the release pointer in current sources while preserving the approved archive. PR #1792 then clarified how readers could select material, follow releases and inspect updates. Its owning records distinguished source-level subscription guidance from an actually configured subscription or tested notification delivery.
 
 The change addressed a newly articulated usability need. It was not recorded as proof that the published edition had failed an accepted commitment. The owner authorized the concrete improvement and integration; publication of another edition remained a separate decision. The archive stayed at its original source while the README on the development branch acquired later guidance.
 
@@ -479,7 +489,7 @@ The final comparison identifies its actual coverage, limitations and material di
 
 Reflection can examine whether a local result fulfills its commitment, but it can also reach the commitment's framing or the chosen practice itself. A troublesome result may show missing behavior, inadequate evidence, a mistaken interpretation or an unsuitable approach. Those possibilities are related without being interchangeable.
 
-In the Root case, a counterexample changed an explanation, while the owner's experience of fragmented returns changed the size of a useful undertaking. The first concerned the applicability of a shared claim. The second concerned how work was being carried. Their treatment did not require the same mechanism, even though both affected the library's practice.
+In the Root case, review against an actual caller changed a draft explanation, while the owner's experience of fragmented returns changed the size of a useful undertaking. The first concerned the applicability of a shared claim. The second concerned how work was being carried. Their treatment did not require the same mechanism, even though both affected the library's practice.
 
 A repeated difficulty can suggest a shared cause. It cannot establish that cause merely by recurrence. Similar symptoms may arise from different conditions, while one consequential event may be enough to expose a serious defect. The value of the reflection rests on the relationship between experience, explanation and consequence.
 
@@ -487,9 +497,11 @@ A repeated difficulty can suggest a shared cause. It cannot establish that cause
 
 The thesis brings App and SWBPIPE into the argument through identified documentary and implementation bases. Its October 30 evidence account includes App redevelopment and stored SWBPIPE comparison material, with the limits stated in the [thesis source account](../thesis/README.md#source-basis-and-historical-editions). That work makes project experience available for a wider inquiry without transforming the book into a report of fresh tests.
 
-The differences between the projects are productive. A workflow-authoring environment exposes questions about proposal, review and use. An engineering analysis product exposes questions about assumptions, numerical meaning and reliance. The library's own development exposes questions about instructions, explanation and the maintenance of the means used to maintain them. These are areas of inquiry, not a claim that all are resolved or exhausted by the named products.
+The differences between the projects offer material for this inquiry. A workflow-authoring environment exposes questions about proposal, review and use. An engineering analysis product exposes questions about assumptions, numerical meaning and reliance. The library's own development exposes questions about instructions, explanation and the maintenance of the means used to maintain them. These are areas of inquiry, not a claim that all are resolved or exhausted by the named products.
 
-Project owners and their Agent 0s can bring consequential experience into a conversation about shared practice. The library can then develop an explanation, revise a method or tool, or retain an existing approach for a more carefully understood reason. The resulting material becomes available to projects through their own selection and adoption. Its further use can expose limits not visible in the originating case.
+The author describes the connections made so far as occasional interventions, undertaken when they seemed particularly necessary. The October 4 episode provides one documented instance. A systematic practice of learning across the projects has not been established. Developing that relationship is a direction for the wider undertaking, not an accomplishment inferred from shared vocabulary or the availability of a communication route.
+
+Project owners and their Agent 0s can bring consequential experience into shared reflection. That can warrant a changed explanation, method or tool, or a reason to retain the existing practice. Further selection and use can challenge the result. A development instruction and a method embedded in a product are distinct consumers; making a library revision available does not show that either has adopted it.
 
 There is no necessary cadence to this movement and no report due for every event. Nor must every local repair become a change to the shared library. A project's particular constraint can remain local. The reflective question concerns what should travel, what should remain situated, and what evidence supports that distinction.
 
@@ -509,9 +521,11 @@ A fast draft can be expensive after preparation, review, correction and recovery
 
 An instruction's length is a poor proxy for its burden. A sentence can require hundreds of artifacts. A substantial explanation can prevent repeated misunderstanding without assigning any recurring work. A retired control can return under a new name when its original purpose is no longer understood.
 
-The thesis's [discussion of over-proceduralization](../thesis/09_discussion.md) and [development history](../thesis/appendix_e_development_history.md) provide grounds for examining that tendency. They are explanations at identified bases, not proof that every later simplification improves practice. A smaller record can remove duplication or destroy needed evidence; the consumer and consequence decide which interpretation is warranted.
+The thesis's [reading of Polanyi](../thesis/03_philosophical_framework.md#365-what-the-chirality-metaphor-contributes) gives this concern a positive account: attention can proceed from subsidiary particulars toward a meaningful whole. Records and instructions help when they support attention to the work. They become troublesome when maintaining them becomes the focal activity and displaces what they were meant to make intelligible. This is the thesis's interpretive grounding, not a new empirical finding about every record system.
 
-The effects of an instruction change also depend on its actual consumers and enforcing tools. If a validator continues to reject a newly authorized operation, the revised prose has not made that route usable. If CI still requires a retired artifact, the retired duty continues to consume work. The F-02 counterexample exposed the complementary mistake: an explanation treated behavior as legacy while a current caller still used it. Reflection on practice has to reach those relationships if its conclusions are to take effect.
+Its [development history](../thesis/appendix_e_development_history.md#e32-the-warrant-sequence) describes an earlier sequence that treated citation, review and authentication as stages of improving warrant; reconsideration separated unlike relationships rather than adding another stage. The [coordinated-knowledge-work experience notes](../../workflows/coordinated-knowledge-work/REVIEW-NOTES.md) similarly connect guidance to reported incidents while preserving their evidential limits. These accounts make changes to an abstraction examinable without proving that every later simplification improves practice.
+
+The effects of an instruction change also depend on its actual consumers and enforcing tools. If a validator continues to reject a newly authorized operation, the revised prose has not made that route usable. If CI still requires a retired artifact, the retired duty continues to consume work. The F-02 counterexample exposed the complementary mistake in a draft: it treated behavior as legacy while a current caller still used it. Reflection on practice has to reach those relationships if its conclusions are to take effect.
 
 Mechanical repetition sometimes warrants a tool. That tool introduces its own selection, failure and maintenance costs. Automation can answer the wrong question reliably. Its value depends on the relationship between the operation and the decision it supports, not on the fact that an agent no longer performs it manually.
 
@@ -520,6 +534,8 @@ Mechanical repetition sometimes warrants a tool. That tool introduces its own se
 How much common orientation helps an agent recognize a consequential distinction without making every task carry a growing instruction set? How can a project preserve the reason for a practice while allowing later experience to change it? When does a useful local solution deserve a shared form, and when does generalizing it erase the circumstances that made it useful?
 
 These questions are not missing steps in a universal process. They remain questions because the situations, capabilities and commitments can change. The available evidence supports particular conclusions while leaving room for an important relationship to be discovered elsewhere.
+
+The thesis identifies [self-confirmation](../thesis/09_discussion.md#95-summary) as a danger for its own practice. It applies here too: agents drafting and examining this book share much of its conceptual basis, and the reflective method's first use in the Root case was close to its own design. Their agreement can improve an argument without independently demonstrating the framework's efficacy. Documented local achievements still count for what they establish.
 
 The account's continuing worth depends on whether it helps people and agents make those relationships intelligible and discuss their consequences. It can be corrected through the same work from which it draws its substance. A coherent book is an achievement in explanation; the practice remains larger than the explanation.
 
