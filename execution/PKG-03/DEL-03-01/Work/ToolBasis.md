@@ -26,12 +26,12 @@ declare the dependency and interpreter selection, not a machine-specific path.
 
 ## Query use and an instruction discrepancy
 
-`tools/deliverables/cli.py` requires `--project`; its README agrees. The selected
-`workflows/dependency-extract/resources/tools.md` still says the CLI has an App v4
-default. The safe current invocation is explicit `--project .` from Root, as the
-guide itself prescribes. This discrepancy did not block setup; it is a bounded
-direct-usage correction for later maintenance, not evidence of a missing query
-implementation. Its governing source has not been edited in this setup.
+`tools/deliverables/cli.py` requires `--project`; its README agrees. During setup,
+`workflows/dependency-extract/resources/tools.md` incorrectly described an App v4
+default. The owner-approved correction updates that sentence to state the shared-library
+CLI's required argument. Its examples already supply the argument, so the change
+alters neither invocation nor executable behavior. Consumer-local adaptations
+retain their own contracts. The owner approved this two-file correction with “you may.”
 
 The queries read live declarations, including uncommitted files. They report
 path/source observations and unknown suitability; they do not execute pointers,
