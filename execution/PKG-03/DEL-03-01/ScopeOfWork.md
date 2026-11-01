@@ -43,6 +43,11 @@ original `execution/_Decomposition/PROJECT_DECOMP.md` location.
 
 The initial source assessment and continuation conditions are in [Work/ToolBasis.md](Work/ToolBasis.md). Consumer-local needs are now declared in `deliverable.yaml`; their presence establishes no satisfaction claim.
 
+The post-60 usage-contract examination and owner-approved structured-brief dependency
+clarification are recorded in [Work/ToolBasis.md](Work/ToolBasis.md). The linked
+complete-source candidate provides bounded standalone-use evidence; its content
+and exact source-delivery candidate were approved in PR #1787; release remains separate.
+
 ## Deliverable Definition — Ontology
 
 A utility is executable repeatable behavior, distinct from instructions describing
