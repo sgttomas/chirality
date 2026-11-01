@@ -3,8 +3,10 @@
 Maturity: coherent reference/manual candidate with all eight selected passage
 rows examined, bounded source-use examination and the affected HTML regenerated.
 Independent examination of `af78739f4a1d977e221d4fa2068e941d15824d6b` found a
-format-applicability blocker, repaired below. Agent 0's bounded repair verification
-and owner content approval remain pending. This is
+format-applicability blocker, repaired below. Agent 0 verified the bounded repair
+against the current validator and callers. After reviewing the eight-file proposal
+at `4ac85ca97caa716a31bf68b726ffac931cb7ca08`, the owner said “approved.” This
+approves the candidate content for integration. This is
 evidence toward AC-001–AC-004, not an accepted F-02 result, A4/A5 completion,
 a development gate or release.
 
@@ -26,7 +28,8 @@ abolishing a contract because its deployment is historical. The current bounded
 assignment authorizes the connected reference/publication drafting and examination
 under the existing criteria. The owner approved carrying the coherent result
 through before independent examination: “give that a try and we'll see how it goes.”
-That changes the work boundary, not approval of the candidate content.
+That earlier decision expanded the work boundary; the subsequent content approval
+is recorded above.
 Agent 0 retains consumer coordination and final integration; the owner approves
 proposed content before integration. The selected methods are repository
 `workflows/coordinated-knowledge-work/WORKFLOW.md`,
@@ -101,8 +104,8 @@ diff, not hypothetical replacement policies.
 The result resolves the broad Root-facing readings in the proposed text without
 claiming to settle every adopted historical clause. An incompatible removal is
 not required to make this selected case usable. Independent examination exposed the format counterexample repaired below. Agent 0
-will verify that bounded repair and the owner must decide whether to approve the
-content; neither approval is inferred from these walkthroughs.
+verified the bounded repair, and the owner approved the presented content;
+neither decision is inferred from these walkthroughs.
 
 ## Consumer evidence and remaining conditions
 
@@ -228,15 +231,15 @@ A7's separate publication/update-inspection undertaking.
 
 ScopeOfWork factual maturity, assignment and authority descriptions now reflect
 bounded production; its commitments, requirements, criteria and stable IDs remain
-unchanged. CON-001 now identifies the proposed qualification and its remaining
-review/adoption limits; a proposed resolution is not an accepted resolution. The existing deliverable.yaml needs/check pointers still describe
+unchanged. CON-001 now identifies the owner-approved Root-facing qualification and its
+remaining historical-adoption limits. The existing deliverable.yaml needs/check pointers still describe
 actual input conditions, including Q-04/Q-05 and the renderer used here. No
 metadata edit is warranted simply to record that a source was read.
 
-The PR carries exact candidate checks and outstanding review. Focused structural,
+The PR carries the exact candidate checks, review findings and owner content decision. Focused structural,
 source/link and public-screening checks support representation and public handling;
 they cannot establish source interpretation, host behavior or consumer compatibility.
-Agent 0 commissioned the independent examination and retains bounded repair verification. There is no changed
+Agent 0 commissioned the independent examination and verified the bounded repair. There is no changed
 executable behavior and no frozen-product verification. The connected publication
-change is included under the expanded drafting authority; candidate content still
-requires owner approval before integration.
+change is included in the owner-approved content. Integration remains subject
+to passing checks on the final revision; product acceptance and release remain separate.
