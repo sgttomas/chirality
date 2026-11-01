@@ -71,9 +71,10 @@ not silently replace the selected workflow. Explicit source qualification
 resolves a collision. In a deployment adopting the Root-governed shared suite,
 project instructions and workflows may specialize it but cannot weaken that
 adopted Root governance or escape the active working root. Root's repository
-grants do not transfer to independent consumers; their governing instructions,
-adopted contracts and actual host permissions determine authority. Source-qualified
-selection and collision handling do not themselves grant permission.
+grants do not transfer to independent consumers. Their governing instructions,
+adopted contracts and authorized undertaking supply authority; actual host
+permissions constrain execution. Source-qualified selection and collision
+handling do not themselves grant permission.
 
 Ordinary App skill availability follows Codex's native discovery
 (`skills/list` over project, user, and bundled skills) under D-GOV-43 item 10.
