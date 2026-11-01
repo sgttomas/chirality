@@ -79,7 +79,8 @@ gate. DEL-02-01's labelled extraction/custody case supplies no A3 evidence.
 ## Revised maintenance and reflective source homes
 
 The same PR now proposes retiring the generic change workflow and Root Git skill.
-AGENTS retains repository conventions and necessary recovery/custody guidance;
+AGENTS retains compact repository conventions and links the on-demand
+`docs/MAINTENANCE_RECOVERY.md` instructions for interrupted work/custody;
 ordinary authorized briefs carry Git work. DEL-04-02 proposes reflect-on-work for
 human–Agent 0 examination of purpose, commitments, framing and practice. This
 locality's bounded-reconciliation method remains unchanged: compare the actual

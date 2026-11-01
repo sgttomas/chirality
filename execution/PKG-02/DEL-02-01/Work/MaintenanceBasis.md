@@ -18,16 +18,20 @@ the PR further.” This authorizes the candidate, not its content adoption.
 Retire `workflows/change/` and `.agents/skills/chirality-change/` from the active
 library. Ordinary authorized briefs and repository conventions supply Git work.
 Root's AGENTS already carries scope, reconciliation, proportionate verification,
-authority and cleanup; add only its missing main/branch/merge conventions and
-necessary holding/recovery/custody guidance there. Do not transplant the skill's
+authority and cleanup; add its missing compact main/branch/merge conventions
+and an eight-line holding/recovery entry. Detailed rare-use instructions live in
+one on-demand resource, docs/MAINTENANCE_RECOVERY.md, linked at that entry. Do not transplant the skill's
 checklist or create a replacement Git method. Existing README owns publication
 and update inspection; bounded-reconciliation owns actual-result comparison;
 create-workflow governs reusable method design under its preceding basis.
 
-This explicitly proposes replacing the source homes named in DEL-02-01 OUT-001
-with AGENTS and create-workflow, preserving its output purpose, scope, requirements
-and evaluation. The ScopeOfWork identifies that source-home proposal for owner
-review. Git retains both integrated and unadopted prior package bytes. No accepted
+Three output-home changes are explicitly proposed for owner review: DEL-02-01
+OUT-001's connected means use AGENTS, create-workflow and the on-demand resource;
+DEL-02-01 OUT-003's recovery/custody detail moves from the maintained change
+route/resources to docs/MAINTENANCE_RECOVERY.md linked from AGENTS; DEL-04-02
+OUT-002 uses reflect-on-work with retained role posture/orchestration inputs.
+Their purposes, scope, requirements and evaluation are preserved. The owning
+ScopeOfWork documents name all three proposals; approval remains pending. Git retains both integrated and unadopted prior package bytes. No accepted
 snapshot or historical source account is rewritten; no current workflow resolves
 from those retained historical bytes implicitly.
 
@@ -55,6 +59,41 @@ retirement, not a role masquerading as a method. Root-only export exclusions and
 source-qualification guards remain for historical compatibility; they neither
 advertise an installed skill nor redirect CHANGE to one.
 
+## Disposition of advice from the retired skill
+
+The prior skill was read against surviving sources rather than discarded as a
+whole or copied into AGENTS:
+
+- **Check the actual connecting path early:** substantively important. Coordinated
+  knowledge work §1 tests consequential premises before building on them; §5
+  checks the actual consuming location, references and affected dependencies.
+  PRD R13 explicitly requires checking affected named consumer interfaces at a
+  stated basis and a supported path before incompatible change. Together these
+  retain early examination of the connection, not reliance on component passes.
+- **Separate fixtures/source from run evidence:** PRD R17 forbids ordinary use
+  depending on dated run directories or undisclosed inputs, and requires cleared
+  public fixtures. AGENTS's concrete-consumer/recovery record rule preserves
+  useful evidence; ordinary repository organization keeps maintained regression
+  fixtures with their tests. Historical case evidence is not a permanent test input.
+- **Choose checks by consequence and retain valid evidence:** AGENTS Verification
+  and PRD R12 retain proportionate checks, independent scrutiny where required
+  and evidence reuse. Coordinated knowledge work §2 prohibits silently weakening
+  an existing check. Removing obsolete assertions needs its substantive reason;
+  retirement of the skill is not permission to bypass adopted verification.
+- **Whitespace and working summaries:** cosmetic formatting is ordinary editing
+  judgment, not a new acceptance gate. Preserve meaningful Markdown/raw output;
+  a required representation or adopted check still governs its actual claim.
+  PRD R12 and coordinated knowledge work §5 bind evidence to the actual candidate,
+  so summaries may be corrected before review without inventing receipt chains.
+- **Agent examination is not owner review:** LOOP_INIT's Content review explicitly
+  requires owner approval before integration; AGENTS and PRD retain the owner's
+  reserved decisions. Independent scrutiny does not supply that approval, release
+  or acceptance. The current PR keeps those standings separate.
+
+These are retained boundary meanings and reasons for omitting duplicated text,
+not a replacement Git checklist. The rare recovery/custody resource contains
+only interrupted-work and R14/A8 instructions, not ordinary Git sequencing.
+
 ## Bounded examination of the eight R04 operations
 
 This is a source/use examination, not a universal operation register. The
@@ -80,14 +119,15 @@ not retroactively execute this proposal.
   path presence and no-match searches cannot establish universal non-use.
 - **Review/integrate:** AGENTS retains proportionate scrutiny, actual checked
   revision, owner content review and bounded Git authority. Prior integrated PRs
-  support only their own cases. This candidate is draft/unmerged, and its new
-  retirement/reflection design still needs the parent's independent examination.
+  support only their own cases. This candidate is draft/unmerged. Claude examined the retirement/reflection
+  design at e99e7e6; its bounded corrections are incorporated for owner review.
 - **Prepare publication/inspect updates:** AGENTS links README's existing consumer
   route. [ConsumerBasis](../../../PKG-05/DEL-05-01/Work/ConsumerBasis.md) and #1784
   retain Q-04's named App-reader and Q-05's F-02/v9 source comparison evidence.
   Neither qualifies this changed catalog nor adopts it for a consumer.
-- **Recover/continue:** AGENTS directs reading actual state, owning work, review
-  and steering together, including partial work and current authority. The
+- **Recover/continue:** AGENTS links docs/MAINTENANCE_RECOVERY.md for reading
+  actual state, owning work, review and steering together, including partial work
+  and current authority. The
   labelled case below supplies bounded source recovery/reader-preservation
   evidence, not live crash recovery or a new run under revised instructions.
 - **Change maintenance means:** preceding create-workflow and Root instructions
@@ -204,8 +244,8 @@ case, not that old PR's authority to restart work.
 `COMPATIBILITY_FORMATS.partial` and its prospective completed output, reserving
 completion/promotion of that extraction. The existing assignment and this owning
 Work section are the coordination mechanism, consistent with the preceding change contract's
-disjoint-write scopes at the case basis. The proposed AGENTS custody text now
-provides the current guidance home. No other worker is assigned this scratch item. Agent 1
+disjoint-write scopes at the case basis. The proposed on-demand docs/MAINTENANCE_RECOVERY.md,
+linked from AGENTS, now provides the detailed guidance home. No other worker is assigned this scratch item. Agent 1
 may resume/release this safe case; Agent 0 resolves transfer if Agent 1 cannot
 continue. Release requires source-bound comparison, partial-work preservation
 and confirmed reader access. Uncertain active ownership holds overlapping writes;
@@ -299,7 +339,14 @@ WORKING_ITEMS brief with no workflow resolves no methods; HELP_HUMAN with
 reflect-on-work resolves exactly the proposed method. Those are observed
 selection results, not host-enforcement or consumer qualification. Selected
 pre-retirement Git blobs are readable; no preceding source was rewritten.
-Source/candidate checks and their final revision are recorded in the actual PR.
+The bounded repair adds an explicit reflect-on-work role companion. Fresh CLI
+probes resolve HELP_HUMAN, HELPS_HUMANS and WORKING_ITEMS and reject TASK with
+exit 2 (method incompatible with role); the targeted regression covers all four.
+The selected suites again pass 382 tests/four skips and the focused set 43 tests.
+This checks method applicability, not host permissions. The existing validator
+limit on re-adding a historicalOnly package is outside this demonstrated removal
+need; no new readdition semantics or tests are introduced. Source/candidate checks
+and their final revision are recorded in the actual PR.
 REQ/AC/VER and stable IDs remain unchanged; only the explicit output source-home
 proposal changes output text. Unchanged case bytes/evidence remain applicable.
 The actual draft PR supplies final revision, public-screening results and open
@@ -310,6 +357,11 @@ tree-equality pairs. Its four corrections were applied at
 `89c0644b6dcc4736e39c6c8a31c3478da600a38c`; their relevant authority/routing and
 claim-specific custody distinctions survive this retirement proposal. The review accepts the A8 evidence only
 as the labelled case with the limits above. Unchanged case evidence remains applicable; that review did not examine the
-new retirement/reflection design. Agent 0 commissions its examination. Owner content
-approval remains pending before integration. No content acceptance, 60% decision,
+new retirement/reflection design. Claude's subsequent examination of
+`e99e7e6e61dbc3595d91cd95d8cd2c09eba36c3b` found the design sound with no
+authority/containment blockers, and identified the undeclared OUT-003 source-home
+change plus bounded corrections. This repair declares that home, reduces the
+AGENTS addition, supplies the on-demand resource and restricts reflective-method
+ownership. The repaired head is identified in the PR; no new examiner is launched.
+Owner content approval remains pending before integration. No content acceptance, 60% decision,
 release, consumer adoption or enforced custody is established here.

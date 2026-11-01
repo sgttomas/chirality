@@ -2492,11 +2492,11 @@
       "executionRoleIds": [
         "HELP_HUMAN",
         "HELPS_HUMANS",
-        "WORKING_ITEMS",
-        "TASK"
+        "WORKING_ITEMS"
       ],
       "resources": [
-        "WORKFLOW.md"
+        "WORKFLOW.md",
+        "execution.json"
       ],
       "navigation": {
         "category": "specialist",
@@ -2507,6 +2507,14 @@
           "label": "Review & check",
           "order": 6
         }
+      },
+      "execution": {
+        "schemaVersion": 1,
+        "compatibleRoles": [
+          "HELP_HUMAN",
+          "HELPS_HUMANS",
+          "WORKING_ITEMS"
+        ]
       }
     },
     {

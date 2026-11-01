@@ -92,10 +92,10 @@ Defaults (only when not otherwise specified by the human):
   deletion, routing modified deliverables to their production contract's
   update path, and refreshing their dependency and coordination records. This
   workflow names that hand-back in `Handoff_State.md`; it does not perform it.
-- **The responsible current role** receives repository-change evidence and the
-  exact change scope. It follows the applicable project's change skill or
-  repository conventions when present. This current workflow does not require
-  Git or select the retired `change` workflow. Historical identities remain
+- **The responsible implementation owner** receives repository-change evidence
+  and the exact change scope. It follows applicable repository conventions;
+  a consumer may explicitly select its own supporting skill. This current workflow
+  does not require Git or select the retired `change` workflow. Historical identities remain
   readable at their recorded source revision; they are not a current invocation.
 - The **`dependency-extract` workflow (dispatched via TASK)** owns consumer-local need authoring/refresh in `deliverable.yaml`. WORKING_ITEMS identifies affected consumers and recommends bounded assessment; it does not author their declarations.
 - The **`estimate-snapshot` workflow (dispatched via TASK)** and **WORKING_ITEMS (workflow: project-setup) scheduling workflow** own estimate/schedule updates. WORKING_ITEMS recommends reruns; does not execute them.

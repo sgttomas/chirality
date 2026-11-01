@@ -84,8 +84,7 @@ route but fails current invocation without a successor; explicit removed-package
 selections also fail. No automatic skill substitution or consumer repin occurs.
 
 The last integrated pre-retirement source is
-`8d0c5d1a19eec865a8a92750cb3de590d04f9c02`; unadopted PR #1785 expansion/review
-bytes remain at `a93f4a29b9ec17af799903a11bb1a09667a607fa`. Use
+`8d0c5d1a19eec865a8a92750cb3de590d04f9c02`. Use
 `git show <selected-revision>:workflows/change/WORKFLOW.md` (or the skill path)
 to read that historical basis. Existing consumer declarations and copies retain
 their own source identities; a consumer owns any current pointer/wording repair.

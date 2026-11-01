@@ -66,34 +66,14 @@ owner. Do not message a project the work does not affect.
 
 ## Holding changes and recovery
 
-For organization, relocation or retirement, inspect actual references, consumers
-and generated indexes; search matches are leads, not proof of complete coverage.
-Establish replacement or historical standing and a recoverable source before
-removal. Preserve unique uncommitted work and resolve disposal authority first.
-Check affected links and consumers. Publication/update inspection follows the
-[consumer route](README.md#obtain-and-use-the-library); adoption and release
-remain independent acts.
-
-Resume from current steering, owning work, actual Git/operation state and the
-review record together: establish source basis, usable partial/result, checks,
-open conditions, next action and current authority. Inspect active operations
-and uncommitted/ignored work before repeating a command whose confirmation was
-lost. A failed check holds affected integration; repair within scope, route it
-to its owner, or return a reserved decision. Use at most one replaceable recovery
-note only when those sources do not suffice. History alone authorizes no restart.
-
-For exceptional custody, name the holder, item, reserved operation, authorized
-interruption resolver and release/transfer conditions in the existing assignment
-or review record. Use an existing coordination or locking mechanism and preserve
-last checked-in reader access. An acknowledged disjoint-write reservation
-coordinates cooperating workers; it does not exclude another process. If an
-operation requires stronger exclusion and none is available, hold that operation.
-On interruption, inspect partial work and active ownership before resuming or
-transferring; silence or elapsed time grants no disposal authority. The authorized
-maintainer records release/transfer in the existing coordination record and checks
-retained work and reader access. Before claiming enforcement, exercise applicable
-release/recovery behavior; reuse evidence only where its basis supports the claim.
-Procedural coordination is not a host-enforced guarantee.
+Before relocating or retiring a holding, inspect relevant uses and establish its
+replacement or historical standing, recoverable source and removal authority.
+Resume from actual work/operation state and current authority, not history alone.
+Silence or elapsed time grants no right to discard work. Procedural coordination
+is not enforced exclusion. For interrupted work or exceptional custody, use
+[maintenance recovery](docs/MAINTENANCE_RECOVERY.md) to establish the usable result,
+open conditions, holder and authorized release/recovery. Publication and update
+inspection follow the existing [consumer route](README.md#obtain-and-use-the-library).
 
 ## Deliverables and records
 

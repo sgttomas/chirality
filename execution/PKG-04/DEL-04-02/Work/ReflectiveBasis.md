@@ -113,8 +113,11 @@ The design choice is one small distinct bundled method,
 No same-name bundled package existed. Its source identity is
 `chirality-root:bundled:workflow:reflect-on-work`; other libraries' unknown names
 are not silently overridden. It is linked from the existing Root entry and
-listed beside review methods. It needs no execution companion, tool, resource
-file, matrix, regular report or Git procedure. The owning Work supplies this
+listed beside review methods. Its execution companion limits method ownership
+to HELP_HUMAN, HELPS_HUMANS and WORKING_ITEMS, like software-prd. TASK can supply
+bounded evidence through its caller but cannot independently own the human
+conversation. This is applicability, not a new host permission or role tier.
+It needs no tool, resource file, matrix, regular report or Git procedure. The owning Work supplies this
 rationale, not a second manual. A compact method can keep the human's question
 and reasoned retain/change outcome explicit while preserving separate ordinary
 reconciliation and implementation ownership.
@@ -151,6 +154,8 @@ execution or an independent assessment. It uses the actual questions above:
 The first two cases are real prior evidence, not executions of this new method.
 The third is the present authorized design action; its use/adoption consequences
 remain proposed. Package/resolver checks establish selection and representation,
-not the quality of human judgment. Agent 0 will commission independent examination
-of the connected revised candidate and bring all content to the owner together.
+not the quality of human judgment. Claude examined the connected design at e99e7e6 with no authority/containment
+blockers; the bounded repair adds the explicit role companion and declares the
+recovery output home. Agent 0 brings all repaired content to the owner together;
+that review did not pre-approve this repaired head or owner acceptance.
 No automatic A3 acceptance, product completion or 60% advancement follows.

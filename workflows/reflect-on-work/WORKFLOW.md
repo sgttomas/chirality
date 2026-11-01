@@ -9,7 +9,9 @@ work is for, how it is understood or how it is being carried out. The starting
 point is a concrete finding or question and the person's intended result, not a
 scheduled ceremony or a search for things to change. HELP_HUMAN holds continuity
 with the human; HELPS_HUMANS can help examine and design a response. The
-implementation owner retains the work through authorized repairs.
+implementation owner retains the work through authorized repairs. TASK may
+contribute bounded evidence through its caller; it does not independently own
+this human-dialogue method.
 
 Read the current purpose, commitments, selected source basis and the actual
 finding with its evidence and limits. Use the work's owning material and review

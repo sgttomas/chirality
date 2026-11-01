@@ -276,8 +276,11 @@ def test_root_change_retirement_has_no_implicit_successor():
     ordinary = resolve(source, 'WORKING_ITEMS')
     assert ordinary['methods'] == []
     assert [item['path'] for item in ordinary['context']] == ['agents/AGENT_WORKING_ITEMS.md']
-    reflective = resolve(source, 'HELP_HUMAN', workflow='reflect-on-work')
-    assert [(item['kind'], item['name']) for item in reflective['methods']] == [('workflow', 'reflect-on-work')]
+    for role in ('HELP_HUMAN', 'HELPS_HUMANS', 'WORKING_ITEMS'):
+        reflective = resolve(source, role, workflow='reflect-on-work')
+        assert [(item['kind'], item['name']) for item in reflective['methods']] == [('workflow', 'reflect-on-work')]
+    with pytest.raises(ValueError, match='incompatible'):
+        resolve(source, 'TASK', workflow='reflect-on-work')
 
 
 def test_retired_alias_does_not_fall_back_to_a_root_skill(root):
