@@ -46,3 +46,41 @@ external compatibility (Q-04) and publication/update claims (Q-05) still need
 their own source bindings. No file-only adapter, namespace repair or bespoke
 service has been selected. The native needs distinguish actual metadata/caller
 inputs from these conditional claims.
+
+## Post-60 usage-contract examination
+
+At `547e7d7f833f9bec351f7a034bddd7c1a37db15a`, a bounded contributor examined
+three actual instruction/caller connections: preparation to current-locality
+helpers, ScopeOfWork INIT/VERIFY to format validation/checklist, and the runtime
+guide to package selection/brief normalization. Source comparison confirmed
+the selected preparation and ScopeOfWork implementation/caller files unchanged
+from PR #1779's checked basis. Its existing preservation/collision evidence,
+actual seven-locality setup and F-02's focused resolver tests remain applicable;
+no fresh scaffolding fixture was needed merely to repeat them.
+
+Fresh calls derived DEL-03-01's seven ordered criteria without migration flags
+or site packages and found no boundary-owner failure. Native check/neighborhood
+reported seven localities and 61 needs without structural errors. Distinct
+DEL-04-01 input conditions, unknown source bindings and suitability limits were
+preserved. These are observations about this use, not all possible query claims.
+
+Source-qualified preparation, project-setup and scope-of-work selections resolved
+their requested resources. Scope-of-work selection required its documented
+scope_path binding. No authorized brief meant no write targets or write capability;
+selection did not authorize execution. Retirement and reflective-role evidence
+from PR #1785 was reused after confirming those sources unchanged.
+
+One real usage-contract gap was found: normalize_brief.load_brief imports yaml
+unconditionally, so even JSON-only --brief input needs PyYAML. A controlled
+Python -S call with an empty JSON object failed at that import before assignment
+validation. This isolates dependency behavior, not a substantive brief failure.
+The runtime README now proposes declaring that dependency, its current traceback
+failure and the limits of direct-reading fallback. Executable code needs no
+change for this finding. Content approval remains pending.
+
+For archive use, retain the helpers and their imports, role/registry/catalog
+metadata, selected package resources, applicable legacy maps, common.py and the
+ScopeOfWork ID catalog. Preparation requires zsh/Python/PyYAML and suitable
+platform/filesystem support; native queries also require Git and HEAD. These
+requirements bound the source-archive examination; no cross-platform qualification
+or Git-free native-query implementation is inferred.

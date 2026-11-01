@@ -58,6 +58,12 @@ sandbox. Capabilities and command expressions are different policy domains.
 
 ## Structured brief compatibility
 
+`--brief` requires PyYAML in the Python interpreter running the resolver,
+including for JSON-only briefs. Without it, normalization fails before resolution;
+the current CLI emits an import traceback. Select an existing interpreter with
+PyYAML. Without the resolver, read the selected role, method and required resources
+directly; that fallback supplies neither normalized-brief nor effective-policy evidence.
+
 `--brief brief.json --repo-root /active/checkout` normalizes structured inline
 fields and an optional structured `INIT-TASK.md`. The latter may be a YAML
 mapping or YAML frontmatter. Free prose needs interpretation into these fields
