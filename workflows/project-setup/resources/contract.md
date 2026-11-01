@@ -1,5 +1,10 @@
 # project-setup — contract
 
+**Applicability:** Retained DOMAIN and explicitly adopted legacy phase/control-file
+setup only. Current PROJECT/SOFTWARE setup uses [current-project.md](current-project.md).
+The lifecycle records, append logs and gate prompts below are not defaults for
+that route. Preserve them where an owning project has actually adopted them.
+
 ## Runtime variables and defaults
 
 This file is **project-generic**. Do not embed project-specific absolute paths in this workflow resource. Resolve instance paths from the human’s prompt and/or a recorded coordination record.

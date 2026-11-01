@@ -7,9 +7,13 @@ applies whenever an HTML derivative was requested, in any mode. Items 19, 20,
 and 21 apply to every mode. Item 22 applies to `REVISE` only. `VERIFY` runs the
 mode-applicable subset read-only.
 
-1. The exact pilot variance covers the deliverable path.
+1. The assignment and accepted source basis cover the deliverable and the proposed
+   acts. `CONVERT` additionally has the exact isolated migration authority; current
+   `INIT`/`VERIFY` require no historical pilot variance.
 2. All four source files exist, remain byte-identical, and retain authority.
-3. `_STATUS.md` is byte-identical and its lifecycle state is unchanged.
+3. `_STATUS.md`, if present, is byte-identical and its lifecycle state is unchanged.
+   Current `INIT`/`VERIFY` can have no such source; it remains absent. `CONVERT`
+   and formal `REVISE` still require their selected lifecycle inputs.
 4. Working-contract frontmatter, headings, IDs, references, and matrix validate.
 5. Every source line is covered by a source marker and disposition.
 6. Every marker binds the current source hash and a defined target ID.

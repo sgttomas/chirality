@@ -2,7 +2,12 @@
 
 ## Required order
 
-1. Read and hash the authoritative source kit and `_STATUS.md`.
+1. Identify the accepted source basis and read the actual contract inputs. For
+   current `INIT`/`VERIFY`, a legacy source kit and `_STATUS.md` are not required.
+   Preserve/hash existing sources relevant to the operation. `CONVERT` requires
+   its complete legacy kit and status source; formal `REVISE` retains the
+   amendment/lifecycle inputs specified by its selected contract. Do not create
+   an absent lifecycle file merely to satisfy this step.
 2. In `CONVERT`, run `convert_four_documents_to_scope_of_work.py` only under
    exact accepted path-scoped migration authority. `INIT` is source-grounded
    authoring, `REVISE` edits the existing production contract within its

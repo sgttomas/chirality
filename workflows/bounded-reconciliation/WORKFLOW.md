@@ -5,8 +5,11 @@ description: Compare affected deliverable commitments, design and dependency con
 # Bounded reconciliation
 
 Use this method when a change may leave its current deliverable documents out of
-step with the result. It is a bounded comparison, not a mandatory final stage or
-a whole-corpus audit. Perform warranted edits in the PR doing the work.
+step with the result. Reconcile as the work develops and before integration;
+this is a bounded comparison, not a separate compulsory ceremony or corpus audit.
+Perform warranted edits in the PR doing the work. The implementation owner carries
+the requirement into bounded assignments and owns it through repairs; the
+integration owner checks the combined result before merge.
 
 Identify the affected deliverables, actual candidate, relevant consumers and
 permitted scope from the assignment and diff. Read their ScopeOfWork, work
@@ -25,6 +28,14 @@ assignment. Decisions edit the current text they govern. Preserve commitments,
 acceptance criteria, explicit holds and product boundaries; bring any reserved
 change to the owner as a concrete choice and consequence. Do not turn incidental
 implementation detail into another continuing documentation obligation.
+
+Revise the relevant existing Work material so it describes the current result.
+When a new subject needs its own artifact, add it in the owning locality and link
+it from the current material a subsequent contributor will encounter. Keep useful
+evidence, current limitations and unresolved conditions where that work is
+understood. Historical observations keep their original meaning; a new result
+does not rewrite old evidence. Update code/check pointers when their useful
+bindings change, even when the need conditions remain unchanged.
 
 Check the changed documents together with affected consumers. Where a comparison
 finds no warranted edit, report that result without creating a record. Where it

@@ -1,4 +1,10 @@
 #!/bin/zsh
+# Current preparation uses --current --prepared; after ScopeOfWork authoring,
+# omit --prepared. Unflagged calls retain the legacy control-files contract.
+if [[ "${1:-}" == "--current" ]]; then
+  shift
+  exec "${PYTHON:-python3}" "${0:A:h:h}/scaffolding/current_locality.py" check "$@"
+fi
 # check_min_viable_fileset.sh
 # Verifies metadata and the native DEL identity/needs declaration.
 #
