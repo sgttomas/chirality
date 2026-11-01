@@ -26,6 +26,13 @@ Named-reader compatibility, labelled procedural custody and the exact source
 candidate retain their stated limits. This gate is not final product acceptance,
 selection of a release version or publication authority.
 
+The owner requested a post-90% check of every deliverable and a roadmap to
+publication. The [approved publication roadmap](PUBLICATION_ROADMAP.md) connects
+the existing evidence to remaining delivery work and reserved decisions; the
+owner approved that course with “Proceed accordingly.” The owner subsequently approved the
+publication notes and `library-v1.0.0` edition name at `c444ec139e3a65c5707264087ac89022abd190dc`
+in PR #1790 with “Approved.” Final acceptance and release remain separate decisions.
+
 ## Find and carry the work
 
 Read [Root AGENTS.md](../../AGENTS.md) for standing instructions, roles and
