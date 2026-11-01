@@ -284,8 +284,8 @@ editor continuation supplies the defect/dependency/new-use contrast. The current
 book-writing conversation is not used as empirical proof of its own claims.
 
 The repaired manuscript is source-bound at
-`eaa39573aced40a69b8666d52dea7cc9ad497623` (SHA-256
-`1c8aa8475f9a7ac2a80832bf9d36cb97850f9b52450f38c4e9bc7e1a839a8082`).
+`b31e06213ba7c8d2b16d0d87284dac7f25d6307e` (SHA-256
+`df1313c66c5b00f522092e2521555dab7013b72c46ac8ee3d6bddd9484fcb4b2`).
 The unchanged pinned renderer reproduces its HTML exactly; metadata/hash,
 internal anchors and local linked targets were checked. These are source and
 render-structure observations, not a new visual-usability or product-use claim.
@@ -353,3 +353,28 @@ burden. The Root episode identifies its October 31–November 1 scope on top of
 months of prior work and its single selected post-release improvement. No new
 post-completion defect or product execution is claimed. The proposed scope and
 criteria remain unchanged by this grounding revision.
+
+## Clearer expression and parent meaning assessment
+
+The owner asked Claude to propose a complete version using STE-100 principles
+and examine consistency through ontology, epistemology, praxeology and axiology.
+The owner then assigned Agent 0 to compare both versions and arbitrate whether
+the intended meaning survived. Claude's full rewrite used the official ASD FAQ
+and Issue 9 writing guidance, without Part 2 dictionary validation. Its review
+was an editorial self-check, not independent review of its own wording. No formal
+STE-100 conformance or measured improvement in reader comprehension is claimed.
+
+Agent 0 read the full candidate and compared it with the preceding manuscript
+at `b9f785ed10d7354316647d07f1a0f6812c42326e` and the thesis/case sources.
+The resulting proposal retains most of the clearer prose with localized
+corrections: ownership denotes responsibility rather than fulfilled work;
+unsupported claims remain possible; ordinary examination is not reserved to
+people; possibility does not become an inevitable result; and cross-project
+learning remains a direction rather than an inference from shared vocabulary.
+The four-perspective explanations preserve knowing, entities/representations,
+action and purpose/values together. The source history confirms that the
+post-completion chapter and constructed continuation were added here, not
+inherited from v9. Original links, named anchors, source hashes, PR references
+and quoted testimony remain intact. The book remains reflective, with no new
+operational obligation, scope change or consumer adoption from this wording pass.
+Final author/content approval remains pending.
