@@ -28,7 +28,7 @@ needs:
   when: Establishing the bounded application and A3 action claims
   evidence: execution/PKG-04/DEL-04-01/Work/FormationAndReconciliation.md
 - from: DEL-04-02
-  condition: Use the current human-purpose and local-experience examination when a changed question, burden
+  condition: Use DEL-04-02's proposed reflect-on-work method with human-purpose and local-experience evidence when a changed question, burden
     or goal mismatch requires reflective judgment. Any changed commitment returns to its actual owner;
     no recurring review gate is created.
   when: A reconciliation finding calls the goal or framing into question

@@ -69,6 +69,6 @@ Do not apply patches.
 3) Return to the invoking manager:
    - snapshot path,
    - top issues (≤10),
-   - blockers and recommended next action (accept / request WORKING_ITEMS (workflow: change) patches / rerun tighter scope).
+   - blockers and recommended next action (accept / request authorized patches from the implementation owner / rerun tighter scope).
 
 ---

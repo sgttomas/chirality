@@ -267,6 +267,9 @@
           {
             "name": "evaluation-report",
             "tier": "supporting"
+          },
+          {
+            "name": "reflect-on-work"
           }
         ]
       },
@@ -274,9 +277,6 @@
         "key": "manage-changes",
         "label": "Manage changes",
         "workflows": [
-          {
-            "name": "change"
-          },
           {
             "name": "scope-change-packet"
           },

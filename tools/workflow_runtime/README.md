@@ -24,7 +24,13 @@ ordered. Results record original fields, mapping decisions, normalized methods,
 and fully qualified resolved identities separately. `--legacy-agent` reads the
 explicit legacy-agent map and preserves its historical workflow route. When
 that workflow package has been retired, it resolves to the alias's recorded
-`canonical_successor` and records a `retired-workflow-successor` decision.
+`canonical_successor` and records a `retired-workflow-successor` decision. Without
+one, resolution fails explicitly; it never silently substitutes a role-only run.
+In particular `CHANGE` retains its historical `change` identity but has no
+successor. New Git work uses an ordinary authorized brief and the applicable
+repository conventions; omit a workflow when the brief suffices. Explicit
+`change` or removed `chirality-change` package selections also fail. Read pinned
+historical packages at their recorded Git revision, not through current discovery.
 
 A package's `compatible_roles` applies to the whole method. TASK receives a
 bounded child workflow or a brief. Resources are selected explicitly through

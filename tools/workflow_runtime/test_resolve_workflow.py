@@ -258,3 +258,34 @@ def test_task_still_cannot_delegate_under_broader_host_policy():
     assert result['role_configuration']['delegates_to'] == []
     assert not result['role_configuration']['allow_generalist_agent2']
     assert 'delegate_agent' not in result['effective_tools']['capabilities']
+
+
+def test_root_change_retirement_has_no_implicit_successor():
+    source = Path(__file__).resolve().parents[2]
+    alias = json.loads((source / 'workflows/legacy-agents.json').read_text())['aliases']['CHANGE']
+    assert alias['workflow'] == 'change' and 'canonical_successor' not in alias
+    with pytest.raises(ValueError, match='retired without a canonical successor.*ordinary authorized brief'):
+        resolve(source, 'WORKING_ITEMS', legacy_agent='CHANGE')
+    for selection in ('change', 'chirality-root:bundled:workflow:change'):
+        with pytest.raises(ValueError, match='missing or escaping resource'):
+            resolve(source, 'WORKING_ITEMS', workflow=selection)
+    with pytest.raises(ValueError, match='unknown legacy method alias'):
+        resolve(source, 'WORKING_ITEMS', task_skill='change')
+    with pytest.raises(ValueError, match='missing or escaping resource'):
+        resolve(source, 'WORKING_ITEMS', methods=['chirality-root-project:project:skill:chirality-change'])
+    ordinary = resolve(source, 'WORKING_ITEMS')
+    assert ordinary['methods'] == []
+    assert [item['path'] for item in ordinary['context']] == ['agents/AGENT_WORKING_ITEMS.md']
+    reflective = resolve(source, 'HELP_HUMAN', workflow='reflect-on-work')
+    assert [(item['kind'], item['name']) for item in reflective['methods']] == [('workflow', 'reflect-on-work')]
+
+
+def test_retired_alias_does_not_fall_back_to_a_root_skill(root):
+    (root / 'workflows/legacy-agents.json').write_text(json.dumps({'schema_version': 1, 'aliases': {
+        'CHANGE': {'role': 'TASK', 'workflow': 'change', 'compatibility_note': 'Retired without successor.'}
+    }}))
+    skill = root / '.agents/skills/chirality-change'
+    skill.mkdir()
+    (skill / 'SKILL.md').write_text('Unrelated local skill must not be selected.')
+    with pytest.raises(ValueError, match='retired without a canonical successor'):
+        resolve(root, 'TASK', legacy_agent='CHANGE')

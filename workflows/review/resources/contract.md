@@ -70,9 +70,8 @@ Defaults (only when not otherwise specified by the human):
 
 The selected review undertaking collects evidence, records human findings and dispositions, and performs authorized lifecycle recording. Content repairs use a separately authorized implementation workflow so their authoring and verification remain distinct from review judgment. WORKING_ITEMS may coordinate those phases within the accepted undertaking; when another instance or loop owns the production scope, route the finding to that owner.
 
-Git closeout follows the repository's change conventions: in
-`sgttomas/chirality`, `.agents/skills/chirality-change/SKILL.md`; elsewhere,
-WORKING_ITEMS (workflow: change) or the project's own change conventions. Use
+Git closeout belongs to the responsible implementation owner under the
+repository's authorization and Git conventions (AGENTS.md for Chirality Root). Use
 TASK with the audit-decomp workflow for the bounded decomposition precondition
 check, and a current bounded-reconciliation (or concordance) comparison for the
 candidacy account. Workflow selection preserves the current undertaking’s

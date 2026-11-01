@@ -272,7 +272,7 @@ def resolve(root: Path, role: str, workflow=None, task_skill=None, resources=(),
                 # recorded canonical successor and record that decision.
                 successor = alias.get('canonical_successor')
                 if not isinstance(successor, dict):
-                    raise ValueError(f"legacy agent workflow was retired without a canonical successor: {alias['workflow']}")
+                    raise ValueError(f"legacy agent workflow was retired without a canonical successor: {alias['workflow']}; use an ordinary authorized brief and the applicable repository conventions, or explicitly select an applicable maintained method")
                 retired_route = {'kind': successor['kind'], 'name': successor['name']}
                 methods = [*methods, retired_route]
         if stage and alias.get('stage') and stage != alias['stage']:

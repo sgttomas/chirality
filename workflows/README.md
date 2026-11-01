@@ -54,8 +54,9 @@ operation does not imply that the host exposes or enforces it.
 `TaskSkill: <name>` remains a legacy input spelling only for names explicitly
 mapped in [the converted-method ledger](legacy-methods.json). Supplying both
 fields with different selections fails. [The legacy agent map](legacy-agents.json)
-resolves retired names to the executing role and workflow or deterministic
-audit tool; those names are not additional roles. Unconverted legacy methods
+records retired names and their historical role/workflow or deterministic
+audit tool. A removed workflow resolves only when it has an explicit maintained
+successor; otherwise invocation fails. Those names are not additional roles. Unconverted legacy methods
 remain historical and are never inferred from files or prose.
 
 Method libraries may exist at project, user, and bundled scope. Resolution uses
@@ -72,6 +73,22 @@ compatibility while `scope-of-work` carries the current SOW_V1 method. Historica
 briefs, snapshots, and pinned evidence retain their original identifiers.
 
 ### Retired packages
+
+The `change` workflow and Root-only `chirality-change` skill are retired from
+active discovery. They have no replacement Git method. Use an ordinary authorized
+brief and the repository's own conventions; Root's surviving conventions are in
+[AGENTS.md](../AGENTS.md#standing-git-grant), with holding recovery/custody in its
+[working instructions](../AGENTS.md#holding-changes-and-recovery). Root's grant
+never transfers to a consumer. Legacy `CHANGE` remains an identified historical
+route but fails current invocation without a successor; explicit removed-package
+selections also fail. No automatic skill substitution or consumer repin occurs.
+
+The last integrated pre-retirement source is
+`8d0c5d1a19eec865a8a92750cb3de590d04f9c02`; unadopted PR #1785 expansion/review
+bytes remain at `a93f4a29b9ec17af799903a11bb1a09667a607fa`. Use
+`git show <selected-revision>:workflows/change/WORKFLOW.md` (or the skill path)
+to read that historical basis. Existing consumer declarations and copies retain
+their own source identities; a consumer owns any current pointer/wording repair.
 
 These workflow packages were retired on 2026-09-26 because a canonical skill of
 the same name replaced them under D-GOV-42. The legacy-method ledger resolves an

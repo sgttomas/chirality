@@ -83,7 +83,7 @@ def test_root_index_is_fresh_and_classification_is_bounded():
     assert {item["name"] for item in workflows if item["central"]} == set(CENTRAL)
     assert {item["name"] for item in workflows if item["compatibility"] == "legacy"} == set(SUPERSEDED)
     assert all(item["compatibility"] == "canonical" for item in workflows if item["name"] not in SUPERSEDED)
-    assert len(skills) == 8 and {item["compatibility"] for item in skills} == {"canonical"}
+    assert len(skills) == 7 and {item["compatibility"] for item in skills} == {"canonical"}
     assert not any("navigation" in item for item in skills)
     assert index["legacy"]["convertedWorkflowAliases"]["deliverable-consistency"] == {"kind": "skill", "name": "deliverable-consistency"}
     # Current dependency authoring has one native path, with no central-DAG
@@ -245,7 +245,6 @@ def test_canonical_skill_execution_policies_and_catalog_projection():
     # Current policy expectations belong here, not in the one-time conversion
     # evidence or retired workflow packages. Role order has no policy meaning.
     expected_tools = {
-        "chirality-change": None,
         "preparation": {"capabilities": ["read", "write", "bash", "report_coordination_notice", "ack_agent_update"]},
         "researcher": {"capabilities": ["read", "write", "bash", "report_coordination_notice", "ack_agent_update"]},
         "deliverable-consistency": {"commands": ["python3 tools/validation/scan_deliverable_consistency.py:*"]},
@@ -391,8 +390,8 @@ def test_exact_central_refs_and_public_export_exclusion():
     index = validate_and_build(ROOT)
     assert index["centralWorkflowNames"] == list(CENTRAL)
     exported = validate_and_build(ROOT, public_export=True)
-    assert {(item["kind"], item["name"]) for item in index["methods"]} - {(item["kind"], item["name"]) for item in exported["methods"]} == {("skill", "chirality-change")}
-    assert len(exported["methods"]) == len(index["methods"]) - 1
+    assert exported["methods"] == index["methods"]
+    assert not any(item["name"] in {"change", "chirality-change"} for item in index["methods"])
     assert not any(item["kind"] == "skill" and item["name"] == "chirality-change" for item in exported["methods"])
     assert not any("chirality-change" in str(item) for item in exported.get("diagnostics", []))
 
@@ -454,3 +453,44 @@ def test_retired_role_workflow_requires_a_catalog_package_or_successor(tmp_path)
     ledger.write_text(json.dumps({"schema_version": 1, "aliases": {"GONE": {"role": "TASK", "workflow": "removed"}}}))
     with pytest.raises(ValueError, match="removed without a canonical successor"):
         validate_and_build(root)
+
+
+def test_documented_historical_only_retirement_is_not_a_dangling_target(tmp_path):
+    root = _fixture_root(tmp_path)
+    agents = root / "workflows/legacy-agents.json"
+    methods = root / "workflows/legacy-methods.json"
+    mapping = {"role": "WORKING_ITEMS", "workflow": "removed",
+               "compatibility_note": "Use an ordinary authorized brief and repository conventions."}
+    agents.write_text(json.dumps({"schema_version": 1, "aliases": {"OLD": mapping}}))
+    # A note alone cannot excuse an accidentally removed target.
+    with pytest.raises(ValueError, match="documented historical-only retirement"):
+        validate_and_build(root)
+    ledger = json.loads(methods.read_text())
+    ledger["historicalOnly"] = ["removed"]
+    methods.write_text(json.dumps(ledger))
+    built = validate_and_build(root)
+    assert built["legacy"]["retiredRoles"]["OLD"] == mapping
+    assert "removed" not in {item["name"] for item in built["methods"]}
+    assert "removed" not in built["legacy"]["convertedWorkflowAliases"]
+    for bad in (None, "", "   "):
+        mapping["compatibility_note"] = bad
+        agents.write_text(json.dumps({"schema_version": 1, "aliases": {"OLD": mapping}}))
+        with pytest.raises(ValueError, match="documented historical-only retirement"):
+            validate_and_build(root)
+    # A declared retirement cannot hide a misspelled/different target.
+    mapping.update(workflow="typo", compatibility_note="Use the ordinary brief.")
+    agents.write_text(json.dumps({"schema_version": 1, "aliases": {"OLD": mapping}}))
+    with pytest.raises(ValueError, match="documented historical-only retirement"):
+        validate_and_build(root)
+
+
+def test_retained_root_only_skill_export_guard(tmp_path):
+    root = _fixture_root(tmp_path)
+    skill = root / ".agents/skills/chirality-change"
+    skill.mkdir(parents=True)
+    (skill / "SKILL.md").write_text("---\nname: chirality-change\ndescription: Historical Root-only fixture\n---\n")
+    internal = validate_and_build(root)
+    external = validate_and_build(root, public_export=True)
+    descriptor = next(item for item in internal["methods"] if item["name"] == "chirality-change")
+    assert descriptor["source"] == "project"
+    assert not any(item["name"] == "chirality-change" for item in external["methods"])

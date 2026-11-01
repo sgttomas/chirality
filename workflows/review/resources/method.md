@@ -409,9 +409,8 @@ This is the sole exit from an unsuccessful or withdrawn check (SPEC §3.3).
    zsh {INSTRUCTION_ROOT}/tools/scaffolding/update_latest_pointer.sh {REVIEWS_ROOT} {snapshot_folder_name}
    ```
 
-9) Present the Git handoff. In `sgttomas/chirality`, follow
-   `.agents/skills/chirality-change/SKILL.md`; elsewhere, WORKING_ITEMS
-   (workflow: change) or the project's own change conventions.
+9) Present the Git handoff to the responsible implementation owner under the
+   project's authorization and Git conventions (AGENTS.md for Chirality Root).
    - Files modified: `_REVIEW.md`, `Review_Findings.csv`, `_STATUS.md` (when
      written), the ruling record (when this review created it), the new
      `REV_*` snapshot folder, and `_LATEST.md`

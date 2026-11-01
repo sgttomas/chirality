@@ -118,7 +118,9 @@ and recording any later transition is a separate authorized act.
 ## Non-negotiable constraints
 
 - In `CONVERT`, keep all four legacy documents and `_STATUS.md` byte-identical;
-  the isolated dual state remains derivative until atomic replacement by WORKING_ITEMS (workflow: change).
+  the isolated dual state remains derivative until atomic replacement by the authorized implementation owner under the
+  project's change conventions; the conversion authority and preservation checks
+  above still apply.
 - Do not modify `_STATUS.md`, lifecycle state, underscore control files,
   historical evidence, or other deliverables.
 - Do not run `REVISE` without an accepted amendment that names the

@@ -1,85 +1,135 @@
 # Maintenance route and evidence limits
 
-Maturity: connected maintenance/recovery proposal, under the preceding basis at
-`8d0c5d1a19eec865a8a92750cb3de590d04f9c02`. Agent 1 WORKING_ITEMS owns this
-undertaking through repair; Agent 0 brings content to the owner and retains integration. The
-assignment permits investigation, drafting, checks and a draft PR, not merge,
-release or acceptance. Initial setup assessment used
-`fd847ac9ac68250b2f35d2e9c0087c16e86b510a`; its unselected cases are now examined
-below. Requirements and criteria remain unchanged.
+Maturity: revised retirement/reflection proposal; owner content approval is
+pending. The preceding authorized method basis is
+`8d0c5d1a19eec865a8a92750cb3de590d04f9c02`; the earlier unadopted expansion and
+parent's factual assessments are retained at
+`a93f4a29b9ec17af799903a11bb1a09667a607fa`. Agent 1 continues implementation;
+Agent 0 brings the combined content to the owner and retains integration.
 
-## Selected means and concrete gaps
+## Retirement and retained means
 
-Selected identity: Root bundled `workflows/change/WORKFLOW.md` and its existing
-contract/method resources, specialized by `.agents/skills/chirality-change/SKILL.md`.
-This is an explicit bundled-library revision, not a project/personal override.
-The preceding package and `create-workflow` at the source revision above govern
-this proposal and remain recoverable with `git show <revision>:<path>`.
-The existing catalog name/destination remains `change`; no new workflow is registered.
+The owner questioned the generic change workflow's use: “It's seldom used in
+the right manner when agents are the ones invoking it. The task is easy for
+agents to do.” After discussing the Root-only skill and reflective methods,
+the owner authorized further proposal work: “Okay take this away and work on
+the PR further.” This authorizes the candidate, not its content adoption.
 
-The preceding method supplies Git inspection, checks, review and authorized
-closeout. Its recovery paragraph only restarts from Git state. Git cannot reveal
-current authority or decide which partial result is usable. The method also lacks
-explicit treatment of references/replacement standing when relocating or retiring
-holdings and a custody arrangement with interruption/release conditions. These
-are concrete gaps against AC-001/005/006, not missing software features.
+Retire `workflows/change/` and `.agents/skills/chirality-change/` from the active
+library. Ordinary authorized briefs and repository conventions supply Git work.
+Root's AGENTS already carries scope, reconciliation, proportionate verification,
+authority and cleanup; add only its missing main/branch/merge conventions and
+necessary holding/recovery/custody guidance there. Do not transplant the skill's
+checklist or create a replacement Git method. Existing README owns publication
+and update inspection; bounded-reconciliation owns actual-result comparison;
+create-workflow governs reusable method design under its preceding basis.
 
-The candidate expands that existing resource and links it from the entry. It
-connects to bounded reconciliation instead of rewriting its procedure. The Root
-skill supplies the repository-specific README publication/update pointers missing
-from the generic method. No new service, operation workflow or recurring record
-is needed. The existing create-workflow method already covers source identity,
-preceding basis and human review; AGENTS, roles, initialization and coordinated
-knowledge work already preserve continuing ownership and purpose. No edit to
-those mature holdings is warranted.
+This explicitly proposes replacing the source homes named in DEL-02-01 OUT-001
+with AGENTS and create-workflow, preserving its output purpose, scope, requirements
+and evaluation. The ScopeOfWork identifies that source-home proposal for owner
+review. Git retains both integrated and unadopted prior package bytes. No accepted
+snapshot or historical source account is rewritten; no current workflow resolves
+from those retained historical bytes implicitly.
+
+Current callers now hand Git work to the responsible implementation owner with
+actual project conventions. Scope-of-work conversion still requires its isolated
+basis, atomic replacement and existing preservation/authority checks. Domain
+publication still requires human approval. Its historical NextOwningWorkflow
+value remains readable, with WORKING_ITEMS plus the authorized brief used for new
+handoffs. Review, evaluation, audit, research and formal reconciliation retain
+their own applicability and decision boundaries. They do not inherit Root's grant. DBM publication's human authorization still
+controls its pointer/Git handoff. Historical decomposition source classifications,
+retained harness human-closeout labels, CHANGE timing parsers and archived
+fixtures are evidence/read formats, not live package invocations; their identifiers
+remain intact. The unmodified accepted decomposition and F-02 Work cite the old
+methods at their recorded basis, not as new active selections.
+
+The `CHANGE` legacy entry retains role WORKING_ITEMS and historical workflow
+`change`, with no canonical successor. The existing historicalOnly ledger now
+identifies `change`; catalog validation permits an absent successor only when
+that exact target is listed there and the mapping has a nonempty compatibility
+note. An accidental dangling target still fails. The resolver's existing
+no-successor rejection remains, now with ordinary-brief/repository-conventions
+guidance. Explicit removed-package selections fail too. This is deliberate
+retirement, not a role masquerading as a method. Root-only export exclusions and
+source-qualification guards remain for historical compatibility; they neither
+advertise an installed skill nor redirect CHANGE to one.
 
 ## Bounded examination of the eight R04 operations
 
-This is a source/use examination of this procedure set, not a universal operation
-register or a claim that all eight operations were freshly executed. Source paths
-are repository-relative. The selected cases' review records are linked below.
+This is a source/use examination, not a universal operation register. The
+completed cases below retain their original means and test identities; they do
+not retroactively execute this proposal.
 
-- **Add/revise:** start at change → detailed method → holding purpose, scope,
-  destination and selected source. For a reusable method continue through
-  create-workflow. PR #1779 adds the current setup route and revises its means;
-  this proposal revises the existing change resource. Resources remain with the
-  package; commands use their actual tool guides. Drafting does not adopt it.
-- **Organize/relocate/retire:** the added paragraph requires actual incoming uses,
-  replacement or historical standing, recovery and deletion authority, followed
-  by link/index/consumer checks. PR #1779's explicit current/legacy route split
-  is the concrete organization case: the old preparation contract moved to
-  `references/legacy-scaffold-contract.md`, linked from the selected route;
-  unflagged calls retain legacy behavior. This is not a fresh retirement or
-  destructive exercise. For a proposed removal with unique uncommitted work or
-  absent disposal authority, preserve it and hold that removal. Q-01 remains.
-- **Diagnose/reconcile:** change now invokes bounded-reconciliation directly.
-  PR #1782 compares the CLI's required `--project` with the false default in its
-  guide, repairs the guide and owning ToolBasis, and leaves correct examples and
-  executable behavior alone. PR #1783 supplies the deeper format counterexample
-  below. An unresolved capability is disclosed, not replaced with invented syntax.
+- **Add/revise:** the authorized brief, AGENTS working cycle and selected holding
+  identify purpose, destination, scope, source and checks. Reusable methods use
+  create-workflow. PR #1779 supplies actual method/tool repair; this candidate
+  applies the preceding design/review basis to retirement and reflect-on-work.
+- **Organize/relocate/retire:** AGENTS now explicitly requires affected references,
+  consumers, replacement/historical standing, recoverability and disposal
+  authority. This actual retirement checks catalog, aliases and live callers;
+  the earlier current/legacy setup split in #1779 remains prior evidence.
+  No unique uncommitted work or consumer source is removed. Q-01 stays reserved.
+- **Diagnose/reconcile:** AGENTS invokes bounded-reconciliation. PR #1782's guide
+  error versus actual required --project and F-02's current-validator
+  counterexample distinguish stale description from behavior/interpretation.
+  Tool guides and actual capability limits remain with their owners.
 - **Assess connected change:** bounded-reconciliation follows affected meaning,
-  uses and declarations. F-02 connects reference applicability to current SOW_V1
-  callers and manual Markdown/HTML; historical consumer bindings stay qualified.
-  This candidate reads DEL-02-01's native neighborhood and actual relevant needs;
-  path presence and the query's unknown suitability do not establish satisfaction.
-- **Review/integrate:** change contract/method and Root skill bind the actual
-  candidate, findings, proportionate checks and authority. The completed PRs
-  below supply actual checked/reviewed/integrated cases. This proposal stops at
-  draft PR; independent examination has occurred and Agent 0 brings content to the owner.
-- **Prepare publication/inspect updates:** the Root skill now points to README's
-  obtaining and inspection route. Use its selected old/candidate revisions,
-  resource/notices and change account; failures are not “no change.” PR #1784's
-  [ConsumerBasis](../../../PKG-05/DEL-05-01/Work/ConsumerBasis.md) binds Q-04 only
-  for the named App reader and Q-05 for the F-02/v9 source candidate versus its
-  prior basis. Reuse those observations, not a general compatibility or release
-  claim. Other adopted interfaces still require their own basis.
-- **Recover/continue:** use the expanded method with locality, actual review and
-  current steering, then inspect real partial work before repeating commands.
-  The labelled case below tests those connections without restarting frozen work.
-- **Change maintenance means:** create-workflow governs the revision before the
-  proposed replacement exists; Git retains its prior basis and reader access.
-  PR #1779 and #1781 are completed examples. This draft is examined under the
-  preceding method/AGENTS and current assignment, not its own proposed authority.
+  uses and local declarations. Here it exposes the caller/alias and source-home
+  consequences of removal. Consumer findings below preserve declarative edges;
+  path presence and no-match searches cannot establish universal non-use.
+- **Review/integrate:** AGENTS retains proportionate scrutiny, actual checked
+  revision, owner content review and bounded Git authority. Prior integrated PRs
+  support only their own cases. This candidate is draft/unmerged, and its new
+  retirement/reflection design still needs the parent's independent examination.
+- **Prepare publication/inspect updates:** AGENTS links README's existing consumer
+  route. [ConsumerBasis](../../../PKG-05/DEL-05-01/Work/ConsumerBasis.md) and #1784
+  retain Q-04's named App-reader and Q-05's F-02/v9 source comparison evidence.
+  Neither qualifies this changed catalog nor adopts it for a consumer.
+- **Recover/continue:** AGENTS directs reading actual state, owning work, review
+  and steering together, including partial work and current authority. The
+  labelled case below supplies bounded source recovery/reader-preservation
+  evidence, not live crash recovery or a new run under revised instructions.
+- **Change maintenance means:** preceding create-workflow and Root instructions
+  govern this proposal. Historical methods remain recoverable through identified
+  Git revisions until and after any approved adoption. New guidance supplies no
+  retroactive authority. Reflect-on-work addresses the changed framing question;
+  its design reasoning and walkthrough are in DEL-04-02 Work.
+
+## Consumer effects and preserved sources
+
+Agent 0 supplied bounded, read-only consumer-owner inspections; these are
+reported source evidence, not tests, repins or qualification by this author.
+
+- App main `1f67d3822b685c9c0d0ac4d52b0e52a570ef3d52`: no live invocation or
+  source loader for the selected workflow/alias/skill was found in the inspected
+  executable/frontend/packaging/examination/tool/CI paths. However, DEL-10-01's
+  ScopeOfWork sourceU, OUT-002, AX-003 and YAML external:ROOT-REPOSITORY-INSTRUCTIONS
+  cite the skill as current repository practice for manual application;
+  DEL-10-02 sourceB4 also cites it while preserving selected basis against later
+  discovery. These are actual declarative reasoning/source dependencies without
+  a resolved Root revision, not proof of adoption of our base. App owns their
+  factual pointer reconciliation without changing commitments or history.
+- App product SOURCE_MAP at date 2026-10-05/candidate `38bb2bc` names change_skill
+  with hash `1a2b056263ec77e4104efdf99afe3fe76dda792334a243fb2f21c60bc9c81450`:
+  “Full read for change/review boundary; not product instructions.” Its reported
+  runtime_session.rs embeds local defaults/roles, not that path. Preserve this
+  provenance and historical manifests. Dynamic user selection remains unverified;
+  current removed identities fail explicitly instead of being silently replaced.
+- SWBPIPE inspected local `9b6281` and fetched main
+  `deed5855033fbace953fc221c644ec501d9328ea`: current AGENTS describes its Git
+  conventions as specializing generic change. The reference is explanatory,
+  with independent full local Git rules, not a mandatory invocation/pin. Removal
+  makes that wording stale; SWBPIPE owns the repair. No live invocation/read path
+  was found in inspected tools/CI/loop/product. `chirality-change-scope/v1` and
+  historical `_Change` exceptions are independent identities and are untouched.
+  Embedded local catalogs/instructions stay independent; no App loading inference.
+
+Both consumers reported no blocking removal finding within their inspections.
+That is not “no dependencies.” No downstream edits/adoption were requested or
+performed. Agent 0 will supply the final revision to both owners after the actual
+candidate/approval/integration basis is established. Current Root conventions
+are explicitly at AGENTS; historical declarations retain their selected sources.
 
 ## Completed cases: reused evidence and fresh examination
 
@@ -153,8 +203,9 @@ case, not that old PR's authority to restart work.
 **Reservation:** Agent 1 WORKING_ITEMS holds only the scratch extraction item
 `COMPATIBILITY_FORMATS.partial` and its prospective completed output, reserving
 completion/promotion of that extraction. The existing assignment and this owning
-Work section are the coordination mechanism, consistent with change contract's
-disjoint-write scopes. No other worker is assigned this scratch item. Agent 1
+Work section are the coordination mechanism, consistent with the preceding change contract's
+disjoint-write scopes at the case basis. The proposed AGENTS custody text now
+provides the current guidance home. No other worker is assigned this scratch item. Agent 1
 may resume/release this safe case; Agent 0 resolves transfer if Agent 1 cannot
 continue. Release requires source-bound comparison, partial-work preservation
 and confirmed reader access. Uncertain active ownership holds overlapping writes;
@@ -197,11 +248,11 @@ replacement, release or frozen-work continuation. No extra recovery note was nee
 The owner's feedback that F-02's first-return boundary was too small, and the
 shift to coherent undertakings, are actual supplied context. The consequence
 here is sustained ownership of a connected maintenance/recovery candidate rather
-than returning a wording fragment for review. HELP_HUMAN's purpose/changed-question
-instructions and coordinated-knowledge-work §§1–2/5–7 already support that choice;
-manual v9 chapters 3–8 explain contribution ownership, claim-specific evidence,
-continuity and phase reasoning. No new role, monitoring hierarchy or manual edit
-is warranted. The declared 30%→60% direction is owner steering, not a numerical
+than returning a wording fragment for review. HELP_HUMAN's posture and coordinated-knowledge-work support continuing ownership;
+they do not supply the newly requested reflective method. DEL-04-02's Work
+preserves the parent's earlier judgment and explains its subsequent refinement.
+Manual v9 chapters 3–8 retain ownership, claim-specific evidence and continuity;
+no new role, monitoring hierarchy or manual edit is warranted. The declared 30%→60% direction is owner steering, not a numerical
 completion score or a gate advanced by this evidence.
 
 Separately, F-02 is an actual A3 candidate: accepted/set-up DEL-02-02 traces its
@@ -216,12 +267,12 @@ stronger evidence than this synthetic recovery case, which supplies no A3 claim.
 
 DEL-04-01 owns the reconciliation/A3 assessment and DEL-04-02 owns the reflective
 assessment. Their existing Work can consume these links without duplicating the
-source record. For DEL-04-02 AC-002/005 the retained guidance has the adequacy
-reason above; for AC-003 the supplied owner-feedback context supports the changed
+source record. For DEL-04-02 AC-002/005 the revised method proposal and reasoning
+are now in that locality; for AC-003 the supplied owner-feedback context supports the changed
 assignment boundary, but does not alone prove every human–Agent 0 examination or
 all consequences. AC-004 can examine the real F-02 chain separately. Formation
-AC-001 is not re-examined here. No sibling contract, Work or needs are silently
-rewritten or declared complete. Agent 0 retains that combined assessment.
+AC-001 is not re-examined here. Sibling factual/source-home reconciliation is explicit in this revised proposal;
+no sibling is declared complete. Agent 0 retains combined assessment.
 
 ## Candidate examination and remaining decisions
 
@@ -232,22 +283,33 @@ sibling ownership, owner decisions, adopted/protected bases and public screening
 limits. Q-01 additional archival removal and Q-02 bespoke tooling remain reserved;
 Q-04/Q-05 are usable only for the selected ConsumerBasis claims, not all interfaces.
 
-Fresh candidate checks: the selected validation/workflow-runtime suites passed
-378 tests with four existing skips; the focused workflow catalog check passed
-21 tests. Index regeneration produced no change; metadata/index checks passed.
-SOW_V1 validation and checklist derivation passed; source comparison preserved
-all OUT/REQ/AC/VER text and stable IDs. Changed Markdown local links resolve.
-The native structure check has no errors and four unresolved references outside
-this case; its reduction reflects binding this case, not universal suitability.
+The earlier expansion had 378 selected test passes/four skips and 21 catalog
+passes. Those results are historical, not checks of the changed retirement/index
+behavior. Fresh selected validation/workflow-runtime checks pass: 382 tests,
+four existing skips. The focused catalog/resolver set passes 43 tests. Its
+negative cases reject a compatibility note without a historicalOnly entry,
+missing/empty documentation, and an unlisted target; an unrelated present
+Root-only skill cannot act as CHANGE's implicit successor. The earlier eight-skill
+count expectation was updated to seven because the actual skill is retired;
+public-export exclusion remains independently exercised with a fixture.
+
+Actual CLI probes return exit 2 for legacy CHANGE (with ordinary-brief guidance),
+unqualified and source-qualified change, and the removed project skill. A
+WORKING_ITEMS brief with no workflow resolves no methods; HELP_HUMAN with
+reflect-on-work resolves exactly the proposed method. Those are observed
+selection results, not host-enforcement or consumer qualification. Selected
+pre-retirement Git blobs are readable; no preceding source was rewritten.
+Source/candidate checks and their final revision are recorded in the actual PR.
+REQ/AC/VER and stable IDs remain unchanged; only the explicit output source-home
+proposal changes output text. Unchanged case bytes/evidence remain applicable.
 The actual draft PR supplies final revision, public-screening results and open
 review matters. Claude's independent examination of
 `7d0933d70ab983068a55c055f31ff2df4423055f`, reported by Agent 0, found no blockers
 and independently inspected the recovered/partial/evidence-copy bytes and all five
-tree-equality pairs. Its four small corrections are incorporated: conditional
-application of deliverable-specific reconciliation in the generic method, precise
-owner-review standing, routing ordinary cross-owner repairs, and claim-specific
-custody evidence with applicable reuse. The review accepts the A8 evidence only
-as the labelled case with the limits above. Unchanged tests and case evidence
-remain applicable; no new examiner or exercise is implied. Owner content
+tree-equality pairs. Its four corrections were applied at
+`89c0644b6dcc4736e39c6c8a31c3478da600a38c`; their relevant authority/routing and
+claim-specific custody distinctions survive this retirement proposal. The review accepts the A8 evidence only
+as the labelled case with the limits above. Unchanged case evidence remains applicable; that review did not examine the
+new retirement/reflection design. Agent 0 commissions its examination. Owner content
 approval remains pending before integration. No content acceptance, 60% decision,
 release, consumer adoption or enforced custody is established here.

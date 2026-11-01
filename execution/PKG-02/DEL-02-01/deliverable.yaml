@@ -1,8 +1,8 @@
 id: DEL-02-01
 name: Carry and recover an authorized holding change
 needs:
-- from: doc:workflows/change/WORKFLOW.md
-  condition: The selected change route, Root change skill and applicable resources cover the actual authorized
+- from: doc:AGENTS.md
+  condition: The repository holding/recovery and Git conventions plus selected methods cover the actual authorized
     operation, source basis and review/integration authority. Inspect the relevant resources, not just
     the entry.
   when: Carrying a holding change through review and integration
@@ -35,8 +35,8 @@ needs:
     continue.
   when: The maintenance case encounters inconsistent shared-reference meaning
   evidence: execution/PKG-02/DEL-02-01/Work/MaintenanceBasis.md
-- from: doc:workflows/change/resources/contract.md
-  condition: Use the existing assignment/disjoint-write coordination for the labelled retained-source
+- from: doc:AGENTS.md
+  condition: Use the assignment/disjoint-write coordination described in AGENTS for the labelled retained-source
     recovery case in MaintenanceBasis.md, with its holder, scratch item, reserved completion, current
     authority and release/recovery conditions. Its observed lack of filesystem exclusion does not meet
     a need for enforced locking; bind and exercise a stronger mechanism before making that claim.
@@ -49,8 +49,11 @@ needs:
   when: Connecting publication/update operations or repeating a named compatibility claim
   evidence: execution/PKG-02/DEL-02-01/Work/MaintenanceBasis.md
 code_paths:
-- workflows/change/**
+- AGENTS.md
+- workflows/legacy-agents.json
+- workflows/legacy-methods.json
+- tools/workflow_runtime/resolve_workflow.py
+- tools/validation/build_workflow_index.py
 - workflows/create-workflow/**
-- .agents/skills/chirality-change/**
 checks:
 - tools/validation/validate_workflow_metadata.py

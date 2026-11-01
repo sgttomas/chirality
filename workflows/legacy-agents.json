@@ -36,12 +36,7 @@
     "CHANGE": {
       "role": "WORKING_ITEMS",
       "workflow": "change",
-      "canonical_successor": {
-        "kind": "skill",
-        "name": "chirality-change",
-        "scope": "project"
-      },
-      "compatibility_note": "Legacy CHANGE runs map to the change workflow, now a repository-agnostic Git method; Chirality repository change work uses the project-only chirality-change skill, which specializes it."
+      "compatibility_note": "Retired without a canonical successor. Historical CHANGE records retain this identity. For new work use an ordinary authorized brief and the applicable repository conventions; no Root-only skill is substituted. Recover the selected historical package from Git when reading old evidence."
     },
     "DBM_PUBLISHER": {
       "role": "WORKING_ITEMS",

@@ -21,32 +21,6 @@
   "methods": [
     {
       "kind": "skill",
-      "name": "chirality-change",
-      "source": "project",
-      "sourceRootId": "chirality-root-project",
-      "description": "Prepare, review, or close out Git changes in the Chirality repository using its branch, verification, merge, and authority conventions. Use only for Chirality project work, not general Git tasks or other repositories.",
-      "central": false,
-      "compatibility": "canonical",
-      "executionRoleIds": [
-        "HELPS_HUMANS",
-        "WORKING_ITEMS",
-        "TASK"
-      ],
-      "resources": [
-        "SKILL.md",
-        "execution.json"
-      ],
-      "execution": {
-        "schemaVersion": 1,
-        "compatibleRoles": [
-          "HELPS_HUMANS",
-          "WORKING_ITEMS",
-          "TASK"
-        ]
-      }
-    },
-    {
-      "kind": "skill",
       "name": "deliverable-consistency",
       "source": "bundled",
       "sourceRootId": "chirality-root",
@@ -585,7 +559,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 3,
+        "order": 2,
         "group": {
           "key": "manage-changes",
           "label": "Manage changes",
@@ -634,40 +608,6 @@
           "label": "Review & check",
           "order": 6
         }
-      }
-    },
-    {
-      "kind": "workflow",
-      "name": "change",
-      "source": "bundled",
-      "sourceRootId": "chirality-root",
-      "description": "Prepare and close a coherent Git change in any repository, isolating the work when warranted, checking and reviewing the diff, and committing, pushing, opening a PR, or merging only as far as the user or the repository actually authorizes.",
-      "central": false,
-      "compatibility": "canonical",
-      "executionRoleIds": [
-        "WORKING_ITEMS"
-      ],
-      "resources": [
-        "WORKFLOW.md",
-        "execution.json",
-        "resources/contract.md",
-        "resources/method.md"
-      ],
-      "navigation": {
-        "category": "specialist",
-        "tier": "primary",
-        "order": 0,
-        "group": {
-          "key": "manage-changes",
-          "label": "Manage changes",
-          "order": 7
-        }
-      },
-      "execution": {
-        "schemaVersion": 1,
-        "compatibleRoles": [
-          "WORKING_ITEMS"
-        ]
       }
     },
     {
@@ -2020,7 +1960,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 2,
+        "order": 1,
         "group": {
           "key": "manage-changes",
           "label": "Manage changes",
@@ -2543,6 +2483,34 @@
     },
     {
       "kind": "workflow",
+      "name": "reflect-on-work",
+      "source": "bundled",
+      "sourceRootId": "chirality-root",
+      "description": "Examine with the human whether a concrete finding calls purpose, commitments, explanatory framing or chosen practice into question, and carry a warranted retain or change decision into the owning work.",
+      "central": false,
+      "compatibility": "canonical",
+      "executionRoleIds": [
+        "HELP_HUMAN",
+        "HELPS_HUMANS",
+        "WORKING_ITEMS",
+        "TASK"
+      ],
+      "resources": [
+        "WORKFLOW.md"
+      ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 10,
+        "group": {
+          "key": "review-check",
+          "label": "Review & check",
+          "order": 6
+        }
+      }
+    },
+    {
+      "kind": "workflow",
       "name": "research-orchestration",
       "source": "bundled",
       "sourceRootId": "chirality-root",
@@ -2711,7 +2679,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 1,
+        "order": 0,
         "group": {
           "key": "manage-changes",
           "label": "Manage changes",
@@ -3079,12 +3047,7 @@
       "CHANGE": {
         "role": "WORKING_ITEMS",
         "workflow": "change",
-        "canonical_successor": {
-          "kind": "skill",
-          "name": "chirality-change",
-          "scope": "project"
-        },
-        "compatibility_note": "Legacy CHANGE runs map to the change workflow, now a repository-agnostic Git method; Chirality repository change work uses the project-only chirality-change skill, which specializes it."
+        "compatibility_note": "Retired without a canonical successor. Historical CHANGE records retain this identity. For new work use an ordinary authorized brief and the applicable repository conventions; no Root-only skill is substituted. Recover the selected historical package from Git when reading old evidence."
       },
       "DBM_PUBLISHER": {
         "role": "WORKING_ITEMS",
@@ -3358,7 +3321,8 @@
       }
     },
     "historicalOnly": [
-      "software-bounded-implementation"
+      "software-bounded-implementation",
+      "change"
     ],
     "unknownLegacyBehavior": "error"
   },
