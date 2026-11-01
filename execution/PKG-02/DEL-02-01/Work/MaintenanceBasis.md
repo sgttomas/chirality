@@ -5,8 +5,8 @@ Maturity: owner-approved retirement/reflection content. The owner approved
 “Yes I approve this. Proceed accordingly.” Integration is recorded in PR #1785. The preceding authorized method basis is
 `8d0c5d1a19eec865a8a92750cb3de590d04f9c02`; the earlier unadopted expansion and
 parent's factual assessments are retained at
-`a93f4a29b9ec17af799903a11bb1a09667a607fa`. Agent 1 continues implementation;
-Agent 0 brings the combined content to the owner and retains integration.
+`a93f4a29b9ec17af799903a11bb1a09667a607fa`. Agent 1 carried implementation through repairs;
+Agent 0 presented the combined content and integrated it after owner approval.
 
 ## Retirement and retained means
 
@@ -26,7 +26,7 @@ checklist or create a replacement Git method. Existing README owns publication
 and update inspection; bounded-reconciliation owns actual-result comparison;
 create-workflow governs reusable method design under its preceding basis.
 
-Three output-home changes are explicitly proposed for owner review: DEL-02-01
+Three output-home changes were explicitly proposed for owner review: DEL-02-01
 OUT-001's connected means use AGENTS, create-workflow and the on-demand resource;
 DEL-02-01 OUT-003's recovery/custody detail moves from the maintained change
 route/resources to docs/MAINTENANCE_RECOVERY.md linked from AGENTS; DEL-04-02
@@ -120,8 +120,8 @@ not retroactively execute this proposal.
   path presence and no-match searches cannot establish universal non-use.
 - **Review/integrate:** AGENTS retains proportionate scrutiny, actual checked
   revision, owner content review and bounded Git authority. Prior integrated PRs
-  support only their own cases. This candidate is draft/unmerged. Claude examined the retirement/reflection
-  design at e99e7e6; its bounded corrections are incorporated for owner review.
+  support only their own cases. This content was approved and integrated in PR #1785. Claude examined the retirement/reflection
+  design at e99e7e6; its bounded corrections were incorporated before owner approval.
 - **Prepare publication/inspect updates:** AGENTS links README's existing consumer
   route. [ConsumerBasis](../../../PKG-05/DEL-05-01/Work/ConsumerBasis.md) and #1784
   retain Q-04's named App-reader and Q-05's F-02/v9 source comparison evidence.
@@ -167,9 +167,11 @@ reported source evidence, not tests, repins or qualification by this author.
   Embedded local catalogs/instructions stay independent; no App loading inference.
 
 Both consumers reported no blocking removal finding within their inspections.
-That is not “no dependencies.” No downstream edits/adoption were requested or
-performed. Agent 0 will supply the final revision to both owners after the actual
-candidate/approval/integration basis is established. Current Root conventions
+That is not “no dependencies.” No product adoption or repinning was requested or performed by Root. Agent 0
+supplied final retirement revision `047da79894bc5631dca564a30113f2cd26ec7ae1`
+to both consumer owners after integration, identifying their own factual pointer/
+wording reconciliation. Those messages do not establish that the consumers
+subsequently edited their sources. Current Root conventions
 are explicitly at AGENTS; historical declarations retain their selected sources.
 
 ## Completed cases: reused evidence and fresh examination
@@ -245,7 +247,7 @@ case, not that old PR's authority to restart work.
 `COMPATIBILITY_FORMATS.partial` and its prospective completed output, reserving
 completion/promotion of that extraction. The existing assignment and this owning
 Work section are the coordination mechanism, consistent with the preceding change contract's
-disjoint-write scopes at the case basis. The proposed on-demand docs/MAINTENANCE_RECOVERY.md,
+disjoint-write scopes at the case basis. The adopted on-demand docs/MAINTENANCE_RECOVERY.md,
 linked from AGENTS, now provides the detailed guidance home. No other worker is assigned this scratch item. Agent 1
 may resume/release this safe case; Agent 0 resolves transfer if Agent 1 cannot
 continue. Release requires source-bound comparison, partial-work preservation
@@ -350,8 +352,8 @@ need; no new readdition semantics or tests are introduced. Source/candidate chec
 and their final revision are recorded in the actual PR.
 REQ/AC/VER and stable IDs remain unchanged; only the explicit output source-home
 proposal changes output text. Unchanged case bytes/evidence remain applicable.
-The actual draft PR supplies final revision, public-screening results and open
-review matters. Claude's independent examination of
+PR #1785 supplies the final revision, public-screening results, review findings
+and owner content decision. Claude's independent examination of
 `7d0933d70ab983068a55c055f31ff2df4423055f`, reported by Agent 0, found no blockers
 and independently inspected the recovered/partial/evidence-copy bytes and all five
 tree-equality pairs. Its four corrections were applied at

@@ -41,7 +41,8 @@ OBJ-004 concerns meaningful local progress within the wider product. The accepte
 vocabulary and objective statements remain in decomposition §§2–3. The local
 allocation follows its ledger, DEL-04-01 card, §8.1 and §9.
 
-**Maturity:** newly authored setup contract, not established fulfillment. The
+**Maturity:** integrated setup and owner-approved case assessment; broader
+product fulfillment remains unestablished. The
 formation undertaking is authorized; this authoring assignment does not authorize
 product implementation, acceptance or release. Existing maintained guidance and
 checked evidence may satisfy parts or all of an output where the claim matches.
@@ -146,7 +147,7 @@ the owning work and actual PR; no routine reconciliation report is required.
 - **AX-003** — The owner's Group 3 words, “I accept this decomposition as the basis for project setup,” authorize formation under Agent 0's direct management and bounded Type 2 scope authoring. They do not constitute product acceptance or appoint permanent production staff/suppliers. Agent 0 retains integration and dependency-authoring arrangements; each local contributor retains its own work. Q-03 future production assignments remain unappointed by this authoring act.
 - **AX-004** — Authority and reliance are claim-specific. Commitments, acceptance criteria, protected baselines, explicit holds, risk, adoption and release retain the owners in CLM-004. Proposed methods cannot approve themselves; tests implement verification and cannot redefine acceptance.
 
-- **TBD-001** — The selected actual F-02 application is now bound in the linked Work and native need, including source revisions, the current-validator counterexample, repair and affected uses. DEL-04-02 additionally examines the actual owner feedback and changed undertaking boundary. Agent 0’s assessment is proposed for owner content review; other cases and broader fulfillment remain unestablished.
+- **TBD-001** — The selected actual F-02 application is now bound in the linked Work and native need, including source revisions, the current-validator counterexample, repair and affected uses. DEL-04-02 additionally examines the actual owner feedback and changed undertaking boundary. Agent 0’s assessment was approved for integration in PR #1785; other cases and broader fulfillment remain unestablished.
 - **TBD-002** — Initial consumer-local bindings for the seven accepted localities are authored after scope under Agent 0's arrangement. Their presence supplies no input completeness or suitability claim. For this deliverable, bind the formation authority, selected maintained means, affected candidate/local declarations and actual use-case evidence only for their intended conditions; do not invent supplier promises or edges from shared objective labels.
 - **TBD-003** — Q-01 retains further archival disposition for the owner; Q-02 retains additional bespoke tooling as contingent on a demonstrated selected need and actual authority. Neither creates an unperformed removal or build prerequisite for current reconciliation. Do not modify `plans/`, `_DomainEngines/` or unselected frozen material under this setup contract.
 - **TBD-004** — Q-04's named maintained consumer contract/fixtures and exact revision, and Q-05's actual verified publication candidate/version and prior comparison basis, remain unresolved under DEL-05-01. They are required before affected named compatibility or publication-inspection claims, respectively; independent reconciliation and setup can continue. No consumer contact, rollout or owner release is commissioned here.

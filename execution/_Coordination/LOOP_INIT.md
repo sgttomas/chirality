@@ -13,6 +13,16 @@ established. Advance those contributions through useful changes to the holdings
 and examination of their actual use; existing adequate material and applicable
 evidence can supply a result. Setup alone establishes no product fulfillment.
 
+The owner approved passing the 60% development gate on 2026-11-01: “I approve
+passing the 60% gate and proceeding as you recommend.” The basis is the integrated
+work through `047da79894bc5631dca564a30113f2cd26ec7ae1` and the readiness reflection
+in [DEL-04-02's Work](../PKG-04/DEL-04-02/Work/ReflectiveBasis.md).
+Proceed toward 90% by reconciling current standing, exercising discovery through
+a substantive publication/tool undertaking, repairing demonstrated usage gaps,
+and preparing a concrete broader delivery candidate. The gate establishes a
+basis for further production, not full product acceptance or release; existing
+claim-specific adoption and evidence limits remain in force.
+
 ## Find and carry the work
 
 Read [Root AGENTS.md](../../AGENTS.md) for standing instructions, roles and
