@@ -36,7 +36,7 @@ The distinctions developed here are selective. A chapter can make a relationship
 
 ## 1. A wider undertaking
 
-Chirality is the wider undertaking expressed through its library, App and SWBPIPE projects. The library repository is one particular place where that undertaking develops its shared understanding and means of working. App develops an environment for work with agents. SWBPIPE develops a piping analysis and authoring product. Each has its own commitments, technical circumstances and responsibilities. Their differences supply part of the experience from which the shared practice can learn.
+Chirality is the wider undertaking expressed through its library, App and SWBPIPE projects. The library repository is one particular place where that undertaking develops its shared understanding and means of working. App develops an environment for work with agents. SWBPIPE develops a piping design and stress-analysis product. Each has its own commitments, technical circumstances and responsibilities. Their differences supply part of the experience from which the shared practice can learn.
 
 A library can be viewed as a supplier of files. That is an important operational relationship: a consumer needs identifiable material, its resources and a way to assess changes. But it is an incomplete account of the relationship between these projects. The shared methods are used, questioned and changed in the course of producing actual results. The projects can reveal a defect in a method, a misleading explanation, or a useful possibility that had not been anticipated by the library's authors.
 
@@ -214,7 +214,7 @@ Evidence has a subject and a scope. A parser test, visual inspection, source com
 
 Verification concerns conformity to an identified requirement, claim or reference. Validation concerns fitness for intended use. Tools also use these words for narrower operations, so the actual subject matters more than the label. A validator accepting a document format may say nothing about whether the document promises a useful product.
 
-The Root F-02 case in chapter 9 illustrates the distinction. A plausible broad interpretation was challenged by a current caller and executable behavior. The counterexample required a narrower, better-supported explanation. The existence of a successful check alone would not have explained what was wrong with the earlier interpretation.
+The Root F-02 case in chapter 9 illustrates why a claim needs grounds suited to its actual subject. A plausible broad interpretation was challenged by a current caller and executable behavior. The counterexample required a narrower, better-supported explanation. The existence of a successful check alone would not have explained what was wrong with the earlier interpretation.
 
 ### Consequence, detectability and independence
 
@@ -300,17 +300,19 @@ A source archive, an installed application and an issued technical document make
 
 ### An undertaking ends; its result continues
 
-Completion concerns agreed work and its required examination. The result can continue to be used, depended upon and questioned long after that undertaking ends. A library edition, an installed application and an issued calculation have lives that exceed the work by which they were produced. Confusing those subjects makes maintenance difficult to describe.
+A result can continue to be used, depended upon and questioned long after the undertaking that produced it ends. A library edition, an installed application and an issued calculation have lives that exceed the work by which they were produced. Confusing those subjects makes maintenance difficult to describe.
 
 One error treats every later improvement as evidence that the earlier work was never complete. An accepted result is returned to an earlier percentage position, and its whole basis becomes a candidate for repeated examination. Another error treats completion as the end of responsibility, leaving a recipient's consequential finding without an owner. Between them lies a quieter failure: current sources move on while users remain uncertain about what changed from the edition they adopted.
 
-An acceptance remains an actual historical decision about an identified subject, evidence and limitations. It is not a guarantee that the assessment was infallible. Later evidence may show that an earlier completion claim was mistaken, that a commitment was not fulfilled, or that a relied-upon result needs correction or withdrawal. Preserving the record of the decision and revising the present assessment are compatible. A new need, by contrast, does not retrospectively become an unfulfilled old commitment merely because it is now important.
+An acceptance remains an actual historical decision about an identified subject, evidence and limitations. It is not a guarantee that the assessment was infallible. Later evidence may show that an earlier completion claim was mistaken, that a commitment was not fulfilled, or that a relied-upon result needs correction or withdrawal. Preserving the record of the decision and revising the present assessment are compatible. Anyone can raise the finding and its evidence; decisions to revise acceptance, restrict authorized use or withdraw a release belong to whoever holds the relevant acceptance or release authority. A new need, by contrast, does not retrospectively become an unfulfilled old commitment merely because it is now important.
 
 The phrase “after 100%” is useful only with this distinction intact. It identifies work after an undertaking has been considered complete; it does not mean that every possible use was qualified or that a product has exhausted its capacity for change. A completed result can remain adequate for its selected use while a later undertaking develops something further.
 
 ### Different findings, different consequences
 
 A defect concerns a failure to meet a commitment applicable to the accepted subject. Its repair can preserve the commitment while changing the implementation. The finding also raises a question about past or continuing reliance: someone may depend on behavior the edition does not provide. Whether notice, correction, restricted use or withdrawal is warranted depends on that consequence and the applicable authority. Merging a repair does not itself answer the recipient's question.
+
+A recipient may also show that the result meets its stated commitments yet is unfit for the use those commitments were meant to serve. This is a validation gap: the examination may have established conformity accurately while the chosen criteria missed something consequential about the purpose. The finding returns to those responsible for the commitments and intended use. It may warrant a revised basis, a changed permitted use or further examination; it cannot be resolved merely by citing the passing checks. Nor does every later preference demonstrate such a gap. The relationship to the original intended activity and the evidence of inadequacy matter.
 
 An implementation refinement can improve the means without changing the promised behavior. A factual clarification can improve the explanation without changing what the product did. Both can be small, but neither is automatically harmless. An explanation may be the basis on which a person decides whether an operation is suitable, and a changed implementation may affect a consumer whose assumptions were not recorded locally.
 
@@ -338,7 +340,7 @@ The participants in a later undertaking may differ from those who produced the o
 
 Each later piece of work still needs an intelligible purpose, authority and usable result. A request and focused examination may suffice. An adopted support obligation can itself authorize and require responses; its scope matters just as the scope of a new assignment does. The absence of such an obligation does not turn an old improvement idea into an active task.
 
-A maintained product can also reach the end of its maintained life. Retirement concerns what work and support will continue, how existing reliance is treated, and what source remains recoverable. It need not erase earlier editions, and recovery need not reactivate development. Where a recipient still depends on a result, the consequence deserves an explicit treatment rather than an assumption that silence ended the relationship.
+A maintained product can also reach the end of its maintained life. Retirement concerns what work and support will continue, how existing reliance is treated, and what source remains recoverable. It need not erase earlier editions, and recovery need not reactivate development. Where known reliance or an adopted arrangement continues, its consequence deserves explicit treatment rather than an assumption that silence ended the relationship.
 
 Maintenance therefore allows completion to remain meaningful without making the result immune to further understanding. The work can end; responsibility and later inquiry take the forms warranted by the actual product, commitments and people involved.
 
