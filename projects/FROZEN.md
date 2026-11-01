@@ -1,6 +1,6 @@
 # Frozen products
 
-App v3 (`chirality-app-dev`), Runtime (`chirality-runtime`) and PEC (`pec`) are
+App v3 (`chirality-app-dev`) and Runtime (`chirality-runtime`) are
 retired. Their complete tracked trees, and the old App exporter, are recoverable
 at `archive/pre-frozen-products-2026-10-10`. They are not development targets or
 verified products on main.

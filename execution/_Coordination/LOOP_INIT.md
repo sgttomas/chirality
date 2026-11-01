@@ -1,54 +1,83 @@
-# Chirality library development entry
+# Chirality library development
 
-The owner accepted [the Library PRD](../../docs/PRD.md) on 2026-10-31.
-It defines the product objectives, scope, requirements and acceptance criteria
-for maintaining the library through its own contents, including its execution.
-Read [Root AGENTS.md](../../AGENTS.md) for authority, the working cycle and Git
-conventions. Initialization selects no undertaking.
+Develop the library so people and agents can use its contents to maintain and
+improve those same contents, and other projects can rely on identified material
+under their own authority. Principles and publications, roles and workflows,
+tools and their instructions, shared references and Root's own execution are
+all holdings in this work. The [accepted PRD](../../docs/PRD.md) defines the
+objectives and the evidence required of the result.
 
-## Current basis
+The [accepted decomposition](../_Decomposition/_LATEST_ACCEPTED.md) gives the
+scope its five Package homes and seven bounded Deliverables. Initial setup is
+established. Advance those contributions through useful changes to the holdings
+and examination of their actual use; existing adequate material and applicable
+evidence can supply a result. Setup alone establishes no product fulfillment.
 
-The pre-library packages, decomposition, scope changes and coordination records
-have been removed. The recovery reference is in
-[projects/FROZEN.md](../../projects/FROZEN.md#pre-library-root-execution).
-The owner accepted the [final library decomposition](../_Decomposition/_LATEST_ACCEPTED.md)
-as the basis for project setup: five Packages and seven Deliverables. The linked
-decision and immutable snapshot supply scope and authority; carry the concrete
-formation obligations in decomposition §8.1 into setup.
+## Find and carry the work
 
-Agent 0 directly manages the authorized `project-setup` undertaking. The seven
-numeric `execution/PKG-nn/DEL-nn-nn/` localities now contain authored ScopeOfWork
-contracts, linked initial Work assessments and consumer-local needs. Read the
-selected locality for its actual source basis, use conditions and open work.
-This is initial formation, not fulfillment of the product criteria; unresolved
-consumer/publication and real-application evidence remain explicit. The current
-route uses `ScopeOfWork.md`, `deliverable.yaml` and `Work/`, without numbered
-phase folders or lifecycle files.
-Old execution records are historical inputs only, not a backlog or an instruction
-to resume. Initialization alone assigns no work.
+Read [Root AGENTS.md](../../AGENTS.md) for standing instructions, roles and
+authority. The conversation supplies the undertaking. From its purpose or the
+affected holding, locate the relevant ScopeOfWork under
+`execution/PKG-nn/DEL-nn-nn/`. Search the scopes' purposes and outputs when the
+locality is not already known, then read its `Work/` and `deliverable.yaml`.
+Consult the PRD and selected source material for the requirements and interfaces
+that this work involves. A source or code pointer indicates relevance, not
+exclusive ownership.
 
-## Consumers and boundaries
+Agents examine and refine input conditions while planning and carrying their
+undertakings. Follow the sources and affected uses needed for the particular
+action; judge suitability from evidence. Existing usable inputs need not wait
+for an entire neighboring Deliverable to finish. Unknowns and reciprocal
+relationships remain visible while unaffected work continues.
 
-App v4 and SWBPIPE independently consume shared material. Each project owns its
-adoption and product work; coordinate affected interfaces through its current
-Agent 0 as directed in AGENTS.md. A library revision does not force adoption.
-Preserve original source identities and historical references when changing
-shared material. The repository's Git grant reaches only Chirality Root.
+For work on this entry, begin with the
+[discovery ScopeOfWork](../PKG-01/DEL-01-01/ScopeOfWork.md) and its linked Work.
+From the repository root, inspect its declared neighborhood with:
 
-App v3, Runtime and PEC remain frozen. `_DomainEngines/` changes only under a
-steer covering that scope. Private information stays outside this public
-repository. Acceptance, issuance and release remain owner acts.
+```sh
+python3 -m tools.deliverables --project . neighborhood DEL-01-01
+```
 
-## Verification
+The [query guide](../../tools/deliverables/README.md) gives the other queries,
+Git/HEAD and Python/PyYAML prerequisites, observation limits and direct-reading
+fallback. Queries reveal declared relationships; they do not decide whether an
+input is suitable or the work is complete.
 
-For new localities, use `python3 -m tools.deliverables --project . check`;
-query affected needs for the actual undertaking. Structural results and path
-presence do not establish suitability or acceptance.
+Use [coordinated knowledge work](../../workflows/coordinated-knowledge-work/WORKFLOW.md)
+to carry related contributions into one usable, examined result. Agent 0 retains
+purpose and continuity with the owner; implementation owners carry their
+undertakings through contributions, repairs and integration. Reconcile the
+actual result and verification with affected commitments, Work and needs in the
+same PR, as AGENTS.md and the
+[reconciliation method](../../workflows/bounded-reconciliation/WORKFLOW.md)
+describe. Select further methods as the undertaking needs them.
 
-For tool changes, inspect selection with
-`python3 tools/run_affected_tests.py --dry-run`, then omit `--dry-run` to execute
-the affected checks. After workflow package changes, rebuild the index with
-`python3 tools/validation/build_workflow_index.py`; `--check` checks currency.
-[CI selection](../../docs/CI_SELECTION.md) describes hosted verification and the
-required `harness` result. Reuse applicable evidence and broaden checks for a
-concrete uncovered concern.
+## Content review
+
+The owner wants to understand proposed library content changes in broad strokes
+and review and approve them before integration. Present the affected material,
+what would change, why and the consequences, with the actual edits available.
+This applies to meaning and behavior, organization and selection, and mechanical
+maintenance; no document type or improvement class is exempt unless the owner
+says so. Investigation, drafting and verification may proceed within the
+authorized undertaking. Apply decisions already given; obtain approval for
+changes outside the approved proposal before integration. Proposed replacement
+instructions are examined under their preceding basis and do not authorize their own adoption.
+
+## Examination and boundaries
+
+Use the local ScopeOfWork's output and evaluation criteria and the proportionate
+verification rule in AGENTS.md. Reuse evidence where it supports the actual
+claim, and identify what remains unverified. [CI selection](../../docs/CI_SELECTION.md)
+provides the tool-check route and required hosted result; the
+[workflow guide](../../workflows/README.md) covers checking and regenerating
+consumed indexes when their sources change.
+
+App v4 and SWBPIPE own adoption and product work in their repositories; Root's
+instructions and Git grant do not transfer to them. Follow AGENTS.md for any
+needed coordination. App v3 and Runtime remain frozen, and additional
+archival or `_DomainEngines/` work retains its existing scope and authority limits.
+The [recovery reference](../../projects/FROZEN.md#pre-library-root-execution)
+preserves old execution as history, not a standing backlog. Private information
+stays outside this public library. Acceptance and release remain owner acts;
+initialization alone assigns no undertaking.
