@@ -10,13 +10,11 @@ Ryan Tufts
 
 This book develops the reflective side of Chirality. It continues the argument of [Purpose, Participation, and Judgment](../thesis/README.md) through an examination of work. It asks how an undertaking gets its direction, how contributions become usable together, and how experience can change the means that the next undertaking uses. Agents help with interpretation, comparison, drafting and examination. The author decides the intended meaning and which text to accept and publish. The account uses an impersonal voice, and a constructed case is not testimony about the author's experience.
 
-The book follows *Project Management for Human Agent Teams, Consolidated v9* in the line of this account. It does not replace the existing uses of v9. The earlier work addressed an executing agent and mixed explanations with instructions. This book reconsiders those explanations as arguments about practice. Each particular recommendation keeps its reasons, circumstances and limits.
-
 People and agents can use the book as material for thought and criticism. The commitments and selected instructions of their own undertaking remain the basis for execution. An explanation can disagree with an instruction, and the disagreement can matter. But the explanation does not automatically replace the instruction.
 
 The account distinguishes the author's commitments, interpretations of documented experience, and proposals for how practice could develop. Agreement with the thesis gives conceptual grounding. It is not independent empirical confirmation. A plausible arrangement can remain a design hypothesis, even when particular cases support some of its relationships.
 
-The cases rest on different grounds. Chapter 4 examines one App episode in which the owner redirected the work and asked for the manuals to be enriched from that experience. Chapter 9 examines the concentrated Root library undertaking. Chapters 10 and 11 contain constructed examples that come from v9 in revised form, and the continuation after acceptance in chapter 10 is new. The thesis gives a separately dated account of App and SWBPIPE experience. Earlier App and Piping work took place in a shared repository, before the projects separated.
+The cases rest on different grounds. Chapter 4 examines one App episode in which the owner redirected the work and asked for the resulting lessons to inform shared guidance. Chapter 9 examines the concentrated Root library undertaking. Chapters 10 and 11 contain constructed examples, including work after acceptance. The thesis gives a separately dated account of App and SWBPIPE experience. Earlier App and Piping work took place in a shared repository, before the projects separated.
 
 This book selects a small part of those records, mostly about library maintenance. That selection is a boundary of the inquiry. It does not mean that product experience is absent. The book reports no new product trials.
 
@@ -166,7 +164,7 @@ A cycle can indicate coupled design, an overbroad contribution or an impossible 
 
 The App's passage through its 60% position on October 4, 2026 gives a more difficult instance. At that time the App and the shared library were in the same repository. The agent's [recorded lessons](https://github.com/sgttomas/chirality/blob/34a83250a15d81f0c2239496858e16450cc82840/projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GRAPH-CLOSURE-20261004/LESSONS_60PCT.md) describe attempts to remove cycles by rewording dependencies. Each pass found more coupling, while no usable product advanced. Some proposals narrowed obligations to improve the graph. The owner redirected the work toward a coupled contract core and a working path through it.
 
-The [owner-direction record](https://github.com/sgttomas/chirality/blob/24e9117b9c2d9d10f57642da4eef0d13c90bb166/projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GRAPH-CLOSURE-20261004/OWNER_DECISIONS.md) also transcribes an explicit request to enrich the manuals from that experience. The [manual change account](https://github.com/sgttomas/chirality/blob/a8d835ad7bb687e1d4283fdbda8ca1ce85cfafb1/projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GRAPH-CLOSURE-20261004/MANUAL_CHANGES.md) and the [revision](https://github.com/sgttomas/chirality/commit/0c45aba0e987d5c9e65e1786bab680def5d56169) that followed separate structural concerns from finer relationships. They also qualify the guidance as the experience of one project, without fixed thresholds or tiers.
+The [owner-direction record](https://github.com/sgttomas/chirality/blob/24e9117b9c2d9d10f57642da4eef0d13c90bb166/projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GRAPH-CLOSURE-20261004/OWNER_DECISIONS.md) also transcribes an explicit request to develop shared guidance from that experience. The [recorded changes](https://github.com/sgttomas/chirality/blob/a8d835ad7bb687e1d4283fdbda8ca1ce85cfafb1/projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GRAPH-CLOSURE-20261004/MANUAL_CHANGES.md) and the [revision](https://github.com/sgttomas/chirality/commit/0c45aba0e987d5c9e65e1786bab680def5d56169) that followed separate structural concerns from finer relationships. They also qualify the guidance as the experience of one project, without fixed thresholds or tiers.
 
 This trace connects a project difficulty, the owner's intervention and an actual change in shared explanatory material. It does not establish a routine learning process, later adoption in every project, or an effect on later outcomes. The episode matters because the owner redirected the use of the graph toward producing the required result. It also shows the person's part in carrying that experience into an account that others could examine.
 
@@ -288,7 +286,7 @@ A historical citation can keep a meaning that a later explanation develops diffe
 
 ### Positions in development
 
-The earlier management manual used these positions: conceptual, front-end engineering design, 30%, 60%, 90% and delivery. They were ways to discuss what had become established enough for dependent work. They were not measurements of code, cost or elapsed effort. Their usefulness depends on the questions they expose in a particular undertaking.
+Development can be discussed in positions: conceptual, front-end engineering design, 30%, 60%, 90% and delivery. These positions describe what has become established enough for dependent work. They do not measure code, cost or elapsed effort. Their usefulness depends on the questions they expose in a particular undertaking.
 
 Conceptual work concerns the intended result and plausible means. Front-end engineering design develops scope and the principal interfaces. Around the 30% position, the execution responsibilities and the conditions for useful production should be clear. Around 60%, consequential design and integration premises become important grounds for more dependent work. Around 90%, the intended contributions come together for concentrated examination of their combined use.
 
@@ -374,7 +372,6 @@ Before integration, an independent examination compared the draft with the actua
 
 The episode supports the value of review with access to the actual code and its consumers. A plausible proposed explanation was corrected before it became integrated guidance. It was not a deployed interpretation whose failure appeared later through user experience. Consistency among the draft documents alone would not have exposed the error.
 
-The same undertaking reconciled the manual's explanation of localities. Current navigation followed project instructions and the actual Work homes, while historical Design references kept their identified meaning. The change improved the current explanation without moving the subject of old evidence.
 
 ### A boundary that made work too small
 
@@ -386,13 +383,13 @@ The record supports those interpretations and their actual consequences. It give
 
 ### Reconsidering where instructions belong
 
-The publication index records the October 2026 retirement of the Field Book and the Agent User Manual. That record includes the concern that the Agent User Manual restated repository instructions. The later retirement of the bundled change workflow had a different stated impetus. The owner said: “It's seldom used in the right manner when agents are the ones invoking it. The task is easy for agents to do.” The question concerned the value of that mechanism, given what agents can do and how they actually used it.
+The owner questioned the value of the bundled change workflow given the agents' capability and actual use. The owner said: “It's seldom used in the right manner when agents are the ones invoking it. The task is easy for agents to do.”
 
 The library undertaking removed the change workflow and the Root change skill. It moved the needed Git conventions and a recovery entry into the repository instructions that agents read every turn. Detailed recovery guidance stayed available on demand. The removal of two packages redistributed guidance. It did not by itself establish a reduction in attention, interruption or maintenance cost.
 
 The retirement did not silently substitute an unrelated method. Explicit selections of the removed packages and of the historical CHANGE route failed, while historical identities and source pins stayed recoverable. Bounded inspections of consumers separated known present uses from uses that were not searched or that were selected dynamically.
 
-These decisions show different reasons to revise a mechanism: competing homes for instructions, a poor fit with agent use, and a changed assessment of what agents can carry without a separate procedure. Their consequences depend on the functions that stayed and on the actual consumers. Deleted text is not by itself evidence of reduced burden.
+The episode connects a poor fit with agent use to a changed assessment of what agents can carry without a separate procedure. Their consequences depend on the functions that stayed and on the actual consumers. Deleted text is not by itself evidence of reduced burden.
 
 ### Reflection and the 60% decision
 
@@ -429,7 +426,7 @@ This small case gives post-completion work an identifiable subject. An accepted 
 
 <a id="document-case"></a>
 
-This example is constructed and adapted from v9. It shows relationships among purpose, state, evidence and responsibility. It is not a report of App behavior or a new requirement for that product.
+This is a constructed example. It shows relationships among purpose, state, evidence and responsibility. It is not a report of App behavior or a new requirement for that product.
 
 ### From an implementation request to a useful result
 
@@ -590,8 +587,6 @@ These terms express distinctions that the argument uses. The [thesis glossary](.
 | Reflection | Examination, with the person, of the meaning, framing and usefulness of the work or the practice. It can support retention as well as change. |
 | Reconciliation | Comparison of actual results and evidence with the affected commitments and descriptions, and transfer of warranted corrections into the sources that own them. |
 
-## Source and edition note
-
-The predecessor work is [Project Management for Human Agent Teams, Consolidated v9](Project_Management_for_Human_Agent_Teams_Consolidated_v9.md). It is retained as a separate work with its own identity. This first edition changes the character and organization of that account. Its explanations of purpose, commitments, relationships, ownership, evidence, continuity and delivery draw on v9. The actual Root case, the treatment of work after completion and the explicit treatment of reflection across projects develop the new account.
+## Sources
 
 The philosophical distinctions draw on [The Chirality Framework](../thesis/CHIRALITY_FRAMEWORK.md), particularly its account of knowing, judgment and the accountability gap. The maintained [thesis](../thesis/README.md) contains the fuller argument, the references and the dated evidence. This book does not extend the empirical claims of the thesis by restating them. The source revision and content identity of this edition accompany its rendered form. The publication index distinguishes discovery of an edition from adoption of its content.
