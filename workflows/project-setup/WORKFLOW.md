@@ -1,48 +1,47 @@
 ---
 name: project-setup
-description: Initialize an accepted project workspace and coordinate its selected setup and estimation phases, or set up the amended scope incrementally after an accepted scope change.
+description: Materialize accepted project scope as current deliverable localities, author local contracts and needs, and reconcile affected work before integration. Retained domain and legacy routes require explicit selection.
 ---
 
 # project-setup
 
-Initialize an accepted project workspace and coordinate its selected setup and estimation phases. After an accepted scope change, set up only the amended scope.
+Materialize an accepted decomposition or an authorized change to its selected
+scope. New PROJECT/SOFTWARE localities use the current method below. Selection
+alone does not start setup, approve a decomposition or authorize scope changes.
 
 WORKING_ITEMS coordinates this undertaking and assigns bounded contributions to TASK.
 Selection does not launch setup or change roles. HELP_HUMAN may coordinate a
 request for this workflow, but execution routes to an eligible WORKING_ITEMS
 instance with actual host permissions and a run-specific brief.
 
-## Modes and inputs
+## Inputs and route
 
-The setup mode is inferred from workspace state at session entry and confirmed
-in the proposal; a brief may name it.
+Use [current project setup](resources/current-project.md) for the adopted
+`PKG-nn/DEL-nn-nn/` locality with `ScopeOfWork.md`, `deliverable.yaml` and `Work/`.
+Inputs are the accepted decomposition/source identity, selected activation scope,
+actual project instructions and any accepted changes affecting it. Inspect existing
+work and reuse recorded decisions; ask only for a missing reserved choice.
 
-- `INITIAL` — first setup of an accepted decomposition (Functions 1–2). Inputs:
-  the accepted decomposition, the human-confirmed coordination representation
-  and the selected activation scope.
-- `INCREMENTAL` — setup of the amended scope after an accepted `scope-change`
-  amendment has been applied (Function 5). Inputs: the accepted amendment
-  snapshot named by `_ScopeChange/_LATEST.md`, its accepted action register
-  (`Amendment_Actions.csv`, or the register its group-2
-  `ACCEPTED_MANIFEST.csv` names), `Propagation_Plan.md` and `Handoff_State.md`;
-  the amended decomposition; the existing `_COORDINATION.md`, whose
-  coordination arrangements and technical holds are reused rather than re-asked; and the
-  agent-owned, append-only `_Coordination/SETUP_LOG.md`. Its baseline,
-  recorded when `INITIAL` setup completes or when an existing project adopts
-  this mode, excludes amendments already set up; an amendment whose
-  `Handoff_State.md` hands setup to this mode is never excluded.
-
-An amendment still in progress is applied first through `scope-change`; this
-workflow sets up the amended scope only after its checkpoint group 3 is
-accepted. `audit-scope-closure` is the post-acceptance closure check of that
-setup.
+For an explicitly retained DOMAIN or legacy phase/control-file project, use
+[the retained contract](resources/contract.md) and
+[retained method](resources/method.md). Those resources' lifecycle, register,
+snapshot and setup-log obligations apply only where that project has adopted
+them. Existing files alone do not select that route or authorize migration.
 
 ## Method
 
-1. Inspect accepted decomposition, existing workspace state, coordination representation, `_ScopeChange/` state, and activation scope, and infer the mode.
-2. Apply the `preparation` skill, then dispatch the selected production, semantic, dependency (`dependency-extract`, then `audit-dep-closure`), or domain workflows as bounded stages. In `INCREMENTAL` mode, scaffold only added entities, preserve existing folders, IDs, content and lifecycle state, route modified `SOW_V1` deliverables to `scope-of-work` `MODE=REVISE` (held for the human at `CHECKING` or `ISSUED`), rerun dependency stages only for the affected deliverables and their neighbours, record the run in `SETUP_LOG.md`, and propose `audit-scope-closure`.
-3. Author actual input/use conditions in consumer-local `deliverable.yaml` from scope, relevant work material and sources, following the project's adopted locality convention (`Work/` by the shared default). Derive reverse links, neighbourhoods and undertaking-specific graphs on demand; assess suitability from evidence and responsible judgment. Preserve reciprocal conditions, technical holds and unknown sources without automatic gating changes. See `construct-local-work-graph` when sequencing selected work.
-4. Prepare estimation inputs and schedule-basis decisions where selected, then validate setup evidence and hand off current derivatives and blockers.
+1. Confirm the accepted basis, allowed writes, locality convention and actual
+   state of the selected work. Identify additions separately from existing work.
+2. Apply the selected `preparation` instruction and its current tool route for
+   structural creation. Author missing production contracts with `scope-of-work`
+   `MODE=INIT`; do not create a blank contract merely to fill a folder.
+3. Author actual consumer needs after local scope exists, using `dependency-extract`
+   and the relevant work/sources. Derive views on demand; assess suitability from
+   evidence rather than file presence, lifecycle or a successful query.
+4. Reconcile the implementation, ScopeOfWork, current Work material and relevant
+   YAML conditions/pointers in the same change before integration. Validate the
+   selected result and preserve actual holds and owner decisions. Routine factual
+   reconciliation is not a new scope amendment or another setup run.
 
 Apply accepted defaults and carry authorized preparation forward on agent
 initiative. Present human decisions only after the relevant proposal and checks
@@ -51,6 +50,8 @@ prompt by itself.
 
 ## Resources
 
-Load [inputs, modes, and output contracts](resources/contract.md) when framing the assignment. Use [the detailed method](resources/method.md) for the current stage. Resolve tool commands against the declared tool root.
+Resolve tool commands against the selected library root. Estimation, scheduling,
+semantic enrichment and lifecycle acts apply only when independently selected
+and authorized; they are not current-project setup defaults.
 
 For an activated package’s subsequent production, load [package activation and production](resources/package-activation.md). Software implementations additionally use [software activation](resources/software-activation.md).

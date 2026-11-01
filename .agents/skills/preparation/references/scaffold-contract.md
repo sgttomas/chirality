@@ -1,85 +1,57 @@
-# Scaffold Contract
+# Current scaffold contract
 
-## Operation map
+The current PROJECT/SOFTWARE layout is `execution/PKG-nn/DEL-nn-nn/`.
+The accepted decomposition supplies the exact identity widths and names.
+Descriptions can remain in canonical accepted IDs and source records; directory
+names use their numeric PKG/DEL identity. No automatic migration of an existing
+layout is part of preparation.
 
-| Operation | Required accepted input | Result |
+## Operations
+
+Resolve commands against the selected library root. Python 3 and PyYAML are
+required by the current route; `PYTHON` may select the interpreter.
+
+| Operation | Command | Result |
 |---|---|---|
-| Package hierarchy | package ID and name | package lifecycle directories |
-| Package references | package identity and available references | files or `_REFERENCE_INDEX.md` |
-| Deliverable fileset | deliverable and package fields plus decomposition reference | four metadata files and `deliverable.yaml` |
-| Aggregation prerequisites | execution root | `_Aggregation` root and neutral templates |
-| Category hierarchy | category ID and name | category lifecycle directories |
-| Knowledge-type fileset | knowledge-type and category fields plus decomposition reference | four non-dependency metadata files |
-| Domain tool roots | execution root | hypergraph and closure structural roots |
+| Package | `zsh tools/scaffolding/scaffold_package.sh --current <execution-root> <PKG-ID> <accepted-name>` | Numeric package directory; no lifecycle subfolders |
+| Deliverable | `zsh tools/scaffolding/scaffold_deliverable.sh --current <package-path> <accepted-DEL-ID> <accepted-name>` | Numeric DEL directory, `Work/`, and `deliverable.yaml` with accepted numeric identity/name and `needs: []` |
+| Prepared structure | `zsh tools/validation/check_min_viable_fileset.sh --current --prepared <DEL-path> <accepted-DEL-ID>` | Checks current folder/identity, Work and valid native YAML; ScopeOfWork is not yet required, but an existing one must have consistent identity |
+| Authored structure | Same check without `--prepared` | Additionally requires ScopeOfWork with matching schema/package/DEL frontmatter; content/acceptance verification is separate |
 
-## Tool operations
+Creation reports each new path as `CREATED_PATH`. Existing files are preserved,
+including their needs, scope and work content. Conflicting identities, malformed
+declarations and file/directory mismatches are errors, not an instruction to repair
+or replace the target. Current generated components must be real directories and
+regular files; symlink targets are refused. An existing chosen source/root can be
+resolved explicitly, but child creation does not traverse substituted links.
 
-Resolve commands against the tool root.
+Creation exits 0 on success and 2 on invalid input/operation failure. Checking
+exits 0 on the selected structural stage and 1 on a finding/operational failure;
+argument usage errors exit 2. A failure can leave reported newly created paths;
+inspect them before resuming. Existing work is never deleted as rollback.
 
-- Package or category hierarchy: `tools/scaffolding/scaffold_package.sh <EXECUTION_ROOT> <ID> <Label>`.
-- Identifier check: `tools/validation/validate_id_format.sh <PKG|DEL|CAT|KTY> <ID>`.
-- Deliverable or knowledge-type folder: `tools/scaffolding/scaffold_deliverable.sh <package-or-category>/1_Working <ID> <Label>`. It creates `{ID}_{Label}` under the parent's `1_Working/` with four empty metadata stubs; a DEL locality also receives a valid `deliverable.yaml`. Add `--memory` as the fourth argument only when `MEMORY.md` is selected and authorized; the tool refuses when a legacy `_MEMORY.md` exists, so report that instead of working around it.
-- Aggregation prerequisites: `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT} _Aggregation`, then create any missing `_Aggregation/_Templates/AGGREGATION_BRIEF_TEMPLATE.md` (neutral headings only) and `_Aggregation/_Templates/TARGET_SCHEMA_TEMPLATE.csv` (header row only).
-- Domain tool roots: `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT}/_Aggregation Hypergraph` and `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT}/_Evaluation HypergraphClosure`.
+## Scope and needs
 
-Package and category lifecycle hierarchies contain `0_References/`, `0_References/_Archive/`, `1_Working/`, `1_Working/_Archive/`, `2_Checking/`, `2_Checking/From/`, `2_Checking/To/`, `3_Issued/`, and `3_Issued/_Archive/`.
+The helpers do not create a blank ScopeOfWork or production claims. The authoring
+stage supplies the actual contract from accepted decomposition and objectives,
+then runs `validate_scope_of_work.py` and its applicable checks. Structural success
+does not validate production meaning or acceptance.
 
-## Context files
+Actual needs are authored after scope exists using the project's relevant work
+and source conditions. Preserve cases, unknowns and technical holds; derive reverse
+links when needed. No dependency register or completeness claim is created by
+initial `needs: []`. The accepted deliverable ID's numeric prefix binds YAML and
+ScopeOfWork; preparation does not change the canonical decomposition identity.
 
-A deliverable `_CONTEXT.md` records its ID and canonical name, package ID and canonical name, discipline, type, responsible party, exact accepted description, anticipated artifacts, decomposition path, and deliverable ID.
+## Retained routes
 
-A knowledge-type `_CONTEXT.md` records its ID and canonical name, category ID and canonical name, discipline, type, responsible party, exact accepted description, anticipated artifacts, decomposition path, knowledge-type ID, and category ID.
+The unflagged shell interfaces retain their historical labelled/phase layout and
+control files, including optional `--memory` where explicitly selected. They are
+documented in [the legacy contract](legacy-scaffold-contract.md), for projects
+that still adopt it. Do not use those calls for current flat setup or create their
+control files just to satisfy a legacy validator. KTY/domain schema behavior is
+unchanged and is not selected by `--current`.
 
-Do not normalize or embellish accepted field values. Use `TBD` only when the accepted source itself is unresolved, and report that condition.
-
-## Consumer-local needs (PROJECT/SOFTWARE DEL only)
-
-Create `deliverable.yaml` once, without overwriting an existing file:
-
-```yaml
-id: DEL-12-03
-needs: []
-```
-
-Keep the accepted DeliverableID, metadata spelling, folder binding and
-numbering unchanged. Native YAML `id` and ScopeOfWork `deliverable_id` use the
-numeric DEL prefix as a dependency binding projection; this does not redefine
-the accepted suffix-bearing PROJECT identity. Check that projection against
-the owning folder and accepted decomposition ID with
-`check_min_viable_fileset.sh <folder> <accepted-deliverable-ID>`.
-
-An empty list means no needs have been declared yet. It establishes no claim
-that the input set is complete, satisfied or suitable for execution. The
-consumer's responsible contributor later authors actual inputs, conditions,
-use and unresolved sources in this file through `dependency-extract`, using
-the schema in `tools/deliverables/cli.py`. Reverse links and graphs are queried
-when needed. Do not create dependency CSV/Markdown companions, migrate existing
-artifacts automatically, or copy derived reverse links into another declaration.
-
-This DEL-native method does not assess KTY dependency declarations. A KTY
-scaffold creates only its four non-dependency metadata files, leaving any
-existing dependency artifacts untouched; it does not fabricate a KTY needs
-schema.
-
-## Remaining control files
-
-- `_STATUS.md`: when the file is newly created, including an empty stub from
-  the scaffolder, write exactly this form, naming the actual actor:
-
-  ```markdown
-  # Status: <ID> <Name>
-
-  **Current State:** OPEN
-  **Last Updated:** <YYYY-MM-DD>
-
-  ## History
-  - <YYYY-MM-DD> — State set to OPEN (<actor>)
-  ```
-
-  `tools/scaffolding/write_status.sh` parses the `**Current State:**` line for
-  later transitions and cannot initialize an empty stub.
-- `_REFERENCES.md`: list supplied reference names or IDs, locations, and relevance; otherwise state that references are not yet identified.
-- `_SEMANTIC.md`: create a `PLACEHOLDER` lens with no engineering assertions. A later semantic workflow may replace it.
-- `MEMORY.md`: optional and outside the minimum fileset. Create it only when explicitly selected and authorized, filling it from `docs/templates/MEMORY_TEMPLATE.md` (the terse `## Runs` index). Do not create a future-work list.
-
-Aggregation templates, when requested, are structural only. The target-schema CSV begins with `RecordID,SourceID,SourcePath,SectionRef,EntityType,Key,Value,Notes,Confidence,Tags` and no data rows.
+Tool-root and aggregation operations from the retained contract are available
+only when the undertaking actually requires them. Preserve existing sources;
+there is no automatic lifecycle update or movement between layouts.

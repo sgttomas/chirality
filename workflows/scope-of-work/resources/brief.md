@@ -14,7 +14,7 @@
 | `RuntimeOverrides.PACKAGE_OBJECTIVE_REFS` | Non-empty accepted package-objective references |
 | `RuntimeOverrides.MODE` | `INIT`, `CONVERT`, `REVISE`, or `VERIFY` |
 | `RuntimeOverrides.FORMAT_AUTHORITY_REF` | Required only for `CONVERT`/authorized `MIGRATION_DUAL`; exact path-scoped accepted authority |
-| `RuntimeOverrides.SOURCE_STATE` | Current lifecycle state; operation must be authorized for it. `REVISE` accepts only `INITIALIZED`, `SEMANTIC_READY` or `IN_PROGRESS` |
+| `RuntimeOverrides.SOURCE_STATE` | Actual lifecycle state only where the project adopts one. Current `INIT`/`VERIFY` may state `not used`; do not create a status file. Formal `REVISE` accepts only `INITIALIZED`, `SEMANTIC_READY` or `IN_PROGRESS` |
 | `RuntimeOverrides.AMENDMENT_REF` | Required only for `REVISE`: the amendment ID, the accepted snapshot path (checkpoint group 3 accepted), the accepted action rows naming this deliverable with `MODIFY` or `RECLASSIFY`, and the action register hash |
 | `RuntimeOverrides.REVISION_SCOPE` | Required only for `REVISE`: the contract parts (sections, IDs, matrix rows, frontmatter references) the amendment changes |
 | `RuntimeOverrides.PRIOR_CONTRACT_SHA256` | Required only for `REVISE`: hash of the `ScopeOfWork.md` being revised |

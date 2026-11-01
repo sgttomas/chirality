@@ -49,9 +49,15 @@ owner. Do not message a project the work does not affect.
 4. Carry authorized work through implementation, proportionate verification and
    integration. Use one coordinator for a shared result, disjoint concurrent
    writes, and owners who stay with their work through repairs.
-5. Update the current ScopeOfWork, work material or dependency condition when
-   its meaning changes. Apply already-authorized decisions without asking again. Leave
-   unchanged declarations alone; Git preserves their history.
+5. Before integration, reconcile the actual result and verification evidence with
+   the affected ScopeOfWork, `Work/` material and dependency conditions in the
+   same PR. The implementation owner carries this into assignments and retains
+   responsibility through repairs; Agent 0 checks that the result and declarations
+   agree. Revise current descriptions where meaning changed; add new work material
+   where needed and connect it from the material the next contributor will read.
+   Apply already-authorized decisions without asking again. Leave unchanged
+   declarations alone, and say briefly when no edit was warranted. Git preserves
+   history; retain historical evidence and identify what remains unverified.
 6. Return the usable result, checks, material findings and reserved choices.
    Once the work is integrated, delete the worktrees, branches, build output and
    scratch it created, unless an open review, a named consumer or a recovery need
