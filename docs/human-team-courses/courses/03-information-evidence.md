@@ -54,6 +54,8 @@ For a short enquiry, these fields can fit in a paragraph. Revisit the brief when
 
 ### What it assumes
 
+The 'What it assumes' passages in this course describe working arrangements for comparison. They are not universal facts about human practice; examine whether they hold in the task at hand.
+
 The classical method assumes that searching is costly. A broad request wastes the researcher's time, so framing the question protects the researcher's effort as well as the consumer's purpose. It also assumes that the researcher notices when the evidence points to a different question and stops to ask.
 
 ### What changes with agents

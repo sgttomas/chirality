@@ -71,6 +71,8 @@ A dependency calculation can expose impossible dates, but it cannot establish th
 
 ### What it assumes
 
+The 'What it assumes' passages in this course describe working arrangements for comparison. They are not universal facts about human practice; examine whether they hold in the task at hand.
+
 The classical method estimates a duration from the effort of the people who will do the work, and it treats the duration as one number. That works when most of an activity's time goes into producing its output, and the people producing it check it as they go.
 
 ### What changes with agents
@@ -128,7 +130,7 @@ Return to the invented review example. Suppose agents prepare ten review package
 
 When work arrives for examination faster than people can examine it, unexamined work accumulates. That accumulation is not progress. Each item in it may contain an error, and the error spreads into dependent work as soon as someone relies on it. This course calls the accumulated, unexamined work **verification debt**.
 
-Agents also need context, every time. An agent does not keep the project's history between assignments unless someone gives it, so the briefing cost that a new team member pays once, an agent assignment pays at every start. The brief is where that cost goes. A brief that omits C03's statement that each forecast item includes actual expenditure invites the double count in Lesson 3.
+An agent may or may not retain project history between assignments. Retained history can carry superseded premises, so establish the current basis either way. A brief that omits C03's statement that each forecast item includes actual expenditure invites the double count in Lesson 3.
 
 ### The extended method
 
@@ -307,6 +309,18 @@ This lesson also supports a broader argument. Part of the classical discipline e
 The practices that manage authority, evidence, acceptance, and the physical world keep their reasons, and agents make them more important, because work can now reach the point where someone relies on it without anyone having attended to it while it was produced.
 
 This is an argument from how the costs have changed, not a measured result. Agent capability and cost vary with the task and the system, so test the premise against your own work.
+
+### Worked arrangement: one contribution with delegated help
+
+This teaching arrangement changes no Northbank record or result. The project manager asks a coordinating agent to prepare the cost-and-sequence comparison from C01 and C03, through examination and ordinary repairs. The manager identifies the current basis, the required explanations, and decisions reserved by A01. No delegation is required if one agent can carry the contribution effectively.
+
+Suppose the chosen system permits bounded delegation. The coordinating agent assigns the cost comparison and schedule calculation separately, giving both the same identified records and their conditions. It receives the returns, checks their common basis, resolves inconsistencies and prepares one integrated comparison. It carries that contribution through repairs instead of sending every intermediate question to the manager.
+
+Both helpers could omit the same qualification in C03. Their agreement would then repeat a shared mistake. The manager examines the inclusive cost basis, the delivery count, the retained assumptions and the actual combined output. Any required independent reviewer prepares from the source and criteria, rather than merely accepting the coordinator's summary. Delegation supplies production capacity; it does not itself supply independent assurance.
+
+The examination record names the production direction, which agent wrote the consequential briefs, which returns were used, and what the manager actually examined. Links to recoverable briefs and returns can suffice. There is no requirement to copy every child message. If a return is unavailable, report the resulting evidence limit instead of attributing a check that nobody observed.
+
+Compare this arrangement with one agent doing the same work. Explain when delegation would preserve useful continuity and when its preparation, coordination or review cost would outweigh the benefit. Neither arrangement changes the keyed cost or schedule answers.
 
 ## Worked Northbank example
 

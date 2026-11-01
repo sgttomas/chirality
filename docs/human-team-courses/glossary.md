@@ -9,14 +9,14 @@ Use these meanings within the courses. A governing law, contract, or standard ca
 | Acceptance | An authorized decision, based on examination, that an identified result satisfies stated conditions for a stated purpose. |
 | Accountability | The obligation to explain and answer for a responsibility or decision. |
 | Actual expenditure | Cost recorded as incurred. It is distinct from a commitment or forecast. |
-| Agent | An AI system that drafts, compares, calculates, searches, or checks work under a person's brief. In this series an agent holds no project appointment and cannot approve, accept, or carry responsibility for a decision. |
+| Agent | An AI system that drafts, compares, calculates, searches, or checks work under a person's direction, directly or through another agent's brief. It can carry assigned execution and make choices within authority. In Northbank it holds no project appointment and cannot perform the reserved approval or acceptance acts or carry the person's accountability for reliance. |
 | Applicability | The relationship that makes a requirement govern the work under its stated conditions. |
 | Approved basis | The identified requirements, decisions, and limits approved as a reference for stated work. Applicable external obligations retain their standing. |
 | Assumption | A proposition used in reasoning while its truth remains unconfirmed. |
 | Assurance | Activities that provide justified confidence in the work and its intended result. |
 | Authority | The right to make a stated decision or perform a stated act. |
 | Baseline | An identified reference state placed under a defined change process. |
-| Brief | The instruction that gives an agent one assignment: its purpose, the identified basis with revision and status, the output wanted, its limits, the checks to perform, and the conditions under which it must stop and refer to a person. |
+| Brief | The instruction that gives an agent one assignment: its purpose, the identified basis with revision and status, the output wanted, its limits, the checks to perform, and the conditions under which it must stop and refer to a person or the directing agent, with reserved decisions reaching the person who holds them. |
 | Budget | The amount authorized for a defined scope. |
 | Capability | What a participant or tool can do. Capability does not establish authority. |
 | Change control | The process for assessing, deciding, communicating, and implementing departures from a controlled basis. |
@@ -33,7 +33,7 @@ Use these meanings within the courses. A governing law, contract, or standard ca
 | Document control | Identification and control of document revisions, status, access, distribution, and retention. |
 | Estimate | An assessment of a quantity, cost, or duration with a stated basis and uncertainty. |
 | Evidence | Information that can support or challenge a stated claim. |
-| Examination record | A person's record of the briefs they gave agents and of what they checked in each return, what they found, and what they changed. It shows the person's own contribution to agent-assisted work. |
+| Examination record | A person's record of their production direction, including consequential agent-written briefs, and what they checked in the returns they relied on, what they found, and what they changed. References to recoverable material can replace copies. It shows the person's own contribution to agent-assisted work. |
 | Finding | An identified observation or conclusion that needs a defined response. |
 | Forecast | The present assessment of a future outcome. A forecast does not amend an authorized commitment. |
 | Governance | The arrangement of authority, accountability, decision rights, and oversight for the undertaking. |

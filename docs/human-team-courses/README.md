@@ -10,15 +10,17 @@ Bring what you learn here into that work. Examine what the agent contributes, ta
 
 ## How the series is built
 
-The classical methods of project practice are sound, and every course teaches them. But they were developed for teams in which every piece of work came from a person. In such a team, producing work costs people's time, and the person producing the work is also paying attention to it.
+Each course teaches established methods of project practice and examines the assumptions under which they help. These methods developed largely around human teams, already using tools, automation and divided production and review. Some simplified planning models associate production effort with the producer's attention; that relationship is not a guarantee of competence or understanding.
 
-Agents change that for much of a project's information work. An agent can often draft, compare, calculate, and search in minutes, and many agents can work at once. But agents cannot carry the responsibilities that a project appointment assigns, and the attention of the people who examine, decide, and accept their work does not grow with them. Production and accountable attention used to come together in the same person-hours. With agents, they come apart.
+Agents can change this relationship for much of a project's information work. An agent can often draft, compare, calculate, and search in minutes, and many agents can work at once. But agents cannot carry the responsibilities that a project appointment assigns, and the attention of the people who examine, decide, and accept their work does not grow with them. Agent production can change the relationship between production effort and accountable attention. The effect depends on the task, the system and the arrangement of examination.
 
 Engineers have met this kind of change before. Euler-Bernoulli beam theory neglects shear deformation, and for a slender beam that is the right simplification. In a short, thick beam, or a sandwich panel with a soft core, shear deformation becomes significant, so Timoshenko theory adds it. The extended theory does not discard the classical one: as the beam becomes slender, it gives the classical result.
 
-The methods in this series behave the same way. Where people or physical processes do the work, they give the classical answer. Where agents do the production, the examination, judgment, and decisions that the classical methods carried inside people's work become the parts that need explicit design. Timoshenko theory has its own limits, and so do these methods, so test them against your own work.
+The analogy illustrates how a previously neglected term can become important. It does not prove that every proposed practice formally reduces to a classical method. Where agent use changes little, the arrangement is meant to retain the applicable conventional result. Where agents change production, examine the time and capacity needed for examination and decisions explicitly. Some of these improvements also help human-only teams.
 
 These are claims about how the costs of work are changing, not measurements of productivity. Agent capability and cost vary with the task and the system.
+
+The course introductions and “What it assumes” passages describe simplified working arrangements for comparison, not universal claims about the history or adequacy of professional practice. Test those assumptions against the work. The supplied Northbank facts and keyed answers remain the same whoever prepares an answer.
 
 Most lessons follow four steps:
 
@@ -58,7 +60,7 @@ The learning order is not a fixed sequence for running a project. Real projects 
 
 You work with real agents in the practice and assessed assignments. Use an agent system that your organization or instructor permits, and keep confidential information out of systems that are not approved for it.
 
-For each assessed output, keep the briefs you gave the agents and a short record of what you checked in their returns, what you found, and what you changed. Your instructor assesses that record and your own explanation of the work, not only the finished output.
+For each assessed output, keep your production direction, including consequential briefs an agent wrote under it, and a short record of what you checked in the returns you relied on, what you found, and what you changed. References to recoverable material can replace copies. Your instructor assesses that record and your own explanation of the work, not only the finished output.
 
 Assessing agent-assisted work is difficult, and the difficulty is part of what the series teaches. Your instructor is in the position of a sponsor or client who receives a finished package and must decide how far to rely on it, without seeing how much judgment went into it. Making that judgment visible is part of the practice.
 
@@ -80,7 +82,7 @@ Use a mentor for individual study. The mentor can challenge your evidence, your 
 
 ## Study with an agent instructor
 
-An agent can teach the lessons, discuss the case, challenge your reasoning, and assess your work against the course criteria. Give it access to the [teaching guide](instructor-guide.html), the current course and its linked instructor companion, and the [case records](case-study.html). The guide explains how to support your learning while keeping your own contribution visible.
+An agent can teach the lessons, discuss the case, challenge your reasoning, and assess your work against the course criteria. Give it access to the [teaching guide](instructor-guide.html), the current course and its linked instructor companion, and the [case records](case-study.html). The guide explains how to support your learning while keeping your own contribution visible. For an agent with file access, use the maintained [Markdown teaching guide](instructor-guide.md), matching course and companion Markdown files, and [case source](case-study.md). HTML provides the reading editions.
 
 An agent instructor is itself an agent whose explanations you should examine before relying on them. Treat that as practice.
 

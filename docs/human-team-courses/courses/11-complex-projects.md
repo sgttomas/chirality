@@ -18,7 +18,7 @@ Use an independent reader for the assignment. For individual study, ask a mentor
 
 ### How this course is built
 
-The series index explains [how the series is built](../index.html#how-the-series-is-built). For a leader, the shifted constraint is the gap between work produced and work that competent people have examined: when agents produce much of the information work, output no longer shows attention, and the attention of the people who examine, decide, and accept limits the project. Lessons 1 to 5 follow the four steps, and Lesson 6 treats the arrangement of people and agents as something a leader diagnoses and directs.
+The series index explains [how the series is built](../index.html#how-the-series-is-built). For a leader, the shifted constraint is the gap between work produced and work that competent people have examined: when agents produce much of the information work, output alone does not establish the attention it received, and the attention of the people who examine, decide, and accept limits the project. Lessons 1 to 5 follow the four steps, and Lesson 6 treats the arrangement of people and agents as something a leader diagnoses and directs.
 
 ### The teaching arrangement
 
@@ -62,6 +62,8 @@ For each connection, state the mechanism. â€œProcurement affects commissioningâ€
 Keep time visible: an intervention can help today while creating a problem during delivery or operation.
 
 ### What it assumes
+
+The 'What it assumes' passages in this course describe working arrangements for comparison. They are not universal facts about human practice; examine whether they hold in the task at hand.
 
 The classical feedback explanation assumes that a project's loops run through people's labour. In the schedule-pressure loop, pressure reduces review because the same people must both produce and review, and rework adds pressure because it consumes their hours. How fast people can produce sets the speed of the loop, and rework is visible because it takes people away from other work. The method also assumes that activities prepared by different people make largely independent errors.
 
@@ -307,7 +309,7 @@ The classical method assumes that adverse evidence comes from people, as the jun
 
 ### What changes with agents
 
-**Agents can find adverse evidence but cannot carry it.** An agent asked to compare D02's meeting record with C04 can report that the changeover was not exercised and that the closure records no test or authorized disposition. But the agent holds no appointment. It cannot own the concern, take it through a reporting route, or answer for it. A person must take up what the agent finds.
+**Agents can carry a report without taking the person's appointment.** An agent asked to compare D02's meeting record with C04 can report that the changeover was not exercised and that the closure records no test or authorized disposition. The agent holds no appointment under A01 and cannot answer for the concern in that capacity. It can draft a report or transmit it through an authorized route. The responsible person must take up the finding and its consequences.
 
 **Volume can bury adverse evidence.** When agents produce reports and escalations cheaply, an important concern can sit inside a long list or a large set of documents. The classical warning that an unexplained issue list transfers confusion matters more, because such a list now costs little to produce.
 
@@ -331,7 +333,7 @@ In a human team, a leader inherits much of the working arrangement with the staf
 
 ### The failure modes a leader must see
 
-Agent-assisted projects add failure modes that classical controls were not built to detect:
+Agents can change the scale or speed of familiar failures and expose new paths. Examine whether the existing controls cover the actual arrangement:
 
 | Failure mode | How it appears | Why classical controls can miss it | Leadership response |
 | --- | --- | --- | --- |
@@ -383,6 +385,16 @@ These decisions trade off:
 | Strong independence on all work | Fewer correlated errors | Examination time spent where the consequence does not warrant it |
 
 Course 08 states a design aim for the arrangement: warranted confidence per unit of the accountable person's attention. At the leadership level, the accountable people include the sponsor and the technical authorities, and the aim applies to what reaches them. It remains a design aim, not a measurement.
+
+### Carry a finding through the arrangement
+
+Extend Course 08's teaching arrangement without changing Northbank's facts. Suppose the coordinator's helpers return a consistent package that includes A05 as approved scope. The source records still describe A05 as a proposal. The leader asks the coordinating agent to trace where the mistaken premise entered and which outputs depend on it.
+
+The coordinating agent corrects the basis supplied to the affected agents, repairs the dependent work and explains what earlier evidence still applies. The participant responsible under A01 examines the consequential result. If independent scrutiny is required, the producer's helpers do not become independent reviewers merely by changing their task labels.
+
+Use this example to discuss continuity: who notices the finding, who carries the repair, who checks the combined result, and which decision remains reserved? Do not count the production of several corrected files as proof that the shared premise has reached every affected use. Conversely, do not restart independent work whose basis remains valid.
+
+Record the consequential direction and examination in the existing learning portfolio. The arrangement is a teaching option, not a prescribed hierarchy or an App feature requirement.
 
 ## Worked Northbank example
 

@@ -12,7 +12,7 @@ Complete Courses 01 to 06 and bring your source index, interpretation, decision 
 
 ### How this course is built
 
-The series index explains [how the series is built](../index.html#how-the-series-is-built). In this course the shifted constraint is the size of a contribution: it used to follow what one person can carry, and with agents it follows what a person can examine and integrate, as Lesson 4 explains. Agents also read the basis they are given literally, so Lesson 2 assembles it for them, and Lesson 6 treats the division of work between people and agents as a design problem.
+The series index explains [how the series is built](../index.html#how-the-series-is-built). In this course the shifted constraint is the size of a contribution: both production capacity and the capacity to examine and integrate constrain it, and agents can change their relative costs, as Lesson 4 explains. Agents also read the basis they are given literally, so Lesson 2 assembles it for them, and Lesson 6 treats the division of work between people and agents as a design problem.
 
 ### The teaching arrangement
 
@@ -58,6 +58,8 @@ Where the sponsor has already adopted a solution boundary, preserve it. Propose 
 Record the reasons for choices that matter, because a later participant needs to understand why an attractive alternative was rejected under the original conditions.
 
 ### What it assumes
+
+The 'What it assumes' passages in this course describe working arrangements for comparison. They are not universal facts about human practice; examine whether they hold in the task at hand.
 
 The classical method assumes that investigating alternatives is expensive. A team can develop only a few alternatives in enough depth to compare them, so it tends to choose a means early and carry it forward.
 

@@ -217,3 +217,16 @@ while preserving their named anchors and source files. The book's thesis/case
 sources remain available. The index distinguishes the revised maintained text
 from the unchanged published first edition in library 1.0.1. This is navigation
 reconciliation, not retirement of a consumer's selected source.
+
+## Course entry and teaching-route revision
+
+The owner approved a bounded course revision after Agent 0 and Claude examined
+and discussed its scope. Source inspection found one stale reading edition among
+21 pairs: the course README had changed while index.html still gave the earlier
+manual-as-agent-instruction direction. The same mismatch exists in the source
+commits for library 1.0.1 and 1.0.2. The course entry now identifies both audiences
+(agent instructor and human learner) and offers Markdown sources for agent use.
+The maintenance instructions require checking every pair and regenerating only
+changed sources with their actual committed basis. The course lessons and
+assessment changes are the separately authorized teaching undertaking; this
+locality owns their entry/discovery connection, not their assessment authority.

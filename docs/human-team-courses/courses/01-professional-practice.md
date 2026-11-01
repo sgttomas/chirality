@@ -14,11 +14,11 @@ No earlier course is required, and you need no pump-design knowledge. Read Packe
 
 This is the first course in the series, so it introduces the way every course is built. The series index explains [how the series is built](../index.html#how-the-series-is-built) in full.
 
-Each course teaches the classical method of project practice, because the classical methods are sound and a physical project still depends on them. But those methods were developed for teams in which every piece of work came from a person. In such a team, the person who produces the work also pays attention to it, holds the competence it needs, and carries the responsibility for it. Agents separate these. An agent can often draft, compare, calculate, and search quickly, and many agents can work at once. It cannot hold an appointment, and the attention of the people who examine and decide does not grow with the number of agents.
+Each course teaches established project methods and examines the conditions under which they help. Earlier practice already included tools, automation, divided responsibilities and fallible review. Producing an output has never guaranteed competence or understanding. Agents can further change the relationship between production effort and the attention needed to examine it. An agent can often draft, compare, calculate, and search quickly, and many agents can work at once. It cannot hold an appointment, and the attention of the people who examine and decide does not grow with the number of agents.
 
 In professional practice, agents shift where responsibility falls. An agent can contribute to almost any part of an assignment's information work, and a person can authorize it to act. But responsibility for relying on the result comes back to a person. A junior colleague carries professional duties of their own, even when a supervisor answers for their work; an agent carries none. So as agents do more of the work, more of the accountability for the result rests on the accountable people who direct and accept the work, and it grows with the work agents do.
 
-The series uses an engineering analogy. Euler-Bernoulli beam theory neglects shear deformation, which is right for a slender beam; Timoshenko theory adds shear for a short, thick beam and gives the classical result as the beam becomes slender. The methods in this series behave the same way: where people do the work, they give the classical answer. Timoshenko theory has its own limits, and so do these methods, so test them against your own work. These are claims about how the costs of work are changing, not measurements of productivity.
+The series uses an engineering analogy. Euler-Bernoulli beam theory neglects shear deformation, which is right for a slender beam; Timoshenko theory adds shear for a short, thick beam and gives the classical result as the beam becomes slender. This illustrates how a neglected effect can become important. It does not prove that these practices formally reduce to every classical method. Test the proposed arrangement against the actual work; some improvements also help human-only teams. These are claims about how the costs of work are changing, not measurements of productivity.
 
 Lessons 1 to 4 each follow four steps:
 
@@ -77,6 +77,8 @@ Use this method when you receive an assignment:
 Scale the detail to the work: a small drawing correction may need a short note, and a new installation needs a broader account. The point is to bring out consequences the assignment could otherwise miss.
 
 ### What it assumes
+
+The 'What it assumes' passages in this course describe working arrangements for comparison. They are not universal facts about human practice; examine whether they hold in the task at hand.
 
 The classical method assumes that the person preparing the work meets its consequences while preparing it. Listing affected people, weighing harms, and noticing a missing obligation take time, and the person who spends that time also forms a view about what matters. It also assumes that professional obligations attach to the people who produce the statements an assignment issues.
 
@@ -236,9 +238,9 @@ The classical method assumes that the person who notices a concern is a professi
 
 ### What changes with agents
 
-Agents tend not to push back unless the arrangement asks them to. Given a request, an agent can simply work toward what was asked. Asked to prepare the equipment selection, it may select from the supplier brochure instead of reporting that A02's operating conditions are unresolved. Where it does notice a discrepancy, it may mention it in passing inside a long return, where nobody acts on it.
+Whether an agent raises a concern depends on its instructions, capability, context and the task. Do not assume that it will raise every consequential issue. Given a request, an agent can simply work toward what was asked. Asked to prepare the equipment selection, it may select from the supplier brochure instead of reporting that A02's operating conditions are unresolved. Where it does notice a discrepancy, it may mention it in passing inside a long return, where nobody acts on it.
 
-So a concern that a careful colleague would have raised may never reach a person unless the brief and the return are designed to carry it. The agent is not resisting pressure; it simply has no professional reason to stop.
+So a concern that a careful colleague would have raised may never reach a person unless the brief and the return are designed to carry it. The agent holds no professional appointment in this case, but its instructions can still require it to stop, report a conflict or seek direction.
 
 Drafting the concern becomes cheap. An agent can prepare all six steps quickly once someone has identified the concern. Deciding that the concern matters, choosing whom to persuade, and holding the position when agreement is difficult remain the person's work. Cheap concern notes also carry a cost: each one uses the attention of the person who must decide, so a stream of minor ones can bury the one that matters.
 
@@ -397,7 +399,7 @@ Before the defense, explain your response to a peer as practice, and repair any 
 
 Keep the appointment response as Portfolio 01, with its revision and source packet identified. Later courses add document control, evidence, and interpretation to this responsibility basis, and each adds its own examination record.
 
-The [management manual (Edition 9)](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html), section 3.1 and chapter 2, supports precise assignments and an established basis. Its sections 1.2 and 1.4 distinguish an agent's contribution and capability from the person's responsibility and authority. The manual is written for the agents you work with, so these sections also show what your agents are asked to do and where your own responsibilities begin.
+The [management manual (Edition 9)](../../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html), section 3.1 and chapter 2, supports precise assignments and an established basis. Its sections 1.2 and 1.4 distinguish an agent's contribution and capability from the person's responsibility and authority. The manual addresses agents working under that account. Your agent's actual instructions come from its assignment and project and may differ; inspect those instructions rather than infer them from the citation.
 
 The [Engineers Canada competency guidance](https://engineerscanada.ca/guidelines-and-papers/public-guideline-on-admission-to-the-practice-of-engineering-in-canada) offers further study on technical competence and professional maturity. It is national guidance; the actual regulator sets admission requirements.
 

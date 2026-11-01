@@ -58,6 +58,8 @@ At Northbank, A02 Rev 1 has a recorded project-development approval. A06 leaves 
 
 ### What it assumes
 
+The 'What it assumes' passages in this course describe working arrangements for comparison. They are not universal facts about human practice; examine whether they hold in the task at hand.
+
 The classical method assumes that obtaining the actual instrument takes effort, so people are tempted to rely on a familiar title or a remembered edition. Its warnings are aimed at that familiarity. It also assumes that a person who names an instrument has seen it.
 
 ### What changes with agents

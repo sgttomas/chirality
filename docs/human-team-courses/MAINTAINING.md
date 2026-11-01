@@ -13,7 +13,7 @@ python3 -m venv /tmp/chirality-course-renderer
 /tmp/chirality-course-renderer/bin/python -m pip install -r docs/alignment-manual/requirements.txt
 ```
 
-Render the learner and instructor files with the edition basis below. For a new edition, set the basis date and the full commit of the repository used to prepare it.
+Render the learner and instructor files with the edition basis below. For a later revision, restrict the sample loop to changed sources. For changed sources, commit the Markdown first, then set the basis date and the full commit containing those exact source bytes. Regenerate only affected reading editions; preserve unchanged renderings and their source identities. The values below describe the original course rendering basis, not a default for later changes.
 
 ```sh
 /tmp/chirality-course-renderer/bin/python - <<'PY'
@@ -35,7 +35,7 @@ for source in sorted(root.rglob('*.md')):
 PY
 ```
 
-Each source fingerprint identifies the rendered Markdown bytes. Add `--check` to the renderer arguments to check currency without writing.
+Each source fingerprint identifies the rendered Markdown bytes. Check all maintained source/HTML pairs after an edit, including README.md → index.html. For unchanged pages, use the date and revision recorded in their HTML metadata with `--check`; do not replace them merely to refresh a date. Add `--check` to the renderer arguments to verify correspondence without writing.
 
 After a source change, regenerate the affected HTML. Check navigation and content at desktop and narrow widths. Check print layout before distributing a printed copy.
 
