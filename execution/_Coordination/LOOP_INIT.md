@@ -11,15 +11,21 @@ conventions. Initialization selects no undertaking.
 The pre-library packages, decomposition, scope changes and coordination records
 have been removed. The recovery reference is in
 [projects/FROZEN.md](../../projects/FROZEN.md#pre-library-root-execution).
-No new decomposition, deliverables or dependency bindings have been established.
+The owner accepted the [final library decomposition](../_Decomposition/_LATEST_ACCEPTED.md)
+as the basis for project setup: five Packages and seven Deliverables. The linked
+decision and immutable snapshot supply scope and authority; carry the concrete
+formation obligations in decomposition §8.1 into setup.
 
-For the next authorized undertaking, use the PRD as source intent for the
-library's `project-decomp` workflow. Decomposition establishes the packages and
-deliverables through its applicable review and acceptance. `project-setup` then
-materializes accepted scope under `execution/PKG-nn/DEL-nn-nn/` with
-`ScopeOfWork.md`, `deliverable.yaml` and `Work/`. Inspect the selected methods and
-tools against the current locality convention before using them. Old execution
-records are historical inputs only, not a backlog or an instruction to resume.
+Agent 0 directly manages the authorized `project-setup` undertaking. The seven
+numeric `execution/PKG-nn/DEL-nn-nn/` localities now contain authored ScopeOfWork
+contracts, linked initial Work assessments and consumer-local needs. Read the
+selected locality for its actual source basis, use conditions and open work.
+This is initial formation, not fulfillment of the product criteria; unresolved
+consumer/publication and real-application evidence remain explicit. The current
+route uses `ScopeOfWork.md`, `deliverable.yaml` and `Work/`, without numbered
+phase folders or lifecycle files.
+Old execution records are historical inputs only, not a backlog or an instruction
+to resume. Initialization alone assigns no work.
 
 ## Consumers and boundaries
 

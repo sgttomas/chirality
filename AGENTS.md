@@ -78,9 +78,11 @@ consumer states its needs; tools derive reverse links and graphs.
 App v4 and SWBPIPE use `Work/`; their older references to a deliverable's
 `Design/` mean its `Work/`. Root's pre-library execution is archived; recovery
 is described in [projects/FROZEN.md](projects/FROZEN.md#pre-library-root-execution).
-The accepted [Library PRD](docs/PRD.md) supplies the basis for fresh decomposition
-and setup. Until that decomposition is accepted and set up, no new Root
-deliverables or dependency bindings are established.
+The accepted [Library PRD](docs/PRD.md) and
+[final decomposition](execution/_Decomposition/_LATEST_ACCEPTED.md) supply the
+basis for the current Root localities. Read the selected ScopeOfWork, Work and
+consumer-local needs for their commitments, maturity and unresolved conditions;
+setup does not establish product fulfillment or acceptance.
 
 From the repository root, use `python3 -m tools.deliverables --project <project>`,
 where `<project>` is the project path such as `.` for a project at repository root, with `neighborhood <DEL>`, `impact <DEL>`, `touches <rev|PR:n>` or
