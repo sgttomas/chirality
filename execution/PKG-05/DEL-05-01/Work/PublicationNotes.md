@@ -1,9 +1,10 @@
-# Chirality library 1.0.0 — proposed publication notes
+# Chirality library 1.0.0 — publication notes
 
-**Draft for owner content review.** Proposed release title: **Chirality library
-1.0.0**; proposed tag: `library-v1.0.0`. The prefix distinguishes this library
+**Content and edition name approved by the owner: “Approved.”** The reviewed
+basis is `c444ec139e3a65c5707264087ac89022abd190dc` in PR #1790.
+Release title: **Chirality library 1.0.0**; selected tag name: `library-v1.0.0`. The prefix distinguishes this library
 edition from historical application versions and the manual's Consolidated v9
-edition. Neither the name nor publication is approved. No tag or release has
+edition. The name is approved; publication remains unapproved. No tag or release has
 been created. This proposal is owned by DEL-05-01 under the
 [publication roadmap](../../../_Coordination/PUBLICATION_ROADMAP.md).
 
@@ -128,8 +129,8 @@ selected source, local adaptations, product operations, acceptance and adoption.
 Interrupted Root work follows the existing maintenance recovery instructions;
 elapsed time alone grants no right to discard retained work.
 
-The owner's 90% approval is recorded. Final product acceptance, the proposed
-version/tag, exact released subject and authorization for public release remain
-owner decisions. Upon authorization, publish the identified artifact with these
+The owner's 90% approval and subsequent approval of these notes and the
+`library-v1.0.0` edition name are recorded. Final product acceptance, the exact
+released subject and authorization for public release remain owner decisions. Upon authorization, publish the identified artifact with these
 notes and its source/checksum, verify the download, and update this standing to
 reflect only the acts actually completed.

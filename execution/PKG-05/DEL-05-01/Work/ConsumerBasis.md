@@ -232,11 +232,11 @@ their own exact bases and limits.
 The owner requested a deliverable-by-deliverable publication roadmap and approved
 its course with “Proceed accordingly.” The [roadmap](../../../_Coordination/PUBLICATION_ROADMAP.md)
 connects existing bounded evidence to remaining delivery work. The
-[proposed publication notes](PublicationNotes.md) consolidate the change account,
+[publication notes](PublicationNotes.md) consolidate the change account,
 obtaining route, dependencies and limitations and propose `library-v1.0.0` as a
-distinct library edition name. Their new content and version remain for owner
-review; final product acceptance and release are not inferred from the roadmap
-approval. Existing scopes, output homes and criteria are unchanged.
+distinct library edition name. The owner approved their content and edition name
+at `c444ec139e3a65c5707264087ac89022abd190dc` in PR #1790 with “Approved.”
+Final product acceptance and release remain separate decisions. Existing scopes, output homes and criteria are unchanged.
 
 The preparation basis is `35273905a90ee6c1032a7f49db2236ed19371029`; its complete
 source archive has SHA-256

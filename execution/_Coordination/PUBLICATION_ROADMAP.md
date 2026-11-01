@@ -16,7 +16,7 @@ publication notes. Include the complete tracked source, required resources and
 notices; retain historical and Root-only holdings with their existing standing.
 Do not describe this as an installed agent product, a new manual edition, or
 qualification of every historical tool. No new packaging system is needed.
-The owner selects the library version name and authorizes publication under
+The owner selected `library-v1.0.0`; publication remains reserved under
 [PRD R15 and A7](../../docs/PRD.md). A manual's “Consolidated v9” edition name is
 not a library version.
 
@@ -61,7 +61,7 @@ consequence before expanding the work.
 
 ## Remaining work, in order
 
-1. **Prepare one publication proposal — Agent 0.** The [publication notes](../PKG-05/DEL-05-01/Work/PublicationNotes.md) now provide the reviewable draft; their content and proposed `library-v1.0.0` label await owner approval. Draft the
+1. **Prepare one publication proposal — Agent 0.** The [publication notes](../PKG-05/DEL-05-01/Work/PublicationNotes.md) now provide the reviewable draft; the owner approved their content and `library-v1.0.0` label at `c444ec139e3a65c5707264087ac89022abd190dc` in PR #1790 with “Approved.” Draft the
    release description under DEL-05-01 Work, using the current source as its
    comparison basis. Explain the library's purpose, obtaining/entry path,
    consequential changes since the preceding development basis, dependencies,
