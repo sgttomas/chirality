@@ -284,8 +284,8 @@ editor continuation supplies the defect/dependency/new-use contrast. The current
 book-writing conversation is not used as empirical proof of its own claims.
 
 The repaired manuscript is source-bound at
-`186cff67d61a263854f2b012f60bf75c33c27008` (SHA-256
-`265a547079f1e549274901a62ee658a3716939d1550592a3dd33508732d1ceb1`).
+`eaa39573aced40a69b8666d52dea7cc9ad497623` (SHA-256
+`1c8aa8475f9a7ac2a80832bf9d36cb97850f9b52450f38c4e9bc7e1a839a8082`).
 The unchanged pinned renderer reproduces its HTML exactly; metadata/hash,
 internal anchors and local linked targets were checked. These are source and
 render-structure observations, not a new visual-usability or product-use claim.
@@ -316,3 +316,40 @@ known reliance at retirement. These bounded author repairs and their refreshed
 source/render/reference checks are later than that examination; no independent
 review of the revised head is claimed. The earlier examined source remains in
 Git. The current candidate remains an unmerged proposal for the author's review.
+
+## Grounding in thesis and recorded practice
+
+The owner requested further grounding and clarified that systematic learning
+across the projects has not yet been established: interventions have been
+occasional and owner-mediated. Independent Agent 0 and Claude Opus 5.5/high
+source investigations were compared and discussed before the owner approved
+the focused editorial revision with “Proceed as recommended.” This authorizes
+the revision, not final manuscript acceptance or publication.
+
+The current account distinguishes the author's commitments, interpretations of
+records and intended development. Its account of attention is grounded in the
+thesis's reading of Polanyi (chapter 3 §3.6.5 and chapter 9 §9.2.6); mutually
+corrective perspectives come from chapter 3 §3.4. The normative/operative/
+evaluative descriptions are emphases from the thesis introduction, not exclusive
+project allocations. The thesis's self-confirmation concern applies to the book
+and to review by agents sharing its conceptual basis. No new external literature
+claim or independent empirical confirmation is inferred from that agreement.
+
+A bounded October 4 App vignette replaces the weaker Root-cycle illustration.
+Sources are the agent's lessons at `34a83250a15d81f0c2239496858e16450cc82840`,
+the owner-direction record retained at `24e9117b9c2d9d10f57642da4eef0d13c90bb166`,
+and the manual response at `a8d835ad7bb687e1d4283fdbda8ca1ce85cfafb1` and
+`0c45aba0e987d5c9e65e1786bab680def5d56169`. The containing snapshot is not the
+observation date. This establishes recorded difficulty, owner intervention and
+an actual manual response inside the then-shared repository. It supplies no
+systematic learning cycle, causal effect on later gates, v8-to-v9 derivation
+claim or demonstrated adoption in every project.
+
+F-02 is now explicit as a draft interpretation caught in independent review
+before integration. The change-workflow retirement retains the owner's actual
+capability/misuse rationale, separately from the old User Manual's duplication
+rationale; relocated every-turn guidance is not claimed to reduce measured
+burden. The Root episode identifies its October 31–November 1 scope on top of
+months of prior work and its single selected post-release improvement. No new
+post-completion defect or product execution is claimed. The proposed scope and
+criteria remain unchanged by this grounding revision.
