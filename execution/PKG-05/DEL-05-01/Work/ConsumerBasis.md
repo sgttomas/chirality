@@ -1,7 +1,7 @@
 # Consumer use and publication inputs
 
 Maturity: obtaining/use and change-inspection candidate with bounded named-reader
-evidence; independent examination and owner content approval remain pending. Initial assessment
+evidence and independent examination; owner content approval remains pending. Initial assessment
 used `fd847ac9ac68250b2f35d2e9c0087c16e86b510a`. The current undertaking uses the
 integrated F-02 result at `1357d706ea77497903976bf159f3880bea4d1360` as its real
 source candidate, compared with `257ab4c18014bf872a1c72eeb7593a7ad3d135c0`.
@@ -85,12 +85,18 @@ cargo test --offline --locked --jobs 2 --lib \
   --exact --nocapture --test-threads=1
 ```
 
-Use the executing host's required build admission and isolated Cargo home/target
-and Codex home. The observed run used ordinary copied cached dependencies, no
+Use an isolated Cargo home and target directory and follow any local build-resource
+policy. This Snapshot path does not require Codex state; the observed run also
+isolated a Codex home to comply with its host policy. It used ordinary copied
+cached dependencies, no
 downloads, original-target writes or writable links back to another checkout.
 One test passed with 1,977 other tests filtered out. Existing compilation warnings
 were not changed. Reproduction needs that complete source and available offline
 dependencies; the fixture is not part of ordinary library use or Root's default CI.
+The tested fixture at `5ff58130db0a85916bdc4cccf79da5f2a8e9e471` has SHA-256
+`bb7404921047839c463eeac0f71539df8563ddd89dd288192f6aac8ca913ebb2`.
+Independent-review clarification subsequently changed only its reproduction
+comment; executable test code is identical, so the passing behavior evidence is reused.
 
 This is actual capture/declaration/content-identity evidence at the two named
 revisions. It establishes neither registration, workflow execution, supplier
@@ -126,7 +132,10 @@ covers the selected copy, not every file in a full-repository download.
 The source comparison from `257ab4c18014bf872a1c72eeb7593a7ad3d135c0` to
 `1357d706ea77497903976bf159f3880bea4d1360` identified the six selected maintained
 documentation outputs changed by F-02: three shared references, the corrected
-PRD, and v9 Markdown/HTML. Their meaning/use account is in PR #1783. A deliberately
+PRD, and v9 Markdown/HTML. The full revision comparison also changes two
+DEL-02-02 locality records (ScopeOfWork.md and Work/Applicability.md); those were
+excluded from this consumer-output comparison, not represented as unchanged.
+The selected outputs' meaning/use account is in PR #1783. A deliberately
 unavailable comparison revision was rejected; it was not reported as no change.
 Inspection leaves the consumer's selected basis unchanged.
 
@@ -135,8 +144,9 @@ Inspection leaves the consumer's selected basis unchanged.
 Q-04 is now bound for the selected App reader claim. Q-05 has the identified
 source/edition candidate and prior comparison basis; no owner publication is
 claimed. Other interfaces and uses still need their own bindings and evidence.
-Independent review must examine the guidance and these limits before owner
-content approval. Bind only the resources and conditions needed by a selected use.
+Independent review found no blockers; its clarity corrections are incorporated.
+Owner content approval remains pending. Bind only the resources and conditions
+needed by a selected use.
 Coordinate shared README edits with DEL-01-01, which owns navigation; this
 locality owns obtaining/version/compatibility meaning. DEL-02-02 may need a
 named adopter's basis before changing a disputed clause; DEL-03-01 owns any
@@ -147,3 +157,7 @@ Verify historical bytes actually relied upon, preserving original pins and
 editions; do not extend that into a global history audit. Consumer adoption,
 private operational data and product releases stay with their owners. Initial
 native needs preserve these conditional uses and unresolved source bindings.
+
+Neighboring DEL-02-02, DEL-03-01 and DEL-04-01 needs were deliberately left
+unchanged: their unresolved adopted-clause or exported-interface conditions are
+different claims from this bounded package-reader and source-candidate case.

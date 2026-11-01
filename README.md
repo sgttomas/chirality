@@ -72,13 +72,16 @@ Keep the selected identity with your project's entry or existing source record;
 the archive's lack of a `.git` directory does not make its origin unknown when
 you obtained it from an identified revision. A selected-file copy should retain
 its original path and basis, required resources and applicable license notices.
+The repository's [LICENSE.md](LICENSE.md) provides the MIT notice; retain any
+component-specific license that applies to the material you take.
 
 Read a holding's purpose, applicability and limits before relying on it. For a
 workflow, preserve its complete package and the resources its method needs;
 the [workflow guide](workflows/README.md) explains selection and package form.
-Tools have their own dependencies and usage contracts. A prose method can be
-read without running a resolver, and a resolver result does not launch an agent
-or grant host permissions.
+Each tool's README gives its dependencies and usage contract. A prose method can
+be read without running the [workflow resolver](tools/workflow_runtime/README.md),
+which selects requested instruction files and reports their source identity.
+Its result does not launch an agent or grant host permissions.
 
 Your project chooses its own entry instructions, authority and methods. Root's
 `AGENTS.md`, session init prompt and execution entry govern work on this
@@ -89,8 +92,10 @@ remain at its selected basis until that product deliberately adopts a change.
 ## Inspect changes before adopting them
 
 Compare the basis you use with the particular version you are considering.
-Read its release or change account and the affected source diff, then follow the
-inputs and uses that matter to your project. Include linked resources and
+Read its release or change account and the affected source diff. For an integrated
+development revision without a release, use the merged PR description as the
+change account. Then follow the inputs and uses that matter to your project.
+Include linked resources and
 explanatory editions where their meaning changed. GitHub's comparison view or
 ordinary Git can supply the source differences:
 

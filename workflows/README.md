@@ -105,4 +105,5 @@ license notices and original source identity. A copied package is not automatica
 a registered workflow or a replacement for a product's pinned bundle. Check the
 actual receiving contract before claiming compatibility; preserve a supported
 path or coordinated adapter before an incompatible change. Export staging is not
-a release. Root's retained Runtime contracts do not appoint a current consumer.
+a release. Runtime is frozen. The [interface reference](../docs/AGENT_WORKFLOW_RUNTIME.md)
+describes scoped contracts; a consumer's own adoption determines which apply.

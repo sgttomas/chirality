@@ -6,7 +6,7 @@
 //! Set CHIRALITY_READER_PACKAGE to the unmodified exported package directory,
 //! CHIRALITY_READER_SCRATCH to an owned temporary directory. Run offline/locked:
 //! cargo test --lib app_workflow_reader::root_package_capture -- --exact --nocapture --test-threads=1
-//! Use the host's required build admission and isolated build/cache environment.
+//! Use an isolated Cargo home and target; follow any local build-resource policy.
 
 use crate::util::sha256_hex;
 use crate::workflow_declaration::Reading;
