@@ -20,7 +20,10 @@ needs:
     the complete tracked archive and retained notices, the comparison with 547e7d7f833f9bec351f7a034bddd7c1a37db15a,
     and selected standalone-use checks recorded in Work/ConsumerBasis.md. Earlier F-02/manual source and
     rendering evidence retain their distinct recorded bases. An identified candidate is not an owner release;
-    any new source revision requires checking what evidence remains applicable.
+    any new source revision requires checking what evidence remains applicable. Post-90 publication preparation
+    uses Work/PublicationNotes.md and its candidate PR to bind the proposed edition, actual source/archive,
+    comparison and applicable checks; earlier archives retain their own identities. Version selection,
+    final acceptance and release remain owner acts.
   when: Preparing a publication candidate and exercising comparison with its prior basis
   evidence: execution/PKG-05/DEL-05-01/Work/ConsumerBasis.md
 - from: DEL-02-01
