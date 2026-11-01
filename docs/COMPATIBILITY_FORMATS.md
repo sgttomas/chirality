@@ -13,7 +13,17 @@ unchanged, and no project artifact migration is implied.
 
 > Numbering note: this section is placed in the §0 preamble (rather than as a new §1) so the established §1–§13 numbers — and every cross-reference to them, e.g. `SPEC §1.2` (tool roots) and `SPEC §6.5` (provenance) — remain stable.
 
-Chirality supports separately scoped Root governance/instruction changes, explicitly governed in-tree v1 projects, registered external v2 projects/domains and desktop-selected working folders. Root governance is not a continuing product working root after accepted retirement. Instruction reads and write containment follow the chosen deployment dialect.
+The retained deployment dialect below describes separately scoped Root
+governance/instruction changes, explicitly governed in-tree v1 projects,
+registered external v2 projects/domains and desktop-selected working folders.
+Its retired Root product working root is historical; current Root library work
+uses the accepted PRD, AGENTS.md and the authorized undertaking. The separate
+instruction root and M2/G4 tranches below belong to that retained deployment
+contract, not to every project that consults the library. They remain requirements
+where adopted; this qualification authorizes no change to an adopter's contract.
+Instruction reads and write containment follow the selected deployment basis.
+K-WRITE-2's containment meaning is retained. A documented rejection rule does
+not establish that the current host enforces it.
 
 ### 0.2.1 `REPO_ROOT` — the active checkout
 
@@ -297,6 +307,18 @@ still requires that legacy convention. Preserve their source identities and
 historical records until an explicitly authorized transition accounts for them.
 
 ## Legacy production-format resolution
+
+For localities using the current `SOW_V1` method and validator, the classification
+below and the one-canonical-format rule remain applicable. Current setup and
+validation distinguish `SOW_V1`, `INVALID` and `AMBIGUOUS`; invalid or unauthorized
+dual input fails closed. `MIGRATION_DUAL` is permitted only in an isolated
+conversion workspace with the exact migration authority bound in the contract.
+This does not impose the `SOW_V1` schema on independent or domain-specific formats.
+
+The legacy transition/conversion obligations and retirement provisions below
+retain their adopted contract and D-GOV-16 activation basis. They do not require
+current Root setup to create lifecycle/phase files, enter conversion, or restore
+legacy authoring tools. Historical formats retain their identities.
 
 | Files present | Interpretation |
 |---|---|
