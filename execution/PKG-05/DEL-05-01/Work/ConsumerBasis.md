@@ -163,3 +163,64 @@ native needs preserve these conditional uses and unresolved source bindings.
 Neighboring DEL-02-02, DEL-03-01 and DEL-04-01 needs were deliberately left
 unchanged: their unresolved adopted-clause or exported-interface conditions are
 different claims from this bounded package-reader and source-candidate case.
+
+## Complete library source candidate after the 60% decision
+
+The broader delivery subject is the complete tracked library repository at
+`7c334bf5cb529a814e0f96f68bc8d9500b15cdd5`, described as **Chirality library source
+candidate at that revision**. This is a proposed source-delivery basis, not an
+owner release or semantic-version decision. Its preceding comparison basis is
+`547e7d7f833f9bec351f7a034bddd7c1a37db15a`. The source candidate adds the structured
+brief's PyYAML dependency explanation and the corresponding toolkit examination;
+no executable capability changed. The current PR's subsequent evidence updates
+are not silently included in that identified archive.
+
+The complete archive was produced with `git archive --format=tar` at the exact
+revision. Its SHA-256 is
+`b442c2476ae532ca2223731e6697eae050d11f2f0edb37bac3a87218043a49cd`.
+`git get-tar-commit-id` identifies that revision. All 1,052 files, totaling
+13,514,094 bytes, matched the selected Git blobs and modes before and after the
+selected operations; no extra source files appeared. No tracked links or gitlinks
+were present. Extraction was outside every Git repository, with no `.git` metadata.
+The archive preserves LICENSE.md and other tracked notices. Selected surfaces had
+no separate component notice; this is not a universal licensing/support assessment.
+
+The actual extracted form supplied these bounded operations:
+
+- Source-qualified preparation, current-project and ScopeOfWork resource loading
+  succeeded under their compatible roles. Requested resources retained matching
+  hashes; incompatible TASK/project-setup selection and a missing resource were
+  rejected. No write targets or write capability were inferred from selection.
+- Archived DEL-05-01 validated as SOW_V1, derived eight checklist criteria and
+  passed its boundary-owner check without site packages. Format validity is not
+  substantive acceptance.
+- Current scaffolding created a disposable accepted-identity locality outside the
+  source tree. Repeating it preserved declaration bytes and existing Work content.
+  The prepared check passed without a blank ScopeOfWork or lifecycle files.
+- The same read-only JSON brief failed before normalization without PyYAML and
+  succeeded using an existing suitable interpreter, returning no writable targets.
+  The updated guide accurately describes this dependency and its fallback limits.
+- Native dependency querying refused the non-Git source directory. Direct reading
+  of its existing declaration exposed conditions and evidence pointers without
+  deriving reverse links, Git observations or input suitability.
+
+The first project-setup probe selected TASK and was refused; that was corrected
+to the method's declared WORKING_ITEMS role for context selection. The first
+missing-resource probe was also masked by that role mismatch. Only the subsequent
+compatible-role refusal establishes the missing-resource observation. No role
+execution, delegation or host permission was inferred from either selection.
+
+Reproduction uses the full `git archive` at the named revision, safe extraction
+outside a checkout and the maintained commands in the selected guides. Keep
+Python bytecode disabled to observe source preservation. Use Python/PyYAML and
+zsh where required, and the documented PYTHON override for shell helpers; no
+install or network access was needed. ScopeOfWork tools retain common.py and
+id_catalog.json; resolution retains roles, registry, catalog, selected package
+resources and applicable legacy maps. Query Git/HEAD prerequisites remain in force.
+
+Full-tree correspondence establishes source-delivery identity; behavioral evidence
+is limited to the operations above on the observed platform/filesystem. Historical
+and Root-only holdings keep their declared standing. No frozen product was run,
+no broader App qualification is inferred, and owner content/delivery approval
+remains pending. The earlier named App-reader and manual-edition cases retain
+their own exact bases and limits.

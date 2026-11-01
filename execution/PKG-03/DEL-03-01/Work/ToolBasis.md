@@ -84,3 +84,11 @@ ScopeOfWork ID catalog. Preparation requires zsh/Python/PyYAML and suitable
 platform/filesystem support; native queries also require Git and HEAD. These
 requirements bound the source-archive examination; no cross-platform qualification
 or Git-free native-query implementation is inferred.
+
+The complete source-candidate examination at `7c334bf5cb529a814e0f96f68bc8d9500b15cdd5`
+subsequently exercised selected operations from an ordinary extracted archive.
+[ConsumerBasis](../../../PKG-05/DEL-05-01/Work/ConsumerBasis.md#complete-library-source-candidate-after-the-60-decision)
+records the preserved source identity, successful role/resource selections,
+current validation/scaffolding/read-only normalization, actual rejected cases
+and Git-free query fallback. This is selected standalone-use evidence; historical
+and specialized holdings are not all behaviorally qualified by tree correspondence.
