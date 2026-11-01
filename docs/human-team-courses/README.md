@@ -4,7 +4,7 @@ This series has twelve courses in project management and project engineering for
 
 Use the courses to prepare, carry out, examine, and coordinate professional work. Develop your discipline's technical knowledge alongside them.
 
-The courses are written for you, the person learning project practice. The [publication index](../alignment-manual/README.md) distinguishes the reflective successor book proposed for people and agents from the retained, agent-addressed Project Management Manual v9. The courses' existing v9 references keep that basis. For work with an agent, select the applicable [roles and methods](../../workflows/README.md) under your project's instructions, and supply the actual problem and circumstances; sharing a book alone does not establish shared understanding.
+The courses are written for you, the person learning project practice. The [publication index](../alignment-manual/README.md) distinguishes the reflective successor book for people and agents from the retained, agent-addressed Project Management Manual v9. The courses' existing v9 references keep that basis. For work with an agent, select the applicable [roles and methods](../../workflows/README.md) under your project's instructions, and supply the actual problem and circumstances; sharing a book alone does not establish shared understanding.
 
 Bring what you learn here into that work. Examine what the agent contributes, talk through the interpretations that matter, make the decisions that are yours, and have the agent carry the agreed work forward. You and your agent develop a shared way of working by producing, examining, and improving the result. When experience raises a question you need to understand, return to the lessons and the manuals.
 

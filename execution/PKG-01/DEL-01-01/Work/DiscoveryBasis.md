@@ -195,15 +195,15 @@ body, role, workflow or acceptance criterion changes. First-use source inspectio
 traces version selection to the manual index, Markdown/HTML and required-resource
 guidance; this is a documentation walkthrough, not agent or tool execution.
 
-## Reflective successor discovery proposal
+## Reflective successor discovery
 
 The owner's later clarification places the book within reflection on Chirality
-as practiced across projects. The proposed README and publication index retain
+as practiced across projects. The approved README and publication index retain
 prominence but remove the blanket instruction to start execution by reading it.
-They distinguish the reflective successor proposal from retained agent-directed
+They distinguish the reflective successor from retained agent-directed
 v9 and point external users to selected roles/workflows under local authority.
 The old manual anchor still names v9; no edition or historical reliance is
-silently redirected. This is a proposed change in purpose/standing, not merely
+silently redirected. This is an approved change in purpose/standing, not merely
 a renamed link. The course entry has the same distinction; its lessons remain
 at their existing source references. The current source characterization in
 CLM-002 is reconciled, with other commitments and criteria unchanged.

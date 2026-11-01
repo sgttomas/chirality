@@ -17,7 +17,7 @@ revision as experience shows what serves the work and what does not.
 
 The library offers working methods and material for understanding and questioning
 those methods. [Chirality in Practice](docs/alignment-manual/README.md#chirality-in-practice)
-is a proposed reflective book for people and agents, grounded in the thesis and
+is a reflective book for people and agents, grounded in the thesis and
 project experience. The [earlier Project Management Manual](docs/alignment-manual/README.md#project-management-manual)
 remains available for its agent-directed use. For a practical method, choose the
 relevant role or workflow below under your project's own instructions.
@@ -27,11 +27,10 @@ The steps below are for using library material in your own work or project.
 
 ### 1. Choose a version
 
-Use [Chirality library 1.0.0](https://github.com/sgttomas/chirality/releases/tag/library-v1.0.0),
-the current published source edition. Its release page provides the download,
-checksum, change account and limitations. You can also
-[browse that edition on GitHub](https://github.com/sgttomas/chirality/tree/library-v1.0.0)
-without installing anything.
+Use the [latest published Chirality library edition](https://github.com/sgttomas/chirality/releases/latest).
+Its release page provides the source download, checksum, change account and
+limitations. Follow the release's tag to browse that edition on GitHub without
+installing anything.
 
 Published editions identify fixed source revisions. This README's relative links
 open material in the version you are viewing: switch to the published tag or
@@ -44,7 +43,7 @@ is not a new library edition.
 | I want to… | Start here | How to use it |
 | --- | --- | --- |
 | Work on a project with my agent | [HELP_HUMAN](agents/AGENT_HELP_HUMAN.md) and the [workflow guide](workflows/README.md) | Give your agent the role, your actual problem and intended result; select a method as needed under your project's instructions. |
-| Reflect on how the work is understood and carried out | [Chirality in Practice](docs/alignment-manual/README.md#chirality-in-practice) | Explore the successor proposal's reasons and cases; it is material for reflection, not another execution instruction set. |
+| Reflect on how the work is understood and carried out | [Chirality in Practice](docs/alignment-manual/README.md#chirality-in-practice) | Explore the book's reasons and cases; it is material for reflection, not another execution instruction set. |
 | Read the earlier agent-directed account | [Project Management Manual v9](docs/alignment-manual/README.md#project-management-manual) | Give v9's Markdown to your agent with your problem if you prefer the earlier agent-addressed account; its text remains unchanged. |
 | Learn the reasoning | [Thesis](docs/thesis/README.md) and [courses](docs/human-team-courses/README.md) | Read the foundations or follow the learning material for people. |
 | Choose an agent's contribution | [Roles](agents/) | Read the relevant role: HELP_HUMAN, HELPS_HUMANS, WORKING_ITEMS or TASK. |

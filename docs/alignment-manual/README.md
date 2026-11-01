@@ -13,16 +13,17 @@ silently changing the instructions governing an undertaking.
 
 ## Chirality in Practice
 
-**Successor proposal for author content review: First edition.**
+**First edition, approved by the author for library 1.0.1.**
 [Read HTML](Chirality_in_Practice_Edition_1.html) · [Markdown source and contents](Chirality_in_Practice_Edition_1.md)
 
 *Chirality in Practice: Reflections on Purposeful Work by People and Agents*
-is proposed as a reflective successor to Consolidated v9. It develops the
+is a reflective successor to Consolidated v9. It develops the
 relationship among the thesis, experience across projects and the shared
 library's means of working. It is also material that reflection can question
 and revise. Reading it is neither an execution prerequisite nor adoption of
-new project obligations. The whole draft, title and changed character remain
-subject to the author's review; no new edition has been published.
+new project obligations. The author approved the complete manuscript, title and changed character.
+[Library 1.0.1](https://github.com/sgttomas/chirality/releases/tag/library-v1.0.1)
+identifies its release source, download and change account.
 
 Stable discovery link: `docs/alignment-manual/README.md#chirality-in-practice`.
 
@@ -32,7 +33,7 @@ Stable discovery link: `docs/alignment-manual/README.md#chirality-in-practice`.
 
 This earlier manual combines explanations with guidance addressed to an agent.
 It remains available unchanged for readers and projects that select that use.
-The successor proposal has a different character; it does not silently replace
+The successor has a different character; it does not silently replace
 an existing selection of v9 or amend a project's adopted instructions. The manual
 explains purpose, accountable reliance, production contracts, dependencies,
 coordination, evidence and delivery without requiring one repository layout.
@@ -57,7 +58,7 @@ selected method and project instructions.
 
 The named anchors above are discovery pointers. The original
 `#project-management-manual` anchor still exposes v9 and its different standing;
-`#chirality-in-practice` identifies the successor proposal. A change of title and
+`#chirality-in-practice` identifies the reflective successor. A change of title and
 character is made explicit rather than presented as an interchangeable edition.
 
 Use the stable link for discovery. Where a decision, requirement or comparison

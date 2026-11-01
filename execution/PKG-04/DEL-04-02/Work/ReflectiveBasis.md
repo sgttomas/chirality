@@ -212,18 +212,18 @@ archive remains `7c334bf5cb529a814e0f96f68bc8d9500b15cdd5`; later source records
 and gate annotations are outside it. Any proposed delivery of a later revision
 must identify that revision and establish which existing evidence still applies.
 
-## Proposed reflective book and practice across projects
+## Reflective book and practice across projects
 
 After library 1.0.0, the owner clarified that “Chirality is the wider undertaking
 expressed through all three projects, while the library repository is one
 particular place where that undertaking develops its shared understanding and
 means of working.” The owner approved preparation of a successor book and the
 connected proposal, then requested Claude Opus 5.5 at high effort as an
-independent second voice throughout drafting. Exact candidate approval remains
-pending. The current conversation establishes the authoring direction, not
+independent second voice throughout drafting. The owner later approved the complete candidate and library 1.0.1 release,
+as recorded below. The current conversation establishes the authoring direction, not
 empirical support for the book's argument.
 
-The proposed additional OUT-004/REQ-009/AC-007/VER-007 makes the post-release
+The additional OUT-004/REQ-009/AC-007/VER-007 makes the post-release
 scope change explicit; original outputs and criteria retain their text and
 historical acceptance. The accepted decomposition had not commissioned a whole
 manual rewrite. The new undertaking supplies the authorizing direction and the
@@ -241,7 +241,7 @@ scope exclusion, attribution risk and the primarily Root evidence base. The
 draft preserves the earlier route explicitly, uses an impersonal authorial
 voice without invented first-person experience, and separates actual Root
 records from constructed examples and the thesis's dated App/SWBPIPE account.
-Proposed title/subtitle and the interpreted positions remain for author review.
+The title/subtitle and interpreted positions were included in the final author approval.
 
 The manuscript develops v9's distinctions throughout as explanation. The actual
 case uses F-02, ownership/retirement, readiness and publication records already
@@ -268,7 +268,7 @@ error in the book, but identified insufficient prose on capability/authority/
 enforcement, post-completion work and the effects of instructions through tools.
 Those arguments are now developed. The scope wording is narrowed to preserve
 DEL-01-01/DEL-05-01 ownership, and README restores an actionable external entry.
-The exact final scope, title and interpretation remain for owner review.
+The final scope, title and interpretation were included in the later owner approval.
 
 The owner additionally requested content on post-100% maintenance. A separate
 After completion chapter distinguishes the completed undertaking, the continuing
@@ -315,7 +315,7 @@ with the relevant authority. Minor precision edits clarify the F-02 example and
 known reliance at retirement. These bounded author repairs and their refreshed
 source/render/reference checks are later than that examination; no independent
 review of the revised head is claimed. The earlier examined source remains in
-Git. The current candidate remains an unmerged proposal for the author's review.
+Git. That examination preceded the later owner approval recorded below.
 
 ## Grounding in thesis and recorded practice
 
@@ -377,4 +377,15 @@ post-completion chapter and constructed continuation were added here, not
 inherited from v9. Original links, named anchors, source hashes, PR references
 and quoted testimony remain intact. The book remains reflective, with no new
 operational obligation, scope change or consumer adoption from this wording pass.
-Final author/content approval remains pending.
+The later final author/content approval is recorded below.
+
+## Author approval and library 1.0.1
+
+The owner approved candidate `43c4d414304e436a7f9cdceb21ed2b4e05c26543`, including
+the exact book/title, post-release scope addition and connected library changes:
+“Approved. This will increment the published library to v1.0.1”. The source-bound
+book and HTML keep their approved bytes. Current discovery and scope annotations
+apply that decision; they do not claim that an independent examiner approved a
+later head. Integration uses a merge commit so the optional method's exact source
+pin remains in main's history. The release and actual delivery checks are carried
+by the existing release mechanism and PR #1793, with consumer adoption independent.

@@ -17,17 +17,17 @@ revision or an explicit reason to retain the practice. This deliverable supplies
 reflective-practice guidance and criteria, carries the actual decomposition
 formation outputs, and evaluates their use through bounded real work.
 
-**Proposed post-release extension, 2026-11-01.** The owner approved preparation
-of a reflective successor book and a connected scope proposal: “Approved.
-Proceed accordingly.” Chirality is the wider undertaking expressed through Root,
-App and SWBPIPE; the library is one place where their experience can develop
-shared understanding and means of working. This locality is proposed to carry
-that reflective contribution through the additional OUT-004 below. Its exact
-commitment and criterion remain for owner content review; earlier outputs and
-their 1.0.0 acceptance are not reopened by drafting this extension.
+**Approved post-release extension, 2026-11-01.** The owner approved the
+complete candidate at `43c4d414304e436a7f9cdceb21ed2b4e05c26543` and its
+publication as library 1.0.1: “Approved. This will increment the published library to v1.0.1”.
+Chirality is the wider undertaking expressed through Root, App and SWBPIPE;
+the library is one place where their experience can develop shared understanding
+and means of working. This locality carries that reflective contribution through
+the additional OUT-004 below. Earlier outputs and their 1.0.0 acceptance retain
+their own subjects and evidence.
 
 This extends the original decomposition's bounded SOW-0014 contribution and its
-§6 finding that a whole manual rewrite was not then evidenced. The proposed
+§6 finding that a whole manual rewrite was not then evidenced. The approved
 exception is this reflective successor, not a general commission to rewrite
 thesis, courses or project instructions. It preserves the card's concern against
 duplicating roles/workflows as another execution manual. Trace is to this later
@@ -75,7 +75,7 @@ required merely to give an output a separate container.
 - **OUT-002** — Usable reflective guidance and criteria in `workflows/reflect-on-work/WORKFLOW.md`, with `agents/AGENT_HELP_HUMAN.md` supplying posture and `workflows/coordinated-knowledge-work/WORKFLOW.md` supplying orchestration where needed, with explanatory rationale there or in affected owning Work where needed. Cover noticing a changed question, comparing local completion with intended use, examining the cost and warrant of monitoring, and deciding to retain a route, revise a method or return a reserved choice. SOW-0014; OBJ-002, OBJ-003, OBJ-004.
 - **OUT-003** — Bounded real application evidence: the question and selected basis, actual goal/action/input condition, consequential finding, human–Agent 0 judgment, affected-use examination and authorized consequence or warranted retention. Retain only consequential reasoning in existing owning Work and the actual review record, and apply warranted changes in their governing sources. This supplies the reflective portion of SOW-0014 and A3, supporting OBJ-002, OBJ-003, OBJ-004; it does not require a transcript, separate reflection report or recurring receipt.
 
-- **OUT-004** — Proposed reflective book, *Chirality in Practice*, in `docs/alignment-manual/Chirality_in_Practice_Edition_1.md` and its generated HTML, with a truthful lineage note inside the book and a minimal optional connection from reflect-on-work. Develop the thesis's relationship to practice across projects, including what experience can warrant retaining or changing in the shared library. Preserve v9 and its selected uses. This is a post-release addition under the owner direction above, supporting OBJ-002/OBJ-003; it adds no recurring project reports, mandatory reading or consumer rollout.
+- **OUT-004** — Reflective book, *Chirality in Practice*, in `docs/alignment-manual/Chirality_in_Practice_Edition_1.md` and its generated HTML, with a truthful lineage note inside the book and a minimal optional connection from reflect-on-work. Develop the thesis's relationship to practice across projects, including what experience can warrant retaining or changing in the shared library. Preserve v9 and its selected uses. This is a post-release addition under the owner direction above, supporting OBJ-002/OBJ-003; it adds no recurring project reports, mandatory reading or consumer rollout.
 
 Navigation in the README, publication index and course entry remains DEL-01-01's
 contribution; consumer obtaining/adoption standing remains DEL-05-01's. The same
@@ -107,7 +107,7 @@ criteria and verification methods are unchanged; owner approval preceded integra
 - **REQ-007** — Under CLM-003 and CLM-004, exclude unilateral edits to another contributor's commitments/Work/needs (that implementation owner, within its grant); combined-result integration by this scope author (Agent 0); changes to commitments or acceptance criteria, risk acceptance, lifting explicit holds and product acceptance/release (the owner); changing protected/adopted baselines without their governing authority (the actual baseline decision/adoption owner); consumer rollout, policy change or production release (the consuming project's owner); frozen development or verification and additional archival removal (the owner through explicit reactivation/disposition). A monitoring service, recursive monitoring hierarchy or automatic model loop has no production allocation here; proposing any new commitment returns to the owner under Q-02 rather than appointing a supplier.
 - **REQ-008** — Public guidance and retained evidence shall exclude credentials and private operational data, preserve source identity and distinguish actual observation, reused evidence, walkthrough and unknown. Q-04 named consumer sources and Q-05 publication candidate/prior basis must be bound before making their respective compatibility/publication claims; neither is supplied by reflection or generic examples.
 
-- **REQ-009** — Proposed OUT-004 shall be a coherent reflective account grounded in identified practice and explanatory sources. Preserve the distinction between actual observations, reused documentary evidence, constructed cases and authorial interpretation; characterize the limits of generalization across projects. Explain the reciprocal relationship among experience, shared understanding, changed library means and independent adoption without prescribing another execution system. Preserve historical sources and readable external-user routes; any changed instruction or discovery claim must be reconciled at its actual source under preceding authority.
+- **REQ-009** — OUT-004 shall be a coherent reflective account grounded in identified practice and explanatory sources. Preserve the distinction between actual observations, reused documentary evidence, constructed cases and authorial interpretation; characterize the limits of generalization across projects. Explain the reciprocal relationship among experience, shared understanding, changed library means and independent adoption without prescribing another execution system. Preserve historical sources and readable external-user routes; any changed instruction or discovery claim must be reconciled at its actual source under preceding authority.
 
 - **AC-001** — OUT-001 provides the actual accepted normalized basis and bounded design, Group 2 decision binding, separate Group 3 audit and final acceptance; manifests and source identities resolve, and historical submission labels and exact-byte approval limits are interpreted correctly. Verified by VER-001.
 - **AC-002** — OUT-002 supports identifying a changed question, comparing local completion with intended use and monitoring cost/warrant, and distinguishing retain, authorized method revision and reserved-choice routes. Existing or revised passages are usable together without mandatory ceremonies or recursive oversight. Verified by VER-002.
@@ -121,7 +121,7 @@ criteria are not declared satisfied by this setup contract. In particular, A3's
 actual accepted/set-up case remains unestablished here. Product acceptance is a
 separate owner judgment, not a validator result.
 
-- **AC-007** — Proposed OUT-004 expresses that reflective character consistently across the manuscript, index, README and method connection; its case claims resolve to their actual sources and limits, its complete rendered form corresponds to identified Markdown, and v9/published 1.0.0 remain unchanged. The human can examine the proposed title, interpretation and exact scope/instruction changes together. No new project obligations, automatic adoption or author approval are attributed by the draft. Verified by VER-007.
+- **AC-007** — OUT-004 expresses that reflective character consistently across the manuscript, index, README and method connection; its case claims resolve to their actual sources and limits, its complete rendered form corresponds to identified Markdown, and v9/published 1.0.0 remain unchanged. The human can examine the title, interpretation and exact scope/instruction changes together. No new project obligations, automatic adoption or author approval are inferred merely from the text. Verified by VER-007.
 
 ## Production and Verification Method — Praxeology
 

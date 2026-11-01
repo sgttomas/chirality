@@ -47,7 +47,7 @@ needs:
   condition: Treat v9 as the unchanged agent-addressed predecessor. Preserve its selected identities and
     useful distinctions while examining the successor's reflective character; the new work does not
     silently replace a consumer's operating method or evidence basis.
-  when: Authoring or reviewing proposed OUT-004
+  when: Authoring or reviewing OUT-004
   evidence: execution/PKG-04/DEL-04-02/Work/ReflectiveBasis.md
 - from: doc:docs/thesis/CHIRALITY_FRAMEWORK.md
   condition: Use the framework's account of knowing, judgment, accountability and the limits of representations

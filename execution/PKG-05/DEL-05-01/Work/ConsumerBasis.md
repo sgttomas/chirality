@@ -282,13 +282,28 @@ walkthrough follows release discovery, notes and comparison without assuming
 adoption. Library 1.0.0 remains unchanged; these development instructions require
 a separate publication decision to become a later edition.
 
-## Reflective successor proposal and consumer standing
+## Reflective successor and consumer standing
 
-The new book proposal changes the character of the publication, so the current
+The approved new book changes the character of the publication, so the current
 README/index explicitly preserve v9's agent-directed use as a separate selection.
 The successor is material for reflection; roles and workflows remain the route
-to operational methods under each project's own instructions. The book and
-rendered form are proposed, not a new library release. Named App-reader evidence
+to operational methods under each project's own instructions. The owner approved the book and rendered form at
+`43c4d414304e436a7f9cdceb21ed2b4e05c26543` and authorized library 1.0.1. Named App-reader evidence
 and all archive/publication pins above retain their actual subjects. No external
 consumer adoption or source repinning is performed. The discovery changes are
 coordinated with DEL-01-01; no new obtaining mechanism or interface is claimed.
+
+## Library 1.0.1 approval and release basis
+
+The owner approved the complete candidate at
+`43c4d414304e436a7f9cdceb21ed2b4e05c26543`: “Approved. This will increment the
+published library to v1.0.1”. This includes the book, explicit DEL-04-02 addition,
+consumer/discovery reconciliation and optional method reference. Publication uses
+the normally checked integration revision, with approval annotations only after
+that reviewed subject. The [release](https://github.com/sgttomas/chirality/releases/tag/library-v1.0.1)
+identifies the exact merged source, source-archive checksum and change account;
+the actual artifact/download verification is recorded in PR #1793. The approved
+book's Markdown and rendered bytes remain unchanged by these annotations.
+Library 1.0.0 remains recoverable at its original tag and archive. Consumers
+choose whether to adopt 1.0.1; neither publication nor the new book changes their
+selected v9 instructions, operational authority or product behavior.
