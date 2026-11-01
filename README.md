@@ -8,7 +8,112 @@ asks what should guide work shared between people and agents, and it supplies th
 means to carry that work out: roles, methods, tools and artifacts, kept open to
 revision as experience shows what serves the work and what does not.
 
-[Website](https://chirality.ai) · [Thesis](docs/thesis/README.md) · [Alignment manual](docs/alignment-manual/README.md)
+[Website](https://chirality.ai) · [Thesis](docs/thesis/README.md) · [Project Management Manual](docs/alignment-manual/README.md#project-management-manual)
+
+<a id="the-shared-library"></a>
+<a id="obtain-and-use-the-library"></a>
+
+## Use the library
+
+**New here? Start with the [Project Management Manual](docs/alignment-manual/README.md#project-management-manual).**
+It explains how a person and their agent can organize, examine and carry work
+through. Read it yourself or give its Markdown source to your agent along with
+your actual problem, context and intended result. The manual index links both
+readable and agent-friendly forms; a manual supplies a method, not authority.
+
+To contribute to this repository, use [Develop and contribute](#develop-and-contribute).
+The steps below are for using library material in your own work or project.
+
+### 1. Choose a version
+
+Use [Chirality library 1.0.0](https://github.com/sgttomas/chirality/releases/tag/library-v1.0.0),
+the current published source edition. Its release page provides the download,
+checksum, change account and limitations. You can also
+[browse that edition on GitHub](https://github.com/sgttomas/chirality/tree/library-v1.0.0)
+without installing anything.
+
+Published editions identify fixed source revisions. This README's relative links
+open material in the version you are viewing: switch to the published tag or
+use its downloaded archive to stay within that edition. Following `main` is an
+explicit choice to use ongoing development. A merge or an old application release
+is not a new library edition.
+
+### 2. Choose what you need
+
+| I want to… | Start here | How to use it |
+| --- | --- | --- |
+| Organize work with my agent | [Project Management Manual](docs/alignment-manual/README.md#project-management-manual) | Read the current edition or supply its Markdown source to your agent; apply it to a concrete undertaking. |
+| Learn the reasoning | [Thesis](docs/thesis/README.md) and [courses](docs/human-team-courses/README.md) | Read the foundations or follow the learning material for people. |
+| Choose an agent's contribution | [Roles](agents/) | Read the relevant role: HELP_HUMAN, HELPS_HUMANS, WORKING_ITEMS or TASK. |
+| Use a repeatable method | [Workflow guide](workflows/README.md) | Select a workflow and retain its complete package and required resources. |
+| Run a library tool | [Workflow resolver](tools/workflow_runtime/README.md), [deliverable queries](tools/deliverables/README.md), or [other tools](tools/) | Follow the selected tool's guide for commands, dependencies, outputs and limits. |
+| Understand a shared contract | [Product boundaries](docs/PRODUCT_BOUNDARIES.md), [agent/workflow interface](docs/AGENT_WORKFLOW_RUNTIME.md), [compatibility formats](docs/COMPATIBILITY_FORMATS.md) | Check the reference's applicability before adopting it in your project. |
+
+Read on GitHub, download the source archive from the release, or clone the
+repository. Reading alone needs no Git installation. Tools have their own
+prerequisites; the workflow resolver selects instruction files and reports source
+identity, but does not launch an agent or grant host permissions.
+
+When copying material, keep its original relative paths, required resources and
+applicable [license notices](LICENSE.md). Record the selected tag or full source
+revision alongside your project's existing instructions or source record, and
+mark local adaptations. You can use selected material without adopting the whole
+library. Your project keeps its own authority and operating instructions;
+Root's `AGENTS.md` and execution rules govern work on this repository.
+
+### 3. Stay informed
+
+Choose whichever route suits you:
+
+- **GitHub notifications:** sign in, open [this repository](https://github.com/sgttomas/chirality),
+  select **Watch → Custom → Releases → Apply**. If you already watch it, the
+  button may show your current notification setting. Delivery follows your
+  [GitHub notification settings](https://github.com/settings/notifications).
+- **Feed reader:** subscribe to the [releases Atom feed](https://github.com/sgttomas/chirality/releases.atom).
+- **Check manually:** visit the [Releases page](https://github.com/sgttomas/chirality/releases)
+  and read the edition's notes and source identity.
+
+These routes announce repository releases; check the release subject for the
+library edition you need. Notifications do not update your files or adopt changes.
+
+<a id="inspect-changes-before-adopting-them"></a>
+
+### 4. Decide whether to update
+
+Keep using your selected edition until you choose to change it. Read the new
+release notes, compare the material and resources your project uses with your
+current basis, and address applicable dependencies or migration steps. Make and
+check the update through your own change process. For an unpublished development
+revision, use its merged PR description as the change account.
+
+GitHub's comparison view or `git diff` can show the differences. A failed comparison
+is not “no change”; a path-limited comparison says nothing about other material.
+Historical sources and editions remain discoverable through
+[Frozen products](projects/FROZEN.md) and the [manual index](docs/alignment-manual/README.md).
+
+<details>
+<summary>Optional command-line discovery and comparison</summary>
+
+List recent publications with the GitHub CLI:
+
+```sh
+gh release list --repo sgttomas/chirality --limit 20
+```
+
+An empty successful listing means no releases were returned; a failed query does
+not establish absence. In an existing clone, fetch source references without
+adopting their content, then compare available tags or full commits:
+
+```sh
+git fetch origin
+git diff <old-basis> <candidate-basis> -- <selected-paths>
+```
+
+Polling can repeat these checks. Keep your interests and last examined basis
+locally. Scheduling or external delivery requires your own configured operator
+and authority; the library provides no subscription service or automatic adoption.
+
+</details>
 
 ## Why Chirality
 
@@ -38,96 +143,6 @@ The particular mechanisms, such as roles, sequences of review and record formats
 are design choices in service of these commitments, and are revised when they no
 longer serve them. The [thesis](docs/thesis/README.md) develops the argument.
 
-## The shared library
-
-The accepted [Library PRD](docs/PRD.md) defines the current development scope.
-
-This repository is the library that Chirality projects draw on:
-
-| Part | What it provides |
-| --- | --- |
-| [Roles](agents/) | Four ways an agent participates: HELP_HUMAN, HELPS_HUMANS, WORKING_ITEMS and TASK |
-| [Workflows](workflows/README.md) | Reusable methods for organizing and carrying work through, selected by name and source |
-| [Tools](tools/) | Deterministic utilities and checks |
-| [Design documentation](docs/) | Shared references: product boundaries, the agent and workflow runtime, compatibility formats |
-| [Alignment manual](docs/alignment-manual/README.md) | How to organize, check and carry work forward across projects |
-
-A role describes how an agent participates. A workflow describes how work is
-organized and carried through. Tools perform deterministic operations. A project
-names the library in its own `AGENTS.md`, keeps its own authority, holds and
-product decisions, and adds methods and tools of its own where it needs them.
-
-## Obtain and use the library
-
-The current owner-published source edition is [Chirality library 1.0.0](https://github.com/sgttomas/chirality/releases/tag/library-v1.0.0),
-from `fc73de583d25bf792d5c3abb3bf1ac8e0c38f7d6`. Its release supplies the source archive,
-checksum, change account, dependencies and qualification limits.
-
-Select the material and its source basis for the work you intend to do. Use an
-owner-published library version when one is available for that purpose. Following
-`main` is an explicit development choice; a merge, an archive tag or an old App
-release does not establish a published library edition.
-
-You can read files on GitHub, download a source archive for the selected tag or
-commit, or clone this repository. Reading the material requires no Git
-installation. An archive is available at
-`https://github.com/sgttomas/chirality/archive/<tag-or-full-commit>.zip`.
-Keep the selected identity with your project's entry or existing source record;
-the archive's lack of a `.git` directory does not make its origin unknown when
-you obtained it from an identified revision. A selected-file copy should retain
-its original path and basis, required resources and applicable license notices.
-The repository's [LICENSE.md](LICENSE.md) provides the MIT notice; retain any
-component-specific license that applies to the material you take.
-
-Read a holding's purpose, applicability and limits before relying on it. For a
-workflow, preserve its complete package and the resources its method needs;
-the [workflow guide](workflows/README.md) explains selection and package form.
-Each tool's README gives its dependencies and usage contract. A prose method can
-be read without running the [workflow resolver](tools/workflow_runtime/README.md),
-which selects requested instruction files and reports their source identity.
-Its result does not launch an agent or grant host permissions.
-
-Your project chooses its own entry instructions, authority and methods. Root's
-`AGENTS.md`, session init prompt and execution entry govern work on this
-repository. Copying library material does not adopt those Root operating rules.
-Keep adaptations distinguishable from their source; a product's packaged inputs
-remain at its selected basis until that product deliberately adopts a change.
-
-## Inspect changes before adopting them
-
-Compare the basis you use with the particular version you are considering.
-Read its release or change account and the affected source diff. For an integrated
-development revision without a release, use the merged PR description as the
-change account. Then follow the inputs and uses that matter to your project.
-Include linked resources and
-explanatory editions where their meaning changed. GitHub's comparison view or
-ordinary Git can supply the source differences:
-
-```sh
-git diff <old-basis> <candidate-basis> -- <selected-paths>
-```
-
-Confirm that both revisions are available and the selected paths cover the
-claim. A failed comparison is not “no change”; a path-limited comparison says
-nothing about unexamined material. Inspecting a newer source does not adopt it.
-Update your selected basis only through your own change process, with applicable
-checks and any migration or compatibility conditions addressed.
-
-To discover publications, inspect this repository's Releases page and each
-candidate's stated subject and source. The optional GitHub CLI offers the same
-bounded listing with `gh release list --repo sgttomas/chirality --limit 20`.
-An empty successful listing means no releases were returned; a failed query does
-not establish absence. In a clone, `git fetch origin` obtains available source
-references without adopting their content into your work. Select the particular
-tag or full commit before comparing it with your retained basis.
-
-Polling can repeat that discovery and comparison. Keep your interests and last examined basis locally.
-Any scheduled check or external notification needs an actual configured operator
-and authority; the library provides no subscriber registry or automatic adoption.
-Historical source and edition recovery is described in
-[Frozen products](projects/FROZEN.md) and the
-[manual index](docs/alignment-manual/README.md).
-
 ## Built with Chirality
 
 Applications built on these principles live in their own repositories, each with
@@ -144,6 +159,7 @@ explains how to recover their source.
 
 ## Develop and contribute
 
+The [Library PRD](docs/PRD.md) defines the accepted library scope.
 For agent-assisted work in this repository, start from [AGENTS.md](AGENTS.md).
 To work on an application, use that application's repository and its instructions.
 

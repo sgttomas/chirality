@@ -268,3 +268,16 @@ Current standing and discovery-pointer annotations are later source changes, not
 changes to the published archive. Its pre-release records remain historical.
 The accepted undertaking is complete within its stated scope and qualifications;
 consumer adoption, broader compatibility and future publication remain distinct.
+
+## Consumer subscription and update guidance
+
+The owner approved the four-step consumer-entry proposal and directed integration
+via PR. README now explains choosing a version and material, GitHub release
+notifications, the Atom feed, manual discovery and deliberate update inspection.
+Optional CLI discovery retains failed-query and partial-comparison limits.
+Copies retain source identity, resources and notices; consumers retain authority.
+The subscription routes use GitHub/feed-reader facilities: no subscription was
+configured for a user and no notification delivery was tested. The returning-user
+walkthrough follows release discovery, notes and comparison without assuming
+adoption. Library 1.0.0 remains unchanged; these development instructions require
+a separate publication decision to become a later edition.

@@ -181,3 +181,16 @@ cases in ConsumerBasis do not resolve every neighboring adopted-interface need.
 Existing need conditions remain accurate and unchanged. This adds bounded
 publication traversal and fallback evidence toward AC-002/003/004; it does not
 claim all discovery, tool failure, compatibility or product criteria complete.
+
+## Consumer entry after publication
+
+The owner authorized simplifying the README and merging the result by PR. The
+consumer route now precedes the background explanation, names the Project
+Management Manual explicitly and places it first in a purpose-based selection
+table. Courses, roles, workflow/tool guides and shared references retain their
+existing homes. Explicit anchors preserve the prior shared-library, obtaining
+and change-inspection links. Relative links follow the viewed source; the guide
+explains selecting the published tag/archive for edition-specific use. No manual
+body, role, workflow or acceptance criterion changes. First-use source inspection
+traces version selection to the manual index, Markdown/HTML and required-resource
+guidance; this is a documentation walkthrough, not agent or tool execution.
