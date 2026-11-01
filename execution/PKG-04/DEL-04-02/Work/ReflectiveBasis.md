@@ -283,7 +283,7 @@ need rather than a demonstrated breach of the old commitment. A constructed
 editor continuation supplies the defect/dependency/new-use contrast. The current
 book-writing conversation is not used as empirical proof of its own claims.
 
-The repaired manuscript is source-bound at
+The manuscript prepared for library 1.0.1 was source-bound at
 `b31e06213ba7c8d2b16d0d87284dac7f25d6307e` (SHA-256
 `df1313c66c5b00f522092e2521555dab7013b72c46ac8ee3d6bddd9484fcb4b2`).
 The unchanged pinned renderer reproduces its HTML exactly; metadata/hash,
@@ -389,3 +389,23 @@ apply that decision; they do not claim that an independent examiner approved a
 later head. Integration uses a merge commit so the optional method's exact source
 pin remains in main's history. The release and actual delivery checks are carried
 by the existing release mechanism and PR #1793, with consumer adoption independent.
+
+## Standalone book framing
+
+After publication of library 1.0.1, the owner directed that the book should not
+retain continuity with the Project Management Manual: references and allusions
+to that lineage distract from its own account. The owner approved removing the
+predecessor introduction, inherited/new-example commentary, attribution of
+development positions to an earlier manual, and closing lineage note, along
+with incidental manual-history discussion. The book now presents its purpose
+and arguments directly. The thesis and actual case evidence remain its grounds.
+The October 4 record still supports experience informing shared guidance; its
+source citation is retained without making the old publication the book's identity.
+
+OUT-004's internal lineage note is replaced by a source-basis note, and VER-007
+no longer requires comparison with v9. The current authoring need on v9 is
+removed; the earlier comparison remains historical evidence above. Original OUT-001–003, REQ-001–008, AC-001–006 and VER-001–006 remain unchanged. Existing v9 files, selected
+references, source hashes and the published 1.0.1 archive remain unchanged.
+Discovery presents the book independently and retains old references in the
+historical-manual section. Current source differs from the published edition,
+which the index makes explicit. No new library release is authorized by this edit.

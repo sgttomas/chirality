@@ -13,53 +13,33 @@ silently changing the instructions governing an undertaking.
 
 ## Chirality in Practice
 
-**First edition, approved by the author for library 1.0.1.**
+**Maintained book.**
 [Read HTML](Chirality_in_Practice_Edition_1.html) · [Markdown source and contents](Chirality_in_Practice_Edition_1.md)
 
 *Chirality in Practice: Reflections on Purposeful Work by People and Agents*
-is a reflective successor to Consolidated v9. It develops the
-relationship among the thesis, experience across projects and the shared
+examines the relationship among the thesis, experience across projects and the shared
 library's means of working. It is also material that reflection can question
 and revise. Reading it is neither an execution prerequisite nor adoption of
-new project obligations. The author approved the complete manuscript, title and changed character.
-[Library 1.0.1](https://github.com/sgttomas/chirality/releases/tag/library-v1.0.1)
-identifies its release source, download and change account.
+new project obligations. The reading files above include the later editorial
+revision that removes predecessor framing. [Library 1.0.1](https://github.com/sgttomas/chirality/releases/tag/library-v1.0.1)
+retains the published first edition at its identified source, with its download
+and change account.
 
 Stable discovery link: `docs/alignment-manual/README.md#chirality-in-practice`.
 
-## Project Management Manual
-
-**Retained agent-addressed work: Consolidated v9.** [Read HTML](Project_Management_for_Human_Agent_Teams_Consolidated_v9.html) · [Markdown source](Project_Management_for_Human_Agent_Teams_Consolidated_v9.md)
-
-This earlier manual combines explanations with guidance addressed to an agent.
-It remains available unchanged for readers and projects that select that use.
-The successor has a different character; it does not silently replace
-an existing selection of v9 or amend a project's adopted instructions. The manual
-explains purpose, accountable reliance, production contracts, dependencies,
-coordination, evidence and delivery without requiring one repository layout.
-
-Stable discovery link: `docs/alignment-manual/README.md#project-management-manual`.
-
 ## Reading and use
 
-The [thesis](../thesis/README.md) develops the argument, the reflective book
-examines practice, and v9 preserves the earlier agent-directed account. Their
-purposes overlap without making them interchangeable. Their contents allow a
-reader to explore relationships beyond the occasion that first prompted reading.
+The [thesis](../thesis/README.md) develops the argument, and the book examines
+its relationship to practice. Their contents allow a reader to explore relationships beyond the occasion that first prompted reading.
 
 An external project's agent can use a selected role and workflow under the
 project's actual instructions. The books offer explanations and examples for
-examination; v9 remains an explicit alternative reading selection rather than
-an automatically replaced method. The courses retain their identified manual
-references. In Root, current execution practice remains in AGENTS.md, the
-selected method and project instructions.
+examination. The courses retain their own identified sources. In Root, current
+execution practice remains in AGENTS.md, the selected method and project instructions.
 
 ## Discovery and reliance
 
-The named anchors above are discovery pointers. The original
-`#project-management-manual` anchor still exposes v9 and its different standing;
-`#chirality-in-practice` identifies the reflective successor. A change of title and
-character is made explicit rather than presented as an interchangeable edition.
+The book's named anchor is a discovery pointer to its maintained source.
 
 Use the stable link for discovery. Where a decision, requirement or comparison
 depends on exact content, identify the resolved edition and source revision in
@@ -91,7 +71,7 @@ python3 docs/alignment-manual/render_manual.py \
   --edition-label 'Management manual' --metadata-at-end
 ```
 
-For the successor, select its own Markdown and HTML paths with the same renderer
+For Chirality in Practice, select its own Markdown and HTML paths with the same renderer
 and use `--edition-label 'Chirality in Practice · First edition'`. Commit the
 reviewed Markdown before rendering and identify that source commit with
 `--basis-revision`; its hash records actual source bytes. The source basis and
@@ -102,7 +82,18 @@ source used for rendering, not human acceptance. Check links and inspect the
 result at desktop and narrow widths. Review content before preparing revised
 Word/PDF publication layouts.
 
-## Earlier editions
+## Historical manuals
+
+Older manuals remain available for existing citations and selected uses. They
+are historical sources, not prerequisites for reading *Chirality in Practice*.
+
+## Project Management Manual
+
+**Retained source: Consolidated v9.** [HTML](Project_Management_for_Human_Agent_Teams_Consolidated_v9.html) · [Markdown](Project_Management_for_Human_Agent_Teams_Consolidated_v9.md)
+
+The `#project-management-manual` anchor preserves existing references. Historical
+source retention does not require the book to explain its relationship to these
+manuals or continue their account.
 
 Earlier editions retain their identities for historical consumers. Their old
 procedures do not override current instructions. In particular, App v4's original

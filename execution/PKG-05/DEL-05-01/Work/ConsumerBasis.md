@@ -307,3 +307,12 @@ book's Markdown and rendered bytes remain unchanged by these annotations.
 Library 1.0.0 remains recoverable at its original tag and archive. Consumers
 choose whether to adopt 1.0.1; neither publication nor the new book changes their
 selected v9 instructions, operational authority or product behavior.
+
+## Book framing after library 1.0.1
+
+The owner authorized removing predecessor-manual continuity from the maintained
+book. Its current presentation and source-basis note do not require familiarity
+with an earlier manual. Historical sources and consumer-selected pins remain
+available separately; library 1.0.1 retains its actual published bytes. The
+publication index explicitly distinguishes this later maintained text. The
+change does not publish a replacement archive or adopt it in a consumer project.

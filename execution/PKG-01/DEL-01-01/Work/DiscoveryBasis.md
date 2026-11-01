@@ -207,3 +207,13 @@ silently redirected. This is an approved change in purpose/standing, not merely
 a renamed link. The course entry has the same distinction; its lessons remain
 at their existing source references. The current source characterization in
 CLM-002 is reconciled, with other commitments and criteria unchanged.
+
+## Independent book entry
+
+The owner subsequently removed predecessor continuity from the book's framing.
+README now presents its own purpose without a parallel earlier-manual pitch.
+The publication index moves retained manual references into a historical section
+while preserving their named anchors and source files. The book's thesis/case
+sources remain available. The index distinguishes the revised maintained text
+from the unchanged published first edition in library 1.0.1. This is navigation
+reconciliation, not retirement of a consumer's selected source.
