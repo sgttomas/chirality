@@ -382,6 +382,10 @@ def validate_and_build(root: Path, public_export: bool = False) -> dict:
                 descriptor["execution"] = execution
             descriptors.append(descriptor)
 
+    if methods["unknownLegacyBehavior"] != "error" or not isinstance(methods["historicalOnly"], list):
+        raise ValueError("unconverted legacy methods must remain historical and unknown selection must error")
+    if any(not isinstance(name, str) or not NAME_RE.fullmatch(name) for name in methods["historicalOnly"]):
+        raise ValueError("historical-only methods must have valid names")
     retired = _load_json(workflows / "legacy-agents.json")
     if retired.get("schema_version") != 1 or not isinstance(retired.get("aliases"), dict):
         raise ValueError("invalid retired-role ledger")
@@ -398,9 +402,12 @@ def validate_and_build(root: Path, public_export: bool = False) -> dict:
                 raise ValueError(f"unknown skill successor: {alias}")
         workflow_target = mapping.get("workflow")
         if workflow_target is not None and workflow_target not in names and successor is None:
-            raise ValueError(f"retired-role workflow was removed without a canonical successor: {alias}")
-    if methods["unknownLegacyBehavior"] != "error" or not isinstance(methods["historicalOnly"], list):
-        raise ValueError("unconverted legacy methods must remain historical and unknown selection must error")
+            # An intentional no-successor retirement must be declared in the
+            # existing method ledger and explain the continuation route. A
+            # dangling target alone is still an error, never an implicit role.
+            note = mapping.get("compatibility_note")
+            if workflow_target not in methods["historicalOnly"] or not isinstance(note, str) or not note.strip():
+                raise ValueError(f"retired-role workflow was removed without a canonical successor or documented historical-only retirement: {alias}")
     converted = methods["convertedWorkflowAliases"]
     if not isinstance(converted, dict) or any(
         not isinstance(k, str) or not isinstance(v, dict)

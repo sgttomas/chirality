@@ -204,7 +204,7 @@ required human gate and domain-engine-controlled apply record exist.
 | Accept/reject operation proposals | Draft, validate, summarize, and record blockers |
 | Interpret external prover results | Organize comments, TBDs, and change proposals |
 | Decide professional reliance | Preserve boundary language and cite evidence |
-| Approve publication/git actions | Hand off file lists and recommended commit notes to WORKING_ITEMS (workflow: change) |
+| Approve publication/git actions | Hand off file lists and recommended commit notes to the responsible implementation owner under the project's Git conventions |
 
 ### Skill and Tool Dispatch Rules
 
@@ -299,7 +299,7 @@ WORKING_ITEMS covers the HELPS_HUMANS workflow-design surfaces as follows:
 | WORKING_ITEMS | Accepted design and bounded implementation briefs | Workflow/tool implementation and integration evidence through TASK | Human domain acceptance |
 | Domain tool adapter | Inputs declared by profile and invocation plan | Declared domain-controlled output paths only | Agent-writable review/proposal notes unless explicitly part of declared tool output |
 | Domain engine application | Its own model files, states, runs, comparisons, handoff packages | Its own authoritative domain artifacts | Chirality instruction root or unrelated project records |
-| WORKING_ITEMS (workflow: change) | Git state and explicit file lists | Staging/commits/tags only after human approval | Silent publish, force-push, or unstated file changes |
+| Responsible implementation owner under project Git conventions | Git state and explicit file lists | Staging/commits/tags only after human approval | Silent publish, force-push, or unstated file changes |
 
 If the permission map conflicts with a project-local profile, use the stricter rule and request human resolution before proceeding.
 
@@ -657,5 +657,10 @@ Each closure/handoff state should include:
 | `RerunRequirements` | Required scans, summaries, validations, comparisons |
 | `RemainingBlockers` | Open issues and next owner |
 | `NextOwningWorkflow` | `HUMAN | WORKING_ITEMS | TASK | HELPS_HUMANS | WORKING_ITEMS (workflow: change) | WORKING_ITEMS (workflow: project-setup) | DOMAIN_ENGINE_APP | EXTERNAL_PROVER` |
+
+`WORKING_ITEMS (workflow: change)` remains readable in historical handoffs; it
+is not a current workflow invocation. For new Git handoffs use `WORKING_ITEMS`
+with the authorized scope and applicable project conventions. This changes no
+publication approval, protected-write or domain-owner boundary.
 
 ---

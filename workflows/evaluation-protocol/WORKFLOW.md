@@ -142,7 +142,7 @@ declared. This workflow records the contract shape; WORKING_ITEMS seals and issu
 
 1. Write `_Evaluation/EVALUATION_REPORT.md` and a handoff state.
 2. Identify human decisions and route proposed file-state work to the
-   appropriate manager, normally WORKING_ITEMS (workflow: change), WORKING_ITEMS (workflow: project-setup), WORKING_ITEMS (workflow: scope-change), WORKING_ITEMS (workflow: review), or
+   appropriate manager, normally the responsible implementation owner under the project's change conventions, WORKING_ITEMS (workflow: project-setup), WORKING_ITEMS (workflow: scope-change), WORKING_ITEMS (workflow: review), or
    HELPS_HUMANS.
 3. Record accepted basis, audit coverage, waivers, blockers, rerun
    requirements, and derivative-package status.

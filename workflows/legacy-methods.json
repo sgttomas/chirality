@@ -179,7 +179,8 @@
     }
   },
   "historicalOnly": [
-    "software-bounded-implementation"
+    "software-bounded-implementation",
+    "change"
   ],
   "unknownLegacyBehavior": "error"
 }

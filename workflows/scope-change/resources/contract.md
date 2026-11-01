@@ -92,11 +92,11 @@ Defaults (only when not otherwise specified by the human):
   deletion, routing modified deliverables to their production contract's
   update path, and refreshing their dependency and coordination records. This
   workflow names that hand-back in `Handoff_State.md`; it does not perform it.
-- **The responsible current role** receives repository-change evidence and the
-  exact change scope. It follows the applicable project's change skill or
-  repository conventions when present. This current workflow does not require
-  Git or select the retained legacy `change` workflow; explicitly selected
-  historical identities keep their legacy procedure.
+- **The responsible implementation owner** receives repository-change evidence
+  and the exact change scope. It follows applicable repository conventions;
+  a consumer may explicitly select its own supporting skill. This current workflow
+  does not require Git or select the retired `change` workflow. Historical identities remain
+  readable at their recorded source revision; they are not a current invocation.
 - The **`dependency-extract` workflow (dispatched via TASK)** owns consumer-local need authoring/refresh in `deliverable.yaml`. WORKING_ITEMS identifies affected consumers and recommends bounded assessment; it does not author their declarations.
 - The **`estimate-snapshot` workflow (dispatched via TASK)** and **WORKING_ITEMS (workflow: project-setup) scheduling workflow** own estimate/schedule updates. WORKING_ITEMS recommends reruns; does not execute them.
 - **Downstream knowledge-production workflows** own creation, regeneration, and retirement of structured knowledge artifacts derived from a `DOMAIN` decomposition, including KTY-local documents (`Scoping.md`, `KA-*.md`, `_CONTEXT.md`, `_STATUS.md`, `_REFERENCES.md`), `_Aggregation` outputs, hypergraph outputs, and publication outputs. For SCA-required KTY-local content disposition and approved metadata alignment, WORKING_ITEMS owns dispatch-and-block orchestration through bounded TASK workflows and records evidence in the SCA snapshot; it does not perform the KTY-local edits directly. Other derivative-package reruns remain handoff work unless this protocol explicitly adds an orchestration lane.

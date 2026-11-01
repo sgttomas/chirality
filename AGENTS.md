@@ -64,6 +64,17 @@ owner. Do not message a project the work does not affect.
    still uses them. Stop when the agreed result is established; do not invent
    other closeout work.
 
+## Holding changes and recovery
+
+Before relocating or retiring a holding, inspect relevant uses and establish its
+replacement or historical standing, recoverable source and removal authority.
+Resume from actual work/operation state and current authority, not history alone.
+Silence or elapsed time grants no right to discard work. Procedural coordination
+is not enforced exclusion. For interrupted work or exceptional custody, use
+[maintenance recovery](docs/MAINTENANCE_RECOVERY.md) to establish the usable result,
+open conditions, holder and authorized release/recovery. Publication and update
+inspection follow the existing [consumer route](README.md#obtain-and-use-the-library).
+
 ## Deliverables and records
 
 The convention going forward
@@ -123,7 +134,17 @@ For `sgttomas/chirality` only, agents may commit, push, open, update and merge P
 within authorized work after the verification above and required checks pass on
 the exact head. Explicit holds and reserved decisions apply. This grant excludes
 protection bypasses, history rewrites, force pushes, permission changes and
-releases. Use `.agents/skills/chirality-change/SKILL.md` for Git conventions.
+releases. Use ordinary Git judgment under the undertaking and these conventions:
+`main` is the integration branch; task branches use an author prefix such as
+`codex/` or `claude/`. Use a merge commit unless the PR or owning undertaking
+selects another strategy within its authority. Preserve unrelated work, stage
+only the intended change and retain truthful authorship. Use the host-prepared
+checkout when supplied; otherwise isolate only when requested or overlap/risk
+warrants it. Inspect the actual diff and affected checks before publishing and
+verify the source head before integration. The PR carries the reason, checked
+revision, findings and open matters; a separate Git workflow or receipt is not
+required. Cleanup follows the working cycle above. Host permissions still bound
+every operation; repository authority cannot expand them.
 
 ## Current contracts
 

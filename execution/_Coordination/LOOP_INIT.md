@@ -50,7 +50,11 @@ undertakings through contributions, repairs and integration. Reconcile the
 actual result and verification with affected commitments, Work and needs in the
 same PR, as AGENTS.md and the
 [reconciliation method](../../workflows/bounded-reconciliation/WORKFLOW.md)
-describe. Select further methods as the undertaking needs them.
+describe. When a finding calls purpose, commitments, explanatory framing or the
+chosen practice into question, use [reflect-on-work](../../workflows/reflect-on-work/WORKFLOW.md)
+with the human and Agent 0. Reconciliation compares results under commitments;
+reflection examines whether that basis or practice still serves the purpose.
+Select further methods as the undertaking needs them.
 
 ## Content review
 

@@ -1,8 +1,8 @@
 id: DEL-02-01
 name: Carry and recover an authorized holding change
 needs:
-- from: doc:workflows/change/WORKFLOW.md
-  condition: The selected change route, Root change skill and applicable resources cover the actual authorized
+- from: doc:AGENTS.md
+  condition: The repository holding/recovery and Git conventions plus selected methods cover the actual authorized
     operation, source basis and review/integration authority. Inspect the relevant resources, not just
     the entry.
   when: Carrying a holding change through review and integration
@@ -35,11 +35,11 @@ needs:
     continue.
   when: The maintenance case encounters inconsistent shared-reference meaning
   evidence: execution/PKG-02/DEL-02-01/Work/MaintenanceBasis.md
-- from: unknown
-  condition: Bind real retained work or a labelled recovery/custody case, its locality/review sources
-    and current authority. For exclusive custody also identify the holder, item, reserved operation, actual
-    mechanism, release/recovery conditions and enforcement limits. These bindings have not been selected;
-    no new locking system is implied.
+- from: doc:docs/MAINTENANCE_RECOVERY.md
+  condition: Use the assignment/disjoint-write coordination in the on-demand recovery resource for the labelled retained-source
+    recovery case in MaintenanceBasis.md, with its holder, scratch item, reserved completion, current
+    authority and release/recovery conditions. Its observed lack of filesystem exclusion does not meet
+    a need for enforced locking; bind and exercise a stronger mechanism before making that claim.
   when: Establishing recovery or custody-release claims
   evidence: execution/PKG-02/DEL-02-01/Work/MaintenanceBasis.md
 - from: DEL-05-01
@@ -49,8 +49,12 @@ needs:
   when: Connecting publication/update operations or repeating a named compatibility claim
   evidence: execution/PKG-02/DEL-02-01/Work/MaintenanceBasis.md
 code_paths:
-- workflows/change/**
+- AGENTS.md
+- docs/MAINTENANCE_RECOVERY.md
+- workflows/legacy-agents.json
+- workflows/legacy-methods.json
+- tools/workflow_runtime/resolve_workflow.py
+- tools/validation/build_workflow_index.py
 - workflows/create-workflow/**
-- .agents/skills/chirality-change/**
 checks:
 - tools/validation/validate_workflow_metadata.py
