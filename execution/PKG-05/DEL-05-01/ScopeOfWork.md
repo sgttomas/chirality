@@ -39,7 +39,7 @@ The current undertaking develops and examines obtaining/use and change-inspectio
 guidance under Agent 0, with a bounded Type 2 contribution exercising the selected
 App reader. Initial setup alone did not establish these results. The linked Work
 binds actual source/consumer revisions, the copied package and comparison evidence.
-Owner content approval remains required before integration; no product acceptance,
+The owner approved this content for integration in PR #1784; no product acceptance,
 publication, automatic adoption or permanent contributor appointment is inferred.
 
 The initial source assessment and continuation conditions are in [Work/ConsumerBasis.md](Work/ConsumerBasis.md). Consumer-local needs are now declared in `deliverable.yaml`; their presence establishes no satisfaction claim.
@@ -112,8 +112,8 @@ document review and final qualification have distinct conditions.
 | Actual tool/interface behavior and supported compatibility route | Guidance invokes a tool or proposed change is incompatible | Use documented commands, dependencies and checks from selected sources; any demonstrated implementation gap returns to DEL-03-01 under Q-02, not an assumed adapter. |
 | Historical pins/editions and documented recovery routes | Rely on particular historical content | Identify original pin/path and verify selected bytes before reliance; retain unrelated history without a global audit. CLM-004 supplies the documented starting route. |
 
-- **TBD-001** — Q-04 is bound for the selected capture/declaration/content-identity claim: App `366e7a6656d807142e7bdeda0ccf99c37d7227b1` reader and maintained contracts, with Root `1357d706ea77497903976bf159f3880bea4d1360` coordinated-knowledge-work package, as identified and exercised in Work/ConsumerBasis.md. Other consumer operations or source revisions remain outside that evidence. Independent examination found no blockers; owner content approval remains pending. The test does not imply adoption or full product acceptance.
-- **TBD-002** — Q-05 is bound to the F-02 source candidate at Root `1357d706ea77497903976bf159f3880bea4d1360`, including Consolidated v9 and its maintained HTML, compared with `257ab4c18014bf872a1c72eeb7593a7ad3d135c0`. Work/ConsumerBasis.md identifies delivery/source evidence, actual PR change account and exercised comparison. The candidate is not a published library release; remaining coverage and owner approval are examined against the unchanged criteria.
+- **TBD-001** — Q-04 is bound for the selected capture/declaration/content-identity claim: App `366e7a6656d807142e7bdeda0ccf99c37d7227b1` reader and maintained contracts, with Root `1357d706ea77497903976bf159f3880bea4d1360` coordinated-knowledge-work package, as identified and exercised in Work/ConsumerBasis.md. Other consumer operations or source revisions remain outside that evidence. Independent examination found no blockers; the owner approved the presented content for integration. The test does not imply adoption or full product acceptance.
+- **TBD-002** — Q-05 is bound to the F-02 source candidate at Root `1357d706ea77497903976bf159f3880bea4d1360`, including Consolidated v9 and its maintained HTML, compared with `257ab4c18014bf872a1c72eeb7593a7ad3d135c0`. Work/ConsumerBasis.md identifies delivery/source evidence, actual PR change account and exercised comparison. The candidate is not a published library release; owner content approval is recorded in PR #1784, while remaining product coverage is examined against the unchanged criteria.
 - **TBD-003** — Q-01 retains additional archival disposition of `plans/`, `_DomainEngines/` and other unselected removals with the owner. Q-02 retains bespoke tooling as contingent on a demonstrated gap and actual authorization; no adapter, companion or service is commissioned. These qualifications do not block unaffected guidance or source-preservation work.
 
 ## Production and Verification Method — Praxeology

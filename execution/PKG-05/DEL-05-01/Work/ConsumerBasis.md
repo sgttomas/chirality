@@ -1,7 +1,9 @@
 # Consumer use and publication inputs
 
 Maturity: obtaining/use and change-inspection candidate with bounded named-reader
-evidence and independent examination; owner content approval remains pending. Initial assessment
+evidence and independent examination. The owner approved the six-file content
+proposal at `4d33dfed9e2388efad504d7736275e8d55d41722` with “approved.”
+Integration is recorded in PR #1784; product acceptance and release remain separate. Initial assessment
 used `fd847ac9ac68250b2f35d2e9c0087c16e86b510a`. The current undertaking uses the
 integrated F-02 result at `1357d706ea77497903976bf159f3880bea4d1360` as its real
 source candidate, compared with `257ab4c18014bf872a1c72eeb7593a7ad3d135c0`.
@@ -145,7 +147,7 @@ Q-04 is now bound for the selected App reader claim. Q-05 has the identified
 source/edition candidate and prior comparison basis; no owner publication is
 claimed. Other interfaces and uses still need their own bindings and evidence.
 Independent review found no blockers; its clarity corrections are incorporated.
-Owner content approval remains pending. Bind only the resources and conditions
+The owner approved this content for integration. Bind only the resources and conditions
 needed by a selected use.
 Coordinate shared README edits with DEL-01-01, which owns navigation; this
 locality owns obtaining/version/compatibility meaning. DEL-02-02 may need a
