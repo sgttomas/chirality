@@ -43,7 +43,28 @@ needs:
     actual owner authority.
   when: The selected reflective question has a named consumer or publication consequence
   evidence: execution/PKG-04/DEL-04-02/Work/ReflectiveBasis.md
+- from: doc:docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.md
+  condition: Treat v9 as the unchanged agent-addressed predecessor. Preserve its selected identities and
+    useful distinctions while examining the successor's reflective character; the new work does not
+    silently replace a consumer's operating method or evidence basis.
+  when: Authoring or reviewing OUT-004
+  evidence: execution/PKG-04/DEL-04-02/Work/ReflectiveBasis.md
+- from: doc:docs/thesis/CHIRALITY_FRAMEWORK.md
+  condition: Use the framework's account of knowing, judgment, accountability and the limits of representations
+    as explanatory grounding alongside the thesis introduction, chapter 3's mutually corrective perspectives
+    and account of attention, chapter 9's limitations, and the README's dated evidence basis. Keep
+    commitments, design hypotheses and empirical claims distinct. The successor adds no fresh App
+    or SWBPIPE product qualification or established cross-project learning practice by restating them.
+  when: Developing the book's relation to the thesis and cross-project experience
+  evidence: execution/PKG-04/DEL-04-02/Work/ReflectiveBasis.md
+- from: DEL-02-02
+  condition: Retain F-02's established distinctions about current Work navigation and historical Design
+    references, scoped adopted contracts, capability/authority and source-edition reliance in the new
+    book. This is a distinct successor-use condition, not a new F-02 implementation assignment.
+  when: The successor explains meanings examined in F-02
+  evidence: execution/PKG-04/DEL-04-02/Work/ReflectiveBasis.md
 code_paths:
+- docs/alignment-manual/Chirality_in_Practice_Edition_1.*
 - agents/AGENT_HELP_HUMAN.md
 - workflows/coordinated-knowledge-work/**
 - workflows/reflect-on-work/**
