@@ -284,8 +284,8 @@ editor continuation supplies the defect/dependency/new-use contrast. The current
 book-writing conversation is not used as empirical proof of its own claims.
 
 The repaired manuscript is source-bound at
-`5c3f32eb7fad4f843375c288709315abbe169683` (SHA-256
-`2385cdaa74d7be7cf510fcef70e7742030dc4d1b591035964aa68b876a7166f9`).
+`186cff67d61a263854f2b012f60bf75c33c27008` (SHA-256
+`265a547079f1e549274901a62ee658a3716939d1550592a3dd33508732d1ceb1`).
 The unchanged pinned renderer reproduces its HTML exactly; metadata/hash,
 internal anchors and local linked targets were checked. These are source and
 render-structure observations, not a new visual-usability or product-use claim.
@@ -305,3 +305,14 @@ reference was found in the searched SWBPIPE AGENTS/loop/PRD inputs at
 claim. No downstream edit, repin or message was made. An integrated approved
 basis can be conveyed through the existing Agent 0 routes for any consumer-owned
 reconciliation; reading the new index does not adopt the successor.
+
+The final Claude Opus 5.5/high examination at
+`e104a6e501fc232125c0b09047eeb763c073da95` found the candidate ready for owner
+content review with no blockers. Its two substantive suggestions are incorporated:
+a post-completion validation gap can exist even when stated commitments are met,
+and anyone can raise a finding while changes to acceptance or release remain
+with the relevant authority. Minor precision edits clarify the F-02 example and
+known reliance at retirement. These bounded author repairs and their refreshed
+source/render/reference checks are later than that examination; no independent
+review of the revised head is claimed. The earlier examined source remains in
+Git. The current candidate remains an unmerged proposal for the author's review.

@@ -109,7 +109,7 @@ project-definition basis named Consolidated v7, Field Book v1 and User Manual v3
 The current App v4 basis states its forward selection separately.
 
 The owner retired the Field Book (v1, v2) and the Chirality Agent User Manual
-(v3, v4) on 2026-10-23. The Field Book condensed this manual; the Agent User
+(v3, v4) on 2026-10-23. The Field Book condensed the earlier Project Management Manual; the Agent User
 Manual restated repository instructions, which are now the only home for current
 practice. Recover their text with, for example,
 `git show 4ac1315672:docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v2.md`.
