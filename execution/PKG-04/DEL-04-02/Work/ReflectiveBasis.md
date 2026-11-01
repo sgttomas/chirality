@@ -261,3 +261,47 @@ book's purpose and the still-available v9 route; course lesson bodies are unchan
 The PRD and DEL-02-02's completed F-02 scope need no edits: maintained publication
 work is already within the library boundary, and this consumer states its own
 new need without rewriting the supplier's historical obligation.
+
+The second independent consultation examined the full manuscript and connections
+at `ca2aa12f85d4a2043f2604e396b4625dbc4e7f55`. It found no blocker-level factual
+error in the book, but identified insufficient prose on capability/authority/
+enforcement, post-completion work and the effects of instructions through tools.
+Those arguments are now developed. The scope wording is narrowed to preserve
+DEL-01-01/DEL-05-01 ownership, and README restores an actionable external entry.
+The exact final scope, title and interpretation remain for owner review.
+
+The owner additionally requested content on post-100% maintenance. A separate
+After completion chapter distinguishes the completed undertaking, the continuing
+product, accepted edition and maintained source. It examines defects and past
+reliance, clarification, refinement, changed circumstances and new priorities;
+these are explanatory distinctions, not an exhaustive routing checklist. A
+later finding can invalidate an earlier completion assessment without erasing
+the historical acceptance act. The chapter treats proportionate re-examination,
+publication/adoption, continuing ownership and retirement. PR #1792 provides a
+documented post-release improvement, labelled as a newly articulated usability
+need rather than a demonstrated breach of the old commitment. A constructed
+editor continuation supplies the defect/dependency/new-use contrast. The current
+book-writing conversation is not used as empirical proof of its own claims.
+
+The repaired manuscript is source-bound at
+`5c3f32eb7fad4f843375c288709315abbe169683` (SHA-256
+`2385cdaa74d7be7cf510fcef70e7742030dc4d1b591035964aa68b876a7166f9`).
+The unchanged pinned renderer reproduces its HTML exactly; metadata/hash,
+internal anchors and local linked targets were checked. These are source and
+render-structure observations, not a new visual-usability or product-use claim.
+The method reference names that exact source and survives a standalone copy as
+an optional external reference. The 23 catalog tests pass; metadata/index checks
+pass. Both affected scopes validate; native structure reports seven deliverables,
+64 needs, zero errors, the existing cycle and two existing unknown observations.
+Original OUT-001–003, REQ-001–008, AC-001–006 and VER-001–006 are byte-preserved;
+v9 Markdown/HTML equal the published 1.0.0 source. Candidate screening uses the
+available local patterns, separately from hosted secret-set coverage.
+
+A bounded read-only check of locally fetched consumer refs found App's entry
+basis at `92b38ed440f5d7b4d0f1262aaf3a484ca532ec43` naming the stable manual index
+and a selected v9 basis. The index still exposes that unchanged work. No manual
+reference was found in the searched SWBPIPE AGENTS/loop/PRD inputs at
+`2656dcb33328b12c5572a30c10124a40f35adffc`; this is not an exhaustive adoption
+claim. No downstream edit, repin or message was made. An integrated approved
+basis can be conveyed through the existing Agent 0 routes for any consumer-owned
+reconciliation; reading the new index does not adopt the successor.

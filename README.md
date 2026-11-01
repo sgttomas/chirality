@@ -43,8 +43,9 @@ is not a new library edition.
 
 | I want to… | Start here | How to use it |
 | --- | --- | --- |
+| Work on a project with my agent | [HELP_HUMAN](agents/AGENT_HELP_HUMAN.md) and the [workflow guide](workflows/README.md) | Give your agent the role, your actual problem and intended result; select a method as needed under your project's instructions. |
 | Reflect on how the work is understood and carried out | [Chirality in Practice](docs/alignment-manual/README.md#chirality-in-practice) | Explore the successor proposal's reasons and cases; it is material for reflection, not another execution instruction set. |
-| Read the earlier agent-directed account | [Project Management Manual v9](docs/alignment-manual/README.md#project-management-manual) | Select its Markdown or HTML explicitly; existing v9 uses remain unchanged. |
+| Read the earlier agent-directed account | [Project Management Manual v9](docs/alignment-manual/README.md#project-management-manual) | Give v9's Markdown to your agent with your problem if you prefer the earlier agent-addressed account; its text remains unchanged. |
 | Learn the reasoning | [Thesis](docs/thesis/README.md) and [courses](docs/human-team-courses/README.md) | Read the foundations or follow the learning material for people. |
 | Choose an agent's contribution | [Roles](agents/) | Read the relevant role: HELP_HUMAN, HELPS_HUMANS, WORKING_ITEMS or TASK. |
 | Use a repeatable method | [Workflow guide](workflows/README.md) | Select a workflow and retain its complete package and required resources. |
