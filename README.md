@@ -18,8 +18,7 @@ revision as experience shows what serves the work and what does not.
 The library offers working methods and material for understanding and questioning
 those methods. [Chirality in Practice](docs/alignment-manual/README.md#chirality-in-practice)
 is a reflective book for people and agents, grounded in the thesis and
-project experience. The [earlier Project Management Manual](docs/alignment-manual/README.md#project-management-manual)
-remains available for its agent-directed use. For a practical method, choose the
+project experience. For a practical method, choose the
 relevant role or workflow below under your project's own instructions.
 
 To contribute to this repository, use [Develop and contribute](#develop-and-contribute).
@@ -44,7 +43,6 @@ is not a new library edition.
 | --- | --- | --- |
 | Work on a project with my agent | [HELP_HUMAN](agents/AGENT_HELP_HUMAN.md) and the [workflow guide](workflows/README.md) | Give your agent the role, your actual problem and intended result; select a method as needed under your project's instructions. |
 | Reflect on how the work is understood and carried out | [Chirality in Practice](docs/alignment-manual/README.md#chirality-in-practice) | Explore the book's reasons and cases; it is material for reflection, not another execution instruction set. |
-| Read the earlier agent-directed account | [Project Management Manual v9](docs/alignment-manual/README.md#project-management-manual) | Give v9's Markdown to your agent with your problem if you prefer the earlier agent-addressed account; its text remains unchanged. |
 | Learn the reasoning | [Thesis](docs/thesis/README.md) and [courses](docs/human-team-courses/README.md) | Read the foundations or follow the learning material for people. |
 | Choose an agent's contribution | [Roles](agents/) | Read the relevant role: HELP_HUMAN, HELPS_HUMANS, WORKING_ITEMS or TASK. |
 | Use a repeatable method | [Workflow guide](workflows/README.md) | Select a workflow and retain its complete package and required resources. |
