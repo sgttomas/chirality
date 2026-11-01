@@ -17,10 +17,12 @@ using available library methods. The route covers its own maintenance means,
 preserves the basis governing their review, and invokes the actual same-PR
 reconciliation practice without creating another owner of it.
 
-This is a newly authored setup contract, not established fulfillment. It defines
-the accepted production target; this authoring assignment authorizes no product
-implementation, acceptance or release. The selected author is a bounded TASK
-contributor, not a permanent production appointment.
+The accepted production target is unchanged. A connected maintenance/recovery
+candidate now has bounded source examination, reused actual change evidence and
+a labelled interruption/custody exercise in Work. The current assignment names
+Agent 1 WORKING_ITEMS as continuing implementation owner and permits drafting,
+checking and a draft PR; Agent 0 retains owner review and integration. Content
+approval before integration, product acceptance and release remain distinct.
 
 Project-relative source paths below resolve from the repository root. The basis
 is the Group 3 snapshot named in the frontmatter, specifically its vocabulary,
@@ -29,8 +31,10 @@ objectives, ledger, DEL-02-01 card, §8.1 formation obligations and §§9–10.
 Its `DECISION.md` supplies acceptance and setup authority; submitted status text
 inside `PROJECT_DECOMP.md` is historical. Its manifest was verified, including
 payload SHA-256 `313bdb78d1a000d8a903aa12197603ac45bcb7a601df1ee12447eaaf29031261`.
+The current PRD also carries the owner-authorized product-list clarification
+from PR #1783; requirements and criteria retain their accepted meaning.
 Snapshot-relative links retain the original base
-`execution/_Decomposition/PROJECT_DECOMP.md`. The accepted `docs/PRD.md` has
+`execution/_Decomposition/PROJECT_DECOMP.md`. The originally accepted `docs/PRD.md` had
 SHA-256 `95c3c25ee36d4d4ddadf54d266a47a2ee58c6b37fbbdef75ad20a97986a718ca`.
 
 | Accepted scope | Local contribution | Objective meaning |
@@ -43,7 +47,7 @@ SHA-256 `95c3c25ee36d4d4ddadf54d266a47a2ee58c6b37fbbdef75ad20a97986a718ca`.
 | SOW-0018 | Recover retained work from its locality and actual review record | OBJ-002, OBJ-004, OBJ-005 |
 | SOW-0021 | Exceptional custody with actual holder, reserved operation and recovery conditions | OBJ-002, OBJ-005 |
 
-The initial source assessment and continuation conditions are in [Work/MaintenanceBasis.md](Work/MaintenanceBasis.md). Consumer-local needs are now declared in `deliverable.yaml`; their presence establishes no satisfaction claim.
+The maintenance examination and continuation conditions are in [Work/MaintenanceBasis.md](Work/MaintenanceBasis.md). Consumer-local needs are now declared in `deliverable.yaml`; their presence establishes no satisfaction claim.
 
 ## Deliverable Definition — Ontology
 
@@ -68,7 +72,7 @@ and case selection remain bounded implementation decisions under actual authorit
 
 - **CLM-001** — Accepted decomposition §§8.1/9 and the DEL-02-01/DEL-04-01 cards assign the general same-PR reconciliation practice and accounting for formation setup/needs coverage to `DEL-04-01`; `DEL-04-02` owns reflective guidance/examination. Formation accounting does not centralize local owners’ records. Actual source corrections stay with implementation owners; the integration owner checks the combined result and one editor handles shared-file changes. `AGENTS.md` and `workflows/bounded-reconciliation/WORKFLOW.md` supply the current usable practice.
 - **CLM-002** — Accepted decomposition §§8–9 assign executable support and direct tool-use contracts to `DEL-03-01`, the scoped shared-reference/publication clarification to `DEL-02-02`, and obtaining/version/publication/update guidance and named compatibility evidence to `DEL-05-01`. This route consumes their relevant conditions without appointing suppliers or taking those acts over.
-- **CLM-003** — `AGENTS.md`, PRD §§2.3/5 and R06/R14/R15 reserve changed commitments, acceptance criteria, explicit holds, risk acceptance, human acceptance and releases to the actual owner. Protected baselines remain with their governing decision owner. Frozen App v3/Runtime/PEC work requires explicit owner reactivation; additional removals require specific owner disposition. Consumers own their product work, policy, operational data, adaptations, adoption and releases. Interrupted custody is resolved by the authorized maintainer of the reserved operation, not by timeout.
+- **CLM-003** — `AGENTS.md`, PRD §§2.3/5 and R06/R14/R15 reserve changed commitments, acceptance criteria, explicit holds, risk acceptance, human acceptance and releases to the actual owner. Protected baselines remain with their governing decision owner. Frozen App v3/Runtime work requires explicit owner reactivation; additional removals require specific owner disposition. Consumers own their product work, policy, operational data, adaptations, adoption and releases. Interrupted custody is resolved by the authorized maintainer of the reserved operation, not by timeout.
 - **CLM-004** — Accepted decomposition §6.1 reports PR #1779's final checked head `a0bb0dc77a53b041262571f658f9fd9590d44269` and same-tree merge `a052783460f60c76e6fa229500f59a51f67c5265`, applicable selected-tool checks and independent review. This is reusable reported evidence for portions of A2/A5, not a new test run or proof of all R04 operations, A8, named compatibility, live setup or product acceptance. The current setup and ScopeOfWork instructions are available inputs, not unperformed builds.
 
 ## Completion and Reliance Basis — Epistemology
@@ -104,14 +108,14 @@ supplier commitment is created by this contract.
 
 | Input / source | Intended use and condition | Case/trigger and current limit |
 |---|---|---|
-| Owner steering, accepted PRD/decomposition, `AGENTS.md`, active role and selected maintenance method | Establish scope, authority, selected and preceding basis before acting | Every change; the setup decision authorizes setup only |
+| Owner steering, accepted PRD/decomposition, `AGENTS.md`, active role and selected maintenance method | Establish scope, authority, selected and preceding basis before acting | Every change; use current undertaking authority, not the historical setup decision alone |
 | Current create-workflow, change, Root change skill and relevant package resources | Select usable maintenance means; inspect source standing and dependencies | Before adding/revising/organizing/reviewing holdings; only relevant resources, no global census |
 | Actual `workflows/bounded-reconciliation/WORKFLOW.md`; DEL-04-01 practice | Compare result/evidence with owning commitments, Work and conditions in the implementation PR | During change and before integration; current usable method can be consumed without waiting for all DEL-04-01 outputs |
 | Selected tool source and direct usage contract; DEL-03-01 contribution | Establish truthful command behavior and capability limits before reliance | Whenever a method directs execution; unresolved behavior needs evidence, not invented fallback |
 | PR #1779 at CLM-004's basis and accepted §6.1 evidence | Establish supported A2/A5 claims and determine remaining gaps | Before selecting additional maintenance cases; reports are reused, not recast as new observations |
 | DEL-02-02 scoped applicability sources | Resolve a selected semantic dispute with historical/adopted meaning preserved | When shared definitions disagree; unresolved consumer basis must not be rewritten away |
-| Actual formation localities, Work and review record | Recover usable work with maturity, conditions and source identity | Recovery/A8; §8.1 requires real setup, not guidance alone; this contract does not create the case evidence |
-| Selected repository/host custody mechanism and authorized maintainer | Identify holder/item/reserved operation and verify release/recovery/enforcement | Only an operation needing exclusive custody; binding remains TBD-001 |
+| Actual formation localities, Work and review record | Recover usable work with maturity, conditions and source identity | Recovery/A8; the labelled retained-source case and its limits are in Work/MaintenanceBasis.md |
+| Selected repository/host custody mechanism and authorized maintainer | Identify holder/item/reserved operation and verify release/recovery/enforcement | Only an operation needing exclusive custody; the labelled procedural binding and limits are in TBD-001 |
 | DEL-05-01 use/publication route and maintained source evidence | Support selected compatibility or publication/update claims | Q-04/Q-05 inputs in TBD-003/TBD-004; independent maintenance work continues |
 
 ## Production and Verification Method — Praxeology
@@ -145,11 +149,11 @@ or recovery. Return unsupported claims and reserved choices with consequences.
 - **AX-001** — Usability, continuity and warranted claims govern the method set. Reuse maintained instructions and ordinary repository mechanisms; do not manufacture a workflow per operation, central inventory, compulsory companion or routine case/receipt stream. Evidence serves the claim and its intended use.
 - **AX-002** — The owner's Group 3 decision says: “I accept this decomposition as the basis for project setup.” The same decision authorizes Agent 0's direct setup management and Type 2 ScopeOfWork authoring. It is not implementation fulfillment, consumer qualification, product acceptance or release. Actual owner authority and explicit holds remain intact.
 - **AX-003** — During formation, local contributors retain their contracts, Work and conditions through repairs. DEL-04-01 accounts for setup/reconciliation practice, DEL-04-02 for the accepted decomposition/reflection contribution, and Agent 0 for combined integration. Scope authoring and parent-managed Work/need formation are distinct acts; neither their presence nor this valid contract proves suitable inputs or product fulfillment.
-- **TBD-001** — The specific custody operation, holder, mechanism and release/recovery conditions remain unselected. Bind them from an actual need before making enforcement or custody-recovery claims; continue guidance and non-custody work. No new locking system is implied.
+- **TBD-001** — The labelled interrupted extraction in Work/MaintenanceBasis.md binds Agent 1, the scratch item, reserved completion, existing assignment/disjoint-write coordination, authorized recovery/release and reader preservation. The probe demonstrated no filesystem exclusion. Live multi-worker enforcement is unverified and not supplied; a stronger required guarantee would hold its operation pending an actual mechanism.
 - **TBD-002** — Q-01 reserves further disposition of `plans/`, `_DomainEngines/` and other unselected removals; retain them until specific owner authority. Q-02 permits additional bespoke tooling only for a demonstrated selected gap and actual authorization, with no production allocation here. Neither qualification is resolved by this contract.
-- **TBD-003** — Q-04's named consumer, maintained contract/fixture location and exact revision remain unresolved under DEL-05-01. Require those inputs for a named compatibility claim or before an incompatible change, with a supported path/coordinated adapter where needed. Generic Root evidence does not substitute; unaffected procedure work can continue.
-- **TBD-004** — Q-05's verified publication candidate/version label, prior comparison revision and actual affected-holdings account remain unresolved under DEL-05-01. Bind them before asserting A7 preparation/inspection evidence; the procedure connection alone does not satisfy A7 or authorize release.
-- **TBD-005** — Claim-level applicability of prior evidence and the selected additional maintenance/recovery case remain to be established in implementation. Q-03's future production contributor assignments remain open; this authoring assignment makes no permanent staffing or supplier appointment. No substantive source conflict was identified during setup authoring; a later genuine ambiguity must be exposed as CONFLICT with its consequence, not silently normalized.
+- **TBD-003** — Q-04 is bound under DEL-05-01's Work/ConsumerBasis.md for the selected App reader at its named revision only. Other named compatibility or incompatible adopted-clause changes still require their maintained contract/fixture and exact basis, with a supported path/coordinated adapter where needed. Generic Root evidence does not substitute; unaffected procedure work can continue.
+- **TBD-004** — Q-05 is bound under DEL-05-01's Work/ConsumerBasis.md for the F-02/Consolidated v9 source candidate at 1357d706ea77497903976bf159f3880bea4d1360 versus 257ab4c18014bf872a1c72eeb7593a7ad3d135c0 and PR #1783's change account. That reported preparation/inspection evidence is not a published library version; the procedure connection alone does not establish another A7 claim or authorize release.
+- **TBD-005** — Work/MaintenanceBasis.md now assesses claim-level applicability of PRs #1779/#1781–#1784 and the labelled recovery/custody case. This candidate still needs independent examination and owner content approval before integration; no complete product acceptance is asserted. Q-03 future assignments remain separate from this continuing bounded appointment. No substantive source conflict was identified during setup authoring; later genuine ambiguity must remain explicit with its consequence.
 
 ## Output and Evaluation Matrix
 

@@ -26,3 +26,11 @@ For implementation and closeout in this repository:
 - Match preflight to the actual candidate and affected CI entrypoints. Scope candidate checks to files being submitted, and run required range checks against the complete PR diff. Re-run affected checks after repairs; repeat broader suites only when the change or an unresolved concern warrants it.
 
 Do not invent approval-token syntax, add fresh approval gates, or infer authority beyond the user's request and the applicable owning-loop rules.
+
+For Root holding changes, use [bounded reconciliation](../../../workflows/bounded-reconciliation/WORKFLOW.md)
+with the affected locality in the same PR. For publication preparation and update
+inspection, follow [the consumer route](../../../README.md#obtain-and-use-the-library)
+and [change inspection](../../../README.md#inspect-changes-before-adopting-them);
+DEL-05-01 owns their evidence and claim-specific conditions. Neither connection
+authorizes release or adoption. The change method's recovery/custody section
+applies under the actual assignment; a procedural reservation is not host enforcement.

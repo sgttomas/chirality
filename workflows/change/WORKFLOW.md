@@ -49,4 +49,5 @@ to another. Host permissions still bound every operation.
 
 Load [inputs, modes, and output contracts](resources/contract.md) when framing
 the assignment. Use [the detailed method](resources/method.md) for the current
-stage.
+stage, including holding/reference changes, reconciliation, maintenance-means
+revision and interrupted work or exceptional custody.
