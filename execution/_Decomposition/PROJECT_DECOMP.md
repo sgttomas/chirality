@@ -1,10 +1,11 @@
-# Chirality Library — Group 2 decomposition candidate
+# Chirality Library — Accepted decomposition
 
-**Status:** Working reconciliation of the owner's approved Group 2 directions;
-reviewed by Agent 0 for fidelity and ready for decision/snapshot binding.
-No Group 3 audit or final decomposition acceptance is claimed.
-**Revision:** G2-candidate-6, 2026-10-31. Agent 0 review annotations on the
-approved PKG-04 reframing and DEL-05-02 removal; scope allocations unchanged.
+**Status:** Owner accepted G3-candidate-1 as the basis for project setup.
+[_LATEST_ACCEPTED.md](_LATEST_ACCEPTED.md) binds the exact accepted payload,
+decision and independent audit. Agent 0 now manages the authorized setup.
+**Revision:** Accepted standing annotation; substantive G3-candidate-1 content
+is unchanged. The checkpoint history below describes preparation and review;
+the final decision and setup authority are recorded in the accepted snapshot.
 **Method origin:** `chirality-root:bundled:workflow:project-decomp`.
 
 Five flat Packages and seven Deliverables express the approved structural
@@ -29,10 +30,12 @@ verified all three manifest entries before using the
 | Basis | Identity / use |
 |---|---|
 | Accepted Group 1 | `GROUP1-20261031T231127Z`; payload SHA-256 `dd80227079e29e65a73da4c1650295aeb6e65f45940427bf0b698b6a5e1edddd`. DECISION.md supplies acceptance; submitted proposal wording in the snapshot is historical. |
+| Accepted Group 2 | [_LATEST_GROUP2.md](_LATEST_GROUP2.md) binds the structure through its decision and manifest. Payload SHA-256 `66398cb3562d380a7430d7c081ebccc3862c7f33bf69266caff12c4dc0151328`; this is the independently audited basis. |
+| Independent Group 3 audit | [GROUP3_AUDIT.md](GROUP3_AUDIT.md), SHA-256 `b3394ea4c36720b6452fe92976bd18c8f54a1e55acef4377738e38d57d876436`. No substantive blockers; N-01's stale checkpoint wording is corrected in this mutable candidate. |
 | Accepted product intent | [docs/PRD.md](../../docs/PRD.md), revision 2026-10-31, SHA-256 `95c3c25ee36d4d4ddadf54d266a47a2ee58c6b37fbbdef75ad20a97986a718ca`, originally fixed at `d5ca6594ce6010c94c7981fe35cc540a822e9aa8`. |
 | Current inspection basis | `6865c6eaeed2bbf6b87f96ec45da18d837c6eb7b`, branch `codex/library-decomposition-20261031`, incorporating the merged repair. Affected §6 observations are refreshed against this basis; unchanged observations reuse the earlier inspection at `cd81b47b6ba1a29a606caec3d1be691f4691c4e7`. No global census. |
 | Reused repair basis | [PR #1779](https://github.com/sgttomas/chirality/pull/1779), merge `a052783460f60c76e6fa229500f59a51f67c5265`; final checked head `a0bb0dc77a53b041262571f658f9fd9590d44269`. Source inspection and reused verification are distinguished in §6.1. |
-| Selected method | [Workflow](../../workflows/project-decomp/WORKFLOW.md), [contract](../../workflows/project-decomp/resources/contract.md), [Group 2 method](../../workflows/project-decomp/resources/method.md). Same bytes as the original Group 1 method basis. |
+| Selected method | [Workflow](../../workflows/project-decomp/WORKFLOW.md), [contract](../../workflows/project-decomp/resources/contract.md), [decomposition method](../../workflows/project-decomp/resources/method.md). Same bytes as the original Group 1 method basis. |
 | Authority and entry | [AGENTS.md](../../AGENTS.md), [TASK](../../agents/AGENT_TASK.md), [Root entry](../_Coordination/LOOP_INIT.md), and this assignment. Owner steering retains Agent 0 coordination/review and this directly managed Type 2 author; no Type 1 layer is introduced. |
 | Historical transition | PR #1778; [recovery route](../../projects/FROZEN.md#pre-library-root-execution); tag `archive/pre-library-execution-2026-10-31` at `f80f1510fb50799764720303b86c36da64b75d19`. Reset already executed; retention only, no repeated removal job. |
 
@@ -52,12 +55,14 @@ information Deliverable. The discussion concluded: **“Approved. Proceed
 accordingly.”** These decisions are supplied by the conversation/assignment,
 not inferred from a merge or authored as an approval by this preparer.
 
-Agent 0 has reviewed this translation of the approved direction and found no
-material discrepancy. The decision record will bind the resulting representation
-without claiming the owner inspected its hash before approving the structure.
-Agent 0 records the decision and then commissions the separate Group 3 audit.
-No snapshot, pointer, live locality, contract, need declaration, release or final
-acceptance is created by this authoring continuation.
+Agent 0 reviewed this translation and found no material discrepancy. The
+[Group 2 decision](checkpoint_snapshots/GROUP2-20261101T005422Z/DECISION.md)
+binds the representation without claiming the owner inspected its hash before
+approving the structure. The independent [Group 3 audit](GROUP3_AUDIT.md) is
+complete. The owner subsequently accepted the final decomposition; the decision
+and exact payload are bound through [_LATEST_ACCEPTED.md](_LATEST_ACCEPTED.md).
+Earlier snapshots remain unchanged. Setup is authorized under Agent 0's direct
+management; it does not establish production completion.
 
 ## 2. Vocabulary map
 
@@ -174,7 +179,7 @@ cards and §9 summarize it for review and must agree with it.
 | SOW-0008 | IN | Support review and integration with proportionate scrutiny, the actual checked revision, findings, updates to owning text and the repository change procedure. | R04, “Review and integrate”; R12; R14; A2 | PKG-02 | DEL-02-01_maintenance-procedures | OBJ-002, OBJ-003 | FALSE. Root's grant does not transfer through library consumption. |
 | SOW-0009 | IN | Align tool-use instructions with actual commands/interfaces, dependencies, outputs, write effects, failure behavior and limits. Use available selected-library tools for repeatable operations; state unavailable capabilities and permitted fallbacks, repairing necessary reusable procedure at its source. | R05; R17; §6.1; A2 | PKG-03 | DEL-03-01_maintenance-toolkit | OBJ-002 | FALSE. Existing deliverables CLI requires Git, HEAD and declared dependencies; file-only/namespace adapters are not assumed. |
 | SOW-0010 | IN | Maintain entry, roles, methods, tools and execution under the existing authorized basis; review replacement means, preserve the usable preceding basis and adopt only after verification with actual authority. | R06; R04, “Change the maintenance means”; A5 | PKG-02 | DEL-02-01_maintenance-procedures | OBJ-001, OBJ-002, OBJ-003 | FALSE. Proposed instructions do not authorize themselves or alter their own review basis. |
-| SOW-0011 | IN | Establish an accepted decomposition of bounded contributions with meaningful intended improvements, scope, outputs and evaluative evidence mapped to product objectives, without directory/requirement-driven partitioning or conflicting change ownership. | R07; §2.2; §6.2–6.3; A3 | PKG-04 | DEL-04-02_reflective-review | OBJ-001, OBJ-002, OBJ-004 | FALSE. Group 1 basis accepted; approved Group 2 direction is translated here, awaiting Agent 0 fidelity review and snapshot binding; independent final audit and decomposition acceptance remain outstanding. |
+| SOW-0011 | IN | Establish an accepted decomposition of bounded contributions with meaningful intended improvements, scope, outputs and evaluative evidence mapped to product objectives, without directory/requirement-driven partitioning or conflicting change ownership. | R07; §2.2; §6.2–6.3; A3 | PKG-04 | DEL-04-02_reflective-review | OBJ-001, OBJ-002, OBJ-004 | FALSE. Group 1 basis and Group 2 structure accepted and bound; Agent 0 fidelity review and independent final audit complete. Owner final decomposition acceptance is recorded in _LATEST_ACCEPTED.md; setup is authorized. |
 | SOW-0012 | IN | Set up accepted localities using the library's applicable tools: ScopeOfWork.md for goal, accepted scope/objective references, outputs, boundaries, acceptance criteria and verification; deliverable.yaml for actual needs/conditions and useful source/code/check pointers; Work/ for reasoning, evidence, alternatives, consequential attempts, unresolved conditions and local outputs with maturity explicit. | R08; §6.2–6.3; A3, A8 | PKG-04 | DEL-04-01_library-reconciliation | OBJ-001, OBJ-002, OBJ-004 | FALSE. Future execution/PKG-nn/DEL-nn-nn/ only after accepted scope; maintained outputs retain source homes and unchanged declarations stay unchanged. |
 | SOW-0013 | IN | Author consumer-local needs after scope exists, identifying input, intended use/condition, trigger/case and source or unresolved binding. Preserve distinct conditions, preliminary/final use, reciprocal relations and technical holds; judge suitability from evidence. | R09; §6.1–6.2; A3 | PKG-04 | DEL-04-01_library-reconciliation | OBJ-004 | FALSE. No inferred supplier commitments or whole-deliverable finish-to-start constraints; presence, merge and structural checks do not establish suitability. |
 | SOW-0014 | IN | Support authorized local action from goals, evidence and actual input conditions, revising understanding/routes and neighborhoods as findings emerge, continuing unaffected work and checking affected uses with one integration owner. | R10; A3; §4 closing paragraphs | PKG-04 | DEL-04-01_library-reconciliation, DEL-04-02_reflective-review | OBJ-002, OBJ-003, OBJ-004 | FALSE. Commitment/acceptance changes and reserved decisions return to the owner; local completion must serve the product. |
@@ -236,8 +241,7 @@ qualifications and the PRD remain governing; compact mapping does not replace th
 | A8 | SOW-0012, SOW-0018, SOW-0021 | Recover real retained work or a labelled case; verify custody release/recovery and actual enforcement where applicable. |
 
 PRD §2.2 is covered by SOW-0001–0026; §2.3 boundaries by SOW-0002/0012/0016,
-SOW-0025 and SOW-0027–0032. Section 5 is preserved in the Group 2 decision binding
-still to be recorded, SOW-0003/0026/0032 and the absence of new platform/schema decisions.
+SOW-0025 and SOW-0027–0032. Section 5 is preserved in the recorded Group 2 decision binding, SOW-0003/0026/0032 and the absence of new platform/schema decisions.
 Section 6's source conditions, method order and future locality convention are
 preserved in §§1/4/8 here and SOW-0009–0015/0020/0026/0033. The already executed
 §6.3 step 2 is retained as history, not reassigned future transition work.
@@ -729,9 +733,9 @@ Derived from the canonical ledger; shared objectives indicate purpose, not edges
 ## 10. Owner decisions translated, correspondence and open matters
 
 The owner approved the discussed structural direction with “Approved. Proceed
-accordingly.” This section records the author's translation, not an invented
-exact-byte approval or a completed checkpoint snapshot. Agent 0 checks fidelity
-and records the actual decision. No accepted Group 1 statement needs revision;
+accordingly.” This section records the author's translation, checked by Agent 0
+and bound in the Group 2 decision/snapshot. It does not claim the owner inspected
+these exact bytes before approving the structure. No accepted Group 1 statement needs revision;
 allocation and vocabulary clarification suffice. Any contrary substantive finding
 must be returned explicitly, not silently amended into the accepted history.
 
@@ -762,14 +766,15 @@ reconciliation from reflection on goals/framing; it creates no duplicate authori
 No substantive conflict with the approved direction was identified by the author.
 The unresolved matters above retain their meanings; this translation creates no
 new reserved structural choice. Agent 0's fidelity review found no material
-discrepancy. Decision/snapshot binding and the separate final audit remain the
-next steps, not a repeated owner question on the approved structural direction.
+discrepancy. Group 2 decision/snapshot binding and the separate final audit are
+complete. The owner's Group 3 final acceptance and setup authorization are now
+recorded through _LATEST_ACCEPTED.md; the approved structural direction is unchanged.
 
 ## 11. Coverage telemetry and checks
 
 | Field | Current working value |
 |---|---|
-| Revision | G2-candidate-6, 2026-10-31 |
+| Revision | G3-candidate-1, 2026-10-31 |
 | ScopeItemCount | 33: 26 IN, 5 OUT, 2 TBD; accepted statements/classifications unchanged |
 | PackageCount | 5 flat Packages with one declared design discipline each |
 | DeliverableCount | 7 active, numeric identities preserved; DEL-05-02 removed and not reused |
@@ -799,8 +804,11 @@ identified. Agent 0 subsequently reviewed the changed allocation, formation
 coverage, reconciliation ownership, reflective guidance and removal of the
 standalone edition/history product against the owner's directions and the PRD.
 Checks confirmed the accepted statements/objective meanings, five packages,
-seven deliverables and complete IN-only production mapping. This is not the
-independent Group 3 audit, implementation evidence or owner product acceptance.
+seven deliverables and complete IN-only production mapping. The separate
+[Group 3 audit](GROUP3_AUDIT.md) subsequently found no substantive blockers on
+the bound Group 2 payload. Agent 0 corrected its sole presentation finding N-01
+and checked that substantive content remains unchanged. These checks establish
+neither implementation evidence nor owner product acceptance.
 
 The existing XRG checker expects CSV cross-register data and would skip this
 inline representation; DOMAIN checks are inapplicable. In-memory table checks
@@ -810,9 +818,15 @@ Hosted secret-set/commit-range checks remain distinct from available local scree
 
 ## 12. Working package and next boundary
 
-Only execution/_Decomposition/PROJECT_DECOMP.md is the mutable working surface.
-No companion tables or dependency/review/receipt register is needed. The accepted
-Group 1 snapshot and pointer remain immutable. The owner's structural decisions
-have been translated here and reviewed by Agent 0 for snapshot binding; no final
-decomposition acceptance is manufactured. Agent 0 then commissions
-the separate Group 3 auditor. No live setup or release is performed in this turn.
+[PROJECT_DECOMP.md](PROJECT_DECOMP.md) is the mutable working surface;
+[GROUP3_AUDIT.md](GROUP3_AUDIT.md) supplies the required independent audit.
+[_LATEST_GROUP1.md](_LATEST_GROUP1.md) and [_LATEST_GROUP2.md](_LATEST_GROUP2.md)
+identify the unchanged accepted snapshots. No companion tables or dependency,
+review or receipt register is needed.
+
+The owner accepted the final decomposition for project setup. The Group 3 snapshot
+includes the exact submitted candidate, audit, decision, manifest and setup handoff;
+[_LATEST_ACCEPTED.md](_LATEST_ACCEPTED.md) identifies that basis. Agent 0 manages
+initial preparation and directly assigns Type 2 ScopeOfWork authors. Setup carries
+§8.1's concrete formation obligations with the deliverable cards and authors needs
+after local scope exists. Product acceptance and release remain separate.
