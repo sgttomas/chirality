@@ -12,7 +12,7 @@ No library release or consumer adoption is performed.
 ## Current undertaking and outputs
 
 Give an independent consumer a usable way to select material, obtain its actual
-bytes/resources/notices, examine changes and decide adoption. The proposed README
+bytes/resources/notices, examine changes and decide adoption. The owner-approved README
 route and workflow-package guidance are the maintained outputs. This locality
 holds their source basis, actual examination and limits. The existing F-02
 change account supplies the reason and meaning of that candidate's changes;
@@ -168,8 +168,9 @@ different claims from this bounded package-reader and source-candidate case.
 
 The broader delivery subject is the complete tracked library repository at
 `7c334bf5cb529a814e0f96f68bc8d9500b15cdd5`, described as **Chirality library source
-candidate at that revision**. This is a proposed source-delivery basis, not an
-owner release or semantic-version decision. Its preceding comparison basis is
+candidate at that revision**. The owner approved this exact source-delivery candidate and the six-file
+content proposal at `4a4e6452931e78c0ebdb405b651e434bcf40bdc7` with “Approved”.
+That decision is not an owner release or semantic-version selection. Its preceding comparison basis is
 `547e7d7f833f9bec351f7a034bddd7c1a37db15a`. The source candidate adds the structured
 brief's PyYAML dependency explanation and the corresponding toolkit examination;
 no executable capability changed. The current PR's subsequent evidence updates
@@ -221,6 +222,5 @@ resources and applicable legacy maps. Query Git/HEAD prerequisites remain in for
 Full-tree correspondence establishes source-delivery identity; behavioral evidence
 is limited to the operations above on the observed platform/filesystem. Historical
 and Root-only holdings keep their declared standing. No frozen product was run,
-no broader App qualification is inferred, and owner content/delivery approval
-remains pending. The earlier named App-reader and manual-edition cases retain
+no broader App qualification is inferred, and owner content/delivery approval is recorded in PR #1787. The earlier named App-reader and manual-edition cases retain
 their own exact bases and limits.

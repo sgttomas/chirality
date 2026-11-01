@@ -76,7 +76,7 @@ Python -S call with an empty JSON object failed at that import before assignment
 validation. This isolates dependency behavior, not a substantive brief failure.
 The runtime README now proposes declaring that dependency, its current traceback
 failure and the limits of direct-reading fallback. Executable code needs no
-change for this finding. Content approval remains pending.
+change for this finding. The owner approved this correction and its evidence in PR #1787.
 
 For archive use, retain the helpers and their imports, role/registry/catalog
 metadata, selected package resources, applicable legacy maps, common.py and the
