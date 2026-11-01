@@ -10,9 +10,9 @@ Ryan Tufts
 
 This book develops the reflective aspects of Chirality. It extends the argument of [Purpose, Participation, and Judgment](../thesis/README.md) through an examination of work: how an undertaking acquires a direction, how contributions become usable together, and how experience can change the means by which the next undertaking proceeds. Agents assist with interpretation, comparison, drafting and examination. The author determines the intended meaning and the text to accept and publish. The account uses an impersonal voice; a constructed case is not testimony about the author's experience.
 
-The book succeeds *Project Management for Human Agent Teams, Consolidated v9* as a reflective account. The earlier work addressed an executing agent and combined explanations with instructions. Here those explanations are reconsidered as arguments about practice. Particular recommendations retain reasons, circumstances and limitations. The book is available to people and agents as material for thought and criticism; the commitments and selected instructions of their undertaking remain the basis for execution. A disagreement between an explanation and an instruction can be consequential without the explanation automatically superseding the instruction.
+The book succeeds *Project Management for Human Agent Teams, Consolidated v9* in the line of this account, without replacing v9's existing uses. The earlier work addressed an executing agent and combined explanations with instructions. Here those explanations are reconsidered as arguments about practice. Particular recommendations retain reasons, circumstances and limitations. The book is available to people and agents as material for thought and criticism; the commitments and selected instructions of their undertaking remain the basis for execution. A disagreement between an explanation and an instruction can be consequential without the explanation automatically superseding the instruction.
 
-The cases have different grounds. Chapter 8 examines identified records of the Root library undertaking. Chapters 9 and 10 contain constructed examples inherited and revised from v9. The thesis supplies a separately dated account of App and SWBPIPE experience. This book does not report new product trials in either application. Its purpose concerns the practice across projects; the direct documentary evidence examined here is predominantly library maintenance. That asymmetry is a limitation of the present account, not a claim that the other projects supply no experience.
+The cases have different grounds. Chapter 9 examines identified records of the Root library undertaking. Chapters 10 and 11 contain constructed examples inherited and revised from v9. The thesis supplies a separately dated account of App and SWBPIPE experience. This book does not report new product trials in either application. Its purpose concerns the practice across projects; the direct documentary evidence examined here is predominantly library maintenance. That asymmetry is a limitation of the present account, not a claim that the other projects supply no experience.
 
 The distinctions developed here are selective. A chapter can make a relationship easier to see while leaving out something that matters in another situation. Agreement with a description is therefore different from an adequate understanding of the work. The contents are an invitation to inquiry, not a checklist of all the questions that might arise.
 
@@ -25,11 +25,12 @@ The distinctions developed here are selective. A chapter can make a relationship
 5. [Ownership and coordination](#ownership)
 6. [What evidence can carry](#evidence)
 7. [Change, continuity and delivery](#continuity)
-8. [A library learning from its own work](#library-case)
-9. [A constructed document-review undertaking](#document-case)
-10. [Two constructed contrasts](#contrasts)
-11. [Reflection across undertakings](#reflection)
-12. [Distinctions used in this book](#vocabulary)
+8. [After completion](#after-completion)
+9. [A library learning from its own work](#library-case)
+10. [A constructed document-review undertaking](#document-case)
+11. [Two constructed contrasts](#contrasts)
+12. [Reflection across undertakings](#reflection)
+13. [Distinctions used in this book](#vocabulary)
 
 <a id="wider-undertaking"></a>
 
@@ -117,6 +118,8 @@ A reserved decision becomes easier to make when its subject is concrete. A propo
 
 The opposite failure occurs when permission to investigate is treated as acceptance of future content. Both errors lose the actual decision. Continuity requires understanding what was authorized and what remains open, rather than repeating an approval question whenever work changes hands.
 
+The Root undertaking made this distinction visible in its separate content and gate decisions. Approval of the revised maintenance and reflective guidance in PR #1785 preceded the later readiness and product decisions described in chapter 9. Each was an actual approval with a different subject. Treating the first as acceptance of every future consequence would have erased the very choices the subsequent work was intended to prepare.
+
 A project basis can contain sound sections that conflict as a whole. One may promise recovery while another excludes the state needed for it. Following a representative activity across the sections can expose the conflict. Structural checks help with representation; substantive examination addresses whether the assembled basis supports the intended result.
 
 ## 4. Contributions and their relationships
@@ -153,6 +156,8 @@ A graph expresses selected relationships for a purpose. An acyclic graph may omi
 
 A cycle may indicate coupled design, an overbroad contribution or an impossible order. Those interpretations warrant different responses. Defining an interface can allow two implementations to proceed; developing coupled work under one integration responsibility can preserve a relationship that should not be cut. Narrowing an accepted requirement to obtain a cleaner graph changes the commitment while appearing to repair a representation.
 
+The Root library's accepted source at `fc73de583d25bf792d5c3abb3bf1ac8e0c38f7d6` retained reciprocal declarations among its seven deliverables. The [tool-use account](../../execution/PKG-03/DEL-03-01/Work/ToolBasis.md) explains that native cycles are allowed and need a use-specific reading. The library proceeded through local conditions to acceptance without treating removal of every cycle as a product goal. That is a bounded example of a graph serving inquiry rather than deciding the permissible shape of the work.
+
 Tools can derive neighbourhoods and potential impact from declarations. Their usefulness depends on the sources and limits they expose. A present supplier file is an observation about a path, not proof of suitability. Missing mappings remain possible. Local inquiry combines those observations with inspection of the relationships that matter to the actual action.
 
 ## 5. Ownership and coordination
@@ -167,11 +172,19 @@ A person-facing agent can investigate, propose, implement and examine one cohere
 
 Contribution ownership concerns carrying assigned work through examination, repair and transfer. Integration ownership concerns how contributions become a usable result. Neither transfers the person's accountability for reliance. The distinction supports substantial delegation without making integration an unassigned remainder.
 
+### Capability, authority and enforcement
+
+A capable agent can perform an operation without being authorized to perform it in the present undertaking. A host can permit a write that the project's instructions prohibit. Conversely, an authorized operation can remain technically unavailable. Capability, authority and host permission concern different relationships, and treating one as evidence of the others creates practical errors.
+
+Written instructions can establish a procedural boundary without enforcing it. In the Root custody case discussed in chapter 9, a separate process could still write to the held material. The useful finding was the actual limit of the arrangement: coordination identified who should act, but it did not exclude other writers at the filesystem. Calling that arrangement an enforced lock would have encouraged reliance on a protection that did not exist.
+
+The distinction also affects representations of action. A prepared prompt is different from a dispatched assignment, and dispatch is different from execution. A role name or permission field cannot establish what an operation actually did. These relationships make a claim about control examinable without requiring every practical safeguard to take the same technical form.
+
 ### Continuity through repair
 
 An owner who knows the input basis, attempted approaches and governing conditions can often repair a finding more effectively than a newly introduced agent. A separate reviewer can challenge assumptions while the implementation owner retains continuity. Reassigning every small correction may produce many completed tasks but little completed work.
 
-The assignment's boundary matters. A contributor asked only to produce a first fragment may reasonably stop there even when the intended result requires connected repair and reconciliation. Broadening that boundary can remove interruptions without reducing scrutiny. Chapter 8 examines such a change in Root's practice.
+The assignment's boundary matters. A contributor asked only to produce a first fragment may reasonably stop there even when the intended result requires connected repair and reconciliation. Broadening that boundary can remove interruptions without reducing scrutiny. Chapter 9 examines such a change in Root's practice.
 
 Independence remains necessary where the claim warrants it. Review gains little from another agent merely confirming the author's summary. Its value depends on access to the actual candidate and relevant sources, and on the possibility of discovering a premise the author did not test.
 
@@ -201,7 +214,7 @@ Evidence has a subject and a scope. A parser test, visual inspection, source com
 
 Verification concerns conformity to an identified requirement, claim or reference. Validation concerns fitness for intended use. Tools also use these words for narrower operations, so the actual subject matters more than the label. A validator accepting a document format may say nothing about whether the document promises a useful product.
 
-The Root F-02 case in chapter 8 illustrates the distinction. A plausible broad interpretation was challenged by a current caller and executable behavior. The counterexample required a narrower, better-supported explanation. The existence of a successful check alone would not have explained what was wrong with the earlier interpretation.
+The Root F-02 case in chapter 9 illustrates the distinction. A plausible broad interpretation was challenged by a current caller and executable behavior. The counterexample required a narrower, better-supported explanation. The existence of a successful check alone would not have explained what was wrong with the earlier interpretation.
 
 ### Consequence, detectability and independence
 
@@ -218,6 +231,8 @@ An examination needs an identifiable candidate. A moving branch name, a screensh
 Earlier evidence can remain applicable when the conditions supporting its claim remain unchanged. Those conditions can include requirements, inputs, implementation, the check and the environment. A changed document does not necessarily invalidate a previously tested executable path; an unchanged executable can still face a new use that its earlier tests did not address.
 
 This creates a judgment about applicability rather than a choice between universal reuse and universal repetition. A copied table can require placement and rendering checks without requiring another derivation of unchanged numbers. A different consumer may require new interface evidence even when the copied bytes are identical.
+
+The library delivery case separated two warrants that are easy to merge in a summary. The complete archive's correspondence with Git established which source was supplied. Selected operations on an extracted archive established bounded behavior. The first result could be exhaustive about file identity while the second remained selective about use. Neither had to be enlarged beyond its actual claim for the combination to be useful to a recipient.
 
 Retained evidence serves examination or recovery. The form and duration of retention follow that use. A raw log may be essential for one claim while a reproducible fixture and source binding suffice for another. Missing evidence remains a limit; a retrospective narrative cannot silently become a contemporaneous observation.
 
@@ -267,7 +282,7 @@ Conceptual work concerns the intended result and plausible means. Front-end engi
 
 These descriptions are abstractions. A small undertaking can combine several questions in one conversation; a substantial project can have different contributions at different positions. A late interface finding may reopen one premise without returning the whole project to its beginning. The descriptions become harmful when a label demands ceremonial outputs regardless of the actual work.
 
-Where a person adopts a gate, its decision has an identified subject and authority. Where no gate was adopted, a chapter heading does not create one. The Root case in chapter 8 records actual owner gate decisions while preserving their limited meaning.
+Where a person adopts a gate, its decision has an identified subject and authority. Where no gate was adopted, a chapter heading does not create one. The Root case in chapter 9 records actual owner gate decisions while preserving their limited meaning.
 
 ### Completion and the recipient
 
@@ -279,7 +294,55 @@ Delivery transfers an identified result with the information and continuing resp
 
 A source archive, an installed application and an issued technical document make different demands on their recipients. Identity, instructions, limitations and recovery matter according to the selected form. A narrower result can be useful when its scope is explicitly authorized; it does not fulfill a broader obligation merely because it is ready to deliver.
 
-## 8. A library learning from its own work
+## 8. After completion
+
+<a id="after-completion"></a>
+
+### An undertaking ends; its result continues
+
+Completion concerns agreed work and its required examination. The result can continue to be used, depended upon and questioned long after that undertaking ends. A library edition, an installed application and an issued calculation have lives that exceed the work by which they were produced. Confusing those subjects makes maintenance difficult to describe.
+
+One error treats every later improvement as evidence that the earlier work was never complete. An accepted result is returned to an earlier percentage position, and its whole basis becomes a candidate for repeated examination. Another error treats completion as the end of responsibility, leaving a recipient's consequential finding without an owner. Between them lies a quieter failure: current sources move on while users remain uncertain about what changed from the edition they adopted.
+
+An acceptance remains an actual historical decision about an identified subject, evidence and limitations. It is not a guarantee that the assessment was infallible. Later evidence may show that an earlier completion claim was mistaken, that a commitment was not fulfilled, or that a relied-upon result needs correction or withdrawal. Preserving the record of the decision and revising the present assessment are compatible. A new need, by contrast, does not retrospectively become an unfulfilled old commitment merely because it is now important.
+
+The phrase “after 100%” is useful only with this distinction intact. It identifies work after an undertaking has been considered complete; it does not mean that every possible use was qualified or that a product has exhausted its capacity for change. A completed result can remain adequate for its selected use while a later undertaking develops something further.
+
+### Different findings, different consequences
+
+A defect concerns a failure to meet a commitment applicable to the accepted subject. Its repair can preserve the commitment while changing the implementation. The finding also raises a question about past or continuing reliance: someone may depend on behavior the edition does not provide. Whether notice, correction, restricted use or withdrawal is warranted depends on that consequence and the applicable authority. Merging a repair does not itself answer the recipient's question.
+
+An implementation refinement can improve the means without changing the promised behavior. A factual clarification can improve the explanation without changing what the product did. Both can be small, but neither is automatically harmless. An explanation may be the basis on which a person decides whether an operation is suitable, and a changed implementation may affect a consumer whose assumptions were not recorded locally.
+
+A changed environment or dependency presents another possibility. The source may be identical while the operating system, input range or supporting component has changed. Earlier evidence can remain an accurate account of its subject without establishing the new use. The maintenance question then concerns the relationship between the retained result and changed circumstances, not necessarily an original defect.
+
+A new priority or requested capability can alter the intended result itself. Its authority comes from a current undertaking or an applicable standing grant, not from the fact that an earlier product was accepted. Some such work is an ordinary bounded extension. Other work changes the product's commitments enough to require a revised basis. Repeating a complete definition exercise for every repair is no more adequate than treating every extension as already authorized maintenance.
+
+One report can contain several of these meanings. A misleading behavior may expose a product defect, a poor explanation and an examination method that missed a class of failure. Repairing the product addresses one consequence; reflection on the shared practice addresses another. The distinctions are aids to understanding the report, not an exhaustive classification through which every finding must pass.
+
+### The reach of a later change
+
+A change can be local in its making and wide in its effects. One validator condition can alter the inputs accepted from many consumers. A substantial explanatory revision may leave all their adopted instructions untouched. Examination follows the changed claim, its affected relationships and the consequences of error, rather than the age of the product or the number of edited lines.
+
+Earlier evidence remains useful where its relevant conditions are unchanged. A repaired interface may warrant focused regression and consumer checks without repeating an unrelated product qualification. Conversely, an unchanged binary may need examination for a materially different intended use. Keeping these subjects explicit makes both reuse and new verification intelligible.
+
+A published edition retains its identity while maintained sources continue to develop. A correction can be issued as an identified successor with a meaningful change account; it need not silently replace the bytes that earlier evidence and decisions named. A consumer can then assess the consequences while retaining its own basis for current reliance.
+
+This separation also means that a source repair is not necessarily delivered merely because it has merged. The recipient may use an older package, a copied instruction or a product that embeds a selected library revision. Publication and adoption connect the changed result to those actual uses. Whether accumulated changes warrant another edition is a decision about their usefulness, risk and intended recipients. A calendar interval or a count of commits can prompt that consideration without determining it.
+
+Current descriptions matter between releases. A reader can be misled by a sentence that presents development material as part of a published edition, or by an old assertion that an approval is still pending. History can preserve the sequence, but a person should not have to reconstruct it merely to identify what a current statement refers to.
+
+### Continuing ownership without endless work
+
+The participants in a later undertaking may differ from those who produced the original result. Continuity depends on the maintained project's responsibilities, recoverable source, evidence and limitations, and on the actual arrangements with recipients. It does not require one agent session to remain alive indefinitely or a comprehensive registry of every possible consumer.
+
+Each later piece of work still needs an intelligible purpose, authority and usable result. A request and focused examination may suffice. An adopted support obligation can itself authorize and require responses; its scope matters just as the scope of a new assignment does. The absence of such an obligation does not turn an old improvement idea into an active task.
+
+A maintained product can also reach the end of its maintained life. Retirement concerns what work and support will continue, how existing reliance is treated, and what source remains recoverable. It need not erase earlier editions, and recovery need not reactivate development. Where a recipient still depends on a result, the consequence deserves an explicit treatment rather than an assumption that silence ended the relationship.
+
+Maintenance therefore allows completion to remain meaningful without making the result immune to further understanding. The work can end; responsibility and later inquiry take the forms warranted by the actual product, commitments and people involved.
+
+## 9. A library learning from its own work
 
 <a id="library-case"></a>
 
@@ -327,6 +390,14 @@ The named App-reader case had established capture, declaration and content ident
 
 A useful library edition could therefore be completed without proving every imaginable later use. Its usefulness depended on the relationship among actual commitments, bounded evidence, an identifiable delivered subject and the owner's decision. The publication remained available for each consumer to inspect and adopt independently.
 
+### After the edition
+
+Publication did not end work on the maintained library. PR #1791 recorded acceptance and the release pointer in current sources while preserving the approved archive. PR #1792 then clarified how readers could select material, follow releases and inspect updates. Its owning records distinguished source-level subscription guidance from an actually configured subscription or tested notification delivery.
+
+The change addressed a newly articulated usability need. It was not recorded as proof that the published edition had failed an accepted commitment. The owner authorized the concrete improvement and integration; publication of another edition remained a separate decision. The archive stayed at its original source while the README on the development branch acquired later guidance.
+
+This small case gives post-completion work an identifiable subject. An accepted edition, its maintained source, an authorized improvement and a future publication were related without being interchangeable. It supplies evidence of that relationship, not of how effectively readers used the guidance or of any subsequent edition's adoption. The sources are [PR #1791](https://github.com/sgttomas/chirality/pull/1791) and [PR #1792](https://github.com/sgttomas/chirality/pull/1792), the latter integrated at `843824e10e0664a2cb5251280e863fd7b4f3e4f8`.
+
 ### Sources for the case
 
 - [F-02 applicability and repair](../../execution/PKG-02/DEL-02-02/Work/Applicability.md), integrated in [PR #1783](https://github.com/sgttomas/chirality/pull/1783) at `1357d706ea77497903976bf159f3880bea4d1360`.
@@ -334,7 +405,7 @@ A useful library edition could therefore be completed without proving every imag
 - [PR #1786](https://github.com/sgttomas/chirality/pull/1786), integrated at `547e7d7f833f9bec351f7a034bddd7c1a37db15a`, records the 60% standing and bounded fresh-reader examination. [PR #1788](https://github.com/sgttomas/chirality/pull/1788) carries the later factual needs reconciliation; [PR #1789](https://github.com/sgttomas/chirality/pull/1789) records the owner's 90% decision.
 - [Consumer basis](../../execution/PKG-05/DEL-05-01/Work/ConsumerBasis.md) retains selected obtaining, reader, archive and change-inspection evidence. [Library 1.0.0](https://github.com/sgttomas/chirality/releases/tag/library-v1.0.0) identifies the released source and artifact; [PR #1791](https://github.com/sgttomas/chirality/pull/1791), integrated at `ceb2d9bd72bd8bdd6c8b959836d6fe83a60d802c`, records its acceptance and verified publication in current source.
 
-## 9. A constructed document-review undertaking
+## 10. A constructed document-review undertaking
 
 <a id="document-case"></a>
 
@@ -366,7 +437,15 @@ A merge identifies a source result. Whether it is sufficient for acceptance or r
 
 The example's force lies in the connection between the activity, the commitment and the examination. Its sequence is one constructed way those relationships could become visible. Repeating its steps in another product would not guarantee that the important failure had been found.
 
-## 10. Two constructed contrasts
+### A constructed continuation after acceptance
+
+Suppose the document editor has been accepted for the stated use, and a later recipient finds that rejection after an interrupted save leaves a proposal applied. The report concerns an apparent failure of the accepted commitment, not a request for a new feature. Reproduction and diagnosis would establish the affected conditions. The consequence for people already relying on that behavior would remain a separate question from whether a patch passes its checks.
+
+A request for batch acceptance has a different subject. It changes the activity the person wants to perform and can require new commitments about which proposals are considered together. A storage-library upgrade presents a third question: the intended behavior may remain the same while the conditions supporting earlier persistence evidence change.
+
+These situations can warrant work of different scope even though each arrives after completion. The earlier edition and its evidence remain identifiable. The current assessment can change where a defect undermines it; valid evidence can remain useful elsewhere. The constructed continuation illustrates why a maintenance label alone cannot decide the necessary authority, examination or delivery.
+
+## 11. Two constructed contrasts
 
 <a id="contrasts"></a>
 
@@ -390,7 +469,7 @@ The two findings require different responses. The first needs an adequate basis 
 
 The final comparison identifies its actual coverage, limitations and material differences. The responsible person's choice concerns the intended use and consequences, rather than a winner selected by test count or execution speed. These are explanatory possibilities; the case supplies no benchmark result for SWBPIPE or any other named solver.
 
-## 11. Reflection across undertakings
+## 12. Reflection across undertakings
 
 <a id="reflection"></a>
 
@@ -430,6 +509,8 @@ An instruction's length is a poor proxy for its burden. A sentence can require h
 
 The thesis's [discussion of over-proceduralization](../thesis/09_discussion.md) and [development history](../thesis/appendix_e_development_history.md) provide grounds for examining that tendency. They are explanations at identified bases, not proof that every later simplification improves practice. A smaller record can remove duplication or destroy needed evidence; the consumer and consequence decide which interpretation is warranted.
 
+The effects of an instruction change also depend on its actual consumers and enforcing tools. If a validator continues to reject a newly authorized operation, the revised prose has not made that route usable. If CI still requires a retired artifact, the retired duty continues to consume work. The F-02 counterexample exposed the complementary mistake: an explanation treated behavior as legacy while a current caller still used it. Reflection on practice has to reach those relationships if its conclusions are to take effect.
+
 Mechanical repetition sometimes warrants a tool. That tool introduces its own selection, failure and maintenance costs. Automation can answer the wrong question reliably. Its value depends on the relationship between the operation and the decision it supports, not on the fact that an agent no longer performs it manually.
 
 ### Questions that remain open
@@ -440,7 +521,7 @@ These questions are not missing steps in a universal process. They remain questi
 
 The account's continuing worth depends on whether it helps people and agents make those relationships intelligible and discuss their consequences. It can be corrected through the same work from which it draws its substance. A coherent book is an achievement in explanation; the practice remains larger than the explanation.
 
-## 12. Distinctions used in this book
+## 13. Distinctions used in this book
 
 <a id="vocabulary"></a>
 
@@ -453,7 +534,7 @@ These terms express distinctions used in the argument. The [thesis glossary](../
 | Judgment | The person's situated, committed engagement with what the work means, what matters and what they will stand behind. |
 | Knowledge | A knower's situated achievement of understanding, which can be incomplete, mistaken or revised. |
 | Information | Material that can be recorded, transmitted and compared, and can support knowing without being identical with it. |
-| Commitment | An adopted obligation or the person's engagement with what they will stand behind, concerning an identified subject. |
+| Commitment | In a production contract, an adopted obligation. In the account of judgment, the person's engagement with what they will stand behind. The subject and context distinguish these related senses. |
 | Assumption | A provisional basis for reasoning whose grounds and consequences remain open to examination. |
 | Proposal | A candidate choice; permission to develop it does not imply its acceptance. |
 | Observation | An account of what occurred under identified conditions. |
@@ -472,6 +553,8 @@ These terms express distinctions used in the argument. The [thesis glossary](../
 | Integration | Bringing related contributions into a usable result and examining their relationships and remaining conditions. |
 | Source integration | Bringing a change into a selected source revision, such as a Git merge. |
 | Completion | Fulfillment of agreed work and its required examination within the authorized scope. |
+| Edition | An identified state of a work made available for selection, with its own content and standing. |
+| Maintained source | The source that can continue to develop after an edition has been identified; later changes do not silently alter that edition. |
 | Delivery | Transfer of an identified result with the information and continuing responsibilities needed for use. |
 | Acceptance | An authorized act concerning an identified subject, scope and purpose. |
 | Release | Authorization to make an identified result available for a stated audience or use. |
@@ -483,6 +566,6 @@ These terms express distinctions used in the argument. The [thesis glossary](../
 
 ## Source and edition note
 
-The preceding text is [Project Management for Human Agent Teams, Consolidated v9](Project_Management_for_Human_Agent_Teams_Consolidated_v9.md), retained as a separate work with its own identity. This first edition changes the character and organization of that account. Its explanations of purpose, commitments, relationships, ownership, evidence, continuity and delivery draw on v9; the actual Root case and explicit treatment of reflection across projects develop the new account.
+The predecessor work is [Project Management for Human Agent Teams, Consolidated v9](Project_Management_for_Human_Agent_Teams_Consolidated_v9.md), retained as a separate work with its own identity. This first edition changes the character and organization of that account. Its explanations of purpose, commitments, relationships, ownership, evidence, continuity and delivery draw on v9; the actual Root case and explicit treatment of reflection across projects develop the new account.
 
 The philosophical distinctions draw on [The Chirality Framework](../thesis/CHIRALITY_FRAMEWORK.md), particularly its account of knowing, judgment and the accountability gap. The maintained [thesis](../thesis/README.md) contains the fuller argument, references and dated evidence. This book does not extend the thesis's empirical claims by restating them. The source revision and content identity of this edition accompany its rendered form; the publication index distinguishes discovery of an edition from adoption of its content.
