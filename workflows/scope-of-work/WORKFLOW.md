@@ -20,6 +20,22 @@ Read [resources/brief.md](resources/brief.md) before accepting a run. Read
 [resources/tools.md](resources/tools.md) before invoking tools and use
 [resources/checks.md](resources/checks.md) for acceptance.
 
+## Current-project use and reconciliation
+
+Current PROJECT/SOFTWARE localities use ScopeOfWork.md, deliverable.yaml and Work/.
+`INIT` and `VERIFY` do not require `_STATUS.md` or a legacy source kit. Preserve
+such files if present; their absence is not a reason to create them or invent a
+lifecycle state. This workflow never advances status.
+
+Ordinary factual reconciliation of an existing contract and its Work/needs occurs
+through `bounded-reconciliation` in the implementation PR before integration,
+within the project's existing authority. Use these validators to check the
+changed contract. Preserve commitments, acceptance criteria and explicit holds;
+substantive changes require their actual owner decision. Do not force routine
+description corrections into the formal amendment route below. `MODE=REVISE`
+remains the route when an accepted scope-change amendment selects it; `CONVERT`
+retains its isolated historical source-preservation requirements.
+
 ## Suitable agent shell
 
 - `TASK` with one deliverable-local sealed brief.
@@ -56,8 +72,9 @@ Read [resources/brief.md](resources/brief.md) before accepting a run. Read
    optionally render HTML from it. Under `CONVERT` the production contract is
    the clean finalized artifact and no other.
 7. Return the production contract path and hash, validation result, checklist,
-   conflicts, and the `_STATUS.md` hash — unchanged under `NO_STATUS_TOUCH`, or
-   before/after when the brief authorizes a status act. For `CONVERT`,
+   conflicts, and preservation of `_STATUS.md` if it exists (otherwise report
+   that no lifecycle source is used). A separately authorized status act belongs
+   to its own actor; this workflow never performs it. For `CONVERT`,
    additionally return the evidence-candidate path, source and evidence hashes,
    finalization report, claim map, and parity report. For `REVISE`,
    additionally return the prior contract hash, the amendment reference, the

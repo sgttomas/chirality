@@ -1,35 +1,51 @@
 ---
 name: preparation
-description: Materialize accepted Chirality package, deliverable, category, knowledge-type, or tool-root scope as idempotent folders and source-faithful control files. Use for structural workspace setup, not production-content drafting.
+description: Materialize accepted scope without overwriting work. Current PROJECT/SOFTWARE setup creates flat localities and native needs; retained domain/legacy layouts require their applicable contract. No production drafting or lifecycle advancement.
 ---
 
 # Preparation
 
-Create one bounded scaffold from accepted decomposition data. Preserve every pre-existing path and report exactly what the run created or skipped.
+Prepare one bounded locality from accepted decomposition fields and the project's
+adopted convention. Preserve pre-existing content. This is structural preparation;
+ScopeOfWork authoring and evaluation follow through their selected methods.
 
-## Inputs
+## Inputs and route
 
-Require an execution root, the selected operation, the accepted identifiers and names, and the decomposition source for any metadata-bearing item. The supported operations are:
+Require the target root, selected operation, accepted identifiers/names and the
+source decomposition. Read [the scaffold contract](references/scaffold-contract.md).
+Current PROJECT/SOFTWARE localities are `PKG-nn/DEL-nn-nn/` with `Work/`,
+`deliverable.yaml` and an authored `ScopeOfWork.md`. The current helpers create
+the directory/needs structure only; they do not invent production content.
 
-- package or category lifecycle hierarchy;
-- package reference index;
-- deliverable or knowledge-type minimum fileset;
-- aggregation or domain tool-root prerequisites.
-
-If a required source field is absent, stop that operation and report the missing field. Do not infer names, descriptions, dependencies, artifacts, or lifecycle state.
-
-Read [references/scaffold-contract.md](references/scaffold-contract.md) before creating a deliverable or knowledge type; it preserves the operation map and exact control-file schemas.
+For an explicitly adopted phase/control-file layout or DOMAIN/KTY scope, use
+[the retained contract](references/legacy-scaffold-contract.md). Do not infer
+migration or required legacy state from the mere presence of old files. Unknown
+identity, incompatible source or unclear write authority stops the affected
+operation; report it and continue unaffected authorized work.
 
 ## Method
 
-1. Resolve the target paths using filesystem-safe labels while retaining canonical names inside control files. Replace `/`, `\\`, `:`, `*`, `?`, `"`, `<`, `>`, and `|` with `-`; collapse and trim whitespace.
-2. Inventory every target before invoking a scaffold tool. Prefer the repository helpers under `tools/scaffolding/`, including `scaffold_package.sh`, `scaffold_deliverable.sh`, `scaffold_tool_root.sh`, and `write_status.sh`.
-3. Capture each tool-emitted `CREATED_PATH` and compare it with the pre-run inventory. Treat an existing empty file as existing work.
-4. Populate only files created by this invocation. Initialize `OPEN` status only when `_STATUS.md` is new.
-5. For a deliverable or knowledge type, ensure `_CONTEXT.md`, `_STATUS.md`, `_REFERENCES.md`, and a placeholder `_SEMANTIC.md` exist. `_CONTEXT.md` must reproduce accepted decomposition fields exactly. For PROJECT/SOFTWARE deliverables, also create `deliverable.yaml` with the accepted numeric DEL identity and `needs: []`. This means no needs have been declared yet; it makes no completeness, suitability or readiness claim. Author actual needs later from scope, the project's adopted work locality (`Work/` by the shared default) and source conditions through `dependency-extract`. Do not create dependency CSV/Markdown companions. This DEL-native method does not assess KTY dependency declarations; preserve existing KTY artifacts without adding a schema or dependency files.
-6. Run `tools/validation/check_min_viable_fileset.sh <folder> <accepted-deliverable-ID>` for each DEL scaffold; the optional accepted ID binds its YAML to the decomposition as well as its folder. For a knowledge type, omit that argument; the check covers its non-dependency metadata only. Use `tools/validation/validate_id_format.sh` before creating a path when identifier validity is uncertain; if validation fails, do not scaffold and report the invalid ID.
-7. Return exact `created_paths`, `skipped_paths`, validation results, and unresolved source fields.
+1. Resolve the accepted source fields, target path and allowed writes. Preserve
+   canonical identifiers and names; the current path uses numeric PKG/DEL IDs.
+2. Inspect the target before creating anything. An empty existing file is still
+   existing work. Do not overwrite, relocate or reinitialize it.
+3. Invoke the current helpers with `--current` for the current route. Inspect
+   their `CREATED_PATH` results and preserved existing content. They create a
+   package directory or a DEL directory with `Work/` and native `deliverable.yaml`.
+4. Check preparation with `check_min_viable_fileset.sh --current --prepared`.
+   An empty needs list means none declared yet, not completeness or readiness.
+5. Return the actual created/preserved paths and unresolved conditions to the
+   coordinator. `scope-of-work MODE=INIT` authors the absent production contract
+   from accepted sources; dependency authoring follows actual local scope.
+   The coordinator checks the authored locality without `--prepared` as well as
+   the substantive ScopeOfWork contract.
 
-## Boundaries
+Do not create status, context, reference, semantic, memory, receipt or handoff files
+for the current route merely because the historical route used them. Current
+meaning, evidence and unfinished work belong in the owning ScopeOfWork, Work and
+needs, reconciled in the same change before integration. Add new working material
+for a concrete need and connect it from the existing entry into that work.
 
-This skill is structural. Do not draft engineering, software, publication, or Knowledge Subject content. New PROJECT or SOFTWARE production content belongs to the applicable production workflow. Create `MEMORY.md` only when the request explicitly selects it and authorizes that path. Never overwrite or repair an existing file unless a separate repair request authorizes that change.
+Only an explicit legacy/domain selection uses the retained metadata or lifecycle
+instructions. No preparation result establishes acceptance, supplier readiness or
+permission to act beyond the assignment.

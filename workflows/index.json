@@ -111,7 +111,7 @@
       "name": "preparation",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Materialize accepted Chirality package, deliverable, category, knowledge-type, or tool-root scope as idempotent folders and source-faithful control files. Use for structural workspace setup, not production-content drafting.",
+      "description": "Materialize accepted scope without overwriting work. Current PROJECT/SOFTWARE setup creates flat localities and native needs; retained domain/legacy layouts require their applicable contract. No production drafting or lifecycle advancement.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -122,6 +122,7 @@
       "resources": [
         "SKILL.md",
         "execution.json",
+        "references/legacy-scaffold-contract.md",
         "references/scaffold-contract.md"
       ],
       "execution": {
@@ -2456,7 +2457,7 @@
       "name": "project-setup",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Initialize an accepted project workspace and coordinate its selected setup and estimation phases, or set up the amended scope incrementally after an accepted scope change.",
+      "description": "Materialize accepted project scope as current deliverable localities, author local contracts and needs, and reconcile affected work before integration. Retained domain and legacy routes require explicit selection.",
       "central": true,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -2466,6 +2467,7 @@
         "WORKFLOW.md",
         "execution.json",
         "resources/contract.md",
+        "resources/current-project.md",
         "resources/method.md",
         "resources/package-activation.md",
         "resources/software-activation.md"

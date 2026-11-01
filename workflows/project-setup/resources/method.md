@@ -1,5 +1,10 @@
 # project-setup — method
 
+**Applicability:** Retained DOMAIN and explicitly adopted legacy phase/control-file
+setup only. Use [current-project.md](current-project.md) for the current
+PROJECT/SOFTWARE locality and pre-integration reconciliation. The historical
+control-file and run-log steps below do not apply to that route.
+
 ## Method
 
 ### Schedule workflow (when selected)

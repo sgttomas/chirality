@@ -1,4 +1,10 @@
 #!/bin/zsh
+# --current selects PKG-nn/ with no phase folders. Unflagged calls retain the
+# legacy interface below. The accepted label is not appended to current paths.
+if [[ "${1:-}" == "--current" ]]; then
+  shift
+  exec "${PYTHON:-python3}" "${0:A:h}/current_locality.py" package "$@"
+fi
 # scaffold_package.sh
 # Creates a package folder with all 9 lifecycle subfolders per SPEC.md Section 1.1.
 #
