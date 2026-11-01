@@ -1,0 +1,71 @@
+id: DEL-05-01
+name: Obtain, qualify and inspect identified library material
+needs:
+- from: doc:README.md
+  condition: Select the actual exported holding/use surface and its maintained guides, resources and applicable
+    LICENSE/component notices at an identified revision. Ordinary file reading needs no Git; executable
+    use retains its real dependencies and source/adaptation distinctions.
+  when: Drafting or exercising the obtaining/use route
+  evidence: execution/PKG-05/DEL-05-01/Work/ConsumerBasis.md
+- from: unknown
+  condition: Q-04 requires the named consumer, maintained contract/fixtures, exact revision, selected
+    interface/use and authorized access/cleared evidence. Bind these before named qualification or an
+    incompatible change; generic Root checks or consumer adoption do not supply them.
+  when: Establishing named compatibility or selecting an incompatible interface change
+  evidence: execution/PKG-05/DEL-05-01/Work/ConsumerBasis.md
+- from: unknown
+  condition: Q-05 requires the real candidate/version label, verified maintained source, actual delivery
+    form, prior comparison revision and affected-holdings account. Bind them before preparation/update-inspection
+    claims; no release or automatic adoption is implied.
+  when: Preparing a publication candidate and exercising comparison with its prior basis
+  evidence: execution/PKG-05/DEL-05-01/Work/ConsumerBasis.md
+- from: DEL-02-01
+  condition: Use the applicable maintenance/review/publication preparation and recovery route under actual
+    authority, preserving preceding instructions and ordinary repository facilities. Reuse existing usable
+    methods without waiting for the whole procedure set.
+  when: Carrying authorized consumer-guide or candidate preparation work
+  evidence: execution/PKG-05/DEL-05-01/Work/ConsumerBasis.md
+- from: DEL-04-01
+  condition: Use the current same-PR reconciliation procedure for the candidate result, evidence and this
+    locality, with local ownership and unchanged declarations preserved.
+  when: Reconciling the actual guide/candidate change before integration
+  evidence: execution/PKG-05/DEL-05-01/Work/ConsumerBasis.md
+- from: DEL-01-01
+  condition: Shared entry/navigation text uses an inspected route and keeps its navigation meaning distinct
+    from obtaining/version/compatibility guidance. Coordinate a single editor and examine the combined
+    change without creating exclusive file ownership.
+  when: Changing README or another shared entry surface
+  evidence: execution/PKG-05/DEL-05-01/Work/ConsumerBasis.md
+- from: DEL-02-02
+  condition: Resolve or explicitly qualify the particular disputed reference/publication meaning before
+    a consumer-use statement relies on it; preserve adopted and historical bases. The bounded F-02 case
+    is not a global rewrite requirement.
+  when: The selected guide or change account relies on disputed shared meaning
+  evidence: execution/PKG-05/DEL-05-01/Work/ConsumerBasis.md
+- from: DEL-03-01
+  condition: The selected invoked tool or separately justified supported path/adapter has accurate direct
+    instructions and relevant behavior evidence for the actual use. No adapter is commissioned by this
+    dependency or by an unresolved consumer binding.
+  when: Making executable-use or supported-interface claims
+  evidence: execution/PKG-05/DEL-05-01/Work/ConsumerBasis.md
+- from: doc:projects/FROZEN.md
+  condition: Preserve the documented archive/frozen recovery routes and identify the original pin/path
+    and source before relying on historical bytes. Reuse applicable preservation evidence and disclose
+    unexamined history; do not reactivate old work.
+  when: Using commit-pinned historical material or explaining its recovery
+  evidence: execution/PKG-05/DEL-05-01/Work/ConsumerBasis.md
+- from: doc:docs/alignment-manual/README.md
+  condition: Resolve the actual manual edition and its maintained source/render route, distinguishing
+    stable discovery from exact-content reliance and preserving earlier editions. Examine a selected delivery
+    form under that source basis.
+  when: Using an explanatory edition or preparing its actual delivery form
+  evidence: execution/PKG-05/DEL-05-01/Work/ConsumerBasis.md
+code_paths:
+- README.md
+- LICENSE.md
+- projects/FROZEN.md
+- docs/alignment-manual/README.md
+- tools/workflow_runtime/README.md
+checks:
+- tools/validation/validate_run_record_leaks.py
+- tools/validation/validate_private_terms.py
