@@ -28,10 +28,10 @@ declare the dependency and interpreter selection, not a machine-specific path.
 
 `tools/deliverables/cli.py` requires `--project`; its README agrees. During setup,
 `workflows/dependency-extract/resources/tools.md` incorrectly described an App v4
-default. The current proposal corrects that sentence to state the shared-library
+default. The owner-approved correction updates that sentence to state the shared-library
 CLI's required argument. Its examples already supply the argument, so the change
 alters neither invocation nor executable behavior. Consumer-local adaptations
-retain their own contracts. Owner content approval remains pending.
+retain their own contracts. The owner approved this two-file correction with “you may.”
 
 The queries read live declarations, including uncommitted files. They report
 path/source observations and unknown suitability; they do not execute pointers,
