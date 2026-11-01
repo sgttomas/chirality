@@ -4,6 +4,13 @@ These existing product commitments remain applicable to their adopted consumers.
 They do not reinstate development gates or record duties. Repository work follows
 [AGENTS.md](../AGENTS.md); product acceptance remains with the owner.
 
+Applicability follows the identified consumer and its adopted source basis.
+Reading this catalog does not adopt every product contract, transfer Root's
+repository authority, or amend an earlier adoption. The invariant tables retain
+their original meanings and enforcement descriptions; those descriptions are
+not evidence that a current host implements the mechanisms. Current behavior
+and named-consumer compatibility require evidence for that implementation.
+
 ## Professional accountability
 
 Professional accountability requires identifying what exists, what is warranted,
@@ -54,7 +61,7 @@ edge changes do not acquire a new acceptance gate from this historical reference
 ## Frozen Runtime reference
 
 Runtime is retired and not verified. It is reproducible from
-`archive/pre-docs-cleanup-1`, alongside frozen App v3 and PEC. The contracts below
+`archive/pre-docs-cleanup-1`, alongside frozen App v3. The contracts below
 apply only if Runtime is explicitly reactivated; they do not describe App v4's
 architecture or current development obligations. Its historical basis is in
 [Runtime PRD](https://github.com/sgttomas/chirality/blob/archive/pre-frozen-products-2026-10-10/projects/chirality-runtime/docs/PRD.md) and

@@ -6,8 +6,12 @@ Technical reference for existing host integrations. Development instructions liv
 
 Interface adoption remains project-specific; this reset does not establish final acceptance, downstream qualification or release of prospective interfaces. This document describes configuration and loading, not host enforcement.
 
-The Runtime project owns production discovery, context supply, session history,
-replay, permissions, and execution. Root Python utilities are authoring,
+Under the retained App v3/Runtime contract, the Runtime project owns production
+discovery, context supply, session history, replay, permissions, and execution.
+This allocation does not appoint a production provider for the current Root
+library or an independent consumer. Each consumer's adopted basis determines
+which interfaces apply; consultation alone does not adopt this contract.
+Root Python utilities are authoring,
 compatibility, and validation references for this contract; their presence or
 successful execution does not establish the production provider implementation.
 
@@ -64,9 +68,12 @@ bundled. Selection retains source-qualified identity; a result is never reduced
 to its basename in run history. Every workflow collision exposes all origins.
 Discovery after selection may report a higher-precedence collision, but it must
 not silently replace the selected workflow. Explicit source qualification
-resolves a collision. Project instructions and workflows may specialize the
-shared suite but cannot weaken Root governance or escape the active working
-root.
+resolves a collision. In a deployment adopting the Root-governed shared suite,
+project instructions and workflows may specialize it but cannot weaken that
+adopted Root governance or escape the active working root. Root's repository
+grants do not transfer to independent consumers; their governing instructions,
+adopted contracts and actual host permissions determine authority. Source-qualified
+selection and collision handling do not themselves grant permission.
 
 Ordinary App skill availability follows Codex's native discovery
 (`skills/list` over project, user, and bundled skills) under D-GOV-43 item 10.
@@ -308,6 +315,10 @@ format schemas remain in workflows/catalog.schema.json and the catalog index.
 Historical R-identifiers are in [the compatibility reference](COMPATIBILITY_FORMATS.md).
 
 ## Retained Runtime process interface
+
+The following service and process requirements retain their App v3/Runtime
+subject. They apply only upon explicit reactivation, as qualified above, and do
+not establish a current provider implementation or App v4 architecture.
 
 The `projects/chirality-runtime/` project owns versioned contracts, provider-neutral
 orchestration, the Runtime service, a Unix-socket client, a CLI, and safe

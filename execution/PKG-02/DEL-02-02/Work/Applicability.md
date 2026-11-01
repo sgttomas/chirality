@@ -1,42 +1,130 @@
 # Bounded reference-applicability comparison
 
-Maturity: open content examination, not a completed F-02 repair. The adjacent
-ScopeOfWork's selected passage table bounds the case and its evaluation. The
-initial inspected source basis is `fd847ac9ac68250b2f35d2e9c0087c16e86b510a`.
+Maturity: proposed three-reference qualification for owner review, with all eight
+selected passage rows examined. Independent examination and owner content approval
+are pending. This is the first F-02 candidate, not completion of AC-001–AC-004,
+A4/A5, product acceptance, a development gate or release.
 
-## The question to resolve
+## Basis and intended use
 
-`docs/AGENT_WORKFLOW_RUNTIME.md` scopes historical contracts in its introduction,
-but also says that Runtime owns production discovery and that project methods
-cannot weaken Root governance. `docs/COMPATIBILITY_FORMATS.md` selects the current
-ScopeOfWork/Work/native-needs convention while retaining deployment clauses about
-M2/G4 authority and retired working roots. `docs/PRODUCT_BOUNDARIES.md` preserves
-adopted commitments and limits frozen Runtime application to explicit reactivation.
+The preceding source basis for every Root passage below is
+`4214db1c0ed04ce5466e65979c215fe018bd19d7`. The actual candidate is the diff and
+commit identified by the review PR. The contract's initial inspection at
+`fd847ac9ac68250b2f35d2e9c0087c16e86b510a` remains historical evidence; it is not
+silently rebound to this candidate. The accepted Group 3 snapshot, its decision,
+DEL-02-02 card, §8.1, §9 and qualifications remain unchanged.
 
-These passages require an applicability reading, not blanket deletion. Establish
-their subject, adopter, condition and authority before changing a clause. The
-contract's CON-001 retains this unresolved tension. Current Root instructions
-and the accepted library PRD supply the Root-facing comparison; they do not
-silently amend an independent project's adopted contract.
+Read together, current AGENTS.md, PRD §2.3/R06/R11–R13 and the references' existing
+opening qualifications support a distinction between library definitions,
+current Root work and contracts selected by a consumer. They do not support
+abolishing a contract because its deployment is historical. The current bounded
+assignment authorizes drafting and examination under the existing criteria.
+Agent 0 retains consumer coordination and final integration; the owner approves
+proposed content before integration. The selected methods are repository
+`workflows/coordinated-knowledge-work/WORKFLOW.md`,
+`workflows/bounded-reconciliation/WORKFLOW.md` and `workflows/change/WORKFLOW.md`,
+with `.agents/skills/chirality-change/SKILL.md` supplying Git conventions, at the
+preceding basis. Proposed wording is examined under that basis.
 
-## Connected explanations
+## Selected passage dispositions
 
-The selected thesis architecture sections and named Consolidated v9 manual
-passages explain locality, authority and reliance. Compare the exact sources
-listed in the contract. Retain an edition's earlier basis when appropriate;
-if a maintained rendered edition is affected, its source/render route and actual
-output need examination. There is no commission to rewrite all publications.
+The row order is the ScopeOfWork's selected passage table. Section names locate
+both the preceding text and the candidate; unchanged passages keep their bytes.
 
-Existing scoped qualifications can supply a justified no-edit result. A changed
-word alone cannot establish that a conflicting interpretation has been resolved.
-Carry the consequential reading and its evidence here as production proceeds.
+| Row / source passage | Reading, warrant and candidate disposition |
+|---|---|
+| 1. AGENT_WORKFLOW_RUNTIME — introduction; Method libraries and catalogs | **Qualify historical ownership and adopted scope.** The existing introduction already makes App v3/Runtime reactivation and project-specific adoption conditions, but the unqualified “Runtime project owns” can appoint a current provider when read separately. Prefix the allocation with its retained App v3/Runtime subject and explicitly deny automatic provider appointment/adoption. Qualify “cannot weaken Root governance” as a requirement of a deployment adopting that Root-governed suite, preserving both its governance and working-root restriction. PRD §2.3/R13 and AGENTS establish independent consumer authority. Retain definitions of skill/workflow, catalog operations, precedence, source identity and collision handling: those meanings do not require universal Root authority. No discovery or enforcement implementation is established. |
+| 2. AGENT_WORKFLOW_RUNTIME — Context selection and execution; Retained Runtime process interface | **Retain distinctions; reinforce the process section's subject.** Selection, compatibility, coordination and execution are already distinct; a documented command is not host capability and loading a method grants no permissions. Keep that text. Add a local reminder that the retained service/process requirements have the App v3/Runtime subject, apply only upon reactivation and do not establish current provider behavior or App v4 architecture. Keep all service clauses and anchors. The desktop instruction-copy description is not evidence that v4 lacks editable copies: mechanisms can recur without adoption of the whole historical contract. No present host behavior claim or product change follows. |
+| 3. PRODUCT_BOUNDARIES — opening; Professional accountability; Retained invariant identifiers; Domain integration; Frozen Runtime reference | **Retain safeguards and clarify warrant.** The opening already preserves adopted commitments without reinstating development duties; K-WRITE-1 and K-DEP-1 already distinguish historical procedures from current work. Professional accountability, all invariant definitions and domain-controlled writes remain unchanged. Add that adoption follows an identified consumer/source, that consultation transfers no Root authority, and that historical enforcement descriptions do not prove a current implementation. Keep the frozen Runtime reactivation condition. Correct only the surrounding current description that grouped PEC with frozen products, under the owner's clarification that there is no PEC; do not alter historical invariant text or source identifiers. |
+| 4. COMPATIBILITY_FORMATS — opening; Paths and containment §§0.2.1–0.2.4 | **Qualify the deployment preamble, retain the clauses.** The retired Root product working root, runtime-declared separate instruction root and M2/G4 tranches describe the retained deployment dialect. They do not replace current library execution authorized under AGENTS, the accepted PRD and the undertaking. Put that distinction immediately before the numbered clauses, preserving requirements where adopted. Keep REPO_ROOT resolution, separate-root requirements, path-reference discipline and K-WRITE-2 containment/rejection meanings verbatim. A documented deterministic backstop remains a requirement, not evidence that this host implements it. No permission expansion, removal of containment or consumer migration is proposed. |
+| 5. COMPATIBILITY_FORMATS — Scope-of-work format; Legacy production-format resolution; Legacy dependency CSV; historical source links | **Retain current schema and historical identities; qualify the conversion audience.** The opening expressly disclaims CSV authoring/query/adapter support; Scope-of-work format already rejects implied lifecycle files and packets and distinguishes schema validity from acceptance. Keep those provisions, identifiers and historical links. Add a short introduction to Legacy production-format resolution tying its states and transition obligations to its retained conversion/D-GOV-16 basis and deliberate method selection. Its “remain supported” statement must not be read as reinstallation or a new Root initialization requirement. Retain the table and original transition duties for their applicable use. This is a source-standing reading, not a test of legacy tooling. |
+| 6. thesis/04_architecture.md §§4.2.1–4.2.3 | **No edit warranted.** At the stated revision, the explanation already uses ScopeOfWork/Work/native needs, says App and SWBPIPE adopted Work and preserves historical Design source meaning. It distinguishes a declared need from suitability, a graph from work, committed content from correctness and development files from operational/domain stores. That account agrees with the reference qualifications. The query-interface statements are retained explanations, not newly tested behavior. No thesis derivative is changed by this candidate. |
+| 7. alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.md — Authorship and use; §§1.3–1.4, 3.2–3.4, 6.3–6.6; Working vocabulary | **Retain general method; identify a connected §3.2 clarification for the owner's direction.** Consolidated v9 at the stated revision is the exact source, read with chapters 3–8. Authorship and use preserves project commitments; §1.4 separates capability, authorization and host permissions; §§3.3–3.4 separate needs from gates/suitability; §§6.3–6.6 preserve purposeful records, history and edition identity. The vocabulary supports these distinctions without a needed term change. §3.2 correctly describes the forward locality convention and other undertakings' freedom, but its future “owner will reconcile” Design-to-Work wording lags current AGENTS and the thesis's adopted Work statement. Recommended subsequent change: replace that future transition description with current project-local path/authority guidance while preserving historical source identities and the manual's wider audience. No publication bytes are edited in this first candidate. |
+| 8. alignment-manual/README.md — Discovery and reliance; Read and render; Earlier editions | **No substantive index edit presently warranted.** The index names v9, distinguishes discovery from reliance, retains earlier adopted identities and prescribes Markdown-to-HTML rendering. Its mutable pointer cannot identify this comparison, so the edition and Root revision are explicit above. A later authorized §3.2 change would require the maintained v9 HTML derivative through this route, with actual link/readability examination. No current derivative change or render verification is claimed. |
 
-## Inputs and holds
+## Why the qualification changes usable meaning
 
-Use the existing bounded-reconciliation method; DEL-04-01 owns that practice,
-while this locality owns the specific content comparison. A behavior/enforcement
-claim needs the selected operation and evidence from the tool source, accounted
-for by DEL-03-01. Named adopted-contract evidence remains Q-04 under DEL-05-01.
-Hold incompatible changes where that basis is unknown, while continuing supported
-Root-facing examination. Q-05 is needed only for a publication-inspection claim,
-not for reading the selected explanatory passages.
+Before qualification, a Root maintainer following the path reference could infer
+that library instruction edits require historical M2/G4 tranches, or that current
+production discovery belongs to retired Runtime. A consumer could read catalog
+specialization as subordinating its own project authority to current Root policy.
+Those readings conflict with the current Root basis and the references' existing
+adoption/reactivation conditions.
+
+The candidate makes the subject and condition explicit at the consequential
+passages. A reusable selection definition remains usable; an adopted restriction
+remains binding in its selected context; current Root work takes authority from
+AGENTS and the undertaking. The permitted action is to prepare this bounded
+reference change under that authority, preserving consumer and protected-domain
+boundaries. Its warrant is the identified source comparison, not a passing
+resolver or an assumed consumer migration. The governing values are warranted
+claims, human accountability, independent adoption and recoverable history.
+The thesis and manual's general distinctions support that reading; the manual's
+specific locality-transition sentence is the remaining connected publication
+consequence, rather than grounds for a whole-manual rewrite.
+
+The owner clarified that there is no PEC. This candidate corrects the selected
+current frozen-product description in PRODUCT_BOUNDARIES and the corresponding
+local ScopeOfWork description. Accepted PRD/snapshot bytes and historical
+identifiers (including PEC-labelled patterns in retained invariant text) are
+preserved. Those historical names must not be used to infer a current or frozen
+project. Any consequential reinterpretation beyond this correction returns to
+Agent 0; no historical cleanup is commissioned.
+
+## Consumer evidence and remaining conditions
+
+Agent 0 supplied these bounded consumer-owner source inspections. They are
+reported inspection evidence, not this editor's product tests or A6 qualification.
+
+- **App v4:** at `366e7a6656d807142e7bdeda0ccf99c37d7227b1`, its Agent 0 found
+  no explicit selected-clause adoption/pin in current AGENTS and loop. Local
+  authority and development/product separation remain. `reference/SOURCE_INVENTORY.md`
+  §3 retains historical Root governance applicability (OD-10) and an examined/
+  prospective runtime-reference status at investigation `2b0572fe0`; this does not
+  bind the selected exact clauses or present wording. Migration shared-inputs at
+  Root `a6ad85ae82d534c0c064419219258a4df2109e10` enumerate provenance, not blanket
+  adoption. Packaged instructions bind v4-local contracts. The consumer reports
+  current editable user-data instruction copies in `runtime_session.rs:518+` and
+  `desktop_startup.rs:869/986`; the historical description does not make that
+  mechanism v3-exclusive. No blocking concern was reported with the proposed
+  compatible qualification preserving contracts and authority.
+- **SWBPIPE:** its Agent 0 inspected public
+  `bc9f7961acee72441ec06c104ed97d4f1c77faa4`. Current
+  instructions retain local authority and distinguish shared-method consultation
+  from product pins. No current selected-clause pin was found for Runtime
+  ownership, Root-governance wording or separate instruction-root/M2/G4 clauses.
+  However, `execution/_Coordination/_DECISIONS/D-44_piping_loop_receipt_contract.md`
+  (RULED O-A, 2026-07-15) cites historical CONTRACT §§1.2/1.9/1.10 including
+  K-WRITE-2. It does not identify adoption of today's §0.2.3 or an exact Root
+  revision; transitive historical adoption remains unverified. Current local
+  containment and permission/brief boundaries remain binding. Migration inputs
+  at Root `0828e8166ccefddc5c5b7bd5f75d58c2d656f51a` concern tools/CI; separately
+  bound embedded catalog/proposal provenance is not adoption of these references.
+  No selected-document import was found in the inspected embedded paths, and no
+  blocking concern was reported with compatible qualification preserving actual
+  containment. No test, repin or qualification was performed.
+
+These inspections support continuing the compatible Root-facing draft. They do
+not prove universal non-adoption or resolve every historical transitive contract.
+Q-04 remains open for an incompatible adopted-clause change or named compatibility
+claim: obtain its exact maintained basis and supported path before proceeding.
+Preserving the clauses avoids depending on that missing evidence in this draft.
+No consumer files, pins or implementation change here. Q-05 remains distinct:
+this is not publication-candidate preparation/update-inspection evidence for A7.
+
+## Reconciliation and examination limits
+
+ScopeOfWork factual maturity, assignment and authority descriptions now reflect
+bounded production; its commitments, requirements, criteria and stable IDs remain
+unchanged. CON-001 remains open pending examination/owner direction and the
+connected publication treatment; a proposed qualification is not an accepted
+resolution. The existing deliverable.yaml needs/check pointers still describe
+actual input conditions, including Q-04/Q-05 and the conditional renderer. No
+metadata edit is warranted simply to record that a source was read.
+
+The PR carries exact candidate checks and outstanding review. Focused structural,
+source/link and public-screening checks support representation and public handling;
+they cannot establish source interpretation, host behavior or consumer compatibility.
+The independent examiner is commissioned by Agent 0. There is no changed
+executable behavior and no frozen-product verification. Publication edits and
+rendering await the owner's direction on this first concrete qualification.
