@@ -1,6 +1,6 @@
 # Chirality in Practice
 
-**Reflections on Purposeful Work by People and Agents**
+**Extending Human Capability with Agents**
 
 First edition
 

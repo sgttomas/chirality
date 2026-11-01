@@ -409,3 +409,11 @@ references, source hashes and the published 1.0.1 archive remain unchanged.
 Discovery presents the book independently and retains old references in the
 historical-manual section. Current source differs from the published edition,
 which the index makes explicit. No new library release is authorized by this edit.
+
+## Author-selected subtitle
+
+The owner selected “Chirality in Practice: Extending Human Capability with
+Agents” and authorized source integration and website publication. This changes
+the subtitle and presentation, not the book's argument, case claims or reflective
+character. Earlier library releases retain their exact published bytes. The
+website imports the new identified source; no replacement library tag is implied.
