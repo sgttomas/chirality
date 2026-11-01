@@ -35,13 +35,12 @@ and `ACCEPTED_MANIFEST.csv` binds the accepted payload and handoff. The payload'
 pre-decision submission status is historical. Its relative links resolve from
 `execution/_Decomposition/PROJECT_DECOMP.md`.
 
-This is newly authored setup, not established fulfillment. The owner authorized
-ScopeOfWork formation; this assignment does not implement the guide, contact
-consumers, obtain external evidence, prepare a publication or release it. Parent
-Agent 0 retains combined setup reconciliation and dependency authoring. Initial
-empty YAML needs do not establish completeness or input suitability. Future
-production assignments remain Q-03; this authoring assignment appoints no
-permanent contributor or supplier.
+The current undertaking develops and examines obtaining/use and change-inspection
+guidance under Agent 0, with a bounded Type 2 contribution exercising the selected
+App reader. Initial setup alone did not establish these results. The linked Work
+binds actual source/consumer revisions, the copied package and comparison evidence.
+The owner approved this content for integration in PR #1784; no product acceptance,
+publication, automatic adoption or permanent contributor appointment is inferred.
 
 The initial source assessment and continuation conditions are in [Work/ConsumerBasis.md](Work/ConsumerBasis.md). Consumer-local needs are now declared in `deliverable.yaml`; their presence establishes no satisfaction claim.
 
@@ -106,15 +105,15 @@ document review and final qualification have distinct conditions.
 | Input / source | Use and trigger | Suitability condition / unresolved binding |
 |---|---|---|
 | Selected holdings, guides, licenses and resource manifests at their maintained homes | Draft obtaining/use guidance; final exercise when making a use claim | Identify actual exported surface and revision; inspect required resources and applicable component notices. CLM-001 is a starting set, not a mandatory bundle of every Root holding. |
-| Named consumer contract/fixtures | Claim compatibility or select an incompatible interface change | Exact maintained source and revision plus authorized access/cleared evidence required; Q-04 / TBD-001 remains open. No external access in this setup assignment. |
-| Verified candidate sources and ordinary review/publication facilities | Prepare candidate and make A7 claims | Bind actual version label, source revision, delivery form, verification and prior comparison basis; Q-05 / TBD-002 remains open. A merged revision alone is insufficient. |
+| Named consumer contract/fixtures | Claim compatibility or select an incompatible interface change | Exact maintained source and revision plus authorized access/cleared evidence required; the selected App reader case is bound in TBD-001 and Work. No consumer adoption follows from it. |
+| Verified candidate sources and ordinary review/publication facilities | Prepare candidate and make A7 claims | Bind actual version label, source revision, delivery form, verification and prior comparison basis; the selected source/edition case is bound in TBD-002 and Work. A merged revision alone is insufficient. |
 | Existing maintenance and reconciliation methods | Authorized preparation, review, source reconciliation and integration | Read applicable current methods and evidence from DEL-02-01 and DEL-04-01; do not await whole-deliverable completion or infer new supplier obligations. |
 | Navigation and shared-meaning material | Guide wording or applicability change affects shared README/reference/publication sources | Coordinate navigation use with DEL-01-01 and scoped meaning with DEL-02-02 through Agent 0 and one shared-file editor; preserve adopted contracts and earlier editions. |
 | Actual tool/interface behavior and supported compatibility route | Guidance invokes a tool or proposed change is incompatible | Use documented commands, dependencies and checks from selected sources; any demonstrated implementation gap returns to DEL-03-01 under Q-02, not an assumed adapter. |
 | Historical pins/editions and documented recovery routes | Rely on particular historical content | Identify original pin/path and verify selected bytes before reliance; retain unrelated history without a global audit. CLM-004 supplies the documented starting route. |
 
-- **TBD-001** — Q-04: the named consumer, maintained contract/fixture location, exact revision and claim-specific access/public-evidence conditions remain unresolved. AC-002 and full A6 cannot be established without them. Independent guidance can proceed; consumer adoption is not the missing evidence.
-- **TBD-002** — Q-05: the actual verified candidate/version label, delivery form, prior comparison revision and affected-holdings account remain unresolved. AC-003 through AC-005 and A7 require those real bindings. This ScopeOfWork does not select a release or invent a prior version.
+- **TBD-001** — Q-04 is bound for the selected capture/declaration/content-identity claim: App `366e7a6656d807142e7bdeda0ccf99c37d7227b1` reader and maintained contracts, with Root `1357d706ea77497903976bf159f3880bea4d1360` coordinated-knowledge-work package, as identified and exercised in Work/ConsumerBasis.md. Other consumer operations or source revisions remain outside that evidence. Independent examination found no blockers; the owner approved the presented content for integration. The test does not imply adoption or full product acceptance.
+- **TBD-002** — Q-05 is bound to the F-02 source candidate at Root `1357d706ea77497903976bf159f3880bea4d1360`, including Consolidated v9 and its maintained HTML, compared with `257ab4c18014bf872a1c72eeb7593a7ad3d135c0`. Work/ConsumerBasis.md identifies delivery/source evidence, actual PR change account and exercised comparison. The candidate is not a published library release; owner content approval is recorded in PR #1784, while remaining product coverage is examined against the unchanged criteria.
 - **TBD-003** — Q-01 retains additional archival disposition of `plans/`, `_DomainEngines/` and other unselected removals with the owner. Q-02 retains bespoke tooling as contingent on a demonstrated gap and actual authorization; no adapter, companion or service is commissioned. These qualifications do not block unaffected guidance or source-preservation work.
 
 ## Production and Verification Method — Praxeology
