@@ -281,3 +281,14 @@ configured for a user and no notification delivery was tested. The returning-use
 walkthrough follows release discovery, notes and comparison without assuming
 adoption. Library 1.0.0 remains unchanged; these development instructions require
 a separate publication decision to become a later edition.
+
+## Reflective successor proposal and consumer standing
+
+The new book proposal changes the character of the publication, so the current
+README/index explicitly preserve v9's agent-directed use as a separate selection.
+The successor is material for reflection; roles and workflows remain the route
+to operational methods under each project's own instructions. The book and
+rendered form are proposed, not a new library release. Named App-reader evidence
+and all archive/publication pins above retain their actual subjects. No external
+consumer adoption or source repinning is performed. The discovery changes are
+coordinated with DEL-01-01; no new obtaining mechanism or interface is claimed.

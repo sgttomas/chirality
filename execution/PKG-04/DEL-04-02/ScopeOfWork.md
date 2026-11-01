@@ -17,6 +17,24 @@ revision or an explicit reason to retain the practice. This deliverable supplies
 reflective-practice guidance and criteria, carries the actual decomposition
 formation outputs, and evaluates their use through bounded real work.
 
+**Proposed post-release extension, 2026-11-01.** The owner approved preparation
+of a reflective successor book and a connected scope proposal: “Approved.
+Proceed accordingly.” Chirality is the wider undertaking expressed through Root,
+App and SWBPIPE; the library is one place where their experience can develop
+shared understanding and means of working. This locality is proposed to carry
+that reflective contribution through the additional OUT-004 below. Its exact
+commitment and criterion remain for owner content review; earlier outputs and
+their 1.0.0 acceptance are not reopened by drafting this extension.
+
+This extends the original decomposition's bounded SOW-0014 contribution and its
+§6 finding that a whole manual rewrite was not then evidenced. The proposed
+exception is this reflective successor, not a general commission to rewrite
+thesis, courses or project instructions. It preserves the card's concern against
+duplicating roles/workflows as another execution manual. Trace is to this later
+owner direction, OBJ-002/OBJ-003, PRD R11 and §2.3's maintained publications;
+no retrospective SOW identifier or amended historical snapshot is invented.
+Independent projects retain their commitments, authority and adoption decisions.
+
 The accepted basis is the Group 3 snapshot identified above, especially its
 vocabulary, objective table, scope ledger, §8.1, DEL-04-02 card, §9 and §10.
 `execution/_Decomposition/_LATEST_ACCEPTED.md` resolves that snapshot;
@@ -57,6 +75,8 @@ required merely to give an output a separate container.
 - **OUT-002** — Usable reflective guidance and criteria in `workflows/reflect-on-work/WORKFLOW.md`, with `agents/AGENT_HELP_HUMAN.md` supplying posture and `workflows/coordinated-knowledge-work/WORKFLOW.md` supplying orchestration where needed, with explanatory rationale there or in affected owning Work where needed. Cover noticing a changed question, comparing local completion with intended use, examining the cost and warrant of monitoring, and deciding to retain a route, revise a method or return a reserved choice. SOW-0014; OBJ-002, OBJ-003, OBJ-004.
 - **OUT-003** — Bounded real application evidence: the question and selected basis, actual goal/action/input condition, consequential finding, human–Agent 0 judgment, affected-use examination and authorized consequence or warranted retention. Retain only consequential reasoning in existing owning Work and the actual review record, and apply warranted changes in their governing sources. This supplies the reflective portion of SOW-0014 and A3, supporting OBJ-002, OBJ-003, OBJ-004; it does not require a transcript, separate reflection report or recurring receipt.
 
+- **OUT-004** — Proposed reflective book, *Chirality in Practice*, in `docs/alignment-manual/Chirality_in_Practice_Edition_1.md` and its generated HTML, with a truthful discovery/lineage account and a minimal optional connection from reflect-on-work. Develop the thesis's relationship to practice across projects, including what experience can warrant retaining or changing in the shared library. Preserve v9 and its selected uses. This is a post-release addition under the owner direction above, supporting OBJ-002/OBJ-003; it adds no recurring project reports, mandatory reading or consumer rollout.
+
 **Approved source-home refinement (PR #1785):** OUT-002 previously located
 reflective guidance in HELP_HUMAN and coordinated-knowledge-work. The owner
 clarified that orchestration is not the reflective method. The adopted distinct
@@ -80,6 +100,8 @@ criteria and verification methods are unchanged; owner approval preceded integra
 - **REQ-007** — Under CLM-003 and CLM-004, exclude unilateral edits to another contributor's commitments/Work/needs (that implementation owner, within its grant); combined-result integration by this scope author (Agent 0); changes to commitments or acceptance criteria, risk acceptance, lifting explicit holds and product acceptance/release (the owner); changing protected/adopted baselines without their governing authority (the actual baseline decision/adoption owner); consumer rollout, policy change or production release (the consuming project's owner); frozen development or verification and additional archival removal (the owner through explicit reactivation/disposition). A monitoring service, recursive monitoring hierarchy or automatic model loop has no production allocation here; proposing any new commitment returns to the owner under Q-02 rather than appointing a supplier.
 - **REQ-008** — Public guidance and retained evidence shall exclude credentials and private operational data, preserve source identity and distinguish actual observation, reused evidence, walkthrough and unknown. Q-04 named consumer sources and Q-05 publication candidate/prior basis must be bound before making their respective compatibility/publication claims; neither is supplied by reflection or generic examples.
 
+- **REQ-009** — Proposed OUT-004 shall be a coherent reflective account grounded in identified practice and explanatory sources. Preserve the distinction between actual observations, reused documentary evidence, constructed cases and authorial interpretation; characterize the limits of generalization across projects. Explain the reciprocal relationship among experience, shared understanding, changed library means and independent adoption without prescribing another execution system. Preserve historical sources and readable external-user routes; any changed instruction or discovery claim must be reconciled at its actual source under preceding authority.
+
 - **AC-001** — OUT-001 provides the actual accepted normalized basis and bounded design, Group 2 decision binding, separate Group 3 audit and final acceptance; manifests and source identities resolve, and historical submission labels and exact-byte approval limits are interpreted correctly. Verified by VER-001.
 - **AC-002** — OUT-002 supports identifying a changed question, comparing local completion with intended use and monitoring cost/warrant, and distinguishing retain, authorized method revision and reserved-choice routes. Existing or revised passages are usable together without mandatory ceremonies or recursive oversight. Verified by VER-002.
 - **AC-003** — OUT-003 demonstrates a bounded real human–Agent 0 examination yielding a warranted retain/change decision or an explicit unresolved reserved choice with consequence, and shows that any authorized consequence reached its owning material. Verified by VER-003.
@@ -91,6 +113,8 @@ Formation evidence for AC-001 is available as CLM-001. The guidance and applicat
 criteria are not declared satisfied by this setup contract. In particular, A3's
 actual accepted/set-up case remains unestablished here. Product acceptance is a
 separate owner judgment, not a validator result.
+
+- **AC-007** — Proposed OUT-004 expresses that reflective character consistently across the manuscript, index, README and method connection; its case claims resolve to their actual sources and limits, its complete rendered form corresponds to identified Markdown, and v9/published 1.0.0 remain unchanged. The human can examine the proposed title, interpretation and exact scope/instruction changes together. No new project obligations, automatic adoption or author approval are attributed by the draft. Verified by VER-007.
 
 ## Production and Verification Method — Praxeology
 
@@ -128,6 +152,8 @@ this contract does not write `deliverable.yaml` or centralize neighboring record
 - **VER-005** — Compare retained or revised guidance with its preceding selected basis and authorized change scope. For retention, assess why existing passages suffice; for a revision, inspect the actual diff, applicable method checks, recovery of the old basis and the authorized adoption decision. Verify the maintenance means as well as the output, with focused tests and independent scrutiny where the actual change requires them.
 - **VER-006** — Review the actual output/evidence claims against REQ-006, REQ-007, REQ-008 and their cited ownership sources, checking each excluded act and decision owner. Screen changed public content and retained evidence through maintained credential/private-term checks using available authorized terms; state screening limits. Inspect historical/unknown/consumer qualifications and ensure structural evidence is not promoted to acceptance.
 
+- **VER-007** — Compare the complete successor with v9 and the named thesis/case sources, examining reasons and qualifications rather than only introductory wording. Obtain the owner-requested independent second voice during drafting and examine its objections. Check source-qualified links, edition standing, preceding-source preservation, scope trace and the selected renderer's actual source/hash correspondence. Distinguish content review and rendering checks from fresh product execution or measured productivity. Present the complete candidate and precise post-release scope addition for owner content review; publication remains a separate act.
+
 ## Governing Values and Decisions — Axiology
 
 - **AX-001** — Judge local completion by the human's intended result. Reflection is useful when it improves a warranted decision or explains retention; adding reports, agents or monitoring layers is not itself progress. Human judgment bounds the inquiry.
@@ -156,3 +182,4 @@ is introduced.
 | OUT-001 | OBJ-001, OBJ-002, OBJ-004 | REQ-006, REQ-007, REQ-008, CLM-003, CLM-004 | AC-006 | VER-006 | One-for-one boundary review, bounded public-data screening and honest claim/unknown/source qualifications |
 | OUT-002 | OBJ-002, OBJ-003, OBJ-004 | REQ-006, REQ-007, REQ-008, CLM-003, CLM-004 | AC-006 | VER-006 | One-for-one boundary review, bounded public-data screening and honest claim/unknown/source qualifications |
 | OUT-003 | OBJ-002, OBJ-003, OBJ-004 | REQ-006, REQ-007, REQ-008, CLM-003, CLM-004 | AC-006 | VER-006 | One-for-one boundary review, bounded public-data screening and honest claim/unknown/source qualifications |
+| OUT-004 | Later owner direction, OBJ-002, OBJ-003 | REQ-009; REQ-005–008 boundaries remain applicable | AC-007 | VER-007 | Full reflective manuscript, source-grounded cases, independent consultation, rendered correspondence and explicit scope/content review |

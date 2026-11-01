@@ -8,18 +8,19 @@ asks what should guide work shared between people and agents, and it supplies th
 means to carry that work out: roles, methods, tools and artifacts, kept open to
 revision as experience shows what serves the work and what does not.
 
-[Website](https://chirality.ai) · [Thesis](docs/thesis/README.md) · [Project Management Manual](docs/alignment-manual/README.md#project-management-manual)
+[Website](https://chirality.ai) · [Thesis](docs/thesis/README.md) · [Books and reflection](docs/alignment-manual/README.md)
 
 <a id="the-shared-library"></a>
 <a id="obtain-and-use-the-library"></a>
 
 ## Use the library
 
-**New here? Start with the [Project Management Manual](docs/alignment-manual/README.md#project-management-manual).**
-It explains how a person and their agent can organize, examine and carry work
-through. Read it yourself or give its Markdown source to your agent along with
-your actual problem, context and intended result. The manual index links both
-readable and agent-friendly forms; a manual supplies a method, not authority.
+The library offers working methods and material for understanding and questioning
+those methods. [Chirality in Practice](docs/alignment-manual/README.md#chirality-in-practice)
+is a proposed reflective book for people and agents, grounded in the thesis and
+project experience. The [earlier Project Management Manual](docs/alignment-manual/README.md#project-management-manual)
+remains available for its agent-directed use. For a practical method, choose the
+relevant role or workflow below under your project's own instructions.
 
 To contribute to this repository, use [Develop and contribute](#develop-and-contribute).
 The steps below are for using library material in your own work or project.
@@ -42,7 +43,8 @@ is not a new library edition.
 
 | I want to… | Start here | How to use it |
 | --- | --- | --- |
-| Organize work with my agent | [Project Management Manual](docs/alignment-manual/README.md#project-management-manual) | Read the current edition or supply its Markdown source to your agent; apply it to a concrete undertaking. |
+| Reflect on how the work is understood and carried out | [Chirality in Practice](docs/alignment-manual/README.md#chirality-in-practice) | Explore the successor proposal's reasons and cases; it is material for reflection, not another execution instruction set. |
+| Read the earlier agent-directed account | [Project Management Manual v9](docs/alignment-manual/README.md#project-management-manual) | Select its Markdown or HTML explicitly; existing v9 uses remain unchanged. |
 | Learn the reasoning | [Thesis](docs/thesis/README.md) and [courses](docs/human-team-courses/README.md) | Read the foundations or follow the learning material for people. |
 | Choose an agent's contribution | [Roles](agents/) | Read the relevant role: HELP_HUMAN, HELPS_HUMANS, WORKING_ITEMS or TASK. |
 | Use a repeatable method | [Workflow guide](workflows/README.md) | Select a workflow and retain its complete package and required resources. |
@@ -116,6 +118,11 @@ and authority; the library provides no subscription service or automatic adoptio
 </details>
 
 ## Why Chirality
+
+Chirality is the wider undertaking expressed through the library, App and
+SWBPIPE projects. The library is one place where their experience can develop
+shared understanding and means of working; each project retains its own
+commitments and authority.
 
 Every project should give the next one a better starting point. Often, the
 understanding stays with the person who did the work, even when the finished

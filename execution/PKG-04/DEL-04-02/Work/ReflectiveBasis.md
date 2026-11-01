@@ -211,3 +211,53 @@ new general review solely because the stage changed. The exact approved source
 archive remains `7c334bf5cb529a814e0f96f68bc8d9500b15cdd5`; later source records
 and gate annotations are outside it. Any proposed delivery of a later revision
 must identify that revision and establish which existing evidence still applies.
+
+## Proposed reflective book and practice across projects
+
+After library 1.0.0, the owner clarified that “Chirality is the wider undertaking
+expressed through all three projects, while the library repository is one
+particular place where that undertaking develops its shared understanding and
+means of working.” The owner approved preparation of a successor book and the
+connected proposal, then requested Claude Opus 5.5 at high effort as an
+independent second voice throughout drafting. Exact candidate approval remains
+pending. The current conversation establishes the authoring direction, not
+empirical support for the book's argument.
+
+The proposed additional OUT-004/REQ-009/AC-007/VER-007 makes the post-release
+scope change explicit; original outputs and criteria retain their text and
+historical acceptance. The accepted decomposition had not commissioned a whole
+manual rewrite. The new undertaking supplies the authorizing direction and the
+candidate states the specific extension rather than silently mapping it to the
+old scope. No deliverable identities, grouping or setup change. The scope-change
+workflow was inspected: its grouped decomposition checkpoints, action register
+and incremental lifecycle setup are not selected for this one-locality amendment.
+The owner-directed proposal and same-PR reconciliation supply an inspectable
+local amendment, with PR #1785's bounded source-home refinement as precedent.
+
+The book is a new work succeeding v9 in a different character, not v10 or a
+replacement instruction package. Its current sources remain unchanged. The
+first consultation identified the external agent-directed v9 use, the original
+scope exclusion, attribution risk and the primarily Root evidence base. The
+draft preserves the earlier route explicitly, uses an impersonal authorial
+voice without invented first-person experience, and separates actual Root
+records from constructed examples and the thesis's dated App/SWBPIPE account.
+Proposed title/subtitle and the interpreted positions remain for author review.
+
+The manuscript develops v9's distinctions throughout as explanation. The actual
+case uses F-02, ownership/retirement, readiness and publication records already
+held in Root; it claims no new product run or measured productivity. The book's
+potential to inform or challenge library practice is reciprocal: experience can
+also warrant changing the book. There is no routine reporting cycle or required
+consultation list. Existing project Agent 0 routes can carry consequential
+experience; no message, consumer change or adoption has been performed here.
+
+The method proposal adds one optional link to the exact book-source revision,
+using a qualified GitHub Markdown URL so the reference remains meaningful when
+the method package is copied without Root docs. It is explanatory material, not
+a newly required package resource. HELP_HUMAN and AGENTS remain unchanged. The
+existing create-workflow method and preceding reflect-on-work text govern review.
+The index, README and course entry are reconciled to preserve both the reflective
+book's purpose and the still-available v9 route; course lesson bodies are unchanged.
+The PRD and DEL-02-02's completed F-02 scope need no edits: maintained publication
+work is already within the library boundary, and this consumer states its own
+new need without rewriting the supplier's historical obligation.
