@@ -32,7 +32,7 @@ The product warrant is `docs/PRD.md`, particularly R06–R12 and A3/A5.
 
 A bounded reflective-method candidate now accompanies the retained formation
 and real F-02/owner-feedback assessment. Implementation is authorized by the
-current undertaking; owner content approval and acceptance remain pending.
+current undertaking; owner content approval is recorded in PR #1785; product acceptance remains separate.
 Requirements and evaluation retain their accepted meaning.
 
 The method design, source assessment and continuation conditions are in [Work/ReflectiveBasis.md](Work/ReflectiveBasis.md). Consumer-local needs are now declared in `deliverable.yaml`; their presence establishes no satisfaction claim.

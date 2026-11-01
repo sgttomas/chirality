@@ -1,7 +1,8 @@
 # Maintenance route and evidence limits
 
-Maturity: revised retirement/reflection proposal; owner content approval is
-pending. The preceding authorized method basis is
+Maturity: owner-approved retirement/reflection content. The owner approved
+`5b2289d93cd86561818b10e452ffbe4425afce11` and all three output-home changes:
+“Yes I approve this. Proceed accordingly.” Integration is recorded in PR #1785. The preceding authorized method basis is
 `8d0c5d1a19eec865a8a92750cb3de590d04f9c02`; the earlier unadopted expansion and
 parent's factual assessments are retained at
 `a93f4a29b9ec17af799903a11bb1a09667a607fa`. Agent 1 continues implementation;
@@ -31,7 +32,7 @@ DEL-02-01 OUT-003's recovery/custody detail moves from the maintained change
 route/resources to docs/MAINTENANCE_RECOVERY.md linked from AGENTS; DEL-04-02
 OUT-002 uses reflect-on-work with retained role posture/orchestration inputs.
 Their purposes, scope, requirements and evaluation are preserved. The owning
-ScopeOfWork documents name all three proposals; approval remains pending. Git retains both integrated and unadopted prior package bytes. No accepted
+ScopeOfWork documents name all three source-home changes; the owner approved them. Git retains both integrated and unadopted prior package bytes. No accepted
 snapshot or historical source account is rewritten; no current workflow resolves
 from those retained historical bytes implicitly.
 
@@ -363,5 +364,5 @@ authority/containment blockers, and identified the undeclared OUT-003 source-hom
 change plus bounded corrections. This repair declares that home, reduces the
 AGENTS addition, supplies the on-demand resource and restricts reflective-method
 ownership. The repaired head is identified in the PR; no new examiner is launched.
-Owner content approval remains pending before integration. No content acceptance, 60% decision,
+The owner approved this content for integration. No product acceptance, 60% decision,
 release, consumer adoption or enforced custody is established here.

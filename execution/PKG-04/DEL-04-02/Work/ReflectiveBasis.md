@@ -1,7 +1,8 @@
 # Reflective practice and formation basis
 
 Maturity: revised reflective-method proposal with retained formation and actual
-application assessment. Owner content review remains pending; the earlier
+application assessment. The owner approved this content and its output homes at
+`5b2289d93cd86561818b10e452ffbe4425afce11`; the earlier
 candidate's independent examination does not cover this new design.
 
 ## Existing formation evidence
