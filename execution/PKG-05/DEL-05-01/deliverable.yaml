@@ -7,16 +7,20 @@ needs:
     use retains its real dependencies and source/adaptation distinctions.
   when: Drafting or exercising the obtaining/use route
   evidence: execution/PKG-05/DEL-05-01/Work/ConsumerBasis.md
-- from: unknown
-  condition: Q-04 requires the named consumer, maintained contract/fixtures, exact revision, selected
-    interface/use and authorized access/cleared evidence. Bind these before named qualification or an
-    incompatible change; generic Root checks or consumer adoption do not supply them.
+- from: external:chirality-app
+  condition: For the selected package capture/declaration/content-identity claim, use App 366e7a6656d807142e7bdeda0ccf99c37d7227b1
+    Snapshot reader, WORKFLOW_DECLARATION sections 6.1/7 and WORKSPACE_AND_REGISTRATION section 4.5, with
+    exact Root 1357d706ea77497903976bf159f3880bea4d1360 package bytes and the bounded fixture evidence
+    in owning Work. Different operations, revisions or incompatible changes require their own named basis
+    and evidence. No adoption, registration or execution is inferred.
   when: Establishing named compatibility or selecting an incompatible interface change
   evidence: execution/PKG-05/DEL-05-01/Work/ConsumerBasis.md
-- from: unknown
-  condition: Q-05 requires the real candidate/version label, verified maintained source, actual delivery
-    form, prior comparison revision and affected-holdings account. Bind them before preparation/update-inspection
-    claims; no release or automatic adoption is implied.
+- from: doc:docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v9.html
+  condition: For the selected F-02 source/edition candidate, bind Root 1357d706ea77497903976bf159f3880bea4d1360,
+    Consolidated v9 Markdown/HTML and their verified renderer source identity, the actual PR 1783 change
+    account, and prior comparison 257ab4c18014bf872a1c72eeb7593a7ad3d135c0. Inspect the actual selected
+    delivery form and differences; this is an identified candidate, not an owner-published library release
+    or automatic adoption.
   when: Preparing a publication candidate and exercising comparison with its prior basis
   evidence: execution/PKG-05/DEL-05-01/Work/ConsumerBasis.md
 - from: DEL-02-01
@@ -66,6 +70,7 @@ code_paths:
 - projects/FROZEN.md
 - docs/alignment-manual/README.md
 - tools/workflow_runtime/README.md
+- workflows/README.md
 checks:
 - tools/validation/validate_run_record_leaks.py
 - tools/validation/validate_private_terms.py

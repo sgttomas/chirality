@@ -99,6 +99,10 @@ HELPS_HUMANS helps develop or revise workflows; WORKING_ITEMS coordinates their
 implementation. Validate a package with the Root workflow validator and review
 whether its particular method, outputs, and recovery fit its intended use.
 
-The Root replacement format is held for adoption by incompatible App and Runtime
-consumers. Their owning loops must adopt the registry and loading contract before
-using these files as their runtime basis. Export staging is not a release.
+Consumers select their own source basis and adoption. Copy a workflow's complete
+package, including the resources its method needs, and retain the applicable
+license notices and original source identity. A copied package is not automatically
+a registered workflow or a replacement for a product's pinned bundle. Check the
+actual receiving contract before claiming compatibility; preserve a supported
+path or coordinated adapter before an incompatible change. Export staging is not
+a release. Root's retained Runtime contracts do not appoint a current consumer.
